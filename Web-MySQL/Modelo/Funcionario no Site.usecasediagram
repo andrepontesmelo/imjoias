@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="0.3.0.0" Id="8c6faa51-2a4f-48c5-b460-81f5f925caf4" name="Funcionario no Site" linkedPackageId="14fbf37d-c29b-4a36-8814-6d04f322bb11" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
+  <profileInstances>
+    <packageHasProfileInstances Id="e97381a3-4cea-446b-af8a-3fdf73488917">
+      <profileInstance Id="fb16020d-5de2-4542-abfb-79c0095312e1" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="a86905db-04f6-4914-aa60-c8fa733eebbd">
+      <profileInstance Id="c205b4c0-95e6-4578-a23d-300139e0edd9" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <useCaseModelRootHasTypes>
+      <actor Id="6efb1d11-e0b6-4336-9fde-a59baecc1331" name="Funcionário" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="cc4c6f22-f908-4d6b-9aba-5fbf0095b150" />
+        <targetEnds>
+          <association Id="ae14e8f7-1a33-4b9f-9cd5-3d2b04789835" isDerived="false" sourceEndRoleName="Funcionário" targetEndRoleName="Criar catálogo para site" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="fa6f84fc-bd6c-4bc5-8d89-12a48f9b0f13" LastKnownName="Criar catálogo para site" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="6b094198-3bea-4d59-8af2-80a6d9dd1fb9" name="Funcionário" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="a9b4e818-f476-414b-b980-161f2e09b901" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="98cdef67-3be7-4262-99b3-32fa700151a9" name="Criar catálogo para site" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="52f7019f-84eb-497c-be12-f1376be16c34" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="99cb7876-eb85-40a7-977a-5842abb92bc5" />
+          </association>
+          <association Id="41a13749-20a7-44bd-abdb-86e4367fe943" isDerived="false" sourceEndRoleName="Funcionário" targetEndRoleName="Publicar catálogo no site" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="589e4a9c-15de-4e45-93e3-cd82a5763a71" LastKnownName="Publicar catálogo no site" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="8a402bc2-83a4-4999-b07c-3d5396e6e99d" name="Funcionário" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="1feba415-50f3-4f27-bc92-3d969497f65d" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="c7828566-e0a9-4afc-8dbe-eaadaf4db5d3" name="Publicar catálogo no site" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="3225951b-23cf-46c7-8ae3-8d8038d16073" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="f209fa70-6fc9-412a-a5ee-7d1ee9bfd2fb" />
+          </association>
+          <association Id="afbae59f-0e62-4e59-96b0-db6279d5bddd" isDerived="false" sourceEndRoleName="Funcionário" targetEndRoleName="Enviar mala-direta" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="519ec49f-a3f8-4081-b697-8eba9808d1e1" LastKnownName="Enviar mala-direta" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="ed19feca-9c71-4cd5-adc7-d73a31b82cee" name="Funcionário" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="6dba70fd-5351-4049-86c8-184249bcd572" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="5515cf81-49e0-447a-8b4f-8301aaf596da" name="Enviar mala-direta" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="62e45c4a-c5ce-4920-9438-15100d4d00a8" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="6ac51912-6be6-4165-a6c6-274ae6135374" />
+          </association>
+          <association Id="1cf6e270-827c-47b7-97d3-e10f5fc1a5f9" isDerived="false" sourceEndRoleName="Funcionário" targetEndRoleName="Atualizar catálogo no site" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="85b0ced8-56db-438a-a4dd-4cbda99a912e" LastKnownName="Atualizar catálogo no site" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="70be081e-7207-48e7-950d-40d93d657977" name="Funcionário" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="cf98fc85-701a-47b4-b9d0-8bcd7ddc2ea3" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="8b603b36-d877-4213-b84e-ce0e53134bda" name="Atualizar catálogo no site" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="a8ce8eb2-6d6f-4294-910b-640df1da9e61" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="66a70055-71e8-4249-a0c6-47fa70621663" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="fa6f84fc-bd6c-4bc5-8d89-12a48f9b0f13" name="Criar catálogo para site" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="d19ec4e1-747c-4482-8b72-0c1136905c75" />
+        <additions>
+          <include Id="e256ecce-9c6e-4bee-9ef3-e965bfff9495">
+            <useCaseMoniker Id="30091f93-b235-45f4-a325-528b55e9369e" LastKnownName="Definir restrições de acesso" />
+            <elementDefinition Id="221fc94a-aae3-48b9-be62-0077ecad1c4f" />
+          </include>
+        </additions>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="589e4a9c-15de-4e45-93e3-cd82a5763a71" name="Publicar catálogo no site" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="4177cd28-9b71-422e-a912-0f7374069f74" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="30091f93-b235-45f4-a325-528b55e9369e" name="Definir restrições de acesso" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="b07b88ca-4280-4ee6-b65b-551a6b477873" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="519ec49f-a3f8-4081-b697-8eba9808d1e1" name="Enviar mala-direta" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="27c28b98-898e-4692-9528-cf97216eea7a" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="85b0ced8-56db-438a-a4dd-4cbda99a912e" name="Atualizar catálogo no site" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="64aae2e6-bab8-4cb9-a040-6ac56dee8c5a" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+  </packagedElements>
+  <package Id="14fbf37d-c29b-4a36-8814-6d04f322bb11" name="IMJ - Site - Modelo">
+    <elementDefinition Id="f203da66-0100-4ead-aaeb-da4119c3be7d" />
+  </package>
+</useCaseModelRoot>

@@ -1,0 +1,792 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F063F3E4-3D9A-4444-BCEF-47CFDD6BAA33}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>Apresentacao - Pessoa</AssemblyName>
+    <AssemblyOriginatorKeyFile>IMJ.Apresentação.Pessoa.snk</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Apresentação.Pessoa</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SignAssembly>false</SignAssembly>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="..\..\Balloon.NET\Balloon.NET.csproj">
+      <Name>Balloon.NET</Name>
+      <Project>{0E6F1B58-B832-4D96-9BE9-A61DDAA18C4C}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Report.Designer\Report.Designer.csproj">
+      <Project>{DC9AFDE0-44F3-4BAF-A9AD-64DD2A7EDAE0}</Project>
+      <Name>Report.Designer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Report\Report.csproj">
+      <Name>Report</Name>
+      <Project>{D57011E1-546B-437E-8999-A3C90C0A733F}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ValidatingText\TextBox.csproj">
+      <Name>TextBox</Name>
+      <Project>{6BF0180E-73ED-4DBC-9AE2-8597A4D18E6D}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Acesso.Comum\Acesso.Comum.csproj">
+      <Name>Acesso.Comum</Name>
+      <Project>{48DA2925-CF1F-4875-8A00-6851C7ABEEB8}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Apresentação - Formulários\Apresentação.Formulários.csproj">
+      <Project>{C447BD9E-FBB5-4B56-A957-54808B8E3E61}</Project>
+      <Name>Apresentação.Formulários</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Apresentação.Impressão\Apresentação.Impressão.csproj">
+      <Project>{18FD8781-3E73-4ECA-B5D6-86B13E5A2ED3}</Project>
+      <Name>Apresentação.Impressão</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Apresentação.Util\Apresentação.Útil.csproj">
+      <Project>{2E44662A-AD79-48BF-8BB1-5D65BA8EBA5B}</Project>
+      <Name>Apresentação.Útil</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entidades\Entidades.csproj">
+      <Name>Entidades</Name>
+      <Project>{E1A76D2D-85F3-4202-B316-3C6BDD3220F9}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\EstruturasDeDados\EstruturasDeDados.csproj">
+      <Project>{89B0799A-E1BE-4AD9-8B05-5C12AF034232}</Project>
+      <Name>EstruturasDeDados</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AlertaClassificação.cs" />
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Cadastro\CadastroCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cadastro\CadastroCliente.Designer.cs">
+      <DependentUpon>CadastroCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastro\CadastroFuncionário.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cadastro\CadastroPessoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cadastro\CadastroRepresentante.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cadastro\CadastroRepresentante.Designer.cs">
+      <DependentUpon>CadastroRepresentante.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastro\ChkPermissão.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Cadastro\Classificador.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cadastro\Classificador.Designer.cs">
+      <DependentUpon>Classificador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastro\DadosCliente.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cadastro\DadosCliente.Designer.cs">
+      <DependentUpon>DadosCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastro\DadosDataRelevante.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cadastro\DadosDataRelevante.Designer.cs">
+      <DependentUpon>DadosDataRelevante.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastro\DadosPessoaJurídica.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cadastro\DadosPessoaJurídica.Designer.cs">
+      <DependentUpon>DadosPessoaJurídica.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastro\DadosReferência.cs">
+    </Compile>
+    <Compile Include="Cadastro\DadosReferência.Designer.cs">
+      <DependentUpon>DadosReferência.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastro\DadosRelacionamento.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cadastro\DadosRelacionamento.Designer.cs">
+      <DependentUpon>DadosRelacionamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastro\DadosTelefone.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cadastro\DadosTelefone.Designer.cs">
+      <DependentUpon>DadosTelefone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastro\EditarClassificação.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cadastro\EditarClassificação.Designer.cs">
+      <DependentUpon>EditarClassificação.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastro\EditarRamal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cadastro\EditarRamal.Designer.cs">
+      <DependentUpon>EditarRamal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastro\DadosEndereço.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cadastro\DadosFuncionário.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cadastro\EditorDataRelevante.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cadastro\EditorEndereços.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cadastro\EditorPessoaBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cadastro\EditorRelacionamentos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cadastro\EditorTelefones.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cadastro\HorárioTrabalho.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cadastro\HorárioTrabalho.Designer.cs">
+      <DependentUpon>HorárioTrabalho.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastro\Cadastrar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cadastro\Cadastrar.Designer.cs">
+      <DependentUpon>Cadastrar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastro\Permissões.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cadastro\Permissões.Designer.cs">
+      <DependentUpon>Permissões.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastro\DadosPessoaFísica.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Consultas\ColetorPessoas.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Consultas\ListViewFuncionários.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Consultas\ListViewVendedores.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Consultas\ProcurarPessoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Consultas\ProcurarPessoaResultados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Consultas\SelecionarPessoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Consultas\TextBoxPessoa.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Endereço\ComboBoxRegião.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Endereço\ComboBoxRegião.Designer.cs">
+      <DependentUpon>ComboBoxRegião.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Endereço\EditarEstado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Endereço\EditarEstado.Designer.cs">
+      <DependentUpon>EditarEstado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Endereço\EditarLocalidade.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Endereço\EditarLocalidade.Designer.cs">
+      <DependentUpon>EditarLocalidade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Endereço\EditarPaís.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Endereço\EditarPaís.Designer.cs">
+      <DependentUpon>EditarPaís.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Endereço\DsEstado.cs">
+      <DependentUpon>DsEstado.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Endereço\DsEstado.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsEstado.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Endereço\EditarRegião.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Endereço\EditarRegião.Designer.cs">
+      <DependentUpon>EditarRegião.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Endereço\EscolhaEndereço.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Endereço\EscolhaEndereço.Designer.cs">
+      <DependentUpon>EscolhaEndereço.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Endereço\EscolherEstado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Endereço\EscolherEstado.Designer.cs">
+      <DependentUpon>EscolherEstado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Endereço\ListarLocalidades.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Endereço\ListarLocalidades.Designer.cs">
+      <DependentUpon>ListarLocalidades.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Endereço\ProcurarLocalidade.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Endereço\ProcurarLocalidade.Designer.cs">
+      <DependentUpon>ProcurarLocalidade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Endereço\TextBoxEndereçoBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Endereço\TextBoxEndereçoBase.Designer.cs">
+      <DependentUpon>TextBoxEndereçoBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Endereço\TextBoxEstado.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Endereço\TextBoxLocalidade.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Endereço\TextBoxPaís.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EscolherFuncionário.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EscolherVendedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormatadorNome.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormatadorNome.Designer.cs">
+      <DependentUpon>FormatadorNome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormatadorNome.Static.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FuncionárioPropriedades.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Histórico\Alerta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Histórico\Alerta.Designer.cs">
+      <DependentUpon>Alerta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Histórico\EditarHistórico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Histórico\EditarHistórico.Designer.cs">
+      <DependentUpon>EditarHistórico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Histórico\HistóricoPessoa.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Histórico\HistóricoPessoa.Designer.cs">
+      <DependentUpon>HistóricoPessoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Histórico\HistóricoPessoaItem.cs" />
+    <Compile Include="Horário\ControleHorário.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Horário\ControleHorário.Designer.cs">
+      <DependentUpon>ControleHorário.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Horário\MarcaçãoHorário.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Horário\MarcaçãoHorário.Designer.cs">
+      <DependentUpon>MarcaçãoHorário.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Horário\Dia.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Horário\Dia.Designer.cs">
+      <DependentUpon>Dia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Horário\Horário.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Horário\Horário.Designer.cs">
+      <DependentUpon>Horário.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Horário\TabelaHorário.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Horário\TabelaHorário.Designer.cs">
+      <DependentUpon>TabelaHorário.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Relatórios\BaseFormatarMalaDireta.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Relatórios\BaseFormatarMalaDireta.Designer.cs">
+      <DependentUpon>BaseFormatarMalaDireta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Relatórios\ImpressãoHorário.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TextBoxCNPJ.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TextBoxCNPJ.Designer.cs">
+      <DependentUpon>TextBoxCNPJ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TextBoxCPF.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TextBoxCPF.Designer.cs">
+      <DependentUpon>TextBoxCPF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TxtTelefone.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TxtTelefoneBalão.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <EmbeddedResource Include="Cadastro\CadastroCliente.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>CadastroCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cadastro\CadastroFuncionário.resx">
+      <DependentUpon>CadastroFuncionário.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cadastro\CadastroPessoa.resx">
+      <DependentUpon>CadastroPessoa.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cadastro\CadastroRepresentante.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>CadastroRepresentante.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cadastro\Classificador.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Classificador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cadastro\DadosCliente.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DadosCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cadastro\DadosDataRelevante.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DadosDataRelevante.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cadastro\DadosPessoaJurídica.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DadosPessoaJurídica.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cadastro\DadosReferência.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DadosReferência.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cadastro\DadosRelacionamento.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DadosRelacionamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cadastro\DadosTelefone.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DadosTelefone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cadastro\EditarClassificação.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EditarClassificação.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cadastro\EditarRamal.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EditarRamal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cadastro\DadosEndereço.resx">
+      <DependentUpon>DadosEndereço.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cadastro\DadosFuncionário.resx">
+      <DependentUpon>DadosFuncionário.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cadastro\HorárioTrabalho.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>HorárioTrabalho.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cadastro\Cadastrar.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Cadastrar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cadastro\Permissões.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Permissões.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cadastro\DadosPessoaFísica.resx">
+      <DependentUpon>DadosPessoaFísica.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Consultas\ListViewFuncionários.resx">
+      <DependentUpon>ListViewFuncionários.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Consultas\ProcurarPessoa.resx">
+      <DependentUpon>ProcurarPessoa.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Consultas\ProcurarPessoaResultados.resx">
+      <DependentUpon>ProcurarPessoaResultados.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Consultas\SelecionarPessoa.resx">
+      <DependentUpon>SelecionarPessoa.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Consultas\TextBoxPessoa.resx">
+      <DependentUpon>TextBoxPessoa.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Endereço\ComboBoxRegião.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ComboBoxRegião.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Endereço\EditarEstado.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EditarEstado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Endereço\EditarLocalidade.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EditarLocalidade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Endereço\EditarPaís.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EditarPaís.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Endereço\EditarRegião.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EditarRegião.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Endereço\EscolhaEndereço.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EscolhaEndereço.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Endereço\EscolherEstado.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EscolherEstado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Endereço\ListarLocalidades.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ListarLocalidades.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Endereço\ProcurarLocalidade.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ProcurarLocalidade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EscolherFuncionário.resx">
+      <DependentUpon>EscolherFuncionário.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EscolherVendedor.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EscolherVendedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormatadorNome.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormatadorNome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FuncionárioPropriedades.resx">
+      <DependentUpon>FuncionárioPropriedades.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Histórico\Alerta.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Alerta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Histórico\EditarHistórico.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EditarHistórico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Histórico\HistóricoPessoa.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>HistóricoPessoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Horário\ControleHorário.resx">
+      <DependentUpon>ControleHorário.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Horário\MarcaçãoHorário.resx">
+      <DependentUpon>MarcaçãoHorário.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Horário\Dia.resx">
+      <DependentUpon>Dia.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Horário\Horário.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Horário.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Horário\TabelaHorário.resx">
+      <DependentUpon>TabelaHorário.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Relatórios\BaseFormatarMalaDireta.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>BaseFormatarMalaDireta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Relatórios\RelatórioFichaFuncionário.xml" />
+    <EmbeddedResource Include="TextBoxCNPJ.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TextBoxCNPJ.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TextBoxCPF.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TextBoxCPF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TxtTelefone.resx">
+      <DependentUpon>TxtTelefone.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TxtTelefoneBalão.resx">
+      <DependentUpon>TxtTelefoneBalão.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="IMJ.Apresentação.Pessoa.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search4people.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\users.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\botão - pessoas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\botão - telefone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Excluir.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AddTableHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EditTableHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CONTACTS.ICO" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NewCardHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lupa.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exclamacao.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Endereço\DsEstado.xsc">
+      <DependentUpon>DsEstado.xsd</DependentUpon>
+    </None>
+    <None Include="Endereço\DsEstado.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsEstado.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Endereço\DsEstado.xss">
+      <DependentUpon>DsEstado.xsd</DependentUpon>
+    </None>
+    <None Include="Resources\globo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Edit_UndoHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\POINT13.ICO" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MISC27.ICO" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\placa de rua.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\número da rua.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HOUSE.ICO" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MAIL12.ICO" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FLGBRAZL.ICO" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Minas Gerais.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Belo Horizonte.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties PolicyFile="" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

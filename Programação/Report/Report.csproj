@@ -1,0 +1,337 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D57011E1-546B-437E-8999-A3C90C0A733F}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>Report</AssemblyName>
+    <AssemblyOriginatorKeyFile>IMJ.Report.key.snk</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Report</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SignAssembly>true</SignAssembly>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Optimize>true</Optimize>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <Optimize>true</Optimize>
+    <FileAlignment>4096</FileAlignment>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Configuration.Install">
+      <Name>System.Configuration.Install</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.ServiceProcess">
+      <Name>system.serviceprocess</Name>
+      <HintPath>..\..\..\..\..\windows\assembly\gac\system.serviceprocess\1.0.5000.0__b03f5f7f11d50a3a\system.serviceprocess.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Layout\Complex\Border.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Layout\Complex\CollectionIPrintableItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Layout\Complex\CollectionItemLayout.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Layout\Complex\CollectionPageLayout.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Layout\Complex\ILayout.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Layout\Complex\ImageMapped.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Layout\Complex\IPrintableItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Layout\Complex\ItemLayout.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Layout\Complex\Label.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Layout\Complex\LabelTextMapped.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Layout\Complex\PageLayout.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Layout\Complex\PrintableItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Layout\Complex\StaticLabel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Layout\Complex\TextMapped.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Layout\DocumentLayout.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Layout\GroupDifferentObjects.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Layout\GroupObjects.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Layout\LabelLayout.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Layout\Layout.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Layout\Mapping.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Layout\MappingAlphanumeric.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Layout\Metric.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Layout\MetricCentimeter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Layout\MetricInch.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Layout\RepeatedObject.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Layout\SimpleLayout.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Layout\Simple\CollectionColumns.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Layout\Simple\CollectionSections.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Layout\Simple\Column.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Layout\Simple\Footer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Layout\Simple\Header.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Layout\Simple\Line.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Layout\Simple\Logotipo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Layout\Simple\Section.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Layout\Simple\SectionVersátil.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Layout\Simple\Sum.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Layout\Simple\Title.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Layout\Complex\DefaultLabelLayout.xml" />
+    <EmbeddedResource Include="Layout\Complex\DefaultPageLayout.xml" />
+    <EmbeddedResource Include="Layout\Complex\ItemLayout.resx">
+      <DependentUpon>ItemLayout.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Layout\Complex\PageLayout.resx">
+      <DependentUpon>PageLayout.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Layout\DocumentLayout.resx">
+      <DependentUpon>DocumentLayout.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Layout\DocumentLayout.xsd">
+      <SubType>
+      </SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Layout\LabelLayout.resx">
+      <DependentUpon>LabelLayout.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Layout\Layout.resx">
+      <DependentUpon>Layout.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Layout\SimpleLayout.resx">
+      <DependentUpon>SimpleLayout.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="ClassDiagram.cd" />
+    <None Include="IMJ.Report.key.snk" />
+    <None Include="Layout\DocumentLayout.xsx">
+      <DependentUpon>DocumentLayout.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties PolicyFile="" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

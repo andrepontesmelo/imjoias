@@ -1,0 +1,99 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Leiaute.Master.cs" Inherits="IMJWeb.Leiaute" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt-BR">
+<head runat="server">
+    <asp:ContentPlaceHolder ID="prehead" runat="server" />
+    <title>Indústria Mineira de Joias</title>
+    <meta http-equiv="X-UA-Compatible" content="" runat="server" ID="xuacompatible" />
+    <meta name="copyright" content="&copy; 2010 Indústria Mineira de Jóias." />
+    <link href="Estilos/Principal.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="Estilos/Cabecalho.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="Estilos/Rodape.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="Estilos/Conteudo.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="Estilos/sunny/jquery-ui-1.7.2.custom.css" rel="Stylesheet" type="text/css" media="screen" />
+    <script src="<%= ResolveUrl("~/Scripts/jquery-1.3.2.min.js") %>" type="text/javascript"></script>
+    <script src="<%= ResolveUrl("~/Scripts/jquery-ui-1.7.2.custom.min.js") %>" type="text/javascript"></script>
+    <script src="<%= ResolveUrl("~/Scripts/jquery.ahover.js") %>" type="text/javascript"></script>
+    <script src="<%= ResolveUrl("~/Scripts/Resolucao.js") %>" type="text/javascript"></script>
+    <script type="text/javascript">
+        Resolucao.definirHRef("<%= ResolveUrl("~/") %>");
+    </script>
+    <script src="<%= ResolveUrl("~/Scripts/Leiaute.js") %>" type="text/javascript"></script>
+<!--[if IE 6]>
+    <script src="<%= ResolveUrl("~/Scripts/Leiaute-IE6.js") %>" type="text/javascript"></script>
+    <script src="<%= ResolveUrl("~/Scripts/jquery.pngFix.pack.js") %>" type="text/javascript"></script>
+<![endif]-->
+<!--[if IE]>
+    <script src="<%= ResolveUrl("~/Scripts/IE-Generico.js") %>" type="text/javascript"></script>
+<![endif]-->
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="frmLogin" runat="server" enableviewstate="false">
+        <div id="cabecalho">
+            <div id="cabecalhoEsquerda"></div>
+            <div id="cabecalhoCentro">
+                <div id="cabecalhoConteudo">
+                    <div id="marca">
+                        <a id="logotipo" href="<%= ResolveUrl("~/") %>" rel="Index"><asp:Image runat="server" ImageUrl="~/Imagens/Logotipo.png" AlternateText="" /></a>
+                        <h1 id="nome">Indústria Mineira de Joias</h1>
+                    </div>
+                </div>
+                <span id="endereco">Rua Pouso Alegre, 546 - Floresta | Belo Horizonte | MG | Brasil | +55 (31) 3057.7555</span>
+            </div>
+            <div id="cabecalhoDireita"></div>
+            <div id="login">
+                <div id="loginEsquerda"></div>
+                <div id="loginCentro">
+                    <asp:PlaceHolder ID="PHEfetuarLogin" runat="server">
+                        <label for="<%= txtUsuario.ClientID %>">Login:</label><input id="txtUsuario" class="txtUsuario" type="text" tabindex="1" runat="server" />
+                        <label for="<%= txtSenha.ClientID %>">Senha:</label><input id="txtSenha" class="txtSenha" type="password" tabindex="2" runat="server" />
+                        <asp:Button ID="btnEnviar" Text="Entrar" TabIndex="3" runat="server" OnClick="EfetuarLogin" />
+                        <%--<input type="submit" value="Entrar" tabindex="3" runat="server" />--%>
+                        <script type="text/javascript">
+                            document.getElementById("<%= txtUsuario.ClientID %>").focus();
+                        </script>
+                    </asp:PlaceHolder>
+                    <asp:PlaceHolder ID="PHLoginEfetuado" runat="server" Visible="false">
+                        <span id="bemvindo">Seja bem-vindo(a), <span class="nomeUsuario" id="nomeUsuario" runat="server" /></span>
+                        <asp:Button ID="btnSair" Text="Sair" runat="server" OnClick="EfetuarLogout" />
+                    </asp:PlaceHolder>
+                </div>
+                <div id="loginDireita"></div>
+            </div>
+        </div>
+        <div id="conteudo">
+            <h2 id="titulo"><asp:ContentPlaceHolder ID="Titulo" runat="server" /></h2>
+            <asp:ContentPlaceHolder ID="Conteudo" runat="server" />
+        </div>
+        <div id="rodape">
+            <div id="rodapeEsquerda"></div>
+            <div id="rodapeCentro">
+                <h2>Menu</h2>
+                <ul id="menu">
+                    <li><asp:HyperLink runat="server" NavigateUrl="~/Catalogo/">Catálogo</asp:HyperLink></li>
+                    <li><asp:HyperLink runat="server" NavigateUrl="~/Empresa/">Empresa</asp:HyperLink></li>
+                    <li><asp:HyperLink runat="server" NavigateUrl="~/Garantia.aspx">Garantia</asp:HyperLink></li>
+                    <li><asp:HyperLink runat="server" NavigateUrl="~/Dicas.aspx">Dicas</asp:HyperLink></li>
+                    <li><asp:HyperLink ID="LnkCadastro" runat="server" NavigateUrl="~/Cadastro/">Cadastre-se</asp:HyperLink></li>
+                    <li><asp:HyperLink runat="server" NavigateUrl="~/Contato.aspx">Fale conosco</asp:HyperLink></li>
+                </ul>
+            </div>
+            <div id="rodapeDireita"></div>
+        </div>
+    </form>
+    <% if (!_debug) { %>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-12038751-1");
+            pageTracker._trackPageview();
+        } catch (err) { }
+    </script>
+    <% } %>
+</body>
+</html>

@@ -1,0 +1,5 @@
+mouse em cima:
+	contraste +4
+
+mouse clicado:
+	brilho -30

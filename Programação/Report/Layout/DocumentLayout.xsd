@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema id="DocumentLayout" targetNamespace="http://tempuri.org/DocumentLayout.xsd" elementFormDefault="qualified"
+	xmlns="http://tempuri.org/DocumentLayout.xsd" xmlns:mstns="http://tempuri.org/DocumentLayout.xsd"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<!-- Documents structure //-->
+	
+	<xs:complexType name="PageLayout">
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="PaperSize" type="PaperSize" minOccurs="0" maxOccurs="1" />
+			<xs:element name="DefaultMetric" type="Metric" minOccurs="0" maxOccurs="1" />
+			<xs:element name="DefaultBorder" type="Border" minOccurs="0" maxOccurs="1" />
+			<xs:element name="DefaultTextFont" type="Font" minOccurs="0" maxOccurs="1" />
+			<xs:element name="DefaultTextBrush" type="Brush" minOccurs="0" maxOccurs="1" />
+			<xs:element name="DefaultAlignment" type="DefaultAlignment" minOccurs="0" maxOccurs="1" />
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="StaticLabel" type="StaticLabel"/>
+				<xs:element name="TextMapped" type="TextMapped"/>
+				<xs:element name="LabelTextMapped" type="LabelTextMapped"/>
+				<xs:element name="ImageMapped" type="ImageMapped"/>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute name="AdvancesElements" type="xs:boolean" default="true" use="optional"/>
+		<xs:attribute name="GroupElements" type="xs:int" default="1" use="optional"/>
+		<xs:attribute name="Color" type="xs:boolean" default="true" use="optional"/>
+		<xs:attribute name="Landscape" type="xs:boolean" default="false" use="optional"/>
+	</xs:complexType>
+	
+	<xs:complexType name="DocumentLayout">
+		<xs:sequence minOccurs="1" maxOccurs="1">
+			<xs:element name="PageLayout" type="PageLayout" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="Version" type="xs:string" fixed="0.1" use="required"/>
+	</xs:complexType>
+	
+	<xs:element name="DocumentLayout" type="DocumentLayout"/>
+	
+	
+
+	<!-- Members structures //-->
+
+	<xs:complexType name="Member">
+		<xs:attribute name="Type" type="xs:string" use="required"/>
+		<xs:attribute name="Name" type="xs:string" use="required"/>
+	</xs:complexType>
+	
+	<xs:attributeGroup id="Location" name="Location">
+		<xs:attribute name="Left" type="xs:float" use="required"/>
+		<xs:attribute name="Top" type="xs:float" use="required"/>
+		<xs:attribute name="Width" type="xs:float" use="required"/>
+		<xs:attribute name="Height" type="xs:float" use="required"/>
+	</xs:attributeGroup>
+	
+	<xs:complexType name="Border">
+		<xs:all>
+			<xs:element name="BorderPen" type="Pen" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="BackgroundBrush" type="Brush" minOccurs="1" maxOccurs="1"/>
+		</xs:all>
+	</xs:complexType>
+	
+	<xs:complexType name="Item" abstract="true">
+		<xs:attributeGroup ref="Location" />
+		<xs:attribute name="Type" type="xs:string" use="optional"/>
+	</xs:complexType>
+	
+	<xs:complexType name="StaticLabel">
+		<xs:complexContent>
+			<xs:extension base="Item">
+				<xs:all>
+					<xs:element name="Border" type="Border" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="Font" type="Font" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="Brush" type="Brush" minOccurs="0" maxOccurs="1"/>
+				</xs:all>
+				<xs:attribute name="Text" type="xs:string" use="required"/>
+				<xs:attribute name="Alignment" type="Alignment" use="optional" default="MiddleCenter"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:complexType name="TextMapped">
+		<xs:complexContent>
+			<xs:extension base="Item">
+				<xs:all>
+					<xs:element name="Border" type="Border" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="Member" type="Member"/>
+					<xs:element name="Font" type="Font" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="Brush" type="Brush" minOccurs="0" maxOccurs="1"/>
+				</xs:all>
+				<xs:attribute name="Alignment" type="Alignment" use="optional" default="MiddleCenter"/>
+				<xs:attribute name="Format" type="xs:string" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:complexType name="LabelTextMapped">
+		<xs:complexContent>
+			<xs:extension base="Item">
+				<xs:all>
+					<xs:element name="Border" type="Border" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="StaticLabel" type="StaticLabel"/>
+					<xs:element name="TextMapped" type="TextMapped"/>
+				</xs:all>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="ImageMapped">
+		<xs:complexContent>
+			<xs:extension base="Item">
+				<xs:all>
+					<xs:element name="Border" type="Border" minOccurs="0" maxOccurs="1" />
+					<xs:element name="Member" type="Member" />
+				</xs:all>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:complexType name="Metric">
+		<xs:attribute name="Value" type="MetricValue" use="required"/>
+	</xs:complexType>
+	
+	<xs:simpleType name="MetricValue">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="cm"/>
+			<xs:enumeration value="inch"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+
+	<!-- Tipos do sistema //-->
+	
+	<xs:complexType name="Pen">
+		<xs:choice>
+			<xs:element name="Color" type="ARGBColor"/>
+		</xs:choice>
+	</xs:complexType>
+	
+	<xs:complexType name="Brush">
+		<xs:choice>
+			<xs:element name="Color" type="ARGBColor"/>
+		</xs:choice>
+	</xs:complexType>
+	
+	<xs:complexType name="ARGBColor">
+		<xs:attribute name="Alpha" type="xs:byte" default="0"/>
+		<xs:attribute name="Red" type="xs:byte" default="0"/>
+		<xs:attribute name="Green" type="xs:byte" default="0"/>
+		<xs:attribute name="Blue" type="xs:byte" default="0"/>
+	</xs:complexType>
+	
+	<xs:complexType name="Font">
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="Style" type="FontStyle" />
+		</xs:choice>
+		<xs:attribute name="Name" type="xs:string" use="required" />
+		<xs:attribute name="Size" type="xs:float" use="required" />
+	</xs:complexType>
+	
+	<xs:simpleType name="FontStyleEnum">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Regular" />
+			<xs:enumeration value="Bold" />
+			<xs:enumeration value="Italic" />
+			<xs:enumeration value="Strikeout" />
+			<xs:enumeration value="Underline" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:complexType name="FontStyle">
+		<xs:attribute name="Value" type="FontStyleEnum" use="required"/>
+	</xs:complexType>
+	
+	<xs:complexType name="DefaultAlignment">
+		<xs:attribute name="Value" type="Alignment" use="required"/>
+	</xs:complexType>
+	
+	<xs:simpleType name="Alignment">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BottomLeft"/>
+			<xs:enumeration value="BottomCenter"/>
+			<xs:enumeration value="BottomRight"/>
+			<xs:enumeration value="MiddleLeft"/>
+			<xs:enumeration value="MiddleCenter"/>
+			<xs:enumeration value="MiddleRight"/>
+			<xs:enumeration value="TopLeft"/>
+			<xs:enumeration value="TopCenter"/>
+			<xs:enumeration value="TopRight"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:complexType name="PaperSize">
+		<xs:attribute name="Name" type="xs:int" use="required"/>
+		<xs:attribute name="Width" type="xs:int" use="required"/>
+		<xs:attribute name="Height" type="xs:int" use="required"/>
+		<xs:attribute name="Metric" type="MetricValue" use="optional" default="centimiters"/>
+	</xs:complexType>
+			
+</xs:schema>

@@ -1,0 +1,25 @@
+﻿body
+{
+	background: #0a0909;
+}
+
+#conteudo
+{
+	margin: 0 !important;
+	padding: 0 !important;
+	position: absolute !important;
+	top: 0 !important;
+	left: 0 !important;
+	bottom: 0 !important;
+	right: 0 !important;
+	overflow: hidden !important;
+	z-index: -1;
+}
+
+#conteudo > img
+{
+	position: absolute;
+	height: 100%;
+	top: 0;
+	left: 0;
+}

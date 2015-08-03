@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="Indústria Mineira de Jóias - 2008">
+</Property><Property Name="Solution File" Value="C:\Documents and Settings\hoffman\Desktop\desenv\Programação\Indústria Mineira de Jóias\Indústria Mineira de Jóias - 2008.sln">
+</Property><Property Name="Date" Value="sábado, 29 de março de 2014">
+</Property><Property Name="Time" Value="15:03">
+</Property></Properties><Event ErrorLevel="0" Project="Report" Source="..\Report\Report.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="Report" Source="..\Report\Report.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="Programa.Cofre" Source="Programa.Cofre\Programa.Cofre.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="Programa.Cofre" Source="Programa.Cofre\Programa.Cofre.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="Report.Designer" Source="..\Report.Designer\Report.Designer.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="Report.Designer" Source="..\Report.Designer\Report.Designer.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="Programa.Recepção" Source="Programa.Recepção\Programa.Recepção.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="Programa.Recepção" Source="Programa.Recepção\Programa.Recepção.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="Negócio" Source="Negócio\Negócio.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="Negócio" Source="Negócio\Negócio.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="Report.Designer.Editor" Source="..\Report\Designer\Report.Designer.Editor.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="Report.Designer.Editor" Source="..\Report\Designer\Report.Designer.Editor.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="Programa.ProtetorTela" Source="Programa.ProtetorTela\Programa.ProtetorTela.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="Programa.ProtetorTela" Source="Programa.ProtetorTela\Programa.ProtetorTela.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="Programa.Monitoração" Source="Programa.Monitoração\Programa.Monitoração.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="Programa.Monitoração" Source="Programa.Monitoração\Programa.Monitoração.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="Entidades" Source="Entidades\Entidades.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="Entidades" Source="Entidades\Entidades.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="Acesso.Comum" Source="Acesso.Comum\Acesso.Comum.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="Acesso.Comum" Source="Acesso.Comum\Acesso.Comum.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="Acesso - MySQL" Source="Acesso - MySQL\Acesso - MySQL.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="Acesso - MySQL" Source="Acesso - MySQL\Acesso - MySQL.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="Sistema IMJ" Source="Sistema IMJ\Sistema IMJ.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="Sistema IMJ" Source="Sistema IMJ\Sistema IMJ.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="Apresentação" Source="Apresentação\Apresentação.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="Apresentação" Source="Apresentação\Apresentação.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="" Source="Indústria Mineira de Jóias - 2008.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="Indústria Mineira de Jóias - 2008.sln" Description="Converted">
+</Event></UpgradeLog>

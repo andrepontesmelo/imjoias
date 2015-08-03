@@ -1,0 +1,164 @@
+<VSPerformanceSession Version="1.00">
+  <Options>
+    <Solution>..\Indústria Mineira de Jóias.sln</Solution>
+    <CollectionMethod>Instrumentation</CollectionMethod>
+    <AllocationMethod>None</AllocationMethod>
+    <AddReport>true</AddReport>
+    <UniqueReport>Timestamp</UniqueReport>
+    <SamplingMethod>Cycles</SamplingMethod>
+    <CycleCount>10000000</CycleCount>
+    <PageFaultCount>10</PageFaultCount>
+    <SysCallCount>10</SysCallCount>
+    <SamplingCounter PlatformID="00000000" CounterID="0000000000000000" ReloadValue="00000000000f4240" />
+    <RelocateBinaries>false</RelocateBinaries>
+    <HardwareCounters EnableHWCounters="false" />
+    <EtwSettings />
+  </Options>
+  <PreinstrumentEvent>
+    <InstrEventExclude>false</InstrEventExclude>
+  </PreinstrumentEvent>
+  <PostinstrumentEvent>
+    <InstrEventExclude>false</InstrEventExclude>
+  </PostinstrumentEvent>
+  <Binaries>
+    <ProjBinary>
+      <Path>obj\Debug\Programa.TesteDesempenho.exe</Path>
+      <ArgumentTimestamp>01/01/0001 00:00:00</ArgumentTimestamp>
+      <Instrument>true</Instrument>
+      <LaunchProject>true</LaunchProject>
+      <LaunchMethod>Executable</LaunchMethod>
+      <ExecutablePath>bin\Debug\Programa.TesteDesempenho.exe</ExecutablePath>
+      <StartupDirectory>bin\Debug\</StartupDirectory>
+      <Arguments />
+      <NetAppHost>IIS</NetAppHost>
+      <PreinstrumentEvent>
+        <InstrEventExclude>false</InstrEventExclude>
+      </PreinstrumentEvent>
+      <PostinstrumentEvent>
+        <InstrEventExclude>false</InstrEventExclude>
+      </PostinstrumentEvent>
+      <ProjRef>{B08700E9-FDEA-4CF7-8568-072BC88F4F6E}|Programa.TesteDesempenho\Programa.TesteDesempenho.csproj</ProjRef>
+      <ProjPath>Programa.TesteDesempenho.csproj</ProjPath>
+      <ProjName>Programa.TesteDesempenho</ProjName>
+    </ProjBinary>
+    <ProjBinary>
+      <Path>..\Acesso.Comum\obj\Debug\Acesso.Comum.dll</Path>
+      <ArgumentTimestamp>01/01/0001 00:00:00</ArgumentTimestamp>
+      <Instrument>true</Instrument>
+      <LaunchProject>true</LaunchProject>
+      <LaunchMethod>Executable</LaunchMethod>
+      <StartupDirectory>..\Acesso.Comum\bin\Debug\</StartupDirectory>
+      <Arguments />
+      <NetAppHost>IIS</NetAppHost>
+      <PreinstrumentEvent>
+        <InstrEventExclude>false</InstrEventExclude>
+      </PreinstrumentEvent>
+      <PostinstrumentEvent>
+        <InstrEventExclude>false</InstrEventExclude>
+      </PostinstrumentEvent>
+      <ProjRef>{48DA2925-CF1F-4875-8A00-6851C7ABEEB8}|Acesso.Comum\Acesso.Comum.csproj</ProjRef>
+      <ProjPath>..\Acesso.Comum\Acesso.Comum.csproj</ProjPath>
+      <ProjName>Acesso.Comum</ProjName>
+    </ProjBinary>
+    <ProjBinary>
+      <Path>..\Apresentação.Financeiro\obj\Debug\Apresentação.Financeiro.dll</Path>
+      <ArgumentTimestamp>01/01/0001 00:00:00</ArgumentTimestamp>
+      <Instrument>true</Instrument>
+      <LaunchProject>true</LaunchProject>
+      <LaunchMethod>Executable</LaunchMethod>
+      <StartupDirectory>..\Apresentação.Financeiro\bin\Debug\</StartupDirectory>
+      <Arguments />
+      <NetAppHost>IIS</NetAppHost>
+      <PreinstrumentEvent>
+        <InstrEventExclude>false</InstrEventExclude>
+      </PreinstrumentEvent>
+      <PostinstrumentEvent>
+        <InstrEventExclude>false</InstrEventExclude>
+      </PostinstrumentEvent>
+      <ProjRef>{93644EA4-0DEF-4D15-BD8B-CBEDEB30670A}|Apresentação.Financeiro\Apresentação.Financeiro.csproj</ProjRef>
+      <ProjPath>..\Apresentação.Financeiro\Apresentação.Financeiro.csproj</ProjPath>
+      <ProjName>Apresentação.Financeiro</ProjName>
+    </ProjBinary>
+    <ProjBinary>
+      <Path>..\Apresentação - Formulários\obj\Debug\Apresentação - Formulários.dll</Path>
+      <ArgumentTimestamp>01/01/0001 00:00:00</ArgumentTimestamp>
+      <Instrument>true</Instrument>
+      <LaunchProject>true</LaunchProject>
+      <LaunchMethod>Executable</LaunchMethod>
+      <StartupDirectory>..\Apresentação - Formulários\bin\Debug\</StartupDirectory>
+      <Arguments />
+      <NetAppHost>IIS</NetAppHost>
+      <PreinstrumentEvent>
+        <InstrEventExclude>false</InstrEventExclude>
+      </PreinstrumentEvent>
+      <PostinstrumentEvent>
+        <InstrEventExclude>false</InstrEventExclude>
+      </PostinstrumentEvent>
+      <ProjRef>{C447BD9E-FBB5-4B56-A957-54808B8E3E61}|Apresentação - Formulários\Apresentação.Formulários.csproj</ProjRef>
+      <ProjPath>..\Apresentação - Formulários\Apresentação.Formulários.csproj</ProjPath>
+      <ProjName>Apresentação.Formulários</ProjName>
+    </ProjBinary>
+    <ProjBinary>
+      <Path>..\Apresentação.Mercadoria\obj\Debug\Apresentação.Mercadoria.dll</Path>
+      <ArgumentTimestamp>01/01/0001 00:00:00</ArgumentTimestamp>
+      <Instrument>true</Instrument>
+      <LaunchProject>true</LaunchProject>
+      <LaunchMethod>Executable</LaunchMethod>
+      <StartupDirectory>..\Apresentação.Mercadoria\bin\Debug\</StartupDirectory>
+      <Arguments />
+      <NetAppHost>IIS</NetAppHost>
+      <PreinstrumentEvent>
+        <InstrEventExclude>false</InstrEventExclude>
+      </PreinstrumentEvent>
+      <PostinstrumentEvent>
+        <InstrEventExclude>false</InstrEventExclude>
+      </PostinstrumentEvent>
+      <ProjRef>{D1B827A6-114D-4B74-9011-C8B4387F2368}|Apresentação.Mercadoria\Apresentação.Mercadoria.csproj</ProjRef>
+      <ProjPath>..\Apresentação.Mercadoria\Apresentação.Mercadoria.csproj</ProjPath>
+      <ProjName>Apresentação.Mercadoria</ProjName>
+    </ProjBinary>
+    <ProjBinary>
+      <Path>..\Apresentação.Util\obj\Debug\Apresentação.Util.dll</Path>
+      <ArgumentTimestamp>01/01/0001 00:00:00</ArgumentTimestamp>
+      <Instrument>true</Instrument>
+      <LaunchProject>true</LaunchProject>
+      <LaunchMethod>Executable</LaunchMethod>
+      <StartupDirectory>..\Apresentação.Util\bin\Debug\</StartupDirectory>
+      <Arguments />
+      <NetAppHost>IIS</NetAppHost>
+      <PreinstrumentEvent>
+        <InstrEventExclude>false</InstrEventExclude>
+      </PreinstrumentEvent>
+      <PostinstrumentEvent>
+        <InstrEventExclude>false</InstrEventExclude>
+      </PostinstrumentEvent>
+      <ProjRef>{2E44662A-AD79-48BF-8BB1-5D65BA8EBA5B}|Apresentação.Util\Apresentação.Útil.csproj</ProjRef>
+      <ProjPath>..\Apresentação.Util\Apresentação.Útil.csproj</ProjPath>
+      <ProjName>Apresentação.Útil</ProjName>
+    </ProjBinary>
+    <ProjBinary>
+      <Path>..\Entidades\obj\Debug\Entidades.dll</Path>
+      <ArgumentTimestamp>01/01/0001 00:00:00</ArgumentTimestamp>
+      <Instrument>true</Instrument>
+      <LaunchProject>true</LaunchProject>
+      <LaunchMethod>Executable</LaunchMethod>
+      <StartupDirectory>..\Entidades\bin\Debug\</StartupDirectory>
+      <Arguments />
+      <NetAppHost>IIS</NetAppHost>
+      <PreinstrumentEvent>
+        <InstrEventExclude>false</InstrEventExclude>
+      </PreinstrumentEvent>
+      <PostinstrumentEvent>
+        <InstrEventExclude>false</InstrEventExclude>
+      </PostinstrumentEvent>
+      <ProjRef>{E1A76D2D-85F3-4202-B316-3C6BDD3220F9}|Entidades\Entidades.csproj</ProjRef>
+      <ProjPath>..\Entidades\Entidades.csproj</ProjPath>
+      <ProjName>Entidades</ProjName>
+    </ProjBinary>
+  </Binaries>
+  <Launches>
+    <ProjBinary>
+      <Path>:PB:{B08700E9-FDEA-4CF7-8568-072BC88F4F6E}|Programa.TesteDesempenho\Programa.TesteDesempenho.csproj</Path>
+    </ProjBinary>
+  </Launches>
+</VSPerformanceSession>

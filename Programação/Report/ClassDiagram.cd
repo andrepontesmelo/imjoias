@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="Tahoma" Size="8.25" />
+  <Class Name="Report.Layout.Complex.Border" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Layout\Complex\Border.cs</FileName>
+      <HashCode>IAAAAAKBCAAAgwAAAAIgAAACKAAAAAACACAAASAEABA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Report.Layout.Complex.CollectionIPrintableItem" Collapsed="true">
+    <Position X="17.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Layout\Complex\CollectionIPrintableItem.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Report.Layout.Complex.CollectionItemLayout" Collapsed="true">
+    <Position X="19.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Layout\Complex\CollectionItemLayout.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Report.Layout.Complex.CollectionPageLayout" Collapsed="true">
+    <Position X="14.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Layout\Complex\CollectionPageLayout.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Report.Layout.Complex.ImageMapped" Collapsed="true">
+    <Position X="0.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Layout\Complex\ImageMapped.cs</FileName>
+      <HashCode>AAAAAAAgBIAAAgCBAEIAAUBSIAIIABACCCAAAQAEAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Report.Layout.Complex.ItemLayout" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Layout\Complex\ItemLayout.cs</FileName>
+      <HashCode>AARAACBALCAAikAECADAYEIKgAAACIgQAAxIAQAERQk=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Report.Layout.Complex.Label" Collapsed="true">
+    <Position X="0.5" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Layout\Complex\Label.cs</FileName>
+      <HashCode>AAIAAIAAAgAAAgIIAGAAAABgIAAAAAAAACAAAAAGAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Report.Layout.Complex.LabelTextMapped" Collapsed="true">
+    <Position X="2.75" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Layout\Complex\LabelTextMapped.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAgAAAFAAAABQIAAABABAACAAQQAEAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Report.Layout.Complex.PageLayout" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Layout\Complex\PageLayout.cs</FileName>
+      <HashCode>AARAQCBAKCAAikAECAHAYAICgEAACKgQAAxIAQAETwg=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Report.Layout.Complex.PrintableItem" Collapsed="true">
+    <Position X="1.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Layout\Complex\PrintableItem.cs</FileName>
+      <HashCode>AAAAAAAABAAAAgAAIAIAAUACIAIIBAACCCAAAQAEAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Report.Layout.Complex.StaticLabel" Collapsed="true">
+    <Position X="0.5" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Layout\Complex\StaticLabel.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAIAAAAAAAAIAAAAAAIACAACAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Report.Layout.Complex.TextMapped" Collapsed="true">
+    <Position X="5.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Layout\Complex\TextMapped.cs</FileName>
+      <HashCode>AAIAAIAgBgAAAgIBAGIAAUBiIAIIABACCCAAAQAGAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Report.Layout.DocumentLayout" Collapsed="true">
+    <Position X="5.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Layout\DocumentLayout.cs</FileName>
+      <HashCode>QEAAAAAAACABACAgEAAAAAAAAAAAAAAQAAAAAAAAAQA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Report.Layout.GroupDifferentObjects" Collapsed="true">
+    <Position X="9.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Layout\GroupDifferentObjects.cs</FileName>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAQAQAAEAAEAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Report.Layout.GroupObjects" Collapsed="true">
+    <Position X="10.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Layout\GroupObjects.cs</FileName>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAQAAAIAAAACAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Report.Layout.LabelLayout" Collapsed="true">
+    <Position X="7.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Layout\LabelLayout.cs</FileName>
+      <HashCode>QEAAAACIAKhgCCABEAgAAEAABIJgAAAQIAAACAAIAQA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Report.Layout.Layout" Collapsed="true">
+    <Position X="6.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Layout\Layout.cs</FileName>
+      <HashCode>AEACABAgIigVACgAEACEAAACAQoIAAESAAAAgABAERA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Report.Layout.Mapping" Collapsed="true">
+    <Position X="3" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Layout\Mapping.cs</FileName>
+      <HashCode>AAAAAgAAIAIAAgAAAAAAAAAAIAAIAAAACAAAAgAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Report.Layout.MappingAlphanumeric" Collapsed="true">
+    <Position X="4" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Layout\MappingAlphanumeric.cs</FileName>
+      <HashCode>AAIAAAAAAAAAAAAAACIADAAAAAgAAAAIAAAAAgAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Report.Layout.Metric" Collapsed="true">
+    <Position X="1.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Layout\Metric.cs</FileName>
+      <HashCode>AAAgAAAAAAAAAAAEAIAABAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Report.Layout.MetricCentimeter" Collapsed="true">
+    <Position X="0.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Layout\MetricCentimeter.cs</FileName>
+      <HashCode>AAAgAAAAAAAAAAAEAIAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Report.Layout.MetricHInch" Collapsed="true">
+    <Position X="2.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Layout\MetricInch.cs</FileName>
+      <HashCode>AAAgAAAAAAAAAAAEAIAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Report.Layout.RepeatedObject" Collapsed="true">
+    <Position X="11.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Layout\RepeatedObject.cs</FileName>
+      <HashCode>AgAAAAAAAAAAIAAgAAAAAAAAAgAQAAAAAEAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Report.Layout.SimpleLayout" Collapsed="true">
+    <Position X="16" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Layout\SimpleLayout.cs</FileName>
+      <HashCode>QEEAAAQAYCAAAGAAAQmAAACCAQIAYAGCgEAAAApEAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Report.Layout.Simple.CollectionColumns" Collapsed="true">
+    <Position X="16" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Layout\Simple\CollectionColumns.cs</FileName>
+      <HashCode>ACMAAEAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Report.Layout.Simple.CollectionSections" Collapsed="true">
+    <Position X="16" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Layout\Simple\CollectionSections.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Report.Layout.Simple.Column" Collapsed="true">
+    <Position X="3" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Layout\Simple\Column.cs</FileName>
+      <HashCode>gAOAAIQgEgAEABIAQAAAAEAgAAEAAAABAABAAAAHQAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Report.Layout.Simple.Footer" Collapsed="true">
+    <Position X="0.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Layout\Simple\Footer.cs</FileName>
+      <HashCode>AAAQAAAAAAAAgAAAIAAAAAAgAAAAAAAAAAgACAAEAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Report.Layout.Simple.Header" Collapsed="true">
+    <Position X="5.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Layout\Simple\Header.cs</FileName>
+      <HashCode>AAAQAAAAAAAAgAAAIAgAAAAAAAAAAAAAAAgAAAAEAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Report.Layout.Simple.Line" Collapsed="true">
+    <Position X="19.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Layout\Simple\Line.cs</FileName>
+      <HashCode>AACAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAgEAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Report.Layout.Simple.Logotipo" Collapsed="true">
+    <Position X="7.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Layout\Simple\Logotipo.cs</FileName>
+      <HashCode>AAAAAAIAAAACgAAAKAAgAAAAMAAAABAACAgAAAAEAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Report.Layout.Simple.Section" Collapsed="true">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Layout\Simple\Section.cs</FileName>
+      <HashCode>AAIAAAAAAgAAgAAAIAAAAAAAAEAAAAAAAAgAAAAGAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Report.Layout.Simple.SectionVersátil" Collapsed="true">
+    <Position X="9.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Layout\Simple\SectionVersátil.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Report.Layout.Simple.Sum" Collapsed="true">
+    <Position X="9.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Layout\Simple\Sum.cs</FileName>
+      <HashCode>AACQAQAAAAAAgAAAIAAAAAAAAUAAEgAAAAgACAAEAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Report.Layout.Simple.Title" Collapsed="true">
+    <Position X="3" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Layout\Simple\Title.cs</FileName>
+      <HashCode>AAAAAAIAQAACgAAAKAAgAAAAIEAAAAAACAgACAAEAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Report.Layout.Complex.ILayout" Collapsed="true">
+    <Position X="14.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Layout\Complex\ILayout.cs</FileName>
+      <HashCode>AAAAAABAAAAAiAAAAAAAAAAAAAAACAAQAARIAQAEAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Report.Layout.Complex.IPrintableItem" Collapsed="true">
+    <Position X="16" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Layout\Complex\IPrintableItem.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAgAAAAIAAAAAIAAAAAACACAAAQAEAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+</ClassDiagram>

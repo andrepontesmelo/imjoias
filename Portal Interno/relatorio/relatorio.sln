@@ -1,0 +1,96 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "relatorio", "http://localhost/imjoias/relatorio/relatorio.csproj", "{DE64A65D-F654-4CEB-9D9B-221B28B75A3B}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Suporte Web", "..\..\Programação\Suporte Web\Suporte Web.csproj", "{97338E91-6004-46C4-87C7-19413254CB9F}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entidades", "..\..\Programação\Indústria Mineira de Jóias\Entidades\Entidades.csproj", "{E1A76D2D-85F3-4202-B316-3C6BDD3220F9}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Estatística.Db.Web", "..\..\Programação\Estatística.Db.Web\Estatística.Db.Web.csproj", "{89BEF13B-D1BE-4EEE-9255-F3F2B2317FDB}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Estatística", "..\..\Programação\Estatística\Estatística.csproj", "{C5A4339F-C57D-4574-A857-E4AC3D841B2A}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Estatística.Db", "..\..\Programação\Estatística.Db\Estatística.Db.csproj", "{417E2977-B1BF-4FCE-B3F4-C55979EBA58A}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acesso.Comum", "..\..\Programação\Indústria Mineira de Jóias\Acesso.Comum\Acesso.Comum.csproj", "{48DA2925-CF1F-4875-8A00-6851C7ABEEB8}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acesso - MySQL", "..\..\Programação\Indústria Mineira de Jóias\Acesso - MySQL\Acesso - MySQL.csproj", "{8490E476-B38E-4405-A1B2-24BF7F20343F}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interface - Negócio", "..\..\Programação\Indústria Mineira de Jóias\Interface - Negócio\Interface - Negócio.csproj", "{23B03B01-B5ED-4686-B83E-7AFD2A84A1F8}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Observador", "..\..\Programação\Indústria Mineira de Jóias\Observador\Observador.csproj", "{FF4D4267-6EBB-4A14-A287-5EC12C371862}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{DE64A65D-F654-4CEB-9D9B-221B28B75A3B}.Debug.ActiveCfg = Debug|.NET
+		{DE64A65D-F654-4CEB-9D9B-221B28B75A3B}.Debug.Build.0 = Debug|.NET
+		{DE64A65D-F654-4CEB-9D9B-221B28B75A3B}.Release.ActiveCfg = Release|.NET
+		{DE64A65D-F654-4CEB-9D9B-221B28B75A3B}.Release.Build.0 = Release|.NET
+		{97338E91-6004-46C4-87C7-19413254CB9F}.Debug.ActiveCfg = Debug|.NET
+		{97338E91-6004-46C4-87C7-19413254CB9F}.Debug.Build.0 = Debug|.NET
+		{97338E91-6004-46C4-87C7-19413254CB9F}.Release.ActiveCfg = Release|.NET
+		{97338E91-6004-46C4-87C7-19413254CB9F}.Release.Build.0 = Release|.NET
+		{E1A76D2D-85F3-4202-B316-3C6BDD3220F9}.Debug.ActiveCfg = Debug|.NET
+		{E1A76D2D-85F3-4202-B316-3C6BDD3220F9}.Debug.Build.0 = Debug|.NET
+		{E1A76D2D-85F3-4202-B316-3C6BDD3220F9}.Release.ActiveCfg = Release|.NET
+		{E1A76D2D-85F3-4202-B316-3C6BDD3220F9}.Release.Build.0 = Release|.NET
+		{89BEF13B-D1BE-4EEE-9255-F3F2B2317FDB}.Debug.ActiveCfg = Debug|.NET
+		{89BEF13B-D1BE-4EEE-9255-F3F2B2317FDB}.Debug.Build.0 = Debug|.NET
+		{89BEF13B-D1BE-4EEE-9255-F3F2B2317FDB}.Release.ActiveCfg = Release|.NET
+		{89BEF13B-D1BE-4EEE-9255-F3F2B2317FDB}.Release.Build.0 = Release|.NET
+		{C5A4339F-C57D-4574-A857-E4AC3D841B2A}.Debug.ActiveCfg = Debug|.NET
+		{C5A4339F-C57D-4574-A857-E4AC3D841B2A}.Debug.Build.0 = Debug|.NET
+		{C5A4339F-C57D-4574-A857-E4AC3D841B2A}.Release.ActiveCfg = Release|.NET
+		{C5A4339F-C57D-4574-A857-E4AC3D841B2A}.Release.Build.0 = Release|.NET
+		{417E2977-B1BF-4FCE-B3F4-C55979EBA58A}.Debug.ActiveCfg = Debug|.NET
+		{417E2977-B1BF-4FCE-B3F4-C55979EBA58A}.Debug.Build.0 = Debug|.NET
+		{417E2977-B1BF-4FCE-B3F4-C55979EBA58A}.Release.ActiveCfg = Release|.NET
+		{417E2977-B1BF-4FCE-B3F4-C55979EBA58A}.Release.Build.0 = Release|.NET
+		{48DA2925-CF1F-4875-8A00-6851C7ABEEB8}.Debug.ActiveCfg = Debug|.NET
+		{48DA2925-CF1F-4875-8A00-6851C7ABEEB8}.Debug.Build.0 = Debug|.NET
+		{48DA2925-CF1F-4875-8A00-6851C7ABEEB8}.Release.ActiveCfg = Release|.NET
+		{48DA2925-CF1F-4875-8A00-6851C7ABEEB8}.Release.Build.0 = Release|.NET
+		{8490E476-B38E-4405-A1B2-24BF7F20343F}.Debug.ActiveCfg = Debug|.NET
+		{8490E476-B38E-4405-A1B2-24BF7F20343F}.Debug.Build.0 = Debug|.NET
+		{8490E476-B38E-4405-A1B2-24BF7F20343F}.Release.ActiveCfg = Release|.NET
+		{8490E476-B38E-4405-A1B2-24BF7F20343F}.Release.Build.0 = Release|.NET
+		{23B03B01-B5ED-4686-B83E-7AFD2A84A1F8}.Debug.ActiveCfg = Debug|.NET
+		{23B03B01-B5ED-4686-B83E-7AFD2A84A1F8}.Debug.Build.0 = Debug|.NET
+		{23B03B01-B5ED-4686-B83E-7AFD2A84A1F8}.Release.ActiveCfg = Release|.NET
+		{23B03B01-B5ED-4686-B83E-7AFD2A84A1F8}.Release.Build.0 = Release|.NET
+		{FF4D4267-6EBB-4A14-A287-5EC12C371862}.Debug.ActiveCfg = Debug|.NET
+		{FF4D4267-6EBB-4A14-A287-5EC12C371862}.Debug.Build.0 = Debug|.NET
+		{FF4D4267-6EBB-4A14-A287-5EC12C371862}.Release.ActiveCfg = Release|.NET
+		{FF4D4267-6EBB-4A14-A287-5EC12C371862}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(SolutionItems) = postSolution
+		..\imjoias.css = ..\imjoias.css
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

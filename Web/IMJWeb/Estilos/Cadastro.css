@@ -1,0 +1,71 @@
+﻿.formulario > div,
+.formulario .referencias > div
+{
+    margin: .5em 0;
+}
+
+.formulario label 
+{
+    float: left;
+    width: 25%;
+    text-align: right;
+    margin-right: 1em;
+}
+
+.formulario input[type=radio] + label
+{
+    float: none;
+    width: auto;
+    text-align: left;
+    margin: inherit .3ex;
+}
+
+.formulario input[type=text]
+{
+    width: 70%;
+}
+
+.formulario .grupo
+{
+    color: Black;
+    margin: 0;
+}
+
+.formulario .referencias .contato div
+{
+    display: inline;
+}
+
+.formulario .referencias .contato div label + input[type=text]
+{
+    width: 35%;
+}
+
+.formulario .referencias .contato div + div label
+{
+    float: none;
+    width: 10%;
+    margin-left: 2%;
+}
+
+.formulario .referencias .contato div + div label + input[type=text]
+{
+    width: 20%;
+}
+
+.formulario .botoes
+{
+    text-align: center;
+    margin-top: 2em;
+}
+
+.formulario .botoes button
+{
+    background: transparent;
+    cursor: pointer;
+}
+
+.formulario.pj
+{
+    padding-top: 2em !important;
+}

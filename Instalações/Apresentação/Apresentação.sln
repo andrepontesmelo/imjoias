@@ -1,0 +1,83 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interface - Negócio", "..\..\Programação\Indústria Mineira de Jóias\Interface - Negócio\Interface - Negócio.csproj", "{23B03B01-B5ED-4686-B83E-7AFD2A84A1F8}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acesso.Comum", "..\..\Programação\Indústria Mineira de Jóias\Acesso.Comum\Acesso.Comum.csproj", "{48DA2925-CF1F-4875-8A00-6851C7ABEEB8}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apresentação - Formulários", "..\..\Programação\Indústria Mineira de Jóias\Apresentação - Formulários\Apresentação - Formulários.csproj", "{C447BD9E-FBB5-4B56-A957-54808B8E3E61}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Integração.Apresentação", "..\..\Programação\Indústria Mineira de Jóias\Integração.Apresentação\Integração.Apresentação.csproj", "{8672393A-856D-4D2A-95F8-6C0F0A3A2BA1}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entidades", "..\..\Programação\Indústria Mineira de Jóias\Entidades\Entidades.csproj", "{E1A76D2D-85F3-4202-B316-3C6BDD3220F9}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apresentação.Usuário", "..\..\Programação\Indústria Mineira de Jóias\Apresentação.Usuário\Apresentação.Usuário.csproj", "{B9A12FE1-A9A5-430B-9740-877507FADD7F}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Observador", "..\..\Programação\Indústria Mineira de Jóias\Observador\Observador.csproj", "{FF4D4267-6EBB-4A14-A287-5EC12C371862}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Balloon.NET", "..\..\Programação\Balloon.NET\Balloon.NET.csproj", "{0E6F1B58-B832-4D96-9BE9-A61DDAA18C4C}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup.Apresentação.Usuário", "..\Setup.Apresentação.Usuário\Setup.Apresentação.Usuário.vdproj", "{62AB14C3-DEF1-44CD-9BF3-A02046B63B2E}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{23B03B01-B5ED-4686-B83E-7AFD2A84A1F8}.Debug.ActiveCfg = Debug|.NET
+		{23B03B01-B5ED-4686-B83E-7AFD2A84A1F8}.Debug.Build.0 = Debug|.NET
+		{23B03B01-B5ED-4686-B83E-7AFD2A84A1F8}.Release.ActiveCfg = Release|.NET
+		{23B03B01-B5ED-4686-B83E-7AFD2A84A1F8}.Release.Build.0 = Release|.NET
+		{48DA2925-CF1F-4875-8A00-6851C7ABEEB8}.Debug.ActiveCfg = Debug|.NET
+		{48DA2925-CF1F-4875-8A00-6851C7ABEEB8}.Debug.Build.0 = Debug|.NET
+		{48DA2925-CF1F-4875-8A00-6851C7ABEEB8}.Release.ActiveCfg = Release|.NET
+		{48DA2925-CF1F-4875-8A00-6851C7ABEEB8}.Release.Build.0 = Release|.NET
+		{C447BD9E-FBB5-4B56-A957-54808B8E3E61}.Debug.ActiveCfg = Debug|.NET
+		{C447BD9E-FBB5-4B56-A957-54808B8E3E61}.Debug.Build.0 = Debug|.NET
+		{C447BD9E-FBB5-4B56-A957-54808B8E3E61}.Release.ActiveCfg = Release|.NET
+		{C447BD9E-FBB5-4B56-A957-54808B8E3E61}.Release.Build.0 = Release|.NET
+		{8672393A-856D-4D2A-95F8-6C0F0A3A2BA1}.Debug.ActiveCfg = Debug|.NET
+		{8672393A-856D-4D2A-95F8-6C0F0A3A2BA1}.Debug.Build.0 = Debug|.NET
+		{8672393A-856D-4D2A-95F8-6C0F0A3A2BA1}.Release.ActiveCfg = Release|.NET
+		{8672393A-856D-4D2A-95F8-6C0F0A3A2BA1}.Release.Build.0 = Release|.NET
+		{E1A76D2D-85F3-4202-B316-3C6BDD3220F9}.Debug.ActiveCfg = Debug|.NET
+		{E1A76D2D-85F3-4202-B316-3C6BDD3220F9}.Debug.Build.0 = Debug|.NET
+		{E1A76D2D-85F3-4202-B316-3C6BDD3220F9}.Release.ActiveCfg = Release|.NET
+		{E1A76D2D-85F3-4202-B316-3C6BDD3220F9}.Release.Build.0 = Release|.NET
+		{B9A12FE1-A9A5-430B-9740-877507FADD7F}.Debug.ActiveCfg = Debug|.NET
+		{B9A12FE1-A9A5-430B-9740-877507FADD7F}.Debug.Build.0 = Debug|.NET
+		{B9A12FE1-A9A5-430B-9740-877507FADD7F}.Release.ActiveCfg = Release|.NET
+		{B9A12FE1-A9A5-430B-9740-877507FADD7F}.Release.Build.0 = Release|.NET
+		{FF4D4267-6EBB-4A14-A287-5EC12C371862}.Debug.ActiveCfg = Debug|.NET
+		{FF4D4267-6EBB-4A14-A287-5EC12C371862}.Debug.Build.0 = Debug|.NET
+		{FF4D4267-6EBB-4A14-A287-5EC12C371862}.Release.ActiveCfg = Release|.NET
+		{FF4D4267-6EBB-4A14-A287-5EC12C371862}.Release.Build.0 = Release|.NET
+		{0E6F1B58-B832-4D96-9BE9-A61DDAA18C4C}.Debug.ActiveCfg = Debug|.NET
+		{0E6F1B58-B832-4D96-9BE9-A61DDAA18C4C}.Debug.Build.0 = Debug|.NET
+		{0E6F1B58-B832-4D96-9BE9-A61DDAA18C4C}.Release.ActiveCfg = Release|.NET
+		{0E6F1B58-B832-4D96-9BE9-A61DDAA18C4C}.Release.Build.0 = Release|.NET
+		{62AB14C3-DEF1-44CD-9BF3-A02046B63B2E}.Debug.ActiveCfg = Debug
+		{62AB14C3-DEF1-44CD-9BF3-A02046B63B2E}.Release.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

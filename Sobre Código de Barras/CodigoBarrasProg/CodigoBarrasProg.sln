@@ -1,0 +1,29 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodigoBarrasProg", "CodigoBarrasProg.csproj", "{B58B7CDF-88FA-4D07-9AE8-FC4458DFFA34}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CódigoDeBarras", "..\..\Programação\CódigoDeBarras\CódigoDeBarras.csproj", "{6CECA623-BA18-49B1-8298-4F1DCB192F29}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{B58B7CDF-88FA-4D07-9AE8-FC4458DFFA34}.Debug.ActiveCfg = Debug|.NET
+		{B58B7CDF-88FA-4D07-9AE8-FC4458DFFA34}.Debug.Build.0 = Debug|.NET
+		{B58B7CDF-88FA-4D07-9AE8-FC4458DFFA34}.Release.ActiveCfg = Release|.NET
+		{B58B7CDF-88FA-4D07-9AE8-FC4458DFFA34}.Release.Build.0 = Release|.NET
+		{6CECA623-BA18-49B1-8298-4F1DCB192F29}.Debug.ActiveCfg = Debug|.NET
+		{6CECA623-BA18-49B1-8298-4F1DCB192F29}.Debug.Build.0 = Debug|.NET
+		{6CECA623-BA18-49B1-8298-4F1DCB192F29}.Release.ActiveCfg = Release|.NET
+		{6CECA623-BA18-49B1-8298-4F1DCB192F29}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

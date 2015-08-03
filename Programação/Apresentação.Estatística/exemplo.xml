@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Relatório xmlns="gráfico.xsd">
+	
+	<Gráfico tipo="barras" título="Média de Entrada por Horário">
+	
+		<Descrição>
+			Descreve a taxa de chegada de visitantes em cada setor,
+			permitindo a identificação de períodos críticos e/ou ociosos.
+		</Descrição>
+		
+		<!-- Lista de requisitos //-->
+		<Requisito entrada="período"/>
+		
+		<!-- Consulta SQL //-->
+		<Query>
+			SELECT hora, setor, AVG(visitantes)
+			FROM
+			(
+				SELECT DATE(entrada) AS data, HOUR(entrada) AS hora, setor, COUNT(*) AS visitantes
+				FROM visita
+				WHERE DATE(entrada) BETWEEN @periodoInicial AND @periodoFinal
+				GROUP BY data, hora, setor
+			) tVisitantes
+			GROUP BY hora, setor
+		</Query>
+		
+		<!-- Significado das colunas //-->
+		<ValorX coluna="hora"/>
+		<ValorY coluna="visitantes"/>
+		<Seqüência coluna="setor"/>
+		
+		<!-- Legenda para seqüências //-->
+		<Legenda>
+			SELECT codigo, nome
+			FROM setor
+		</Legenda>
+		
+	</Gráfico>
+	
+	
+	
+	<Gráfico tipo="barras" título="Desistências por semana">
+	
+		<Descrição>
+		
+		</Descrição>
+	</Gráfico>
+	
+</Relatório>

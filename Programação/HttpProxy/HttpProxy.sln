@@ -1,0 +1,89 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpProxy", "HttpProxy\HttpProxy.csproj", "{E126737D-47D8-4C47-AC76-7E3B63AE3308}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfiguraProxy", "ConfiguraProxy\ConfiguraProxy.csproj", "{40D780C3-C221-4E55-A9EB-AB616F4A961C}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proxy", "Proxy\Proxy.csproj", "{99805C1A-686F-44AC-AD00-52A7714ACFAE}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup.HttpProxy", "Setup.HttpProxy\Setup.HttpProxy.vdproj", "{CE679BB8-06C0-4794-955F-DA94AFCCFF17}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpProxy.Serviço", "HttpProxy.Serviço\HttpProxy.Serviço.csproj", "{1622CCC8-0D1C-4176-8908-DC46282A2AAC}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpProxy.Windows.Forms", "HttpProxy.Windows.Forms\HttpProxy.Windows.Forms.csproj", "{F1C14D84-060C-4696-A722-C38FA60A553F}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 7
+		SccLocalPath0 = .
+		CanCheckoutShared = false
+		SolutionUniqueID = {FEB8DCB9-CFDB-4335-98C1-FCB4D3C9D6C1}
+		SccProjectUniqueName1 = HttpProxy\\HttpProxy.csproj
+		SccLocalPath1 = .
+		CanCheckoutShared = false
+		SccProjectFilePathRelativizedFromConnection1 = HttpProxy\\
+		SccProjectUniqueName2 = ConfiguraProxy\\ConfiguraProxy.csproj
+		SccLocalPath2 = .
+		CanCheckoutShared = false
+		SccProjectFilePathRelativizedFromConnection2 = ConfiguraProxy\\
+		SccProjectUniqueName3 = Proxy\\Proxy.csproj
+		SccLocalPath3 = .
+		CanCheckoutShared = false
+		SccProjectFilePathRelativizedFromConnection3 = Proxy\\
+		SccProjectUniqueName4 = Setup.HttpProxy\\Setup.HttpProxy.vdproj
+		SccLocalPath4 = .
+		CanCheckoutShared = false
+		SccProjectFilePathRelativizedFromConnection4 = Setup.HttpProxy\\
+		SccProjectUniqueName5 = HttpProxy.Serviço\\HttpProxy.Serviço.csproj
+		SccLocalPath5 = .
+		CanCheckoutShared = false
+		SccProjectFilePathRelativizedFromConnection5 = HttpProxy.Serviço\\
+		SccProjectUniqueName6 = HttpProxy.Windows.Forms\\HttpProxy.Windows.Forms.csproj
+		SccLocalPath6 = .
+		CanCheckoutShared = false
+		SccProjectFilePathRelativizedFromConnection6 = HttpProxy.Windows.Forms\\
+	EndGlobalSection
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{E126737D-47D8-4C47-AC76-7E3B63AE3308}.Debug.ActiveCfg = Debug|.NET
+		{E126737D-47D8-4C47-AC76-7E3B63AE3308}.Debug.Build.0 = Debug|.NET
+		{E126737D-47D8-4C47-AC76-7E3B63AE3308}.Release.ActiveCfg = Release|.NET
+		{E126737D-47D8-4C47-AC76-7E3B63AE3308}.Release.Build.0 = Release|.NET
+		{40D780C3-C221-4E55-A9EB-AB616F4A961C}.Debug.ActiveCfg = Debug|.NET
+		{40D780C3-C221-4E55-A9EB-AB616F4A961C}.Debug.Build.0 = Debug|.NET
+		{40D780C3-C221-4E55-A9EB-AB616F4A961C}.Release.ActiveCfg = Release|.NET
+		{40D780C3-C221-4E55-A9EB-AB616F4A961C}.Release.Build.0 = Release|.NET
+		{99805C1A-686F-44AC-AD00-52A7714ACFAE}.Debug.ActiveCfg = Debug|.NET
+		{99805C1A-686F-44AC-AD00-52A7714ACFAE}.Debug.Build.0 = Debug|.NET
+		{99805C1A-686F-44AC-AD00-52A7714ACFAE}.Release.ActiveCfg = Release|.NET
+		{99805C1A-686F-44AC-AD00-52A7714ACFAE}.Release.Build.0 = Release|.NET
+		{CE679BB8-06C0-4794-955F-DA94AFCCFF17}.Debug.ActiveCfg = Debug
+		{CE679BB8-06C0-4794-955F-DA94AFCCFF17}.Release.ActiveCfg = Release
+		{1622CCC8-0D1C-4176-8908-DC46282A2AAC}.Debug.ActiveCfg = Debug|.NET
+		{1622CCC8-0D1C-4176-8908-DC46282A2AAC}.Debug.Build.0 = Debug|.NET
+		{1622CCC8-0D1C-4176-8908-DC46282A2AAC}.Release.ActiveCfg = Release|.NET
+		{1622CCC8-0D1C-4176-8908-DC46282A2AAC}.Release.Build.0 = Release|.NET
+		{F1C14D84-060C-4696-A722-C38FA60A553F}.Debug.ActiveCfg = Debug|.NET
+		{F1C14D84-060C-4696-A722-C38FA60A553F}.Debug.Build.0 = Debug|.NET
+		{F1C14D84-060C-4696-A722-C38FA60A553F}.Release.ActiveCfg = Release|.NET
+		{F1C14D84-060C-4696-A722-C38FA60A553F}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<layerDiagram dslVersion="0.3.0.0" Id="78aee38d-92d7-49df-9ab9-63e6641440bf" absoluteBounds="0, 0, 11, 8.5" name="Camadas">
+  <layerModelMoniker Id="cf5e7d83-842b-44a6-93ce-5abed40e9efa" />
+  <nestedChildShapes>
+    <layerShape Id="e9a3375f-5600-4e65-8ce6-792d9134f471" absoluteBounds="1.5, 1, 2, 0.75" customColor="161, 199, 231">
+      <layerMoniker Id="fe0cb734-b1ff-4ef4-b5e9-ac6e893de1c2" />
+    </layerShape>
+    <layerShape Id="5223fc95-2ae0-4873-b1b7-f2ea3e4a7c0d" absoluteBounds="1.5, 4.5, 2, 0.75" customColor="161, 199, 231">
+      <layerMoniker Id="b1a26373-6b93-4352-8d7e-552166a19724" />
+    </layerShape>
+    <layerShape Id="8a310741-97c8-4023-be04-ed4d83be4332" absoluteBounds="1.5, 2.875, 2, 0.75" customColor="161, 199, 231">
+      <layerMoniker Id="809d8099-4247-4370-9e6f-1e308d02dd2d" />
+    </layerShape>
+    <dependencyConnector edgePoints="[(2.5 : 3.625); (2.5 : 4.5)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110">
+      <dependencyFromLayerToLayerMoniker Id="ed2707aa-3807-47aa-8981-2d3fc2b8a381" />
+      <nodes>
+        <layerShapeMoniker Id="8a310741-97c8-4023-be04-ed4d83be4332" />
+        <layerShapeMoniker Id="5223fc95-2ae0-4873-b1b7-f2ea3e4a7c0d" />
+      </nodes>
+    </dependencyConnector>
+    <dependencyConnector edgePoints="[(2.5 : 2.875); (2.5 : 1.75)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110">
+      <dependencyFromLayerToLayerMoniker Id="806e3dc0-b0ad-4d63-97e0-d08c26dd229c" />
+      <nodes>
+        <layerShapeMoniker Id="8a310741-97c8-4023-be04-ed4d83be4332" />
+        <layerShapeMoniker Id="e9a3375f-5600-4e65-8ce6-792d9134f471" />
+      </nodes>
+    </dependencyConnector>
+    <commentShape Id="39af1d8e-eaf0-4656-bffe-c70f957a5d25" absoluteBounds="4.125, 3, 1.625, 0.5" customColor="255, 255, 204">
+      <commentMoniker Id="e52b042b-2972-4e61-9fbe-8cc44325feb1" />
+    </commentShape>
+    <commentConnector edgePoints="[(4.125 : 3.25); (3.5 : 3.25)]" fixedFrom="Algorithm" fixedTo="Algorithm" TargetRelationshipDomainClassId="b31d9df9-a57a-4264-ac29-ffbdedc9a9e7" customColor="Black">
+      <nodes>
+        <commentShapeMoniker Id="39af1d8e-eaf0-4656-bffe-c70f957a5d25" />
+        <layerShapeMoniker Id="8a310741-97c8-4023-be04-ed4d83be4332" />
+      </nodes>
+    </commentConnector>
+  </nestedChildShapes>
+</layerDiagram>

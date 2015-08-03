@@ -1,0 +1,281 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DDD9A71A-E912-457B-90C5-386E08959209}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>Apresentacao.Mercadoria.Etiqueta</AssemblyName>
+    <AssemblyOriginatorKeyFile>IMJ.Apresentação.Mercadoria.Etiqueta.snk</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Apresentação.Mercadoria.Etiqueta</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SignAssembly>false</SignAssembly>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Balloon.NET\Balloon.NET.csproj">
+      <Project>{0E6F1B58-B832-4D96-9BE9-A61DDAA18C4C}</Project>
+      <Name>Balloon.NET</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Report.Designer\Report.Designer.csproj">
+      <Name>Report.Designer</Name>
+      <Project>{DC9AFDE0-44F3-4BAF-A9AD-64DD2A7EDAE0}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Report\Report.csproj">
+      <Name>Report</Name>
+      <Project>{D57011E1-546B-437E-8999-A3C90C0A733F}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ValidatingText\TextBox.csproj">
+      <Name>TextBox</Name>
+      <Project>{6BF0180E-73ED-4DBC-9AE2-8597A4D18E6D}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Acesso.Comum\Acesso.Comum.csproj">
+      <Name>Acesso.Comum</Name>
+      <Project>{48DA2925-CF1F-4875-8A00-6851C7ABEEB8}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Apresentação - Formulários\Apresentação.Formulários.csproj">
+      <Project>{C447BD9E-FBB5-4B56-A957-54808B8E3E61}</Project>
+      <Name>Apresentação.Formulários</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Apresentação - Pessoa\Apresentação.Pessoa.csproj">
+      <Name>Apresentação.Pessoa</Name>
+      <Project>{F063F3E4-3D9A-4444-BCEF-47CFDD6BAA33}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Apresentação.Mercadoria\Apresentação.Mercadoria.csproj">
+      <Name>Apresentação.Mercadoria</Name>
+      <Project>{D1B827A6-114D-4B74-9011-C8B4387F2368}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Entidades\Entidades.csproj">
+      <Name>Entidades</Name>
+      <Project>{E1A76D2D-85F3-4202-B316-3C6BDD3220F9}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Impressão\BalãoEtiquetaMapeada.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Impressão\BandejaEtiqueta.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Impressão\ConfigurarEtiqueta.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Impressão\Imprimir.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Impressão\ImprimirEscolha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Impressão\Layout\CódigoDeBarras.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Impressão\Layout\FaixaGrupo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Impressão\Layout\Foto.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Impressão\Layout\Logotipo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Impressão\Layout\Peso.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Impressão\Layout\Referência.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Impressão\Layout\Índice.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Impressão\ListaEtiquetas.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Impressão\Renomear.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Impressão\SalvarConfiguração.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Impressão\BalãoEtiquetaMapeada.resx">
+      <DependentUpon>BalãoEtiquetaMapeada.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Impressão\BandejaEtiqueta.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>BandejaEtiqueta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Impressão\ConfigurarEtiqueta.resx">
+      <DependentUpon>ConfigurarEtiqueta.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Impressão\Imprimir.resx">
+      <DependentUpon>Imprimir.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Impressão\ImprimirEscolha.resx">
+      <DependentUpon>ImprimirEscolha.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Impressão\Layout\Logo.jpg" />
+    <EmbeddedResource Include="Impressão\ListaEtiquetas.resx">
+      <DependentUpon>ListaEtiquetas.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Impressão\Renomear.resx">
+      <DependentUpon>Renomear.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Impressão\SalvarConfiguração.resx">
+      <DependentUpon>SalvarConfiguração.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="CodigoDeBarras, Version=1.0.3706.32008, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CódigoDeBarras\bin\Release\CodigoDeBarras.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="IMJ.Apresentação.Mercadoria.Etiqueta.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\impressora %28altura 58%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Etiqueta.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties PolicyFile="" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

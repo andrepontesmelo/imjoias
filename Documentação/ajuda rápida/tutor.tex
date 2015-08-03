@@ -1,0 +1,48 @@
+\documentclass[10pt,onecolumn]{article} 
+
+\usepackage[latin1]{inputenc}
+\usepackage[brazil]{babel}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\title{TP 0\\OC 2}
+
+\author{André Pontes}
+
+\maketitle
+\sloppy
+
+\section{Comissão}
+
+A tela de vendas já mostrar uma coluna com a comissão de cada venda.
+O cálculo da comissão a ser paga ao funcionário poderia ser a soma das comissão das vendas num intervalo especificado.
+No entanto, algumas das vendas do mes não devem nao devem ser consideradas e outras dos meses pasados devem.
+
+Não devem ser computadas as vendas digitadas pelos próprios vendedores sem que o setor financeiro tenha verificado o pagamento das mesmas. Também não devem ser computadas as vendas condicionais de representante. Na nomenclatura do sistema, apenas vendas \textbf{verificadas} devem ser computadas. Existem ainda algumas vendas dos meses anteriores que na época, por algum motivo, estavam marcadas como \textbf{não-verificadas} e passaram recentemente a serem verificadas. Estas vendas devem ser incluídas no cálculo da comissão.
+
+Para facilitar a escolha de quais vendas devem ser consideradas, existe a tela Comissão (Fig.) em que automaticamente já são mostradas todas as vendas de um funcionário já verificadas e com comissão ainda não paga. Nesta tela, o funcionário deverá marcar todas as vendas que deseja considerar no cálculo da comissão, e então clicar em \textbf{Pagar}. 
+
+O sistema irá anotar que aquelas vendas já tiveram comissão paga, e portanto, ela não será mostrada novamente na tela de comissão, evitando assim que uma venda tenha comissão paga mais de uma vez.
+
+: vendas lançadas sem verificação
+ 	devem entrar: vendas dos meses anteriores que ainda nao tivem comissao paga por algum motivo e já foram liberadas.
+ 
+  
+- Comissão da mesma venda ser paga várias vezes
+- Separar vendas 
+ou seja Conseguir pagar comissão uma só vez e ainda somar com as vendas com comissão dos meses anteriores pendentes
+
+
+\section{Venda}
+\begin{itemize}
+\item \textbf{Comissão autorizada} Indica que algum funcionário com tal privilégio autorizou a comissão. O sistema só computa a comissão das vendas autorizadas. Uma venda digitada só tem sua comissão autorizada assim que o financeiro verifica recebe os pagamentos. Isto significa que os próprios vendedores poderão digitar suas vendas, uma vez que sua comissão só será computada assim que a venda for verificada pelo financeiro.
+
+\item \textbf{Travado} Travado significa que já foi impresso. Após a impressão de algum documento, ele é travado de forma que alterações não sejam aceitas. Este recurso evita que exista diferença entre os documentos impressos e armazenados no servidor. Apesar de travar, existe a opção privilegiada \footnote{Apenas alguns funcionários tem o privilégio de destravar documentos de venda, saída e retorno} para destravar os documentos. 
+
+\item \textbf{Comissão paga} O sistema sabe quais pagamentos tiveram comissão pagas para que a tela de comissão não compute a comissão de uma venda mais de uma vez. 
+
+\end{itemize}
+
+\end{document}

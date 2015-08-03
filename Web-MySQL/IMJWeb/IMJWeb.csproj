@@ -1,0 +1,509 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{468B335E-7803-4717-A1E7-E961C085E00C}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IMJWeb</RootNamespace>
+    <AssemblyName>IMJWeb</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <UseIISExpress>false</UseIISExpress>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MySql.Data, Version=5.2.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 6.3.6\Assemblies\v2.0\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data.Entity, Version=6.3.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 6.3.6\Assemblies\v2.0\MySql.Data.Entity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Web, Version=5.2.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 6.3.6\Assemblies\v2.0\MySql.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Cadastro\Default.aspx" />
+    <Content Include="Capa\2010Natal\Capa.css" />
+    <Content Include="Capa\2011Inverno\0\capa-1.gif" />
+    <Content Include="Capa\2011Inverno\550\capa-1.gif" />
+    <Content Include="Capa\2011Inverno\700\capa-1.gif" />
+    <Content Include="Capa\2011Inverno\800\capa-1.gif" />
+    <Content Include="Capa\2011Inverno\0\original.gif" />
+    <Content Include="Capa\2011Inverno\Capa.css" />
+    <Content Include="Capa\2011Inverno\Capa.js" />
+    <Content Include="Capa\2011Inverno\IE6.js" />
+    <Content Include="Capa\2011Outono\0\capa-1.jpg" />
+    <Content Include="Capa\2011Outono\1024\Capa-1.jpg" />
+    <Content Include="Capa\2011Outono\550\capa-1.jpg" />
+    <Content Include="Capa\2011Outono\700\capa-1.jpg" />
+    <Content Include="Capa\2011Outono\800\Capa-1.jpg" />
+    <Content Include="Capa\2011Outono\Capa.css" />
+    <Content Include="Capa\2011Outono\Capa.js" />
+    <Content Include="Capa\2011Outono\IE6.js" />
+    <Content Include="Capa\2011Primavera\0\capa-1.jpg" />
+    <Content Include="Capa\2011Primavera\550\capa-1.jpg" />
+    <Content Include="Capa\2011Primavera\700\capa-1.jpg" />
+    <Content Include="Capa\2011Primavera\800\capa-1.jpg" />
+    <Content Include="Capa\2011Primavera\Capa.css" />
+    <Content Include="Capa\2011Primavera\Capa.js" />
+    <Content Include="Capa\2011Primavera\IE6.js" />
+    <Content Include="Capa\2011Verao\Capa.css" />
+    <Content Include="Capa\2011Verao\Capa.js" />
+    <Content Include="Capa\2012Verao\0\capa-1.jpg" />
+    <Content Include="Capa\2012Verao\550\capa-1.jpg" />
+    <Content Include="Capa\2012Verao\700\capa-1.jpg" />
+    <Content Include="Capa\2012Verao\800\capa-1.jpg" />
+    <Content Include="Capa\2012Verao\Capa.css" />
+    <Content Include="Capa\2012Verao\Capa.js" />
+    <Content Include="Capa\2012Verao\IE6.js" />
+    <Content Include="Capa\ModeloFotoCheia.aspx" />
+    <Content Include="Capa\2011Verao\0\capa-1.jpg" />
+    <Content Include="Capa\2011Verao\1024\Capa-1.jpg" />
+    <Content Include="Capa\2011Verao\550\capa-1.jpg" />
+    <Content Include="Capa\2011Verao\700\capa-1.jpg" />
+    <Content Include="Capa\2011Verao\800\Capa-1.jpg" />
+    <Content Include="Estilos\Capa-FotoCheia.css" />
+    <Content Include="Capa\2011Verao\IE6.js" />
+    <Content Include="Capa\2010Natal\1024\Capa-1.jpg" />
+    <Content Include="Capa\2010Natal\800\Capa-1.jpg" />
+    <Content Include="Capa\2010Natal\IE6.js" />
+    <Content Include="Catalogo\AlertarMercadoriaNaoEncontrada.js" />
+    <Content Include="Catalogo\Default.aspx" />
+    <Content Include="Catalogo\Mercadoria-IE6.js" />
+    <Content Include="Catalogo\Mercadoria.js" />
+    <Content Include="Catalogo\Miniatura-IE6.js" />
+    <Content Include="Catalogo\Miniatura-IE7.js" />
+    <Content Include="Catalogo\Miniatura.js" />
+    <Content Include="Contato.aspx" />
+    <Content Include="Controles\LblTextBox.ascx" />
+    <Content Include="Capa\Modelo-01.aspx" />
+    <Content Include="Default.aspx" />
+    <Content Include="Estilos-1280x1024\Catalogo.css" />
+    <Content Include="Estilos-1280x1024\RodapeProcura.css" />
+    <Content Include="Estilos-1280x1024\RodapeSubMenu.css" />
+    <Content Include="Estilos-800x600\Catalogo.css" />
+    <Content Include="Estilos-800x600\RodapeProcura.css" />
+    <Content Include="Estilos-800x600\RodapeSubMenu.css" />
+    <Content Include="Estilos\Abas.css" />
+    <Content Include="Estilos\Capa.css" />
+    <Content Include="Estilos\Formularios.css" />
+    <Content Include="Estilos\Catalogo.css" />
+    <Content Include="Estilos\RodapeProcura.css" />
+    <Content Include="Estilos\RodapeSubMenu.css" />
+    <Content Include="Estilos\sunny\images\ui-bg_diagonals-medium_20_d34d17_40x40.png" />
+    <Content Include="Estilos\sunny\images\ui-bg_flat_30_cccccc_40x100.png" />
+    <Content Include="Estilos\sunny\images\ui-bg_flat_50_5c5c5c_40x100.png" />
+    <Content Include="Estilos\sunny\images\ui-bg_gloss-wave_45_817865_500x100.png" />
+    <Content Include="Estilos\sunny\images\ui-bg_gloss-wave_60_fece2f_500x100.png" />
+    <Content Include="Estilos\sunny\images\ui-bg_gloss-wave_70_ffdd57_500x100.png" />
+    <Content Include="Estilos\sunny\images\ui-bg_gloss-wave_90_fff9e5_500x100.png" />
+    <Content Include="Estilos\sunny\images\ui-bg_highlight-soft_100_feeebd_1x100.png" />
+    <Content Include="Estilos\sunny\images\ui-bg_inset-soft_30_ffffff_1x100.png" />
+    <Content Include="Estilos\sunny\images\ui-icons_3d3d3d_256x240.png" />
+    <Content Include="Estilos\sunny\images\ui-icons_bd7b00_256x240.png" />
+    <Content Include="Estilos\sunny\images\ui-icons_d19405_256x240.png" />
+    <Content Include="Estilos\sunny\images\ui-icons_eb990f_256x240.png" />
+    <Content Include="Estilos\sunny\images\ui-icons_ed9f26_256x240.png" />
+    <Content Include="Estilos\sunny\images\ui-icons_fadc7a_256x240.png" />
+    <Content Include="Estilos\sunny\images\ui-icons_ffe180_256x240.png" />
+    <Content Include="Estilos\sunny\jquery-ui-1.7.2.custom.css" />
+    <Content Include="Imagens\Abas\Impar\BaixoDireita.png" />
+    <Content Include="Imagens\Abas\Impar\Direita.png" />
+    <Content Include="Imagens\Abas\Impar\TituloDireita.png" />
+    <Content Include="Imagens\Abas\Impar\TituloEsquerda.png" />
+    <Content Include="Imagens\Abas\Impar\Topo.png" />
+    <Content Include="Imagens\Abas\Impar\TopoDireita.png" />
+    <Content Include="Imagens\Abas\Par\BaixoDireita.png" />
+    <Content Include="Imagens\Abas\Par\Direita.png" />
+    <Content Include="Imagens\Abas\Par\Esquerda.png" />
+    <Content Include="Imagens\Abas\Par\TituloDireita.png" />
+    <Content Include="Imagens\Abas\Par\TituloEsquerda.png" />
+    <Content Include="Imagens\Abas\Par\Topo.png" />
+    <Content Include="Imagens\Abas\Par\TopoEsquerda.png" />
+    <Content Include="Imagens\Catalogo\SetaDireita.png" />
+    <Content Include="Imagens\Catalogo\SetaEsquerda.png" />
+    <Content Include="Imagens\Rodape\ProcuraDireita.png" />
+    <Content Include="Imagens\Rodape\ProcuraEsquerda.png" />
+    <Content Include="Imagens\Rodape\SubMenuBarraDireita.png" />
+    <Content Include="Imagens\Rodape\SubMenuBarraEsquerda.png" />
+    <Content Include="Login\alertarSenhaInvalida.js" />
+    <Content Include="Catalogo\Catalogo.js" />
+    <Content Include="Catalogo\Catalogo-IE6.js" />
+    <Content Include="Capa\2010Natal\0\capa-1.jpg" />
+    <Content Include="Capa\2010Natal\550\capa-1.jpg" />
+    <Content Include="Capa\2010Natal\700\capa-1.jpg" />
+    <Content Include="Scripts\Abas.js" />
+    <Content Include="Scripts\Comunicacao.js" />
+    <Content Include="Capa\ModeloFotoCheia-IE6.js" />
+    <Content Include="Scripts\jquery-1.4.2.min.js" />
+    <Content Include="Scripts\jquery-ui-1.7.2.custom.min.js" />
+    <Content Include="Login\alertarParametroObrigatorio.js" />
+    <Content Include="Dicas.aspx" />
+    <Content Include="Empresa\Default.aspx" />
+    <Content Include="Estilos-1280x1024\Cabecalho.css" />
+    <Content Include="Estilos-1280x1024\Capa-Azul.css" />
+    <Content Include="Estilos-1280x1024\Conteudo.css" />
+    <Content Include="Estilos-1280x1024\Personalizacao.css" />
+    <Content Include="Estilos-1280x1024\Rodape.css" />
+    <Content Include="Estilos-800x600\Conteudo.css" />
+    <Content Include="Estilos-800x600\Personalizacao.css" />
+    <Content Include="Estilos-800x600\Rodape.css" />
+    <Content Include="Estilos\Conteudo.css" />
+    <Content Include="Estilos\Personalizacao.css" />
+    <Content Include="Estilos\Principal.css" />
+    <Content Include="Estilos-800x600\Cabecalho.css" />
+    <Content Include="Estilos-800x600\Capa-Azul.css" />
+    <Content Include="Estilos\Empresa.css" />
+    <Content Include="Estilos\Rodape.css" />
+    <Content Include="Estilos\Cabecalho.css" />
+    <Content Include="Estilos\Capa-Roxo.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Garantia.aspx" />
+    <Content Include="Imagens-800x600\Cabecalho\BordaDireita.png" />
+    <Content Include="Imagens-800x600\Cabecalho\BordaEsquerda.png" />
+    <Content Include="Imagens-800x600\Cabecalho\Cabecalho.png" />
+    <Content Include="Imagens-800x600\Cabecalho\Preenchimento.png" />
+    <Content Include="Imagens-800x600\Capa\Azul\Padrao.jpg" />
+    <Content Include="Imagens\Cabecalho\BarraDireitaUsuario.png" />
+    <Content Include="Imagens\Cabecalho\BarraEsquerdaUsuario.png" />
+    <Content Include="Imagens\Cabecalho\BarraUsuario.png" />
+    <Content Include="Imagens\Cabecalho\BordaEsquerda.png" />
+    <Content Include="Imagens\Cabecalho\Cabecalho.png" />
+    <Content Include="Imagens\Cabecalho\BordaDireita.png" />
+    <Content Include="Imagens\Cabecalho\Preenchimento.png" />
+    <Content Include="Imagens\Capa\Anel.png" />
+    <Content Include="Imagens\Capa\Anel-peq.png" />
+    <Content Include="Imagens\Capa\Azul\Luz.png" />
+    <Content Include="Imagens\Capa\Azul\Padrao.jpg" />
+    <Content Include="Imagens\Empresa\Loja1.jpg" />
+    <Content Include="Imagens\Empresa\Loja2.jpg" />
+    <Content Include="Imagens\Empresa\Ouro.jpg" />
+    <Content Include="Imagens\Logotipo.png" />
+    <Content Include="Imagens\Rodape\BarraDireita.png" />
+    <Content Include="Imagens\Rodape\BarraEsquerda.png" />
+    <Content Include="Capa2.js" />
+    <Content Include="Empresa\Empresa.js" />
+    <Content Include="Scripts\IE-Generico.js" />
+    <Content Include="Capa-IE6.js" />
+    <Content Include="Empresa\Empresa-IE6.js" />
+    <Content Include="Scripts\Leiaute-IE6.js" />
+    <Content Include="Scripts\jquery-1.3.2-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.3.2.js" />
+    <Content Include="Scripts\jquery-1.3.2.min.js" />
+    <Content Include="Scripts\jquery.meio.mask.min.js" />
+    <Content Include="Scripts\jquery.pngFix.pack.js" />
+    <Content Include="Scripts\Leiaute.js" />
+    <Content Include="Login\alertarUsuarioIncorreto.js" />
+    <Content Include="Scripts\Resolucao.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Cadastro\Cadastro-IE6.aspx.cs">
+      <DependentUpon>Cadastro-IE6.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cadastro\Cadastro-IE6.aspx.designer.cs">
+      <DependentUpon>Cadastro-IE6.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastro\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cadastro\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastro\EdicaoCadastro.aspx.cs">
+      <DependentUpon>EdicaoCadastro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cadastro\EdicaoCadastro.aspx.designer.cs">
+      <DependentUpon>EdicaoCadastro.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastro\GerenciarUsuarios.aspx.cs">
+      <DependentUpon>GerenciarUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cadastro\GerenciarUsuarios.aspx.designer.cs">
+      <DependentUpon>GerenciarUsuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastro\InstrucaoReenvioSenha.aspx.cs">
+      <DependentUpon>InstrucaoReenvioSenha.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cadastro\InstrucaoReenvioSenha.aspx.designer.cs">
+      <DependentUpon>InstrucaoReenvioSenha.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastro\NovoUsuario.aspx.cs">
+      <DependentUpon>NovoUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cadastro\NovoUsuario.aspx.designer.cs">
+      <DependentUpon>NovoUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cadastro\ReenviarSenha.aspx.cs">
+      <DependentUpon>ReenviarSenha.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cadastro\ReenviarSenha.aspx.designer.cs">
+      <DependentUpon>ReenviarSenha.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Capa\ModeloFotoCheia.aspx.cs">
+      <DependentUpon>ModeloFotoCheia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Capa\ModeloFotoCheia.aspx.designer.cs">
+      <DependentUpon>ModeloFotoCheia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Catalogo\Mercadoria.asmx.cs">
+      <DependentUpon>Mercadoria.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Catalogo\Sincronizador\Sinc23.asmx.cs">
+      <DependentUpon>Sinc23.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Catalogo\TO\DadosMercadoria.cs" />
+    <Compile Include="Catalogo\VisaoCatalogos.cs" />
+    <Compile Include="Catalogo\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Catalogo\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Catalogo\Foto.ashx.cs">
+      <DependentUpon>Foto.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Comunicacao\CaixaEntrada.ashx.cs">
+      <DependentUpon>CaixaEntrada.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Comunicacao\ChaveValor.cs" />
+    <Compile Include="Contato.aspx.cs">
+      <DependentUpon>Contato.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contato.aspx.designer.cs">
+      <DependentUpon>Contato.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\CacheHelper.cs" />
+    <Compile Include="Controles\LblTextBox.ascx.cs">
+      <DependentUpon>LblTextBox.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controles\LblTextBox.ascx.designer.cs">
+      <DependentUpon>LblTextBox.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Capa\Modelo-01.aspx.cs">
+      <DependentUpon>Modelo-01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Capa\Modelo-01.aspx.designer.cs">
+      <DependentUpon>Modelo-01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dicas.aspx.cs">
+      <DependentUpon>Dicas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dicas.aspx.designer.cs">
+      <DependentUpon>Dicas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Empresa\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Empresa\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Erro-403.aspx.cs">
+      <DependentUpon>Erro-403.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Erro-403.aspx.designer.cs">
+      <DependentUpon>Erro-403.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Erro-404.aspx.cs">
+      <DependentUpon>Erro-404.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Erro-404.aspx.designer.cs">
+      <DependentUpon>Erro-404.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Garantia.aspx.cs">
+      <DependentUpon>Garantia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Garantia.aspx.designer.cs">
+      <DependentUpon>Garantia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Leiaute.Master.cs">
+      <DependentUpon>Leiaute.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Leiaute.Master.designer.cs">
+      <DependentUpon>Leiaute.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sessao\Sessao.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Leiaute.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IMJWeb.DAO.EF\IMJWeb.DAO.EF.csproj">
+      <Project>{E06651A2-3E78-4051-AD50-8E7A9633EC95}</Project>
+      <Name>IMJWeb.DAO.EF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IMJWeb.DAO\IMJWeb.DAO.csproj">
+      <Project>{7F2DC403-8758-4C0C-A0C2-C55EE84BE3E9}</Project>
+      <Name>IMJWeb.DAO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IMJWeb.Dominio.Util\IMJWeb.Dominio.Util.csproj">
+      <Project>{C15FB3DE-AB95-4393-98CF-0F1A6F7B30A5}</Project>
+      <Name>IMJWeb.Dominio.Util</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IMJWeb.Dominio\IMJWeb.Dominio.csproj">
+      <Project>{37A16748-A940-4413-A6E1-6D84271ECEED}</Project>
+      <Name>IMJWeb.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IMJWeb.Servico\IMJWeb.Servico.csproj">
+      <Project>{99FDB666-B181-4796-B586-6576B0701E9E}</Project>
+      <Name>IMJWeb.Servico</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Catalogo\Foto.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\jquery.ahover.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Cadastro\alertarSenhaConfirmacaoInvalida.js" />
+    <Content Include="Cadastro\alertarSenhaInvalida.js" />
+    <Content Include="Cadastro\Cadastro-IE6.aspx" />
+    <Content Include="Cadastro\EdicaoCadastro.aspx" />
+    <Content Include="Cadastro\GerenciarUsuarios.aspx" />
+    <Content Include="Cadastro\InstrucaoReenvioSenha.aspx" />
+    <Content Include="Cadastro\NovoUsuario.aspx" />
+    <Content Include="Cadastro\ReenviarSenha.aspx" />
+    <Content Include="Catalogo\Mercadoria.asmx" />
+    <Content Include="Catalogo\Sincronizador\Sinc23.asmx" />
+    <Content Include="Comunicacao\CaixaEntrada.ashx" />
+    <Content Include="Erro-403.aspx" />
+    <Content Include="Erro-404.aspx" />
+    <Content Include="Erro.html" />
+    <Content Include="Estilos-1280x1024\Capa-Roxo.css" />
+    <Content Include="Estilos-800x600\Capa-Roxo.css" />
+    <Content Include="Estilos\Capa-Azul.css" />
+    <Content Include="Estilos\Formularios-IE6.css" />
+    <Content Include="Estilos\EdicaoCadastro.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Imagens\Abas\Impar\Esquerda.png" />
+    <Content Include="Imagens\Capa\50238901100-peq.png" />
+    <Content Include="Imagens\Capa\50238901100.png" />
+    <Content Include="Imagens\Capa\Roxo\Luz.jpg" />
+    <Content Include="Imagens\Capa\Roxo\Padrao.jpg" />
+    <Content Include="Imagens\Carregando.gif" />
+    <Content Include="Imagens\Catalogo\SetaBaixo.png" />
+    <Content Include="Imagens\Catalogo\SetaCima.png" />
+    <Content Include="Imagens\Rodape\BarraDireita.gif" />
+    <Content Include="Imagens\Rodape\BarraEsquerda.gif" />
+    <Content Include="Scripts\problemasTecnicos.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>11588</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost/imj</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

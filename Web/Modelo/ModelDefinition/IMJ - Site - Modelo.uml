@@ -1,0 +1,1000 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner"
+  dslVersion="0.3.0.0"
+  Id="f203da66-0100-4ead-aaeb-da4119c3be7d"
+  name="IMJ - Site - Modelo" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <ownedCommentsInternal>
+    <comment
+      Id="a5804655-b7b2-4fc2-baca-05c9f87df9a1">
+      <body>Características:
+- Teor
+- Peso
+- Tipo de pedra preciosa
+
+Valor não será exibido.</body>
+      <annotatedElements>
+        <useCaseMoniker
+          Id="27311f43-6ee1-47fd-9fef-aac82ed8eee2"
+          LastKnownName="Visualizar características da mercadoria"
+          LastKnownLocation="IMJ - Site - Modelo.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="d2589156-3902-4de6-be34-a6765ecbf026">
+      <body>Não será exibido o valor em reais da mercadoria.</body>
+      <annotatedElements>
+        <useCaseMoniker
+          Id="6e1222c4-557c-4530-9870-6402eab85245"
+          LastKnownName="Visualizar índices"
+          LastKnownLocation="IMJ - Site - Modelo.uml" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b">
+      <profileInstance
+        Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791"
+        name="StandardProfileL2" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances
+      Id="29349502-908c-4fda-9054-c48619c59ed0">
+      <profileInstance
+        Id="532ea607-fb19-44b8-8502-3351b05452be"
+        name="StandardProfileL3" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <useCase
+        Id="6e436290-ebb9-4b96-ae95-ca9e2df71af8"
+        name="Cadastrar"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="5b1c85fe-c9b5-48cf-9358-2929b1b6502e"
+        name="Atacadista"
+        isAbstract="false"
+        isLeaf="false">
+        <generalsInternal>
+          <generalization
+            Id="b2f454be-16d3-4f89-b16f-1391f776bf22"
+            isSubstitutable="false">
+            <actorMoniker
+              Id="2efaac7d-2829-4c34-8ee2-e117bc3557de"
+              LastKnownName="Cliente"
+              LastKnownLocation="IMJ - Site - Modelo.uml" />
+          </generalization>
+        </generalsInternal>
+        <targetEnds>
+          <association
+            Id="1c6cc5b5-02cd-4275-9a8d-4753a37176a5"
+            isDerived="false"
+            sourceEndRoleName="Atacadista"
+            targetEndRoleName="Consultar Catálogo Restrito"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="9f614892-bfa9-4f7f-9d2d-89e99a38b596"
+              LastKnownName="Consultar Catálogo Restrito"
+              LastKnownLocation="IMJ - Site - Modelo.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="e860df3a-18fd-4dd8-80e9-83249cae596a"
+                  name="Atacadista"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="353011e0-3ebc-44d4-8686-c38435821088"
+                  name="Consultar Catálogo Restrito"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="e6ca7d5a-5f68-4d86-8b21-a9f1fba08688"
+        name="Consultar catálogo"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="d2099ff1-2e53-4075-9cc5-304f278d5ebe">
+            <useCaseMoniker
+              Id="42a8fc2f-d590-4d81-bb5f-0cdc73a61dc3"
+              LastKnownName="Visualizar fotos"
+              LastKnownLocation="IMJ - Site - Modelo.uml" />
+          </include>
+          <include
+            Id="2b8248ac-f36f-497b-a82b-1a338f14c982">
+            <useCaseMoniker
+              Id="27311f43-6ee1-47fd-9fef-aac82ed8eee2"
+              LastKnownName="Visualizar características da mercadoria"
+              LastKnownLocation="IMJ - Site - Modelo.uml" />
+          </include>
+        </additions>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="2e595338-4cc3-496f-a1b7-e74ca80d2242"
+        name="Varejista"
+        isAbstract="false"
+        isLeaf="false">
+        <generalsInternal>
+          <generalization
+            Id="161a511e-338a-4971-8318-6fc4b2dc38f4"
+            isSubstitutable="false">
+            <actorMoniker
+              Id="2efaac7d-2829-4c34-8ee2-e117bc3557de"
+              LastKnownName="Cliente"
+              LastKnownLocation="IMJ - Site - Modelo.uml" />
+          </generalization>
+        </generalsInternal>
+        <targetEnds>
+          <association
+            Id="c649e7fd-13ce-42a1-a4cb-d4bdd41a0030"
+            isDerived="false"
+            sourceEndRoleName="Varejista"
+            targetEndRoleName="Consutlar catálogo do varejo"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="f58c0130-4997-494b-bb15-d3826d1be2c7"
+              LastKnownName="Consutlar catálogo do varejo"
+              LastKnownLocation="IMJ - Site - Modelo.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="2b0972f3-0d48-49c3-8b78-86a43127440f"
+                  name="Varejista"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="3b58c0b8-aa8a-4c31-8f20-24e66035feb3"
+                  name="Consutlar catálogo do varejo"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="9f614892-bfa9-4f7f-9d2d-89e99a38b596"
+        name="Consultar Catálogo Restrito"
+        isAbstract="false"
+        isLeaf="false">
+        <extendedCases>
+          <extend
+            Id="4715a63b-4d40-4065-8a22-422395ae4464">
+            <useCaseMoniker
+              Id="e6ca7d5a-5f68-4d86-8b21-a9f1fba08688"
+              LastKnownName="Consultar catálogo"
+              LastKnownLocation="IMJ - Site - Modelo.uml" />
+          </extend>
+        </extendedCases>
+        <additions>
+          <include
+            Id="5d734903-3731-47d4-9a50-3175a526a945">
+            <useCaseMoniker
+              Id="6e1222c4-557c-4530-9870-6402eab85245"
+              LastKnownName="Visualizar índices"
+              LastKnownLocation="IMJ - Site - Modelo.uml" />
+          </include>
+        </additions>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="f58c0130-4997-494b-bb15-d3826d1be2c7"
+        name="Consutlar catálogo do varejo"
+        isAbstract="false"
+        isLeaf="false">
+        <extendedCases>
+          <extend
+            Id="b1a2084e-c563-4dff-80d4-2d581bd25a98">
+            <useCaseMoniker
+              Id="e6ca7d5a-5f68-4d86-8b21-a9f1fba08688"
+              LastKnownName="Consultar catálogo"
+              LastKnownLocation="IMJ - Site - Modelo.uml" />
+          </extend>
+        </extendedCases>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="2efaac7d-2829-4c34-8ee2-e117bc3557de"
+        name="Cliente"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="dcabbb4e-2e86-4e6e-a52a-6da2b96197c2"
+            isDerived="false"
+            sourceEndRoleName="Cliente"
+            targetEndRoleName="Cadastrar"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="6e436290-ebb9-4b96-ae95-ca9e2df71af8"
+              LastKnownName="Cadastrar"
+              LastKnownLocation="IMJ - Site - Modelo.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="633a720f-c0fe-4ccb-abc8-d458037e31c8"
+                  name="Cliente"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="5a2787c1-c084-46a4-a499-e3d8bf6f60b5"
+                  name="Cadastrar"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="6b5844f4-ce88-4ef9-9207-33dfcd2c1fb5"
+            isDerived="false"
+            sourceEndRoleName="Cliente"
+            targetEndRoleName="Enviar sugestão"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="8e31a5fb-316d-4865-9598-32ae77625a49"
+              LastKnownName="Enviar sugestão"
+              LastKnownLocation="IMJ - Site - Modelo.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="858ff904-28ee-49af-8342-9aba74678945"
+                  name="Cliente"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="7cfd9b66-a12a-4638-8ade-9ce1a4ea8bbd"
+                  name="Enviar sugestão"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="b63ab5cf-1a6b-4540-a3c1-793f28b09078"
+            isDerived="false"
+            sourceEndRoleName="Cliente"
+            targetEndRoleName="Enviar reclamação"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="5fc1b533-a0c2-4bc2-9bd1-878dead331be"
+              LastKnownName="Enviar reclamação"
+              LastKnownLocation="IMJ - Site - Modelo.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="4b571b3a-a7b4-4c88-ba9d-ec7cbf2e6a93"
+                  name="Cliente"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="a330907b-5525-42b9-8727-3966b173f721"
+                  name="Enviar reclamação"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="b7310ac4-e399-4b21-8931-43fcbc5a2dd1"
+            isDerived="false"
+            sourceEndRoleName="Cliente"
+            targetEndRoleName="Enviar solicitação"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="3e1a63a5-0fc5-48d2-9412-d78c116d1581"
+              LastKnownName="Enviar solicitação"
+              LastKnownLocation="IMJ - Site - Modelo.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="2940c905-d5e5-443e-8eb0-d1e9624be126"
+                  name="Cliente"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="b823d591-7040-443a-8555-f039f965b203"
+                  name="Enviar solicitação"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="8e31a5fb-316d-4865-9598-32ae77625a49"
+        name="Enviar sugestão"
+        isAbstract="false"
+        isLeaf="false">
+        <generalsInternal>
+          <generalization
+            Id="92456bc6-bfee-4506-8e07-b130e16e502c"
+            isSubstitutable="false">
+            <useCaseMoniker
+              Id="6f96003a-c867-4865-9012-17e362945a55"
+              LastKnownName="Enviar e-mail"
+              LastKnownLocation="IMJ - Site - Modelo.uml" />
+          </generalization>
+        </generalsInternal>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="5fc1b533-a0c2-4bc2-9bd1-878dead331be"
+        name="Enviar reclamação"
+        isAbstract="false"
+        isLeaf="false">
+        <generalsInternal>
+          <generalization
+            Id="9e78e6f9-2898-4fd3-8f55-92d11c40ec38"
+            isSubstitutable="false">
+            <useCaseMoniker
+              Id="6f96003a-c867-4865-9012-17e362945a55"
+              LastKnownName="Enviar e-mail"
+              LastKnownLocation="IMJ - Site - Modelo.uml" />
+          </generalization>
+        </generalsInternal>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="3e1a63a5-0fc5-48d2-9412-d78c116d1581"
+        name="Enviar solicitação"
+        isAbstract="false"
+        isLeaf="false">
+        <extendedCases>
+          <extend
+            Id="db0a6da7-40c4-40d8-8bd3-9409a4b1aad6">
+            <useCaseMoniker
+              Id="6f96003a-c867-4865-9012-17e362945a55"
+              LastKnownName="Enviar e-mail"
+              LastKnownLocation="IMJ - Site - Modelo.uml" />
+          </extend>
+        </extendedCases>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="6f96003a-c867-4865-9012-17e362945a55"
+        name="Enviar e-mail"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="42a8fc2f-d590-4d81-bb5f-0cdc73a61dc3"
+        name="Visualizar fotos"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="6e1222c4-557c-4530-9870-6402eab85245"
+        name="Visualizar índices"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="27311f43-6ee1-47fd-9fef-aac82ed8eee2"
+        name="Visualizar características da mercadoria"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="cc4c6f22-f908-4d6b-9aba-5fbf0095b150"
+        name="Funcionário"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="99cb7876-eb85-40a7-977a-5842abb92bc5"
+            isDerived="false"
+            sourceEndRoleName="Funcionário"
+            targetEndRoleName="Criar catálogo para site"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="d19ec4e1-747c-4482-8b72-0c1136905c75"
+              LastKnownName="Criar catálogo para site"
+              LastKnownLocation="IMJ - Site - Modelo.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="a9b4e818-f476-414b-b980-161f2e09b901"
+                  name="Funcionário"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="52f7019f-84eb-497c-be12-f1376be16c34"
+                  name="Criar catálogo para site"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="f209fa70-6fc9-412a-a5ee-7d1ee9bfd2fb"
+            isDerived="false"
+            sourceEndRoleName="Funcionário"
+            targetEndRoleName="Publicar catálogo no site"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="4177cd28-9b71-422e-a912-0f7374069f74"
+              LastKnownName="Publicar catálogo no site"
+              LastKnownLocation="IMJ - Site - Modelo.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="1feba415-50f3-4f27-bc92-3d969497f65d"
+                  name="Funcionário"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="3225951b-23cf-46c7-8ae3-8d8038d16073"
+                  name="Publicar catálogo no site"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="6ac51912-6be6-4165-a6c6-274ae6135374"
+            isDerived="false"
+            sourceEndRoleName="Funcionário"
+            targetEndRoleName="Enviar mala-direta"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="27c28b98-898e-4692-9528-cf97216eea7a"
+              LastKnownName="Enviar mala-direta"
+              LastKnownLocation="IMJ - Site - Modelo.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="6dba70fd-5351-4049-86c8-184249bcd572"
+                  name="Funcionário"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="62e45c4a-c5ce-4920-9438-15100d4d00a8"
+                  name="Enviar mala-direta"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="66a70055-71e8-4249-a0c6-47fa70621663"
+            isDerived="false"
+            sourceEndRoleName="Funcionário"
+            targetEndRoleName="Atualizar catálogo no site"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="64aae2e6-bab8-4cb9-a040-6ac56dee8c5a"
+              LastKnownName="Atualizar catálogo no site"
+              LastKnownLocation="IMJ - Site - Modelo.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="cf98fc85-701a-47b4-b9d0-8bcd7ddc2ea3"
+                  name="Funcionário"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="a8ce8eb2-6d6f-4294-910b-640df1da9e61"
+                  name="Atualizar catálogo no site"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="d19ec4e1-747c-4482-8b72-0c1136905c75"
+        name="Criar catálogo para site"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="221fc94a-aae3-48b9-be62-0077ecad1c4f">
+            <useCaseMoniker
+              Id="b07b88ca-4280-4ee6-b65b-551a6b477873"
+              LastKnownName="Definir restrições de acesso"
+              LastKnownLocation="IMJ - Site - Modelo.uml" />
+          </include>
+        </additions>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="4177cd28-9b71-422e-a912-0f7374069f74"
+        name="Publicar catálogo no site"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="b07b88ca-4280-4ee6-b65b-551a6b477873"
+        name="Definir restrições de acesso"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="27c28b98-898e-4692-9528-cf97216eea7a"
+        name="Enviar mala-direta"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="64aae2e6-bab8-4cb9-a040-6ac56dee8c5a"
+        name="Atualizar catálogo no site"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="0a4eab29-669d-4228-ad65-b9d0ed14471b"
+        name="Usuário"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <targetEnds>
+          <association
+            Id="512ddefb-4473-4206-a9df-64af7887e0bd"
+            isDerived="false"
+            sourceEndRoleName="Usuário"
+            targetEndRoleName="Catálogo"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="97771ae2-6e23-4307-ab29-7e5b52756d62"
+              LastKnownName="Catálogo"
+              LastKnownLocation="IMJ - Site - Modelo.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="f12fcb1c-3e7c-49f6-8326-c2865c1e82c8"
+                  name="Usuário"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="true"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="079511d8-93f4-45ae-8f93-0a844ecab432"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="fad00fce-3406-47fe-a805-c001e8cee48e"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="f49e1c9c-137c-4e59-8593-e6a93b357444"
+                  name="Catálogo"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="true"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="f8b88906-4587-43f3-84bb-66ac276efcd4"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="af5d0975-7aaf-455e-b380-457fd5354f6e"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="97771ae2-6e23-4307-ab29-7e5b52756d62"
+        name="Catálogo"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <targetEnds>
+          <association
+            Id="90335fc3-2f16-46e0-b86b-31533760e113"
+            isDerived="false"
+            sourceEndRoleName="Catálogo"
+            targetEndRoleName="IRestriçãoAcesso"
+            isLeaf="false"
+            isAbstract="false">
+            <interfaceMoniker
+              Id="94340cb4-f903-42ce-be98-b9a7f001a53e"
+              LastKnownName="IRestriçãoAcesso"
+              LastKnownLocation="IMJ - Site - Modelo.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="57d718da-126f-4e91-a6bf-4d28c635a38a"
+                  name="Catálogo"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="b932e88c-a1f0-4324-858c-86d62d015e77"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="6b172f19-b826-475f-a1d8-cb7fff17228f"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="e55bd04d-151a-4c0b-9b84-461972ce38b0"
+                  name="IRestriçãoAcesso"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="c0a5a887-9d86-4d0d-a4d1-7fcf6a476e4c"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="b91bd806-7fd2-42e3-ade5-2fa0aa7d3d7f"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="adc0809b-090e-409e-8f82-218c09115862"
+            isDerived="false"
+            sourceEndRoleName="Catálogo"
+            targetEndRoleName="Foto"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="0ffb48ff-5307-4f12-82b0-74f22df82488"
+              LastKnownName="Foto"
+              LastKnownLocation="IMJ - Site - Modelo.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="5ae71ba9-8a34-4677-89a8-74a60b2209f5"
+                  name="Catálogo"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Shared"
+                  isComposite="false"
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="ca646448-eaa4-494f-a973-b265d98c6492"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="d40b54b1-2e3f-4c20-a893-fd35b731ac2e"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="c7a62e64-5bfe-4e4d-a3ea-69fe17ddc5ec"
+                  name="Foto"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="59b3e6d1-9e95-467b-a2cc-0dae4627fe65"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="71fac10f-491d-45c7-b58d-d8f9758867ef"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedOperationsInternal>
+          <operation
+            Id="49ea9d0e-a728-4d35-8df4-96566b96f2ed"
+            name="Publicar"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="57213937-ebcc-4856-800a-cbf4ff358969"
+        name="Class1"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="94340cb4-f903-42ce-be98-b9a7f001a53e"
+        name="IRestriçãoAcesso"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="2d168431-360e-4883-80ab-2684822158b8"
+        name="Pertencente à região"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <interfaceRealization
+            Id="68b2e5a8-99d0-48f8-8539-6fbe14b0e349">
+            <interfaceMoniker
+              Id="94340cb4-f903-42ce-be98-b9a7f001a53e"
+              LastKnownName="IRestriçãoAcesso"
+              LastKnownLocation="IMJ - Site - Modelo.uml" />
+          </interfaceRealization>
+          <dependency
+            Id="02f21683-df70-45ae-90a6-f30b22c51ac9">
+            <classMoniker
+              Id="2e433aad-00e2-4f2d-b4ee-98868a4b2fac"
+              LastKnownName="Região"
+              LastKnownLocation="Package_1756.uml" />
+          </dependency>
+        </suppliersInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="0ffb48ff-5307-4f12-82b0-74f22df82488"
+        name="Foto"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="1dc3734e-5b58-454f-9729-fbf84e746f65"
+        LastKnownName="IMJ"
+        LastKnownLocation="Package_1756.uml" />
+    </packageHasNamedElement>
+  </packagedElements>
+  <primitiveType
+    Id="220a3521-e091-4221-bae9-3ef9018e845c"
+    name="Integer"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+    name="Boolean"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+    name="String"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="3ab42e7d-4969-445a-b209-471f5cb8209c"
+    name="UnlimitedNatural"
+    isAbstract="false"
+    isLeaf="false" />
+</modelStoreModel>

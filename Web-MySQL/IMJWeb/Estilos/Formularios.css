@@ -1,0 +1,88 @@
+﻿.formulario > div
+{
+    margin: .5em 0;
+}
+
+.formulario label 
+{
+    float: left;
+    width: 25%;
+    text-align: right;
+    margin-right: 1em;
+}
+
+.formulario input[type=radio] + label
+{
+    float: none;
+    width: auto;
+    text-align: left;
+    margin: inherit .3ex;
+}
+
+.formulario input[type=text]
+{
+    width: 70%;
+}
+
+.formulario textarea
+{
+    width: 70%;
+    height: 15em;
+}
+
+.formulario .grupo
+{
+    color: Black;
+    margin: .5em 0;
+}
+
+.formulario .semAbas .grupo
+{
+	margin-left: 5ex;
+	margin-top: 2em;
+	margin-bottom: 12px;
+	border-bottom: 1px dashed #BBA932;
+	text-transform: uppercase;
+	color: #BBA932;
+}
+
+.formulario .referencias .contato div
+{
+    display: inline;
+}
+
+.formulario .referencias .contato div label + input[type=text]
+{
+    width: 35%;
+}
+
+.formulario .referencias .contato div + div label
+{
+    float: none;
+    width: 10%;
+    margin-left: 2%;
+}
+
+.formulario .referencias .contato div + div label + input[type=text]
+{
+    width: 20%;
+}
+
+.formulario .botoes
+{
+    text-align: center;
+    margin-top: 2em;
+}
+
+.formulario .abas .botoes button
+{
+    background: transparent;
+    cursor: pointer;
+    text-decoration: underline;
+    color: Blue;
+}
+
+.formulario.pj
+{
+    padding-top: 2em !important;
+}

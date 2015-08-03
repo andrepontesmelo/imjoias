@@ -1,0 +1,38 @@
+﻿#conteudo
+{
+	position: absolute;
+	top: 77px;
+	right: 0px;
+	bottom: 3em;
+	left: 0px;
+	overflow: auto;
+	padding: 7% 85px 0px;
+}
+
+#conteudo .duasColunas .primeira
+{
+	position: relative;
+	float: left;
+	width: 45%;
+}
+
+#conteudo .duasColunas .segunda
+{
+	position: relative;
+	float: right;
+	width: 45%;
+}
+
+#conteudo .duasColunas .primeiraMaior
+{
+	position: relative;
+	float: left;
+	width: 55%;
+}
+
+#conteudo .duasColunas .segundaMenor
+{
+	position: relative;
+	float: right;
+	width: 35%;
+}

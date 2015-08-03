@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 1.3
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">1.3</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1">this is my long string</data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        [base64 mime encoded serialized .NET Framework object]
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        [base64 mime encoded string representing a byte array form of the .NET Framework object]
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used forserialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>1.3</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="lblTítulo.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>112, 22</value>
+  </data>
+  <data name="lblTítulo.Text">
+    <value>Agendamento</value>
+  </data>
+  <data name="lblDescrição.Text">
+    <value>Entre com os dados para o novo agendamento.</value>
+  </data>
+  <data name="picÍcone.Image" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        R0lGODlhHwAuAPcAAAEBAQ0MCwMEBhAPDhMSDwULFQgQGBkVETELAS0WDCAfHh8aESUjHC4qHikjGDgs
+        HjQnFgoVIxMbJycmIiosJCssLTEtIzUxJDQzKTs2Kj45Kj06Mjg5OV8aGHoAAHYAAEkjGkUzH20lGEI7
+        LEw+Kj41JUE8Mkg+NFA/NVhGLkRBNUxFNkRFO0lEOkxJP1JKNFJNPFtOPFVJNVZRP1tROnVOMWdXPA4h
+        RB83Shg9WzpKUCJPbDZWbDVceD5ie05MRkJJQVNOQVhKQVdSQ1lVR05ZWGRdS25YQWNeV3dbSGZhTGtn
+        TnppTGlkU25qVGxpXnRrVnJrW31vUntzXXRwW0ldblxfYGhpaXZzZH12YH55YnRyaHRzcIEAAIQEA4kA
+        AJQCAZsGBJIIBpUSDpEYELIFA7ITEIooG6QqHYY+LaI6K7Y2KNoLB9ULBuoEAvYEAv4CAfMLCPsbFP0m
+        HMI8LYtXKoxgNZxpPcVNOYtvS5ttTIJ7X4R2WJJ+WIV6Y4Z/aYJ2Y8N8TM53WdJpTuFyVpuEWouDbIt9
+        ZJKFbJOJbZeLaJ2RbIqGdpSMcpqMc52TdZWRfJ+WeaeTaaGTdaScdqSbe6qde6mZd6uie7SmeNKDSu2S
+        beScdOmFYypegypgjDRtjTJymTJ3oS94tTKBt3OIgzaLwjyWyjib1T6p6kCj3Gm120Gj5Eqw7ka085uY
+        hZyclaWchK6kgqmki6+ohrKmg7Oqg7urhLSsibitireniL6xiquonKajnL+1jMu4idW7iMK1kMS5ksq/
+        lcq7ksi2kue2h+mvncK9p87Cms+9ltPLl9rKltHGndLEmdXKndTNm9zMndfQnN3UnOXBheTNmuXEldfN
+        odnOo97Xot/Xot7Wod3Ro93VqNbWp8nGsOPTpOfZp+bap+HWoejZp+rcpuTWqefZqOfZqebaqefZqufc
+        rejZqOjaqenaqurcqu3equvdre3erevbq+7hre3hqvHirvLirO7hsPDisfLlsPbns/jos93e3P//7P//
+        +CH5BAEAANkALAAAAAAfAC4AAAj/ALMJHEiwoMARDDCowOCihMGHEAeuCLaP37VZMghqG6ctIkQY4Oax
+        axfrSJ9sx6xtktPG40Ma9uTBu+foyJ1Nc+TAgePGpUEa3bBh6/anAxlObt68gUPIZ8EzcZTGYWMmDBg3
+        cDY5NSiCzdQ2Xsp0AVNm0FaDD3Y5g4ZLgxcPXbqYPTtw2oJ48ujhS4ImTJcwnegSXADOHbxrKNKs8eDB
+        jDXB2bQRlmevGQUQnMZ0+UAHsrYD3JKBe0YBgSZBYBhvE7zNwjBHxZphSFCDGZkuX9QItjBDnrp4zkgE
+        quPA2BgPYowRXHZLCo0RJUrQmLHkhQoVU/bR2/csgx47NrRV/1uDp9pAaRagPEFiK1q5S3+S3cqigkgu
+        YbSUTGDyYFHkbBxFtowS4MQzDBTD2OPOHrjsc088yTySiCNOwGDCDAEw0xFB02QwSTTx6FNJLfqAs0cy
+        8YhDTj34wOMOO/GYg8kFqxFEDRMzTMHNO/RUIos97PiRiz7oiCOOOuXQc80u4ZzTgEHKmJBFI+6Q02Mt
+        euHiRDP42KOXPtc00Qg8zjxZECwEXILIi/Q8guU73QTRhCXFDINfE4iQ844lNBhkBQGWZLHOO/Jo8WM9
+        zxhxiyNDbGAEEU7IE084lsRgUAUtVDIFPvSsQ4Us+ZgTDIOVQNJCJJXkYg8658jygkEBNP+hyyHOIDKF
+        Co80EgWkWCDjDyORHBJJPuGEc80FsGqhjCN/YDELEU0w8s0rLWQBSz8/rBBDEL7IEw47GsCayDNTRNGL
+        P0+0wMs/vJiwggIVbEBJNLU00Yw85IRb0ACV5AOFEEhcocAEHHBhyDN/HAADl5I+Iow87oxg0AANOmNI
+        E0FkEYkShnADz4Tm0HPOOeG4w2o7+hI0ADHwyLPOM8+ok088XT4CyDzejnxOO+zsnPJAByTzTjjlyCNP
+        Oei8U444jiRDjzhN6jwyygZNkMs75ISDDjnsFItOOue8w87XOhcbdgYGnXAIPuKcwyqrbqPTzjk9S821
+        OuxgYFAeJMzv0w7YUgceeDrq7GJBAAaN8wIf90QtuODFUsIA2g9Jo0Em8LDquNTioDPSO0o0YItHyzjw
+        Sz74QAx5O/gQswQATviUCQmL+DIMN3NL/Q42j5jAQI0+KRJCJIkQ807g73CjBQDAOwUBOO+07bnbTeqz
+        S+x0vQAMvuyok3XU9GACmQ2ScB+2O4TKww8lkNFQCD/1wAMPOOBEQ8wvvuwB2Qo/xAIJFluwQhGqwIMe
+        +KAUkAGCJ0YxClKYAhWqSIUrXNGKVXhDMCwABStOwUFTiCIUn9hBDnCgA2jQ5QISuEEEDGCAAghAAACI
+        YQwFkAKPBAQAOw==
+</value>
+  </data>
+  <data name="cancelaBtn.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>192, 152</value>
+  </data>
+  <data name="cancelaBtn.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>80, 24</value>
+  </data>
+  <data name="cancelaBtn.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>5</value>
+  </data>
+  <data name="okBtn.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </data>
+  <data name="okBtn.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>192, 120</value>
+  </data>
+  <data name="okBtn.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>80, 24</value>
+  </data>
+  <data name="okBtn.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>4</value>
+  </data>
+  <data name="txtDescrição.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>8, 224</value>
+  </data>
+  <data name="chkDespertar.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>16, 160</value>
+  </data>
+  <data name="chkDespertar.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>144, 16</value>
+  </data>
+  <data name="chkDespertar.Text">
+    <value>Avise-me neste horário:</value>
+  </data>
+  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>NoControl</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>0, 0</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>100, 23</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>0</value>
+  </data>
+  <data name="label1.Text">
+    <value />
+  </data>
+  <data name="label4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>NoControl</value>
+  </data>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>8, 208</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>144, 16</value>
+  </data>
+  <data name="label4.Text">
+    <value>Descrição do compromisso:</value>
+  </data>
+  <data name="calEvento.Font" type="System.Drawing.Font, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>Tahoma, 9.75pt</value>
+  </data>
+  <data name="calEvento.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>On</value>
+  </data>
+  <data name="calEvento.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>40, 120</value>
+  </data>
+  <data name="calEvento.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>128, 23</value>
+  </data>
+  <data name="calEvento.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>8</value>
+  </data>
+  <data name="calDesperta.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </data>
+  <data name="calDesperta.Font" type="System.Drawing.Font, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>Tahoma, 9.75pt</value>
+  </data>
+  <data name="calDesperta.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>On</value>
+  </data>
+  <data name="calDesperta.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>40, 176</value>
+  </data>
+  <data name="calDesperta.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>128, 23</value>
+  </data>
+  <data name="calDesperta.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>9</value>
+  </data>
+  <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>NoControl</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>16, 104</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>136, 16</value>
+  </data>
+  <data name="label2.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>10</value>
+  </data>
+  <data name="label2.Text">
+    <value>Horário do Agendamento:</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>306, 296</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>CenterScreen</value>
+  </data>
+  <data name="$this.Text">
+    <value>Novo Agendamento</value>
+  </data>
+</root>

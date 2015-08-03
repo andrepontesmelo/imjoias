@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="Indústria Mineira de Jóias">
+</Property><Property Name="Solution File" Value="C:\Documents and Settings\Andre Pontes\Desktop\firma\Programação\Indústria Mineira de Jóias\Indústria Mineira de Jóias.sln">
+</Property><Property Name="Date" Value="domingo, 4 de maio de 2008">
+</Property><Property Name="Time" Value="11:52">
+</Property><Property Name="Log Number" Value="2">
+</Property></Properties><Event ErrorLevel="0" Project="AnáliseEstatística" Source="AnáliseEstatística\AnáliseEstatística.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="AnáliseEstatística" Source="AnáliseEstatística\AnáliseEstatística.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Apresentação.Formulários" Source="Apresentação - Formulários\Apresentação.Formulários.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="Apresentação.Formulários" Source="Apresentação - Formulários\Apresentação.Formulários.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Entidades" Source="Entidades\Entidades.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="Entidades" Source="Entidades\Entidades.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="Acesso - MySQL" Source="Acesso - MySQL\Acesso - MySQL.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="Acesso - MySQL" Source="Acesso - MySQL\Acesso - MySQL.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Acesso.Comum" Source="Acesso.Comum\Acesso.Comum.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="Acesso.Comum" Source="Acesso.Comum\Acesso.Comum.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="CódigoDeBarras" Source="..\CódigoDeBarras\CódigoDeBarras.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="CódigoDeBarras" Source="..\CódigoDeBarras\CódigoDeBarras.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Apresentação.Pessoa" Source="Apresentação - Pessoa\Apresentação.Pessoa.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="Apresentação.Pessoa" Source="Apresentação - Pessoa\Apresentação.Pessoa.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Report" Source="..\Report\Report.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="Report" Source="..\Report\Report.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Apresentação.Atendimento" Source="Apresentação.Atendimento\Apresentação.Atendimento.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="Apresentação.Atendimento" Source="Apresentação.Atendimento\Apresentação.Atendimento.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="Apresentação.Mercadoria" Source="Apresentação.Mercadoria\Apresentação.Mercadoria.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="Apresentação.Mercadoria" Source="Apresentação.Mercadoria\Apresentação.Mercadoria.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="TextBox" Source="..\ValidatingText\TextBox.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="TextBox" Source="..\ValidatingText\TextBox.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Apresentação.Mercadoria.Etiqueta" Source="Apresentação.Mercadoria.Etiqueta\Apresentação.Mercadoria.Etiqueta.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="Apresentação.Mercadoria.Etiqueta" Source="Apresentação.Mercadoria.Etiqueta\Apresentação.Mercadoria.Etiqueta.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Programa.Cofre" Source="Programa.Cofre\Programa.Cofre.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="Programa.Cofre" Source="Programa.Cofre\Programa.Cofre.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Balloon.NET" Source="..\Balloon.NET\Balloon.NET.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="Balloon.NET" Source="..\Balloon.NET\Balloon.NET.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="DShowNET" Source="..\Video\DShowNET\DShowNET.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="DShowNET" Source="..\Video\DShowNET\DShowNET.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="DirectX.Capture" Source="..\Video\DirectX.Capture\DirectX.Capture.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="DirectX.Capture" Source="..\Video\DirectX.Capture\DirectX.Capture.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Apresentação.Usuário" Source="Apresentação.Usuário\Apresentação.Usuário.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="Apresentação.Usuário" Source="Apresentação.Usuário\Apresentação.Usuário.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Report.Designer" Source="..\Report.Designer\Report.Designer.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="Report.Designer" Source="..\Report.Designer\Report.Designer.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Programa.IntegraçãoSistemaAntigo" Source="Apresentação.IntegraçãoSistemaAntigo\Programa.IntegraçãoSistemaAntigo.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="Programa.IntegraçãoSistemaAntigo" Source="Apresentação.IntegraçãoSistemaAntigo\Programa.IntegraçãoSistemaAntigo.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Apresentação.Álbum" Source="Apresentação.Álbum\Apresentação.Álbum.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="Apresentação.Álbum" Source="Apresentação.Álbum\Apresentação.Álbum.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Apresentação.Útil" Source="Apresentação.Util\Apresentação.Útil.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="Apresentação.Útil" Source="Apresentação.Util\Apresentação.Útil.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Programa.Recepção" Source="Programa.Recepção\Programa.Recepção.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="Programa.Recepção" Source="Programa.Recepção\Programa.Recepção.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Apresentação.Financeiro" Source="Apresentação.Financeiro\Apresentação.Financeiro.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="Apresentação.Financeiro" Source="Apresentação.Financeiro\Apresentação.Financeiro.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="Negócio" Source="Negócio\Negócio.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="Negócio" Source="Negócio\Negócio.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="Report.Designer.Editor" Source="..\Report\Designer\Report.Designer.Editor.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="Report.Designer.Editor" Source="..\Report\Designer\Report.Designer.Editor.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Entidades.Estatísticas" Source="Entidades.Estatísticas\Entidades.Estatísticas.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="Entidades.Estatísticas" Source="Entidades.Estatísticas\Entidades.Estatísticas.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Apresentação.Estatística.Comum" Source="..\Apresentação.Estatística\Apresentação.Estatística.Comum.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="Apresentação.Estatística.Comum" Source="..\Apresentação.Estatística\Apresentação.Estatística.Comum.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Apresentação.Estatística.Windows" Source="..\Apresentação.Estatística.Windows\Apresentação.Estatística.Windows.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="Apresentação.Estatística.Windows" Source="..\Apresentação.Estatística.Windows\Apresentação.Estatística.Windows.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Apresentação.Álbum.Edição" Source="Apresentação.Álbum.Edição\Apresentação.Álbum.Edição.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="Apresentação.Álbum.Edição" Source="Apresentação.Álbum.Edição\Apresentação.Álbum.Edição.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Programa.ProtetorTela" Source="Programa.ProtetorTela\Programa.ProtetorTela.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="Programa.ProtetorTela" Source="Programa.ProtetorTela\Programa.ProtetorTela.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="EstruturasDeDados" Source="EstruturasDeDados\EstruturasDeDados.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="EstruturasDeDados" Source="EstruturasDeDados\EstruturasDeDados.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Apresentação.Impressão" Source="Apresentação.Impressão\Apresentação.Impressão.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="Apresentação.Impressão" Source="Apresentação.Impressão\Apresentação.Impressão.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Programa.Monitoração" Source="Programa.Monitoração\Programa.Monitoração.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="Programa.Monitoração" Source="Programa.Monitoração\Programa.Monitoração.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Comunicação" Source="Comunicação\Comunicação.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="Comunicação" Source="Comunicação\Comunicação.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Apresentação.Administrativo" Source="Apresentação.Administrativo\Apresentação.Administrativo.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="Apresentação.Administrativo" Source="Apresentação.Administrativo\Apresentação.Administrativo.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Negócio.Importação" Source="Negócio.Importação\Negócio.Importação.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="Negócio.Importação" Source="Negócio.Importação\Negócio.Importação.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Programa.Configuração" Source="Programa.Configuração\Programa.Configuração.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="Programa.Configuração" Source="Programa.Configuração\Programa.Configuração.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="" Source="Indústria Mineira de Jóias.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="Indústria Mineira de Jóias.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="AnáliseEstatística" Source="AnáliseEstatística\AnáliseEstatística.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="Apresentação.Formulários" Source="Apresentação - Formulários\Apresentação.Formulários.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="Acesso - MySQL" Source="Acesso - MySQL\Acesso - MySQL.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="Acesso.Comum" Source="Acesso.Comum\Acesso.Comum.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="CódigoDeBarras" Source="..\CódigoDeBarras\CódigoDeBarras.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="Apresentação.Pessoa" Source="Apresentação - Pessoa\Apresentação.Pessoa.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="Report" Source="..\Report\Report.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="Apresentação.Mercadoria" Source="Apresentação.Mercadoria\Apresentação.Mercadoria.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="TextBox" Source="..\ValidatingText\TextBox.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="Apresentação.Mercadoria.Etiqueta" Source="Apresentação.Mercadoria.Etiqueta\Apresentação.Mercadoria.Etiqueta.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="Programa.Cofre" Source="Programa.Cofre\Programa.Cofre.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="Balloon.NET" Source="..\Balloon.NET\Balloon.NET.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="DShowNET" Source="..\Video\DShowNET\DShowNET.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="DirectX.Capture" Source="..\Video\DirectX.Capture\DirectX.Capture.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="Apresentação.Usuário" Source="Apresentação.Usuário\Apresentação.Usuário.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="Report.Designer" Source="..\Report.Designer\Report.Designer.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="Programa.IntegraçãoSistemaAntigo" Source="Apresentação.IntegraçãoSistemaAntigo\Programa.IntegraçãoSistemaAntigo.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="Apresentação.Álbum" Source="Apresentação.Álbum\Apresentação.Álbum.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="Apresentação.Útil" Source="Apresentação.Util\Apresentação.Útil.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="Programa.Recepção" Source="Programa.Recepção\Programa.Recepção.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="Report.Designer.Editor" Source="..\Report\Designer\Report.Designer.Editor.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="Entidades.Estatísticas" Source="Entidades.Estatísticas\Entidades.Estatísticas.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="Apresentação.Estatística.Comum" Source="..\Apresentação.Estatística\Apresentação.Estatística.Comum.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="Apresentação.Estatística.Windows" Source="..\Apresentação.Estatística.Windows\Apresentação.Estatística.Windows.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="Apresentação.Álbum.Edição" Source="Apresentação.Álbum.Edição\Apresentação.Álbum.Edição.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="Programa.ProtetorTela" Source="Programa.ProtetorTela\Programa.ProtetorTela.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="EstruturasDeDados" Source="EstruturasDeDados\EstruturasDeDados.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="Apresentação.Impressão" Source="Apresentação.Impressão\Apresentação.Impressão.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="Programa.Monitoração" Source="Programa.Monitoração\Programa.Monitoração.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="Comunicação" Source="Comunicação\Comunicação.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="Apresentação.Administrativo" Source="Apresentação.Administrativo\Apresentação.Administrativo.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="Negócio.Importação" Source="Negócio.Importação\Negócio.Importação.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>

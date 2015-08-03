@@ -1,0 +1,28 @@
+<publishData>
+  <publishTarget publishUrl="ftp://imjoiascombr@sincronizacao.imjoias.com.br/subdomains/sincronizacao/httpdocs/">
+    <file relUrl="Sincronizador.asmx" publishTime="03/30/2010 20:11:51" />
+    <file relUrl="bin/IMJWeb.Sincronizacao.Internet.dll" publishTime="06/21/2010 21:13:36" />
+    <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.Common.xml" publishTime="10/27/2008 11:04:34" />
+    <file relUrl="bin/IMJWeb.DAO.pdb" publishTime="06/02/2010 11:03:29" />
+    <file relUrl="Web.config" publishTime="06/21/2010 21:07:54" />
+    <file relUrl="bin/IMJWeb.Sincronizacao.Internet.pdb" publishTime="06/21/2010 21:13:36" />
+    <file relUrl="bin/IMJWeb.Dominio.Util.pdb" publishTime="06/02/2010 11:03:29" />
+    <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.Common.dll" publishTime="10/27/2008 11:11:50" />
+    <file relUrl="bin/IMJWeb.Servico.pdb" publishTime="06/13/2010 21:49:42" />
+    <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.Caching.xml" publishTime="10/27/2008 11:04:36" />
+    <file relUrl="bin/MySql.Data.dll" publishTime="04/09/2010 20:04:32" />
+    <file relUrl="bin/Microsoft.Practices.ObjectBuilder2.dll" publishTime="10/24/2008 18:03:22" />
+    <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.Caching.dll" publishTime="10/27/2008 11:11:36" />
+    <file relUrl="bin/Microsoft.Practices.Unity.Configuration.dll" publishTime="10/24/2008 18:03:22" />
+    <file relUrl="bin/MySql.Web.dll" publishTime="04/09/2010 20:04:36" />
+    <file relUrl="bin/IMJWeb.Servico.dll" publishTime="06/13/2010 21:49:42" />
+    <file relUrl="bin/IMJWeb.DAO.dll" publishTime="06/02/2010 11:03:29" />
+    <file relUrl="bin/Microsoft.Practices.Unity.dll" publishTime="10/24/2008 18:03:22" />
+    <file relUrl="bin/IMJWeb.Dominio.Util.dll" publishTime="06/02/2010 11:03:29" />
+    <file relUrl="bin/IMJWeb.DAO.EF.dll" publishTime="06/21/2010 21:13:36" />
+    <file relUrl="bin/MySql.Data.Entity.dll" publishTime="04/09/2010 20:04:32" />
+    <file relUrl="bin/IMJWeb.Dominio.dll" publishTime="06/02/2010 10:26:50" />
+    <file relUrl="bin/IMJWeb.DAO.EF.pdb" publishTime="06/21/2010 21:13:36" />
+    <file relUrl="bin/IMJWeb.Dominio.pdb" publishTime="06/02/2010 10:26:50" />
+  </publishTarget>
+</publishData>
