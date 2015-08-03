@@ -1,0 +1,34 @@
+﻿body
+{
+	background: url(../Imagens-800x600/Capa/Azul/Padrao.jpg);
+}
+
+#conteudo
+{
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+#plataforma
+{
+	background: #000c26;
+	position: fixed;
+	height: 43%;
+	width: 100%;
+	bottom: 0px;
+}
+
+#joia
+{
+	height: 100%;
+	margin: auto;
+	display: block;
+}
+
+#areaJoia 
+{
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
+	height: 70%;
+}

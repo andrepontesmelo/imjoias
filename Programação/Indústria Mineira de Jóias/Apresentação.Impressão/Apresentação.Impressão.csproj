@@ -1,0 +1,620 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{18FD8781-3E73-4ECA-B5D6-86B13E5A2ED3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Apresentação.Impressão</RootNamespace>
+    <AssemblyName>Apresentacao.Impressao</AssemblyName>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>IMJ.Apresentação.Impressão.key.snk</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Enterprise.Framework, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Enterprise.InfoStore, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Cliente\ControleImpressão.cs" />
+    <Compile Include="Comando.cs" />
+    <Compile Include="Comunicador.cs" />
+    <Compile Include="DadosRelatório.cs" />
+    <Compile Include="Etiquetas\Leiaute\Endereço.cs" />
+    <Compile Include="Etiquetas\MalaDireta.cs" />
+    <Compile Include="DadosCandidatura.cs" />
+    <Compile Include="DadosComunicação.cs" />
+    <Compile Include="DadosDocumento.cs" />
+    <Compile Include="Disposição.cs" />
+    <Compile Include="ConfiguraçãoImpressora.cs" />
+    <Compile Include="Etiquetas\Sedex\DataSetEtiquetaSedex.cs">
+      <DependentUpon>DataSetEtiquetaSedex.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Etiquetas\Sedex\DataSetEtiquetaSedex.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetEtiquetaSedex.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Etiquetas\Sedex\EtiquetaSedexCrystal.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EtiquetaSedexCrystal.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Pacotes\ErroImpressão.cs" />
+    <Compile Include="Estado\EstadoComunicação.cs" />
+    <Compile Include="Pacotes\ImpressãoCompleta.cs" />
+    <Compile Include="Pacotes\InterpretadorErroImpressão.cs" />
+    <Compile Include="Pacotes\InterpretadorImpressãoCompleta.cs" />
+    <Compile Include="Pacotes\InterpretadorRequisiçãoImpressão.cs" />
+    <Compile Include="Pacotes\InterpretadorRequisiçãoRelatório.cs" />
+    <Compile Include="Pacotes\RequisiçãoImpressão.cs" />
+    <Compile Include="Pacotes\RequisiçãoRelatório.cs" />
+    <Compile Include="Pacotes\Útil.cs" />
+    <Compile Include="Relatórios\Acerto\ControleImpressãoAcerto.cs" />
+    <Compile Include="Relatórios\ControleImpressãoRelacionamento.cs" />
+    <Compile Include="Relatórios\DataSetBalanço.cs">
+      <DependentUpon>DataSetBalanço.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Relatórios\DataSetBalanço.Designer.cs">
+      <DependentUpon>DataSetBalanço.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Etiquetas\Sedex\ControleImpressãoSedex.cs" />
+    <Compile Include="Relatórios\DataSetPagamento.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetPagamento.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Relatórios\Layout\Identificação.cs" />
+    <Compile Include="Relatórios\Mercadoria\ControleImpressãoMercadoria.cs" />
+    <Compile Include="Relatórios\Mercadoria\DadosRelatórioMercadoria.cs" />
+    <Compile Include="Relatórios\Mercadoria\DataSetMercadoria.cs">
+      <DependentUpon>DataSetMercadoria.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Relatórios\Mercadoria\DataSetMercadoria.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetMercadoria.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Relatórios\Mercadoria\Relatório.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Relatório.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Relatórios\NotaPromissória\ControleImpressão.cs" />
+    <Compile Include="Relatórios\NotaPromissória\DataSetNotaPromissória.cs">
+      <DependentUpon>DataSetNotaPromissória.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Relatórios\NotaPromissória\DataSetNotaPromissória.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetNotaPromissória.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Relatórios\NotaPromissória\Relatório.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Relatório.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Relatórios\PagamentosCliente\ControleImpressãoPagamentosCliente.cs" />
+    <Compile Include="Relatórios\PagamentosCliente\DataSetPagamentosCliente.cs">
+      <DependentUpon>DataSetPagamentosCliente.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Relatórios\PagamentosCliente\DataSetPagamentosCliente.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetPagamentosCliente.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Relatórios\PagamentosCliente\PagamentosCliente.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PagamentosCliente.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Relatórios\Pedido\ControleImpressãoPedido.cs" />
+    <Compile Include="Relatórios\Pedido\DataSetPedido.cs">
+      <DependentUpon>DataSetPedido.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Relatórios\Pedido\DataSetPedido.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetPedido.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Relatórios\Pedido\Recibo\ControleImpressão.cs" />
+    <Compile Include="Relatórios\Pedido\Recibo\DataSetRecibo.cs">
+      <DependentUpon>DataSetRecibo.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Relatórios\Pedido\Recibo\DataSetRecibo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetRecibo.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Relatórios\Pedido\Recibo\Relatório.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Relatório.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Relatórios\Pedido\Relatório.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Relatório.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Relatórios\Pessoa\ControleImpressãoPessoa.cs" />
+    <Compile Include="Relatórios\Pessoa\DadosRelatórioPessoa.cs" />
+    <Compile Include="Relatórios\Pessoa\DataSetPessoa.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetPessoa.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Relatórios\Pessoa\RelatórioPessoa.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RelatórioPessoa.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Relatórios\RelatórioBalanço.cs">
+      <DependentUpon>RelatórioBalanço.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Relatórios\Relatório.cs" />
+    <Compile Include="Relatórios\RelatórioEtiqueta.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RelatórioEtiqueta.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Relatórios\RelatórioImpressão.cs" />
+    <Compile Include="Relatórios\Retorno\ControleImpressãoRetorno.cs" />
+    <Compile Include="Relatórios\Saída.cs" />
+    <Compile Include="Relatórios\Saída\ControleImpressãoSaída.cs" />
+    <Compile Include="Relatórios\TrabalhoImpressão.cs" />
+    <Compile Include="Relatórios\Venda\ControleImpressãoVenda.cs" />
+    <Compile Include="Relatórios\Venda\Crédito.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Crédito.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Relatórios\Venda\DataSetVenda.cs">
+      <DependentUpon>DataSetVenda.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Relatórios\Venda\DataSetVenda.Designer.cs">
+      <DependentUpon>DataSetVenda.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Relatórios\Venda\Débitos.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Débitos.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Relatórios\Venda\ModosPagamento.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModosPagamento.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Relatórios\Venda\Pagamentos.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Pagamentos.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Relatórios\Venda\Relatório.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Relatório.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TipoDocumento.cs" />
+    <Compile Include="Pacotes\Cabeçalho.cs" />
+    <Compile Include="Pacotes\Candidatura.cs" />
+    <Compile Include="Pacotes\InterpretadorCandidatura.cs" />
+    <Compile Include="Pacotes\Interpretador.cs" />
+    <Compile Include="Pacotes\InterpretadorPacote.cs" />
+    <Compile Include="Pacotes\InterpretadorConsultaDisponibilidade.cs" />
+    <Compile Include="Pacotes\ConsultaDisponibilidade.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="EnvioAtrasado.cs" />
+    <Compile Include="Servidor\Serviço.cs" />
+    <Compile Include="Servidor\GerenteImpressoras.cs" />
+    <Compile Include="Relatórios\Acerto\DataSetAcerto.cs">
+      <DependentUpon>DataSetAcerto.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Relatórios\Acerto\DataSetAcerto.Designer.cs">
+      <DependentUpon>DataSetAcerto.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Relatórios\Acerto\Relatório.cs">
+      <DependentUpon>Relatório.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Relatórios\Retorno\DataSetRetorno.cs">
+      <DependentUpon>DataSetRetorno.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Relatórios\Retorno\DataSetRetorno.Designer.cs">
+      <DependentUpon>DataSetRetorno.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Relatórios\Retorno\Relatório.cs">
+      <DependentUpon>Relatório.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Relatórios\Saída\DataSetSaída.cs">
+      <DependentUpon>DataSetSaída.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Relatórios\Saída\DataSetSaída.Designer.cs">
+      <DependentUpon>DataSetSaída.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Relatórios\Saída\Relatório.cs">
+      <DependentUpon>Relatório.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Relatórios\Álbum\DataSetÁlbum.cs">
+      <DependentUpon>DataSetÁlbum.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Relatórios\Álbum\DataSetÁlbum.Designer.cs">
+      <DependentUpon>DataSetÁlbum.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Relatórios\Álbum\Relatório.cs">
+      <DependentUpon>Relatório.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Report\Report.csproj">
+      <Project>{D57011E1-546B-437E-8999-A3C90C0A733F}</Project>
+      <Name>Report</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Acesso.Comum\Acesso.Comum.csproj">
+      <Project>{48DA2925-CF1F-4875-8A00-6851C7ABEEB8}</Project>
+      <Name>Acesso.Comum</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entidades\Entidades.csproj">
+      <Project>{E1A76D2D-85F3-4202-B316-3C6BDD3220F9}</Project>
+      <Name>Entidades</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Etiquetas\Sedex\DataSetEtiquetaSedex.xsc">
+      <DependentUpon>DataSetEtiquetaSedex.xsd</DependentUpon>
+    </None>
+    <None Include="Etiquetas\Sedex\DataSetEtiquetaSedex.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetEtiquetaSedex.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Etiquetas\Sedex\DataSetEtiquetaSedex.xss">
+      <DependentUpon>DataSetEtiquetaSedex.xsd</DependentUpon>
+    </None>
+    <None Include="IMJ.Apresentação.Impressão.key.snk" />
+    <None Include="Relatórios\Acerto\DataSetAcerto.xsc">
+      <DependentUpon>DataSetAcerto.xsd</DependentUpon>
+    </None>
+    <None Include="Relatórios\Acerto\DataSetAcerto.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetAcerto.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Relatórios\Acerto\DataSetAcerto.xss">
+      <DependentUpon>DataSetAcerto.xsd</DependentUpon>
+    </None>
+    <None Include="Relatórios\DataSetBalanço.xsc">
+      <DependentUpon>DataSetBalanço.xsd</DependentUpon>
+    </None>
+    <None Include="Relatórios\DataSetBalanço.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetBalanço.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Relatórios\DataSetBalanço.xss">
+      <DependentUpon>DataSetBalanço.xsd</DependentUpon>
+    </None>
+    <None Include="Relatórios\DataSetPagamento.xsc">
+      <DependentUpon>DataSetPagamento.xsd</DependentUpon>
+    </None>
+    <None Include="Relatórios\DataSetPagamento.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetPagamento.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Relatórios\DataSetPagamento.xss">
+      <DependentUpon>DataSetPagamento.xsd</DependentUpon>
+    </None>
+    <None Include="Relatórios\Mercadoria\DataSetMercadoria.xsc">
+      <DependentUpon>DataSetMercadoria.xsd</DependentUpon>
+    </None>
+    <None Include="Relatórios\Mercadoria\DataSetMercadoria.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetMercadoria.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Relatórios\Mercadoria\DataSetMercadoria.xss">
+      <DependentUpon>DataSetMercadoria.xsd</DependentUpon>
+    </None>
+    <None Include="Relatórios\NotaPromissória\DataSetNotaPromissória.xsc">
+      <DependentUpon>DataSetNotaPromissória.xsd</DependentUpon>
+    </None>
+    <None Include="Relatórios\NotaPromissória\DataSetNotaPromissória.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetNotaPromissória.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Relatórios\NotaPromissória\DataSetNotaPromissória.xss">
+      <DependentUpon>DataSetNotaPromissória.xsd</DependentUpon>
+    </None>
+    <None Include="Relatórios\PagamentosCliente\DataSetPagamentosCliente.xsc">
+      <DependentUpon>DataSetPagamentosCliente.xsd</DependentUpon>
+    </None>
+    <None Include="Relatórios\PagamentosCliente\DataSetPagamentosCliente.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetPagamentosCliente.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Relatórios\PagamentosCliente\DataSetPagamentosCliente.xss">
+      <DependentUpon>DataSetPagamentosCliente.xsd</DependentUpon>
+    </None>
+    <None Include="Relatórios\Pedido\DataSetPedido.xsc">
+      <DependentUpon>DataSetPedido.xsd</DependentUpon>
+    </None>
+    <None Include="Relatórios\Pedido\DataSetPedido.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetPedido.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Relatórios\Pedido\DataSetPedido.xss">
+      <DependentUpon>DataSetPedido.xsd</DependentUpon>
+    </None>
+    <None Include="Relatórios\Pedido\Recibo\DataSetRecibo.xsc">
+      <DependentUpon>DataSetRecibo.xsd</DependentUpon>
+    </None>
+    <None Include="Relatórios\Pedido\Recibo\DataSetRecibo.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetRecibo.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Relatórios\Pedido\Recibo\DataSetRecibo.xss">
+      <DependentUpon>DataSetRecibo.xsd</DependentUpon>
+    </None>
+    <None Include="Relatórios\Pessoa\DataSetPessoa.xsc">
+      <DependentUpon>DataSetPessoa.xsd</DependentUpon>
+    </None>
+    <None Include="Relatórios\Pessoa\DataSetPessoa.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetPessoa.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Relatórios\Pessoa\DataSetPessoa.xss">
+      <DependentUpon>DataSetPessoa.xsd</DependentUpon>
+    </None>
+    <None Include="Relatórios\Retorno\DataSetRetorno.xsc">
+      <DependentUpon>DataSetRetorno.xsd</DependentUpon>
+    </None>
+    <None Include="Relatórios\Retorno\DataSetRetorno.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetRetorno.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Relatórios\Retorno\DataSetRetorno.xss">
+      <DependentUpon>DataSetRetorno.xsd</DependentUpon>
+    </None>
+    <None Include="Relatórios\Saída\DataSetSaída.xsc">
+      <DependentUpon>DataSetSaída.xsd</DependentUpon>
+    </None>
+    <None Include="Relatórios\Saída\DataSetSaída.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetSaída.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Relatórios\Saída\DataSetSaída.xss">
+      <DependentUpon>DataSetSaída.xsd</DependentUpon>
+    </None>
+    <None Include="Relatórios\Venda\DataSetVenda.xsc">
+      <DependentUpon>DataSetVenda.xsd</DependentUpon>
+    </None>
+    <None Include="Relatórios\Venda\DataSetVenda.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>DataSetVenda.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Relatórios\Venda\DataSetVenda.xss">
+      <DependentUpon>DataSetVenda.xsd</DependentUpon>
+    </None>
+    <None Include="Relatórios\Álbum\DataSetÁlbum.xsc">
+      <DependentUpon>DataSetÁlbum.xsd</DependentUpon>
+    </None>
+    <None Include="Relatórios\Álbum\DataSetÁlbum.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetÁlbum.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Relatórios\Álbum\DataSetÁlbum.xss">
+      <DependentUpon>DataSetÁlbum.xsd</DependentUpon>
+    </None>
+    <EmbeddedResource Include="Etiquetas\Sedex\EtiquetaSedexCrystal.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>EtiquetaSedexCrystal.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Relatórios\Mercadoria\Relatório.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Relatório.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Relatórios\NotaPromissória\Relatório.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Relatório.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Relatórios\PagamentosCliente\PagamentosCliente.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PagamentosCliente.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Relatórios\Pedido\Recibo\Relatório.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Relatório.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Relatórios\Pedido\Relatório.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Relatório.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Relatórios\Pessoa\RelatórioPessoa.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RelatórioPessoa.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Relatórios\RelatórioBalanço.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RelatórioBalanço.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Relatórios\RelatórioEtiqueta.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RelatórioEtiqueta.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Relatórios\Venda\Crédito.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Crédito.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Relatórios\Venda\Débitos.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Débitos.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Relatórios\Venda\ModosPagamento.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ModosPagamento.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Relatórios\Venda\Pagamentos.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Pagamentos.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Relatórios\Venda\Relatório.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Relatório.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Relatórios\Álbum\Relatório.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Relatório.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Relatórios\Saída\Relatório.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Relatório.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Relatórios\Retorno\Relatório.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Relatório.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Relatórios\Acerto\Relatório.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Relatório.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{967B4E0D-AD0C-4609-AB67-0FA40C0206D8}" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Relatórios\Balanço\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

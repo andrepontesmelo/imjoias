@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="IMJWeb.Catalogo.Mercadoria" CodeBehind="Mercadoria.svc.cs" %>

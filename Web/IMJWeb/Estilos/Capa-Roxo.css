@@ -1,0 +1,34 @@
+﻿body
+{
+	background: url(../Imagens/Capa/Roxo/Padrao.jpg);
+}
+
+#conteudo
+{
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+#plataforma
+{
+	background: #1a0c1b;
+	position: fixed;
+	height: 53%;
+	width: 100%;
+	bottom: 0px;
+}
+
+#joia
+{
+	height: 100%;
+	margin: auto;
+	display: block;
+}
+
+#areaJoia 
+{
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
+	height: 70%;
+}

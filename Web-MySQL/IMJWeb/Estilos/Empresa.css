@@ -1,0 +1,46 @@
+﻿.colunaPequena
+{
+	position: absolute;
+	left: 55%;
+	width: 30%;
+	min-width: 10em;
+}
+
+.colunaGrande
+{
+	position: absolute;
+	right: 50%;
+	height: 80%;
+	max-width: 50%;
+	text-align: right;
+	width: auto;
+	left: auto;
+}
+
+.colunaGrande img
+{
+	border: 2px solid black;
+	margin-bottom: 2%;
+}
+
+.colunaGrande img.grande 
+{
+	width: 100%;
+	display: block;
+}
+
+.colunaGrande img.pequena
+{
+	width: 48%;
+}
+
+#loja1
+{
+	float: left
+}
+
+/* Não funciona no IE 7
+#loja2
+{
+	float: right;
+}*/

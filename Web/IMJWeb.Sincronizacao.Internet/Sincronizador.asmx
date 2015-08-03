@@ -1,0 +1,1 @@
+﻿<%@ WebService Language="C#" CodeBehind="Sincronizador.asmx.cs" Class="IMJWeb.Sincronizacao.Internet.Sincronizador" %>

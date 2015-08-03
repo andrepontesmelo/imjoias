@@ -1,0 +1,647 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C447BD9E-FBB5-4B56-A957-54808B8E3E61}</ProjectGuid>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>Apresentacao.Formularios</AssemblyName>
+    <AssemblyOriginatorKeyFile>IMJ.Apresentação.Formulários.key.snk</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Apresentação.Formulários</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SignAssembly>false</SignAssembly>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
+    <CodeAnalysisRuleSet>Migrated rules for Apresentação.Formulários.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>Migrated rules for Apresentação.Formulários.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <Optimize>true</Optimize>
+    <FileAlignment>4096</FileAlignment>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=14.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Business Objects\Common\2.8\managed\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Shared, Version=14.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Business Objects\Common\2.8\managed\CrystalDecisions.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=14.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Business Objects\Common\2.8\managed\CrystalDecisions.Windows.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Web.Services, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\WINDOWS\assembly\GAC_MSIL\System.Web.Services\2.0.0.0__b03f5f7f11d50a3a\System.Web.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="..\..\Balloon.NET\Balloon.NET.csproj">
+      <Project>{0E6F1B58-B832-4D96-9BE9-A61DDAA18C4C}</Project>
+      <Name>Balloon.NET</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Report.Designer\Report.Designer.csproj">
+      <Project>{DC9AFDE0-44F3-4BAF-A9AD-64DD2A7EDAE0}</Project>
+      <Name>Report.Designer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Report\Report.csproj">
+      <Project>{D57011E1-546B-437E-8999-A3C90C0A733F}</Project>
+      <Name>Report</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Acesso.Comum\Acesso.Comum.csproj">
+      <Name>Acesso.Comum</Name>
+      <Project>{48DA2925-CF1F-4875-8A00-6851C7ABEEB8}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Apresentação.Impressão\Apresentação.Impressão.csproj">
+      <Project>{18FD8781-3E73-4ECA-B5D6-86B13E5A2ED3}</Project>
+      <Name>Apresentação.Impressão</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entidades\Entidades.csproj">
+      <Project>{E1A76D2D-85F3-4202-B316-3C6BDD3220F9}</Project>
+      <Name>Entidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Negócio\Negócio.csproj">
+      <Project>{80F2CB41-B349-4349-8667-E67C50CD79CF}</Project>
+      <Name>Negócio</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Aguarde.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AguardeDB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AguardeDB.Designer.cs">
+      <DependentUpon>AguardeDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Aplicação.cs" />
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Assistente\AssistenteControle.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Assistente\ConjuntoPainéis.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Assistente\PainelAssistente.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Avaliador.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Avaliador.Designer.cs">
+      <DependentUpon>Avaliador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BarraBotões.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Impressão\BaseFormatarEtiqueta.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Impressão\BaseFormatarEtiqueta.Designer.cs">
+      <DependentUpon>BaseFormatarEtiqueta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseFormulário.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseInferior.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Botão.cs">
+    </Compile>
+    <Compile Include="BotãoLiberarRecurso.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BotãoLiberarRecurso.Designer.cs">
+      <DependentUpon>BotãoLiberarRecurso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Consultas\ControladorLimiteColetor.cs" />
+    <Compile Include="EditorBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EditorBase.Designer.cs">
+      <DependentUpon>EditorBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExceçãoBotãoNãoSuportado.cs" />
+    <Compile Include="ExceçãoPósCarga.cs" />
+    <Compile Include="ExporBotãoAttribute.cs" />
+    <Compile Include="Histórico\Histórico.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Histórico\Histórico.Designer.cs">
+      <DependentUpon>Histórico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Histórico\HistóricoItem.cs" />
+    <Compile Include="Histórico\HistóricoItemBase.cs" />
+    <Compile Include="Histórico\IHistóricoItem.cs" />
+    <Compile Include="IAoMostrarBaseInferior.cs" />
+    <Compile Include="IEditorItem.cs" />
+    <Compile Include="Impressão\FilaImpressão.cs" />
+    <Compile Include="Impressão\RequisitarImpressão.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Impressão\RequisitarImpressão.Designer.cs">
+      <DependentUpon>RequisitarImpressão.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Informativo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Informativo.Designer.cs">
+      <DependentUpon>Informativo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IRequerPrivilégio.cs" />
+    <Compile Include="ItemExpandível.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ItemExpandível.Designer.cs">
+      <DependentUpon>ItemExpandível.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JanelaImpressão.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JanelaImpressão.Designer.cs">
+      <DependentUpon>JanelaImpressão.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JustificarLiberaçãoRecursos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JustificarLiberaçãoRecursos.Designer.cs">
+      <DependentUpon>JustificarLiberaçãoRecursos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Localizador.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Localizador.Designer.cs">
+      <DependentUpon>Localizador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NotificaçãoSimples.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NotificaçãoSimples.Designer.cs">
+      <DependentUpon>NotificaçãoSimples.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ControlePermissão.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="QuadroNavegação.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="QuadroNavegação.Designer.cs">
+      <DependentUpon>QuadroNavegação.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QuadroOpção.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="QuadroOpção.Designer.cs">
+      <DependentUpon>QuadroOpção.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QuadroSimples.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="QuadroSimples.Designer.cs">
+      <DependentUpon>QuadroSimples.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QuestionarSubstituiçãoBI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuestionarSubstituiçãoBI.Designer.cs">
+      <DependentUpon>QuestionarSubstituiçãoBI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SinalizaçãoCarga.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Splash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Consultas\Coletor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Consultas\TaxaDigitação.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ControladorBaseInferior.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="IPósCargaSistema.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="JanelaExplicativa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Linha.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginBalãoUsuárioInválido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Notificação.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Opção.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Quadro.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SeleçãoPeríodo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TextBoxPesquisável.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TextBoxPesquisável.Designer.cs">
+      <DependentUpon>TextBoxPesquisável.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TrabalhoSegundoPlano.cs" />
+    <Compile Include="TítuloBaseInferior.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VistaAPI.cs" />
+    <EmbeddedResource Include="Aguarde.resx">
+      <DependentUpon>Aguarde.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AguardeDB.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AguardeDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assistente\AssistenteControle.resx">
+      <DependentUpon>AssistenteControle.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assistente\ConjuntoPainéis.resx">
+      <DependentUpon>ConjuntoPainéis.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Avaliador.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Avaliador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BarraBotões.resx">
+      <DependentUpon>BarraBotões.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Impressão\BaseFormatarEtiqueta.resx">
+      <DependentUpon>BaseFormatarEtiqueta.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseFormulário.resx">
+      <DependentUpon>BaseFormulário.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseInferior.resx">
+      <DependentUpon>BaseInferior.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Botão.resx">
+      <DependentUpon>Botão.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BotãoLiberarRecurso.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>BotãoLiberarRecurso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditorBase.resx">
+      <DependentUpon>EditorBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Histórico\Histórico.resx">
+      <DependentUpon>Histórico.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Impressão\RequisitarImpressão.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>RequisitarImpressão.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Informativo.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Informativo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ItemExpandível.resx">
+      <DependentUpon>ItemExpandível.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JanelaImpressão.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>JanelaImpressão.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JustificarLiberaçãoRecursos.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>JustificarLiberaçãoRecursos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localizador.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Localizador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NotificaçãoSimples.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>NotificaçãoSimples.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuadroNavegação.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>QuadroNavegação.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuadroOpção.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>QuadroOpção.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuestionarSubstituiçãoBI.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>QuestionarSubstituiçãoBI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SinalizaçãoCarga.resx">
+      <DependentUpon>SinalizaçãoCarga.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Splash.resx">
+      <DependentUpon>Splash.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControladorBaseInferior.resx">
+      <DependentUpon>ControladorBaseInferior.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JanelaExplicativa.resx">
+      <DependentUpon>JanelaExplicativa.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Linha.resx">
+      <DependentUpon>Linha.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginBalãoUsuárioInválido.resx">
+      <DependentUpon>LoginBalãoUsuárioInválido.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Notificação.resx">
+      <DependentUpon>Notificação.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Opção.resx">
+      <DependentUpon>Opção.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quadro.resx">
+      <DependentUpon>Quadro.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SeleçãoPeríodo.resx">
+      <DependentUpon>SeleçãoPeríodo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TextBoxPesquisável.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TextBoxPesquisável.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TítuloBaseInferior.resx">
+      <DependentUpon>TítuloBaseInferior.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="IMJ.Apresentação.Formulários.key.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Migrated rules for Apresentação.Formulários.ruleset" />
+    <None Include="Resources\FINDFILE16.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eventlogInfo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\impressora %28altura 58%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fechar-busca.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\estrela-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\estrela-3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QUESTION.ICO" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AddTableHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Edit_UndoHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Excluir.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SORTASC.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cadeado aberto.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chamando atenção.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cadeado aberto %28pequeno%29.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ooops.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Collapse_large.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Expand_large.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\topo.BackgroundImage.tif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\topo.tif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\esquerda.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

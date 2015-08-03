@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1EC0DE2C-B2CE-4FB8-9D8C-1927C46AA423}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IMJWeb.DAO.Db4o.TransicaoEF</RootNamespace>
+    <AssemblyName>IMJWeb.DAO.Db4o.TransicaoEF</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MercadoriaDAO.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IMJWeb.DAO.Db4o\IMJWeb.DAO.Db4o.csproj">
+      <Project>{ED3F9201-8C04-413A-A39E-DC1DB0DC4DB1}</Project>
+      <Name>IMJWeb.DAO.Db4o</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IMJWeb.DAO.EF\IMJWeb.DAO.EF.csproj">
+      <Project>{E06651A2-3E78-4051-AD50-8E7A9633EC95}</Project>
+      <Name>IMJWeb.DAO.EF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IMJWeb.DAO\IMJWeb.DAO.csproj">
+      <Project>{7F2DC403-8758-4C0C-A0C2-C55EE84BE3E9}</Project>
+      <Name>IMJWeb.DAO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IMJWeb.Dominio.Util\IMJWeb.Dominio.Util.csproj">
+      <Project>{C15FB3DE-AB95-4393-98CF-0F1A6F7B30A5}</Project>
+      <Name>IMJWeb.Dominio.Util</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IMJWeb.Dominio\IMJWeb.Dominio.csproj">
+      <Project>{37A16748-A940-4413-A6E1-6D84271ECEED}</Project>
+      <Name>IMJWeb.Dominio</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

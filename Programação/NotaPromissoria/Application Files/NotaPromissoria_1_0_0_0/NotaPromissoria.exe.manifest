@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1">
+  <asmv1:assemblyIdentity name="NotaPromissoria.exe" version="1.0.0.0" publicKeyToken="f27a00e2ae780cc6" language="neutral" processorArchitecture="msil" type="win32" />
+  <description asmv2:iconFile="printer.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="NotaPromissoria" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="NotaPromissoria.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the 
+          requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         If you want to utilize File and Registry Virtualization for backward 
+         compatibility then delete the requestedExecutionLevel node.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="2.0.50727.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="System.Core" version="3.5.0.0" publicKeyToken="b77a5c561934e089" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="WindowsBase" version="3.0.0.0" publicKeyToken="31bf3856ad364e35" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NotaPromissoria.exe" size="438272">
+      <assemblyIdentity name="NotaPromissoria" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>xKfs+bQHx/0rSKfU5mXVAsmX5jc=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="printer.ico" size="26694">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>SV3wTXE4SNn81e49pQEEVqyLkOY=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=napoleao-PC\napoleao" issuerKeyHash="0bc1e72dd0f6c0a1f006bf39039fdb7f5e97af24" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>5s86m7eu36ky136Ixgawdedl870=</DigestValue></Reference></SignedInfo><SignatureValue>SvjXorkwefvdwogxF1OkQs+Cfs5F7PXXFf9KiFCKWpiL+mFfqzteDZYtQbV3OWiFWjjtflS+nWn7HB6V2JEyst+xMigHxkBqZMP52qb6dOxOIRsqWPuWu0sDFamelaTU16xI96XwxuGjf+7shecAftNzGDZ9J74KnW5ygzlfcys=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>0EJUCXPSLg5RaXSkzkjwGnai+IFE+jhwfBuZIlVrRVvfmiIsAjXAcUBIcd8Jsz36gdOkiFMKVZQljhSJHW1flpvWiUYl7uFWJxkSW7l+U3Zd+911ZP/KzeNgjHFw4+wiz+aEeT7UJO0UKcdUytZv3uwR8V9fzDN31aXHvTZ/6Gs=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="bdf365e775b006c6887ed732a9dfaeb79b3acfe6" Description="" Url=""><as:assemblyIdentity name="NotaPromissoria.exe" version="1.0.0.0" publicKeyToken="f27a00e2ae780cc6" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=napoleao-PC\napoleao</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>P3jUJCgtQqPXaJcQUI+Q0Jm2wuk=</DigestValue></Reference></SignedInfo><SignatureValue>Z9uJlrZFmkQgEfrWFoiwaKzsHAhvEgPc/KYSCmem0AHdKCNTv2oazL+YalAuwRYM6bcKJsQLyNuoEpEibO9xo7uzw5P+GfyPUBCk1nIzCsFGIU3woq7i096UoL8vxfsf29sF6LwoJ9Oo9fp8CfnToQQod7Lh9VuODtCE5PelexA=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>0EJUCXPSLg5RaXSkzkjwGnai+IFE+jhwfBuZIlVrRVvfmiIsAjXAcUBIcd8Jsz36gdOkiFMKVZQljhSJHW1flpvWiUYl7uFWJxkSW7l+U3Zd+911ZP/KzeNgjHFw4+wiz+aEeT7UJO0UKcdUytZv3uwR8V9fzDN31aXHvTZ/6Gs=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB6TCCAVKgAwIBAgIQ8MTrt3XNZLBEl2xjYei1YTANBgkqhkiG9w0BAQUFADAzMTEwLwYDVQQDHigAbgBhAHAAbwBsAGUAYQBvAC0AUABDAFwAbgBhAHAAbwBsAGUAYQBvMB4XDTA5MDIxMTE0MDUyNVoXDTEwMDIxMTIwMDUyNVowMzExMC8GA1UEAx4oAG4AYQBwAG8AbABlAGEAbwAtAFAAQwBcAG4AYQBwAG8AbABlAGEAbzCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEA0EJUCXPSLg5RaXSkzkjwGnai+IFE+jhwfBuZIlVrRVvfmiIsAjXAcUBIcd8Jsz36gdOkiFMKVZQljhSJHW1flpvWiUYl7uFWJxkSW7l+U3Zd+911ZP/KzeNgjHFw4+wiz+aEeT7UJO0UKcdUytZv3uwR8V9fzDN31aXHvTZ/6GsCAwEAATANBgkqhkiG9w0BAQUFAAOBgQCnNfO6TLH3Y0J4tItpQoJhZSJeeh49Zn7ATGvOiyTJJqcFUK32ciUQ8jRGnCARzEMeirp4I25WLUAt1GX0+dl+JyjG//HI2ozWtMcsw2IUSUJ0GhVfR4Occ/31x1U8wsFI+djItHPwBH3/EkwP+GNiAp0p4NaD+S4kBDFya/RBBA==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

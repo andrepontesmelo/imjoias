@@ -1,0 +1,32 @@
+http://www.hitl.washington.edu/people/grof/SharedSpace/Download/ARToolKitDirectShow2.52.zip
+
+
+Leitor Codigo Barras CCD 90MM SD-730- PS-2 / AT 145,00 PE 
+http://www.racoindustries.com/ptsd700.htm
+Padroes:
+EAN 8/13, UPC A, UPC E0/E1, WPC with addon Code 25, Code 39, Code 32, Code 93, Code 128, Code 11, Codabar/NW7, IATA, Industrial 2 of 5, Interleaved 2 of 5, Matrix 2 of 5, China Post 2 of 5, MSI/Plessey, UK/Plessey, Telepen
+
+
+Tips:
+http://geocities.yahoo.com.br/dadosvariaveis/tipos.html
+
+Opções: 
+EAN-8. EAN-13; UPC-A; UPC-E; ITF-14; UCC/EAN-128
+
+upc-E
+TamaNho Min.: 17,69 mm (larg.) x 20,73 mm (alt.)
+Tamanho Máx.: 44,22 mm (larg.) x 51,82 mm (alt.)
+
+upc-8
+Tamanho Min.: 21,38 mm (larg.) x 17,05 mm (alt.)
+Tamanho Máx.: 53,46 mm (larg.) x 42,62 mm (alt.)
+
+UCC/EAN - 128; ITF=Ean/UCC-14
+Tamanho variável
+
+ITF: 
+Mínimo: 98,8mm (larg). 29,4 mm (alt)
+Mim: 44.725 mm x 22.30
+
+
+

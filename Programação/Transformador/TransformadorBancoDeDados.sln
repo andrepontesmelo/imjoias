@@ -1,0 +1,31 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransformadorBancoDeDados", "TransformadorBancoDeDados\TransformadorBancoDeDados.csproj", "{E689685E-89F5-4B92-8C40-23FF46664E1B}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 2
+		SccLocalPath0 = .
+		CanCheckoutShared = false
+		SolutionUniqueID = {E9EFA271-0863-4C42-A51E-9C708F55289B}
+		SccProjectUniqueName1 = TransformadorBancoDeDados\\TransformadorBancoDeDados.csproj
+		SccLocalPath1 = .
+		CanCheckoutShared = false
+		SccProjectFilePathRelativizedFromConnection1 = TransformadorBancoDeDados\\
+	EndGlobalSection
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{E689685E-89F5-4B92-8C40-23FF46664E1B}.Debug.ActiveCfg = Debug|.NET
+		{E689685E-89F5-4B92-8C40-23FF46664E1B}.Debug.Build.0 = Debug|.NET
+		{E689685E-89F5-4B92-8C40-23FF46664E1B}.Release.ActiveCfg = Release|.NET
+		{E689685E-89F5-4B92-8C40-23FF46664E1B}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

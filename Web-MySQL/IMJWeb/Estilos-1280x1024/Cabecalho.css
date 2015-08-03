@@ -1,0 +1,62 @@
+﻿#cabecalho
+{
+	height: 192px;
+}
+
+#cabecalho #cabecalhoEsquerda
+{
+	width: 43px;
+	height: 192px;
+	background: transparent url(../Imagens/Cabecalho/BordaEsquerda.png) repeat-x fixed top left;
+}
+
+#cabecalho #cabecalhoCentro
+{
+	left: 43px;
+	right: 43px;
+	height: 192px;
+	background: transparent url(../Imagens/Cabecalho/Preenchimento.png) repeat-x scroll top left;
+}
+
+#cabecalho #cabecalhoConteudo
+{
+	height: 153px;
+	background: transparent url(../Imagens/Cabecalho/Cabecalho.png) no-repeat scroll top left;
+}
+
+#cabecalho #cabecalhoDireita
+{
+	width: 43px;
+	height: 192px;
+	background: transparent url(../Imagens/Cabecalho/BordaDireita.png) no-repeat scroll top left;
+}
+
+#cabecalho #marca
+{
+	top: 12px;
+	left: 112px;
+}
+
+#cabecalho #marca #logotipo IMG
+{
+	width: 120px;
+	height: 120px;
+}
+
+#cabecalho #marca #nome 
+{
+	font-size: 58px;
+	line-height: 120px;
+}
+
+#cabecalho #endereco
+{
+	bottom: 44px;
+	right: 1px;
+}
+
+#login
+{
+	top: 153px;
+	right: 43px;
+}

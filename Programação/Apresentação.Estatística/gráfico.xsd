@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<xs:schema targetNamespace="http://tempuri.org/XMLSchema.xsd"
+                  elementFormDefault="qualified"
+                  xmlns="http://tempuri.org/XMLSchema.xsd"
+                  xmlns:mstns="http://tempuri.org/XMLSchema.xsd"
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:element name="Relatório">
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element name="Gráfico" type="Gráfico"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<!-- Construção de um gráfico //-->
+	<xs:complexType name="Gráfico">
+		<xs:sequence>
+			<xs:element name="Descrição" type="xs:string" minOccurs="0"/>
+			<xs:element name="Requisito" type="requisito" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:all>
+			<xs:element name="Query" type="xs:string"/>
+			<xs:element name="ValorX" type="coluna" minOccurs="0"/>
+			<xs:element name="ValorY" type="coluna" minOccurs="0"/>
+			<xs:element name="Seqüência" type="coluna" minOccurs="0"/>
+			<xs:element name="QueryLegenda" type="xs:string"/>
+		</xs:all>
+		<xs:attribute name="tipo" type="tipoGráfico"/>
+		<xs:attribute name="título" type="xs:string"/>
+	</xs:complexType>
+	
+	<!-- Propriedades de um gráfico //-->
+	<xs:simpleType name="tipoGráfico">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="barras"/>
+			<xs:enumeration value="linha"/>
+			<xs:enumeration value="linhaVertices"/>
+			<xs:enumeration value="pizza"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:complexType name="coluna">
+		<xs:attribute name="coluna" type="xs:string"/>
+	</xs:complexType>
+	
+	<!-- Parâmetros necessários //-->
+	<xs:complexType name="requisito">
+		<xs:attribute name="entrada">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="período"/>
+					<xs:enumeration value="limite"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	
+</xs:schema>

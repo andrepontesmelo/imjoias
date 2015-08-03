@@ -1,0 +1,90 @@
+﻿#rodapeSubMenu
+{
+	font-family: Segoe UI, Tahoma, Verdana, Arial, Helvetica;
+	font-size: 8pt;
+	position: absolute;
+	left: 8ex;
+	right: 49.5ex;
+	bottom: 0px;
+	*bottom: 4px; /* IE 7 */
+	_bottom: -1px; /* IE 6 */
+	height: 2.5em;
+	color: #100e0f;
+	line-height: 2.5em;
+}
+
+#rodapeSubMenuEsquerda
+{
+	background: transparent url(../Imagens/Rodape/SubMenuBarraEsquerda.png) no-repeat top left;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 12px;
+	height: 100%;
+}
+
+#rodapeSubMenuCentro
+{
+	background-color: #bba932;
+	position: absolute;
+	left: 12px;
+	right: 11px;
+	top: 0px;
+	height: 100%;
+}
+
+#rodapeSubMenuDireita
+{
+	background: transparent url(../Imagens/Rodape/SubMenuBarraDireita.png) no-repeat top left;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	width: 11px;
+	height: 100%;
+}
+
+#rodapeSubMenu #subMenu
+{
+	position: relative;
+	text-align: center;
+	width: 96%;
+	margin: auto;
+}
+
+#rodapeSubMenu #subMenu li
+{
+	position: relative;
+	display: block;
+	float: left;
+	z-index: 3;
+	overflow: hidden;
+}
+
+#subMenu a 
+{
+	text-decoration: none;
+	color: black;
+	white-space: normal;
+}
+
+#subMenu a:visited
+{
+	color: black;
+}
+
+#subMenu a[disabled]
+{
+	color: #5c570a;
+	cursor: default;
+}
+
+#subMenu .linkDesligado
+{
+	color: #5c570a;
+	cursor: default;
+}
+
+#subMenu div.ahover
+{
+	background: #5c570a;
+}

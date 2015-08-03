@@ -1,0 +1,236 @@
+﻿<Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B91DB1E0-2E4B-4C9B-827D-130B00FD0260}</ProjectGuid>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>App.ico</ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>Administração</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Administração</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>0.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Configuration.Install">
+      <Name>System.Configuration.Install</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.DirectoryServices">
+      <Name>System.DirectoryServices</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Messaging">
+      <Name>System.Messaging</Name>
+    </Reference>
+    <Reference Include="System.Runtime.Remoting">
+      <Name>System.Runtime.Remoting</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="..\..\..\Estatística\Estatística.csproj">
+      <Name>Estatística</Name>
+      <Project>{C5A4339F-C57D-4574-A857-E4AC3D841B2A}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Report\Report.csproj">
+      <Name>Report</Name>
+      <Project>{D57011E1-546B-437E-8999-A3C90C0A733F}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\ValidatingText\TextBox.csproj">
+      <Name>TextBox</Name>
+      <Project>{6BF0180E-73ED-4DBC-9AE2-8597A4D18E6D}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\..\AnáliseEstatística\AnáliseEstatística.csproj">
+      <Name>AnáliseEstatística</Name>
+      <Project>{771CA5F0-CD9E-42B3-AE46-C36D6AB85311}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Apresentação - Formulários\Apresentação - Formulários.csproj">
+      <Name>Apresentação - Formulários</Name>
+      <Project>{C447BD9E-FBB5-4B56-A957-54808B8E3E61}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Apresentação - Pessoa\Apresentação - Pessoa.csproj">
+      <Name>Apresentação - Pessoa</Name>
+      <Project>{F063F3E4-3D9A-4444-BCEF-47CFDD6BAA33}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Entidades\Entidades.csproj">
+      <Name>Entidades</Name>
+      <Project>{E1A76D2D-85F3-4202-B316-3C6BDD3220F9}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Interface - Negócio\Interface - Negócio.csproj">
+      <Name>Interface - Negócio</Name>
+      <Project>{23B03B01-B5ED-4686-B83E-7AFD2A84A1F8}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Interface Usuário\Interface Usuário.csproj">
+      <Name>Interface Usuário</Name>
+      <Project>{570AB2DE-ABFD-4A5D-9E94-D1329356FD80}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Observador\Observador.csproj">
+      <Name>Observador</Name>
+      <Project>{FF4D4267-6EBB-4A14-A287-5EC12C371862}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Relatório - Recepção\Relatório - Recepção.csproj">
+      <Name>Relatório - Recepção</Name>
+      <Project>{96E7BDBA-0679-4D3B-8768-E4DF785D396F}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="Acesso.Comum">
+      <Name>Acesso.Comum</Name>
+      <Project>{48DA2925-CF1F-4875-8A00-6851C7ABEEB8}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App.ico" />
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bases\Funcionários.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Bases\Mercadorias.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Bases\Relat\ResumoAtual.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Bases\Relatórios.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Bases\Setores.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Bases\Setor\InfSetor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Formulários\FuncionárioAtendimentos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulários\FuncionárioTelefonemas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Principal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <EmbeddedResource Include="Bases\Funcionários.resx">
+      <DependentUpon>Funcionários.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bases\Mercadorias.resx">
+      <DependentUpon>Mercadorias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bases\Relat\ResumoAtual.resx">
+      <DependentUpon>ResumoAtual.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bases\Relatórios.resx">
+      <DependentUpon>Relatórios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bases\Setores.resx">
+      <DependentUpon>Setores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bases\Setor\InfSetor.resx">
+      <DependentUpon>InfSetor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulários\FuncionárioAtendimentos.resx">
+      <DependentUpon>FuncionárioAtendimentos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulários\FuncionárioTelefonemas.resx">
+      <DependentUpon>FuncionárioTelefonemas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Principal.resx">
+      <DependentUpon>Principal.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>
