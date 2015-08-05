@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
-  <contractRef ref="http://www.imjoias.com.br/Catalogo/Sincronizador/Sinc23.asmx?wsdl" docRef="http://www.imjoias.com.br/Catalogo/Sincronizador/Sinc23.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
-  <soap address="http://www.imjoias.com.br/Catalogo/Sincronizador/Sinc23.asmx" xmlns:q1="https://sincronizacao.imjoias.com.br/" binding="q1:SincronizadorSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
-  <soap address="http://www.imjoias.com.br/Catalogo/Sincronizador/Sinc23.asmx" xmlns:q2="https://sincronizacao.imjoias.com.br/" binding="q2:SincronizadorSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
-</discovery>

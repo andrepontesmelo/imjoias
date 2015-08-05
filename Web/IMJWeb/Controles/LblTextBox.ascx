@@ -1,3 +1,0 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="LblTextBox.ascx.cs" Inherits="IMJWeb.Controles.LblTextBox" %>
-
-<div><label for="<%= this.ID %>"><%= this.Texto %>:</label><input <%= Obrigatorio ? "class='obrigatorio required'" : "class='opcional'" %> type="text" id="<%= this.ID %>" name="<%= this.ID  %>" <%= Request.Browser.IsBrowser("IE") && Request.Browser.MajorVersion == 6 ? "size=50": "" %>/></div>
