@@ -1058,7 +1058,7 @@ namespace Entidades.Relacionamento.Venda
         /// Calcula valor total da venda.
         /// </summary>
         /// <returns>Valor total da venda.</returns>
-        private double CalcularValor()
+        public double CalcularValor()
         {
             // Calcula 
             //valortotal = Itens.CalcularPreço(cotacao) - itensDevolução.CalcularPreço(cotacao);
