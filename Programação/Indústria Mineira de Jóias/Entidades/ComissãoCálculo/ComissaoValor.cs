@@ -191,23 +191,8 @@ namespace Entidades.ComissãoCálculo
             cmd.Append(" order by v.data desc, v.codigo desc");
 
             List<ComissãoValor> retorno = Mapear<ComissãoValor>(cmd.ToString());
-#if DEBUG
-            int x = Verifica(retorno);
-            if (x > 0)
-                throw new Exception(" X = " + x.ToString());
-#endif
 
             return retorno;
-        }
-
-        private static int Verifica(List<ComissãoValor> retorno)
-        {
-            int x = 0;
-
-            foreach (ComissãoValor cv in retorno)
-                if (cv.vendedor == null)
-                    x++;
-            return x;
         }
     }
 }

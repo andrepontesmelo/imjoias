@@ -40,13 +40,13 @@ namespace Entidades.Relacionamento.Venda
             if (!venda.Cadastrado)
                 venda.Cadastrar();
             else
-            {
-                // Toda vez que a venda é alterada, seu valor vai para nulo.
-                //venda.DefinirValorTotalNulo();
                 venda.Atualizar();
-            }
 
-            return base.Relacionar(m, quantidade, índice);
+            HistóricoRelacionamentoItem relacionado = base.Relacionar(m, quantidade, índice);
+
+            venda.CalcularValor();
+
+            return relacionado;
         }
     }
 }
