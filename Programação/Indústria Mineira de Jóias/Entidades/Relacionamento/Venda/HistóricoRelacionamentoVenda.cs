@@ -37,11 +37,16 @@ namespace Entidades.Relacionamento.Venda
 
         public override HistóricoRelacionamentoItem Relacionar(Mercadoria.Mercadoria m, double quantidade, double índice)
         {
-            // Toda vez que a venda é alterada, seu valor vai para nulo.
-            //venda.DefinirValorTotalNulo();
-            //venda.Atualizar();
+            if (!venda.Cadastrado)
+                venda.Cadastrar();
+            else
+                venda.Atualizar();
+
+            HistóricoRelacionamentoItem resultado = base.Relacionar(m, quantidade, índice);
             
-            return base.Relacionar(m, quantidade, índice);
+            venda.CalcularValor();
+
+            return resultado;
         }
     }
 }
