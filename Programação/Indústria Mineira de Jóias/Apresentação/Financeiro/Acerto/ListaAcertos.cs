@@ -6,6 +6,7 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using Entidades.Acerto;
+using Apresentação.Formulários;
 
 namespace Apresentação.Financeiro.Acerto
 {
@@ -17,9 +18,13 @@ namespace Apresentação.Financeiro.Acerto
         public event EventHandler AoMudarSeleção;
         public event EventHandler AoClicarDuasVezesItem;
 
+        ListViewColumnSorter ordernador;
+
         public ListaAcertos()
         {
             InitializeComponent();
+            ordernador = new ListViewColumnSorter();
+            lst.ListViewItemSorter = ordernador;
         }
 
         public AcertoConsignado Seleção
@@ -39,9 +44,14 @@ namespace Apresentação.Financeiro.Acerto
             acertos.Sort(new Comparison<AcertoConsignado>(CompararAcerto));
 
             lst.Items.Clear();
+            ListViewItem[] itens = new ListViewItem[acertos.Count];
+
+            int x = 0;
 
             foreach (AcertoConsignado acerto in acertos)
-                Adicionar(acerto);
+                itens[x++] = ConstruirItem(acerto);
+
+            lst.Items.AddRange(itens);
 
             lst.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
@@ -61,7 +71,7 @@ namespace Apresentação.Financeiro.Acerto
                 return a.DataMarcação.CompareTo(b.DataMarcação);
         }
 
-        private void Adicionar(AcertoConsignado acerto)
+        private ListViewItem ConstruirItem(AcertoConsignado acerto)
         {
             ListViewItem item = new ListViewItem();
 
@@ -73,7 +83,7 @@ namespace Apresentação.Financeiro.Acerto
             item.Group = ObterGrupo(acerto);
             item.Tag = acerto;
 
-            lst.Items.Add(item);
+            return item;
         }
 
         private ListViewGroup ObterGrupo(AcertoConsignado acerto)
@@ -103,6 +113,11 @@ namespace Apresentação.Financeiro.Acerto
         {
             if (AoMudarSeleção != null)
                 AoMudarSeleção(this, e);
+        }
+
+        private void lst_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            ordernador.OnClick(lst, e);
         }
     }
 }
