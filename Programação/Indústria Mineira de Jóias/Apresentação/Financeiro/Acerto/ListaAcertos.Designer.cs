@@ -30,10 +30,10 @@
         {
             System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Sem previsão", System.Windows.Forms.HorizontalAlignment.Left);
             this.lst = new System.Windows.Forms.ListView();
-            this.colAcerto = new System.Windows.Forms.ColumnHeader();
-            this.colPessoa = new System.Windows.Forms.ColumnHeader();
-            this.colMarcação = new System.Windows.Forms.ColumnHeader();
-            this.colPrevisão = new System.Windows.Forms.ColumnHeader();
+            this.colAcerto = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colPessoa = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colMarcação = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colPrevisão = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lst
@@ -49,15 +49,15 @@
             listViewGroup1.Name = "grpSemPrevisão";
             this.lst.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
             listViewGroup1});
-            this.lst.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lst.Location = new System.Drawing.Point(0, 0);
             this.lst.Name = "lst";
             this.lst.Size = new System.Drawing.Size(355, 150);
             this.lst.TabIndex = 0;
             this.lst.UseCompatibleStateImageBehavior = false;
             this.lst.View = System.Windows.Forms.View.Details;
-            this.lst.DoubleClick += new System.EventHandler(this.ListaAcertos_DoubleClick);
+            this.lst.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lst_ColumnClick);
             this.lst.SelectedIndexChanged += new System.EventHandler(this.lst_SelectedIndexChanged);
+            this.lst.DoubleClick += new System.EventHandler(this.ListaAcertos_DoubleClick);
             // 
             // colAcerto
             // 

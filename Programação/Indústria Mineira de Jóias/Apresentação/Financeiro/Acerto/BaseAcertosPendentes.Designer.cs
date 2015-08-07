@@ -43,10 +43,11 @@
             // 
             // títuloBaseInferior
             // 
-            this.títuloBaseInferior.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.títuloBaseInferior.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.títuloBaseInferior.BackColor = System.Drawing.Color.White;
             this.títuloBaseInferior.Descrição = "Os acertos futuros ou atrasados constam na lista abaixo.";
+            this.títuloBaseInferior.ÍconeArredondado = false;
             this.títuloBaseInferior.Imagem = global::Apresentação.Resource.Dardo;
             this.títuloBaseInferior.Location = new System.Drawing.Point(209, 21);
             this.títuloBaseInferior.Name = "títuloBaseInferior";
@@ -90,15 +91,15 @@
             // 
             // listaAcertos
             // 
-            this.listaAcertos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.listaAcertos.Location = new System.Drawing.Point(209, 122);
+            this.listaAcertos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listaAcertos.Location = new System.Drawing.Point(209, 97);
             this.listaAcertos.Name = "listaAcertos";
-            this.listaAcertos.Size = new System.Drawing.Size(568, 156);
+            this.listaAcertos.Size = new System.Drawing.Size(568, 181);
             this.listaAcertos.TabIndex = 7;
-            this.listaAcertos.AoClicarDuasVezesItem += new System.EventHandler(this.listaAcertos_DoubleClick);
             this.listaAcertos.AoMudarSeleção += new System.EventHandler(this.listaAcertos_AoMudarSeleção);
+            this.listaAcertos.AoClicarDuasVezesItem += new System.EventHandler(this.listaAcertos_DoubleClick);
             // 
             // BaseAcertosPendentes
             // 
