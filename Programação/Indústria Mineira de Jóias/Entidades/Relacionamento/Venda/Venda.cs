@@ -2022,7 +2022,11 @@ namespace Entidades.Relacionamento.Venda
             if (DentroDeComissão)
                 throw new Exception("Venda em comissão.");
             else
+            {
                 base.Descadastrar();
+
+                Entidades.Pessoa.Funcionário.FuncionárioAtual.RegistrarHistórico("Exclusão de venda " + Código.ToString());
+            }
         }
 
         SemaforoEnum IDadosVenda.Semáforo
