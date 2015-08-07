@@ -83,7 +83,6 @@
             this.colValorLíquido});
             this.lista.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lista.FullRowSelect = true;
-            this.lista.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lista.HideSelection = false;
             this.lista.Location = new System.Drawing.Point(0, 0);
             this.lista.Name = "lista";
@@ -92,6 +91,7 @@
             this.lista.TabIndex = 3;
             this.lista.UseCompatibleStateImageBehavior = false;
             this.lista.View = System.Windows.Forms.View.Details;
+            this.lista.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lista_ColumnClick);
             this.lista.SelectedIndexChanged += new System.EventHandler(this.lista_SelectedIndexChanged);
             this.lista.DoubleClick += new System.EventHandler(this.lista_DoubleClick);
             // 

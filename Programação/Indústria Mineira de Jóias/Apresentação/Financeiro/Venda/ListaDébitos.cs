@@ -15,16 +15,19 @@ namespace Apresentação.Financeiro.Venda
         private Entidades.Relacionamento.Venda.Venda venda;
         private BaseEditarVenda baseEditarVenda = null;
 
+        private ListViewColumnSorter ordenador;
+
         public ListaDébitos()
         {
             InitializeComponent();
+            ordenador = new ListViewColumnSorter();
+            lista.ListViewItemSorter = ordenador;
         }
 
         public void InformarBaseEditarVenda(BaseEditarVenda controle)
         {
             if (baseEditarVenda != null)
                 return;
-
 
             baseEditarVenda = controle;
             baseEditarVenda.TravaAlterada += new BaseEditarRelacionamento.TravaAlteradaHandler(baseEditarVenda_TravaAlterada);
@@ -258,7 +261,11 @@ namespace Apresentação.Financeiro.Venda
             }
 
             Carregar();
+        }
 
+        private void lista_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            ordenador.OnClick(lista, e);
         }
     }
 }
