@@ -49,11 +49,11 @@
             // 
             // títuloBaseInferior1
             // 
-            this.títuloBaseInferior1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.títuloBaseInferior1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.títuloBaseInferior1.BackColor = System.Drawing.Color.White;
             this.títuloBaseInferior1.Descrição = "Esta tela mostra todos os créditos. Itens em negrito são créditos ativos, ainda n" +
-                "ão gastos.";
+    "ão gastos.";
             this.títuloBaseInferior1.ÍconeArredondado = false;
             this.títuloBaseInferior1.Imagem = global::Apresentação.Resource.credito;
             this.títuloBaseInferior1.Location = new System.Drawing.Point(193, 3);
@@ -113,9 +113,9 @@
             // 
             // quadro2
             // 
-            this.quadro2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.quadro2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.quadro2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(239)))), ((int)(((byte)(221)))));
             this.quadro2.bInfDirArredondada = false;
             this.quadro2.bInfEsqArredondada = false;
@@ -135,9 +135,9 @@
             // 
             // lstCréditos
             // 
-            this.lstCréditos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lstCréditos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lstCréditos.BackColor = System.Drawing.Color.White;
             this.lstCréditos.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colData,
@@ -150,6 +150,7 @@
             this.lstCréditos.TabIndex = 2;
             this.lstCréditos.UseCompatibleStateImageBehavior = false;
             this.lstCréditos.View = System.Windows.Forms.View.Details;
+            this.lstCréditos.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lstCréditos_ColumnClick);
             this.lstCréditos.DoubleClick += new System.EventHandler(this.lstCréditos_DoubleClick);
             // 
             // colData
