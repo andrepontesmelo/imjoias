@@ -44,9 +44,9 @@ namespace Entidades.ComissãoCálculo.Impressão
             set { valore = value; }
         }
 
-        private long regra;
+        private EnumRegra regra;
 
-        public long Regra
+        public EnumRegra Regra
         {
             get { return regra; }
             set { regra = value; }
