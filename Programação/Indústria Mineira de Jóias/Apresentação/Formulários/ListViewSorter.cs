@@ -5,7 +5,7 @@
     using System.Windows.Forms;
     using System.Globalization;
 
-namespace ListViewSorter
+namespace Apresentação.Formulários
 {
     /// <summary>
     /// This class is an implementation of the 'IComparer' interface.

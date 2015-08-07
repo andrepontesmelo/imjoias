@@ -17,10 +17,14 @@ namespace Apresentação.Usuário.Funcionários
     {
         public event EventHandler AoDuploClique;
         private Dictionary<Setor, ListViewGroup> hashSetorGrupo;
+        
+        ListViewColumnSorter ordenador;
 
         public Ramais()
         {
             InitializeComponent();
+            ordenador = new ListViewColumnSorter();
+            lst.ListViewItemSorter = ordenador;
         }
 
         public void AoExibirDaPrimeiraVez(Apresentação.Formulários.BaseInferior baseInferior)
@@ -100,17 +104,11 @@ namespace Apresentação.Usuário.Funcionários
         {
             if (AoDuploClique != null)
                 AoDuploClique(sender, e);
+        }
 
-            //UseWaitCursor = true;
-            //Entidades.Pessoa.Funcionário funcionário =
-            //    Entidades.Pessoa.Funcionário.ObterPessoa(((Entidades.Pessoa.Ramal)lst.SelectedItems[0].Tag).Funcionário);
-
-            //Apresentação.Pessoa.Cadastro.CadastroFuncionário janela
-            //    = new Apresentação.Pessoa.Cadastro.CadastroFuncionário(funcionário);
-
-            //UseWaitCursor = false;
-
-            //janela.ShowDialog();
+        private void lst_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            ordenador.OnClick(lst, e);
         }
     }
 }
