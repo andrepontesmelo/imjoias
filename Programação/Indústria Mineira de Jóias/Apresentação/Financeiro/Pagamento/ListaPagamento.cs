@@ -34,11 +34,7 @@ namespace Apresentação.Financeiro.Pagamento
         /// </summary>
         private Entidades.Relacionamento.Venda.IDadosVenda venda;
 
-        //public bool MostrarToolStrip
-        //{
-        //    get { return toolStrip.Visible; }
-        //    set { toolStrip.Visible = value; }
-        //}
+        private ListViewColumnSorter ordenador;
 
         [DefaultValue(false)]
         public bool SomenteLeitura
@@ -93,8 +89,10 @@ namespace Apresentação.Financeiro.Pagamento
 
             if (this.DesignMode) return;
 
+            ordenador = new ListViewColumnSorter();
+
             hashItemListaPagamento = new Dictionary<ListViewItem, ListaPagamentoItem>();
-            lista.ListViewItemSorter = new ListaPagamentoComparador(hashItemListaPagamento, lista);
+            lista.ListViewItemSorter = ordenador;
 
             Image imagemDinheiro = (Image)global::Apresentação.Resource.dinheiro;
             imageList.Images.Add(Entidades.Pagamentos.Pagamento.TipoEnum.Dinheiro.ToString(), (Image) global::Apresentação.Resource.dinheiro);
@@ -116,13 +114,9 @@ namespace Apresentação.Financeiro.Pagamento
             colPagaVenda.Name = "colPagaVenda";
             colDescrição.Name = "colDescrição";
 
-            ((ListaPagamentoComparador) lista.ListViewItemSorter).DefinirColuna(colData);
-            lista.Sorting = SortOrder.Descending;
-            lista.Sort();
-            RefazerContagemLinhas();
-
-            //MostrarToolStrip = true;
-        }
+            ordenador.SortColumn = colData.Index;
+            ordenador.OrderOfSort = SortOrder.Descending;
+       }
 
         /// <summary>
         /// É o mesmo que atribuir as propriedades Venda e Cliente e chamar Carregar().
@@ -195,13 +189,9 @@ namespace Apresentação.Financeiro.Pagamento
 
         private void lista_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            if (((ListaPagamentoComparador)lista.ListViewItemSorter).DefinirColuna(lista.Columns[e.Column]))
-                lista.Sorting = SortOrder.Ascending;
-            else
-                lista.Sorting = lista.Sorting == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
-
-            lista.Sort();
-            RefazerContagemLinhas();
+            ordenador.OnClick(lista, e);
+            
+            //RefazerContagemLinhas();
         }
 
         private void RefazerContagemLinhas()
