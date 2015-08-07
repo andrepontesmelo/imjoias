@@ -263,11 +263,14 @@ namespace Apresentação.Financeiro
                 quadroAgrupado.Visible = false;
                 quadroFoto.Visible = false;
             }
-
+            
+#if !DEBUG
             try
             {
+#endif 
                 if (AoAdicionar != null)
                     AoAdicionar(this, mercadoria, quantidade);
+#if !DEBUG
             }
             catch (Exception e)
             {
@@ -277,6 +280,8 @@ namespace Apresentação.Financeiro
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 Acesso.Comum.Usuários.UsuárioAtual.RegistrarErro(e);
             }
+#endif
+
         }
 
         /// <summary>

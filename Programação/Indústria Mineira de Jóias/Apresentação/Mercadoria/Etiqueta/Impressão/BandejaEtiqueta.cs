@@ -37,12 +37,12 @@ namespace Apresentação.Mercadoria.Etiqueta.Impressão
             RemoverImpressos();
         }
 			
-		protected override ListViewItem AdicionarListView(ISaquinho saquinhoASerAdicionado)
+		protected override ListViewItem ConstruirListView(ISaquinho saquinhoASerAdicionado)
 		{
 			SaquinhoEtiqueta saquinho = (SaquinhoEtiqueta) saquinhoASerAdicionado;
 			ListViewItem item;
 			
-			item = base.AdicionarListView(saquinho);	//Adiciona o essencial: Ref e Qtd
+			item = base.ConstruirListView(saquinho);	//Adiciona o essencial: Ref e Qtd
 			
 			item.SubItems[colFormato.Index].Text 
 				= saquinho.Etiqueta.ToString();

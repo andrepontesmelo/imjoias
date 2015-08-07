@@ -108,6 +108,8 @@ namespace Acesso.Comum
             listaItens = new List<Entidade>(itens);
         }
 
+
+
         /// <summary>
         /// Verifica se o tipo da Entidade é manipulável.
         /// </summary>

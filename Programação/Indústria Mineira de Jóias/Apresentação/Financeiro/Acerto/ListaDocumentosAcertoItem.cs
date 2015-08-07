@@ -51,6 +51,10 @@ namespace Apresentação.Financeiro.Acerto
         private DbComposição<Entidades.Relacionamento.Retorno.Retorno> retornos;
         private List<VendaAcerto> vendas;
 
+        private Control[] gráficosSaídas;
+        private Control[] gráficosRetornos;
+        private Control[] gráficosVendas;
+
         public void AoExibir(BaseInferior baseInferior)
         {
             flowLayoutPanel.SuspendLayout();
@@ -60,7 +64,7 @@ namespace Apresentação.Financeiro.Acerto
                 bg.RunWorkerAsync();
         }
 
-        private void Adicionar(VendaAcerto venda)
+        private Control Construir(VendaAcerto venda)
         {
             LinkLabel lnk = new LinkLabel();
             lnk.Text = string.Format(
@@ -74,10 +78,11 @@ namespace Apresentação.Financeiro.Acerto
             lnk.Tag = venda;
             lnk.AutoSize = true;
             lnk.Click += new EventHandler(lnk_Click);
-            flowLayoutPanel.Controls.Add(lnk);
+
+            return lnk;
         }
 
-        private void Adicionar(Relacionamento relacionamento)
+        private Control Construir(Relacionamento relacionamento)
         {
             LinkLabel lnk = new LinkLabel();
             lnk.Text = string.Format(
@@ -91,7 +96,8 @@ namespace Apresentação.Financeiro.Acerto
             lnk.Tag = relacionamento;
             lnk.AutoSize = true;
             lnk.Click += new EventHandler(lnk_Click);
-            flowLayoutPanel.Controls.Add(lnk);
+
+            return lnk;
         }
 
         void lnk_Click(object sender, EventArgs e)
@@ -110,19 +116,16 @@ namespace Apresentação.Financeiro.Acerto
             switch (tipo)
             {
                 case Tipo.Saída:
-                    foreach (Relacionamento saída in saídas)
-                        Adicionar(saída);
-                    break;
+                    flowLayoutPanel.Controls.AddRange(gráficosSaídas);
+                break;
 
                 case Tipo.Retorno:
-                    foreach (Relacionamento retorno in retornos)
-                        Adicionar(retorno);
-                    break;
+                    flowLayoutPanel.Controls.AddRange(gráficosRetornos);
+                break;
 
                 case Tipo.Venda:
-                    foreach (VendaAcerto venda in vendas)
-                        Adicionar(venda);
-                    break;
+                    flowLayoutPanel.Controls.AddRange(gráficosVendas);
+                break;
             }
 
             Visible = flowLayoutPanel.Controls.Count > 0;
@@ -131,18 +134,34 @@ namespace Apresentação.Financeiro.Acerto
 
         private void bg_DoWork(object sender, DoWorkEventArgs e)
         {
+            int x = 0;
+
             switch (tipo)
             {
                 case Tipo.Saída:
                     saídas = acerto.Saídas;
+                    gráficosSaídas = new Control[saídas.ContarElementos()];
+
+                    foreach (Relacionamento saída in saídas)
+                        gráficosSaídas[x++] = Construir(saída);
+
                     break;
 
                 case Tipo.Retorno:
                     retornos = acerto.Retornos;
+                    gráficosRetornos = new Control[retornos.ContarElementos()];
+
+                    foreach (Relacionamento retorno in retornos)
+                        gráficosRetornos[x++] = Construir(retorno);
                     break;
 
                 case Tipo.Venda:
                     vendas = VendaAcerto.ObterVendas(acerto);
+                    gráficosVendas = new Control[vendas.Count];
+
+                    foreach (VendaAcerto venda in vendas)
+                        gráficosVendas[x++] = Construir(venda);
+
                     break;
             }
         }

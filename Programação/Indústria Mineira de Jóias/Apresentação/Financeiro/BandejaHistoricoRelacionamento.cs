@@ -100,7 +100,7 @@ namespace Apresentação.Financeiro
 		}
 		#endregion
 
-        protected override ListViewItem AdicionarListView(ISaquinho saquinho)
+        protected override ListViewItem ConstruirListView(ISaquinho saquinho)
         {
             ListViewItem item;
             SaquinhoHistóricoRelacionado saquinhoRelacionado;
@@ -120,7 +120,7 @@ namespace Apresentação.Financeiro
                 throw erro;
             }
 
-            item = base.AdicionarListView(saquinho);
+            item = base.ConstruirListView(saquinho);
 
             item.SubItems[colData.Index].Text = saquinhoRelacionado.Data.ToString();
 
