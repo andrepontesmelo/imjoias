@@ -30,6 +30,8 @@ namespace Apresentação.Financeiro
         public new KeyEventHandler KeyDown;
         public new EventHandler DoubleClick;
 
+        private ListViewColumnSorter ordenador;
+
         public ListaConsignado()
         {
             InitializeComponent();
@@ -38,7 +40,8 @@ namespace Apresentação.Financeiro
             hashConsignadoListViewItem = new Dictionary<long, ListViewItem>();
             hashGrupo = new Dictionary<AcertoConsignado, ListViewGroup>();
 
-            lista.ListViewItemSorter = new ListaConsignadoOrdenador(hashListViewItemConsignado);
+            ordenador = new ListViewColumnSorter();
+            lista.ListViewItemSorter = ordenador;
 
             // Resolve BUG do Visual Studio
             colCódigo.Name = "colCódigo";
@@ -456,12 +459,7 @@ namespace Apresentação.Financeiro
 
         private void lista_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            if (((ListaConsignadoOrdenador)lista.ListViewItemSorter).DefinirColuna(lista.Columns[e.Column]))
-                lista.Sorting = SortOrder.Ascending;
-            else
-                lista.Sorting = SortOrder.Descending;
-
-            lista.Sort();
+            ordenador.OnClick(lista, e);
         }
 
         private void btnAgrupar_CheckedChanged(object sender, EventArgs e)
