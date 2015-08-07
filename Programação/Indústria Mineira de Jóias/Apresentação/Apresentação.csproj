@@ -1708,7 +1708,6 @@
     <Compile Include="Mercadoria\Bandeja\Bandeja.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Mercadoria\Bandeja\BandejaComparador.cs" />
     <Compile Include="Mercadoria\CmbFaixa.cs">
       <SubType>Component</SubType>
     </Compile>
