@@ -287,6 +287,8 @@ namespace Apresentação.Formulários
 
     public class NumberCaseInsensitiveComparer : CaseInsensitiveComparer
     {
+        private static readonly string currencySymbol = System.Globalization.CultureInfo.CurrentCulture.NumberFormat.CurrencySymbol;
+
         public NumberCaseInsensitiveComparer()
         {
 
@@ -306,6 +308,31 @@ namespace Apresentação.Formulários
             {
                 return 1;
             }
+
+            if ((x is System.String) && ((string)x).Contains(currencySymbol))
+            {
+                try
+                {
+                    decimal xx = decimal.Parse((string)x, NumberStyles.Currency);
+                    decimal yy = decimal.Parse((string)y, NumberStyles.Currency);
+
+                    return base.Compare(xx, yy);
+                } catch
+                {
+                    return -1;
+                }
+
+            }
+
+            DateTime timeX;
+            DateTime timeY;
+
+            if ((x is String) && DateTime.TryParse(((string) x), out timeX)
+            && (y is String) && DateTime.TryParse(((string) y), out timeY))
+            {
+                return timeX.CompareTo(timeY);
+            }
+
 
             if ((x is System.String) && IsDecimalNumber((string)x) && (y is System.String) && IsDecimalNumber((string)y))
             {
