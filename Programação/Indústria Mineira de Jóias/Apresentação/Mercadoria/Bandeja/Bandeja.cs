@@ -946,7 +946,7 @@ namespace Apresentação.Mercadoria.Bandeja
 		/// <summary>
 		/// Apenas adiciona o essencial: Referência e Quantidade.
 		/// </summary>
-		protected virtual ListViewItem AdicionarListView(Entidades.ISaquinho saquinho)
+		protected virtual ListViewItem ConstruirListView(Entidades.ISaquinho saquinho)
 		{
 			ListViewItem novoItemListView;
 			
@@ -963,7 +963,7 @@ namespace Apresentação.Mercadoria.Bandeja
             if (!hashAgrupamento.ContainsKey(identificação))
                 hashAgrupamento.Add(identificação, saquinho);
 						
-			lista.Items.Add(novoItemListView);
+			// lista.Items.Add(novoItemListView);
 			novoItemListView.SubItems.Add(saquinho.Quantidade.ToString());
 			novoItemListView.SubItems.AddRange(new string[] {"","","","","","","","","",""});
 
@@ -976,7 +976,7 @@ namespace Apresentação.Mercadoria.Bandeja
             if (recuperaçãoFotos != null)
                 recuperaçãoFotos.Adicionar(novoItemListView);
 
-			novoItemListView.EnsureVisible();
+			// novoItemListView.EnsureVisible();
 
 			return novoItemListView;
 		}
@@ -1262,7 +1262,9 @@ namespace Apresentação.Mercadoria.Bandeja
             
             saquinhos.Add(saquinhoOriginal);
             
-            item = AdicionarListView(saquinhoOriginal);
+            item = ConstruirListView(saquinhoOriginal);
+            lista.Items.Add(item);
+
             item.Group = lista.Groups[saquinhoOriginal.Mercadoria.DePeso ? "peso" : "peça"];
 
             // Atualiza contagem para status
@@ -1301,19 +1303,13 @@ namespace Apresentação.Mercadoria.Bandeja
             suspendeObtençãoDeÍcones = true;
 
             UseWaitCursor = true;
+            ListViewItem[] itens = new ListViewItem[listaSaquinhos.Count];
+            int x = 0;
 
             try
             {
-                // O agrupamento não aceita SuspendeLeiaute.
-                //SuspendeLeiaute = false;
-
                 lock (listaSaquinhos)
                 {
-                    //foreach (ISaquinho s in listaSaquinhos)
-                    //{
-                    //    if (s.Quantidade <= 0)
-                    //        throw new ArgumentException("Quantidade deve ser maior que zero.", "ISaquinhoOriginal.quantidade");
-                    //}
 
                     if (listaSaquinhos.Count > 20)
                     {
@@ -1349,8 +1345,10 @@ namespace Apresentação.Mercadoria.Bandeja
 
                         saquinhos.Add(sOuNovo);
 
-                        item = AdicionarListView(sOuNovo);
+                        item = ConstruirListView(sOuNovo);
                         item.Group = lista.Groups[sOuNovo.Mercadoria.DePeso ? "peso" : "peça"];
+
+                        itens[x++] = item;
 
                         //// Atualiza contagem para status
                         totalMercadorias += sOuNovo.Quantidade;
@@ -1368,6 +1366,8 @@ namespace Apresentação.Mercadoria.Bandeja
             }
             finally
             {
+                lista.Items.AddRange(itens);
+
                 //SuspendeLeiaute  = false;
                 UseWaitCursor = false;
 

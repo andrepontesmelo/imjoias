@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseBalanço));
+            Report.Layout.MetricCentimeter metricCentimeter1 = new Report.Layout.MetricCentimeter();
             this.títuloBaseInferior1 = new Apresentação.Formulários.TítuloBaseInferior();
             this.tabs = new System.Windows.Forms.TabControl();
             this.tabSaídas = new System.Windows.Forms.TabPage();
@@ -44,6 +46,7 @@
             this.quadro2 = new Apresentação.Formulários.Quadro();
             this.opçãoFiltrar = new Apresentação.Formulários.Opção();
             this.label1 = new System.Windows.Forms.Label();
+            this.itemLayout1 = new Report.Layout.Complex.ItemLayout(this.components);
             this.esquerda.SuspendLayout();
             this.tabs.SuspendLayout();
             this.tabSaídas.SuspendLayout();
@@ -58,16 +61,17 @@
             // 
             this.esquerda.Controls.Add(this.quadro2);
             this.esquerda.Controls.Add(this.quadro1);
+            this.esquerda.Size = new System.Drawing.Size(187, 466);
             this.esquerda.Controls.SetChildIndex(this.quadro1, 0);
             this.esquerda.Controls.SetChildIndex(this.quadro2, 0);
             // 
             // títuloBaseInferior1
             // 
-            this.títuloBaseInferior1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.títuloBaseInferior1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.títuloBaseInferior1.BackColor = System.Drawing.Color.White;
             this.títuloBaseInferior1.Descrição = "Contabilização de mercadorias presentes em documentos relacionados. Selecione aqu" +
-                "eles que serão considerados.";
+    "eles que serão considerados.";
             this.títuloBaseInferior1.ÍconeArredondado = false;
             this.títuloBaseInferior1.Imagem = global::Apresentação.Resource.balança_pequena;
             this.títuloBaseInferior1.Location = new System.Drawing.Point(193, 3);
@@ -78,9 +82,9 @@
             // 
             // tabs
             // 
-            this.tabs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabs.Controls.Add(this.tabSaídas);
             this.tabs.Controls.Add(this.tabRetornos);
             this.tabs.Controls.Add(this.tabVendas);
@@ -88,7 +92,7 @@
             this.tabs.Location = new System.Drawing.Point(193, 97);
             this.tabs.Name = "tabs";
             this.tabs.SelectedIndex = 0;
-            this.tabs.Size = new System.Drawing.Size(594, 183);
+            this.tabs.Size = new System.Drawing.Size(594, 353);
             this.tabs.TabIndex = 8;
             // 
             // tabSaídas
@@ -97,19 +101,19 @@
             this.tabSaídas.Location = new System.Drawing.Point(4, 22);
             this.tabSaídas.Name = "tabSaídas";
             this.tabSaídas.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSaídas.Size = new System.Drawing.Size(586, 157);
+            this.tabSaídas.Size = new System.Drawing.Size(586, 327);
             this.tabSaídas.TabIndex = 0;
             this.tabSaídas.Text = "Saídas (+)";
             this.tabSaídas.UseVisualStyleBackColor = true;
             // 
             // listaSaídas
             // 
-            this.listaSaídas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.listaSaídas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listaSaídas.Location = new System.Drawing.Point(0, 0);
             this.listaSaídas.Name = "listaSaídas";
-            this.listaSaídas.Size = new System.Drawing.Size(586, 157);
+            this.listaSaídas.Size = new System.Drawing.Size(586, 327);
             this.listaSaídas.TabIndex = 0;
             this.listaSaídas.AoMarcar += new System.EventHandler(this.listaSaídas_AoMarcar);
             this.listaSaídas.DoubleClick += new System.EventHandler(this.listaSaídas_DoubleClick);
@@ -120,16 +124,16 @@
             this.tabRetornos.Location = new System.Drawing.Point(4, 22);
             this.tabRetornos.Name = "tabRetornos";
             this.tabRetornos.Padding = new System.Windows.Forms.Padding(3);
-            this.tabRetornos.Size = new System.Drawing.Size(586, 157);
+            this.tabRetornos.Size = new System.Drawing.Size(586, 327);
             this.tabRetornos.TabIndex = 1;
             this.tabRetornos.Text = "Retornos (-)";
             this.tabRetornos.UseVisualStyleBackColor = true;
             // 
             // listaRetornos
             // 
-            this.listaRetornos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.listaRetornos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listaRetornos.Location = new System.Drawing.Point(0, 0);
             this.listaRetornos.Name = "listaRetornos";
             this.listaRetornos.Size = new System.Drawing.Size(586, 157);
@@ -143,16 +147,18 @@
             this.tabVendas.Location = new System.Drawing.Point(4, 22);
             this.tabVendas.Name = "tabVendas";
             this.tabVendas.Padding = new System.Windows.Forms.Padding(3);
-            this.tabVendas.Size = new System.Drawing.Size(586, 157);
+            this.tabVendas.Size = new System.Drawing.Size(586, 327);
             this.tabVendas.TabIndex = 2;
             this.tabVendas.Text = "Vendas (-)";
             this.tabVendas.UseVisualStyleBackColor = true;
             // 
             // listaVendas
             // 
-            this.listaVendas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.listaVendas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listaVendas.ItemSelecionado = null;
+            this.listaVendas.ItensChecados = ((System.Collections.Generic.List<Entidades.Relacionamento.Venda.IDadosVenda>)(resources.GetObject("listaVendas.ItensChecados")));
             this.listaVendas.Location = new System.Drawing.Point(1, 3);
             this.listaVendas.Name = "listaVendas";
             this.listaVendas.Size = new System.Drawing.Size(585, 154);
@@ -166,23 +172,25 @@
             this.tabSedex.Location = new System.Drawing.Point(4, 22);
             this.tabSedex.Name = "tabSedex";
             this.tabSedex.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSedex.Size = new System.Drawing.Size(586, 157);
+            this.tabSedex.Size = new System.Drawing.Size(586, 327);
             this.tabSedex.TabIndex = 3;
             this.tabSedex.Text = "Sedex (+)";
             this.tabSedex.UseVisualStyleBackColor = true;
             // 
             // listaSedex
             // 
-            this.listaSedex.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.listaSedex.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listaSedex.ApenasNãoAcertado = false;
+            this.listaSedex.ItemSelecionado = null;
+            this.listaSedex.ItensChecados = ((System.Collections.Generic.List<Entidades.Relacionamento.Venda.IDadosVenda>)(resources.GetObject("listaSedex.ItensChecados")));
             this.listaSedex.Location = new System.Drawing.Point(1, 1);
             this.listaSedex.Name = "listaSedex";
             this.listaSedex.Size = new System.Drawing.Size(585, 154);
             this.listaSedex.TabIndex = 1;
             this.listaSedex.AoDuploClique += new Apresentação.Financeiro.Venda.ListViewVendas.DelegaçãoVenda(this.listaSedex_AoDuploClique);
             this.listaSedex.AoMarcar += new System.EventHandler(this.listaSedex_AoMarcar);
-            this.listaSedex.ApenasNãoAcertado = false;
             // 
             // quadro1
             // 
@@ -229,7 +237,7 @@
             this.quadro2.Cor = System.Drawing.Color.Black;
             this.quadro2.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadro2.LetraTítulo = System.Drawing.Color.White;
-            this.quadro2.Location = new System.Drawing.Point(7, 97);
+            this.quadro2.Location = new System.Drawing.Point(7, 267);
             this.quadro2.MostrarBotãoMinMax = false;
             this.quadro2.Name = "quadro2";
             this.quadro2.Size = new System.Drawing.Size(160, 154);
@@ -260,7 +268,15 @@
             this.label1.Size = new System.Drawing.Size(147, 81);
             this.label1.TabIndex = 2;
             this.label1.Text = "Atualmente todos os documentos relacionados no sistema estão sendo exibidos. É po" +
-                "ssível filtrar documentos relativas à pessoas específicas";
+    "ssível filtrar documentos relativas à pessoas específicas";
+            // 
+            // itemLayout1
+            // 
+            this.itemLayout1.DefaultAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.itemLayout1.DefaultMetric = metricCentimeter1;
+            this.itemLayout1.DefaultTextFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.itemLayout1.Height = 2.54F;
+            this.itemLayout1.Width = 2.54F;
             // 
             // BaseBalanço
             // 
@@ -270,6 +286,7 @@
             this.Controls.Add(this.tabs);
             this.Imagem = global::Apresentação.Resource.balança_pequena;
             this.Name = "BaseBalanço";
+            this.Size = new System.Drawing.Size(800, 466);
             this.Controls.SetChildIndex(this.tabs, 0);
             this.Controls.SetChildIndex(this.títuloBaseInferior1, 0);
             this.Controls.SetChildIndex(this.esquerda, 0);
@@ -302,5 +319,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabPage tabSedex;
         private Financeiro.Venda.ListViewVendas listaSedex;
+        private Report.Layout.Complex.ItemLayout itemLayout1;
     }
 }
