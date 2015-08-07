@@ -76,6 +76,7 @@
             this.lst.TabIndex = 0;
             this.lst.UseCompatibleStateImageBehavior = false;
             this.lst.View = System.Windows.Forms.View.Details;
+            this.lst.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lst_ColumnClick);
             this.lst.DoubleClick += new System.EventHandler(this.lst_DoubleClick);
             // 
             // colReferência

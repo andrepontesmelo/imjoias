@@ -57,6 +57,7 @@
             this.lst.TabIndex = 0;
             this.lst.UseCompatibleStateImageBehavior = false;
             this.lst.View = System.Windows.Forms.View.Details;
+            this.lst.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lst_ColumnClick);
             this.lst.DoubleClick += new System.EventHandler(this.lst_DoubleClick);
             // 
             // columnHeader1
@@ -94,7 +95,6 @@
             // bg
             // 
             this.bg.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bg_DoWork);
-            this.bg.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bg_ProgressChanged);
             this.bg.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bg_RunWorkerCompleted);
             // 
             // ListaExtrato

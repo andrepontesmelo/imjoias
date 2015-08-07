@@ -8,16 +8,18 @@ using System.Text;
 using System.Windows.Forms;
 using Entidades.Estoque;
 using Apresentação.Formulários;
+using ListViewSorter;
 
 namespace Apresentação.Estoque
 {
     public partial class ListaSaldo : UserControl
     {
         public event EventHandler AoDuploClique;
+        private ListViewColumnSorter lvwColumnSorter;
 
         struct ResultadoCarga
         {
-            public List<ListViewItem> ListaGrafica;
+            public ListViewItem[] ListaGrafica;
             public double TotalSaldoPeso;
             public int TotalReferencias;
         }
@@ -26,6 +28,9 @@ namespace Apresentação.Estoque
         public ListaSaldo()
         {
             InitializeComponent();
+            lvwColumnSorter = new ListViewColumnSorter();
+
+            this.lst.ListViewItemSorter = lvwColumnSorter;
         }
 
         public void Carregar()
@@ -39,14 +44,15 @@ namespace Apresentação.Estoque
 
         private void bg_DoWork(object sender, DoWorkEventArgs e)
         {
-
             List<Saldo> entidades = Entidades.Estoque.Saldo.Obter();
             ResultadoCarga resultado = new ResultadoCarga();
 
-            resultado.ListaGrafica = new List<ListViewItem>(entidades.Count);
+            resultado.ListaGrafica = new ListViewItem[entidades.Count];
 
             ListViewGroup grupoDePeso = lst.Groups[0];
             ListViewGroup grupoDeReferencia = lst.Groups[1];
+
+            int x = 0;
 
             foreach (Saldo s in entidades)
             {
@@ -67,7 +73,7 @@ namespace Apresentação.Estoque
                 i.SubItems.Add(s.FornecedorReferência);
 
                 i.Tag = s;
-                resultado.ListaGrafica.Add(i);
+                resultado.ListaGrafica[x++] = i;
                 resultado.TotalSaldoPeso += s.Peso * s.SaldoValor;
             }
 
@@ -83,8 +89,7 @@ namespace Apresentação.Estoque
             lst.SuspendLayout();
             lst.Items.Clear();
 
-            foreach (ListViewItem i in resultado.ListaGrafica)
-                lst.Items.Add(i);
+            lst.Items.AddRange(resultado.ListaGrafica);
 
             panelReferencias.Text = resultado.TotalReferencias.ToString() + " Referência(s)";
             panelPesoTotal.Text = resultado.TotalSaldoPeso.ToString() + "g de saldo";
@@ -108,6 +113,11 @@ namespace Apresentação.Estoque
         {
             if (AoDuploClique != null)
                 AoDuploClique(sender, e);
+        }
+
+        private void lst_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            lvwColumnSorter.OnClick((ListView)sender, e);
         }
     }
 }

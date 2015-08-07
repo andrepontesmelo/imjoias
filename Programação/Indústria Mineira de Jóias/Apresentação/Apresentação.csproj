@@ -1059,6 +1059,7 @@
     <Compile Include="Formulários\Linha.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Formulários\ListViewSorter.cs" />
     <Compile Include="Formulários\Localizador.cs">
       <SubType>UserControl</SubType>
     </Compile>
