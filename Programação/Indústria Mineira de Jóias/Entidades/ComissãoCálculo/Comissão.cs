@@ -172,5 +172,21 @@ namespace Entidades.ComissãoCálculo
         {
             return Impressão.ImpressãoSetor.Obter(this, filtro);
         }
+
+        public static bool ComissãoFechada(long venda)
+        {
+            IDbConnection conexão = Conexão;
+
+            using (IDbCommand cmd = conexão.CreateCommand())
+            {
+                cmd.CommandText = " select ifnull(saldo, 0) as saldo from comissao_saldo where venda=" + DbTransformar(venda);
+
+                object o = cmd.ExecuteScalar();
+
+                long saldo = (long) o;
+
+                return saldo == 1;
+            }
+        }
     }
 }

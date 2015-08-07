@@ -173,7 +173,7 @@ namespace Apresentação.Financeiro
         {
             try
             {
-                if (baseInferior.ConferirTravamento(true))
+                if (baseInferior.ConferirTravamento())
                 {
                     MessageBox.Show(ParentForm,
                         "ATENÇÃO\n\nEste documento foi travado e não pode ser alterado.",
@@ -337,7 +337,7 @@ namespace Apresentação.Financeiro
 
         private void quadroMercadoria_EventoAlterou(ISaquinho saquinhoOriginal, double novaQtd, double novoPeso)
         {
-            if (baseInferior.ConferirTravamento(true))
+            if (baseInferior.ConferirTravamento())
             {
                 MessageBox.Show(ParentForm,
                     "ATENÇÃO\n\nEste documento foi travado e não pode ser alterado.",
@@ -481,7 +481,7 @@ namespace Apresentação.Financeiro
 
         private void bandejaAgrupada_SaquinhoExcluído(Bandeja bandeja, ISaquinho saquinho)
         {
-            if (!baseInferior.ConferirTravamento(true))
+            if (!baseInferior.ConferirTravamento())
             {
                 try
                 {
@@ -502,7 +502,7 @@ namespace Apresentação.Financeiro
 
         private void bandejaAgrupada_AntesExclusão(ref bool cancelado)
         {
-            bool travado = baseInferior.ConferirTravamento(false);
+            bool travado = baseInferior.ConferirTravamento();
 
             cancelado = travado;
         }
@@ -573,7 +573,7 @@ namespace Apresentação.Financeiro
 
         private void bandejaAgrupada_AlteraçãoÍndiceSolicitada(Bandeja bandeja, ISaquinho saquinho)
         {
-            if (!baseInferior.ConferirTravamento(true))
+            if (!baseInferior.ConferirTravamento())
             {
 
                 ISaquinho saquinhoParaReAdicionar = saquinho.Clone(saquinho.Quantidade);

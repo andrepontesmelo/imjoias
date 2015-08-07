@@ -1,5 +1,6 @@
 /build/
 *.suo
+*.v12.suo
 *.user
 _ReSharper.*/
 *.sdf
@@ -15,4 +16,4 @@ TestResult.xml
 Version.cs
 Version.h
 Version.cpp
-
+*
