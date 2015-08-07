@@ -248,7 +248,7 @@ namespace Apresentação.Financeiro
         /// Dá mensagem de erro caso o documento encontra-se travado.
         /// </summary>
         /// <returns>tracado</returns>
-        public bool ConferirTravamento(bool mostrarMensagemErro)
+        public bool ConferirTravamento()
         {
             RelacionamentoAcerto relacionamentoAcerto = Relacionamento as RelacionamentoAcerto;
 
@@ -259,12 +259,12 @@ namespace Apresentação.Financeiro
 
             AtualizarTravamento(entidadeTravada);
 
-            if (entidadeTravada && mostrarMensagemErro)
-            {
-                Beepador.Erro();
-                MessageBox.Show(this, "O documento não pode ser alterado porque encontra-se travado. \nContacte o supervisor para seu destravamento.",
-                    "Documento travado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
+            //if (entidadeTravada && mostrarMensagemErro)
+            //{
+            //    Beepador.Erro();
+            //    MessageBox.Show(this, "O documento não pode ser alterado porque encontra-se travado. \nContacte o supervisor para seu destravamento.",
+            //        "Documento travado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            //}
 
             return entidadeTravada;
         }

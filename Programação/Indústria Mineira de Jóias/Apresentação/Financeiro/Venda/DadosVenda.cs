@@ -87,7 +87,7 @@ namespace Apresentação.Financeiro.Venda
         {
             if (!carregando)
             {
-                if (baseInferior != null && !baseInferior.ConferirTravamento(true))
+                if (baseInferior != null && !baseInferior.ConferirTravamento())
                 {
                     vendaEntidade.Vendedor = txtVendedor.Pessoa;
 
@@ -148,7 +148,7 @@ namespace Apresentação.Financeiro.Venda
         {
             if (!carregando)
             {
-                if (baseInferior != null && !baseInferior.ConferirTravamento(true))
+                if (baseInferior != null && !baseInferior.ConferirTravamento())
                 {
                     try
                     {
@@ -268,7 +268,7 @@ namespace Apresentação.Financeiro.Venda
         {
             if (!carregando)
             {
-                if (baseInferior != null && !baseInferior.ConferirTravamento(true))
+                if (baseInferior != null && !baseInferior.ConferirTravamento())
                 {
                     if (CotaçãoAlterada != null)
                         CotaçãoAlterada(escolha);
@@ -376,7 +376,8 @@ namespace Apresentação.Financeiro.Venda
                 chkVendaQuitada.Text = "Venda quitada";
             }
 
-            chkVendaQuitada.Enabled = PermissãoFuncionário.ValidarPermissão(Permissão.ManipularComissão);
+            bool comissãoAberta = !Entidades.ComissãoCálculo.Comissão.ComissãoFechada(vendaEntidade.Código);
+            chkVendaQuitada.Enabled = comissãoAberta && PermissãoFuncionário.ValidarPermissão(Permissão.ManipularComissão);
         }
 
         void chkRastreada_CheckedChanged(object sender, EventArgs e)
@@ -615,7 +616,7 @@ namespace Apresentação.Financeiro.Venda
         /// </summary>
         private void txtControle_Validating(object sender, CancelEventArgs e)
         {
-            if (baseInferior != null && !baseInferior.ConferirTravamento(true))
+            if (baseInferior != null && !baseInferior.ConferirTravamento())
             {
                 //bool invalidar = false;
 
@@ -647,7 +648,7 @@ namespace Apresentação.Financeiro.Venda
 
         private void txtDesconto_Validated(object sender, EventArgs e)
         {
-            if (baseInferior != null && !baseInferior.ConferirTravamento(false))
+            if (baseInferior != null && !baseInferior.ConferirTravamento())
             {
                 if (txtDesconto.Double != vendaEntidade.Desconto)
                 {
@@ -675,7 +676,7 @@ namespace Apresentação.Financeiro.Venda
 
             if (double.TryParse(txtPercentualDesconto.Text, out percentual))
             {
-                if (baseInferior != null && !baseInferior.ConferirTravamento(true))
+                if (baseInferior != null && !baseInferior.ConferirTravamento())
                 {
                     vendaEntidade.DescontoPercentual = percentual;
                     txtDesconto.Double = vendaEntidade.Desconto;
@@ -852,7 +853,7 @@ namespace Apresentação.Financeiro.Venda
         {
             if (!carregando)
             {
-                if (baseInferior != null && !baseInferior.ConferirTravamento(true))
+                if (baseInferior != null && !baseInferior.ConferirTravamento())
                 {
                     if (vendaEntidade.Data != txtData.Value.Date)
                     {
@@ -881,7 +882,7 @@ namespace Apresentação.Financeiro.Venda
 
         private void txtDiasSemJuros_Validated(object sender, EventArgs e)
         {
-            if (baseInferior != null && !baseInferior.ConferirTravamento(true))
+            if (baseInferior != null && !baseInferior.ConferirTravamento())
             {
                 vendaEntidade.DiasSemJuros = (uint)txtDiasSemJuros.Int;
 
@@ -898,7 +899,7 @@ namespace Apresentação.Financeiro.Venda
 
         private void txtTaxaJuros_Validated(object sender, EventArgs e)
         {
-            if (baseInferior != null && !baseInferior.ConferirTravamento(true))
+            if (baseInferior != null && !baseInferior.ConferirTravamento())
             {
                 Double d;
 
@@ -923,7 +924,7 @@ namespace Apresentação.Financeiro.Venda
 
         private void btnTrocarClienteVendedor_Click(object sender, EventArgs e)
         {
-            if (baseInferior != null && !baseInferior.ConferirTravamento(false))
+            if (baseInferior != null && !baseInferior.ConferirTravamento())
             {
                 Entidades.Pessoa.Pessoa clienteAntigo, vendedorAntigo;
                 clienteAntigo = vendaEntidade.Cliente;

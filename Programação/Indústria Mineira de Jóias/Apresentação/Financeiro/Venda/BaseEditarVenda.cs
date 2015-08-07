@@ -439,7 +439,7 @@ namespace Apresentação.Financeiro.Venda
 
         private void opçãoCobrançaAutomática_Click(object sender, EventArgs e)
         {
-            if (!ConferirTravamento(true))
+            if (!ConferirTravamento())
             {
                 Apresentação.Formulários.AguardeDB.Mostrar();
 
@@ -456,7 +456,7 @@ namespace Apresentação.Financeiro.Venda
 
         private void opçãoGastarCréditosCliente_Click(object sender, EventArgs e)
         {
-            if (!ConferirTravamento(true)) {
+            if (!ConferirTravamento()) {
                 Apresentação.Formulários.AguardeDB.Mostrar();
 
                 List<Entidades.Crédito> créditosNãoUtilizados = Entidades.Crédito.ObterCréditosNãoUtilizados(Relacionamento.Pessoa);
