@@ -9,22 +9,23 @@ using System.Windows.Forms;
 using Entidades.Estoque;
 using Apresentação.Financeiro;
 using Apresentação.Formulários;
+using ListViewSorter;
 
 namespace Apresentação.Estoque.Extrato
 {
     public partial class ListaExtrato : UserControl
     {
+        private ListViewColumnSorter lvwColumnSorter;
+
         public delegate void QuerAbrirDocumentoDelegate(Entidades.Relacionamento.Relacionamento relacionamento);
         public event QuerAbrirDocumentoDelegate QuerAbrirDocumento;
 
         public ListaExtrato()
         {
             InitializeComponent();
-        }
+            lvwColumnSorter = new ListViewColumnSorter();
 
-        private void bg_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-
+            this.lst.ListViewItemSorter = lvwColumnSorter;
         }
 
         private void bg_DoWork(object sender, DoWorkEventArgs e)
@@ -105,5 +106,11 @@ namespace Apresentação.Estoque.Extrato
             UseWaitCursor = false;
             AguardeDB.Fechar();
         }
+
+        private void lst_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            lvwColumnSorter.OnClick((ListView)sender, e);
+        }
     }
 }
+
