@@ -206,8 +206,9 @@ As regras de cálculo de comissão são as seguintes:
 6. Repr. para cliente de outro Repr. - Ocorre quando um representante vende para um cliente de outro representante. 
 7. Repr. p/ cli sem região - Algum representante vendeu para cliente sem região, ou para cliente com região não vinculada a representante.
 8. Compartilhada repr. atacado: Ocorre quando qualquer outra pessoa não representante venda para clientes de representantes. 
-9. Corretor: É uma comissão adicional. Ocorre quando venda está vinculada a corretor.
-10. Outros setores ou para funcionário: Ocorre quando setor do cliente da venda não é nem Atacado, nem AA, nem Repr, nem corretor, nem varejo.  É utilizado para cálculo de comissão a tabela da venda.
+9. Representante compra. Ocorre quando representante é cliente de qualquer venda. 
+10. Corretor: É uma comissão adicional. Ocorre quando venda está vinculada a corretor.
+11. Outros setores ou para funcionário: Ocorre quando setor do cliente da venda não é nem Atacado, nem AA, nem Repr, nem corretor, nem varejo.  É utilizado para cálculo de comissão a tabela da venda.
 
 
 =&gt; O que é necessário para uma venda se tornar elegível para pagamento de comissão ? 
@@ -225,7 +226,7 @@ Uma venda só é mostrada na tela de comissão para pagamento após completar os
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAAk
-        DwAAAk1TRnQBSQFMAgEBBwEAATgBAgE4AQIBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        DwAAAk1TRnQBSQFMAgEBBwEAAUABAgFAAQIBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAASADAAEBAQABCAYAAQgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA

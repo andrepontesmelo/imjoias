@@ -66,5 +66,22 @@ namespace Apresentação.Estoque
 
             SubstituirBase(novaBase);
         }
+
+        private void btnRelatórios_Click(object sender, EventArgs e)
+        {
+            return;
+
+            JanelaImpressão janela = new JanelaImpressão();
+
+            Apresentação.Impressão.Relatórios.Comissao.RelatorioResumo r
+                = new Apresentação.Impressão.Relatórios.Comissao.RelatorioResumo();
+
+            new Apresentação.Impressão.Relatórios.Comissao.ControladorImpressãoResumo().
+                PrepararImpressão(r, null, null);
+
+            janela.Título = "Estoque";
+            janela.Descrição = "Relatório de estoque";
+            janela.InserirDocumento(r, "Estoque");
+        }
     }
 }

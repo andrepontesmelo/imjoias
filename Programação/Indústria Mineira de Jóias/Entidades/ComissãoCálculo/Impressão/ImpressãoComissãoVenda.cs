@@ -24,9 +24,9 @@ namespace Entidades.ComissãoCálculo.Impressão
             get { return data; }
             set { data = value; }
         }
-        protected long regra;
+        protected EnumRegra regra;
 
-        public long Regra
+        public EnumRegra Regra
         {
             get { return regra; }
             set { regra = value; }

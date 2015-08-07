@@ -97,6 +97,7 @@
             this.btnRelatórios.Name = "btnRelatórios";
             this.btnRelatórios.Size = new System.Drawing.Size(150, 16);
             this.btnRelatórios.TabIndex = 7;
+            this.btnRelatórios.Click += new System.EventHandler(this.btnRelatórios_Click);
             // 
             // quadro2
             // 

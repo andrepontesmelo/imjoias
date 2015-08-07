@@ -7,29 +7,31 @@ namespace Entidades.ComissãoCálculo
 {
     public class Regra
     {
-        public static string ObterNome(long regra)
+        public static string ObterNome(EnumRegra regra)
         {
             switch (regra)
             {
-                case 0:
+                case EnumRegra.Varejo:
                     return "Varejo";
-                case 1:
+                case EnumRegra.AtacadoNãoConsignado:
                     return "Atacado Não Consignado";
-                case 2:
+                case EnumRegra.AtacadoConsignado:
                     return "Atacado Consignado";
-                case 3:
+                case EnumRegra.AA:
                     return "Alto-Atacado";
-                case 4:
+                case EnumRegra.Representante:
                     return "Representante";
-                case 5:
+                case EnumRegra.RepresentanteParaClienteOutroRepresentante:
                     return "Repr. para cliente de outro Repr.";
-                case 6:
+                case EnumRegra.RepresentanteParaClienteSemRegião:
                     return "Repr. p/ cli sem região";
-                case 7:
+                case EnumRegra.CompartilhadaRepresentanteAtacado:
                     return "Compartilhada repr. atacado";
-                case 8:
+                case EnumRegra.RepresentanteCompra:
+                    //return "Representante compra";
+                case EnumRegra.Corretor:
                     return "Corretor";
-                case 9:
+                case EnumRegra.OutrosFuncionarios:
                     return "Vendas p/ outros setores ou func.";
                     
                 default:

@@ -15,7 +15,8 @@ namespace Entidades.ComissãoCálculo
         RepresentanteParaClienteOutroRepresentante = 5,
         RepresentanteParaClienteSemRegião = 6,
         CompartilhadaRepresentanteAtacado = 7,
-        Corretor = 8,
-        OutrosFuncionarios = 9
+        RepresentanteCompra = 8,
+        Corretor = 9,
+        OutrosFuncionarios = 10
     }
 }
