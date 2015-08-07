@@ -179,13 +179,16 @@ namespace Entidades.ComissãoCálculo
 
             using (IDbCommand cmd = conexão.CreateCommand())
             {
-                cmd.CommandText = " select ifnull(saldo, 0) as saldo from comissao_saldo where venda=" + DbTransformar(venda);
+                cmd.CommandText = " select saldo from comissao_saldo where venda=" + DbTransformar(venda);
 
-                object o = cmd.ExecuteScalar();
+                    object objeto = cmd.ExecuteScalar();
 
-                long saldo = (long) o;
+                    if (objeto == null)
+                        return false;
 
-                return saldo == 1;
+                    long saldo = (long )objeto;
+
+                    return saldo == 1;
             }
         }
     }
