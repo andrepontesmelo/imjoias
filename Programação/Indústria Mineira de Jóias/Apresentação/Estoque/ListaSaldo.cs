@@ -8,7 +8,6 @@ using System.Text;
 using System.Windows.Forms;
 using Entidades.Estoque;
 using Apresentação.Formulários;
-using ListViewSorter;
 
 namespace Apresentação.Estoque
 {

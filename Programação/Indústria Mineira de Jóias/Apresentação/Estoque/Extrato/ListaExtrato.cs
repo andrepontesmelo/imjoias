@@ -9,7 +9,6 @@ using System.Windows.Forms;
 using Entidades.Estoque;
 using Apresentação.Financeiro;
 using Apresentação.Formulários;
-using ListViewSorter;
 
 namespace Apresentação.Estoque.Extrato
 {
