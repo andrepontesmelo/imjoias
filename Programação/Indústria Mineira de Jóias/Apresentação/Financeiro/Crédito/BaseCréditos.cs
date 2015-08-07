@@ -14,9 +14,13 @@ namespace Apresentação.Financeiro.Crédito
         public Entidades.Pessoa.Pessoa Pessoa { get; set; }
         private Dictionary<ListViewItem, Entidades.Crédito> hashCréditos;
 
+        private ListViewColumnSorter ordenador;
+
         public BaseCréditos()
         {
             InitializeComponent();
+            ordenador = new ListViewColumnSorter();
+            lstCréditos.ListViewItemSorter = ordenador;
         }
 
         protected override void AoExibir()
@@ -48,18 +52,7 @@ namespace Apresentação.Financeiro.Crédito
                 ListViewItem item = new ListViewItem(entidade.Data.ToShortDateString());
                 hashCréditos[item] = entidade;
                 item.SubItems.Add(entidade.Valor.ToString("C"));
-
-                //if (entidade.Venda == null)
-                //    item.SubItems.Add("");
-                //else
-                //    item.SubItems.Add(entidade.Venda.Código.ToString());
-
                 item.SubItems.Add(entidade.Descrição);
-
-                //if (entidade.Venda == null)
-                //    item.Font = new Font(item.Font, FontStyle.Bold);
-                //else
-                //    item.Font = new Font(item.Font, FontStyle.Regular);
 
                 lstCréditos.Items.Add(item);
             }
@@ -90,6 +83,11 @@ namespace Apresentação.Financeiro.Crédito
 
                 CarrregarLista();
             }
+        }
+
+        private void lstCréditos_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            ordenador.OnClick(lstCréditos, e);
         }
     }
 }
