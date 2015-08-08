@@ -671,6 +671,9 @@ namespace Apresentação.Pessoa.Consultas
                     }
 
 
+                    ListViewItem[] itens = new ListViewItem[pessoas.Count];
+                    int x = 0;
+
                     // Inserir pessoas
                     foreach (Entidades.Pessoa.Pessoa pessoa in pessoas)
                     {
@@ -717,11 +720,13 @@ namespace Apresentação.Pessoa.Consultas
                                 
                             //linha.SubItems.Add(((Entidades.Pessoa.PessoaCPFCNPJRG)pessoa).Documento);
 
-                            lista.Items.Add(linha);
+                            itens[x++] = linha;
 
                             refPessoas[linha] = pessoa;
                         }
                     }
+
+                    lista.Items.AddRange(itens);
 
                     /* Verificar se o controle ainda retém o foco para mostrar a lista
                      * O foco no TextBox é sempre falso neste ponto, talvez porque esta
