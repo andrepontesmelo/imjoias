@@ -707,7 +707,7 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Saldo {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ItensRow AddItensRow(string referência, string peso, string entrada, string venda, string devolução, string saldo, string depeso, string fornecedor, string reffornecedor) {
+            public ItensRow AddItensRow(string referência, decimal peso, decimal entrada, decimal venda, decimal devolução, decimal saldo, bool depeso, string fornecedor, string reffornecedor) {
                 ItensRow rowItensRow = ((ItensRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         referência,
@@ -757,17 +757,17 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Saldo {
             private void InitClass() {
                 this.columnreferência = new global::System.Data.DataColumn("referência", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnreferência);
-                this.columnpeso = new global::System.Data.DataColumn("peso", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnpeso = new global::System.Data.DataColumn("peso", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnpeso);
-                this.columnentrada = new global::System.Data.DataColumn("entrada", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnentrada = new global::System.Data.DataColumn("entrada", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnentrada);
-                this.columnvenda = new global::System.Data.DataColumn("venda", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnvenda = new global::System.Data.DataColumn("venda", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnvenda);
-                this.columndevolução = new global::System.Data.DataColumn("devolução", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columndevolução = new global::System.Data.DataColumn("devolução", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndevolução);
-                this.columnsaldo = new global::System.Data.DataColumn("saldo", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnsaldo = new global::System.Data.DataColumn("saldo", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnsaldo);
-                this.columndepeso = new global::System.Data.DataColumn("depeso", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columndepeso = new global::System.Data.DataColumn("depeso", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndepeso);
                 this.columnfornecedor = new global::System.Data.DataColumn("fornecedor", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnfornecedor);
@@ -946,10 +946,10 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Saldo {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string peso {
+            public decimal peso {
                 get {
                     try {
-                        return ((string)(this[this.tableItens.pesoColumn]));
+                        return ((decimal)(this[this.tableItens.pesoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'peso\' in table \'Itens\' is DBNull.", e);
@@ -962,10 +962,10 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Saldo {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string entrada {
+            public decimal entrada {
                 get {
                     try {
-                        return ((string)(this[this.tableItens.entradaColumn]));
+                        return ((decimal)(this[this.tableItens.entradaColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'entrada\' in table \'Itens\' is DBNull.", e);
@@ -978,10 +978,10 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Saldo {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string venda {
+            public decimal venda {
                 get {
                     try {
-                        return ((string)(this[this.tableItens.vendaColumn]));
+                        return ((decimal)(this[this.tableItens.vendaColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'venda\' in table \'Itens\' is DBNull.", e);
@@ -994,10 +994,10 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Saldo {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string devolução {
+            public decimal devolução {
                 get {
                     try {
-                        return ((string)(this[this.tableItens.devoluçãoColumn]));
+                        return ((decimal)(this[this.tableItens.devoluçãoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'devolução\' in table \'Itens\' is DBNull.", e);
@@ -1010,10 +1010,10 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Saldo {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string saldo {
+            public decimal saldo {
                 get {
                     try {
-                        return ((string)(this[this.tableItens.saldoColumn]));
+                        return ((decimal)(this[this.tableItens.saldoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'saldo\' in table \'Itens\' is DBNull.", e);
@@ -1026,10 +1026,10 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Saldo {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string depeso {
+            public bool depeso {
                 get {
                     try {
-                        return ((string)(this[this.tableItens.depesoColumn]));
+                        return ((bool)(this[this.tableItens.depesoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'depeso\' in table \'Itens\' is DBNull.", e);
