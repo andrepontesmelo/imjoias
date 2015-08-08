@@ -1371,6 +1371,22 @@
       <DependentUpon>RelatorioEntrada.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Impressão\Relatórios\Estoque\Saldo\ControleImpressãoSaldo.cs" />
+    <Compile Include="Impressão\Relatórios\Estoque\Saldo\DataSetSaldo.cs">
+      <DependentUpon>DataSetSaldo.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Impressão\Relatórios\Estoque\Saldo\DataSetSaldo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetSaldo.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Impressão\Relatórios\Estoque\Saldo\RelatorioSaldo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RelatorioSaldo.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Impressão\Relatórios\Layout\Identificação.cs" />
     <Compile Include="Impressão\Relatórios\Mercadoria\ControleImpressãoMercadoria.cs" />
     <Compile Include="Impressão\Relatórios\Mercadoria\DadosRelatórioMercadoria.cs" />
@@ -3132,6 +3148,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RelatorioEntrada.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Impressão\Relatórios\Estoque\Saldo\RelatorioSaldo.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RelatorioSaldo.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Impressão\Relatórios\Mercadoria\Relatório.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Relatório.cs</LastGenOutput>
@@ -3542,6 +3562,17 @@
     </None>
     <None Include="Impressão\Relatórios\Estoque\Entrada\DataSetEntrada.xss">
       <DependentUpon>DataSetEntrada.xsd</DependentUpon>
+    </None>
+    <None Include="Impressão\Relatórios\Estoque\Saldo\DataSetSaldo.xsc">
+      <DependentUpon>DataSetSaldo.xsd</DependentUpon>
+    </None>
+    <None Include="Impressão\Relatórios\Estoque\Saldo\DataSetSaldo.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetSaldo.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Impressão\Relatórios\Estoque\Saldo\DataSetSaldo.xss">
+      <DependentUpon>DataSetSaldo.xsd</DependentUpon>
     </None>
     <None Include="Impressão\Relatórios\Pedido\MercadoriaEmFaltaCliente\DataSetMercadoriaEmFaltaCliente.xsc">
       <DependentUpon>DataSetMercadoriaEmFaltaCliente.xsd</DependentUpon>
