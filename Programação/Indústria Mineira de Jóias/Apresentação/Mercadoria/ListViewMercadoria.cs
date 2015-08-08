@@ -157,16 +157,11 @@ namespace Apresentação.Mercadoria
 
                     this.mercadorias = mercadorias;
 
+                    string[] referências = new string[mercadorias.Count];
                     for (int i = 0; i < mercadorias.Count; i++)
-				    {
-					    Entidades.Mercadoria.Mercadoria mercadoria = (Entidades.Mercadoria.Mercadoria) mercadorias[i];
-                        lst.SuspendLayout();
-                        lst.Visible = false;
-					    AdicionarItem(mercadoria.Referência);
-                        lst.Visible = true;
-                        lst.ResumeLayout();
-                        //hashMercadorias[mercadoria.Referência] = mercadorias[i];
-				    }
+                        referências[i] = mercadorias[i].Referência;
+
+                    AdicionarVáriosItens(referências);
 
                     if (mercadorias != null && mercadorias.Count > 0 && recuperaçãoÍcone != null)
                         recuperaçãoÍcone.IniciarTrabalho();
@@ -193,6 +188,30 @@ namespace Apresentação.Mercadoria
                 lst.Focus();
 			}
 		}
+
+        /// <summary>
+        /// Adiciona item na lista de forma segura.
+        /// </summary>
+        /// <param name="referência">Referência a ser adicionada.</param>
+        private void AdicionarVáriosItens(string[] referências)
+        {
+            if (lst.InvokeRequired)
+            {
+                AdicionarItemCallback método = new AdicionarItemCallback(AdicionarItem);
+
+                lst.BeginInvoke(método, referências);
+            }
+            else
+            {
+                ListViewItem[] itens = new ListViewItem[referências.Length];
+
+                for (int x = 0; x < referências.Length; x++)
+                    itens[x] = new ListViewItem(referências[x]);
+
+                lst.Items.AddRange(itens);
+                lst.Focus();
+            }
+        }
 
         private class RecuperaçãoÍcone : TrabalhoSegundoPlano
         {
