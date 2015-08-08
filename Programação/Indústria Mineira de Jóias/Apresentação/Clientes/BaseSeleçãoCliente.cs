@@ -73,8 +73,6 @@ namespace Apresentação.Atendimento.Clientes
         private Apresentação.Formulários.Opção opçãoImprimir;
         private ListaPessoasBusca listaPessoasBusca;
         private TextBox txtBusca;
-        //private Apresentação.Formulários.Quadro quadroTransposição;
-        //private Apresentação.Formulários.Opção opçãoImportar;
 		private System.ComponentModel.IContainer components = null;
 
 		public BaseSeleçãoCliente()
@@ -83,43 +81,9 @@ namespace Apresentação.Atendimento.Clientes
 			InitializeComponent();
 
             coletor = new ColetorPessoas(new ColetorPessoas.RecuperaçãoPessoasDelegate(Recuperação));
-            coletor.FinalDeBusca += new Apresentação.Formulários.Consultas.Coletor.FinalDeBuscaDelegate(coletor_FinalDeBusca);
-            coletor.InícioDeBusca += new Apresentação.Formulários.Consultas.Coletor.InícioDeBuscaDelegate(coletor_InícioDeBusca);
-            //Escolhida += new EscolhaPessoa(BaseSeleçãoCliente_Escolhida);
 		}
 
-        void coletor_InícioDeBusca()
-        {
-            //UseWaitCursor = true;
-        }
-
-
-        //void BaseSeleçãoCliente_Escolhida(Entidades.Pessoa.Pessoa pessoa)
-        //{
-        //    BaseAtendimento baseAtendimento;
-
-        //    // Evitando que cache de pessoa seja utilizada no atendimento
-        //    if (pessoa is Entidades.Pessoa.PessoaFísica ||
-        //        (pessoa is Entidades.Pessoa.PessoaCPFCNPJRG && ((PessoaCPFCNPJRG)pessoa).CPF != null))
-        //        pessoa = Entidades.Pessoa.PessoaFísica.ObterPessoaSemCache(pessoa.Código);
-        //    else
-        //        pessoa = Entidades.Pessoa.PessoaJurídica.ObterPessoaSemCache(pessoa.Código);
-
-        //    //baseAtendimento = new BaseAtendimento(pessoa);
-        //    baseAtendimento = new BaseAtendimento();
-        //    this.Controlador.InserirBaseInferior(baseAtendimento);
-        //    baseAtendimento.Preparar(pessoa);
-        //    SubstituirBase(baseAtendimento);
-        //}
-
-        void coletor_FinalDeBusca()
-        {
-            //UseWaitCursor = false;
-            //throw new NotImplementedException();
-        }
-
-
-		/// <summary>
+        /// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -140,7 +104,6 @@ namespace Apresentação.Atendimento.Clientes
             txtBusca.Text = "";
             txtBusca.Focus();
             ultimaTeclaNaTxtBuscaÉEnter = false;
-            //coletor.Pesquisar("");
         }
 
 		#region Designer generated code
@@ -443,10 +406,6 @@ namespace Apresentação.Atendimento.Clientes
         public override void AoCarregarCompletamente(Apresentação.Formulários.Splash splash)
         {
             base.AoCarregarCompletamente(splash);
-
-            //ConfiguraçãoGlobal<bool> liberarImportação = new ConfiguraçãoGlobal<bool>("Liberar importação", false);
-
-            //quadroTransposição.Visible = liberarImportação.Valor;
             HandleCreated += new EventHandler(BaseSeleçãoCliente_HandleCreated);
         }
 
@@ -517,46 +476,8 @@ namespace Apresentação.Atendimento.Clientes
                 {
                     AlterarCursor(Cursors.AppStarting);
 
-                    //listaPessoas.Itens.Clear();
                     listaDatasRelevantes.Itens.Clear();
-
-                    //SinalizarCarga();
-
                     métodoCriarEntidadePessoaItem = new DCriEntPesIte(CriarEntidadePessoaItem);
-
-                    //foreach (Setor setor in setores)
-                    //{
-                    //    ///*
-                    //    // * Obter pessoas.
-                    //    // */
-                    //    //List<Entidades.Pessoa.Pessoa> pessoas;
-
-                    //    //if (setor.Código == Setor.ObterSetor(Setor.SetorSistema.Representante).Código)
-                    //    //    pessoas = Entidades.Pessoa.Pessoa.ObterPessoas(setor);
-                    //    //else
-                    //    //    pessoas = Entidades.Pessoa.Pessoa.ObterPessoas(setor, início, final);
-
-                    //    ///* O framework dotNet exige que controles vinculados sejam construídos
-                    //    // * em um mesmo contexto. Como este método é chamado de forma
-                    //    // * assíncrona, o contexto do método e do controle são diferentes,
-                    //    // * exigindo construir os itens no contexto de ListaSaídas.
-                    //    // */
-                    //    //object resultado;
-
-                    //    //resultado = listaPessoasBusca.Invoke(métodoCriarEntidadePessoaItem, new object[] { pessoas });
-
-                    //    //itens.AddRange((ICollection)resultado);
-
-                    //    /*
-                    //     * Obter datas relevantes.
-                    //     */
-                    //    DAdicionarDataRelevante métodoAdicionarDataRelevante = new DAdicionarDataRelevante(AdicionarDatasRelevantes);
-                    //    DataRelevante[] datas = DataRelevante.ObterPróximasDatasRelevantes(setor);
-                    //    object resultado = listaDatasRelevantes.Invoke(métodoAdicionarDataRelevante, new object[] { datas });
-                    //}
-
-                    //DAdicionarItens método = new DAdicionarItens(AdicionarItens);
-                    //listaPessoas.BeginInvoke(método, new object[] { itens });
 
                     DAdicionarDataRelevante métodoAdicionarDataRelevante = new DAdicionarDataRelevante(AdicionarDatasRelevantes);
                     DataRelevante[] datas = DataRelevante.ObterPróximasDatasRelevantes(null, QuantidadeDeDiasParaObtençãoDeDatasRelevantes);
@@ -618,25 +539,6 @@ namespace Apresentação.Atendimento.Clientes
             Escolhida(((ListaEntidadePessoaItemBusca) (sender)).Pessoa);
         }
 
-        ///// <summary>
-        ///// Adiciona itens à ListaPessoa.
-        ///// </summary>
-        ///// <param name="itens">Itens a serem adicionados.</param>
-        //private void AdicionarItens(ICollection itens)
-        //{
-        //    listaPessoas.Dessinalizar();
-
-        //    lock (listaPessoas.Itens.SyncRoot)
-        //    {
-        //        listaPessoas.Itens.Clear();
-        //        listaPessoas.Itens.AddRange(itens);
-        //    }
-
-        //    foreach (ListaPessoasItem item in itens)
-        //        item.Visible = true;
-        //}
-
-
         private void listaDatasRelevantes_Scroll(object sender, ScrollEventArgs e)
         {
             if (listaDatasRelevantes.Itens.Count < datas.Length)
@@ -683,17 +585,6 @@ namespace Apresentação.Atendimento.Clientes
             
             quadroDatasRelevantes.Visible = listaDatasRelevantes.Itens.Count > 0;
         }
-
-        ///// <summary>
-        ///// Sinaliza início de carga de dados.
-        ///// </summary>
-        //private void SinalizarCarga()
-        //{
-        //    DSinalizarCarga método;
-
-        //    método = new DSinalizarCarga(listaPessoas.SinalizarCarga);
-        //    listaPessoas.BeginInvoke(método, new object [] { strCarregando });
-        //}
 
 		/// <summary>
 		/// Ocorre ao clicar em procurar.
@@ -761,17 +652,12 @@ namespace Apresentação.Atendimento.Clientes
         /// <param name="itens">Itens a serem adicionados.</param>
         private void AdicionarItens(ListaEntidadePessoaItemBusca[] itens)
         {
-            //listaPessoas.Dessinalizar();
-
             listaPessoasBusca.SuspendLayout();
             listaPessoasBusca.Visible = false;
             listaPessoasBusca.Limpar();
             listaPessoasBusca.Adicionar(itens);
             listaPessoasBusca.Visible = true;
             listaPessoasBusca.ResumeLayout();
-
-            //foreach (ListaPessoasItem item in itens)
-            //    item.Visible = true;
         }
 
 
@@ -828,42 +714,6 @@ namespace Apresentação.Atendimento.Clientes
                 Escolhida(listaPessoasBusca.PrimeiraPessoa.Pessoa);
             }
         }
-
-        //private void opçãoImportar_Click(object sender, EventArgs e)
-        //{
-        //    using (Importação.EscolherClienteAntigo dlg = new Apresentação.Atendimento.Clientes.Importação.EscolherClienteAntigo())
-        //    {
-        //        if (dlg.ShowDialog(ParentForm) == DialogResult.OK)
-        //        {
-        //            Entidades.Pessoa.Pessoa pessoa = Entidades.Pessoa.Pessoa.ObterPessoaSemCache((ulong)dlg.Código);
-
-        //            if (pessoa != null)
-        //            {
-        //                MessageBox.Show(
-        //                    ParentForm,
-        //                    "Atenção! Essa pessoa já havia sido importada anteriormente!",
-        //                    "Importação de cadastro",
-        //                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //            }
-        //            else 
-        //            {
-        //                CadCli velho = Negócio.Importação.EntidadesAntigas.CadCli.Obter(dlg.Código);
-
-        //                if (velho == null)
-        //                {
-        //                    MessageBox.Show("Codigo nao encontrado. Caso seja cliente novo, ele deve ser recadastrado. Caso contrario, possivelmente tinha cadastro duplicado. Faca uma procura pelo nome.", "Nao encontrado");
-        //                    return;
-        //                }
-
-        //                 if (Negócio.Importação.Cliente.Importar(velho, true))
-        //                     pessoa = Entidades.Pessoa.Pessoa.ObterPessoaSemCache((ulong)dlg.Código);
-        //            }
-
-        //            if (pessoa != null)
-        //                Escolhida(pessoa);
-        //        }
-        //    }
-        //}
 	}
 }
 
