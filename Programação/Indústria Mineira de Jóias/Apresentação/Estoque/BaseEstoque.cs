@@ -69,19 +69,18 @@ namespace Apresentação.Estoque
 
         private void btnRelatórios_Click(object sender, EventArgs e)
         {
-            return;
-
             JanelaImpressão janela = new JanelaImpressão();
 
-            Apresentação.Impressão.Relatórios.Comissao.RelatorioResumo r
-                = new Apresentação.Impressão.Relatórios.Comissao.RelatorioResumo();
+            Apresentação.Impressão.Relatórios.Estoque.Saldo.RelatorioSaldo r
+                = new Impressão.Relatórios.Estoque.Saldo.RelatorioSaldo();
 
-            new Apresentação.Impressão.Relatórios.Comissao.ControladorImpressãoResumo().
-                PrepararImpressão(r, null, null);
+            new Apresentação.Impressão.Relatórios.Estoque.Saldo.ControleImpressãoSaldo().PrepararImpressão(r, listaSaldo.Itens);
 
             janela.Título = "Estoque";
             janela.Descrição = "Relatório de estoque";
             janela.InserirDocumento(r, "Estoque");
+
+            janela.Show();
         }
     }
 }

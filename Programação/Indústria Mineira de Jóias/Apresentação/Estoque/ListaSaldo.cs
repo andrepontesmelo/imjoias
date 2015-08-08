@@ -16,6 +16,8 @@ namespace Apresentação.Estoque
         public event EventHandler AoDuploClique;
         private ListViewColumnSorter lvwColumnSorter;
 
+        private List<Entidades.Estoque.Saldo> itens;
+
         struct ResultadoCarga
         {
             public ListViewItem[] ListaGrafica;
@@ -43,17 +45,17 @@ namespace Apresentação.Estoque
 
         private void bg_DoWork(object sender, DoWorkEventArgs e)
         {
-            List<Saldo> entidades = Entidades.Estoque.Saldo.Obter();
+            itens = Entidades.Estoque.Saldo.Obter();
             ResultadoCarga resultado = new ResultadoCarga();
 
-            resultado.ListaGrafica = new ListViewItem[entidades.Count];
+            resultado.ListaGrafica = new ListViewItem[itens.Count];
 
             ListViewGroup grupoDePeso = lst.Groups[0];
             ListViewGroup grupoDeReferencia = lst.Groups[1];
 
             int x = 0;
 
-            foreach (Saldo s in entidades)
+            foreach (Saldo s in itens)
             {
                 ListViewItem i;
 
@@ -76,7 +78,7 @@ namespace Apresentação.Estoque
                 resultado.TotalSaldoPeso += s.Peso * s.SaldoValor;
             }
 
-            resultado.TotalReferencias = entidades.Count;
+            resultado.TotalReferencias = itens.Count;
             resultado.TotalSaldoPeso = Math.Round(resultado.TotalSaldoPeso, 2);
             e.Result = resultado;
         }
@@ -118,5 +120,7 @@ namespace Apresentação.Estoque
         {
             lvwColumnSorter.OnClick((ListView)sender, e);
         }
+
+        public List<Saldo> Itens { get { return itens; } }
     }
 }
