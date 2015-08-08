@@ -575,13 +575,13 @@ namespace Apresentação.Atendimento.Clientes
 
             quadroDatasRelevantes.Visible = false;
 
+            ListaPessoaDataImportante[] itens = new ListaPessoaDataImportante[datas.Length];
+            int x = 0;
+            
             foreach (DataRelevante data in datas)
-            {
-                ListaPessoaDataImportante item = new ListaPessoaDataImportante(data);
-                listaDatasRelevantes.Itens.Add(item);
+                itens[x++] = new ListaPessoaDataImportante(data);
 
-                if (limite.HasValue && listaDatasRelevantes.Itens.Count > limite.Value) break;
-            }
+            listaDatasRelevantes.Itens.AddRange(itens);
             
             quadroDatasRelevantes.Visible = listaDatasRelevantes.Itens.Count > 0;
         }
