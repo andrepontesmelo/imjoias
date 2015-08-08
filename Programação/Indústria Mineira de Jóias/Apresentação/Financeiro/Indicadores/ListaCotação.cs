@@ -34,6 +34,8 @@ namespace Apresentação.Financeiro.Indicadores
         /// </summary>
         private bool desatualizado;
 
+        private ListViewColumnSorter ordenador;
+
         /// <summary>
         /// Constrói a lista de cotação.
         /// </summary>
@@ -41,10 +43,11 @@ namespace Apresentação.Financeiro.Indicadores
         {
             InitializeComponent();
 
-//            receptor = new ReceptorMensagens(new EventoObservação(AoObservarCotação), this);
-
             períodoInicial = DateTime.Now.Subtract(new TimeSpan(90, 0, 0, 0));
             períodoFinal   = DateTime.MaxValue;
+
+            ordenador = new ListViewColumnSorter();
+            lst.ListViewItemSorter = ordenador;
         }
 
         #region Propriedades
@@ -186,22 +189,6 @@ namespace Apresentação.Financeiro.Indicadores
                 return null;
         }
 
-        ///// <summary>
-        ///// Ocorre ao observar uma cotação.
-        ///// </summary>
-        //public void AoObservarCotação(ISujeito sujeito, int ação, object dados)
-        //{
-        //    ICotação cotação = (ICotação) sujeito;
-
-        //    switch ((AçãoCotação) ação)
-        //    {
-        //        case AçãoCotação.NovaCotação:
-        //            if (cotação.Entidade.Data >= períodoInicial && cotação.Entidade.Data <= períodoFinal)
-        //                AdicionarCotação(cotação.Entidade);
-        //            break;
-        //    }
-        //}
-
         /// <summary>
         /// Ocorre ao desenhar.
         /// </summary>
@@ -238,6 +225,11 @@ namespace Apresentação.Financeiro.Indicadores
                 UseWaitCursor = false;
                 desatualizado = false;
             }
+        }
+
+        private void lst_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            ordenador.OnClick(lst, e);
         }
     }
 }
