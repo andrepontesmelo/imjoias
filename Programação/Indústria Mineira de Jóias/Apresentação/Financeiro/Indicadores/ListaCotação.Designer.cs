@@ -29,22 +29,21 @@ namespace Apresentação.Financeiro.Indicadores
         private void InitializeComponent()
         {
             this.lst = new System.Windows.Forms.ListView();
-            this.colData = new System.Windows.Forms.ColumnHeader();
-            this.colValor = new System.Windows.Forms.ColumnHeader();
-            this.colFuncionário = new System.Windows.Forms.ColumnHeader();
+            this.colData = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colValor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colFuncionário = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lst
             // 
-            this.lst.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lst.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lst.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colData,
             this.colValor,
             this.colFuncionário});
             this.lst.FullRowSelect = true;
-            this.lst.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lst.Location = new System.Drawing.Point(5, 27);
             this.lst.MultiSelect = false;
             this.lst.Name = "lst";
@@ -52,6 +51,7 @@ namespace Apresentação.Financeiro.Indicadores
             this.lst.TabIndex = 2;
             this.lst.UseCompatibleStateImageBehavior = false;
             this.lst.View = System.Windows.Forms.View.Details;
+            this.lst.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lst_ColumnClick);
             // 
             // colData
             // 
@@ -69,10 +69,10 @@ namespace Apresentação.Financeiro.Indicadores
             this.colFuncionário.Text = "Funcionário";
             this.colFuncionário.Width = 128;
             // 
-            // ListaCotaçãoOuro
+            // ListaCotação
             // 
             this.Controls.Add(this.lst);
-            this.Name = "ListaCotaçãoOuro";
+            this.Name = "ListaCotação";
             this.Size = new System.Drawing.Size(351, 206);
             this.Título = "Lista de Cotação do Ouro";
             this.Controls.SetChildIndex(this.lst, 0);
