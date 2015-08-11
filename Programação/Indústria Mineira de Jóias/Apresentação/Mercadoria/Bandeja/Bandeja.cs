@@ -978,8 +978,6 @@ namespace Apresentação.Mercadoria.Bandeja
             if (recuperaçãoFotos != null)
                 recuperaçãoFotos.Adicionar(novoItemListView);
 
-			// novoItemListView.EnsureVisible();
-
 			return novoItemListView;
 		}
 
@@ -1266,6 +1264,7 @@ namespace Apresentação.Mercadoria.Bandeja
             
             item = ConstruirListView(saquinhoOriginal);
             lista.Items.Add(item);
+            item.EnsureVisible();
 
             item.Group = lista.Groups[saquinhoOriginal.Mercadoria.DePeso ? "peso" : "peça"];
 
