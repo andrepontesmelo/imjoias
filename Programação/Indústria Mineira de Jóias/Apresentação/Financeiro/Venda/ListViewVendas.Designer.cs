@@ -89,7 +89,7 @@
             // colData
             // 
             this.colData.Text = "Data";
-            this.colData.Width = 99;
+            this.colData.Width = 117;
             // 
             // colCódigo
             // 
