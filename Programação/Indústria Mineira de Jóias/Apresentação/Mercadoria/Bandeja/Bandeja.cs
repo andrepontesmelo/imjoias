@@ -19,8 +19,6 @@ namespace Apresentação.Mercadoria.Bandeja
     /// </summary>
 	public class Bandeja : System.Windows.Forms.UserControl, IEnumerable, IPósCargaSistema
 	{
-        private ListViewColumnSorter ordenador = new ListViewColumnSorter();
-
         private bool suspendeObtençãoDeÍcones = false;
 
         /// <summary>
@@ -439,8 +437,8 @@ namespace Apresentação.Mercadoria.Bandeja
             hashSaquinhoListViewItem = new Dictionary<ISaquinho, ListViewItem>();
             hashAgrupamento = new Dictionary<string, ISaquinho>(StringComparer.Ordinal);
 
-            lista.ListViewItemSorter = ordenador;
-        }
+            lista.ListViewItemSorter = new BandejaComparador(hashListViewItemSaquinho, lista);
+		}
 
         protected override void OnLoad(EventArgs e)
         {
@@ -1859,6 +1857,7 @@ namespace Apresentação.Mercadoria.Bandeja
             this.lista.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
             listViewGroup1,
             listViewGroup2});
+            this.lista.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lista.HideSelection = false;
             this.lista.LabelWrap = false;
             this.lista.LargeImageList = this.imagensGrandes;
@@ -1866,14 +1865,12 @@ namespace Apresentação.Mercadoria.Bandeja
             this.lista.Margin = new System.Windows.Forms.Padding(0);
             this.lista.Name = "lista";
             this.lista.ShowGroups = false;
-            this.lista.ShowItemToolTips = true;
             this.lista.Size = new System.Drawing.Size(717, 410);
             this.lista.SmallImageList = this.imagensPequenas;
             this.lista.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lista.TabIndex = 1;
             this.lista.UseCompatibleStateImageBehavior = false;
             this.lista.View = System.Windows.Forms.View.Details;
-            this.lista.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lista_ColumnClick);
             this.lista.ItemActivate += new System.EventHandler(this.lista_SelectedIndexChanged);
             this.lista.SelectedIndexChanged += new System.EventHandler(this.lista_SelectedIndexChanged);
             this.lista.DoubleClick += new System.EventHandler(this.lista_DoubleClick);
@@ -2348,11 +2345,6 @@ namespace Apresentação.Mercadoria.Bandeja
         private void mnuSelecionarTudo_Click(object sender, EventArgs e)
         {
             SelecionarTudo();
-        }
-
-        private void lista_ColumnClick(object sender, ColumnClickEventArgs e)
-        {
-            ordenador.OnClick(lista, e);
         }
     }
 }
