@@ -74,7 +74,24 @@ namespace Apresentação.Estoque
             Apresentação.Impressão.Relatórios.Estoque.ResumoSaldo.ResumoRelatorioSaldo r = 
                 new Impressão.Relatórios.Estoque.ResumoSaldo.ResumoRelatorioSaldo();
 
-            new Apresentação.Impressão.Relatórios.Estoque.ResumoSaldo.ControleImpressãoResumoSaldo().
+            new Apresentação.Impressão.Relatórios.Estoque.ResumoSaldo.ControleImpressãoFornecedor().
+                PrepararImpressão(r, listaSaldo.Itens);
+
+            janela.Título = "Resumo";
+            janela.Descrição = "Relatório de resumo de estoque";
+            janela.InserirDocumento(r, "Estoque");
+
+            janela.Show();
+        }
+
+        private void btnRelatórioFornecedor_Click(object sender, EventArgs e)
+        {
+            JanelaImpressão janela = new JanelaImpressão();
+
+            Apresentação.Impressão.Relatórios.Estoque.Fornecedor.ResumoFornecedor r =
+                new Impressão.Relatórios.Estoque.Fornecedor.ResumoFornecedor();
+
+            new Apresentação.Impressão.Relatórios.Estoque.Fornecedor.ControleImpressãoFornecedor().
                 PrepararImpressão(r, listaSaldo.Itens);
 
             janela.Título = "Resumo";
