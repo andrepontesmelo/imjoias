@@ -30,7 +30,7 @@
         {
             this.títuloBaseInferior1 = new Apresentação.Formulários.TítuloBaseInferior();
             this.quadro1 = new Apresentação.Formulários.Quadro();
-            this.btnRelatórios = new Apresentação.Formulários.Opção();
+            this.btnRelatórioResumo = new Apresentação.Formulários.Opção();
             this.quadro2 = new Apresentação.Formulários.Quadro();
             this.opçãoZerarEstoque = new Apresentação.Formulários.Opção();
             this.btnEntradas = new Apresentação.Formulários.Opção();
@@ -73,7 +73,7 @@
             this.quadro1.bInfEsqArredondada = true;
             this.quadro1.bSupDirArredondada = true;
             this.quadro1.bSupEsqArredondada = true;
-            this.quadro1.Controls.Add(this.btnRelatórios);
+            this.quadro1.Controls.Add(this.btnRelatórioResumo);
             this.quadro1.Cor = System.Drawing.Color.Black;
             this.quadro1.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadro1.LetraTítulo = System.Drawing.Color.White;
@@ -85,19 +85,19 @@
             this.quadro1.Tamanho = 30;
             this.quadro1.Título = "Relatórios";
             // 
-            // btnRelatórios
+            // btnRelatórioResumo
             // 
-            this.btnRelatórios.BackColor = System.Drawing.Color.Transparent;
-            this.btnRelatórios.Descrição = "Relatórios";
-            this.btnRelatórios.Imagem = global::Apresentação.Resource.relatório;
-            this.btnRelatórios.Location = new System.Drawing.Point(10, 36);
-            this.btnRelatórios.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.btnRelatórios.MaximumSize = new System.Drawing.Size(150, 100);
-            this.btnRelatórios.MinimumSize = new System.Drawing.Size(150, 16);
-            this.btnRelatórios.Name = "btnRelatórios";
-            this.btnRelatórios.Size = new System.Drawing.Size(150, 16);
-            this.btnRelatórios.TabIndex = 7;
-            this.btnRelatórios.Click += new System.EventHandler(this.btnRelatórios_Click);
+            this.btnRelatórioResumo.BackColor = System.Drawing.Color.Transparent;
+            this.btnRelatórioResumo.Descrição = "Resumo";
+            this.btnRelatórioResumo.Imagem = global::Apresentação.Resource.relatório;
+            this.btnRelatórioResumo.Location = new System.Drawing.Point(10, 36);
+            this.btnRelatórioResumo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.btnRelatórioResumo.MaximumSize = new System.Drawing.Size(150, 100);
+            this.btnRelatórioResumo.MinimumSize = new System.Drawing.Size(150, 16);
+            this.btnRelatórioResumo.Name = "btnRelatórioResumo";
+            this.btnRelatórioResumo.Size = new System.Drawing.Size(150, 16);
+            this.btnRelatórioResumo.TabIndex = 7;
+            this.btnRelatórioResumo.Click += new System.EventHandler(this.btnRelatórioResumo_Click);
             // 
             // quadro2
             // 
@@ -241,7 +241,7 @@
         private Formulários.Quadro quadro2;
         private Formulários.Opção opçãoZerarEstoque;
         private Formulários.Opção btnEntradas;
-        private Formulários.Opção btnRelatórios;
+        private Formulários.Opção btnRelatórioResumo;
         private Formulários.Quadro quadro4;
         private ListaSaldo listaSaldo;
     }
