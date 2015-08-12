@@ -91,6 +91,11 @@ namespace Apresentação.Estoque
             Apresentação.Impressão.Relatórios.Estoque.Fornecedor.ResumoFornecedor r =
                 new Impressão.Relatórios.Estoque.Fornecedor.ResumoFornecedor();
 
+            //r.ReportDefinition.Sections[2].SectionFormat.EnableSuppress = true;
+            //r.ReportDefinition.Sections[3].SectionFormat.EnableSuppress = true;
+            //r.ReportDefinition.Sections[5].SectionFormat.EnableSuppress = true;
+            //r.ReportDefinition.Sections[6].SectionFormat.EnableSuppress = true;
+            //r.ReportDefinition.Sections[7].SectionFormat.EnableSuppress = true;
             new Apresentação.Impressão.Relatórios.Estoque.Fornecedor.ControleImpressãoFornecedor().
                 PrepararImpressão(r, listaSaldo.Itens);
 
