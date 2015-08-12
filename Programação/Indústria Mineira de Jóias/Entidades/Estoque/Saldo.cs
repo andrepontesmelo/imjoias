@@ -85,5 +85,8 @@ namespace Entidades.Estoque
             return Mapear<Saldo>("select e.*, m.depeso, f.nome as fornecedornome, v.referenciafornecedor as fornecedorreferencia from estoque_saldo e join mercadoria m on e.referencia=m.referencia " +
                 " join vinculomercadoriafornecedor v on e.referencia=v.mercadoria join fornecedor f on v.fornecedor=f.codigo ");
         }
+
+        public double ProdudoPesoSaldo
+        { get { return peso * saldo;  } }
     }
 }
