@@ -1371,20 +1371,20 @@
       <DependentUpon>RelatorioEntrada.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Impressão\Relatórios\Estoque\Saldo\ControleImpressãoSaldo.cs" />
-    <Compile Include="Impressão\Relatórios\Estoque\Saldo\DataSetSaldo.cs">
-      <DependentUpon>DataSetSaldo.xsd</DependentUpon>
+    <Compile Include="Impressão\Relatórios\Estoque\ResumoSaldo\ControleImpressãoResumoSaldo.cs" />
+    <Compile Include="Impressão\Relatórios\Estoque\ResumoSaldo\DataSetResumoSaldo.cs">
+      <DependentUpon>DataSetResumoSaldo.xsd</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Impressão\Relatórios\Estoque\Saldo\DataSetSaldo.Designer.cs">
+    <Compile Include="Impressão\Relatórios\Estoque\ResumoSaldo\DataSetResumoSaldo.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DataSetSaldo.xsd</DependentUpon>
+      <DependentUpon>DataSetResumoSaldo.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Impressão\Relatórios\Estoque\Saldo\RelatorioSaldo.cs">
+    <Compile Include="Impressão\Relatórios\Estoque\ResumoSaldo\ResumoRelatorioSaldo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>RelatorioSaldo.rpt</DependentUpon>
+      <DependentUpon>ResumoRelatorioSaldo.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Relatórios\Layout\Identificação.cs" />
@@ -3149,9 +3149,9 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RelatorioEntrada.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Impressão\Relatórios\Estoque\Saldo\RelatorioSaldo.rpt">
+    <EmbeddedResource Include="Impressão\Relatórios\Estoque\ResumoSaldo\ResumoRelatorioSaldo.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RelatorioSaldo.cs</LastGenOutput>
+      <LastGenOutput>ResumoRelatorioSaldo.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Impressão\Relatórios\Mercadoria\Relatório.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -3564,16 +3564,16 @@
     <None Include="Impressão\Relatórios\Estoque\Entrada\DataSetEntrada.xss">
       <DependentUpon>DataSetEntrada.xsd</DependentUpon>
     </None>
-    <None Include="Impressão\Relatórios\Estoque\Saldo\DataSetSaldo.xsc">
-      <DependentUpon>DataSetSaldo.xsd</DependentUpon>
+    <None Include="Impressão\Relatórios\Estoque\ResumoSaldo\DataSetResumoSaldo.xsc">
+      <DependentUpon>DataSetResumoSaldo.xsd</DependentUpon>
     </None>
-    <None Include="Impressão\Relatórios\Estoque\Saldo\DataSetSaldo.xsd">
+    <None Include="Impressão\Relatórios\Estoque\ResumoSaldo\DataSetResumoSaldo.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataSetSaldo.Designer.cs</LastGenOutput>
+      <LastGenOutput>DataSetResumoSaldo.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Impressão\Relatórios\Estoque\Saldo\DataSetSaldo.xss">
-      <DependentUpon>DataSetSaldo.xsd</DependentUpon>
+    <None Include="Impressão\Relatórios\Estoque\ResumoSaldo\DataSetResumoSaldo.xss">
+      <DependentUpon>DataSetResumoSaldo.xsd</DependentUpon>
     </None>
     <None Include="Impressão\Relatórios\Pedido\MercadoriaEmFaltaCliente\DataSetMercadoriaEmFaltaCliente.xsc">
       <DependentUpon>DataSetMercadoriaEmFaltaCliente.xsd</DependentUpon>

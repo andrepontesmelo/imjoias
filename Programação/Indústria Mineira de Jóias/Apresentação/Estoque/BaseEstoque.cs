@@ -67,17 +67,18 @@ namespace Apresentação.Estoque
             SubstituirBase(novaBase);
         }
 
-        private void btnRelatórios_Click(object sender, EventArgs e)
+        private void btnRelatórioResumo_Click(object sender, EventArgs e)
         {
             JanelaImpressão janela = new JanelaImpressão();
 
-            Apresentação.Impressão.Relatórios.Estoque.Saldo.RelatorioSaldo r
-                = new Impressão.Relatórios.Estoque.Saldo.RelatorioSaldo();
+            Apresentação.Impressão.Relatórios.Estoque.ResumoSaldo.ResumoRelatorioSaldo r = 
+                new Impressão.Relatórios.Estoque.ResumoSaldo.ResumoRelatorioSaldo();
 
-            new Apresentação.Impressão.Relatórios.Estoque.Saldo.ControleImpressãoSaldo().PrepararImpressão(r, listaSaldo.Itens);
+            new Apresentação.Impressão.Relatórios.Estoque.ResumoSaldo.ControleImpressãoResumoSaldo().
+                PrepararImpressão(r, listaSaldo.Itens);
 
-            janela.Título = "Estoque";
-            janela.Descrição = "Relatório de estoque";
+            janela.Título = "Resumo";
+            janela.Descrição = "Relatório de resumo de estoque";
             janela.InserirDocumento(r, "Estoque");
 
             janela.Show();
