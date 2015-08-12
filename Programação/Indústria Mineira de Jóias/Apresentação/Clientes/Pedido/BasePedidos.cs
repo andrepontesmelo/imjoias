@@ -130,26 +130,11 @@ namespace Apresentação.Atendimento.Clientes.Pedido
 
             imprimirConsertos = !mostrarApenasPedidos;
 
-            //using (Apresentação.Formulários.JanelaImpressão janela = new Apresentação.Formulários.JanelaImpressão())
-            //{
-            //    UseWaitCursor = true;
-            //    AguardeDB.Mostrar();
+            ControleImpressãoPedido controle = new ControleImpressãoPedido();
+            Apresentação.Impressão.Relatórios.Pedido.Relatório relatório = new Apresentação.Impressão.Relatórios.Pedido.Relatório();
+            List<Entidades.PedidoConserto.Pedido> pedidos = listaPedidos.ObterPedidos();
 
-                ControleImpressãoPedido controle = new ControleImpressãoPedido();
-                Apresentação.Impressão.Relatórios.Pedido.Relatório relatório = new Apresentação.Impressão.Relatórios.Pedido.Relatório();
-                List<Entidades.PedidoConserto.Pedido> pedidos = listaPedidos.ObterPedidos();
-
-                controle.PrepararImpressão(relatório, pedidos, dataInício, dataFim, imprimirConsertos, optPrevisão.Checked);
-            //    janela.InserirDocumento(relatório, "Impressão");
-            //    janela.Título = "Impressão de pedidos/consertos";
-            //    janela.Descrição = "";
-
-            //    AguardeDB.Fechar();
-            //    UseWaitCursor = false;
-
-            //    janela.ShowDialog(this);
-            //}
-
+            controle.PrepararImpressão(relatório, pedidos, dataInício, dataFim, imprimirConsertos, optPrevisão.Checked);
 
             PrintDialog printDialog = new PrintDialog();
             AguardeDB.Fechar();
@@ -157,19 +142,8 @@ namespace Apresentação.Atendimento.Clientes.Pedido
 
             if (resultado == DialogResult.OK)
             {
-                try
-                {
-                    relatório.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
-                    relatório.PrintToPrinter(printDialog.PrinterSettings.Copies, false, printDialog.PrinterSettings.FromPage, printDialog.PrinterSettings.ToPage);
-                }
-                catch (Exception err)
-                {
-                    MessageBox.Show("Ocorreu um erro na impressão. A impressora está ligada? \n" + err.Message, "Erro na impressão", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                }
-
+                relatório.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
+                relatório.PrintToPrinter(printDialog.PrinterSettings.Copies, false, printDialog.PrinterSettings.FromPage, printDialog.PrinterSettings.ToPage);
             } 
         }
 
@@ -294,48 +268,24 @@ namespace Apresentação.Atendimento.Clientes.Pedido
 
         private void opçãoImprimirResumo_Click(object sender, EventArgs e)
         {
-            //using (Apresentação.Formulários.JanelaImpressão janela = new Apresentação.Formulários.JanelaImpressão())
-            //{
-            //    UseWaitCursor = true;
             AguardeDB.Mostrar();
 
-            //ControleImpressãoPedidosParaFornecedores controle = new ControleImpressãoPedidosParaFornecedores();
             Apresentação.Impressão.Relatórios.Pedido.PedidosParaFornecedores.Relatório relatório
                  = new Apresentação.Impressão.Relatórios.Pedido.PedidosParaFornecedores.Relatório();
 
             List<Entidades.PedidoConserto.Pedido> pedidos = listaPedidos.ObterPedidos();
 
             ControleImpressãoPedidosParaFornecedores.PrepararImpressão(relatório, pedidos);
-            //    janela.InserirDocumento(relatório, "Impressão");
-            //    janela.Título = "Impressão de pedidos/consertos";
-            //    janela.Descrição = "";
-
-            //    AguardeDB.Fechar();
-            //    UseWaitCursor = false;
-
-            //    janela.ShowDialog(this);
-            //}
 
             PrintDialog printDialog = new PrintDialog();
             AguardeDB.Fechar();
+
             DialogResult resultado = printDialog.ShowDialog(this);
 
             if (resultado == DialogResult.OK)
             {
-                try
-                {
-                    AguardeDB.Mostrar();
-                    relatório.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
-                    relatório.PrintToPrinter(printDialog.PrinterSettings.Copies, false, printDialog.PrinterSettings.FromPage, printDialog.PrinterSettings.ToPage);
-                }
-                catch (Exception err)
-                {
-                    MessageBox.Show("Ocorreu um erro na impressão. A impressora está ligada? \n" + err.Message, "Erro na impressão", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    AguardeDB.Fechar();
-                }
+                relatório.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
+                relatório.PrintToPrinter(printDialog.PrinterSettings.Copies, false, printDialog.PrinterSettings.FromPage, printDialog.PrinterSettings.ToPage);
             }
         }
     }

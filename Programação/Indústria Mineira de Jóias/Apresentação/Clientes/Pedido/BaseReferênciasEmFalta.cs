@@ -83,7 +83,6 @@ namespace Apresentação.Atendimento.Clientes.Pedido
         {
             AguardeDB.Mostrar();
 
-            //ControleImpressãoMercadoriaEmFalta controle = new ControleImpressãoMercadoriaEmFalta();
             Apresentação.Impressão.Relatórios.Pedido.MercadoriaEmFalta.Relatório relatório = new
                 Apresentação.Impressão.Relatórios.Pedido.MercadoriaEmFalta.Relatório();
 
@@ -95,21 +94,8 @@ namespace Apresentação.Atendimento.Clientes.Pedido
 
             if (resultado == DialogResult.OK)
             {
-                try
-                {
-                    AguardeDB.Mostrar();
-                    relatório.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
-                    relatório.PrintToPrinter(printDialog.PrinterSettings.Copies, false, printDialog.PrinterSettings.FromPage, printDialog.PrinterSettings.ToPage);
-                }
-                catch (Exception err)
-                {
-                    MessageBox.Show("Ocorreu um erro na impressão. A impressora está ligada? \n" + err.Message, "Erro na impressão", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    AguardeDB.Fechar();
-                }
-
+                relatório.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
+                relatório.PrintToPrinter(printDialog.PrinterSettings.Copies, false, printDialog.PrinterSettings.FromPage, printDialog.PrinterSettings.ToPage);
             } 
         }
     }

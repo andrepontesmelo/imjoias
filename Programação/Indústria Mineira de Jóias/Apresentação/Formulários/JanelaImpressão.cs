@@ -112,14 +112,7 @@ namespace Apresentação.Formulários
                     {
                         documento.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
 
-                        try
-                        {
-                            documento.PrintToPrinter(printDialog.PrinterSettings.Copies, false, printDialog.PrinterSettings.FromPage, printDialog.PrinterSettings.ToPage);
-                        }
-                        catch (Exception err)
-                        {
-                            MessageBox.Show("Ocorreu um erro na impressão. A impressora está ligada? \n" + err.Message, "Erro na impressão", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+                        documento.PrintToPrinter(printDialog.PrinterSettings.Copies, false, printDialog.PrinterSettings.FromPage, printDialog.PrinterSettings.ToPage);
                         
                         janela.Passo();
                     }

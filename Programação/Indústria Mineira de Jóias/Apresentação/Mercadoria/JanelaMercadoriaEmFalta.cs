@@ -100,19 +100,8 @@ namespace Apresentação.Mercadoria
 
             if (resultado == DialogResult.OK)
             {
-                try
-                {
-                    relatório.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
-                    relatório.PrintToPrinter(printDialog.PrinterSettings.Copies, false, printDialog.PrinterSettings.FromPage, printDialog.PrinterSettings.ToPage);
-                }
-                catch (Exception err)
-                {
-                    MessageBox.Show("Ocorreu um erro na impressão. A impressora está ligada? \n" + err.Message, "Erro na impressão", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                }
-
+                relatório.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
+                relatório.PrintToPrinter(printDialog.PrinterSettings.Copies, false, printDialog.PrinterSettings.FromPage, printDialog.PrinterSettings.ToPage);
             } 
 
         }
