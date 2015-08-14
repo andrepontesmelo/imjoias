@@ -279,6 +279,12 @@
     </Compile>
     <Compile Include="Clientes\Pedido\Parâmetros.cs" />
     <Compile Include="ColetorFornecedor.cs" />
+    <Compile Include="Estoque\JanelaOpçõesImpressão.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Estoque\JanelaOpçõesImpressão.Designer.cs">
+      <DependentUpon>JanelaOpçõesImpressão.cs</DependentUpon>
+    </Compile>
     <Compile Include="Financeiro\Comissões\BaseVendaSemComissão.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -2527,6 +2533,9 @@
     <EmbeddedResource Include="Clientes\Pedido\ListaPedidosSimples.resx">
       <DependentUpon>ListaPedidosSimples.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Estoque\JanelaOpçõesImpressão.resx">
+      <DependentUpon>JanelaOpçõesImpressão.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Financeiro\Comissões\BaseVendaSemComissão.resx">
       <DependentUpon>BaseVendaSemComissão.cs</DependentUpon>
