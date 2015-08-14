@@ -9,6 +9,10 @@ using System.Windows.Forms;
 using Apresentação.Formulários;
 using Entidades.Estoque;
 using Apresentação.Estoque.Extrato;
+using CrystalDecisions.CrystalReports.Engine;
+using Apresentação.Impressão.Relatórios.Estoque.Fornecedor;
+using Apresentação.Impressão.Relatórios.Estoque.Resumo;
+using Apresentação.Impressão.Relatórios.Estoque.Referência;
 
 namespace Apresentação.Estoque
 {
@@ -69,44 +73,38 @@ namespace Apresentação.Estoque
 
         private void btnRelatórioResumo_Click(object sender, EventArgs e)
         {
-            List<Saldo> itens = ObterItensMostrandoJanelaImpressão();
+            List<Saldo> itens = ObterItensMostrandoJanelaImpressão(Saldo.Ordem.FornecedorReferênciaPeso);
 
             if (itens == null)
                 return;
 
             JanelaImpressão janela = new JanelaImpressão();
 
-            Apresentação.Impressão.Relatórios.Estoque.ResumoSaldo.ResumoRelatorioSaldo r = 
-                new Impressão.Relatórios.Estoque.ResumoSaldo.ResumoRelatorioSaldo();
+            RelatórioResumo r = new RelatórioResumo();
 
-            new Apresentação.Impressão.Relatórios.Estoque.ResumoSaldo.ControleImpressãoFornecedor().
-                PrepararImpressão(r, itens);
+            new ControleImpressãoResumo().PrepararImpressão(r, itens);
 
-            janela.Título = "Resumo";
-            janela.Descrição = "Relatório de resumo de estoque";
-            janela.InserirDocumento(r, "Estoque");
-
-            janela.Show();
+            AbrirJanela(janela, r);
         }
-
 
         private void btnRelatórioFornecedor_Click(object sender, EventArgs e)
         {
-            List<Saldo> itens = ObterItensMostrandoJanelaImpressão();
+            List<Saldo> itens = ObterItensMostrandoJanelaImpressão(Saldo.Ordem.FornecedorReferênciaPeso);
 
             if (itens == null)
                 return;
 
             JanelaImpressão janela = new JanelaImpressão();
 
-            Apresentação.Impressão.Relatórios.Estoque.Fornecedor.ResumoFornecedor r =
-                new Impressão.Relatórios.Estoque.Fornecedor.ResumoFornecedor();
+            RelatórioFornecedor r = new RelatórioFornecedor();
 
+            new ControleImpressãoResumo().PrepararImpressão(r, itens);
 
-            
-            new Apresentação.Impressão.Relatórios.Estoque.Fornecedor.ControleImpressãoFornecedor().
-                PrepararImpressão(r, itens);
+            AbrirJanela(janela, r);
+        }
 
+        private static void AbrirJanela(JanelaImpressão janela, ReportClass r)
+        {
             janela.Título = "Resumo";
             janela.Descrição = "Relatório de resumo de estoque";
             janela.InserirDocumento(r, "Estoque");
@@ -114,7 +112,7 @@ namespace Apresentação.Estoque
             janela.Show();
         }
 
-        private List<Saldo> ObterItensMostrandoJanelaImpressão()
+        private List<Saldo> ObterItensMostrandoJanelaImpressão(Saldo.Ordem ordem)
         {
             JanelaOpçõesImpressão opções = new JanelaOpçõesImpressão();
             DialogResult resultado = opções.ShowDialog(this);
@@ -122,8 +120,24 @@ namespace Apresentação.Estoque
             if (resultado == DialogResult.Cancel)
                 return null;
 
-            List<Saldo> itens = Saldo.Obter(opções.IncluirPeso, opções.IncluirReferência);
+            List<Saldo> itens = Saldo.Obter(opções.IncluirPeso, opções.IncluirReferência, ordem);
             return itens;
+        }
+
+        private void btnRelatórioReferência_Click(object sender, EventArgs e)
+        {
+            List<Saldo> itens = ObterItensMostrandoJanelaImpressão(Saldo.Ordem.ReferênciaPeso);
+
+            if (itens == null)
+                return;
+
+            JanelaImpressão janela = new JanelaImpressão();
+
+            RelatórioReferência r = new RelatórioReferência();
+
+            new ControleImpressãoReferência().PrepararImpressão(r, itens);
+
+            AbrirJanela(janela, r);
         }
     }
 }

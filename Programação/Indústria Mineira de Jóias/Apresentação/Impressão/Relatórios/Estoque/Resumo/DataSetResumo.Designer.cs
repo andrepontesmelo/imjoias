@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace Apresentação.Impressão.Relatórios.Estoque.ResumoSaldo {
+namespace Apresentação.Impressão.Relatórios.Estoque.Resumo {
     
     
     /// <summary>
@@ -20,11 +20,9 @@ namespace Apresentação.Impressão.Relatórios.Estoque.ResumoSaldo {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("DataSetSaldo")]
+    [global::System.Xml.Serialization.XmlRootAttribute("DataSet")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class DataSetResumoSaldo : global::System.Data.DataSet {
-        
-        private InformaçõesDataTable tableInformações;
+    public partial class DataSetResumo : global::System.Data.DataSet {
         
         private ItensDataTable tableItens;
         
@@ -32,7 +30,7 @@ namespace Apresentação.Impressão.Relatórios.Estoque.ResumoSaldo {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public DataSetResumoSaldo() {
+        public DataSetResumo() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -43,7 +41,7 @@ namespace Apresentação.Impressão.Relatórios.Estoque.ResumoSaldo {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected DataSetResumoSaldo(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected DataSetResumo(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -56,9 +54,6 @@ namespace Apresentação.Impressão.Relatórios.Estoque.ResumoSaldo {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["Informações"] != null)) {
-                    base.Tables.Add(new InformaçõesDataTable(ds.Tables["Informações"]));
-                }
                 if ((ds.Tables["Itens"] != null)) {
                     base.Tables.Add(new ItensDataTable(ds.Tables["Itens"]));
                 }
@@ -78,16 +73,6 @@ namespace Apresentação.Impressão.Relatórios.Estoque.ResumoSaldo {
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
             base.Tables.CollectionChanged += schemaChangedHandler;
             this.Relations.CollectionChanged += schemaChangedHandler;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public InformaçõesDataTable Informações {
-            get {
-                return this.tableInformações;
-            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -142,7 +127,7 @@ namespace Apresentação.Impressão.Relatórios.Estoque.ResumoSaldo {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            DataSetResumoSaldo cln = ((DataSetResumoSaldo)(base.Clone()));
+            DataSetResumo cln = ((DataSetResumo)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -167,9 +152,6 @@ namespace Apresentação.Impressão.Relatórios.Estoque.ResumoSaldo {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["Informações"] != null)) {
-                    base.Tables.Add(new InformaçõesDataTable(ds.Tables["Informações"]));
-                }
                 if ((ds.Tables["Itens"] != null)) {
                     base.Tables.Add(new ItensDataTable(ds.Tables["Itens"]));
                 }
@@ -206,12 +188,6 @@ namespace Apresentação.Impressão.Relatórios.Estoque.ResumoSaldo {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableInformações = ((InformaçõesDataTable)(base.Tables["Informações"]));
-            if ((initTable == true)) {
-                if ((this.tableInformações != null)) {
-                    this.tableInformações.InitVars();
-                }
-            }
             this.tableItens = ((ItensDataTable)(base.Tables["Itens"]));
             if ((initTable == true)) {
                 if ((this.tableItens != null)) {
@@ -223,21 +199,13 @@ namespace Apresentação.Impressão.Relatórios.Estoque.ResumoSaldo {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "DataSetSaldo";
+            this.DataSetName = "DataSet";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/DataSetSaldo.xsd";
+            this.Namespace = "http://tempuri.org/DataSet.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableInformações = new InformaçõesDataTable();
-            base.Tables.Add(this.tableInformações);
             this.tableItens = new ItensDataTable();
             base.Tables.Add(this.tableItens);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeInformações() {
-            return false;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -257,7 +225,7 @@ namespace Apresentação.Impressão.Relatórios.Estoque.ResumoSaldo {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            DataSetResumoSaldo ds = new DataSetResumoSaldo();
+            DataSetResumo ds = new DataSetResumo();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -302,243 +270,7 @@ namespace Apresentação.Impressão.Relatórios.Estoque.ResumoSaldo {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void InformaçõesRowChangeEventHandler(object sender, InformaçõesRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void ItensRowChangeEventHandler(object sender, ItensRowChangeEvent e);
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class InformaçõesDataTable : global::System.Data.TypedTableBase<InformaçõesRow> {
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public InformaçõesDataTable() {
-                this.TableName = "Informações";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal InformaçõesDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected InformaçõesDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public InformaçõesRow this[int index] {
-                get {
-                    return ((InformaçõesRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event InformaçõesRowChangeEventHandler InformaçõesRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event InformaçõesRowChangeEventHandler InformaçõesRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event InformaçõesRowChangeEventHandler InformaçõesRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event InformaçõesRowChangeEventHandler InformaçõesRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddInformaçõesRow(InformaçõesRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public InformaçõesRow AddInformaçõesRow() {
-                InformaçõesRow rowInformaçõesRow = ((InformaçõesRow)(this.NewRow()));
-                object[] columnValuesArray = new object[0];
-                rowInformaçõesRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowInformaçõesRow);
-                return rowInformaçõesRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                InformaçõesDataTable cln = ((InformaçõesDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new InformaçõesDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal void InitVars() {
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            private void InitClass() {
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public InformaçõesRow NewInformaçõesRow() {
-                return ((InformaçõesRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new InformaçõesRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(InformaçõesRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.InformaçõesRowChanged != null)) {
-                    this.InformaçõesRowChanged(this, new InformaçõesRowChangeEvent(((InformaçõesRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.InformaçõesRowChanging != null)) {
-                    this.InformaçõesRowChanging(this, new InformaçõesRowChangeEvent(((InformaçõesRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.InformaçõesRowDeleted != null)) {
-                    this.InformaçõesRowDeleted(this, new InformaçõesRowChangeEvent(((InformaçõesRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.InformaçõesRowDeleting != null)) {
-                    this.InformaçõesRowDeleting(this, new InformaçõesRowChangeEvent(((InformaçõesRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveInformaçõesRow(InformaçõesRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                DataSetResumoSaldo ds = new DataSetResumoSaldo();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "InformaçõesDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -707,7 +439,7 @@ namespace Apresentação.Impressão.Relatórios.Estoque.ResumoSaldo {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ItensRow AddItensRow(string referência, decimal peso, decimal entrada, decimal venda, decimal devolução, decimal saldo, bool depeso, string fornecedor, string reffornecedor) {
+            public ItensRow AddItensRow(string referência, double peso, double entrada, double venda, double devolução, double saldo, bool depeso, string fornecedor, string reffornecedor) {
                 ItensRow rowItensRow = ((ItensRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         referência,
@@ -757,15 +489,15 @@ namespace Apresentação.Impressão.Relatórios.Estoque.ResumoSaldo {
             private void InitClass() {
                 this.columnreferência = new global::System.Data.DataColumn("referência", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnreferência);
-                this.columnpeso = new global::System.Data.DataColumn("peso", typeof(decimal), null, global::System.Data.MappingType.Element);
+                this.columnpeso = new global::System.Data.DataColumn("peso", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnpeso);
-                this.columnentrada = new global::System.Data.DataColumn("entrada", typeof(decimal), null, global::System.Data.MappingType.Element);
+                this.columnentrada = new global::System.Data.DataColumn("entrada", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnentrada);
-                this.columnvenda = new global::System.Data.DataColumn("venda", typeof(decimal), null, global::System.Data.MappingType.Element);
+                this.columnvenda = new global::System.Data.DataColumn("venda", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnvenda);
-                this.columndevolução = new global::System.Data.DataColumn("devolução", typeof(decimal), null, global::System.Data.MappingType.Element);
+                this.columndevolução = new global::System.Data.DataColumn("devolução", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndevolução);
-                this.columnsaldo = new global::System.Data.DataColumn("saldo", typeof(decimal), null, global::System.Data.MappingType.Element);
+                this.columnsaldo = new global::System.Data.DataColumn("saldo", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnsaldo);
                 this.columndepeso = new global::System.Data.DataColumn("depeso", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndepeso);
@@ -840,7 +572,7 @@ namespace Apresentação.Impressão.Relatórios.Estoque.ResumoSaldo {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                DataSetResumoSaldo ds = new DataSetResumoSaldo();
+                DataSetResumo ds = new DataSetResumo();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -902,21 +634,6 @@ namespace Apresentação.Impressão.Relatórios.Estoque.ResumoSaldo {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class InformaçõesRow : global::System.Data.DataRow {
-            
-            private InformaçõesDataTable tableInformações;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal InformaçõesRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableInformações = ((InformaçõesDataTable)(this.Table));
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
         public partial class ItensRow : global::System.Data.DataRow {
             
             private ItensDataTable tableItens;
@@ -946,10 +663,10 @@ namespace Apresentação.Impressão.Relatórios.Estoque.ResumoSaldo {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal peso {
+            public double peso {
                 get {
                     try {
-                        return ((decimal)(this[this.tableItens.pesoColumn]));
+                        return ((double)(this[this.tableItens.pesoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'peso\' in table \'Itens\' is DBNull.", e);
@@ -962,10 +679,10 @@ namespace Apresentação.Impressão.Relatórios.Estoque.ResumoSaldo {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal entrada {
+            public double entrada {
                 get {
                     try {
-                        return ((decimal)(this[this.tableItens.entradaColumn]));
+                        return ((double)(this[this.tableItens.entradaColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'entrada\' in table \'Itens\' is DBNull.", e);
@@ -978,10 +695,10 @@ namespace Apresentação.Impressão.Relatórios.Estoque.ResumoSaldo {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal venda {
+            public double venda {
                 get {
                     try {
-                        return ((decimal)(this[this.tableItens.vendaColumn]));
+                        return ((double)(this[this.tableItens.vendaColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'venda\' in table \'Itens\' is DBNull.", e);
@@ -994,10 +711,10 @@ namespace Apresentação.Impressão.Relatórios.Estoque.ResumoSaldo {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal devolução {
+            public double devolução {
                 get {
                     try {
-                        return ((decimal)(this[this.tableItens.devoluçãoColumn]));
+                        return ((double)(this[this.tableItens.devoluçãoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'devolução\' in table \'Itens\' is DBNull.", e);
@@ -1010,10 +727,10 @@ namespace Apresentação.Impressão.Relatórios.Estoque.ResumoSaldo {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal saldo {
+            public double saldo {
                 get {
                     try {
-                        return ((decimal)(this[this.tableItens.saldoColumn]));
+                        return ((double)(this[this.tableItens.saldoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'saldo\' in table \'Itens\' is DBNull.", e);
@@ -1178,40 +895,6 @@ namespace Apresentação.Impressão.Relatórios.Estoque.ResumoSaldo {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetreffornecedorNull() {
                 this[this.tableItens.reffornecedorColumn] = global::System.Convert.DBNull;
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class InformaçõesRowChangeEvent : global::System.EventArgs {
-            
-            private InformaçõesRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public InformaçõesRowChangeEvent(InformaçõesRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public InformaçõesRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
             }
         }
         

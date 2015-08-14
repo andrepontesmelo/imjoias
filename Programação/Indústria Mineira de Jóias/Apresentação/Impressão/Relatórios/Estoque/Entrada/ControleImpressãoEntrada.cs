@@ -19,8 +19,6 @@ namespace Apresentação.Impressão.Relatórios.Entrada
             Entidades.Estoque.Entrada relacionamento)
         {
             base.MapearItem(linha, s, relacionamento);
-
-            //linha["preço"] = s.Mercadoria.CalcularPreço(relacionamento.Cotação).Valor;
         }
     }
 }
