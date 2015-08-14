@@ -38,8 +38,8 @@ namespace Apresentação.Impressão.Relatórios.Estoque.ResumoSaldo
 
             linha["peso"] = s.Peso;
             linha["depeso"] = s.Depeso;
-            linha["fornecedor"] = s.FornecedorNome;
-            linha["reffornecedor"] = s.FornecedorReferência;
+            linha["fornecedor"] = s.FornecedorNome.Trim();
+            linha["reffornecedor"] = s.FornecedorReferência.Trim();
         }
 
         public virtual void PrepararImpressão(ReportClass relatório, List<Entidades.Estoque.Saldo> itens)
