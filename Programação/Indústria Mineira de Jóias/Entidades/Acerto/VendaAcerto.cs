@@ -25,7 +25,6 @@ namespace Entidades.Acerto
 
         public VendaAcerto()
         {
-
         }
 
         /// <summary>

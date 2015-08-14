@@ -124,30 +124,6 @@ namespace Entidades.Mercadoria
                 lista.Add(m);
             }
 
-            //return Mapear<MercadoriaEmFalta>(
-            //" select pedido, dataRecepcao, c.referencia, clienteNome, qtdpedido, qtdsaidamenosretorno - sum(quantidade) as qtdconsignado from  " + 
-            //" ( select pedido, dataRecepcao, b.referencia, clienteNome, qtdpedido, qtdsaida - sum(quantidade) as qtdsaidamenosretorno  from " + 
-            //" ( select pedido, dataRecepcao, mercadoria as referencia, clienteNome, qtdpedido, sum(quantidade) as qtdsaida from  ( " +
-            //" select pedido.codigo as pedido, pedido.dataRecepcao, pedidoitem.mercadoria, pessoa.nome as clienteNome, sum(pedidoitem.quantidade) as qtdpedido from " +
-            //" pedido, pedidoitem, pessoa where pedido.codigo=pedidoitem.pedido " + 
-            //" and pessoa.codigo=pedido.cliente " +
-            //" and tipo = 'E'  " +
-            //" and pedidoitem.mercadoria in (select referencia from saidaitem, saida, acertoconsignado where  " +
-            //" saida.codigo=saidaitem.saida and saida.acerto=acertoconsignado.codigo and pessoa= " + DbTransformar(pessoa) + 
-            //" and dataEfetiva is null) " +
-            //" group by pedido.codigo  " +
-            //" order by dataRecepcao  "  +
-            //" ) a, saidaitem, saida, acertoconsignado where   "  +
-            //" a.mercadoria=saidaitem.referencia and "  +
-            //" saida.codigo=saidaitem.saida and saida.acerto=acertoconsignado.codigo and pessoa= " + DbTransformar(pessoa) + 
-            //" group by a.pedido " +
-            //" ) b, retornoitem, retorno, acertoconsignado where  "  +
-            //" b.referencia = retornoitem.referencia and " +
-            //" retorno.codigo=retornoitem.retorno and retorno.acerto=acertoconsignado.codigo and pessoa= " + DbTransformar(pessoa) + 
-            // " group by referencia ) c, vendaitem, venda, acertoconsignado where  c.referencia = vendaitem.referencia and " +
-            //" venda.codigo=vendaitem.venda and venda.acerto=acertoconsignado.codigo and (vendedor = " + DbTransformar(pessoa) +  " or venda.cliente = "  + DbTransformar(pessoa) +  " ) " +
-            //" group by c.referencia having qtdconsignado > 0 ");
-
             StringBuilder referências = new StringBuilder();
             bool primeiro = true;
 

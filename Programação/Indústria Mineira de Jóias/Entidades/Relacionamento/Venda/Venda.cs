@@ -518,10 +518,7 @@ namespace Entidades.Relacionamento.Venda
 
         public Venda()
         {
-            //pagamentoItens = new ColeçãoPagamento(this);
-
             this.digitadopor = Entidades.Pessoa.Funcionário.FuncionárioAtual;
-            //this.data = Configuração.DadosGlobais.Instância.HoraDataAtual;
 
             travado = false;
 
@@ -1060,25 +1057,6 @@ namespace Entidades.Relacionamento.Venda
         /// <returns>Valor total da venda.</returns>
         public double CalcularValor()
         {
-            // Calcula 
-            //valortotal = Itens.CalcularPreço(cotacao) - itensDevolução.CalcularPreço(cotacao);
-
-            //foreach (VendaAcréscimo acréscimo in ItensAcréscimos)
-            //    valortotal += acréscimo.Valor;
-
-            //if (descontoPercentual.HasValue)
-            //    desconto = valortotal.Value * descontoPercentual.Value / 100;
-
-            /* Estamos usando triggers para recalcular no banco de dados.
-             * Então, quando valortotal = null, é porque ainda não foi
-             * recuperado do banco de dados.
-             * -- Júlio, 24/11/2006
-             * 
-             * Ao alterar campos da própria linha na tabela, as triggers
-             * não funcionam.  Logo, ao alterar cotação, é necessário
-             * recorrer ao CALL calcularvendavalortotal.
-             * -- Júlio, 08/10/2007
-             */
             IDbConnection conexão = Conexão;
 
             lock (conexão)
@@ -1202,7 +1180,6 @@ namespace Entidades.Relacionamento.Venda
                                 SaquinhoAcerto itemNovo = SaquinhoAcerto.Construir(fórmula, new Mercadoria.Mercadoria(referência, dígito, peso, índice), 0, peso, índice);
 
                                 bool itemJáExistente;
-
 
                                 // Item a ser utilizado
                                 SaquinhoAcerto item;

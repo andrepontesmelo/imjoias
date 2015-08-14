@@ -52,16 +52,6 @@ namespace Entidades.Álbum
         [DbColuna("icone")]
         private DbFoto ícone = null;
 		
-        ///// <summary>
-        ///// Miniatura não presente no Bd.
-        ///// É gerada apartir da foto, na consulta ObterFotosSemFoto
-        ///// </summary>
-        //[DbAtributo(TipoAtributo.Ignorar)]
-        //private DbFoto			miniatura;
-
-        //[DbAtributo(TipoAtributo.Ignorar)]
-        //private bool			miniaturaObtida = false;
-
         /// <summary>
         /// Lista de álbuns em que esta foto está inserida.
         /// </summary>
@@ -72,18 +62,6 @@ namespace Entidades.Álbum
         /// </remarks>
         [DbAtributo(TipoAtributo.Ignorar)]
         private ListaÁlbuns     álbuns;
-
-        ///// <summary>
-        ///// Foto sem qualquer tipo de processamento de imagem.
-        ///// </summary>
-        //[DbAtributo(TipoAtributo.Ignorar)]
-        //private DbFoto fotoOriginal = null;
-
-       ///// <summary>
-       ///// Define se a foto original deve ser gravada no banco de dados.
-       ///// </summary>
-       // [DbAtributo(TipoAtributo.Ignorar)]
-       // private bool gravarOriginal = false;
 
         /// <summary>
         /// Último uso da foto na execução do sistema.
@@ -294,60 +272,6 @@ namespace Entidades.Álbum
 		private enum Ordem { Mercadoria, Dígito, Descrição, Icone, Data, 
 			Código, CódigoFoto, Album }
 
-
-        //public static DbFoto ObterMiniatura(uint código)
-        //{
-        //    IDbConnection conexão = Conexão;
-        //    IDataReader leitor = null;
-        //    DbFoto foto = null;
-
-        //    lock (conexão)
-        //    {
-        //        using (IDbCommand cmd = conexão.CreateCommand())
-        //        {
-        //            cmd.CommandText = "SELECT foto from foto where codigo=" + código;
-
-        //            leitor = cmd.ExecuteReader( );
-
-        //            try
-        //            {
-        //                while (leitor.Read())
-        //                {
-        //                    foto = new DbFoto((byte []) leitor.GetValue(0));
-        //                    Image thumb;
-
-        //                    double proporção = foto.Imagem.Width / (double)foto.Imagem.Height;
-        //                    int width, height;
-
-        //                    if (foto.Imagem.Width > foto.Imagem.Height)
-        //                    {
-        //                        width = tamanhoMaiorLadoMiniatura;
-        //                        height = Convert.ToInt32(tamanhoMaiorLadoMiniatura / proporção);
-        //                    } 
-        //                    else
-        //                    {
-        //                        width = Convert.ToInt32(proporção * tamanhoMaiorLadoMiniatura);
-        //                        height = tamanhoMaiorLadoMiniatura;
-        //                    }
-
-        //                    thumb = foto.Imagem.GetThumbnailImage(width, height, null, IntPtr.Zero);							
-							
-        //                    //foto = foto.Imagem.GetThumbnailImage(tamanhoMaiorLadoMiniatura, tamanhoMaiorLadoMiniatura, null, IntPtr.Zero);
-
-        //                    foto = thumb;
-        //                }				
-        //            }
-        //            finally
-        //            {
-        //                if (leitor != null)
-        //                    leitor.Close();
-        //            }
-					
-        //            return foto;
-        //        }
-        //    }
-        //}
-
         /// <summary>
         /// Assegura que a foto fora carregado do banco de dados.
         /// </summary>
@@ -537,9 +461,6 @@ namespace Entidades.Álbum
             {
                 g.FillRectangle(new SolidBrush(Color.White), 0, 0, largura, altura);
 
-                //Console.WriteLine("Altura do papel: " + altura.ToString());
-                //Console.WriteLine("nova Altura da imagem: " + novaAltura.ToString());
-
                 g.DrawImage(
                     imagem,
                     (largura - novaLargura) / 2f,
@@ -557,9 +478,6 @@ namespace Entidades.Álbum
 
             if (álbuns != null)
                 álbuns.Gravar(cmd);
-
-            //if (gravarOriginal)
-            //    AtualizarFotoOriginal(cmd);
         }
 
         protected override void Atualizar(IDbCommand cmd)
@@ -751,51 +669,6 @@ namespace Entidades.Álbum
         }
 
         #endregion
-
-        ///// <summary>
-        ///// Obtém a foto original, sem qualquer processamento de
-        ///// imagem, do banco de dados.
-        ///// </summary>
-        ///// <returns>Foto original, sem qualquer processamento de imagem.</returns>
-        //public DbFoto ObterFotoOriginal()
-        //{
-        //    IDbConnection conexão;
-
-        //    conexão = Conexão;
-
-        //    MarcarObtenção(this);
-
-        //    lock (conexão)
-        //        using (IDbCommand cmd = conexão.CreateCommand())
-        //        {
-        //            cmd.CommandText = "SELECT original FROM foto WHERE "
-        //                + "codigo = " + DbTransformar(codigo);
-
-        //            return new DbFoto(cmd.ExecuteScalar());
-        //        }
-        //}
-
-        ///// <summary>
-        ///// Atualiza a foto original no banco de dados.
-        ///// </summary>
-        //private void AtualizarFotoOriginal(IDbCommand cmd)
-        //{
-        //    IDataParameter parâmetro = cmd.CreateParameter();
-
-
-        //    parâmetro.ParameterName = "original" + cmd.Parameters.Count.ToString();
-        //    parâmetro.Value = (byte[])fotoOriginal;
-            
-        //    cmd.CommandText = "UPDATE foto SET original = ?" + parâmetro.ParameterName
-        //        + " WHERE codigo = " + DbTransformar(codigo);
-
-        //    if (parâmetro.Value is Nullable)
-        //        throw new NullReferenceException("TEMPORARIO: foto original não pode ser nula");
-
-        //    cmd.Parameters.Add(parâmetro);
-        //    cmd.ExecuteNonQuery();
-        //}
-
 
         /// <summary>
         /// Obtém mercadorias aleatórios na linha com foto para exibição.

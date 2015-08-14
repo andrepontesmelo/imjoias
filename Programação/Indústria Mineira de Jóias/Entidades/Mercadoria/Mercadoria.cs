@@ -36,12 +36,6 @@ namespace Entidades.Mercadoria
         /// </summary>
         private IMercadoriaCampos campos;
 
-        //[DbRelacionamento(false, "código", "fornecedor")]
-        //private Fornecedor fornecedor;
-
-        //[DbColuna("fornecedorreferencia")]
-        //private string fornecedorReferência;
-
         /// <summary>
         /// Tabela de preços.
         /// </summary>
@@ -1448,18 +1442,6 @@ namespace Entidades.Mercadoria
                     // A consulta demora aprox. 30 segundos.
                     cmd.CommandTimeout = 120;
 
-                    /* Esta comando antigo, comentado faz o seguinte:
-                     * pega todas as referencias das saídas dos acertos em abertos.
-                     * 
-                     * Ela foi comentada porque é necessário descontar os itens já vendidos e já retornados. Por isto existe a nova consulta em vigor.
-                     */
-                    //cmd.CommandText = "SELECT p.codigo, p.nome, a.previsao, SUM(si.quantidade), referencia"
-                    //    + " FROM saida s JOIN saidaitem si ON s.codigo = si.saida JOIN acertoconsignado a ON a.codigo = s.acerto"
-                    //    + " JOIN pessoa p ON p.codigo = a.cliente"
-                    //    + " WHERE a.dataEfetiva IS NULL "
-                    //    + " GROUP BY p.codigo, si.referencia "
-                    //    + " ORDER BY SUM(si.quantidade) desc";
-
                     cmd.CommandText = "SELECT p.codigo, p.nome, a.previsao, SUM(si.quantidade) - ifnull(rastreamentovenda.qtd,0) - ifnull(rastreamentoretorno.qtd,0) as saldo, si.referencia " +
                          " FROM saida s JOIN saidaitem si ON s.codigo = si.saida JOIN acertoconsignado a ON a.codigo = s.acerto " +
                          " JOIN pessoa p ON p.codigo = a.cliente " +
@@ -1567,13 +1549,6 @@ namespace Entidades.Mercadoria
 
                          " GROUP BY p.codigo " + 
                          " ORDER BY SUM(si.quantidade) desc";
-
-                    //cmd.CommandText = "SELECT p.codigo, p.nome, a.previsao, SUM(si.quantidade) as qtd"
-                    //    + " FROM saida s JOIN saidaitem si ON s.codigo = si.saida JOIN acertoconsignado a ON a.codigo = s.acerto"
-                    //    + " JOIN pessoa p ON p.codigo = a.cliente"
-                    //    + " WHERE a.dataEfetiva IS NULL AND si.referencia = " + DbTransformar(ReferênciaNumérica)
-                    //    + " GROUP BY p.codigo, p.nome, a.previsao HAVING qtd > 0 "
-                    //    + " ORDER BY a.previsao";
 
                     using (IDataReader leitor = cmd.ExecuteReader())
                     {

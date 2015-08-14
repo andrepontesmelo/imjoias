@@ -9,7 +9,6 @@ namespace Entidades.Acerto
         public SaquinhoAcertoIgualVenda(Mercadoria.Mercadoria m, double qtd, double peso, double índice)
             : base(m, qtd, peso, índice)
         {
-
         }
 
         public override double QtdAcerto
