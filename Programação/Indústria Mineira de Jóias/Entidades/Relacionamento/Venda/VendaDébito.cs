@@ -207,12 +207,6 @@ namespace Entidades.Relacionamento.Venda
                     Entidades.Preço.AcrescentarJurosSimples(ValorBruto, taxaJuros, diasDeJuros)
                     : ValorBruto);
 
-            //valorliquido =
-            //    (CobrarJuros ?
-            //        Entidades.Preço.Corrigir(ValorBruto, taxaJuros, diasDeJuros)
-            //        : ValorBruto);
-
-
             DefinirDesatualizado();
 
             return valorliquido;

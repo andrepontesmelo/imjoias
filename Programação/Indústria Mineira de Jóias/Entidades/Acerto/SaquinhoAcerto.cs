@@ -72,7 +72,6 @@ namespace Entidades.Acerto
             this.Quantidade = 1;
         }
 
-
         public override void PreencherDataRow(System.Data.DataRow linha)
         {
             linha["referência"] = Mercadoria.Referência;

@@ -30,13 +30,9 @@ namespace Entidades.Relacionamento.Venda
         {
             base.PreencherDataRow(linha);
 
-
             // Foi solicitado pela Lourdes que o peso não seja mostrado para Faixa C, D
             if (!Mercadoria.DePeso)
                 linha["peso"] = "";
-
-            //linha["valorUnitário"] = PreçoUnitário.ToString("C", DadosGlobais.Instância.Cultura);
-            //linha["valorTotal"] = PreçoTotal.ToString("C", DadosGlobais.Instância.Cultura);
 
             linha["valorUnitário"] = string.Format("{0:###,###,###,##0.00}", PreçoUnitário);
             linha["valorTotal"] = string.Format("{0:###,###,###,##0.00}", PreçoTotal);

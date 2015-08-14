@@ -201,8 +201,6 @@ namespace Entidades.¡lbum
                 + DbTransformar(cÛdigo) + ", " + DbTransformar(foto.CÛdigo) + ")";
 
             cmd.ExecuteNonQuery();
-
-            //foto.¡lbuns.Definir¡lbumAtualizado(this);
         }
 
         /// <summary>
@@ -221,8 +219,6 @@ namespace Entidades.¡lbum
                     + " AND foto = " + DbTransformar(foto.CÛdigo);
 
                 cmd.ExecuteNonQuery();
-
-                //foto.¡lbuns.Definir¡lbumAtualizado(this);
             }
         }
     }

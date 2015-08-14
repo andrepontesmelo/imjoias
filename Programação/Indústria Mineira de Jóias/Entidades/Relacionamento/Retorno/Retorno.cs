@@ -456,9 +456,6 @@ namespace Entidades.Relacionamento.Retorno
                 {
                     cmd.CommandText = "update retorno set travado=1 ";
 
-                    //if (acertarTambém)
-                    //    cmd.CommandText += " AND acertado=1 ";
-
                     cmd.CommandText += " where codigo IN " + DbTransformarConjunto(códigos);
 
                     cmd.ExecuteNonQuery();

@@ -173,30 +173,6 @@ namespace Entidades.Controle
             dívida -= pagoLíquido;
             totaljuros = Entidades.Pagamentos.Pagamento.CalcularJuros(listaPagamentos, dataVenda, taxajuros);
 
-            //foreach (string conj_prestação in prestações)
-            //{
-            //    int n = Preço.ContarPrestações(conj_prestação);
-            //    double juros;
-
-            //    // Pega a o valor a ser pago a vista e descola para o prazo_medio.
-            //    juros = Preço.CalcularJuros(conj_prestação, dívida, taxajuros);
-            //    dívida += juros;
-            //    totaljuros += juros;
-
-            //    double subtrair;
-
-            //    for (int i = 0; i < n && iPagamento < pagamentos.Length; i++)
-            //    {
-            //        if (ignorarPendênciaDosPagamentos || (!pagamentos[iPagamento].Pendente ||
-            //            pagamentos[iPagamento].ÚltimoVencimento < hoje))
-            //                subtrair = pagamentos[iPagamento++].Valor;
-            //        else
-            //                subtrair = 0;
-
-            //        dívida -= subtrair;
-            //    }
-            //}
-
 
             /* A variável dívida até agora tem a mesma data da venda.
              * O Seguinte código desloca para o tempo de hoje. 

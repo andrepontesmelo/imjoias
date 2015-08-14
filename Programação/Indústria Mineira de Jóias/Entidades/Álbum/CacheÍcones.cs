@@ -12,14 +12,6 @@ namespace Entidades.Álbum
     {
         private Encoding codificador = System.Text.Encoding.Default;
 
-        //private string arquivoXml = System.IO.Path.Combine(
-        //    System.IO.Directory.GetCurrentDirectory(),
-        //    "miniaturas.xml");
-
-        //private int miniaturasSalvas = 0;
-
-        //private DateTime últimoSalvamento = DateTime.Now;
-
         private static CacheÍcones instância;
 
         public static CacheÍcones Instância

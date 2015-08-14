@@ -143,65 +143,11 @@ namespace Entidades.Acerto
             get { return hash; }
         }
 
-        /* O código abaixo não é necessário, visto que
-         * todas as mercadorias são recuperadas do banco de dados
-         * e inseridas na árvore, de onde serão recuperadas quando ocas.
-         * -- Júlio, 27/09/2006
-         */
-        ///// <summary>
-        ///// Recuperação as mercadoriasOcas da hash, 
-        ///// pois todas elas serão inseridas na bandeja, que perguntam por propriedades
-        ///// próprias da mercadoria.
-        ///// </summary>
-        //private void RecuperarMercadorias()
-        //{
-        //    ArrayList listaSaquinhos;
-        //    ArrayList listaMercadoriasOca;
-
-
-        //    listaSaquinhos = ColeçãoSaquinhos;
-            
-        //    listaMercadoriasOca = new ArrayList(listaSaquinhos.Count);
-            
-        //    foreach (SaquinhoAcerto s in listaSaquinhos)
-        //        listaMercadoriasOca.Add(s.Mercadoria);
-
-        //    MercadoriaOca.RecuperarVários(listaMercadoriasOca);
-        //}
-
-
-        //public static AcertoMercadorias ObterAcerto(Pessoa.Pessoa p, List<Entidades.Relacionamento.Relacionamento> saídas, List<Entidades.Relacionamento.Relacionamento> retornos, List<Entidades.Relacionamento.Venda.IDadosVenda> vendas)
-        //{
-        //    AcertoMercadorias novoAcerto;
-
-        //    novoAcerto = new AcertoMercadorias(p);
-
-        //    novoAcerto.códigoSaídas = Entidades.Relacionamento.Relacionamento.ObterCódigos(saídas);
-        //    novoAcerto.códigoRetornos = Entidades.Relacionamento.Relacionamento.ObterCódigos(retornos);
-        //    novoAcerto.códigoVendas = Entidades.Relacionamento.Venda.Venda.ObterCódigos(vendas);
-
-        //    Entidades.Relacionamento.Saída.Saída.ObterAcerto(novoAcerto.códigoSaídas, novoAcerto.hash);
-        //    Entidades.Relacionamento.Retorno.Retorno.ObterAcerto(novoAcerto.códigoRetornos, novoAcerto.hash);
-        //    Entidades.Relacionamento.Venda.Venda.ObterAcerto(novoAcerto.códigoVendas, novoAcerto.hash);
-
-        //    return novoAcerto;
-        //}
-
         public System.Data.DataSet ObterImpressão(bool resumido)
         {   
             System.Data.DataSet ds = new System.Data.DataSet();
             DataTable tabelaItens = new DataTable("Itens");
             DataTable tabelaInformações = new DataTable("Informações");
-
-            //// Gera as colunas da tabela
-            //DataColumn colRef = new DataColumn("referência", typeof(string));
-            //DataColumn colPeso = new DataColumn("peso", typeof(string));
-            //DataColumn colQtd = new DataColumn("quantidade", typeof(string));
-            //DataColumn colFaixa = new DataColumn("faixa", typeof(string));
-            //DataColumn colGrupo = new DataColumn("grupo", typeof(string));
-            //DataColumn colIndice = new DataColumn("índice", typeof(string));
-            //DataColumn colDescrição = new DataColumn("descrição", typeof(string));
-
 
             tabelaItens.Columns.AddRange(new DataColumn[] 
             {
@@ -220,7 +166,6 @@ namespace Entidades.Acerto
 
             foreach (KeyValuePair<string, SaquinhoAcerto> tupla in hash)
             {
-                // Adiciona saquinho à uma lista ordenada por referência.
                 if ((resumido && tupla.Value.QtdAcerto != 0) || (!resumido))
                     lista.Add(tupla.Value);
             }
@@ -228,15 +173,11 @@ namespace Entidades.Acerto
             // Ordena lista por referência e peso.
             lista.Sort(new SaquinhoAcertoComparador());
 
-      
-
             foreach (SaquinhoAcerto s in lista)
             {
                 DataRow linha = tabelaItens.NewRow();
                 s.PreencherDataRow(linha);
                 tabelaItens.Rows.Add(linha);
-
-
             }
 
             // Cria coluna pessoa, que é para quem está sendo feito o acerto
@@ -324,31 +265,6 @@ namespace Entidades.Acerto
 
         public void Acertar()
         {
-            //IDbConnection conexão;
-
-            //Privilégio.PermissãoFuncionário.AssegurarPermissão(Entidades.Privilégio.Permissão.ZerarAcerto);
-
-            //conexão = Conexão;
-
-            //lock (conexão)
-            //    using (IDbCommand cmd = conexão.CreateCommand())
-            //    {
-            //        cmd.Transaction = conexão.BeginTransaction();
-
-            //        try
-            //        {
-            //            Entidades.Relacionamento.Venda.Venda.Acertar(documentos, cmd);
-            //            Entidades.Relacionamento.Saída.Saída.Acertar(documentos, cmd);
-            //            Entidades.Relacionamento.Retorno.Retorno.Acertar(documentos, cmd);
-            //            cmd.Transaction.Commit();
-            //        }
-            //        catch (Exception e)
-            //        {
-            //            cmd.Transaction.Rollback();
-            //            throw new Exception("Não foi possível concluir a transação.", e);
-            //        }
-            //    }
-
             acerto.Acertar();
         }
 
@@ -508,27 +424,6 @@ namespace Entidades.Acerto
 
             return venda;
         }
-
-        ///* Conceito criado pela INES.
-        //* Mercadorias 'devolvidas' em um acerto AA é aquele
-        //* cuja coluna ACERTO deu valor negativo.
-        //* Para computar o valor total de indice de mercadorias devolvidas
-        //* as linhas cujo acerto negativo são levadas em consideração,
-        //* e o indice da mercadoria * qtd é somado.
-        //*/
-        //public double ObterÍndiceDevolvido(bool depeso)
-        //{
-        //    double totalIndiceDevolvido = 0;
-        //    List<SaquinhoAcerto> coleção = ColeçãoSaquinhos;
-
-        //    foreach (SaquinhoAcerto s in coleção)
-        //    {
-        //        if (s.QtdAcerto < 0 && (s.Mercadoria.DePeso == depeso))
-        //            totalIndiceDevolvido += Math.Abs(s.QtdAcerto) * s.Índice;
-        //    }
-
-        //    return totalIndiceDevolvido;
-        //}
 
         /// <summary>
         /// Pega coluna de devolução e retorna o somatório em índice

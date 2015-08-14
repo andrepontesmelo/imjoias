@@ -47,10 +47,5 @@ namespace Entidades.Relacionamento.Retorno
         {
             return new HistóricoRetornoItem(retorno, mercadoria, quantidade, data, funcionário, índice);
         }
-
-        //protected override SaquinhoRelacionamento ConstuirItemAgrupado(Mercadoria mercadoria, double quantidade, double índice)
-        //{
-        //    return new SaquinhoRelacionamento(mercadoria, quantidade, índice);
-        //}
     }
 }

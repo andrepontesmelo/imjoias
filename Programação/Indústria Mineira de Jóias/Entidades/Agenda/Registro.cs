@@ -80,7 +80,6 @@ namespace Entidades.Agenda
             this.telOutro = telOutro;
             this.endCidade = endCidade;
             this.endEstado = endEstado;
-            
         }
 
 

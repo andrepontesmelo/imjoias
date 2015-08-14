@@ -251,8 +251,6 @@ namespace Entidades.Acerto
         {
             if (Cadastrado)
             {
-                //CacheDb.Instância.Adicionar(typeof(AcertoConsignado), new object[] { código }, this);
-
                 saídas = new DbComposição<Saída>(
                     Saída.ObterSaídas(this),
                     new DbAção<Saída>(AdicionarSaída),
@@ -273,8 +271,6 @@ namespace Entidades.Acerto
         {
             if (Cadastrado)
             {
-                //CacheDb.Instância.Adicionar(typeof(AcertoConsignado), new object[] { código }, this);
-
                 retornos = new DbComposição<Retorno>(
                     Retorno.ObterRetornos(this),
                     new DbAção<Retorno>(AdicionarRetorno),
@@ -295,8 +291,6 @@ namespace Entidades.Acerto
         {
             if (Cadastrado)
             {
-                //CacheDb.Instância.Adicionar(typeof(AcertoConsignado), new object[] { código }, this);
-
                 vendas = new DbComposição<Venda>(
                     Venda.ObterVendas(this),
                     new DbAção<Venda>(AdicionarVenda),
@@ -339,11 +333,6 @@ namespace Entidades.Acerto
         public static AcertoConsignado[] ObterAcertosPendentes()
         {
             AcertoConsignado[] lista;
-
-           // lista =
-           //Mapear<AcertoConsignado>(
-           //    "SELECT * FROM acertoconsignado WHERE acertado = 0" +
-           //    " ORDER BY previsao").ToArray();
 
             DateTime inicio = DateTime.Now;
 
@@ -391,8 +380,6 @@ namespace Entidades.Acerto
 
                                 if (leitor["dataEfetiva"] != DBNull.Value)
                                     entidade.dataEfetiva = leitor.GetDateTime(inicioAcertoConsignado + 5);
-
-                                //entidade.acertado =  leitor.GetBoolean(inicioAcertoConsignado + 6);
 
                                 entidade.dataMarcação = leitor.GetDateTime(inicioAcertoConsignado + 6);
 
@@ -499,22 +486,6 @@ namespace Entidades.Acerto
 
                     cotação = valor;
                 }
-
-                ///* Obtém a cotação vigente, se não estiver cadastrada
-                // * e se o cliente na verdade não for um representante.
-                // */
-                //try
-                //{
-                //    if (!cotação.HasValue && !Representante.ÉRepresentante(cliente))
-                //        cotação = Entidades.Cotação.ObterCotaçãoVigente(((Saída)entidade).TabelaPreço.Moeda);
-                //}
-                //catch (Exception e)
-                //{
-                //    Acesso.Comum.Usuários.UsuárioAtual.RegistrarErro(e);
-                //    cancelar = true;
-
-                //    return;
-                //}
 
                 Cadastrar();
             }
@@ -764,11 +735,6 @@ namespace Entidades.Acerto
                         }
                     }
                 
-                //foreach (IEnumerable conjunto in new IEnumerable[] { Saídas, Retornos, Vendas })
-                //    foreach (Relacionamento.Relacionamento relacionamento in conjunto)
-                //        foreach (HistóricoRelacionamentoItem item in relacionamento.Itens)
-                //            hashÍndice[item.Mercadoria.ReferênciaNumérica] = item.Índice;
-
                 this.hashÍndice = hashÍndice;
             }
             finally
@@ -796,9 +762,6 @@ namespace Entidades.Acerto
 
                 if (Acertado)
                     throw new NotSupportedException("Não é possível adicionar um documento a um acerto já finalizado.");
-
-                //if (entidade.Acertado)
-                //    throw new NotSupportedException("Não é possível adicionar um documento já acerto a um acerto pendente.");
 
                 GarantirConsitênciaPreço(entidade);
                 GarantirConsistênciaPessoa(entidade);
@@ -874,21 +837,13 @@ namespace Entidades.Acerto
                 {
                     if (((Saída)entidade).Cotação == 0)
                         ((Saída)entidade).Cotação = cotação.Value;
-               //     else
-               //         throw new DocumentoInconsistente("A cotação está inconsistente.");
                 }
                 else if (entidade is Venda && ((Venda)entidade).Cotação != cotação)
                 {
                     if (((Venda)entidade).Cotação == 0)
                         ((Venda)entidade).Cotação = cotação.Value;
-                //    else
-                //        throw new DocumentoInconsistente("A cotação está inconsistente.");
                 }
             }
-
-            //// Verificar consistência.
-            //foreach (HistóricoRelacionamentoItem item in entidade.Itens)
-            //    VerificarConsistênciaItem(item);
         }
 
         /// <summary>
@@ -911,13 +866,6 @@ namespace Entidades.Acerto
                                 item.Índice,
                                 valor, cliente.Nome,
                                 código)));
-                    //else
-                    //    throw new DocumentoInconsistente(
-                    //        string.Format(
-                    //        "A mercadoria {0} encontra-se com índice {1} enquanto no acerto {3} em que ele está vinculado ela foi anteriormente relacionada com o valor {2}.",
-                    //        item.Mercadoria.Referência,
-                    //        item.Índice,
-                    //        valor, código));
                 }
         }
 
@@ -956,11 +904,6 @@ namespace Entidades.Acerto
         /// <param name="cancelar">Se deve cancelar a adição.</param>
         void AntesDeCadastrarItemRelacionamento(HistóricoRelacionamentoItem item, out bool cancelar)
         {
-            /* Em caso de exceção, a operação também será cancelada,
-             * porém com mensagem personalizada.
-             */
-            //VerificarConsistênciaItem(item);
-
             cancelar = false;
         }
 
@@ -976,39 +919,10 @@ namespace Entidades.Acerto
 
             dataEfetiva = DadosGlobais.Instância.HoraDataAtual;
             funcAcerto = Funcionário.FuncionárioAtual;
-            //acertado = true;
 
             Saída.TravarVários(ExtrairCódigos(saídas.ExtrairElementos()));
-
-            //foreach (Saída saída in Saídas)
-            //    if (saída.AcertoConsignado.código != código)
-            //        throw new Exception("Código do acerto da saída " + saída.Código.ToString() + " inconsistente.");
-            //    else
-            //    {
-            //        saída.Travado = true;
-            //        saída.DefinirAcertado(true);
-            //    }
-
             Retorno.TravarVários(ExtrairCódigos(retornos.ExtrairElementos()));
-            //foreach (Retorno retorno in Retornos)
-            //    if (retorno.AcertoConsignado.código != código)
-            //        throw new Exception("Código do acerto do retorno " + retorno.Código.ToString() + " inconsistente.");
-            //    else
-            //    {
-            //        retorno.Travado = true;
-            //        retorno.DefinirAcertado(true);
-            //    }
-
             Venda.TravarVários(ExtrairCódigos(vendas.ExtrairElementos()));
-
-            //foreach (Venda venda in Vendas)
-            //    if (venda.AcertoConsignado.código != código)
-            //        throw new Exception("Código do acerto da venda " + venda.Código.ToString() + " inconsistente.");
-            //    else
-            //    {
-            //        venda.Travado = true;
-            //        venda.DefinirAcertado(true);
-            //    }
 
             DefinirDesatualizado();
             Atualizar();
@@ -1062,60 +976,6 @@ namespace Entidades.Acerto
             else
                 return 0;
         }
-
-        // Nao existem mais documentos sem acerto.
-        //public static AcertoConsignado AgruparDocumentosNãoAcertados(Entidades.Pessoa.Pessoa pessoa)
-        //{
-        //    AcertoConsignado acerto = null;
-        //    IDbConnection conexão = Conexão;
-
-        //    lock (conexão)
-        //        using (IDbCommand cmd = conexão.CreateCommand())
-        //        {
-        //            cmd.CommandText = "SELECT SUM(qtd) FROM ((SELECT COUNT(*) AS qtd FROM saida WHERE acerto IS NULL AND acertado = 0 AND pessoa = " + DbTransformar(pessoa.Código) + ")"
-        //                + "UNION (SELECT COUNT(*) AS qtd FROM retorno WHERE acerto IS NULL AND acertado = 0 AND pessoa = " + DbTransformar(pessoa.Código) + ")) t";
-        //                //+ "UNION (SELECT COUNT(*) AS qtd FROM venda WHERE acerto IS NULL AND "
-        //                //+ (Funcionário.ÉFuncionário(pessoa) || Representante.ÉRepresentante(pessoa) ? "vendedor" : "cliente")
-        //                //+ " = " + DbTransformar(pessoa.Código) + ")) t";
-
-        //            if (Convert.ToInt32(cmd.ExecuteScalar()) > 0)
-        //            {
-        //                acerto = new AcertoConsignado();
-        //                acerto.Cliente = pessoa;
-        //                acerto.FuncConsignado = Funcionário.FuncionárioAtual;
-
-        //                using (IDbTransaction transação = conexão.BeginTransaction())
-        //                {
-        //                    cmd.Transaction = transação;
-
-        //                    try
-        //                    {
-        //                        acerto.Cadastrar(cmd);
-
-        //                        cmd.CommandText = "UPDATE saida SET acerto = " + DbTransformar(acerto.código) + " WHERE acerto IS NULL AND pessoa = " + DbTransformar(pessoa.Código) + " AND acertado = 0";
-        //                        cmd.ExecuteNonQuery();
-
-        //                        cmd.CommandText = "UPDATE retorno SET acerto = " + DbTransformar(acerto.código) + " WHERE acerto IS NULL AND pessoa = " + DbTransformar(pessoa.Código) + " AND acertado = 0";
-        //                        cmd.ExecuteNonQuery();
-
-        //                        //cmd.CommandText = "UPDATE venda SET acerto = " + DbTransformar(acerto.código) + " WHERE acerto IS NULL AND "
-        //                        //    + (Funcionário.ÉFuncionário(pessoa) || Representante.ÉRepresentante(pessoa) ? "vendedor" : "cliente")
-        //                        //    + " = " + DbTransformar(pessoa.Código);
-        //                        //cmd.ExecuteNonQuery();
-
-        //                        transação.Commit();
-        //                    }
-        //                    catch (Exception e)
-        //                    {
-        //                        transação.Rollback();
-        //                        throw new Exception("Existem documentos desvinculados de acerto e não foi possível criar um acerto para eles automaticamente.", e);
-        //                    }
-        //                }
-        //            }
-        //        }
-
-        //    return acerto;
-        //}
 
         public override bool Referente(DbManipulação entidade)
         {

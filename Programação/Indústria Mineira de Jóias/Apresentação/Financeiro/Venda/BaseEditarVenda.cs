@@ -62,23 +62,12 @@ namespace Apresentação.Financeiro.Venda
 
             if (this.DesignMode) return;
 
-           
-           //this.tabs.Controls.Remove(tabItens);
-           //this.tabs.Controls.Remove(tabPagamentos);
-           //this.tabs.Controls.Remove(tabDevolução);
-           //this.tabs.Controls.Remove(tabDébitos);
-           //this.tabs.Controls.Remove(tabObservações);
-
             this.tabs.SuspendLayout();
             this.tabs.Controls.Clear();
             this.tabs.Controls.AddRange(new Control[] {
                 tabVenda, tabItens, tabDébitos, tabCréditos, tabDevolução, tabPagamentos, tabObservações });
             this.tabs.ResumeLayout();
            
-           //this.tabs.Controls.Add(tabItens);
-           //this.tabs.Controls.Add(tabDébitos);
-           //this.tabs.Controls.Add(tabDevolução);
-           //this.tabs.Controls.Add(tabPagamentos);
         }
 
         protected override bool ValidarPermissãoDestravar()
@@ -162,10 +151,6 @@ namespace Apresentação.Financeiro.Venda
                 opçãoGastarCréditosCliente.Enabled = 
                     (v.Cliente != null && (!v.Travado));
                 
-
-                //quadroPagamento.Visible = !v.Acertado;
-
-                //txtObservações.Text = v.Observações == null ? "" : v.Observações;
             }
             finally
             {
@@ -193,19 +178,7 @@ namespace Apresentação.Financeiro.Venda
         void AoAlterar(Acesso.Comum.DbManipulação entidade)
         {
             if (entidade == Relacionamento)
-            {
                 MostrarTítulo();
-
-                //if (!verificadorMercadoria.Enabled && !Relacionamento.Acertado)
-                //{
-                //    if (dadosVenda.Venda.Vendedor == null && Representante.ÉRepresentante(dadosVenda.Venda.Vendedor))
-                //        verificadorMercadoria.Restringir(dadosVenda.Venda.Vendedor);
-                //    else
-                //        verificadorMercadoria.Restringir(dadosVenda.Venda.Cliente);
-
-                //    verificadorMercadoria.Enabled = true;
-                //}
-            }
         }
 
         void DepoisDeCadastrar(Acesso.Comum.DbManipulação entidade)
@@ -277,23 +250,6 @@ namespace Apresentação.Financeiro.Venda
             (Relacionamento.Pessoa != null && (!entidadeTravada));
         }
 
-        //protected override Apresentação.Formulários.JanelaImpressão CriarJanelaImpressão()
-        //{
-        //    /*
-        //    UseWaitCursor = true;
-        //    Apresentação.Formulários.AguardeDB.Mostrar();
-        //    Application.DoEvents();
-
-        //    Impressão.JanelaImpressãoVenda janela = new Impressão.JanelaImpressãoVenda((Entidades.Relacionamento.Venda.Venda)base.Relacionamento);
-
-        //    Apresentação.Formulários.AguardeDB.Fechar();
-        //    UseWaitCursor = false;
-
-        //    return janela;
-        //     */
-        //    return null;
-        //}
-
         /// <summary>
         /// Abre a base para digitação de nova venda.
         /// A pessoa serve para preparar a base, preenchendo automaticamente
@@ -306,8 +262,6 @@ namespace Apresentação.Financeiro.Venda
 
             if (Entidades.Pessoa.Funcionário.ÉVendedor(pessoa))
             {
-                // Excessão ao caso padrão. Se a pessoa selecionada é da empresa, então será
-                // digitado uma venda desta pessoa para algum cliente qualquer.
                 vendedor = pessoa;
                 cliente = null;
             }
@@ -376,16 +330,11 @@ namespace Apresentação.Financeiro.Venda
 
         private void dadosVenda_AoAlterarVendedor(object sender, EventArgs e)
         {
-            //if (verificadorMercadoria.Enabled && (dadosVenda.Venda.Vendedor != null && Representante.ÉRepresentante(dadosVenda.Venda.Vendedor)))
-            //    verificadorMercadoria.Restringir(dadosVenda.Venda.Vendedor);
         }
 
         void dadosVenda_AoAlterarCliente(object sender, System.EventArgs e)
         {
             listaPagamentos.Venda = dadosVenda.Venda;
-
-            //if (verificadorMercadoria.Enabled && (dadosVenda.Venda.Vendedor == null || !Representante.ÉRepresentante(dadosVenda.Venda.Vendedor)))
-            //    verificadorMercadoria.Restringir(dadosVenda.Venda.Cliente);
 
             opçãoCobrançaAutomática.Enabled =
                 opçãoGastarCréditosCliente.Enabled = 
@@ -423,7 +372,6 @@ namespace Apresentação.Financeiro.Venda
 
         private void dadosVenda_AoAlterarTabela(object sender, EventArgs e)
         {
-            //digitação.Tabela = ((Entidades.Relacionamento.Venda.Venda)Relacionamento).TabelaPreço;
         }
 
         void dadosVenda_AoAlterarDataVenda(object sender, System.EventArgs e)
