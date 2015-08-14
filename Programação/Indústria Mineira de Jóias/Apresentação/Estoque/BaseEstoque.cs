@@ -69,13 +69,18 @@ namespace Apresentação.Estoque
 
         private void btnRelatórioResumo_Click(object sender, EventArgs e)
         {
+            List<Saldo> itens = ObterItensMostrandoJanelaImpressão();
+
+            if (itens == null)
+                return;
+
             JanelaImpressão janela = new JanelaImpressão();
 
             Apresentação.Impressão.Relatórios.Estoque.ResumoSaldo.ResumoRelatorioSaldo r = 
                 new Impressão.Relatórios.Estoque.ResumoSaldo.ResumoRelatorioSaldo();
 
             new Apresentação.Impressão.Relatórios.Estoque.ResumoSaldo.ControleImpressãoFornecedor().
-                PrepararImpressão(r, listaSaldo.Itens);
+                PrepararImpressão(r, itens);
 
             janela.Título = "Resumo";
             janela.Descrição = "Relatório de resumo de estoque";
@@ -84,12 +89,12 @@ namespace Apresentação.Estoque
             janela.Show();
         }
 
+
         private void btnRelatórioFornecedor_Click(object sender, EventArgs e)
         {
-            JanelaOpçõesImpressão opções = new JanelaOpçõesImpressão();
-            DialogResult resultado = opções.ShowDialog(this);
-            
-            if (resultado == DialogResult.Cancel)
+            List<Saldo> itens = ObterItensMostrandoJanelaImpressão();
+
+            if (itens == null)
                 return;
 
             JanelaImpressão janela = new JanelaImpressão();
@@ -97,7 +102,7 @@ namespace Apresentação.Estoque
             Apresentação.Impressão.Relatórios.Estoque.Fornecedor.ResumoFornecedor r =
                 new Impressão.Relatórios.Estoque.Fornecedor.ResumoFornecedor();
 
-            List<Saldo> itens = Saldo.Obter(opções.IncluirPeso, opções.IncluirReferência);
+
             
             new Apresentação.Impressão.Relatórios.Estoque.Fornecedor.ControleImpressãoFornecedor().
                 PrepararImpressão(r, itens);
@@ -107,6 +112,18 @@ namespace Apresentação.Estoque
             janela.InserirDocumento(r, "Estoque");
 
             janela.Show();
+        }
+
+        private List<Saldo> ObterItensMostrandoJanelaImpressão()
+        {
+            JanelaOpçõesImpressão opções = new JanelaOpçõesImpressão();
+            DialogResult resultado = opções.ShowDialog(this);
+
+            if (resultado == DialogResult.Cancel)
+                return null;
+
+            List<Saldo> itens = Saldo.Obter(opções.IncluirPeso, opções.IncluirReferência);
+            return itens;
         }
     }
 }
