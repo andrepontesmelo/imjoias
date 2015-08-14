@@ -38,8 +38,8 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Fornecedor
 
             linha["peso"] = s.Peso;
             linha["depeso"] = s.Depeso;
-            linha["fornecedor"] = s.FornecedorNome;
-            linha["reffornecedor"] = s.FornecedorReferência;
+            linha["fornecedor"] = s.FornecedorNome.Trim();
+            linha["reffornecedor"] = s.FornecedorReferência.Trim();
             linha["pesosaldo"] = s.ProdudoPesoSaldo;
         }
 

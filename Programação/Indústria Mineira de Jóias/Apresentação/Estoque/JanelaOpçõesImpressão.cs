@@ -37,10 +37,6 @@ namespace Apresentação.Estoque
             configuraçãoPeso.Valor = IncluirPeso;
             configuraçãoReferência.Valor = IncluirReferência;
 
-            //configuraçãoPeso.Atualizar();
-
-            //configuraçãoReferência.Atualizar();
-
             DialogResult = System.Windows.Forms.DialogResult.OK;
             Hide();
         }
