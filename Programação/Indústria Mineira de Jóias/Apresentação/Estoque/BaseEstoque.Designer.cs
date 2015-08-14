@@ -30,6 +30,7 @@
         {
             this.títuloBaseInferior1 = new Apresentação.Formulários.TítuloBaseInferior();
             this.quadro1 = new Apresentação.Formulários.Quadro();
+            this.btnRelatórioFornecedor = new Apresentação.Formulários.Opção();
             this.btnRelatórioResumo = new Apresentação.Formulários.Opção();
             this.quadro2 = new Apresentação.Formulários.Quadro();
             this.opçãoZerarEstoque = new Apresentação.Formulários.Opção();
@@ -38,7 +39,7 @@
             this.btnExtrato = new Apresentação.Formulários.Opção();
             this.quadro4 = new Apresentação.Formulários.Quadro();
             this.listaSaldo = new Apresentação.Estoque.ListaSaldo();
-            this.btnRelatórioFornecedor = new Apresentação.Formulários.Opção();
+            this.btnRelatórioReferência = new Apresentação.Formulários.Opção();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.quadro2.SuspendLayout();
@@ -74,6 +75,7 @@
             this.quadro1.bInfEsqArredondada = true;
             this.quadro1.bSupDirArredondada = true;
             this.quadro1.bSupEsqArredondada = true;
+            this.quadro1.Controls.Add(this.btnRelatórioReferência);
             this.quadro1.Controls.Add(this.btnRelatórioFornecedor);
             this.quadro1.Controls.Add(this.btnRelatórioResumo);
             this.quadro1.Cor = System.Drawing.Color.Black;
@@ -82,10 +84,24 @@
             this.quadro1.Location = new System.Drawing.Point(7, 13);
             this.quadro1.MostrarBotãoMinMax = false;
             this.quadro1.Name = "quadro1";
-            this.quadro1.Size = new System.Drawing.Size(160, 60);
+            this.quadro1.Size = new System.Drawing.Size(160, 83);
             this.quadro1.TabIndex = 7;
             this.quadro1.Tamanho = 30;
             this.quadro1.Título = "Relatórios";
+            // 
+            // btnRelatórioFornecedor
+            // 
+            this.btnRelatórioFornecedor.BackColor = System.Drawing.Color.Transparent;
+            this.btnRelatórioFornecedor.Descrição = "Fornecedor";
+            this.btnRelatórioFornecedor.Imagem = global::Apresentação.Resource.relatório;
+            this.btnRelatórioFornecedor.Location = new System.Drawing.Point(10, 43);
+            this.btnRelatórioFornecedor.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.btnRelatórioFornecedor.MaximumSize = new System.Drawing.Size(150, 100);
+            this.btnRelatórioFornecedor.MinimumSize = new System.Drawing.Size(150, 16);
+            this.btnRelatórioFornecedor.Name = "btnRelatórioFornecedor";
+            this.btnRelatórioFornecedor.Size = new System.Drawing.Size(150, 16);
+            this.btnRelatórioFornecedor.TabIndex = 7;
+            this.btnRelatórioFornecedor.Click += new System.EventHandler(this.btnRelatórioFornecedor_Click);
             // 
             // btnRelatórioResumo
             // 
@@ -113,7 +129,7 @@
             this.quadro2.Cor = System.Drawing.Color.Black;
             this.quadro2.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadro2.LetraTítulo = System.Drawing.Color.White;
-            this.quadro2.Location = new System.Drawing.Point(7, 79);
+            this.quadro2.Location = new System.Drawing.Point(7, 102);
             this.quadro2.MostrarBotãoMinMax = false;
             this.quadro2.Name = "quadro2";
             this.quadro2.Size = new System.Drawing.Size(160, 80);
@@ -160,7 +176,7 @@
             this.quadro3.Cor = System.Drawing.Color.Black;
             this.quadro3.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadro3.LetraTítulo = System.Drawing.Color.White;
-            this.quadro3.Location = new System.Drawing.Point(7, 165);
+            this.quadro3.Location = new System.Drawing.Point(7, 188);
             this.quadro3.MostrarBotãoMinMax = false;
             this.quadro3.Name = "quadro3";
             this.quadro3.Size = new System.Drawing.Size(160, 58);
@@ -215,19 +231,19 @@
             this.listaSaldo.TabIndex = 2;
             this.listaSaldo.AoDuploClique += new System.EventHandler(this.listaSaldo_AoDuploClique);
             // 
-            // btnRelatórioFornecedor
+            // btnRelatórioReferência
             // 
-            this.btnRelatórioFornecedor.BackColor = System.Drawing.Color.Transparent;
-            this.btnRelatórioFornecedor.Descrição = "Fornecedor";
-            this.btnRelatórioFornecedor.Imagem = global::Apresentação.Resource.relatório;
-            this.btnRelatórioFornecedor.Location = new System.Drawing.Point(10, 43);
-            this.btnRelatórioFornecedor.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.btnRelatórioFornecedor.MaximumSize = new System.Drawing.Size(150, 100);
-            this.btnRelatórioFornecedor.MinimumSize = new System.Drawing.Size(150, 16);
-            this.btnRelatórioFornecedor.Name = "btnRelatórioFornecedor";
-            this.btnRelatórioFornecedor.Size = new System.Drawing.Size(150, 16);
-            this.btnRelatórioFornecedor.TabIndex = 7;
-            this.btnRelatórioFornecedor.Click += new System.EventHandler(this.btnRelatórioFornecedor_Click);
+            this.btnRelatórioReferência.BackColor = System.Drawing.Color.Transparent;
+            this.btnRelatórioReferência.Descrição = "Referência";
+            this.btnRelatórioReferência.Imagem = global::Apresentação.Resource.relatório;
+            this.btnRelatórioReferência.Location = new System.Drawing.Point(10, 59);
+            this.btnRelatórioReferência.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.btnRelatórioReferência.MaximumSize = new System.Drawing.Size(150, 100);
+            this.btnRelatórioReferência.MinimumSize = new System.Drawing.Size(150, 16);
+            this.btnRelatórioReferência.Name = "btnRelatórioReferência";
+            this.btnRelatórioReferência.Size = new System.Drawing.Size(150, 16);
+            this.btnRelatórioReferência.TabIndex = 7;
+            this.btnRelatórioReferência.Click += new System.EventHandler(this.btnRelatórioReferência_Click);
             // 
             // BaseEstoque
             // 
@@ -261,5 +277,6 @@
         private Formulários.Quadro quadro4;
         private ListaSaldo listaSaldo;
         private Formulários.Opção btnRelatórioFornecedor;
+        private Formulários.Opção btnRelatórioReferência;
     }
 }

@@ -1,18 +1,17 @@
-﻿using Apresentação.Impressão.Relatórios.Estoque.ResumoSaldo;
-using CrystalDecisions.CrystalReports.Engine;
+﻿using CrystalDecisions.CrystalReports.Engine;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
 
-namespace Apresentação.Impressão.Relatórios.Estoque.Fornecedor
+namespace Apresentação.Impressão.Relatórios.Estoque.Referência
 {
-    public class ControleImpressãoFornecedor 
+    public class ControleImpressãoReferência 
     {
         public DataSet GerarDataSet(List<Entidades.Estoque.Saldo> itens)
         {
-            DataSetFornecedor ds = new DataSetFornecedor();
+            DataSetReferencia ds = new DataSetReferencia();
             DataTable tabelaItens = ds.Tables["Itens"];
 
             // Preencher itens do relacionamento

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Apresentação.Impressão.Relatórios.Estoque.Fornecedor {
+namespace Apresentação.Impressão.Relatórios.Estoque.Resumo {
     using System;
     using System.ComponentModel;
     using CrystalDecisions.Shared;
@@ -16,14 +16,14 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Fornecedor {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class ResumoFornecedor : ReportClass {
+    public class RelatórioResumo : ReportClass {
         
-        public ResumoFornecedor() {
+        public RelatórioResumo() {
         }
         
         public override string ResourceName {
             get {
-                return "ResumoFornecedor.rpt";
+                return "RelatórioResumo.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Fornecedor {
         
         public override string FullResourceName {
             get {
-                return "Apresentação.Impressão.Relatórios.Estoque.Fornecedor.ResumoFornecedor.rpt";
+                return "Apresentação.Impressão.Relatórios.Estoque.Resumo.RelatórioResumo.rpt";
             }
             set {
                 // Do nothing
@@ -66,7 +66,7 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Fornecedor {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section GroupHeaderSection1 {
+        public CrystalDecisions.CrystalReports.Engine.Section GroupHeaderSection2 {
             get {
                 return this.ReportDefinition.Sections[2];
             }
@@ -74,7 +74,7 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Fornecedor {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section GroupHeaderSection2 {
+        public CrystalDecisions.CrystalReports.Engine.Section GroupHeaderSection1 {
             get {
                 return this.ReportDefinition.Sections[3];
             }
@@ -90,7 +90,7 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Fornecedor {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section GroupFooterSection2 {
+        public CrystalDecisions.CrystalReports.Engine.Section GroupFooterSection1 {
             get {
                 return this.ReportDefinition.Sections[5];
             }
@@ -98,7 +98,7 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Fornecedor {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section GroupFooterSection1 {
+        public CrystalDecisions.CrystalReports.Engine.Section GroupFooterSection2 {
             get {
                 return this.ReportDefinition.Sections[6];
             }
@@ -122,9 +122,9 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Fornecedor {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedResumoFornecedor : Component, ICachedReport {
+    public class CachedRelatórioResumo : Component, ICachedReport {
         
-        public CachedResumoFornecedor() {
+        public CachedRelatórioResumo() {
         }
         
         [Browsable(false)]
@@ -161,7 +161,7 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Fornecedor {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            ResumoFornecedor rpt = new ResumoFornecedor();
+            RelatórioResumo rpt = new RelatórioResumo();
             rpt.Site = this.Site;
             return rpt;
         }

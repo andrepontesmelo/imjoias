@@ -1,4 +1,4 @@
-﻿using Apresentação.Impressão.Relatórios.Estoque.ResumoSaldo;
+﻿using Apresentação.Impressão.Relatórios.Estoque.Resumo;
 using CrystalDecisions.CrystalReports.Engine;
 using System;
 using System.Collections.Generic;
@@ -6,13 +6,13 @@ using System.Data;
 using System.Linq;
 using System.Text;
 
-namespace Apresentação.Impressão.Relatórios.Estoque.ResumoSaldo
+namespace Apresentação.Impressão.Relatórios.Estoque.Resumo
 {
-    public class ControleImpressãoFornecedor 
+    public class ControleImpressãoResumo 
     {
-        public DataSet GerarDataSet(List<Entidades.Estoque.Saldo> itens)
+        public DataSetResumo GerarDataSet(List<Entidades.Estoque.Saldo> itens)
         {
-            DataSetResumoSaldo ds = new DataSetResumoSaldo();
+            DataSetResumo ds = new DataSetResumo();
             DataTable tabelaItens = ds.Tables["Itens"];
 
             // Preencher itens do relacionamento
