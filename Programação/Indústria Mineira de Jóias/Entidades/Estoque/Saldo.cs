@@ -80,10 +80,21 @@ namespace Entidades.Estoque
         public Saldo()
         { }
 
+
         public static List<Saldo> Obter()
         {
-            return Mapear<Saldo>("select e.*, m.depeso, f.nome as fornecedornome, v.referenciafornecedor as fornecedorreferencia from estoque_saldo e join mercadoria m on e.referencia=m.referencia " +
-                " join vinculomercadoriafornecedor v on e.referencia=v.mercadoria join fornecedor f on v.fornecedor=f.codigo ");
+            return Obter(true, true);
+        }
+        public static List<Saldo> Obter(bool incluirPeso, bool incluirReferências)
+        {
+            if (!incluirPeso && !incluirReferências)
+                return new List<Saldo>();
+
+            return Mapear<Saldo>("select e.*, m.depeso, f.nome as fornecedornome, v.referenciafornecedor as fornecedorreferencia from estoque_saldo e " +
+                " join mercadoria m on e.referencia=m.referencia " +
+                " join vinculomercadoriafornecedor v on e.referencia=v.mercadoria join fornecedor f on v.fornecedor=f.codigo " +
+                " WHERE m.depeso=" + (incluirPeso ? "1" : "0") +
+                " or m.depeso=" + (incluirReferências ? "0" : "1"));
         }
 
         public double ProdudoPesoSaldo
