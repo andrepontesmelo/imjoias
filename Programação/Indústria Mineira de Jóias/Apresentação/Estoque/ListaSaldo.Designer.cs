@@ -46,6 +46,9 @@
             this.panelPesoTotal = new System.Windows.Forms.StatusBarPanel();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.btnPesquisa = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripBtnFiltrarFornecedor = new System.Windows.Forms.ToolStripButton();
+            this.toolStripComboBoxFornecedor = new System.Windows.Forms.ToolStripComboBox();
             this.localizador = new Apresentação.Formulários.Localizador();
             ((System.ComponentModel.ISupportInitialize)(this.panelReferencias)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelPesoTotal)).BeginInit();
@@ -154,12 +157,16 @@
             // 
             this.toolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnPesquisa});
+            this.btnPesquisa,
+            this.toolStripSeparator1,
+            this.toolStripBtnFiltrarFornecedor,
+            this.toolStripComboBoxFornecedor});
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Size = new System.Drawing.Size(902, 25);
             this.toolStrip.TabIndex = 12;
             this.toolStrip.Text = "toolStrip1";
+            this.toolStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip_ItemClicked);
             // 
             // btnPesquisa
             // 
@@ -171,6 +178,28 @@
             this.btnPesquisa.Text = "btnPesquisa";
             this.btnPesquisa.ToolTipText = "Localizar...";
             this.btnPesquisa.Click += new System.EventHandler(this.btnPesquisa_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripBtnFiltrarFornecedor
+            // 
+            this.toolStripBtnFiltrarFornecedor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripBtnFiltrarFornecedor.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBtnFiltrarFornecedor.Image")));
+            this.toolStripBtnFiltrarFornecedor.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBtnFiltrarFornecedor.Name = "toolStripBtnFiltrarFornecedor";
+            this.toolStripBtnFiltrarFornecedor.Size = new System.Drawing.Size(107, 22);
+            this.toolStripBtnFiltrarFornecedor.Text = "Filtrar Fornecedor:";
+            this.toolStripBtnFiltrarFornecedor.Click += new System.EventHandler(this.toolStripBtnFiltrarFornecedor_Click);
+            // 
+            // toolStripComboBoxFornecedor
+            // 
+            this.toolStripComboBoxFornecedor.Enabled = false;
+            this.toolStripComboBoxFornecedor.Name = "toolStripComboBoxFornecedor";
+            this.toolStripComboBoxFornecedor.Size = new System.Drawing.Size(121, 25);
+            this.toolStripComboBoxFornecedor.SelectedIndexChanged += new System.EventHandler(this.toolStripComboboxFornecedorSelectedIndexChanged);
             // 
             // localizador
             // 
@@ -224,5 +253,8 @@
         private Apresentação.Formulários.Localizador localizador;
         private System.Windows.Forms.ToolStrip toolStrip;
         private System.Windows.Forms.ToolStripButton btnPesquisa;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBoxFornecedor;
+        private System.Windows.Forms.ToolStripButton toolStripBtnFiltrarFornecedor;
     }
 }
