@@ -290,7 +290,7 @@ namespace Apresentação.Álbum.Edição.Fotos
             if (txtFornecedor.Txt.Text.Trim().Length > 0)
             {
                 // Verifica se o fornecedor entrado já é registrado
-                Fornecedor fornecedorCadastrado = txtFornecedor.ObterFornecedor();
+                Entidades.Fornecedor fornecedorCadastrado = txtFornecedor.ObterFornecedor();
                 if (fornecedorCadastrado != null)
                 {
                     códigoFornecedor = (int)fornecedorCadastrado.Código;
@@ -298,7 +298,7 @@ namespace Apresentação.Álbum.Edição.Fotos
                 else
                 {
                     // Vamos cadastrar novo fornecedor.
-                    Fornecedor fornecedor = new Fornecedor();
+                    Entidades.Fornecedor fornecedor = new Entidades.Fornecedor();
                     fornecedor.Nome = txtFornecedor.Txt.Text.Trim();
                     fornecedor.Cadastrar();
                     códigoFornecedor = (int)fornecedor.Código;

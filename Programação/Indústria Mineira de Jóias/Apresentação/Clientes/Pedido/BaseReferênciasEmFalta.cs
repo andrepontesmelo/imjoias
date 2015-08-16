@@ -30,7 +30,7 @@ namespace Apresentação.Atendimento.Clientes.Pedido
             {
                 ListViewItem item = new ListViewItem(new string[lista.Columns.Count]);
                 item.SubItems[colReferência.Index].Text = m.ReferênciaFormatada;
-                Fornecedor f = Fornecedor.ObterFornecedor(m.Fornecedor);
+                Entidades.Fornecedor f = Entidades.Fornecedor.ObterFornecedor(m.Fornecedor);
                 if (f != null)
                     item.SubItems[colFornecedor.Index].Text = f.Nome;
 

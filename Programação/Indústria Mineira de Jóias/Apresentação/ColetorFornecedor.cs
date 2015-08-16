@@ -36,7 +36,7 @@ namespace Apresentação.Álbum.Edição
 				IList fornecedores;
 			
 				// Obter mercadorias do controle
-				fornecedores = Fornecedor.ObterFornecedores(chave, limite);
+				fornecedores = Entidades.Fornecedor.ObterFornecedores(chave, limite);
 
 				lst.Mostrar(fornecedores);
 			}
@@ -50,11 +50,11 @@ namespace Apresentação.Álbum.Edição
 		{
             //if (Pesquisando || chave != Chave || lst.Items.Count == 0)
             //{
-                Fornecedor fornecedor;
+                Entidades.Fornecedor fornecedor;
 
 				Cancelar();
 
-                fornecedor = Fornecedor.ObterFornecedorPróximo(chave);
+                fornecedor = Entidades.Fornecedor.ObterFornecedorPróximo(chave);
 				
 				return fornecedor != null ? fornecedor.Nome : null;
             //}

@@ -19,8 +19,8 @@ namespace Apresentação.Impressão.Relatórios.Pedido.PedidosParaFornecedores
             DataSetPedidosParaFornecedores ds = new DataSetPedidosParaFornecedores();
 
             DataTable tabelaFornecedor = ds.Tables["Fornecedor"];
-            List<Fornecedor> fornecedores = Fornecedor.ObterFornecedores();;
-            foreach (Fornecedor f in fornecedores)
+            List<Entidades.Fornecedor> fornecedores = Entidades.Fornecedor.ObterFornecedores();;
+            foreach (Entidades.Fornecedor f in fornecedores)
             {
                 DataRow linha = tabelaFornecedor.NewRow();
                 linha["código"] = f.Código;

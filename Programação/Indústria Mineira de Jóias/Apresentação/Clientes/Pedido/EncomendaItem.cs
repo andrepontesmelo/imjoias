@@ -75,7 +75,7 @@ namespace Apresentação.Atendimento.Clientes.Pedido
 
         private void txtFornecedor_Leave(object sender, EventArgs e)
         {
-            Fornecedor fornecedorVálido = txtFornecedor.ObterFornecedor();
+            Entidades.Fornecedor fornecedorVálido = txtFornecedor.ObterFornecedor();
 
             if (fornecedorVálido != null)
             {
@@ -95,10 +95,10 @@ namespace Apresentação.Atendimento.Clientes.Pedido
             if (!carregando)
             {
                 entidade.Atualizar();
-                Fornecedor fornecedor = txtFornecedor.ObterFornecedor();
+                Entidades.Fornecedor fornecedor = txtFornecedor.ObterFornecedor();
                 if (fornecedor == null)
                 {
-                    fornecedor = new Fornecedor();
+                    fornecedor = new Entidades.Fornecedor();
                     fornecedor.Nome = txtFornecedor.Txt.Text.Trim();
 
                     fornecedor.Cadastrar();
