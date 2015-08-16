@@ -1304,12 +1304,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSetVendaItem.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Impressão\Relatórios\Comissao\RelatorioComissao.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RelatorioComissao.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Impressão\Relatórios\Comissao\RelatorioComissaoVenda.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -3145,10 +3139,6 @@
     <EmbeddedResource Include="Impressão\Relatórios\Acerto\Relatório.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Relatório.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Impressão\Relatórios\Comissao\RelatorioComissao.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RelatorioComissao.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Impressão\Relatórios\Comissao\RelatorioComissaoVenda.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
