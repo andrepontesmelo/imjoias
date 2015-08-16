@@ -18,6 +18,8 @@ namespace Apresentação.Estoque
 
         private List<Entidades.Estoque.Saldo> itens;
 
+        private Entidades.Configuração.ConfiguraçãoUsuário<bool> localizadorAberto;
+
         struct ResultadoCarga
         {
             public ListViewItem[] ListaGrafica;
@@ -32,6 +34,16 @@ namespace Apresentação.Estoque
             lvwColumnSorter = new ListViewColumnSorter();
 
             this.lst.ListViewItemSorter = lvwColumnSorter;
+            localizador.Visible = true;
+
+            localizadorAberto = new Entidades.Configuração.ConfiguraçãoUsuário<bool>("ListaSaldo.localizador.aberto", false);
+            localizador.Visible = localizadorAberto.Valor;
+
+            if (!localizadorAberto.Valor)
+            {
+                lst.Height += localizador.Height;
+            }
+            
         }
 
         public void Carregar()
@@ -76,6 +88,7 @@ namespace Apresentação.Estoque
                 i.Tag = s;
                 resultado.ListaGrafica[x++] = i;
                 resultado.TotalSaldoPeso += s.Peso * s.SaldoValor;
+                localizador.InserirListViewItem(i);
             }
 
             resultado.TotalReferencias = itens.Count;
@@ -122,5 +135,45 @@ namespace Apresentação.Estoque
         }
 
         public List<Saldo> Itens { get { return itens; } }
+
+        private void localizador_DesrealçarTudo(object sender, EventArgs e)
+        {
+            foreach (ListViewItem i in lst.Items)
+                i.BackColor = Color.White;
+        }
+
+        private void localizador_EncontrarItem(object item, object últimoEncontrado)
+        {
+            ListViewItem i = (ListViewItem)item;
+            ListViewItem iAnterior = últimoEncontrado as ListViewItem;
+
+            if (iAnterior != null)
+                iAnterior.Selected = false;
+
+            i.Selected = true;
+            i.EnsureVisible();
+        }
+
+        private void localizador_RealçarItens(System.Collections.ArrayList itens)
+        {
+            foreach (ListViewItem i in itens)
+            {
+                i.BackColor = Color.Yellow;
+            }
+        }
+
+        private void btnPesquisa_Click(object sender, EventArgs e)
+        {
+            localizador.Visible = true;
+            lst.Height -= localizador.Height;
+
+            localizadorAberto.Valor = true;
+        }
+
+        private void localizador_AoFechar(object sender, EventArgs e)
+        {
+            localizadorAberto.Valor = false;
+            lst.Height += localizador.Height;
+        }
     }
 }

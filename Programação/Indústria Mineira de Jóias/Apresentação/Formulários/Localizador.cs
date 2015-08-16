@@ -29,6 +29,7 @@ namespace Apresentação.Formulários
         public event RealçarDelegate RealçarItens;
         public event EventHandler DesrealçarTudo;
         public event EncontrarDelegate EncontrarItem;
+        public event EventHandler AoFechar;
 
         public ToolStripButton BotãoPesquisar
         {
@@ -185,6 +186,9 @@ namespace Apresentação.Formulários
         private void btnFecharBusca_Click(object sender, EventArgs e)
         {
             Visible = false;
+
+            if (AoFechar != null)
+                AoFechar(sender, e);
         }
     }
 }
