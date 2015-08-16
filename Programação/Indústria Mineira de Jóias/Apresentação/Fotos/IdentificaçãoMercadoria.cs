@@ -68,18 +68,8 @@ namespace Apresentação.Fotos
                     
                     if (foto.Peso.HasValue)
                         txtPeso.Double = foto.Peso.Value;
-
-                    Entidades.Mercadoria.MercadoriaFornecedor fornecedor = Entidades.Mercadoria.MercadoriaFornecedor.ObterFornecedor(foto.ReferênciaNumérica);
-                    if (fornecedor != null)
-                    {
-                        txtFornecedor.Txt.Text = fornecedor.Fornecedor.Nome;
-                        txtFornecedorReferência.Text = fornecedor.ReferênciaFornecedor;
-                    }
-                    else
-                    {
-                        txtFornecedor.Txt.Text = "";
-                        txtFornecedorReferência.Text = "";
-                    }
+                    
+                    CarregarFornecedor();
 
                     if (foto.Descrição != null)
                         txtDescrição.Text = foto.Descrição;
@@ -102,6 +92,22 @@ namespace Apresentação.Fotos
 
                 //if (Alterado != null)
                 //    Alterado(null, new EventArgs());
+            }
+        }
+
+        private void CarregarFornecedor()
+        {
+
+            Entidades.Mercadoria.MercadoriaFornecedor fornecedor = Entidades.Mercadoria.MercadoriaFornecedor.ObterFornecedor(foto.ReferênciaNumérica);
+            if (fornecedor != null)
+            {
+                txtFornecedor.Txt.Text = fornecedor.Fornecedor.Nome;
+                txtFornecedorReferência.Text = fornecedor.ReferênciaFornecedor;
+            }
+            else
+            {
+                txtFornecedor.Txt.Text = "";
+                txtFornecedorReferência.Text = "";
             }
         }
 
@@ -208,6 +214,7 @@ namespace Apresentação.Fotos
 
             txtDescriçãoMercadoria.Text = txtReferência.Mercadoria.Descrição ?? "";
 
+            CarregarFornecedor();
 
             if (Alterado != null)
                 Alterado(sender, e);
