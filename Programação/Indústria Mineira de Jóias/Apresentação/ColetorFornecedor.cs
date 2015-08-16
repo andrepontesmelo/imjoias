@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Entidades;
 using Entidades.Mercadoria;
+using Apresentação.Formulários.Fornecedor;
 
 namespace Apresentação.Álbum.Edição
 {

@@ -1,4 +1,5 @@
-﻿namespace Apresentação.Álbum.Edição.Fotos
+﻿using Apresentação.Formulários.Fornecedor;
+namespace Apresentação.Álbum.Edição.Fotos
 {
     partial class IdentificaçãoMercadoria
     {
@@ -40,7 +41,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtData = new System.Windows.Forms.TextBox();
             this.txtDescrição = new System.Windows.Forms.TextBox();
-            this.txtFornecedor = new Apresentação.Álbum.Edição.TxtFornecedor();
+            this.txtFornecedor = new Apresentação.Formulários.Fornecedor.TxtFornecedor();
             this.label4 = new System.Windows.Forms.Label();
             this.quadroIdentificação.SuspendLayout();
             this.SuspendLayout();

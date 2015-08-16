@@ -37,7 +37,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.opçãoExcluir = new Apresentação.Formulários.Opção();
-            this.txtFornecedor = new Apresentação.Álbum.Edição.TxtFornecedor();
+            this.txtFornecedor = new Apresentação.Formulários.Fornecedor.TxtFornecedor();
             this.txtMercadoria = new Apresentação.Mercadoria.TxtMercadoria();
             this.btnRastrear = new Apresentação.Formulários.Opção();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuantidade)).BeginInit();
@@ -229,7 +229,7 @@
         private Mercadoria.TxtMercadoria txtMercadoria;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private Álbum.Edição.TxtFornecedor txtFornecedor;
+        private Apresentação.Formulários.Fornecedor.TxtFornecedor txtFornecedor;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtReferênciaFornecedor;
         private System.Windows.Forms.TextBox txtDescrição;

@@ -10,6 +10,7 @@ using Entidades.Mercadoria;
 using Apresentação.Formulários;
 using Apresentação.Mercadoria;
 using Apresentação.Impressão.Relatórios.Pedido.MercadoriaEmFalta;
+using Entidades;
 
 namespace Apresentação.Atendimento.Clientes.Pedido
 {

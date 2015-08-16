@@ -1721,7 +1721,7 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="IntegraçãoSistemaAntigo\Vendas\Venda.cs" />
-    <Compile Include="ListViewFornecedor.cs">
+    <Compile Include="Fornecedor\ListViewFornecedor.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Mercadoria\BalãoReferênciaForaDeLinha.cs">
@@ -2303,7 +2303,7 @@
     <Compile Include="SinalizaçãoPedido.Designer.cs">
       <DependentUpon>SinalizaçãoPedido.cs</DependentUpon>
     </Compile>
-    <Compile Include="TxtFornecedor.cs">
+    <Compile Include="Fornecedor\TxtFornecedor.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Usuário\Agendamentos\BaseAgendamentos.cs">
@@ -3267,7 +3267,7 @@
       <DependentUpon>VisualizarPáginaVirtual.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="ListViewFornecedor.resx">
+    <EmbeddedResource Include="Fornecedor\ListViewFornecedor.resx">
       <DependentUpon>ListViewFornecedor.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -3476,7 +3476,7 @@
       <DependentUpon>SinalizaçãoPedido.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="TxtFornecedor.resx">
+    <EmbeddedResource Include="Fornecedor\TxtFornecedor.resx">
       <DependentUpon>TxtFornecedor.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
