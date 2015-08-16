@@ -104,13 +104,10 @@ namespace Entidades
             + "FROM fornecedor where nome = '" + nome + "' UNION select * from fornecedor where nome like '%" + nome + "%' LIMIT " + limite.ToString()).ToArray();
 		}
 
-        /// <summary>
-        /// Obtém lista de fornecedores
         public static List<Fornecedor> ObterFornecedores()
         {
             return Mapear<Fornecedor>("SELECT * FROM fornecedor ");
         }
-
 		
 		/// <summary>
 		/// Recupera o primeiro fornecedor com nome próximo
@@ -123,7 +120,6 @@ namespace Entidades
 			
             if (lista.Length == 0) 
 				return null;
-
 
             if (lista[0].Nome.Trim().ToLower().CompareTo(chave.Trim().ToLower()) == 0)
                 return lista[0];

@@ -1135,6 +1135,12 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Formulários\VistaAPI.cs" />
+    <Compile Include="Fornecedor\ComboboxFornecedor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Fornecedor\ComboboxFornecedor.Designer.cs">
+      <DependentUpon>ComboboxFornecedor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Fotos\BalãoInformarTratamento.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3087,6 +3093,9 @@
     <EmbeddedResource Include="Formulários\TítuloBaseInferior.resx">
       <DependentUpon>TítuloBaseInferior.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fornecedor\ComboboxFornecedor.resx">
+      <DependentUpon>ComboboxFornecedor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Fotos\BalãoInformarTratamento.resx">
       <DependentUpon>BalãoInformarTratamento.cs</DependentUpon>
