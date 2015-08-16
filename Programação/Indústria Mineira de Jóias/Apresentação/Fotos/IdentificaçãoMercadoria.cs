@@ -10,7 +10,7 @@ using Entidades;
 using Entidades.Mercadoria;
 using Apresentação.Formulários.Fornecedor;
 
-namespace Apresentação.Álbum.Edição.Fotos
+namespace Apresentação.Fotos
 {
     public partial class IdentificaçãoMercadoria : UserControl
     {

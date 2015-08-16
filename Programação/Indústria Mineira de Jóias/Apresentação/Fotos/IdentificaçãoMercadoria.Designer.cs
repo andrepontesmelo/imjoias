@@ -1,5 +1,5 @@
 ﻿using Apresentação.Formulários.Fornecedor;
-namespace Apresentação.Álbum.Edição.Fotos
+namespace Apresentação.Fotos
 {
     partial class IdentificaçãoMercadoria
     {

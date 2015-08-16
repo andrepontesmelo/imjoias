@@ -64,7 +64,7 @@ namespace Apresentação.Álbum.Edição.Fotos
         private Opção opçãoApagarFoto;
         public Apresentação.Álbum.Edição.Álbuns.ListaÁlbuns listaÁlbuns;
         private Apresentação.Mercadoria.QuadroFoto quadroExibição;
-        private IdentificaçãoMercadoria quadroMercadoria;
+        private Apresentação.Fotos.IdentificaçãoMercadoria quadroMercadoria;
         private Opção btnImportar;
         private Opção opçãoRemoverFundo;
 		private System.ComponentModel.IContainer components = null;
@@ -135,7 +135,7 @@ namespace Apresentação.Álbum.Edição.Fotos
             this.picFoto = new System.Windows.Forms.PictureBox();
             this.quadroÁlbum = new Apresentação.Formulários.Quadro();
             this.listaÁlbuns = new Apresentação.Álbum.Edição.Álbuns.ListaÁlbuns();
-            this.quadroMercadoria = new Apresentação.Álbum.Edição.Fotos.IdentificaçãoMercadoria();
+            this.quadroMercadoria = new Apresentação.Fotos.IdentificaçãoMercadoria();
             this.quadroExibição = new Apresentação.Mercadoria.QuadroFoto();
             this.esquerda.SuspendLayout();
             this.quadroOpções.SuspendLayout();
