@@ -164,10 +164,13 @@ namespace Apresentação.Estoque
 
         private void btnPesquisa_Click(object sender, EventArgs e)
         {
-            localizador.Visible = true;
-            lst.Height -= localizador.Height;
+            if (!localizador.Visible)
+            {
+                localizador.Visible = true;
+                lst.Height -= localizador.Height;
 
-            localizadorAberto.Valor = true;
+                localizadorAberto.Valor = true;
+            }
         }
 
         private void localizador_AoFechar(object sender, EventArgs e)
