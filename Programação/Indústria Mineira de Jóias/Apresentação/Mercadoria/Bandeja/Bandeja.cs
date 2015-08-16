@@ -19,8 +19,6 @@ namespace Apresentação.Mercadoria.Bandeja
     /// </summary>
 	public class Bandeja : System.Windows.Forms.UserControl, IEnumerable, IPósCargaSistema
 	{
-        private bool suspendeObtençãoDeÍcones = false;
-
         /// <summary>
         /// Tempo que a sinalização de mudança na bandeja
         /// permanece em exibição.
@@ -438,8 +436,6 @@ namespace Apresentação.Mercadoria.Bandeja
             hashAgrupamento = new Dictionary<string, ISaquinho>(StringComparer.Ordinal);
 
             lista.ListViewItemSorter = new BandejaComparador(hashListViewItemSaquinho, lista);
-
-            recuperaçãoFotos = new RecuperaçãoFotos(this);
         }
 
         protected override void OnLoad(EventArgs e)
@@ -532,26 +528,6 @@ namespace Apresentação.Mercadoria.Bandeja
             UseWaitCursor = false;
 		}
 		
-        ///// <summary>
-        ///// Recalcula estatísticas da bandeja.
-        ///// </summary>
-        //private void RecalcularEstatísticas()
-        //{
-        //    lock (saquinhos)
-        //    {
-        //        totalMercadorias = 0;
-        //        totalPeso = 0;
-        //        totalPreço = 0;
-
-        //        foreach (ISaquinho s in saquinhos)
-        //        {
-        //            totalMercadorias += s.Quantidade;
-        //            totalPeso += s.Quantidade * s.Peso;
-        //            totalPreço += s.Quantidade * s.Mercadoria.CalcularPreço(cotação);
-        //        }
-        //    }
-        //}
-
 		/// <summary>
 		/// Ocorre ao selecionar um ou mais itens na ListView
 		/// Sempre que é selecionado e ocorre a desseleção de outro,
@@ -673,20 +649,7 @@ namespace Apresentação.Mercadoria.Bandeja
             }
 
             if (MostrarStatus)
-            {
-                //if (lista.SelectedItems.Count > 1)
-                //{
-                //    // Atualiza futuramente, para atualizar uma só vez.
-                //    timerStatus.Enabled = true;
-                //}
-                //else
-                //{
-                //    // Atualiza agora.
-                //    AtualizarStatus();
-                //}
-
                 timerStatus.Enabled = true;
-            }
         }
 
 		/// <summary>
@@ -963,6 +926,7 @@ namespace Apresentação.Mercadoria.Bandeja
 			// A tag é necessária para exibição futura da foto.
 			novoItemListView.Tag = saquinho.Mercadoria;
 
+            AdicionarFoto(novoItemListView, saquinho.Mercadoria.Ícone);
 			return novoItemListView;
 		}
 
@@ -1070,10 +1034,9 @@ namespace Apresentação.Mercadoria.Bandeja
 			// Verifica se existe chave de semelhança na hash.
             if (hashAgrupamento.ContainsKey(identificação))
 			{
-                lock (saquinhos)
-					foreach (Saquinho s in saquinhos)
-						if (identificação.Equals(s.IdentificaçãoAgrupável()))
-							semelhantes.Add(s);
+				foreach (Saquinho s in saquinhos)
+					if (identificação.Equals(s.IdentificaçãoAgrupável()))
+						semelhantes.Add(s);
 			}
 
             return semelhantes;
@@ -1084,41 +1047,30 @@ namespace Apresentação.Mercadoria.Bandeja
 		/// Agrupa todos os saquinhos agrupáveis.
         /// Pergunta nada ao usuário.
 		/// </summary>
-		private void AgruparTudo()
-		{
-            // Evita chamada em loop AguparTudo->Adicionar()->AguparTudo...
-            //if (!agrupar)
-            //    return;
-            //else
-            //    agrupar = false;
-
+        private void AgruparTudo()
+        {
             if (!agrupar)
                 throw new Exception("Tentativa de AgruparTudo() quando agrupar=false");
 
-            lock (saquinhos) 
-			{
-				ArrayList cópiaSaquinhos = new ArrayList(this.saquinhos);
-			
-				while (cópiaSaquinhos.Count > 0)
-				{
-					List<Saquinho>        agrupáveisAoSaquinhoAtual;
-					Entidades.Saquinho    saquinhoAtual;
+            ArrayList cópiaSaquinhos = new ArrayList(this.saquinhos);
 
-					saquinhoAtual = (Entidades.Saquinho) cópiaSaquinhos[0];
+            while (cópiaSaquinhos.Count > 0)
+            {
+                List<Saquinho> agrupáveisAoSaquinhoAtual;
+                Entidades.Saquinho saquinhoAtual;
 
-                    //// Garante o fim do while:
-                    cópiaSaquinhos.Remove(saquinhoAtual);
+                saquinhoAtual = (Entidades.Saquinho)cópiaSaquinhos[0];
 
-                    agrupáveisAoSaquinhoAtual = AgruparItem(saquinhoAtual);
+                //// Garante o fim do while:
+                cópiaSaquinhos.Remove(saquinhoAtual);
 
-                    // Retira os saquinhos que serão eliminados da cópia
-                    foreach (Entidades.ISaquinho s in agrupáveisAoSaquinhoAtual)
-                        cópiaSaquinhos.Remove(s);
-				}
-			}
+                agrupáveisAoSaquinhoAtual = AgruparItem(saquinhoAtual);
 
-            //agrupar = true;
-		}
+                // Retira os saquinhos que serão eliminados da cópia
+                foreach (Entidades.ISaquinho s in agrupáveisAoSaquinhoAtual)
+                    cópiaSaquinhos.Remove(s);
+            }
+        }
 
         /// <summary>
         /// Remove vários saquinhos semelhantes ao do parametro e adiciona um que substitui todos.
@@ -1249,9 +1201,6 @@ namespace Apresentação.Mercadoria.Bandeja
             
             item = ConstruirListView(saquinhoOriginal);
 
-            if (recuperaçãoFotos != null)
-                recuperaçãoFotos.Adicionar(item);
-
             lista.Items.Add(item);
             item.EnsureVisible();
 
@@ -1289,92 +1238,64 @@ namespace Apresentação.Mercadoria.Bandeja
 
         public void AdicionarVários(ArrayList listaSaquinhos, bool agrupar)
         {
-            Aguarde dlg = null;
-            suspendeObtençãoDeÍcones = true;
-
             UseWaitCursor = true;
             ListViewItem[] itens = new ListViewItem[listaSaquinhos.Count];
             int x = 0;
 
-            try
+            AguardeDB.Mostrar();
+
+            foreach (ISaquinho s in listaSaquinhos)
             {
-                lock (listaSaquinhos)
+                ISaquinho sOuNovo = s;
+                ListViewItem item;
+
+                if (agrupar)
                 {
-
-                    if (listaSaquinhos.Count > 20)
+                    string chave = s.IdentificaçãoAgrupável();
+                    ISaquinho agrupável = null;
+                    if (hashAgrupamento.TryGetValue(chave, out agrupável))
                     {
-                        dlg = new Aguarde("Carregando bandeja", listaSaquinhos.Count);
-                        dlg.Show(ParentForm);
-                        dlg.Update();
-                    }
-
-                    foreach (ISaquinho s in listaSaquinhos)
-                    {
-                        ISaquinho sOuNovo = s;
-                        ListViewItem item;
-
-                        if (dlg != null)
-                            dlg.Passo();
-
-                        if (agrupar)
-                        {
-                            /* É concebido que a bandeja já está completamente agrupado.
-                             * Portanto, só devemos olhar por um item apenas.
-                             */
-                            string chave = s.IdentificaçãoAgrupável();
-                            ISaquinho agrupável = null;
-                            if (hashAgrupamento.TryGetValue(chave, out agrupável))
-                            {
-                                hashAgrupamento.Remove(chave);
-                                sOuNovo = s.Clone(s.Quantidade + agrupável.Quantidade);
-                                hashAgrupamento[chave] = sOuNovo;
-
-                                RemoverInterno(agrupável);
-                            }
-                        }
-
-                        saquinhos.Add(sOuNovo);
-
-                        item = ConstruirListView(sOuNovo);
-                        item.Group = lista.Groups[sOuNovo.Mercadoria.DePeso ? "peso" : "peça"];
-
-                        itens[x++] = item;
-
-                        //// Atualiza contagem para status
-                        totalMercadorias += sOuNovo.Quantidade;
-                        totalPeso += sOuNovo.Quantidade * sOuNovo.Peso;
-                        totalÍndice += sOuNovo.Quantidade * sOuNovo.Mercadoria.ÍndiceArredondado;
-                        if (sOuNovo.Mercadoria.DePeso)
-                            totalÍndicePeso += sOuNovo.Quantidade * sOuNovo.Mercadoria.ÍndiceArredondado;
-                        else
-                            totalÍndicePeça += sOuNovo.Quantidade * sOuNovo.Mercadoria.ÍndiceArredondado;
-
-                        if (cotação != null)
-                            totalPreço += CalcularValor(sOuNovo);
-
-                        if (recuperaçãoFotos != null)
-                            recuperaçãoFotos.AdicionarVários(itens);
+                        sOuNovo = SubstituirSaquinho(s, sOuNovo, chave, agrupável);
                     }
                 }
+
+                saquinhos.Add(sOuNovo);
+
+                item = ConstruirListView(sOuNovo);
+                item.Group = lista.Groups[sOuNovo.Mercadoria.DePeso ? "peso" : "peça"];
+
+                itens[x++] = item;
+
+                AtualizaContagemStatus(sOuNovo);
             }
-            finally
-            {
-                lista.Items.AddRange(itens);
+            
+            lista.Items.AddRange(itens);
+            UseWaitCursor = false;
+            AguardeDB.Fechar();
+        }
 
-                //SuspendeLeiaute  = false;
-                UseWaitCursor = false;
+        private ISaquinho SubstituirSaquinho(ISaquinho s, ISaquinho sOuNovo, string chave, ISaquinho agrupável)
+        {
+            hashAgrupamento.Remove(chave);
+            sOuNovo = s.Clone(s.Quantidade + agrupável.Quantidade);
+            hashAgrupamento[chave] = sOuNovo;
 
-                if (dlg != null)
-                {
-                    dlg.Close();
-                    dlg.Dispose();
-                }
+            RemoverInterno(agrupável);
+            return sOuNovo;
+        }
 
-                suspendeObtençãoDeÍcones = false;
-                
-                if (recuperaçãoFotos != null)
-                    recuperaçãoFotos.IniciarTrabalho();
-            }
+        private void AtualizaContagemStatus(ISaquinho sOuNovo)
+        {
+            totalMercadorias += sOuNovo.Quantidade;
+            totalPeso += sOuNovo.Quantidade * sOuNovo.Peso;
+            totalÍndice += sOuNovo.Quantidade * sOuNovo.Mercadoria.ÍndiceArredondado;
+            if (sOuNovo.Mercadoria.DePeso)
+                totalÍndicePeso += sOuNovo.Quantidade * sOuNovo.Mercadoria.ÍndiceArredondado;
+            else
+                totalÍndicePeça += sOuNovo.Quantidade * sOuNovo.Mercadoria.ÍndiceArredondado;
+
+            if (cotação != null)
+                totalPreço += CalcularValor(sOuNovo);
         }
 
         /// <summary>
@@ -1440,8 +1361,7 @@ namespace Apresentação.Mercadoria.Bandeja
 			 * Portanto, deve-se procurar por outro agrupável para ser referenciado.
              */
 
-            lock (saquinhos)
-                saquinhos.Remove(s);
+            saquinhos.Remove(s);
 
             string identificação = s.IdentificaçãoAgrupável();
 
@@ -1564,84 +1484,6 @@ namespace Apresentação.Mercadoria.Bandeja
 			get { return (ISaquinho) saquinhos[i]; }
 		}
 
-		#region Thread para recuperação das fotos
-
-        private RecuperaçãoFotos recuperaçãoFotos;
-	
-        private class RecuperaçãoFotos : TrabalhoSegundoPlano
-        {
-            private Queue<ListViewItem> filaFotos = new Queue<ListViewItem>();
-            private Bandeja bandeja;
-
-            public RecuperaçãoFotos(Bandeja bandeja)
-            {
-                this.bandeja = bandeja;
-            }
-
-            protected override void RealizarTrabalho()
-            {
-                bool pesquisando = filaFotos.Count > 0;
-
-                while (pesquisando)
-                {
-                    ListViewItem item = null;
-                    bool fotoJáIncluída;
-                    Entidades.Mercadoria.Mercadoria mercadoria;
-                    Image foto;
-
-                    // Retira da fila
-                    lock (filaFotos)
-                    {
-                        if (filaFotos.Count > 0)
-                            item = filaFotos.Dequeue();
-                        else
-                            item = null;
-                    }
-
-                    if (item != null)
-                    {
-                        fotoJáIncluída = (item.ImageIndex != -1);
-
-                        if (!fotoJáIncluída)
-                        {
-                            mercadoria = (Entidades.Mercadoria.Mercadoria)item.Tag;
-                            foto = mercadoria.Ícone;
-
-                            if (foto != null)
-                                bandeja.AdicionarFoto(item, foto);
-                        }
-                    }
-
-                    pesquisando = filaFotos.Count > 0;
-                }
-            }
-
-            protected override bool DeveReiniciar()
-            {
-                lock (filaFotos)
-                    return filaFotos.Count > 0;
-            }
-
-            public void Adicionar(ListViewItem item)
-            {
-                filaFotos.Enqueue(item);
-
-                if (!bandeja.suspendeObtençãoDeÍcones)
-                    IniciarTrabalho();
-            }
-
-            internal void AdicionarVários(ListViewItem[] itens)
-            {
-                foreach (ListViewItem i in itens)
-                    filaFotos.Enqueue(i);
-
-                if (!bandeja.suspendeObtençãoDeÍcones)
-                    IniciarTrabalho();
-            }
-        }
-
-		private delegate void AdicionarFotoCallback(ListViewItem item, Image foto);
-
 		/// <summary>
 		/// Adiciona foto na ListView de forma segura em relação à thread.
 		/// </summary>
@@ -1649,36 +1491,15 @@ namespace Apresentação.Mercadoria.Bandeja
 		/// <param name="foto">Foto da mercadoria.</param>
 		private void AdicionarFoto(ListViewItem item, Image foto)
 		{
-			if (this.InvokeRequired)
-			{
-				AdicionarFotoCallback método = new AdicionarFotoCallback(AdicionarFoto);
-				this.BeginInvoke(método, new object[] { item, foto });
-			}
-			else
-			{
-                try
-                {
-					imagensGrandes.Images.Add(foto);
-					imagensPequenas.Images.Add(foto);
+            if (foto != null)
+            {
+                imagensGrandes.Images.Add(foto);
+                imagensPequenas.Images.Add(foto);
 
-					item.ImageIndex = imagensGrandes.Images.Count - 1;
-                }
-#if DEBUG
-                catch
-                {
-                    MessageBox.Show("Erro: tentativa de atribuição do valor " + (imagensGrandes.Images.Count - 1).ToString() + " para item.ImageIndex, que tem valor anteriormente " + item.ImageIndex.ToString());
-                }
-#else
-                catch (Exception e)
-                {
-                    Acesso.Comum.Usuários.UsuárioAtual.RegistrarErro(e);
-                }
-#endif
-			}
+                item.ImageIndex = imagensGrandes.Images.Count - 1;
+            }
 		}
 	
-		#endregion
-
         #region Cotação
 
         private Entidades.Cotação cotação;

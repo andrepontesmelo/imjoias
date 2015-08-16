@@ -53,10 +53,11 @@
             // 
             // títuloBaseInferior1
             // 
-            this.títuloBaseInferior1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.títuloBaseInferior1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.títuloBaseInferior1.BackColor = System.Drawing.Color.White;
             this.títuloBaseInferior1.Descrição = "Acerto de mercadorias.";
+            this.títuloBaseInferior1.ÍconeArredondado = false;
             this.títuloBaseInferior1.Imagem = global::Apresentação.Resource.Acerto;
             this.títuloBaseInferior1.Location = new System.Drawing.Point(203, 3);
             this.títuloBaseInferior1.Name = "títuloBaseInferior1";
@@ -101,8 +102,8 @@
             // listaDocumentosAcerto
             // 
             this.listaDocumentosAcerto.AcertoConsignado = null;
-            this.listaDocumentosAcerto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.listaDocumentosAcerto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listaDocumentosAcerto.AutoScroll = true;
             this.listaDocumentosAcerto.AutoSize = true;
             this.listaDocumentosAcerto.Location = new System.Drawing.Point(0, 0);
@@ -164,7 +165,7 @@
             // opçãoContabilizar
             // 
             this.opçãoContabilizar.BackColor = System.Drawing.Color.Transparent;
-            this.opçãoContabilizar.Descrição = "Contabilizar mercadorias...";
+            this.opçãoContabilizar.Descrição = "Contabilizar mercadorias";
             this.opçãoContabilizar.Imagem = global::Apresentação.Resource.CalculatorHS;
             this.opçãoContabilizar.Location = new System.Drawing.Point(5, 53);
             this.opçãoContabilizar.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -193,9 +194,9 @@
             // 
             // painelDocumentos
             // 
-            this.painelDocumentos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.painelDocumentos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.painelDocumentos.AutoScroll = true;
             this.painelDocumentos.Controls.Add(this.listaDocumentosAcerto);
             this.painelDocumentos.Location = new System.Drawing.Point(203, 100);
