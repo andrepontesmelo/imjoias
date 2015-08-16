@@ -44,8 +44,12 @@
             this.status = new System.Windows.Forms.StatusBar();
             this.panelReferencias = new System.Windows.Forms.StatusBarPanel();
             this.panelPesoTotal = new System.Windows.Forms.StatusBarPanel();
+            this.toolStrip = new System.Windows.Forms.ToolStrip();
+            this.btnPesquisa = new System.Windows.Forms.ToolStripButton();
+            this.localizador = new Apresentação.Formulários.Localizador();
             ((System.ComponentModel.ISupportInitialize)(this.panelReferencias)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelPesoTotal)).BeginInit();
+            this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // lst
@@ -70,9 +74,9 @@
             this.lst.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
             listViewGroup1,
             listViewGroup2});
-            this.lst.Location = new System.Drawing.Point(0, 0);
+            this.lst.Location = new System.Drawing.Point(0, 28);
             this.lst.Name = "lst";
-            this.lst.Size = new System.Drawing.Size(902, 222);
+            this.lst.Size = new System.Drawing.Size(902, 159);
             this.lst.TabIndex = 0;
             this.lst.UseCompatibleStateImageBehavior = false;
             this.lst.View = System.Windows.Forms.View.Details;
@@ -146,17 +150,59 @@
             this.panelPesoTotal.Name = "panelPesoTotal";
             this.panelPesoTotal.ToolTipText = "Somatória do peso levando em conta as quantidades";
             // 
+            // toolStrip
+            // 
+            this.toolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnPesquisa});
+            this.toolStrip.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip.Name = "toolStrip";
+            this.toolStrip.Size = new System.Drawing.Size(902, 25);
+            this.toolStrip.TabIndex = 12;
+            this.toolStrip.Text = "toolStrip1";
+            // 
+            // btnPesquisa
+            // 
+            this.btnPesquisa.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnPesquisa.Image = global::Apresentação.Resource.search;
+            this.btnPesquisa.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnPesquisa.Name = "btnPesquisa";
+            this.btnPesquisa.Size = new System.Drawing.Size(23, 22);
+            this.btnPesquisa.Text = "btnPesquisa";
+            this.btnPesquisa.ToolTipText = "Localizar...";
+            this.btnPesquisa.Click += new System.EventHandler(this.btnPesquisa_Click);
+            // 
+            // localizador
+            // 
+            this.localizador.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.localizador.BotãoPesquisar = null;
+            this.localizador.Location = new System.Drawing.Point(0, 193);
+            this.localizador.Name = "localizador";
+            this.localizador.Size = new System.Drawing.Size(899, 29);
+            this.localizador.TabIndex = 7;
+            this.localizador.Visible = false;
+            this.localizador.RealçarItens += new Apresentação.Formulários.Localizador.RealçarDelegate(this.localizador_RealçarItens);
+            this.localizador.DesrealçarTudo += new System.EventHandler(this.localizador_DesrealçarTudo);
+            this.localizador.EncontrarItem += new Apresentação.Formulários.Localizador.EncontrarDelegate(this.localizador_EncontrarItem);
+            this.localizador.AoFechar += new System.EventHandler(this.localizador_AoFechar);
+            // 
             // ListaSaldo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.toolStrip);
+            this.Controls.Add(this.localizador);
             this.Controls.Add(this.status);
             this.Controls.Add(this.lst);
             this.Name = "ListaSaldo";
             this.Size = new System.Drawing.Size(902, 246);
             ((System.ComponentModel.ISupportInitialize)(this.panelReferencias)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelPesoTotal)).EndInit();
+            this.toolStrip.ResumeLayout(false);
+            this.toolStrip.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -175,5 +221,8 @@
         private System.Windows.Forms.StatusBarPanel panelReferencias;
         private System.Windows.Forms.ColumnHeader colFornecedor;
         private System.Windows.Forms.ColumnHeader colRefFornecedor;
+        private Apresentação.Formulários.Localizador localizador;
+        private System.Windows.Forms.ToolStrip toolStrip;
+        private System.Windows.Forms.ToolStripButton btnPesquisa;
     }
 }
