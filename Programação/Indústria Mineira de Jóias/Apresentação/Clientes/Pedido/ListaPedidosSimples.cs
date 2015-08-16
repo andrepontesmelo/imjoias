@@ -63,60 +63,11 @@ namespace Apresentação.Atendimento.Clientes.Pedido
             }
         }
 
-
-
-
-
         public void Adicionar(Entidades.PedidoConserto.Pedido pedido)
         {
             ListViewItem item = CriarItem(pedido);
-            PreencherItem(item, pedido);
 
             lista.Items.Add(item);
-        }
-
-        private void PreencherItem(ListViewItem item, Entidades.PedidoConserto.Pedido pedido)
-        {
-            item.Text = pedido.Código.ToString();
-
-            if (pedido.Cliente != null)
-                item.SubItems[colCliente.Index].Text = pedido.Cliente.Nome;
-            else
-                item.SubItems[colCliente.Index].Text = pedido.NomeDoCliente;
-
-            item.SubItems[colDescrição.Index].Text = (String.IsNullOrEmpty(pedido.Observações) ? "" : pedido.Observações.Replace("\r\n", "   ")) + " " + 
-                (String.IsNullOrEmpty(pedido.DescriçãoItens) ? "" : pedido.DescriçãoItens.Replace("\r\n", "   "));
-
-            if (pedido.Representante != null && pedido.Representante.Região != null)
-                item.SubItems[colRepresentante.Index].Text = pedido.Representante.PrimeiroNome;
-
-            item.SubItems[colDataRegistro.Index].Text = pedido.DataRecepção.ToShortDateString();
-            item.SubItems[colPrevisão.Index].Text = pedido.DataPrevisão.ToShortDateString();
-            item.SubItems[colEntrega.Index].Text = pedido.DataEntrega.HasValue ? pedido.DataEntrega.Value.ToShortDateString() : "";
-
-            if (!pedido.DataConclusão.HasValue && pedido.DataPrevisão < Entidades.Configuração.DadosGlobais.Instância.HoraDataAtual.Date)
-            {
-                //item.BackColor = Color.Red;
-                item.ImageIndex = 0;
-            }
-            else if (!pedido.DataConclusão.HasValue && pedido.DataPrevisão.Date == Entidades.Configuração.DadosGlobais.Instância.HoraDataAtual.Date)
-            {
-                //item.BackColor = Color.Yellow;
-                item.ImageIndex = 1;
-            }
-            else if (pedido.DataConclusão.HasValue && !pedido.DataEntrega.HasValue)
-            {
-                item.ImageIndex = 2;
-            }
-
-            if (pedido.DataEntrega.HasValue)
-                item.Group = lista.Groups["grupoEntregues"];
-            else if (pedido.DataConclusão.HasValue)
-                item.Group = lista.Groups["grupoConcluídos"];
-            else if (pedido.TipoPedido == Entidades.PedidoConserto.Pedido.Tipo.Conserto && pedido.DataOficina.HasValue)
-                item.Group = lista.Groups["grupoNaOficina"];
-            else
-                item.Group = lista.Groups["grupoCadastradoRecentemente"];
         }
 
         public void Adicionar(IEnumerable<Entidades.PedidoConserto.Pedido> pedidos)
@@ -126,8 +77,12 @@ namespace Apresentação.Atendimento.Clientes.Pedido
 
             Limpar();
 
+            List<ListViewItem> lstItens = new List<ListViewItem>();
+
             foreach (Entidades.PedidoConserto.Pedido pedido in pedidos)
-                Adicionar(pedido);
+                lstItens.Add(CriarItem(pedido));
+
+            lista.Items.AddRange(lstItens.ToArray());
 
             if (pedidoParaFocarSePossível != null)
                 FocarSePossível(pedidoParaFocarSePossível);
@@ -284,8 +239,6 @@ namespace Apresentação.Atendimento.Clientes.Pedido
 
             if (!hashPedidos.TryGetValue(últimoPedidoClicado.Código, out item))
                 item = CriarItem(últimoPedidoClicado);
-
-            PreencherItem(item, últimoPedidoClicado);
         }
 
         private ListViewItem CriarItem(Entidades.PedidoConserto.Pedido pedido)
@@ -293,6 +246,47 @@ namespace Apresentação.Atendimento.Clientes.Pedido
             ListViewItem item = new ListViewItem(new String[lista.Columns.Count]);
             hashPedidos[pedido.Código] = item;
             hashPedidosInverso[item] = pedido;
+
+            item.Text = pedido.Código.ToString();
+
+            if (pedido.Cliente != null)
+                item.SubItems[colCliente.Index].Text = pedido.Cliente.Nome;
+            else
+                item.SubItems[colCliente.Index].Text = pedido.NomeDoCliente;
+
+            item.SubItems[colDescrição.Index].Text = (String.IsNullOrEmpty(pedido.Observações) ? "" : pedido.Observações.Replace("\r\n", "   ")) + " " +
+                (String.IsNullOrEmpty(pedido.DescriçãoItens) ? "" : pedido.DescriçãoItens.Replace("\r\n", "   "));
+
+            if (pedido.Representante != null && pedido.Representante.Região != null)
+                item.SubItems[colRepresentante.Index].Text = pedido.Representante.PrimeiroNome;
+
+            item.SubItems[colDataRegistro.Index].Text = pedido.DataRecepção.ToShortDateString();
+            item.SubItems[colPrevisão.Index].Text = pedido.DataPrevisão.ToShortDateString();
+            item.SubItems[colEntrega.Index].Text = pedido.DataEntrega.HasValue ? pedido.DataEntrega.Value.ToShortDateString() : "";
+
+            if (!pedido.DataConclusão.HasValue && pedido.DataPrevisão < Entidades.Configuração.DadosGlobais.Instância.HoraDataAtual.Date)
+            {
+                //item.BackColor = Color.Red;
+                item.ImageIndex = 0;
+            }
+            else if (!pedido.DataConclusão.HasValue && pedido.DataPrevisão.Date == Entidades.Configuração.DadosGlobais.Instância.HoraDataAtual.Date)
+            {
+                //item.BackColor = Color.Yellow;
+                item.ImageIndex = 1;
+            }
+            else if (pedido.DataConclusão.HasValue && !pedido.DataEntrega.HasValue)
+            {
+                item.ImageIndex = 2;
+            }
+
+            if (pedido.DataEntrega.HasValue)
+                item.Group = lista.Groups["grupoEntregues"];
+            else if (pedido.DataConclusão.HasValue)
+                item.Group = lista.Groups["grupoConcluídos"];
+            else if (pedido.TipoPedido == Entidades.PedidoConserto.Pedido.Tipo.Conserto && pedido.DataOficina.HasValue)
+                item.Group = lista.Groups["grupoNaOficina"];
+            else
+                item.Group = lista.Groups["grupoCadastradoRecentemente"];
 
             return item;
         }
