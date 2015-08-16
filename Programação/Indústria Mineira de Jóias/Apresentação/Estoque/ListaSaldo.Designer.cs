@@ -166,7 +166,6 @@
             this.toolStrip.Size = new System.Drawing.Size(902, 25);
             this.toolStrip.TabIndex = 12;
             this.toolStrip.Text = "toolStrip1";
-            this.toolStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip_ItemClicked);
             // 
             // btnPesquisa
             // 

@@ -20,6 +20,7 @@ namespace Apresentação.Estoque
         private volatile Entidades.Fornecedor[] arrayFornecedores;
 
         private Entidades.Configuração.ConfiguraçãoUsuário<bool> localizadorAberto;
+        private Entidades.Configuração.ConfiguraçãoUsuário<int> filtrarFornecedor;
 
         struct ResultadoCarga
         {
@@ -38,6 +39,22 @@ namespace Apresentação.Estoque
             localizador.Visible = true;
 
             localizadorAberto = new Entidades.Configuração.ConfiguraçãoUsuário<bool>("ListaSaldo.localizador.aberto", false);
+            filtrarFornecedor = new Entidades.Configuração.ConfiguraçãoUsuário<int>("ListaSaldo.toolStrip.filtrarFornecedor", 0);
+
+            AtualizarEnabledComboboxFornecedor();
+
+            if (filtrarFornecedor.Valor > 0)
+            {
+                Entidades.Fornecedor fornecedorSelecionado = Entidades.Fornecedor.ObterFornecedor(filtrarFornecedor.Valor);
+                
+                toolStripComboBoxFornecedor.Items.Add(fornecedorSelecionado);
+                toolStripComboBoxFornecedor.SelectedItem = fornecedorSelecionado;            
+            } else
+            {
+                toolStripBtnFiltrarFornecedor.Checked = false;
+                toolStripComboBoxFornecedor.Enabled = false;
+            }
+
             localizador.Visible = localizadorAberto.Valor;
 
             if (!localizadorAberto.Valor)
@@ -200,21 +217,27 @@ namespace Apresentação.Estoque
             lst.Height += localizador.Height;
         }
 
-        private void toolStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-        }
-
         private void toolStripBtnFiltrarFornecedor_Click(object sender, EventArgs e)
         {
-            toolStripBtnFiltrarFornecedor.Checked = !toolStripBtnFiltrarFornecedor.Checked;
-            toolStripComboBoxFornecedor.Enabled = toolStripBtnFiltrarFornecedor.Checked;
+            if (toolStripBtnFiltrarFornecedor.Checked)
+                filtrarFornecedor.Valor = 0;
+
+            AtualizarEnabledComboboxFornecedor();
 
             Carregar();
         }
 
         private void toolStripComboboxFornecedorSelectedIndexChanged(object sender, EventArgs e)
         {
+            filtrarFornecedor.Valor = (int) ObterFornecedorÚnico().Código;
+
             Carregar();
+        }
+
+        private void AtualizarEnabledComboboxFornecedor()
+        {
+            toolStripBtnFiltrarFornecedor.Checked = !toolStripBtnFiltrarFornecedor.Checked;
+            toolStripComboBoxFornecedor.Enabled = toolStripBtnFiltrarFornecedor.Checked;
         }
     }
 }
