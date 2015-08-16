@@ -279,6 +279,7 @@
     </Compile>
     <Compile Include="Clientes\Pedido\Parâmetros.cs" />
     <Compile Include="ColetorFornecedor.cs" />
+    <Compile Include="ControladorInatividade.cs" />
     <Compile Include="Estoque\JanelaOpçõesImpressão.cs">
       <SubType>Form</SubType>
     </Compile>
