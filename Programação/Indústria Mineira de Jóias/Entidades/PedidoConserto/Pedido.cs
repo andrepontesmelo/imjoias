@@ -18,7 +18,7 @@ namespace Entidades.PedidoConserto
             entrega = Entrega.Levar;
         }
 
-        private static readonly int TotalAtributos = 16;
+        private static readonly int TotalAtributos = 18;
 
         #region Atributos
 #pragma warning disable 0649        // Field 'field' is never assigned to, and will always have its default value 'value'
@@ -49,6 +49,12 @@ namespace Entidades.PedidoConserto
 
         [DbRelacionamento("codigo", "funcionarioentrega")]        
         private Pessoa.Funcionário funcionarioentrega;
+
+        [DbRelacionamento("codigo", "funcionariooficina")]
+        private Pessoa.Funcionário funcionariooficina;
+
+        [DbRelacionamento("codigo", "funcionarioconclusao")]
+        private Pessoa.Funcionário funcionarioconclusao;
 
         [DbRelacionamento("codigo", "representante")]
         private Pessoa.Pessoa representante;
@@ -251,6 +257,19 @@ namespace Entidades.PedidoConserto
         public Funcionário FuncionárioEntrega
         {
             get { return funcionarioentrega; }
+            set { funcionarioentrega = value;  }
+        }
+
+        public Funcionário FuncionárioConclusão
+        {
+            get { return funcionarioconclusao; }
+            set { funcionarioconclusao = value; }
+        }
+
+        public Funcionário FuncionárioOficina
+        {
+            get { return funcionariooficina; }
+            set { funcionariooficina = value; }
         }
 
         public double Valor
@@ -359,9 +378,6 @@ namespace Entidades.PedidoConserto
                             while (leitor.Read())
                                 pedidos.Add(Obter(leitor, 0));
                         }
-                    }
-                    catch (Exception)
-                    {
                     }
                     finally
                     {
@@ -472,6 +488,12 @@ namespace Entidades.PedidoConserto
 
             if (!leitor.IsDBNull(15 + inicioPedidos))
                 pedido.dataOficina = leitor.GetDateTime(15 + inicioPedidos);
+
+            if (!leitor.IsDBNull(16 + inicioPedidos))
+                pedido.funcionariooficina = Funcionário.ObterPessoa((ulong)leitor.GetInt64(16 + inicioPedidos));
+
+            if (!leitor.IsDBNull(17 + inicioPedidos))
+                pedido.funcionarioconclusao = Funcionário.ObterPessoa((ulong)leitor.GetInt64(17 + inicioPedidos));
 
 
             pedido.DefinirCadastrado();

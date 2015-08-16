@@ -73,19 +73,9 @@ namespace Apresentação.Formulários
                         MessageBox.Show("Erro ao ligar efeitos visuais!");
                 }
 
-                // Constrói o 'usuários'
-                //if (splash != null)
-                //    splash.Mensagem = "Construindo engrenagem para comunição com o banco de dados...";
-
                 this.usuários = usuários;
 
-                //if (splash != null)
-                //    splash.Mensagem = "Obtendo cultura...";
-
                 cultura = System.Globalization.CultureInfo.CreateSpecificCulture("pt-BR");
-
-                //if (splash != null)
-                //    splash.Mensagem = "Efetuando login...";
 
                 if (splash != null)
                     splash.Mensagem = "Conectando ao banco de dados ... ";
@@ -135,12 +125,6 @@ namespace Apresentação.Formulários
 				throw new Exception("Não foi possível carregar o sistema.", e);
 			}
 #endif
-
-            // Constrói o formulário
-            //if (splash != null)
-            //    splash.Mensagem = "Preparando a Janela Principal";
-            
-
             if (splash != null)
                 splash.Mensagem = "Carregando controles gráficos ...";
 
@@ -176,9 +160,6 @@ namespace Apresentação.Formulários
             }
             catch { }
 #endif
-
-            //if (splash != null)
-            //    splash.Mensagem = "Pronto!";
         }
 
 #if SERVIÇO_IMPRESSÃO
@@ -334,26 +315,7 @@ namespace Apresentação.Formulários
 #if DEBUG
                 Console.WriteLine("Disparando ao carregar!");
 #endif
-                //if (Entidades.Configuração.DadosGlobais.Instância.ÚltimaVersão
-                //    > Entidades.Configuração.DadosGlobais.Instância.VersãoAtual)
-                //    MessageBox.Show("Olá. Existe uma nova versão do sistema disponível.\n"
-                //    + "Sua versão será atualizada assim que reiniciar o computador.\n\nUsando versão "
-                //        + Entidades.Configuração.DadosGlobais.Instância.VersãoAtual.ToString()
-                //        + ", sendo que a última lançada é a " + Entidades.Configuração.DadosGlobais.Instância.ÚltimaVersão.ToString() + ".",
-                //        "Novidade!",
-                //        MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 aplicação.DispararAoCarregar();
-
-                //GC.Collect();
-
-                //try
-                //{
-                //    new Util.ClienteNTP(Entidades.Configuração.DadosGlobais.Instância.ServidorNTP).Connect(true);
-                //}
-                //catch { } 
-
-                
 
                 splash = null;
 
@@ -402,10 +364,8 @@ namespace Apresentação.Formulários
 
         static void ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
         {
-//#if !DEBUG
             try
             {
-                //MessageBox.Show("Ocorreu um erro não tratado. Um relatório de erros foi gerado e enviado ao servidor.\n\nMensagem de erro: " + e.Exception.Message, "Falha no sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Acesso.Comum.Usuários.UsuárioAtual.RegistrarErro(e.Exception);
             }
             catch (Exception e2)
@@ -413,7 +373,6 @@ namespace Apresentação.Formulários
                 MessageBox.Show("Ocorreu o seguinte erro no sistema: " + e.Exception.ToString(), "Falha no sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 MessageBox.Show("Não foi possível enviar relatório para os programadores devido ao seguinte problema: " + e2.ToString(), "Falha no sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-//#endif
         }
 
         /// <summary>
@@ -425,74 +384,6 @@ namespace Apresentação.Formulários
         {
             Executar(tipoFormulário, usuários, true, true);
         }
-
-
-//        /// <summary>
-//        /// Executa uma aplicação.
-//        /// </summary>
-//        /// <param name="tipoFormulário">Formulário principal que herda de Apresentação.Formulários.BaseFormulário</param>
-//        /// <param name="fachada">Nome da faixada</param>
-//        /// <param name="tipoFachada">Tipo da faixada que implementa IFachada</param>
-//        /// <param name="portaPadrão">Porta padrão de comunicação com a fachada</param>
-//        public static void Executar(Type tipoFormulário, bool mostrarSplash, string usuário, string senha)
-//        {
-//            Acesso.Comum.Usuário usuárioObj;
-
-//#if !DEBUG
-//            try
-//#endif
-//            {
-//                Splash splash;
-
-//                // Mostra splash screen
-//                if (mostrarSplash)
-//                {
-//                    splash = new Splash();
-//                    splash.Show();
-//                    splash.Update();
-
-//#if DEBUG
-//                    Console.WriteLine("Splash exibido!");
-//#endif
-//                }
-//                else
-//                    splash = null;
-
-//                aplicação = new Aplicação(tipoFormulário, false, splash);
-
-//                Acesso.Comum.Usuários.UsuárioAtual = usuárioObj = aplicação.usuários.Login("imjoias", "***REMOVED***");
-
-//                aplicação.DispararAoCarregar();
-
-//                splash = null;
-
-//                GC.Collect();
-
-//                Application.Run(aplicação);
-
-//                GC.Collect();
-//            }
-//#if !DEBUG
-//            catch (LoginNãoEfetuado)
-//            {
-//                // Nada aqui
-//            }
-//            catch (Exception e)
-//            {
-//                try
-//                {
-//                    Acesso.Comum.Usuários.UsuárioAtual.RegistrarErro(e);
-
-//                    MessageBox.Show("Ocorreu um erro e o programa será finalizado. Um relatório de erros foi gerado e enviado ao servidor.\n\nMensagem de erro: " + e.Message, "Falha no sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
-//                }
-//                catch (Exception e2)
-//                {
-//                    MessageBox.Show("Ocorreu o seguinte erro no sistema e o programa será finalizado: " + e.ToString(), "Falha no sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
-//                    MessageBox.Show("Não foi possível enviar relatório para os programadores devido ao seguinte problema: " + e2.ToString(), "Falha no sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
-//                }
-//            }
-//#endif
-//        }
 
         /// <summary>
         /// Aplicação em execução

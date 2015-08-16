@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.títuloBaseInferior1 = new Apresentação.Formulários.TítuloBaseInferior();
             this.label1 = new System.Windows.Forms.Label();
             this.radioEncomenda = new System.Windows.Forms.RadioButton();
@@ -58,7 +59,7 @@
             this.lblInfoOficina = new System.Windows.Forms.Label();
             this.chkLevar = new System.Windows.Forms.RadioButton();
             this.chkDespachar = new System.Windows.Forms.RadioButton();
-            this.label9 = new System.Windows.Forms.Label();
+            this.lblEntrega = new System.Windows.Forms.Label();
             this.btnConclusao = new System.Windows.Forms.Button();
             this.dtConclusão = new System.Windows.Forms.DateTimePicker();
             this.lblDataConclusão = new System.Windows.Forms.Label();
@@ -73,6 +74,7 @@
             this.grpItens = new System.Windows.Forms.GroupBox();
             this.btnAdicionarItem = new System.Windows.Forms.Button();
             this.flow = new System.Windows.Forms.FlowLayoutPanel();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.esquerda.SuspendLayout();
             this.grpIdentificação.SuspendLayout();
             this.grpRecepção.SuspendLayout();
@@ -370,7 +372,7 @@
             this.grpEntrega.Controls.Add(this.lblInfoOficina);
             this.grpEntrega.Controls.Add(this.chkLevar);
             this.grpEntrega.Controls.Add(this.chkDespachar);
-            this.grpEntrega.Controls.Add(this.label9);
+            this.grpEntrega.Controls.Add(this.lblEntrega);
             this.grpEntrega.Controls.Add(this.btnConclusao);
             this.grpEntrega.Controls.Add(this.dtConclusão);
             this.grpEntrega.Controls.Add(this.lblDataConclusão);
@@ -459,14 +461,14 @@
             this.chkDespachar.UseVisualStyleBackColor = true;
             this.chkDespachar.CheckedChanged += new System.EventHandler(this.chkDespachar_CheckedChanged);
             // 
-            // label9
+            // lblEntrega
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(3, 109);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(87, 13);
-            this.label9.TabIndex = 5;
-            this.label9.Text = "Data de entrega:";
+            this.lblEntrega.AutoSize = true;
+            this.lblEntrega.Location = new System.Drawing.Point(3, 109);
+            this.lblEntrega.Name = "lblEntrega";
+            this.lblEntrega.Size = new System.Drawing.Size(87, 13);
+            this.lblEntrega.TabIndex = 5;
+            this.lblEntrega.Text = "Data de entrega:";
             // 
             // btnConclusao
             // 
@@ -702,7 +704,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnConclusao;
         private System.Windows.Forms.Button btnEntregar;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblEntrega;
         private System.Windows.Forms.GroupBox grpObservações;
         private System.Windows.Forms.TextBox txtDescrição;
         private Apresentação.Formulários.Quadro quadroManutenção;
@@ -727,5 +729,6 @@
         private System.Windows.Forms.FlowLayoutPanel flow;
         private System.Windows.Forms.Button btnAdicionarItem;
         private System.Windows.Forms.TextBox dtEntrega;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }

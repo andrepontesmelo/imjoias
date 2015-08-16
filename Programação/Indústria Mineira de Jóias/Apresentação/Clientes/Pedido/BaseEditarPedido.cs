@@ -78,6 +78,8 @@ namespace Apresentação.Atendimento.Clientes.Pedido
                 {
                     modo = ModoEdição.Alteração;
 
+                    AtualizarToolTips(value);
+
                     optPertenceCliente.Checked = pedido.PertenceAoCliente;
                     optPertenceEmpresa.Checked = !pedido.PertenceAoCliente;
 
@@ -269,6 +271,23 @@ namespace Apresentação.Atendimento.Clientes.Pedido
             }
         }
 
+        private void AtualizarToolTips(Entidades.PedidoConserto.Pedido value)
+        {
+            toolTip.RemoveAll();
+
+            if (value.FuncionárioOficina != null)
+                toolTip.SetToolTip(lblOficina, Entidades.Pessoa.Pessoa.ReduzirNome(value.FuncionárioOficina.Nome) + 
+                    " registrou envio para oficina");
+
+            if (value.FuncionárioConclusão != null)
+                toolTip.SetToolTip(lblDataConclusão, Entidades.Pessoa.Pessoa.ReduzirNome(value.FuncionárioConclusão.Nome) + 
+                    " registrou conclusão");
+
+            if (value.FuncionárioEntrega != null)
+                toolTip.SetToolTip(lblEntrega, Entidades.Pessoa.Pessoa.ReduzirNome(value.FuncionárioEntrega.Nome) + 
+                    " registrou entrega");
+        }
+
         private string ObterEntreguePor()
         {
             return pedido.DataEntrega.Value.ToShortDateString() + " por " +
@@ -447,7 +466,9 @@ namespace Apresentação.Atendimento.Clientes.Pedido
             dtConclusão.Focus();
             btnConclusao.Visible = false;
             pedido.DataConclusão = dtConclusão.Value;
+            pedido.FuncionárioConclusão = Funcionário.FuncionárioAtual;
             btnRemoverDataConclusão.Visible = true;
+            AtualizarToolTips(pedido);
             Gravar();
         }
 
@@ -459,6 +480,7 @@ namespace Apresentação.Atendimento.Clientes.Pedido
 
             pedido.DataEntrega = DadosGlobais.Instância.HoraDataAtual;
             btnRemoverDataEntrega.Visible = true;
+            AtualizarToolTips(pedido);
             Gravar();
 
             dtEntrega.Text = ObterEntreguePor();
@@ -585,7 +607,9 @@ namespace Apresentação.Atendimento.Clientes.Pedido
             dtOficina.Focus();
             
             pedido.DataOficina = dtOficina.Value;
+            pedido.FuncionárioOficina = Funcionário.FuncionárioAtual;
             AtualizarVisibilidadeControlesDeOficina();
+            AtualizarToolTips(pedido);
             Gravar();
         }
 
@@ -611,22 +635,11 @@ namespace Apresentação.Atendimento.Clientes.Pedido
         private void btnRemoverEnvioParaOficina_Click(object sender, EventArgs e)
         {
             pedido.DataOficina = null;
+            pedido.FuncionárioOficina = null;
+            AtualizarToolTips(pedido);
             Gravar();
             AtualizarVisibilidadeControlesDeOficina();
         }
-
-        //private void opçãoImprimir_Click(object sender, EventArgs e)
-        //{
-        //    JanelaImpressão janela = new JanelaImpressão();
-        //    Relatório relatório = new Relatório();
-        //    //ControleImpressãoVenda controle = new ControleImpressãoVenda();
-
-        //    //controle.PrepararImpressão(relatórioVenda, venda);
-
-        //    janela.InserirDocumento(relatório, "Recibo");
-
-        //    janela.Abrir(this);
-        //}
 
         private void AtualizarVisibilidadeControlesDeOficina()
         {
@@ -651,6 +664,8 @@ namespace Apresentação.Atendimento.Clientes.Pedido
             btnRemoverDataConclusão.Visible = false;
 
             pedido.DataConclusão = null;
+            pedido.FuncionárioConclusão = null;
+            AtualizarToolTips(pedido);
             dtConclusão.Visible = false;
             btnConclusao.Visible = true;
             Gravar();
@@ -661,6 +676,9 @@ namespace Apresentação.Atendimento.Clientes.Pedido
             btnRemoverDataEntrega.Visible = false;
             
             pedido.DataEntrega = null;
+            pedido.FuncionárioEntrega = null;
+            AtualizarToolTips(pedido);
+
             dtEntrega.Visible = false;
             btnEntregar.Visible = true;
             Gravar();
