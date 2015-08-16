@@ -27,11 +27,15 @@ namespace Apresentação.Atendimento.Clientes.Pedido
             AguardeDB.Mostrar();
             mercadorias = MercadoriaEmFalta.Obter(null, true);
 
+            ListViewItem[] lstItens = new ListViewItem[mercadorias.Count];
+            int x = 0;
             foreach (MercadoriaEmFalta m in mercadorias)
             {
                 ListViewItem item = CriarItem(m);
-                lista.Items.Add(item);
+                lstItens[x++] = item;
             }
+
+            lista.Items.AddRange(lstItens);
 
             colReferênciaFornecedor.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
             colReferênciaFornecedor.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
