@@ -36,6 +36,39 @@ namespace Apresentação.Fornecedor
 
             comboBox.Items.Clear();
             comboBox.Items.AddRange(fornecedoresVetor);
+
+            if (códigoFornecedorParaSelecionar != 0)
+                Selecionar(códigoFornecedorParaSelecionar);
+        }
+
+        private int códigoFornecedorParaSelecionar = 0;
+
+        internal void Selecionar(int códigoFornecedor)
+        {
+            if (bg.IsBusy)
+            {
+                códigoFornecedorParaSelecionar = códigoFornecedor;
+                return;
+            }
+
+            foreach (Entidades.Fornecedor f in comboBox.Items)
+            {
+                if (f.Código == códigoFornecedor)
+                {
+                    comboBox.SelectedItem = f;
+                    return;
+                }
+            }
+
+            comboBox.SelectedValue = null;
+        }
+
+        public Entidades.Fornecedor Seleção 
+        {
+            get
+            {
+                return comboBox.SelectedItem as Entidades.Fornecedor;
+            }
         }
     }
 }

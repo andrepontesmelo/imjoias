@@ -106,7 +106,7 @@ namespace Entidades
 
         public static List<Fornecedor> ObterFornecedores()
         {
-            return Mapear<Fornecedor>("SELECT * FROM fornecedor ");
+            return Mapear<Fornecedor>("SELECT * FROM fornecedor order by nome ");
         }
 		
 		/// <summary>
