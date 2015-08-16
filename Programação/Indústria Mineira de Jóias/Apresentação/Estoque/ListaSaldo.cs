@@ -43,22 +43,28 @@ namespace Apresentação.Estoque
 
             AtualizarEnabledComboboxFornecedor();
 
-            if (filtrarFornecedor.Valor > 0)
-            {
-                Entidades.Fornecedor fornecedorSelecionado = Entidades.Fornecedor.ObterFornecedor(filtrarFornecedor.Valor);
-                
-                toolStripComboBoxFornecedor.Items.Add(fornecedorSelecionado);
-                toolStripComboBoxFornecedor.SelectedItem = fornecedorSelecionado;            
-            } else
-            {
-                toolStripBtnFiltrarFornecedor.Checked = false;
-                toolStripComboBoxFornecedor.Enabled = false;
-            }
+            CarregarPersistênciaFiltroFornecedor();
 
             localizador.Visible = localizadorAberto.Valor;
 
             if (!localizadorAberto.Valor)
                 lst.Height += localizador.Height;
+        }
+
+        private void CarregarPersistênciaFiltroFornecedor()
+        {
+            if (filtrarFornecedor.Valor > 0)
+            {
+                Entidades.Fornecedor fornecedorSelecionado = Entidades.Fornecedor.ObterFornecedor(filtrarFornecedor.Valor);
+
+                toolStripComboBoxFornecedor.Items.Add(fornecedorSelecionado);
+                toolStripComboBoxFornecedor.SelectedItem = fornecedorSelecionado;
+            }
+            else
+            {
+                toolStripBtnFiltrarFornecedor.Checked = false;
+                toolStripComboBoxFornecedor.Enabled = false;
+            }
         }
 
         public void Carregar()
@@ -97,30 +103,12 @@ namespace Apresentação.Estoque
 
             resultado.ListaGrafica = new ListViewItem[itens.Count];
 
-            ListViewGroup grupoDePeso = lst.Groups[0];
-            ListViewGroup grupoDeReferencia = lst.Groups[1];
-
             int x = 0;
 
             foreach (Saldo s in itens)
             {
-                ListViewItem i;
+                ListViewItem i = CriarItem(s);
 
-                if (s.Depeso)
-                    i = new ListViewItem(grupoDePeso);
-                else
-                    i = new ListViewItem(grupoDeReferencia);
-
-                i.Text = Entidades.Mercadoria.Mercadoria.MascararReferência(s.Referencia);
-                i.SubItems.Add(s.Peso.ToString());
-                i.SubItems.Add(s.Entrada.ToString());
-                i.SubItems.Add(s.Venda.ToString());
-                i.SubItems.Add(s.Devolucao.ToString());
-                i.SubItems.Add(s.SaldoValor.ToString());
-                i.SubItems.Add(s.FornecedorNome);
-                i.SubItems.Add(s.FornecedorReferência);
-
-                i.Tag = s;
                 resultado.ListaGrafica[x++] = i;
                 resultado.TotalSaldoPeso += s.Peso * s.SaldoValor;
                 localizador.InserirListViewItem(i);
@@ -129,6 +117,31 @@ namespace Apresentação.Estoque
             resultado.TotalReferencias = itens.Count;
             resultado.TotalSaldoPeso = Math.Round(resultado.TotalSaldoPeso, 2);
             e.Result = resultado;
+        }
+
+        private ListViewItem CriarItem(Saldo s)
+        {
+            ListViewGroup grupoDePeso = lst.Groups[0];
+            ListViewGroup grupoDeReferencia = lst.Groups[1];
+
+            ListViewItem i;
+
+            if (s.Depeso)
+                i = new ListViewItem(grupoDePeso);
+            else
+                i = new ListViewItem(grupoDeReferencia);
+
+            i.Text = Entidades.Mercadoria.Mercadoria.MascararReferência(s.Referencia);
+            i.SubItems.Add(s.Peso.ToString());
+            i.SubItems.Add(s.Entrada.ToString());
+            i.SubItems.Add(s.Venda.ToString());
+            i.SubItems.Add(s.Devolucao.ToString());
+            i.SubItems.Add(s.SaldoValor.ToString());
+            i.SubItems.Add(s.FornecedorNome);
+            i.SubItems.Add(s.FornecedorReferência);
+
+            i.Tag = s;
+            return i;
         }
 
         private void bg_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
