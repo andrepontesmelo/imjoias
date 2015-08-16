@@ -16,7 +16,8 @@ namespace Apresentação.Estoque
         public event EventHandler AoDuploClique;
         private ListViewColumnSorter lvwColumnSorter;
 
-        private List<Entidades.Estoque.Saldo> itens;
+        private volatile List<Entidades.Estoque.Saldo> itens;
+        private volatile Entidades.Fornecedor[] arrayFornecedores;
 
         private Entidades.Configuração.ConfiguraçãoUsuário<bool> localizadorAberto;
 
@@ -40,10 +41,7 @@ namespace Apresentação.Estoque
             localizador.Visible = localizadorAberto.Valor;
 
             if (!localizadorAberto.Valor)
-            {
                 lst.Height += localizador.Height;
-            }
-            
         }
 
         public void Carregar()
@@ -55,9 +53,29 @@ namespace Apresentação.Estoque
             }
         }
 
+        private delegate Entidades.Fornecedor ObterFornecedorÚnicoCallback();
+
+        private Entidades.Fornecedor ObterFornecedorÚnico()
+        {
+            if (toolStrip.InvokeRequired)
+            {
+                ObterFornecedorÚnicoCallback método = new ObterFornecedorÚnicoCallback(ObterFornecedorÚnico);
+                return (Entidades.Fornecedor) toolStrip.Invoke(método, new object[] { });
+            }
+            else
+            {
+                if (!toolStripBtnFiltrarFornecedor.Checked)
+                    return null;
+
+                return toolStripComboBoxFornecedor.SelectedItem as Entidades.Fornecedor;
+            }
+        }
+
         private void bg_DoWork(object sender, DoWorkEventArgs e)
         {
-            itens = Entidades.Estoque.Saldo.Obter();
+            arrayFornecedores = Entidades.Fornecedor.ObterFornecedores().ToArray();
+            
+            itens = Entidades.Estoque.Saldo.Obter(true, true, ObterFornecedorÚnico(), Saldo.Ordem.ReferênciaPeso);
             ResultadoCarga resultado = new ResultadoCarga();
 
             resultado.ListaGrafica = new ListViewItem[itens.Count];
@@ -104,6 +122,9 @@ namespace Apresentação.Estoque
             lst.Items.Clear();
 
             lst.Items.AddRange(resultado.ListaGrafica);
+
+            toolStripComboBoxFornecedor.Items.Clear();
+            toolStripComboBoxFornecedor.Items.AddRange(arrayFornecedores);
 
             panelReferencias.Text = resultado.TotalReferencias.ToString() + " Referência(s)";
             panelPesoTotal.Text = resultado.TotalSaldoPeso.ToString() + "g de saldo";
@@ -177,6 +198,23 @@ namespace Apresentação.Estoque
         {
             localizadorAberto.Valor = false;
             lst.Height += localizador.Height;
+        }
+
+        private void toolStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+        }
+
+        private void toolStripBtnFiltrarFornecedor_Click(object sender, EventArgs e)
+        {
+            toolStripBtnFiltrarFornecedor.Checked = !toolStripBtnFiltrarFornecedor.Checked;
+            toolStripComboBoxFornecedor.Enabled = toolStripBtnFiltrarFornecedor.Checked;
+
+            Carregar();
+        }
+
+        private void toolStripComboboxFornecedorSelectedIndexChanged(object sender, EventArgs e)
+        {
+            Carregar();
         }
     }
 }
