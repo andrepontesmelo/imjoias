@@ -413,7 +413,7 @@
     </Compile>
     <Compile Include="Álbum\CacheMiniaturas.cs" />
     <Compile Include="Álbum\CacheÍcones.cs" />
-    <Compile Include="Mercadoria\Fornecedor.cs">
+    <Compile Include="Fornecedor.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Álbum\Foto.cs">

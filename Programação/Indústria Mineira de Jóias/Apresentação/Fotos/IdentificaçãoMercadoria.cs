@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using Apresentação.Álbum.Edição.Álbuns;
 using Entidades;
 using Entidades.Mercadoria;
+using Apresentação.Formulários.Fornecedor;
 
 namespace Apresentação.Álbum.Edição.Fotos
 {
@@ -289,7 +290,7 @@ namespace Apresentação.Álbum.Edição.Fotos
             if (txtFornecedor.Txt.Text.Trim().Length > 0)
             {
                 // Verifica se o fornecedor entrado já é registrado
-                Entidades.Mercadoria.Fornecedor fornecedorCadastrado = txtFornecedor.ObterFornecedor();
+                Fornecedor fornecedorCadastrado = txtFornecedor.ObterFornecedor();
                 if (fornecedorCadastrado != null)
                 {
                     códigoFornecedor = (int)fornecedorCadastrado.Código;

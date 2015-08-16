@@ -28,7 +28,7 @@ namespace Entidades.Mercadoria
         {
             get
             {
-                return Entidades.Mercadoria.Fornecedor.ObterFornecedor(FornecedorCódigo);
+                return Fornecedor.ObterFornecedor(FornecedorCódigo);
             }
         }
 
