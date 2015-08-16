@@ -1770,6 +1770,8 @@ namespace Entidades.Pessoa
             }
         }
 
+        DateTime últimoRegistro = DateTime.MinValue;
+
         /// <summary>
         /// Registra item no histórico da pessoa, em nome
         /// do sistema.
@@ -1777,10 +1779,20 @@ namespace Entidades.Pessoa
         /// <param name="texto">Texto a constar no histórico da pessoa.</param>
         public void RegistrarHistórico(string texto)
         {
+            TimeSpan diff = (DateTime.Now - últimoRegistro);
+
+            if (diff < TimeSpan.FromSeconds(1))
+            {
+                System.Threading.Thread.Sleep(1000 - (int) diff.TotalMilliseconds);
+            }
+
             Histórico item = new Histórico();
+
             item.Pessoa = this;
             item.Texto = texto;
             item.Cadastrar();
+
+            últimoRegistro = DateTime.Now;
         }
 
         public override bool Referente(DbManipulação entidade)
