@@ -21,6 +21,7 @@ namespace Apresentação.Atendimento.Clientes.Pedido
         public BaseReferênciasEmFalta()
         {
             InitializeComponent();
+            lista.ListViewItemSorter = new Apresentação.Formulários.ListViewColumnSorter();
 
             lista.Visible = false;
             AguardeDB.Mostrar();
@@ -28,18 +29,7 @@ namespace Apresentação.Atendimento.Clientes.Pedido
 
             foreach (MercadoriaEmFalta m in mercadorias)
             {
-                ListViewItem item = new ListViewItem(new string[lista.Columns.Count]);
-                item.SubItems[colReferência.Index].Text = m.ReferênciaFormatada;
-                Entidades.Fornecedor f = Entidades.Fornecedor.ObterFornecedor(m.Fornecedor);
-                if (f != null)
-                    item.SubItems[colFornecedor.Index].Text = f.Nome;
-
-                item.SubItems[colReferênciaFornecedor.Index].Text = m.ReferênciaFornecedor;
-                item.SubItems[colPedidos.Index].Text = m.Pedidos;
-                item.SubItems[colSaldoConsignado.Index].Text = m.SaldoConsignado.ToString();
-                item.SubItems[colEncomendado.Index].Text = m.Quantidade.ToString();
-                item.SubItems[colDescrição.Index].Text = m.Detalhes;
-                //item.SubItems[col].Text = m.ReferênciaFornecedor;
+                ListViewItem item = CriarItem(m);
                 lista.Items.Add(item);
             }
 
@@ -52,15 +42,25 @@ namespace Apresentação.Atendimento.Clientes.Pedido
             lista.Visible = true;
         }
 
-        private void lista_ColumnClick(object sender, ColumnClickEventArgs e)
+        private ListViewItem CriarItem(MercadoriaEmFalta m)
         {
+            ListViewItem item = new ListViewItem(new string[lista.Columns.Count]);
+            item.SubItems[colReferência.Index].Text = m.ReferênciaFormatada;
+            Entidades.Fornecedor f = Entidades.Fornecedor.ObterFornecedor(m.Fornecedor);
+            if (f != null)
+                item.SubItems[colFornecedor.Index].Text = f.Nome;
+
+            item.SubItems[colReferênciaFornecedor.Index].Text = m.ReferênciaFornecedor;
+            item.SubItems[colPedidos.Index].Text = m.Pedidos;
+            item.SubItems[colSaldoConsignado.Index].Text = m.SaldoConsignado.ToString();
+            item.SubItems[colEncomendado.Index].Text = m.Quantidade.ToString();
+            item.SubItems[colDescrição.Index].Text = m.Detalhes;
+            return item;
         }
 
-        private void lista_MouseMove(object sender, MouseEventArgs e)
+        private void lista_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            // Comentado porquê senão a janela de rastrear mercadoria fica perdendo o foco.
-            // Garante funcionamento do scrol.
-            //lista.Focus();
+            ((Apresentação.Formulários.ListViewColumnSorter)lista.ListViewItemSorter).OnClick(lista, e);
         }
 
         private void lista_DoubleClick(object sender, EventArgs e)
