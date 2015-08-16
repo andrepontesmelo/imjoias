@@ -470,6 +470,8 @@ namespace Apresentação.Atendimento.Clientes.Pedido
             btnRemoverDataConclusão.Visible = true;
             AtualizarToolTips(pedido);
             Gravar();
+
+            Funcionário.FuncionárioAtual.RegistrarHistórico("Registrou conclusão pedido " + pedido.Código.ToString());
         }
 
         private void btnEntregar_Click(object sender, EventArgs e)
@@ -482,6 +484,8 @@ namespace Apresentação.Atendimento.Clientes.Pedido
             btnRemoverDataEntrega.Visible = true;
             AtualizarToolTips(pedido);
             Gravar();
+
+            Funcionário.FuncionárioAtual.RegistrarHistórico("Registrou entrega pedido " + pedido.Código.ToString());
 
             dtEntrega.Text = ObterEntreguePor();
         }
@@ -611,6 +615,8 @@ namespace Apresentação.Atendimento.Clientes.Pedido
             AtualizarVisibilidadeControlesDeOficina();
             AtualizarToolTips(pedido);
             Gravar();
+
+            Funcionário.FuncionárioAtual.RegistrarHistórico("Enviou para oficina pedido " + pedido.Código.ToString());
         }
 
 
@@ -639,6 +645,8 @@ namespace Apresentação.Atendimento.Clientes.Pedido
             AtualizarToolTips(pedido);
             Gravar();
             AtualizarVisibilidadeControlesDeOficina();
+
+            Funcionário.FuncionárioAtual.RegistrarHistórico("Desfez envio para oficina pedido " + pedido.Código.ToString());
         }
 
         private void AtualizarVisibilidadeControlesDeOficina()
@@ -669,6 +677,8 @@ namespace Apresentação.Atendimento.Clientes.Pedido
             dtConclusão.Visible = false;
             btnConclusao.Visible = true;
             Gravar();
+
+            Funcionário.FuncionárioAtual.RegistrarHistórico("Desregistrou conclusão pedido " + pedido.Código.ToString());
         }
 
         private void btnRemoverDataEntrega_Click(object sender, EventArgs e)
@@ -682,6 +692,8 @@ namespace Apresentação.Atendimento.Clientes.Pedido
             dtEntrega.Visible = false;
             btnEntregar.Visible = true;
             Gravar();
+
+            Funcionário.FuncionárioAtual.RegistrarHistórico("(Desregistrou entrega pedido " + pedido.Código.ToString());
         }
 
         private void btnAdicionarItem_Click(object sender, EventArgs e)
