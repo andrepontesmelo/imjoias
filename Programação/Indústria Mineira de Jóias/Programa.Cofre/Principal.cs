@@ -14,6 +14,8 @@ namespace Programa.Cofre
         [STAThreadAttribute]
         private static void Main(string[] args)
         {
+            new Apresentação.ControladorInatividade().Iniciar();
+
             Apresentação.Formulários.Aplicação.Executar(new Acesso.MySQL.MySQLUsuários());
         }
 	}
