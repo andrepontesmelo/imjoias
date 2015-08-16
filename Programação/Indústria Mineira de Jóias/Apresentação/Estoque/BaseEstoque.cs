@@ -120,7 +120,7 @@ namespace Apresentação.Estoque
             if (resultado == DialogResult.Cancel)
                 return null;
 
-            List<Saldo> itens = Saldo.Obter(opções.IncluirPeso, opções.IncluirReferência, ordem);
+            List<Saldo> itens = Saldo.Obter(opções.IncluirPeso, opções.IncluirReferência, opções.FornecedorÚnico, ordem);
             return itens;
         }
 

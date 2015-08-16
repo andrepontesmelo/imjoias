@@ -14,16 +14,33 @@ namespace Apresentação.Estoque
     {
         private Entidades.Configuração.ConfiguraçãoUsuário<bool> configuraçãoReferência;
         private Entidades.Configuração.ConfiguraçãoUsuário<bool> configuraçãoPeso;
+        private Entidades.Configuração.ConfiguraçãoUsuário<int> configuraçãoFornecedorÚnicoCódigoFornecedor;
 
         public JanelaOpçõesImpressão()
         {
             InitializeComponent();
 
+            if (!DesignMode)
+                comboBoxFornecedor.Carregar();
+
             configuraçãoReferência = new Entidades.Configuração.ConfiguraçãoUsuário<bool>("estoque_opcoes_impressao_incluir_referencia", true);
             configuraçãoPeso =  new Entidades.Configuração.ConfiguraçãoUsuário<bool>("estoque_opcoes_impressao_incluir_peso", true);
+            configuraçãoFornecedorÚnicoCódigoFornecedor = new Entidades.Configuração.ConfiguraçãoUsuário<int>("estoque_opcoes_fornecedor_unico", 0);
 
             chkReferência.Checked = configuraçãoReferência.Valor;
             chkPeso.Checked = configuraçãoPeso.Valor;
+            
+            if (configuraçãoFornecedorÚnicoCódigoFornecedor.Valor == 0)
+            {
+                chkFiltrarFornecedor.Checked = false;
+                comboBoxFornecedor.Enabled = false;
+            }  else
+            {
+                chkFiltrarFornecedor.Checked = true;
+                comboBoxFornecedor.Enabled = true;
+
+                comboBoxFornecedor.Selecionar(configuraçãoFornecedorÚnicoCódigoFornecedor.Valor);
+            }
         }
 
         public bool IncluirReferência
@@ -32,13 +49,31 @@ namespace Apresentação.Estoque
         public bool IncluirPeso
         { get { return chkPeso.Checked;  }  }
 
+        public Entidades.Fornecedor FornecedorÚnico
+        {
+            get
+            {
+                if (!chkFiltrarFornecedor.Checked)
+                    return null;
+                else
+                    return comboBoxFornecedor.Seleção;
+            }
+        }
+
         private void btnOk_Click(object sender, EventArgs e)
         {
             configuraçãoPeso.Valor = IncluirPeso;
             configuraçãoReferência.Valor = IncluirReferência;
+            configuraçãoFornecedorÚnicoCódigoFornecedor.Valor = 
+                (FornecedorÚnico == null ? 0 : (int) FornecedorÚnico.Código);
 
             DialogResult = System.Windows.Forms.DialogResult.OK;
             Hide();
+        }
+
+        private void chkFiltrarFornecedor_CheckedChanged(object sender, EventArgs e)
+        {
+            comboBoxFornecedor.Enabled = chkFiltrarFornecedor.Checked;
         }
     }
 }

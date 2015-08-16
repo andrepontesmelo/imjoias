@@ -83,12 +83,12 @@ namespace Entidades.Estoque
 
         public static List<Saldo> Obter()
         {
-            return Obter(true, true, Ordem.FornecedorReferênciaPeso);
+            return Obter(true, true, null, Ordem.FornecedorReferênciaPeso);
         }
 
         public enum Ordem { FornecedorReferênciaPeso, ReferênciaPeso }
         
-        public static List<Saldo> Obter(bool incluirPeso, bool incluirReferências, Ordem ordem)
+        public static List<Saldo> Obter(bool incluirPeso, bool incluirReferências, Entidades.Fornecedor fornecedorÚnico, Ordem ordem)
         {
             if (!incluirPeso && !incluirReferências)
                 return new List<Saldo>();
@@ -96,9 +96,11 @@ namespace Entidades.Estoque
             return Mapear<Saldo>("select e.*, m.depeso, f.nome as fornecedornome, v.referenciafornecedor as fornecedorreferencia from estoque_saldo e " +
                 " join mercadoria m on e.referencia=m.referencia " +
                 " join vinculomercadoriafornecedor v on e.referencia=v.mercadoria join fornecedor f on v.fornecedor=f.codigo " +
-                " WHERE m.depeso=" + (incluirPeso ? "1" : "0") +
+                " WHERE 1=1 AND " +
+                (fornecedorÚnico != null ? " f.codigo= " + DbTransformar(fornecedorÚnico.Código) + " AND " : "") + 
+                " ( m.depeso=" + (incluirPeso ? "1" : "0") +
                 " or m.depeso=" + (incluirReferências ? "0" : "1") +
-                " ORDER BY " + (ordem == Ordem.FornecedorReferênciaPeso ? " f.nome, m.referencia, e.peso " : " m.referencia, e.peso "));
+                " ) ORDER BY " + (ordem == Ordem.FornecedorReferênciaPeso ? " f.nome, m.referencia, e.peso " : " m.referencia, e.peso "));
         }
 
         public double ProdudoPesoSaldo
