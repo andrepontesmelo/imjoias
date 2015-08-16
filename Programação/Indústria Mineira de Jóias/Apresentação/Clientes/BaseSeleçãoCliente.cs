@@ -466,7 +466,6 @@ namespace Apresentação.Atendimento.Clientes
         /// <exception>Quando setores é nulo</exception>
         private void CarregarDeSetores(Setor[] setores, DateTime início, DateTime final)
         {
-
             try
             {
                 ArrayList itens = new ArrayList();
