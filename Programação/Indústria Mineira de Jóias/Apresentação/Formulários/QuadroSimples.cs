@@ -77,17 +77,17 @@ namespace Apresentação.Formulários
         {
             base.OnPaintBackground(e);
 
-            using (Pen pen = new Pen(borda, 2))
-            {
-                e.Graphics.DrawPath(pen, caminho);
-            }
+            //using (Pen pen = new Pen(borda, 2))
+            //{
+            //    e.Graphics.DrawPath(pen, caminho);
+            //}
 
-            using (Brush brush = new LinearGradientBrush(
-                new Point(0, 0), new Point(this.Width, this.Height),
-                cor1, cor2))
-            {
-                e.Graphics.FillPath(brush, caminho2);
-            }
+            //using (Brush brush = new LinearGradientBrush(
+            //    new Point(0, 0), new Point(this.Width, this.Height),
+            //    cor1, cor2))
+            //{
+            //    e.Graphics.FillPath(brush, caminho2);
+            //}
         }
     }
 }
