@@ -428,9 +428,9 @@ namespace Apresentação.Mercadoria.Bandeja
 		/// <summary>
 		/// Constrói a bandeja
 		/// </summary>
-		public Bandeja()
-		{
-			InitializeComponent();
+        public Bandeja()
+        {
+            InitializeComponent();
 
             saquinhos = new List<ISaquinho>();
             hashListViewItemSaquinho = new Dictionary<ListViewItem, ISaquinho>();
@@ -438,26 +438,16 @@ namespace Apresentação.Mercadoria.Bandeja
             hashAgrupamento = new Dictionary<string, ISaquinho>(StringComparer.Ordinal);
 
             lista.ListViewItemSorter = new BandejaComparador(hashListViewItemSaquinho, lista);
-		}
+
+            recuperaçãoFotos = new RecuperaçãoFotos(this);
+        }
 
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
 
-            if (!DesignMode && Acesso.Comum.Usuários.UsuárioAtual != null)
-            {
-                // Somente para Windows XP ou superior.
-                if (Environment.OSVersion.Version.Major >= 5)
-                    recuperaçãoFotos = new RecuperaçãoFotos(this);
-                else
-                    recuperaçãoFotos = null;
-
-                // Grupos só funcionam a partir do Windows XP.
-                btnSeparar.Visible = Environment.OSVersion.Version.Major >= 5;
-
-                if (PermitirSeleçãoTabela && Tabelas == null)
-                    Tabelas = Tabela.ObterTabelas(Funcionário.FuncionárioAtual.Setor);
-            }
+            if (PermitirSeleçãoTabela && Tabelas == null)
+                Tabelas = Tabela.ObterTabelas(Funcionário.FuncionárioAtual.Setor);
         }
 
 		#region Tratamento de Eventos de Interface e ISaquinho
@@ -973,9 +963,6 @@ namespace Apresentação.Mercadoria.Bandeja
 			// A tag é necessária para exibição futura da foto.
 			novoItemListView.Tag = saquinho.Mercadoria;
 
-            if (recuperaçãoFotos != null)
-                recuperaçãoFotos.Adicionar(novoItemListView);
-
 			return novoItemListView;
 		}
 
@@ -1261,6 +1248,10 @@ namespace Apresentação.Mercadoria.Bandeja
             saquinhos.Add(saquinhoOriginal);
             
             item = ConstruirListView(saquinhoOriginal);
+
+            if (recuperaçãoFotos != null)
+                recuperaçãoFotos.Adicionar(item);
+
             lista.Items.Add(item);
             item.EnsureVisible();
 
@@ -1360,6 +1351,9 @@ namespace Apresentação.Mercadoria.Bandeja
 
                         if (cotação != null)
                             totalPreço += CalcularValor(sOuNovo);
+
+                        if (recuperaçãoFotos != null)
+                            recuperaçãoFotos.AdicionarVários(itens);
                     }
                 }
             }
@@ -1631,6 +1625,15 @@ namespace Apresentação.Mercadoria.Bandeja
             public void Adicionar(ListViewItem item)
             {
                 filaFotos.Enqueue(item);
+
+                if (!bandeja.suspendeObtençãoDeÍcones)
+                    IniciarTrabalho();
+            }
+
+            internal void AdicionarVários(ListViewItem[] itens)
+            {
+                foreach (ListViewItem i in itens)
+                    filaFotos.Enqueue(i);
 
                 if (!bandeja.suspendeObtençãoDeÍcones)
                     IniciarTrabalho();
