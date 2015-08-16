@@ -79,29 +79,6 @@ namespace Apresentação.Atendimento.Clientes.Pedido
             ResumeLayout();
         }
 
-        ///// <summary>
-        ///// Carrega e exibe todos os pedidos pendentes de um cliente.
-        ///// </summary>
-        ///// <param name="cliente">Cliente a ser exibido. (Pode ser nulo)</param>
-        //public void Mostrar(Entidades.Pessoa.Pessoa cliente, bool ocultarJáEntregues)
-        //{
-        //    if (bgRecuperação.IsBusy)
-        //        return;
-
-        //    flowLayoutPanel.Controls.Clear();
-
-        //    períodoInicial = null;
-        //    períodoFinal = null;
-
-        //    this.ocultarJáEntregues = ocultarJáEntregues;
-
-        //    SinalizaçãoCarga.Sinalizar(this,
-        //        "Carregando pedidos...",
-        //        "Aguarde enquanto o sistema carrega os pedidos.");
-
-        //    bgRecuperação.RunWorkerAsync(cliente);
-        //}
-
         /// <summary>
         /// Carrega e exibe todos os pedidos de um período específico.
         /// </summary>

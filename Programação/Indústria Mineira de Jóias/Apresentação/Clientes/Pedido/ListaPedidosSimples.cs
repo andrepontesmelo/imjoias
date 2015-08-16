@@ -115,10 +115,6 @@ namespace Apresentação.Atendimento.Clientes.Pedido
             parâmetros.OcultarJáEntregues = ocultarJáEntregues;
             parâmetros.ApenasPedidos = apenasPedidos;
 
-            SinalizaçãoCarga.Sinalizar(this,
-                    "Carregando ...",
-                    "");
-
             bgRecuperação.RunWorkerAsync(parâmetros);
         }
 
@@ -162,8 +158,6 @@ namespace Apresentação.Atendimento.Clientes.Pedido
             Entidades.PedidoConserto.Pedido[] pedidos = (Entidades.PedidoConserto.Pedido[])e.Result;
 
             Adicionar(pedidos);
-
-            SinalizaçãoCarga.Dessinalizar(this);
         }
 
         internal void FocarSePossível(Entidades.PedidoConserto.Pedido últimoPedidoClicado)
