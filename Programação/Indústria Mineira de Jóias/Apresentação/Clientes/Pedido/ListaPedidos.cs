@@ -40,26 +40,6 @@ namespace Apresentação.Atendimento.Clientes.Pedido
             flowLayoutPanel.Focus();
         }
 
-        //void ListaPedidos_HandleCreated(object sender, EventArgs e)
-        //{
-        //    this.ParentForm.MouseWheel += new MouseEventHandler(ParentForm_MouseWheel);
-        //}
-
-        //void ParentForm_MouseWheel(object sender, MouseEventArgs e)
-        //{
-        //    //flowLayoutPanel.
-        //}
-
-        //void flowLayoutPanel_MouseWheel(object sender, MouseEventArgs e)
-        //{
-        //    //throw new NotImplementedException();
-        //}
-
-        //void ListaPedidos_MouseWheel(object sender, MouseEventArgs e)
-        //{
-        //    //MessageBox.Show("Opa");
-        //}
-
         public void Adicionar(Entidades.PedidoConserto.Pedido pedido)
         {
             ItemPedido item = new ItemPedido(pedido);
