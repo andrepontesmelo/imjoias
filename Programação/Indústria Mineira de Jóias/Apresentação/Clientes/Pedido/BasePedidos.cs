@@ -12,7 +12,6 @@ using Apresentação.Impressão;
 using Entidades.Configuração;
 using Apresentação.Impressão.Relatórios.Pedido.PedidosParaFornecedores;
 
-
 namespace Apresentação.Atendimento.Clientes.Pedido
 {
     public partial class BasePedidos : BaseInferior
@@ -69,7 +68,7 @@ namespace Apresentação.Atendimento.Clientes.Pedido
         {
             bool somenteHoje;
 
-            opçãoImprimirResumo.Visible = optPedidos.Checked;
+            opçãoImprimirResumo.Visible = optExibePedidos.Checked;
 
             DateTime hoje = new DateTime(Entidades.Configuração.DadosGlobais.Instância.HoraDataAtual.Year,
             Entidades.Configuração.DadosGlobais.Instância.HoraDataAtual.Month,
@@ -134,7 +133,7 @@ namespace Apresentação.Atendimento.Clientes.Pedido
             Apresentação.Impressão.Relatórios.Pedido.Relatório relatório = new Apresentação.Impressão.Relatórios.Pedido.Relatório();
             List<Entidades.PedidoConserto.Pedido> pedidos = listaPedidos.ObterPedidos();
 
-            controle.PrepararImpressão(relatório, pedidos, dataInício, dataFim, imprimirConsertos, optPrevisão.Checked);
+            controle.PrepararImpressão(relatório, pedidos, dataInício, dataFim, imprimirConsertos, optPeríodoPrevisto.Checked);
 
             PrintDialog printDialog = new PrintDialog();
             AguardeDB.Fechar();
@@ -156,7 +155,7 @@ namespace Apresentação.Atendimento.Clientes.Pedido
             else
                 novaBase = new BaseEditarPedido();
 
-            if (optConsertos.Checked)
+            if (optExibeConsertos.Checked)
                 novaBase.Tipo = Entidades.PedidoConserto.Pedido.Tipo.Conserto;
             else
                 novaBase.Tipo = Entidades.PedidoConserto.Pedido.Tipo.Pedido;
@@ -166,7 +165,7 @@ namespace Apresentação.Atendimento.Clientes.Pedido
 
         private void optRecepção_CheckedChanged(object sender, EventArgs e)
         {
-            if (optRecepção.Checked)
+            if (optPeríodoRegistrado.Checked)
             {
                 tipoData = TipoDataEnum.RegistradosNoPeríodo;
                 //Recarregar();
@@ -175,7 +174,7 @@ namespace Apresentação.Atendimento.Clientes.Pedido
 
         private void optPrevisão_CheckedChanged(object sender, EventArgs e)
         {
-            if (optPrevisão.Checked)
+            if (optPeríodoPrevisto.Checked)
             {
                 tipoData = TipoDataEnum.PrevistosParaOPeríodo;
                 //Recarregar();
@@ -200,7 +199,7 @@ namespace Apresentação.Atendimento.Clientes.Pedido
 
         private void optPedidos_CheckedChanged(object sender, EventArgs e)
         {
-            mostrarApenasPedidos = optPedidos.Checked;
+            mostrarApenasPedidos = optExibePedidos.Checked;
 
             if (mostrarApenasPedidos)
                 Recarregar();
@@ -208,7 +207,7 @@ namespace Apresentação.Atendimento.Clientes.Pedido
 
         private void optConsertos_CheckedChanged(object sender, EventArgs e)
         {
-            mostrarApenasPedidos = optPedidos.Checked;
+            mostrarApenasPedidos = optExibePedidos.Checked;
 
             if (!mostrarApenasPedidos)
                 Recarregar();
@@ -248,7 +247,7 @@ namespace Apresentação.Atendimento.Clientes.Pedido
 
         private void optTodos_CheckedChanged(object sender, EventArgs e)
         {
-            if (optTodos.Checked)
+            if (optPeríodoTodo.Checked)
             {
                 dataFim = DateTime.MaxValue;
                 dataInício = DateTime.MinValue;
