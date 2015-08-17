@@ -834,11 +834,7 @@ namespace Acesso.Comum
                         if (pManipulável != null && pendência.objeto is DbManipulação)
                             pManipulável.Referentes.Add((DbManipulação)pendência.objeto);
                     }
-                } 
-                catch (Exception err) {
-                    Console.WriteLine("Erro!!!");
-                    throw err;
-                }       
+                }     
                 finally
                 {
                     if (conexão != null)

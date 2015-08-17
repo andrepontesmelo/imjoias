@@ -669,10 +669,6 @@ namespace Entidades.Pessoa
                                 p = (Pessoa.ObterPessoa(leitor, 0, TotalAtributos, TotalAtributos + PessoaFísica.TotalAtributos));
                         }
                     }
-                    catch (Exception err)
-                    {
-                        throw err;
-                    }
                     finally
                     {
                         if (leitor != null)
