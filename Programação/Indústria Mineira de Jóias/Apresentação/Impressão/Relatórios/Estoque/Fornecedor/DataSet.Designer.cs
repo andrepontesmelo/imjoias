@@ -297,6 +297,8 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Fornecedor {
             
             private global::System.Data.DataColumn columnreffornecedor;
             
+            private global::System.Data.DataColumn columnpesosaldo;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ItensDataTable() {
@@ -404,6 +406,14 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Fornecedor {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn pesosaldoColumn {
+                get {
+                    return this.columnpesosaldo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -439,7 +449,7 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Fornecedor {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ItensRow AddItensRow(string referência, double peso, double entrada, double venda, double devolução, double saldo, bool depeso, string fornecedor, string reffornecedor) {
+            public ItensRow AddItensRow(string referência, double peso, double entrada, double venda, double devolução, double saldo, bool depeso, string fornecedor, string reffornecedor, double pesosaldo) {
                 ItensRow rowItensRow = ((ItensRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         referência,
@@ -450,7 +460,8 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Fornecedor {
                         saldo,
                         depeso,
                         fornecedor,
-                        reffornecedor};
+                        reffornecedor,
+                        pesosaldo};
                 rowItensRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowItensRow);
                 return rowItensRow;
@@ -482,6 +493,7 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Fornecedor {
                 this.columndepeso = base.Columns["depeso"];
                 this.columnfornecedor = base.Columns["fornecedor"];
                 this.columnreffornecedor = base.Columns["reffornecedor"];
+                this.columnpesosaldo = base.Columns["pesosaldo"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -505,6 +517,8 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Fornecedor {
                 base.Columns.Add(this.columnfornecedor);
                 this.columnreffornecedor = new global::System.Data.DataColumn("reffornecedor", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnreffornecedor);
+                this.columnpesosaldo = new global::System.Data.DataColumn("pesosaldo", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnpesosaldo);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -791,6 +805,22 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Fornecedor {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double pesosaldo {
+                get {
+                    try {
+                        return ((double)(this[this.tableItens.pesosaldoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'pesosaldo\' in table \'Itens\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItens.pesosaldoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsreferênciaNull() {
                 return this.IsNull(this.tableItens.referênciaColumn);
             }
@@ -895,6 +925,18 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Fornecedor {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetreffornecedorNull() {
                 this[this.tableItens.reffornecedorColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IspesosaldoNull() {
+                return this.IsNull(this.tableItens.pesosaldoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetpesosaldoNull() {
+                this[this.tableItens.pesosaldoColumn] = global::System.Convert.DBNull;
             }
         }
         
