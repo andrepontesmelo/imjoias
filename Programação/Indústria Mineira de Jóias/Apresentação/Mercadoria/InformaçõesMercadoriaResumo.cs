@@ -273,12 +273,12 @@ namespace Apresentação.Mercadoria
             // lblDescrição
             // 
             this.lblDescrição.BackColor = System.Drawing.Color.Transparent;
-            this.lblDescrição.Location = new System.Drawing.Point(203, 61);
+            this.lblDescrição.Location = new System.Drawing.Point(203, 63);
             this.lblDescrição.Name = "lblDescrição";
             this.lblDescrição.Size = new System.Drawing.Size(285, 24);
             this.lblDescrição.TabIndex = 10;
             this.lblDescrição.Text = "Descrição";
-            this.lblDescrição.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lblDescrição.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblDescrição.UseMnemonic = false;
             this.lblDescrição.MouseDown += new System.Windows.Forms.MouseEventHandler(this.InformaçõesMercadoria_MouseDown);
             // 

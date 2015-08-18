@@ -342,7 +342,7 @@ namespace Apresentação.Mercadoria
             // lblDescrição
             // 
             this.lblDescrição.BackColor = System.Drawing.Color.Transparent;
-            this.lblDescrição.Location = new System.Drawing.Point(192, 61);
+            this.lblDescrição.Location = new System.Drawing.Point(192, 63);
             this.lblDescrição.Name = "lblDescrição";
             this.lblDescrição.Size = new System.Drawing.Size(290, 24);
             this.lblDescrição.TabIndex = 10;
