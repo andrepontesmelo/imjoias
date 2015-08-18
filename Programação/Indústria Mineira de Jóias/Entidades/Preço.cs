@@ -72,7 +72,7 @@ namespace Entidades
         /// </summary>
         /// <param name="cotação">Cotação a ser utilizada.</param>
         public Preço(Mercadoria.Mercadoria mercadoria, Cotação cotação)
-            : this(mercadoria, cotação, mercadoria.Índice)
+            : this(mercadoria, cotação, mercadoria.ÍndiceArredondado)
         { }
 
         /// <summary>
