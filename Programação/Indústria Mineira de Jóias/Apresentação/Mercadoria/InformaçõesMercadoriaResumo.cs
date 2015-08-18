@@ -879,7 +879,6 @@ namespace Apresentação.Mercadoria
             {
                 // Atacado
                 mercadoria.TabelaPreço = Tabela.ObterTabela(3);
-                cotação = Entidades.Cotação.ObterCotaçãoVigente(Moeda.ObterMoeda(Moeda.MoedaSistema.Ouro));
 
                 lblPreçoÁVistaAtacado.Text = CalcularPreço(dias[0]);
                 lblPreço30Atacado.Text = CalcularPreço(dias[1]);
@@ -893,8 +892,6 @@ namespace Apresentação.Mercadoria
 
                 // Consignado
                 mercadoria.TabelaPreço = Tabela.ObterTabela(2);
-                cotação = Entidades.Cotação.ObterCotaçãoVigente(Moeda.ObterMoeda(5));
-
                 lblPreçoÁVistaConsignado.Text = CalcularPreço(dias[0]);
                 lblPreço30Consignado.Text = CalcularPreço(dias[1]);
                 lblPreço30x60Consignado.Text = CalcularPreço(dias[2]);
@@ -905,11 +902,6 @@ namespace Apresentação.Mercadoria
                 lblÍndice30.Text = Math.Round(mercadoria.ÍndiceArredondado * taxa30Dias, 2).ToString();
                 lblÍndice30x60.Text = Math.Round(mercadoria.ÍndiceArredondado * taxa30x60Dias, 2).ToString();
                 lblÍndice30x60x90.Text = Math.Round(mercadoria.ÍndiceArredondado * taxa30x60x90Dias, 2).ToString();
-
-                //lblCotação.Text = "* Cotação: " +
-                //    (cotação != null ? cotação.Valor.ToString("C", DadosGlobais.Instância.Cultura) : "Informação não disponível");
-                //lblCotação.Text = "; Tabela: " +
-                //    (mercadoria.TabelaPreço != null ? mercadoria.TabelaPreço.Nome : "Desconhecida");
             }
         }
 
