@@ -15,12 +15,12 @@ namespace Entidades.Estoque
             get { return fornecedornome; }
             set { fornecedornome = value; }
         }
-        private string fornecedorreferencia;
+        private string referenciafornecedor;
 
         public string FornecedorReferência
         {
-            get { return fornecedorreferencia; }
-            set { fornecedorreferencia = value; }
+            get { return referenciafornecedor; }
+            set { referenciafornecedor = value; }
         }
 
         private string referencia;
@@ -93,14 +93,19 @@ namespace Entidades.Estoque
             if (!incluirPeso && !incluirReferências)
                 return new List<Saldo>();
 
-            return Mapear<Saldo>("select e.*, m.depeso, f.nome as fornecedornome, v.referenciafornecedor as fornecedorreferencia from estoque_saldo e " +
-                " join mercadoria m on e.referencia=m.referencia " +
-                " join vinculomercadoriafornecedor v on e.referencia=v.mercadoria join fornecedor f on v.fornecedor=f.codigo " +
+            String consulta =
+
+            "select v.referenciafornecedor as referenciafornecedor, m.referencia, ifnull(e.peso,m.peso) as peso, ifnull(e.entrada,0) as entrada,ifnull(e.venda,0) as venda ,ifnull(e.devolucao,0) as devolucao,ifnull(e.saldo,0) as saldo, " +
+                " m.depeso, f.nome as fornecedornome from mercadoria m left join estoque_saldo e " +
+                " on e.referencia=m.referencia " +
+                " join vinculomercadoriafornecedor v on m.referencia=v.mercadoria join fornecedor f on v.fornecedor=f.codigo " +
                 " WHERE 1=1 AND " +
-                (fornecedorÚnico != null ? " f.codigo= " + DbTransformar(fornecedorÚnico.Código) + " AND " : "") + 
+                (fornecedorÚnico != null ? " f.codigo= " + DbTransformar(fornecedorÚnico.Código) + " AND " : "") +
                 " ( m.depeso=" + (incluirPeso ? "1" : "0") +
                 " or m.depeso=" + (incluirReferências ? "0" : "1") +
-                " ) ORDER BY " + (ordem == Ordem.FornecedorReferênciaPeso ? " f.nome, m.referencia, e.peso " : " m.referencia, e.peso "));
+                " ) ORDER BY " + (ordem == Ordem.FornecedorReferênciaPeso ? " f.nome, m.referencia, e.peso " : " m.referencia, e.peso ");
+
+            return Mapear<Saldo>(consulta);
         }
 
         public double ProdudoPesoSaldo
