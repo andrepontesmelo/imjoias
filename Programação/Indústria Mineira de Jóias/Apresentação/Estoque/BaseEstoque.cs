@@ -98,7 +98,7 @@ namespace Apresentação.Estoque
 
             RelatórioFornecedor r = new RelatórioFornecedor();
 
-            new ControleImpressãoResumo().PrepararImpressão(r, itens);
+            new ControleImpressãoFornecedor().PrepararImpressão(r, itens);
 
             AbrirJanela(janela, r);
         }
