@@ -31,14 +31,17 @@
             this.btnOk = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBoxFornecedor = new Apresentação.Fornecedor.ComboboxFornecedor();
             this.chkPeso = new System.Windows.Forms.CheckBox();
             this.chkReferência = new System.Windows.Forms.CheckBox();
+            this.comboBoxFornecedor = new Apresentação.Fornecedor.ComboboxFornecedor();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.chkFiltrarFornecedor = new System.Windows.Forms.CheckBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.chkPesoMédio = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.picÍcone)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblTítulo
@@ -58,7 +61,7 @@
             // btnOk
             // 
             this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOk.Location = new System.Drawing.Point(143, 249);
+            this.btnOk.Location = new System.Drawing.Point(143, 296);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 4;
@@ -70,7 +73,7 @@
             // 
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(224, 249);
+            this.btnCancelar.Location = new System.Drawing.Point(224, 296);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 5;
@@ -89,14 +92,6 @@
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tipo de Mercadoria";
-            // 
-            // comboBoxFornecedor
-            // 
-            this.comboBoxFornecedor.Enabled = false;
-            this.comboBoxFornecedor.Location = new System.Drawing.Point(65, 41);
-            this.comboBoxFornecedor.Name = "comboBoxFornecedor";
-            this.comboBoxFornecedor.Size = new System.Drawing.Size(216, 21);
-            this.comboBoxFornecedor.TabIndex = 2;
             // 
             // chkPeso
             // 
@@ -122,6 +117,14 @@
             this.chkReferência.Text = "Mercadorias de Referência";
             this.chkReferência.UseVisualStyleBackColor = true;
             // 
+            // comboBoxFornecedor
+            // 
+            this.comboBoxFornecedor.Enabled = false;
+            this.comboBoxFornecedor.Location = new System.Drawing.Point(65, 41);
+            this.comboBoxFornecedor.Name = "comboBoxFornecedor";
+            this.comboBoxFornecedor.Size = new System.Drawing.Size(216, 21);
+            this.comboBoxFornecedor.TabIndex = 2;
+            // 
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -146,13 +149,36 @@
             this.chkFiltrarFornecedor.UseVisualStyleBackColor = true;
             this.chkFiltrarFornecedor.CheckedChanged += new System.EventHandler(this.chkFiltrarFornecedor_CheckedChanged);
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.chkPesoMédio);
+            this.groupBox3.Location = new System.Drawing.Point(12, 244);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(287, 46);
+            this.groupBox3.TabIndex = 8;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Peso";
+            // 
+            // checkboxPesoMédio
+            // 
+            this.chkPesoMédio.AutoSize = true;
+            this.chkPesoMédio.Location = new System.Drawing.Point(66, 18);
+            this.chkPesoMédio.Name = "checkboxPesoMédio";
+            this.chkPesoMédio.Size = new System.Drawing.Size(105, 17);
+            this.chkPesoMédio.TabIndex = 3;
+            this.chkPesoMédio.Text = "Usar peso médio";
+            this.chkPesoMédio.UseVisualStyleBackColor = true;
+            // 
             // JanelaOpçõesImpressão
             // 
             this.AcceptButton = this.btnOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(311, 284);
+            this.ClientSize = new System.Drawing.Size(311, 331);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnCancelar);
@@ -163,11 +189,14 @@
             this.Controls.SetChildIndex(this.btnCancelar, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
             this.Controls.SetChildIndex(this.groupBox2, 0);
+            this.Controls.SetChildIndex(this.groupBox3, 0);
             ((System.ComponentModel.ISupportInitialize)(this.picÍcone)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -183,5 +212,7 @@
         private Apresentação.Fornecedor.ComboboxFornecedor comboBoxFornecedor;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.CheckBox chkFiltrarFornecedor;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.CheckBox chkPesoMédio;
     }
 }

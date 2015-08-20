@@ -98,7 +98,7 @@ namespace Apresentação.Estoque
         {
             arrayFornecedores = Entidades.Fornecedor.ObterFornecedores().ToArray();
             
-            itens = Entidades.Estoque.Saldo.Obter(true, true, ObterFornecedorÚnico(), Saldo.Ordem.ReferênciaPeso);
+            itens = Entidades.Estoque.Saldo.Obter(true, true, ObterFornecedorÚnico(), Saldo.Ordem.ReferênciaPeso, true);
             ResultadoCarga resultado = new ResultadoCarga();
 
             resultado.ListaGrafica = new ListViewItem[itens.Count];

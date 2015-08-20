@@ -14,6 +14,7 @@ namespace Apresentação.Estoque
     {
         private Entidades.Configuração.ConfiguraçãoUsuário<bool> configuraçãoReferência;
         private Entidades.Configuração.ConfiguraçãoUsuário<bool> configuraçãoPeso;
+        private Entidades.Configuração.ConfiguraçãoUsuário<bool> configuraçãoPesoMédio;
         private Entidades.Configuração.ConfiguraçãoUsuário<int> configuraçãoFornecedorÚnicoCódigoFornecedor;
 
         public JanelaOpçõesImpressão()
@@ -27,7 +28,9 @@ namespace Apresentação.Estoque
             configuraçãoPeso =  new Entidades.Configuração.ConfiguraçãoUsuário<bool>("estoque_opcoes_impressao_incluir_peso", true);
             configuraçãoFornecedorÚnicoCódigoFornecedor = new Entidades.Configuração.ConfiguraçãoUsuário<int>("estoque_opcoes_fornecedor_unico", 0);
 
+            configuraçãoPesoMédio = new Entidades.Configuração.ConfiguraçãoUsuário<bool>("estoque_opcoes_peso_medio", false);
             chkReferência.Checked = configuraçãoReferência.Valor;
+            chkPesoMédio.Checked = configuraçãoPesoMédio.Valor;
             chkPeso.Checked = configuraçãoPeso.Valor;
             
             if (configuraçãoFornecedorÚnicoCódigoFornecedor.Valor == 0)
@@ -48,6 +51,9 @@ namespace Apresentação.Estoque
 
         public bool IncluirPeso
         { get { return chkPeso.Checked;  }  }
+
+        public bool UsarPesoMédio
+        { get { return chkPesoMédio.Checked;  } }
 
         public Entidades.Fornecedor FornecedorÚnico
         {

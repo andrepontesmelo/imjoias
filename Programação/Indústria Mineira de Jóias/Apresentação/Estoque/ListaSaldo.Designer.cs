@@ -44,12 +44,12 @@
             this.status = new System.Windows.Forms.StatusBar();
             this.panelReferencias = new System.Windows.Forms.StatusBarPanel();
             this.panelPesoTotal = new System.Windows.Forms.StatusBarPanel();
-            this.toolStrip = new System.Windows.Forms.ToolStrip();
+            this.localizador = new Apresentação.Formulários.Localizador();
             this.btnPesquisa = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripBtnFiltrarFornecedor = new System.Windows.Forms.ToolStripButton();
             this.toolStripComboBoxFornecedor = new System.Windows.Forms.ToolStripComboBox();
-            this.localizador = new Apresentação.Formulários.Localizador();
+            this.toolStrip = new System.Windows.Forms.ToolStrip();
             ((System.ComponentModel.ISupportInitialize)(this.panelReferencias)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelPesoTotal)).BeginInit();
             this.toolStrip.SuspendLayout();
@@ -153,19 +153,20 @@
             this.panelPesoTotal.Name = "panelPesoTotal";
             this.panelPesoTotal.ToolTipText = "Somatória do peso levando em conta as quantidades";
             // 
-            // toolStrip
+            // localizador
             // 
-            this.toolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnPesquisa,
-            this.toolStripSeparator1,
-            this.toolStripBtnFiltrarFornecedor,
-            this.toolStripComboBoxFornecedor});
-            this.toolStrip.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(902, 25);
-            this.toolStrip.TabIndex = 12;
-            this.toolStrip.Text = "toolStrip1";
+            this.localizador.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.localizador.BotãoPesquisar = null;
+            this.localizador.Location = new System.Drawing.Point(0, 193);
+            this.localizador.Name = "localizador";
+            this.localizador.Size = new System.Drawing.Size(899, 29);
+            this.localizador.TabIndex = 7;
+            this.localizador.Visible = false;
+            this.localizador.RealçarItens += new Apresentação.Formulários.Localizador.RealçarDelegate(this.localizador_RealçarItens);
+            this.localizador.DesrealçarTudo += new System.EventHandler(this.localizador_DesrealçarTudo);
+            this.localizador.EncontrarItem += new Apresentação.Formulários.Localizador.EncontrarDelegate(this.localizador_EncontrarItem);
+            this.localizador.AoFechar += new System.EventHandler(this.localizador_AoFechar);
             // 
             // btnPesquisa
             // 
@@ -200,20 +201,19 @@
             this.toolStripComboBoxFornecedor.Size = new System.Drawing.Size(121, 25);
             this.toolStripComboBoxFornecedor.SelectedIndexChanged += new System.EventHandler(this.toolStripComboboxFornecedorSelectedIndexChanged);
             // 
-            // localizador
+            // toolStrip
             // 
-            this.localizador.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.localizador.BotãoPesquisar = null;
-            this.localizador.Location = new System.Drawing.Point(0, 193);
-            this.localizador.Name = "localizador";
-            this.localizador.Size = new System.Drawing.Size(899, 29);
-            this.localizador.TabIndex = 7;
-            this.localizador.Visible = false;
-            this.localizador.RealçarItens += new Apresentação.Formulários.Localizador.RealçarDelegate(this.localizador_RealçarItens);
-            this.localizador.DesrealçarTudo += new System.EventHandler(this.localizador_DesrealçarTudo);
-            this.localizador.EncontrarItem += new Apresentação.Formulários.Localizador.EncontrarDelegate(this.localizador_EncontrarItem);
-            this.localizador.AoFechar += new System.EventHandler(this.localizador_AoFechar);
+            this.toolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnPesquisa,
+            this.toolStripSeparator1,
+            this.toolStripBtnFiltrarFornecedor,
+            this.toolStripComboBoxFornecedor});
+            this.toolStrip.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip.Name = "toolStrip";
+            this.toolStrip.Size = new System.Drawing.Size(902, 25);
+            this.toolStrip.TabIndex = 12;
+            this.toolStrip.Text = "toolStrip1";
             // 
             // ListaSaldo
             // 
@@ -250,10 +250,10 @@
         private System.Windows.Forms.ColumnHeader colFornecedor;
         private System.Windows.Forms.ColumnHeader colRefFornecedor;
         private Apresentação.Formulários.Localizador localizador;
-        private System.Windows.Forms.ToolStrip toolStrip;
         private System.Windows.Forms.ToolStripButton btnPesquisa;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripComboBox toolStripComboBoxFornecedor;
         private System.Windows.Forms.ToolStripButton toolStripBtnFiltrarFornecedor;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBoxFornecedor;
+        private System.Windows.Forms.ToolStrip toolStrip;
     }
 }
