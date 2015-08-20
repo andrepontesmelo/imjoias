@@ -37,6 +37,8 @@ namespace Apresentação.Financeiro.Comissões
             set { lst.BackColor = value; }
         }
 
+        private Apresentação.Formulários.ListViewColumnSorter ordenador;
+
         /// <summary>
         /// em aberto são as comissões da parte esquerda da tela.
         /// Em fechado são as comissões da parte direita da tela.
@@ -69,6 +71,9 @@ namespace Apresentação.Financeiro.Comissões
                     hashRegraGrupo[tipo] = grupo;
                 }
             }
+
+            ordenador = new ListViewColumnSorter();
+            lst.ListViewItemSorter = ordenador;
         }
 
         public void Carregar(DateTime? diaInicial, DateTime? diaFinal, Entidades.Pessoa.Pessoa comissãoPara, Comissão comissão, bool emAberto, bool estorno)
@@ -92,6 +97,7 @@ namespace Apresentação.Financeiro.Comissões
 
         private void lst_ColumnClick(object sender, ColumnClickEventArgs e)
         {
+            ordenador.OnClick(lst, e);
         }
 
         private void abrirFichaToolStripMenuItem_Click(object sender, EventArgs e)
