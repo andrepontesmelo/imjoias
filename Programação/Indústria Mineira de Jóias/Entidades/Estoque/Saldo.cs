@@ -83,29 +83,39 @@ namespace Entidades.Estoque
 
         public static List<Saldo> Obter()
         {
-            return Obter(true, true, null, Ordem.FornecedorReferênciaPeso);
+            return Obter(true, true, null, Ordem.FornecedorReferênciaPeso, false);
         }
 
         public enum Ordem { FornecedorReferênciaPeso, ReferênciaPeso }
         
-        public static List<Saldo> Obter(bool incluirPeso, bool incluirReferências, Entidades.Fornecedor fornecedorÚnico, Ordem ordem)
+        public static List<Saldo> Obter(bool incluirPeso, bool incluirReferências, 
+            Entidades.Fornecedor fornecedorÚnico, Ordem ordem, bool usarPesoMédio)
         {
             if (!incluirPeso && !incluirReferências)
                 return new List<Saldo>();
 
-            String consulta =
+            StringBuilder consulta = new StringBuilder();
 
-            "select v.referenciafornecedor as referenciafornecedor, m.referencia, ifnull(e.peso,m.peso) as peso, ifnull(e.entrada,0) as entrada,ifnull(e.venda,0) as venda ,ifnull(e.devolucao,0) as devolucao,ifnull(e.saldo,0) as saldo, " +
+            consulta.Append("select v.referenciafornecedor as referenciafornecedor, m.referencia, ");
+
+            consulta.Append(usarPesoMédio ? " m.peso " : " ifnull(e.peso, m.peso) " );
+
+            consulta.Append(" as peso, sum(ifnull(e.entrada,0)) as entrada,sum(ifnull(e.venda,0)) as venda ,sum(ifnull(e.devolucao,0)) as devolucao,sum(ifnull(e.saldo,0)) as saldo, " +
                 " m.depeso, f.nome as fornecedornome from mercadoria m left join estoque_saldo e " +
                 " on e.referencia=m.referencia " +
                 " join vinculomercadoriafornecedor v on m.referencia=v.mercadoria join fornecedor f on v.fornecedor=f.codigo " +
-                " WHERE 1=1 AND " +
+                " WHERE foradelinha=0 AND " +
                 (fornecedorÚnico != null ? " f.codigo= " + DbTransformar(fornecedorÚnico.Código) + " AND " : "") +
                 " ( m.depeso=" + (incluirPeso ? "1" : "0") +
                 " or m.depeso=" + (incluirReferências ? "0" : "1") +
-                " ) ORDER BY " + (ordem == Ordem.FornecedorReferênciaPeso ? " f.nome, m.referencia, e.peso " : " m.referencia, e.peso ");
+                " ) ");
+            
+            consulta.Append(" GROUP BY ");
+            consulta.Append(usarPesoMédio ? " m.referencia, m.peso " : " m.referencia, e.peso " );
+            consulta.Append(" ORDER BY " + (ordem == Ordem.FornecedorReferênciaPeso ? " f.nome, m.referencia, e.peso " : " m.referencia, e.peso "));
 
-            return Mapear<Saldo>(consulta);
+
+            return Mapear<Saldo>(consulta.ToString());
         }
 
         public double ProdudoPesoSaldo
