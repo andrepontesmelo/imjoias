@@ -29,7 +29,7 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Fornecedor
         /// </summary>
         protected virtual void MapearItem(DataRow linha, Entidades.Estoque.Saldo s)
         {
-            linha["referência"] = Entidades.Mercadoria.Mercadoria.MascararReferência(s.Referencia);
+            linha["referência"] = Entidades.Mercadoria.Mercadoria.MascararReferência(s.Referencia, true);
             linha["entrada"] = s.Entrada;
             linha["venda"] = s.Venda;
             linha["devolução"] = s.Devolucao;
@@ -38,7 +38,7 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Fornecedor
             linha["peso"] = s.Peso;
             linha["depeso"] = s.Depeso;
             linha["fornecedor"] = s.FornecedorNome.Trim();
-            linha["reffornecedor"] = s.FornecedorReferência.Trim();
+            linha["reffornecedor"] = s.FornecedorReferência.Trim().ToUpper();
             linha["pesosaldo"] = s.ProdudoPesoSaldo;
         }
 
