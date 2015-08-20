@@ -523,6 +523,15 @@ namespace Entidades.Mercadoria
 			return referência;
 		}
 
+        public static string MascararReferência(string referênciaNuméricaSemDigito, bool adicionarDígito)
+        {
+            if (adicionarDígito)
+                return MascararReferência(referênciaNuméricaSemDigito, 
+                    ObterDígito(referênciaNuméricaSemDigito));
+            else
+                return MascararReferência(referênciaNuméricaSemDigito);
+        }
+                
         /// <summary>
         /// Mascara a referência conforme formato 000.000.00.000
         /// </summary>
