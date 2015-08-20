@@ -28,11 +28,13 @@ namespace Entidades.ComissãoCálculo
                 case EnumRegra.CompartilhadaRepresentanteAtacado:
                     return "Compartilhada repr. atacado";
                 case EnumRegra.RepresentanteCompra:
-                    //return "Representante compra";
+                    return "Representante compra";
                 case EnumRegra.Corretor:
                     return "Corretor";
-                case EnumRegra.OutrosFuncionarios:
-                    return "Vendas p/ outros setores ou func.";
+                case EnumRegra.OutrosClientes:
+                    return "Vendas p/ outros clientes.";
+                case EnumRegra.FuncionárioCompra:
+                    return "Funcionário Compra";
                     
                 default:
                     throw new NotImplementedException();
