@@ -14,7 +14,7 @@ namespace Entidades.Álbum
 	/// </summary>
 	/// <remarks>
 	/// O vinculo entre fotos e album é definido na tabela vinculofotosalbum.
-	/// Deve existir, na entidade foto, a lista de albums em que ela está inserida.
+	/// Deve existir, na entidade foto, a lista de álbuns em que ela está inserida.
 	/// </remarks>
     [DbTabela("album"), DbTransação]
 	public class Álbum : DbManipulaçãoAutomática

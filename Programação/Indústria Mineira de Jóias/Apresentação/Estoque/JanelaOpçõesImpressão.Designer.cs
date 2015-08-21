@@ -161,11 +161,11 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Peso";
             // 
-            // checkboxPesoMédio
+            // chkPesoMédio
             // 
             this.chkPesoMédio.AutoSize = true;
             this.chkPesoMédio.Location = new System.Drawing.Point(66, 18);
-            this.chkPesoMédio.Name = "checkboxPesoMédio";
+            this.chkPesoMédio.Name = "chkPesoMédio";
             this.chkPesoMédio.Size = new System.Drawing.Size(105, 17);
             this.chkPesoMédio.TabIndex = 3;
             this.chkPesoMédio.Text = "Usar peso médio";
