@@ -585,6 +585,8 @@ namespace Apresentação.Impressão.Relatórios.Comissao {
             
             private global::System.Data.DataColumn columnvalore;
             
+            private global::System.Data.DataColumn columnsetor;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ItensDataTable() {
@@ -660,6 +662,14 @@ namespace Apresentação.Impressão.Relatórios.Comissao {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn setorColumn {
+                get {
+                    return this.columnsetor;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -695,14 +705,15 @@ namespace Apresentação.Impressão.Relatórios.Comissao {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ItensRow AddItensRow(string nomecomissaopara, double valorv, double valorc, double apagar, double valore) {
+            public ItensRow AddItensRow(string nomecomissaopara, double valorv, double valorc, double apagar, double valore, string setor) {
                 ItensRow rowItensRow = ((ItensRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         nomecomissaopara,
                         valorv,
                         valorc,
                         apagar,
-                        valore};
+                        valore,
+                        setor};
                 rowItensRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowItensRow);
                 return rowItensRow;
@@ -730,6 +741,7 @@ namespace Apresentação.Impressão.Relatórios.Comissao {
                 this.columnvalorc = base.Columns["valorc"];
                 this.columnapagar = base.Columns["apagar"];
                 this.columnvalore = base.Columns["valore"];
+                this.columnsetor = base.Columns["setor"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -745,6 +757,8 @@ namespace Apresentação.Impressão.Relatórios.Comissao {
                 base.Columns.Add(this.columnapagar);
                 this.columnvalore = new global::System.Data.DataColumn("valore", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnvalore);
+                this.columnsetor = new global::System.Data.DataColumn("setor", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnsetor);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1038,6 +1052,22 @@ namespace Apresentação.Impressão.Relatórios.Comissao {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string setor {
+                get {
+                    try {
+                        return ((string)(this[this.tableItens.setorColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'setor\' in table \'Itens\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItens.setorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsnomecomissaoparaNull() {
                 return this.IsNull(this.tableItens.nomecomissaoparaColumn);
             }
@@ -1094,6 +1124,18 @@ namespace Apresentação.Impressão.Relatórios.Comissao {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetvaloreNull() {
                 this[this.tableItens.valoreColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IssetorNull() {
+                return this.IsNull(this.tableItens.setorColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetsetorNull() {
+                this[this.tableItens.setorColumn] = global::System.Convert.DBNull;
             }
         }
         
