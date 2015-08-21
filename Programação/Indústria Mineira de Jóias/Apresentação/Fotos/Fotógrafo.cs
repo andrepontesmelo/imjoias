@@ -194,7 +194,7 @@ namespace Apresentação.Álbum.Edição.Fotos
             this.títuloBaseInferior.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.títuloBaseInferior.BackColor = System.Drawing.Color.White;
-            this.títuloBaseInferior.Descrição = "Importe uma foto para múltiplos albuns.";
+            this.títuloBaseInferior.Descrição = "Importe uma foto para múltiplos álbuns.";
             this.títuloBaseInferior.ÍconeArredondado = false;
             this.títuloBaseInferior.Imagem = global::Apresentação.Resource.camera;
             this.títuloBaseInferior.Location = new System.Drawing.Point(210, 0);
@@ -460,7 +460,7 @@ namespace Apresentação.Álbum.Edição.Fotos
             this.quadroÁlbum.Size = new System.Drawing.Size(260, 229);
             this.quadroÁlbum.TabIndex = 13;
             this.quadroÁlbum.Tamanho = 30;
-            this.quadroÁlbum.Título = "Inserir esta foto nestes albums";
+            this.quadroÁlbum.Título = "Inserir esta foto nestes álbuns";
             // 
             // listaÁlbuns
             // 

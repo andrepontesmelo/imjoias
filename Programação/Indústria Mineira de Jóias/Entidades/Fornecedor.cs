@@ -16,7 +16,15 @@ namespace Entidades
 		// Atributos
 		[DbChavePrimária(true), DbColuna("codigo")]
 		private long código;
-		
+
+        private DateTime inicio;
+
+        public DateTime Inicio
+        {
+            get { return inicio; }
+            set { inicio = value; }
+        }
+
 		private string nome;
 
         [DbColuna("comentarios")]

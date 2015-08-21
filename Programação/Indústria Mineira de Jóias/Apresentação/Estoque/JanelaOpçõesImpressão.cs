@@ -68,6 +68,7 @@ namespace Apresentação.Estoque
 
         private void btnOk_Click(object sender, EventArgs e)
         {
+            configuraçãoPesoMédio.Valor = chkPesoMédio.Checked;
             configuraçãoPeso.Valor = IncluirPeso;
             configuraçãoReferência.Valor = IncluirReferência;
             configuraçãoFornecedorÚnicoCódigoFornecedor.Valor = 
