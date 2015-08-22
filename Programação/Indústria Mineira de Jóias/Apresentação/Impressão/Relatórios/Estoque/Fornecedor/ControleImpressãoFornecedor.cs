@@ -29,7 +29,7 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Fornecedor
         /// </summary>
         protected virtual void MapearItem(DataRow linha, Entidades.Estoque.Saldo s)
         {
-            linha["referência"] = Entidades.Mercadoria.Mercadoria.MascararReferência(s.Referencia, true);
+            linha["referência"] = s.ReferênciaFormatadaComDígito;
             linha["entrada"] = s.Entrada;
             linha["venda"] = s.Venda;
             linha["devolução"] = s.Devolucao;

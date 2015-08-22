@@ -128,5 +128,15 @@ namespace Entidades.Estoque
 
         public double ProdudoPesoSaldo
         { get { return peso * saldo;  } }
+
+        public string InícioFormatado 
+        {
+            get { return (Inicio == null ? "" : Inicio.ToString("MM/yy"));  }
+        }
+
+        public string ReferênciaFormatadaComDígito 
+        {
+            get { return Entidades.Mercadoria.Mercadoria.MascararReferência(Referencia, true); }
+        }
     }
 }

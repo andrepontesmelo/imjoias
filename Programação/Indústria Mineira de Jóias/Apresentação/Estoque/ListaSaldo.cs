@@ -131,14 +131,16 @@ namespace Apresentação.Estoque
             else
                 i = new ListViewItem(grupoDeReferencia);
 
-            i.Text = Entidades.Mercadoria.Mercadoria.MascararReferência(s.Referencia);
+            i.Text = s.ReferênciaFormatadaComDígito;
             i.SubItems.Add(s.Peso.ToString());
+            i.SubItems.Add(s.FornecedorNome);
+            i.SubItems.Add(s.FornecedorReferência);
+            i.SubItems.Add(s.InícioFormatado);
             i.SubItems.Add(s.Entrada.ToString());
             i.SubItems.Add(s.Venda.ToString());
             i.SubItems.Add(s.Devolucao.ToString());
             i.SubItems.Add(s.SaldoValor.ToString());
-            i.SubItems.Add(s.FornecedorNome);
-            i.SubItems.Add(s.FornecedorReferência);
+            i.SubItems.Add(s.ProdudoPesoSaldo.ToString());
 
             i.Tag = s;
             return i;

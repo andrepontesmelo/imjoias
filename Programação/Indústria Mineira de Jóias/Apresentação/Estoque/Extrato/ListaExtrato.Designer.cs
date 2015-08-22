@@ -76,7 +76,8 @@
             // 
             // columnHeader4
             // 
-            this.columnHeader4.Text = "Venda";
+            this.columnHeader4.Text = "Saida";
+            this.columnHeader4.Width = 89;
             // 
             // columnHeader5
             // 
