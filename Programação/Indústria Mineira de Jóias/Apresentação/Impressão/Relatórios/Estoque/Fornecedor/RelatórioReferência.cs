@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Apresentação.Impressão.Relatórios.Estoque.Referência {
+namespace Apresentação.Impressão.Relatórios.Estoque.Fornecedor {
     using System;
     using System.ComponentModel;
     using CrystalDecisions.Shared;
@@ -41,7 +41,7 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Referência {
         
         public override string FullResourceName {
             get {
-                return "Apresentação.Impressão.Relatórios.Estoque.Referência.RelatórioReferência.rpt";
+                return "Apresentação.Impressão.Relatórios.Estoque.Fornecedor.RelatórioReferência.rpt";
             }
             set {
                 // Do nothing

@@ -1383,25 +1383,25 @@
       <DependentUpon>RelatorioEntrada.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Impressão\Relatórios\Estoque\Fornecedor\RelatórioFornecedor.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RelatórioFornecedor.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Impressão\Relatórios\Estoque\Referência\ControleImpressãoReferência.cs" />
     <Compile Include="Impressão\Relatórios\Estoque\Referência\DataSetReferencia.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSetReferencia.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Impressão\Relatórios\Estoque\Referência\RelatórioReferência.cs">
+    <Compile Include="Impressão\Relatórios\Estoque\Fornecedor\RelatórioReferência.cs">
       <DependentUpon>RelatórioReferência.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Impressão\Relatórios\Estoque\Fornecedor\ControleImpressãoFornecedor.cs" />
-    <Compile Include="Impressão\Relatórios\Estoque\Fornecedor\RelatórioFornecedor.cs">
-      <DependentUpon>RelatórioFornecedor.rpt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Impressão\Relatórios\Estoque\Resumo\ControleImpressãoResumo.cs" />
     <Compile Include="Impressão\Relatórios\Estoque\Resumo\DataSetResumo.Designer.cs">
       <DependentUpon>DataSetResumo.xsd</DependentUpon>
@@ -3178,13 +3178,13 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RelatorioEntrada.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Impressão\Relatórios\Estoque\Referência\RelatórioReferência.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RelatórioReferência.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Impressão\Relatórios\Estoque\Fornecedor\RelatórioFornecedor.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RelatórioFornecedor.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Impressão\Relatórios\Estoque\Fornecedor\RelatórioReferência.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RelatórioReferência.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Impressão\Relatórios\Estoque\Resumo\RelatórioResumo.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
