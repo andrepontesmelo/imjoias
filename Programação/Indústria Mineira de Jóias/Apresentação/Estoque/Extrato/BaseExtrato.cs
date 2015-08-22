@@ -22,7 +22,7 @@ namespace Apresentação.Estoque.Extrato
 
         internal void Carregar(Entidades.Estoque.Saldo s)
         {
-            títuloBaseInferior1.Título = "Extrato de " + Entidades.Mercadoria.Mercadoria.MascararReferência(s.Referencia);
+            títuloBaseInferior1.Título = "Extrato de " + s.ReferênciaFormatadaComDígito;
 
             if (s.Depeso)
                 títuloBaseInferior1.Título += " - " + s.Peso.ToString() + "g";

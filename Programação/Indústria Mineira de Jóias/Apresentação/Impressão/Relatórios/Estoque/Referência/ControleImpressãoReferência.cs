@@ -29,7 +29,7 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Referência
         /// </summary>
         protected virtual void MapearItem(DataRow linha, Entidades.Estoque.Saldo s)
         {
-            linha["referência"] = Entidades.Mercadoria.Mercadoria.MascararReferência(s.Referencia, true);
+            linha["referência"] = s.ReferênciaFormatadaComDígito;
             linha["entrada"] = s.Entrada;
             linha["venda"] = s.Venda;
             linha["devolução"] = s.Devolucao;
@@ -40,7 +40,7 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Referência
             linha["fornecedor"] = s.FornecedorNome.Trim();
             linha["reffornecedor"] = (String.IsNullOrEmpty(s.FornecedorReferência) ? "" : s.FornecedorReferência.Trim().ToUpper());
             linha["pesosaldo"] = s.ProdudoPesoSaldo;
-            linha["inicio"] = (s.Inicio == null ? "" : s.Inicio.ToString("MM/yy"));
+            linha["inicio"] = s.InícioFormatado;
         }
 
         public virtual void PrepararImpressão(ReportClass relatório, List<Entidades.Estoque.Saldo> itens)

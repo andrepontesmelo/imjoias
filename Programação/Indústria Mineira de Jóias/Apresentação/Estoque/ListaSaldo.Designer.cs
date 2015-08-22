@@ -50,6 +50,8 @@
             this.toolStripBtnFiltrarFornecedor = new System.Windows.Forms.ToolStripButton();
             this.toolStripComboBoxFornecedor = new System.Windows.Forms.ToolStripComboBox();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
+            this.colInicio = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colTotal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.panelReferencias)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelPesoTotal)).BeginInit();
             this.toolStrip.SuspendLayout();
@@ -63,12 +65,14 @@
             this.lst.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colReferência,
             this.colPeso,
+            this.colFornecedor,
+            this.colRefFornecedor,
+            this.colInicio,
             this.colEntrada,
             this.colVenda,
             this.colDevolução,
             this.colSaldo,
-            this.colFornecedor,
-            this.colRefFornecedor});
+            this.colTotal});
             this.lst.FullRowSelect = true;
             listViewGroup1.Header = "Mercadorias de Peso";
             listViewGroup1.Name = "grupoPeso";
@@ -101,7 +105,7 @@
             // 
             // colVenda
             // 
-            this.colVenda.Text = "Venda";
+            this.colVenda.Text = "Saída";
             // 
             // colDevolução
             // 
@@ -120,7 +124,7 @@
             // colRefFornecedor
             // 
             this.colRefFornecedor.Text = "Ref. Fornecedor";
-            this.colRefFornecedor.Width = 275;
+            this.colRefFornecedor.Width = 228;
             // 
             // bg
             // 
@@ -215,6 +219,14 @@
             this.toolStrip.TabIndex = 12;
             this.toolStrip.Text = "toolStrip1";
             // 
+            // colInicio
+            // 
+            this.colInicio.Text = "Início";
+            // 
+            // colTotal
+            // 
+            this.colTotal.Text = "T. Peso";
+            // 
             // ListaSaldo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -255,5 +267,7 @@
         private System.Windows.Forms.ToolStripButton toolStripBtnFiltrarFornecedor;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBoxFornecedor;
         private System.Windows.Forms.ToolStrip toolStrip;
+        private System.Windows.Forms.ColumnHeader colInicio;
+        private System.Windows.Forms.ColumnHeader colTotal;
     }
 }
