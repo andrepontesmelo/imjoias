@@ -369,6 +369,8 @@ namespace Apresentação.IntegraçãoSistemaAntigo
             string diretório = pasta.SelectedPath;
 
             Dbf dbf = null;
+            
+            DateTime inicio = DateTime.Now;
 
             AguardeDB.Mostrar();
 
@@ -403,7 +405,10 @@ namespace Apresentação.IntegraçãoSistemaAntigo
             new Controles.Mercadorias.Indices(dsVelho, dsNovo).Transpor(cotaçãoVarejo);
 
             MySQL.AdicionarConexõesRemovidas(conexõesRemovidas);
-            MessageBox.Show("A integração terminou. É necessário \nreiniciar cada estação para acessar os novos índices.", "Término da Integração", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            TimeSpan decorrido = DateTime.Now - inicio;
+            MessageBox.Show("A integração terminou em " + 
+             Math.Round(decorrido.TotalSeconds).ToString() + 
+             " segundos. É necessário \nreiniciar cada estação para acessar os novos índices.", "Término da Integração", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 	}
 }
