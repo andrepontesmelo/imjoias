@@ -5675,7 +5675,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Impressão\Relatórios\Balanço\" />
-    <Folder Include="IntegraçãoSistemaAntigo\Mercadorias\" />
     <Folder Include="Mercadoria\Manutenção\Grupo\" />
   </ItemGroup>
   <ItemGroup>

@@ -70,13 +70,11 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 #endif
 
             IDbConnection cn = Acesso.MySQL.ConectorMysql.Instância.CriarConexão(strConexão);
-            //MySqlConnection cn = new MySqlConnection(strConexão);
             cn.Open();
 
             IDbTransaction t = cn.BeginTransaction();
             
             StringBuilder consulta = new StringBuilder("");
-
 
             this.cotaçãoVarejo = cotaçãoVarejo;
             
@@ -95,10 +93,8 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
                 aguarde.Passo();
                 //10208701105
     
-
                 TransporMercadoria(itemMercadoria, consulta);
                 vezAtual++;
-
 
                 if (vezAtual >= maxComandosPorVez && consulta.Length > 0)
                 {
@@ -145,17 +141,12 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 
 		private void TransporMercadoria(DataRow itemMercadoria, StringBuilder consulta)
 		{
-            //if (itemMercadoria["referencia"].ToString().StartsWith("10680400100"))
-            //{
-            //    MessageBox.Show("oi");
-            //}
-
 			DataRow itemMercadoriaAntiga; 
             double coeficienteAtacado = 0;
             double coeficienteAutoAtacado = 0;
             double valorVarejo = 0;
             double valorVarejoConsulta = 0;
-            bool deuPau = false;
+            bool erro = false;
             bool depeso;
 
           
@@ -168,7 +159,6 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             }
 
             depeso = ConferirDePeso(itemMercadoria);
-
            
             if (depeso)
 			{
@@ -201,7 +191,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
                         = valorVarejo = valorVarejoConsulta = 99999;
 
 
-                    deuPau = true;
+                    erro = true;
 				}
 			}
 		
@@ -233,7 +223,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
                         = coeficienteAutoAtacado
                         = valorVarejo = valorVarejoConsulta =  99999;
 
-                    deuPau = true;
+                    erro = true;
 				}
 			}
 
@@ -251,7 +241,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             {
                 AlterarIndiceExistente(itemMercadoria, tabelaAtacado, coeficienteAtacado, consulta);
             }
-            else if (!deuPau)
+            else if (!erro)
             {
                 AdicionarIndiceNaoExistente(itemMercadoria, tabelaAtacado, coeficienteAtacado, consulta);
             }
@@ -261,7 +251,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             {
                 AlterarIndiceExistente(itemMercadoria, tabelaRepresentante, coeficienteAtacado, consulta);
             }
-            else if (!deuPau)
+            else if (!erro)
             {
                 AdicionarIndiceNaoExistente(itemMercadoria, tabelaRepresentante, coeficienteAtacado, consulta);
             }
@@ -272,7 +262,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             {
                 AlterarIndiceExistente(itemMercadoria, tabelaConsignado, coeficienteAtacado, consulta);
             }
-            else if (!deuPau)
+            else if (!erro)
             {
                 AdicionarIndiceNaoExistente(itemMercadoria, tabelaConsignado, coeficienteAtacado, consulta);
             }
@@ -282,7 +272,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             {
                 AlterarIndiceExistente(itemMercadoria, tabelaVarejo, valorVarejo, consulta);
             }
-            else if (!deuPau)
+            else if (!erro)
             {
                 AdicionarIndiceNaoExistente(itemMercadoria, tabelaVarejo, valorVarejo, consulta);
             }
@@ -292,7 +282,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             {
                 AlterarIndiceExistente(itemMercadoria, tabelaVarejoConsulta, valorVarejoConsulta, consulta);
             }
-            else if (!deuPau)
+            else if (!erro)
             {
                 AdicionarIndiceNaoExistente(itemMercadoria, tabelaVarejoConsulta, valorVarejoConsulta, consulta);
             }
@@ -303,12 +293,12 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             {
                 AlterarIndiceExistente(itemMercadoria, tabelaAltoAtacado, coeficienteAutoAtacado, consulta);
             }
-            else if (!deuPau)
+            else if (!erro)
             {
                 AdicionarIndiceNaoExistente(itemMercadoria, tabelaAltoAtacado, coeficienteAutoAtacado, consulta);
             }
 
-            if (deuPau)
+            if (erro)
                 itemMercadoria["foradelinha"] = true;
             else
             {

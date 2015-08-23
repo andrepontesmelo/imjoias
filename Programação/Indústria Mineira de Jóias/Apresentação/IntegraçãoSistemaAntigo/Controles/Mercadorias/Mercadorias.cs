@@ -41,22 +41,6 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             tabelaNova = dataSetNovo.Tables["mercadoria"];
 			tabelaVelha = dataSetVelho.Tables["cadmer"];
 			dbf = dbfOrigem;
-//			ReportarErro = ReportarErroFunção;
-
-            //if (tabelaNova.Rows.Count == 0)
-            //{
-            //    IDbConnection conexão = Acesso.Comum.Usuários.UsuárioAtual.GerenciadorConexões.ObterConexão();
-
-            //    lock (conexão)
-            //    {
-            //        using (DbDataAdapter adaptador = Acesso.Comum.Usuários.UsuárioAtual.CriarAdaptadorDados(
-            //            conexão,
-            //            "SELECT * FROM mercadoria"))
-            //        {
-            //            adaptador.Fill(tabelaNova);
-            //        }
-            //    }
-            //}
 
             foreach (DataRow linha in tabelaNova.Rows)
                 linha["foradelinha"] = true;
@@ -257,11 +241,6 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
                 || componenteCusto.StartsWith("9A")
                 || componenteCusto.StartsWith("19"))
                 return false;
-
-            //if (referência == "21400140009")
-            //{
-            //    bool asd = true;
-            //}
 
 			/*
 							 * primeiro digito 3 ou 2 -> peso
