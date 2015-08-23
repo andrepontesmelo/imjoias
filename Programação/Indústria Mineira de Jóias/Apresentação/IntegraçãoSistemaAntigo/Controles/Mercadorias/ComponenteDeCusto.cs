@@ -94,14 +94,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 		{
 			foreach(DataRow itemAtual in dsVelho.Tables["ccusto"].Rows)
 			{
-				try
-				{
-					TransporItem(itemAtual);
-				} 
-				catch (Exception)
-                {
-					//ReportarErro("Componenete de Custo: " + e.Message + "; " + e.Source + "; " + e.StackTrace + "; " + e.TargetSite);
-                }
+			    TransporItem(itemAtual);
 			}
 		}
 		private static double ObterValorEmDolar(DataRow antigo)

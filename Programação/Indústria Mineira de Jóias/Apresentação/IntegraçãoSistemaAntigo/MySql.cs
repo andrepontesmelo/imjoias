@@ -9,8 +9,9 @@ namespace Apresentação.IntegraçãoSistemaAntigo
     public class MySQL
     {
         public static Hashtable adaptadoresPelaTabela = new Hashtable();
-        public static void AdicionarTabelaAoDataSet(DataSet ds, string tabela)
+        public static void AdicionarTabelaAoDataSet(DataSet ds, string tabela, List<IDbConnection> conexõesRemovidas)
         {
+            IDbConnection conexão = null;
             System.Data.Common.DbDataAdapter adaptador;
 
             if (adaptadoresPelaTabela.Contains(tabela))
@@ -19,7 +20,12 @@ namespace Apresentação.IntegraçãoSistemaAntigo
             }
             else
             {
-                adaptador = Apresentação.Formulários.Aplicação.AplicaçãoAtual.Usuário.CriarAdaptadorDados(Apresentação.Formulários.Aplicação.AplicaçãoAtual.Usuário.Conexão, "select * from " + tabela);
+                conexão = Apresentação.Formulários.Aplicação.AplicaçãoAtual.Usuário.Conexão;
+
+                Acesso.MySQL.MySQLUsuários.UsuárioAtual.GerenciadorConexões.RemoverConexão(conexão);
+
+                conexõesRemovidas.Add(conexão);
+                adaptador = Apresentação.Formulários.Aplicação.AplicaçãoAtual.Usuário.CriarAdaptadorDados(conexão, "select * from " + tabela);
                 adaptadoresPelaTabela.Add(tabela, adaptador);
             }
 
@@ -57,6 +63,12 @@ namespace Apresentação.IntegraçãoSistemaAntigo
             }
 
             return clientesCadastrados.ContainsKey(código);
+        }
+
+        public static void AdicionarConexõesRemovidas(List<IDbConnection> conexõesRemovidas)
+        {
+            foreach (IDbConnection c in conexõesRemovidas)
+                Acesso.MySQL.MySQLUsuários.UsuárioAtual.GerenciadorConexões.AdicionarConexão(c);
         }
     }
 }

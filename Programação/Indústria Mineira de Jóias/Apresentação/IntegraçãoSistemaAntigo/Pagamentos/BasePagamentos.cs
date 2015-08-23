@@ -248,12 +248,13 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Pagamentos
             aguarde = new Apresentação.Formulários.Aguarde("Recuperando do novo bd para que seja atualizado", 8, "Transpondo banco de dados", "Aguarde enquanto o banco de dados é sincronizado.");
             aguarde.Abrir();
             dataSetMysql = new DataSet();
-            MySQL.AdicionarTabelaAoDataSet(dataSetMysql, "pessoa"); aguarde.Passo();
-            MySQL.AdicionarTabelaAoDataSet(dataSetMysql, "pagamento"); aguarde.Passo();
-            MySQL.AdicionarTabelaAoDataSet(dataSetMysql, "cheque"); aguarde.Passo();
-            MySQL.AdicionarTabelaAoDataSet(dataSetMysql, "dinheiro"); aguarde.Passo();
-            MySQL.AdicionarTabelaAoDataSet(dataSetMysql, "notapromissoria"); aguarde.Passo();
-            MySQL.AdicionarTabelaAoDataSet(dataSetMysql, "venda"); aguarde.Passo();
+            List<IDbConnection> conexõesRemovidas = new List<IDbConnection>();
+            MySQL.AdicionarTabelaAoDataSet(dataSetMysql, "pessoa", conexõesRemovidas); aguarde.Passo();
+            MySQL.AdicionarTabelaAoDataSet(dataSetMysql, "pagamento", conexõesRemovidas); aguarde.Passo();
+            MySQL.AdicionarTabelaAoDataSet(dataSetMysql, "cheque", conexõesRemovidas); aguarde.Passo();
+            MySQL.AdicionarTabelaAoDataSet(dataSetMysql, "dinheiro", conexõesRemovidas); aguarde.Passo();
+            MySQL.AdicionarTabelaAoDataSet(dataSetMysql, "notapromissoria", conexõesRemovidas); aguarde.Passo();
+            MySQL.AdicionarTabelaAoDataSet(dataSetMysql, "venda", conexõesRemovidas); aguarde.Passo();
             //MySql.AdicionarTabelaAoDataSet(dataSetMysql, "vinculovendapagamento"); aguarde.Passo();
 
             aguarde.Passo("Lendo DBF"); aguarde.Refresh();
@@ -268,25 +269,11 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Pagamentos
 
             Apresentação.Formulários.AguardeDB.Mostrar();
 
-            //try
-            //{
-                MySQL.GravarDataSetTodasTabelas(dataSetMysql);
-                Apresentação.Formulários.AguardeDB.Fechar();
-                System.Windows.Forms.MessageBox.Show(this, "Operação bem sucedida", "fim", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //}
-            //catch (Exception erro)
-            //{
-            //    if (erro.Message == "#23000Cannot add or update a child row: a foreign key constraint fails")
-            //        MessageBox.Show("O banco-de-dados relatou uma inconsistência de chave extrangeira: " + erro.Message.ToString() + " Nada foi atualizado.");
-            //    else
-            //        MessageBox.Show("Erro relatado pelo banco-de-dados: " + erro.Message.ToString() + " nada foi atualizado.");
+            MySQL.GravarDataSetTodasTabelas(dataSetMysql);
+            MySQL.AdicionarConexõesRemovidas(conexõesRemovidas);
+            Apresentação.Formulários.AguardeDB.Fechar();
+            System.Windows.Forms.MessageBox.Show(this, "Operação bem sucedida", "fim", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            //    System.Windows.Forms.MessageBox.Show(this, "Operação cancelada", "fim", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //}
-            //finally
-            //{
-                Apresentação.Formulários.AguardeDB.Fechar();
-            //}
         }
 
         private static void Transpor(DataSet dbf, DataSet mysql)
