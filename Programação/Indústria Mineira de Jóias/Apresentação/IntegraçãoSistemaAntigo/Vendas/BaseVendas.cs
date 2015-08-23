@@ -249,9 +249,10 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Vendas
             aguarde = new Apresentação.Formulários.Aguarde("Recuperando mysql... ", 7, "Transpondo banco de dados", "Aguarde enquanto o banco de dados é sincronizado.");
             aguarde.Abrir();
             dataSetMysql = new DataSet();
-            MySQL.AdicionarTabelaAoDataSet(dataSetMysql, "pessoa");
-            MySQL.AdicionarTabelaAoDataSet(dataSetMysql, "venda");
-            MySQL.AdicionarTabelaAoDataSet(dataSetMysql, "vendaitem");
+            List<IDbConnection> conexõesRemovidas = new List<IDbConnection>();
+            MySQL.AdicionarTabelaAoDataSet(dataSetMysql, "pessoa", conexõesRemovidas);
+            MySQL.AdicionarTabelaAoDataSet(dataSetMysql, "venda", conexõesRemovidas);
+            MySQL.AdicionarTabelaAoDataSet(dataSetMysql, "vendaitem", conexõesRemovidas);
 
             aguarde.Passo("Obtendo pagamentos do dbf"); aguarde.Refresh();
             Dbf dbf = new Dbf(diretório);
@@ -265,28 +266,12 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Vendas
 
             Apresentação.Formulários.AguardeDB.Mostrar();
 
-            //try
-            //{
             MySQL.GravarDataSetTodasTabelas(dataSetMysql);
-            
-            
+
+            MySQL.AdicionarConexõesRemovidas(conexõesRemovidas);            
             Apresentação.Formulários.AguardeDB.Fechar();
 
             System.Windows.Forms.MessageBox.Show(this, "Operação bem sucedida", "fim", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //}
-            //catch (Exception erro)
-            //{
-            //    if (erro.Message == "#23000Cannot add or update a child row: a foreign key constraint fails")
-            //        MessageBox.Show("O banco-de-dados relatou uma inconsistência de chave extrangeira: " + erro.Message.ToString() + " Nada foi atualizado.");
-            //    else
-            //        MessageBox.Show("Erro relatado pelo banco-de-dados: " + erro.Message.ToString() + " nada foi atualizado.");
-
-            //    System.Windows.Forms.MessageBox.Show(this, "Operação cancelada", "fim", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //}
-            //finally
-            //{
-
-            //}
         }
 
         private static void Transpor(DataSet dsMysql, DataSet dsDBF)

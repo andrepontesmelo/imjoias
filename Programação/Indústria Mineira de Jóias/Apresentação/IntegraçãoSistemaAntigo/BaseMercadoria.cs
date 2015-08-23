@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Data;
 using Apresentação.Formulários;
+using System.Collections.Generic;
 
 namespace Apresentação.IntegraçãoSistemaAntigo
 {
@@ -40,18 +41,18 @@ namespace Apresentação.IntegraçãoSistemaAntigo
 			InitializeComponent();
 		}
 
-        public static DataSet ObterDataSetMercadoria()
+        public static DataSet ObterDataSetMercadoria(List<IDbConnection> conexõesRemovidas)
         {
             DataSet ds;
-
+            
             ds = new DataSet();
-            MySQL.AdicionarTabelaAoDataSet(ds, "faixa");
-            MySQL.AdicionarTabelaAoDataSet(ds, "mercadoria");
-            MySQL.AdicionarTabelaAoDataSet(ds, "componentecusto");
-            MySQL.AdicionarTabelaAoDataSet(ds, "vinculomercadoriacomponentecusto");
-            MySQL.AdicionarTabelaAoDataSet(ds, "vinculomercadoriafornecedor");
-            MySQL.AdicionarTabelaAoDataSet(ds, "fornecedor");
-            MySQL.AdicionarTabelaAoDataSet(ds, "tabelamercadoria");
+            MySQL.AdicionarTabelaAoDataSet(ds, "faixa", conexõesRemovidas);
+            MySQL.AdicionarTabelaAoDataSet(ds, "mercadoria", conexõesRemovidas);
+            MySQL.AdicionarTabelaAoDataSet(ds, "componentecusto", conexõesRemovidas);
+            MySQL.AdicionarTabelaAoDataSet(ds, "vinculomercadoriacomponentecusto", conexõesRemovidas);
+            MySQL.AdicionarTabelaAoDataSet(ds, "vinculomercadoriafornecedor", conexõesRemovidas);
+            MySQL.AdicionarTabelaAoDataSet(ds, "fornecedor", conexõesRemovidas);
+            MySQL.AdicionarTabelaAoDataSet(ds, "tabelamercadoria", conexõesRemovidas);
 
             return ds;
         }
@@ -227,7 +228,6 @@ namespace Apresentação.IntegraçãoSistemaAntigo
             this.txtDiretório.Name = "txtDiretório";
             this.txtDiretório.Size = new System.Drawing.Size(424, 20);
             this.txtDiretório.TabIndex = 3;
-            this.txtDiretório.TextChanged += new System.EventHandler(this.txtDiretório_TextChanged);
             // 
             // label5
             // 
@@ -356,13 +356,6 @@ namespace Apresentação.IntegraçãoSistemaAntigo
 
 		#endregion
 
-
-		private void txtDiretório_TextChanged(object sender, System.EventArgs e)
-		{
-			//diretório = txtDiretório.Text;
-		}
-
-
         public static void ImportarDadosDoSistemaLegado()
         {
             FolderBrowserDialog pasta = new FolderBrowserDialog();
@@ -380,7 +373,8 @@ namespace Apresentação.IntegraçãoSistemaAntigo
             AguardeDB.Mostrar();
 
             // ReportarInconsistenciaDelegate ErroFunção = new ReportarInconsistenciaDelegate(ReportarInconsistencia);
-            dsNovo = ObterDataSetMercadoria();
+            List<IDbConnection> conexõesRemovidas = new List<IDbConnection>();
+            dsNovo = ObterDataSetMercadoria(conexõesRemovidas);
 
             Controles.Mercadorias.Faixas.dsNovo = dsNovo;
 
@@ -400,7 +394,6 @@ namespace Apresentação.IntegraçãoSistemaAntigo
             //aguarde.Passo("Transpondo vínculo entre mercadoria e componente de custo"); 
             new Controles.Mercadorias.VinculoMercadoriaComponenteCusto(dsVelho, dsNovo).Transpor();
             MySQL.GravarDataSetTodasTabelas(dsNovo);
-
             
             AguardeDB.Fechar();
 
@@ -409,7 +402,8 @@ namespace Apresentação.IntegraçãoSistemaAntigo
 
             new Controles.Mercadorias.Indices(dsVelho, dsNovo).Transpor(cotaçãoVarejo);
 
-            MessageBox.Show("A integração terminou. Talvez seja necessário \nreiniciar o aplicativo para acessar os novos índices.", "Término da Integração", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MySQL.AdicionarConexõesRemovidas(conexõesRemovidas);
+            MessageBox.Show("A integração terminou. É necessário \nreiniciar cada estação para acessar os novos índices.", "Término da Integração", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 	}
 }

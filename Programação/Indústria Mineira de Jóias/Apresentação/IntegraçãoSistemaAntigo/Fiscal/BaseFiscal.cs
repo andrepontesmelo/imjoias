@@ -68,9 +68,10 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Fiscal
             // Obtem a cotação de varejo
             cotação = Entidades.Cotação.ObterCotaçãoVigente(Entidades.Moeda.ObterMoeda(4)).Valor;
 
+            List<IDbConnection> conexõesRemovidas = new List<IDbConnection>();
             // Abre banco de dados
-            MySQL.AdicionarTabelaAoDataSet(ds, "mercadoria");
-            MySQL.AdicionarTabelaAoDataSet(ds, "tabelamercadoria");
+            MySQL.AdicionarTabelaAoDataSet(ds, "mercadoria", conexõesRemovidas);
+            MySQL.AdicionarTabelaAoDataSet(ds, "tabelamercadoria", conexõesRemovidas);
 
             Apresentação.Formulários.Aguarde janela = new Apresentação.Formulários.Aguarde("Gerando entrada para impressora fiscal", ds.Tables["mercadoria"].Rows.Count);
             janela.Abrir();
@@ -407,6 +408,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Fiscal
                     }
                 }
 
+                
                 janela.Close();
                 MessageBox.Show("Processo concluído.", "Exportação de arquivo fiscal", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -512,14 +514,16 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Fiscal
 
             // Abre banco de dados
             ds = new DataSet();
-            MySQL.AdicionarTabelaAoDataSet(ds, "mercadoria");
-            MySQL.AdicionarTabelaAoDataSet(ds, "tabelamercadoria");
+            List<IDbConnection> conexõesRemovidas = new List<IDbConnection>();
+            MySQL.AdicionarTabelaAoDataSet(ds, "mercadoria", conexõesRemovidas);
+            MySQL.AdicionarTabelaAoDataSet(ds, "tabelamercadoria", conexõesRemovidas);
 
             GeraArquivoProduto(Path.Combine(caminho, "PRODUTO"));
             GeraArquivoEAN(Path.Combine(caminho, "EAN"));
             GeraArquivoSecao(Path.Combine(caminho, "SECOES"));
             GeraArquivoPreco(Path.Combine(caminho, "NIVEL_PR"));
 
+            MySQL.AdicionarConexõesRemovidas(conexõesRemovidas);
             MessageBox.Show("Exportação", "Concluído", MessageBoxButtons.OK, MessageBoxIcon.Information);
             Process.Start("explorer", caminho);
         }
