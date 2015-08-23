@@ -17,14 +17,6 @@ namespace Entidades
 		[DbChavePrimária(true), DbColuna("codigo")]
 		private long código;
 
-        private DateTime inicio;
-
-        public DateTime Inicio
-        {
-            get { return inicio; }
-            set { inicio = value; }
-        }
-
 		private string nome;
 
         [DbColuna("comentarios")]
@@ -76,8 +68,6 @@ namespace Entidades
 
             if (!hashFornecedor.TryGetValue(código, out f))
             {
-                //f = MapearÚnicaLinha<Fornecedor>("SELECT * FROM fornecedor WHERE codigo = " + DbTransformar(código));
-
                 lstFornecedor = Mapear<Fornecedor>("SELECT * FROM fornecedor");
                 foreach (Fornecedor fornecedor in lstFornecedor)
                 {

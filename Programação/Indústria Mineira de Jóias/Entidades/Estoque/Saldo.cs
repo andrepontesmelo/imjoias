@@ -104,7 +104,7 @@ namespace Entidades.Estoque
 
             StringBuilder consulta = new StringBuilder();
 
-            consulta.Append("select f.inicio, v.referenciafornecedor as referenciafornecedor, m.referencia, ");
+            consulta.Append("select v.inicio, v.referenciafornecedor as referenciafornecedor, m.referencia, ");
 
             consulta.Append(usarPesoMédio ? " m.peso " : " ifnull(e.peso, m.peso) " );
 
