@@ -13,7 +13,17 @@ namespace Entidades.Mercadoria
         private int fornecedor;
         private string referenciafornecedor;
         private string mercadoria;
+        private DateTime inicio;
+
 #pragma warning restore 0649
+
+        public DateTime Inicio
+        {
+            get { return inicio; }
+            set { inicio = value; }
+        }
+
+
         public int FornecedorCódigo 
         { 
             get { return fornecedor; }

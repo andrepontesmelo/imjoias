@@ -17,8 +17,6 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
         // Dado o "nome" do fornecedor.
         private Dictionary<string, bool> hashFornecedoresParaCadastrar = new Dictionary<string, bool>();
 
-//        private List<string> nomesDeFornecedoresParaCadastrar = new List<string>();
-
         // Dado a referencia da mercadoria, retorna o item.
         private Dictionary<string, bool> listaVinculosMercadoriaFornecedorCadastrados = new Dictionary<string, bool>();
 
