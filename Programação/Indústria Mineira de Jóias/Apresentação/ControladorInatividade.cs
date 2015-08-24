@@ -9,7 +9,7 @@ namespace Apresentação
 {
     public class ControladorInatividade
     {
-        private int TEMPO_INATIVIDADE_MINUTOS = 30;
+        private int TEMPO_INATIVIDADE_MINUTOS = 10;
 
         [DllImport("User32.dll")]
         public static extern bool LockWorkStation();
@@ -32,7 +32,7 @@ namespace Apresentação
         public ControladorInatividade()
         {
             timer.Enabled = false;
-            timer.Interval = (int) TimeSpan.FromMinutes(1).TotalMilliseconds;
+            timer.Interval = 15000;
             timer.Tick += timer_Tick;
         }
 
