@@ -49,27 +49,9 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 		{
             int maxComandosPorVez = 200;
 
-#if DEBUG
-            String strConexão =
-            strConexão = "Data Source=192.168.122.1";
-            strConexão += ";Database=imjoias";
-            strConexão += ";User Id=andrep";
-            strConexão += ";Password=***REMOVED***";
-            strConexão += ";Pooling=False";
-            strConexão += ";Port=3306";
-#else
-            String strConexão =
-            strConexão = "Data Source=192.168.1.25";
-            strConexão += ";Database=imjoias";
-            strConexão += ";User Id=andrep";
-            strConexão += ";Password=***REMOVED***";
-            strConexão += ";Pooling=False";
-            strConexão += ";Port=46033";
+            IDbConnection cn = Acesso.MySQL.ConectorMysql.Instância.CriarConexão(
+                Acesso.MySQL.MySQLUsuários.ObterÚltimaStrConexão());
 
-
-#endif
-
-            IDbConnection cn = Acesso.MySQL.ConectorMysql.Instância.CriarConexão(strConexão);
             cn.Open();
 
             IDbTransaction t = cn.BeginTransaction();

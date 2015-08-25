@@ -1,3 +1,5 @@
+// update vinculomercadoriafornecedor set inicio='2001-01-01 00:00:00' where mercadoria='10356808100'
+
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -24,35 +26,31 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
         
         public Fornecedor(DataSet dataSetVelho, DataSet dataSetNovo, Dbf dbfOrigem)
 		{
-            // Faz hash de mercadorias formatadas
+            IDbConnection cn;
+            IDbCommand cmd;
+            IDataReader leitor;
 
-#if DEBUG
-            String strConexão =
-            strConexão = "Data Source=192.168.122.1";
-            strConexão += ";Database=imjoias";
-            strConexão += ";User Id=andrep";
-            strConexão += ";Password=***REMOVED***";
-            strConexão += ";Pooling=False";
-            strConexão += ";Port=3306";
-#else
-            String strConexão =
-            strConexão = "Data Source=192.168.1.25";
-            strConexão += ";Database=imjoias";
-            strConexão += ";User Id=andrep";
-            strConexão += ";Password=***REMOVED***";
-            strConexão += ";Pooling=False";
-            strConexão += ";Port=46033";
+            ObterMercadoriasSistemaNovo(Acesso.MySQL.MySQLUsuários.ObterÚltimaStrConexão().ToString(), out cn, out cmd, out leitor);
 
+            ObtemFornecedoresSistemaNovo(cn, ref cmd, ref leitor);
 
-#endif
+            ObterFornecedoresLegado(dataSetVelho);
+            
+            CadastraNovosFornecedores(cn, ref cmd);
+            ReobtemFornecedores(cn, ref cmd, ref leitor);
+            ObtemVinculosAtuais(cn, ref cmd, ref leitor);
+            cmd = InsereNovosVínculos(cn, cmd);
+		}
 
-            IDbConnection cn = Acesso.MySQL.ConectorMysql.Instância.CriarConexão(strConexão);
+        private void ObterMercadoriasSistemaNovo(String strConexão, out IDbConnection cn, out IDbCommand cmd, out IDataReader leitor)
+        {
+            cn = Acesso.MySQL.ConectorMysql.Instância.CriarConexão(strConexão);
             cn.Open();
 
-            IDbCommand cmd = cn.CreateCommand();
+            cmd = cn.CreateCommand();
             cmd.CommandText = "select referencia from mercadoria where foradelinha=0";
 
-            IDataReader leitor = null;
+            leitor = null;
 
             try
             {
@@ -69,9 +67,10 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
                 if (leitor != null)
                     leitor.Close();
             }
+        }
 
-
-            // Obtem fornecedor do mysql.
+        private void ObtemFornecedoresSistemaNovo(IDbConnection cn, ref IDbCommand cmd, ref IDataReader leitor)
+        {
             cmd = cn.CreateCommand();
             cmd.CommandText = "select codigo, nome from fornecedor";
 
@@ -93,9 +92,11 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
                 if (leitor != null)
                     leitor.Close();
             }
+        }
 
-            // Levanta lista de fornecedores para cadastrar.
-			tabelaVelha = dataSetVelho.Tables["gesano"];
+        private void ObterFornecedoresLegado(DataSet dataSetVelho)
+        {
+            tabelaVelha = dataSetVelho.Tables["gesano"];
             foreach (DataRow mercadoria in tabelaVelha.Rows)
             {
                 if (hashExisteReferência.ContainsKey(mercadoria["GA_CODMER"].ToString().Trim()))
@@ -107,36 +108,103 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
                     {
                         hashFornecedoresParaCadastrar.Add(nomeFornecedor, true);
                     }
-                   
+
                 }
             }
-            
-            // Cadastra porção de fornecedores novos.
+        }
+
+        private IDbCommand InsereNovosVínculos(IDbConnection cn, IDbCommand cmd)
+        {
+            StringBuilder strNovosVinculos = new StringBuilder("INSERT into vinculomercadoriafornecedor (mercadoria, fornecedor, referenciafornecedor) values (");
+            bool primeiro = true;
+
+            foreach (DataRow mercadoria in tabelaVelha.Rows)
+            {
+                if (hashExisteReferência.ContainsKey(mercadoria["GA_CODMER"].ToString().Trim())
+                    &&
+                    !listaVinculosMercadoriaFornecedorCadastrados.ContainsKey(mercadoria["GA_CODMER"].ToString().Trim())
+                    )
+                {
+                    string nomeFornecedor = mercadoria["GA_FORNEC"].ToString().Trim();
+                    int códigoFornecedor = hashFornecedoresCadastrados[nomeFornecedor];
+                    string referênciaFornecedor = mercadoria["GA_REFFOR"].ToString().Trim();
+
+                    if (!primeiro)
+                        strNovosVinculos.Append(",(");
+
+
+                    primeiro = false;
+
+                    strNovosVinculos.Append("'").Append(mercadoria["GA_CODMER"].ToString().Trim()).Append("',");
+                    strNovosVinculos.Append(códigoFornecedor.ToString()).Append(",'");
+                    strNovosVinculos.Append(referênciaFornecedor).Append("')");
+
+                    listaVinculosMercadoriaFornecedorCadastrados.Add(mercadoria["GA_CODMER"].ToString().Trim(), true);
+                }
+            }
+
+            if (!primeiro)
+            {
+                // Existe pelo menos um para inserir.
+                cmd = cn.CreateCommand();
+                cmd.CommandText = strNovosVinculos.ToString();
+                cmd.ExecuteNonQuery();
+            }
+            return cmd;
+        }
+
+        private void CadastraNovosFornecedores(IDbConnection cn, ref IDbCommand cmd)
+        {
             // Obtem fornecedor do mysql.
             cmd = cn.CreateCommand();
-            StringBuilder str = new StringBuilder("INSERT INTO fornecedor (nome) VALUES ");
+
+            StringBuilder strNovosFornecedores = new StringBuilder("INSERT INTO fornecedor (nome) VALUES ");
             bool primeiro = true;
 
             foreach (KeyValuePair<string, bool> par in hashFornecedoresParaCadastrar)
             {
                 if (!primeiro)
-                    str.Append(",");
+                    strNovosFornecedores.Append(",");
 
-                str.Append("('");
-                str.Append(par.Key.ToCharArray());
-                str.Append("')");
+                strNovosFornecedores.Append("('");
+                strNovosFornecedores.Append(par.Key.ToCharArray());
+                strNovosFornecedores.Append("')");
 
                 primeiro = false;
             }
 
-            cmd.CommandText = str.ToString();
+            cmd.CommandText = strNovosFornecedores.ToString();
             if (!primeiro)
             {
                 // existe pelo menos um para inserir.
                 cmd.ExecuteNonQuery();
             }
+        }
 
-            // Reobtem fornecedores.
+        private void ObtemVinculosAtuais(IDbConnection cn, ref IDbCommand cmd, ref IDataReader leitor)
+        {
+            cmd = cn.CreateCommand();
+            cmd.CommandText = "select mercadoria from vinculomercadoriafornecedor";
+
+            try
+            {
+                using (leitor = cmd.ExecuteReader())
+                {
+                    while (leitor.Read())
+                    {
+                        listaVinculosMercadoriaFornecedorCadastrados.Add(leitor.GetString(0), true);
+                    }
+                }
+            }
+            finally
+            {
+                if (leitor != null)
+                    leitor.Close();
+            }
+        }
+
+        private void ReobtemFornecedores(IDbConnection cn, ref IDbCommand cmd, ref IDataReader leitor)
+        {
             hashFornecedoresCadastrados.Clear();
             cmd = cn.CreateCommand();
             cmd.CommandText = "select codigo, nome from fornecedor";
@@ -159,62 +227,6 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
                 if (leitor != null)
                     leitor.Close();
             }
-
-            // Pega os vinculos atuais.
-            cmd = cn.CreateCommand();
-            cmd.CommandText = "select mercadoria from vinculomercadoriafornecedor";
-
-            try
-            {
-                using (leitor = cmd.ExecuteReader()) 
-                {
-                    while (leitor.Read())
-                    {
-                        listaVinculosMercadoriaFornecedorCadastrados.Add(leitor.GetString(0), true);
-                    }
-                }
-            }
-            finally
-            {
-                if (leitor != null)
-                    leitor.Close();
-            }
-            // Vai inserindo novos vinculos se necessários.
-            str = new StringBuilder("INSERT into vinculomercadoriafornecedor (mercadoria, fornecedor, referenciafornecedor) values (");
-            primeiro = true;
-
-            foreach (DataRow mercadoria in tabelaVelha.Rows)
-            {
-                if (hashExisteReferência.ContainsKey(mercadoria["GA_CODMER"].ToString().Trim())
-                    &&
-                    !listaVinculosMercadoriaFornecedorCadastrados.ContainsKey(mercadoria["GA_CODMER"].ToString().Trim())
-                    )
-                {
-                    string nomeFornecedor = mercadoria["GA_FORNEC"].ToString().Trim();
-                    int códigoFornecedor = hashFornecedoresCadastrados[nomeFornecedor];
-                    string referênciaFornecedor = mercadoria["GA_REFFOR"].ToString().Trim();
-
-                    if (!primeiro)
-                        str.Append(",(");
-
-
-                    primeiro = false;
-
-                    str.Append("'").Append(mercadoria["GA_CODMER"].ToString().Trim()).Append("',");
-                    str.Append(códigoFornecedor.ToString()).Append(",'");
-                    str.Append(referênciaFornecedor).Append("')");
-
-                    listaVinculosMercadoriaFornecedorCadastrados.Add(mercadoria["GA_CODMER"].ToString().Trim(), true);
-                }
-            }
-
-            if (!primeiro)
-            {
-                // Existe pelo menos um para inserir.
-                cmd = cn.CreateCommand();
-                cmd.CommandText = str.ToString();
-                cmd.ExecuteNonQuery();
-            }
-		}
+        }
 	}
 }

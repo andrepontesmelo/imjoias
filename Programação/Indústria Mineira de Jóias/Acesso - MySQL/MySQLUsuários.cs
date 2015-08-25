@@ -12,6 +12,7 @@ namespace Acesso.MySQL
 	/// <remarks>Singleton</remarks>
 	public class MySQLUsuários : Usuários
 	{
+        private static string últimaStrConexão; 
 
         private const string bdPadrão = "imjoias";
 
@@ -167,23 +168,26 @@ namespace Acesso.MySQL
             }
 		}
 
-        //public override object InitializeLifetimeService()
-        //{
-        //    return null;
-        //}
-
         public static IDbConnection Conectar(string usuário, string senha, string host, int porta, string database)
         {
             IDbConnection  conexão = null;
 
             StringBuilder strConexão;
-            //int tentativas = 0;
 
-            // "Database=Test;Data Source=localhost;User Id=username;Password=pass	
-            strConexão = new StringBuilder("Data Source=" + host);
+            strConexão = ObterStrConexão(usuário, senha, host, porta, database);
+
+            conexão = ConectorMysql.Instância.CriarConexão(strConexão.ToString());
+            conexão.Open();
+
+            return conexão;
+        }
+
+        private static StringBuilder ObterStrConexão(string usuário, string senha, string host, int porta, string database)
+        {
+            StringBuilder strConexão = new StringBuilder("Data Source=" + host);
+            
             strConexão.Append(";Database=");
             strConexão.Append(database);
-
             strConexão.Append(";User Id=");
             strConexão.Append(usuário);
             strConexão.Append(";Password=");
@@ -193,10 +197,14 @@ namespace Acesso.MySQL
             strConexão.Append(porta.ToString());
             strConexão.Append(";Connection Timeout=600");
 
-            conexão = ConectorMysql.Instância.CriarConexão(strConexão.ToString());
-            conexão.Open();
+            últimaStrConexão = strConexão.ToString();
 
-            return conexão;
+            return strConexão;
+        }
+
+        public static string ObterÚltimaStrConexão()
+        {
+            return últimaStrConexão;
         }
     }
 }
