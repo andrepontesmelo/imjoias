@@ -8,6 +8,11 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 {
 	public class Fornecedor
 	{
+        private static string COLUNA_GESANO_REFERÊNCIA_MERCADORIA = "GA_CODMER";
+        private static string COLUNA_GESANO_CODIGO_FORNECEDOR = "GA_FORNEC";
+        private static string COLUNA_GESANO_REFERÊNCIA_FORNECEDOR = "GA_REFFOR";
+        private static string COLUNA_GESANO_INICIO = "GA_MESANO";
+
         public Fornecedor(DataSet dataSetVelho, DataSet dataSetNovo, Dbf dbfOrigem)
 		{
             IDbConnection conexão;
@@ -37,12 +42,12 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 
             foreach (DataRow mercadoria in tabelaVelha.Rows)
             {
-                string referência = mercadoria["GA_CODMER"].ToString().Trim();
+                string referência = mercadoria[COLUNA_GESANO_REFERÊNCIA_MERCADORIA].ToString().Trim();
 
                 if (referências.ContainsKey(referência))
                 {
-                    int codFornecedor = fornecedores[mercadoria["GA_FORNEC"].ToString().Trim()];
-                    string mesano = mercadoria["GA_MESANO"].ToString().Trim();
+                    int codFornecedor = fornecedores[mercadoria[COLUNA_GESANO_CODIGO_FORNECEDOR].ToString().Trim()];
+                    string mesano = mercadoria[COLUNA_GESANO_INICIO].ToString().Trim();
 
                     if (mesano != "")
                     {
@@ -141,9 +146,9 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 
             foreach (DataRow mercadoria in tabelaVelha.Rows)
             {
-                if (hashExisteReferência.ContainsKey(mercadoria["GA_CODMER"].ToString().Trim()))
+                if (hashExisteReferência.ContainsKey(mercadoria[COLUNA_GESANO_REFERÊNCIA_MERCADORIA].ToString().Trim()))
                 {
-                    string nomeFornecedor = mercadoria["GA_FORNEC"].ToString().Trim();
+                    string nomeFornecedor = mercadoria[COLUNA_GESANO_CODIGO_FORNECEDOR].ToString().Trim();
 
                     if (!hashFornecedoresCadastrados.ContainsKey(nomeFornecedor)
                         && !hashFornecedoresParaCadastrar.ContainsKey(nomeFornecedor))
@@ -170,14 +175,14 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 
             foreach (DataRow mercadoria in tabelaVelha.Rows)
             {
-                if (hashExisteReferência.ContainsKey(mercadoria["GA_CODMER"].ToString().Trim())
+                if (hashExisteReferência.ContainsKey(mercadoria[COLUNA_GESANO_REFERÊNCIA_MERCADORIA].ToString().Trim())
                     &&
-                    !vinculosAtuais.ContainsKey(mercadoria["GA_CODMER"].ToString().Trim())
+                    !vinculosAtuais.ContainsKey(mercadoria[COLUNA_GESANO_REFERÊNCIA_MERCADORIA].ToString().Trim())
                     )
                 {
-                    string nomeFornecedor = mercadoria["GA_FORNEC"].ToString().Trim();
+                    string nomeFornecedor = mercadoria[COLUNA_GESANO_CODIGO_FORNECEDOR].ToString().Trim();
                     int códigoFornecedor = hashFornecedoresCadastrados[nomeFornecedor];
-                    string referênciaFornecedor = mercadoria["GA_REFFOR"].ToString().Trim();
+                    string referênciaFornecedor = mercadoria[COLUNA_GESANO_REFERÊNCIA_FORNECEDOR].ToString().Trim();
 
                     if (!primeiro)
                         strNovosVinculos.Append(",(");
@@ -185,11 +190,11 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 
                     primeiro = false;
 
-                    strNovosVinculos.Append("'").Append(mercadoria["GA_CODMER"].ToString().Trim()).Append("',");
+                    strNovosVinculos.Append("'").Append(mercadoria[COLUNA_GESANO_REFERÊNCIA_MERCADORIA].ToString().Trim()).Append("',");
                     strNovosVinculos.Append(códigoFornecedor.ToString()).Append(",'");
                     strNovosVinculos.Append(referênciaFornecedor).Append("')");
 
-                    vinculosAtuais.Add(mercadoria["GA_CODMER"].ToString().Trim(), true);
+                    vinculosAtuais.Add(mercadoria[COLUNA_GESANO_REFERÊNCIA_MERCADORIA].ToString().Trim(), true);
                 }
             }
 
