@@ -1,5 +1,3 @@
-// update vinculomercadoriafornecedor set inicio='2001-01-01 00:00:00' where mercadoria='10356808100'
-
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,61 +10,98 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 	{
         public Fornecedor(DataSet dataSetVelho, DataSet dataSetNovo, Dbf dbfOrigem)
 		{
-            IDbConnection cn;
-            IDbCommand cmd;
-            IDataReader leitor;
+            IDbConnection conexão;
 
             Dictionary<string, bool> referências = 
-            ObtemNovoMercadorias(Acesso.MySQL.MySQLUsuários.ObterÚltimaStrConexão().ToString(), out cn, out cmd, out leitor);
+            ObtemNovoMercadorias(Acesso.MySQL.MySQLUsuários.ObterÚltimaStrConexão().ToString(), out conexão);
 
-            Dictionary<string, int> fornecedores = ObtemNovoFornecedores(cn, ref cmd, ref leitor);
+            Dictionary<string, int> fornecedores = ObtemNovoFornecedores(conexão);
             
             Dictionary<string, bool> fornecedoresParaCadastro =
                 ObtemLegadoFornecedoresParaCadastrar(dataSetVelho, referências, fornecedores);
             
-            CadastraFornecedores(cn, ref cmd, fornecedoresParaCadastro);
-            ObtemNovoFornecedores(cn, ref cmd, ref leitor);
+            CadastraFornecedores(conexão, fornecedoresParaCadastro);
+            fornecedores = ObtemNovoFornecedores(conexão);
             
-            Dictionary<string, bool> vinculos = ObtemNovoVinculosAtuais(cn, ref cmd, ref leitor);
-            InsereNovosVínculos(cn, cmd, referências, fornecedores, vinculos, dataSetVelho);
+            Dictionary<string, bool> vinculos = ObtemNovoVinculosAtuais(conexão);
+            InsereNovosVínculos(conexão, referências, fornecedores, vinculos, dataSetVelho);
+
+            SobrescreveInicio(conexão, dataSetVelho, referências, fornecedores);
 		}
 
-        private Dictionary<string, bool> ObtemNovoMercadorias(String strConexão, out IDbConnection cn, out IDbCommand cmd, out IDataReader leitor)
+        private void SobrescreveInicio(IDbConnection cn, DataSet dataSetVelho, Dictionary<string, bool> referências, Dictionary<string, int> fornecedores)
+        {
+            StringBuilder sql = new StringBuilder();
+
+            DataTable tabelaVelha = ObterTabelaVelha(dataSetVelho);
+
+            foreach (DataRow mercadoria in tabelaVelha.Rows)
+            {
+                string referência = mercadoria["GA_CODMER"].ToString().Trim();
+
+                if (referências.ContainsKey(referência))
+                {
+                    int codFornecedor = fornecedores[mercadoria["GA_FORNEC"].ToString().Trim()];
+                    string mesano = mercadoria["GA_MESANO"].ToString().Trim();
+
+                    if (mesano != "")
+                    {
+                        DateTime inicio = DateTime.ParseExact(mesano, "MMyy", System.Globalization.CultureInfo.CurrentCulture);
+
+                        sql.Append("update vinculomercadoriafornecedor set inicio=");
+                        sql.Append(Acesso.Comum.DbManipulaçãoSimples.DbTransformar(inicio));
+                        sql.Append(" where mercadoria='");
+                        sql.Append(referência);
+                        sql.Append("'; ");
+                    }
+                }
+            }
+
+            using (IDbCommand cmd = cn.CreateCommand())
+            {
+                cmd.CommandText = sql.ToString();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        private Dictionary<string, bool> ObtemNovoMercadorias(String strConexão, out IDbConnection cn)
         {
             Dictionary<string, bool> hashExisteReferência = new Dictionary<string, bool>();
 
             cn = Acesso.MySQL.ConectorMysql.Instância.CriarConexão(strConexão);
             cn.Open();
 
-            cmd = cn.CreateCommand();
-            cmd.CommandText = "select referencia from mercadoria where foradelinha=0";
-
-            leitor = null;
-
-            try
+            using (IDbCommand cmd = cn.CreateCommand())
             {
-                using (leitor = cmd.ExecuteReader())
+                cmd.CommandText = "select referencia from mercadoria where foradelinha=0";
+                IDataReader leitor = null;
+
+                try
                 {
-                    while (leitor.Read())
+                    using (leitor = cmd.ExecuteReader())
                     {
-                        hashExisteReferência.Add(leitor.GetString(0), true);
+                        while (leitor.Read())
+                        {
+                            hashExisteReferência.Add(leitor.GetString(0), true);
+                        }
                     }
                 }
-            }
-            finally
-            {
-                if (leitor != null)
-                    leitor.Close();
+                finally
+                {
+                    if (leitor != null)
+                        leitor.Close();
+                }
             }
 
             return hashExisteReferência;
+
         }
 
-        private Dictionary<string, int> ObtemNovoFornecedores(IDbConnection cn, ref IDbCommand cmd, ref IDataReader leitor)
+        private Dictionary<string, int> ObtemNovoFornecedores(IDbConnection cn)
         {
             Dictionary<string, int> hashFornecedoresCadastrados = new Dictionary<string, int>();
-
-            cmd = cn.CreateCommand();
+            IDataReader leitor = null;
+            IDbCommand cmd = cn.CreateCommand();
             cmd.CommandText = "select codigo, nome from fornecedor";
 
             try
@@ -122,11 +157,12 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             return hashFornecedoresParaCadastrar;
         }
 
-        private void InsereNovosVínculos(IDbConnection cn, IDbCommand cmd,
+        private void InsereNovosVínculos(IDbConnection cn, 
             Dictionary<string, bool> hashExisteReferência,
             Dictionary<string, int> hashFornecedoresCadastrados,
             Dictionary<string, bool> vinculosAtuais, DataSet dataSetVelho)
         {
+            IDbCommand cmd = null;
             StringBuilder strNovosVinculos = new StringBuilder("INSERT into vinculomercadoriafornecedor (mercadoria, fornecedor, referenciafornecedor) values (");
             bool primeiro = true;
 
@@ -166,10 +202,10 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             }
         }
 
-        private void CadastraFornecedores(IDbConnection cn, ref IDbCommand cmd, Dictionary<string, bool> hashFornecedoresParaCadastrar)
+        private void CadastraFornecedores(IDbConnection cn, Dictionary<string, bool> hashFornecedoresParaCadastrar)
         {
             // Obtem fornecedor do mysql.
-            cmd = cn.CreateCommand();
+            IDbCommand cmd = cn.CreateCommand();
 
             StringBuilder strNovosFornecedores = new StringBuilder("INSERT INTO fornecedor (nome) VALUES ");
             bool primeiro = true;
@@ -194,11 +230,12 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             }
         }
 
-        private Dictionary<string, bool> ObtemNovoVinculosAtuais(IDbConnection cn, ref IDbCommand cmd, ref IDataReader leitor)
+        private Dictionary<string, bool> ObtemNovoVinculosAtuais(IDbConnection cn)
         {
             Dictionary<string, bool> vinculosAtuais = new Dictionary<string, bool>();
 
-            cmd = cn.CreateCommand();
+            IDataReader leitor = null;
+            IDbCommand cmd = cn.CreateCommand();
             cmd.CommandText = "select mercadoria from vinculomercadoriafornecedor";
 
             try
