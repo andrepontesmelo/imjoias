@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace Apresentação.Estoque
 {
-    public partial class JanelaOpçõesImpressão : JanelaExplicativa
+    public partial class JanelaOpçõesEstoque : JanelaExplicativa
     {
         private Entidades.Configuração.ConfiguraçãoUsuário<bool> configuraçãoReferência;
         private Entidades.Configuração.ConfiguraçãoUsuário<bool> configuraçãoPeso;
         private Entidades.Configuração.ConfiguraçãoUsuário<bool> configuraçãoPesoMédio;
         private Entidades.Configuração.ConfiguraçãoUsuário<int> configuraçãoFornecedorÚnicoCódigoFornecedor;
 
-        public JanelaOpçõesImpressão()
+        public JanelaOpçõesEstoque()
         {
             InitializeComponent();
 
