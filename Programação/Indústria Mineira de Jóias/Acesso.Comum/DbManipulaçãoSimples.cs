@@ -213,7 +213,7 @@ namespace Acesso.Comum
         }
 
         /// <returns> já retorna com aspas </returns>
-        protected internal static string DbTransformar(DateTime dt)
+        public static string DbTransformar(DateTime dt)
         {
             if (dt == DateTime.MinValue)
                 return "null";
