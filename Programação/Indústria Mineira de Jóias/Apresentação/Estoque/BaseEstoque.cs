@@ -114,7 +114,7 @@ namespace Apresentação.Estoque
 
         private List<Saldo> ObterItensMostrandoJanelaImpressão(Saldo.Ordem ordem)
         {
-            JanelaOpçõesImpressão opções = new JanelaOpçõesImpressão();
+            JanelaOpçõesEstoque opções = new JanelaOpçõesEstoque();
             DialogResult resultado = opções.ShowDialog(this);
 
             if (resultado == DialogResult.Cancel)
