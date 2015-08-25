@@ -140,5 +140,11 @@ namespace Apresentação.Estoque
 
             AbrirJanela(janela, r);
         }
+
+        private void opçãoConfigurações_Click(object sender, EventArgs e)
+        {
+            JanelaOpçõesEstoque opções = new JanelaOpçõesEstoque();
+            opções.Show();
+        }
     }
 }
