@@ -33,22 +33,28 @@ namespace Apresentação.Estoque
         public ListaSaldo()
         {
             InitializeComponent();
-            lvwColumnSorter = new ListViewColumnSorter();
+            
+            bool designMode = (LicenseManager.UsageMode == LicenseUsageMode.Designtime);
 
-            this.lst.ListViewItemSorter = lvwColumnSorter;
-            localizador.Visible = true;
+            if (!designMode)
+            {
+                lvwColumnSorter = new ListViewColumnSorter();
 
-            localizadorAberto = new Entidades.Configuração.ConfiguraçãoUsuário<bool>("ListaSaldo.localizador.aberto", false);
-            filtrarFornecedor = new Entidades.Configuração.ConfiguraçãoUsuário<int>("ListaSaldo.toolStrip.filtrarFornecedor", 0);
+                this.lst.ListViewItemSorter = lvwColumnSorter;
+                localizador.Visible = true;
 
-            AtualizarEnabledComboboxFornecedor();
+                localizadorAberto = new Entidades.Configuração.ConfiguraçãoUsuário<bool>("ListaSaldo.localizador.aberto", false);
+                filtrarFornecedor = new Entidades.Configuração.ConfiguraçãoUsuário<int>("ListaSaldo.toolStrip.filtrarFornecedor", 0);
 
-            CarregarPersistênciaFiltroFornecedor();
+                AtualizarEnabledComboboxFornecedor();
 
-            localizador.Visible = localizadorAberto.Valor;
+                CarregarPersistênciaFiltroFornecedor();
 
-            if (!localizadorAberto.Valor)
-                lst.Height += localizador.Height;
+                localizador.Visible = localizadorAberto.Valor;
+
+                if (!localizadorAberto.Valor)
+                    lst.Height += localizador.Height;
+            }
         }
 
         private void CarregarPersistênciaFiltroFornecedor()
