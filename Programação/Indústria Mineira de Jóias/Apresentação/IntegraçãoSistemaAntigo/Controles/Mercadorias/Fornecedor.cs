@@ -10,40 +10,31 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 {
 	public class Fornecedor
 	{
-        // Dado a referência, se tiver na hash é pq existe cadastrado.
-        private Dictionary<string, bool> hashExisteReferência = new Dictionary<string, bool>();
-
-        // Dado o nome do fornecedor, retorna ele (codigo)
-        private Dictionary<string, int> hashFornecedoresCadastrados = new Dictionary<string, int>();
-
-        // Dado o "nome" do fornecedor.
-        private Dictionary<string, bool> hashFornecedoresParaCadastrar = new Dictionary<string, bool>();
-
-        // Dado a referencia da mercadoria, retorna o item.
-        private Dictionary<string, bool> listaVinculosMercadoriaFornecedorCadastrados = new Dictionary<string, bool>();
-
-		private DataTable   tabelaVelha;
-        
         public Fornecedor(DataSet dataSetVelho, DataSet dataSetNovo, Dbf dbfOrigem)
 		{
             IDbConnection cn;
             IDbCommand cmd;
             IDataReader leitor;
 
+            Dictionary<string, bool> referências = 
             ObtemNovoMercadorias(Acesso.MySQL.MySQLUsuários.ObterÚltimaStrConexão().ToString(), out cn, out cmd, out leitor);
 
-            ObtemNovoFornecedores(cn, ref cmd, ref leitor);
-            ObtemLegadoFornecedores(dataSetVelho);
+            Dictionary<string, int> fornecedores = ObtemNovoFornecedores(cn, ref cmd, ref leitor);
             
-            CadastraFornecedores(cn, ref cmd);
+            Dictionary<string, bool> fornecedoresParaCadastro =
+                ObtemLegadoFornecedoresParaCadastrar(dataSetVelho, referências, fornecedores);
+            
+            CadastraFornecedores(cn, ref cmd, fornecedoresParaCadastro);
             ObtemNovoFornecedores(cn, ref cmd, ref leitor);
             
-            ObtemNovoVinculosAtuais(cn, ref cmd, ref leitor);
-            InsereNovosVínculos(cn, cmd);
+            Dictionary<string, bool> vinculos = ObtemNovoVinculosAtuais(cn, ref cmd, ref leitor);
+            InsereNovosVínculos(cn, cmd, referências, fornecedores, vinculos, dataSetVelho);
 		}
 
-        private void ObtemNovoMercadorias(String strConexão, out IDbConnection cn, out IDbCommand cmd, out IDataReader leitor)
+        private Dictionary<string, bool> ObtemNovoMercadorias(String strConexão, out IDbConnection cn, out IDbCommand cmd, out IDataReader leitor)
         {
+            Dictionary<string, bool> hashExisteReferência = new Dictionary<string, bool>();
+
             cn = Acesso.MySQL.ConectorMysql.Instância.CriarConexão(strConexão);
             cn.Open();
 
@@ -67,11 +58,13 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
                 if (leitor != null)
                     leitor.Close();
             }
+
+            return hashExisteReferência;
         }
 
-        private void ObtemNovoFornecedores(IDbConnection cn, ref IDbCommand cmd, ref IDataReader leitor)
+        private Dictionary<string, int> ObtemNovoFornecedores(IDbConnection cn, ref IDbCommand cmd, ref IDataReader leitor)
         {
-            hashFornecedoresCadastrados.Clear();
+            Dictionary<string, int> hashFornecedoresCadastrados = new Dictionary<string, int>();
 
             cmd = cn.CreateCommand();
             cmd.CommandText = "select codigo, nome from fornecedor";
@@ -94,11 +87,23 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
                 if (leitor != null)
                     leitor.Close();
             }
+
+            return hashFornecedoresCadastrados;
         }
 
-        private void ObtemLegadoFornecedores(DataSet dataSetVelho)
+        private DataTable ObterTabelaVelha(DataSet dataSetVelho)
         {
-            tabelaVelha = dataSetVelho.Tables["gesano"];
+            return dataSetVelho.Tables["gesano"];
+        }
+
+        private Dictionary<string, bool> ObtemLegadoFornecedoresParaCadastrar(DataSet dataSetVelho, 
+            Dictionary<string, bool> hashExisteReferência,
+            Dictionary<string, int> hashFornecedoresCadastrados)
+        {
+            Dictionary<string, bool> hashFornecedoresParaCadastrar = new Dictionary<string, bool>();
+
+            DataTable tabelaVelha = ObterTabelaVelha(dataSetVelho);
+
             foreach (DataRow mercadoria in tabelaVelha.Rows)
             {
                 if (hashExisteReferência.ContainsKey(mercadoria["GA_CODMER"].ToString().Trim()))
@@ -113,18 +118,25 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 
                 }
             }
+
+            return hashFornecedoresParaCadastrar;
         }
 
-        private void InsereNovosVínculos(IDbConnection cn, IDbCommand cmd)
+        private void InsereNovosVínculos(IDbConnection cn, IDbCommand cmd,
+            Dictionary<string, bool> hashExisteReferência,
+            Dictionary<string, int> hashFornecedoresCadastrados,
+            Dictionary<string, bool> vinculosAtuais, DataSet dataSetVelho)
         {
             StringBuilder strNovosVinculos = new StringBuilder("INSERT into vinculomercadoriafornecedor (mercadoria, fornecedor, referenciafornecedor) values (");
             bool primeiro = true;
+
+            DataTable tabelaVelha = ObterTabelaVelha(dataSetVelho);
 
             foreach (DataRow mercadoria in tabelaVelha.Rows)
             {
                 if (hashExisteReferência.ContainsKey(mercadoria["GA_CODMER"].ToString().Trim())
                     &&
-                    !listaVinculosMercadoriaFornecedorCadastrados.ContainsKey(mercadoria["GA_CODMER"].ToString().Trim())
+                    !vinculosAtuais.ContainsKey(mercadoria["GA_CODMER"].ToString().Trim())
                     )
                 {
                     string nomeFornecedor = mercadoria["GA_FORNEC"].ToString().Trim();
@@ -141,7 +153,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
                     strNovosVinculos.Append(códigoFornecedor.ToString()).Append(",'");
                     strNovosVinculos.Append(referênciaFornecedor).Append("')");
 
-                    listaVinculosMercadoriaFornecedorCadastrados.Add(mercadoria["GA_CODMER"].ToString().Trim(), true);
+                    vinculosAtuais.Add(mercadoria["GA_CODMER"].ToString().Trim(), true);
                 }
             }
 
@@ -154,7 +166,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             }
         }
 
-        private void CadastraFornecedores(IDbConnection cn, ref IDbCommand cmd)
+        private void CadastraFornecedores(IDbConnection cn, ref IDbCommand cmd, Dictionary<string, bool> hashFornecedoresParaCadastrar)
         {
             // Obtem fornecedor do mysql.
             cmd = cn.CreateCommand();
@@ -182,8 +194,10 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             }
         }
 
-        private void ObtemNovoVinculosAtuais(IDbConnection cn, ref IDbCommand cmd, ref IDataReader leitor)
+        private Dictionary<string, bool> ObtemNovoVinculosAtuais(IDbConnection cn, ref IDbCommand cmd, ref IDataReader leitor)
         {
+            Dictionary<string, bool> vinculosAtuais = new Dictionary<string, bool>();
+
             cmd = cn.CreateCommand();
             cmd.CommandText = "select mercadoria from vinculomercadoriafornecedor";
 
@@ -192,9 +206,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
                 using (leitor = cmd.ExecuteReader())
                 {
                     while (leitor.Read())
-                    {
-                        listaVinculosMercadoriaFornecedorCadastrados.Add(leitor.GetString(0), true);
-                    }
+                        vinculosAtuais.Add(leitor.GetString(0), true);
                 }
             }
             finally
@@ -202,6 +214,8 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
                 if (leitor != null)
                     leitor.Close();
             }
+
+            return vinculosAtuais;
         }
 	}
 }
