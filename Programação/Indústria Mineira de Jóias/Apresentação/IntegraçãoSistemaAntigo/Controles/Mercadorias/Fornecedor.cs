@@ -30,19 +30,19 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             IDbCommand cmd;
             IDataReader leitor;
 
-            ObterMercadoriasSistemaNovo(Acesso.MySQL.MySQLUsuários.ObterÚltimaStrConexão().ToString(), out cn, out cmd, out leitor);
+            ObtemNovoMercadorias(Acesso.MySQL.MySQLUsuários.ObterÚltimaStrConexão().ToString(), out cn, out cmd, out leitor);
 
-            ObtemFornecedoresSistemaNovo(cn, ref cmd, ref leitor);
-
-            ObterFornecedoresLegado(dataSetVelho);
+            ObtemNovoFornecedores(cn, ref cmd, ref leitor);
+            ObtemLegadoFornecedores(dataSetVelho);
             
-            CadastraNovosFornecedores(cn, ref cmd);
-            ReobtemFornecedores(cn, ref cmd, ref leitor);
-            ObtemVinculosAtuais(cn, ref cmd, ref leitor);
-            cmd = InsereNovosVínculos(cn, cmd);
+            CadastraFornecedores(cn, ref cmd);
+            ObtemNovoFornecedores(cn, ref cmd, ref leitor);
+            
+            ObtemNovoVinculosAtuais(cn, ref cmd, ref leitor);
+            InsereNovosVínculos(cn, cmd);
 		}
 
-        private void ObterMercadoriasSistemaNovo(String strConexão, out IDbConnection cn, out IDbCommand cmd, out IDataReader leitor)
+        private void ObtemNovoMercadorias(String strConexão, out IDbConnection cn, out IDbCommand cmd, out IDataReader leitor)
         {
             cn = Acesso.MySQL.ConectorMysql.Instância.CriarConexão(strConexão);
             cn.Open();
@@ -69,8 +69,10 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             }
         }
 
-        private void ObtemFornecedoresSistemaNovo(IDbConnection cn, ref IDbCommand cmd, ref IDataReader leitor)
+        private void ObtemNovoFornecedores(IDbConnection cn, ref IDbCommand cmd, ref IDataReader leitor)
         {
+            hashFornecedoresCadastrados.Clear();
+
             cmd = cn.CreateCommand();
             cmd.CommandText = "select codigo, nome from fornecedor";
 
@@ -94,7 +96,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             }
         }
 
-        private void ObterFornecedoresLegado(DataSet dataSetVelho)
+        private void ObtemLegadoFornecedores(DataSet dataSetVelho)
         {
             tabelaVelha = dataSetVelho.Tables["gesano"];
             foreach (DataRow mercadoria in tabelaVelha.Rows)
@@ -113,7 +115,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             }
         }
 
-        private IDbCommand InsereNovosVínculos(IDbConnection cn, IDbCommand cmd)
+        private void InsereNovosVínculos(IDbConnection cn, IDbCommand cmd)
         {
             StringBuilder strNovosVinculos = new StringBuilder("INSERT into vinculomercadoriafornecedor (mercadoria, fornecedor, referenciafornecedor) values (");
             bool primeiro = true;
@@ -150,10 +152,9 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
                 cmd.CommandText = strNovosVinculos.ToString();
                 cmd.ExecuteNonQuery();
             }
-            return cmd;
         }
 
-        private void CadastraNovosFornecedores(IDbConnection cn, ref IDbCommand cmd)
+        private void CadastraFornecedores(IDbConnection cn, ref IDbCommand cmd)
         {
             // Obtem fornecedor do mysql.
             cmd = cn.CreateCommand();
@@ -181,7 +182,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             }
         }
 
-        private void ObtemVinculosAtuais(IDbConnection cn, ref IDbCommand cmd, ref IDataReader leitor)
+        private void ObtemNovoVinculosAtuais(IDbConnection cn, ref IDbCommand cmd, ref IDataReader leitor)
         {
             cmd = cn.CreateCommand();
             cmd.CommandText = "select mercadoria from vinculomercadoriafornecedor";
@@ -193,32 +194,6 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
                     while (leitor.Read())
                     {
                         listaVinculosMercadoriaFornecedorCadastrados.Add(leitor.GetString(0), true);
-                    }
-                }
-            }
-            finally
-            {
-                if (leitor != null)
-                    leitor.Close();
-            }
-        }
-
-        private void ReobtemFornecedores(IDbConnection cn, ref IDbCommand cmd, ref IDataReader leitor)
-        {
-            hashFornecedoresCadastrados.Clear();
-            cmd = cn.CreateCommand();
-            cmd.CommandText = "select codigo, nome from fornecedor";
-
-            try
-            {
-                using (leitor = cmd.ExecuteReader())
-                {
-                    while (leitor.Read())
-                    {
-                        int codigo = leitor.GetInt32(0);
-                        string nome = leitor.GetString(1);
-
-                        hashFornecedoresCadastrados.Add(nome, codigo);
                     }
                 }
             }
