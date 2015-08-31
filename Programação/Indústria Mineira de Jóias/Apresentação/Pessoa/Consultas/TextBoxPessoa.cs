@@ -688,9 +688,9 @@ namespace Apresentação.Pessoa.Consultas
 
                             // A pessoa pode não ter setor
                             linha.SubItems.Add(setor == null ? "" : setor.Nome);
-                            lista.Items.Add(linha);
 
                             refPessoas[linha] = pessoa;
+                            itens[x++] = linha;
                         }
                         else if (pessoa is Entidades.Pessoa.Representante)
                         {
@@ -698,9 +698,9 @@ namespace Apresentação.Pessoa.Consultas
 
                             linha.Text = pessoa.Nome;
                             linha.SubItems.Add("Representante");
-                            lista.Items.Add(linha);
 
                             refPessoas[linha] = pessoa;
+                            itens[x++] = linha;
                         }
                         else if (pessoa != null)
                         {
