@@ -98,7 +98,7 @@ namespace Apresentação.Financeiro.Acerto
 
             // Abrir vendas
             listaVendas.Carregar(acerto.Cliente, false);
-            listaVendas.MarcarTudo();
+            listaVendas.SelecionarTudo();
 
             AguardeDB.Fechar();
 

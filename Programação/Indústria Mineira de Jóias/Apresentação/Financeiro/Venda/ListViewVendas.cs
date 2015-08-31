@@ -541,7 +541,7 @@ namespace Apresentação.Financeiro.Venda
                 localizador.Abrir();
 
             if (e.Modifiers == Keys.Control && e.KeyCode == Keys.A)
-                MarcarTudo();
+                SelecionarTudo();
         }
 
         private void localizador_DesrealçarTudo(object sender, EventArgs e)
@@ -588,7 +588,7 @@ namespace Apresentação.Financeiro.Venda
             }
         }
 
-        public void MarcarTudo()
+        public void SelecionarTudo()
         {
             foreach (ListViewItem item in lista.Items)
                 item.Selected = true;
