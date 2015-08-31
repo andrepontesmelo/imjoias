@@ -46,8 +46,8 @@ namespace Apresentação.Administrativo.Balanço
 
             SubstituirBase(new BaseResumo(listaSaídas.ObterCódigosMarcados(),
                 listaRetornos.ObterCódigosMarcados(),
-                listaVendas.ObterCódigosMarcados(), 
-                listaSedex.ObterCódigosMarcados()
+                listaVendas.ObterCódigosSelecionados(), 
+                listaSedex.ObterCódigosSelecionados()
                 ));
         }
 
@@ -63,8 +63,8 @@ namespace Apresentação.Administrativo.Balanço
 
             listaRetornos.Marcar(PersistênciaDocumentosBalanço.Instância.ListaRetornos);
             listaSaídas.Marcar(PersistênciaDocumentosBalanço.Instância.ListaSaídas);
-            listaVendas.Marcar(PersistênciaDocumentosBalanço.Instância.ListaVendas);
-            listaSedex.Marcar(PersistênciaDocumentosBalanço.Instância.ListaSedex);
+            listaVendas.Selecionar(PersistênciaDocumentosBalanço.Instância.ListaVendas);
+            listaSedex.Selecionar(PersistênciaDocumentosBalanço.Instância.ListaSedex);
         }
 
         private void opçãoFiltrar_Click(object sender, EventArgs e)
@@ -139,12 +139,12 @@ namespace Apresentação.Administrativo.Balanço
 
         private void listaVendas_AoMarcar(object sender, EventArgs e)
         {
-            PersistênciaDocumentosBalanço.Instância.MarcarVendas(listaVendas.ObterCódigosMarcados());
+            PersistênciaDocumentosBalanço.Instância.MarcarVendas(listaVendas.ObterCódigosSelecionados());
         }
 
         private void listaSedex_AoMarcar(object sender, EventArgs e)
         {
-            PersistênciaDocumentosBalanço.Instância.MarcarSedex(listaSedex.ObterCódigosMarcados());
+            PersistênciaDocumentosBalanço.Instância.MarcarSedex(listaSedex.ObterCódigosSelecionados());
         }
     }
 }

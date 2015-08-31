@@ -161,7 +161,7 @@ namespace Apresentação.Financeiro.Venda
         {
             UseWaitCursor = true;
             
-            List<IDadosVenda> listaDocumentos = lista.ObterVendasMarcadas();
+            List<IDadosVenda> listaDocumentos = lista.ObterVendasSelecionadas();
 
             if (listaDocumentos.Count == 0)
             {
@@ -198,7 +198,7 @@ namespace Apresentação.Financeiro.Venda
 
         private void opçãoMoverAcerto_Click(object sender, EventArgs e)
         {
-            if (lista.ObterVendasMarcadas().Count == 0)
+            if (lista.ObterVendasSelecionadas().Count == 0)
             {
                 MessageBox.Show(
                     ParentForm,
@@ -228,7 +228,7 @@ namespace Apresentação.Financeiro.Venda
 
                 try
                 {
-                    foreach (IDadosVenda iVenda in lista.ObterVendasMarcadas())
+                    foreach (IDadosVenda iVenda in lista.ObterVendasSelecionadas())
                     {
                         Entidades.Relacionamento.Venda.Venda venda = iVenda as Entidades.Relacionamento.Venda.Venda;
 
@@ -289,7 +289,7 @@ namespace Apresentação.Financeiro.Venda
         private void opçãoExcluirVendas_Click(object sender, EventArgs e)
         {
 
-            List<IDadosVenda> colecao = lista.ItensChecados;
+            List<IDadosVenda> colecao = lista.ItensSelecionados;
             string vendasDescadastradas = "";
             string vendasNãoDescadastradas = "";
             StringBuilder vendasCodigo = new StringBuilder();
@@ -354,11 +354,11 @@ namespace Apresentação.Financeiro.Venda
         private void Recarregar()
         {
             últimoItemSelecionado = lista.ItemSelecionado;
-            últimosItensChecados = lista.ItensChecados;
+            últimosItensChecados = lista.ItensSelecionados;
             
             lista.Carregar(pessoa, forçarTrataloCliente);
             lista.ItemSelecionado = últimoItemSelecionado;
-            lista.ItensChecados = últimosItensChecados;
+            lista.ItensSelecionados = últimosItensChecados;
         }
     }
 }

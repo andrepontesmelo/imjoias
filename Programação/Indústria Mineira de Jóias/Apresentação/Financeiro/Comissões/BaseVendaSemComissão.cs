@@ -51,7 +51,7 @@ namespace Apresentação.Financeiro.Comissões
             if (últimoItemSelecionado.HasValue)
                 listViewVendas.ItemSelecionado = últimoItemSelecionado;
 
-            listViewVendas.ItensChecados = últimosItensChecados;
+            listViewVendas.ItensSelecionados = últimosItensChecados;
         }
 
         private void listViewVendas_AoSalvarNfe(object sender, EventArgs e)
@@ -62,7 +62,7 @@ namespace Apresentação.Financeiro.Comissões
         private void Recarregar()
         {
             últimoItemSelecionado = listViewVendas.ItemSelecionado;
-            últimosItensChecados = listViewVendas.ItensChecados;
+            últimosItensChecados = listViewVendas.ItensSelecionados;
             bg.RunWorkerAsync();
         }
     }

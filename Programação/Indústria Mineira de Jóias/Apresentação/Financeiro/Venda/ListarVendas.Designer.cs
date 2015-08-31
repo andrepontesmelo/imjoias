@@ -60,7 +60,6 @@ namespace Apresentação.Financeiro.Venda
             this.lista.Name = "lista";
             this.lista.Size = new System.Drawing.Size(565, 291);
             this.lista.TabIndex = 3;
-            this.lista.UsarCheckBox = false;
             // 
             // btnOk
             // 

@@ -133,7 +133,7 @@ namespace Apresentação.Financeiro.Acerto
             {
                 SubstituirLista(listaSaídas.ObterDocumentosMarcados(), acerto.Saídas.ExtrairElementos());
                 SubstituirLista(listaRetornos.ObterDocumentosMarcados(), acerto.Retornos.ExtrairElementos());
-                SubstituirLista(listaVendas.ObterVendasMarcadas(), acerto.Vendas.ExtrairElementos());
+                SubstituirLista(listaVendas.ObterVendasSelecionadas(), acerto.Vendas.ExtrairElementos());
                 Acerto.Atualizar();
                 SubstituirBaseParaAnterior();
             }
