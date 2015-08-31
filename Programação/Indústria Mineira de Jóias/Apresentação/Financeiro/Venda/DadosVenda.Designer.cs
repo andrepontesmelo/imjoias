@@ -224,9 +224,10 @@
             // 
             // label12
             // 
+            this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(5, 198);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(75, 20);
+            this.label12.Size = new System.Drawing.Size(74, 13);
             this.label12.TabIndex = 47;
             this.label12.Text = "Taxa de juros:";
             this.label12.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -333,7 +334,7 @@
             this.chkVendaQuitada.AutoSize = true;
             this.chkVendaQuitada.Location = new System.Drawing.Point(3, 459);
             this.chkVendaQuitada.Name = "chkVendaQuitada";
-            this.chkVendaQuitada.Size = new System.Drawing.Size(116, 17);
+            this.chkVendaQuitada.Size = new System.Drawing.Size(95, 17);
             this.chkVendaQuitada.TabIndex = 31;
             this.chkVendaQuitada.Text = "Venda quitada";
             this.chkVendaQuitada.UseVisualStyleBackColor = true;
@@ -715,7 +716,6 @@
             this.txtVendedor.Location = new System.Drawing.Point(86, 12);
             this.txtVendedor.Name = "txtVendedor";
             this.txtVendedor.Pessoa = null;
-            this.txtVendedor.NãoPodeSerNulo = false;
             this.txtVendedor.Size = new System.Drawing.Size(406, 20);
             this.txtVendedor.SomenteCadastrado = true;
             this.txtVendedor.TabIndex = 1;
@@ -732,7 +732,6 @@
             this.txtCliente.Location = new System.Drawing.Point(86, 38);
             this.txtCliente.Name = "txtCliente";
             this.txtCliente.Pessoa = null;
-            this.txtCliente.NãoPodeSerNulo = false;
             this.txtCliente.Size = new System.Drawing.Size(406, 20);
             this.txtCliente.SomenteCadastrado = true;
             this.txtCliente.TabIndex = 3;
