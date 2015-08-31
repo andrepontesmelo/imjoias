@@ -36,12 +36,12 @@ namespace Apresentação.Financeiro.Pagamento
 
         public List<IDadosVenda> ObterVendasMarcadas()
         {
-            return lista.ObterVendasMarcadas();
+            return lista.ObterVendasSelecionadas();
         }
 
         public void Marcar(List<IDadosVenda> vendas)
         {
-            lista.Marcar(vendas);   
+            lista.Selecionar(vendas);   
         }
     }
 }

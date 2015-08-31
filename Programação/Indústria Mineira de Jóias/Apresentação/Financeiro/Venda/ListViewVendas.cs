@@ -58,17 +58,6 @@ namespace Apresentação.Financeiro.Venda
         private Delegate recarregar;
         private object[] recarregarParâmetros;
 
-        [DefaultValue(true)]
-        public bool UsarCheckBox
-        {
-            get { return lista.CheckBoxes; }
-            set 
-            { 
-                lista.CheckBoxes = value;
-                btnSelecionarNada.Visible = btnSelecionarTudo.Visible = value;
-            }
-        }
-
         /// <summary>
         /// Tipo de exibição das vendas.
         /// Cliente = Vendas para um cliente.
@@ -84,12 +73,6 @@ namespace Apresentação.Financeiro.Venda
                 SetarTipoExibição(value);
             }
         }
-
-        //public bool CheckBoxes
-        //{
-        //    get { return lista.CheckBoxes; }
-        //    set { lista.CheckBoxes = value; }
-        //}
 
         private delegate void SetarTipoExibiçãoDelegate(VínculoVendaPessoa tipoExibição);
 
@@ -177,14 +160,14 @@ namespace Apresentação.Financeiro.Venda
         /// <summary>
         /// Código da venda selecionada.
         /// </summary>
-        public List<IDadosVenda> ItensChecados
+        public List<IDadosVenda> ItensSelecionados
         {
             get
             {
                 List<IDadosVenda> vendasSelecionadas = new List<IDadosVenda>();
                 IDadosVenda v;
 
-                foreach (ListViewItem itemSelecionado in lista.CheckedItems)
+                foreach (ListViewItem itemSelecionado in lista.SelectedItems)
                 {
                     if (hashListViewItemVenda.TryGetValue(itemSelecionado, out v))
                     {
@@ -198,14 +181,14 @@ namespace Apresentação.Financeiro.Venda
                 lista.SuspendLayout();
 
                 foreach (ListViewItem i in lista.Items)
-                    i.Checked = false;
+                    i.Selected = false;
 
                 foreach (IDadosVenda v in value)
                 {
                     ListViewItem item;
 
                     if (hashCódigoItem.TryGetValue(v.Código, out item))
-                        item.Checked = true;
+                        item.Selected = true;
                 }
 
                 lista.ResumeLayout();
@@ -223,7 +206,6 @@ namespace Apresentação.Financeiro.Venda
 
         public event DelegaçãoVenda AoSelecionar;
         public event DelegaçãoVenda AoDuploClique;
-        public event EventHandler AoMarcar;
 
         // Janela de aguarde
 
@@ -349,9 +331,7 @@ namespace Apresentação.Financeiro.Venda
                 valorTotalGlobal += valorTotal;
             }
 
-            evitarEventoChecked = true;
             lista.Items.AddRange(novosItens);
-            evitarEventoChecked = false;
 
             return valorTotalGlobal;
         }
@@ -467,31 +447,31 @@ namespace Apresentação.Financeiro.Venda
 
         }
 
-        public List<IDadosVenda> ObterVendasMarcadas()
+        public List<IDadosVenda> ObterVendasSelecionadas()
         {
-            List<IDadosVenda> listaMarcadas = new List<IDadosVenda>(lista.CheckedItems.Count);
+            List<IDadosVenda> listaMarcadas = new List<IDadosVenda>(lista.SelectedItems.Count);
 
-            foreach (ListViewItem item in lista.CheckedItems)
+            foreach (ListViewItem item in lista.SelectedItems)
                 listaMarcadas.Add(hashListViewItemVenda[item]);
 
             return listaMarcadas;
         }
 
-        public List<long> ObterCódigosMarcados()
+        public List<long> ObterCódigosSelecionados()
         {
-            List<long> listaMarcadas = new List<long>(lista.CheckedItems.Count);
+            List<long> listaMarcadas = new List<long>(lista.SelectedItems.Count);
 
-            foreach (ListViewItem item in lista.CheckedItems)
+            foreach (ListViewItem item in lista.SelectedItems)
                 listaMarcadas.Add(hashListViewItemVenda[item].Código);
 
             return listaMarcadas;
         }
 
-        public void Marcar(List<IDadosVenda> vendas)
+        public void Selecionar(List<IDadosVenda> vendas)
         {
             // Descheca os já marcados
             foreach (ListViewItem item in lista.Items)
-                item.Checked = false;
+                item.Selected = false;
 
             // Checas os solicitados
             foreach (IDadosVenda v in vendas)
@@ -499,17 +479,17 @@ namespace Apresentação.Financeiro.Venda
                 ListViewItem item = null;
 
                 if (!hashCódigoItem.TryGetValue(v.Código, out item))
-                    throw new Exception("i) Erro ao marcar uma venda: código " + v.Código.ToString() + " não estava na hash");
+                    throw new Exception("i) Erro ao selecionar uma venda: código " + v.Código.ToString() + " não estava na hash");
 
-                item.Checked = true;
+                item.Selected = true;
             }
         }
 
-        public void Marcar(List<long> vendas)
+        public void Selecionar(List<long> vendas)
         {
             // Descheca os já marcados
             foreach (ListViewItem item in lista.Items)
-                item.Checked = false;
+                item.Selected = false;
 
             // Marca os solicitados
             foreach (long códigoVenda in vendas)
@@ -518,13 +498,10 @@ namespace Apresentação.Financeiro.Venda
 
                 if (hashCódigoItem.TryGetValue(códigoVenda, out item))
                 {
-                    item.Checked = true;
+                    item.Selected = true;
                 }
             }
         }
-
-        // Infelizmente o método ItemChecked é executado assim que item é adicionado.
-        private bool evitarEventoChecked;
 
         /// <summary>
         /// Ocorre ao selecionar algum item da lista.
@@ -564,12 +541,6 @@ namespace Apresentação.Financeiro.Venda
                 localizador.Abrir();
         }
 
-        private void lista_ItemChecked(object sender, ItemCheckedEventArgs e)
-        {
-            if (!evitarEventoChecked && AoMarcar != null)
-                AoMarcar(sender, e);
-        }
-
         private void localizador_DesrealçarTudo(object sender, EventArgs e)
         {
             foreach (ListViewItem item in lista.Items)
@@ -598,40 +569,26 @@ namespace Apresentação.Financeiro.Venda
         {
             if (lista.Items.Count > 0)
             {
-                evitarEventoChecked = true;
-
                 foreach (ListViewItem item in lista.Items)
-                    item.Checked = true;
-
-                evitarEventoChecked = false;
-
-                // Chama o evento pelo menos uma vez:
-                lista_ItemChecked(this, new ItemCheckedEventArgs(lista.Items[0]));
+                    item.Selected = true;
             }
         }
 
         private void btnSelecionarNada_Click(object sender, EventArgs e)
         {
-            if (lista.CheckedIndices.Count > 0)
+            if (lista.SelectedIndices.Count > 0)
             {
-                ListViewItem primeiroItemMarcado = lista.CheckedItems[0];
+                ListViewItem primeiroItemMarcado = lista.SelectedItems[0];
 
-                evitarEventoChecked = true;
-
-                foreach (ListViewItem item in lista.CheckedItems)
-                    item.Checked = false;
-
-                evitarEventoChecked = false;
-
-                // Chama o evento pelo menos uma vez:
-                lista_ItemChecked(this, new ItemCheckedEventArgs(primeiroItemMarcado));
+                foreach (ListViewItem item in lista.SelectedItems)
+                    item.Selected = false;
             }
         }
 
         public void MarcarTudo()
         {
             foreach (ListViewItem item in lista.Items)
-                item.Checked = true;
+                item.Selected = true;
         }
 
         private void btnAcertado_CheckedChanged(object sender, EventArgs e)

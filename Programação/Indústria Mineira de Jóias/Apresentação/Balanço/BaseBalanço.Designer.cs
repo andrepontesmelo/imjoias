@@ -158,13 +158,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listaVendas.ItemSelecionado = null;
-            this.listaVendas.ItensChecados = ((System.Collections.Generic.List<Entidades.Relacionamento.Venda.IDadosVenda>)(resources.GetObject("listaVendas.ItensChecados")));
+            this.listaVendas.ItensSelecionados = ((System.Collections.Generic.List<Entidades.Relacionamento.Venda.IDadosVenda>)(resources.GetObject("listaVendas.ItensChecados")));
             this.listaVendas.Location = new System.Drawing.Point(1, 3);
             this.listaVendas.Name = "listaVendas";
             this.listaVendas.Size = new System.Drawing.Size(585, 154);
             this.listaVendas.TabIndex = 0;
             this.listaVendas.AoDuploClique += new Apresentação.Financeiro.Venda.ListViewVendas.DelegaçãoVenda(this.listaVendas_AoDuploClique);
-            this.listaVendas.AoMarcar += new System.EventHandler(this.listaVendas_AoMarcar);
             // 
             // tabSedex
             // 
@@ -184,13 +183,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listaSedex.ApenasNãoAcertado = false;
             this.listaSedex.ItemSelecionado = null;
-            this.listaSedex.ItensChecados = ((System.Collections.Generic.List<Entidades.Relacionamento.Venda.IDadosVenda>)(resources.GetObject("listaSedex.ItensChecados")));
+            this.listaSedex.ItensSelecionados = ((System.Collections.Generic.List<Entidades.Relacionamento.Venda.IDadosVenda>)(resources.GetObject("listaSedex.ItensChecados")));
             this.listaSedex.Location = new System.Drawing.Point(1, 1);
             this.listaSedex.Name = "listaSedex";
             this.listaSedex.Size = new System.Drawing.Size(585, 154);
             this.listaSedex.TabIndex = 1;
             this.listaSedex.AoDuploClique += new Apresentação.Financeiro.Venda.ListViewVendas.DelegaçãoVenda(this.listaSedex_AoDuploClique);
-            this.listaSedex.AoMarcar += new System.EventHandler(this.listaSedex_AoMarcar);
             // 
             // quadro1
             // 

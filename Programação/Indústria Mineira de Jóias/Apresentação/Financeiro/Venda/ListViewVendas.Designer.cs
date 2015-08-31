@@ -60,7 +60,6 @@
             // 
             // lista
             // 
-            this.lista.CheckBoxes = true;
             this.lista.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colData,
             this.colCódigo,
@@ -80,7 +79,6 @@
             this.lista.UseCompatibleStateImageBehavior = false;
             this.lista.View = System.Windows.Forms.View.Details;
             this.lista.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lista_ColumnClick);
-            this.lista.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.lista_ItemChecked);
             this.lista.SelectedIndexChanged += new System.EventHandler(this.lista_SelectedIndexChanged);
             this.lista.DoubleClick += new System.EventHandler(this.lista_DoubleClick);
             this.lista.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lista_KeyDown);
