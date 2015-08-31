@@ -539,6 +539,9 @@ namespace Apresentação.Financeiro.Venda
 
             if (e.Modifiers == Keys.Control && e.KeyCode == Keys.F)
                 localizador.Abrir();
+
+            if (e.Modifiers == Keys.Control && e.KeyCode == Keys.A)
+                MarcarTudo();
         }
 
         private void localizador_DesrealçarTudo(object sender, EventArgs e)
