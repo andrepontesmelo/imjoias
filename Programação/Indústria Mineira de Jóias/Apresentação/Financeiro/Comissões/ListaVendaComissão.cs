@@ -231,7 +231,10 @@ namespace Apresentação.Financeiro.Comissões
             colSetor.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
 
             panelComissãoTotal.Text = "Comissão: " + totalComissão.ToString("C", cultura);
+            panelComissãoTotal.AutoSize = StatusBarPanelAutoSize.Contents;
+
             panelVendaTotal.Text = "Venda: " + totalVenda.ToString("C", cultura);
+            panelVendaTotal.AutoSize = StatusBarPanelAutoSize.Contents;
 
             UseWaitCursor = false;
             AguardeDB.Fechar();
