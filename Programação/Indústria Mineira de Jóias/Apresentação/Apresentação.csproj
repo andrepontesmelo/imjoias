@@ -1395,7 +1395,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSetReferencia.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Impressão\Relatórios\Estoque\Fornecedor\RelatórioReferência.cs">
+    <Compile Include="Impressão\Relatórios\Estoque\Referência\RelatórioReferência.cs">
       <DependentUpon>RelatórioReferência.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
@@ -3182,7 +3182,7 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RelatórioFornecedor.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Impressão\Relatórios\Estoque\Fornecedor\RelatórioReferência.rpt">
+    <EmbeddedResource Include="Impressão\Relatórios\Estoque\Referência\RelatórioReferência.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RelatórioReferência.cs</LastGenOutput>
     </EmbeddedResource>

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Apresentação.Impressão.Relatórios.Estoque.Fornecedor {
+namespace Apresentação.Impressão.Relatórios.Estoque.Referência {
     using System;
     using System.ComponentModel;
     using CrystalDecisions.Shared;
@@ -16,14 +16,14 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Fornecedor {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class RelatórioFornecedor : ReportClass {
+    public class RelatórioReferência : ReportClass {
         
-        public RelatórioFornecedor() {
+        public RelatórioReferência() {
         }
         
         public override string ResourceName {
             get {
-                return "RelatórioFornecedor.rpt";
+                return "RelatórioReferência.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Fornecedor {
         
         public override string FullResourceName {
             get {
-                return "Apresentação.Impressão.Relatórios.Estoque.Fornecedor.RelatórioFornecedor.rpt";
+                return "Apresentação.Impressão.Relatórios.Estoque.Referência.RelatórioReferência.rpt";
             }
             set {
                 // Do nothing
@@ -74,7 +74,7 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Fornecedor {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section GroupHeaderSection2 {
+        public CrystalDecisions.CrystalReports.Engine.Section Section3 {
             get {
                 return this.ReportDefinition.Sections[3];
             }
@@ -82,7 +82,7 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Fornecedor {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section3 {
+        public CrystalDecisions.CrystalReports.Engine.Section GroupFooterSection1 {
             get {
                 return this.ReportDefinition.Sections[4];
             }
@@ -90,7 +90,7 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Fornecedor {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section GroupFooterSection2 {
+        public CrystalDecisions.CrystalReports.Engine.Section Section4 {
             get {
                 return this.ReportDefinition.Sections[5];
             }
@@ -98,33 +98,17 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Fornecedor {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section GroupFooterSection1 {
-            get {
-                return this.ReportDefinition.Sections[6];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section4 {
-            get {
-                return this.ReportDefinition.Sections[7];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public CrystalDecisions.CrystalReports.Engine.Section Section5 {
             get {
-                return this.ReportDefinition.Sections[8];
+                return this.ReportDefinition.Sections[6];
             }
         }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedRelatórioFornecedor : Component, ICachedReport {
+    public class CachedRelatórioReferência : Component, ICachedReport {
         
-        public CachedRelatórioFornecedor() {
+        public CachedRelatórioReferência() {
         }
         
         [Browsable(false)]
@@ -161,7 +145,7 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Fornecedor {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            RelatórioFornecedor rpt = new RelatórioFornecedor();
+            RelatórioReferência rpt = new RelatórioReferência();
             rpt.Site = this.Site;
             return rpt;
         }
