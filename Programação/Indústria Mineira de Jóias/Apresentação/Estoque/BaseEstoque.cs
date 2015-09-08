@@ -19,6 +19,7 @@ namespace Apresentação.Estoque
     public partial class BaseEstoque : BaseInferior
     {
         private Saldo saldo;
+        private JanelaOpçõesEstoque opções = new JanelaOpçõesEstoque();
 
         public BaseEstoque()
         {
@@ -53,6 +54,7 @@ namespace Apresentação.Estoque
         {
             base.AoExibir();
 
+            listaSaldo.Opções = opções;
             listaSaldo.Carregar();
         }
 
@@ -114,8 +116,6 @@ namespace Apresentação.Estoque
 
         private List<Saldo> ObterItens(Saldo.Ordem ordem)
         {
-            JanelaOpçõesEstoque opções = new JanelaOpçõesEstoque();
-
             List<Saldo> itens = Saldo.Obter(opções.IncluirPeso, opções.IncluirReferência, 
                 opções.FornecedorÚnico, ordem, opções.UsarPesoMédio);
 
@@ -140,7 +140,6 @@ namespace Apresentação.Estoque
 
         private void opçãoConfigurações_Click(object sender, EventArgs e)
         {
-            JanelaOpçõesEstoque opções = new JanelaOpçõesEstoque();
             opções.Show();
         }
     }

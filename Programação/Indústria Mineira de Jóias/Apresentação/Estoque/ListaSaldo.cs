@@ -18,9 +18,15 @@ namespace Apresentação.Estoque
 
         private volatile List<Entidades.Estoque.Saldo> itens;
         private volatile Entidades.Fornecedor[] arrayFornecedores;
+        private JanelaOpçõesEstoque opções = null;
+
+        public JanelaOpçõesEstoque Opções
+        {
+            get { return opções; }
+            set { opções = value; }
+        }
 
         private Entidades.Configuração.ConfiguraçãoUsuário<bool> localizadorAberto;
-        private Entidades.Configuração.ConfiguraçãoUsuário<int> filtrarFornecedor;
 
         struct ResultadoCarga
         {
@@ -29,11 +35,10 @@ namespace Apresentação.Estoque
             public int TotalReferencias;
         }
 
-
         public ListaSaldo()
         {
             InitializeComponent();
-            
+
             bool designMode = (LicenseManager.UsageMode == LicenseUsageMode.Designtime);
 
             if (!designMode)
@@ -44,32 +49,11 @@ namespace Apresentação.Estoque
                 localizador.Visible = true;
 
                 localizadorAberto = new Entidades.Configuração.ConfiguraçãoUsuário<bool>("ListaSaldo.localizador.aberto", false);
-                filtrarFornecedor = new Entidades.Configuração.ConfiguraçãoUsuário<int>("ListaSaldo.toolStrip.filtrarFornecedor", 0);
-
-                AtualizarEnabledComboboxFornecedor();
-
-                CarregarPersistênciaFiltroFornecedor();
 
                 localizador.Visible = localizadorAberto.Valor;
 
                 if (!localizadorAberto.Valor)
                     lst.Height += localizador.Height;
-            }
-        }
-
-        private void CarregarPersistênciaFiltroFornecedor()
-        {
-            if (filtrarFornecedor.Valor > 0)
-            {
-                Entidades.Fornecedor fornecedorSelecionado = Entidades.Fornecedor.ObterFornecedor(filtrarFornecedor.Valor);
-
-                toolStripComboBoxFornecedor.Items.Add(fornecedorSelecionado);
-                toolStripComboBoxFornecedor.SelectedItem = fornecedorSelecionado;
-            }
-            else
-            {
-                toolStripBtnFiltrarFornecedor.Checked = false;
-                toolStripComboBoxFornecedor.Enabled = false;
             }
         }
 
@@ -84,27 +68,14 @@ namespace Apresentação.Estoque
 
         private delegate Entidades.Fornecedor ObterFornecedorÚnicoCallback();
 
-        private Entidades.Fornecedor ObterFornecedorÚnico()
-        {
-            if (toolStrip.InvokeRequired)
-            {
-                ObterFornecedorÚnicoCallback método = new ObterFornecedorÚnicoCallback(ObterFornecedorÚnico);
-                return (Entidades.Fornecedor) toolStrip.Invoke(método, new object[] { });
-            }
-            else
-            {
-                if (!toolStripBtnFiltrarFornecedor.Checked)
-                    return null;
-
-                return toolStripComboBoxFornecedor.SelectedItem as Entidades.Fornecedor;
-            }
-        }
 
         private void bg_DoWork(object sender, DoWorkEventArgs e)
         {
             arrayFornecedores = Entidades.Fornecedor.ObterFornecedores().ToArray();
             
-            itens = Entidades.Estoque.Saldo.Obter(true, true, ObterFornecedorÚnico(), Saldo.Ordem.ReferênciaPeso, true);
+            itens = Entidades.Estoque.Saldo.Obter(opções.IncluirPeso, opções.IncluirReferência, 
+                opções.FornecedorÚnico, Saldo.Ordem.ReferênciaPeso, opções.UsarPesoMédio);
+
             ResultadoCarga resultado = new ResultadoCarga();
 
             resultado.ListaGrafica = new ListViewItem[itens.Count];
@@ -160,9 +131,6 @@ namespace Apresentação.Estoque
             lst.Items.Clear();
 
             lst.Items.AddRange(resultado.ListaGrafica);
-
-            toolStripComboBoxFornecedor.Items.Clear();
-            toolStripComboBoxFornecedor.Items.AddRange(arrayFornecedores);
 
             panelReferencias.Text = resultado.TotalReferencias.ToString() + " Referência(s)";
             panelPesoTotal.Text = resultado.TotalSaldoPeso.ToString() + "g de saldo";
@@ -236,29 +204,6 @@ namespace Apresentação.Estoque
         {
             localizadorAberto.Valor = false;
             lst.Height += localizador.Height;
-        }
-
-        private void toolStripBtnFiltrarFornecedor_Click(object sender, EventArgs e)
-        {
-            if (toolStripBtnFiltrarFornecedor.Checked)
-                filtrarFornecedor.Valor = 0;
-
-            AtualizarEnabledComboboxFornecedor();
-
-            Carregar();
-        }
-
-        private void toolStripComboboxFornecedorSelectedIndexChanged(object sender, EventArgs e)
-        {
-            filtrarFornecedor.Valor = (int) ObterFornecedorÚnico().Código;
-
-            Carregar();
-        }
-
-        private void AtualizarEnabledComboboxFornecedor()
-        {
-            toolStripBtnFiltrarFornecedor.Checked = !toolStripBtnFiltrarFornecedor.Checked;
-            toolStripComboBoxFornecedor.Enabled = toolStripBtnFiltrarFornecedor.Checked;
         }
     }
 }
