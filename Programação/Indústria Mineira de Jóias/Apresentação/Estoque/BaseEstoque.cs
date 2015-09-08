@@ -73,7 +73,7 @@ namespace Apresentação.Estoque
 
         private void btnRelatórioResumo_Click(object sender, EventArgs e)
         {
-            List<Saldo> itens = ObterItensMostrandoJanelaImpressão(Saldo.Ordem.FornecedorReferênciaPeso);
+            List<Saldo> itens = ObterItens(Saldo.Ordem.FornecedorReferênciaPeso);
 
             if (itens == null)
                 return;
@@ -89,7 +89,7 @@ namespace Apresentação.Estoque
 
         private void btnRelatórioFornecedor_Click(object sender, EventArgs e)
         {
-            List<Saldo> itens = ObterItensMostrandoJanelaImpressão(Saldo.Ordem.FornecedorReferênciaPeso);
+            List<Saldo> itens = ObterItens(Saldo.Ordem.FornecedorReferênciaPeso);
 
             if (itens == null)
                 return;
@@ -112,22 +112,19 @@ namespace Apresentação.Estoque
             janela.Show();
         }
 
-        private List<Saldo> ObterItensMostrandoJanelaImpressão(Saldo.Ordem ordem)
+        private List<Saldo> ObterItens(Saldo.Ordem ordem)
         {
             JanelaOpçõesEstoque opções = new JanelaOpçõesEstoque();
-            DialogResult resultado = opções.ShowDialog(this);
-
-            if (resultado == DialogResult.Cancel)
-                return null;
 
             List<Saldo> itens = Saldo.Obter(opções.IncluirPeso, opções.IncluirReferência, 
                 opções.FornecedorÚnico, ordem, opções.UsarPesoMédio);
+
             return itens;
         }
 
         private void btnRelatórioReferência_Click(object sender, EventArgs e)
         {
-            List<Saldo> itens = ObterItensMostrandoJanelaImpressão(Saldo.Ordem.ReferênciaPeso);
+            List<Saldo> itens = ObterItens(Saldo.Ordem.ReferênciaPeso);
 
             if (itens == null)
                 return;
