@@ -140,7 +140,10 @@ namespace Apresentação.Estoque
 
         private void opçãoConfigurações_Click(object sender, EventArgs e)
         {
-            opções.Show();
+            DialogResult resultado = opções.ShowDialog();
+
+            if (resultado == DialogResult.OK)
+                listaSaldo.Carregar();
         }
     }
 }
