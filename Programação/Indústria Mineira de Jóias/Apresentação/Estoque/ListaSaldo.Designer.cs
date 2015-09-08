@@ -34,27 +34,21 @@
             this.lst = new System.Windows.Forms.ListView();
             this.colReferência = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colPeso = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colFornecedor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colRefFornecedor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colInicio = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colEntrada = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colVenda = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colDevolução = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colSaldo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colFornecedor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colRefFornecedor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colTotal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.bg = new System.ComponentModel.BackgroundWorker();
             this.status = new System.Windows.Forms.StatusBar();
             this.panelReferencias = new System.Windows.Forms.StatusBarPanel();
             this.panelPesoTotal = new System.Windows.Forms.StatusBarPanel();
             this.localizador = new Apresentação.Formulários.Localizador();
-            this.btnPesquisa = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripBtnFiltrarFornecedor = new System.Windows.Forms.ToolStripButton();
-            this.toolStripComboBoxFornecedor = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStrip = new System.Windows.Forms.ToolStrip();
-            this.colInicio = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colTotal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.panelReferencias)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelPesoTotal)).BeginInit();
-            this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // lst
@@ -81,9 +75,9 @@
             this.lst.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
             listViewGroup1,
             listViewGroup2});
-            this.lst.Location = new System.Drawing.Point(0, 28);
+            this.lst.Location = new System.Drawing.Point(0, 0);
             this.lst.Name = "lst";
-            this.lst.Size = new System.Drawing.Size(902, 159);
+            this.lst.Size = new System.Drawing.Size(902, 187);
             this.lst.TabIndex = 0;
             this.lst.UseCompatibleStateImageBehavior = false;
             this.lst.View = System.Windows.Forms.View.Details;
@@ -93,11 +87,25 @@
             // colReferência
             // 
             this.colReferência.Text = "Referência";
-            this.colReferência.Width = 119;
+            this.colReferência.Width = 120;
             // 
             // colPeso
             // 
             this.colPeso.Text = "Peso";
+            // 
+            // colFornecedor
+            // 
+            this.colFornecedor.Text = "Fornecedor";
+            this.colFornecedor.Width = 80;
+            // 
+            // colRefFornecedor
+            // 
+            this.colRefFornecedor.Text = "Ref. Fornecedor";
+            this.colRefFornecedor.Width = 228;
+            // 
+            // colInicio
+            // 
+            this.colInicio.Text = "Início";
             // 
             // colEntrada
             // 
@@ -116,15 +124,9 @@
             // 
             this.colSaldo.Text = "Saldo";
             // 
-            // colFornecedor
+            // colTotal
             // 
-            this.colFornecedor.Text = "Fornecedor";
-            this.colFornecedor.Width = 80;
-            // 
-            // colRefFornecedor
-            // 
-            this.colRefFornecedor.Text = "Ref. Fornecedor";
-            this.colRefFornecedor.Width = 228;
+            this.colTotal.Text = "T. Peso";
             // 
             // bg
             // 
@@ -172,66 +174,10 @@
             this.localizador.EncontrarItem += new Apresentação.Formulários.Localizador.EncontrarDelegate(this.localizador_EncontrarItem);
             this.localizador.AoFechar += new System.EventHandler(this.localizador_AoFechar);
             // 
-            // btnPesquisa
-            // 
-            this.btnPesquisa.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnPesquisa.Image = global::Apresentação.Resource.search;
-            this.btnPesquisa.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnPesquisa.Name = "btnPesquisa";
-            this.btnPesquisa.Size = new System.Drawing.Size(23, 22);
-            this.btnPesquisa.Text = "btnPesquisa";
-            this.btnPesquisa.ToolTipText = "Localizar...";
-            this.btnPesquisa.Click += new System.EventHandler(this.btnPesquisa_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripBtnFiltrarFornecedor
-            // 
-            this.toolStripBtnFiltrarFornecedor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripBtnFiltrarFornecedor.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBtnFiltrarFornecedor.Image")));
-            this.toolStripBtnFiltrarFornecedor.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripBtnFiltrarFornecedor.Name = "toolStripBtnFiltrarFornecedor";
-            this.toolStripBtnFiltrarFornecedor.Size = new System.Drawing.Size(107, 22);
-            this.toolStripBtnFiltrarFornecedor.Text = "Filtrar Fornecedor:";
-            this.toolStripBtnFiltrarFornecedor.Click += new System.EventHandler(this.toolStripBtnFiltrarFornecedor_Click);
-            // 
-            // toolStripComboBoxFornecedor
-            // 
-            this.toolStripComboBoxFornecedor.Enabled = false;
-            this.toolStripComboBoxFornecedor.Name = "toolStripComboBoxFornecedor";
-            this.toolStripComboBoxFornecedor.Size = new System.Drawing.Size(121, 25);
-            this.toolStripComboBoxFornecedor.SelectedIndexChanged += new System.EventHandler(this.toolStripComboboxFornecedorSelectedIndexChanged);
-            // 
-            // toolStrip
-            // 
-            this.toolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnPesquisa,
-            this.toolStripSeparator1,
-            this.toolStripBtnFiltrarFornecedor,
-            this.toolStripComboBoxFornecedor});
-            this.toolStrip.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(902, 25);
-            this.toolStrip.TabIndex = 12;
-            this.toolStrip.Text = "toolStrip1";
-            // 
-            // colInicio
-            // 
-            this.colInicio.Text = "Início";
-            // 
-            // colTotal
-            // 
-            this.colTotal.Text = "T. Peso";
-            // 
             // ListaSaldo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.localizador);
             this.Controls.Add(this.status);
             this.Controls.Add(this.lst);
@@ -239,10 +185,7 @@
             this.Size = new System.Drawing.Size(902, 246);
             ((System.ComponentModel.ISupportInitialize)(this.panelReferencias)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelPesoTotal)).EndInit();
-            this.toolStrip.ResumeLayout(false);
-            this.toolStrip.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -262,11 +205,6 @@
         private System.Windows.Forms.ColumnHeader colFornecedor;
         private System.Windows.Forms.ColumnHeader colRefFornecedor;
         private Apresentação.Formulários.Localizador localizador;
-        private System.Windows.Forms.ToolStripButton btnPesquisa;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton toolStripBtnFiltrarFornecedor;
-        private System.Windows.Forms.ToolStripComboBox toolStripComboBoxFornecedor;
-        private System.Windows.Forms.ToolStrip toolStrip;
         private System.Windows.Forms.ColumnHeader colInicio;
         private System.Windows.Forms.ColumnHeader colTotal;
     }
