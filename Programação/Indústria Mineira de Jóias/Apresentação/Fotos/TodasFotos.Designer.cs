@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.quadroFotosTodas = new Apresentação.Formulários.Quadro();
+            this.txtReferência = new Apresentação.Mercadoria.TxtMercadoria();
             this.listaFotosTodas = new Apresentação.Álbum.Edição.Fotos.ListaFotos();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txtReferência = new Apresentação.Mercadoria.TxtMercadoria();
             this.chkForaDeLinha = new System.Windows.Forms.CheckBox();
             this.opçãoTodasFotos = new Apresentação.Formulários.Opção();
             this.quadroFotosTodas.SuspendLayout();
@@ -44,9 +44,9 @@
             this.quadroFotosTodas.bInfEsqArredondada = false;
             this.quadroFotosTodas.bSupDirArredondada = true;
             this.quadroFotosTodas.bSupEsqArredondada = true;
+            this.quadroFotosTodas.Controls.Add(this.txtReferência);
             this.quadroFotosTodas.Controls.Add(this.listaFotosTodas);
             this.quadroFotosTodas.Controls.Add(this.panel1);
-            this.quadroFotosTodas.Controls.Add(this.txtReferência);
             this.quadroFotosTodas.Controls.Add(this.chkForaDeLinha);
             this.quadroFotosTodas.Controls.Add(this.opçãoTodasFotos);
             this.quadroFotosTodas.Cor = System.Drawing.Color.SaddleBrown;
@@ -60,6 +60,17 @@
             this.quadroFotosTodas.TabIndex = 9;
             this.quadroFotosTodas.Tamanho = 30;
             this.quadroFotosTodas.Título = "Todas as fotos";
+            // 
+            // txtReferência
+            // 
+            this.txtReferência.Location = new System.Drawing.Point(25, 26);
+            this.txtReferência.MostrarBalãoRefNãoEncontrada = false;
+            this.txtReferência.Name = "txtReferência";
+            this.txtReferência.Referência = "";
+            this.txtReferência.Size = new System.Drawing.Size(170, 20);
+            this.txtReferência.TabIndex = 9;
+            this.txtReferência.UtilizarListView = false;
+            this.txtReferência.ReferênciaAlterada += new System.EventHandler(this.txtReferência_ReferênciaAlterada);
             // 
             // listaFotosTodas
             // 
@@ -77,22 +88,11 @@
             // panel1
             // 
             this.panel1.BackgroundImage = global::Apresentação.Resource.FINDFILE16;
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Location = new System.Drawing.Point(80, 27);
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel1.Location = new System.Drawing.Point(3, 22);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(25, 28);
+            this.panel1.Size = new System.Drawing.Size(34, 38);
             this.panel1.TabIndex = 10;
-            // 
-            // txtReferência
-            // 
-            this.txtReferência.Location = new System.Drawing.Point(3, 25);
-            this.txtReferência.MostrarBalãoRefNãoEncontrada = false;
-            this.txtReferência.Name = "txtReferência";
-            this.txtReferência.Referência = "";
-            this.txtReferência.Size = new System.Drawing.Size(79, 20);
-            this.txtReferência.TabIndex = 9;
-            this.txtReferência.UtilizarListView = false;
-            this.txtReferência.ReferênciaAlterada += new System.EventHandler(this.txtReferência_ReferênciaAlterada);
             // 
             // chkForaDeLinha
             // 
@@ -111,15 +111,16 @@
             // opçãoTodasFotos
             // 
             this.opçãoTodasFotos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.opçãoTodasFotos.AutoSize = true;
             this.opçãoTodasFotos.BackColor = System.Drawing.Color.Transparent;
             this.opçãoTodasFotos.Descrição = "Visualizar todas as fotos";
             this.opçãoTodasFotos.Imagem = global::Apresentação.Resource.botão___agenda;
-            this.opçãoTodasFotos.Location = new System.Drawing.Point(344, 268);
+            this.opçãoTodasFotos.Location = new System.Drawing.Point(331, 265);
             this.opçãoTodasFotos.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoTodasFotos.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoTodasFotos.MinimumSize = new System.Drawing.Size(150, 16);
             this.opçãoTodasFotos.Name = "opçãoTodasFotos";
-            this.opçãoTodasFotos.Size = new System.Drawing.Size(150, 16);
+            this.opçãoTodasFotos.Size = new System.Drawing.Size(150, 19);
             this.opçãoTodasFotos.TabIndex = 7;
             this.opçãoTodasFotos.Click += new System.EventHandler(this.opçãoTodasFotos_Click);
             // 
@@ -131,6 +132,7 @@
             this.Name = "TodasFotos";
             this.Size = new System.Drawing.Size(483, 284);
             this.quadroFotosTodas.ResumeLayout(false);
+            this.quadroFotosTodas.PerformLayout();
             this.ResumeLayout(false);
 
         }
