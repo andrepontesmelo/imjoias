@@ -167,20 +167,8 @@ namespace Apresentação.Álbum.Edição.Fotos
 
             e.Item = new ListViewItem(título);
 
-            //Entidades.Mercadoria.Mercadoria m = foto.ObterMercadoria();
-
-            //if (m != null && m.ForaDeLinha)
-            //{
-            //    e.Item.BackColor = Color.Red;
-            //    e.Item.Font = new Font(e.Item.Font, FontStyle.Strikeout);
-            //}
-
-            //bool recuperado;
-
             int idx;
 
-            //lock (imagens)
-            //{
             try
             {
                 //recuperado = imagens.Images.ContainsKey(foto.Código.ToString());
@@ -195,7 +183,6 @@ namespace Apresentação.Álbum.Edição.Fotos
             {
                 idx = -1;
             }
-            //}
 
             if (idx < 0)
             {
@@ -204,7 +191,6 @@ namespace Apresentação.Álbum.Edição.Fotos
             }
             else
             {
-                //lock (imagens)
                 e.Item.ImageIndex = idx;
             }
         }
@@ -217,14 +203,10 @@ namespace Apresentação.Álbum.Edição.Fotos
 
         private void lst_CacheVirtualItems(object sender, CacheVirtualItemsEventArgs e)
         {
-            //lock (cargaFotos)
-            //    cargaFotos.Clear();
-
             for (int i = e.StartIndex; i < e.EndIndex; i++)
             {
                 int idx;
 
-                //lock (imagens)
                 try
                 {
                     idx = imagens.Images.IndexOfKey(fotos[i].Código.ToString());
@@ -489,35 +471,6 @@ namespace Apresentação.Álbum.Edição.Fotos
             }
         }   
 
-        //protected override void OnResize(EventArgs e)
-        //{
-        //    base.OnResize(e);
-
-        //    progresso.Top = ClientSize.Height - progresso.Height - progresso.Margin.Bottom;
-        //    progresso.Width = ClientSize.Width - progresso.Left * 2 - SystemInformation.VerticalScrollBarWidth;
-        //}
-
-        private void opçãoExcluir_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void removerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void verSemelhantesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
-        void editarToolStripMenuItem_Click(object sender, System.EventArgs e)
-        {
-        }
-
-        private void ListaFotos_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void visualizarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (Seleção == null)
@@ -580,7 +533,6 @@ namespace Apresentação.Álbum.Edição.Fotos
                                 s.Descadastrar();
                             }
 
-                            //Carregar(incluirForaDeLinha);
                             if (AoExcluído != null)
                                 AoExcluído(null);
                         }

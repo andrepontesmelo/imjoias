@@ -1182,11 +1182,6 @@
     <Compile Include="Fotos\PainelFotos.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Fotos\SeleçãoOrigemVídeo.cs">
-    </Compile>
-    <Compile Include="Fotos\SeleçãoOrigemVídeo.Designer.cs">
-      <DependentUpon>SeleçãoOrigemVídeo.cs</DependentUpon>
-    </Compile>
     <Compile Include="Fotos\TodasFotos.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -3128,10 +3123,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Fotos\PainelFotos.resx">
       <DependentUpon>PainelFotos.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Fotos\SeleçãoOrigemVídeo.resx">
-      <DependentUpon>SeleçãoOrigemVídeo.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Fotos\TodasFotos.resx">

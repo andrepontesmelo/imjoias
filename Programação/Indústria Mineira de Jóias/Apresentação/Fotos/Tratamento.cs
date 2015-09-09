@@ -17,7 +17,6 @@ namespace Apresentação.Álbum.Edição.Fotos
 		private float limiarÁrea			= 0.10f;		// Entre 0 e 1
 		private float limiarReconstrução	= 0.003f;		// Entre 0 e 1
 		private float limiarTransparentes	= 0.99f;		// Entre 0 e 1
-//		private int   margem				= 10;			// Pixels
         private const int verificarMargem   = 50;
         private float limiarMargem          = 8f;          // Entre 0 e 360
 
@@ -92,38 +91,8 @@ namespace Apresentação.Álbum.Edição.Fotos
 				}
 			}
 
-			//			EncontrarIlhasCoresFundo(origem, cores, marcado);
-
 			return cores;
 		}
-
-		//		/// <summary>
-		//		/// Encontra cores de fundo em ilhas
-		//		/// </summary>
-		//		/// <param name="imagem">Imagem original</param>
-		//		/// <param name="coresFundo">Cores de fundo conhecidos</param>
-		//		/// <param name="marcaçãoOriginal">Pontos verificados</param>
-		//		private void EncontrarIlhasCoresFundo(Bitmap imagem, Hashtable coresFundo, bool [,] marcaçãoOriginal)
-		//		{
-		//			float limiarÁrea;
-		//
-		//			limiarÁrea = Importador.limiarÁrea * imagem.Width * imagem.Height;
-		//
-		//			for (int y = 0; y < imagem.Height; y++)
-		//				for (int x = 0; x < imagem.Width; x++)
-		//					if (!marcaçãoOriginal[x, y])
-		//					{
-		//						ArrayList pontos;
-		//						long      área;
-		//
-		//						área = CalcularÁrea(marcaçãoOriginal, x, y, out pontos);
-		//
-		//						// Adicionar cores da ilha
-		//						if (área < limiarÁrea)
-		//							foreach (Point p in pontos)
-		//								coresFundo[imagem.GetPixel(p.X, p.Y)] = Color.Red;
-		//					}
-		//		}
 
 		/// <summary>
 		/// Calcula a área de uma ilha
@@ -150,13 +119,9 @@ namespace Apresentação.Álbum.Edição.Fotos
 					&& !marcação[ponto.X, ponto.Y])
 				{
 					área++;
-					//					pilha.Push(new Point(ponto.X - 1, ponto.Y - 1));
 					pilha.Push(new Point(ponto.X, ponto.Y - 1));
-					//					pilha.Push(new Point(ponto.X + 1, ponto.Y - 1));
 					pilha.Push(new Point(ponto.X + 1, ponto.Y));
-					//					pilha.Push(new Point(ponto.X + 1, ponto.Y + 1));
 					pilha.Push(new Point(ponto.X, ponto.Y + 1));
-					//					pilha.Push(new Point(ponto.X - 1, ponto.Y + 1));
 					pilha.Push(new Point(ponto.X - 1, ponto.Y));
 					marcação[ponto.X, ponto.Y] = true;
 					pontos.Add(ponto);
@@ -341,34 +306,21 @@ namespace Apresentação.Álbum.Edição.Fotos
 						else
 						{
 							processamento.SetPixel(x, y, Color.FromArgb(0, cor));
-							//processamento.SetPixel(x, y, (Color) cores[cor]);
 							transparentes++;
 						}
 					}
-
-                //if (bg.CancellationPending)
-                //    return (Image)imagem.Clone();
 
 				if (transparentes >= limiarTransparentes * imagem.Width * imagem.Height)
 					final = new Bitmap(imagem);
 				else
 				{
-					//					ReconstruirImagem(processamento, transparente);
 					RemoverIlhas(processamento, transparente);
 
 					// Suavizar transparência
 					using (Bitmap suavização = SuavizarTransparência(processamento))
 					{
-						// Cortar foto
-                        // limites = Delimitar(suavização);				
-                        // final = new Bitmap(limites.Width, limites.Height);
-
                         // Não cortar foto
                         final = new Bitmap(suavização);
-
-                        // for (int y = 0; y < limites.Height && !bg.CancellationPending; y++)
-                        //  for (int x = 0; x < limites.Width && !bg.CancellationPending; x++)
-                        //      final.SetPixel(x, y, suavização.GetPixel(limites.Left + x, limites.Top + y));
 					}
 				}
 			}
@@ -448,64 +400,6 @@ namespace Apresentação.Álbum.Edição.Fotos
 
 			return suavização;
 		}
-
-		/*
-		/// <summary>
-		/// Dilata uma imagem
-		/// </summary>
-		/// <param name="origem">Imagem original</param>
-		/// <returns>Imagem dilatada</returns>
-		private Bitmap Dilatar(Image imgOrigem)
-		{
-			Bitmap final, original;
-
-			final = new Bitmap(imgOrigem.Width, imgOrigem.Height);
-
-			using (original = new Bitmap(imgOrigem))
-			{
-				for (int y = 0; y < original.Height; y++)
-					for (int x = 0; x < original.Width; x++)
-						final.SetPixel(x, y, ObterMáximo(original, x, y));
-			}
-
-			return final;
-		}
-
-		/// <summary>
-		/// Obtém a cor máxima
-		/// </summary>
-		private Color ObterMáximo(Bitmap img, int x, int y)
-		{
-			int r = 0, g = 0, b = 0;
-
-			ObterMáximo(img, x, y, ref r, ref g, ref b);
-			ObterMáximo(img, x - 1, y - 1, ref r, ref g, ref b);
-			ObterMáximo(img, x - 1, y + 1, ref r, ref g, ref b);
-			ObterMáximo(img, x - 1, y, ref r, ref g, ref b);
-			ObterMáximo(img, x, y - 1, ref r, ref g, ref b);
-			ObterMáximo(img, x + 1, y - 1, ref r, ref g, ref b);
-			ObterMáximo(img, x + 1, y, ref r, ref g, ref b);
-			ObterMáximo(img, x + 1, y + 1, ref r, ref g, ref b);
-			ObterMáximo(img, x, y + 1, ref r, ref g, ref b);
-
-			return Color.FromArgb(r, g, b);
-		}
-			
-		/// <summary>
-		/// Obtém a cor máxima
-		/// </summary>
-		private void ObterMáximo(Bitmap img, int x, int y, ref int r, ref int g, ref int b)
-		{
-			if (x < 0 || x >= img.Width || y < 0 || y >= img.Height)
-				return;
-
-			Color pixel = img.GetPixel(x, y);
-
-			r = Math.Max(r, pixel.R);
-			g = Math.Max(g, pixel.G);
-			b = Math.Max(b, pixel.B);
-		}
-		*/
 
         /// <summary>
         /// Algumas placas de captura preenchem a borda com uma

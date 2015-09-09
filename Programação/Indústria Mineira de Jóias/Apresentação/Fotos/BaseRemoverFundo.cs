@@ -49,10 +49,6 @@ namespace Apresentação.Álbum.Edição.Fotos
             this.fotógrafo = fotógrafo;
 
             EsconderQuadroNavegação();
-
-            //tratamento.AoTerminarTratamento += new TratamentoBase.TratamentoCallback(AoTerminarTratamento);
-
-            // trackBar.Value = (int)(tratamento.Tolerância * 100);
             trackBar.Value = (int)(tratamento.Tolerância);
         }
 
@@ -149,10 +145,6 @@ namespace Apresentação.Álbum.Edição.Fotos
 
         private void btnProsseguir_Click(object sender, EventArgs e)
         {
-            //SubstituirBase(fotógrafo);
-
-            //fotógrafo.AoTratarFoto(TratamentoBase.Cortar(imagemTratada));
-            //fotógrafo.AoTratarFoto(imagemTratada);
             SubstituirBaseParaAnterior();
 
             if (AoProsseguirRemoçãoFundo != null)

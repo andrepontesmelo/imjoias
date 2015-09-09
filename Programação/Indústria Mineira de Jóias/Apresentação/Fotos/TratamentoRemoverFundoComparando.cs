@@ -9,7 +9,6 @@ namespace Apresentação.Álbum.Edição.Fotos
     {
         private Bitmap fundo;
 
-        //private float tolerância = .05f;
         private float tolerância = 10f;
 
         public Bitmap Fundo
@@ -43,7 +42,6 @@ namespace Apresentação.Álbum.Edição.Fotos
                         + Math.Abs(cor.G - fundo.G)
                         + Math.Abs(cor.B - fundo.B)) / 3f;
 
-                    //if (Math.Abs(cor.GetBrightness() - fundo.GetBrightness()) <= tolerância)
                     if (diferença <= tolerância)
 						processamento.SetPixel(x, y, Color.FromArgb(0, cor));
 				}
