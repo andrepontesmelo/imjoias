@@ -111,6 +111,19 @@ namespace Apresentação.Fotos
             }
         }
 
+        private void CarregarPeso(Entidades.Mercadoria.Mercadoria mercadoria)
+        {
+            if (!mercadoria.DePeso)
+            {
+                foto.Peso = null;
+                txtPeso.Enabled = false;
+            }
+            else
+                txtPeso.Enabled = true;
+
+            txtPeso.Text = mercadoria.Peso.ToString();
+        }
+
         /// <summary>
         /// Define o controle para manipulação dos álbuns
         /// atribuídos a esta foto.
@@ -204,16 +217,11 @@ namespace Apresentação.Fotos
         {
             foto.ReferênciaNumérica = txtReferência.ReferênciaNumérica;
 
-            if (!txtReferência.Mercadoria.DePeso)
-            {
-                foto.Peso = null;
-                txtPeso.Enabled = false;
-            }
-            else
-                txtPeso.Enabled = true;
+            Entidades.Mercadoria.Mercadoria mercadoria = txtReferência.Mercadoria;
 
             txtDescriçãoMercadoria.Text = txtReferência.Mercadoria.Descrição ?? "";
 
+            CarregarPeso(mercadoria);
             CarregarFornecedor();
 
             if (Alterado != null)
