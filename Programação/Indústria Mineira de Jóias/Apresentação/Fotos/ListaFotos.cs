@@ -580,13 +580,11 @@ namespace Apresentação.Álbum.Edição.Fotos
                                 s.Descadastrar();
                             }
 
-                           //Carregar(incluirForaDeLinha);
+                            //Carregar(incluirForaDeLinha);
                             if (AoExcluído != null)
                                 AoExcluído(null);
                         }
             }
-
-            lst.SelectedItems.Clear();
         }
     }
 }
