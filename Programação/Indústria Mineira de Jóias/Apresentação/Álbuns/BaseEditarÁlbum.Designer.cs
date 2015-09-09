@@ -192,7 +192,6 @@ namespace Apresentação.Álbum.Edição.Álbuns
             this.editarToolStripMenuItem.Name = "editarToolStripMenuItem";
             this.editarToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
             this.editarToolStripMenuItem.Text = "Editar fotografia...";
-            this.editarToolStripMenuItem.Click += new System.EventHandler(this.editarToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -204,7 +203,6 @@ namespace Apresentação.Álbum.Edição.Álbuns
             this.verSemelhantesToolStripMenuItem.Name = "verSemelhantesToolStripMenuItem";
             this.verSemelhantesToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
             this.verSemelhantesToolStripMenuItem.Text = "Ver/Exportar mercadoria(s)...";
-            this.verSemelhantesToolStripMenuItem.Click += new System.EventHandler(this.verSemelhantesToolStripMenuItem_Click);
             // 
             // toolTip
             // 

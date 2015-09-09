@@ -140,7 +140,6 @@
             //this.Controls.Add(this.progresso);
             this.Controls.Add(this.lst);
             this.Name = "ListaFotos";
-            this.Load += new System.EventHandler(this.ListaFotos_Load);
             this.menu.ResumeLayout(false);
             this.ResumeLayout(false);
 

@@ -16,16 +16,9 @@ namespace Apresentação.Álbum.Edição.Álbuns
 {
     public partial class BaseSeleçãoÁlbum : Apresentação.Formulários.BaseInferior
     {
-
         public BaseSeleçãoÁlbum()
         {
             InitializeComponent();
-        }
-
-        protected override void AoExibir()
-        {
-            base.AoExibir();
-            //todasFotos.Carregar();
         }
 
         /// <summary>
@@ -187,34 +180,22 @@ namespace Apresentação.Álbum.Edição.Álbuns
 
         public override void AoCarregarCompletamente(Splash splash)
         {
-            //splash.Mensagem = "Antecipando obtenção de miniaturas das jóias...";
-
             CacheMiniaturas cache =
                 Entidades.Álbum.CacheMiniaturas.Instância;
 
-            //splash.Mensagem = "Antecipando obtenção de ícones das jóias...";
-
             CacheÍcones cacheÍcones = Entidades.Álbum.CacheÍcones.Instância;
-
-            //splash.Mensagem = "Preenchendo cache de fotos ...";
-            //Entidades.Álbum.Foto.CarregarCacheMiniaturas();
 
             base.AoCarregarCompletamente(splash);
         }
         private void opçãoTodasFotos_Click(object sender, EventArgs e)
         {
             BaseTodasFotos controle = new BaseTodasFotos();
-            //Controlador.InserirBaseInferior(controle);
             SubstituirBase(controle);
         }
 
         private void opçãoImportarFoto_Click(object sender, EventArgs e)
         {
             Entidades.Privilégio.PermissãoFuncionário.AssegurarPermissão(Entidades.Privilégio.Permissão.Álbum);
-
-            //Fotógrafo controle = new Fotógrafo();
-            //Controlador.InserirBaseInferior(controle);
-            //SubstituirBase(controle);
 
             SubstituirBase(new Fotógrafo());
         }

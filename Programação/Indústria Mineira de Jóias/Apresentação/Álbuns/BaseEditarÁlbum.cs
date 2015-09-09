@@ -153,37 +153,6 @@ namespace Apresentação.Álbum.Edição.Álbuns
             }
         }
 
-        //private void chkForaDeLinha_CheckedChanged(object sender, EventArgs e)
-        //{
-        //    listaFotosTodas.Carregar();
-        //}
-
-        //void listaFotosTodas_AoDuploClique(Entidades.Álbum.Foto foto)
-        //{
-
-        //    Fotógrafo controle = new Fotógrafo(); 
-        //    if (listaFotosTodas.Seleção != null)
-        //        Controlador.InserirBaseInferior(controle);
-
-        //    controle.Editar(listaFotosTodas.Seleção);
-        //}
-
-        void editarToolStripMenuItem_Click(object sender, System.EventArgs e)
-        {
-            //Fotógrafo controle = new Fotógrafo();
-            //if (listaFotosTodas.Seleção != null)
-            //    Controlador.InserirBaseInferior(controle);
-
-            //controle.Editar(listaFotosTodas.Seleção);
-        }
-
-
-        private void verSemelhantesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //if (listaFotosTodas.Seleção != null)
-            //    SubstituirBase(new EditarMercadoria(Entidades.Mercadoria.Mercadoria.ObterMercadoria(listaFotosTodas.Seleção.ReferênciaFormatada, Entidades.Tabela.TabelaPadrão)));
-        }
-
         private void lnkMaisFotos_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             BaseTodasFotos novaBase = new BaseTodasFotos();

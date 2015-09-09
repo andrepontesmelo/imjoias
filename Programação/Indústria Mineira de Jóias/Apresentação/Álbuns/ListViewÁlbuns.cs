@@ -121,10 +121,6 @@ namespace Apresentação.Álbum
                     item.Remove();
                     return;
                 }
-
-#if DEBUG
-            MessageBox.Show("¡¡¡ATENÇÃO!!! Não deveria chegar até aqui!\n\nApresentação.Álbum.ListViewÁlbuns.Remover(...)");
-#endif
         }
 
         private void lst_DoubleClick(object sender, EventArgs e)

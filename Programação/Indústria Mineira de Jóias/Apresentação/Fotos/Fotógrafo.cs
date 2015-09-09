@@ -10,8 +10,6 @@ using Apresentação.Formulários;
 using Entidades.Configuração;
 using System.Collections.Generic;
 
-//[assembly:ExporBotão(Entidades.Privilégio.Permissão.Álbum, "Fotógrafo", true, typeof(Apresentação.Álbum.Edição.Fotos.Fotógrafo))]
-
 namespace Apresentação.Álbum.Edição.Fotos
 {
     /// <summary>
@@ -20,27 +18,6 @@ namespace Apresentação.Álbum.Edição.Fotos
     /// </summary>
 	public class Fotógrafo : Apresentação.Formulários.BaseInferior
 	{
-        //#region Singleton
-        //private static Fotógrafo instância = null;
-
-        ///// <summary>
-        ///// Esta classe é singleton porquê:
-        ///// apenas um objeto de captura de foto pode ser aberto de cada vez.
-        ///// Além disso, não é necessário mais uma base fotógrafo.
-        ///// Tudo pode ser feita uma só.
-        ///// André, 28/fev/05
-        ///// </summary>
-        //public static Fotógrafo Instância
-        //{
-        //    get
-        //    {
-        //        if (instância == null) instância = new Fotógrafo();
-        //        return instância;
-        //    }
-        //}
-
-        //#endregion
-
         // Formulário
         private System.Windows.Forms.Button btnCapturar;
         private Button btnEscolherCâmera;
@@ -71,38 +48,8 @@ namespace Apresentação.Álbum.Edição.Fotos
 
 		public Fotógrafo()
 		{
-            //if (instância == null)
-            //    instância = this;
-            //else
-            //    throw new NotSupportedException("Fotógrafo não pode ser instanciado duas vezes.");
-
-			// This call is required by the Windows Form Designer.
 			InitializeComponent();
-
-            //handlerFiltro += new EventHandler(AoEscolherFiltro);
 		}
-
-        ///// <summary>
-        ///// Clean up any resources being used.
-        ///// </summary>
-        //protected override void Dispose( bool disposing )
-        //{
-        //    if( disposing )
-        //    {
-        //        if (components != null) 
-        //        {
-        //            components.Dispose();
-        //        }
-        //    }
-
-        //    if (câmera != null)
-        //    {
-        //        câmera.Dispose();
-        //        câmera = null;
-        //    }
-
-        //    base.Dispose( disposing );
-        //}
 
 		#region Designer generated code
 		/// <summary>
@@ -320,7 +267,6 @@ namespace Apresentação.Álbum.Edição.Fotos
             this.btnFundo.Text = "Informar fundo";
             this.btnFundo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnFundo.UseVisualStyleBackColor = false;
-            this.btnFundo.Click += new System.EventHandler(this.btnFundo_Click);
             // 
             // tabs
             // 
@@ -555,259 +501,6 @@ namespace Apresentação.Álbum.Edição.Fotos
                 listaÁlbuns.Marcar(álbumSelecionado);
         }
 
-        /// <summary>
-        /// Ocorre ao exibir pela primeira vez.
-        /// A câmera é então preparada para captura.
-        /// </summary>
-        protected override void AoExibirDaPrimeiraVez()
-        {
-            //Filters filtros = null;
-
-            base.AoExibirDaPrimeiraVez();
-
-            //câmera = null;
-
-            //try
-            //{
-            //    filtros = new Filters();
-            //}
-            //catch (Exception e)
-            //{
-            //    //MessageBox.Show(
-            //    //    this.ParentForm,
-            //    //    "Ocorreu um erro enquanto a lista de câmeras era preparada:\n\n" + e.Message +
-            //    //    "\n\nCertifique-se de que a câmera ou a placa de captura esteja instalada.",
-            //    //    "Fotógrafo",
-            //    //    MessageBoxButtons.OK,
-            //    //    MessageBoxIcon.Error);
-            //}
-
-            //if (filtros == null || filtros.VideoInputDevices.Count == 0)
-            //{
-            //    //MessageBox.Show(
-            //    //    this.ParentForm,
-            //    //    "Não foi possível encontrar nenhuma câmera instalada no computador.",
-            //    //    "Fotógrafo",
-            //    //    MessageBoxButtons.OK,
-            //    //    MessageBoxIcon.Information);
-
-            //    //btnCapturar.Enabled = false;
-            //}
-            //else
-            //{
-            //    bool ok = false;
-            //    int iCâmera = 0;
-
-            //    btnEscolherCâmera.Visible = filtros.VideoInputDevices.Count > 1;
-
-            //    do
-            //    {
-            //        try
-            //        {
-            //            ObterCâmera(filtros.VideoInputDevices[iCâmera++], false);
-            //            ok = câmera != null;
-            //        }
-            //        catch (ArgumentOutOfRangeException)
-            //        {
-            //            break;
-            //        }
-            //        catch (IndexOutOfRangeException)
-            //        {
-            //            break;
-            //        }
-            //        catch
-            //        {
-            //            if (iCâmera > 100)
-            //                break;
-            //        }
-            //    } while (!ok);
-
-            //    foreach (Filter filtro in filtros.VideoInputDevices)
-            //    {
-            //        ToolStripMenuItem item;
-
-            //        item = new ToolStripMenuItem(filtro.Name, Properties.Resources.camera1, handlerFiltro);
-            //        item.Tag = filtro;
-
-            //        mnuCâmeras.Items.Add(item);
-            //    }
-
-            //    //if (!ok)
-            //    //    MessageBox.Show(
-            //    //        ParentForm,
-            //    //        "Não foi possível configurar nenhuma câmera instalada.",
-            //    //        "Fotógrafo",
-            //    //        MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
-        }
-
-        ///// <summary>
-        ///// Obtém câmera do filtro.
-        ///// </summary>
-        //private void ObterCâmera(Filter filtro, bool interativo)
-        //{
-        //    bool insistir;
-        //    Capture antigo = câmera;
-        //    ConfiguraçãoUsuário<bool> problema;
-
-        //    problema = new ConfiguraçãoUsuário<bool>("Problemas com câmera " + filtro.Name + " em " + Environment.MachineName, false);
-
-        //    if (problema.Valor && !interativo)
-        //    {
-        //        câmera = null;
-        //        return;
-        //    }
-        //    else if (problema.Valor)
-        //        if (MessageBox.Show(
-        //            ParentForm,
-        //            "Aparentemente houve um problema com a câmera " + filtro.Name
-        //            + " da última vez que o programa tentou utilizá-la.\n\n"
-        //            + "Deseja tentar novamente?\n\n"
-        //            + "(Em caso de problemas, ela será desabilitada novamente)",
-        //            "Problema com câmera",
-        //            MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
-        //            == DialogResult.No)
-        //        {
-        //            câmera = null;
-        //            return;
-        //        }
-
-        //    do
-        //    {
-        //        insistir = false;
-
-        //        try
-        //        {
-        //            if (problema != null)
-        //                problema.Valor = true;
-
-        //            câmera = new Capture(filtro, null);
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            if (!interativo)
-        //                throw new Exception("Não foi possível obter câmera.", e);
-
-        //            DialogResult resultado =
-        //                MessageBox.Show(this, "O dispositivo de câmera não pode ser encontrado.\n\nInformações Adicionais: \n" + e.ToString(), "Erro ao carregar dispositivo de câmera", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error);
-
-        //            if (resultado == DialogResult.Abort)
-        //                câmera = null;
-        //            else if (resultado == DialogResult.Retry)
-        //                insistir = true;
-        //        }
-        //        finally
-        //        {
-        //            /* No Windows Vista RC1 tive problemas não tratáveis
-        //             * no try & catch. Assim consigo garantir que o programa
-        //             * é capaz de lidar com esta câmera.
-        //             * -- Júlio, 12/10/2006.
-        //             */
-        //            if (problema != null && problema.Cadastrado)
-        //            {
-        //                problema.Descadastrar();
-        //                problema = null;
-        //            }
-        //        }
-        //    } while (insistir);
-
-        //    if (câmera != antigo && antigo != null)
-        //        //antigo.Stop();
-        //        antigo.Dispose();
-
-        //    if (câmera != null)
-        //    {
-        //        // O usuário não ignorou um possível erro
-        //        câmera.PreviewWindow = picFoto;
-        //        câmera.FrameCaptureComplete += new DirectX.Capture.Capture.FrameCapHandler(câmera_FrameCaptureComplete);
-
-        //        if (câmera.VideoSources.Count > 1)
-        //        {
-        //            using (SeleçãoOrigemVídeo dlg = new SeleçãoOrigemVídeo(câmera))
-        //                dlg.ShowDialog(this.ParentForm);
-
-        //            btnEscolherCâmera.Visible = true;
-        //        }
-
-        //        if (removerFundo != null)
-        //        {
-        //            Controlador.RemoverBaseInferior(removerFundo);
-        //            removerFundo.Dispose();
-        //        }
-
-        //        removerFundo = new BaseRemoverFundo(this);
-
-        //        Controlador.InserirBaseInferior(removerFundo);
-        //    }
-        //}
-
-
-        ///// <summary>
-        ///// Ocorre ao obter quadro do vídeo
-        ///// </summary>
-        ///// <param name="frame">Quadro</param>
-        //private void câmera_FrameCaptureComplete(Bitmap frame)
-        //{
-        //    if (capturandoFundo)
-        //    {
-        //        removerFundo.Fundo = (Bitmap)frame.Clone();
-        //        capturandoFundo = false;
-        //        MessageBox.Show("Ok, irei utilizar este fundo", "Fundo aceito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-        //    } else
-        //    {
-        //        try
-        //        {
-        //            Cursor.Current = Cursors.WaitCursor;
-
-        //            painelFotos.AdicionarFoto((Bitmap) frame.Clone());
-        //            painelFotos.Update();
-
-        //            painelFotos.Cursor = Cursors.AppStarting;
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            MessageBox.Show("Não foi possível capturar a imagem da câmera! Ocorreu o seguinte erro:\r\n\r\n" + e.ToString());
-        //        }
-        //        finally
-        //        {
-        //            Cursor.Current = Cursors.Default;
-        //        }
-        //    }
-        //}
-
-        ///// <summary>
-        ///// Ocorer quando solicitado a captura
-        ///// </summary>
-        //private void cmdCaptura_Click(object sender, System.EventArgs e)
-        //{
-        //    try
-        //    {
-        //        Cursor.Current = Cursors.AppStarting;
-        //        câmera.CaptureFrame();
-        //        //btnCapturar.Enabled = false;
-        //    }
-        //    catch (Exception erro)
-        //    {
-        //        Cursor.Current = Cursors.Default;
-        //        MessageBox.Show("Não foi possível solicitar a captura da imagem! Ocorreu o seguinte erro:\r\n\r\n" + erro.ToString());
-        //    }
-
-        //    quadroMercadoria.Focus();
-
-        //    // Pula pra tab de escolha da foto
-        //    tabs.SelectedTab = tabEscolha;
-        //}
-
-
-        ///// <summary>
-        ///// Ocorre ao escolher um filtro no menu.
-        ///// </summary>
-        //private void AoEscolherFiltro(object sender, EventArgs e)
-        //{
-        //    ObterCâmera((Filter)((ToolStripMenuItem)sender).Tag, true);
-        //}
-
         private void btnEscolherCâmera_Click(object sender, EventArgs e)
         {
             Point p;
@@ -845,14 +538,6 @@ namespace Apresentação.Álbum.Edição.Fotos
         private void painelFotos_FotoFoiSelecionada(object sender, EventArgs e)
         {
             btnCadastrar.Enabled = true;
-
-            //if (bgTratamento.IsBusy)
-            //{
-            //    BalãoInformarTratamento balão;
-
-            //    balão = new BalãoInformarTratamento();
-            //    balão.ShowBalloon(painelFotos);
-            //}
         }
 
         /// <summary>
@@ -861,18 +546,7 @@ namespace Apresentação.Álbum.Edição.Fotos
         /// <returns>Se os dados estão válidos.</returns>
         private bool ValidarDados()
         {
-            bool ok;
-
-            ok = quadroMercadoria.ValidarDados();
-
-            //if (ok && listaÁlbuns.ContadorÁlbunsMarcados == 0)
-            //    ok &= MessageBox.Show(
-            //        this.ParentForm,
-            //        "Nenhum álbum está marcado. Deseja continuar assim mesmo?",
-            //        "Álbum de fotos",
-            //        MessageBoxButtons.YesNo,
-            //        MessageBoxIcon.Question,
-            //        MessageBoxDefaultButton.Button2) == DialogResult.Yes;
+            bool ok = quadroMercadoria.ValidarDados();
 
             return ok;
         }
@@ -888,10 +562,6 @@ namespace Apresentação.Álbum.Edição.Fotos
                 quadroMercadoria.CadastrarFornecedorSeNecessário();
                 quadroMercadoria.Foto.Imagem = painelFotos.FotoSelecionada;
                 
-                //if (painelFotos.FotoSelecionada != null &&
-                //    painelFotos.FotoSelecionada.Tag is Image)
-                //    quadroMercadoria.Foto.FotoOriginal = (Image)painelFotos.FotoSelecionada.Tag;
-
                 // Refaz lista de álbuns da foto conforme o que está na tela
                 lock (quadroMercadoria.Foto.Álbuns)
                 {
@@ -959,17 +629,9 @@ namespace Apresentação.Álbum.Edição.Fotos
         /// </summary>
         private void Limpar()
         {
-            //try
-            //{
-            //    if (bgTratamento.IsBusy)
-            //        bgTratamento.CancelAsync();
-            //}
-            //catch { }
-
             painelFotos.Limpar();
             quadroMercadoria.Limpar();
             quadroMercadoria.TxtReferênciaEnabled = true;
-            //btnCadastrar.Text = "&Cadastrar";
             btnCadastrar.Visible = true;
             btnImportar.Visible = true;
             opçãoApagarFoto.Enabled = false;
@@ -1005,23 +667,15 @@ namespace Apresentação.Álbum.Edição.Fotos
         {
             painelFotos.Limpar();
 
-            // Temp
-            //foto.ObterFoto();
-
             painelFotos.AdicionarFoto(foto.Imagem);
             quadroMercadoria.TxtReferênciaEnabled = false;
             quadroMercadoria.Foto = foto;
             quadroExibição.MostrarFoto(foto.ObterMercadoria());
             
-            //if (foto.FotoOriginal != null)
-            //    painelFotos.AdicionarFoto(foto.FotoOriginal);
-
             painelFotos.Selecionar(0);
 
             btnCadastrar.Visible = false;
             btnImportar.Visible = false;
-            //btnCadastrar.Text = "&Alterar";
-            //btnCadastrar.Enabled = true;
 
             if (!Exibindo)
                 Exibir();
@@ -1050,9 +704,6 @@ namespace Apresentação.Álbum.Edição.Fotos
                     f.Imagem = imagem;
 
                     quadroExibição.MostrarFoto(f);
-
-                    //bgTratamento.RunWorkerAsync(new Bitmap(imagem));
-                    //TratarFoto(imagem.Clone());
                 }
                 catch (Exception erro)
                 {
@@ -1080,35 +731,6 @@ namespace Apresentação.Álbum.Edição.Fotos
             painelFotos.Cursor = Cursors.Default;
         }
  
-
-
-        private void btnFundo_Click(object sender, EventArgs e)
-        {
-//            capturandoFundo = true;
-//            câmera.CaptureFrame();
-        }
-
-        //private void painelFotos_DoubleClick(object sender, EventArgs e)
-        //{
-        //    if (removerFundo.Fundo == null)
-        //    {
-        //        MessageBox.Show("Preciso que você me mostre o fundo.Para isto:\n- retire qualquer mercadoria da câmera\n- Vá para aba 'Fotografe'\n-Clique em capturar fundo", "Removendo fundo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-        //        return;
-        //    }
-        //    Apresentação.Formulários.AguardeDB.Mostrar();
-        //    try
-        //    {
-        //        removerFundo.RemoverFundo(new Bitmap(painelFotos.FotoSelecionada));
-        //        Apresentação.Formulários.AguardeDB.Fechar();
-        //        SubstituirBase(removerFundo);
-        //    }
-        //    catch (FundoNaoRemovidoException erro)
-        //    {
-        //        Apresentação.Formulários.AguardeDB.Fechar();
-        //        MessageBox.Show(this, "O fundo não pode ser removido, uma vez que o fundo informado tem dimensões diferentes", "Fundo não removido", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        //    }
-        //}
-
         private void opçãoApagarFoto_Click(object sender, EventArgs e)
         {
             if (

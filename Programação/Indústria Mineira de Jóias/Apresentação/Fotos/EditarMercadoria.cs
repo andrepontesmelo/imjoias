@@ -32,12 +32,6 @@ namespace Apresentação.Álbum.Edição.Fotos
             listaFotos.Fotos = new List<Entidades.Álbum.Foto>(mercadoria.ObterFotos());
         }
 
-        //protected override void AoExibir()
-        //{
-        //    base.AoExibir();
-        //    listaFotos.Fotos = new List<Entidades.Álbum.Foto>(mercadoria.ObterFotos());
-        //}
-
         #region Tratamento de ações do usuário
 
         /// <summary>

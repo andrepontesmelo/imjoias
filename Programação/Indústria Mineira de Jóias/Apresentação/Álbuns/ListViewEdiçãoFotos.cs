@@ -100,23 +100,11 @@ namespace Apresentação.Álbum.Edição.Álbuns
             // A interface será modificada pelo evento da composição.
         }
 
-        ///// <summary>
-        ///// Remove um item do álbum.
-        ///// </summary>
-        ///// <param name="foto">Foto a ser removida.</param>
-        //public override void Remover(Foto foto)
-        //{
-        //    álbum.Fotos.Remover(foto);
-
-        //    // A interface será modificada pelo evento da composição.
-        //}
-
         /// <summary>
         /// Ocorre ao remover um item da composição do álbum.
         /// </summary>
         void Fotos_AoRemover(Acesso.Comum.DbComposição<Foto> composição, Foto entidade)
         {
-            //base.Remover(entidade);
             álbum.Fotos.Atualizar();
         }
 
@@ -172,17 +160,7 @@ namespace Apresentação.Álbum.Edição.Álbuns
         private void btnCapturar_Click(object sender, EventArgs e)
         {
             baseInferior.SubstituirBase(new Fotógrafo());
-            //Fotógrafo.Instância.Controlador.Exibir();
-            //Fotógrafo.Instância.listaÁlbuns.Marcar(álbum);
         }
-
-        ///// <summary>
-        ///// Dispara duplo clique ao receber um.
-        ///// </summary>
-        //private void lst_DoubleClick(object sender, EventArgs e)
-        //{
-        //    OnDoubleClick(e);
-        //}
 
         /// <summary>
         /// Ocorre ao receber um elemento por drag'n'drop.

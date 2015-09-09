@@ -6,57 +6,13 @@ using System.Drawing;
 
 namespace Apresentação.Álbum.Edição.Fotos
 {
-    abstract class TratamentoBase //: TrabalhoSegundoPlano
+    abstract class TratamentoBase 
     {
         private static float limiarProjeção = 0.03f;		// Entre 0 e 1
         private static int verificarMargem = 50;
         private static float limiarMargem = 8f;          // Entre 0 e 360
 
         protected bool cancelado = false;
-        //private volatile Bitmap imagem, tratamento;
-
-        //public delegate void TratamentoCallback(Bitmap imagem);
-
-        //public event TratamentoCallback AoTerminarTratamento;
-
-        //public void IniciarTrabalho(Bitmap imagem)
-        //{
-        //    //this.imagem = imagem;
-        //    this.imagem = (Bitmap) imagem.Clone();
-
-        //    //base.IniciarTrabalho();
-        //    RealizarTrabalho();
-        //    AoTerminar();
-        //}
-
-        //public void Cancelar()
-        //{
-        //    cancelado = true;
-        //}
-
-        //protected override bool DeveReiniciar()
-        //{
-        //    return cancelado;
-        //}
-
-        //protected override void RealizarTrabalho()
-        //{
-        //    /* Excessão: imagem.Clone(): 
-        //     * "The object is currently in use elsewhere "
-        //     * Reproduzir: Fotografo, capturar foto, clica na foto,
-        //     * capturar novamente, BUM!!
-        //     * 
-        //     * solucao: clone de bitmap agora é feito na thread da interface, 
-        //     * antes de criar thread.
-        //     */
-        //    tratamento = RealizarTrabalho(imagem);
-        //}
-
-
-        //protected override void AoTerminar()
-        //{
-        //    AoTerminarTratamento(tratamento);
-        //}
 
         public abstract Bitmap RealizarTrabalho(Bitmap img);
 
