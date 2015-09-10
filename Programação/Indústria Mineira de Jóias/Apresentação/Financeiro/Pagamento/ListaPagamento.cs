@@ -507,7 +507,7 @@ namespace Apresentação.Financeiro.Pagamento
                     itemPagamento.Vencimento = vencível.Vencimento;
 
                     item.SubItems[colVencimento.Index].Text =
-                        vencível.Vencimento.ToString("dd/MM");
+                        vencível.Vencimento.ToString("dd/MM/yyyy");
                 }   
                 else
                 {
