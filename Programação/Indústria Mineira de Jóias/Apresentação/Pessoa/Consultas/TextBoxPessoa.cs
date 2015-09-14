@@ -512,7 +512,9 @@ namespace Apresentação.Pessoa.Consultas
             else
             {
                 UseWaitCursor = true;
-                Parent.UseWaitCursor = true;
+
+                if (Parent != null)
+                    Parent.UseWaitCursor = true;
 
                 //imagem.Visible = true;
                 //imagem.BringToFront();
@@ -535,7 +537,9 @@ namespace Apresentação.Pessoa.Consultas
             {
                 //txt.BackColor = Color.White;
                 UseWaitCursor = false;
-                Parent.UseWaitCursor = false;
+                
+                if (Parent != null)
+                    Parent.UseWaitCursor = false;
 
                 //imagem.Visible = false;
             }
@@ -928,7 +932,8 @@ namespace Apresentação.Pessoa.Consultas
             }
             else if (!this.DesignMode && this.TopLevelControl != null)
             {
-                this.ParentForm.Cursor = Cursors.WaitCursor;
+                if (this.ParentForm != null)
+                    this.ParentForm.Cursor = Cursors.WaitCursor;
 
                 CriarLista();
                 ReposicionarLista();
@@ -936,7 +941,8 @@ namespace Apresentação.Pessoa.Consultas
 
                 this.TopLevelControl.ResumeLayout();
 
-                this.ParentForm.Cursor = Cursors.Default;
+                if (this.ParentForm != null)
+                    this.ParentForm.Cursor = Cursors.Default;
             }
 
 			travar = false;
