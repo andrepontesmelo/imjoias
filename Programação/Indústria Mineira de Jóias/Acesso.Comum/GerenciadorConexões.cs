@@ -499,18 +499,21 @@ namespace Acesso.Comum
 
             Queue<ConexãoDbUsuário> conexões = ObterConexões();
 
-            for (int i = 0; i < conexões.Count; i++)
+            lock (this)
             {
-                ConexãoDbUsuário cUsr = conexões.Dequeue();
-
-                if (cUsr != null)
+                for (int i = 0; i < conexões.Count; i++)
                 {
-                    if (!cUsr.Equals(conexão))
-                        conexões.Enqueue(cUsr);
-                } 
-                // A conexão pode ser usada por fora, portanto o mapeamento é mantido.
-                //else
-                //    hashMapConexão.Remove(conexão);
+                    ConexãoDbUsuário cUsr = conexões.Dequeue();
+
+                    if (cUsr != null)
+                    {
+                        if (!cUsr.Equals(conexão))
+                            conexões.Enqueue(cUsr);
+                    }
+
+                    // A conexão pode ser usada por fora, portanto o mapeamento é mantido:
+                    // hashMapConexão.Remove(conexão);
+                }
             }
 
             DispararAtualizarContexto();
