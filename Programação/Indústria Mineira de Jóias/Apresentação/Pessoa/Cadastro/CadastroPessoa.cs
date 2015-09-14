@@ -16,7 +16,6 @@ namespace Apresentação.Pessoa.Cadastro
 	public class CadastroPessoa : System.Windows.Forms.Form, Apresentação.Formulários.IRequerPrivilégio
 	{
 		private Entidades.Pessoa.Pessoa entidade;
-        private Dictionary<TabPage, bool> visitado = new Dictionary<TabPage, bool>();
         protected TabControl tab;
 
         // Designer
@@ -30,8 +29,6 @@ namespace Apresentação.Pessoa.Cadastro
         private GroupBox grpEletrônico;
         private TextBox txtEmail;
         private Label label1;
-        //private TabPage tabRelacionamentos;
-        //private EditorRelacionamentos relacionamentos;
         private TabPage tabTelefone;
         private GroupBox grpFísico;
         private EditorEndereços endereços;
@@ -71,8 +68,6 @@ namespace Apresentação.Pessoa.Cadastro
 			this.Pessoa = pessoa;
 
             AguardeDB.Fechar();
-
-            visitado[tab.SelectedTab] = true;
 		}
 
 		/// <summary>
@@ -149,7 +144,6 @@ namespace Apresentação.Pessoa.Cadastro
             this.tab.SelectedIndex = 0;
             this.tab.Size = new System.Drawing.Size(408, 481);
             this.tab.TabIndex = 0;
-            this.tab.Selected += new System.Windows.Forms.TabControlEventHandler(this.tab_Selected);
             // 
             // tabDadosPessoais
             // 
@@ -481,7 +475,6 @@ namespace Apresentação.Pessoa.Cadastro
 
                 endereços.Pessoa = value;
                 telefones.Pessoa = value;
-                //relacionamentos.Pessoa = value;
                 datasRelevantes.Pessoa = value;
 
                 txtObservações.Text = value.Observações;
@@ -526,7 +519,6 @@ namespace Apresentação.Pessoa.Cadastro
             grpEletrônico.Enabled = ligar;
             grpFísico.Enabled = ligar;
             endereços.Enabled = ligar;
-            //relacionamentos.Enabled = ligar;
             txtObservações.Enabled = ligar;
         }
 
@@ -723,32 +715,6 @@ namespace Apresentação.Pessoa.Cadastro
 
         protected virtual bool Validar()
         {
-            //if (!entidade.Cadastrado)
-            //{
-            //    // Garantir que todas as abas foram abertas.
-            //    int idx = 0;
-
-            //    foreach (TabPage controle in tab.TabPages)
-            //    {
-            //        bool ok;
-
-            //        if (!visitado.TryGetValue(controle, out ok) || !ok)
-            //        {
-            //            tab.SelectedTab = controle;
-
-            //            MessageBox.Show(
-            //                ParentForm,
-            //                "Antes de cadastrar uma pessoa, por favor, complete todo o formulário.",
-            //                "Cadastro de pessoa",
-            //                MessageBoxButtons.OK, MessageBoxIcon.Stop);
-
-            //            return false;
-            //        }
-
-            //        idx++;
-            //    }
-            //}
-
             return true;
         }
 
@@ -775,11 +741,6 @@ namespace Apresentação.Pessoa.Cadastro
         private void cmbRegião_Validated(object sender, EventArgs e)
         {
             Pessoa.Região = cmbRegião.Região;
-        }
-
-        private void tab_Selected(object sender, TabControlEventArgs e)
-        {
-            visitado[tab.SelectedTab] = true;
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
