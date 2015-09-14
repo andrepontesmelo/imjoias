@@ -789,7 +789,7 @@ namespace Programa.Recepção.BaseInferior
 				else
 				{
 					optAOutro.Checked = true;
-					cmbAOutro.Text = Setor.Nome;
+					cmbAOutro.Text = value.Nome;
 				}
 			}
 		}
