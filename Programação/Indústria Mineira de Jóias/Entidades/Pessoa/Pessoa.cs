@@ -1934,5 +1934,16 @@ namespace Entidades.Pessoa
 
             return RealizarConsulta(cmd.ToString(), 0, Pessoa.TotalAtributos);
         }
+
+        public bool PossuiAlgumEndereçoInválido()
+        {
+            foreach (Entidades.Pessoa.Endereço.Endereço e in endereços)
+            {
+                if (e.Inválido)
+                    return true;
+            }
+         
+            return false;
+        }
     }
 }
