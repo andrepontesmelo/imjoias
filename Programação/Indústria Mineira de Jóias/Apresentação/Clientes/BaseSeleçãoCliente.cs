@@ -603,7 +603,13 @@ namespace Apresentação.Atendimento.Clientes
         /// </summary>
         private void opçãoCadastrar_Click(object sender, EventArgs e)
         {
+            Entidades.Pessoa.Pessoa novaPessoa = 
             Apresentação.Pessoa.Cadastro.CadastroPessoa.MostrarCadastrar();
+
+            if (novaPessoa != null && Escolhida != null)
+            {
+                Escolhida(novaPessoa);
+            }
         }
 
         protected void DispararEscolha(Entidades.Pessoa.Pessoa pessoa)
