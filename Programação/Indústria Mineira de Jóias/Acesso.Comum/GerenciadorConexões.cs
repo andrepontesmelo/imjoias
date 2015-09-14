@@ -314,10 +314,13 @@ namespace Acesso.Comum
 
                         Console.WriteLine("Não foi possível criar nova conexão: {0}", e.ToString());
 
-                        if (conexões.Count > 0)
+                        lock (this)
                         {
-                            cUsr = conexões.Dequeue();
-                            conexões.Enqueue(cUsr);
+                            if (conexões.Count > 0)
+                            {
+                                cUsr = conexões.Dequeue();
+                                conexões.Enqueue(cUsr);
+                            }
                         }
 
                         insistir = true;
