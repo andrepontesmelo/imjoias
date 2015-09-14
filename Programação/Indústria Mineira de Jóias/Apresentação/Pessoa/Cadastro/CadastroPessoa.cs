@@ -715,6 +715,20 @@ namespace Apresentação.Pessoa.Cadastro
 
         protected virtual bool Validar()
         {
+            if (entidade.PossuiAlgumEndereçoInválido())
+            {
+                tab.SelectTab(tabEndereço);
+
+                MessageBox.Show(
+                    this,
+                    "Algum endereço é inválido. ",
+                    "Cadastro de funcionário",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                
+                return false;
+            }
+
             return true;
         }
 

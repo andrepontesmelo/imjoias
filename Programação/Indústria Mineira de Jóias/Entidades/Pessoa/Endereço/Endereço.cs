@@ -235,5 +235,13 @@ namespace Entidades.Pessoa.Endereço
             " - " + Localidade.Estado.Sigla + 
             " - CEP " + CEP;
         }
+
+        public bool Inválido
+        {
+            get
+            {
+                return (String.IsNullOrWhiteSpace(logradouro) || descrição == null || localidade == null);
+            }
+        }
     }
 }
