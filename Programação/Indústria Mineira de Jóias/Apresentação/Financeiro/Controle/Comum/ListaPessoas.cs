@@ -36,8 +36,8 @@ namespace Apresentação.Atendimento.Comum
 		public delegate void PessoaSelecionadaDelegate(ListaPessoasItem item);
 		public event PessoaSelecionadaDelegate PessoaSelecionada;
 		public event PessoaSelecionadaDelegate PessoaIncluída;
-        public delegate void ScroolDelegate();
-        public event ScroolDelegate ScroolEvento;
+        public delegate void ScrollDelegate();
+        public event ScrollDelegate ScrollEvento;
 
 		/// <summary> 
 		/// Required designer variable.
@@ -379,8 +379,8 @@ namespace Apresentação.Atendimento.Comum
 
         private void ListaPessoas_Scroll(object sender, ScrollEventArgs e)
         {
-            if (ScroolEvento != null)
-                ScroolEvento();
+            if (ScrollEvento != null)
+                ScrollEvento();
         }
 	}
 }
