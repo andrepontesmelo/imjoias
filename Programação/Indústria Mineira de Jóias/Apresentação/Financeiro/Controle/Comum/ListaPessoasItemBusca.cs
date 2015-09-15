@@ -234,7 +234,7 @@ namespace Apresentação.Atendimento.Comum
 			if (!Focused)
 				Selecionar();
 
-            // Manda o foco para o pai poder dar scrool com a bolinha do mouse
+            // Manda o foco para o pai poder dar scroll com a roda do mouse
             if (Parent != null)
                 Parent.Focus();
 		}
