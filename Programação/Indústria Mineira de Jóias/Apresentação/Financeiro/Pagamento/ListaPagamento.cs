@@ -501,19 +501,10 @@ namespace Apresentação.Financeiro.Pagamento
                 else
                     itemPagamento.ProrrogadoPara = null;
 
-                if (p is IVencível)
-                {
-                    IVencível vencível = (IVencível) p;
-                    itemPagamento.Vencimento = vencível.Vencimento;
+                itemPagamento.Vencimento = p.ÚltimoVencimento;
 
-                    item.SubItems[colVencimento.Index].Text =
-                        vencível.Vencimento.ToString("dd/MM/yyyy");
-                }   
-                else
-                {
-                    item.SubItems[colVencimento.Index].Text = "";
-                    itemPagamento.Vencimento = null;
-                }
+                item.SubItems[colVencimento.Index].Text =
+                    p.ÚltimoVencimento.ToString("dd/MM/yyyy");
 
                 if (venda != null)
                 {
