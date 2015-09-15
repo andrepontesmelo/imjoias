@@ -25,17 +25,20 @@ namespace Apresentação.Atendimento.Clientes
             foreach (Telefone telefone in data.Pessoa.Telefones)
             {
                 if (telefones.Length > 0)
-                    telefones.Append("; ");
-                telefones.AppendFormat("{0}: {1}", telefone.Descrição, telefone.Número);
+                    telefones.AppendLine();
+
+                telefones.Append(telefone.Número);
+
+                break;
             }
 
             lblPrimária.Text = data.Pessoa.Nome;
+
             lblSecundária.Text = telefones.ToString();
             lblDescrição.Text = string.Format(
-                "{0:dd/MM} - {1} {2}\n{3}",
+                "{0:dd/MM} - {1} {2}",
                 data.Data, DateTime.Now.Year - data.Data.Year,
-                DateTime.Now.Year - data.Data.Year > 1 ? "anos" : "ano",
-                data.Descrição);
+                DateTime.Now.Year - data.Data.Year > 1 ? "anos" : "ano");
 
             this.data = data;
 
