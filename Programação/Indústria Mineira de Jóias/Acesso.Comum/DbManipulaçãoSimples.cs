@@ -803,6 +803,9 @@ namespace Acesso.Comum
         /// </remarks>
         protected static void ResolverPendências(IDbCommand cmd, LinkedList<ObjCampoValor> mapeamentoPendente)
         {
+#if DEBUG
+            DateTime inicio = DateTime.Now;
+#endif
             if (mapeamentoPendente != null && mapeamentoPendente.Count > 0)
             {
                 LinkedList<ObjCampoValor> pendênciaLocal = mapeamentoPendente;
@@ -843,8 +846,28 @@ namespace Acesso.Comum
                         conexão.Ocupado = ocupação_anterior;
                     }
                 }
+
+#if DEBUG
+                TimeSpan tempo = DateTime.Now - inicio;
+                double totalMs = tempo.TotalMilliseconds;
+
+                if (totalMs > maxTempoMs)
+                {
+                    Console.WriteLine("=============================================== Novo recorde de demora para resolver pendências. ===============================================");
+                    Console.Write(totalMs);
+                    Console.Write("\t");
+                    Console.WriteLine(pendênciaLocal.First.Value.objeto.GetType().ToString());
+
+                    maxTempoMs = totalMs;
+                }
+#endif
             }
         }
+
+#if DEBUG
+        private static double maxTempoMs = 0;
+#endif
+
 
         /// <summary>
         /// Mapear uma linha de uma tabela via ADO.NET para

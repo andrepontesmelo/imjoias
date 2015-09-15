@@ -14,7 +14,6 @@ namespace Acesso.Comum.Cache
 		/// <summary>
 		/// Tamanho do cache.
 		/// </summary>
-		//private const int tamanho = 50;
         private const int tamanho = 5000;
 		
 		/// <summary>
@@ -119,7 +118,7 @@ namespace Acesso.Comum.Cache
                 }
                 else
                 {
-                    Console.WriteLine("Infelizmente o item " + chave.ToString() + " não está em cache... só tenho " + hashCache.Count.ToString());
+                    //Console.WriteLine("Infelizmente o item " + chave.ToString() + " não está em cache... só tenho " + hashCache.Count.ToString());
                     entidade = Recuperar(tipo, parâmetros);
                     Adicionar(tipo, parâmetros, entidade);
                     return entidade;
@@ -137,11 +136,8 @@ namespace Acesso.Comum.Cache
             Console.WriteLine("Removendo da cache {0}", item.ToString());
 #endif
 
-            //lock (this)
-            //{
-				listaCache.Remove(item);
-				hashCache.Remove(item.Chave);
-			//}
+			listaCache.Remove(item);
+			hashCache.Remove(item.Chave);
 
             // Remove item da lista de referentes.
             if (item.Entidade != null)
@@ -168,25 +164,22 @@ namespace Acesso.Comum.Cache
             {
                 Type tipo = entidade.GetType();
 
-                //lock (this)
-                //{
-                    foreach (CacheDbItem item in listaAntiga)
-                        /* O tipo não pode ser comparado.
-                         * Imagine que existe um item "Representante" em cache
-                         * e deseja-se remover a mesma pessoa porém "PessoaFísica"
-                         * Isso acontece na prática!
-                         */
-                        ///if (item.Entidade != null && item.Entidade.GetType() == tipo && entidade.Referente(item.Entidade))
-                        if (item.Entidade != null && entidade.Referente(item.Entidade))
-                        {
-                            Remover(item);
-                            //break;
-                            /* Deve-se remover todas as instancias.
-                             * Existe caso em que há mais de uma entidade repetida na cache.
-                             * Como reproduzir ? Procure pessoa pelo codigo no atendimento faça alguma alteração e procure novamente.
-                             */
-                        }
-                //}
+                foreach (CacheDbItem item in listaAntiga)
+                    /* O tipo não pode ser comparado.
+                        * Imagine que existe um item "Representante" em cache
+                        * e deseja-se remover a mesma pessoa porém "PessoaFísica"
+                        * Isso acontece na prática!
+                        */
+                    ///if (item.Entidade != null && item.Entidade.GetType() == tipo && entidade.Referente(item.Entidade))
+                    if (item.Entidade != null && entidade.Referente(item.Entidade))
+                    {
+                        Remover(item);
+                        //break;
+                        /* Deve-se remover todas as instancias.
+                            * Existe caso em que há mais de uma entidade repetida na cache.
+                            * Como reproduzir ? Procure pessoa pelo codigo no atendimento faça alguma alteração e procure novamente.
+                            */
+                    }
             }
         }
 
@@ -257,8 +250,6 @@ namespace Acesso.Comum.Cache
                 }
             }
 
-			//Adicionar(tipo, parâmetros, entidade);
-
 			return entidade;
 		}
 
@@ -319,19 +310,11 @@ namespace Acesso.Comum.Cache
 				{
                     object[] pConvertidos = new object[parâmetros.Length];
 
-                    //try
-                    //{
-                        for (int i = 0; i < parâmetros.Length; i++)
-                            pConvertidos[i] = Convert.ChangeType(parâmetros[i], métParâmetros[i].ParameterType);
+                    for (int i = 0; i < parâmetros.Length; i++)
+                        pConvertidos[i] = Convert.ChangeType(parâmetros[i], métParâmetros[i].ParameterType);
 
-						entidade = (DbManipulação) método.Invoke(null, pConvertidos);
-                        return true;
-                    //}
-                    //catch (Exception e)
-                    //{
-                    //    Console.WriteLine("Erro ao tentando converter objeto: " + e.ToString());
-                    //    entidade = null;
-                    //}
+					entidade = (DbManipulação) método.Invoke(null, pConvertidos);
+                    return true;
 				}
 			}
 
@@ -354,18 +337,12 @@ namespace Acesso.Comum.Cache
             while (listaCache.Count >= tamanho)
                 Remover(listaCache[0]);
 
-            //lock (this)
-            //{
-            //    if (hashCache.ContainsKey(item.Chave))
-            //        Remover(hashCache[item.Chave]);
-
-				hashCache.Add(item.Chave, item);
-                listaCache.Add(item);
-				listaCache.Sort();
-			//}
+			hashCache.Add(item.Chave, item);
+            listaCache.Add(item);
+			listaCache.Sort();
 
 #if DEBUG
-            Console.WriteLine("Adicionado {0} ({1}) em cache. {2} itens em cache.", tipo.ToString(), entidade, listaCache.Count);
+            //Console.WriteLine("Adicionado {0} ({1}) em cache. {2} itens em cache.", tipo.ToString(), entidade, listaCache.Count);
 #endif
 		}
 
