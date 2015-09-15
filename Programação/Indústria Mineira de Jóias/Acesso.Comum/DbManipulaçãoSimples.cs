@@ -803,7 +803,7 @@ namespace Acesso.Comum
         /// </remarks>
         protected static void ResolverPendências(IDbCommand cmd, LinkedList<ObjCampoValor> mapeamentoPendente)
         {
-            if (mapeamentoPendente != null)
+            if (mapeamentoPendente != null && mapeamentoPendente.Count > 0)
             {
                 LinkedList<ObjCampoValor> pendênciaLocal = mapeamentoPendente;
                 Adaptadores.ComandoConcorrente cmdConcorrente = cmd as Adaptadores.ComandoConcorrente;
