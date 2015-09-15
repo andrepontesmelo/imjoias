@@ -10,7 +10,7 @@ namespace Apresentação.Álbum.Edição.Fotos
 	/// É um panel com várias fotos, uma do lado da outra.
 	/// O seu tamanho é flexível e ajustável pela altura do controle. 
 	/// Portanto, uma alteração na altura redimensiona as fotos para caberem.
-	/// Existe um scrool horizontal.
+	/// Existe um scroll horizontal.
 	/// 
 	/// As fotos podem ser selecionáveis.
 	/// </summary>

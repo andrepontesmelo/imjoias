@@ -233,7 +233,7 @@ namespace Apresentação.Atendimento.Comum
 
         private void ListaPessoasBusca_MouseEnter(object sender, EventArgs e)
         {
-            // Permite scrool com a bolinha do mouse
+            // Permite scroll com a bolinha do mouse
             flow.Focus();
         }
     }
