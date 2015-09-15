@@ -269,9 +269,9 @@ namespace Apresentação.Atendimento.Clientes
             this.listaDatasRelevantes.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.listaDatasRelevantes.BackColor = System.Drawing.Color.Transparent;
             this.listaDatasRelevantes.Colunas = 1;
-            this.listaDatasRelevantes.Location = new System.Drawing.Point(3, 35);
+            this.listaDatasRelevantes.Location = new System.Drawing.Point(8, 35);
             this.listaDatasRelevantes.Name = "listaDatasRelevantes";
-            this.listaDatasRelevantes.Size = new System.Drawing.Size(170, 270);
+            this.listaDatasRelevantes.Size = new System.Drawing.Size(165, 270);
             this.listaDatasRelevantes.TabIndex = 2;
             this.listaDatasRelevantes.PessoaSelecionada += new Apresentação.Atendimento.Comum.ListaPessoas.PessoaSelecionadaDelegate(this.listaDatasRelevantes_PessoaSelecionada);
             this.listaDatasRelevantes.Scroll += new System.Windows.Forms.ScrollEventHandler(this.listaDatasRelevantes_Scroll);
