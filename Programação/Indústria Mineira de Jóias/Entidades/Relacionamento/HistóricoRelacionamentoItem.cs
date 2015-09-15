@@ -9,7 +9,7 @@ using System.Data;
 namespace Entidades.Relacionamento
 {
 	[Serializable]
-	public abstract class HistóricoRelacionamentoItem : Acesso.Comum.DbManipulaçãoAutomática
+	public class HistóricoRelacionamentoItem : Acesso.Comum.DbManipulaçãoAutomática
 	{
 		[DbRelacionamento(false, "referencia", "referencia"), DbRelacionamento(false, "peso", "peso")]
 		protected Mercadoria.Mercadoria	mercadoria; // 'referência' no BD

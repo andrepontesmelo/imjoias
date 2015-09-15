@@ -8,6 +8,7 @@ using Entidades.Mercadoria;
 using Entidades.Relacionamento.Venda;
 using Entidades.Pessoa;
 using Entidades.Configuração;
+using Entidades.Relacionamento;
 
 namespace Entidades.Acerto
 {
@@ -347,6 +348,9 @@ namespace Entidades.Acerto
             
             acerto.Adicionar(venda);
 
+            List<HistóricoRelacionamentoItem> itensVenda = new List<HistóricoRelacionamentoItem>();
+            List<HistóricoRelacionamentoItem> itensDevolução = new List<HistóricoRelacionamentoItem>();
+
             // Relacionar itens...
             foreach (SaquinhoAcerto s in coleção)
             {
@@ -354,7 +358,7 @@ namespace Entidades.Acerto
                  * que foram levadas. Portanto, entra como venda.
                  */
                 if (s.QtdAcerto > 0)
-                    venda.Itens.Relacionar(s.Mercadoria, s.QtdAcerto, s.Índice);
+                    itensVenda.Add(new HistóricoRelacionamentoItem(s.Mercadoria, s.QtdAcerto, DateTime.MinValue, null, s.Índice));
 
                 /* Se o acerto é negativo, retornaram mais mercadoris do
                  * que foram levadas, ou possivelmente retornaram mercadorias
@@ -362,9 +366,11 @@ namespace Entidades.Acerto
                  * assim uma devolução de mercadoria.
                  */
                 else if (s.QtdAcerto < 0)
-                    // Atenção à quantidade de acerto negativa.
-                    venda.ItensDevolução.Relacionar(s.Mercadoria, -s.QtdAcerto, s.Índice);
+                    itensDevolução.Add(new HistóricoRelacionamentoItem(s.Mercadoria, -s.QtdAcerto, DateTime.MinValue, null, s.Índice));
             }
+
+            venda.Itens.RelacionarVários(itensVenda);
+            venda.ItensDevolução.RelacionarVários(itensDevolução);
 
             LançarDescontoAA(venda);
 

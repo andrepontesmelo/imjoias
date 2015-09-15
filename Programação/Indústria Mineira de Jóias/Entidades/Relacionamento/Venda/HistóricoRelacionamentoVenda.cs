@@ -37,16 +37,35 @@ namespace Entidades.Relacionamento.Venda
 
         public override HistóricoRelacionamentoItem Relacionar(Mercadoria.Mercadoria m, double quantidade, double índice)
         {
-            if (!venda.Cadastrado)
-                venda.Cadastrar();
-            else
-                venda.Atualizar();
+            Persistir();
 
             HistóricoRelacionamentoItem resultado = base.Relacionar(m, quantidade, índice);
             
             venda.CalcularValor();
 
             return resultado;
+        }
+
+        private void Persistir()
+        {
+            if (!venda.Cadastrado)
+                venda.Cadastrar();
+            else
+                venda.Atualizar();
+        }
+
+        public override List<HistóricoRelacionamentoItem> RelacionarVários(List<HistóricoRelacionamentoItem> itens)
+        {
+            List<HistóricoRelacionamentoItem> novosItens = new List<HistóricoRelacionamentoItem>();
+
+            Persistir();
+
+            foreach (HistóricoRelacionamentoItem i in itens)
+                novosItens.Add(base.Relacionar(i.Mercadoria, i.Quantidade, i.Índice));
+
+            venda.CalcularValor();
+
+            return novosItens;
         }
     }
 }
