@@ -57,8 +57,7 @@ namespace Apresentação.Financeiro.Pagamento
                     cliente = ((Entidades.Relacionamento.Venda.Venda)value).Cliente;
 
                 // Mesmo que a venda seja a mesma, devemos carregar, pois o cliente pode ter sido alterado. 
-                //if (anterior != value)
-                    Carregar();
+                Carregar();
             }
         }
 
@@ -165,8 +164,6 @@ namespace Apresentação.Financeiro.Pagamento
                     janela = new CadastroDinheiro();
                 else if (pagamento is NotaPromissória)
                     janela = new CadastroNotaPromissória();
-                //else if (pagamento is Crédito)
-                //    janela = new CadastroCrédito();
                 else if (pagamento is Ouro)
                     janela = new CadastroOuro();
                 else if (pagamento is Dolar)
@@ -386,45 +383,62 @@ namespace Apresentação.Financeiro.Pagamento
             if (bgCarregar.IsBusy)
                 return;
 
-            // Atualiza acessibilidade gráfica
-            lista.Enabled = cliente != null;
-            toolStrip.Enabled = cliente != null;
+            AtualizarAcessibilidadeGráfica();
+            LimparLista();
+            ReadicionarStatusStrip();
+            ReadicionarColunas();
 
-            // Limpa a lista
-            lista.Items.Clear();
-            hashItemListaPagamento.Clear();
-            localizador.Limpar();
-
-            lista.Columns.Clear();
-            lista.Columns.Add(colContador);
-            lista.Columns.Add(colData);
-            lista.Columns.Add(colDescrição);
-
-            lista.Columns.Add(colVencimento);
-            lista.Columns.Add(colValor);
-            lista.Columns.Add(colProrrogação);
-
-            statusStrip1.Items.Clear();
-            statusStrip1.Items.Add(qtdStatusStrip);
-            statusStrip1.Items.Add(valorTotalStrip);
-
-            if (venda != null)
-            {
-                lista.Columns.Add(colDias);
-                lista.Columns.Add(colValorLíquido);
-                statusStrip1.Items.Add(valorTotalLíquidoStrip);
-            }
-
-            lista.Columns.Add(colRegistradoPor);
-            lista.Columns.Add(colPagaVenda);
-            lista.Columns.Add(colPagoNaVenda);
-            
             if (cliente == null && venda == null)
                 return;
 
             SinalizaçãoCarga.Sinalizar(lista, "Carregando dados", "Aguarde enquanto a lista de pagamento é carregada...");
 
             bgCarregar.RunWorkerAsync();
+        }
+
+        private void ReadicionarColunas()
+        {
+            lista.Columns.Clear();
+            lista.Columns.Add(colContador);
+            lista.Columns.Add(colData);
+            lista.Columns.Add(colDescrição);
+            lista.Columns.Add(colVencimento);
+            lista.Columns.Add(colValor);
+            lista.Columns.Add(colProrrogação);
+
+            if (venda != null)
+            {
+                lista.Columns.Add(colDias);
+                lista.Columns.Add(colValorLíquido);
+            }
+
+            lista.Columns.Add(colRegistradoPor);
+            lista.Columns.Add(colPagaVenda);
+            lista.Columns.Add(colPagoNaVenda);
+
+        }
+
+        private void ReadicionarStatusStrip()
+        {
+            statusStrip1.Items.Clear();
+            statusStrip1.Items.Add(qtdStatusStrip);
+            statusStrip1.Items.Add(valorTotalStrip);
+
+            if (venda != null)
+                statusStrip1.Items.Add(valorTotalLíquidoStrip);
+        }
+
+        private void AtualizarAcessibilidadeGráfica()
+        {
+            lista.Enabled = cliente != null;
+            toolStrip.Enabled = cliente != null;
+        }
+
+        private void LimparLista()
+        {
+            lista.Items.Clear();
+            hashItemListaPagamento.Clear();
+            localizador.Limpar();
         }
 
 
@@ -442,10 +456,6 @@ namespace Apresentação.Financeiro.Pagamento
 
                 dados.hashPagoNaVenda = 
                     Entidades.Relacionamento.Venda.Venda.ObterCódigoVendasQuePagam(dados.entidades);
-
-
-                // Obtem lista de vinculos para não precisar de uma consulta para cada pagamento.
-                // dados.hashCódPagamentoVinculo = Entidades.Pagamentos.Pagamento.ObterStringVinculos(dados.entidades);
 
                 e.Result = dados;
             }
@@ -466,88 +476,16 @@ namespace Apresentação.Financeiro.Pagamento
                 return;
 
             DadosBgCarregar dados = (DadosBgCarregar)e.Result;
-            DateTime hoje;
+            DateTime hoje = DadosGlobais.Instância.HoraDataAtual;
             double valorTotal = 0, valorTotalLíquido = 0;
 
-            hoje = Entidades.Configuração.DadosGlobais.Instância.HoraDataAtual;
             // Insere os itens
             foreach (Entidades.Pagamentos.Pagamento p in dados.entidades)
             {
                 if (!DevoAdicionar(p))
                     continue;
 
-                ListViewItem item = new ListViewItem(new string[11] { "", "", "", "", "", "", "", "", "", "", "" });
-                ListaPagamentoItem itemPagamento = new ListaPagamentoItem(p);
-
-                valorTotal += p.Valor;
-                item.SubItems[colData.Index].Text = p.Data.ToShortDateString();
-                item.SubItems[colRegistradoPor.Index].Text = p.RegistradoPor.Nome;
-                item.SubItems[colValor.Index].Text = Math.Abs(p.Valor).ToString("C", DadosGlobais.Instância.Cultura);
-                item.SubItems[colDescrição.Index].Text = p.DescriçãoCompleta;
-                
-                //if (p is Crédito)
-                //    item.ForeColor = Color.DarkGreen;
-
-                if (p is IProrrogável)
-                {
-                    IProrrogável prorrogável = (IProrrogável)p;
-                    itemPagamento.ProrrogadoPara = prorrogável.ProrrogadoPara;
-
-                    if (prorrogável.ProrrogadoPara.HasValue)
-                        item.SubItems[colProrrogação.Index].Text = prorrogável.ProrrogadoPara.Value.ToShortDateString();
-                    else
-                        item.SubItems[colProrrogação.Index].Text = "";
-                }
-                else
-                    itemPagamento.ProrrogadoPara = null;
-
-                itemPagamento.Vencimento = p.ÚltimoVencimento;
-
-                item.SubItems[colVencimento.Index].Text =
-                    p.ÚltimoVencimento.ToString("dd/MM/yyyy");
-
-                if (venda != null)
-                {
-                    itemPagamento.Dias = p.ObterDiasJuros(venda);
-                    item.SubItems[colDias.Index].Text = itemPagamento.Dias.ToString();
-
-                    try
-                    {
-                        itemPagamento.ValorLíquido = p.ObterValorLíquido(venda);
-                    }
-                    catch
-                    {
-                        itemPagamento.ValorLíquido = 0;
-                    }
-
-                    valorTotalLíquido += itemPagamento.ValorLíquido;
-                    item.SubItems[colValorLíquido.Index].Text = itemPagamento.ValorLíquido.ToString("C", Entidades.Configuração.DadosGlobais.Instância.Cultura);
-                }
-
-                if (p.Venda.HasValue)
-                    item.SubItems[colPagaVenda.Index].Text = p.Venda.Value.ToString();
-
-
-                long? pagoNaVenda = null;
-                dados.hashPagoNaVenda.TryGetValue(p.Código, out pagoNaVenda);
-
-                if (pagoNaVenda.HasValue)
-                    item.SubItems[colPagoNaVenda.Index].Text = pagoNaVenda.Value.ToString();
-                else
-                    item.SubItems[colPagoNaVenda.Index].Text = "";
-
-                item.ImageKey = p.Tipo.ToString();
-
-                if (p.Pendente)
-                {
-                    item.UseItemStyleForSubItems = true;
-                    item.BackColor = Color.Yellow;
-
-                    if (p.ÚltimoVencimento < hoje)
-                        item.ForeColor = Color.Red;
-                }
-
-                hashItemListaPagamento[item] = itemPagamento;
+                ListViewItem item = CriarItem(ref dados, hoje, ref valorTotal, ref valorTotalLíquido, p);
                 lista.Items.Add(item);
 
                 // Torna buscável
@@ -561,17 +499,96 @@ namespace Apresentação.Financeiro.Pagamento
             // Espicha a ultima coluna
             colPagoNaVenda.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
 
-            // Atualiza a statusbar
-            qtdStatusStrip.Text = lista.Items.Count.ToString()
-                + (lista.Items.Count == 1 ? " item" : " itens");
+            AtualizaStatusbar(valorTotal, valorTotalLíquido);
 
-            valorTotalStrip.Text = valorTotal.ToString("C");
-            valorTotalLíquidoStrip.Text = valorTotalLíquido.ToString("C") + " (líquido)";
             RefazerContagemLinhas();
 
             colDescrição.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
 
             SinalizaçãoCarga.Dessinalizar(lista);
+        }
+
+        private void AtualizaStatusbar(double valorTotal, double valorTotalLíquido)
+        {
+            qtdStatusStrip.Text = lista.Items.Count.ToString()
+                + (lista.Items.Count == 1 ? " item" : " itens");
+
+            valorTotalStrip.Text = valorTotal.ToString("C");
+            valorTotalLíquidoStrip.Text = valorTotalLíquido.ToString("C") + " (líquido)";
+        }
+
+        private ListViewItem CriarItem(ref DadosBgCarregar dados, DateTime hoje, ref double valorTotal, ref double valorTotalLíquido, Entidades.Pagamentos.Pagamento p)
+        {
+            ListViewItem item = new ListViewItem(new string[11] { "", "", "", "", "", "", "", "", "", "", "" });
+            ListaPagamentoItem itemPagamento = new ListaPagamentoItem(p);
+
+            valorTotal += p.Valor;
+            item.SubItems[colData.Index].Text = p.Data.ToShortDateString();
+            item.SubItems[colRegistradoPor.Index].Text = p.RegistradoPor.Nome;
+            item.SubItems[colValor.Index].Text = Math.Abs(p.Valor).ToString("C", DadosGlobais.Instância.Cultura);
+            item.SubItems[colDescrição.Index].Text = p.DescriçãoCompleta;
+
+            if (p is IProrrogável)
+            {
+                IProrrogável prorrogável = (IProrrogável)p;
+                itemPagamento.ProrrogadoPara = prorrogável.ProrrogadoPara;
+
+                if (prorrogável.ProrrogadoPara.HasValue)
+                    item.SubItems[colProrrogação.Index].Text = prorrogável.ProrrogadoPara.Value.ToShortDateString();
+                else
+                    item.SubItems[colProrrogação.Index].Text = "";
+            }
+            else
+                itemPagamento.ProrrogadoPara = null;
+
+            itemPagamento.Vencimento = p.ÚltimoVencimento;
+
+            item.SubItems[colVencimento.Index].Text =
+                p.ÚltimoVencimento.ToString("dd/MM/yyyy");
+
+            if (venda != null)
+            {
+                itemPagamento.Dias = p.ObterDiasJuros(venda);
+                item.SubItems[colDias.Index].Text = itemPagamento.Dias.ToString();
+
+                try
+                {
+                    itemPagamento.ValorLíquido = p.ObterValorLíquido(venda);
+                }
+                catch
+                {
+                    itemPagamento.ValorLíquido = 0;
+                }
+
+                valorTotalLíquido += itemPagamento.ValorLíquido;
+                item.SubItems[colValorLíquido.Index].Text = itemPagamento.ValorLíquido.ToString("C", Entidades.Configuração.DadosGlobais.Instância.Cultura);
+            }
+
+            if (p.Venda.HasValue)
+                item.SubItems[colPagaVenda.Index].Text = p.Venda.Value.ToString();
+
+
+            long? pagoNaVenda = null;
+            dados.hashPagoNaVenda.TryGetValue(p.Código, out pagoNaVenda);
+
+            if (pagoNaVenda.HasValue)
+                item.SubItems[colPagoNaVenda.Index].Text = pagoNaVenda.Value.ToString();
+            else
+                item.SubItems[colPagoNaVenda.Index].Text = "";
+
+            item.ImageKey = p.Tipo.ToString();
+
+            if (p.Pendente)
+            {
+                item.UseItemStyleForSubItems = true;
+                item.BackColor = Color.Yellow;
+
+                if (p.ÚltimoVencimento < hoje)
+                    item.ForeColor = Color.Red;
+            }
+
+            hashItemListaPagamento[item] = itemPagamento;
+            return item;
         }
 
         private void adicionarCréditoToolStripMenuItem_Click(object sender, EventArgs e)
