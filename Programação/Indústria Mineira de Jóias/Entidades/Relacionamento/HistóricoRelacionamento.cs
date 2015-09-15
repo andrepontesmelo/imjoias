@@ -47,6 +47,17 @@ namespace Entidades.Relacionamento
 			lista.Add(item);
 		}
 
+
+        public virtual List<HistóricoRelacionamentoItem> RelacionarVários(List<HistóricoRelacionamentoItem> itens)
+        {
+            List<HistóricoRelacionamentoItem> novosItens = new List<HistóricoRelacionamentoItem>();
+
+            foreach (HistóricoRelacionamentoItem i in itens)
+                novosItens.Add(Relacionar(i.Mercadoria, i.Quantidade, i.Índice));
+
+            return novosItens;
+        }
+
         /// <summary>
         /// Adiciona um item de relacionamento, seja inserção, seja remoção.
         /// Já cadastra no banco de dados.
