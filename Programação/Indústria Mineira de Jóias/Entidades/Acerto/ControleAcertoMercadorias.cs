@@ -324,20 +324,14 @@ namespace Entidades.Acerto
         /// <returns>Nova venda cadastrada.</returns>
         public Entidades.Relacionamento.Venda.Venda LançarVenda()
         {
-            Venda venda;
-            //DateTime agora = DadosGlobais.Instância.HoraDataAtual;
-
             if (!acerto.Cotação.HasValue)
                 throw new Exception("Cotação não foi definida no acerto!");
-
 
             List<SaquinhoAcerto> coleção = ColeçãoSaquinhos;
 
             /* Representantes enviam venda com antecência e, portanto,
              * não podem gerar venda a partir das mercadorias que faltam.
              */
-            //if (Representante.ÉRepresentante(acerto.Cliente))
-            //    throw new NotSupportedException("Não é permitido lançar venda do restante do acerto para representante.");
 
             // Garantir que não existe quantidade negativa de saquinhos.
             // Talvez isso poderia entrar como devolução, não?
@@ -345,17 +339,13 @@ namespace Entidades.Acerto
             //
             // Sim, conforme solicitado pela Inês.
             // -- Júlio, 18/10/2007
-            //foreach (SaquinhoAcerto s in coleção)
-            //    if (s.QtdAcerto < 0)
-            //        throw new ExceçãoAcertoInválido("Não é possível lançar venda do restante do acerto, pois existem mercadorias devolvidas a mais. Seria um erro de digitação?");
 
-            venda = Venda.CriarNovaVenda(acerto.Cliente, Funcionário.FuncionárioAtual);
+            Venda venda = Venda.CriarNovaVenda(acerto.Cliente, Funcionário.FuncionárioAtual);
 
             venda.TabelaPreço = acerto.TabelaPreço;
             venda.Cotação = acerto.Cotação.Value;
             
             acerto.Adicionar(venda);
-
 
             // Relacionar itens...
             foreach (SaquinhoAcerto s in coleção)
@@ -376,7 +366,27 @@ namespace Entidades.Acerto
                     venda.ItensDevolução.Relacionar(s.Mercadoria, -s.QtdAcerto, s.Índice);
             }
 
-            // Existe uma regra diferente para alto-atacadistas.
+            LançarDescontoAA(venda);
+
+            if (acerto.Previsão.HasValue)
+                venda.Data = acerto.Previsão.Value;
+
+            Persistir(venda);
+
+            return venda;
+        }
+
+        private static void Persistir(Venda venda)
+        {
+            if (venda.Cadastrado)
+                venda.Atualizar();
+            else
+                venda.Cadastrar();
+
+        }
+
+        private void LançarDescontoAA(Venda venda)
+        {
             if (venda.Cliente.Setor.Referente(Setor.ObterSetor(Setor.SetorSistema.AltoAtacado)))
             {
                 /* Antes de 2013:
@@ -409,20 +419,6 @@ namespace Entidades.Acerto
                         + "\nPorcentagem desconto:" + porcentagemDataDesconto.ToString() + " %"
                         + "\nDesconto atribuído: " + venda.Desconto.ToString("C");
             }
-
-            if (venda.Cadastrado)
-                venda.Atualizar();
-            else
-                venda.Cadastrar();
-
-
-            if (acerto.Previsão.HasValue)
-            {
-                venda.Data = acerto.Previsão.Value;
-                venda.Atualizar();
-            }
-
-            return venda;
         }
 
         /// <summary>
