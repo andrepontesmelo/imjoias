@@ -1,8 +1,10 @@
+using Apresentação.Formulários;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 {
@@ -36,6 +38,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 
         private void SobrescreveInicio(IDbConnection cn, DataSet dataSetVelho, Dictionary<string, bool> referências, Dictionary<string, int> fornecedores)
         {
+            StringBuilder erros = new StringBuilder();
             StringBuilder sql = new StringBuilder();
 
             DataTable tabelaVelha = ObterTabelaVelha(dataSetVelho);
@@ -51,13 +54,29 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 
                     if (mesano != "")
                     {
-                        DateTime inicio = DateTime.ParseExact(mesano, "MMyy", System.Globalization.CultureInfo.CurrentCulture);
+                        try
+                        {
+                            DateTime inicio = DateTime.ParseExact(mesano, "MMyy", System.Globalization.CultureInfo.CurrentCulture);
 
-                        sql.Append("update vinculomercadoriafornecedor set inicio=");
-                        sql.Append(Acesso.Comum.DbManipulaçãoSimples.DbTransformar(inicio));
-                        sql.Append(" where mercadoria='");
-                        sql.Append(referência);
-                        sql.Append("'; ");
+                            sql.Append("update vinculomercadoriafornecedor set inicio=");
+                            sql.Append(Acesso.Comum.DbManipulaçãoSimples.DbTransformar(inicio));
+                            sql.Append(" where mercadoria='");
+                            sql.Append(referência);
+                            sql.Append("'; ");
+                        } catch (FormatException)
+                        {
+                            if (erros.Length == 0)
+                            {
+                                erros.Append("Erros do gesano.dbf são listados abaixo. Estes erros não interrompem a integração. ");
+                                erros.AppendLine("Porém o vinculomercadoriafornecedor ficará sem a informação de início para esta(s) mercadoria(s): ");    
+                            }
+                            
+                            erros.AppendLine();
+                            erros.Append(" * mercadoria ");
+                            erros.Append(referência);
+                            erros.Append(" possui início fora do padrão MMyy: ");
+                            erros.Append(mesano);
+                        }
                     }
                 }
             }
@@ -66,6 +85,14 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             {
                 cmd.CommandText = sql.ToString();
                 cmd.ExecuteNonQuery();
+            }
+
+            if (erros.Length > 0)
+            {
+                AguardeDB.Fechar();
+                MessageBox.Show(erros.ToString(), "Erros ignorados de início de fornecedor", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                MessageBox.Show(erros.ToString());
+                AguardeDB.Mostrar();
             }
         }
 
