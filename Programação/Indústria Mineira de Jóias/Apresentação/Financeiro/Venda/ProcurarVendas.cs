@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using Apresentação.Formulários;
+using Entidades.Relacionamento.Venda;
 
 namespace Apresentação.Financeiro.Venda
 {
@@ -49,54 +50,27 @@ namespace Apresentação.Financeiro.Venda
         /// </summary>
         private void btnOk_Click(object sender, EventArgs e)
         {
-            Entidades.Relacionamento.Venda.Venda[] vendas;
+            IDadosVenda[] vendas;
             VínculoVendaPessoa tipoVinculo;
 
-            AguardeDB.Mostrar();
-            UseWaitCursor = true;
-            Application.DoEvents();
-
-            try
+            if (txtVendedor.Pessoa != null && txtCliente.Pessoa == null)
             {
-                if (txtVendedor.Pessoa != null && txtCliente.Pessoa == null)
-                {
-                    // Vendas de um vendedor foi escolhido.
-                    tipoVinculo = VínculoVendaPessoa.Vendedor;
-                    vendas = Entidades.Relacionamento.Venda.Venda.ObterVendas(txtVendedor.Pessoa, null, dataInício.Value, dataFim.Value);
-                }
-                else if (txtVendedor.Pessoa == null)
-                {
-                    // Os dois campos preenchidos. Cliente e vendedor.
-                    tipoVinculo = VínculoVendaPessoa.Indefinido;
-                    vendas = Entidades.Relacionamento.Venda.Venda.ObterVendas(txtVendedor.Pessoa, txtCliente.Pessoa, dataInício.Value, dataFim.Value);
-                }
-                else 
-                {
-                    // Compras de um cliente
-                    tipoVinculo = VínculoVendaPessoa.Cliente;
-
-                    vendas = Entidades.Relacionamento.Venda.Venda.ObterVendas(null, txtCliente.Pessoa, dataInício.Value, dataFim.Value);
-                }
-                //else if (txtCliente.Pessoa != null)
-                //{
-                //    // Compras de um cliente
-                //    tipoVinculo = VínculoVendaPessoa.Cliente;
-
-                //    vendas = Entidades.Relacionamento.Venda.VendaOca.ObterVendas(false, txtCliente.Pessoa, dataInício.Value, dataFim.Value);
-                //}
-                //else
-                //{
-                //    AguardeDB.Fechar();
-                //    UseWaitCursor = false;
-
-                //    MessageBox.Show("A busca não pode ser feita porquê os dados são insuficientes.", "Dados Insuficientes", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //    return;
-                //}
+                // Vendas de um vendedor foi escolhido.
+                tipoVinculo = VínculoVendaPessoa.Vendedor;
+                vendas = VendaSintetizada.ObterVendas(txtVendedor.Pessoa, null, dataInício.Value, dataFim.Value);
             }
-            finally
+            else if (txtVendedor.Pessoa == null)
             {
-                AguardeDB.Fechar();
-                UseWaitCursor = false;
+                // Os dois campos preenchidos. Cliente e vendedor.
+                tipoVinculo = VínculoVendaPessoa.Indefinido;
+                vendas = VendaSintetizada.ObterVendas(txtVendedor.Pessoa, txtCliente.Pessoa, dataInício.Value, dataFim.Value);
+            }
+            else 
+            {
+                // Compras de um cliente
+                tipoVinculo = VínculoVendaPessoa.Cliente;
+
+                vendas = VendaSintetizada.ObterVendas(null, txtCliente.Pessoa, dataInício.Value, dataFim.Value);
             }
 
             Close();

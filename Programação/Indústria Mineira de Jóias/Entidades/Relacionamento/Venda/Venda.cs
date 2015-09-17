@@ -884,60 +884,7 @@ namespace Entidades.Relacionamento.Venda
             return vendas;
         }
 
-        /// <summary>
-        /// Obtém vendas de um cliente/vendedor.
-        /// </summary>
-        /// <remarks>
-        /// Só funciona para cliente e vendedor não nulos
-        /// </remarks>
-        /// <returns>Vendas para o cliente/de um vendedor.</returns>
-        public static Venda[] ObterVendas(Entidades.Pessoa.Pessoa vendedor, Entidades.Pessoa.Pessoa cliente, DateTime início, DateTime final)
-        {
-            List<Venda> vendas;
-            string cmd;
-            bool colocouWhere = false;
-
-            //if (vendedor == null && cliente == null)
-            //    throw new Exception("Vendedor e cliente nulos");
-
-            cmd = "SELECT * FROM venda ";
-
-
-            if (vendedor != null)
-            {
-                if (!colocouWhere)
-                {
-                    cmd += " WHERE ";
-                    colocouWhere = true;
-                }
-                cmd += " vendedor = " + DbTransformar(vendedor.Código) + " ";
-            }
-
-            if (cliente != null)
-            {
-                if (!colocouWhere)
-                {
-                    cmd += " WHERE ";
-                    colocouWhere = true;
-                }
-
-                cmd += " cliente = " + DbTransformar(cliente.Código) + " ";
-            }
-
-            if (final != DateTime.MaxValue)
-            {
-                // Faz restrição quanto a data
-                cmd += " AND data BETWEEN " + DbTransformar(início)
-                + " AND " + DbTransformar(final.AddDays(1).Date);
-            }
-
-            vendas = Mapear<Venda>(cmd);
-
-            //RecuperarColeções(vendas);
-
-            return vendas.ToArray();
-        }
-
+  
         /// <summary>
         /// Recupera coleções de um conjunto de vendas.
         /// </summary>
@@ -1941,11 +1888,6 @@ namespace Entidades.Relacionamento.Venda
             }
 
             return hashPagamentoVenda;
-        }
-
-        public static List<Venda> ObterVendas(List<int> codigoVendas)
-        {
-            throw new NotImplementedException();
         }
 
         public static void ObtemRecordes(Entidades.Pessoa.Pessoa pessoa, out double? maiorVenda, out DateTime? últimaVenda)

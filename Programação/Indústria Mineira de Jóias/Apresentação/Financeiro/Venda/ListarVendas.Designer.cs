@@ -28,6 +28,7 @@ namespace Apresentação.Financeiro.Venda
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListarVendas));
             this.lista = new Apresentação.Financeiro.Venda.ListViewVendas();
             this.btnOk = new System.Windows.Forms.Button();
             this.btnVisualizar = new System.Windows.Forms.Button();
@@ -42,7 +43,7 @@ namespace Apresentação.Financeiro.Venda
             // 
             // lblDescrição
             // 
-            this.lblDescrição.Size = new System.Drawing.Size(501, 48);
+            this.lblDescrição.Size = new System.Drawing.Size(731, 48);
             this.lblDescrição.Text = "Abaixo segue a lista de vendas requisitada.";
             // 
             // picÍcone
@@ -56,16 +57,18 @@ namespace Apresentação.Financeiro.Venda
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lista.ApenasNãoAcertado = false;
+            this.lista.ItemSelecionado = null;
+            this.lista.ItensSelecionados = ((System.Collections.Generic.List<Entidades.Relacionamento.Venda.IDadosVenda>)(resources.GetObject("lista.ItensSelecionados")));
             this.lista.Location = new System.Drawing.Point(12, 99);
             this.lista.Name = "lista";
-            this.lista.Size = new System.Drawing.Size(565, 291);
+            this.lista.Size = new System.Drawing.Size(795, 379);
             this.lista.TabIndex = 3;
             // 
             // btnOk
             // 
             this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOk.Location = new System.Drawing.Point(502, 396);
+            this.btnOk.Location = new System.Drawing.Point(732, 484);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 4;
@@ -76,7 +79,7 @@ namespace Apresentação.Financeiro.Venda
             // btnVisualizar
             // 
             this.btnVisualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnVisualizar.Location = new System.Drawing.Point(340, 396);
+            this.btnVisualizar.Location = new System.Drawing.Point(570, 484);
             this.btnVisualizar.Name = "btnVisualizar";
             this.btnVisualizar.Size = new System.Drawing.Size(75, 23);
             this.btnVisualizar.TabIndex = 5;
@@ -88,7 +91,7 @@ namespace Apresentação.Financeiro.Venda
             // btnEditar
             // 
             this.btnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEditar.Location = new System.Drawing.Point(421, 396);
+            this.btnEditar.Location = new System.Drawing.Point(651, 484);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(75, 23);
             this.btnEditar.TabIndex = 6;
@@ -100,7 +103,7 @@ namespace Apresentação.Financeiro.Venda
             // 
             this.AcceptButton = this.btnOk;
             this.CancelButton = this.btnOk;
-            this.ClientSize = new System.Drawing.Size(589, 427);
+            this.ClientSize = new System.Drawing.Size(819, 515);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnVisualizar);
             this.Controls.Add(this.btnOk);
@@ -108,6 +111,7 @@ namespace Apresentação.Financeiro.Venda
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
             this.KeyPreview = true;
             this.Name = "ListarVendas";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Lista de vendas";
             this.Controls.SetChildIndex(this.lista, 0);
             this.Controls.SetChildIndex(this.btnOk, 0);
