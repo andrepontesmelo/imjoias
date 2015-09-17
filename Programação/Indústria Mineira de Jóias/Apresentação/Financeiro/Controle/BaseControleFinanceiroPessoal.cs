@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
+using Entidades.Relacionamento.Venda;
 
 namespace Apresentação.Financeiro.Controle
 {
@@ -35,10 +36,10 @@ namespace Apresentação.Financeiro.Controle
 
             itens = new List<CobrançaItem>();
 
-            Entidades.Relacionamento.Venda.Venda[] vendas =
-                Entidades.Relacionamento.Venda.Venda.ObterVendas(null, pessoa, DateTime.MinValue, DateTime.MaxValue);
+            IDadosVenda[] vendas =
+                VendaSintetizada.ObterVendas(null, pessoa, DateTime.MinValue, DateTime.MaxValue);
 
-            foreach (Entidades.Relacionamento.Venda.Venda v in vendas)
+            foreach (IDadosVenda v in vendas)
                 itens.Add(new CobrançaItem(v.Data, v.Valor, "Venda " + v.Código.ToString()));
 
             Entidades.Pagamentos.Pagamento[] pagamentos = Entidades.Pagamentos.Pagamento.ObterPagamentos(pessoa);

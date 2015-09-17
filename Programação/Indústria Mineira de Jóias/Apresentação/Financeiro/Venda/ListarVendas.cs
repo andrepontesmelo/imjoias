@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using Apresentação.Formulários;
 using Apresentação.Impressão.Relatórios.Venda;
+using Entidades.Relacionamento.Venda;
 
 namespace Apresentação.Financeiro.Venda
 {
@@ -22,33 +23,12 @@ namespace Apresentação.Financeiro.Venda
             InitializeComponent();
         }
 
-        //private VínculoVendaPessoa Tipo
-        //{
-        //    set
-        //    {
-        //        lista.TipoExibição = value;
-
-        //        switch (value)
-        //        {
-        //            case VínculoVendaPessoa.Indefinido:
-        //                lblDescrição.Text = "";
-        //                break;
-        //            case VínculoVendaPessoa.Vendedor:
-        //                lblDescrição.Text = "Abaixo estão as compras de " + vendas[0].Cliente;
-        //    }
-        //    else 
-        //    {
-        //        lista.TipoExibição = VínculoVendaPessoa.Vendedor;
-        //        //lblDescrição.Text = "Vendas realizadas pelo vendedor " + vendas[0].Vendedor.Código;
-        //        lblDescrição.Text = "Abaixo estã as vendas de " + vendas[0].Vendedor.PrimeiroNome;
-        //    }
-
         /// <summary>
         /// Constrói a lista de vendas mostrando um
         /// vetor de vendas.
         /// </summary>
         /// <param name="vendas">Vetor de vendas a ser exibido.</param>
-        public ListarVendas(Entidades.Relacionamento.Venda.Venda[] vendas, VínculoVendaPessoa tipo)
+        public ListarVendas(IDadosVenda[] vendas, VínculoVendaPessoa tipo)
             : this()
         {
             if (vendas.Length != 0)
@@ -56,10 +36,10 @@ namespace Apresentação.Financeiro.Venda
                 switch (tipo)
                 {
                     case VínculoVendaPessoa.Cliente:
-                        lblDescrição.Text = "Abaixo estão as compras de " + vendas[0].Cliente;
+                        lblDescrição.Text = "Abaixo estão as compras de " + vendas[0].NomeCliente;
                         break;
                     case VínculoVendaPessoa.Vendedor:
-                        lblDescrição.Text = "Abaixo estã as vendas de " + vendas[0].Vendedor.PrimeiroNome;
+                        lblDescrição.Text = "Abaixo estão as vendas de " + Entidades.Pessoa.Pessoa.ReduzirNome(vendas[0].NomeVendedor);
                         break;
                     default:
                         lblDescrição.Text = "Listagem das vendas";
@@ -80,7 +60,7 @@ namespace Apresentação.Financeiro.Venda
         /// exibir a base de visualização de vendas.
         /// </param>
         /// <param name="vendas">Vetor de vendas a ser exibido.</param>
-        public ListarVendas(ControladorBaseInferior controlador, Entidades.Relacionamento.Venda.Venda[] vendas, VínculoVendaPessoa tipo)
+        public ListarVendas(ControladorBaseInferior controlador, IDadosVenda[] vendas, VínculoVendaPessoa tipo)
             : this(vendas, tipo)
         {
             this.controlador = controlador;
@@ -94,49 +74,6 @@ namespace Apresentação.Financeiro.Venda
         {
             Close();
         }
-
-        ///// <summary>
-        ///// Determina se o tipo a ser exibido é de vendas
-        ///// para cliente ou vendas de um representante ou vendedor.
-        ///// </summary>
-        ///// <param name="vendas">Vetor de vendas.</param>
-        //private void DeterminarTipo(Entidades.Relacionamento.Venda.Venda[] vendas)
-        //{
-        //    bool cliente = true;
-        //    bool vendedor = true;
-
-        //    for (int i = 1; i < vendas.Length; i++)
-        //    {
-        //        cliente &= vendas[i].Vendedor.Código == vendas[0].Vendedor.Código;
-        //        vendedor &= vendas[i].Cliente.Código == vendas[0].Cliente.Código;
-        //    }
-
-        //    if ((cliente && vendedor) && (vendas.Length >= 2))
-        //        throw new NotSupportedException("A janela ListarVendas não suporta mostrar vendas de múltiplos clientes e múltiplos vendedores.");
-
-        //    /*  Imagine apenas uma venda sendo recuperada. Não é possível então descobrir qual 
-        //      * vinculo o usuário deseja. Na verdade, é necessário no mímino 2 vendas para observar
-        //      * algum padrão.
-        //      */
-
-        //    if (vendas.Length < 2)
-        //    {
-        //        // Assume-se uma posição neutra.
-        //        lblDescrição.Text = "";
-        //        lista.TipoExibição = VínculoVendaPessoa.Indefinido;
-        //    } else if (!cliente)
-        //    {
-        //        lista.TipoExibição = VínculoVendaPessoa.Cliente;
-        //        //lblDescrição.Text = "Vendas realizadas para o cliente " + vendas[0].Cliente.Nome;
-        //        lblDescrição.Text = "Abaixo estão as compras de " + vendas[0].Cliente;
-        //    }
-        //    else 
-        //    {
-        //        lista.TipoExibição = VínculoVendaPessoa.Vendedor;
-        //        //lblDescrição.Text = "Vendas realizadas pelo vendedor " + vendas[0].Vendedor.Código;
-        //        lblDescrição.Text = "Abaixo estã as vendas de " + vendas[0].Vendedor.PrimeiroNome;
-        //    }
-        //}
 
         /// <summary>
         /// Ocorre ao clicar em visualizar.
@@ -158,15 +95,6 @@ namespace Apresentação.Financeiro.Venda
             }
             else
                 venda = Entidades.Relacionamento.Venda.Venda.ObterVenda(lista.ItemSelecionado.Value);
-
-            
-            //controlador.SubstituirBaseArbitrariamente(
-            //    new BaseEditarVenda(venda),
-            //    "Visualização de venda",
-            //    "Será exibida a venda realizada para " + venda.Cliente.Nome
-            //    + " feita por " + venda.Vendedor.Nome + ".");
-
-            //Close();
 
             JanelaImpressão janela = new JanelaImpressão();
             Relatório relatórioVenda = new Relatório();

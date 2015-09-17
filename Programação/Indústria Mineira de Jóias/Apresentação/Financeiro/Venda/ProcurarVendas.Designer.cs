@@ -48,8 +48,9 @@ namespace Apresentação.Financeiro.Venda
             // 
             // lblDescrição
             // 
+            this.lblDescrição.Size = new System.Drawing.Size(414, 48);
             this.lblDescrição.Text = "Entre com um ou todos os dados abaixo para que a busca por vendas seja realizada." +
-                " Caso um campo seja omitido, a busca considerá qualquer valor que o preencha.";
+    " Caso um campo seja omitido, a busca considerará qualquer valor que o preencha.";
             // 
             // picÍcone
             // 
@@ -77,7 +78,7 @@ namespace Apresentação.Financeiro.Venda
             // btnOk
             // 
             this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOk.Location = new System.Drawing.Point(224, 203);
+            this.btnOk.Location = new System.Drawing.Point(334, 203);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 7;
@@ -89,7 +90,7 @@ namespace Apresentação.Financeiro.Venda
             // 
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(305, 203);
+            this.btnCancelar.Location = new System.Drawing.Point(415, 203);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 8;
@@ -99,20 +100,26 @@ namespace Apresentação.Financeiro.Venda
             // 
             // txtCliente
             // 
+            this.txtCliente.AlturaProposta = 60;
+            this.txtCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCliente.Location = new System.Drawing.Point(82, 133);
             this.txtCliente.Name = "txtCliente";
             this.txtCliente.Pessoa = null;
-            this.txtCliente.Size = new System.Drawing.Size(296, 20);
+            this.txtCliente.Size = new System.Drawing.Size(406, 20);
             this.txtCliente.SomenteCadastrado = true;
             this.txtCliente.TabIndex = 6;
             // 
             // txtVendedor
             // 
+            this.txtVendedor.AlturaProposta = 60;
+            this.txtVendedor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtVendedor.Funcionários = true;
             this.txtVendedor.Location = new System.Drawing.Point(82, 107);
             this.txtVendedor.Name = "txtVendedor";
             this.txtVendedor.Pessoa = null;
-            this.txtVendedor.Size = new System.Drawing.Size(296, 20);
+            this.txtVendedor.Size = new System.Drawing.Size(406, 20);
             this.txtVendedor.SomenteCadastrado = true;
             this.txtVendedor.TabIndex = 4;
             // 
@@ -145,17 +152,19 @@ namespace Apresentação.Financeiro.Venda
             // 
             // dataFim
             // 
+            this.dataFim.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataFim.CustomFormat = "ddd dd/MM/yyyy";
             this.dataFim.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dataFim.Location = new System.Drawing.Point(239, 159);
             this.dataFim.Name = "dataFim";
-            this.dataFim.Size = new System.Drawing.Size(139, 20);
+            this.dataFim.Size = new System.Drawing.Size(249, 20);
             this.dataFim.TabIndex = 12;
             // 
             // ProcurarVendas
             // 
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(392, 238);
+            this.ClientSize = new System.Drawing.Size(502, 238);
             this.Controls.Add(this.dataFim);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.dataInício);
@@ -167,6 +176,7 @@ namespace Apresentação.Financeiro.Venda
             this.Controls.Add(this.txtVendedor);
             this.Controls.Add(this.label1);
             this.Name = "ProcurarVendas";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Procurar por vendas";
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.txtVendedor, 0);

@@ -14,6 +14,8 @@ namespace Entidades.Relacionamento.Venda
     /// </summary>
     public class VendaSintetizada : DbManipulação, IDadosVenda
     {
+        private static readonly string INICIO_SELECT = "SELECT v.codigo, v.controle, v.valortotal, v.nome, v.cliente, v.data, v.taxajuros, v.cotacao, e.semaforo from vendasintetizada v join comissao_semaforo e on v.codigo=e.venda ";
+
         private long código;
         private string nomeCliente;
         private string nomeVendedor;
@@ -86,14 +88,14 @@ namespace Entidades.Relacionamento.Venda
             get { return data; }
         }
 
+        
         public static VendaSintetizada[] ObterVendas(List<long> códigos)
         {
             if (códigos.Count == 0) return (VendaSintetizada[])new ArrayList().ToArray(typeof(VendaSintetizada));
 
             bool primeiro = true;
-            StringBuilder consulta = new StringBuilder("SELECT v.codigo, v.controle, v.valortotal, v.nome, v.cliente, v.data, v.taxajuros, v.cotacao, e.semaforo from vendasintetizada v ");
-            consulta.Append(" JOIN comissao_semaforo e on v.codigo=e.venda ");
-            consulta.Append(" where ");
+            StringBuilder consulta = new StringBuilder(INICIO_SELECT);
+            consulta.Append(" WHERE ");
 
             foreach (long cod in códigos)
             {
@@ -134,7 +136,6 @@ namespace Entidades.Relacionamento.Venda
                     {
                         using (leitor = cmd.ExecuteReader())
                         {
-
                             while (leitor.Read())
                             {
                                 VendaSintetizada nova = new VendaSintetizada();
@@ -203,8 +204,8 @@ namespace Entidades.Relacionamento.Venda
         /// <returns></returns>
         public static VendaSintetizada[] ObterVendasRelacionadasPorPagamento(long código)
         {
-            StringBuilder consulta = new StringBuilder("select v.codigo, v.controle, v.valortotal, v.nome,");
-            consulta.Append("v.cliente, v.data, v.taxajuros, v.cotacao, e.semaforo from vendasintetizada v join comissao_semaforo e on v.codigo=e.venda ");
+            
+            StringBuilder consulta = new StringBuilder(INICIO_SELECT);
             consulta.Append(", vinculovendapagamento vinc where ");
             consulta.Append(" v.codigo != ");
             consulta.Append(DbTransformar(código));
@@ -217,6 +218,53 @@ namespace Entidades.Relacionamento.Venda
             return RecuperarDados(consulta.ToString());
         }
 
+              /// <summary>
+        /// Obtém vendas de um cliente/vendedor.
+        /// </summary>
+        /// <remarks>
+        /// Só funciona para cliente e vendedor não nulos
+        /// </remarks>
+        /// <returns>Vendas para o cliente/de um vendedor.</returns>
+        public static VendaSintetizada[] ObterVendas(Entidades.Pessoa.Pessoa vendedor, Entidades.Pessoa.Pessoa cliente, DateTime início, DateTime final)
+        {
+            StringBuilder cmd = new StringBuilder(INICIO_SELECT);
+            bool colocouWhere = false;
+
+            if (vendedor != null)
+            {
+                if (!colocouWhere)
+                {
+                    cmd.Append(" WHERE ");
+                    colocouWhere = true;
+                }
+                cmd.Append(" vendedorcod = ");
+                cmd.Append(DbTransformar(vendedor.Código));
+            }
+
+            if (cliente != null)
+            {
+                if (!colocouWhere)
+                {
+                    cmd.Append(" WHERE ");
+                    colocouWhere = true;
+                }
+
+                cmd.Append(" clientecod = ");
+                cmd.Append(DbTransformar(cliente.Código));
+            }
+
+            if (final != DateTime.MaxValue)
+            {
+                // Faz restrição quanto a data
+                cmd.Append(" AND data BETWEEN ");
+                cmd.Append(DbTransformar(início));
+                cmd.Append(" AND ");
+                cmd.Append(DbTransformar(final.AddDays(1).Date));
+            }
+
+            return RecuperarDados(cmd.ToString());
+        }
+
         /// <summary>
         /// Obtém vendas de um cliente/vendedor.
         /// </summary>
@@ -224,11 +272,9 @@ namespace Entidades.Relacionamento.Venda
         /// <returns>Vendas para o cliente/de um vendedor.</returns>
         public static VendaSintetizada[] ObterVendas(bool vendedor, Entidades.Pessoa.Pessoa pessoa, DateTime início, DateTime final, bool somenteNãoAcertadas, bool? sedex)
         {
-            StringBuilder consulta = new StringBuilder();
+            StringBuilder consulta = new StringBuilder(INICIO_SELECT);
 
-            consulta.Append("select s.codigo, s.controle, s.valortotal, s.nome, s.cliente, s.data, s.taxajuros, s.cotacao, e.semaforo from vendasintetizada s ");
-            consulta.Append(" join venda v ON s.codigo=v.codigo ");
-            consulta.Append(" join comissao_semaforo e ON s.codigo=e.venda "); 
+            consulta.Append(" JOIN venda vv ON v.codigo=vv.codigo ");
             consulta.Append(" WHERE 1=1 ");
 
             if (pessoa != null)
@@ -240,7 +286,7 @@ namespace Entidades.Relacionamento.Venda
 
             if ((início != DateTime.MinValue) || (final != DateTime.MaxValue))
             {
-                consulta.Append(" AND s.data BETWEEN ");
+                consulta.Append(" AND v.data BETWEEN ");
                 consulta.Append(DbTransformar(início));
                 consulta.Append(" AND ");
                 consulta.Append(DbTransformar(final.AddDays(1).Date));
@@ -248,7 +294,7 @@ namespace Entidades.Relacionamento.Venda
 
             if (somenteNãoAcertadas)
             {
-                consulta.Append(" AND v.acerto in (select codigo from acertoconsignado where dataefetiva is null) ");
+                consulta.Append(" AND vv.acerto in (select codigo from acertoconsignado where dataefetiva is null) ");
             }
 
 
@@ -259,20 +305,6 @@ namespace Entidades.Relacionamento.Venda
             }
 
             return RecuperarDados(consulta.ToString());
-        }
-
-        public static VendaSintetizada[] ObterVendasNãoVerificadas()
-        {
-            string consulta;
-
-            //consulta = "select venda.codigo, venda.controle, v.nome as nomevendedor, "
-            //+ "valortotal, c.nome as nomecliente, venda.data "
-            //+ "from venda, pessoa v, pessoa c WHERE verificado=0 "
-            //+ "AND venda.vendedor = v.codigo AND venda.cliente=c.codigo";
-
-            consulta = "select codigo, controle, valortotal, nome, cliente, data, taxajuros, vendasintetizada.cotacao from vendasintetizada ";
-
-            return RecuperarDados(consulta);
         }
 
         protected override void Cadastrar(IDbCommand cmd)
@@ -310,10 +342,9 @@ namespace Entidades.Relacionamento.Venda
 
         public static  VendaSintetizada[] ObterVendasSemComissão()
         {
-            string consulta = "select v.codigo, v.controle, v.valortotal, v.nome, v.cliente, v.data, v.taxajuros, v.cotacao, e.semaforo from vendasintetizada v " + 
+            string consulta = INICIO_SELECT +
                 " left join comissaovenda c on v.codigo=c.venda " + 
                 " left join comissao_saldo s on s.venda=v.codigo " + 
-                " JOIN comissao_semaforo e ON v.codigo=e.venda " + 
                 " where c.venda is null or s.venda is null or s.saldo != 1";
 
             return RecuperarDados(consulta);
