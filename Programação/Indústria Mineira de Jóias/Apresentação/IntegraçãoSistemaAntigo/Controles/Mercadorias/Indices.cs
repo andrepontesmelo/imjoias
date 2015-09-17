@@ -154,15 +154,10 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 
                     
                     valorVarejo = double.Parse(itemMercadoriaAntiga["VR_3060902"].ToString());
-                    
+                    valorVarejoConsulta = Math.Round(Entidades.Preço.CorrigirInverso(60, valorVarejo, Entidades.Configuração.DadosGlobais.Instância.Juros),2);
 
-
-                    valorVarejoConsulta = Entidades.Preço.CorrigirInverso(60, valorVarejo, Entidades.Configuração.DadosGlobais.Instância.Juros);
-
-                    valorVarejo = valorVarejo / cotaçãoVarejo;
-
-                    //valorVarejoConsulta = double.Parse(itemMercadoriaAntiga["VR_PUNIT"].ToString());
-                    valorVarejoConsulta = valorVarejoConsulta / cotaçãoVarejo;
+                    //valorVarejo = valorVarejo / cotaçãoVarejo;
+                    //valorVarejoConsulta = valorVarejoConsulta / cotaçãoVarejo;
                 } 
 				catch (Exception)
 				{
@@ -185,16 +180,10 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
                     coeficienteAutoAtacado = coeficienteAtacado;
 
                     valorVarejo = double.Parse(itemMercadoriaAntiga["VR_3060902"].ToString());
-                    
+                    valorVarejoConsulta =  Math.Round(Entidades.Preço.CorrigirInverso(60, valorVarejo, Entidades.Configuração.DadosGlobais.Instância.Juros), 2);
 
-                    //valorVarejoConsulta = double.Parse(itemMercadoriaAntiga["VR_PUNIT"].ToString());
-                    
-
-                    valorVarejoConsulta = Entidades.Preço.CorrigirInverso(60, valorVarejo, Entidades.Configuração.DadosGlobais.Instância.Juros);
-
-                    valorVarejo /= cotaçãoVarejo;
-
-                    valorVarejoConsulta = valorVarejoConsulta / cotaçãoVarejo;
+                    //valorVarejo /= cotaçãoVarejo;
+                    //valorVarejoConsulta = valorVarejoConsulta / cotaçãoVarejo;
 
 				} 
 				catch (Exception)
