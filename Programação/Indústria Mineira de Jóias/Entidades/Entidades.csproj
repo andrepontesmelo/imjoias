@@ -162,6 +162,10 @@
     <Compile Include="Acerto\RastroItem.cs" />
     <Compile Include="Acerto\SaquinhoAcerto.cs" />
     <Compile Include="Acerto\SaquinhoAcertoIgualVenda.cs" />
+    <Compile Include="Acerto\Sumário\EnumTipoSumário.cs" />
+    <Compile Include="Acerto\Sumário\SumárioTotalAcerto.cs" />
+    <Compile Include="Acerto\Sumário\SumárioTotalAcertoItem.cs" />
+    <Compile Include="Acerto\Sumário\SumárioTotalAcertoItemValores.cs" />
     <Compile Include="Acerto\VendaAcerto.cs" />
     <Compile Include="Acerto\ÍndicesSaídaMercadoria.cs" />
     <Compile Include="Agendamento.cs">
