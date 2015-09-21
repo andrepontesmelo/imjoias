@@ -286,6 +286,12 @@
     <Compile Include="Estoque\JanelaOpçõesEstoque.Designer.cs">
       <DependentUpon>JanelaOpçõesEstoque.cs</DependentUpon>
     </Compile>
+    <Compile Include="Financeiro\Acerto\Sumário\SumárioAcerto.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Financeiro\Acerto\Sumário\SumárioAcerto.Designer.cs">
+      <DependentUpon>SumárioAcerto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Financeiro\Comissões\BaseVendaSemComissão.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -306,7 +312,6 @@
     <Compile Include="Financeiro\Controle\Comum\ListaPessoasItemBusca.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ControladorBotãoFotógrafo.cs" />
     <Compile Include="Estatística\Gráfico.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -597,12 +602,6 @@
     </Compile>
     <Compile Include="Financeiro\Comissões\BaseEditarComissão.Designer.cs">
       <DependentUpon>BaseEditarComissão.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Financeiro\Comissões\BasePendências.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Financeiro\Comissões\BasePendências.Designer.cs">
-      <DependentUpon>BasePendências.cs</DependentUpon>
     </Compile>
     <Compile Include="Financeiro\Comissões\JanelaNovaComissão.cs">
       <SubType>Form</SubType>
@@ -2538,6 +2537,9 @@
     <EmbeddedResource Include="Estoque\JanelaOpçõesEstoque.resx">
       <DependentUpon>JanelaOpçõesEstoque.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Financeiro\Acerto\Sumário\SumárioAcerto.resx">
+      <DependentUpon>SumárioAcerto.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Financeiro\Comissões\BaseVendaSemComissão.resx">
       <DependentUpon>BaseVendaSemComissão.cs</DependentUpon>
     </EmbeddedResource>
@@ -2703,10 +2705,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Financeiro\Comissões\BaseEditarComissão.resx">
       <DependentUpon>BaseEditarComissão.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Comissões\BasePendências.resx">
-      <DependentUpon>BasePendências.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Financeiro\Comissões\ControleAberturaVenda.resx">

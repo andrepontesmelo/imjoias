@@ -72,6 +72,8 @@ namespace Apresentação.Financeiro.Acerto
             }
 
             botãoLiberarPrevisão.Visible = true;
+
+            simulaçãoAcerto1.Carregar(acerto);
         }
 
         /// <summary>
