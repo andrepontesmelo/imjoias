@@ -1131,16 +1131,16 @@ namespace Apresentação.Mercadoria.Bandeja
             if (saquinho.Mercadoria.Ícone != null)
                 SinalizaçãoCarga.Sinalizar(lista, saquinho.Mercadoria.Referência,
                     (saquinho.Mercadoria.DePeso
-                    ? String.Format("{0} {1} unidades com peso {2}.", (saquinho.Quantidade > 0 ? "Adicionadas" : "Removidas"), Math.Abs(saquinho.Quantidade), saquinho.Peso)
-                    : String.Format("{0} {1} unidades.", (saquinho.Quantidade > 0 ? "Adicionadas" : "Removidas"), Math.Abs(saquinho.Quantidade))),
+                    ? String.Format("{0} {1} unidade(s) com peso {2}.", (saquinho.Quantidade > 0 ? "Adicionada(s)" : "Removida(s)"), Math.Abs(saquinho.Quantidade), saquinho.Peso)
+                    : String.Format("{0} {1} unidade(s).", (saquinho.Quantidade > 0 ? "Adicionada(s)" : "Removida(s)"), Math.Abs(saquinho.Quantidade))),
                     saquinho.Mercadoria.Ícone ?? new Bitmap(1, 1)).IniciarTemporizador(tempoSinalização);
             else
             {
                 AsyncSinalizarSaquinhoTardiamente método = new AsyncSinalizarSaquinhoTardiamente(SinalizarSaquinhoTardiamente);
                 SinalizaçãoCarga sinalização = SinalizaçãoCarga.Sinalizar(lista, saquinho.Mercadoria.Referência,
                     (saquinho.Mercadoria.DePeso
-                    ? String.Format("{0} {1} unidades com peso {2}.", (saquinho.Quantidade > 0 ? "Adicionadas" : "Removidas"), Math.Abs(saquinho.Quantidade), saquinho.Peso)
-                    : String.Format("{0} {1} unidades.", (saquinho.Quantidade > 0 ? "Adicionadas" : "Removidas"), Math.Abs(saquinho.Quantidade))));
+                    ? String.Format("{0} {1} unidade(s) com peso {2}.", (saquinho.Quantidade > 0 ? "Adicionada(s)" : "Removida(s)"), Math.Abs(saquinho.Quantidade), saquinho.Peso)
+                    : String.Format("{0} {1} unidade(s).", (saquinho.Quantidade > 0 ? "Adicionada(s)" : "Removida(s)"), Math.Abs(saquinho.Quantidade))));
 
                 sinalização.IniciarTemporizador(tempoSinalização);
 
