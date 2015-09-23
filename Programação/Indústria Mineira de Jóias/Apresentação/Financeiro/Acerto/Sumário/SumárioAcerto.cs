@@ -73,7 +73,7 @@ namespace Apresentação.Financeiro.Acerto
 
         private string CriarTexto(SumárioTotalAcertoItemValores saidaPeça)
         {
-            return saidaPeça.Peso.ToString() + "g - " + saidaPeça.Indice;
+            return Math.Round(saidaPeça.Peso, 2).ToString() + "g - " + Math.Round(saidaPeça.Indice, 2);
         }
     }
 }
