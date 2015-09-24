@@ -60,7 +60,6 @@ namespace Apresentação.Atendimento
         private Classificador classificador;
         private BackgroundWorker bgDescobrirPendência;
         private Opção opçãoRetorno;
-        private BackgroundWorker bgConsistência;
         private Opção opçãoOcultar;
         private Quadro quadroModoAtendimento;
         private Opção opçãoEncerrarAtendimento;
@@ -84,11 +83,6 @@ namespace Apresentação.Atendimento
 
             título.ÍconeArredondado = true;
             colItem.Width = lstPendências.ClientSize.Width - colDescrição.Width;
-
-//#warning Desligada aqui a mala-direta!
-//#if !DEBUG
-//            opçãoMalaDireta.Visible = false;
-//#endif
         }
 
         private bool modoAtendimento;
@@ -180,7 +174,6 @@ namespace Apresentação.Atendimento
             this.sinalizaçãoPedido = new Apresentação.Atendimento.SinalizaçãoPedido();
             this.sinalizaçãoMercadoriaEmFalta = new Apresentação.Mercadoria.SinalizaçãoMercadoriaEmFalta();
             this.bgDescobrirPendência = new System.ComponentModel.BackgroundWorker();
-            this.bgConsistência = new System.ComponentModel.BackgroundWorker();
             this.quadroModoAtendimento = new Apresentação.Formulários.Quadro();
             this.opçãoEncerrarAtendimento = new Apresentação.Formulários.Opção();
             this.quadro1 = new Apresentação.Formulários.Quadro();
@@ -382,7 +375,7 @@ namespace Apresentação.Atendimento
             this.opçãoConsignadoVenda.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoConsignadoVenda.MinimumSize = new System.Drawing.Size(150, 16);
             this.opçãoConsignadoVenda.Name = "opçãoConsignadoVenda";
-            this.opçãoConsignadoVenda.Privilégio = Entidades.Privilégio.Permissão.VendasEditar;
+            this.opçãoConsignadoVenda.Privilégio = Entidades.Privilégio.Permissão.VendasRemoverControle;
             this.opçãoConsignadoVenda.Size = new System.Drawing.Size(150, 17);
             this.opçãoConsignadoVenda.TabIndex = 5;
             this.opçãoConsignadoVenda.Click += new System.EventHandler(this.opçãoConsignadoVenda_Click);
@@ -631,10 +624,6 @@ namespace Apresentação.Atendimento
             this.bgDescobrirPendência.DoWork += new System.ComponentModel.DoWorkEventHandler(this.RecuperarPendências);
             this.bgDescobrirPendência.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.MostrarPendências);
             // 
-            // bgConsistência
-            // 
-            this.bgConsistência.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgConsistência_DoWork);
-            // 
             // quadroModoAtendimento
             // 
             this.quadroModoAtendimento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -740,19 +729,8 @@ namespace Apresentação.Atendimento
             this.quadroModoAtendimento.ResumeLayout(false);
             this.quadro1.ResumeLayout(false);
             this.ResumeLayout(false);
-
 		}
 
-        //void lstPendências_DoubleClick(object sender, EventArgs e)
-        //{
-        //    ListViewItem item = (ListViewItem)sender;
-        //    ClientePendência p = hashPendencias[item];
-
-        //    if (p.Identificação == ClientePendência.Identificações.MercadoriaEmFalta)
-        //    {
-        //        MessageBox.Show("Existe mercadoria em falta");
-        //    }
-        //}
 		#endregion
 
         #region Preparar cliente
@@ -1115,8 +1093,6 @@ namespace Apresentação.Atendimento
 
             if (this.pessoa == null)
                 throw new Exception("Pessoa nem visitante atribuído!");
-
-//            bgConsistência.RunWorkerAsync();
         }
 
         /// <summary>
@@ -1126,7 +1102,6 @@ namespace Apresentação.Atendimento
         {
             base.AoExibir();
 
-            //listaContaCorrente1.Carregar();
             DescobrirPendênciasSegundoPlano();
         }
 		#endregion
@@ -1207,7 +1182,6 @@ namespace Apresentação.Atendimento
 
                 try
                 {
-                    //Apresentação.Financeiro.Acerto.SeleçãoDocumentosBaseInferior baseAcerto = new Apresentação.Financeiro.Acerto.SeleçãoDocumentosBaseInferior();
                     BaseDadosAcerto baseAcerto = new BaseDadosAcerto();
                     baseAcerto.AcertoConsignado = acerto;
                     SubstituirBase(baseAcerto);
@@ -1264,15 +1238,6 @@ namespace Apresentação.Atendimento
             LinkedList<ClientePendência> pendências = (LinkedList<ClientePendência>)e.Result;
 
             MostrarPendências(pendências);
-            //SinalizaçãoCarga.Dessinalizar(quadroPendências);
-
-            //SinalizaçãoCarga.Sinalizar(this, "Calculando dívida", "O sistema está verificando e calculando dívida...");
-
-            //VerificaçãoQuitação verificação = new VerificaçãoQuitação(pessoa);
-            //verificação.AoEncontrarVendasNãoQuitadas += new VerificaçãoQuitação.VerificaçãoCallback(AoEncontrarVendasNãoQuitadas);
-            //verificação.AoEncontrarPagamentosPendentes += new VerificaçãoQuitação.VerificaçãoPagamentosCallback(verificação_AoEncontrarPagamentosPendentes);
-            //verificação.AoTerminarVerificação += new EventHandler(verificação_AoTerminar);
-            //verificação.IniciarTrabalho();
         }
 
         void verificação_AoEncontrarPagamentosPendentes(Entidades.Pessoa.Pessoa cliente, Entidades.Pagamentos.Pagamento[] pagamentosPendentes)
@@ -1284,35 +1249,6 @@ namespace Apresentação.Atendimento
 
             MostrarPendência(new ClientePendência(pagamentosPendentes.Length.ToString() + " Pagamentos", valorPendente.ToString("C"), true));
             ReajustarPendências();
-        }
-
-        void verificação_AoTerminar(object sender, EventArgs e)
-        {
-            //SinalizaçãoCarga.Dessinalizar(quadroPendências);
-        }
-
-        private void bgConsistência_DoWork(object sender, DoWorkEventArgs e)
-        {
-            //try
-            //{
-            //    if (AcertoConsignado.AgruparDocumentosNãoAcertados(pessoa) != null)
-            //    {
-            //        MessageBox.Show(
-            //            "Existiam documentos desvinculados de acerto em nome de " + pessoa.Nome + ". Os documentos foram agrupados em um acerto novo.",
-            //            "Indústria Mineira de Jóias",
-            //            MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //    }
-            //}
-            //catch (Exception erro)
-            //{
-            //    MessageBox.Show(
-            //        "Ocorreu um erro verificando documentos desvinculados de acerto de " + pessoa.Nome + ":\n\n" + erro.Message,
-            //        "Indústria Mineira de Jóias",
-            //        MessageBoxButtons.OK,
-            //        MessageBoxIcon.Error);
-
-            //    Acesso.Comum.Usuários.UsuárioAtual.RegistrarErro(erro);
-            //}
         }
 
         /// <summary>
@@ -1351,17 +1287,6 @@ namespace Apresentação.Atendimento
 
         private void sinalizaçãoMercadoriaEmFalta_Click(object sender, EventArgs e)
         {
-            //AguardeDB.Mostrar();
-
-            //try
-            //{
-            //    SubstituirBase(new BasePedidos(pessoa));
-            //}
-            //finally
-            //{
-            //    AguardeDB.Fechar();
-            //}
-
             JanelaMercadoriaEmFalta janela = new JanelaMercadoriaEmFalta();
             janela.Carregar(pessoa, this);
         }
