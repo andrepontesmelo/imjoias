@@ -53,6 +53,24 @@ namespace Apresentação.Financeiro.Venda
             IDadosVenda[] vendas;
             VínculoVendaPessoa tipoVinculo;
 
+            bool buscarFaturamento = (txtVendedor.Pessoa == null && txtCliente.Pessoa == null);
+            bool buscarVendasOutroVendedor = txtCliente.Pessoa == null && txtVendedor.Pessoa != null
+                && txtVendedor.Pessoa.Código != Entidades.Pessoa.Funcionário.FuncionárioAtual.Código;
+
+            if ((buscarFaturamento || buscarVendasOutroVendedor)
+                && !Entidades.Privilégio.PermissãoFuncionário.ValidarPermissão(Entidades.Privilégio.Permissão.Faturamento))
+            {
+                MessageBox.Show(this, 
+                    "Favor solicitar a permissão 'Faturamento' para a seguinte operação: " + 
+                    (buscarFaturamento ? "\n * Acesso ao faturamento global da empresa " : "") + 
+                (buscarVendasOutroVendedor ? "\n * Acesso às vendas de outro vendedor " : ""),
+                "Falta de permissão",
+                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                return;
+
+            }
+
             if (txtVendedor.Pessoa != null && txtCliente.Pessoa == null)
             {
                 // Vendas de um vendedor foi escolhido.
