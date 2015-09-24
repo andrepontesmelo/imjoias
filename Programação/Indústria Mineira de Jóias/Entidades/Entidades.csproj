@@ -315,7 +315,6 @@
     <Compile Include="Pessoa\PessoaCódigoNome.cs" />
     <Compile Include="Pessoa\Impressão\PessoaImpressão.cs" />
     <Compile Include="Pessoa\Ramal.cs" />
-    <Compile Include="Pessoa\ReferênciaPessoal.cs" />
     <Compile Include="Pessoa\RelacionamentoInterpessoal.cs" />
     <Compile Include="Pessoa\Sexo.cs" />
     <Compile Include="Pessoa\Telefone.cs" />
