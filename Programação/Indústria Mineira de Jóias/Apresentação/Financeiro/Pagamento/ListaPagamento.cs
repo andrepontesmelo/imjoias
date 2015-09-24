@@ -541,10 +541,17 @@ namespace Apresentação.Financeiro.Pagamento
             else
                 itemPagamento.ProrrogadoPara = null;
 
-            itemPagamento.Vencimento = p.ÚltimoVencimento;
+            if (p is Cheque)
+                itemPagamento.Vencimento = ((Cheque) p).Vencimento;
+            else
 
-            item.SubItems[colVencimento.Index].Text =
-                p.ÚltimoVencimento.ToString("dd/MM/yyyy");
+                itemPagamento.Vencimento =  p.ÚltimoVencimento;
+
+            if (itemPagamento.Vencimento.HasValue)
+            {
+                item.SubItems[colVencimento.Index].Text =
+                    itemPagamento.Vencimento.Value.ToString("dd/MM/yyyy");
+            }
 
             if (venda != null)
             {
