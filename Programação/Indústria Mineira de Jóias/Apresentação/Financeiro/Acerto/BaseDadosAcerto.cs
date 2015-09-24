@@ -73,6 +73,8 @@ namespace Apresentação.Financeiro.Acerto
 
             botãoLiberarPrevisão.Visible = true;
 
+            acerto = AcertoConsignado.ObterAcerto(acerto.Código);
+            listaDocumentosAcerto.Recarregar(acerto);
             simulaçãoAcerto1.Carregar(acerto);
         }
 

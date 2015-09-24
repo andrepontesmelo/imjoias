@@ -57,6 +57,13 @@ namespace Apresentação.Financeiro.Acerto
 
         public void AoExibir(BaseInferior baseInferior)
         {
+            Recarregar(acerto);
+        }
+
+        public void Recarregar(AcertoConsignado acerto)
+        {
+            this.acerto = acerto;
+
             flowLayoutPanel.SuspendLayout();
             flowLayoutPanel.Controls.Clear();
 

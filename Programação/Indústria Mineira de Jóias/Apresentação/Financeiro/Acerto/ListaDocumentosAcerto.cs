@@ -21,12 +21,22 @@ namespace Apresentação.Financeiro.Acerto
             set
             {
                 acerto = value;
+
                 SuspendLayout();
                 exibiçãoDocumentos1.AcertoConsignado = value;
                 exibiçãoDocumentos2.AcertoConsignado = value;
                 exibiçãoDocumentos3.AcertoConsignado = value;
                 ResumeLayout();
             }
+        }
+
+        public void Recarregar(AcertoConsignado acerto)
+        {
+            AcertoConsignado = acerto;
+
+            exibiçãoDocumentos1.Recarregar(acerto);
+            exibiçãoDocumentos2.Recarregar(acerto);
+            exibiçãoDocumentos3.Recarregar(acerto);
         }
 
         public ListaDocumentosAcerto()
