@@ -77,8 +77,9 @@ namespace Apresentação.Financeiro.Acerto
             {
                 acerto = AcertoConsignado.ObterAcerto(acerto.Código);
                 listaDocumentosAcerto.Recarregar(acerto);
-                simulaçãoAcerto1.Carregar(acerto);
             }
+
+            simulaçãoAcerto1.Carregar(acerto);
         }
 
         /// <summary>
