@@ -54,9 +54,9 @@ namespace Apresentação.Atendimento.Atendente
             // Evitando que cache de pessoa seja utilizada no atendimento
             if (pessoa is Entidades.Pessoa.PessoaFísica ||
                 (pessoa is Entidades.Pessoa.PessoaCPFCNPJRG && ((PessoaCPFCNPJRG) pessoa).CPF != null))
-                baseAtendimento.Preparar(Entidades.Pessoa.PessoaFísica.ObterPessoaSemCache(pessoa.Código));
+                baseAtendimento.Carregar(Entidades.Pessoa.PessoaFísica.ObterPessoaSemCache(pessoa.Código));
             else
-                baseAtendimento.Preparar(Entidades.Pessoa.PessoaJurídica.ObterPessoaSemCache(pessoa.Código));
+                baseAtendimento.Carregar(Entidades.Pessoa.PessoaJurídica.ObterPessoaSemCache(pessoa.Código));
 
 			SubstituirBaseAtual(baseAtendimento);
 			MostrarBaseFormulário(baseAtendimento);
