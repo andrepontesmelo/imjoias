@@ -84,8 +84,8 @@
             // 
             // quadro1
             // 
-            this.quadro1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.quadro1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.quadro1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(239)))), ((int)(((byte)(221)))));
             this.quadro1.bInfDirArredondada = true;
             this.quadro1.bInfEsqArredondada = true;
@@ -312,9 +312,9 @@
             // 
             // quadroEtiqueta
             // 
-            this.quadroEtiqueta.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.quadroEtiqueta.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.quadroEtiqueta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(239)))), ((int)(((byte)(221)))));
             this.quadroEtiqueta.bInfDirArredondada = false;
             this.quadroEtiqueta.bInfEsqArredondada = false;
@@ -334,9 +334,9 @@
             // 
             // layoutDesign
             // 
-            this.layoutDesign.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.layoutDesign.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.layoutDesign.AutoScroll = true;
             this.layoutDesign.BackColor = System.Drawing.Color.Gray;
             this.layoutDesign.Grid = new System.Drawing.SizeF(1F, 1F);
@@ -358,8 +358,8 @@
             // 
             // quadroPropriedades
             // 
-            this.quadroPropriedades.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.quadroPropriedades.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.quadroPropriedades.BackColor = System.Drawing.Color.Linen;
             this.quadroPropriedades.bInfDirArredondada = true;
             this.quadroPropriedades.bInfEsqArredondada = true;
@@ -379,9 +379,9 @@
             // 
             // propriedades
             // 
-            this.propriedades.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.propriedades.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.propriedades.CommandsBackColor = System.Drawing.Color.White;
             this.propriedades.LineColor = System.Drawing.SystemColors.ScrollBar;
             this.propriedades.Location = new System.Drawing.Point(8, 32);
@@ -415,7 +415,7 @@
             this.opçãoCancelar.BackColor = System.Drawing.Color.Transparent;
             this.opçãoCancelar.Descrição = "Cancelar";
             this.opçãoCancelar.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoCancelar.Imagem")));
-            this.opçãoCancelar.Location = new System.Drawing.Point(8, 56);
+            this.opçãoCancelar.Location = new System.Drawing.Point(7, 50);
             this.opçãoCancelar.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoCancelar.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoCancelar.MinimumSize = new System.Drawing.Size(150, 16);
@@ -428,7 +428,7 @@
             this.opçãoSalvar.BackColor = System.Drawing.Color.Transparent;
             this.opçãoSalvar.Descrição = "Salvar configuração";
             this.opçãoSalvar.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoSalvar.Imagem")));
-            this.opçãoSalvar.Location = new System.Drawing.Point(8, 32);
+            this.opçãoSalvar.Location = new System.Drawing.Point(7, 30);
             this.opçãoSalvar.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoSalvar.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoSalvar.MinimumSize = new System.Drawing.Size(150, 16);
@@ -459,9 +459,9 @@
             // 
             // painelElementos
             // 
-            this.painelElementos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.painelElementos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.painelElementos.AutoSize = true;
             this.painelElementos.BackColor = System.Drawing.Color.Transparent;
             this.painelElementos.Location = new System.Drawing.Point(8, 80);

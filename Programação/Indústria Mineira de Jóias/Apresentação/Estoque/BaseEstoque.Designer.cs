@@ -34,13 +34,13 @@
             this.btnRelatórioFornecedor = new Apresentação.Formulários.Opção();
             this.btnRelatórioResumo = new Apresentação.Formulários.Opção();
             this.quadro2 = new Apresentação.Formulários.Quadro();
+            this.opçãoConfigurações = new Apresentação.Formulários.Opção();
             this.opçãoZerarEstoque = new Apresentação.Formulários.Opção();
             this.btnEntradas = new Apresentação.Formulários.Opção();
             this.quadro3 = new Apresentação.Formulários.Quadro();
             this.btnExtrato = new Apresentação.Formulários.Opção();
             this.quadro4 = new Apresentação.Formulários.Quadro();
             this.listaSaldo = new Apresentação.Estoque.ListaSaldo();
-            this.opçãoConfigurações = new Apresentação.Formulários.Opção();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.quadro2.SuspendLayout();
@@ -85,7 +85,7 @@
             this.quadro1.Location = new System.Drawing.Point(7, 13);
             this.quadro1.MostrarBotãoMinMax = false;
             this.quadro1.Name = "quadro1";
-            this.quadro1.Size = new System.Drawing.Size(160, 83);
+            this.quadro1.Size = new System.Drawing.Size(160, 95);
             this.quadro1.TabIndex = 7;
             this.quadro1.Tamanho = 30;
             this.quadro1.Título = "Relatórios";
@@ -95,7 +95,7 @@
             this.btnRelatórioReferência.BackColor = System.Drawing.Color.Transparent;
             this.btnRelatórioReferência.Descrição = "Referência";
             this.btnRelatórioReferência.Imagem = global::Apresentação.Resource.relatório;
-            this.btnRelatórioReferência.Location = new System.Drawing.Point(10, 60);
+            this.btnRelatórioReferência.Location = new System.Drawing.Point(7, 70);
             this.btnRelatórioReferência.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnRelatórioReferência.MaximumSize = new System.Drawing.Size(150, 100);
             this.btnRelatórioReferência.MinimumSize = new System.Drawing.Size(150, 16);
@@ -109,7 +109,7 @@
             this.btnRelatórioFornecedor.BackColor = System.Drawing.Color.Transparent;
             this.btnRelatórioFornecedor.Descrição = "Fornecedor";
             this.btnRelatórioFornecedor.Imagem = global::Apresentação.Resource.relatório;
-            this.btnRelatórioFornecedor.Location = new System.Drawing.Point(10, 45);
+            this.btnRelatórioFornecedor.Location = new System.Drawing.Point(7, 50);
             this.btnRelatórioFornecedor.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnRelatórioFornecedor.MaximumSize = new System.Drawing.Size(150, 100);
             this.btnRelatórioFornecedor.MinimumSize = new System.Drawing.Size(150, 16);
@@ -123,7 +123,7 @@
             this.btnRelatórioResumo.BackColor = System.Drawing.Color.Transparent;
             this.btnRelatórioResumo.Descrição = "Resumo";
             this.btnRelatórioResumo.Imagem = global::Apresentação.Resource.relatório;
-            this.btnRelatórioResumo.Location = new System.Drawing.Point(10, 30);
+            this.btnRelatórioResumo.Location = new System.Drawing.Point(7, 30);
             this.btnRelatórioResumo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnRelatórioResumo.MaximumSize = new System.Drawing.Size(150, 100);
             this.btnRelatórioResumo.MinimumSize = new System.Drawing.Size(150, 16);
@@ -145,7 +145,7 @@
             this.quadro2.Cor = System.Drawing.Color.Black;
             this.quadro2.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadro2.LetraTítulo = System.Drawing.Color.White;
-            this.quadro2.Location = new System.Drawing.Point(7, 102);
+            this.quadro2.Location = new System.Drawing.Point(7, 117);
             this.quadro2.MostrarBotãoMinMax = false;
             this.quadro2.Name = "quadro2";
             this.quadro2.Size = new System.Drawing.Size(160, 93);
@@ -153,12 +153,26 @@
             this.quadro2.Tamanho = 30;
             this.quadro2.Título = "Ações";
             // 
+            // opçãoConfigurações
+            // 
+            this.opçãoConfigurações.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoConfigurações.Descrição = "Configurações...";
+            this.opçãoConfigurações.Imagem = global::Apresentação.Resource.repair;
+            this.opçãoConfigurações.Location = new System.Drawing.Point(7, 70);
+            this.opçãoConfigurações.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoConfigurações.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoConfigurações.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoConfigurações.Name = "opçãoConfigurações";
+            this.opçãoConfigurações.Size = new System.Drawing.Size(150, 16);
+            this.opçãoConfigurações.TabIndex = 9;
+            this.opçãoConfigurações.Click += new System.EventHandler(this.opçãoConfigurações_Click);
+            // 
             // opçãoZerarEstoque
             // 
             this.opçãoZerarEstoque.BackColor = System.Drawing.Color.Transparent;
             this.opçãoZerarEstoque.Descrição = "Zerar Estoque";
             this.opçãoZerarEstoque.Imagem = global::Apresentação.Resource.none;
-            this.opçãoZerarEstoque.Location = new System.Drawing.Point(10, 50);
+            this.opçãoZerarEstoque.Location = new System.Drawing.Point(7, 50);
             this.opçãoZerarEstoque.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoZerarEstoque.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoZerarEstoque.MinimumSize = new System.Drawing.Size(150, 16);
@@ -172,7 +186,7 @@
             this.btnEntradas.BackColor = System.Drawing.Color.Transparent;
             this.btnEntradas.Descrição = "Abrir Entradas";
             this.btnEntradas.Imagem = global::Apresentação.Resource.VariaçãoPositiva;
-            this.btnEntradas.Location = new System.Drawing.Point(10, 30);
+            this.btnEntradas.Location = new System.Drawing.Point(7, 30);
             this.btnEntradas.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnEntradas.MaximumSize = new System.Drawing.Size(150, 100);
             this.btnEntradas.MinimumSize = new System.Drawing.Size(150, 16);
@@ -192,7 +206,7 @@
             this.quadro3.Cor = System.Drawing.Color.Black;
             this.quadro3.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadro3.LetraTítulo = System.Drawing.Color.White;
-            this.quadro3.Location = new System.Drawing.Point(7, 201);
+            this.quadro3.Location = new System.Drawing.Point(7, 216);
             this.quadro3.MostrarBotãoMinMax = false;
             this.quadro3.Name = "quadro3";
             this.quadro3.Size = new System.Drawing.Size(160, 58);
@@ -205,7 +219,7 @@
             this.btnExtrato.BackColor = System.Drawing.Color.Transparent;
             this.btnExtrato.Descrição = "Extrato";
             this.btnExtrato.Imagem = global::Apresentação.Resource.propriedades__altura_58_1;
-            this.btnExtrato.Location = new System.Drawing.Point(10, 30);
+            this.btnExtrato.Location = new System.Drawing.Point(7, 30);
             this.btnExtrato.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnExtrato.MaximumSize = new System.Drawing.Size(150, 100);
             this.btnExtrato.MinimumSize = new System.Drawing.Size(150, 16);
@@ -243,23 +257,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listaSaldo.Location = new System.Drawing.Point(3, 23);
             this.listaSaldo.Name = "listaSaldo";
+            this.listaSaldo.Opções = null;
             this.listaSaldo.Size = new System.Drawing.Size(590, 172);
             this.listaSaldo.TabIndex = 2;
             this.listaSaldo.AoDuploClique += new System.EventHandler(this.listaSaldo_AoDuploClique);
-            // 
-            // opçãoConfigurações
-            // 
-            this.opçãoConfigurações.BackColor = System.Drawing.Color.Transparent;
-            this.opçãoConfigurações.Descrição = "Configurações...";
-            this.opçãoConfigurações.Imagem = global::Apresentação.Resource.repair;
-            this.opçãoConfigurações.Location = new System.Drawing.Point(10, 70);
-            this.opçãoConfigurações.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.opçãoConfigurações.MaximumSize = new System.Drawing.Size(150, 100);
-            this.opçãoConfigurações.MinimumSize = new System.Drawing.Size(150, 16);
-            this.opçãoConfigurações.Name = "opçãoConfigurações";
-            this.opçãoConfigurações.Size = new System.Drawing.Size(150, 16);
-            this.opçãoConfigurações.TabIndex = 9;
-            this.opçãoConfigurações.Click += new System.EventHandler(this.opçãoConfigurações_Click);
             // 
             // BaseEstoque
             // 

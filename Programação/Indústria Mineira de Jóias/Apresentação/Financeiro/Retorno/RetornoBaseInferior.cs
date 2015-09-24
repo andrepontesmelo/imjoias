@@ -108,22 +108,23 @@ namespace Apresentação.Financeiro.Retorno
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.quadroAcerto = new Apresentação.Formulários.Quadro();
             this.opçãoContabilizar = new Apresentação.Formulários.Opção();
             this.tabs.SuspendLayout();
             this.tabItens.SuspendLayout();
             this.quadroTravamento.SuspendLayout();
+            this.tabObservações.SuspendLayout();
             this.esquerda.SuspendLayout();
             this.quadroAcerto.SuspendLayout();
             this.SuspendLayout();
-            this.quadroTravamento.Controls.SetChildIndex(this.opçãoDestravar, 0);
             // 
             // título
             // 
             this.título.Imagem = global::Apresentação.Resource.retorno;
             this.título.Location = new System.Drawing.Point(193, 3);
             this.título.Título = "Base inferior de retorno.";
+            this.quadroTravamento.Controls.SetChildIndex(this.lblTravamento, 0);
+            this.quadroTravamento.Controls.SetChildIndex(this.opçãoDestravar, 0);
             // 
             // esquerda
             // 
@@ -142,7 +143,7 @@ namespace Apresentação.Financeiro.Retorno
             this.quadroAcerto.Cor = System.Drawing.Color.Black;
             this.quadroAcerto.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadroAcerto.LetraTítulo = System.Drawing.Color.White;
-            this.quadroAcerto.Location = new System.Drawing.Point(7, 393);
+            this.quadroAcerto.Location = new System.Drawing.Point(7, 305);
             this.quadroAcerto.MostrarBotãoMinMax = false;
             this.quadroAcerto.Name = "quadroAcerto";
             this.quadroAcerto.Size = new System.Drawing.Size(160, 54);
@@ -153,9 +154,9 @@ namespace Apresentação.Financeiro.Retorno
             // opçãoContabilizar
             // 
             this.opçãoContabilizar.BackColor = System.Drawing.Color.Transparent;
-            this.opçãoContabilizar.Descrição = "Contabilizar mercadorias...";
+            this.opçãoContabilizar.Descrição = "Contabilizar mercadorias";
             this.opçãoContabilizar.Imagem = global::Apresentação.Resource.CalculatorHS;
-            this.opçãoContabilizar.Location = new System.Drawing.Point(5, 30);
+            this.opçãoContabilizar.Location = new System.Drawing.Point(7, 30);
             this.opçãoContabilizar.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoContabilizar.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoContabilizar.MinimumSize = new System.Drawing.Size(150, 16);
@@ -172,6 +173,7 @@ namespace Apresentação.Financeiro.Retorno
             this.tabs.ResumeLayout(false);
             this.tabItens.ResumeLayout(false);
             this.quadroTravamento.ResumeLayout(false);
+            this.tabObservações.ResumeLayout(false);
             this.esquerda.ResumeLayout(false);
             this.quadroAcerto.ResumeLayout(false);
             this.ResumeLayout(false);

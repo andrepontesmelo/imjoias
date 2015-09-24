@@ -49,9 +49,6 @@
             this.opçãoImprimirTodos = new Apresentação.Formulários.Opção();
             this.opçãoRelatórioResumo = new Apresentação.Formulários.Opção();
             this.opçãoRelatórioPorVenda = new Apresentação.Formulários.Opção();
-            this.quadroVendaSelecionada = new Apresentação.Formulários.Quadro();
-            this.opção2 = new Apresentação.Formulários.Opção();
-            this.opçãoAbrir = new Apresentação.Formulários.Opção();
             this.quadroFiltrarExibição = new Apresentação.Formulários.Quadro();
             this.iconeDataFinal = new System.Windows.Forms.Panel();
             this.iconeDataInicial = new System.Windows.Forms.Panel();
@@ -70,7 +67,6 @@
             this.tabEstornos.SuspendLayout();
             this.tabAjuda.SuspendLayout();
             this.quadro1.SuspendLayout();
-            this.quadroVendaSelecionada.SuspendLayout();
             this.quadroFiltrarExibição.SuspendLayout();
             this.quadro3.SuspendLayout();
             this.SuspendLayout();
@@ -79,11 +75,9 @@
             // 
             this.esquerda.Controls.Add(this.quadro3);
             this.esquerda.Controls.Add(this.quadroFiltrarExibição);
-            this.esquerda.Controls.Add(this.quadroVendaSelecionada);
             this.esquerda.Controls.Add(this.quadro1);
             this.esquerda.Size = new System.Drawing.Size(187, 644);
             this.esquerda.Controls.SetChildIndex(this.quadro1, 0);
-            this.esquerda.Controls.SetChildIndex(this.quadroVendaSelecionada, 0);
             this.esquerda.Controls.SetChildIndex(this.quadroFiltrarExibição, 0);
             this.esquerda.Controls.SetChildIndex(this.quadro3, 0);
             // 
@@ -240,7 +234,7 @@
             this.quadro1.Location = new System.Drawing.Point(7, 79);
             this.quadro1.MostrarBotãoMinMax = false;
             this.quadro1.Name = "quadro1";
-            this.quadro1.Size = new System.Drawing.Size(160, 184);
+            this.quadro1.Size = new System.Drawing.Size(160, 178);
             this.quadro1.TabIndex = 1;
             this.quadro1.Tamanho = 30;
             this.quadro1.Título = "Relatórios";
@@ -250,7 +244,7 @@
             this.opçãoSetor.BackColor = System.Drawing.Color.Transparent;
             this.opçãoSetor.Descrição = "Setor";
             this.opçãoSetor.Imagem = global::Apresentação.Resource.Impressora_3D;
-            this.opçãoSetor.Location = new System.Drawing.Point(8, 50);
+            this.opçãoSetor.Location = new System.Drawing.Point(7, 50);
             this.opçãoSetor.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoSetor.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoSetor.MinimumSize = new System.Drawing.Size(150, 16);
@@ -264,7 +258,7 @@
             this.opçãoVendaItem.BackColor = System.Drawing.Color.Transparent;
             this.opçãoVendaItem.Descrição = "Item";
             this.opçãoVendaItem.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoVendaItem.Imagem")));
-            this.opçãoVendaItem.Location = new System.Drawing.Point(8, 110);
+            this.opçãoVendaItem.Location = new System.Drawing.Point(7, 110);
             this.opçãoVendaItem.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoVendaItem.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoVendaItem.MinimumSize = new System.Drawing.Size(150, 16);
@@ -278,7 +272,7 @@
             this.opçãoRelatórioCompartilhada.BackColor = System.Drawing.Color.Transparent;
             this.opçãoRelatórioCompartilhada.Descrição = "Compartilhada";
             this.opçãoRelatórioCompartilhada.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoRelatórioCompartilhada.Imagem")));
-            this.opçãoRelatórioCompartilhada.Location = new System.Drawing.Point(8, 130);
+            this.opçãoRelatórioCompartilhada.Location = new System.Drawing.Point(7, 130);
             this.opçãoRelatórioCompartilhada.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoRelatórioCompartilhada.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoRelatórioCompartilhada.MinimumSize = new System.Drawing.Size(150, 16);
@@ -292,7 +286,7 @@
             this.opçãoRelatórioRegraPessoa.BackColor = System.Drawing.Color.Transparent;
             this.opçãoRelatórioRegraPessoa.Descrição = "Regra";
             this.opçãoRelatórioRegraPessoa.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoRelatórioRegraPessoa.Imagem")));
-            this.opçãoRelatórioRegraPessoa.Location = new System.Drawing.Point(8, 70);
+            this.opçãoRelatórioRegraPessoa.Location = new System.Drawing.Point(7, 70);
             this.opçãoRelatórioRegraPessoa.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoRelatórioRegraPessoa.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoRelatórioRegraPessoa.MinimumSize = new System.Drawing.Size(150, 16);
@@ -306,7 +300,7 @@
             this.opçãoImprimirTodos.BackColor = System.Drawing.Color.Transparent;
             this.opçãoImprimirTodos.Descrição = "Mostrar Todos";
             this.opçãoImprimirTodos.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoImprimirTodos.Imagem")));
-            this.opçãoImprimirTodos.Location = new System.Drawing.Point(8, 150);
+            this.opçãoImprimirTodos.Location = new System.Drawing.Point(7, 150);
             this.opçãoImprimirTodos.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoImprimirTodos.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoImprimirTodos.MinimumSize = new System.Drawing.Size(150, 16);
@@ -320,7 +314,7 @@
             this.opçãoRelatórioResumo.BackColor = System.Drawing.Color.Transparent;
             this.opçãoRelatórioResumo.Descrição = "Resumo";
             this.opçãoRelatórioResumo.Imagem = global::Apresentação.Resource.Impressora_3D;
-            this.opçãoRelatórioResumo.Location = new System.Drawing.Point(8, 30);
+            this.opçãoRelatórioResumo.Location = new System.Drawing.Point(7, 30);
             this.opçãoRelatórioResumo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoRelatórioResumo.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoRelatórioResumo.MinimumSize = new System.Drawing.Size(150, 16);
@@ -334,7 +328,7 @@
             this.opçãoRelatórioPorVenda.BackColor = System.Drawing.Color.Transparent;
             this.opçãoRelatórioPorVenda.Descrição = "Venda";
             this.opçãoRelatórioPorVenda.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoRelatórioPorVenda.Imagem")));
-            this.opçãoRelatórioPorVenda.Location = new System.Drawing.Point(8, 90);
+            this.opçãoRelatórioPorVenda.Location = new System.Drawing.Point(7, 90);
             this.opçãoRelatórioPorVenda.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoRelatórioPorVenda.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoRelatórioPorVenda.MinimumSize = new System.Drawing.Size(150, 16);
@@ -342,53 +336,6 @@
             this.opçãoRelatórioPorVenda.Size = new System.Drawing.Size(150, 16);
             this.opçãoRelatórioPorVenda.TabIndex = 4;
             this.opçãoRelatórioPorVenda.Click += new System.EventHandler(this.opçãoRelatórioPorVenda_Click);
-            // 
-            // quadroVendaSelecionada
-            // 
-            this.quadroVendaSelecionada.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.quadroVendaSelecionada.bInfDirArredondada = true;
-            this.quadroVendaSelecionada.bInfEsqArredondada = true;
-            this.quadroVendaSelecionada.bSupDirArredondada = true;
-            this.quadroVendaSelecionada.bSupEsqArredondada = true;
-            this.quadroVendaSelecionada.Controls.Add(this.opção2);
-            this.quadroVendaSelecionada.Controls.Add(this.opçãoAbrir);
-            this.quadroVendaSelecionada.Cor = System.Drawing.Color.Black;
-            this.quadroVendaSelecionada.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
-            this.quadroVendaSelecionada.LetraTítulo = System.Drawing.Color.White;
-            this.quadroVendaSelecionada.Location = new System.Drawing.Point(7, 393);
-            this.quadroVendaSelecionada.MostrarBotãoMinMax = false;
-            this.quadroVendaSelecionada.Name = "quadroVendaSelecionada";
-            this.quadroVendaSelecionada.Size = new System.Drawing.Size(160, 82);
-            this.quadroVendaSelecionada.TabIndex = 3;
-            this.quadroVendaSelecionada.Tamanho = 30;
-            this.quadroVendaSelecionada.Título = "Venda selecionada";
-            this.quadroVendaSelecionada.Visible = false;
-            // 
-            // opção2
-            // 
-            this.opção2.BackColor = System.Drawing.Color.Transparent;
-            this.opção2.Descrição = "Cálculo detalhado";
-            this.opção2.Imagem = global::Apresentação.Resource.propriedades;
-            this.opção2.Location = new System.Drawing.Point(10, 56);
-            this.opção2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.opção2.MaximumSize = new System.Drawing.Size(150, 100);
-            this.opção2.MinimumSize = new System.Drawing.Size(150, 16);
-            this.opção2.Name = "opção2";
-            this.opção2.Size = new System.Drawing.Size(150, 24);
-            this.opção2.TabIndex = 3;
-            // 
-            // opçãoAbrir
-            // 
-            this.opçãoAbrir.BackColor = System.Drawing.Color.Transparent;
-            this.opçãoAbrir.Descrição = "Abrir";
-            this.opçãoAbrir.Imagem = global::Apresentação.Resource.openfolderHS1;
-            this.opçãoAbrir.Location = new System.Drawing.Point(10, 32);
-            this.opçãoAbrir.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.opçãoAbrir.MaximumSize = new System.Drawing.Size(150, 100);
-            this.opçãoAbrir.MinimumSize = new System.Drawing.Size(150, 16);
-            this.opçãoAbrir.Name = "opçãoAbrir";
-            this.opçãoAbrir.Size = new System.Drawing.Size(150, 24);
-            this.opçãoAbrir.TabIndex = 2;
             // 
             // quadroFiltrarExibição
             // 
@@ -411,7 +358,7 @@
             this.quadroFiltrarExibição.Location = new System.Drawing.Point(7, 263);
             this.quadroFiltrarExibição.MostrarBotãoMinMax = false;
             this.quadroFiltrarExibição.Name = "quadroFiltrarExibição";
-            this.quadroFiltrarExibição.Size = new System.Drawing.Size(160, 149);
+            this.quadroFiltrarExibição.Size = new System.Drawing.Size(160, 138);
             this.quadroFiltrarExibição.TabIndex = 4;
             this.quadroFiltrarExibição.Tamanho = 30;
             this.quadroFiltrarExibição.Título = "Filtro";
@@ -422,7 +369,7 @@
             this.iconeDataFinal.BackColor = System.Drawing.Color.Transparent;
             this.iconeDataFinal.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("iconeDataFinal.BackgroundImage")));
             this.iconeDataFinal.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.iconeDataFinal.Location = new System.Drawing.Point(10, 98);
+            this.iconeDataFinal.Location = new System.Drawing.Point(7, 72);
             this.iconeDataFinal.Name = "iconeDataFinal";
             this.iconeDataFinal.Size = new System.Drawing.Size(18, 16);
             this.iconeDataFinal.TabIndex = 11;
@@ -436,7 +383,7 @@
             this.iconeDataInicial.BackColor = System.Drawing.Color.Transparent;
             this.iconeDataInicial.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("iconeDataInicial.BackgroundImage")));
             this.iconeDataInicial.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.iconeDataInicial.Location = new System.Drawing.Point(9, 72);
+            this.iconeDataInicial.Location = new System.Drawing.Point(7, 52);
             this.iconeDataInicial.Name = "iconeDataInicial";
             this.iconeDataInicial.Size = new System.Drawing.Size(18, 16);
             this.iconeDataInicial.TabIndex = 10;
@@ -450,7 +397,7 @@
             this.iconeFiltroPessoa.BackColor = System.Drawing.Color.Transparent;
             this.iconeFiltroPessoa.BackgroundImage = global::Apresentação.Resource.search4people;
             this.iconeFiltroPessoa.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.iconeFiltroPessoa.Location = new System.Drawing.Point(9, 44);
+            this.iconeFiltroPessoa.Location = new System.Drawing.Point(7, 30);
             this.iconeFiltroPessoa.Name = "iconeFiltroPessoa";
             this.iconeFiltroPessoa.Size = new System.Drawing.Size(18, 16);
             this.iconeFiltroPessoa.TabIndex = 9;
@@ -463,7 +410,7 @@
             this.dataFinal.Checked = false;
             this.dataFinal.Enabled = false;
             this.dataFinal.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dataFinal.Location = new System.Drawing.Point(40, 94);
+            this.dataFinal.Location = new System.Drawing.Point(40, 72);
             this.dataFinal.Name = "dataFinal";
             this.dataFinal.Size = new System.Drawing.Size(110, 20);
             this.dataFinal.TabIndex = 8;
@@ -475,12 +422,12 @@
             this.opçãoCancelarFiltros.BackColor = System.Drawing.Color.Transparent;
             this.opçãoCancelarFiltros.Descrição = "Cancelar";
             this.opçãoCancelarFiltros.Imagem = global::Apresentação.Resource.Edit_UndoHS;
-            this.opçãoCancelarFiltros.Location = new System.Drawing.Point(83, 121);
+            this.opçãoCancelarFiltros.Location = new System.Drawing.Point(7, 117);
             this.opçãoCancelarFiltros.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoCancelarFiltros.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoCancelarFiltros.MinimumSize = new System.Drawing.Size(150, 16);
             this.opçãoCancelarFiltros.Name = "opçãoCancelarFiltros";
-            this.opçãoCancelarFiltros.Size = new System.Drawing.Size(150, 24);
+            this.opçãoCancelarFiltros.Size = new System.Drawing.Size(150, 18);
             this.opçãoCancelarFiltros.TabIndex = 7;
             this.opçãoCancelarFiltros.Visible = false;
             this.opçãoCancelarFiltros.Click += new System.EventHandler(this.opçãoCancelar_Click);
@@ -490,12 +437,12 @@
             this.opçãoAplicarFiltros.BackColor = System.Drawing.Color.Transparent;
             this.opçãoAplicarFiltros.Descrição = "Aplicar";
             this.opçãoAplicarFiltros.Imagem = global::Apresentação.Resource.Flag_greenHS;
-            this.opçãoAplicarFiltros.Location = new System.Drawing.Point(13, 121);
+            this.opçãoAplicarFiltros.Location = new System.Drawing.Point(7, 97);
             this.opçãoAplicarFiltros.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoAplicarFiltros.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoAplicarFiltros.MinimumSize = new System.Drawing.Size(150, 16);
             this.opçãoAplicarFiltros.Name = "opçãoAplicarFiltros";
-            this.opçãoAplicarFiltros.Size = new System.Drawing.Size(150, 24);
+            this.opçãoAplicarFiltros.Size = new System.Drawing.Size(150, 16);
             this.opçãoAplicarFiltros.TabIndex = 6;
             this.opçãoAplicarFiltros.Visible = false;
             this.opçãoAplicarFiltros.Click += new System.EventHandler(this.opçãoAplicarFiltros_Click);
@@ -505,7 +452,7 @@
             this.dataInicial.Checked = false;
             this.dataInicial.Enabled = false;
             this.dataInicial.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dataInicial.Location = new System.Drawing.Point(40, 68);
+            this.dataInicial.Location = new System.Drawing.Point(40, 52);
             this.dataInicial.Name = "dataInicial";
             this.dataInicial.Size = new System.Drawing.Size(110, 20);
             this.dataInicial.TabIndex = 2;
@@ -516,7 +463,7 @@
             // 
             this.comboboxFuncionário.Enabled = false;
             this.comboboxFuncionário.Funcionário = null;
-            this.comboboxFuncionário.Location = new System.Drawing.Point(40, 39);
+            this.comboboxFuncionário.Location = new System.Drawing.Point(40, 30);
             this.comboboxFuncionário.Name = "comboboxFuncionário";
             this.comboboxFuncionário.Size = new System.Drawing.Size(110, 21);
             this.comboboxFuncionário.TabIndex = 4;
@@ -547,7 +494,7 @@
             this.opçãoRecarregar.BackColor = System.Drawing.Color.Transparent;
             this.opçãoRecarregar.Descrição = "Recarregar";
             this.opçãoRecarregar.Imagem = global::Apresentação.Resource.Arrow;
-            this.opçãoRecarregar.Location = new System.Drawing.Point(9, 36);
+            this.opçãoRecarregar.Location = new System.Drawing.Point(7, 30);
             this.opçãoRecarregar.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoRecarregar.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoRecarregar.MinimumSize = new System.Drawing.Size(150, 16);
@@ -574,7 +521,6 @@
             this.tabEstornos.ResumeLayout(false);
             this.tabAjuda.ResumeLayout(false);
             this.quadro1.ResumeLayout(false);
-            this.quadroVendaSelecionada.ResumeLayout(false);
             this.quadroFiltrarExibição.ResumeLayout(false);
             this.quadro3.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -589,11 +535,8 @@
         private System.Windows.Forms.TabPage tabVendas;
         private System.Windows.Forms.ImageList imagens;
         private Formulários.Quadro quadroFiltrarExibição;
-        private Formulários.Quadro quadroVendaSelecionada;
         private Formulários.Quadro quadro1;
         private Pessoa.ComboboxFuncionário comboboxFuncionário;
-        private Formulários.Opção opção2;
-        private Formulários.Opção opçãoAbrir;
         private Formulários.Opção opçãoImprimirTodos;
         private Formulários.Opção opçãoRelatórioResumo;
         private Formulários.Opção opçãoRelatórioPorVenda;

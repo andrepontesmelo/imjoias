@@ -136,7 +136,7 @@
             this.btnCalcularDesconto.BackColor = System.Drawing.Color.Transparent;
             this.btnCalcularDesconto.Descrição = "Calcular desconto";
             this.btnCalcularDesconto.Imagem = global::Apresentação.Resource.CalculatorHS;
-            this.btnCalcularDesconto.Location = new System.Drawing.Point(5, 73);
+            this.btnCalcularDesconto.Location = new System.Drawing.Point(7, 70);
             this.btnCalcularDesconto.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnCalcularDesconto.MaximumSize = new System.Drawing.Size(150, 100);
             this.btnCalcularDesconto.MinimumSize = new System.Drawing.Size(150, 16);
@@ -150,13 +150,13 @@
             this.opçãoIniciarRetorno.BackColor = System.Drawing.Color.Transparent;
             this.opçãoIniciarRetorno.Descrição = "Iniciar retorno...";
             this.opçãoIniciarRetorno.Imagem = global::Apresentação.Resource.Retorno__Ícone_;
-            this.opçãoIniciarRetorno.Location = new System.Drawing.Point(5, 29);
+            this.opçãoIniciarRetorno.Location = new System.Drawing.Point(7, 30);
             this.opçãoIniciarRetorno.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoIniciarRetorno.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoIniciarRetorno.MinimumSize = new System.Drawing.Size(150, 16);
             this.opçãoIniciarRetorno.Name = "opçãoIniciarRetorno";
             this.opçãoIniciarRetorno.Privilégio = Entidades.Privilégio.Permissão.ConsignadoRetorno;
-            this.opçãoIniciarRetorno.Size = new System.Drawing.Size(150, 24);
+            this.opçãoIniciarRetorno.Size = new System.Drawing.Size(150, 16);
             this.opçãoIniciarRetorno.TabIndex = 3;
             this.opçãoIniciarRetorno.Click += new System.EventHandler(this.opçãoIniciarRetorno_Click);
             // 
@@ -165,12 +165,12 @@
             this.opçãoContabilizar.BackColor = System.Drawing.Color.Transparent;
             this.opçãoContabilizar.Descrição = "Contabilizar mercadorias";
             this.opçãoContabilizar.Imagem = global::Apresentação.Resource.CalculatorHS;
-            this.opçãoContabilizar.Location = new System.Drawing.Point(5, 53);
+            this.opçãoContabilizar.Location = new System.Drawing.Point(7, 50);
             this.opçãoContabilizar.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoContabilizar.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoContabilizar.MinimumSize = new System.Drawing.Size(150, 16);
             this.opçãoContabilizar.Name = "opçãoContabilizar";
-            this.opçãoContabilizar.Size = new System.Drawing.Size(150, 24);
+            this.opçãoContabilizar.Size = new System.Drawing.Size(150, 16);
             this.opçãoContabilizar.TabIndex = 4;
             this.opçãoContabilizar.Click += new System.EventHandler(this.opçãoContabilizar_Click);
             // 

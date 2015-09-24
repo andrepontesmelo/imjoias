@@ -52,11 +52,11 @@
             // 
             // títuloBaseInferior1
             // 
-            this.títuloBaseInferior1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.títuloBaseInferior1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.títuloBaseInferior1.BackColor = System.Drawing.Color.White;
             this.títuloBaseInferior1.Descrição = "São listadas todas as referências em falta na empresa, por constar em encomendas " +
-                "em aberto.";
+    "em aberto.";
             this.títuloBaseInferior1.ÍconeArredondado = false;
             this.títuloBaseInferior1.Imagem = global::Apresentação.Resource.exclamacao;
             this.títuloBaseInferior1.Location = new System.Drawing.Point(193, 3);
@@ -67,9 +67,9 @@
             // 
             // quadro1
             // 
-            this.quadro1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.quadro1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.quadro1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(239)))), ((int)(((byte)(221)))));
             this.quadro1.bInfDirArredondada = false;
             this.quadro1.bInfEsqArredondada = false;
@@ -89,9 +89,9 @@
             // 
             // lista
             // 
-            this.lista.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lista.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lista.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colReferência,
             this.colEncomendado,
@@ -158,7 +158,7 @@
             this.quadroPedidosConsertos.Location = new System.Drawing.Point(7, 13);
             this.quadroPedidosConsertos.MostrarBotãoMinMax = false;
             this.quadroPedidosConsertos.Name = "quadroPedidosConsertos";
-            this.quadroPedidosConsertos.Size = new System.Drawing.Size(160, 73);
+            this.quadroPedidosConsertos.Size = new System.Drawing.Size(160, 60);
             this.quadroPedidosConsertos.TabIndex = 5;
             this.quadroPedidosConsertos.Tamanho = 30;
             this.quadroPedidosConsertos.Título = "Impressão";
@@ -168,7 +168,7 @@
             this.opçãoImprimir.BackColor = System.Drawing.Color.Transparent;
             this.opçãoImprimir.Descrição = "Imprimir listagem";
             this.opçãoImprimir.Imagem = global::Apresentação.Resource.Impressora_3D;
-            this.opçãoImprimir.Location = new System.Drawing.Point(5, 52);
+            this.opçãoImprimir.Location = new System.Drawing.Point(7, 30);
             this.opçãoImprimir.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoImprimir.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoImprimir.MinimumSize = new System.Drawing.Size(150, 16);

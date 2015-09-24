@@ -111,7 +111,7 @@
             // 
             this.optPeríodoTodo.AutoSize = true;
             this.optPeríodoTodo.BackColor = System.Drawing.Color.Transparent;
-            this.optPeríodoTodo.Location = new System.Drawing.Point(5, 30);
+            this.optPeríodoTodo.Location = new System.Drawing.Point(7, 30);
             this.optPeríodoTodo.Name = "optPeríodoTodo";
             this.optPeríodoTodo.Size = new System.Drawing.Size(50, 17);
             this.optPeríodoTodo.TabIndex = 5;
@@ -123,7 +123,7 @@
             // 
             this.optPeríodoPrevisto.AutoSize = true;
             this.optPeríodoPrevisto.BackColor = System.Drawing.Color.Transparent;
-            this.optPeríodoPrevisto.Location = new System.Drawing.Point(5, 50);
+            this.optPeríodoPrevisto.Location = new System.Drawing.Point(7, 50);
             this.optPeríodoPrevisto.Name = "optPeríodoPrevisto";
             this.optPeríodoPrevisto.Size = new System.Drawing.Size(92, 17);
             this.optPeríodoPrevisto.TabIndex = 3;
@@ -137,7 +137,7 @@
             this.optPeríodoRegistrado.AutoSize = true;
             this.optPeríodoRegistrado.BackColor = System.Drawing.Color.Transparent;
             this.optPeríodoRegistrado.Checked = true;
-            this.optPeríodoRegistrado.Location = new System.Drawing.Point(5, 70);
+            this.optPeríodoRegistrado.Location = new System.Drawing.Point(7, 70);
             this.optPeríodoRegistrado.Name = "optPeríodoRegistrado";
             this.optPeríodoRegistrado.Size = new System.Drawing.Size(98, 17);
             this.optPeríodoRegistrado.TabIndex = 4;
@@ -152,7 +152,7 @@
             this.opçãoImprimir.BackColor = System.Drawing.Color.Transparent;
             this.opçãoImprimir.Descrição = "Listagem";
             this.opçãoImprimir.Imagem = global::Apresentação.Resource.Impressora_3D;
-            this.opçãoImprimir.Location = new System.Drawing.Point(5, 50);
+            this.opçãoImprimir.Location = new System.Drawing.Point(7, 50);
             this.opçãoImprimir.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoImprimir.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoImprimir.MinimumSize = new System.Drawing.Size(150, 16);
@@ -188,7 +188,7 @@
             this.opçãoImprimirResumo.BackColor = System.Drawing.Color.Transparent;
             this.opçãoImprimirResumo.Descrição = "Resumo";
             this.opçãoImprimirResumo.Imagem = global::Apresentação.Resource.Impressora_3D;
-            this.opçãoImprimirResumo.Location = new System.Drawing.Point(5, 70);
+            this.opçãoImprimirResumo.Location = new System.Drawing.Point(7, 70);
             this.opçãoImprimirResumo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoImprimirResumo.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoImprimirResumo.MinimumSize = new System.Drawing.Size(150, 16);
@@ -202,7 +202,7 @@
             this.opçãoNovo.BackColor = System.Drawing.Color.Transparent;
             this.opçãoNovo.Descrição = "Novo";
             this.opçãoNovo.Imagem = global::Apresentação.Resource.document1;
-            this.opçãoNovo.Location = new System.Drawing.Point(5, 30);
+            this.opçãoNovo.Location = new System.Drawing.Point(7, 30);
             this.opçãoNovo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoNovo.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoNovo.MinimumSize = new System.Drawing.Size(150, 16);
@@ -216,7 +216,7 @@
             this.opçãoExcluir.BackColor = System.Drawing.Color.Transparent;
             this.opçãoExcluir.Descrição = "Excluir";
             this.opçãoExcluir.Imagem = global::Apresentação.Resource.delete;
-            this.opçãoExcluir.Location = new System.Drawing.Point(5, 90);
+            this.opçãoExcluir.Location = new System.Drawing.Point(7, 90);
             this.opçãoExcluir.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoExcluir.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoExcluir.MinimumSize = new System.Drawing.Size(150, 16);
@@ -244,7 +244,7 @@
             this.opçãoOcutarPedidosJaEntregues.BackColor = System.Drawing.Color.Transparent;
             this.opçãoOcutarPedidosJaEntregues.Descrição = "Ocultar entregues";
             this.opçãoOcutarPedidosJaEntregues.Imagem = global::Apresentação.Resource.Filter2HS;
-            this.opçãoOcutarPedidosJaEntregues.Location = new System.Drawing.Point(5, 70);
+            this.opçãoOcutarPedidosJaEntregues.Location = new System.Drawing.Point(7, 70);
             this.opçãoOcutarPedidosJaEntregues.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoOcutarPedidosJaEntregues.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoOcutarPedidosJaEntregues.MinimumSize = new System.Drawing.Size(150, 16);
@@ -281,7 +281,7 @@
             this.optExibePedidos.AutoSize = true;
             this.optExibePedidos.BackColor = System.Drawing.Color.Transparent;
             this.optExibePedidos.Checked = true;
-            this.optExibePedidos.Location = new System.Drawing.Point(5, 30);
+            this.optExibePedidos.Location = new System.Drawing.Point(7, 30);
             this.optExibePedidos.Name = "optExibePedidos";
             this.optExibePedidos.Size = new System.Drawing.Size(63, 17);
             this.optExibePedidos.TabIndex = 3;
@@ -294,7 +294,7 @@
             // 
             this.optExibeConsertos.AutoSize = true;
             this.optExibeConsertos.BackColor = System.Drawing.Color.Transparent;
-            this.optExibeConsertos.Location = new System.Drawing.Point(5, 50);
+            this.optExibeConsertos.Location = new System.Drawing.Point(7, 50);
             this.optExibeConsertos.Name = "optExibeConsertos";
             this.optExibeConsertos.Size = new System.Drawing.Size(72, 17);
             this.optExibeConsertos.TabIndex = 4;

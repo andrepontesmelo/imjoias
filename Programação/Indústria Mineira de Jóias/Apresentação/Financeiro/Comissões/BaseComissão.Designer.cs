@@ -122,7 +122,7 @@
             this.quadro1.Location = new System.Drawing.Point(7, 13);
             this.quadro1.MostrarBotãoMinMax = false;
             this.quadro1.Name = "quadro1";
-            this.quadro1.Size = new System.Drawing.Size(160, 134);
+            this.quadro1.Size = new System.Drawing.Size(160, 115);
             this.quadro1.TabIndex = 1;
             this.quadro1.Tamanho = 30;
             this.quadro1.Título = "Comissão";
@@ -132,12 +132,12 @@
             this.opçãoExcluir.BackColor = System.Drawing.Color.Transparent;
             this.opçãoExcluir.Descrição = "Excluir";
             this.opçãoExcluir.Imagem = global::Apresentação.Resource.Excluir;
-            this.opçãoExcluir.Location = new System.Drawing.Point(10, 110);
+            this.opçãoExcluir.Location = new System.Drawing.Point(7, 90);
             this.opçãoExcluir.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoExcluir.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoExcluir.MinimumSize = new System.Drawing.Size(150, 16);
             this.opçãoExcluir.Name = "opçãoExcluir";
-            this.opçãoExcluir.Size = new System.Drawing.Size(150, 24);
+            this.opçãoExcluir.Size = new System.Drawing.Size(150, 16);
             this.opçãoExcluir.TabIndex = 5;
             this.opçãoExcluir.Click += new System.EventHandler(this.opçãoExcluir_Click);
             // 
@@ -146,7 +146,7 @@
             this.opçãoEditar.BackColor = System.Drawing.Color.Transparent;
             this.opçãoEditar.Descrição = "Editar";
             this.opçãoEditar.Imagem = global::Apresentação.Resource.arrow_switch;
-            this.opçãoEditar.Location = new System.Drawing.Point(10, 90);
+            this.opçãoEditar.Location = new System.Drawing.Point(7, 70);
             this.opçãoEditar.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoEditar.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoEditar.MinimumSize = new System.Drawing.Size(150, 16);
@@ -160,12 +160,12 @@
             this.opçãoAbrir.BackColor = System.Drawing.Color.Transparent;
             this.opçãoAbrir.Descrição = "Abrir";
             this.opçãoAbrir.Imagem = global::Apresentação.Resource.openfolderHS1;
-            this.opçãoAbrir.Location = new System.Drawing.Point(10, 66);
+            this.opçãoAbrir.Location = new System.Drawing.Point(7, 50);
             this.opçãoAbrir.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoAbrir.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoAbrir.MinimumSize = new System.Drawing.Size(150, 16);
             this.opçãoAbrir.Name = "opçãoAbrir";
-            this.opçãoAbrir.Size = new System.Drawing.Size(150, 24);
+            this.opçãoAbrir.Size = new System.Drawing.Size(150, 16);
             this.opçãoAbrir.TabIndex = 3;
             this.opçãoAbrir.Click += new System.EventHandler(this.opçãoAbrir_Click);
             // 
@@ -175,7 +175,7 @@
             this.opçãoNova.Descrição = "Nova";
             this.opçãoNova.ForeColor = System.Drawing.Color.Thistle;
             this.opçãoNova.Imagem = global::Apresentação.Resource.novo;
-            this.opçãoNova.Location = new System.Drawing.Point(10, 34);
+            this.opçãoNova.Location = new System.Drawing.Point(7, 30);
             this.opçãoNova.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoNova.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoNova.MinimumSize = new System.Drawing.Size(150, 16);
@@ -195,10 +195,10 @@
             this.quadro2.Cor = System.Drawing.Color.Black;
             this.quadro2.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadro2.LetraTítulo = System.Drawing.Color.White;
-            this.quadro2.Location = new System.Drawing.Point(7, 153);
+            this.quadro2.Location = new System.Drawing.Point(7, 134);
             this.quadro2.MostrarBotãoMinMax = false;
             this.quadro2.Name = "quadro2";
-            this.quadro2.Size = new System.Drawing.Size(160, 67);
+            this.quadro2.Size = new System.Drawing.Size(160, 53);
             this.quadro2.TabIndex = 2;
             this.quadro2.Tamanho = 30;
             this.quadro2.Título = "Impressão";
@@ -208,12 +208,12 @@
             this.opçãoImprimir.BackColor = System.Drawing.Color.Transparent;
             this.opçãoImprimir.Descrição = "Imprimir";
             this.opçãoImprimir.Imagem = global::Apresentação.Resource.impressora___163;
-            this.opçãoImprimir.Location = new System.Drawing.Point(10, 39);
+            this.opçãoImprimir.Location = new System.Drawing.Point(7, 30);
             this.opçãoImprimir.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoImprimir.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoImprimir.MinimumSize = new System.Drawing.Size(150, 16);
             this.opçãoImprimir.Name = "opçãoImprimir";
-            this.opçãoImprimir.Size = new System.Drawing.Size(150, 24);
+            this.opçãoImprimir.Size = new System.Drawing.Size(150, 17);
             this.opçãoImprimir.TabIndex = 6;
             this.opçãoImprimir.Click += new System.EventHandler(this.opçãoImprimir_Click);
             // 
@@ -228,10 +228,10 @@
             this.quadro3.Cor = System.Drawing.Color.Black;
             this.quadro3.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadro3.LetraTítulo = System.Drawing.Color.White;
-            this.quadro3.Location = new System.Drawing.Point(7, 226);
+            this.quadro3.Location = new System.Drawing.Point(7, 193);
             this.quadro3.MostrarBotãoMinMax = false;
             this.quadro3.Name = "quadro3";
-            this.quadro3.Size = new System.Drawing.Size(160, 67);
+            this.quadro3.Size = new System.Drawing.Size(160, 55);
             this.quadro3.TabIndex = 3;
             this.quadro3.Tamanho = 30;
             this.quadro3.Título = "Vendas sem comissão";
@@ -241,7 +241,7 @@
             this.opçãoVendasSemComissão.BackColor = System.Drawing.Color.Transparent;
             this.opçãoVendasSemComissão.Descrição = "Vendas sem comissão";
             this.opçãoVendasSemComissão.Imagem = global::Apresentação.Resource.ImportXMLHS1;
-            this.opçãoVendasSemComissão.Location = new System.Drawing.Point(10, 39);
+            this.opçãoVendasSemComissão.Location = new System.Drawing.Point(7, 30);
             this.opçãoVendasSemComissão.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoVendasSemComissão.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoVendasSemComissão.MinimumSize = new System.Drawing.Size(150, 16);

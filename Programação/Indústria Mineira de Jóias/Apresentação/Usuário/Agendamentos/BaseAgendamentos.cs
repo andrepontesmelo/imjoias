@@ -101,10 +101,10 @@ namespace Apresentação.Usuário.Agendamentos
             this.quadroAgendamentoAtual.Cor = System.Drawing.Color.Black;
             this.quadroAgendamentoAtual.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadroAgendamentoAtual.LetraTítulo = System.Drawing.Color.White;
-            this.quadroAgendamentoAtual.Location = new System.Drawing.Point(7, 78);
+            this.quadroAgendamentoAtual.Location = new System.Drawing.Point(7, 75);
             this.quadroAgendamentoAtual.MostrarBotãoMinMax = false;
             this.quadroAgendamentoAtual.Name = "quadroAgendamentoAtual";
-            this.quadroAgendamentoAtual.Size = new System.Drawing.Size(160, 80);
+            this.quadroAgendamentoAtual.Size = new System.Drawing.Size(160, 71);
             this.quadroAgendamentoAtual.TabIndex = 4;
             this.quadroAgendamentoAtual.Tamanho = 30;
             this.quadroAgendamentoAtual.Título = "Agendamento Atual";
@@ -115,7 +115,7 @@ namespace Apresentação.Usuário.Agendamentos
             this.opçãoExcluirAgendamento.BackColor = System.Drawing.Color.Transparent;
             this.opçãoExcluirAgendamento.Descrição = "Excluir";
             this.opçãoExcluirAgendamento.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoExcluirAgendamento.Imagem")));
-            this.opçãoExcluirAgendamento.Location = new System.Drawing.Point(8, 56);
+            this.opçãoExcluirAgendamento.Location = new System.Drawing.Point(7, 50);
             this.opçãoExcluirAgendamento.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.opçãoExcluirAgendamento.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoExcluirAgendamento.MinimumSize = new System.Drawing.Size(150, 16);
@@ -129,20 +129,20 @@ namespace Apresentação.Usuário.Agendamentos
             this.opçãoAlterarAgendamentoAtual.BackColor = System.Drawing.Color.Transparent;
             this.opçãoAlterarAgendamentoAtual.Descrição = "Alterar";
             this.opçãoAlterarAgendamentoAtual.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoAlterarAgendamentoAtual.Imagem")));
-            this.opçãoAlterarAgendamentoAtual.Location = new System.Drawing.Point(8, 32);
+            this.opçãoAlterarAgendamentoAtual.Location = new System.Drawing.Point(7, 30);
             this.opçãoAlterarAgendamentoAtual.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.opçãoAlterarAgendamentoAtual.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoAlterarAgendamentoAtual.MinimumSize = new System.Drawing.Size(150, 16);
             this.opçãoAlterarAgendamentoAtual.Name = "opçãoAlterarAgendamentoAtual";
-            this.opçãoAlterarAgendamentoAtual.Size = new System.Drawing.Size(150, 24);
+            this.opçãoAlterarAgendamentoAtual.Size = new System.Drawing.Size(150, 16);
             this.opçãoAlterarAgendamentoAtual.TabIndex = 5;
             this.opçãoAlterarAgendamentoAtual.Click += new System.EventHandler(this.opçãoAlterarAgendamentoAtual_Click);
             // 
             // listaAgendamentos
             // 
-            this.listaAgendamentos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.listaAgendamentos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listaAgendamentos.BackColor = System.Drawing.Color.White;
             this.listaAgendamentos.Location = new System.Drawing.Point(192, 13);
             this.listaAgendamentos.Name = "listaAgendamentos";
@@ -186,7 +186,7 @@ namespace Apresentação.Usuário.Agendamentos
             this.opçãoNovoAgendamento.BackColor = System.Drawing.Color.Transparent;
             this.opçãoNovoAgendamento.Descrição = "Novo agendamento";
             this.opçãoNovoAgendamento.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoNovoAgendamento.Imagem")));
-            this.opçãoNovoAgendamento.Location = new System.Drawing.Point(16, 32);
+            this.opçãoNovoAgendamento.Location = new System.Drawing.Point(7, 30);
             this.opçãoNovoAgendamento.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.opçãoNovoAgendamento.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoNovoAgendamento.MinimumSize = new System.Drawing.Size(150, 16);

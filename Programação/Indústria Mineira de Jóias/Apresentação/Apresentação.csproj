@@ -384,10 +384,6 @@
     <Compile Include="Estoque\ListaSaldo.Designer.cs">
       <DependentUpon>ListaSaldo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Acerto\Alerta\AlertaBaseInferior.cs" />
-    <Compile Include="Financeiro\Acerto\Alerta\AlertaBaseInferior.Designer.cs">
-      <DependentUpon>AlertaBaseInferior.cs</DependentUpon>
-    </Compile>
     <Compile Include="Financeiro\Acerto\Alerta\AlertaQuadro.cs" />
     <Compile Include="Financeiro\Acerto\Alerta\AlertaQuadro.Designer.cs">
       <DependentUpon>AlertaQuadro.cs</DependentUpon>
@@ -570,12 +566,6 @@
     <Compile Include="Financeiro\BaseEditarRelacionamento.Designer.cs">
       <DependentUpon>BaseEditarRelacionamento.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\BaseOpções.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Financeiro\BaseOpções.Designer.cs">
-      <DependentUpon>BaseOpções.cs</DependentUpon>
-    </Compile>
     <Compile Include="Financeiro\ComboTabela.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -617,12 +607,6 @@
     </Compile>
     <Compile Include="Financeiro\Controle\BaseControleFinanceiro.Designer.cs">
       <DependentUpon>BaseControleFinanceiro.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Financeiro\Controle\BaseControleFinanceiroPessoal.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Financeiro\Controle\BaseControleFinanceiroPessoal.Designer.cs">
-      <DependentUpon>BaseControleFinanceiroPessoal.cs</DependentUpon>
     </Compile>
     <Compile Include="Financeiro\Controle\ClienteDívida.cs">
       <SubType>UserControl</SubType>
@@ -1812,115 +1796,6 @@
     <Compile Include="Mercadoria\ListViewMercadoria.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Mercadoria\Manutenção\BaseEdição.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Mercadoria\Manutenção\BaseEdição.Designer.cs">
-      <DependentUpon>BaseEdição.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Mercadoria\Manutenção\BaseListagem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Mercadoria\Manutenção\BaseListagem.Designer.cs">
-      <DependentUpon>BaseListagem.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Mercadoria\Manutenção\ComponentesDeCusto\BaseListagem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Mercadoria\Manutenção\ComponentesDeCusto\BaseListagem.Designer.cs">
-      <DependentUpon>BaseListagem.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Mercadoria\Manutenção\ComponentesDeCusto\CmbComponenteCusto.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Mercadoria\Manutenção\ComponentesDeCusto\CmbComponenteCusto.Designer.cs">
-      <DependentUpon>CmbComponenteCusto.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Mercadoria\Manutenção\ComponentesDeCusto\JanelaEditarComponneteCusto.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Mercadoria\Manutenção\ComponentesDeCusto\JanelaEditarComponneteCusto.Designer.cs">
-      <DependentUpon>JanelaEditarComponneteCusto.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Mercadoria\Manutenção\ComponentesDeCusto\ListaComponentesCusto.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Mercadoria\Manutenção\ComponentesDeCusto\ListaComponentesCusto.Designer.cs">
-      <DependentUpon>ListaComponentesCusto.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Mercadoria\Manutenção\ComponentesDeCusto\ListaComponentesMercadoria.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Mercadoria\Manutenção\ComponentesDeCusto\ListaComponentesMercadoria.Designer.cs">
-      <DependentUpon>ListaComponentesMercadoria.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Mercadoria\Manutenção\Faixa\BaseEdiçãoFaixas.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Mercadoria\Manutenção\Faixa\BaseEdiçãoFaixas.Designer.cs">
-      <DependentUpon>BaseEdiçãoFaixas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Mercadoria\Manutenção\Faixa\FaixaItem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Mercadoria\Manutenção\Faixa\FaixaItem.Designer.cs">
-      <DependentUpon>FaixaItem.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Mercadoria\Manutenção\Impressão\JanelaOpçõesImpressão.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Mercadoria\Manutenção\Impressão\JanelaOpçõesImpressão.Designer.cs">
-      <DependentUpon>JanelaOpçõesImpressão.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Mercadoria\Manutenção\InformaçõesMercadoriaEdição.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Mercadoria\Manutenção\InformaçõesMercadoriaEdição.Designer.cs">
-      <DependentUpon>InformaçõesMercadoriaEdição.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Mercadoria\Manutenção\JanelaEdiçãoVínculo.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Mercadoria\Manutenção\JanelaEdiçãoVínculo.Designer.cs">
-      <DependentUpon>JanelaEdiçãoVínculo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Mercadoria\Manutenção\JanelaReferência.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Mercadoria\Manutenção\JanelaReferência.Designer.cs">
-      <DependentUpon>JanelaReferência.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Mercadoria\Manutenção\ListaMercadoriaOrdenador.cs" />
-    <Compile Include="Mercadoria\Manutenção\ListaMercadorias.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Mercadoria\Manutenção\ListaMercadorias.Designer.cs">
-      <DependentUpon>ListaMercadorias.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Mercadoria\Manutenção\Tabela\BaseTabelas.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Mercadoria\Manutenção\Tabela\BaseTabelas.Designer.cs">
-      <DependentUpon>BaseTabelas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Mercadoria\Manutenção\Tabela\CmbTabelaPreço.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Mercadoria\Manutenção\Tabela\CmbTabelaPreço.Designer.cs">
-      <DependentUpon>CmbTabelaPreço.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Mercadoria\Manutenção\Tabela\JanelaNovaTabela.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Mercadoria\Manutenção\Tabela\JanelaNovaTabela.Designer.cs">
-      <DependentUpon>JanelaNovaTabela.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Mercadoria\Manutenção\Tabela\ListaTabelasPreços.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Mercadoria\Manutenção\Tabela\ListaTabelasPreços.Designer.cs">
-      <DependentUpon>ListaTabelasPreços.cs</DependentUpon>
-    </Compile>
     <Compile Include="Mercadoria\MostradorAnimação.AnimaçãoOca.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -2579,10 +2454,6 @@
     <EmbeddedResource Include="Estoque\ListaSaldo.resx">
       <DependentUpon>ListaSaldo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Acerto\Alerta\AlertaBaseInferior.resx">
-      <DependentUpon>AlertaBaseInferior.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Financeiro\Acerto\Alerta\AlertaQuadro.resx">
       <DependentUpon>AlertaQuadro.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -2679,10 +2550,6 @@
       <DependentUpon>BaseEditarRelacionamento.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\BaseOpções.resx">
-      <DependentUpon>BaseOpções.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Financeiro\Comissões\BaseComissão.resx">
       <DependentUpon>BaseComissão.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -2714,10 +2581,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Financeiro\Controle\BaseControleFinanceiro.resx">
       <DependentUpon>BaseControleFinanceiro.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Controle\BaseControleFinanceiroPessoal.resx">
-      <DependentUpon>BaseControleFinanceiroPessoal.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Financeiro\Controle\ClienteDívida.resx">
@@ -3335,78 +3198,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mercadoria\ListViewMercadoria.resx">
       <DependentUpon>ListViewMercadoria.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mercadoria\Manutenção\BaseEdição.resx">
-      <DependentUpon>BaseEdição.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mercadoria\Manutenção\BaseListagem.resx">
-      <DependentUpon>BaseListagem.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mercadoria\Manutenção\ComponentesDeCusto\BaseListagem.resx">
-      <DependentUpon>BaseListagem.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mercadoria\Manutenção\ComponentesDeCusto\CmbComponenteCusto.resx">
-      <DependentUpon>CmbComponenteCusto.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mercadoria\Manutenção\ComponentesDeCusto\JanelaEditarComponneteCusto.resx">
-      <DependentUpon>JanelaEditarComponneteCusto.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mercadoria\Manutenção\ComponentesDeCusto\ListaComponentesCusto.resx">
-      <DependentUpon>ListaComponentesCusto.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mercadoria\Manutenção\ComponentesDeCusto\ListaComponentesMercadoria.resx">
-      <DependentUpon>ListaComponentesMercadoria.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mercadoria\Manutenção\Faixa\BaseEdiçãoFaixas.resx">
-      <DependentUpon>BaseEdiçãoFaixas.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mercadoria\Manutenção\Faixa\FaixaItem.resx">
-      <DependentUpon>FaixaItem.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mercadoria\Manutenção\Impressão\JanelaOpçõesImpressão.resx">
-      <DependentUpon>JanelaOpçõesImpressão.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mercadoria\Manutenção\InformaçõesMercadoriaEdição.resx">
-      <DependentUpon>InformaçõesMercadoriaEdição.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mercadoria\Manutenção\JanelaEdiçãoVínculo.resx">
-      <DependentUpon>JanelaEdiçãoVínculo.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mercadoria\Manutenção\JanelaReferência.resx">
-      <DependentUpon>JanelaReferência.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mercadoria\Manutenção\ListaMercadorias.resx">
-      <DependentUpon>ListaMercadorias.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mercadoria\Manutenção\Tabela\BaseTabelas.resx">
-      <DependentUpon>BaseTabelas.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mercadoria\Manutenção\Tabela\CmbTabelaPreço.resx">
-      <DependentUpon>CmbTabelaPreço.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mercadoria\Manutenção\Tabela\JanelaNovaTabela.resx">
-      <DependentUpon>JanelaNovaTabela.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mercadoria\Manutenção\Tabela\ListaTabelasPreços.resx">
-      <DependentUpon>ListaTabelasPreços.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Mercadoria\MostradorAnimação.resx">
@@ -5648,7 +5439,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Impressão\Relatórios\Balanço\" />
-    <Folder Include="Mercadoria\Manutenção\Grupo\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

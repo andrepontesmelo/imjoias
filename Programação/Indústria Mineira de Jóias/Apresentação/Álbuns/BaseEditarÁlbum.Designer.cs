@@ -83,7 +83,7 @@ namespace Apresentação.Álbum.Edição.Álbuns
             this.quadroÁlbum.Location = new System.Drawing.Point(7, 13);
             this.quadroÁlbum.MostrarBotãoMinMax = false;
             this.quadroÁlbum.Name = "quadroÁlbum";
-            this.quadroÁlbum.Size = new System.Drawing.Size(160, 103);
+            this.quadroÁlbum.Size = new System.Drawing.Size(160, 97);
             this.quadroÁlbum.TabIndex = 1;
             this.quadroÁlbum.Tamanho = 30;
             this.quadroÁlbum.Título = "Manutenção do álbum";
@@ -93,12 +93,12 @@ namespace Apresentação.Álbum.Edição.Álbuns
             this.opçãoExcluir.BackColor = System.Drawing.Color.Transparent;
             this.opçãoExcluir.Descrição = "Excluir";
             this.opçãoExcluir.Imagem = global::Apresentação.Resource.Excluir;
-            this.opçãoExcluir.Location = new System.Drawing.Point(5, 30);
+            this.opçãoExcluir.Location = new System.Drawing.Point(7, 30);
             this.opçãoExcluir.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoExcluir.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoExcluir.MinimumSize = new System.Drawing.Size(150, 16);
             this.opçãoExcluir.Name = "opçãoExcluir";
-            this.opçãoExcluir.Size = new System.Drawing.Size(150, 24);
+            this.opçãoExcluir.Size = new System.Drawing.Size(150, 16);
             this.opçãoExcluir.TabIndex = 2;
             this.opçãoExcluir.Click += new System.EventHandler(this.opçãoExcluir_Click);
             // 
@@ -107,12 +107,12 @@ namespace Apresentação.Álbum.Edição.Álbuns
             this.opçãoRenomear.BackColor = System.Drawing.Color.Transparent;
             this.opçãoRenomear.Descrição = "Renomear...";
             this.opçãoRenomear.Imagem = global::Apresentação.Resource.RenameFolderHS1;
-            this.opçãoRenomear.Location = new System.Drawing.Point(5, 54);
+            this.opçãoRenomear.Location = new System.Drawing.Point(7, 50);
             this.opçãoRenomear.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoRenomear.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoRenomear.MinimumSize = new System.Drawing.Size(150, 16);
             this.opçãoRenomear.Name = "opçãoRenomear";
-            this.opçãoRenomear.Size = new System.Drawing.Size(150, 24);
+            this.opçãoRenomear.Size = new System.Drawing.Size(150, 19);
             this.opçãoRenomear.TabIndex = 3;
             this.opçãoRenomear.Click += new System.EventHandler(this.opçãoRenomear_Click);
             // 
@@ -121,7 +121,7 @@ namespace Apresentação.Álbum.Edição.Álbuns
             this.opçãoImprimir.BackColor = System.Drawing.Color.Transparent;
             this.opçãoImprimir.Descrição = "Imprimir";
             this.opçãoImprimir.Imagem = global::Apresentação.Resource.Impressora_3D;
-            this.opçãoImprimir.Location = new System.Drawing.Point(5, 78);
+            this.opçãoImprimir.Location = new System.Drawing.Point(7, 70);
             this.opçãoImprimir.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoImprimir.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoImprimir.MinimumSize = new System.Drawing.Size(150, 16);

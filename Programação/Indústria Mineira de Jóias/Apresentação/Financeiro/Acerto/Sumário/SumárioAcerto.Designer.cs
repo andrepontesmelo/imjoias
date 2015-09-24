@@ -83,18 +83,16 @@
             this.lblSaídasPeça.AutoSize = true;
             this.lblSaídasPeça.Location = new System.Drawing.Point(50, 59);
             this.lblSaídasPeça.Name = "lblSaídasPeça";
-            this.lblSaídasPeça.Size = new System.Drawing.Size(94, 13);
+            this.lblSaídasPeça.Size = new System.Drawing.Size(0, 13);
             this.lblSaídasPeça.TabIndex = 4;
-            this.lblSaídasPeça.Text = "122,34g - 1223,22";
             // 
             // lblSaídasPeso
             // 
             this.lblSaídasPeso.AutoSize = true;
             this.lblSaídasPeso.Location = new System.Drawing.Point(50, 72);
             this.lblSaídasPeso.Name = "lblSaídasPeso";
-            this.lblSaídasPeso.Size = new System.Drawing.Size(94, 13);
+            this.lblSaídasPeso.Size = new System.Drawing.Size(0, 13);
             this.lblSaídasPeso.TabIndex = 6;
-            this.lblSaídasPeso.Text = "122,34g - 1223,22";
             // 
             // label5
             // 
@@ -111,9 +109,8 @@
             this.lblSaídasTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSaídasTotal.Location = new System.Drawing.Point(51, 85);
             this.lblSaídasTotal.Name = "lblSaídasTotal";
-            this.lblSaídasTotal.Size = new System.Drawing.Size(111, 13);
+            this.lblSaídasTotal.Size = new System.Drawing.Size(0, 13);
             this.lblSaídasTotal.TabIndex = 8;
-            this.lblSaídasTotal.Text = "122,34g - 1223,22";
             // 
             // lblRetornoTotal
             // 
@@ -121,18 +118,16 @@
             this.lblRetornoTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRetornoTotal.Location = new System.Drawing.Point(51, 167);
             this.lblRetornoTotal.Name = "lblRetornoTotal";
-            this.lblRetornoTotal.Size = new System.Drawing.Size(111, 13);
+            this.lblRetornoTotal.Size = new System.Drawing.Size(0, 13);
             this.lblRetornoTotal.TabIndex = 15;
-            this.lblRetornoTotal.Text = "122,34g - 1223,22";
             // 
             // lblRetornoPeso
             // 
             this.lblRetornoPeso.AutoSize = true;
             this.lblRetornoPeso.Location = new System.Drawing.Point(50, 154);
             this.lblRetornoPeso.Name = "lblRetornoPeso";
-            this.lblRetornoPeso.Size = new System.Drawing.Size(94, 13);
+            this.lblRetornoPeso.Size = new System.Drawing.Size(0, 13);
             this.lblRetornoPeso.TabIndex = 13;
-            this.lblRetornoPeso.Text = "122,34g - 1223,22";
             // 
             // label11
             // 
@@ -148,9 +143,8 @@
             this.lblRetornoPeça.AutoSize = true;
             this.lblRetornoPeça.Location = new System.Drawing.Point(50, 141);
             this.lblRetornoPeça.Name = "lblRetornoPeça";
-            this.lblRetornoPeça.Size = new System.Drawing.Size(94, 13);
+            this.lblRetornoPeça.Size = new System.Drawing.Size(0, 13);
             this.lblRetornoPeça.TabIndex = 11;
-            this.lblRetornoPeça.Text = "122,34g - 1223,22";
             // 
             // label13
             // 
@@ -177,18 +171,16 @@
             this.lblVendaTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVendaTotal.Location = new System.Drawing.Point(51, 246);
             this.lblVendaTotal.Name = "lblVendaTotal";
-            this.lblVendaTotal.Size = new System.Drawing.Size(111, 13);
+            this.lblVendaTotal.Size = new System.Drawing.Size(0, 13);
             this.lblVendaTotal.TabIndex = 22;
-            this.lblVendaTotal.Text = "122,34g - 1223,22";
             // 
             // lblVendaPeso
             // 
             this.lblVendaPeso.AutoSize = true;
             this.lblVendaPeso.Location = new System.Drawing.Point(50, 233);
             this.lblVendaPeso.Name = "lblVendaPeso";
-            this.lblVendaPeso.Size = new System.Drawing.Size(94, 13);
+            this.lblVendaPeso.Size = new System.Drawing.Size(0, 13);
             this.lblVendaPeso.TabIndex = 20;
-            this.lblVendaPeso.Text = "122,34g - 1223,22";
             // 
             // label18
             // 
@@ -204,9 +196,8 @@
             this.lblVendaPeça.AutoSize = true;
             this.lblVendaPeça.Location = new System.Drawing.Point(50, 220);
             this.lblVendaPeça.Name = "lblVendaPeça";
-            this.lblVendaPeça.Size = new System.Drawing.Size(94, 13);
+            this.lblVendaPeça.Size = new System.Drawing.Size(0, 13);
             this.lblVendaPeça.TabIndex = 18;
-            this.lblVendaPeça.Text = "122,34g - 1223,22";
             // 
             // label20
             // 
@@ -233,18 +224,16 @@
             this.lblSaldoTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSaldoTotal.Location = new System.Drawing.Point(51, 331);
             this.lblSaldoTotal.Name = "lblSaldoTotal";
-            this.lblSaldoTotal.Size = new System.Drawing.Size(111, 13);
+            this.lblSaldoTotal.Size = new System.Drawing.Size(0, 13);
             this.lblSaldoTotal.TabIndex = 28;
-            this.lblSaldoTotal.Text = "122,34g - 1223,22";
             // 
             // lblSaldoPeso
             // 
             this.lblSaldoPeso.AutoSize = true;
             this.lblSaldoPeso.Location = new System.Drawing.Point(50, 318);
             this.lblSaldoPeso.Name = "lblSaldoPeso";
-            this.lblSaldoPeso.Size = new System.Drawing.Size(94, 13);
+            this.lblSaldoPeso.Size = new System.Drawing.Size(0, 13);
             this.lblSaldoPeso.TabIndex = 27;
-            this.lblSaldoPeso.Text = "122,34g - 1223,22";
             // 
             // label16
             // 
@@ -260,9 +249,8 @@
             this.lblSaldoPeça.AutoSize = true;
             this.lblSaldoPeça.Location = new System.Drawing.Point(50, 305);
             this.lblSaldoPeça.Name = "lblSaldoPeça";
-            this.lblSaldoPeça.Size = new System.Drawing.Size(94, 13);
+            this.lblSaldoPeça.Size = new System.Drawing.Size(0, 13);
             this.lblSaldoPeça.TabIndex = 25;
-            this.lblSaldoPeça.Text = "122,34g - 1223,22";
             // 
             // label23
             // 
@@ -305,7 +293,6 @@
             this.lblRetornoPorcento.Name = "lblRetornoPorcento";
             this.lblRetornoPorcento.Size = new System.Drawing.Size(73, 25);
             this.lblRetornoPorcento.TabIndex = 30;
-            this.lblRetornoPorcento.Text = "100%";
             this.lblRetornoPorcento.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // lblVendaPorcento
@@ -316,7 +303,6 @@
             this.lblVendaPorcento.Name = "lblVendaPorcento";
             this.lblVendaPorcento.Size = new System.Drawing.Size(73, 25);
             this.lblVendaPorcento.TabIndex = 31;
-            this.lblVendaPorcento.Text = "100%";
             this.lblVendaPorcento.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // lblSaldoPorcento
@@ -327,7 +313,6 @@
             this.lblSaldoPorcento.Name = "lblSaldoPorcento";
             this.lblSaldoPorcento.Size = new System.Drawing.Size(73, 25);
             this.lblSaldoPorcento.TabIndex = 32;
-            this.lblSaldoPorcento.Text = "100%";
             this.lblSaldoPorcento.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // SumárioAcerto

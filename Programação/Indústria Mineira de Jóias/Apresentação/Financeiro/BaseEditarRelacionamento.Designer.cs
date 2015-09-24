@@ -123,7 +123,7 @@ namespace Apresentação.Financeiro
             // 
             this.optAgrupado.BackColor = System.Drawing.Color.Transparent;
             this.optAgrupado.Checked = true;
-            this.optAgrupado.Location = new System.Drawing.Point(8, 30);
+            this.optAgrupado.Location = new System.Drawing.Point(7, 30);
             this.optAgrupado.Name = "optAgrupado";
             this.optAgrupado.Size = new System.Drawing.Size(145, 16);
             this.optAgrupado.TabIndex = 3;
@@ -135,7 +135,7 @@ namespace Apresentação.Financeiro
             // optHistórico
             // 
             this.optHistórico.BackColor = System.Drawing.Color.Transparent;
-            this.optHistórico.Location = new System.Drawing.Point(8, 45);
+            this.optHistórico.Location = new System.Drawing.Point(7, 45);
             this.optHistórico.Name = "optHistórico";
             this.optHistórico.Size = new System.Drawing.Size(145, 23);
             this.optHistórico.TabIndex = 6;
@@ -181,7 +181,7 @@ namespace Apresentação.Financeiro
             this.btnExcluir.BackColor = System.Drawing.Color.Transparent;
             this.btnExcluir.Descrição = "Excluir documento";
             this.btnExcluir.Imagem = global::Apresentação.Resource.Excluir;
-            this.btnExcluir.Location = new System.Drawing.Point(5, 49);
+            this.btnExcluir.Location = new System.Drawing.Point(7, 50);
             this.btnExcluir.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnExcluir.MaximumSize = new System.Drawing.Size(150, 100);
             this.btnExcluir.MinimumSize = new System.Drawing.Size(150, 16);
@@ -196,7 +196,7 @@ namespace Apresentação.Financeiro
             this.opçãoImprimir.BackColor = System.Drawing.Color.Transparent;
             this.opçãoImprimir.Descrição = "Imprimir...";
             this.opçãoImprimir.Imagem = global::Apresentação.Resource.impressora___161;
-            this.opçãoImprimir.Location = new System.Drawing.Point(5, 27);
+            this.opçãoImprimir.Location = new System.Drawing.Point(7, 30);
             this.opçãoImprimir.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.opçãoImprimir.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoImprimir.MinimumSize = new System.Drawing.Size(0, 20);

@@ -44,10 +44,11 @@
             // 
             // títuloBaseInferior
             // 
-            this.títuloBaseInferior.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.títuloBaseInferior.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.títuloBaseInferior.BackColor = System.Drawing.Color.White;
             this.títuloBaseInferior.Descrição = "Informações sobre atendimentos passados.";
+            this.títuloBaseInferior.ÍconeArredondado = false;
             this.títuloBaseInferior.Imagem = global::Apresentação.Resource.atendimento;
             this.títuloBaseInferior.Location = new System.Drawing.Point(203, 13);
             this.títuloBaseInferior.Name = "títuloBaseInferior";
@@ -57,9 +58,9 @@
             // 
             // listViewVisitantes
             // 
-            this.listViewVisitantes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.listViewVisitantes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listViewVisitantes.Location = new System.Drawing.Point(193, 89);
             this.listViewVisitantes.Name = "listViewVisitantes";
             this.listViewVisitantes.Size = new System.Drawing.Size(591, 190);
@@ -90,12 +91,12 @@
             this.opçãoAlterarPeríodo.BackColor = System.Drawing.Color.Transparent;
             this.opçãoAlterarPeríodo.Descrição = "Alterar período...";
             this.opçãoAlterarPeríodo.Imagem = global::Apresentação.Resource.calendário___inclinado;
-            this.opçãoAlterarPeríodo.Location = new System.Drawing.Point(5, 28);
+            this.opçãoAlterarPeríodo.Location = new System.Drawing.Point(7, 30);
             this.opçãoAlterarPeríodo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoAlterarPeríodo.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoAlterarPeríodo.MinimumSize = new System.Drawing.Size(150, 16);
             this.opçãoAlterarPeríodo.Name = "opçãoAlterarPeríodo";
-            this.opçãoAlterarPeríodo.Size = new System.Drawing.Size(150, 24);
+            this.opçãoAlterarPeríodo.Size = new System.Drawing.Size(150, 16);
             this.opçãoAlterarPeríodo.TabIndex = 2;
             this.opçãoAlterarPeríodo.Click += new System.EventHandler(this.opçãoAlterarPeríodo_Click);
             // 
@@ -104,7 +105,7 @@
             this.opçãoRecarregar.BackColor = System.Drawing.Color.Transparent;
             this.opçãoRecarregar.Descrição = "Recarregar lista";
             this.opçãoRecarregar.Imagem = global::Apresentação.Resource.rodízio;
-            this.opçãoRecarregar.Location = new System.Drawing.Point(5, 52);
+            this.opçãoRecarregar.Location = new System.Drawing.Point(7, 50);
             this.opçãoRecarregar.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoRecarregar.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoRecarregar.MinimumSize = new System.Drawing.Size(150, 16);

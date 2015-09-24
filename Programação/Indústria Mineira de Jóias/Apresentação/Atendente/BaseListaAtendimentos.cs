@@ -20,28 +20,10 @@ namespace Apresentação.Atendimento.Atendente
             InitializeComponent();
         }
 
-        //protected override void  CarregarDados()
-        //{
-        //    if (!bgRecuperarVisitantes.IsBusy)
-        //    {
-        //        SinalizaçãoCarga.Sinalizar(
-        //            listaPessoas,
-        //            "Carregando...",
-        //            "Aguarde enquanto o sistema carrega a lista de visitantes.");
-
-        //        bgRecuperarVisitantes.RunWorkerAsync();
-        //    }
-
-        //    próximaCarga = DadosGlobais.Instância.HoraDataAtual.Add(validadeCarga);
-        //}
-
         private void bgRecuperarVisitantes_DoWork(object sender, DoWorkEventArgs e)
         {
             if (listaDatasRelevantes.Itens.Count == 0)
             {
-                /*
-                 * Obter datas relevantes.
-                 */
                 DAdicionarDataRelevante métodoAdicionarDataRelevante = new DAdicionarDataRelevante(AdicionarDatasRelevantes);
                 DataRelevante[] datas;
 
@@ -53,26 +35,10 @@ namespace Apresentação.Atendimento.Atendente
 
                 datas = DataRelevante.ObterPróximasDatasRelevantes(Setor.ObterSetor(Setor.SetorSistema.NãoEspecificado), 0);
                 listaDatasRelevantes.BeginInvoke(métodoAdicionarDataRelevante, new object[] { datas });
-
-                //datas = DataRelevante.ObterPróximasDatasRelevantes(QuantidadeDeDiasParaObtençãoDeDatasRelevantes);
-                //listaDatasRelevantes.BeginInvoke(métodoAdicionarDataRelevante, new object[] { datas });
             }
 
             e.Result = Visita.ObterVisitasRelevantes(Funcionário.FuncionárioAtual, setores);
         }
-
-        //private void bgRecuperarVisitantes_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        //{
-        //    listaPessoas.Itens.Clear();
-
-        //    if (e.Result != null)
-        //    {
-        //        foreach (Visita visita in (Visita[])e.Result)
-        //            listaPessoas.Itens.Add(visita);
-        //    }
-
-        //    SinalizaçãoCarga.Dessinalizar(listaPessoas);
-        //}
 
         protected override void listaPessoas_PessoaSelecionada(Apresentação.Atendimento.Comum.ListaPessoasItem item)
         {

@@ -154,7 +154,7 @@ namespace Apresentação.Atendimento.Clientes
             this.quadroClientes.Location = new System.Drawing.Point(7, 13);
             this.quadroClientes.MostrarBotãoMinMax = false;
             this.quadroClientes.Name = "quadroClientes";
-            this.quadroClientes.Size = new System.Drawing.Size(160, 97);
+            this.quadroClientes.Size = new System.Drawing.Size(160, 96);
             this.quadroClientes.TabIndex = 0;
             this.quadroClientes.Tamanho = 30;
             this.quadroClientes.Título = "Clientes e Funcionários";
@@ -164,7 +164,7 @@ namespace Apresentação.Atendimento.Clientes
             this.opçãoProcurar.BackColor = System.Drawing.Color.Transparent;
             this.opçãoProcurar.Descrição = "Busca avançada";
             this.opçãoProcurar.Imagem = global::Apresentação.Resource.search4people;
-            this.opçãoProcurar.Location = new System.Drawing.Point(8, 31);
+            this.opçãoProcurar.Location = new System.Drawing.Point(7, 30);
             this.opçãoProcurar.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.opçãoProcurar.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoProcurar.MinimumSize = new System.Drawing.Size(150, 16);
@@ -178,7 +178,7 @@ namespace Apresentação.Atendimento.Clientes
             this.opçãoCadastrar.BackColor = System.Drawing.Color.Transparent;
             this.opçãoCadastrar.Descrição = "Cadastrar";
             this.opçãoCadastrar.Imagem = global::Apresentação.Resource.newfolder1;
-            this.opçãoCadastrar.Location = new System.Drawing.Point(7, 52);
+            this.opçãoCadastrar.Location = new System.Drawing.Point(7, 50);
             this.opçãoCadastrar.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.opçãoCadastrar.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoCadastrar.MinimumSize = new System.Drawing.Size(150, 16);
@@ -193,7 +193,7 @@ namespace Apresentação.Atendimento.Clientes
             this.opçãoImprimir.BackColor = System.Drawing.Color.Transparent;
             this.opçãoImprimir.Descrição = "Imprimir cadastros...";
             this.opçãoImprimir.Imagem = global::Apresentação.Resource.Impressora_3D;
-            this.opçãoImprimir.Location = new System.Drawing.Point(7, 73);
+            this.opçãoImprimir.Location = new System.Drawing.Point(7, 70);
             this.opçãoImprimir.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.opçãoImprimir.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoImprimir.MinimumSize = new System.Drawing.Size(150, 16);

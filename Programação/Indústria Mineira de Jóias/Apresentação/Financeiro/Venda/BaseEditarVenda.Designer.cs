@@ -217,10 +217,10 @@ namespace Apresentação.Financeiro.Venda
             this.quadroPagamento.Cor = System.Drawing.Color.Black;
             this.quadroPagamento.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadroPagamento.LetraTítulo = System.Drawing.Color.White;
-            this.quadroPagamento.Location = new System.Drawing.Point(7, 407);
+            this.quadroPagamento.Location = new System.Drawing.Point(7, 305);
             this.quadroPagamento.MostrarBotãoMinMax = false;
             this.quadroPagamento.Name = "quadroPagamento";
-            this.quadroPagamento.Size = new System.Drawing.Size(160, 59);
+            this.quadroPagamento.Size = new System.Drawing.Size(160, 67);
             this.quadroPagamento.TabIndex = 6;
             this.quadroPagamento.Tamanho = 30;
             this.quadroPagamento.Título = "Pagamento";
@@ -230,7 +230,7 @@ namespace Apresentação.Financeiro.Venda
             this.opçãoFormaPagamento.BackColor = System.Drawing.Color.Transparent;
             this.opçãoFormaPagamento.Descrição = "Escolher forma de pagamento...";
             this.opçãoFormaPagamento.Imagem = global::Apresentação.Resource.moedaunica;
-            this.opçãoFormaPagamento.Location = new System.Drawing.Point(5, 29);
+            this.opçãoFormaPagamento.Location = new System.Drawing.Point(7, 30);
             this.opçãoFormaPagamento.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoFormaPagamento.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoFormaPagamento.MinimumSize = new System.Drawing.Size(150, 16);
@@ -289,10 +289,10 @@ namespace Apresentação.Financeiro.Venda
             this.quadro2.Cor = System.Drawing.Color.Black;
             this.quadro2.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadro2.LetraTítulo = System.Drawing.Color.White;
-            this.quadro2.Location = new System.Drawing.Point(7, 472);
+            this.quadro2.Location = new System.Drawing.Point(7, 378);
             this.quadro2.MostrarBotãoMinMax = false;
             this.quadro2.Name = "quadro2";
-            this.quadro2.Size = new System.Drawing.Size(160, 92);
+            this.quadro2.Size = new System.Drawing.Size(160, 97);
             this.quadro2.TabIndex = 7;
             this.quadro2.Tamanho = 30;
             this.quadro2.Título = "Cobrança";
@@ -302,7 +302,7 @@ namespace Apresentação.Financeiro.Venda
             this.opçãoGastarCréditosCliente.BackColor = System.Drawing.Color.Transparent;
             this.opçãoGastarCréditosCliente.Descrição = "Gastar créditos do cliente nesta venda";
             this.opçãoGastarCréditosCliente.Imagem = global::Apresentação.Resource.moedaunica;
-            this.opçãoGastarCréditosCliente.Location = new System.Drawing.Point(5, 62);
+            this.opçãoGastarCréditosCliente.Location = new System.Drawing.Point(7, 60);
             this.opçãoGastarCréditosCliente.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoGastarCréditosCliente.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoGastarCréditosCliente.MinimumSize = new System.Drawing.Size(150, 16);
@@ -316,7 +316,7 @@ namespace Apresentação.Financeiro.Venda
             this.opçãoCobrançaAutomática.BackColor = System.Drawing.Color.Transparent;
             this.opçãoCobrançaAutomática.Descrição = "Cobrar pagamentos pendentes como débitos";
             this.opçãoCobrançaAutomática.Imagem = global::Apresentação.Resource.moedaunica;
-            this.opçãoCobrançaAutomática.Location = new System.Drawing.Point(5, 31);
+            this.opçãoCobrançaAutomática.Location = new System.Drawing.Point(7, 30);
             this.opçãoCobrançaAutomática.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoCobrançaAutomática.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoCobrançaAutomática.MinimumSize = new System.Drawing.Size(150, 16);

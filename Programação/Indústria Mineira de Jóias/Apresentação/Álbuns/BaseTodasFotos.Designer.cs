@@ -31,8 +31,8 @@
             this.todasFotos = new Apresentação.Álbum.Edição.Fotos.TodasFotos();
             this.títuloBaseInferior = new Apresentação.Formulários.TítuloBaseInferior();
             this.quadro1 = new Apresentação.Formulários.Quadro();
-            this.opçãoPrefetch = new Apresentação.Formulários.Opção();
             this.opçãoRefazerÍcones = new Apresentação.Formulários.Opção();
+            this.opçãoPrefetch = new Apresentação.Formulários.Opção();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.SuspendLayout();
@@ -79,31 +79,17 @@
             this.quadro1.Location = new System.Drawing.Point(7, 13);
             this.quadro1.MostrarBotãoMinMax = false;
             this.quadro1.Name = "quadro1";
-            this.quadro1.Size = new System.Drawing.Size(160, 96);
+            this.quadro1.Size = new System.Drawing.Size(160, 74);
             this.quadro1.TabIndex = 1;
             this.quadro1.Tamanho = 30;
             this.quadro1.Título = "Manutenção";
-            // 
-            // opçãoPrefetch
-            // 
-            this.opçãoPrefetch.BackColor = System.Drawing.Color.Transparent;
-            this.opçãoPrefetch.Descrição = "Pré-carga de miniaturas";
-            this.opçãoPrefetch.Imagem = global::Apresentação.Resource.repair;
-            this.opçãoPrefetch.Location = new System.Drawing.Point(5, 34);
-            this.opçãoPrefetch.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.opçãoPrefetch.MaximumSize = new System.Drawing.Size(150, 100);
-            this.opçãoPrefetch.MinimumSize = new System.Drawing.Size(150, 16);
-            this.opçãoPrefetch.Name = "opçãoPrefetch";
-            this.opçãoPrefetch.Size = new System.Drawing.Size(150, 26);
-            this.opçãoPrefetch.TabIndex = 2;
-            this.opçãoPrefetch.Click += new System.EventHandler(this.opçãoPrefetch_Click);
             // 
             // opçãoRefazerÍcones
             // 
             this.opçãoRefazerÍcones.BackColor = System.Drawing.Color.Transparent;
             this.opçãoRefazerÍcones.Descrição = "Refazer ícones";
             this.opçãoRefazerÍcones.Imagem = global::Apresentação.Resource.repair;
-            this.opçãoRefazerÍcones.Location = new System.Drawing.Point(5, 60);
+            this.opçãoRefazerÍcones.Location = new System.Drawing.Point(7, 50);
             this.opçãoRefazerÍcones.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoRefazerÍcones.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoRefazerÍcones.MinimumSize = new System.Drawing.Size(150, 16);
@@ -111,6 +97,20 @@
             this.opçãoRefazerÍcones.Size = new System.Drawing.Size(150, 16);
             this.opçãoRefazerÍcones.TabIndex = 3;
             this.opçãoRefazerÍcones.Click += new System.EventHandler(this.opçãoRefazerÍcones_Click);
+            // 
+            // opçãoPrefetch
+            // 
+            this.opçãoPrefetch.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoPrefetch.Descrição = "Pré-carga de miniaturas";
+            this.opçãoPrefetch.Imagem = global::Apresentação.Resource.repair;
+            this.opçãoPrefetch.Location = new System.Drawing.Point(7, 30);
+            this.opçãoPrefetch.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoPrefetch.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoPrefetch.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoPrefetch.Name = "opçãoPrefetch";
+            this.opçãoPrefetch.Size = new System.Drawing.Size(150, 26);
+            this.opçãoPrefetch.TabIndex = 2;
+            this.opçãoPrefetch.Click += new System.EventHandler(this.opçãoPrefetch_Click);
             // 
             // BaseTodasFotos
             // 
