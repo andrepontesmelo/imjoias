@@ -36,7 +36,6 @@
             this.btnCalcularDesconto = new Apresentação.Formulários.Opção();
             this.opçãoIniciarRetorno = new Apresentação.Formulários.Opção();
             this.opçãoContabilizar = new Apresentação.Formulários.Opção();
-            this.opçãoEscolherDocumentos = new Apresentação.Formulários.Opção();
             this.painelDocumentos = new System.Windows.Forms.Panel();
             this.simulaçãoAcerto1 = new Apresentação.Financeiro.Acerto.SumárioAcerto();
             this.esquerda.SuspendLayout();
@@ -47,9 +46,7 @@
             // esquerda
             // 
             this.esquerda.Controls.Add(this.quadroDocumentos);
-            this.esquerda.Controls.Add(this.opçãoEscolherDocumentos);
             this.esquerda.Size = new System.Drawing.Size(187, 634);
-            this.esquerda.Controls.SetChildIndex(this.opçãoEscolherDocumentos, 0);
             this.esquerda.Controls.SetChildIndex(this.quadroDocumentos, 0);
             // 
             // títuloBaseInferior1
@@ -177,22 +174,6 @@
             this.opçãoContabilizar.TabIndex = 4;
             this.opçãoContabilizar.Click += new System.EventHandler(this.opçãoContabilizar_Click);
             // 
-            // opçãoEscolherDocumentos
-            // 
-            this.opçãoEscolherDocumentos.BackColor = System.Drawing.Color.Transparent;
-            this.opçãoEscolherDocumentos.Descrição = "Escolher documentos... (Tá com bug)";
-            this.opçãoEscolherDocumentos.Imagem = global::Apresentação.Resource.propriedades;
-            this.opçãoEscolherDocumentos.Location = new System.Drawing.Point(7, 148);
-            this.opçãoEscolherDocumentos.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.opçãoEscolherDocumentos.MaximumSize = new System.Drawing.Size(150, 100);
-            this.opçãoEscolherDocumentos.MinimumSize = new System.Drawing.Size(150, 16);
-            this.opçãoEscolherDocumentos.Name = "opçãoEscolherDocumentos";
-            this.opçãoEscolherDocumentos.Privilégio = Entidades.Privilégio.Permissão.MoverDocumentoAcerto;
-            this.opçãoEscolherDocumentos.Size = new System.Drawing.Size(150, 27);
-            this.opçãoEscolherDocumentos.TabIndex = 2;
-            this.opçãoEscolherDocumentos.Visible = false;
-            this.opçãoEscolherDocumentos.Click += new System.EventHandler(this.opçãoEscolherDocumentos_Click);
-            // 
             // painelDocumentos
             // 
             this.painelDocumentos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -224,7 +205,6 @@
             this.simulaçãoAcerto1.TabIndex = 11;
             this.simulaçãoAcerto1.Tamanho = 30;
             this.simulaçãoAcerto1.Título = "Simulação";
-            this.simulaçãoAcerto1.Visible = true;
             // 
             // BaseDadosAcerto
             // 
@@ -259,7 +239,6 @@
         private Apresentação.Formulários.BotãoLiberarRecurso botãoLiberarPrevisão;
         private ListaDocumentosAcerto listaDocumentosAcerto;
         private Apresentação.Formulários.Quadro quadroDocumentos;
-        private Apresentação.Formulários.Opção opçãoEscolherDocumentos;
         private Apresentação.Formulários.Opção opçãoIniciarRetorno;
         private Apresentação.Formulários.Opção opçãoContabilizar;
         private System.Windows.Forms.Panel painelDocumentos;

@@ -33,7 +33,6 @@ namespace Apresentação.Financeiro.Acerto
                     "Acerto de mercadorias número {0}",
                     acerto.Código);
 
-                opçãoEscolherDocumentos.Enabled &= !acerto.Acertado;
                 opçãoIniciarRetorno.Enabled &= !acerto.Acertado;
 
                 acerto.PrepararVerificaçãoConsistência();
@@ -165,16 +164,6 @@ namespace Apresentação.Financeiro.Acerto
             }
             else
                 throw new NotSupportedException();
-        }
-
-        /// <summary>
-        /// Ocorre quando usuário deseja escolher documentos para um acerto.
-        /// </summary>
-        private void opçãoEscolherDocumentos_Click(object sender, EventArgs e)
-        {
-            BaseSeleçãoDocumentos baseInferior = new BaseSeleçãoDocumentos();
-            baseInferior.Acerto = acerto;
-            SubstituirBase(baseInferior);
         }
 
         private void opçãoContabilizar_Click(object sender, EventArgs e)

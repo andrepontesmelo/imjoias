@@ -384,12 +384,6 @@
     <Compile Include="Estoque\ListaSaldo.Designer.cs">
       <DependentUpon>ListaSaldo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Acerto\AcertoVarejo.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Financeiro\Acerto\AcertoVarejo.Designer.cs">
-      <DependentUpon>AcertoVarejo.cs</DependentUpon>
-    </Compile>
     <Compile Include="Financeiro\Acerto\Alerta\AlertaBaseInferior.cs" />
     <Compile Include="Financeiro\Acerto\Alerta\AlertaBaseInferior.Designer.cs">
       <DependentUpon>AlertaBaseInferior.cs</DependentUpon>
@@ -418,12 +412,6 @@
     </Compile>
     <Compile Include="Financeiro\Acerto\BaseResumoAcerto.cs">
       <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Financeiro\Acerto\BaseSeleçãoDocumentos.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Financeiro\Acerto\BaseSeleçãoDocumentos.Designer.cs">
-      <DependentUpon>BaseSeleçãoDocumentos.cs</DependentUpon>
     </Compile>
     <Compile Include="Financeiro\Acerto\CriarAcerto.cs">
       <SubType>Form</SubType>
@@ -2613,10 +2601,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Financeiro\Acerto\BaseResumoAcerto.resx">
       <DependentUpon>BaseResumoAcerto.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Acerto\BaseSeleçãoDocumentos.resx">
-      <DependentUpon>BaseSeleçãoDocumentos.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Financeiro\Acerto\CriarAcerto.resx">
