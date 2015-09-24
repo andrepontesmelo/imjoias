@@ -551,6 +551,10 @@ namespace Entidades.Pessoa
 
         private static SortedSet<ulong> lstCódigosFuncionários = null;
 
+        public static bool ÉFuncionárioOuRepresentante(Entidades.Pessoa.Pessoa pessoa)
+        {
+            return ÉFuncionário(pessoa) || Representante.ÉRepresentante(pessoa);
+        }
         /// <summary>
         /// Verifica se uma pessoa é funcionário.
         /// Desconsidera data demissão.

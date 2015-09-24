@@ -759,6 +759,11 @@ namespace Apresentação.Atendimento
             txtObs.Text = pessoa.Observações;
             título.Descrição = ObterDescrição(cliente);
             título.Imagem = ControladorÍconePessoa.ObterÍconeComFundoECódigo(pessoa);
+
+            opçãoVendas.Enabled = Entidades.Privilégio.PermissãoFuncionário.ValidarPermissão(Entidades.Privilégio.Permissão.Faturamento)
+                || !Entidades.Pessoa.Funcionário.ÉFuncionárioOuRepresentante(pessoa)
+                || pessoa.Código == Funcionário.FuncionárioAtual.Código;
+
         }
 
         private void VerificarPessoaSemSetor(Entidades.Pessoa.Pessoa cliente)
