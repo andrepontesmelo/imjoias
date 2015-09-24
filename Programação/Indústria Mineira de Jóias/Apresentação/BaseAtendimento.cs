@@ -111,7 +111,7 @@ namespace Apresentação.Atendimento
 		public BaseAtendimento(Entidades.Pessoa.Pessoa cliente) : base()
 		{
             InitializeComponent();
-			Preparar(cliente);
+			Carregar(cliente);
 		}
 
 		/// <summary>
@@ -739,21 +739,17 @@ namespace Apresentação.Atendimento
         /// Prepara base inferior para exibição de um cliente.
         /// </summary>
         /// <param name="pessoa">Cadastro do cliente.</param>
-        public void Preparar(Entidades.Pessoa.Pessoa cliente)
+        public void Carregar(Entidades.Pessoa.Pessoa cliente)
         {
-            //AguardeDB.Mostrar();
-            //Visible = false;
             sinalizaçãoPedido.Visible = false;
             sinalizaçãoMercadoriaEmFalta.Visible = false;
             StringBuilder descrição = new StringBuilder();
 
             AdequarModoAtendimento();
 
-            //this.pessoa = Entidades.Pessoa.Pessoa.ObterPessoa(cliente.Código);
-
             this.pessoa = cliente;
 
-            string títuloStr = pessoa.Nome.Replace("&", "&&"); // +" (" + pessoa.Código.ToString() + ")";
+            string títuloStr = pessoa.Nome.Replace("&", "&&"); 
 
             if ((pessoa is PessoaJurídica) && (((PessoaJurídica)pessoa).Fantasia != null))
                 títuloStr += " - " + ((PessoaJurídica)pessoa).Fantasia;
@@ -778,10 +774,6 @@ namespace Apresentação.Atendimento
                     "Favor definir definir o setor na ficha de " + pessoa.Nome,
                     "Pessoa sem setor", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            /* Industria
-             * Firma
-             * Região 10 - (31) 22222-222 - Belo Horizonte - MG
-             */
 
             if (cliente.Região != null)
                 descrição.Append(cliente.Região.Nome.Trim()).Append(" - ");
@@ -800,29 +792,19 @@ namespace Apresentação.Atendimento
 
             bool éCliente = Entidades.Pessoa.Pessoa.ÉCliente(pessoa);
             if (éCliente)
-            {
-                // Talvez que seja um funcionário demitido. Vamos testar.
-                // éCliente <= false caso seja funcionario demitido.
                 éCliente &= !Entidades.Pessoa.Funcionário.ÉFuncionário(pessoa);
-            }
 
             PrepararObservações();
 
             classificador.Pessoa = pessoa;
-            //histórico.Pessoa = pessoa;
 
             título.Descrição = descrição.ToString();
-
-            //listaContaCorrente1.Cliente = pessoa;
-            //Visible = true;
-            //AguardeDB.Fechar();
         }
 
         private void AdequarModoAtendimento()
         {
             quadroModoAtendimento.Visible = ModoAtendimento;
             quadroCliente.Visible = !ModoAtendimento;
-            //histórico.Visible = !ModoAtendimento;
             quadroObs.Visible = !ModoAtendimento;
             quadroClassificador.Visible = !ModoAtendimento;
         }
@@ -833,7 +815,6 @@ namespace Apresentação.Atendimento
 		private void PrepararObservações()
 		{
 			txtObs.Text = pessoa.Observações;
-			//quadroObs.Visible = pessoa.Observações != null && pessoa.Observações.Length > 0;
 		}
 
 		/// <summary>
@@ -931,8 +912,6 @@ namespace Apresentação.Atendimento
             }
             else
             {
-                
-                //MessageBox.Show("Olá. Ocorreu um erro que a equipe de desenvolvimento está tentando solucionar.\nVocê consegue reproduzir esse erro?\nPor favor, se for possivel, nos informe pelo sistema-imj@googlegroups.com como podemos reproduzir esse erro. Observando: \n-Qual cliente foi procurado ?
                 throw new NotSupportedException("O tipo de pessoa \"" + pessoa.GetType().Name + "\" não é suportado. Código:" + pessoa.Código.ToString());
             }
 
@@ -957,7 +936,7 @@ namespace Apresentação.Atendimento
             UseWaitCursor = true;
 
 			novaEntidade.Atualizar();
-			Preparar(novaEntidade);
+			Carregar(novaEntidade);
 
             UseWaitCursor = false;
             AguardeDB.Fechar();
@@ -994,12 +973,8 @@ namespace Apresentação.Atendimento
             hashPendencias.Clear();
             lstPendências.Items.Clear();
 
-//            quadroPendências.Visible = pendências.Count > 0;
-
             foreach (ClientePendência pendência in pendências)
-            {
                 MostrarPendência(pendência);
-            }
 
             ReajustarPendências();
         }
@@ -1214,7 +1189,6 @@ namespace Apresentação.Atendimento
         {
             if (!bgDescobrirPendência.IsBusy)
             {
-                //SinalizaçãoCarga.Sinalizar(quadroPendências, "Verificando", "O sistema está procurando pendências...");
                 lstPendências.Items.Add("Verificando...");
                 bgDescobrirPendência.RunWorkerAsync();
             }
