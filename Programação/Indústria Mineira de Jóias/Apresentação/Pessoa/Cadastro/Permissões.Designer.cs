@@ -62,6 +62,7 @@
             this.chkEditarMercadorias = new Apresentação.Pessoa.Cadastro.ChkPermissão();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.btnPrivVendedor = new System.Windows.Forms.Button();
+            this.chkPermissãoFaturamento = new Apresentação.Pessoa.Cadastro.ChkPermissão();
             this.grpCadastro.SuspendLayout();
             this.grpConsignado.SuspendLayout();
             this.grpFinanceiro.SuspendLayout();
@@ -215,6 +216,7 @@
             // 
             // grpFinanceiro
             // 
+            this.grpFinanceiro.Controls.Add(this.chkPermissãoFaturamento);
             this.grpFinanceiro.Controls.Add(this.chkManipularComissão);
             this.grpFinanceiro.Controls.Add(this.chkPersonalizarVenda);
             this.grpFinanceiro.Controls.Add(this.chkVisualizarHistórico);
@@ -448,6 +450,17 @@
             this.btnPrivVendedor.UseVisualStyleBackColor = true;
             this.btnPrivVendedor.Click += new System.EventHandler(this.btnPrivVendedor_Click);
             // 
+            // chkPermissãoFaturamento
+            // 
+            this.chkPermissãoFaturamento.AutoSize = true;
+            this.chkPermissãoFaturamento.Location = new System.Drawing.Point(6, 248);
+            this.chkPermissãoFaturamento.Name = "chkPermissãoFaturamento";
+            this.chkPermissãoFaturamento.Privilégio = Entidades.Privilégio.Permissão.Faturamento;
+            this.chkPermissãoFaturamento.Size = new System.Drawing.Size(85, 17);
+            this.chkPermissãoFaturamento.TabIndex = 10;
+            this.chkPermissãoFaturamento.Text = "Faturamento";
+            this.chkPermissãoFaturamento.UseVisualStyleBackColor = true;
+            // 
             // Permissões
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -510,5 +523,6 @@
         private ChkPermissão chkPermissão1;
         private ChkPermissão chkManipularComissão;
         private ChkPermissão chkPermissãoTécnico;
+        private ChkPermissão chkPermissãoFaturamento;
     }
 }
