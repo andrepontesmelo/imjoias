@@ -145,16 +145,18 @@ namespace Apresentação.Financeiro.Saída
             this.tabs.SuspendLayout();
             this.tabItens.SuspendLayout();
             this.quadroTravamento.SuspendLayout();
+            this.tabObservações.SuspendLayout();
             this.esquerda.SuspendLayout();
             this.quadroAcerto.SuspendLayout();
             this.SuspendLayout();
-            this.quadroTravamento.Controls.SetChildIndex(this.opçãoDestravar, 0);
             // 
             // título
             // 
             this.título.Imagem = global::Apresentação.Resource.saída;
             this.título.Location = new System.Drawing.Point(193, 3);
             this.título.Size = new System.Drawing.Size(586, 70);
+            this.quadroTravamento.Controls.SetChildIndex(this.lblTravamento, 0);
+            this.quadroTravamento.Controls.SetChildIndex(this.opçãoDestravar, 0);
             // 
             // esquerda
             // 
@@ -173,10 +175,10 @@ namespace Apresentação.Financeiro.Saída
             this.quadroAcerto.Cor = System.Drawing.Color.Black;
             this.quadroAcerto.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadroAcerto.LetraTítulo = System.Drawing.Color.White;
-            this.quadroAcerto.Location = new System.Drawing.Point(7, 393);
+            this.quadroAcerto.Location = new System.Drawing.Point(7, 305);
             this.quadroAcerto.MostrarBotãoMinMax = false;
             this.quadroAcerto.Name = "quadroAcerto";
-            this.quadroAcerto.Size = new System.Drawing.Size(160, 53);
+            this.quadroAcerto.Size = new System.Drawing.Size(160, 58);
             this.quadroAcerto.TabIndex = 6;
             this.quadroAcerto.Tamanho = 30;
             this.quadroAcerto.Título = "Acerto";
@@ -184,9 +186,9 @@ namespace Apresentação.Financeiro.Saída
             // opçãoRemarcarAcerto
             // 
             this.opçãoRemarcarAcerto.BackColor = System.Drawing.Color.Transparent;
-            this.opçãoRemarcarAcerto.Descrição = "Remarcar data do acerto...";
+            this.opçãoRemarcarAcerto.Descrição = "Remarcar";
             this.opçãoRemarcarAcerto.Imagem = global::Apresentação.Resource.Acerto__Pequeno_;
-            this.opçãoRemarcarAcerto.Location = new System.Drawing.Point(5, 27);
+            this.opçãoRemarcarAcerto.Location = new System.Drawing.Point(7, 30);
             this.opçãoRemarcarAcerto.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoRemarcarAcerto.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoRemarcarAcerto.MinimumSize = new System.Drawing.Size(150, 16);
@@ -203,6 +205,7 @@ namespace Apresentação.Financeiro.Saída
             this.tabs.ResumeLayout(false);
             this.tabItens.ResumeLayout(false);
             this.quadroTravamento.ResumeLayout(false);
+            this.tabObservações.ResumeLayout(false);
             this.esquerda.ResumeLayout(false);
             this.quadroAcerto.ResumeLayout(false);
             this.ResumeLayout(false);

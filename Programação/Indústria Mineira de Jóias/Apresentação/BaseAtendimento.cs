@@ -252,7 +252,7 @@ namespace Apresentação.Atendimento
             this.opçãoAbrir.BackColor = System.Drawing.Color.Transparent;
             this.opçãoAbrir.Descrição = "Abrir ficha...";
             this.opçãoAbrir.Imagem = global::Apresentação.Resource.folderopen1;
-            this.opçãoAbrir.Location = new System.Drawing.Point(8, 28);
+            this.opçãoAbrir.Location = new System.Drawing.Point(7, 30);
             this.opçãoAbrir.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.opçãoAbrir.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoAbrir.MinimumSize = new System.Drawing.Size(150, 16);
@@ -267,7 +267,7 @@ namespace Apresentação.Atendimento
             this.opçãoOcultar.BackColor = System.Drawing.Color.Transparent;
             this.opçãoOcultar.Descrição = "Ocultar dados";
             this.opçãoOcultar.Imagem = global::Apresentação.Resource.sunglasses_transp1;
-            this.opçãoOcultar.Location = new System.Drawing.Point(6, 47);
+            this.opçãoOcultar.Location = new System.Drawing.Point(7, 50);
             this.opçãoOcultar.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoOcultar.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoOcultar.MinimumSize = new System.Drawing.Size(150, 16);
@@ -296,7 +296,7 @@ namespace Apresentação.Atendimento
             this.opçãoVendas.BackColor = System.Drawing.Color.Transparent;
             this.opçãoVendas.Descrição = "Visualizar vendas";
             this.opçãoVendas.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoVendas.Imagem")));
-            this.opçãoVendas.Location = new System.Drawing.Point(6, 30);
+            this.opçãoVendas.Location = new System.Drawing.Point(7, 30);
             this.opçãoVendas.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.opçãoVendas.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoVendas.MinimumSize = new System.Drawing.Size(150, 16);
@@ -333,7 +333,7 @@ namespace Apresentação.Atendimento
             this.opçãoSaída.BackColor = System.Drawing.Color.Transparent;
             this.opçãoSaída.Descrição = "Saídas";
             this.opçãoSaída.Imagem = global::Apresentação.Resource.Saída__Pequeno_1;
-            this.opçãoSaída.Location = new System.Drawing.Point(6, 30);
+            this.opçãoSaída.Location = new System.Drawing.Point(7, 30);
             this.opçãoSaída.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.opçãoSaída.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoSaída.MinimumSize = new System.Drawing.Size(150, 16);
@@ -348,13 +348,13 @@ namespace Apresentação.Atendimento
             this.opçãoRetorno.BackColor = System.Drawing.Color.Transparent;
             this.opçãoRetorno.Descrição = "Retornos";
             this.opçãoRetorno.Imagem = global::Apresentação.Resource.Retorno__Ícone_;
-            this.opçãoRetorno.Location = new System.Drawing.Point(6, 48);
+            this.opçãoRetorno.Location = new System.Drawing.Point(7, 50);
             this.opçãoRetorno.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.opçãoRetorno.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoRetorno.MinimumSize = new System.Drawing.Size(150, 16);
             this.opçãoRetorno.Name = "opçãoRetorno";
             this.opçãoRetorno.Privilégio = Entidades.Privilégio.Permissão.ConsignadoRetorno;
-            this.opçãoRetorno.Size = new System.Drawing.Size(150, 24);
+            this.opçãoRetorno.Size = new System.Drawing.Size(150, 16);
             this.opçãoRetorno.TabIndex = 4;
             this.opçãoRetorno.Click += new System.EventHandler(this.opçãoRetorno_Click);
             // 
@@ -377,13 +377,13 @@ namespace Apresentação.Atendimento
             this.opçãoConsignadoVenda.BackColor = System.Drawing.Color.Transparent;
             this.opçãoConsignadoVenda.Descrição = "Registrar venda";
             this.opçãoConsignadoVenda.Imagem = global::Apresentação.Resource.pagar_em_dólares__pequeno_1;
-            this.opçãoConsignadoVenda.Location = new System.Drawing.Point(5, 48);
+            this.opçãoConsignadoVenda.Location = new System.Drawing.Point(7, 50);
             this.opçãoConsignadoVenda.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.opçãoConsignadoVenda.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoConsignadoVenda.MinimumSize = new System.Drawing.Size(150, 16);
             this.opçãoConsignadoVenda.Name = "opçãoConsignadoVenda";
             this.opçãoConsignadoVenda.Privilégio = Entidades.Privilégio.Permissão.VendasEditar;
-            this.opçãoConsignadoVenda.Size = new System.Drawing.Size(150, 21);
+            this.opçãoConsignadoVenda.Size = new System.Drawing.Size(150, 17);
             this.opçãoConsignadoVenda.TabIndex = 5;
             this.opçãoConsignadoVenda.Click += new System.EventHandler(this.opçãoConsignadoVenda_Click);
             // 
@@ -461,7 +461,7 @@ namespace Apresentação.Atendimento
             this.quadroVendas.MostrarBotãoMinMax = false;
             this.quadroVendas.Name = "quadroVendas";
             this.quadroVendas.Privilégio = Entidades.Privilégio.Permissão.Vendas;
-            this.quadroVendas.Size = new System.Drawing.Size(161, 110);
+            this.quadroVendas.Size = new System.Drawing.Size(162, 113);
             this.quadroVendas.TabIndex = 3;
             this.quadroVendas.Tamanho = 30;
             this.quadroVendas.Título = "Financeiro";
@@ -471,12 +471,12 @@ namespace Apresentação.Atendimento
             this.opçãoCréditos.BackColor = System.Drawing.Color.Transparent;
             this.opçãoCréditos.Descrição = "Créditos";
             this.opçãoCréditos.Imagem = global::Apresentação.Resource.credito;
-            this.opçãoCréditos.Location = new System.Drawing.Point(6, 86);
+            this.opçãoCréditos.Location = new System.Drawing.Point(7, 90);
             this.opçãoCréditos.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoCréditos.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoCréditos.MinimumSize = new System.Drawing.Size(150, 16);
             this.opçãoCréditos.Name = "opçãoCréditos";
-            this.opçãoCréditos.Size = new System.Drawing.Size(150, 24);
+            this.opçãoCréditos.Size = new System.Drawing.Size(150, 23);
             this.opçãoCréditos.TabIndex = 8;
             this.opçãoCréditos.Click += new System.EventHandler(this.opçãoCréditos_Click);
             // 
@@ -485,12 +485,12 @@ namespace Apresentação.Atendimento
             this.opçãoPagamentos.BackColor = System.Drawing.Color.Transparent;
             this.opçãoPagamentos.Descrição = "Pagamentos";
             this.opçãoPagamentos.Imagem = global::Apresentação.Resource.pagamento1;
-            this.opçãoPagamentos.Location = new System.Drawing.Point(5, 67);
+            this.opçãoPagamentos.Location = new System.Drawing.Point(7, 70);
             this.opçãoPagamentos.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoPagamentos.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoPagamentos.MinimumSize = new System.Drawing.Size(150, 16);
             this.opçãoPagamentos.Name = "opçãoPagamentos";
-            this.opçãoPagamentos.Size = new System.Drawing.Size(150, 24);
+            this.opçãoPagamentos.Size = new System.Drawing.Size(150, 16);
             this.opçãoPagamentos.TabIndex = 7;
             this.opçãoPagamentos.Click += new System.EventHandler(this.opçãoPagamentos_Click);
             // 
@@ -660,7 +660,7 @@ namespace Apresentação.Atendimento
             this.opçãoEncerrarAtendimento.BackColor = System.Drawing.Color.Transparent;
             this.opçãoEncerrarAtendimento.Descrição = "Encerrar modo de atendimento";
             this.opçãoEncerrarAtendimento.Imagem = global::Apresentação.Resource.turnkey1;
-            this.opçãoEncerrarAtendimento.Location = new System.Drawing.Point(5, 28);
+            this.opçãoEncerrarAtendimento.Location = new System.Drawing.Point(7, 30);
             this.opçãoEncerrarAtendimento.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoEncerrarAtendimento.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoEncerrarAtendimento.MinimumSize = new System.Drawing.Size(150, 16);
@@ -694,7 +694,7 @@ namespace Apresentação.Atendimento
             this.opçãoPedido.BackColor = System.Drawing.Color.Transparent;
             this.opçãoPedido.Descrição = "Pedidos e consertos";
             this.opçãoPedido.Imagem = global::Apresentação.Resource.Pedido1;
-            this.opçãoPedido.Location = new System.Drawing.Point(7, 31);
+            this.opçãoPedido.Location = new System.Drawing.Point(7, 30);
             this.opçãoPedido.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoPedido.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoPedido.MinimumSize = new System.Drawing.Size(150, 16);
@@ -708,7 +708,7 @@ namespace Apresentação.Atendimento
             this.opçãoMalaDireta.BackColor = System.Drawing.Color.Transparent;
             this.opçãoMalaDireta.Descrição = "Imprimir etiqueta para mala-direta";
             this.opçãoMalaDireta.Imagem = global::Apresentação.Resource.LABELS1;
-            this.opçãoMalaDireta.Location = new System.Drawing.Point(7, 51);
+            this.opçãoMalaDireta.Location = new System.Drawing.Point(7, 50);
             this.opçãoMalaDireta.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoMalaDireta.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoMalaDireta.MinimumSize = new System.Drawing.Size(150, 16);
@@ -1373,12 +1373,6 @@ namespace Apresentação.Atendimento
 
             janela.Hide();
             janela.ShowDialog(this);
-        }
-
-        private void opçãoFinanceiro_Click(object sender, EventArgs e)
-        {
-            Apresentação.Financeiro.Controle.BaseControleFinanceiroPessoal n = new Apresentação.Financeiro.Controle.BaseControleFinanceiroPessoal(Pessoa);
-            SubstituirBase(n);
         }
 
         private void opçãoCréditos_Click(object sender, EventArgs e)

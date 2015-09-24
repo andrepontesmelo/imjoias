@@ -76,7 +76,7 @@
             this.quadro1.Location = new System.Drawing.Point(7, 13);
             this.quadro1.MostrarBotãoMinMax = false;
             this.quadro1.Name = "quadro1";
-            this.quadro1.Size = new System.Drawing.Size(160, 82);
+            this.quadro1.Size = new System.Drawing.Size(160, 69);
             this.quadro1.TabIndex = 1;
             this.quadro1.Tamanho = 30;
             this.quadro1.Título = "Ações";
@@ -86,7 +86,7 @@
             this.opçãoExcluir.BackColor = System.Drawing.Color.Transparent;
             this.opçãoExcluir.Descrição = "Excluir";
             this.opçãoExcluir.Imagem = global::Apresentação.Resource.Excluir;
-            this.opçãoExcluir.Location = new System.Drawing.Point(10, 57);
+            this.opçãoExcluir.Location = new System.Drawing.Point(7, 50);
             this.opçãoExcluir.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoExcluir.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoExcluir.MinimumSize = new System.Drawing.Size(150, 16);
@@ -100,7 +100,7 @@
             this.opçãoNova.BackColor = System.Drawing.Color.Transparent;
             this.opçãoNova.Descrição = "Nova";
             this.opçãoNova.Imagem = global::Apresentação.Resource._3228_icon;
-            this.opçãoNova.Location = new System.Drawing.Point(10, 36);
+            this.opçãoNova.Location = new System.Drawing.Point(7, 30);
             this.opçãoNova.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoNova.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoNova.MinimumSize = new System.Drawing.Size(150, 16);

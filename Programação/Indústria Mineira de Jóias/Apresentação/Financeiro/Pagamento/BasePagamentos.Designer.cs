@@ -53,11 +53,11 @@
             // 
             // títuloBaseInferior
             // 
-            this.títuloBaseInferior.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.títuloBaseInferior.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.títuloBaseInferior.BackColor = System.Drawing.Color.White;
             this.títuloBaseInferior.Descrição = "São listados todos os pagamentos deste cliente. São mostrados tanto pagamentos re" +
-                "lacionados à vendas quanto os sem vinculo direto.";
+    "lacionados à vendas quanto os sem vinculo direto.";
             this.títuloBaseInferior.ÍconeArredondado = false;
             this.títuloBaseInferior.Imagem = global::Apresentação.Resource.pagamento1;
             this.títuloBaseInferior.Location = new System.Drawing.Point(193, 3);
@@ -68,9 +68,9 @@
             // 
             // quadro
             // 
-            this.quadro.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.quadro.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.quadro.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(239)))), ((int)(((byte)(221)))));
             this.quadro.bInfDirArredondada = false;
             this.quadro.bInfEsqArredondada = false;
@@ -90,9 +90,9 @@
             // 
             // lista
             // 
-            this.lista.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lista.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lista.Location = new System.Drawing.Point(0, 26);
             this.lista.Name = "lista";
             this.lista.Size = new System.Drawing.Size(587, 191);
@@ -115,7 +115,7 @@
             this.quadro1.Location = new System.Drawing.Point(7, 79);
             this.quadro1.MostrarBotãoMinMax = false;
             this.quadro1.Name = "quadro1";
-            this.quadro1.Size = new System.Drawing.Size(160, 150);
+            this.quadro1.Size = new System.Drawing.Size(160, 108);
             this.quadro1.TabIndex = 1;
             this.quadro1.Tamanho = 30;
             this.quadro1.Título = "Legenda";
@@ -123,11 +123,11 @@
             // label4
             // 
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(17, 108);
+            this.label4.Location = new System.Drawing.Point(7, 84);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(119, 29);
+            this.label4.Size = new System.Drawing.Size(119, 18);
             this.label4.TabIndex = 5;
-            this.label4.Text = "Pagamentos pendentes já vencidos";
+            this.label4.Text = "Pagamentos vencidos.";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label3
@@ -135,7 +135,7 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Yellow;
             this.label3.ForeColor = System.Drawing.Color.Red;
-            this.label3.Location = new System.Drawing.Point(3, 88);
+            this.label3.Location = new System.Drawing.Point(7, 70);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(105, 13);
             this.label3.TabIndex = 4;
@@ -145,18 +145,18 @@
             // 
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.label2.Location = new System.Drawing.Point(14, 52);
+            this.label2.Location = new System.Drawing.Point(7, 44);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(130, 31);
+            this.label2.Size = new System.Drawing.Size(130, 16);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Pagamentos pendentes ainda não vencidos.";
+            this.label2.Text = "Pagamentos pendentes.";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Yellow;
-            this.label1.Location = new System.Drawing.Point(3, 34);
+            this.label1.Location = new System.Drawing.Point(7, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(101, 13);
             this.label1.TabIndex = 2;
@@ -186,12 +186,12 @@
             this.opçãoImprimir.BackColor = System.Drawing.Color.Transparent;
             this.opçãoImprimir.Descrição = "Imprimir";
             this.opçãoImprimir.Imagem = global::Apresentação.Resource.impressora___161;
-            this.opçãoImprimir.Location = new System.Drawing.Point(5, 36);
+            this.opçãoImprimir.Location = new System.Drawing.Point(7, 30);
             this.opçãoImprimir.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoImprimir.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoImprimir.MinimumSize = new System.Drawing.Size(150, 16);
             this.opçãoImprimir.Name = "opçãoImprimir";
-            this.opçãoImprimir.Size = new System.Drawing.Size(150, 24);
+            this.opçãoImprimir.Size = new System.Drawing.Size(150, 17);
             this.opçãoImprimir.TabIndex = 2;
             this.opçãoImprimir.Click += new System.EventHandler(this.opçãoImprimir_Click);
             // 

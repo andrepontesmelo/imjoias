@@ -77,7 +77,7 @@
             this.quadro1.Location = new System.Drawing.Point(7, 13);
             this.quadro1.MostrarBotãoMinMax = false;
             this.quadro1.Name = "quadro1";
-            this.quadro1.Size = new System.Drawing.Size(160, 84);
+            this.quadro1.Size = new System.Drawing.Size(160, 73);
             this.quadro1.TabIndex = 1;
             this.quadro1.Tamanho = 30;
             this.quadro1.Título = "Opções";
@@ -85,10 +85,10 @@
             // opçãoNovoCrédito
             // 
             this.opçãoNovoCrédito.BackColor = System.Drawing.Color.Transparent;
-            this.opçãoNovoCrédito.Descrição = "Novo crédito";
+            this.opçãoNovoCrédito.Descrição = "Novo";
             this.opçãoNovoCrédito.ForeColor = System.Drawing.Color.Transparent;
             this.opçãoNovoCrédito.Imagem = global::Apresentação.Resource.Dardo;
-            this.opçãoNovoCrédito.Location = new System.Drawing.Point(6, 36);
+            this.opçãoNovoCrédito.Location = new System.Drawing.Point(7, 30);
             this.opçãoNovoCrédito.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoNovoCrédito.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoNovoCrédito.MinimumSize = new System.Drawing.Size(150, 16);
@@ -102,12 +102,12 @@
             this.opçãoExcluir.BackColor = System.Drawing.Color.Transparent;
             this.opçãoExcluir.Descrição = "Excluir";
             this.opçãoExcluir.Imagem = global::Apresentação.Resource.Excluir;
-            this.opçãoExcluir.Location = new System.Drawing.Point(5, 60);
+            this.opçãoExcluir.Location = new System.Drawing.Point(7, 50);
             this.opçãoExcluir.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoExcluir.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoExcluir.MinimumSize = new System.Drawing.Size(150, 16);
             this.opçãoExcluir.Name = "opçãoExcluir";
-            this.opçãoExcluir.Size = new System.Drawing.Size(150, 24);
+            this.opçãoExcluir.Size = new System.Drawing.Size(150, 16);
             this.opçãoExcluir.TabIndex = 3;
             this.opçãoExcluir.Click += new System.EventHandler(this.opçãoExcluir_Click);
             // 

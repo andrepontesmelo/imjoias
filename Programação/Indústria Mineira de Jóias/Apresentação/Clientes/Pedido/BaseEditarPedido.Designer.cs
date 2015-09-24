@@ -584,7 +584,7 @@
             this.opçãoExcluir.BackColor = System.Drawing.Color.Transparent;
             this.opçãoExcluir.Descrição = "Excluir";
             this.opçãoExcluir.Imagem = global::Apresentação.Resource.delete;
-            this.opçãoExcluir.Location = new System.Drawing.Point(5, 27);
+            this.opçãoExcluir.Location = new System.Drawing.Point(7, 30);
             this.opçãoExcluir.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoExcluir.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoExcluir.MinimumSize = new System.Drawing.Size(150, 16);
@@ -600,7 +600,7 @@
             this.opçãoImprimir.BackColor = System.Drawing.Color.Transparent;
             this.opçãoImprimir.Descrição = "Gerar recibo";
             this.opçãoImprimir.Imagem = global::Apresentação.Resource.Impressora_3D;
-            this.opçãoImprimir.Location = new System.Drawing.Point(5, 45);
+            this.opçãoImprimir.Location = new System.Drawing.Point(7, 50);
             this.opçãoImprimir.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoImprimir.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoImprimir.MinimumSize = new System.Drawing.Size(150, 16);

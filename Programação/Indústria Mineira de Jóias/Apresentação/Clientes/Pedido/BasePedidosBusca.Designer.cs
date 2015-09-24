@@ -51,8 +51,8 @@
             // 
             // títuloBaseInferior1
             // 
-            this.títuloBaseInferior1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.títuloBaseInferior1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.títuloBaseInferior1.BackColor = System.Drawing.Color.White;
             this.títuloBaseInferior1.Descrição = "";
             this.títuloBaseInferior1.ÍconeArredondado = false;
@@ -65,9 +65,9 @@
             // 
             // listaPedidos
             // 
-            this.listaPedidos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.listaPedidos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listaPedidos.BackColor = System.Drawing.SystemColors.Control;
             this.listaPedidos.Location = new System.Drawing.Point(186, 88);
             this.listaPedidos.Name = "listaPedidos";
@@ -77,8 +77,8 @@
             // 
             // txtBusca
             // 
-            this.txtBusca.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBusca.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBusca.BackColor = System.Drawing.Color.Linen;
             this.txtBusca.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBusca.Location = new System.Drawing.Point(271, 37);
@@ -113,7 +113,7 @@
             this.opçãoLocalizar.BackColor = System.Drawing.Color.Transparent;
             this.opçãoLocalizar.Descrição = "Busca avançada";
             this.opçãoLocalizar.Imagem = global::Apresentação.Resource.Lupa;
-            this.opçãoLocalizar.Location = new System.Drawing.Point(5, 29);
+            this.opçãoLocalizar.Location = new System.Drawing.Point(7, 30);
             this.opçãoLocalizar.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoLocalizar.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoLocalizar.MinimumSize = new System.Drawing.Size(150, 16);
@@ -127,7 +127,7 @@
             this.opçãoNovo.BackColor = System.Drawing.Color.Transparent;
             this.opçãoNovo.Descrição = "Cadastrar";
             this.opçãoNovo.Imagem = global::Apresentação.Resource.document1;
-            this.opçãoNovo.Location = new System.Drawing.Point(5, 51);
+            this.opçãoNovo.Location = new System.Drawing.Point(7, 50);
             this.opçãoNovo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoNovo.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoNovo.MinimumSize = new System.Drawing.Size(150, 16);
@@ -141,7 +141,7 @@
             this.opçãoReferênciasEmFalta.BackColor = System.Drawing.Color.Transparent;
             this.opçãoReferênciasEmFalta.Descrição = "Mercadorias em falta";
             this.opçãoReferênciasEmFalta.Imagem = global::Apresentação.Resource.warning;
-            this.opçãoReferênciasEmFalta.Location = new System.Drawing.Point(5, 30);
+            this.opçãoReferênciasEmFalta.Location = new System.Drawing.Point(7, 30);
             this.opçãoReferênciasEmFalta.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoReferênciasEmFalta.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoReferênciasEmFalta.MinimumSize = new System.Drawing.Size(150, 16);
@@ -164,7 +164,7 @@
             this.quadro1.Location = new System.Drawing.Point(7, 93);
             this.quadro1.MostrarBotãoMinMax = false;
             this.quadro1.Name = "quadro1";
-            this.quadro1.Size = new System.Drawing.Size(160, 74);
+            this.quadro1.Size = new System.Drawing.Size(160, 55);
             this.quadro1.TabIndex = 8;
             this.quadro1.Tamanho = 30;
             this.quadro1.Título = "Mercadorias em falta";

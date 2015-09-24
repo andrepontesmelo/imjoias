@@ -82,7 +82,7 @@
             this.quadro1.Location = new System.Drawing.Point(7, 79);
             this.quadro1.MostrarBotãoMinMax = false;
             this.quadro1.Name = "quadro1";
-            this.quadro1.Size = new System.Drawing.Size(160, 235);
+            this.quadro1.Size = new System.Drawing.Size(160, 224);
             this.quadro1.TabIndex = 1;
             this.quadro1.Tamanho = 30;
             this.quadro1.Título = "Zerar Estoque";
@@ -91,7 +91,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(7, 47);
+            this.label1.Location = new System.Drawing.Point(7, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 13);
             this.label1.TabIndex = 4;
@@ -100,9 +100,9 @@
             // opçãoZerarEstoqueAgora
             // 
             this.opçãoZerarEstoqueAgora.BackColor = System.Drawing.Color.Transparent;
-            this.opçãoZerarEstoqueAgora.Descrição = "Zerar Estoque Agora";
+            this.opçãoZerarEstoqueAgora.Descrição = "Zerar estoque agora";
             this.opçãoZerarEstoqueAgora.Imagem = global::Apresentação.Resource.none;
-            this.opçãoZerarEstoqueAgora.Location = new System.Drawing.Point(10, 205);
+            this.opçãoZerarEstoqueAgora.Location = new System.Drawing.Point(7, 200);
             this.opçãoZerarEstoqueAgora.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoZerarEstoqueAgora.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoZerarEstoqueAgora.MinimumSize = new System.Drawing.Size(150, 16);
@@ -114,12 +114,12 @@
             // txtObservações
             // 
             this.txtObservações.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtObservações.Location = new System.Drawing.Point(10, 63);
+            this.txtObservações.Location = new System.Drawing.Point(10, 46);
             this.txtObservações.MaxLength = 255;
             this.txtObservações.Multiline = true;
             this.txtObservações.Name = "txtObservações";
             this.txtObservações.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtObservações.Size = new System.Drawing.Size(140, 126);
+            this.txtObservações.Size = new System.Drawing.Size(140, 143);
             this.txtObservações.TabIndex = 2;
             // 
             // quadro2
@@ -178,7 +178,7 @@
             this.opçãoExcluir.BackColor = System.Drawing.Color.Transparent;
             this.opçãoExcluir.Descrição = "Excluir registro(s)";
             this.opçãoExcluir.Imagem = global::Apresentação.Resource.Excluir;
-            this.opçãoExcluir.Location = new System.Drawing.Point(6, 33);
+            this.opçãoExcluir.Location = new System.Drawing.Point(7, 30);
             this.opçãoExcluir.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoExcluir.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoExcluir.MinimumSize = new System.Drawing.Size(150, 16);

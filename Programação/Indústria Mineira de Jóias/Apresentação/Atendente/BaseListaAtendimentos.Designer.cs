@@ -55,10 +55,10 @@
             this.quadroAtendimento.Cor = System.Drawing.Color.Black;
             this.quadroAtendimento.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadroAtendimento.LetraTítulo = System.Drawing.Color.White;
-            this.quadroAtendimento.Location = new System.Drawing.Point(7, 258);
+            this.quadroAtendimento.Location = new System.Drawing.Point(7, 116);
             this.quadroAtendimento.MostrarBotãoMinMax = false;
             this.quadroAtendimento.Name = "quadroAtendimento";
-            this.quadroAtendimento.Size = new System.Drawing.Size(160, 63);
+            this.quadroAtendimento.Size = new System.Drawing.Size(160, 67);
             this.quadroAtendimento.TabIndex = 3;
             this.quadroAtendimento.Tamanho = 30;
             this.quadroAtendimento.Título = "Atendimento";
@@ -68,7 +68,7 @@
             this.opçãoHistóricoAtendimentos.BackColor = System.Drawing.Color.Transparent;
             this.opçãoHistóricoAtendimentos.Descrição = "Visualizar histórico de atendimentos";
             this.opçãoHistóricoAtendimentos.Imagem = global::Apresentação.Resource.document1;
-            this.opçãoHistóricoAtendimentos.Location = new System.Drawing.Point(5, 27);
+            this.opçãoHistóricoAtendimentos.Location = new System.Drawing.Point(7, 30);
             this.opçãoHistóricoAtendimentos.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoHistóricoAtendimentos.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoHistóricoAtendimentos.MinimumSize = new System.Drawing.Size(150, 16);

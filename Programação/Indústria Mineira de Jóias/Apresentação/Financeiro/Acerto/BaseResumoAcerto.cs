@@ -90,10 +90,11 @@ namespace Apresentação.Financeiro.Acerto
             // 
             // título
             // 
-            this.título.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.título.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.título.BackColor = System.Drawing.Color.White;
             this.título.Descrição = "Abaixo consta a contabilização das mercadorias levadas, retornadas e vendidas.";
+            this.título.ÍconeArredondado = false;
             this.título.Imagem = global::Apresentação.Resource.Acerto;
             this.título.Location = new System.Drawing.Point(193, 3);
             this.título.Name = "título";
@@ -103,9 +104,9 @@ namespace Apresentação.Financeiro.Acerto
             // 
             // quadro1
             // 
-            this.quadro1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.quadro1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.quadro1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(239)))), ((int)(((byte)(221)))));
             this.quadro1.bInfDirArredondada = false;
             this.quadro1.bInfEsqArredondada = false;
@@ -127,12 +128,13 @@ namespace Apresentação.Financeiro.Acerto
             // 
             this.bandejaAcerto.AbrirInformaçõesAoDuploClique = false;
             this.bandejaAcerto.Acerto = null;
-            this.bandejaAcerto.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.bandejaAcerto.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bandejaAcerto.FiltragemAcerto = true;
             this.bandejaAcerto.Location = new System.Drawing.Point(1, 23);
             this.bandejaAcerto.MostrarAgrupar = false;
+            this.bandejaAcerto.MostrarAlterarÍndice = false;
             this.bandejaAcerto.MostrarBarraFerramentas = true;
             this.bandejaAcerto.MostrarExcluir = false;
             this.bandejaAcerto.MostrarPreço = false;
@@ -150,8 +152,8 @@ namespace Apresentação.Financeiro.Acerto
             // 
             // quadroImpressão
             // 
-            this.quadroImpressão.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.quadroImpressão.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.quadroImpressão.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.quadroImpressão.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.quadroImpressão.bInfDirArredondada = true;
@@ -176,12 +178,12 @@ namespace Apresentação.Financeiro.Acerto
             this.opçãoImprimir.BackColor = System.Drawing.Color.Transparent;
             this.opçãoImprimir.Descrição = "Imprimir...";
             this.opçãoImprimir.Imagem = global::Apresentação.Resource.impressora___161;
-            this.opçãoImprimir.Location = new System.Drawing.Point(5, 28);
+            this.opçãoImprimir.Location = new System.Drawing.Point(7, 30);
             this.opçãoImprimir.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.opçãoImprimir.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoImprimir.MinimumSize = new System.Drawing.Size(150, 16);
             this.opçãoImprimir.Name = "opçãoImprimir";
-            this.opçãoImprimir.Size = new System.Drawing.Size(150, 24);
+            this.opçãoImprimir.Size = new System.Drawing.Size(150, 16);
             this.opçãoImprimir.TabIndex = 0;
             this.opçãoImprimir.Click += new System.EventHandler(this.opçãoImprimir_Click);
             // 
@@ -190,12 +192,12 @@ namespace Apresentação.Financeiro.Acerto
             this.opçãoZerarAcerto.BackColor = System.Drawing.Color.Transparent;
             this.opçãoZerarAcerto.Descrição = "Zerar acerto";
             this.opçãoZerarAcerto.Imagem = global::Apresentação.Resource.none;
-            this.opçãoZerarAcerto.Location = new System.Drawing.Point(5, 52);
+            this.opçãoZerarAcerto.Location = new System.Drawing.Point(7, 50);
             this.opçãoZerarAcerto.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoZerarAcerto.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoZerarAcerto.MinimumSize = new System.Drawing.Size(150, 16);
             this.opçãoZerarAcerto.Name = "opçãoZerarAcerto";
-            this.opçãoZerarAcerto.Size = new System.Drawing.Size(150, 24);
+            this.opçãoZerarAcerto.Size = new System.Drawing.Size(150, 25);
             this.opçãoZerarAcerto.TabIndex = 2;
             this.opçãoZerarAcerto.Click += new System.EventHandler(this.opçãoZerarAcerto_Click);
             // 
@@ -204,12 +206,12 @@ namespace Apresentação.Financeiro.Acerto
             this.opçãoLançarVendas.BackColor = System.Drawing.Color.Transparent;
             this.opçãoLançarVendas.Descrição = "Gerar venda...";
             this.opçãoLançarVendas.Imagem = global::Apresentação.Resource.pagar_em_dólares__pequeno_1;
-            this.opçãoLançarVendas.Location = new System.Drawing.Point(5, 28);
+            this.opçãoLançarVendas.Location = new System.Drawing.Point(7, 30);
             this.opçãoLançarVendas.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoLançarVendas.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoLançarVendas.MinimumSize = new System.Drawing.Size(150, 16);
             this.opçãoLançarVendas.Name = "opçãoLançarVendas";
-            this.opçãoLançarVendas.Size = new System.Drawing.Size(150, 24);
+            this.opçãoLançarVendas.Size = new System.Drawing.Size(150, 16);
             this.opçãoLançarVendas.TabIndex = 3;
             this.opçãoLançarVendas.Click += new System.EventHandler(this.opçãoLançarVendas_Click);
             // 
@@ -237,19 +239,19 @@ namespace Apresentação.Financeiro.Acerto
             // label1
             // 
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(3, 30);
+            this.label1.Location = new System.Drawing.Point(7, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(154, 61);
             this.label1.TabIndex = 3;
             this.label1.Text = "Você pode rastrear a referência selecionada a fim de solucionar inconsistências d" +
-                "o acerto.";
+    "o acerto.";
             // 
             // opçãoRastro
             // 
             this.opçãoRastro.BackColor = System.Drawing.Color.Transparent;
             this.opçãoRastro.Descrição = "Rastrear";
             this.opçãoRastro.Imagem = global::Apresentação.Resource.search;
-            this.opçãoRastro.Location = new System.Drawing.Point(5, 91);
+            this.opçãoRastro.Location = new System.Drawing.Point(7, 90);
             this.opçãoRastro.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.opçãoRastro.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoRastro.MinimumSize = new System.Drawing.Size(150, 16);
@@ -260,9 +262,9 @@ namespace Apresentação.Financeiro.Acerto
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.quadro1, 0, 1);
@@ -277,8 +279,8 @@ namespace Apresentação.Financeiro.Acerto
             // 
             // quadroBateu
             // 
-            this.quadroBateu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.quadroBateu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.quadroBateu.Borda = System.Drawing.Color.OliveDrab;
             this.quadroBateu.Controls.Add(this.lblFecharBateu);
             this.quadroBateu.Controls.Add(this.lnkZerar);
@@ -326,9 +328,9 @@ namespace Apresentação.Financeiro.Acerto
             // 
             // label3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.ForeColor = System.Drawing.Color.OldLace;
             this.label3.Location = new System.Drawing.Point(61, 21);
@@ -386,12 +388,12 @@ namespace Apresentação.Financeiro.Acerto
             this.opçãoRetorno.BackColor = System.Drawing.Color.Transparent;
             this.opçãoRetorno.Descrição = "Novo retorno...";
             this.opçãoRetorno.Imagem = global::Apresentação.Resource.Retorno__Ícone_;
-            this.opçãoRetorno.Location = new System.Drawing.Point(5, 52);
+            this.opçãoRetorno.Location = new System.Drawing.Point(7, 50);
             this.opçãoRetorno.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoRetorno.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoRetorno.MinimumSize = new System.Drawing.Size(150, 16);
             this.opçãoRetorno.Name = "opçãoRetorno";
-            this.opçãoRetorno.Size = new System.Drawing.Size(150, 24);
+            this.opçãoRetorno.Size = new System.Drawing.Size(150, 16);
             this.opçãoRetorno.TabIndex = 4;
             this.opçãoRetorno.Click += new System.EventHandler(this.opçãoRetorno_Click);
             // 

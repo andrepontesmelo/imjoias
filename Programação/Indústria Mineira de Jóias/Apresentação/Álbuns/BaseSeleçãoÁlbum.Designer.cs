@@ -58,6 +58,7 @@
             // 
             this.títuloBaseInferior.BackColor = System.Drawing.Color.White;
             this.títuloBaseInferior.Descrição = "Escolha o álbum com que deseja trabalhar.";
+            this.títuloBaseInferior.ÍconeArredondado = false;
             this.títuloBaseInferior.Imagem = global::Apresentação.Resource.botão___agenda;
             this.títuloBaseInferior.Location = new System.Drawing.Point(193, 14);
             this.títuloBaseInferior.Name = "títuloBaseInferior";
@@ -91,7 +92,7 @@
             this.opçãoTodasFotos.BackColor = System.Drawing.Color.Transparent;
             this.opçãoTodasFotos.Descrição = "Visualizar todas as fotos";
             this.opçãoTodasFotos.Imagem = global::Apresentação.Resource.botão___agenda;
-            this.opçãoTodasFotos.Location = new System.Drawing.Point(5, 71);
+            this.opçãoTodasFotos.Location = new System.Drawing.Point(7, 70);
             this.opçãoTodasFotos.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoTodasFotos.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoTodasFotos.MinimumSize = new System.Drawing.Size(150, 16);
@@ -105,7 +106,7 @@
             this.opçãoImportarFoto.BackColor = System.Drawing.Color.Transparent;
             this.opçãoImportarFoto.Descrição = "Importar foto...";
             this.opçãoImportarFoto.Imagem = global::Apresentação.Resource.camera;
-            this.opçãoImportarFoto.Location = new System.Drawing.Point(5, 50);
+            this.opçãoImportarFoto.Location = new System.Drawing.Point(7, 50);
             this.opçãoImportarFoto.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoImportarFoto.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoImportarFoto.MinimumSize = new System.Drawing.Size(150, 16);
@@ -119,7 +120,7 @@
             this.opçãoNovo.BackColor = System.Drawing.Color.Transparent;
             this.opçãoNovo.Descrição = "Novo álbum";
             this.opçãoNovo.Imagem = global::Apresentação.Resource._3228_icon;
-            this.opçãoNovo.Location = new System.Drawing.Point(5, 29);
+            this.opçãoNovo.Location = new System.Drawing.Point(7, 30);
             this.opçãoNovo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoNovo.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoNovo.MinimumSize = new System.Drawing.Size(150, 16);
@@ -145,7 +146,7 @@
             this.quadroÁlbum.Location = new System.Drawing.Point(7, 120);
             this.quadroÁlbum.MostrarBotãoMinMax = false;
             this.quadroÁlbum.Name = "quadroÁlbum";
-            this.quadroÁlbum.Size = new System.Drawing.Size(160, 123);
+            this.quadroÁlbum.Size = new System.Drawing.Size(160, 117);
             this.quadroÁlbum.TabIndex = 2;
             this.quadroÁlbum.Tamanho = 30;
             this.quadroÁlbum.Título = "Álbum selecionado";
@@ -156,7 +157,7 @@
             this.opçãoExtrairFotos.BackColor = System.Drawing.Color.Transparent;
             this.opçãoExtrairFotos.Descrição = "Exportar";
             this.opçãoExtrairFotos.Imagem = global::Apresentação.Resource.saveHS;
-            this.opçãoExtrairFotos.Location = new System.Drawing.Point(5, 99);
+            this.opçãoExtrairFotos.Location = new System.Drawing.Point(7, 90);
             this.opçãoExtrairFotos.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoExtrairFotos.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoExtrairFotos.MinimumSize = new System.Drawing.Size(150, 16);
@@ -170,12 +171,12 @@
             this.opçãoEditar.BackColor = System.Drawing.Color.Transparent;
             this.opçãoEditar.Descrição = "Editar...";
             this.opçãoEditar.Imagem = global::Apresentação.Resource.propriedades;
-            this.opçãoEditar.Location = new System.Drawing.Point(5, 29);
+            this.opçãoEditar.Location = new System.Drawing.Point(7, 30);
             this.opçãoEditar.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoEditar.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoEditar.MinimumSize = new System.Drawing.Size(150, 16);
             this.opçãoEditar.Name = "opçãoEditar";
-            this.opçãoEditar.Size = new System.Drawing.Size(150, 24);
+            this.opçãoEditar.Size = new System.Drawing.Size(150, 16);
             this.opçãoEditar.TabIndex = 2;
             this.opçãoEditar.Click += new System.EventHandler(this.opçãoEditar_Click);
             // 
@@ -184,12 +185,12 @@
             this.opçãoRemover.BackColor = System.Drawing.Color.Transparent;
             this.opçãoRemover.Descrição = "Excluir";
             this.opçãoRemover.Imagem = global::Apresentação.Resource.Excluir;
-            this.opçãoRemover.Location = new System.Drawing.Point(5, 53);
+            this.opçãoRemover.Location = new System.Drawing.Point(7, 50);
             this.opçãoRemover.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoRemover.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoRemover.MinimumSize = new System.Drawing.Size(150, 16);
             this.opçãoRemover.Name = "opçãoRemover";
-            this.opçãoRemover.Size = new System.Drawing.Size(150, 24);
+            this.opçãoRemover.Size = new System.Drawing.Size(150, 16);
             this.opçãoRemover.TabIndex = 3;
             this.opçãoRemover.Click += new System.EventHandler(this.opçãoRemover_Click);
             // 
@@ -198,7 +199,7 @@
             this.opçãoImprimir.BackColor = System.Drawing.Color.Transparent;
             this.opçãoImprimir.Descrição = "Imprimir...";
             this.opçãoImprimir.Imagem = global::Apresentação.Resource.Impressora_3D;
-            this.opçãoImprimir.Location = new System.Drawing.Point(5, 77);
+            this.opçãoImprimir.Location = new System.Drawing.Point(7, 70);
             this.opçãoImprimir.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoImprimir.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoImprimir.MinimumSize = new System.Drawing.Size(150, 16);
@@ -209,9 +210,9 @@
             // 
             // quadro1
             // 
-            this.quadro1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.quadro1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.quadro1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(239)))), ((int)(((byte)(221)))));
             this.quadro1.bInfDirArredondada = false;
             this.quadro1.bInfEsqArredondada = false;
@@ -231,15 +232,15 @@
             // 
             // lst
             // 
-            this.lst.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lst.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lst.Location = new System.Drawing.Point(0, 24);
             this.lst.Name = "lst";
             this.lst.Size = new System.Drawing.Size(684, 167);
             this.lst.TabIndex = 8;
-            this.lst.DoubleClick += new System.EventHandler(this.lst_DoubleClick);
             this.lst.AoSelecionarÁlbum += new System.EventHandler(this.lst_AoSelecionarÁlbum);
+            this.lst.DoubleClick += new System.EventHandler(this.lst_DoubleClick);
             // 
             // BaseSeleçãoÁlbum
             // 

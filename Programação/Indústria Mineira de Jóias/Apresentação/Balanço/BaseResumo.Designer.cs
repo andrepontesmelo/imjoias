@@ -33,7 +33,7 @@ namespace Apresentação.Administrativo.Balanço
             this.opçãoImprimir = new Apresentação.Formulários.Opção();
             this.quadro1 = new Apresentação.Formulários.Quadro();
             this.quadro2 = new Apresentação.Formulários.Quadro();
-            this.bandeja = new BandejaBalanço();
+            this.bandeja = new Apresentação.Balanço.BandejaBalanço();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.quadro2.SuspendLayout();
@@ -46,11 +46,12 @@ namespace Apresentação.Administrativo.Balanço
             // 
             // títuloBaseInferior1
             // 
-            this.títuloBaseInferior1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.títuloBaseInferior1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.títuloBaseInferior1.BackColor = System.Drawing.Color.White;
             this.títuloBaseInferior1.Descrição = "Abaixo está o resultado do agrupamento de todas as mercadorias presentes nos docu" +
-                "mentos selecionados anteriormente. Quantidade = saídas - retornos - vendas";
+    "mentos selecionados anteriormente. Quantidade = saídas - retornos - vendas";
+            this.títuloBaseInferior1.ÍconeArredondado = false;
             this.títuloBaseInferior1.Imagem = null;
             this.títuloBaseInferior1.Location = new System.Drawing.Point(196, 16);
             this.títuloBaseInferior1.Name = "títuloBaseInferior1";
@@ -63,12 +64,12 @@ namespace Apresentação.Administrativo.Balanço
             this.opçãoImprimir.BackColor = System.Drawing.Color.Transparent;
             this.opçãoImprimir.Descrição = "Imprimir";
             this.opçãoImprimir.Imagem = global::Apresentação.Resource.impressora___161;
-            this.opçãoImprimir.Location = new System.Drawing.Point(5, 27);
+            this.opçãoImprimir.Location = new System.Drawing.Point(7, 30);
             this.opçãoImprimir.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoImprimir.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoImprimir.MinimumSize = new System.Drawing.Size(150, 16);
             this.opçãoImprimir.Name = "opçãoImprimir";
-            this.opçãoImprimir.Size = new System.Drawing.Size(150, 24);
+            this.opçãoImprimir.Size = new System.Drawing.Size(150, 18);
             this.opçãoImprimir.TabIndex = 2;
             this.opçãoImprimir.Click += new System.EventHandler(this.opçãoImprimir_Click);
             // 
@@ -86,16 +87,16 @@ namespace Apresentação.Administrativo.Balanço
             this.quadro1.Location = new System.Drawing.Point(7, 13);
             this.quadro1.MostrarBotãoMinMax = false;
             this.quadro1.Name = "quadro1";
-            this.quadro1.Size = new System.Drawing.Size(160, 60);
+            this.quadro1.Size = new System.Drawing.Size(160, 55);
             this.quadro1.TabIndex = 2;
             this.quadro1.Tamanho = 30;
             this.quadro1.Título = "Balanço";
             // 
             // quadro2
             // 
-            this.quadro2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.quadro2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.quadro2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(239)))), ((int)(((byte)(221)))));
             this.quadro2.bInfDirArredondada = false;
             this.quadro2.bInfEsqArredondada = false;
@@ -116,12 +117,13 @@ namespace Apresentação.Administrativo.Balanço
             // bandeja
             // 
             this.bandeja.Acerto = null;
-            this.bandeja.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.bandeja.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bandeja.FiltragemAcerto = true;
             this.bandeja.Location = new System.Drawing.Point(0, 23);
             this.bandeja.MostrarAgrupar = false;
+            this.bandeja.MostrarAlterarÍndice = false;
             this.bandeja.MostrarBarraFerramentas = true;
             this.bandeja.MostrarExcluir = false;
             this.bandeja.MostrarPreço = false;

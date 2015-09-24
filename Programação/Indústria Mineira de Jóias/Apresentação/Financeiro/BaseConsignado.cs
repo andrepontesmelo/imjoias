@@ -29,8 +29,7 @@ namespace Apresentação.Financeiro
         protected Apresentação.Formulários.Opção                opçãoNovoRelacionamento;
         protected Apresentação.Formulários.Opção                opçãoAbrirSeleção;
         private Apresentação.Formulários.Quadro                 quadroSeleção;
-        private Apresentação.Formulários.Opção                  opçãoImprimir;
-        private Label label1;
+        private Apresentação.Formulários.Opção opçãoImprimir;
         protected Opção opçãoExcluír;
         protected Quadro quadro;
         private Opção opçãoMoverAcerto;
@@ -206,13 +205,12 @@ namespace Apresentação.Financeiro
         {
             this.título = new Apresentação.Formulários.TítuloBaseInferior();
             this.quadroRelacionamentos = new Apresentação.Formulários.Quadro();
-            this.label1 = new System.Windows.Forms.Label();
             this.opçãoNovoRelacionamento = new Apresentação.Formulários.Opção();
             this.opçãoImprimir = new Apresentação.Formulários.Opção();
+            this.opçãoMoverAcerto = new Apresentação.Formulários.Opção();
             this.opçãoAbrirSeleção = new Apresentação.Formulários.Opção();
             this.quadroSeleção = new Apresentação.Formulários.Quadro();
             this.opçãoExcluír = new Apresentação.Formulários.Opção();
-            this.opçãoMoverAcerto = new Apresentação.Formulários.Opção();
             this.quadro = new Apresentação.Formulários.Quadro();
             this.esquerda.SuspendLayout();
             this.quadroRelacionamentos.SuspendLayout();
@@ -229,10 +227,11 @@ namespace Apresentação.Financeiro
             // 
             // título
             // 
-            this.título.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.título.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.título.BackColor = System.Drawing.Color.White;
             this.título.Descrição = "relacionando para <pessoa>";
+            this.título.ÍconeArredondado = false;
             this.título.Imagem = null;
             this.título.Location = new System.Drawing.Point(208, 8);
             this.título.Name = "título";
@@ -247,7 +246,6 @@ namespace Apresentação.Financeiro
             this.quadroRelacionamentos.bInfEsqArredondada = true;
             this.quadroRelacionamentos.bSupDirArredondada = true;
             this.quadroRelacionamentos.bSupEsqArredondada = true;
-            this.quadroRelacionamentos.Controls.Add(this.label1);
             this.quadroRelacionamentos.Controls.Add(this.opçãoNovoRelacionamento);
             this.quadroRelacionamentos.Controls.Add(this.opçãoImprimir);
             this.quadroRelacionamentos.Controls.Add(this.opçãoMoverAcerto);
@@ -257,26 +255,17 @@ namespace Apresentação.Financeiro
             this.quadroRelacionamentos.Location = new System.Drawing.Point(7, 13);
             this.quadroRelacionamentos.MostrarBotãoMinMax = false;
             this.quadroRelacionamentos.Name = "quadroRelacionamentos";
-            this.quadroRelacionamentos.Size = new System.Drawing.Size(160, 149);
+            this.quadroRelacionamentos.Size = new System.Drawing.Size(160, 93);
             this.quadroRelacionamentos.TabIndex = 0;
             this.quadroRelacionamentos.Tamanho = 30;
             this.quadroRelacionamentos.Título = "Opções";
-            // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(6, 31);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(154, 51);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Para começar a digitação, você precisa de criar um novo documento de consignado";
             // 
             // opçãoNovoRelacionamento
             // 
             this.opçãoNovoRelacionamento.BackColor = System.Drawing.Color.Transparent;
             this.opçãoNovoRelacionamento.Descrição = "Criar documento";
             this.opçãoNovoRelacionamento.Imagem = global::Apresentação.Resource.novo;
-            this.opçãoNovoRelacionamento.Location = new System.Drawing.Point(10, 82);
+            this.opçãoNovoRelacionamento.Location = new System.Drawing.Point(7, 30);
             this.opçãoNovoRelacionamento.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.opçãoNovoRelacionamento.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoNovoRelacionamento.MinimumSize = new System.Drawing.Size(150, 16);
@@ -290,7 +279,7 @@ namespace Apresentação.Financeiro
             this.opçãoImprimir.BackColor = System.Drawing.Color.Transparent;
             this.opçãoImprimir.Descrição = "Imprimir...";
             this.opçãoImprimir.Imagem = global::Apresentação.Resource.Impressora_3D;
-            this.opçãoImprimir.Location = new System.Drawing.Point(10, 102);
+            this.opçãoImprimir.Location = new System.Drawing.Point(7, 50);
             this.opçãoImprimir.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.opçãoImprimir.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoImprimir.MinimumSize = new System.Drawing.Size(150, 16);
@@ -299,12 +288,28 @@ namespace Apresentação.Financeiro
             this.opçãoImprimir.TabIndex = 4;
             this.opçãoImprimir.Click += new System.EventHandler(this.opçãoImprimir_Click);
             // 
+            // opçãoMoverAcerto
+            // 
+            this.opçãoMoverAcerto.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoMoverAcerto.Descrição = "Mover para outro acerto...";
+            this.opçãoMoverAcerto.Imagem = global::Apresentação.Resource.Acerto__Pequeno_;
+            this.opçãoMoverAcerto.Location = new System.Drawing.Point(7, 70);
+            this.opçãoMoverAcerto.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoMoverAcerto.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoMoverAcerto.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoMoverAcerto.Name = "opçãoMoverAcerto";
+            this.opçãoMoverAcerto.PermitirLiberaçãoRecurso = true;
+            this.opçãoMoverAcerto.Privilégio = Entidades.Privilégio.Permissão.MoverDocumentoAcerto;
+            this.opçãoMoverAcerto.Size = new System.Drawing.Size(150, 24);
+            this.opçãoMoverAcerto.TabIndex = 6;
+            this.opçãoMoverAcerto.Click += new System.EventHandler(this.opçãoMoverAcerto_Click);
+            // 
             // opçãoAbrirSeleção
             // 
             this.opçãoAbrirSeleção.BackColor = System.Drawing.Color.Transparent;
             this.opçãoAbrirSeleção.Descrição = "Abrir...";
             this.opçãoAbrirSeleção.Imagem = global::Apresentação.Resource.openfolderHS;
-            this.opçãoAbrirSeleção.Location = new System.Drawing.Point(8, 32);
+            this.opçãoAbrirSeleção.Location = new System.Drawing.Point(7, 30);
             this.opçãoAbrirSeleção.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.opçãoAbrirSeleção.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoAbrirSeleção.MinimumSize = new System.Drawing.Size(150, 16);
@@ -325,7 +330,7 @@ namespace Apresentação.Financeiro
             this.quadroSeleção.Cor = System.Drawing.Color.Black;
             this.quadroSeleção.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadroSeleção.LetraTítulo = System.Drawing.Color.White;
-            this.quadroSeleção.Location = new System.Drawing.Point(7, 168);
+            this.quadroSeleção.Location = new System.Drawing.Point(7, 112);
             this.quadroSeleção.MostrarBotãoMinMax = false;
             this.quadroSeleção.Name = "quadroSeleção";
             this.quadroSeleção.Size = new System.Drawing.Size(160, 72);
@@ -339,7 +344,7 @@ namespace Apresentação.Financeiro
             this.opçãoExcluír.BackColor = System.Drawing.Color.Transparent;
             this.opçãoExcluír.Descrição = "Excluir";
             this.opçãoExcluír.Imagem = global::Apresentação.Resource.Excluir;
-            this.opçãoExcluír.Location = new System.Drawing.Point(7, 51);
+            this.opçãoExcluír.Location = new System.Drawing.Point(7, 50);
             this.opçãoExcluír.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.opçãoExcluír.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoExcluír.MinimumSize = new System.Drawing.Size(150, 16);
@@ -349,27 +354,11 @@ namespace Apresentação.Financeiro
             this.opçãoExcluír.Visible = false;
             this.opçãoExcluír.Click += new System.EventHandler(this.opçãoExcluír_Click);
             // 
-            // opçãoMoverAcerto
-            // 
-            this.opçãoMoverAcerto.BackColor = System.Drawing.Color.Transparent;
-            this.opçãoMoverAcerto.Descrição = "Mover para outro acerto...";
-            this.opçãoMoverAcerto.Imagem = global::Apresentação.Resource.Acerto__Pequeno_;
-            this.opçãoMoverAcerto.Location = new System.Drawing.Point(7, 124);
-            this.opçãoMoverAcerto.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.opçãoMoverAcerto.MaximumSize = new System.Drawing.Size(150, 100);
-            this.opçãoMoverAcerto.MinimumSize = new System.Drawing.Size(150, 16);
-            this.opçãoMoverAcerto.Name = "opçãoMoverAcerto";
-            this.opçãoMoverAcerto.PermitirLiberaçãoRecurso = true;
-            this.opçãoMoverAcerto.Privilégio = Entidades.Privilégio.Permissão.EscolherDocumentosAcerto;
-            this.opçãoMoverAcerto.Size = new System.Drawing.Size(150, 24);
-            this.opçãoMoverAcerto.TabIndex = 6;
-            this.opçãoMoverAcerto.Click += new System.EventHandler(this.opçãoMoverAcerto_Click);
-            // 
             // quadro
             // 
-            this.quadro.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.quadro.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.quadro.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(239)))), ((int)(((byte)(221)))));
             this.quadro.bInfDirArredondada = false;
             this.quadro.bInfEsqArredondada = false;

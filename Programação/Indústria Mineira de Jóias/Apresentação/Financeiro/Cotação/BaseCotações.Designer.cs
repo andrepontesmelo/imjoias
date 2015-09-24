@@ -42,9 +42,9 @@
             // 
             // flowLayoutPanel
             // 
-            this.flowLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.flowLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel.Location = new System.Drawing.Point(192, 11);
             this.flowLayoutPanel.Name = "flowLayoutPanel";
             this.flowLayoutPanel.Size = new System.Drawing.Size(526, 268);
@@ -74,7 +74,7 @@
             this.opçãoEditar.BackColor = System.Drawing.Color.Transparent;
             this.opçãoEditar.Descrição = "Iniciar manutenção...";
             this.opçãoEditar.Imagem = global::Apresentação.Resource.propriedades;
-            this.opçãoEditar.Location = new System.Drawing.Point(5, 30);
+            this.opçãoEditar.Location = new System.Drawing.Point(7, 30);
             this.opçãoEditar.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoEditar.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoEditar.MinimumSize = new System.Drawing.Size(150, 16);
