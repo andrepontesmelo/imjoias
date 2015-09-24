@@ -48,7 +48,7 @@ namespace Apresentação.Financeiro.Acerto
         /// <summary>
         /// Ocorre ao exibir a base de dados de acerto.
         /// </summary>
-        protected override void AoExibir()
+        protected override void AoExibir(bool primeiraVez)
         {
             base.AoExibir();
 
@@ -73,9 +73,12 @@ namespace Apresentação.Financeiro.Acerto
 
             botãoLiberarPrevisão.Visible = true;
 
-            acerto = AcertoConsignado.ObterAcerto(acerto.Código);
-            listaDocumentosAcerto.Recarregar(acerto);
-            simulaçãoAcerto1.Carregar(acerto);
+            if (!primeiraVez)
+            {
+                acerto = AcertoConsignado.ObterAcerto(acerto.Código);
+                listaDocumentosAcerto.Recarregar(acerto);
+                simulaçãoAcerto1.Carregar(acerto);
+            }
         }
 
         /// <summary>
