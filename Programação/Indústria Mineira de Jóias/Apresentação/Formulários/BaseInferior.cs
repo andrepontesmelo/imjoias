@@ -165,6 +165,10 @@ namespace Apresentação.Formulários
             UseWaitCursor = false;
 		}
 
+        protected virtual void AoExibir(bool primeiraVez)
+        {
+        }
+
         /// <summary>
         /// Propaga chamada de ao exibir aos controles na base inferior.
         /// </summary>
@@ -272,6 +276,8 @@ namespace Apresentação.Formulários
 		{
             UseWaitCursor = true;
 
+            AoExibir(!jáAberto);
+
 			if (!jáAberto) 
 			{
 				jáAberto = true;
@@ -279,6 +285,7 @@ namespace Apresentação.Formulários
 			}
 
 			AoExibir();
+
 
             UseWaitCursor = false;
 		}
