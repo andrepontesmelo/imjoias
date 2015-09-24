@@ -61,14 +61,22 @@ namespace Apresentação.Financeiro.Acerto
             lblSaldoPeso.Text = CriarTexto(sumário.ObterSaldo(true));
             lblSaldoTotal.Text = CriarTexto(saldo);
 
-            double porcentagemVendida = 100 * (vendas.Indice / saídas.Indice);
-            lblVendaPorcento.Text = Math.Round(porcentagemVendida) + "%";
+            if (saídas.Indice > 0)
+            {
+                double porcentagemVendida = 100 * (vendas.Indice / saídas.Indice);
+                lblVendaPorcento.Text = Math.Round(porcentagemVendida) + "%";
 
-            double porcentagemRetornada = 100 * (retorno.Indice / saídas.Indice);
-            lblRetornoPorcento.Text = Math.Round(porcentagemRetornada) + "%";
+                double porcentagemRetornada = 100 * (retorno.Indice / saídas.Indice);
+                lblRetornoPorcento.Text = Math.Round(porcentagemRetornada) + "%";
 
-            double porcentagemSaldo = 100 * (saldo.Indice / saídas.Indice);
-            lblSaldoPorcento.Text = Math.Round(porcentagemSaldo) + "%";
+                double porcentagemSaldo = 100 * (saldo.Indice / saídas.Indice);
+                lblSaldoPorcento.Text = Math.Round(porcentagemSaldo) + "%";
+            } else
+            {
+                lblVendaPorcento.Text =
+                    lblRetornoPorcento.Text =
+                    lblSaldoPorcento.Text = "";
+            }
         }
 
         private string CriarTexto(SumárioTotalAcertoItemValores saidaPeça)
