@@ -741,31 +741,28 @@ namespace Apresentação.Atendimento
         /// <param name="pessoa">Cadastro do cliente.</param>
         public void Carregar(Entidades.Pessoa.Pessoa cliente)
         {
+            this.pessoa = cliente;
+            classificador.Pessoa = pessoa;
+
             sinalizaçãoPedido.Visible = false;
             sinalizaçãoMercadoriaEmFalta.Visible = false;
-            StringBuilder descrição = new StringBuilder();
 
             AdequarModoAtendimento();
 
-            this.pessoa = cliente;
+            CarregarControlesVisuais(cliente);
+            VerificarPessoaSemSetor(cliente);
+        }
 
-            string títuloStr = pessoa.Nome.Replace("&", "&&"); 
+        private void CarregarControlesVisuais(Entidades.Pessoa.Pessoa cliente)
+        {
+            título.Título = ObterTítulo();
+            txtObs.Text = pessoa.Observações;
+            título.Descrição = ObterDescrição(cliente);
+            título.Imagem = ControladorÍconePessoa.ObterÍconeComFundoECódigo(pessoa);
+        }
 
-            if ((pessoa is PessoaJurídica) && (((PessoaJurídica)pessoa).Fantasia != null))
-                títuloStr += " - " + ((PessoaJurídica)pessoa).Fantasia;
-
-            título.Título = títuloStr;
-
-            string strTelefones = "";
-
-            foreach (Telefone telefone in pessoa.Telefones)
-            {
-                if (strTelefones.Length > 0)
-                    strTelefones += "; ";
-
-                strTelefones += telefone.Número;
-            }
-
+        private void VerificarPessoaSemSetor(Entidades.Pessoa.Pessoa cliente)
+        {
             if (cliente.Setor == null)
             {
                 AguardeDB.Fechar();
@@ -774,31 +771,50 @@ namespace Apresentação.Atendimento
                     "Favor definir definir o setor na ficha de " + pessoa.Nome,
                     "Pessoa sem setor", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private string ObterTítulo()
+        {
+            string títuloStr = pessoa.Nome.Replace("&", "&&");
+
+            if ((pessoa is PessoaJurídica) && (((PessoaJurídica)pessoa).Fantasia != null))
+                títuloStr += " - " + ((PessoaJurídica)pessoa).Fantasia;
+
+            return títuloStr;
+        }
+
+        private string ObterDescrição(Entidades.Pessoa.Pessoa cliente)
+        {
+            StringBuilder descrição = new StringBuilder();
 
             if (cliente.Região != null)
                 descrição.Append(cliente.Região.Nome.Trim()).Append(" - ");
-            
+
             List<Entidades.Pessoa.Endereço.Endereço> endereços = cliente.Endereços.ExtrairElementos();
 
+            string strTelefones = ObterTelefones(pessoa);
             if (!String.IsNullOrWhiteSpace(strTelefones))
                 descrição.Append(" ").Append(strTelefones);
 
             if (endereços.Count > 0 && endereços[0].Localidade != null)
                 descrição.Append(" ").Append(endereços[0].Localidade.Nome + " / " + endereços[0].Localidade.Estado.Sigla);
 
+            return descrição.ToString();
+        }
 
-            título.Imagem = ControladorÍconePessoa.ObterÍconeComFundoECódigo(pessoa);
+        private string ObterTelefones(Entidades.Pessoa.Pessoa pessoa)
+        {
+            StringBuilder strTelefones = new StringBuilder();
 
+            foreach (Telefone telefone in pessoa.Telefones)
+            {
+                if (strTelefones.Length > 0)
+                    strTelefones.Append("; ");
 
-            bool éCliente = Entidades.Pessoa.Pessoa.ÉCliente(pessoa);
-            if (éCliente)
-                éCliente &= !Entidades.Pessoa.Funcionário.ÉFuncionário(pessoa);
+                strTelefones.Append(telefone.Número);
+            }
 
-            PrepararObservações();
-
-            classificador.Pessoa = pessoa;
-
-            título.Descrição = descrição.ToString();
+            return strTelefones.ToString();
         }
 
         private void AdequarModoAtendimento()
@@ -809,13 +825,6 @@ namespace Apresentação.Atendimento
             quadroClassificador.Visible = !ModoAtendimento;
         }
 
-        /// <summary>
-		/// Prepara ambiente de observações.
-		/// </summary>
-		private void PrepararObservações()
-		{
-			txtObs.Text = pessoa.Observações;
-		}
 
 		/// <summary>
 		/// Ocorre ao clicar em "Escolher outro cliente".
