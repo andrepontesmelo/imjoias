@@ -64,11 +64,14 @@ namespace Apresentação.Financeiro.Acerto
         {
             this.acerto = acerto;
 
-            flowLayoutPanel.SuspendLayout();
-            flowLayoutPanel.Controls.Clear();
-
             if (!bg.IsBusy)
+            {
+
+                flowLayoutPanel.SuspendLayout();
+                flowLayoutPanel.Controls.Clear();
+
                 bg.RunWorkerAsync();
+            }
         }
 
         private Control Construir(VendaAcerto venda)
