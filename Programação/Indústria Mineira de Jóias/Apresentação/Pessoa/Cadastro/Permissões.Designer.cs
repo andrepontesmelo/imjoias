@@ -149,9 +149,8 @@
             this.chkEscolherDocumentos.Privilégio = Entidades.Privilégio.Permissão.MoverDocumentoAcerto;
             this.chkEscolherDocumentos.Size = new System.Drawing.Size(178, 17);
             this.chkEscolherDocumentos.TabIndex = 6;
-            this.chkEscolherDocumentos.Text = "Escolher documentos em acerto";
-            this.toolTip.SetToolTip(this.chkEscolherDocumentos, "Permite a alteração de quais documentos estão vinculados a um acerto.\r\n\r\nEste pri" +
-        "vilégio deve ser sempre EVITADO.");
+            this.chkEscolherDocumentos.Text = "Mover documentos em acerto";
+            this.toolTip.SetToolTip(this.chkEscolherDocumentos, "Permite mover um documento de um acerto para outro. ");
             this.chkEscolherDocumentos.UseVisualStyleBackColor = true;
             // 
             // chkDataAcerto

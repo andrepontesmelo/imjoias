@@ -54,7 +54,7 @@ namespace Entidades.Privilégio
         VendasDestravar         = 0x00001000,
         VendasVerificar         = 0x00002000,
         ZerarAcerto             = 0x00004000,
-        PagarComissãoObsoleto           = 0x00008000,
+        Faturamento             = 0x00008000,
 
         VendasRemoverControle   = VendasEditar,
         
@@ -64,14 +64,13 @@ namespace Entidades.Privilégio
         /// </summary>
         EscolherQualquerTabela  = 0x00010000,
         AlterarDataAcerto       = 0x00020000,
-        EscolherDocumentosAcerto= 0x00040000,
-        
+
         /// <summary>
         /// Permite que documentos de consignado sejam atribuídos
         /// em outros acertos.
         /// </summary>
-        MoverDocumentoAcerto    = EscolherDocumentosAcerto,
-
+        MoverDocumentoAcerto    = 0x00040000,
+        
         /// <summary>
         /// Permite acesso a documentos antigos.
         /// </summary>
@@ -92,7 +91,6 @@ namespace Entidades.Privilégio
 
         Álbum                   = 0x00800000,
         ManipularComissão       = 0x01000000,
-        Técnico                 = 0x02000000,
-        Faturamento             = 0x04000000
+        Técnico                 = 0x02000000
     }
 }
