@@ -16,6 +16,14 @@ namespace Apresentação.Impressão.Relatórios.NotaPromissória
         {
             DataSetNotaPromissória ds = new DataSetNotaPromissória();
             DataTable tabela = ds.Tables["NotaPromissória"];
+
+            tabela.Rows.Add(CriarItem(entidade, tabela));
+
+            relatório.SetDataSource(ds);
+        }
+
+        private static DataRow CriarItem(Entidades.Pagamentos.NotaPromissória entidade, DataTable tabela)
+        {
             DataRow item = tabela.NewRow();
 
             CultureInfo cultura = Entidades.Configuração.DadosGlobais.Instância.Cultura;
@@ -26,7 +34,7 @@ namespace Apresentação.Impressão.Relatórios.NotaPromissória
                 throw new Exception("O valor formatado não pode ser vazio.");
 
             item["valor"] = entidade.Valor.ToString("C", cultura);
-            item["valorExtenso"] = NúmeroExtenso.Transformar((decimal) entidade.Valor);
+            item["valorExtenso"] = NúmeroExtenso.Transformar((decimal)entidade.Valor);
             Entidades.Pessoa.Pessoa cliente = Entidades.Pessoa.Pessoa.ObterPessoa(entidade.Cliente);
 
             item["emitenteNome"] = cliente.Nome.ToUpper();
@@ -35,28 +43,26 @@ namespace Apresentação.Impressão.Relatórios.NotaPromissória
                 item["venda"] = entidade.Venda.Value.ToString();
 
             if (cliente is PessoaFísica)
-                item["emitenteDocumento"] = ((PessoaFísica) cliente).CPF;
+                item["emitenteDocumento"] = ((PessoaFísica)cliente).CPF;
             else if (cliente is PessoaJurídica)
-                item["emitenteDocumento"] = ((PessoaJurídica) cliente).CNPJ;
+                item["emitenteDocumento"] = ((PessoaJurídica)cliente).CNPJ;
 
             List<Endereço> endereços = cliente.Endereços.ExtrairElementos();
-            if (endereços.Count > 0 && endereços[0].Localidade != null &&  endereços[0].Logradouro != null)
+            if (endereços.Count > 0 && endereços[0].Localidade != null && endereços[0].Logradouro != null)
             {
                 Endereço endereço = endereços[0];
                 item["emitenteEndereço"] = string.Format("{0}, {1}, {2}", endereço.Logradouro, endereço.Número, endereço.Complemento);
-                item["emitenteEndereço"] += " "  + endereço.Localidade.Nome + " / " + endereço.Localidade.Estado.Sigla;
+                item["emitenteEndereço"] += " " + endereço.Localidade.Nome + " / " + endereço.Localidade.Estado.Sigla;
             }
 
             item["dataEmissão"] = entidade.Data.ToShortDateString();
-            
+
             item["dataVencimentoExtenso"] = (entidade.Vencimento.Day == 1 ? "Ao primeiro dia " : "Aos " +
                 ObterDiaMesPorExtenso(entidade.Vencimento.Day).ToLower() + " dias ")
                 + "do mês de " + ObterNomeMes(entidade.Vencimento.Month).ToLower() + " do ano de " +
-                NúmeroExtenso.Transformar(entidade.Vencimento.Year).ToLower().Replace("reais","");
-
-            tabela.Rows.Add(item);
-
-            relatório.SetDataSource(ds);
+                NúmeroExtenso.Transformar(entidade.Vencimento.Year).ToLower().Replace("reais", "");
+            
+            return item;
         }
 
         private static string ObterNomeMes(int mes)
@@ -161,7 +167,6 @@ namespace Apresentação.Impressão.Relatórios.NotaPromissória
                 parte /= 1000;
             } while (parte > 0);
 
-            //txt.Format("%f", (valor - (int) valor) * 100);
             int fracao = (int)((valor - (int)valor) * 100);
 
             if (fracao > 0)
@@ -188,6 +193,17 @@ namespace Apresentação.Impressão.Relatórios.NotaPromissória
             }
 
             return txt;
+        }
+
+        internal void PrepararImpressão(Relatório relatório, List<Entidades.Pagamentos.NotaPromissória> lstNotasPromissórias)
+        {
+            DataSetNotaPromissória ds = new DataSetNotaPromissória();
+            DataTable tabela = ds.Tables["NotaPromissória"];
+
+            foreach (Entidades.Pagamentos.NotaPromissória entidade in lstNotasPromissórias)
+                tabela.Rows.Add(CriarItem(entidade, tabela));
+
+            relatório.SetDataSource(ds);
         }
     }
 }

@@ -7,6 +7,8 @@ using System.Text;
 using System.Windows.Forms;
 using Apresentação.Impressão.Relatórios.PagamentosCliente;
 using Apresentação.Formulários;
+using Apresentação.Impressão.Relatórios.NotaPromissória;
+using Entidades.Pagamentos;
 
 namespace Apresentação.Financeiro.Pagamento
 {
@@ -43,6 +45,27 @@ namespace Apresentação.Financeiro.Pagamento
             janela.Descrição = "Visualização de impressão";
             ControleImpressãoPagamentosCliente.PrepararImpressão(relatório, pessoa, lista.ObterPagamentosExibidos());
             janela.InserirDocumento(relatório, "Pagamentos");
+            janela.Abrir(this);
+        }
+
+        private void opçãoImprimirPromissórias_Click(object sender, EventArgs e)
+        {
+            AguardeDB.Mostrar();
+            JanelaImpressão janela = new JanelaImpressão();
+            janela.Título = "Nota Promissória";
+            janela.Descrição = "Visualização de impressão para nota promissória";
+
+            List<Entidades.Pagamentos.NotaPromissória> lstNotasPromissórias =
+                NotaPromissória.FiltrarNotasPromissórias(lista.ObterPagamentosExibidos());
+
+            Relatório relatório = new Relatório();
+            ControleImpressão controle = new ControleImpressão();
+
+            controle.PrepararImpressão(relatório, lstNotasPromissórias);
+
+            janela.InserirDocumento(relatório, "Nota(s) Promissória(s)");
+
+            AguardeDB.Fechar();
             janela.Abrir(this);
         }
     }

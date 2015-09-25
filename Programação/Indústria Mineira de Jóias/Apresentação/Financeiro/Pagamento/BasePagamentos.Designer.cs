@@ -37,6 +37,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.quadro2 = new Apresentação.Formulários.Quadro();
+            this.opçãoImprimirPromissórias = new Apresentação.Formulários.Opção();
             this.opçãoImprimir = new Apresentação.Formulários.Opção();
             this.esquerda.SuspendLayout();
             this.quadro.SuspendLayout();
@@ -112,7 +113,7 @@
             this.quadro1.Cor = System.Drawing.Color.Black;
             this.quadro1.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadro1.LetraTítulo = System.Drawing.Color.White;
-            this.quadro1.Location = new System.Drawing.Point(7, 79);
+            this.quadro1.Location = new System.Drawing.Point(7, 95);
             this.quadro1.MostrarBotãoMinMax = false;
             this.quadro1.Name = "quadro1";
             this.quadro1.Size = new System.Drawing.Size(160, 108);
@@ -170,21 +171,36 @@
             this.quadro2.bSupDirArredondada = true;
             this.quadro2.bSupEsqArredondada = true;
             this.quadro2.Controls.Add(this.opçãoImprimir);
+            this.quadro2.Controls.Add(this.opçãoImprimirPromissórias);
             this.quadro2.Cor = System.Drawing.Color.Black;
             this.quadro2.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadro2.LetraTítulo = System.Drawing.Color.White;
             this.quadro2.Location = new System.Drawing.Point(7, 13);
             this.quadro2.MostrarBotãoMinMax = false;
             this.quadro2.Name = "quadro2";
-            this.quadro2.Size = new System.Drawing.Size(160, 60);
+            this.quadro2.Size = new System.Drawing.Size(160, 76);
             this.quadro2.TabIndex = 2;
             this.quadro2.Tamanho = 30;
             this.quadro2.Título = "Impressão";
             // 
+            // opçãoImprimirPromissórias
+            // 
+            this.opçãoImprimirPromissórias.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoImprimirPromissórias.Descrição = "Promissória(s)";
+            this.opçãoImprimirPromissórias.Imagem = global::Apresentação.Resource.impressora___161;
+            this.opçãoImprimirPromissórias.Location = new System.Drawing.Point(7, 50);
+            this.opçãoImprimirPromissórias.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoImprimirPromissórias.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoImprimirPromissórias.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoImprimirPromissórias.Name = "opçãoImprimirPromissórias";
+            this.opçãoImprimirPromissórias.Size = new System.Drawing.Size(150, 18);
+            this.opçãoImprimirPromissórias.TabIndex = 2;
+            this.opçãoImprimirPromissórias.Click += new System.EventHandler(this.opçãoImprimirPromissórias_Click);
+            // 
             // opçãoImprimir
             // 
             this.opçãoImprimir.BackColor = System.Drawing.Color.Transparent;
-            this.opçãoImprimir.Descrição = "Imprimir";
+            this.opçãoImprimir.Descrição = "Listagem";
             this.opçãoImprimir.Imagem = global::Apresentação.Resource.impressora___161;
             this.opçãoImprimir.Location = new System.Drawing.Point(7, 30);
             this.opçãoImprimir.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -192,7 +208,7 @@
             this.opçãoImprimir.MinimumSize = new System.Drawing.Size(150, 16);
             this.opçãoImprimir.Name = "opçãoImprimir";
             this.opçãoImprimir.Size = new System.Drawing.Size(150, 17);
-            this.opçãoImprimir.TabIndex = 2;
+            this.opçãoImprimir.TabIndex = 3;
             this.opçãoImprimir.Click += new System.EventHandler(this.opçãoImprimir_Click);
             // 
             // BasePagamentos
@@ -220,11 +236,12 @@
         private Apresentação.Formulários.Quadro quadro;
         private ListaPagamento lista;
         private Apresentação.Formulários.Quadro quadro2;
-        private Apresentação.Formulários.Opção opçãoImprimir;
+        private Apresentação.Formulários.Opção opçãoImprimirPromissórias;
         private Apresentação.Formulários.Quadro quadro1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private Formulários.Opção opçãoImprimir;
     }
 }

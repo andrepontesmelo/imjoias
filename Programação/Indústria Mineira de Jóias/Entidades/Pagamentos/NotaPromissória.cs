@@ -167,5 +167,18 @@ namespace Entidades.Pagamentos
                 prorrogadopara = leitor.GetDateTime(inicioAtributosEspecifico + 2);
 
         }
+
+        public static List<NotaPromissória> FiltrarNotasPromissórias(List<Pagamento> pagamentos)
+        {
+            List<NotaPromissória> lst = new List<NotaPromissória>();
+
+            foreach (Pagamento p in pagamentos)
+            {
+                if (p is NotaPromissória)
+                    lst.Add((NotaPromissória)p);
+            }
+
+            return lst;
+        }
     }
 }
