@@ -53,7 +53,7 @@ namespace Apresentação.Financeiro.Acerto
             txtÍndiceLevado.Text = totalÍndiceSaída.ToString();
             txtÍndiceVendido.Text = totalÍndiceVendidoMenosDevolvido.ToString();
             txtÍndiceVendidoPeça.Text = totalVendaPeça.ToString();
-            txtPorcentagemDesconto.Text = (porcentagemDada * 100).ToString() + " %";
+            txtPorcentagemDesconto.Text = porcentagemDada.ToString() + " %";
         }
 
         private void btnAtualizarDescontoVenda_Click(object sender, EventArgs e)

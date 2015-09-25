@@ -81,7 +81,7 @@ namespace Apresentação.Financeiro.Acerto
 
         private string CriarTexto(SumárioTotalAcertoItemValores saidaPeça)
         {
-            return Math.Round(saidaPeça.Peso, 2).ToString() + "g  " + Math.Round(saidaPeça.Indice, 2);
+            return Math.Round(saidaPeça.Peso, 2).ToString() + "g " + Math.Round(saidaPeça.Indice, 2);
         }
     }
 }
