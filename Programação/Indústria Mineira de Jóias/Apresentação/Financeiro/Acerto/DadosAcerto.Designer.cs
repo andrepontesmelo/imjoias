@@ -28,15 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblDesde = new System.Windows.Forms.Label();
+            this.lblMarcação = new System.Windows.Forms.Label();
             this.dtDesde = new System.Windows.Forms.DateTimePicker();
-            this.lblFuncConsignado = new System.Windows.Forms.Label();
-            this.txtFuncConsignado = new System.Windows.Forms.TextBox();
             this.lblPrevisão = new System.Windows.Forms.Label();
             this.dtPrevisão = new System.Windows.Forms.DateTimePicker();
-            this.lblFuncAcerto = new System.Windows.Forms.Label();
-            this.txtFuncAcerto = new System.Windows.Forms.TextBox();
-            this.lblDataEfetiva = new System.Windows.Forms.Label();
+            this.lblEfetivação = new System.Windows.Forms.Label();
             this.dtRealização = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbTabela = new Apresentação.Financeiro.ComboTabela();
@@ -44,14 +40,15 @@
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // lblDesde
+            // lblMarcação
             // 
-            this.lblDesde.AutoSize = true;
-            this.lblDesde.Location = new System.Drawing.Point(3, 30);
-            this.lblDesde.Name = "lblDesde";
-            this.lblDesde.Size = new System.Drawing.Size(41, 13);
-            this.lblDesde.TabIndex = 2;
-            this.lblDesde.Text = "Desde:";
+            this.lblMarcação.AutoSize = true;
+            this.lblMarcação.BackColor = System.Drawing.Color.Transparent;
+            this.lblMarcação.Location = new System.Drawing.Point(3, 29);
+            this.lblMarcação.Name = "lblMarcação";
+            this.lblMarcação.Size = new System.Drawing.Size(41, 13);
+            this.lblMarcação.TabIndex = 2;
+            this.lblMarcação.Text = "Desde:";
             // 
             // dtDesde
             // 
@@ -61,27 +58,11 @@
             this.dtDesde.Size = new System.Drawing.Size(209, 20);
             this.dtDesde.TabIndex = 3;
             // 
-            // lblFuncConsignado
-            // 
-            this.lblFuncConsignado.AutoSize = true;
-            this.lblFuncConsignado.Location = new System.Drawing.Point(3, 78);
-            this.lblFuncConsignado.Name = "lblFuncConsignado";
-            this.lblFuncConsignado.Size = new System.Drawing.Size(124, 13);
-            this.lblFuncConsignado.TabIndex = 4;
-            this.lblFuncConsignado.Text = "Funcionário que marcou:";
-            // 
-            // txtFuncConsignado
-            // 
-            this.txtFuncConsignado.Location = new System.Drawing.Point(6, 94);
-            this.txtFuncConsignado.Name = "txtFuncConsignado";
-            this.txtFuncConsignado.ReadOnly = true;
-            this.txtFuncConsignado.Size = new System.Drawing.Size(209, 20);
-            this.txtFuncConsignado.TabIndex = 5;
-            // 
             // lblPrevisão
             // 
             this.lblPrevisão.AutoSize = true;
-            this.lblPrevisão.Location = new System.Drawing.Point(3, 126);
+            this.lblPrevisão.BackColor = System.Drawing.Color.Transparent;
+            this.lblPrevisão.Location = new System.Drawing.Point(3, 69);
             this.lblPrevisão.Name = "lblPrevisão";
             this.lblPrevisão.Size = new System.Drawing.Size(51, 13);
             this.lblPrevisão.TabIndex = 6;
@@ -91,43 +72,27 @@
             // 
             this.dtPrevisão.CustomFormat = "ddd, dd \'de\' MMM \'de\' yyyy, \'às\' HH:mm";
             this.dtPrevisão.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtPrevisão.Location = new System.Drawing.Point(6, 142);
+            this.dtPrevisão.Location = new System.Drawing.Point(6, 85);
             this.dtPrevisão.Name = "dtPrevisão";
             this.dtPrevisão.Size = new System.Drawing.Size(209, 20);
             this.dtPrevisão.TabIndex = 7;
-            this.dtPrevisão.Validated += new System.EventHandler(this.dtPrevisão_Validated);
             this.dtPrevisão.Validating += new System.ComponentModel.CancelEventHandler(this.dtPrevisão_Validating);
+            this.dtPrevisão.Validated += new System.EventHandler(this.dtPrevisão_Validated);
             // 
-            // lblFuncAcerto
+            // lblEfetivação
             // 
-            this.lblFuncAcerto.AutoSize = true;
-            this.lblFuncAcerto.Location = new System.Drawing.Point(3, 174);
-            this.lblFuncAcerto.Name = "lblFuncAcerto";
-            this.lblFuncAcerto.Size = new System.Drawing.Size(113, 13);
-            this.lblFuncAcerto.TabIndex = 8;
-            this.lblFuncAcerto.Text = "Funcionário no acerto:";
-            // 
-            // txtFuncAcerto
-            // 
-            this.txtFuncAcerto.Location = new System.Drawing.Point(6, 190);
-            this.txtFuncAcerto.Name = "txtFuncAcerto";
-            this.txtFuncAcerto.ReadOnly = true;
-            this.txtFuncAcerto.Size = new System.Drawing.Size(209, 20);
-            this.txtFuncAcerto.TabIndex = 9;
-            // 
-            // lblDataEfetiva
-            // 
-            this.lblDataEfetiva.AutoSize = true;
-            this.lblDataEfetiva.Location = new System.Drawing.Point(3, 222);
-            this.lblDataEfetiva.Name = "lblDataEfetiva";
-            this.lblDataEfetiva.Size = new System.Drawing.Size(147, 13);
-            this.lblDataEfetiva.TabIndex = 10;
-            this.lblDataEfetiva.Text = "Data de realização do acerto:";
+            this.lblEfetivação.AutoSize = true;
+            this.lblEfetivação.BackColor = System.Drawing.Color.Transparent;
+            this.lblEfetivação.Location = new System.Drawing.Point(3, 108);
+            this.lblEfetivação.Name = "lblEfetivação";
+            this.lblEfetivação.Size = new System.Drawing.Size(147, 13);
+            this.lblEfetivação.TabIndex = 10;
+            this.lblEfetivação.Text = "Data de realização do acerto:";
             // 
             // dtRealização
             // 
             this.dtRealização.Enabled = false;
-            this.dtRealização.Location = new System.Drawing.Point(6, 238);
+            this.dtRealização.Location = new System.Drawing.Point(6, 124);
             this.dtRealização.Name = "dtRealização";
             this.dtRealização.Size = new System.Drawing.Size(209, 20);
             this.dtRealização.TabIndex = 11;
@@ -135,7 +100,8 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 270);
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(4, 186);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(43, 13);
             this.label1.TabIndex = 12;
@@ -143,35 +109,36 @@
             // 
             // cmbTabela
             // 
-            this.cmbTabela.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbTabela.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbTabela.Cotação = this.txtCotação;
             this.cmbTabela.DisplayMember = "Nome";
             this.cmbTabela.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTabela.Enabled = false;
             this.cmbTabela.FormattingEnabled = true;
-            this.cmbTabela.Location = new System.Drawing.Point(6, 286);
+            this.cmbTabela.Location = new System.Drawing.Point(7, 202);
             this.cmbTabela.Name = "cmbTabela";
-            this.cmbTabela.Size = new System.Drawing.Size(121, 21);
+            this.cmbTabela.Size = new System.Drawing.Size(208, 21);
             this.cmbTabela.TabIndex = 13;
             // 
             // txtCotação
             // 
             this.txtCotação.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCotação.Enabled = true;
+            this.txtCotação.Cotação = null;
             this.txtCotação.IniciarValorAtual = false;
-            this.txtCotação.Location = new System.Drawing.Point(133, 286);
+            this.txtCotação.Location = new System.Drawing.Point(7, 163);
             this.txtCotação.Name = "txtCotação";
-            this.txtCotação.Size = new System.Drawing.Size(82, 20);
+            this.txtCotação.Size = new System.Drawing.Size(208, 20);
             this.txtCotação.TabIndex = 15;
-            this.txtCotação.Valor = 0;
-            this.txtCotação.EscolheuCotação += new Apresentação.Mercadoria.Cotação.TxtCotação.Escolha(txtCotação_EscolheuCotação);
+            this.txtCotação.Valor = 0D;
+            this.txtCotação.EscolheuCotação += new Apresentação.Mercadoria.Cotação.TxtCotação.Escolha(this.txtCotação_EscolheuCotação);
             // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(130, 270);
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Location = new System.Drawing.Point(4, 147);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(50, 13);
             this.label2.TabIndex = 14;
@@ -186,27 +153,19 @@
             this.Controls.Add(this.cmbTabela);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dtRealização);
-            this.Controls.Add(this.lblDesde);
+            this.Controls.Add(this.lblMarcação);
             this.Controls.Add(this.dtDesde);
-            this.Controls.Add(this.lblDataEfetiva);
-            this.Controls.Add(this.txtFuncAcerto);
-            this.Controls.Add(this.lblFuncAcerto);
+            this.Controls.Add(this.lblEfetivação);
             this.Controls.Add(this.dtPrevisão);
-            this.Controls.Add(this.lblFuncConsignado);
-            this.Controls.Add(this.txtFuncConsignado);
             this.Controls.Add(this.lblPrevisão);
             this.Name = "DadosAcerto";
-            this.Size = new System.Drawing.Size(221, 316);
+            this.Size = new System.Drawing.Size(221, 229);
             this.Título = "Informações - Acerto";
             this.Controls.SetChildIndex(this.lblPrevisão, 0);
-            this.Controls.SetChildIndex(this.txtFuncConsignado, 0);
-            this.Controls.SetChildIndex(this.lblFuncConsignado, 0);
             this.Controls.SetChildIndex(this.dtPrevisão, 0);
-            this.Controls.SetChildIndex(this.lblFuncAcerto, 0);
-            this.Controls.SetChildIndex(this.txtFuncAcerto, 0);
-            this.Controls.SetChildIndex(this.lblDataEfetiva, 0);
+            this.Controls.SetChildIndex(this.lblEfetivação, 0);
             this.Controls.SetChildIndex(this.dtDesde, 0);
-            this.Controls.SetChildIndex(this.lblDesde, 0);
+            this.Controls.SetChildIndex(this.lblMarcação, 0);
             this.Controls.SetChildIndex(this.dtRealização, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.cmbTabela, 0);
@@ -219,15 +178,11 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lblDesde;
+        private System.Windows.Forms.Label lblMarcação;
         private System.Windows.Forms.DateTimePicker dtDesde;
-        private System.Windows.Forms.Label lblFuncConsignado;
-        private System.Windows.Forms.TextBox txtFuncConsignado;
         private System.Windows.Forms.Label lblPrevisão;
         private System.Windows.Forms.DateTimePicker dtPrevisão;
-        private System.Windows.Forms.Label lblFuncAcerto;
-        private System.Windows.Forms.TextBox txtFuncAcerto;
-        private System.Windows.Forms.Label lblDataEfetiva;
+        private System.Windows.Forms.Label lblEfetivação;
         private System.Windows.Forms.DateTimePicker dtRealização;
         private System.Windows.Forms.Label label1;
         private ComboTabela cmbTabela;
