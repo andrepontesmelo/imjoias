@@ -127,14 +127,17 @@ namespace Apresentação.Financeiro.Acerto
             {
                 case Tipo.Saída:
                     flowLayoutPanel.Controls.AddRange(gráficosSaídas);
+                    label1.Text = gráficosSaídas.Length.ToString() + " Saída(s)";
                 break;
 
                 case Tipo.Retorno:
                     flowLayoutPanel.Controls.AddRange(gráficosRetornos);
+                    label1.Text = gráficosRetornos.Length.ToString() + " Retorno(s)";
                 break;
 
                 case Tipo.Venda:
                     flowLayoutPanel.Controls.AddRange(gráficosVendas);
+                    label1.Text = gráficosVendas.Length.ToString() + " Venda(s)";
                 break;
             }
 
