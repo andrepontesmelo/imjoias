@@ -1146,8 +1146,10 @@ namespace Entidades.Acerto
 
             // Em 21/03/2013 foi pedido para alterar porcentagem de desconto sobre venda de peças
             // para 12% não importando quantidade vendida de peças Hoffman
-            porcentagemDadaDesconto = 12;
+            ConfiguraçãoGlobal<double> configuraçãoPorcentagemDadaDesconto = 
+                new ConfiguraçãoGlobal<double>("DescontoAA", 12);
 
+            porcentagemDadaDesconto = configuraçãoPorcentagemDadaDesconto.Valor;
 
             return Math.Round(totalVendaPeça * (porcentagemDadaDesconto / 100) * cotação.Value, 2);
         }
