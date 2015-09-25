@@ -70,7 +70,7 @@ namespace Apresentação.Financeiro.Acerto
                 if (acerto != null)
                 {
                     dtDesde.Value = acerto.DataMarcação;
-                    txtFuncConsignado.Text = acerto.FuncConsignado.Nome;
+                    lblMarcação.Text = "Marcado por " + Entidades.Pessoa.Pessoa.ReduzirNome(acerto.FuncConsignado.Nome);
 
                     // Altera o valor mínimo da previsão.
                     dtPrevisão.MinDate = acerto.DataMarcação.Date;
@@ -86,26 +86,20 @@ namespace Apresentação.Financeiro.Acerto
                     else
                         dtPrevisão.Text = "";
 
-                    if (acerto.FuncAcerto != null)
-                        txtFuncAcerto.Text = acerto.FuncAcerto.Nome;
-                    else
-                        txtFuncAcerto.Text = "";
-
                     if (acerto.DataEfetiva.HasValue)
                     {
                         dtRealização.Value = acerto.DataEfetiva.Value;
                         dtRealização.Visible = true;
-                        txtFuncAcerto.Visible = true;
-                        lblFuncAcerto.Visible = true;
-                        lblDataEfetiva.Visible = true;
+                        lblEfetivação.Visible = true;
+
+                        lblEfetivação.Text = "Efetivado por " + 
+                            Entidades.Pessoa.Pessoa.ReduzirNome(acerto.FuncAcerto.Nome);
                     }
                     else
                     {
                         dtRealização.Text = "";
                         dtRealização.Visible = false;
-                        txtFuncAcerto.Visible = false;
-                        lblFuncAcerto.Visible = false;
-                        lblDataEfetiva.Visible = false;
+                        lblEfetivação.Visible = false;
                     }
 
                     cmbTabela.Seleção = acerto.TabelaPreço;

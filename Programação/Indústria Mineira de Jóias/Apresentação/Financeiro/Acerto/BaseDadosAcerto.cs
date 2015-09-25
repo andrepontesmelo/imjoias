@@ -59,13 +59,13 @@ namespace Apresentação.Financeiro.Acerto
 
             if (liberarPrazo)
             {
-                botãoLiberarPrevisão.Texto = "Liberar mais prazo";
+                botãoLiberarPrevisão.Text = "Liberar mais prazo";
                 informaçõesAcerto.PermitirAlteração = true;
                 informaçõesAcerto.LiberarPrazo = false;
             }
             else
             {
-                botãoLiberarPrevisão.Texto = "Alterar previsão";
+                botãoLiberarPrevisão.Text = "Alterar previsão";
                 informaçõesAcerto.PermitirAlteração = false;
                 informaçõesAcerto.LiberarPrazo = true;
             }
@@ -178,6 +178,13 @@ namespace Apresentação.Financeiro.Acerto
             JanelaDesconto janela = new JanelaDesconto();
             janela.Show();
             janela.Carregar(acerto);
+        }
+
+        private void botãoLiberarPrevisão_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            informaçõesAcerto.PermitirAlteração = true;
+            informaçõesAcerto.LiberarPrazo = true;
+            informaçõesAcerto.IniciarEdição();
         }
     }
 }

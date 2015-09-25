@@ -30,7 +30,7 @@
         {
             this.títuloBaseInferior1 = new Apresentação.Formulários.TítuloBaseInferior();
             this.informaçõesAcerto = new Apresentação.Financeiro.Acerto.DadosAcerto();
-            this.botãoLiberarPrevisão = new Apresentação.Formulários.BotãoLiberarRecurso();
+            this.botãoLiberarPrevisão = new System.Windows.Forms.LinkLabel();
             this.listaDocumentosAcerto = new Apresentação.Financeiro.Acerto.ListaDocumentosAcerto();
             this.quadroDocumentos = new Apresentação.Formulários.Quadro();
             this.btnCalcularDesconto = new Apresentação.Formulários.Opção();
@@ -39,15 +39,18 @@
             this.painelDocumentos = new System.Windows.Forms.Panel();
             this.simulaçãoAcerto1 = new Apresentação.Financeiro.Acerto.SumárioAcerto();
             this.esquerda.SuspendLayout();
+            this.informaçõesAcerto.SuspendLayout();
             this.quadroDocumentos.SuspendLayout();
             this.painelDocumentos.SuspendLayout();
             this.SuspendLayout();
             // 
             // esquerda
             // 
+            this.esquerda.Controls.Add(this.simulaçãoAcerto1);
             this.esquerda.Controls.Add(this.quadroDocumentos);
             this.esquerda.Size = new System.Drawing.Size(187, 634);
             this.esquerda.Controls.SetChildIndex(this.quadroDocumentos, 0);
+            this.esquerda.Controls.SetChildIndex(this.simulaçãoAcerto1, 0);
             // 
             // títuloBaseInferior1
             // 
@@ -71,31 +74,28 @@
             this.informaçõesAcerto.bInfEsqArredondada = true;
             this.informaçõesAcerto.bSupDirArredondada = true;
             this.informaçõesAcerto.bSupEsqArredondada = true;
+            this.informaçõesAcerto.Controls.Add(this.botãoLiberarPrevisão);
             this.informaçõesAcerto.Cor = System.Drawing.Color.Black;
             this.informaçõesAcerto.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.informaçõesAcerto.LetraTítulo = System.Drawing.Color.White;
             this.informaçõesAcerto.Location = new System.Drawing.Point(560, 100);
             this.informaçõesAcerto.MostrarBotãoMinMax = false;
             this.informaçõesAcerto.Name = "informaçõesAcerto";
-            this.informaçõesAcerto.Size = new System.Drawing.Size(221, 313);
+            this.informaçõesAcerto.Size = new System.Drawing.Size(221, 228);
             this.informaçõesAcerto.TabIndex = 7;
             this.informaçõesAcerto.Tamanho = 30;
             this.informaçõesAcerto.Título = "Informações - Acerto";
             // 
             // botãoLiberarPrevisão
             // 
-            this.botãoLiberarPrevisão.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.botãoLiberarPrevisão.AutoSize = true;
-            this.botãoLiberarPrevisão.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.botãoLiberarPrevisão.Descrição = "A alteração da previsão de acerto impacta nos juros cobrados na venda.";
-            this.botãoLiberarPrevisão.Location = new System.Drawing.Point(678, 419);
+            this.botãoLiberarPrevisão.Location = new System.Drawing.Point(55, 69);
             this.botãoLiberarPrevisão.Name = "botãoLiberarPrevisão";
-            this.botãoLiberarPrevisão.Privilégios = Entidades.Privilégio.Permissão.AlterarDataAcerto;
-            this.botãoLiberarPrevisão.Recurso = "Alterar previsão de acerto";
-            this.botãoLiberarPrevisão.Size = new System.Drawing.Size(103, 23);
-            this.botãoLiberarPrevisão.TabIndex = 8;
-            this.botãoLiberarPrevisão.Texto = "Alterar previsão";
-            this.botãoLiberarPrevisão.LiberarRecurso += new System.EventHandler(this.botãoLiberarPrevisão_LiberarRecurso);
+            this.botãoLiberarPrevisão.Size = new System.Drawing.Size(46, 13);
+            this.botãoLiberarPrevisão.TabIndex = 16;
+            this.botãoLiberarPrevisão.TabStop = true;
+            this.botãoLiberarPrevisão.Text = "Alterar...";
+            this.botãoLiberarPrevisão.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.botãoLiberarPrevisão_LinkClicked);
             // 
             // listaDocumentosAcerto
             // 
@@ -198,37 +198,34 @@
             this.simulaçãoAcerto1.Cor = System.Drawing.Color.Black;
             this.simulaçãoAcerto1.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.simulaçãoAcerto1.LetraTítulo = System.Drawing.Color.White;
-            this.simulaçãoAcerto1.Location = new System.Drawing.Point(560, 448);
+            this.simulaçãoAcerto1.Location = new System.Drawing.Point(7, 116);
             this.simulaçãoAcerto1.MostrarBotãoMinMax = false;
             this.simulaçãoAcerto1.Name = "simulaçãoAcerto1";
-            this.simulaçãoAcerto1.Size = new System.Drawing.Size(221, 183);
+            this.simulaçãoAcerto1.Size = new System.Drawing.Size(160, 370);
             this.simulaçãoAcerto1.TabIndex = 11;
             this.simulaçãoAcerto1.Tamanho = 30;
-            this.simulaçãoAcerto1.Título = "Simulação";
+            this.simulaçãoAcerto1.Título = "Sumário";
             // 
             // BaseDadosAcerto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.simulaçãoAcerto1);
             this.Controls.Add(this.títuloBaseInferior1);
             this.Controls.Add(this.painelDocumentos);
             this.Controls.Add(this.informaçõesAcerto);
-            this.Controls.Add(this.botãoLiberarPrevisão);
             this.Name = "BaseDadosAcerto";
             this.Size = new System.Drawing.Size(800, 634);
-            this.Controls.SetChildIndex(this.botãoLiberarPrevisão, 0);
             this.Controls.SetChildIndex(this.informaçõesAcerto, 0);
             this.Controls.SetChildIndex(this.painelDocumentos, 0);
             this.Controls.SetChildIndex(this.títuloBaseInferior1, 0);
             this.Controls.SetChildIndex(this.esquerda, 0);
-            this.Controls.SetChildIndex(this.simulaçãoAcerto1, 0);
             this.esquerda.ResumeLayout(false);
+            this.informaçõesAcerto.ResumeLayout(false);
+            this.informaçõesAcerto.PerformLayout();
             this.quadroDocumentos.ResumeLayout(false);
             this.painelDocumentos.ResumeLayout(false);
             this.painelDocumentos.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -236,7 +233,6 @@
 
         private Apresentação.Formulários.TítuloBaseInferior títuloBaseInferior1;
         private DadosAcerto informaçõesAcerto;
-        private Apresentação.Formulários.BotãoLiberarRecurso botãoLiberarPrevisão;
         private ListaDocumentosAcerto listaDocumentosAcerto;
         private Apresentação.Formulários.Quadro quadroDocumentos;
         private Apresentação.Formulários.Opção opçãoIniciarRetorno;
@@ -244,5 +240,6 @@
         private System.Windows.Forms.Panel painelDocumentos;
         private Apresentação.Formulários.Opção btnCalcularDesconto;
         private SumárioAcerto simulaçãoAcerto1;
+        private System.Windows.Forms.LinkLabel botãoLiberarPrevisão;
     }
 }

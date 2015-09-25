@@ -65,9 +65,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(10, 30);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(78, 25);
+            this.label1.Size = new System.Drawing.Size(67, 25);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Saídas";
+            this.label1.Text = "Saída";
             // 
             // label2
             // 
@@ -107,7 +107,7 @@
             // 
             this.lblSaídasTotal.AutoSize = true;
             this.lblSaídasTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSaídasTotal.Location = new System.Drawing.Point(51, 85);
+            this.lblSaídasTotal.Location = new System.Drawing.Point(44, 85);
             this.lblSaídasTotal.Name = "lblSaídasTotal";
             this.lblSaídasTotal.Size = new System.Drawing.Size(0, 13);
             this.lblSaídasTotal.TabIndex = 8;
@@ -116,7 +116,7 @@
             // 
             this.lblRetornoTotal.AutoSize = true;
             this.lblRetornoTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRetornoTotal.Location = new System.Drawing.Point(51, 167);
+            this.lblRetornoTotal.Location = new System.Drawing.Point(44, 167);
             this.lblRetornoTotal.Name = "lblRetornoTotal";
             this.lblRetornoTotal.Size = new System.Drawing.Size(0, 13);
             this.lblRetornoTotal.TabIndex = 15;
@@ -161,15 +161,15 @@
             this.lblRetornos.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRetornos.Location = new System.Drawing.Point(10, 112);
             this.lblRetornos.Name = "lblRetornos";
-            this.lblRetornos.Size = new System.Drawing.Size(99, 25);
+            this.lblRetornos.Size = new System.Drawing.Size(88, 25);
             this.lblRetornos.TabIndex = 9;
-            this.lblRetornos.Text = "Retornos";
+            this.lblRetornos.Text = "Retorno";
             // 
             // lblVendaTotal
             // 
             this.lblVendaTotal.AutoSize = true;
             this.lblVendaTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVendaTotal.Location = new System.Drawing.Point(51, 246);
+            this.lblVendaTotal.Location = new System.Drawing.Point(44, 246);
             this.lblVendaTotal.Name = "lblVendaTotal";
             this.lblVendaTotal.Size = new System.Drawing.Size(0, 13);
             this.lblVendaTotal.TabIndex = 22;
@@ -214,15 +214,15 @@
             this.lblVendas.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVendas.Location = new System.Drawing.Point(10, 191);
             this.lblVendas.Name = "lblVendas";
-            this.lblVendas.Size = new System.Drawing.Size(85, 25);
+            this.lblVendas.Size = new System.Drawing.Size(74, 25);
             this.lblVendas.TabIndex = 16;
-            this.lblVendas.Text = "Vendas";
+            this.lblVendas.Text = "Venda";
             // 
             // lblSaldoTotal
             // 
             this.lblSaldoTotal.AutoSize = true;
             this.lblSaldoTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSaldoTotal.Location = new System.Drawing.Point(51, 331);
+            this.lblSaldoTotal.Location = new System.Drawing.Point(44, 331);
             this.lblSaldoTotal.Name = "lblSaldoTotal";
             this.lblSaldoTotal.Size = new System.Drawing.Size(0, 13);
             this.lblSaldoTotal.TabIndex = 28;
@@ -277,7 +277,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.linha1.Location = new System.Drawing.Point(10, 267);
             this.linha1.Name = "linha1";
-            this.linha1.Size = new System.Drawing.Size(155, 2);
+            this.linha1.Size = new System.Drawing.Size(148, 2);
             this.linha1.TabIndex = 29;
             // 
             // bg
@@ -288,10 +288,11 @@
             // lblRetornoPorcento
             // 
             this.lblRetornoPorcento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblRetornoPorcento.BackColor = System.Drawing.Color.Transparent;
             this.lblRetornoPorcento.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRetornoPorcento.Location = new System.Drawing.Point(101, 112);
+            this.lblRetornoPorcento.Location = new System.Drawing.Point(99, 112);
             this.lblRetornoPorcento.Name = "lblRetornoPorcento";
-            this.lblRetornoPorcento.Size = new System.Drawing.Size(73, 25);
+            this.lblRetornoPorcento.Size = new System.Drawing.Size(68, 25);
             this.lblRetornoPorcento.TabIndex = 30;
             this.lblRetornoPorcento.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
@@ -299,7 +300,7 @@
             // 
             this.lblVendaPorcento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblVendaPorcento.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVendaPorcento.Location = new System.Drawing.Point(101, 191);
+            this.lblVendaPorcento.Location = new System.Drawing.Point(94, 191);
             this.lblVendaPorcento.Name = "lblVendaPorcento";
             this.lblVendaPorcento.Size = new System.Drawing.Size(73, 25);
             this.lblVendaPorcento.TabIndex = 31;
@@ -309,7 +310,7 @@
             // 
             this.lblSaldoPorcento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSaldoPorcento.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSaldoPorcento.Location = new System.Drawing.Point(101, 276);
+            this.lblSaldoPorcento.Location = new System.Drawing.Point(94, 276);
             this.lblSaldoPorcento.Name = "lblSaldoPorcento";
             this.lblSaldoPorcento.Size = new System.Drawing.Size(73, 25);
             this.lblSaldoPorcento.TabIndex = 32;
@@ -348,7 +349,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "SumárioAcerto";
-            this.Size = new System.Drawing.Size(178, 362);
+            this.Size = new System.Drawing.Size(171, 362);
             this.Título = "Sumário";
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.label2, 0);
