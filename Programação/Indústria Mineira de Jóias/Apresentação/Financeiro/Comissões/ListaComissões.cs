@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Entidades.ComissãoCálculo;
+using Apresentação.Formulários;
 
 namespace Apresentação.Financeiro.Comissões
 {
@@ -21,6 +22,14 @@ namespace Apresentação.Financeiro.Comissões
         public ListaComissões()
         {
             InitializeComponent();
+
+            lst.ListViewItemSorter = new ListViewColumnSorter();
+            lst.ColumnClick += lst_ColumnClick;
+        }
+
+        void lst_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            ((ListViewColumnSorter)lst.ListViewItemSorter).OnClick(lst, e);
         }
 
         internal void Carregar()
