@@ -65,7 +65,7 @@ namespace Entidades.ComissãoCálculo
         /// <returns></returns>
         public static List<Comissão> ObterComissões()
         {
-            return Mapear<Comissão>("select c.* from comissao c order by mes desc");
+            return Mapear<Comissão>("select c.* from comissao c order by codigo desc");
         }
 
         public int FecharLançamentos(List<ComissãoValor> selecionados, bool estorno)
