@@ -87,9 +87,9 @@ namespace Apresentação.Mercadoria.Cotação
             this.painelBase = new System.Windows.Forms.Panel();
             this.painelInferior = new System.Windows.Forms.Panel();
             this.lista = new System.Windows.Forms.ListView();
-            this.colHora = new System.Windows.Forms.ColumnHeader();
-            this.colCotação = new System.Windows.Forms.ColumnHeader();
-            this.colFuncionário = new System.Windows.Forms.ColumnHeader();
+            this.colHora = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colCotação = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colFuncionário = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.painelSuperior = new System.Windows.Forms.Panel();
             this.labelData = new System.Windows.Forms.Label();
             this.data = new System.Windows.Forms.DateTimePicker();
@@ -135,8 +135,8 @@ namespace Apresentação.Mercadoria.Cotação
             this.lista.TabIndex = 0;
             this.lista.UseCompatibleStateImageBehavior = false;
             this.lista.View = System.Windows.Forms.View.Details;
-            this.lista.DoubleClick += new System.EventHandler(this.lista_DoubleClick);
             this.lista.SelectedIndexChanged += new System.EventHandler(this.lista_SelectedIndexChanged);
+            this.lista.DoubleClick += new System.EventHandler(this.lista_DoubleClick);
             // 
             // colHora
             // 
@@ -147,7 +147,7 @@ namespace Apresentação.Mercadoria.Cotação
             // 
             this.colCotação.Text = "Cotação";
             this.colCotação.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.colCotação.Width = 57;
+            this.colCotação.Width = 70;
             // 
             // colFuncionário
             // 
@@ -386,7 +386,7 @@ namespace Apresentação.Mercadoria.Cotação
                         novoItem = new ListViewItem(cotação.Data.Value.ToShortTimeString());
 
                     novoItem.SubItems.Add(cotação.Valor.ToString("C", DadosGlobais.Instância.Cultura));
-                    novoItem.SubItems.Add(cotação.Funcionário.Nome);
+                    novoItem.SubItems.Add(Entidades.Pessoa.Pessoa.ReduzirNome(cotação.Funcionário.Nome));
 
                     lista.Items.Add(novoItem);
 
