@@ -24,7 +24,7 @@ namespace Apresentação.Mercadoria.Cotação
         /// <summary>
         /// Serve para informar se a cotação escolhida não é a mais recente
         /// </summary>
-        private DateTime últimaCotação;
+        Entidades.Cotação últimaCotação;
 
         private volatile bool valorDefinido = false;
 
@@ -65,7 +65,6 @@ namespace Apresentação.Mercadoria.Cotação
 
         private ToolTip                     toolTipOk;
         private ToolTip                     toolTipDesatualizada;
-        private System.Windows.Forms.Timer  timerAtualização;
         private IContainer                  components;
 
         private Moeda.MoedaSistema? moedaSistema = Moeda.MoedaSistema.Ouro;
@@ -93,8 +92,6 @@ namespace Apresentação.Mercadoria.Cotação
 
                 if (painelFlutuante != null)
                     painelFlutuante.Moeda = value;
-
-                //txt.Text = "";
 
                 carregado = false;
                 Carregar();
@@ -142,23 +139,6 @@ namespace Apresentação.Mercadoria.Cotação
             get { return txt.Double; }
             set { txt.Double = value; valorDefinido = true;  }
         }
-
-        ///// <summary>
-        ///// Mostrar cabeçalho das colunas
-        ///// </summary>
-        //[DefaultValue(true),
-        //Description("Determina se o cabeçalho deve ser mostrado ou não")]
-        //public bool MostrarCabeçalho
-        //{
-        //    get
-        //    {
-        //        if (painelFlutuante != null)
-        //            return painelFlutuante.MostrarCabeçalho;
-        //        else
-        //            return true;
-        //    }
-        //    set { painelFlutuante.MostrarCabeçalho = value; }
-        //}
 
         /// <summary>
         /// Pegue ou escolha a data para exibição das cotações.
@@ -285,7 +265,6 @@ namespace Apresentação.Mercadoria.Cotação
             this.toolTipOk = new System.Windows.Forms.ToolTip(this.components);
             this.picCotação = new System.Windows.Forms.PictureBox();
             this.toolTipDesatualizada = new System.Windows.Forms.ToolTip(this.components);
-            this.timerAtualização = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.picCotação)).BeginInit();
             this.SuspendLayout();
             // 
@@ -332,11 +311,6 @@ namespace Apresentação.Mercadoria.Cotação
             this.toolTipDesatualizada.Active = false;
             this.toolTipDesatualizada.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Warning;
             this.toolTipDesatualizada.ToolTipTitle = "Cotação do ouro";
-            // 
-            // timerAtualização
-            // 
-            this.timerAtualização.Interval = 120000;
-            this.timerAtualização.Tick += new System.EventHandler(this.timerAtualização_Tick);
             // 
             // TxtCotação
             // 
@@ -463,8 +437,6 @@ namespace Apresentação.Mercadoria.Cotação
             
             try
             {
-                Entidades.Cotação cotaçãoVigente;
-
                 if (painelFlutuante == null)
                     ConstruirPainel();
 
@@ -472,22 +444,13 @@ namespace Apresentação.Mercadoria.Cotação
 
                 if (moeda != null)
                 {
-                    cotaçãoVigente = Entidades.Cotação.ObterCotaçãoVigente(moeda);
-
-                    try
-                    {
-                        últimaCotação = cotaçãoVigente.Data.Value;
-                    }
-                    catch (NullReferenceException)
-                    {
-                        últimaCotação = DateTime.MinValue;
-                    }
+                    últimaCotação = Entidades.Cotação.ObterCotaçãoVigente(moeda);
 
                     if (iniciarValorAtual && (txt.Double == 0 || !valorDefinido))
-                        AtribuirCotação(cotaçãoVigente);
+                        AtribuirCotação(últimaCotação);
                 }
                 else
-                    últimaCotação = DateTime.MinValue;
+                    últimaCotação = null;
             }
             catch (Entidades.Cotação.CotaçãoInexistente)
             {
@@ -791,8 +754,17 @@ namespace Apresentação.Mercadoria.Cotação
             {
                 if (!escolha.Cadastrado)
                     SinalizarCotaçãoNãoCadastrada();
-                else if (escolha.Data.HasValue && escolha.Data.Value != últimaCotação)
-                    SinalizarCotaçãoDesatualizada();
+                else if (Data.HasValue) 
+                {
+                    Entidades.Cotação[] cotações = 
+                        Entidades.Cotação.ObterListaCotaçõesAtéDia(moeda, Data.Value);
+
+                    if (cotações.Length > 0)
+                    {
+                        if (escolha.Valor != cotações[0].Valor)
+                            SinalizarCotaçãoDesatualizada();
+                    }
+                }
                 else
                     SinalizarCotaçãoAtualizada();
             }
@@ -962,36 +934,11 @@ namespace Apresentação.Mercadoria.Cotação
         {
             if (!DesignMode)
             {
-                timerAtualização.Enabled = true;
-
                 Carregar();
             }
             else
             {
                 txt.Prefix = moedaSistema.ToString();
-            }
-        }
-
-        private void timerAtualização_Tick(object sender, EventArgs e)
-        {
-            try
-            {
-                if (moeda != null)
-                {
-                    Entidades.Cotação cotaçãoMaisRecente = Entidades.Cotação.ObterCotaçãoVigente(moeda);
-
-                    if (cotaçãoMaisRecente.Data != últimaCotação)
-                    {
-                        últimaCotação = cotaçãoMaisRecente.Data.Value;
-
-                        //if (avisarNovaCotação)
-                        //    PerguntarAtualização(cotaçãoMaisRecente);
-                    }
-                }
-            }
-            catch (Entidades.Cotação.CotaçãoInexistente)
-            {
-                SinalizarCotaçãoNãoCadastrada();
             }
         }
 
