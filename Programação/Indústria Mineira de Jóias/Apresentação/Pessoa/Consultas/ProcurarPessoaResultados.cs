@@ -170,7 +170,7 @@ namespace Apresentação.Pessoa.Consultas
 		/// <param name="pessoas">Pessoas a serem exibidas.</param>
 		private void Exibir(List<Entidades.Pessoa.Pessoa>  pessoas)
 		{
-            Aguarde janela = new Apresentação.Formulários.Aguarde("Este processo pode demorar", pessoas.Count, "Carregando cidades", "Experimente digitar o nome seguido de qualquer sobrenome, este processo será mais rápido da próxima vez.");
+            Aguarde janela = new Apresentação.Formulários.Aguarde("Este processo não pode demorar", pessoas.Count, "Carregando cidades", "Experimente digitar o nome seguido de qualquer sobrenome, este processo será mais rápido da próxima vez.");
             janela.Abrir();
 
             // Carrega o endereços das pessoas.

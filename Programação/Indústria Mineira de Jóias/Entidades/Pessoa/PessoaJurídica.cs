@@ -1,6 +1,7 @@
 using System;
 using System.Data;
 using Acesso.Comum.Cache;
+using System.Collections.Generic;
 
 namespace Entidades.Pessoa
 {
@@ -71,19 +72,39 @@ namespace Entidades.Pessoa
             cnpj = FormatarCNPJ(cnpj);
             
 			IDbConnection conexão = Conexão;
-			
-			using (IDbCommand cmd = conexão.CreateCommand())
-			{
-				cmd.CommandText = "SELECT * FROM pessoa p, pessoajuridica pj"
-					+ " WHERE p.codigo = pj.codigo"
-					+ " AND pj.cnpj = " + DbTransformar(cnpj);
 
-				lock (conexão)
-					return MapearÚnicaLinha<PessoaJurídica>(cmd);
-			}
+            lock (conexão)
+            {
+                using (IDbCommand cmd = conexão.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT * FROM pessoa p, pessoajuridica pj"
+                        + " WHERE p.codigo = pj.codigo"
+                        + " AND pj.cnpj = " + DbTransformar(cnpj);
+
+                    return MapearÚnicaLinha<PessoaJurídica>(cmd);
+                }
+            }
 		}
 
+        public static List<Pessoa> ObterPessoasPorCNPJ(string cnpj)
+        {
+            string cnpjFormatado = FormatarCNPJ(cnpj);
 
+            IDbConnection conexão = Conexão;
+
+            lock (conexão)
+            {
+                using (IDbCommand cmd = conexão.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT p.* FROM pessoa p, pessoajuridica pj"
+                        + " WHERE p.codigo = pj.codigo"
+                        + " AND pj.cnpj = " + DbTransformar(cnpjFormatado)
+                        + " OR pj.cnpj LIKE '%" + cnpj + "%' ";
+
+                    return Mapear<Pessoa>(cmd);
+                }
+            }
+        }
 
 		/// <summary>
 		/// Obtém uma pessoa a partir de um código.
