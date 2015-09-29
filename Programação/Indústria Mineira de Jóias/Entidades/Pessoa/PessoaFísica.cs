@@ -398,7 +398,7 @@ namespace Entidades.Pessoa
             string cpfFormatado = cpfNãoFormatado.Replace(".", "").Replace("-", "").Trim();
             
             // Coloca espaços vazios até o final do CPF caso esteja incompleto
-            if (cpfFormatado.Length != 11)
+            if (cpfFormatado.Length != 11 && cpfFormatado.Length < 11)
                 cpfFormatado = cpfFormatado + new String(' ', 11 - cpfFormatado.Length);
 
 

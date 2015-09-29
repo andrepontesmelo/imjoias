@@ -9,16 +9,10 @@ using System.Collections.Generic;
 
 namespace Apresentação.Pessoa.Consultas
 {
-    /* Porque existem dois txts ?
-     * Antes, erá só o de pessoa.
-     * Porém, assim que o usuário pressionava OK
-     * e estava procurando por outro campo senão "Nome"
-     * o TxtPessoa zerava o campo a ser procurado uma vez
-     * que não achava nome.
-     */
-
     public class ProcurarPessoa : Apresentação.Formulários.JanelaExplicativa
 	{
+        private static readonly TipoChave PESQUISA_PADRÂO = TipoChave.Nome;
+
 		public enum TipoChave
 		{
             Código,
@@ -27,7 +21,6 @@ namespace Apresentação.Pessoa.Consultas
 			CPF,
 			Estado,
 			Nome,
-//			País,
 			RG,
 			Telefone
 		}
@@ -217,7 +210,7 @@ namespace Apresentação.Pessoa.Consultas
 		private void ProcurarPessoa_Load(object sender, System.EventArgs e)
 		{
             if (cmbDado.Text == "")
-			    cmbDado.SelectedItem = "Nome";
+			    cmbDado.SelectedItem = PESQUISA_PADRÂO.ToString();
 
 			txtPessoa.Focus();
 		}
@@ -227,10 +220,7 @@ namespace Apresentação.Pessoa.Consultas
 		/// </summary>
 		public Entidades.Pessoa.Pessoa Pessoa
 		{
-			get
-			{
-				return txtPessoa.Pessoa;
-			}
+			get { return txtPessoa.Pessoa; }
 		}
 
 		/// <summary>
@@ -239,10 +229,7 @@ namespace Apresentação.Pessoa.Consultas
 		public TipoChave Chave
 		{
 			get { return (TipoChave) Enum.Parse(typeof(TipoChave), cmbDado.Text, false); }
-            set 
-            {
-                cmbDado.SelectedIndex = cmbDado.FindStringExact(value.ToString());
-            }
+            set { cmbDado.Text = value.ToString(); }
 		}
 
 		/// <summary>
@@ -252,69 +239,57 @@ namespace Apresentação.Pessoa.Consultas
 		/// <returns>Pessoa escolhida ou nulo.</returns>
 		public static Entidades.Pessoa.Pessoa Procurar(IWin32Window owner)
 		{
-			bool procurar;
-
-            TipoChave últimaChave = TipoChave.Nome;
+            TipoChave últimaChave = PESQUISA_PADRÂO;
 
 			do
 			{
-				procurar = false;
-
-				using (ProcurarPessoa procura = new ProcurarPessoa())
+				using (ProcurarPessoa janela = new ProcurarPessoa())
 				{
-                    procura.Chave = últimaChave;
+                    janela.Chave = últimaChave;
+                    janela.FocarCaixaPesquisa();
 
                     DialogResult resultado;
 
                     if (owner != null)
-                        resultado = procura.ShowDialog(owner);
+                        resultado = janela.ShowDialog(owner);
                     else
-                        resultado = procura.ShowDialog();
+                        resultado = janela.ShowDialog();
 
-                    últimaChave = procura.Chave;
+                    últimaChave = janela.Chave;
 
-					if (resultado == DialogResult.OK)
-					{
-						if (procura.Pessoa != null)
-							return procura.Pessoa;
+                    if (resultado == DialogResult.OK)
+                    {
+                        if (janela.Pessoa != null)
+                            return janela.Pessoa;
 
-						try
-						{
-                            Entidades.Pessoa.Pessoa pessoa = 
-							    Procurar(owner, procura.Chave, procura.Chave == TipoChave.Nome ? procura.txtPessoa.Text : procura.txtProcura.Text);
+                        Entidades.Pessoa.Pessoa pessoa =
+                            Procurar(owner, janela.Chave,
+                            janela.ControleCaixa.Text);
 
-                            if (pessoa != null)
-                                return pessoa;
-                            else
-                                procurar = true;
-						}
-						catch (NadaEncontrado)
-						{
-                            const string msg = "Nenhuma pessoa foi encontrada com os dados fornecidos. ";
-                            const string título = "Procurar por pessoa";
-
-                            if (owner != null)
-                                MessageBox.Show(
-                                    owner,
-                                    msg,
-                                    título,
-                                    MessageBoxButtons.OK,
-                                    MessageBoxIcon.Exclamation);
-                            else
-                                MessageBox.Show(
-                                    msg,
-                                    título,
-                                    MessageBoxButtons.YesNo,
-                                    MessageBoxIcon.Exclamation);
-
-                            procurar = true;
-						}
-					}
+                        if (pessoa != null)
+                            return pessoa;
+                    }
+                    else
+                        return null;
 				}
-			} while (procurar);
-
-			return null;
+			} while (true);
 		}
+
+        private void FocarCaixaPesquisa()
+        {
+            ControleCaixa.Focus();
+        }
+
+        private Control ControleCaixa
+        {
+            get
+            {
+                if (Chave == TipoChave.Nome)
+                    return txtPessoa;
+                else
+                    return txtProcura;
+            }
+        }
 
 		private void ProcurarPessoa_Activated(object sender, System.EventArgs e)
 		{
@@ -396,7 +371,25 @@ namespace Apresentação.Pessoa.Consultas
                 if (pessoas.Count == 0)
                 {
                     aguarde.Close();
-                    throw new NadaEncontrado();
+                    
+                    const string msg = "Nenhuma pessoa foi encontrada com os dados fornecidos. ";
+                    const string título = "Pesquisa de pessoa";
+
+                    if (owner != null)
+                        MessageBox.Show(
+                            owner,
+                            msg,
+                            título,
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Exclamation);
+                    else
+                        MessageBox.Show(
+                            msg,
+                            título,
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Exclamation);
+
+                    return null;
                 }
                 else if (pessoas.Count == 1)
                     return pessoas[0];
@@ -428,20 +421,12 @@ namespace Apresentação.Pessoa.Consultas
                             }
 
                         }
-                        else
-                        {
-                            // Cancelar
-
-                        }
                     }
                 }
             }
 
 			return null;
 		}
-
-		private class NadaEncontrado : Exception
-		{}
 
         private void txtPessoa_KeyDown(object sender, KeyEventArgs e)
         {
@@ -494,6 +479,7 @@ namespace Apresentação.Pessoa.Consultas
         {
             if (Form.ModifierKeys == Keys.None && (keyData == Keys.Escape))
             {
+                this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
                 this.Close();
                 return true;
             }

@@ -184,34 +184,6 @@ namespace Apresentação.Pessoa.Consultas
 				// Atribuir nome
 				item.Text = (pessoa != null && pessoa.Nome != null) ? pessoa.Nome : "";
 
-                /*
-				// Atribuir Cidade
-				if (typeof(PessoaFísica).IsInstanceOfType(pessoa))
-				{
-                    
-					PessoaFísica pf = (PessoaFísica) pessoa;
-                    string documento = "";
-
-                    if (pf.CPF != null && pf.CPF.Length > 0)
-                        documento = "CPF: " + pf.CPF;
-
-                    if (pf.DI != null && pf.DI.Length > 0)
-                    {
-                        documento = (documento.Length > 0 ? documento + ";" : "") +
-                            "DI: " + pf.DI;
-
-                        if (pf.DIEmissor != null)
-                            documento += " " + pf.DIEmissor;
-                    }
-                     
-
-				}
-				else if (typeof(PessoaJurídica).IsInstanceOfType(pessoa))
-					if (((PessoaJurídica) pessoa).CNPJ != null)
-						item.SubItems[colCidade.Index].Text = "CNPJ: " + ((PessoaJurídica) pessoa).CNPJ;
-                     * 
-                     */
-
                 List<Entidades.Pessoa.Endereço.Endereço> endereços = pessoa.Endereços.ExtrairElementos();
                 if (endereços.Count > 0
                     && endereços[0].Localidade != null
