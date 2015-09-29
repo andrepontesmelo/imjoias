@@ -216,7 +216,9 @@ namespace Apresentação.Pessoa.Consultas
 		/// </summary>
 		private void ProcurarPessoa_Load(object sender, System.EventArgs e)
 		{
-			cmbDado.SelectedItem = "Nome";
+            if (cmbDado.Text == "")
+			    cmbDado.SelectedItem = "Nome";
+
 			txtPessoa.Focus();
 		}
 
@@ -237,6 +239,10 @@ namespace Apresentação.Pessoa.Consultas
 		public TipoChave Chave
 		{
 			get { return (TipoChave) Enum.Parse(typeof(TipoChave), cmbDado.Text, false); }
+            set 
+            {
+                cmbDado.SelectedIndex = cmbDado.FindStringExact(value.ToString());
+            }
 		}
 
 		/// <summary>
@@ -248,18 +254,24 @@ namespace Apresentação.Pessoa.Consultas
 		{
 			bool procurar;
 
+            TipoChave últimaChave = TipoChave.Nome;
+
 			do
 			{
 				procurar = false;
 
 				using (ProcurarPessoa procura = new ProcurarPessoa())
 				{
+                    procura.Chave = últimaChave;
+
                     DialogResult resultado;
 
                     if (owner != null)
                         resultado = procura.ShowDialog(owner);
                     else
                         resultado = procura.ShowDialog();
+
+                    últimaChave = procura.Chave;
 
 					if (resultado == DialogResult.OK)
 					{
@@ -278,25 +290,24 @@ namespace Apresentação.Pessoa.Consultas
 						}
 						catch (NadaEncontrado)
 						{
-                            const string msg = "Nenhuma pessoa foi encontrada com os dados fornecidos. Deseja tentar novamente?";
+                            const string msg = "Nenhuma pessoa foi encontrada com os dados fornecidos. ";
                             const string título = "Procurar por pessoa";
 
                             if (owner != null)
-                                resultado = MessageBox.Show(
+                                MessageBox.Show(
                                     owner,
                                     msg,
                                     título,
-                                    MessageBoxButtons.YesNo,
+                                    MessageBoxButtons.OK,
                                     MessageBoxIcon.Exclamation);
                             else
-                                resultado = MessageBox.Show(
+                                MessageBox.Show(
                                     msg,
                                     título,
                                     MessageBoxButtons.YesNo,
                                     MessageBoxIcon.Exclamation);
 
-                            if (resultado == DialogResult.Yes)
-                                procurar = true;
+                            procurar = true;
 						}
 					}
 				}
