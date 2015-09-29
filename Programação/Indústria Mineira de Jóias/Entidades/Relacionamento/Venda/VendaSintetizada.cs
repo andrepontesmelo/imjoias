@@ -300,7 +300,7 @@ namespace Entidades.Relacionamento.Venda
 
             if (sedex.HasValue)
             {
-                consulta.Append(" AND v.sedex = ");
+                consulta.Append(" AND vv.sedex = ");
                 consulta.Append(DbTransformar(sedex.Value));
             }
 
