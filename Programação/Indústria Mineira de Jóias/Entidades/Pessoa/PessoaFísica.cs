@@ -5,6 +5,7 @@ using Acesso.Comum;
 using Acesso.Comum.Cache;
 using Entidades.Pessoa.Endereço;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Entidades.Pessoa
 {
@@ -33,8 +34,6 @@ namespace Entidades.Pessoa
         public PessoaFísica() { }
 
         public PessoaFísica(ulong código) : base(código) { }
-
-		/*** Métodos **************************************************************/
 
 		#region Getter/Setter
 
@@ -310,11 +309,15 @@ namespace Entidades.Pessoa
 		/// <returns>Vetor de pessoas-física e jurídicas.</returns>
 		public new static PessoaFísica [] ObterPessoas(string nome)
 		{
-			string cmdPF = "SELECT * FROM pessoa p, pessoafisica pf"
-				+ " WHERE p.nome LIKE " + DbEncapsular(DbTransformar(nome, false) + "%")
-				+ " AND p.codigo = pf.codigo";
+            StringBuilder sql = new StringBuilder();
 
-			return Mapear<PessoaFísica>(cmdPF).ToArray();
+            sql.Append("SELECT * FROM pessoa p JOIN pessoafisica pf");
+            sql.Append(" ON p.codigo = pf.codigo");
+            sql.Append(" WHERE p.nome LIKE ");
+            sql.Append(DbTransformar(nome, false));
+            sql.Append("%");
+
+			return Mapear<PessoaFísica>(sql.ToString()).ToArray();
 		}
 
 		/// <summary>
@@ -329,9 +332,9 @@ namespace Entidades.Pessoa
             lock (conexão)
                 using (IDbCommand cmd = conexão.CreateCommand())
                 {
-                    cmd.CommandText = "SELECT * FROM pessoa p, pessoafisica pf"
-                        + " WHERE p.codigo = pf.codigo"
-                        + " AND pf.cpf = " + DbTransformar(FormatarCPF(cpf));
+                    cmd.CommandText = "SELECT * FROM pessoa p JOIN pessoafisica pf"
+                        + " ON p.codigo = pf.codigo"
+                        + " WHERE pf.cpf = " + DbTransformar(FormatarCPF(cpf));
 
                     return MapearÚnicaLinha<PessoaFísica>(cmd);
                 }
@@ -361,11 +364,11 @@ namespace Entidades.Pessoa
 		/// </summary>
 		/// <param name="di">DI da pessoa-física.</param>
 		/// <returns>Pessoa-física.</returns>
-		public static List<Pessoa> ObterPessoasPorRG(string di)
+        public static List<Pessoa> ObterPessoasPorRG(string di)
 		{
-			string comando = "SELECT * FROM pessoa p, pessoafisica pf"
-				+ " WHERE p.codigo = pf.codigo"
-				+ " AND pf.di LIKE '%" + di + "%'";
+			string comando = "SELECT p.* FROM pessoa p JOIN pessoafisica pf"
+				+ " ON p.codigo = pf.codigo"
+				+ " WHERE pf.di LIKE '%" + di + "%'";
 
 			return Mapear<Pessoa>(comando);
 		}
@@ -382,12 +385,6 @@ namespace Entidades.Pessoa
 
         public new static PessoaFísica ObterPessoaSemCache(ulong código)
         {
-            //string comando = "SELECT * FROM pessoa p, pessoafisica pf"
-            //    + " WHERE p.codigo = pf.codigo"
-            //    + " AND p.codigo = " + DbTransformar(código);
-
-            //return MapearÚnicaLinha<PessoaFísica>(comando);
-
             return Pessoa.ObterPessoaSemCache(código) as PessoaFísica;
         }
 
