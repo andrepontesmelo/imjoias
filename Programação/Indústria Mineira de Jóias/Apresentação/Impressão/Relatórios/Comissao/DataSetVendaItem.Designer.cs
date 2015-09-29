@@ -591,6 +591,10 @@ namespace Apresentação.Impressão.Relatórios.Comissao {
             
             private global::System.Data.DataColumn columncomissaoparavendedor;
             
+            private global::System.Data.DataColumn columnfaixa;
+            
+            private global::System.Data.DataColumn columngrupo;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ItensDataTable() {
@@ -746,6 +750,22 @@ namespace Apresentação.Impressão.Relatórios.Comissao {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn faixaColumn {
+                get {
+                    return this.columnfaixa;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn grupoColumn {
+                get {
+                    return this.columngrupo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -781,7 +801,24 @@ namespace Apresentação.Impressão.Relatórios.Comissao {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ItensRow AddItensRow(string codVenda, double valorv, double valorc, double valore, double apagar, string data, string regra, string nomecomissaopara, string codCliente, string referencia, double peso, bool depeso, double indice, string quantidade, bool comissaoparavendedor) {
+            public ItensRow AddItensRow(
+                        string codVenda, 
+                        double valorv, 
+                        double valorc, 
+                        double valore, 
+                        double apagar, 
+                        string data, 
+                        string regra, 
+                        string nomecomissaopara, 
+                        string codCliente, 
+                        string referencia, 
+                        double peso, 
+                        bool depeso, 
+                        double indice, 
+                        string quantidade, 
+                        bool comissaoparavendedor, 
+                        string faixa, 
+                        string grupo) {
                 ItensRow rowItensRow = ((ItensRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         codVenda,
@@ -798,7 +835,9 @@ namespace Apresentação.Impressão.Relatórios.Comissao {
                         depeso,
                         indice,
                         quantidade,
-                        comissaoparavendedor};
+                        comissaoparavendedor,
+                        faixa,
+                        grupo};
                 rowItensRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowItensRow);
                 return rowItensRow;
@@ -836,6 +875,8 @@ namespace Apresentação.Impressão.Relatórios.Comissao {
                 this.columnindice = base.Columns["indice"];
                 this.columnquantidade = base.Columns["quantidade"];
                 this.columncomissaoparavendedor = base.Columns["comissaoparavendedor"];
+                this.columnfaixa = base.Columns["faixa"];
+                this.columngrupo = base.Columns["grupo"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -871,6 +912,10 @@ namespace Apresentação.Impressão.Relatórios.Comissao {
                 base.Columns.Add(this.columnquantidade);
                 this.columncomissaoparavendedor = new global::System.Data.DataColumn("comissaoparavendedor", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncomissaoparavendedor);
+                this.columnfaixa = new global::System.Data.DataColumn("faixa", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnfaixa);
+                this.columngrupo = new global::System.Data.DataColumn("grupo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columngrupo);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1296,6 +1341,38 @@ namespace Apresentação.Impressão.Relatórios.Comissao {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string faixa {
+                get {
+                    try {
+                        return ((string)(this[this.tableItens.faixaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'faixa\' in table \'Itens\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItens.faixaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string grupo {
+                get {
+                    try {
+                        return ((string)(this[this.tableItens.grupoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'grupo\' in table \'Itens\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItens.grupoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IscodVendaNull() {
                 return this.IsNull(this.tableItens.codVendaColumn);
             }
@@ -1472,6 +1549,30 @@ namespace Apresentação.Impressão.Relatórios.Comissao {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetcomissaoparavendedorNull() {
                 this[this.tableItens.comissaoparavendedorColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsfaixaNull() {
+                return this.IsNull(this.tableItens.faixaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetfaixaNull() {
+                this[this.tableItens.faixaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsgrupoNull() {
+                return this.IsNull(this.tableItens.grupoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetgrupoNull() {
+                this[this.tableItens.grupoColumn] = global::System.Convert.DBNull;
             }
         }
         
