@@ -74,6 +74,15 @@ namespace Entidades.ComissãoCálculo.Impressão
             set { valore = value; }
         }
 
+        protected double desconto;
+
+        protected double Desconto
+        {
+            get { return desconto; }
+            set { desconto = value; }
+        }
+
+
 
         public ImpressãoComissãoVenda()
         {
@@ -85,22 +94,22 @@ namespace Entidades.ComissãoCálculo.Impressão
 
 
 //select * from 
-//            (select v.vendedor=cv.comissaopara as comissaoparavendedor,v.data as data, v.cliente, regra, cp.nome as nomecomissaopara, cv.venda, sum(valorv) as valorv, sum(valorc) as valorc, 0 as valore from comissao_venda  cv
+//            (select v.desconto, v.vendedor=cv.comissaopara as comissaoparavendedor,v.data as data, v.cliente, regra, cp.nome as nomecomissaopara, cv.venda, sum(valorv) as valorv, sum(valorc) as valorc, 0 as valore from comissao_venda  cv
 //join venda v on cv.venda=v.codigo
 //join pessoa cp on cp.codigo=cv.comissaopara
 //join comissaovenda cve on cve.venda=cv.venda and cve.pessoa=cv.comissaopara and cve.comissao=3
 //group by cv.venda, cv.comissaopara) aa
-//            UNION (select v.vendedor=cv.comissaopara as comissaoparavendedor, v.data as data, v.cliente, regra, cp.nome as nomecomissaopara, cv.venda, sum(valorv), 0 as valorc, sum(valorc) as valore from comissao_venda  cv
+//UNION (select v.desconto, v.vendedor=cv.comissaopara as comissaoparavendedor, v.data as data, v.cliente, regra, cp.nome as nomecomissaopara, cv.venda, sum(valorv), 0 as valorc, sum(valorc) as valore from comissao_venda  cv
 //join venda v on cv.venda=v.codigo
 //join pessoa cp on cp.codigo=cv.comissaopara
 //join comissaoestornovenda cve on cve.venda=cv.venda and cve.pessoa=cv.comissaopara and cve.comissao=3
 //group by cv.venda, cv.comissaopara) order by data, nomecomissaopara
 
 
-            str.Append("select * from (select v.vendedor=cv.comissaopara as comissaoparavendedor, v.data as data, v.cliente, regra, cp.nome as nomecomissaopara, cv.venda, sum(valorv) as valorv, sum(valorc) as valorc, 0 as valore from comissao_venda  cv ");
+            str.Append("select * from (select v.desconto, v.vendedor=cv.comissaopara as comissaoparavendedor, v.data as data, v.cliente, regra, cp.nome as nomecomissaopara, cv.venda, sum(valorv) as valorv, sum(valorc) as valorc, 0 as valore from comissao_venda  cv ");
             str.Append(" join venda v on cv.venda=v.codigo join pessoa cp on cp.codigo=cv.comissaopara join comissaovenda cve on cve.venda=cv.venda and cve.pessoa=cv.comissaopara and cve.comissao=");
             str.Append(DbTransformar(c.Código));
-            str.Append(" group by cv.venda, cv.comissaopara) aa UNION (select v.vendedor=cv.comissaopara as comissaoparavendedor, v.data as data, v.cliente, regra, cp.nome as nomecomissaopara, cv.venda, sum(valorv), 0 as valorc, sum(valorc) as valore from comissao_venda  cv ");
+            str.Append(" group by cv.venda, cv.comissaopara) aa UNION (select v.desconto, v.vendedor=cv.comissaopara as comissaoparavendedor, v.data as data, v.cliente, regra, cp.nome as nomecomissaopara, cv.venda, sum(valorv), 0 as valorc, sum(valorc) as valore from comissao_venda  cv ");
             str.Append(" join venda v on cv.venda=v.codigo join pessoa cp on cp.codigo=cv.comissaopara join comissaoestornovenda cve on cve.venda=cv.venda and cve.pessoa=cv.comissaopara and cve.comissao=");
             str.Append(DbTransformar(c.Código));
             str.Append(" group by cv.venda, cv.comissaopara) order by data, nomecomissaopara ");
@@ -129,7 +138,7 @@ namespace Entidades.ComissãoCálculo.Impressão
             item["data"] = Data.ToShortDateString();
             item["regra"] = Entidades.ComissãoCálculo.Regra.ObterNome(Regra);
             item["nomecomissaopara"] = Entidades.Pessoa.Pessoa.ReduzirNome(Nomecomissaopara);
-
+            item["desconto"] = Desconto;
             tabelaItens.Rows.Add(item);
         }
 
