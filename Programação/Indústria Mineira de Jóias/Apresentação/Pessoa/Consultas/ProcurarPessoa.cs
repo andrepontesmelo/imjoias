@@ -363,7 +363,7 @@ namespace Apresentação.Pessoa.Consultas
                         break;
 
                     case TipoChave.CNPJ:
-                        pessoas = new List<Entidades.Pessoa.Pessoa>()  { PessoaJurídica.ObterPessoaPorCNPJ(chave) };
+                        pessoas = PessoaJurídica.ObterPessoasPorCNPJ(chave);
                         break;
 
                     case TipoChave.Telefone:
