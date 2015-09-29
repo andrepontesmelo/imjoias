@@ -129,7 +129,7 @@ namespace Entidades.ComissãoCálculo.Impressão
             base.ObterImpressão(tabelaItens);
 
             int indice = tabelaItens.Rows.Count - 1;
-            tabelaItens.Rows[indice]["referencia"] = Entidades.Mercadoria.Mercadoria.MascararReferência(Referencia);
+            tabelaItens.Rows[indice]["referencia"] = Entidades.Mercadoria.Mercadoria.MascararReferência(Referencia, true);
             tabelaItens.Rows[indice]["depeso"] = Depeso;
             tabelaItens.Rows[indice]["peso"] = Peso;
             tabelaItens.Rows[indice]["quantidade"] = Quantidade;
