@@ -595,6 +595,8 @@ namespace Apresentação.Impressão.Relatórios.Comissao {
             
             private global::System.Data.DataColumn columngrupo;
             
+            private global::System.Data.DataColumn columndesconto;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ItensDataTable() {
@@ -766,6 +768,14 @@ namespace Apresentação.Impressão.Relatórios.Comissao {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn descontoColumn {
+                get {
+                    return this.columndesconto;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -818,7 +828,8 @@ namespace Apresentação.Impressão.Relatórios.Comissao {
                         string quantidade, 
                         bool comissaoparavendedor, 
                         string faixa, 
-                        string grupo) {
+                        string grupo, 
+                        double desconto) {
                 ItensRow rowItensRow = ((ItensRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         codVenda,
@@ -837,7 +848,8 @@ namespace Apresentação.Impressão.Relatórios.Comissao {
                         quantidade,
                         comissaoparavendedor,
                         faixa,
-                        grupo};
+                        grupo,
+                        desconto};
                 rowItensRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowItensRow);
                 return rowItensRow;
@@ -877,6 +889,7 @@ namespace Apresentação.Impressão.Relatórios.Comissao {
                 this.columncomissaoparavendedor = base.Columns["comissaoparavendedor"];
                 this.columnfaixa = base.Columns["faixa"];
                 this.columngrupo = base.Columns["grupo"];
+                this.columndesconto = base.Columns["desconto"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -916,6 +929,8 @@ namespace Apresentação.Impressão.Relatórios.Comissao {
                 base.Columns.Add(this.columnfaixa);
                 this.columngrupo = new global::System.Data.DataColumn("grupo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columngrupo);
+                this.columndesconto = new global::System.Data.DataColumn("desconto", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndesconto);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1373,6 +1388,22 @@ namespace Apresentação.Impressão.Relatórios.Comissao {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double desconto {
+                get {
+                    try {
+                        return ((double)(this[this.tableItens.descontoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'desconto\' in table \'Itens\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItens.descontoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IscodVendaNull() {
                 return this.IsNull(this.tableItens.codVendaColumn);
             }
@@ -1573,6 +1604,18 @@ namespace Apresentação.Impressão.Relatórios.Comissao {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetgrupoNull() {
                 this[this.tableItens.grupoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsdescontoNull() {
+                return this.IsNull(this.tableItens.descontoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetdescontoNull() {
+                this[this.tableItens.descontoColumn] = global::System.Convert.DBNull;
             }
         }
         

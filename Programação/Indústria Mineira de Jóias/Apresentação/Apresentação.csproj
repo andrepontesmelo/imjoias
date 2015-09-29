@@ -1538,7 +1538,6 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Impressão\Relatórios\Relatório.cs" />
     <Compile Include="Impressão\Relatórios\RelatórioBalanço.cs">
       <DependentUpon>RelatórioBalanço.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
