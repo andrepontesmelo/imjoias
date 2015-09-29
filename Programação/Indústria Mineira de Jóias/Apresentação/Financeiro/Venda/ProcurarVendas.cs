@@ -91,8 +91,6 @@ namespace Apresentação.Financeiro.Venda
                 vendas = VendaSintetizada.ObterVendas(null, txtCliente.Pessoa, dataInício.Value, dataFim.Value);
             }
 
-            Close();
-
             ListarVendas listagem = new ListarVendas(controlador, vendas, tipoVinculo);
 
             listagem.Show(ParentForm);
