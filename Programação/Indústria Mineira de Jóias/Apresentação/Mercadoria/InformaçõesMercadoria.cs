@@ -667,7 +667,7 @@ namespace Apresentação.Mercadoria
                 lblCotação.Text = "; Tabela: " +
                     (mercadoria.TabelaPreço != null ? mercadoria.TabelaPreço.Nome : "Desconhecida");
 
-                bool tabelaVerejo = (mercadoria.TabelaPreço.Nome.IndexOf("Varejo", StringComparison.CurrentCultureIgnoreCase) >= 0);
+                bool tabelaVerejo = mercadoria.TabelaPreço.Nome.CompareTo("Varejo Consulta") == 0;
 
                 AtualizarExibição(tabelaVerejo);
 
