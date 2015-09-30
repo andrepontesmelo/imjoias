@@ -44,11 +44,11 @@ namespace Apresentação.Mercadoria
         private ToolStripMenuItem mnuPrazo30x60x90;
         private ToolStripMenuItem mnuPrazoPersonalizado;
         private ToolStripTextBox mnuPrazoPersonalizadoTxt;
-        private Label lblPreço2;
+        private Label lblPreço30;
         private Label lblRótuloPreço30;
-        private Label lblPreço3;
+        private Label lblPreço30x60;
         private Label lblRótuloPreço30x60;
-        private Label lblPreço4;
+        private Label lblPreço30x60x90;
         private PictureBox picEscolhaPreço4;
         private Label lblRótuloPreço30x60x90;
         private Label lblCotação;
@@ -68,7 +68,7 @@ namespace Apresentação.Mercadoria
         private System.Windows.Forms.Label lblReferência;
         private System.Windows.Forms.Label lblPeso;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblRótuloÍndice;
         private System.Windows.Forms.Label lblÍndice;
         private System.Windows.Forms.Label lblRótuloPreço1;
         private System.Windows.Forms.Label label6;
@@ -116,7 +116,7 @@ namespace Apresentação.Mercadoria
             this.lblReferência = new System.Windows.Forms.Label();
             this.lblPeso = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblRótuloÍndice = new System.Windows.Forms.Label();
             this.lblÍndice = new System.Windows.Forms.Label();
             this.lblPreço1 = new System.Windows.Forms.Label();
             this.mnuPreço = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -132,11 +132,11 @@ namespace Apresentação.Mercadoria
             this.label6 = new System.Windows.Forms.Label();
             this.lblDescrição = new System.Windows.Forms.Label();
             this.btnFechar = new System.Windows.Forms.Button();
-            this.lblPreço2 = new System.Windows.Forms.Label();
+            this.lblPreço30 = new System.Windows.Forms.Label();
             this.lblRótuloPreço30 = new System.Windows.Forms.Label();
-            this.lblPreço3 = new System.Windows.Forms.Label();
+            this.lblPreço30x60 = new System.Windows.Forms.Label();
             this.lblRótuloPreço30x60 = new System.Windows.Forms.Label();
-            this.lblPreço4 = new System.Windows.Forms.Label();
+            this.lblPreço30x60x90 = new System.Windows.Forms.Label();
             this.picEscolhaPreço4 = new System.Windows.Forms.PictureBox();
             this.lblRótuloPreço30x60x90 = new System.Windows.Forms.Label();
             this.lblCotação = new System.Windows.Forms.Label();
@@ -186,16 +186,16 @@ namespace Apresentação.Mercadoria
             this.label1.Text = "Peso";
             this.label1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.InformaçõesMercadoria_MouseDown);
             // 
-            // label2
+            // lblRótuloÍndice
             // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(84, 381);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(36, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Índice";
-            this.label2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.InformaçõesMercadoria_MouseDown);
+            this.lblRótuloÍndice.AutoSize = true;
+            this.lblRótuloÍndice.BackColor = System.Drawing.Color.Transparent;
+            this.lblRótuloÍndice.Location = new System.Drawing.Point(84, 381);
+            this.lblRótuloÍndice.Name = "lblRótuloÍndice";
+            this.lblRótuloÍndice.Size = new System.Drawing.Size(36, 13);
+            this.lblRótuloÍndice.TabIndex = 4;
+            this.lblRótuloÍndice.Text = "Índice";
+            this.lblRótuloÍndice.MouseDown += new System.Windows.Forms.MouseEventHandler(this.InformaçõesMercadoria_MouseDown);
             // 
             // lblÍndice
             // 
@@ -364,21 +364,21 @@ namespace Apresentação.Mercadoria
             this.btnFechar.UseVisualStyleBackColor = false;
             this.btnFechar.Click += new System.EventHandler(this.btnFechar_Click);
             // 
-            // lblPreço2
+            // lblPreço30
             // 
-            this.lblPreço2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(180)))), ((int)(((byte)(193)))), ((int)(((byte)(162)))));
-            this.lblPreço2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblPreço2.ContextMenuStrip = this.mnuPreço;
-            this.lblPreço2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblPreço2.Location = new System.Drawing.Point(382, 360);
-            this.lblPreço2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 5);
-            this.lblPreço2.Name = "lblPreço2";
-            this.lblPreço2.Size = new System.Drawing.Size(100, 16);
-            this.lblPreço2.TabIndex = 14;
-            this.lblPreço2.Tag = "1";
-            this.lblPreço2.Text = "R$ 0,00";
-            this.lblPreço2.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.lblPreço2.UseMnemonic = false;
+            this.lblPreço30.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(180)))), ((int)(((byte)(193)))), ((int)(((byte)(162)))));
+            this.lblPreço30.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblPreço30.ContextMenuStrip = this.mnuPreço;
+            this.lblPreço30.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblPreço30.Location = new System.Drawing.Point(382, 360);
+            this.lblPreço30.Margin = new System.Windows.Forms.Padding(3, 0, 3, 5);
+            this.lblPreço30.Name = "lblPreço30";
+            this.lblPreço30.Size = new System.Drawing.Size(100, 16);
+            this.lblPreço30.TabIndex = 14;
+            this.lblPreço30.Tag = "1";
+            this.lblPreço30.Text = "R$ 0,00";
+            this.lblPreço30.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lblPreço30.UseMnemonic = false;
             // 
             // lblRótuloPreço30
             // 
@@ -394,21 +394,21 @@ namespace Apresentação.Mercadoria
             this.lblRótuloPreço30.Tag = "1";
             this.lblRótuloPreço30.Text = "A prazo: 30";
             // 
-            // lblPreço3
+            // lblPreço30x60
             // 
-            this.lblPreço3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(180)))), ((int)(((byte)(193)))), ((int)(((byte)(162)))));
-            this.lblPreço3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblPreço3.ContextMenuStrip = this.mnuPreço;
-            this.lblPreço3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblPreço3.Location = new System.Drawing.Point(382, 397);
-            this.lblPreço3.Margin = new System.Windows.Forms.Padding(3, 0, 3, 5);
-            this.lblPreço3.Name = "lblPreço3";
-            this.lblPreço3.Size = new System.Drawing.Size(100, 16);
-            this.lblPreço3.TabIndex = 17;
-            this.lblPreço3.Tag = "2";
-            this.lblPreço3.Text = "R$ 0,00";
-            this.lblPreço3.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.lblPreço3.UseMnemonic = false;
+            this.lblPreço30x60.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(180)))), ((int)(((byte)(193)))), ((int)(((byte)(162)))));
+            this.lblPreço30x60.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblPreço30x60.ContextMenuStrip = this.mnuPreço;
+            this.lblPreço30x60.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblPreço30x60.Location = new System.Drawing.Point(382, 397);
+            this.lblPreço30x60.Margin = new System.Windows.Forms.Padding(3, 0, 3, 5);
+            this.lblPreço30x60.Name = "lblPreço30x60";
+            this.lblPreço30x60.Size = new System.Drawing.Size(100, 16);
+            this.lblPreço30x60.TabIndex = 17;
+            this.lblPreço30x60.Tag = "2";
+            this.lblPreço30x60.Text = "R$ 0,00";
+            this.lblPreço30x60.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lblPreço30x60.UseMnemonic = false;
             // 
             // lblRótuloPreço30x60
             // 
@@ -424,23 +424,23 @@ namespace Apresentação.Mercadoria
             this.lblRótuloPreço30x60.Tag = "2";
             this.lblRótuloPreço30x60.Text = "A prazo: 30x60";
             // 
-            // lblPreço4
+            // lblPreço30x60x90
             // 
-            this.lblPreço4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(180)))), ((int)(((byte)(193)))), ((int)(((byte)(162)))));
-            this.lblPreço4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblPreço4.ContextMenuStrip = this.mnuPreço;
-            this.lblPreço4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblPreço4.Location = new System.Drawing.Point(382, 434);
-            this.lblPreço4.Margin = new System.Windows.Forms.Padding(3, 0, 3, 5);
-            this.lblPreço4.Name = "lblPreço4";
-            this.lblPreço4.Size = new System.Drawing.Size(100, 16);
-            this.lblPreço4.TabIndex = 20;
-            this.lblPreço4.Tag = "3";
-            this.lblPreço4.Text = "R$ 0,00";
-            this.lblPreço4.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.lblPreço4.UseMnemonic = false;
-            this.lblPreço4.Click += new System.EventHandler(this.lblRótuloPreço_Click);
-            this.lblPreço4.MouseHover += new System.EventHandler(this.lblRótuloPreço_MouseHover);
+            this.lblPreço30x60x90.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(180)))), ((int)(((byte)(193)))), ((int)(((byte)(162)))));
+            this.lblPreço30x60x90.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblPreço30x60x90.ContextMenuStrip = this.mnuPreço;
+            this.lblPreço30x60x90.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblPreço30x60x90.Location = new System.Drawing.Point(382, 434);
+            this.lblPreço30x60x90.Margin = new System.Windows.Forms.Padding(3, 0, 3, 5);
+            this.lblPreço30x60x90.Name = "lblPreço30x60x90";
+            this.lblPreço30x60x90.Size = new System.Drawing.Size(100, 16);
+            this.lblPreço30x60x90.TabIndex = 20;
+            this.lblPreço30x60x90.Tag = "3";
+            this.lblPreço30x60x90.Text = "R$ 0,00";
+            this.lblPreço30x60x90.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lblPreço30x60x90.UseMnemonic = false;
+            this.lblPreço30x60x90.Click += new System.EventHandler(this.lblRótuloPreço_Click);
+            this.lblPreço30x60x90.MouseHover += new System.EventHandler(this.lblRótuloPreço_MouseHover);
             // 
             // picEscolhaPreço4
             // 
@@ -539,16 +539,16 @@ namespace Apresentação.Mercadoria
             this.CancelButton = this.btnFechar;
             this.ClientSize = new System.Drawing.Size(498, 461);
             this.ControlBox = false;
-            this.Controls.Add(this.lblPreço4);
+            this.Controls.Add(this.lblPreço30x60x90);
             this.Controls.Add(this.lblFaixaGrupo);
             this.Controls.Add(this.lblCotação);
             this.Controls.Add(this.btnRastrear);
             this.Controls.Add(this.picEscolhaPreço4);
             this.Controls.Add(this.btnSalvarFoto);
-            this.Controls.Add(this.lblPreço3);
+            this.Controls.Add(this.lblPreço30x60);
             this.Controls.Add(this.lblRótuloPreço30x60x90);
             this.Controls.Add(this.lblRótuloPreço30x60);
-            this.Controls.Add(this.lblPreço2);
+            this.Controls.Add(this.lblPreço30);
             this.Controls.Add(this.lblPeso);
             this.Controls.Add(this.lblRótuloPreço30);
             this.Controls.Add(this.lblÍndice);
@@ -560,7 +560,7 @@ namespace Apresentação.Mercadoria
             this.Controls.Add(this.btnFechar);
             this.Controls.Add(this.picFoto);
             this.Controls.Add(this.lblReferência);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblRótuloÍndice);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.MaximizeBox = false;
@@ -659,16 +659,48 @@ namespace Apresentação.Mercadoria
             if (mercadoria != null)
             {
                 lblPreço1.Text = CalcularPreço(dias[0]);
-                lblPreço2.Text = CalcularPreço(dias[1]);
-                lblPreço3.Text = CalcularPreço(dias[2]);
-                lblPreço4.Text = CalcularPreço(dias[3]);
+                lblPreço30.Text = CalcularPreço(dias[1]);
+                lblPreço30x60.Text = CalcularPreço(dias[2]);
+                lblPreço30x60x90.Text = CalcularPreço(dias[3]);
                 lblCotação.Text = "* Cotação: " +
                     (cotação != null ? cotação.Valor.ToString("C", DadosGlobais.Instância.Cultura) : "Informação não disponível");
                 lblCotação.Text = "; Tabela: " +
                     (mercadoria.TabelaPreço != null ? mercadoria.TabelaPreço.Nome : "Desconhecida");
 
                 bool tabelaVerejo = (mercadoria.TabelaPreço.Nome.IndexOf("Varejo", StringComparison.CurrentCultureIgnoreCase) >= 0);
-                lblRótuloPreço30.Visible = picEscolhaPreço4.Visible = lblRótuloPreço30x60.Visible = lblRótuloPreço30x60x90.Visible = !tabelaVerejo;
+
+                AtualizarExibição(tabelaVerejo);
+
+            }
+        }
+
+        private void AtualizarExibição(bool tabelaVerejo)
+        {
+            lblRótuloPreço30.Visible = 
+                lblPreço30.Visible = 
+                picEscolhaPreço4.Visible = 
+                lblRótuloPreço30x60.Visible = 
+                lblPreço30x60.Visible = 
+                //lblRótuloPreço30x60x90.Visible = 
+                lblRótuloÍndice.Visible =
+                lblÍndice.Visible =
+                !tabelaVerejo;
+
+            if (tabelaVerejo)
+            {
+                lblPreço30x60x90.Font = new Font(lblPreço30x60x90.Font.FontFamily, 8.25f, FontStyle.Bold);
+                //lblPreço30x60x90.AutoSize = true;
+                //lblPreço30x60x90.Top -= 10;
+                //lblPreço30x60x90.Left -= 25;
+                //lblPreço30x60x90.BorderStyle = BorderStyle.None;
+                //lblPreço30x60x90.BackColor = Color.White;
+
+                lblRótuloPreço1.Text = "Somente à vista";
+                lblRótuloPreço1.Left = lblPreço1.Left  = lblRótuloPreço30x60x90.Left;
+
+                lblRótuloPreço30x60x90.Text = "Preço";
+                lblPreço30x60x90.BackColor = Color.FromArgb(80, 230, 193, 162);
+                lblPreço1.BackColor = Color.FromArgb(20, 0, 0, 0);
             }
         }
 
@@ -802,7 +834,7 @@ namespace Apresentação.Mercadoria
         private void AtualizarMenuPreço(int dias)
         {
             Label[] lbl = new Label[] {
-                lblPreço1, lblPreço2, lblPreço3, lblPreço4 };
+                lblPreço1, lblPreço30, lblPreço30x60, lblPreço30x60x90 };
             Label lblPreço;
 
             lblPreço = lbl[int.Parse(mnuPreço.Tag.ToString())];
@@ -833,7 +865,7 @@ namespace Apresentação.Mercadoria
         private void lblRótuloPreço_Click(object sender, EventArgs e)
         {
             Label[] lbl = new Label[] {
-                lblPreço1, lblPreço2, lblPreço3, lblPreço4 };
+                lblPreço1, lblPreço30, lblPreço30x60, lblPreço30x60x90 };
             Label lblPreço;
 
             lblPreço = lbl[int.Parse(((Control)sender).Tag.ToString())];
@@ -848,7 +880,7 @@ namespace Apresentação.Mercadoria
         private void lblRótuloPreço_MouseHover(object sender, EventArgs e)
         {
             Label[] lbl = new Label[] {
-                lblPreço1, lblPreço2, lblPreço3, lblPreço4 };
+                lblPreço1, lblPreço30, lblPreço30x60, lblPreço30x60x90 };
             Label lblPreço;
 
             lblPreço = lbl[int.Parse(((Control)sender).Tag.ToString())];
