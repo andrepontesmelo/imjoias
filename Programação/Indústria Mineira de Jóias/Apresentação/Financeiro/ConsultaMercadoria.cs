@@ -15,6 +15,8 @@ namespace Apresentação.Financeiro
 {
     public partial class ConsultaMercadoria : Apresentação.Formulários.JanelaExplicativa
     {
+        private ConfiguraçãoUsuário<uint> configuração = null;
+
         public ConsultaMercadoria()
         {
             InitializeComponent();
@@ -24,12 +26,19 @@ namespace Apresentação.Financeiro
         {
             base.OnLoad(e);
 
+            configuração = new ConfiguraçãoUsuário<uint>("ÚltimaTabelaConsulta", ObterTabelaPadrão().Código);
+
+            cmbTabela.Seleção = Tabela.ObterTabela(configuração.Valor);
+        }
+
+        private Tabela ObterTabelaPadrão()
+        {
             Tabela[] tabelas = Tabela.ObterTabelas(Funcionário.FuncionárioAtual.Setor);
 
             if (tabelas.Length == 0)
-                cmbTabela.Seleção = Tabela.TabelaPadrão;
+                return Tabela.TabelaPadrão;
             else
-                cmbTabela.Seleção = tabelas[0];
+                return cmbTabela.Seleção = tabelas[0];
         }
 
         private void btnConsultar_Click(object sender, EventArgs e)
@@ -44,6 +53,8 @@ namespace Apresentação.Financeiro
 
                 return;
             }
+
+            configuração.Valor = cmbTabela.Seleção.Código;
 
             UseWaitCursor = true;
 
