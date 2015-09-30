@@ -386,6 +386,7 @@ namespace Apresentação.Formulários
 			AoCarregarCompletamente(splash);
 
             this.Text = "Indústria Mineira de Jóias " + Versão.Descrição;
+            new Entidades.Configuração.ConfiguraçãoUsuário<string>("VersãoTítular", Versão.Descrição).Valor = Versão.Descrição;
 
             this.Refresh();
 			
