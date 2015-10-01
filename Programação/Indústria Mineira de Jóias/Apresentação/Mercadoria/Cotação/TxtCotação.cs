@@ -748,6 +748,10 @@ namespace Apresentação.Mercadoria.Cotação
         /// </summary>
         private void IndicarCotação()
         {
+            // Varejo não trabalha com cotação
+            if (moeda.Código == 4)
+                return;
+
             Entidades.Cotação escolha = Cotação;
 
             if (escolha != null)
