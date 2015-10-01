@@ -26,8 +26,9 @@ namespace Apresentação.Financeiro
         {
             base.OnLoad(e);
 
-            configuração = new ConfiguraçãoUsuário<uint>("ÚltimaTabelaConsulta", ObterTabelaPadrão().Código);
+            configuração = new ConfiguraçãoUsuário<uint>("ÚltimaTabelaConsulta", Tabela.TabelaPadrão.Código);
 
+            txtCotação.Data = Entidades.Configuração.DadosGlobais.Instância.HoraDataAtual;
             cmbTabela.Seleção = Tabela.ObterTabela(configuração.Valor);
         }
 
