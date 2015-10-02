@@ -316,20 +316,24 @@ namespace Apresentação.Financeiro
                 if (!listaÍndicesArredondados.Contains(mercadoria.ÍndiceArredondado))
                     listaÍndicesArredondados.Add(mercadoria.ÍndiceArredondado);
 
+                /* Código temporário:
+                 * 
+                 * a seguinte linha desliga a janela de escolha de índice para o Varejo.
+                 * Será escolhido o valor da mercadoria em real (índice arrendondado).
+                 * 
+                 * Para novos acertos, o indice na saída já será o valor em real e então
+                 * todo este código poderá ser removido.
+                 * 
+                 */
+                if (mercadoria.TabelaPreço.Nome == "Varejo")
+                {
+                    mercadoria.Índice = mercadoria.ÍndiceArredondado;
+                    return;
+                }
+
                 // Neste ponto a listaÍndices tem um ou mais elementos.
                 if ((modoJanela == ModoJanelaÍndice.MostrarSempre || listaÍndicesArredondados.Count > 1)
-                    && (modoJanela != ModoJanelaÍndice.NuncaMostrarNãoAlterandoÍndice)
-
-                    /* Código temporário:
-                     * 
-                     * a seguinte linha desliga a janela de escolha de índice para o Varejo.
-                     * Será escolhido o valor da mercadoria em real (índice arrendondado).
-                     * 
-                     * Para novos acertos, o indice na saída já será o valor em real e então
-                     * todo este código poderá ser removido.
-                     * 
-                     */
-                    && mercadoria.TabelaPreço.Nome != "Varejo")
+                    && (modoJanela != ModoJanelaÍndice.NuncaMostrarNãoAlterandoÍndice))
                 {
                     JanelaEscolhaÍndice j = new JanelaEscolhaÍndice();
                     j.CarregarÍndices(listaÍndicesArredondados, mercadoria.ÍndiceArredondado, mercadoria, entidade as RelacionamentoAcerto);
