@@ -66,7 +66,7 @@ namespace Apresentação.Formulários
             else if (dias <= 7)
                 lblVersão.Text = "Compilado há " + dias.ToString() + " dias";
             else
-                lblVersão.Text = "Compilado em " + dataCompilação.ToLongDateString();
+                lblVersão.Text = "Compilado " + dataCompilação.ToLongDateString();
 
             Application.DoEvents();
         }
