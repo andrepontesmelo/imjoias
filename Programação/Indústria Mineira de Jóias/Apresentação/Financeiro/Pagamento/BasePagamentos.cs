@@ -56,7 +56,7 @@ namespace Apresentação.Financeiro.Pagamento
             janela.Descrição = "Visualização de impressão para nota promissória";
 
             List<Entidades.Pagamentos.NotaPromissória> lstNotasPromissórias =
-                NotaPromissória.FiltrarNotasPromissórias(lista.ObterPagamentosExibidos());
+                NotaPromissória.FiltrarNotasPromissórias(lista.ObterPagamentosExibidos(), true);
 
             Relatório relatório = new Relatório();
             ControleImpressão controle = new ControleImpressão();
