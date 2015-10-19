@@ -58,6 +58,20 @@ namespace Apresentação.Financeiro.Pagamento
             List<Entidades.Pagamentos.NotaPromissória> lstNotasPromissórias =
                 NotaPromissória.FiltrarNotasPromissórias(lista.ObterPagamentosExibidos(), true);
 
+            if (lstNotasPromissórias.Count == 0)
+            {
+                AguardeDB.Fechar();
+
+                MessageBox.Show(this,
+                    "Não existem notas promissórias pendentes",
+                    "Impressão de NPs",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+
+                return;
+            }
+
             Relatório relatório = new Relatório();
             ControleImpressão controle = new ControleImpressão();
 
