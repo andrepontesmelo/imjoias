@@ -170,11 +170,16 @@ namespace Entidades.Pagamentos
 
         public static List<NotaPromissória> FiltrarNotasPromissórias(List<Pagamento> pagamentos)
         {
+            return FiltrarNotasPromissórias(pagamentos, false);
+        }
+
+        public static List<NotaPromissória> FiltrarNotasPromissórias(List<Pagamento> pagamentos, bool sóPendentes)
+        {
             List<NotaPromissória> lst = new List<NotaPromissória>();
 
             foreach (Pagamento p in pagamentos)
             {
-                if (p is NotaPromissória)
+                if (p is NotaPromissória && p.Pendente)
                     lst.Add((NotaPromissória)p);
             }
 
