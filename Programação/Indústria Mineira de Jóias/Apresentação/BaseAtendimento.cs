@@ -71,6 +71,7 @@ namespace Apresentação.Atendimento
         private SinalizaçãoPedido sinalizaçãoPedido;
         private SinalizaçãoMercadoriaEmFalta sinalizaçãoMercadoriaEmFalta;
         private Opção opçãoCréditos;
+        private SumárioAcerto sumárioAcerto1;
         private System.ComponentModel.IContainer components = null;
 
 		/// <summary>
@@ -173,6 +174,7 @@ namespace Apresentação.Atendimento
             this.txtObs = new System.Windows.Forms.TextBox();
             this.sinalizaçãoPedido = new Apresentação.Atendimento.SinalizaçãoPedido();
             this.sinalizaçãoMercadoriaEmFalta = new Apresentação.Mercadoria.SinalizaçãoMercadoriaEmFalta();
+            this.sumárioAcerto1 = new Apresentação.Financeiro.Acerto.SumárioAcerto();
             this.bgDescobrirPendência = new System.ComponentModel.BackgroundWorker();
             this.quadroModoAtendimento = new Apresentação.Formulários.Quadro();
             this.opçãoEncerrarAtendimento = new Apresentação.Formulários.Opção();
@@ -382,7 +384,7 @@ namespace Apresentação.Atendimento
             // 
             // quadroPendências
             // 
-            this.quadroPendências.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(239)))), ((int)(((byte)(221)))));
+            this.quadroPendências.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.quadroPendências.bInfDirArredondada = true;
             this.quadroPendências.bInfEsqArredondada = true;
             this.quadroPendências.bSupDirArredondada = true;
@@ -395,7 +397,7 @@ namespace Apresentação.Atendimento
             this.quadroPendências.Location = new System.Drawing.Point(3, 3);
             this.quadroPendências.MostrarBotãoMinMax = false;
             this.quadroPendências.Name = "quadroPendências";
-            this.quadroPendências.Size = new System.Drawing.Size(194, 150);
+            this.quadroPendências.Size = new System.Drawing.Size(194, 104);
             this.quadroPendências.TabIndex = 8;
             this.quadroPendências.Tamanho = 30;
             this.quadroPendências.Título = "Pendências";
@@ -416,7 +418,8 @@ namespace Apresentação.Atendimento
             this.lstPendências.Location = new System.Drawing.Point(3, 27);
             this.lstPendências.MultiSelect = false;
             this.lstPendências.Name = "lstPendências";
-            this.lstPendências.Size = new System.Drawing.Size(186, 117);
+            this.lstPendências.Scrollable = false;
+            this.lstPendências.Size = new System.Drawing.Size(188, 71);
             this.lstPendências.TabIndex = 2;
             this.lstPendências.UseCompatibleStateImageBehavior = false;
             this.lstPendências.View = System.Windows.Forms.View.Details;
@@ -493,18 +496,20 @@ namespace Apresentação.Atendimento
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 170F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.quadroClassificador, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.quadroPendências, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.quadroObs, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.quadroObs, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.sinalizaçãoPedido, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.sinalizaçãoMercadoriaEmFalta, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.sumárioAcerto1, 1, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(184, 84);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 110F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -527,11 +532,11 @@ namespace Apresentação.Atendimento
             this.quadroClassificador.Dock = System.Windows.Forms.DockStyle.Fill;
             this.quadroClassificador.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadroClassificador.LetraTítulo = System.Drawing.Color.White;
-            this.quadroClassificador.Location = new System.Drawing.Point(3, 159);
+            this.quadroClassificador.Location = new System.Drawing.Point(3, 113);
             this.quadroClassificador.MostrarBotãoMinMax = false;
             this.quadroClassificador.Name = "quadroClassificador";
             this.quadroClassificador.Privilégio = Entidades.Privilégio.Permissão.CadastroAcesso;
-            this.quadroClassificador.Size = new System.Drawing.Size(194, 137);
+            this.quadroClassificador.Size = new System.Drawing.Size(194, 183);
             this.quadroClassificador.TabIndex = 11;
             this.quadroClassificador.Tamanho = 30;
             this.quadroClassificador.Título = "Classificações";
@@ -546,25 +551,25 @@ namespace Apresentação.Atendimento
             this.classificador.Location = new System.Drawing.Point(3, 25);
             this.classificador.Name = "classificador";
             this.classificador.Pessoa = null;
-            this.classificador.Size = new System.Drawing.Size(188, 109);
+            this.classificador.Size = new System.Drawing.Size(191, 155);
             this.classificador.TabIndex = 10;
             // 
             // quadroObs
             // 
             this.quadroObs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.quadroObs.bInfDirArredondada = true;
-            this.quadroObs.bInfEsqArredondada = true;
+            this.quadroObs.bInfDirArredondada = false;
+            this.quadroObs.bInfEsqArredondada = false;
             this.quadroObs.bSupDirArredondada = true;
             this.quadroObs.bSupEsqArredondada = true;
             this.quadroObs.Controls.Add(this.txtObs);
             this.quadroObs.Cor = System.Drawing.Color.Black;
             this.quadroObs.FundoTítulo = System.Drawing.Color.Olive;
             this.quadroObs.LetraTítulo = System.Drawing.Color.White;
-            this.quadroObs.Location = new System.Drawing.Point(203, 3);
+            this.quadroObs.Location = new System.Drawing.Point(373, 3);
             this.quadroObs.MostrarBotãoMinMax = false;
             this.quadroObs.Name = "quadroObs";
             this.tableLayoutPanel1.SetRowSpan(this.quadroObs, 2);
-            this.quadroObs.Size = new System.Drawing.Size(759, 293);
+            this.quadroObs.Size = new System.Drawing.Size(539, 293);
             this.quadroObs.TabIndex = 17;
             this.quadroObs.Tamanho = 30;
             this.quadroObs.Título = "Observações";
@@ -583,7 +588,7 @@ namespace Apresentação.Atendimento
             this.txtObs.Name = "txtObs";
             this.txtObs.ReadOnly = true;
             this.txtObs.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtObs.Size = new System.Drawing.Size(754, 253);
+            this.txtObs.Size = new System.Drawing.Size(534, 263);
             this.txtObs.TabIndex = 2;
             this.txtObs.Text = "As observações só serão exibidas caso exista alguma.";
             // 
@@ -592,14 +597,14 @@ namespace Apresentação.Atendimento
             this.sinalizaçãoPedido.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.sinalizaçãoPedido.Borda = System.Drawing.Color.DarkSeaGreen;
-            this.tableLayoutPanel1.SetColumnSpan(this.sinalizaçãoPedido, 2);
+            this.tableLayoutPanel1.SetColumnSpan(this.sinalizaçãoPedido, 3);
             this.sinalizaçãoPedido.Cor1 = System.Drawing.Color.LightYellow;
             this.sinalizaçãoPedido.Cor2 = System.Drawing.Color.Ivory;
             this.sinalizaçãoPedido.Cursor = System.Windows.Forms.Cursors.Hand;
             this.sinalizaçãoPedido.Location = new System.Drawing.Point(3, 302);
             this.sinalizaçãoPedido.MinimumSize = new System.Drawing.Size(100, 32);
             this.sinalizaçãoPedido.Name = "sinalizaçãoPedido";
-            this.sinalizaçãoPedido.Size = new System.Drawing.Size(959, 44);
+            this.sinalizaçãoPedido.Size = new System.Drawing.Size(909, 44);
             this.sinalizaçãoPedido.TabIndex = 12;
             this.sinalizaçãoPedido.Click += new System.EventHandler(this.opçãoPedido_Click);
             // 
@@ -608,16 +613,37 @@ namespace Apresentação.Atendimento
             this.sinalizaçãoMercadoriaEmFalta.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.sinalizaçãoMercadoriaEmFalta.Borda = System.Drawing.Color.DarkSeaGreen;
-            this.tableLayoutPanel1.SetColumnSpan(this.sinalizaçãoMercadoriaEmFalta, 2);
+            this.tableLayoutPanel1.SetColumnSpan(this.sinalizaçãoMercadoriaEmFalta, 3);
             this.sinalizaçãoMercadoriaEmFalta.Cor1 = System.Drawing.Color.LightYellow;
             this.sinalizaçãoMercadoriaEmFalta.Cor2 = System.Drawing.Color.Ivory;
             this.sinalizaçãoMercadoriaEmFalta.Cursor = System.Windows.Forms.Cursors.Hand;
             this.sinalizaçãoMercadoriaEmFalta.Location = new System.Drawing.Point(3, 352);
             this.sinalizaçãoMercadoriaEmFalta.MinimumSize = new System.Drawing.Size(100, 32);
             this.sinalizaçãoMercadoriaEmFalta.Name = "sinalizaçãoMercadoriaEmFalta";
-            this.sinalizaçãoMercadoriaEmFalta.Size = new System.Drawing.Size(959, 44);
+            this.sinalizaçãoMercadoriaEmFalta.Size = new System.Drawing.Size(909, 44);
             this.sinalizaçãoMercadoriaEmFalta.TabIndex = 13;
             this.sinalizaçãoMercadoriaEmFalta.Click += new System.EventHandler(this.sinalizaçãoMercadoriaEmFalta_Click);
+            // 
+            // sumárioAcerto1
+            // 
+            this.sumárioAcerto1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.sumárioAcerto1.BackColor = System.Drawing.Color.White;
+            this.sumárioAcerto1.bInfDirArredondada = false;
+            this.sumárioAcerto1.bInfEsqArredondada = false;
+            this.sumárioAcerto1.bSupDirArredondada = true;
+            this.sumárioAcerto1.bSupEsqArredondada = true;
+            this.sumárioAcerto1.Cor = System.Drawing.Color.Black;
+            this.sumárioAcerto1.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
+            this.sumárioAcerto1.LetraTítulo = System.Drawing.Color.White;
+            this.sumárioAcerto1.Location = new System.Drawing.Point(203, 3);
+            this.sumárioAcerto1.MostrarBotãoMinMax = false;
+            this.sumárioAcerto1.Name = "sumárioAcerto1";
+            this.tableLayoutPanel1.SetRowSpan(this.sumárioAcerto1, 2);
+            this.sumárioAcerto1.Size = new System.Drawing.Size(164, 293);
+            this.sumárioAcerto1.TabIndex = 18;
+            this.sumárioAcerto1.Tamanho = 30;
+            this.sumárioAcerto1.Título = "Sumário";
             // 
             // bgDescobrirPendência
             // 
@@ -729,6 +755,7 @@ namespace Apresentação.Atendimento
             this.quadroModoAtendimento.ResumeLayout(false);
             this.quadro1.ResumeLayout(false);
             this.ResumeLayout(false);
+
 		}
 
 		#endregion
@@ -751,6 +778,8 @@ namespace Apresentação.Atendimento
 
             CarregarControlesVisuais(cliente);
             VerificarPessoaSemSetor(cliente);
+
+            sumárioAcerto1.Carregar(cliente);
         }
 
         private void CarregarControlesVisuais(Entidades.Pessoa.Pessoa cliente)

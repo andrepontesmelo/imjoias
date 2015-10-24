@@ -25,10 +25,65 @@ namespace Entidades.Acerto.Sumário
         
         public SumárioTotalAcertoItem()
         {
-
         }
 
+        
+        public static List<SumárioTotalAcertoItem> Obter(Entidades.Pessoa.Pessoa pessoa)
+        {
+            StringBuilder cmd = new StringBuilder();
 
+            ulong códigoPessoa = pessoa.Código;
+
+            cmd.Append(" select 'Saida' as tipo, m.depeso, round(sum(indice*quantidade),2) as indice, ");
+            cmd.Append(" round(sum(i.peso*quantidade),2) as peso, ");
+            cmd.Append(" round(sum(indice*quantidade*a.cotacao),2) as preco, ");
+            cmd.Append(" sum(quantidade) as qtd from saida s ");
+            cmd.Append(" join saidaitem i on s.codigo=i.saida ");
+            cmd.Append(" join mercadoria m on i.referencia=m.referencia ");
+            cmd.Append(" join acertoconsignado a on s.acerto=a.codigo AND dataEfetiva is null ");
+            cmd.Append(" WHERE a.cliente= ");
+            cmd.Append(DbTransformar(códigoPessoa));
+
+            cmd.Append(" group by m.depeso ");
+            cmd.Append(" UNION  ");
+            cmd.Append(" select 'Retorno' as tipo, m.depeso, round(sum(indice*quantidade),2) as indice, ");
+            cmd.Append(" round(sum(i.peso*quantidade),2) as peso, ");
+            cmd.Append(" round(sum(indice*quantidade*a.cotacao),2) as preco, ");
+            cmd.Append(" sum(quantidade) as qtd ");
+            cmd.Append(" from retorno r ");
+            cmd.Append(" join retornoitem i on r.codigo=i.retorno ");
+            cmd.Append(" join mercadoria m on i.referencia=m.referencia ");
+            cmd.Append(" join acertoconsignado a on r.acerto=a.codigo AND dataEfetiva is null ");
+            cmd.Append(" WHERE a.cliente= ");
+            cmd.Append(DbTransformar(códigoPessoa));
+
+            cmd.Append(" group by m.depeso ");
+            cmd.Append(" UNION ");
+            cmd.Append(" select 'Venda' as tipo, depeso, round(sum(indice),2) as indice, round(sum(peso),2) as peso, round(sum(preco),2) as preco, sum(qtd) as qtd from ");
+            cmd.Append(" (select m.referencia, m.depeso as depeso, round(sum(indice*quantidade),2) as indice,  round(sum(i.peso*quantidade),2) as peso, round(sum(indice*quantidade*a.cotacao),2) as preco, sum(quantidade) as qtd ");
+            cmd.Append(" from venda v ");
+            cmd.Append(" join vendaitem i on v.codigo=i.venda ");
+            cmd.Append(" join mercadoria m on i.referencia=m.referencia ");
+            cmd.Append(" join acertoconsignado a on v.acerto=a.codigo AND dataEfetiva is null ");
+            cmd.Append(" WHERE a.cliente= ");
+            cmd.Append(DbTransformar(códigoPessoa));
+
+            cmd.Append(" group by m.referencia ");
+            cmd.Append(" UNION ");
+            cmd.Append(" select m.referencia, m.depeso as depeso, round(sum(-1*indice*quantidade),2) as indice,  round(sum(-1*i.peso*quantidade),2) as peso, round(sum(-1*indice*quantidade*a.cotacao),2) as preco, round(sum(-1*quantidade),2) as qtd ");
+            cmd.Append(" from venda v ");
+            cmd.Append(" join vendadevolucao i on v.codigo=i.venda ");
+            cmd.Append(" join mercadoria m on i.referencia=m.referencia ");
+            cmd.Append(" join acertoconsignado a on v.acerto=a.codigo AND dataEfetiva is null ");
+            cmd.Append(" WHERE a.cliente= ");
+            cmd.Append(DbTransformar(códigoPessoa));
+
+            cmd.Append(" group by m.referencia) cc ");
+            cmd.Append(" group by depeso ");
+            
+
+            return Mapear<SumárioTotalAcertoItem>(cmd.ToString());
+        }
 
         public static List<SumárioTotalAcertoItem> Obter(AcertoConsignado entidade)
         {

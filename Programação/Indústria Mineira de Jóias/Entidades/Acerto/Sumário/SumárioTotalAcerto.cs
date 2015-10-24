@@ -9,12 +9,18 @@ namespace Entidades.Acerto.Sumário
     public class SumárioTotalAcerto
     {
         private AcertoConsignado acerto;
+        private Entidades.Pessoa.Pessoa pessoa;
 
         private Dictionary<string, SumárioTotalAcertoItemValores> hashValores = null;
 
         public SumárioTotalAcerto(AcertoConsignado acerto)
         {
             this.acerto = acerto;
+        }
+
+        public SumárioTotalAcerto(Entidades.Pessoa.Pessoa pessoa)
+        {
+            this.pessoa = pessoa;
         }
 
         private string GeraChave(string tipo, bool depeso)
@@ -31,7 +37,14 @@ namespace Entidades.Acerto.Sumário
 
             hashValores = new Dictionary<string, SumárioTotalAcertoItemValores>();
 
-            List<SumárioTotalAcertoItem> itens = SumárioTotalAcertoItem.Obter(acerto);
+            List<SumárioTotalAcertoItem> itens = null;
+            
+            if (acerto != null) 
+                itens = SumárioTotalAcertoItem.Obter(acerto);
+
+            if (pessoa != null)
+                itens = SumárioTotalAcertoItem.Obter(pessoa);
+
             foreach (SumárioTotalAcertoItem i in itens)
             {
                 string chave = GeraChave(i.Tipo, i.Depeso);
