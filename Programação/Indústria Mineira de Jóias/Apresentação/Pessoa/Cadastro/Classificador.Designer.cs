@@ -42,6 +42,7 @@ namespace Apresentação.Pessoa.Cadastro
             // 
             // chkLst
             // 
+            this.chkLst.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.chkLst.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chkLst.IntegralHeight = false;
             this.chkLst.Location = new System.Drawing.Point(0, 25);

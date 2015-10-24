@@ -14,16 +14,25 @@ namespace Apresentação.Financeiro.Acerto
 {
     public partial class SumárioAcerto : Quadro
     {
-        private AcertoConsignado entidade;
+        private AcertoConsignado acerto;
+        private Entidades.Pessoa.Pessoa pessoa;
 
         public SumárioAcerto()
         {
             InitializeComponent();
         }
 
-        public void Carregar(AcertoConsignado entidade)
+        public void Carregar(AcertoConsignado acerto)
         {
-            this.entidade = entidade;
+            this.acerto = acerto;
+
+            if (!bg.IsBusy)
+                bg.RunWorkerAsync();
+        }
+
+        public void Carregar(Entidades.Pessoa.Pessoa pessoa)
+        {
+            this.pessoa = pessoa;
 
             if (!bg.IsBusy)
                 bg.RunWorkerAsync();
@@ -31,7 +40,14 @@ namespace Apresentação.Financeiro.Acerto
 
         private void bg_DoWork(object sender, DoWorkEventArgs e)
         {
-            SumárioTotalAcerto simulação = new SumárioTotalAcerto(entidade);
+            SumárioTotalAcerto simulação = null;
+            
+            if (acerto != null)
+                simulação = new SumárioTotalAcerto(acerto);
+
+            if (pessoa != null)
+                simulação = new SumárioTotalAcerto(pessoa);
+
             simulação.Obter();
 
             e.Result = simulação;
