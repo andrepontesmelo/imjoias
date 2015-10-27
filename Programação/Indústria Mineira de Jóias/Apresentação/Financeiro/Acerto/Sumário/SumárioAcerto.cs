@@ -20,6 +20,8 @@ namespace Apresentação.Financeiro.Acerto
         public SumárioAcerto()
         {
             InitializeComponent();
+
+            AtualizarVisibilidades();
         }
 
         public void Carregar(AcertoConsignado acerto)
@@ -58,24 +60,40 @@ namespace Apresentação.Financeiro.Acerto
             SumárioTotalAcerto sumário = (SumárioTotalAcerto)e.Result;
 
             SumárioTotalAcertoItemValores saídas = sumário.ObterValores(EnumTipoSumário.Saida);
-            lblSaídasPeça.Text = CriarTexto(sumário.ObterValores(EnumTipoSumário.Saida, false));
-            lblSaídasPeso.Text = CriarTexto(sumário.ObterValores(EnumTipoSumário.Saida, true));
-            lblSaídasTotal.Text = CriarTexto(saídas);
+            lblSaídasPeçaPeso.Text = CriarTexto(sumário.ObterValores(EnumTipoSumário.Saida, false), true);
+            lblSaídasPesoPeso.Text = CriarTexto(sumário.ObterValores(EnumTipoSumário.Saida, true), true);
+            lblSaídasTotalPeso.Text = CriarTexto(saídas, true);
+
+            lblSaídasPeçaÍndice.Text = CriarTexto(sumário.ObterValores(EnumTipoSumário.Saida, false), false);
+            lblSaídasPesoÍndice.Text = CriarTexto(sumário.ObterValores(EnumTipoSumário.Saida, true), false);
+            lblSaídasTotalÍndice.Text = CriarTexto(saídas, false);
 
             SumárioTotalAcertoItemValores retorno = sumário.ObterValores(EnumTipoSumário.Retorno);
-            lblRetornoPeça.Text = CriarTexto(sumário.ObterValores(EnumTipoSumário.Retorno, false));
-            lblRetornoPeso.Text = CriarTexto(sumário.ObterValores(EnumTipoSumário.Retorno, true));
-            lblRetornoTotal.Text = CriarTexto(retorno);
+            lblRetornoPeçaPeso.Text = CriarTexto(sumário.ObterValores(EnumTipoSumário.Retorno, false), true);
+            lblRetornoPesoPeso.Text = CriarTexto(sumário.ObterValores(EnumTipoSumário.Retorno, true), true);
+            lblRetornoTotalPeso.Text = CriarTexto(retorno, true);
+
+            lblRetornoPeçaÍndice.Text = CriarTexto(sumário.ObterValores(EnumTipoSumário.Retorno, false), false);
+            lblRetornoPesoÍndice.Text = CriarTexto(sumário.ObterValores(EnumTipoSumário.Retorno, true), false);
+            lblRetornoTotalÍndice.Text = CriarTexto(retorno, false);
 
             SumárioTotalAcertoItemValores vendas = sumário.ObterValores(EnumTipoSumário.Venda);
-            lblVendaPeça.Text = CriarTexto(sumário.ObterValores(EnumTipoSumário.Venda, false));
-            lblVendaPeso.Text = CriarTexto(sumário.ObterValores(EnumTipoSumário.Venda, true));
-            lblVendaTotal.Text = CriarTexto(vendas);
+            lblVendaPeçaPeso.Text = CriarTexto(sumário.ObterValores(EnumTipoSumário.Venda, false), true);
+            lblVendaPesoPeso.Text = CriarTexto(sumário.ObterValores(EnumTipoSumário.Venda, true), true);
+            lblVendaTotalPeso.Text = CriarTexto(vendas, true);
+
+            lblVendaPeçaÍndice.Text = CriarTexto(sumário.ObterValores(EnumTipoSumário.Venda, false), false);
+            lblVendaPesoÍndice.Text = CriarTexto(sumário.ObterValores(EnumTipoSumário.Venda, true), false);
+            lblVendaTotalÍndice.Text = CriarTexto(vendas, false);
 
             SumárioTotalAcertoItemValores saldo = sumário.ObterSaldo(false).Soma(sumário.ObterSaldo(true));
-            lblSaldoPeça.Text = CriarTexto(sumário.ObterSaldo(false));
-            lblSaldoPeso.Text = CriarTexto(sumário.ObterSaldo(true));
-            lblSaldoTotal.Text = CriarTexto(saldo);
+            lblSaldoPeçaPeso.Text = CriarTexto(sumário.ObterSaldo(false), true);
+            lblSaldoPesoPeso.Text = CriarTexto(sumário.ObterSaldo(true), true);
+            lblSaldoTotalPeso.Text = CriarTexto(saldo, true);
+
+            lblSaldoPeçaÍndice.Text = CriarTexto(sumário.ObterSaldo(false), false);
+            lblSaldoPesoÍndice.Text = CriarTexto(sumário.ObterSaldo(true), false);
+            lblSaldoTotalÍndice.Text = CriarTexto(saldo, false);
 
             if (saídas.Indice > 0)
             {
@@ -95,9 +113,61 @@ namespace Apresentação.Financeiro.Acerto
             }
         }
 
-        private string CriarTexto(SumárioTotalAcertoItemValores saidaPeça)
+        private string CriarTexto(SumárioTotalAcertoItemValores item, bool peso)
         {
-            return Math.Round(saidaPeça.Peso, 2).ToString() + "g " + Math.Round(saidaPeça.Indice, 2);
+            if (peso)
+            {
+                if (item.Peso == 0)
+                    return "";
+
+                return Entidades.Mercadoria.Mercadoria.FormatarPeso(Math.Round(item.Peso, 2), true);
+            }
+            else
+            {
+                // Índice
+                if (item.Indice == 0)
+                    return "";
+                
+                return Entidades.Mercadoria.Mercadoria.FormatarÍndice(Math.Round(item.Indice, 2));
+            }
+            
         }
+
+        private void optPeso_CheckedChanged(object sender, EventArgs e)
+        {
+            AtualizarVisibilidades();
+        }
+
+        private void AtualizarVisibilidades()
+        {
+            lblSaídasPeçaÍndice.Visible =
+            lblSaídasPesoÍndice.Visible =
+            lblSaídasTotalÍndice.Visible =
+            lblRetornoPeçaÍndice.Visible =
+            lblRetornoPesoÍndice.Visible =
+            lblRetornoTotalÍndice.Visible =
+            lblVendaPeçaÍndice.Visible =
+            lblVendaPesoÍndice.Visible =
+            lblVendaTotalÍndice.Visible =
+            lblSaldoPeçaÍndice.Visible =
+            lblSaldoPesoÍndice.Visible =
+            lblSaldoTotalÍndice.Visible =
+            optÍndice.Checked;
+
+            lblSaídasPeçaPeso.Visible =
+            lblSaídasPesoPeso.Visible =
+            lblSaídasTotalPeso.Visible =
+            lblRetornoPeçaPeso.Visible =
+            lblRetornoPesoPeso.Visible =
+            lblRetornoTotalPeso.Visible =
+            lblVendaPeçaPeso.Visible =
+            lblVendaPesoPeso.Visible =
+            lblVendaTotalPeso.Visible =
+            lblSaldoPeçaPeso.Visible =
+            lblSaldoPesoPeso.Visible =
+            lblSaldoTotalPeso.Visible =
+            optPeso.Checked;
+        }
+
     }
 }
