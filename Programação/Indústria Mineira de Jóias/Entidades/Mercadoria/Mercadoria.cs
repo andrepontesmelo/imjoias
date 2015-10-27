@@ -1189,7 +1189,7 @@ namespace Entidades.Mercadoria
 
         public static string FormatarÍndice(double i)
         {
-            return i.ToString("0.00", DadosGlobais.Instância.Cultura.NumberFormat);
+            return i.ToString("###,##0.00", DadosGlobais.Instância.Cultura.NumberFormat);
         }
 
 		/// <summary>
