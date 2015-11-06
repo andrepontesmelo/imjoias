@@ -228,15 +228,22 @@ namespace Entidades.Pessoa
 
                         cmd.CommandText = "SELECT p.*,r.* FROM pessoa p JOIN representante r ON p.codigo = r.codigo WHERE ";
 
+                        bool primeiro = true;
+
+
                         foreach (string parte in nomes)
                         {
+                            if (!primeiro)
+                                cmd.CommandText += " OR ";
+
+                            primeiro = false;
+
                             tmpNome = DbTransformar(parte);
                             cmd.CommandText += "nome LIKE '%" +
-                                tmpNome.Substring(1, tmpNome.Length - 2) + "%' OR ";
+                                tmpNome.Substring(1, tmpNome.Length - 2) + "%' ";
                         }
 
-                        cmd.CommandText = cmd.CommandText.Remove(cmd.CommandText.Length - 3, 3)
-                            + " ORDER BY nome ASC LIMIT " + ((int)(limite - dados.Count)).ToString();
+                        cmd.CommandText += " ORDER BY nome ASC LIMIT " + ((int)(limite - dados.Count)).ToString();
 
                         Mapear<Representante>(cmd, dados);
                     }
