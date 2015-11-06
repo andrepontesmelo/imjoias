@@ -720,7 +720,7 @@ namespace Entidades.PedidoConserto
                             char tipo = leitor.GetChar(0);
                             int qtd = leitor.GetInt16(1);
 
-                            if (tipo == 'P')
+                            if (tipo == 'E')
                                 pedidos = qtd;
                             else if (tipo == 'C')
                                 consertos = qtd;
