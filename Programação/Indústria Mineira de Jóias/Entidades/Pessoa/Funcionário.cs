@@ -388,14 +388,20 @@ namespace Entidades.Pessoa
 
                             cmd.CommandText = "SELECT nome FROM pessoa WHERE ";
 
+                            bool primeiro = true;
+
                             foreach (string parte in nomes)
                             {
-                                cmd.CommandText += "nome LIKE '%" +
-                                    parte + "%' OR ";
+
+                                if (!primeiro)
+                                    cmd.CommandText += " OR ";
+
+                                primeiro = false;
+
+                                cmd.CommandText += " nome LIKE '%" + parte + "%' ";
                             }
 
-                            cmd.CommandText = cmd.CommandText.Remove(cmd.CommandText.Length - 3, 3)
-                                + " ORDER BY nome ASC LIMIT " + ((int)(limite - dados.Count)).ToString();
+                            cmd.CommandText += " ORDER BY nome ASC LIMIT " + ((int)(limite - dados.Count)).ToString();
 
                             try
                             {
