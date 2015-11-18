@@ -184,7 +184,7 @@
             // btnEntradas
             // 
             this.btnEntradas.BackColor = System.Drawing.Color.Transparent;
-            this.btnEntradas.Descrição = "Abrir Entradas";
+            this.btnEntradas.Descrição = "Entradas";
             this.btnEntradas.Imagem = global::Apresentação.Resource.VariaçãoPositiva;
             this.btnEntradas.Location = new System.Drawing.Point(7, 30);
             this.btnEntradas.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
