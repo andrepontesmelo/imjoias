@@ -1376,7 +1376,7 @@ namespace Entidades.Mercadoria
                          " and si.referencia=rastreamentoretorno.referencia " +
 
                          " WHERE a.dataEfetiva IS NULL " +
-                         " GROUP BY p.codigo, si.referencia " +
+                         " GROUP BY p.codigo, si.referencia, a.previsao " +
                          " HAVING saldo > 0 " + 
                          " ORDER BY SUM(si.quantidade) desc ";
 
