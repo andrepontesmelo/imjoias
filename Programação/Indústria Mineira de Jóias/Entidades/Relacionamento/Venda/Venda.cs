@@ -11,6 +11,7 @@ using Acesso.Comum.Cache;
 using Entidades.Pagamentos;
 using Entidades.Balanço;
 using Entidades.Privilégio;
+using System.Text;
 
 namespace Entidades.Relacionamento.Venda
 {
@@ -1042,30 +1043,30 @@ namespace Entidades.Relacionamento.Venda
 
         public static List<long> ObterAcerto(List<long> códigoVendas, Dictionary<string, Acerto.SaquinhoAcerto> hash, FórmulaAcerto fórmula)
         {
-            string consulta;
+            StringBuilder consulta = new StringBuilder();
 
             if (códigoVendas.Count != 0)
             {
-                consulta =
-                    "select vendaitem.referencia, mercadoria.digito, vendaitem.peso, sum(quantidade), vendaitem.indice as qtd from vendaitem, venda, "
-                    + " mercadoria where venda.codigo = vendaitem.venda AND venda.codigo IN "
-                    + DbTransformarConjunto(códigoVendas);
-                consulta += " AND mercadoria.referencia = vendaitem.referencia group by referencia, digito, peso, indice having qtd != 0 order by referencia, peso";
+                consulta.Append("select vendaitem.referencia, mercadoria.digito, vendaitem.peso, sum(quantidade), vendaitem.indice as qtd from vendaitem, venda, ");
+                consulta.Append(" mercadoria where venda.codigo = vendaitem.venda AND venda.codigo IN ");
+                consulta.Append(DbTransformarConjunto(códigoVendas));
+                consulta.Append(" AND mercadoria.referencia = vendaitem.referencia group by referencia, digito, peso, indice having qtd != 0 order by referencia, peso");
 
-                ObterAcerto(consulta, hash, fórmula);
+                ObterAcerto(consulta.ToString(), hash, fórmula);
 
                 /* Considerar também a devolução no acerto, contabilizando
                  * negativamente.
                  * -- Júlio, 18/10/2007
                  */
 
-                consulta =
-                    "select vendadevolucao.referencia, mercadoria.digito, vendadevolucao.peso, sum(quantidade), vendadevolucao.indice as qtd from vendadevolucao, venda, "
-                    + " mercadoria where venda.codigo=vendadevolucao.venda AND venda.codigo IN "
-                    + DbTransformarConjunto(códigoVendas);
-                consulta += " AND mercadoria.referencia=vendadevolucao.referencia group by referencia, digito, peso, indice having qtd != 0 order by referencia, peso";
+                consulta.Clear();
 
-                ObterAcertoDevolução(consulta, hash, fórmula);
+                consulta.Append("select vendadevolucao.referencia, mercadoria.digito, vendadevolucao.peso, sum(quantidade), vendadevolucao.indice as qtd from vendadevolucao, venda, ");
+                consulta.Append(" mercadoria where venda.codigo=vendadevolucao.venda AND venda.codigo IN ");
+                consulta.Append(DbTransformarConjunto(códigoVendas));
+                consulta.Append(" AND mercadoria.referencia=vendadevolucao.referencia group by referencia, digito, peso, indice having qtd != 0 order by referencia, peso");
+
+                ObterAcertoDevolução(consulta.ToString(), hash, fórmula);
             }
 
             return códigoVendas;
