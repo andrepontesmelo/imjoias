@@ -119,9 +119,14 @@ namespace Entidades.Estoque
                 " ) ");
             
             consulta.Append(" GROUP BY ");
-            consulta.Append(usarPesoMédio ? " m.referencia, m.peso " : " m.referencia, e.peso " );
-            consulta.Append(" ORDER BY " + (ordem == Ordem.FornecedorReferênciaPeso ? " f.nome, m.referencia, e.peso " : " m.referencia, e.peso "));
-
+            string peso = (usarPesoMédio ? "m.peso" : "e.peso");
+            consulta.Append(" m.referencia,");
+            consulta.Append(peso);
+            consulta.Append(", inicio, referenciafornecedor, f.nome ");
+            consulta.Append(" ORDER BY ");
+            consulta.Append((ordem == Ordem.FornecedorReferênciaPeso ? " f.nome,  " : " "));
+            consulta.Append(" m.referencia, ");
+            consulta.Append(peso);
 
             return Mapear<Saldo>(consulta.ToString());
         }

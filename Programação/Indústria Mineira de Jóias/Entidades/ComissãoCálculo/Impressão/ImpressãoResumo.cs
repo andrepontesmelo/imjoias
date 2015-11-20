@@ -100,7 +100,7 @@ namespace Entidades.ComissãoCálculo.Impressão
             str.Append(DbTransformar(c.Código));
 
 
-            str.Append(" ) ee group by nomecomissaopara order by (sum(valorc)-sum(valore)) desc   ");
+            str.Append(" ) ee group by nomecomissaopara, setor order by (sum(valorc)-sum(valore)) desc   ");
 
 
             return Mapear<ImpressãoResumo>(str.ToString());
