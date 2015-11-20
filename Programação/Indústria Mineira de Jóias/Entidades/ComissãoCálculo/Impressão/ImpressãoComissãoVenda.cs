@@ -128,7 +128,7 @@ namespace Entidades.ComissãoCálculo.Impressão
         {
             DataRow item = tabelaItens.NewRow();
             item["comissaoparavendedor"] = comissaoparavendedor;
-            item["codVenda"] = Venda.ToString();
+            item["codVenda"] = Entidades.Relacionamento.Venda.Venda.FormatarCódigo(Venda);
             item["codCliente"] = Cliente.ToString();
             item["valorv"] = Valorv;
             item["valorc"] = Valorc;
