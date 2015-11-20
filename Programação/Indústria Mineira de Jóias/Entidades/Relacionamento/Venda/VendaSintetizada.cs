@@ -324,7 +324,7 @@ namespace Entidades.Relacionamento.Venda
 
         public override string ToString()
         {
-            return "Venda " + (controle.HasValue ? controle.ToString() : Código.ToString() + " (cód. interno)");
+            return "Venda " + (controle.HasValue ? controle.ToString() : CódigoFormatado.ToString() + " (cód. interno)");
         }
 
         public override bool Equals(object obj)
@@ -348,6 +348,12 @@ namespace Entidades.Relacionamento.Venda
                 " where c.venda is null or s.venda is null or s.saldo != 1";
 
             return RecuperarDados(consulta);
+        }
+
+
+        public string CódigoFormatado
+        {
+            get { return Entidades.Relacionamento.Venda.Venda.FormatarCódigo(Código); }
         }
     }
 }

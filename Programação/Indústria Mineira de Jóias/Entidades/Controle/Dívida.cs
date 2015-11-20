@@ -91,6 +91,12 @@ namespace Entidades.Controle
             {
                 get { throw new NotImplementedException(); }
             }
+
+
+            public string CódigoFormatado
+            {
+                get { return Entidades.Relacionamento.Venda.Venda.FormatarCódigo(Código); }
+            }
         }
 
         /// <summary>
@@ -197,5 +203,6 @@ namespace Entidades.Controle
             dívida += juros;
             //}
         }
+
     }
 }

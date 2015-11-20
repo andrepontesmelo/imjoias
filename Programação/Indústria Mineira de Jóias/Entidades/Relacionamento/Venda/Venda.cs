@@ -1785,5 +1785,16 @@ namespace Entidades.Relacionamento.Venda
         {
             get { throw new NotImplementedException(); }
         }
+
+        public static string FormatarCódigo(long código)
+        {
+            return código.ToString("000,###");
+        }
+
+
+        public string CódigoFormatado
+        {
+            get { return FormatarCódigo(Código); }
+        }
     }
 }

@@ -40,7 +40,6 @@ namespace Apresentação.Impressão.Relatórios
         protected virtual void MapearItem(DataRow linha, SaquinhoRelacionamento s, TRelacionamento relacionamento)
         {
             linha["referência"] = s.Mercadoria.Referência;
-            //linha["faixaGrupo"] = s.Mercadoria.Faixa + (s.Mercadoria.Grupo.HasValue ? " - " + s.Mercadoria.Grupo.ToString() : "");
             linha["faixaGrupo"] = s.Mercadoria.Faixa;
             linha["índice"] = Math.Round(s.Índice, 2);
             linha["quantidade"] = s.Quantidade;
@@ -49,6 +48,10 @@ namespace Apresentação.Impressão.Relatórios
             linha["depeso"] = s.Mercadoria.DePeso;
         }
 
+        protected virtual string ObterCódigoDocumento(TRelacionamento relacionamento)
+        {
+                return relacionamento.Código.ToString();
+        }
         /// <summary>
         /// Mapeia informações gerais do relacionamento à linha única da tabela Informações.
         /// </summary>
@@ -57,7 +60,7 @@ namespace Apresentação.Impressão.Relatórios
             // Nome do funcionário que digitou
             linha["funcionário"] = relacionamento.DigitadoPor.Nome;
             linha["data"] = relacionamento.Data.ToShortDateString();
-            linha["código"] = relacionamento.Código.ToString();
+            linha["código"] = ObterCódigoDocumento(relacionamento);
             
             if (relacionamento is RelacionamentoAcerto)
             {

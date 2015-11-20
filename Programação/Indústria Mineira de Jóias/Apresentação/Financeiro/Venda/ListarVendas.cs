@@ -102,7 +102,7 @@ namespace Apresentação.Financeiro.Venda
 
             controle.PrepararImpressão(relatórioVenda, venda);
 
-            janela.InserirDocumento(relatórioVenda, "Venda #" + (venda.Controle.HasValue ? venda.Controle.Value.ToString() : venda.Código.ToString() + " (cód interno)"));
+            janela.InserirDocumento(relatórioVenda, "Venda #" + (venda.Controle.HasValue ? venda.Controle.Value.ToString() : venda.CódigoFormatado.ToString() + " (cód interno)"));
             janela.Abrir(this);
         }
 
