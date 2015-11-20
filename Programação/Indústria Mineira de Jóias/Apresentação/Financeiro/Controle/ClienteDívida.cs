@@ -46,7 +46,7 @@ namespace Apresentação.Financeiro.Controle
             foreach (Entidades.Controle.Dívida.InfoVenda venda in vendasPendentes)
             {
                 dívidas.Itens.Add(new ItemExpandível.Item(
-                    "Venda " + venda.Código,
+                    "Venda " + venda.CódigoFormatado,
                     venda.Dívida.ToString("C"),
                     new EventHandler(AoClicarItemVenda),
                     venda));

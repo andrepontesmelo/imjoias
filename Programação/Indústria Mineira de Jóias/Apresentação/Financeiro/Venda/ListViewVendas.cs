@@ -342,7 +342,7 @@ namespace Apresentação.Financeiro.Venda
             item.ImageIndex = (int) venda.Semáforo;
 
             item.SubItems.AddRange(new string[] { "", "", "", "", "", "", "", "" });
-            item.SubItems[colCódigo.Index].Text = venda.Código.ToString();
+            item.SubItems[colCódigo.Index].Text = venda.CódigoFormatado;
             item.SubItems[colControle.Index].Text = venda.Controle.HasValue ? venda.Controle.ToString() : "";
 
             if (lista.Columns.Contains(colVendedor) && (venda.NomeVendedor != null))
@@ -479,7 +479,7 @@ namespace Apresentação.Financeiro.Venda
                 ListViewItem item = null;
 
                 if (!hashCódigoItem.TryGetValue(v.Código, out item))
-                    throw new Exception("i) Erro ao selecionar uma venda: código " + v.Código.ToString() + " não estava na hash");
+                    throw new Exception("i) Erro ao selecionar uma venda: código " + v.CódigoFormatado.ToString() + " não estava na hash");
 
                 item.Selected = true;
             }

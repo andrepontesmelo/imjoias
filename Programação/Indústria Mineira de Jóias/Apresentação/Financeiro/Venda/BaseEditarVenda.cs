@@ -212,12 +212,12 @@ namespace Apresentação.Financeiro.Venda
             {
                 if (v.Controle.HasValue)
                     título.Descrição = string.Format(
-                        "Venda de número {0} (N. Controle: {1})",
-                        v.Código, v.Controle.Value);
+                        "Venda de código {0} (N. Controle: {1})",
+                        v.CódigoFormatado, v.Controle.Value);
                 else
                     título.Descrição = string.Format(
-                        "Venda de número {0}",
-                        v.Código);
+                        "Venda de código {0}",
+                        v.CódigoFormatado);
             }
             else
                 título.Descrição = "Venda ainda não cadastrada";

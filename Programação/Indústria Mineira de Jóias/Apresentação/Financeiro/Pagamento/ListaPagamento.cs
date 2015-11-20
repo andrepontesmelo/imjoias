@@ -572,14 +572,14 @@ namespace Apresentação.Financeiro.Pagamento
             }
 
             if (p.Venda.HasValue)
-                item.SubItems[colPagaVenda.Index].Text = p.Venda.Value.ToString();
+                item.SubItems[colPagaVenda.Index].Text = Entidades.Relacionamento.Venda.Venda.FormatarCódigo(p.Venda.Value);
 
 
             long? pagoNaVenda = null;
             dados.hashPagoNaVenda.TryGetValue(p.Código, out pagoNaVenda);
 
             if (pagoNaVenda.HasValue)
-                item.SubItems[colPagoNaVenda.Index].Text = pagoNaVenda.Value.ToString();
+                item.SubItems[colPagoNaVenda.Index].Text =  Entidades.Relacionamento.Venda.Venda.FormatarCódigo(pagoNaVenda.Value).ToString();
             else
                 item.SubItems[colPagoNaVenda.Index].Text = "";
 

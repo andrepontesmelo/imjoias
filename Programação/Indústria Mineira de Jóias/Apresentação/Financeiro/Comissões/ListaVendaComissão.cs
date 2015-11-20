@@ -195,7 +195,7 @@ namespace Apresentação.Financeiro.Comissões
                     lock (hashRegraGrupo)
                     {
                         ListViewItem i = new ListViewItem(hashRegraGrupo[cv.Regra]);
-                        i.Text = cv.Venda.ToString();
+                        i.Text = Entidades.Relacionamento.Venda.Venda.FormatarCódigo(cv.Venda);
 
                         string data = cv.Data.ToShortDateString();
                         string nomeVendedor = Entidades.Pessoa.Pessoa.ReduzirNome(cv.Vendedor.Nome);

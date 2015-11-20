@@ -299,7 +299,7 @@ namespace Apresentação.Financeiro.Venda
 
             foreach (IDadosVenda item in colecao)
             {
-                vendasCodigo.Append(item.Código.ToString()).Append("  ");
+                vendasCodigo.Append(item.CódigoFormatado.ToString()).Append("  ");
             }
 
             if (colecao.Count > 1)
@@ -324,11 +324,11 @@ namespace Apresentação.Financeiro.Venda
                 {
                     Entidades.Relacionamento.Venda.Venda v = Entidades.Relacionamento.Venda.Venda.ObterVenda(item.Código);
                     v.Descadastrar();
-                    vendasDescadastradas += v.Código + ",";
+                    vendasDescadastradas += v.CódigoFormatado + ",";
                 }
                 catch (Exception)
                 {
-                    vendasNãoDescadastradas += item.Código.ToString() + ",";
+                    vendasNãoDescadastradas += item.CódigoFormatado.ToString() + ",";
                 }
             }
 

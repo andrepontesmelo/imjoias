@@ -85,5 +85,7 @@ namespace Entidades.Relacionamento.Venda
         }
 
         SemaforoEnum Semáforo { get; }
+
+        string CódigoFormatado { get; }
     }
 }
