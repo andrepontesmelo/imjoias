@@ -25,7 +25,6 @@ namespace Entidades.Relacionamento.Venda
         protected double?       valortotal;
         
         protected double        comissao;
-        //protected bool          verificado;
         protected double        desconto;
         protected double        taxajuros = DadosGlobais.Instância.Juros;
         protected uint          diasSemJuros;
@@ -35,10 +34,6 @@ namespace Entidades.Relacionamento.Venda
         protected bool rastreada;
         protected bool sedex;
         
-        //[DbAtributo(TipoAtributo.Ignorar)]
-        //private double? descontoPercentual;
-        //protected string        tabelaPreço;
-
         [DbRelacionamento("codigo", "cliente")]
 		protected Entidades.Pessoa.Pessoa cliente;
 
@@ -93,35 +88,10 @@ namespace Entidades.Relacionamento.Venda
             }
         }
 
-
-        //public bool ComissãoPaga
-        //{
-        //    get { return comissaopagapor != null; }
-        //}
-
-        //public Pessoa.Pessoa ComissãoPagaPor
-        //{
-        //    get { return comissaopagapor; }
-        //    set
-        //    {
-        //        comissaopagapor = value;
-        //        DefinirDesatualizado();
-        //    }
-        //}
-
         public double Desconto
         {
             get
             {
-                //if (!valortotal.HasValue && descontoPercentual.HasValue)
-                //if (!valortotal.HasValue)
-                //{
-                //    CalcularValor();
-                 
-                //    // Grava no banco de dados
-                //    if (Cadastrado)
-                //        Atualizar();
-                //}
                 return desconto;
             }
             set
@@ -159,28 +129,6 @@ namespace Entidades.Relacionamento.Venda
                 return Math.Round(100 * (desconto / valorVenda), 1); 
 
         }
-
-        ///// <summary>
-        ///// Se pagamento foi conferido pelo financeiro.
-        ///// Verificação é necessária para que venda dê comissão
-        ///// </summary>
-        //public bool Verificado
-        //{
-        //    get { return verificado; }
-        //    set
-        //    {
-        //        if (verificado != value)
-        //        {
-        //            DefinirDesatualizado();
-
-        //            if (value)
-        //                Privilégio.PermissãoFuncionário.AssegurarPermissão
-        //                    (Entidades.Privilégio.Permissão.VendasVerificar);
-
-        //            verificado = value;
-        //        }
-        //    }
-        //}
 
         public override bool Travado
         {
@@ -332,11 +280,6 @@ namespace Entidades.Relacionamento.Venda
             }
         }
 
-        //public double Comissão
-        //{
-        //    get { return comissao; }
-        //}
-
         public class InconsistênciaEntreVendaPagamento : ApplicationException
         {
             public InconsistênciaEntreVendaPagamento(string msg) : base(msg) { }
@@ -358,59 +301,58 @@ namespace Entidades.Relacionamento.Venda
             {
                 if (cliente != value)
                 {
-                    //if (Pagamento.VerificarExistênciaPagamentos(this))
-                    //    throw new InconsistênciaEntreVendaPagamento("Não é possível alterar cliente, pois existem pagamentos registrados nesta venda em nome de " + cliente.Nome + ".");
-
                     cliente = value;
                     DefinirDesatualizado();
+
+                    Atualizar();
+
+                    TrocarDonoPagamentos(Cliente.Código);
+                }
+            }
+        }
+
+        private void TrocarDonoPagamentos(ulong novoCliente)
+        {
+            IDbConnection conexão = Conexão;
+
+            lock (conexão)
+            {
+                using (IDbCommand cmd = conexão.CreateCommand())
+                {
+                    try
+                    {
+                        Usuários.UsuárioAtual.GerenciadorConexões.RemoverConexão(conexão);
+                        cmd.CommandText = "UPDATE pagamento SET cliente=" + DbTransformar(novoCliente) + " WHERE venda=" + DbTransformar(Código);
+                        cmd.ExecuteNonQuery();
+                    }
+                    finally
+                    {
+                        Usuários.UsuárioAtual.GerenciadorConexões.RemoverConexão(conexão);
+                    }
                 }
             }
         }
 
         public string NomeCliente
         {
-            get 
-            { 
-                return cliente != null ? cliente.Nome : ""; 
-            }
+            get {  return cliente != null ? cliente.Nome : ""; }
         }
 
         public string NomeVendedor
         {
-            get 
-            { 
-                return vendedor != null ? vendedor.Nome : ""; 
-            }
+            get { return vendedor != null ? vendedor.Nome : ""; }
         }
-
-//		public ColeçãoItemVenda Itens
-//		{
-//			get { return itens; }
-//		}
 
         public virtual HistóricoRelacionamentoDevolução ItensDevolução
         {
             get
             {
-                if (itensDevolução == null)
-                    /* Hacking... hehehee
-                     * A propriedade constrói a lista.
-                     * Não tá legal isso, mas funciona.
-                     * -- Júlio, 17/11/2006
-                     * TODO: Organizar melhor o código aqui.
-                     */
-                    if (Itens == null)
-                        throw new Exception("Nunca deveria chegar aqui, pois Itens deveria criar as listas.");
+                if (itensDevolução == null && Itens == null)
+                    throw new Exception("Nunca deveria chegar aqui, pois Itens deveria criar as listas.");
 
                 return itensDevolução;
             }
         }
-
-        //public virtual ColeçãoPagamento PagamentoItens
-        //{
-        //    get { return pagamentoItens; }
-        //    set { pagamentoItens = value; DefinirDesatualizado(); }
-        //}
 
         /// <summary>
         /// Número de controle.
@@ -536,40 +478,6 @@ namespace Entidades.Relacionamento.Venda
             return new HistóricoRelacionamentoVenda(this);
         }
 
-
-        #region Atualização do banco de dados
-
-        //protected override void Cadastrar(IDbCommand cmd)
-        //{
-        //    //this.valortotal = CalcularValorTotal();
-        //    //base.Cadastrar(cmd);
-
-        //    //itensDevolução.RegistrarAlterações(cmd);
-        //    //itensPagamento.RegistrarAlterações(cmd);
-        //}
-
-        //protected override void Atualizar(IDbCommand cmd)
-        //{
-        //    this.valortotal = CalcularValorTotal();
-        //    base.Atualizar(cmd);
-            
-        //    itensDevolução.RegistrarAlterações(cmd);
-        //    itensPagamento.RegistrarAlterações(cmd);
-        //}
-
-        protected override void Descadastrar(IDbCommand cmd)
-        {
-            //throw new NotSupportedException();
-
-            //itensPagamento.Descadastrar();
-            //itensDevolução.RemoverTudo();
-            //itensDevolução.RegistrarAlterações(cmd);
-
-            base.Descadastrar(cmd);
-        }
-
-        #endregion
-
         #region Recuperação do banco de dados
 
         public static Venda ObterVenda(long código)
@@ -585,23 +493,8 @@ namespace Entidades.Relacionamento.Venda
                 "SELECT * FROM venda WHERE "
                 + "codigo = " + DbTransformar(código));
 
-            //ArrayList listaComÚnicoElemento = new ArrayList();
-            //listaComÚnicoElemento.Add(venda);
-            //RecuperarColeções(listaComÚnicoElemento);
-
             return venda;
         }
-
-        ///// <summary>
-        ///// Verifica se já existe uma venda cadastrada com um
-        ///// número de controle específico.
-        ///// </summary>
-        ///// <param name="númeroControle">Número de controle a ser verificado.</param>
-        ///// <returns>O código da venda que tem determinado número de controle.</returns>
-        //public static long? VerificarExistência(uint? númeroControle)
-        //{
-        //    return númeroControle.HasValue ? VerificarExistência(númeroControle.Value) : false;
-        //}
 
         /// <summary>
         /// Verifica existência de uma venda com o número de controle.
@@ -737,7 +630,6 @@ namespace Entidades.Relacionamento.Venda
 
                     if (dívida == 0)
                     {
-
                         //venda.Quitar();
                     }
                     else
@@ -878,9 +770,6 @@ namespace Entidades.Relacionamento.Venda
             List<Venda> vendas = Mapear<Venda>(
                 "SELECT * FROM venda WHERE acerto = " + DbTransformar(acerto.Código));
 
-            // Itens serão recuperados quando necessário.
-            //RecuperarColeções(vendas);
-
             return vendas;
         }
 
@@ -924,14 +813,8 @@ namespace Entidades.Relacionamento.Venda
         /// <param name="cmd">Comando do banco de dados a ser utilizado.</param>
         private void RecuperarColeções(IDbCommand cmd)
         {
-            //bool atualizadoAnteriormente = Atualizado;
-
-            //itens.Recuperar(cmd);
             base.RecuperarColeção(cmd);
             itensDevolução.Recuperar(cmd);
-            //pagamentoItens.Recuperar(cmd);
-
-            //DefinirAtualizado(atualizadoAnteriormente);
         }
         
         /// <summary>
@@ -1295,7 +1178,6 @@ namespace Entidades.Relacionamento.Venda
                     {
                         Usuários.UsuárioAtual.GerenciadorConexões.AdicionarConexão(conexão);
                     }
-
                 }
         }
 
@@ -1374,13 +1256,9 @@ namespace Entidades.Relacionamento.Venda
                     {
                         Usuários.UsuárioAtual.GerenciadorConexões.RemoverConexão(conexão);
 
-                        cmd.CommandText = "update venda set travado=1 ";
+                        cmd.CommandText = "update venda set travado=1 "
+                        + " where codigo IN " + DbTransformarConjunto(códigos);
 
-                        //if (acertarTambém)
-                        //    cmd.CommandText += " AND acertado=1 ";
-
-                        cmd.CommandText += " where codigo IN "
-                            + DbTransformarConjunto(códigos);
                         cmd.ExecuteNonQuery();
                     } finally
                     {
@@ -1518,12 +1396,7 @@ namespace Entidades.Relacionamento.Venda
             double valorPago = 0;
 
             foreach (Pagamento pagamento in Pagamento.ObterPagamentos(this))
-            {
-                //if (pagamento.Vendas.Count > 1)
-                //    throw new PagamentoAmbíguo();
-
                 valorPago += pagamento.Valor;
-            }
 
             return valorPago;
         }
@@ -1588,18 +1461,6 @@ namespace Entidades.Relacionamento.Venda
             AtualizarEntidade(cmd, ItensDébito);
             AtualizarEntidade(cmd, ItensCrédito);
 
-            /* Aqui não podemos chamar calcularvalor().
-             * 
-             * Quando muda cotação,
-             * A propriedade Cotação { set } faz valortotal=null e depois chama Atualizar()
-             * Chamar CalcularValor() aqui obtem o valor do banco, e queremos justamente sobrescreve-lo.
-             * 
-             * andré 31-out-07
-             */
-
-            //if (!Atualizado)
-            //    CalcularValor();
-
             base.Atualizar(cmd);
         }
 
@@ -1637,13 +1498,6 @@ namespace Entidades.Relacionamento.Venda
         /// </summary>
         private void AoAlterarDébito(DbManipulação entidade)
         {
-            /* Estamos usando triggers para recalcular no banco de dados.
-             * Então, quando valortotal = null, é porque ainda não foi
-             * recuperado do banco de dados.
-             * -- Júlio, 24/11/2006
-             */
-            //DefinirValorTotalNulo();
-
             if (entidade.Cadastrado)
                 entidade.Atualizar();
         }
@@ -1653,13 +1507,6 @@ namespace Entidades.Relacionamento.Venda
         /// </summary>
         private void AoAlterarCrédito(DbManipulação entidade)
         {
-            /* Estamos usando triggers para recalcular no banco de dados.
-             * Então, quando valortotal = null, é porque ainda não foi
-             * recuperado do banco de dados.
-             * -- Júlio, 24/11/2006
-             */
-            //DefinirValorTotalNulo();
-
             if (entidade.Cadastrado)
                 entidade.Atualizar();
         }
@@ -1669,13 +1516,6 @@ namespace Entidades.Relacionamento.Venda
         /// </summary>
         private void AoAlterarItensDébito(DbManipulação entidade)
         {
-            /* Estamos usando triggers para recalcular no banco de dados.
-             * Então, quando valortotal = null, é porque ainda não foi
-             * recuperado do banco de dados.
-             * -- Júlio, 24/11/2006
-             */
-            //DefinirValorTotalNulo();
-            
             if (!Cadastrado)
                 Cadastrar();
 
@@ -1687,13 +1527,6 @@ namespace Entidades.Relacionamento.Venda
         /// </summary>
         private void AoAlterarItensCrédito(DbManipulação entidade)
         {
-            /* Estamos usando triggers para recalcular no banco de dados.
-             * Então, quando valortotal = null, é porque ainda não foi
-             * recuperado do banco de dados.
-             * -- Júlio, 24/11/2006
-             */
-            //DefinirValorTotalNulo();
-
             if (!Cadastrado)
                 Cadastrar();
 
@@ -1811,7 +1644,6 @@ namespace Entidades.Relacionamento.Venda
                                 double peso = leitor.GetDouble((int)OrdemAcerto.Peso);
                                 double índice = leitor.GetDouble((int)OrdemAcerto.Índice);
 
-                                //SaquinhoAcerto itemNovo = new SaquinhoAcerto(new Mercadoria.Mercadoria(referência, dígito, peso, índice), 0, peso, índice);
                                 SaquinhoBalanço itemNovo = new SaquinhoBalanço(new Mercadoria.Mercadoria(referência, dígito, peso, índice), 0, peso, índice);
 
                                 // Item a ser utilizado

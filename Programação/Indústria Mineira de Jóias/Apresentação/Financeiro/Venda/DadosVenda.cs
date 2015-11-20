@@ -183,7 +183,6 @@ namespace Apresentação.Financeiro.Venda
                     try
                     {
                         vendaEntidade.Cliente = txtCliente.Pessoa;
-                        //txtCliente.NãoPodeSerNulo = true;
                     }
                     catch (Entidades.Relacionamento.Venda.Venda.InconsistênciaEntreVendaPagamento erro)
                     {
