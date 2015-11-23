@@ -37,6 +37,12 @@ namespace Entidades.Estoque
 
         private int comissaoVigente;
 
+        public int ComissaoVigente
+        {
+            get { return comissaoVigente; }
+            set { comissaoVigente = value; }
+        }
+
         public ZeragemEstoque()
         {
             data = DadosGlobais.Instância.HoraDataAtual;
