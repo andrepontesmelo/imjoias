@@ -33,6 +33,7 @@
             this.colFuncionário = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colObservação = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.bg = new System.ComponentModel.BackgroundWorker();
+            this.colComissãoVigente = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // listView1
@@ -40,6 +41,7 @@
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colData,
             this.colFuncionário,
+            this.colComissãoVigente,
             this.colObservação});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.FullRowSelect = true;
@@ -62,6 +64,7 @@
             // 
             // colObservação
             // 
+            this.colObservação.DisplayIndex = 2;
             this.colObservação.Text = "Observação";
             this.colObservação.Width = 586;
             // 
@@ -69,6 +72,11 @@
             // 
             this.bg.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bg_DoWork);
             this.bg.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bg_RunWorkerCompleted);
+            // 
+            // colComissãoVigente
+            // 
+            this.colComissãoVigente.DisplayIndex = 3;
+            this.colComissãoVigente.Text = "Comissão Vigente";
             // 
             // ListaZeragemEstoque
             // 
@@ -88,5 +96,6 @@
         private System.Windows.Forms.ColumnHeader colFuncionário;
         private System.Windows.Forms.ColumnHeader colObservação;
         private System.ComponentModel.BackgroundWorker bg;
+        private System.Windows.Forms.ColumnHeader colComissãoVigente;
     }
 }

@@ -44,11 +44,14 @@ namespace Entidades.Estoque
             {
                 ListViewItem item = new ListViewItem(z.Data.ToLongDateString() + " " + z.Data.ToLongTimeString());
                 item.SubItems.Add(Entidades.Pessoa.Pessoa.ReduzirNome(z.Funcionário.Nome));
+                item.SubItems.Add(z.ComissaoVigente.ToString());
                 item.SubItems.Add(z.Observações);
                 item.Tag = z;
                 listView1.Items.Add(item);
             }
 
+            listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            listView1.AutoResizeColumn(colComissãoVigente.Index, ColumnHeaderAutoResizeStyle.HeaderSize);
             listView1.ResumeLayout();
         }
 
