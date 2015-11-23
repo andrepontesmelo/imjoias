@@ -137,7 +137,7 @@ namespace Entidades.Relacionamento.Venda
             {
                 if (!Cadastrado) return travado;
                 
-                if (DentroDeComissão)
+                if (DentroDaComissão.HasValue)
                     return true;
 
                 IDbConnection conexão = Conexão;
@@ -173,11 +173,11 @@ namespace Entidades.Relacionamento.Venda
             }
         }
 
-        public bool DentroDeComissão
+        public int? DentroDaComissão
         {
             get
             {
-                if (!Cadastrado) return false;
+                if (!Cadastrado) return null;
 
                 IDbConnection conexão = Conexão;
 
@@ -187,13 +187,30 @@ namespace Entidades.Relacionamento.Venda
                     {
                         Usuários.UsuárioAtual.GerenciadorConexões.RemoverConexão(conexão);
 
+                        bool naComissão = false;
                         using (IDbCommand cmd = conexão.CreateCommand())
                         {
-                            cmd.CommandText = "select ((v+e) = 0) from (select count(*) as e  from comissaoestornovenda where venda=" + DbTransformar(Código) +
-                                " ) a, (select count(*) as v from comissaovenda where venda=" + DbTransformar(Código) + ") b";
+                            cmd.CommandText = "select saldo != 0  from comissao_saldo where venda = " + DbTransformar(Código);
 
-                            return !Convert.ToBoolean(cmd.ExecuteScalar());
+                            naComissão = Convert.ToInt32(cmd.ExecuteScalar()) != 0;
                         }
+
+                        if (naComissão)
+                        {
+                            using (IDbCommand cmd = conexão.CreateCommand())
+                            {
+                                cmd.CommandText = "select max(comissao) from comissaovenda where venda = " + DbTransformar(Código);
+
+                                object resultado = cmd.ExecuteScalar();
+
+                                if (resultado == null || resultado == DBNull.Value)
+                                    return null;
+
+                                return Convert.ToInt32(resultado);
+                            }
+                        }
+                        else
+                            return null;
                     }
                 }
                 finally
@@ -305,9 +322,12 @@ namespace Entidades.Relacionamento.Venda
                     cliente = value;
                     DefinirDesatualizado();
 
-                    Atualizar();
+                    if (Cadastrado)
+                    {
+                        Atualizar();
 
-                    TrocarDonoPagamentos(Cliente.Código);
+                        TrocarDonoPagamentos(Cliente.Código);
+                    }
                 }
             }
         }
@@ -1771,8 +1791,10 @@ namespace Entidades.Relacionamento.Venda
 
         public override void Descadastrar()
         {
-            if (DentroDeComissão)
-                throw new Exception("Venda em comissão.");
+            int? dentroDaComissão = DentroDaComissão;
+
+            if (dentroDaComissão.HasValue)
+                throw new Exception("Venda na comissão " + dentroDaComissão.Value.ToString());
             else
             {
                 base.Descadastrar();
