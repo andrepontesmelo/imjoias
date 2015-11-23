@@ -235,9 +235,11 @@ namespace Apresentação.Financeiro.Venda
 
             Entidades.Relacionamento.Venda.Venda v = (Entidades.Relacionamento.Venda.Venda)Relacionamento;
 
-            if (v.DentroDeComissão)
+            int? dentroDaComissão = v.DentroDaComissão;
+
+            if (dentroDaComissão.HasValue)
             {
-                quadroTravamento.Título = "Comissão Fechada";
+                quadroTravamento.Título = "Comissão nr. " + dentroDaComissão.Value.ToString();
                 lblTravamento.Text = "Este documento não pode ser alterado nem excluído uma vez que já está com a comissão fechada.";
                 opçãoDestravar.Visible = false;
             }
