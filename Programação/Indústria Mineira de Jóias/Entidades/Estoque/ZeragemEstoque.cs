@@ -2,6 +2,7 @@
 using Entidades.Configuração;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 
@@ -34,10 +35,33 @@ namespace Entidades.Estoque
             set { observacoes = value; }
         }
 
+        private int comissaoVigente;
+
         public ZeragemEstoque()
         {
             data = DadosGlobais.Instância.HoraDataAtual;
             funcionario = Entidades.Pessoa.Funcionário.FuncionárioAtual;
+        }
+
+        public override void Cadastrar()
+        {
+            comissaoVigente = ObterComissãoVigente();
+        
+            base.Cadastrar();
+        }
+
+        private int ObterComissãoVigente()
+        {
+            IDbConnection conexão = Conexão;
+
+            using (IDbCommand cmd = conexão.CreateCommand())
+            {
+                cmd.CommandText = " select max(codigo) from comissao ";
+
+                object objeto = cmd.ExecuteScalar();
+
+                return ((int)objeto);
+            }
         }
 
         public static List<ZeragemEstoque> Obter()
