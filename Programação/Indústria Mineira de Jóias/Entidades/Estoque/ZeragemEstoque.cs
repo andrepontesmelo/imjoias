@@ -80,7 +80,7 @@ namespace Entidades.Estoque
             return Mapear<ZeragemEstoque>("select * from zeragemestoque order by comissaoVigente desc, data desc ");
         }
 
-        //public int CompareTo(ZeragemEstoque outro)
+        public int CompareTo(ZeragemEstoque outro)
         {
             return comissaoVigente.CompareTo(outro.comissaoVigente);
         }
