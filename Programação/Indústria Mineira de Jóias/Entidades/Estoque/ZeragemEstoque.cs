@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Entidades.Estoque
 {
-    public class ZeragemEstoque : DbManipulaçãoAutomática
+    public class ZeragemEstoque : DbManipulaçãoAutomática, IComparable<ZeragemEstoque>
     {
         [DbChavePrimária]
         private DateTime data;
@@ -49,6 +49,11 @@ namespace Entidades.Estoque
             funcionario = Entidades.Pessoa.Funcionário.FuncionárioAtual;
         }
 
+        public ZeragemEstoque(int comissãoVigente)
+        {
+            this.comissaoVigente = comissãoVigente;
+        }
+
         public override void Cadastrar()
         {
             comissaoVigente = ObterComissãoVigente();
@@ -72,7 +77,12 @@ namespace Entidades.Estoque
 
         public static List<ZeragemEstoque> Obter()
         {
-            return Mapear<ZeragemEstoque>("select * from zeragemestoque");
+            return Mapear<ZeragemEstoque>("select * from zeragemestoque order by comissaoVigente desc, data desc ");
+        }
+
+        //public int CompareTo(ZeragemEstoque outro)
+        {
+            return comissaoVigente.CompareTo(outro.comissaoVigente);
         }
     }
 }

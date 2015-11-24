@@ -286,6 +286,12 @@
     <Compile Include="Estoque\JanelaOpçõesEstoque.Designer.cs">
       <DependentUpon>JanelaOpçõesEstoque.cs</DependentUpon>
     </Compile>
+    <Compile Include="Estoque\ListaZeragemEstoque.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Estoque\ListaZeragemEstoque.Designer.cs">
+      <DependentUpon>ListaZeragemEstoque.cs</DependentUpon>
+    </Compile>
     <Compile Include="Financeiro\Acerto\Sumário\SumárioAcerto.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -2398,6 +2404,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Estoque\JanelaOpçõesEstoque.resx">
       <DependentUpon>JanelaOpçõesEstoque.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Estoque\ListaZeragemEstoque.resx">
+      <DependentUpon>ListaZeragemEstoque.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Financeiro\Acerto\Sumário\SumárioAcerto.resx">
       <DependentUpon>SumárioAcerto.cs</DependentUpon>

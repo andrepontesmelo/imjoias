@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Sem Estoque", System.Windows.Forms.HorizontalAlignment.Left);
             this.lst = new System.Windows.Forms.ListView();
             this.colCódigo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colMês = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -44,6 +45,10 @@
             this.colEstado});
             this.lst.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lst.FullRowSelect = true;
+            listViewGroup1.Header = "Sem Estoque";
+            listViewGroup1.Name = "grpSemEstoque";
+            this.lst.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
+            listViewGroup1});
             this.lst.Location = new System.Drawing.Point(0, 0);
             this.lst.Name = "lst";
             this.lst.Size = new System.Drawing.Size(622, 261);
