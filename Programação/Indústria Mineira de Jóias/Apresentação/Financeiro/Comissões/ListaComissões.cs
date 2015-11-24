@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Entidades.ComissãoCálculo;
 using Apresentação.Formulários;
+using Entidades.Estoque;
 
 namespace Apresentação.Financeiro.Comissões
 {
@@ -32,10 +33,14 @@ namespace Apresentação.Financeiro.Comissões
             ((ListViewColumnSorter)lst.ListViewItemSorter).OnClick(lst, e);
         }
 
+        Dictionary<ZeragemEstoque, ListViewGroup> hashGrupos = new Dictionary<ZeragemEstoque,ListViewGroup>();
+
         internal void Carregar()
         {
             lst.Items.Clear();
             hashItemEntidade = new Dictionary<ListViewItem, Comissão>();
+
+            List<ZeragemEstoque> lstZeragem = CarregaGruposZeragemEstoque();
 
             List<Comissão> lstComissões = Comissão.ObterComissões();
             foreach (Comissão e in lstComissões)
@@ -46,11 +51,54 @@ namespace Apresentação.Financeiro.Comissões
                     e.Pago ? "Pago" : "Não Pago"
                 });
 
+                item.Group = DescobreGrupoZeragemEstoque(e.Código, lstZeragem);
+
                 lst.Items.Add(item);
                 hashItemEntidade.Add(item, e);
             }
 
+            lst.AutoResizeColumn(colDescrição.Index, ColumnHeaderAutoResizeStyle.ColumnContent);
         }
+
+        private List<ZeragemEstoque> CarregaGruposZeragemEstoque()
+        {
+            List<ZeragemEstoque> lstZeragem = ZeragemEstoque.Obter();
+
+            hashGrupos.Clear();
+            lst.Groups.Clear();
+            foreach (ZeragemEstoque e in lstZeragem)
+            {
+                ListViewGroup novoGrupo = new ListViewGroup("Integrado ao Estoque após Comissão nr. " +
+                    e.ComissaoVigente.ToString() + " - " + e.Observações);
+
+                hashGrupos[e] = novoGrupo;
+                lst.Groups.Add(novoGrupo);
+            }
+
+            lst.Groups.Add(new ListViewGroup("Não Integrado ao Estoque"));
+            lstZeragem.Reverse();
+            return lstZeragem;
+        }
+
+
+
+        private ListViewGroup DescobreGrupoZeragemEstoque(int códigoComissão, List<ZeragemEstoque> lstZeragemOrdenadoComissão)
+        {
+            ListViewGroup semEstoque = lst.Groups[lst.Groups.Count - 1];
+
+            if (lstZeragemOrdenadoComissão.Count == 0 ||
+                códigoComissão <= lstZeragemOrdenadoComissão[0].ComissaoVigente)
+                return semEstoque;
+
+            for (int x = lstZeragemOrdenadoComissão.Count - 1 ; x >= 0; x--)
+            {
+                if (códigoComissão > lstZeragemOrdenadoComissão[x].ComissaoVigente)
+                    return hashGrupos[lstZeragemOrdenadoComissão[x]];
+            }
+
+            return semEstoque;
+        }
+
 
         public Comissão Selecionado
         {
