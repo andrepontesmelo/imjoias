@@ -1,6 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
-using System.Collections;
+using System.Text;
 
 namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 {
@@ -14,20 +15,16 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 			private DataTable cadmer;
 			private DataTable tabelaNova;
             private DataTable tabelaMercadoriasNova;
-			//private BaseMercadorias.ReportarInconsistenciaDelegate ReportarErro;
-			private ArrayList		vinculosCadastrados; 
-			//tipo: DataRow. é usado em InserirVinculoComponenteCusto(). Deve-se ter gravado porque várias entradas na string 'CM_CCUSTO' se referem ao mesmo vínculo.
+			private List<DataRow> vinculosCadastrados; 
 
 			public VinculoMercadoriaComponenteCusto(DataSet dataSetVelho, DataSet dataSetNovo)
 			{
                 tabelaNova = dataSetNovo.Tables["vinculomercadoriacomponentecusto"];
                 cadmer = dataSetVelho.Tables["cadmer"];
                 tabelaMercadoriasNova = dataSetNovo.Tables["mercadoria"];
-
-				//ReportarErro = ReportarErroFunção;
 			}
 
-            public void Transpor()
+            public void Transpor(StringBuilder saída)
             {
                 string originalStringComponenteCusto;
                 string referência;
@@ -46,18 +43,17 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
                     originalStringComponenteCusto = itemAtual["CM_CCUSTO"].ToString().Trim();
                     referência = itemAtual["CM_CODMER"].ToString().Trim();
                     
-                    //try
-                    //{
-                        InserirVinculosComponenteCusto(originalStringComponenteCusto, referência);
-                    //}
-                    //catch (Exception e)
-                    //{
-//                        ReportarErro("VinculoMercadoriaComponenteDeCusto: Não foi possível adicionar vinculo para referência: '" + referência + "'. Mais informações: " + e.Message);
-                    //}
+                    try
+                    {
+                        InserirVinculosComponenteCusto(originalStringComponenteCusto, referência, saída);
+                    }
+                    catch (Exception e)
+                    {
+                        saída.AppendLine("VinculoMercadoriaComponenteDeCusto: Não foi possível adicionar vinculo para referência: '" + referência + "'. Mais informações: " + e.Message);
+                    }
                 }
 
                 Acesso.Comum.Usuários.UsuárioAtual.GerenciadorConexões.AdicionarConexão(conexão);
-
             }
 
 			/// <summary>
@@ -65,15 +61,13 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 			/// </summary>
 			/// <param name="originalString">múltiplo de 6 caracteres 00xxxx sendo 00 qtd, xxxx quantidade</param>
 			/// <param name="referência">referencia a que se refere o componente de custo</param>
-			private void InserirVinculosComponenteCusto(string originalString, string referência)
+			private void InserirVinculosComponenteCusto(string originalString, string referência, StringBuilder saida)
 			{
 				string cc; 
 				double qtd;
 
-                //ArrayList componentesAdicionados = new ArrayList();
-                                
                 // para cada referência existe uma lista de vínculos.
-				vinculosCadastrados = new ArrayList(); 
+				vinculosCadastrados = new List<DataRow>();
 				
                 originalString = originalString.Replace(" ","0");
 
@@ -94,20 +88,9 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 					}
 
 					if ((cc != "00") && (qtd != 0) && (cc != "99") && (cc != "98"))
-					{
-                        //foreach (String ccAdicionado in componentesAdicionados)
-                        //{
-                        //    if (ccAdicionado.CompareTo(cc) == 0)
-                        //    {
-                        //        throw new Exception("A referência " + referência + " tem duplicidade do componente de custo " + cc);
-                        //    }
-                        //}
-
 						InserirVinculoComponenteCusto(referência, (qtd/100), cc);
-                        //componentesAdicionados.Add(cc);
-					}
+
 					originalString = originalString.Substring(6, originalString.Length-6);
-					//MessageBox.Show(" Resto:" + originalString);
 				}
 			}
 		
@@ -127,7 +110,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 				{
 #if DEBUG
 					if (itemAtual["mercadoria"].ToString() != referência)
-						throw new Exception("Erro de programação mesmo: o ArrayList vinculosCadastrados só pode ter mercadorias de mesma referencia.");
+						throw new Exception("o ArrayList vinculosCadastrados só pode ter mercadorias de mesma referencia.");
 #endif       
 					if (itemAtual["componentecusto"].ToString() == componenteCusto)
 					{

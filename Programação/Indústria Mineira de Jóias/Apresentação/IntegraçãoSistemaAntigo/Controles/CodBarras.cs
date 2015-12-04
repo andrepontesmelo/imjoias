@@ -1,6 +1,6 @@
 using System;
-using System.Data;
 using System.Collections.Generic;
+using System.Data;
 
 namespace Apresentação.IntegraçãoSistemaAntigo.Controles
 {
@@ -31,20 +31,6 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles
                 hashReferênciaItem.Add(itemAtual["referencia"].ToString().Trim(), itemAtual);
         }
 
-        //private DataRow ObterDataRowMercadorias(string referência)
-        //{
-        //    foreach (DataRow itemAtual in dsNovo.Tables["mercadoria"].Rows)
-        //    {
-        //        if (referência == itemAtual["referencia"].ToString().Trim())
-        //        {
-        //            return itemAtual;
-        //        }
-        //    }
-        //    throw new Exception("Não foi possível encontrar mercadoria " + referência + " na tabela 'mercadoria' para saber o digito verificador");
-        //}
-
-                       
-
 		public CodBarras(string caminhoCompletoArquivo)
 		{
 			System.IO.FileInfo informaçõesArquivo;
@@ -59,7 +45,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles
 			dsVelho = new DataSet();
 			dsNovo = new DataSet();
 
-			dbf.ComandoString("CREATE TABLE " + nomeTabelaDbf + " (refe varchar(30), codi DECIMAL(11), peso DECIMAL(4,2))");
+			dbf.ExecutaComando("CREATE TABLE " + nomeTabelaDbf + " (refe varchar(30), codi DECIMAL(11), peso DECIMAL(4,2))");
 			dbf.AdicionarTabelaAoDataSet(dsVelho, nomeTabelaDbf);
 
 			dsNovo = ObterDataSetMapeamentoCódigoBarras();
@@ -116,10 +102,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles
             CriarHash();
             
             foreach(DataRow itemAtual in dsNovo.Tables["mercadoriamapeamento"].Rows)
-			{
 				TransporItem(itemAtual);
-                //aguarde.Passo(itemAtual["codigo"].ToString() + " -> " + itemAtual["referencia"].ToString());
-			}
 
             dbf.Gravar(dsVelho, nomeTabelaDbf);
             Apresentação.Formulários.AguardeDB.Fechar();

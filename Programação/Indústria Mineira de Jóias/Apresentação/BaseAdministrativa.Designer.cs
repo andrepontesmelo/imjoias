@@ -1,7 +1,7 @@
 
 namespace Apresentação.Administrativo
 {
-    partial class BaseRelatórios
+    partial class BaseAdministrativa
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace Apresentação.Administrativo
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseRelatórios));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseAdministrativa));
             this.títuloBaseInferior = new Apresentação.Formulários.TítuloBaseInferior();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.quadroOpçãoImportação = new Apresentação.Formulários.QuadroOpção();
@@ -93,7 +93,7 @@ namespace Apresentação.Administrativo
             this.quadroOpçãoImportação.Name = "quadroOpçãoImportação";
             this.quadroOpçãoImportação.Size = new System.Drawing.Size(295, 70);
             this.quadroOpçãoImportação.TabIndex = 1;
-            this.quadroOpçãoImportação.Título = "Integrar sistemas";
+            this.quadroOpçãoImportação.Título = "Integração";
             this.quadroOpçãoImportação.Click += new System.EventHandler(this.quadroOpçãoImportação_Click);
             // 
             // quadroExportação
@@ -109,7 +109,6 @@ namespace Apresentação.Administrativo
             this.quadroExportação.TabIndex = 2;
             this.quadroExportação.Título = "PDV BR-500";
             this.quadroExportação.Click += new System.EventHandler(this.quadroExportação_Click);
-            this.quadroExportação.Load += new System.EventHandler(this.quadroExportação_Load);
             // 
             // quadroExportacaoCupom
             // 
@@ -124,7 +123,6 @@ namespace Apresentação.Administrativo
             this.quadroExportacaoCupom.TabIndex = 4;
             this.quadroExportacaoCupom.Título = "PDV e-connect";
             this.quadroExportacaoCupom.Click += new System.EventHandler(this.quadroExportacaoCupom_Click);
-            this.quadroExportacaoCupom.Load += new System.EventHandler(this.quadroExportacaoCupom_Load);
             // 
             // quadroExportaVenda
             // 
@@ -139,7 +137,6 @@ namespace Apresentação.Administrativo
             this.quadroExportaVenda.TabIndex = 5;
             this.quadroExportaVenda.Título = "Gerador NF-e";
             this.quadroExportaVenda.Click += new System.EventHandler(this.quadroExportaVenda_Click);
-            this.quadroExportaVenda.Load += new System.EventHandler(this.quadroExportaVenda_Load);
             // 
             // quadroOpçãoBalanço
             // 
@@ -172,7 +169,7 @@ namespace Apresentação.Administrativo
             // quadroControleEstoque
             // 
             this.quadroControleEstoque.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.quadroControleEstoque.Descrição = "Controle de estoque da empresa";
+            this.quadroControleEstoque.Descrição = "Controle de estoque";
             this.quadroControleEstoque.Ícone = ((System.Drawing.Image)(resources.GetObject("quadroControleEstoque.Ícone")));
             this.quadroControleEstoque.Location = new System.Drawing.Point(304, 3);
             this.quadroControleEstoque.MaximumSize = new System.Drawing.Size(600, 70);
@@ -180,16 +177,15 @@ namespace Apresentação.Administrativo
             this.quadroControleEstoque.Name = "quadroControleEstoque";
             this.quadroControleEstoque.Size = new System.Drawing.Size(295, 70);
             this.quadroControleEstoque.TabIndex = 6;
-            this.quadroControleEstoque.Título = "Controle de estoque";
+            this.quadroControleEstoque.Título = "Estoque";
             this.quadroControleEstoque.Click += new System.EventHandler(this.quadroControleEstoque_Click);
-            this.quadroControleEstoque.Load += new System.EventHandler(this.quadroControleEstoque_Load);
             // 
-            // BaseRelatórios
+            // BaseAdministrativa
             // 
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.títuloBaseInferior);
             this.Imagem = global::Apresentação.Resource.gravata1;
-            this.Name = "BaseRelatórios";
+            this.Name = "BaseAdministrativa";
             this.Size = new System.Drawing.Size(1114, 631);
             this.Controls.SetChildIndex(this.títuloBaseInferior, 0);
             this.Controls.SetChildIndex(this.flowLayoutPanel1, 0);
