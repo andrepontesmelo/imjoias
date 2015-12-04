@@ -1,21 +1,20 @@
 using System;
-using System.Data.OleDb;
 using System.Data;
+using System.Data.OleDb;
+using System.Text;
 
-using System.Windows.Forms;
 namespace Apresentação.IntegraçãoSistemaAntigo
 {
 	public class Dbf
 	{
-		public	System.Data.OleDb.OleDbDataReader		leitor;
-		public	OleDbConnection							conexão;
-		public	System.Data.OleDb.OleDbCommand			cmd;
+		public System.Data.OleDb.OleDbDataReader		leitor;
+        public System.Data.OleDb.OleDbCommand cmd;
+        public OleDbConnection							conexão;
 
 		public Dbf(string pastaArquivo)
 		{
 			string cmdConexão = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + pastaArquivo + ";Extended Properties=DBASE IV;";
-            //string cmdConexão = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\\;Extended Properties=DBASE IV;";
-			conexão= new OleDbConnection(cmdConexão);
+			conexão = new OleDbConnection(cmdConexão);
 			conexão.Open();
 			cmd = new OleDbCommand("",conexão);
 		}
@@ -49,11 +48,11 @@ namespace Apresentação.IntegraçãoSistemaAntigo
 			return ds;
 		}
 
-		public String ComandoString(string ComandoSql) 
+		public String ExecutaComando(string comandoSql) 
 		{
-            string retornarei = "";
+            StringBuilder lido = new StringBuilder();
 
-			cmd.CommandText = ComandoSql;
+			cmd.CommandText = comandoSql;
             try
             {
                 using (leitor = cmd.ExecuteReader())
@@ -61,7 +60,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo
 
                     while (leitor.Read())
                     {
-                        retornarei += leitor.GetString(0);
+                        lido.Append(leitor.GetString(0));
                     }
                 }
             }
@@ -71,7 +70,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo
                     leitor.Close();
             }
 
-			return retornarei;
+			return lido.ToString();
 		}
 	}
 }

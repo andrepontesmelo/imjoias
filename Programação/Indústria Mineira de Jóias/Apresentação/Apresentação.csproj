@@ -164,11 +164,11 @@
     <Compile Include="BaseAtendimento.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BaseRelatórios.cs">
+    <Compile Include="BaseAdministrativa.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BaseRelatórios.Designer.cs">
-      <DependentUpon>BaseRelatórios.cs</DependentUpon>
+    <Compile Include="BaseAdministrativa.Designer.cs">
+      <DependentUpon>BaseAdministrativa.cs</DependentUpon>
     </Compile>
     <Compile Include="Clientes\AssemblyInfo.cs" />
     <Compile Include="Clientes\BaseSeleçãoCliente.cs">
@@ -1658,9 +1658,7 @@
     <Compile Include="IntegraçãoSistemaAntigo\BaseCodBarras.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="IntegraçãoSistemaAntigo\BaseMercadoria.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="IntegraçãoSistemaAntigo\ProcessoIntegração.cs" />
     <Compile Include="IntegraçãoSistemaAntigo\Cadcli\BaseCadCli.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -2322,8 +2320,8 @@
       <DependentUpon>BaseAtendimento.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="BaseRelatórios.resx">
-      <DependentUpon>BaseRelatórios.cs</DependentUpon>
+    <EmbeddedResource Include="BaseAdministrativa.resx">
+      <DependentUpon>BaseAdministrativa.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Clientes\BaseSeleçãoCliente.resx">
@@ -5149,8 +5147,8 @@
       <DependentUpon>BaseCodBarras.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="IntegraçãoSistemaAntigo\BaseMercadoria.resx">
-      <DependentUpon>BaseMercadoria.cs</DependentUpon>
+    <EmbeddedResource Include="IntegraçãoSistemaAntigo\ProcessoIntegração.resx">
+      <DependentUpon>ProcessoIntegração.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="IntegraçãoSistemaAntigo\Cadcli\BaseCadCli.resx">
