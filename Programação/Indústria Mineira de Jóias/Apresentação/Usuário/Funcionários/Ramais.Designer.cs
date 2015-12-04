@@ -18,9 +18,12 @@ namespace Apresentação.Usuário.Funcionários
             {
                 components.Dispose();
             }
-            
-            base.Dispose(disposing);
-      
+
+            try
+            {
+                base.Dispose(disposing);
+            }
+            catch (Exception) { }
         }
 
         #region Component Designer generated code

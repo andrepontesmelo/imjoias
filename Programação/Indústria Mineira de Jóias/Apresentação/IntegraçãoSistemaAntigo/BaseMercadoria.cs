@@ -6,6 +6,9 @@ using System.Windows.Forms;
 using System.Data;
 using Apresentação.Formulários;
 using System.Collections.Generic;
+using System.Text;
+using System.Diagnostics;
+using System.IO;
 
 namespace Apresentação.IntegraçãoSistemaAntigo
 {
@@ -374,6 +377,8 @@ namespace Apresentação.IntegraçãoSistemaAntigo
 
             AguardeDB.Mostrar();
 
+            StringBuilder strSaída = new StringBuilder(" === Saída do Processo de Integração === \n");
+
             // ReportarInconsistenciaDelegate ErroFunção = new ReportarInconsistenciaDelegate(ReportarInconsistencia);
             List<IDbConnection> conexõesRemovidas = new List<IDbConnection>();
             dsNovo = ObterDataSetMercadoria(conexõesRemovidas);
@@ -388,7 +393,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo
             //aguarde.Passo("Transpondo componente de custo");
             new Controles.Mercadorias.ComponenteDeCusto(dsVelho, dsNovo, dbf).Transpor();
 
-            new Controles.Mercadorias.Mercadorias(dsVelho, dsNovo, dbf).Transpor();
+            new Controles.Mercadorias.Mercadorias(dsVelho, dsNovo, dbf).Transpor(strSaída);
 
             //aguarde.Passo("Gerando coeficientes a partir do dbf");
             //new Controles.Mercadorias.Indices(ErroFunção, dsVelho, dsNovo).Transpor(cotaçãoVarejo);
@@ -406,9 +411,15 @@ namespace Apresentação.IntegraçãoSistemaAntigo
 
             MySQL.AdicionarConexõesRemovidas(conexõesRemovidas);
             TimeSpan decorrido = DateTime.Now - inicio;
-            MessageBox.Show("A integração terminou em " + 
+
+            strSaída.AppendLine("A integração terminou em " + 
              Math.Round(decorrido.TotalSeconds).ToString() + 
-             " segundos. É necessário \nreiniciar cada estação para acessar os novos índices.", "Término da Integração", MessageBoxButtons.OK, MessageBoxIcon.Information);
+             " segundos. É necessário \nreiniciar cada estação para acessar os novos índices.");
+
+            string nomeArquivo = System.IO.Path.GetTempFileName();
+            File.WriteAllText(nomeArquivo, strSaída.ToString());
+            Process.Start("notepad.exe", nomeArquivo);
+            Environment.Exit(0);
         }
 	}
 }

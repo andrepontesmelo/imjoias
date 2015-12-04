@@ -8,6 +8,6 @@ namespace Apresentação
 {
     public class Versão
     {
-        public static string Descrição = "v0.6.2";
+        public static string Descrição = "v0.6.3";
     }
 }

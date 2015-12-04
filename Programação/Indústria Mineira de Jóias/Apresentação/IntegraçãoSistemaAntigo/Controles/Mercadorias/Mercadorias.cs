@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Text;
 
 namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 {
@@ -46,7 +47,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
                 linha["foradelinha"] = true;
 		}
 		
-		private void TransporItem(DataRow itemAtual)
+		private void TransporItem(DataRow itemAtual, StringBuilder saida)
 		{
 			ItemMercadoria item;
 			DataRow novoItem;
@@ -67,7 +68,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
                 item = new ItemMercadoria(novoRow, true);
                 hashReferênciaIndiceNovo.Add(referênciaAntiga, tabelaNova.Rows.Count - 1);
             }
-			
+
 			novoItem = item.DataRow;
             novoItem["nome"] = CorrigirNome(itemAtual["CM_NOME"].ToString());
             novoItem["teor"] = itemAtual["CM_TEOR"];
@@ -79,9 +80,11 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 
             if (!Faixas.ExiteFaixa(novoItem["faixa"].ToString()))
             {
-                string msgErr = "Mercadorias: faixa '" + novoItem["faixa"] + "' não existe.";
-                msgErr += item.Novo ? " Esta ref. é nova no DB. e nao será inserida. " : " Esta ref. já existia no BD e não será alterada.";
-                //ReportarErro(msgErr);
+                saida.Append("Mercadoria ");
+                saida.Append(referênciaAntiga);
+                saida.Append(" faixa '" + novoItem["faixa"] + "' não existe.");
+                saida.AppendLine(item.Novo ? " Esta ref. existe no sistema legado e não existe neste sistema. Solução: Não será inserida. " : 
+                    " Esta mercadoria existe em ambos sistemas, mas não terá atualizações propagadas para este sistema.");
 
                 if (!item.Novo) novoItem.RejectChanges();
                 return;
@@ -105,10 +108,9 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
                     novoItem["grupo"] = DBNull.Value;
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                //ReportarErro("Mercadorias: Erro no conferir se é de peso. Excluída! " + e.Message);
-                //novoItem["depeso"] = false;
+                saida.AppendLine(e.Message);
                 if (!item.Novo) novoItem.RejectChanges();
                 return;
             }
@@ -185,8 +187,6 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 
             for (int x = 0; x < palavras.Length; x++)
             {
-
-                //if ((palavras[x].Length > 3) || (palavras[x].Substring(palavras[x].Length  -1,1) == ".")) 
                 palavras[x] = palavras[x].Trim();
 
                 if (palavras[x].Length != 0)
@@ -211,20 +211,12 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             return textoArrumado;
         }
 		
-		public void Transpor()
+		public void Transpor(StringBuilder saída)
 		{
             CriarHash();
 
-            //Apresentação.Formulários.Aguarde aguarde = new Apresentação.Formulários.Aguarde("", dsVelho.Tables["cadmer"].Rows.Count, "Transpondo Mercadorias", "As mercadorias do novo banco de dados estão sendo atualizadas com o dbf.");
-            //aguarde.Abrir();
-
             foreach (DataRow itemAtual in tabelaVelha.Rows)
-            {
-                TransporItem(itemAtual);
-                //aguarde.Passo(itemAtual["cm_nome"].ToString() + "  " + itemAtual["cm_codmer"].ToString());
-            }
-
-            //aguarde.Fechar();
+                TransporItem(itemAtual, saída);
 		}
 
 		private static bool ConferirÉDePeso(String referência, String componenteCusto)
@@ -248,7 +240,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 							 */
 		
 			if (referência.Length < 4)
-				throw new Exception("Não foi possível conferir se é de peso ou não para mercadoria '" + referência + "' pela flag.");
+				throw new Exception("Não foi possível conferir se mercadoria '" + referência + "' é de peso. Pois não possui quarto digito.");
 
 			return Entidades.Mercadoria.Mercadoria.ConferirSeÉDePeso(referência);
 		}
