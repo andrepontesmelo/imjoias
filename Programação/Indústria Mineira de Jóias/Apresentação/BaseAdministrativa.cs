@@ -1,23 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using Apresentação.Formulários;
 using Apresentação.Financeiro.Comissões;
+using Apresentação.Formulários;
 using Apresentação.IntegraçãoSistemaAntigo;
 using Entidades.Privilégio;
+using System;
+using System.Windows.Forms;
 
 [assembly: ExporBotão(Permissão.ManipularComissão | Permissão.Técnico, 5, "Administrativo", false,
-    typeof(Apresentação.Administrativo.BaseRelatórios))]
+    typeof(Apresentação.Administrativo.BaseAdministrativa))]
 
 namespace Apresentação.Administrativo
 {
-    public partial class BaseRelatórios : Apresentação.Formulários.BaseInferior
+    public partial class BaseAdministrativa : Apresentação.Formulários.BaseInferior
     {
-        public BaseRelatórios()
+        public BaseAdministrativa()
         {
             InitializeComponent();
         }
@@ -38,7 +33,7 @@ namespace Apresentação.Administrativo
 
         private void quadroOpçãoImportação_Click(object sender, EventArgs e)
         {
-            BaseMercadorias.ImportarDadosDoSistemaLegado();
+            new ProcessoIntegração().ImportarDadosDoSistemaLegado();
         }
 
         private void quadroExportação_Click(object sender, EventArgs e)
@@ -63,16 +58,6 @@ namespace Apresentação.Administrativo
             IntegraçãoSistemaAntigo.Fiscal.BaseFiscal.GerarArquivoCupom();
         }
 
-        private void quadroExportação_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void quadroExportaVenda_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void quadroExportaVenda_Click(object sender, EventArgs e)
         {
             Apresentação.Financeiro.Fiscal.NfeVenda.GerarNfeVenda(this);
@@ -92,16 +77,6 @@ namespace Apresentação.Administrativo
             quadroControleEstoque.Visible = técnico;
 
             quadroComissão.Visible = Entidades.Privilégio.PermissãoFuncionário.ValidarPermissão(Permissão.ManipularComissão);
-        }
-
-        private void quadroExportacaoCupom_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void quadroControleEstoque_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void quadroControleEstoque_Click(object sender, EventArgs e)

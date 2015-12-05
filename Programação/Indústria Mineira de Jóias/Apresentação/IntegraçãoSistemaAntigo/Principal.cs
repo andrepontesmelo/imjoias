@@ -1,8 +1,4 @@
 using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Forms;
 
 namespace Apresentação.IntegraçãoSistemaAntigo
 {
@@ -23,16 +19,12 @@ namespace Apresentação.IntegraçãoSistemaAntigo
 		{
 			InitializeComponent();
 
-			botão1.AdicionarBaseInferior(new Apresentação.IntegraçãoSistemaAntigo.BaseMercadorias());
             botão2.AdicionarBaseInferior(new Apresentação.IntegraçãoSistemaAntigo.BaseCodBarras());
             botão3.AdicionarBaseInferior(new Apresentação.IntegraçãoSistemaAntigo.Cadcli.BaseCadCli());
             botão4.AdicionarBaseInferior(new Apresentação.IntegraçãoSistemaAntigo.Pagamentos.BasePagamentos());
             botão5.AdicionarBaseInferior(new Apresentação.IntegraçãoSistemaAntigo.Consignado.BaseConsignado());
             botão6.AdicionarBaseInferior(new Apresentação.IntegraçãoSistemaAntigo.Vendas.BaseVendas());
             botão7.AdicionarBaseInferior(new Apresentação.IntegraçãoSistemaAntigo.Fiscal.BaseFiscal());
-
-            //  botãoMercadorias.AdicionarBaseInferior(new Apresentação.Mercadoria.Manutenção.BaseEdição());
-
 		}
 
 		/// <summary>
@@ -108,13 +100,6 @@ namespace Apresentação.IntegraçãoSistemaAntigo
         [STAThreadAttribute()]
 		public static void Main(string [] args)
 		{
-            //Integração.Apresentação.AplicaçãoIntegrada.Executar(
-            //    typeof(Principal),
-            //    "IntegraçãoSistemaAntigo",
-            //    8027,
-            //    true,
-            //    true);
-
             Apresentação.Formulários.Aplicação.Executar(typeof(Principal), new Acesso.MySQL.MySQLUsuários());
 		}
 	}
