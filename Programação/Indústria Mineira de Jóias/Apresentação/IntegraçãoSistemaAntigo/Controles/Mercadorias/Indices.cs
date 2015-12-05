@@ -1,8 +1,7 @@
-using System.Data;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Text;
-using System.Windows.Forms;
 
 namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 {
@@ -45,7 +44,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 			//ReportarErro = ReportarErroFunção;
 		}
 
-		public void Transpor(double cotaçãoVarejo)
+		public void Transpor(double cotaçãoVarejo, StringBuilder saída)
 		{
             int maxComandosPorVez = 200;
 
@@ -73,9 +72,8 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 			foreach(DataRow itemMercadoria in tabelaNovaMercadoria.Rows)
 			{
                 aguarde.Passo();
-                //10208701105
     
-                TransporMercadoria(itemMercadoria, consulta);
+                TransporMercadoria(itemMercadoria, consulta, saída);
                 vezAtual++;
 
                 if (vezAtual >= maxComandosPorVez && consulta.Length > 0)
@@ -121,7 +119,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             
         }
 
-		private void TransporMercadoria(DataRow itemMercadoria, StringBuilder consulta)
+		private void TransporMercadoria(DataRow itemMercadoria, StringBuilder consulta, StringBuilder saida)
 		{
 			DataRow itemMercadoriaAntiga; 
             double coeficienteAtacado = 0;
@@ -131,135 +129,38 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             bool erro = false;
             bool depeso;
 
-          
             if (!hashReferênciaItem.TryGetValue(itemMercadoria["referencia"].ToString().Trim(), out itemMercadoriaAntiga))
             {
-                // Tabela coeficiente não será alterada. Deve continuar com coeficiente antigo, com foradelinha=true
-                //ReportarErro("Coeficiente: A mercadoria foi apagada do dbf '" + itemMercadoria["referencia"].ToString() + "'.");
-                //itemMercadoria["foradelinha"] = true;
+                // saida.AppendLine("Coeficiente: A mercadoria foi apagada do dbf '" + itemMercadoria["referencia"].ToString() + "'.");
                 return;
             }
 
             depeso = ConferirDePeso(itemMercadoria);
            
             if (depeso)
-			{
-				try
-				{
-					coeficienteAtacado = 
-						ObterGVistaDeGramas(4, itemMercadoria["faixa"].ToString(), int.Parse(itemMercadoria["grupo"].ToString()));
+                CalcularCoeficienteDePeso(itemMercadoria, saida, itemMercadoriaAntiga, ref coeficienteAtacado, ref coeficienteAutoAtacado, ref valorVarejo, ref valorVarejoConsulta, ref erro);
+			else 
+                CalcularCoeficienteDePeça(itemMercadoria, saida, itemMercadoriaAntiga, ref coeficienteAtacado, ref coeficienteAutoAtacado, ref valorVarejo, ref valorVarejoConsulta, ref erro);
 
-                    coeficienteAutoAtacado =
-                        ObterGVistaDeGramas(8, itemMercadoria["faixa"].ToString(), int.Parse(itemMercadoria["grupo"].ToString()));
-
-                    
-                    valorVarejo = double.Parse(itemMercadoriaAntiga["VR_3060902"].ToString());
-                    valorVarejoConsulta = Math.Round(Entidades.Preço.CorrigirInverso(60, valorVarejo, Entidades.Configuração.DadosGlobais.Instância.Juros),2);
-
-                    //valorVarejo = valorVarejo / cotaçãoVarejo;
-                    //valorVarejoConsulta = valorVarejoConsulta / cotaçãoVarejo;
-                } 
-				catch (Exception)
-				{
-//					ReportarErro("Coeficiente: Erro ao cadastrar coeficiente para '" + itemMercadoria["referencia"].ToString() + "'. valor será 99999. " + e.Message);
-
-                    coeficienteAtacado 
-                        = coeficienteAutoAtacado 
-                        = valorVarejo = valorVarejoConsulta = 99999;
-
-
-                    erro = true;
-				}
-			}
-		
-			else //não é de peso. 
-			{
-				try
-				{
-					coeficienteAtacado =  double.Parse(itemMercadoriaAntiga["CM_VISTA"].ToString());
-                    coeficienteAutoAtacado = coeficienteAtacado;
-
-                    valorVarejo = double.Parse(itemMercadoriaAntiga["VR_3060902"].ToString());
-                    valorVarejoConsulta =  Math.Round(Entidades.Preço.CorrigirInverso(60, valorVarejo, Entidades.Configuração.DadosGlobais.Instância.Juros), 2);
-
-                    //valorVarejo /= cotaçãoVarejo;
-                    //valorVarejoConsulta = valorVarejoConsulta / cotaçãoVarejo;
-
-				} 
-				catch (Exception)
-				{
-//					ReportarErro("Coeficiente: cm_vista é nulo para '" + itemMercadoria["referencia"].ToString() + "'. coeficienete será 99999. " + err.Message);
-
-                    coeficienteAtacado
-                        = coeficienteAutoAtacado
-                        = valorVarejo = valorVarejoConsulta =  99999;
-
-                    erro = true;
-				}
-			}
-
-            //// Realiza arredondamentos de indice com excecao do varejo:
-            //coeficienteAtacado = Math.Round(coeficienteAtacado, 2);
-            //coeficienteAutoAtacado = Math.Round(coeficienteAutoAtacado, 2);
-            
-
-            //DataRow[] linhas = tabelaCoeficiente.Select("mercadoria = '" + itemMercadoria["referencia"].ToString() + "'");
             DataRow linha;
 
+            linha = TransporAtacado(itemMercadoria, consulta, coeficienteAtacado, erro);
+            linha = TranporRepresentante(itemMercadoria, consulta, coeficienteAtacado, erro, linha);
+            linha = TransporConsignado(itemMercadoria, consulta, coeficienteAtacado, erro, linha);
+            linha = TransporVarejo(itemMercadoria, consulta, valorVarejo, erro, linha);
+            linha = TransporVarejoConsulta(itemMercadoria, consulta, valorVarejoConsulta, erro, linha);
+            linha = TransporAA(itemMercadoria, consulta, coeficienteAutoAtacado, erro, linha);
 
-            // Tabela Atacado
-            if (hashTabRefItem.TryGetValue(tabelaAtacado.ToString().Trim() + itemMercadoria["referencia"].ToString().Trim(), out linha))
+            if (erro)
+                itemMercadoria["foradelinha"] = true;
+            else
             {
-                AlterarIndiceExistente(itemMercadoria, tabelaAtacado, coeficienteAtacado, consulta);
+                itemMercadoria["depeso"] = depeso;
             }
-            else if (!erro)
-            {
-                AdicionarIndiceNaoExistente(itemMercadoria, tabelaAtacado, coeficienteAtacado, consulta);
-            }
+		}
 
-            // Tabela Representante
-            if (hashTabRefItem.TryGetValue(tabelaRepresentante.ToString().Trim() + itemMercadoria["referencia"].ToString().Trim(), out linha))
-            {
-                AlterarIndiceExistente(itemMercadoria, tabelaRepresentante, coeficienteAtacado, consulta);
-            }
-            else if (!erro)
-            {
-                AdicionarIndiceNaoExistente(itemMercadoria, tabelaRepresentante, coeficienteAtacado, consulta);
-            }
-            
-
-            // Tabela Consignado
-            if (hashTabRefItem.TryGetValue(tabelaConsignado.ToString().Trim() + itemMercadoria["referencia"].ToString().Trim(), out linha))
-            {
-                AlterarIndiceExistente(itemMercadoria, tabelaConsignado, coeficienteAtacado, consulta);
-            }
-            else if (!erro)
-            {
-                AdicionarIndiceNaoExistente(itemMercadoria, tabelaConsignado, coeficienteAtacado, consulta);
-            }
-
-            // Tabela Varejo
-            if (hashTabRefItem.TryGetValue(tabelaVarejo.ToString().Trim() + itemMercadoria["referencia"].ToString().Trim(), out linha))
-            {
-                AlterarIndiceExistente(itemMercadoria, tabelaVarejo, valorVarejo, consulta);
-            }
-            else if (!erro)
-            {
-                AdicionarIndiceNaoExistente(itemMercadoria, tabelaVarejo, valorVarejo, consulta);
-            }
-
-            // Tabela Consulta Varejo 
-            if (hashTabRefItem.TryGetValue(tabelaVarejoConsulta.ToString().Trim() + itemMercadoria["referencia"].ToString().Trim(), out linha))
-            {
-                AlterarIndiceExistente(itemMercadoria, tabelaVarejoConsulta, valorVarejoConsulta, consulta);
-            }
-            else if (!erro)
-            {
-                AdicionarIndiceNaoExistente(itemMercadoria, tabelaVarejoConsulta, valorVarejoConsulta, consulta);
-            }
-
-
-            // Tabela Auto Atacado
+        private DataRow TransporAA(DataRow itemMercadoria, StringBuilder consulta, double coeficienteAutoAtacado, bool erro, DataRow linha)
+        {
             if (hashTabRefItem.TryGetValue(tabelaAltoAtacado.ToString().Trim() + itemMercadoria["referencia"].ToString().Trim(), out linha))
             {
                 AlterarIndiceExistente(itemMercadoria, tabelaAltoAtacado, coeficienteAutoAtacado, consulta);
@@ -269,13 +170,124 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
                 AdicionarIndiceNaoExistente(itemMercadoria, tabelaAltoAtacado, coeficienteAutoAtacado, consulta);
             }
 
-            if (erro)
-                itemMercadoria["foradelinha"] = true;
-            else
+            return linha;
+        }
+
+        private DataRow TransporVarejoConsulta(DataRow itemMercadoria, StringBuilder consulta, double valorVarejoConsulta, bool erro, DataRow linha)
+        {
+            if (hashTabRefItem.TryGetValue(tabelaVarejoConsulta.ToString().Trim() + itemMercadoria["referencia"].ToString().Trim(), out linha))
             {
-                itemMercadoria["depeso"] = depeso;
+                AlterarIndiceExistente(itemMercadoria, tabelaVarejoConsulta, valorVarejoConsulta, consulta);
             }
-		}
+            else if (!erro)
+            {
+                AdicionarIndiceNaoExistente(itemMercadoria, tabelaVarejoConsulta, valorVarejoConsulta, consulta);
+            }
+            return linha;
+        }
+
+        private DataRow TransporVarejo(DataRow itemMercadoria, StringBuilder consulta, double valorVarejo, bool erro, DataRow linha)
+        {
+            if (hashTabRefItem.TryGetValue(tabelaVarejo.ToString().Trim() + itemMercadoria["referencia"].ToString().Trim(), out linha))
+            {
+                AlterarIndiceExistente(itemMercadoria, tabelaVarejo, valorVarejo, consulta);
+            }
+            else if (!erro)
+            {
+                AdicionarIndiceNaoExistente(itemMercadoria, tabelaVarejo, valorVarejo, consulta);
+            }
+            return linha;
+        }
+
+        private DataRow TransporConsignado(DataRow itemMercadoria, StringBuilder consulta, double coeficienteAtacado, bool erro, DataRow linha)
+        {
+            if (hashTabRefItem.TryGetValue(tabelaConsignado.ToString().Trim() + itemMercadoria["referencia"].ToString().Trim(), out linha))
+            {
+                AlterarIndiceExistente(itemMercadoria, tabelaConsignado, coeficienteAtacado, consulta);
+            }
+            else if (!erro)
+            {
+                AdicionarIndiceNaoExistente(itemMercadoria, tabelaConsignado, coeficienteAtacado, consulta);
+            }
+            return linha;
+        }
+
+        private DataRow TranporRepresentante(DataRow itemMercadoria, StringBuilder consulta, double coeficienteAtacado, bool erro, DataRow linha)
+        {
+            if (hashTabRefItem.TryGetValue(tabelaRepresentante.ToString().Trim() + itemMercadoria["referencia"].ToString().Trim(), out linha))
+            {
+                AlterarIndiceExistente(itemMercadoria, tabelaRepresentante, coeficienteAtacado, consulta);
+            }
+            else if (!erro)
+            {
+                AdicionarIndiceNaoExistente(itemMercadoria, tabelaRepresentante, coeficienteAtacado, consulta);
+            }
+
+            return linha;
+        }
+
+        private DataRow TransporAtacado(DataRow itemMercadoria, StringBuilder consulta, double coeficienteAtacado, bool erro)
+        {
+            DataRow linha;
+            if (hashTabRefItem.TryGetValue(tabelaAtacado.ToString().Trim() + itemMercadoria["referencia"].ToString().Trim(), out linha))
+            {
+                AlterarIndiceExistente(itemMercadoria, tabelaAtacado, coeficienteAtacado, consulta);
+            }
+            else if (!erro)
+            {
+                AdicionarIndiceNaoExistente(itemMercadoria, tabelaAtacado, coeficienteAtacado, consulta);
+            }
+            return linha;
+        }
+
+        private static void CalcularCoeficienteDePeça(DataRow itemMercadoria, StringBuilder saida, DataRow itemMercadoriaAntiga, ref double coeficienteAtacado, ref double coeficienteAutoAtacado, ref double valorVarejo, ref double valorVarejoConsulta, ref bool erro)
+        {
+            try
+            {
+                coeficienteAtacado = double.Parse(itemMercadoriaAntiga["CM_VISTA"].ToString());
+                coeficienteAutoAtacado = coeficienteAtacado;
+
+                valorVarejo = double.Parse(itemMercadoriaAntiga["VR_3060902"].ToString());
+                valorVarejoConsulta = Math.Round(Entidades.Preço.CorrigirInverso(60, valorVarejo, Entidades.Configuração.DadosGlobais.Instância.Juros), 2);
+
+            }
+            catch (Exception err)
+            {
+                saida.AppendLine("Coeficiente: cm_vista é nulo para '" + itemMercadoria["referencia"].ToString() + "'. coeficienete será 99999. " + err.Message);
+
+                coeficienteAtacado
+                    = coeficienteAutoAtacado
+                    = valorVarejo = valorVarejoConsulta = 99999;
+
+                erro = true;
+            }
+        }
+
+        private void CalcularCoeficienteDePeso(DataRow itemMercadoria, StringBuilder saida, DataRow itemMercadoriaAntiga, ref double coeficienteAtacado, ref double coeficienteAutoAtacado, ref double valorVarejo, ref double valorVarejoConsulta, ref bool erro)
+        {
+            try
+            {
+                coeficienteAtacado =
+                    ObterGVistaDeGramas(4, itemMercadoria["faixa"].ToString(), int.Parse(itemMercadoria["grupo"].ToString()));
+
+                coeficienteAutoAtacado =
+                    ObterGVistaDeGramas(8, itemMercadoria["faixa"].ToString(), int.Parse(itemMercadoria["grupo"].ToString()));
+
+
+                valorVarejo = double.Parse(itemMercadoriaAntiga["VR_3060902"].ToString());
+                valorVarejoConsulta = Math.Round(Entidades.Preço.CorrigirInverso(60, valorVarejo, Entidades.Configuração.DadosGlobais.Instância.Juros), 2);
+            }
+            catch (Exception e)
+            {
+                saida.AppendLine("Coeficiente: Erro ao cadastrar coeficiente para '" + itemMercadoria["referencia"].ToString() + "'. valor será 99999. " + e.Message);
+
+                coeficienteAtacado
+                    = coeficienteAutoAtacado
+                    = valorVarejo = valorVarejoConsulta = 99999;
+
+                erro = true;
+            }
+        }
 
         private static string DbTransformar(double valor)
         {

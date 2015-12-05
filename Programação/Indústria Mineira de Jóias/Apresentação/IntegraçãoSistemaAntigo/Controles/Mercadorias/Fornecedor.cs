@@ -2,7 +2,6 @@ using Apresentação.Formulários;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Common;
 using System.Text;
 using System.Windows.Forms;
 
@@ -20,18 +19,18 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             IDbConnection conexão;
 
             Dictionary<string, bool> referências = 
-            ObtemNovoMercadorias(Acesso.MySQL.MySQLUsuários.ObterÚltimaStrConexão().ToString(), out conexão);
+            ObterHashExisteReferência(Acesso.MySQL.MySQLUsuários.ObterÚltimaStrConexão().ToString(), out conexão);
 
-            Dictionary<string, int> fornecedores = ObtemNovoFornecedores(conexão);
+            Dictionary<string, int> fornecedores = ObterNovosFornecedores(conexão);
             
             Dictionary<string, bool> fornecedoresParaCadastro =
                 ObtemLegadoFornecedoresParaCadastrar(dataSetVelho, referências, fornecedores);
             
-            CadastraFornecedores(conexão, fornecedoresParaCadastro);
-            fornecedores = ObtemNovoFornecedores(conexão);
+            CadastrarFornecedores(conexão, fornecedoresParaCadastro);
+            fornecedores = ObterNovosFornecedores(conexão);
             
             Dictionary<string, bool> vinculos = ObtemNovoVinculosAtuais(conexão);
-            InsereNovosVínculos(conexão, referências, fornecedores, vinculos, dataSetVelho);
+            AdicionarNovosVínculos(conexão, referências, fornecedores, vinculos, dataSetVelho);
 
             SobrescreveInicio(conexão, dataSetVelho, referências, fornecedores);
 		}
@@ -96,7 +95,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             }
         }
 
-        private Dictionary<string, bool> ObtemNovoMercadorias(String strConexão, out IDbConnection cn)
+        private Dictionary<string, bool> ObterHashExisteReferência(String strConexão, out IDbConnection cn)
         {
             Dictionary<string, bool> hashExisteReferência = new Dictionary<string, bool>();
 
@@ -129,7 +128,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 
         }
 
-        private Dictionary<string, int> ObtemNovoFornecedores(IDbConnection cn)
+        private Dictionary<string, int> ObterNovosFornecedores(IDbConnection cn)
         {
             Dictionary<string, int> hashFornecedoresCadastrados = new Dictionary<string, int>();
             IDataReader leitor = null;
@@ -189,7 +188,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             return hashFornecedoresParaCadastrar;
         }
 
-        private void InsereNovosVínculos(IDbConnection cn, 
+        private void AdicionarNovosVínculos(IDbConnection cn, 
             Dictionary<string, bool> hashExisteReferência,
             Dictionary<string, int> hashFornecedoresCadastrados,
             Dictionary<string, bool> vinculosAtuais, DataSet dataSetVelho)
@@ -234,7 +233,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             }
         }
 
-        private void CadastraFornecedores(IDbConnection cn, Dictionary<string, bool> hashFornecedoresParaCadastrar)
+        private void CadastrarFornecedores(IDbConnection cn, Dictionary<string, bool> hashFornecedoresParaCadastrar)
         {
             // Obtem fornecedor do mysql.
             IDbCommand cmd = cn.CreateCommand();

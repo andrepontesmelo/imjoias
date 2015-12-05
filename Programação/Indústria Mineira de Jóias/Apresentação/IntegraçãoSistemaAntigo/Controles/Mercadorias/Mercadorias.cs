@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Common;
 using System.Text;
 
 namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
@@ -20,7 +19,6 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 		private DataTable   tabelaVelha;
 		private DataTable	tabelaNova;
 		private Dbf	dbf;
-		//private BaseMercadorias.ReportarInconsistenciaDelegate ReportarErro;
         
         /// <summary>
         /// Relaciona uma referência com o índice em tabelaNova.Rows
@@ -52,10 +50,8 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 			ItemMercadoria item;
 			DataRow novoItem;
             string referênciaAntiga = itemAtual["CM_CODMER"].ToString().Trim();
-            //bool excluir = false;
-
-			//item = ObterItemNovoEquivalalenteAoAntigoValor(itemAtual);
             int posição;
+
             if (hashReferênciaIndiceNovo.TryGetValue(referênciaAntiga, out posição))
             {
                 item = new ItemMercadoria(tabelaNova.Rows[posição], false);
@@ -75,8 +71,6 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             novoItem["peso"] = itemAtual["CM_PESO"];
             novoItem["faixa"] = itemAtual["CM_FAIXA"];
             novoItem["digito"] = itemAtual["CM_DIGMER"];
-            //novoItem["coeficienteatacado"] = DBNull.Value;
-            //novoItem["coeficienteautoatacado"] = DBNull.Value;
 
             if (!Faixas.ExiteFaixa(novoItem["faixa"].ToString()))
             {
@@ -124,7 +118,6 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
         private static Dictionary<string, string> hashCorreção;
         private static Dictionary<string, bool> stopWord;
         
-
         private static string CorrigirNome(string original)
         {
             if (hashCorreção == null)
@@ -136,9 +129,6 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
                 hashCorreção.Add("perolas", "pérolas");
                 hashCorreção.Add("conserto", "consertos");
                 hashCorreção.Add("conseto", "consertos");
-                //hashCorreção.Add("1", " uma ");
-                //hashCorreção.Add("brilhs.", "brilhantes");
-                //hashCorreção.Add("c/", " com ");
 
                 stopWord["e"] = true;
                 stopWord["de"] = true;
