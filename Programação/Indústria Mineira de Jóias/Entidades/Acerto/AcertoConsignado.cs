@@ -887,7 +887,9 @@ namespace Entidades.Acerto
                     "Como {0} é representante, o acerto deveria estar em nome dele. No entanto, está em nome de {1}",
                     venda.Vendedor.Nome, cliente.Nome));
             }
-            else if (!entidade.Pessoa.Código.Equals(this.cliente.Código) && (this.Cliente.Código != Entidades.Pessoa.Pessoa.Varejo.Código))
+            else if (entidade.Pessoa != null &&
+                !entidade.Pessoa.Código.Equals(this.cliente.Código) &&
+                (this.Cliente.Código != Entidades.Pessoa.Pessoa.Varejo.Código))
                 throw new DocumentoInconsistente(
                     string.Format(
                     "O documento foi relacionado para {0} enquanto o acerto está relacionado para {1}." + "\nO código " + entidade.Pessoa.Código.ToString() + " é diferente de " + this.cliente.Código.ToString(),
