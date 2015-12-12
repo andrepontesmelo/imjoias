@@ -92,8 +92,6 @@ namespace Apresentação.Financeiro.Venda
         {
             Entidades.Relacionamento.Venda.Venda v = (Entidades.Relacionamento.Venda.Venda)relacionamento;
 
-            //Apresentação.Formulários.AguardeDB.Mostrar();
-
             try
             {
                 verificadorMercadoria.Enabled = false;
@@ -173,6 +171,15 @@ namespace Apresentação.Financeiro.Venda
                     AtualizarTravamento(true);
                 }
 
+        }
+
+        void v_AoCancelarCadastro(object sender, EventArgs e)
+        {
+            MessageBox.Show(this,
+                "Venda ainda não foi cadastrada. Verifique se possui cliente e mercadoria. ",
+                "Ainda não cadastrado",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
         }
 
         void AoAlterar(Acesso.Comum.DbManipulação entidade)

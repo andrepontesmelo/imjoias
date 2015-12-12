@@ -221,28 +221,28 @@ namespace Apresentação.Financeiro
             // Altera o valor do indice dentro da mercadoria:
             HistóricoRelacionamentoItem itemAdicionado;
 
-            //try
+            try
             {
                 itemAdicionado = coleção.Relacionar(mercadoria, quantidade, índice);
             }
-            //catch (Acesso.Comum.Exceções.OperaçãoCancelada)
-            //{
-            //    MessageBox.Show(
-            //        ParentForm,
-            //        "A operação foi cancelada pelo sistema. Nenhuma alteração foi realizada no banco de dados.",
-            //        "Relacionamento de mercadoria",
-            //        MessageBoxButtons.OK, MessageBoxIcon.Stop);
-            //    return;
-            //}
-            //catch (Exception e)
-            //{
-            //    MessageBox.Show(ParentForm,
-            //        "Ocorreu um erro enquanto a mercadoria era registrada no banco de dados.\n\n" + e.Message,
-            //        "Relacionamento de mercadoria",
-            //        MessageBoxButtons.OK, MessageBoxIcon.Stop);
-            //    Acesso.Comum.Usuários.UsuárioAtual.RegistrarErro(e);
-            //    return;
-            //}
+            catch (Acesso.Comum.Exceções.OperaçãoCancelada)
+            {
+                MessageBox.Show(
+                    ParentForm,
+                    "A operação foi cancelada pelo sistema. Nenhuma alteração foi realizada no banco de dados.",
+                    "Relacionamento de mercadoria",
+                    MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(ParentForm,
+                    "Ocorreu um erro enquanto a mercadoria era registrada no banco de dados.\n\n" + e.Message,
+                    "Relacionamento de mercadoria",
+                    MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Acesso.Comum.Usuários.UsuárioAtual.RegistrarErro(e);
+                return;
+            }
 
             try
             {
