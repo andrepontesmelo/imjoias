@@ -82,7 +82,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
                     IDbCommand cmd = cn.CreateCommand();
                     cmd.Transaction = t;
                     cmd.CommandText = consulta.ToString();
-                    consulta = new StringBuilder();
+                    consulta.Clear();
                     cmd.ExecuteNonQuery();
                 }                
 			}
