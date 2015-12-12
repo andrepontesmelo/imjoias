@@ -18,9 +18,9 @@ namespace Apresentação.Mercadoria.Cotação
 	internal class TxtCotaçãoPainel : System.Windows.Forms.UserControl
 	{
 		// Atributos
-		private Dictionary<ListViewItem, Entidades.Cotação>	hashListViewItemCotação;		// Armazena as cotações. chave: item da list view.
+		private Dictionary<ListViewItem, Entidades.Financeiro.Cotação>	hashListViewItemCotação;		// Armazena as cotações. chave: item da list view.
 		private Dictionary<double, ListViewItem>    hashValorListViewItem;			// chave: valor double da cotação.
-        private Entidades.Cotação                   seleção = null;
+        private Entidades.Financeiro.Cotação                   seleção = null;
         private Moeda                               moeda;
 
 		// Controles
@@ -307,16 +307,16 @@ namespace Apresentação.Mercadoria.Cotação
 		/// <returns>Se foram carregadas cotações.</returns>
 		private bool CarregarItens(DateTime dia)
 		{
-            Entidades.Cotação[] cotações = null;
+            Entidades.Financeiro.Cotação[] cotações = null;
 
             UseWaitCursor = true;
 
             try
             {
                 if (moeda != null)
-                    cotações = Entidades.Cotação.ObterListaCotaçõesAtéDia(moeda, dia);
+                    cotações = Entidades.Financeiro.Cotação.ObterListaCotaçõesAtéDia(moeda, dia);
                 else
-                    cotações = new Entidades.Cotação[0];
+                    cotações = new Entidades.Financeiro.Cotação[0];
 
                 seleção = null;
 
@@ -346,13 +346,13 @@ namespace Apresentação.Mercadoria.Cotação
             return (cotações != null && cotações.Length > 0);
 		}
 
-        private delegate void PreencherListViewCallback(Entidades.Cotação[] cotações);
+        private delegate void PreencherListViewCallback(Entidades.Financeiro.Cotação[] cotações);
 
 		/// <summary>
 		/// Preenche o listView com uma lista de ICotação
 		/// </summary>
 		/// <param name="listaCotações">Lista de cotações</param>
-		private void PreencherListView(Entidades.Cotação[] cotações)
+		private void PreencherListView(Entidades.Financeiro.Cotação[] cotações)
 		{
             if (InvokeRequired)
             {
@@ -362,7 +362,7 @@ namespace Apresentação.Mercadoria.Cotação
             else
             {
                 // Renova tabelas hash do controle
-                hashListViewItemCotação = new Dictionary<ListViewItem, Entidades.Cotação>();
+                hashListViewItemCotação = new Dictionary<ListViewItem, Entidades.Financeiro.Cotação>();
                 hashValorListViewItem = new Dictionary<double, ListViewItem>();
 
                 // Limpa a list view
@@ -376,7 +376,7 @@ namespace Apresentação.Mercadoria.Cotação
                 // Insere cotações na lista
                 //listaCotações.ForEach(new Action<ICotação>(AdicionarNaListView));
 
-                foreach (Entidades.Cotação cotação in cotações)
+                foreach (Entidades.Financeiro.Cotação cotação in cotações)
                 {
                     ListViewItem novoItem;
 
@@ -414,7 +414,7 @@ namespace Apresentação.Mercadoria.Cotação
 		/// <summary>
 		/// Cotação selecionada.
 		/// </summary>
-		public Entidades.Cotação CotaçãoSelecionada
+		public Entidades.Financeiro.Cotação CotaçãoSelecionada
 		{
 			get
 			{

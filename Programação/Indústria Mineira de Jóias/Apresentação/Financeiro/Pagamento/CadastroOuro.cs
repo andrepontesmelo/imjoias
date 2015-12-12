@@ -52,7 +52,7 @@ namespace Apresentação.Financeiro.Pagamento
             base.PrepararParaCadastro(venda, pessoa);
 
             if (venda == null)
-                ((Entidades.Pagamentos.Ouro)Pagamento).Cotação = Entidades.Cotação.ObterCotaçãoVigente(
+                ((Entidades.Pagamentos.Ouro)Pagamento).Cotação = Entidades.Financeiro.Cotação.ObterCotaçãoVigente(
                     Entidades.Moeda.ObterMoeda(
                     Entidades.Moeda.MoedaSistema.Ouro));
             else

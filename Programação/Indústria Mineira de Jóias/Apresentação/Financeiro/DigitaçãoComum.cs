@@ -84,7 +84,7 @@ namespace Apresentação.Financeiro
         }
 
         [ReadOnly(true), Browsable(false)]
-        public Entidades.Cotação Cotação
+        public Entidades.Financeiro.Cotação Cotação
         {
             get { return bandejaAgrupada.Cotação; }
             set { bandejaAgrupada.Cotação = value; bandejaHistórico.Cotação = value;  }

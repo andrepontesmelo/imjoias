@@ -21,7 +21,7 @@ namespace Apresentação.Financeiro.Cotação
     public partial class DadosCotação : QuadroSimples
     {
         private Moeda moeda;
-        private Entidades.Cotação cotação;
+        private Entidades.Financeiro.Cotação cotação;
         BaseCotações baseCotações;
 
         public DadosCotação(BaseCotações pai)
@@ -78,7 +78,7 @@ namespace Apresentação.Financeiro.Cotação
             {
                 double variação;
 
-                cotação = Entidades.Cotação.ObterCotaçãoVigente(moeda);
+                cotação = Entidades.Financeiro.Cotação.ObterCotaçãoVigente(moeda);
 
                 if (cotação.Data.HasValue)
                     lblAtualização.Text = string.Format(
@@ -127,7 +127,7 @@ namespace Apresentação.Financeiro.Cotação
                     picVariação.Image = null;
                 }
             }
-            catch (Entidades.Cotação.CotaçãoInexistente)
+            catch (Entidades.Financeiro.Cotação.CotaçãoInexistente)
             {
                 lblAtualização.Text = "Cotação nunca registrada.";
                 txtCotação.Text = "";
@@ -264,7 +264,7 @@ namespace Apresentação.Financeiro.Cotação
             {
                 try
                 {
-                    if (!Entidades.Cotação.VerificarValor(moeda, txtCotação.Double))
+                    if (!Entidades.Financeiro.Cotação.VerificarValor(moeda, txtCotação.Double))
                     {
                         AguardeDB.Suspensão(true);
 
@@ -282,7 +282,7 @@ namespace Apresentação.Financeiro.Cotação
                             return;
                         }
                     }
-                    cotação = Entidades.Cotação.RegistrarCotação(moeda, txtCotação.Double);
+                    cotação = Entidades.Financeiro.Cotação.RegistrarCotação(moeda, txtCotação.Double);
                 }
                 catch (Exception erro)
                 {

@@ -12,7 +12,7 @@ namespace Apresentação.Financeiro.Crédito
     public partial class BaseCréditos : BaseInferior
     {
         public Entidades.Pessoa.Pessoa Pessoa { get; set; }
-        private Dictionary<ListViewItem, Entidades.Crédito> hashCréditos;
+        private Dictionary<ListViewItem, Entidades.Financeiro.Crédito> hashCréditos;
 
         private ListViewColumnSorter ordenador;
 
@@ -42,15 +42,15 @@ namespace Apresentação.Financeiro.Crédito
             AguardeDB.Mostrar();
 
             lstCréditos.Items.Clear();
-            hashCréditos = new Dictionary<ListViewItem, Entidades.Crédito>();
+            hashCréditos = new Dictionary<ListViewItem, Entidades.Financeiro.Crédito>();
 
-            List<Entidades.Crédito> entidades = 
-                Entidades.Crédito.ObterCréditos(Pessoa);
+            List<Entidades.Financeiro.Crédito> entidades = 
+                Entidades.Financeiro.Crédito.ObterCréditos(Pessoa);
 
-            List<Entidades.Crédito> créditosNãoUtilizados =
-                Entidades.Crédito.ObterCréditosNãoUtilizados(Pessoa);
+            List<Entidades.Financeiro.Crédito> créditosNãoUtilizados =
+                Entidades.Financeiro.Crédito.ObterCréditosNãoUtilizados(Pessoa);
 
-            foreach (Entidades.Crédito entidade in entidades) 
+            foreach (Entidades.Financeiro.Crédito entidade in entidades) 
             {
                 ListViewItem item = new ListViewItem(entidade.Data.ToShortDateString());
                 hashCréditos[item] = entidade;
@@ -83,7 +83,7 @@ namespace Apresentação.Financeiro.Crédito
             {
                 foreach (ListViewItem item in lstCréditos.SelectedItems)
                 {
-                    Entidades.Crédito crédito = hashCréditos[item];
+                    Entidades.Financeiro.Crédito crédito = hashCréditos[item];
                     crédito.Descadastrar();
                 }
 

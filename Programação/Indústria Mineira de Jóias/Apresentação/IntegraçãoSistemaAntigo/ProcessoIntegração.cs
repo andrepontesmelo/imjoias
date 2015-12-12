@@ -82,7 +82,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo
 
             AguardeDB.Fechar();
 
-            double cotaçãoVarejo = Entidades.Cotação.ObterCotaçãoVigente(Entidades.Moeda.ObterMoeda(4)).Valor;
+            double cotaçãoVarejo = Entidades.Financeiro.Cotação.ObterCotaçãoVigente(Entidades.Moeda.ObterMoeda(4)).Valor;
 
             new Controles.Mercadorias.Indices(dsVelho, dsNovo).Transpor(cotaçãoVarejo, strSaída);
 

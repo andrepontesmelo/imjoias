@@ -13,7 +13,7 @@ namespace Apresentação.Financeiro
 {
     public partial class PesquisaMercadoriaResultado : Apresentação.Formulários.JanelaExplicativa
     {
-        public PesquisaMercadoriaResultado(Entidades.Mercadoria.Mercadoria[] mercadorias, Tabela tabela, Entidades.Cotação cotação)
+        public PesquisaMercadoriaResultado(Entidades.Mercadoria.Mercadoria[] mercadorias, Tabela tabela, Entidades.Financeiro.Cotação cotação)
         {
             InitializeComponent();
 
@@ -61,7 +61,7 @@ namespace Apresentação.Financeiro
             }
         }
 
-        private void txtCotação_EscolheuCotação(Entidades.Cotação escolha)
+        private void txtCotação_EscolheuCotação(Entidades.Financeiro.Cotação escolha)
         {
             try
             {

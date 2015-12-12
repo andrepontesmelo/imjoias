@@ -33,7 +33,7 @@ namespace Apresentação.Mercadoria.Cotação
 		/// Balão ilustrado para atualização do TxtCotação
 		/// </summary>
 		/// <param name="novaCotação">Nova cotação cadastrada</param>
-		public BalãoCotaçãoNova(Entidades.Cotação novaCotação)
+		public BalãoCotaçãoNova(Entidades.Financeiro.Cotação novaCotação)
 		{
 			// This call is required by the Windows Form Designer.
 			InitializeComponent();

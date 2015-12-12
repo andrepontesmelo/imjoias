@@ -26,7 +26,7 @@ namespace Apresentação.Mercadoria
 
         // Atributos
         private Entidades.Mercadoria.Mercadoria mercadoria;
-        private Entidades.Cotação cotação;
+        private Entidades.Financeiro.Cotação cotação;
         private int[] dias = new int[] { 0, 30, 45, 60 };
 
         // Eventos
@@ -78,7 +78,7 @@ namespace Apresentação.Mercadoria
         private IContainer components;
 
         /// <param name="mercadoria">Mercadoria para exibição</param>
-        public InformaçõesMercadoria(Entidades.Mercadoria.Mercadoria mercadoria, Entidades.Cotação cotação)
+        public InformaçõesMercadoria(Entidades.Mercadoria.Mercadoria mercadoria, Entidades.Financeiro.Cotação cotação)
         {
             InitializeComponent();
 
@@ -641,7 +641,7 @@ namespace Apresentação.Mercadoria
         /// <summary>
         /// Cotação a ser utilizada.
         /// </summary>
-        public Entidades.Cotação Cotação
+        public Entidades.Financeiro.Cotação Cotação
         {
             get { return cotação; }
             set

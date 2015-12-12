@@ -151,7 +151,7 @@ namespace Apresentação.Financeiro.Acerto
             }
         }
 
-        void txtCotação_EscolheuCotação(Entidades.Cotação escolha)
+        void txtCotação_EscolheuCotação(Entidades.Financeiro.Cotação escolha)
         {
             acerto.Cotação = escolha.Valor;
             acerto.Atualizar();

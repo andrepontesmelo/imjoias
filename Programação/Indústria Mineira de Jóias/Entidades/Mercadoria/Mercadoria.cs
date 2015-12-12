@@ -11,6 +11,7 @@ using Entidades.Álbum;
 using System.Globalization;
 using Entidades.Configuração;
 using System.Threading;
+using Entidades.Financeiro;
 
 namespace Entidades.Mercadoria
 {

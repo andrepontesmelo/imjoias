@@ -168,9 +168,9 @@ namespace Apresentação.Mercadoria.Bandeja
                     try
                     {
                         if (cotação == null || cotação.Valor == 0)
-                            cotação = Entidades.Cotação.ObterCotaçãoVigente(tabela.Moeda);
+                            cotação = Entidades.Financeiro.Cotação.ObterCotaçãoVigente(tabela.Moeda);
                     }
-                    catch (Entidades.Cotação.CotaçãoInexistente)
+                    catch (Entidades.Financeiro.Cotação.CotaçãoInexistente)
                     {
                         MessageBox.Show(
                             ParentForm,
@@ -1502,14 +1502,14 @@ namespace Apresentação.Mercadoria.Bandeja
 	
         #region Cotação
 
-        private Entidades.Cotação cotação;
+        private Entidades.Financeiro.Cotação cotação;
         
         /// <summary>
         /// É atribuído automaticamente pelo controle de cotação, que conhece a bandeja.
         /// Sua alteração atualiza imediatamente a exibição dos preços na bandeja.
         /// </summary>
         [ReadOnly(true), Browsable(false)]
-        public Entidades.Cotação Cotação
+        public Entidades.Financeiro.Cotação Cotação
         {
             get { return cotação; }
             set 
