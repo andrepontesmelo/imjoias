@@ -52,8 +52,8 @@
             this.títuloBaseInferior1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.títuloBaseInferior1.BackColor = System.Drawing.Color.White;
-            this.títuloBaseInferior1.Descrição = "Esta tela mostra todos os créditos. Itens em negrito são créditos ativos, ainda n" +
-    "ão gastos.";
+            this.títuloBaseInferior1.Descrição = "Esta tela mostra todos os créditos. Itens em verde são créditos ativos, ainda não" +
+    " gasto em nenhuma venda.";
             this.títuloBaseInferior1.ÍconeArredondado = false;
             this.títuloBaseInferior1.Imagem = global::Apresentação.Resource.credito;
             this.títuloBaseInferior1.Location = new System.Drawing.Point(193, 3);
