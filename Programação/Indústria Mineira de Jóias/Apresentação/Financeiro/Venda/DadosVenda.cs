@@ -35,7 +35,7 @@ namespace Apresentação.Financeiro.Venda
         private BaseEditarRelacionamento baseInferior;
         private bool carregando = false;
 
-        public delegate void CotaçãoAlteradaDelegate(Entidades.Cotação cotação);
+        public delegate void CotaçãoAlteradaDelegate(Entidades.Financeiro.Cotação cotação);
         public event CotaçãoAlteradaDelegate CotaçãoAlterada;
 
         public event EventHandler AoAlterarVendedor;
@@ -263,7 +263,7 @@ namespace Apresentação.Financeiro.Venda
         {
         }
 
-        private void txtCotação_EscolheuCotação(Entidades.Cotação escolha)
+        private void txtCotação_EscolheuCotação(Entidades.Financeiro.Cotação escolha)
         {
             if (!carregando)
             {

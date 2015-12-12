@@ -40,7 +40,7 @@ namespace Apresentação.Financeiro.Pagamento
         {
             base.PrepararParaCadastro(venda, pessoa);
 
-                ((Entidades.Pagamentos.Dolar)Pagamento).Cotação = Entidades.Cotação.ObterCotaçãoVigente(
+                ((Entidades.Pagamentos.Dolar)Pagamento).Cotação = Entidades.Financeiro.Cotação.ObterCotaçãoVigente(
                     Entidades.Moeda.ObterMoeda(
                     Entidades.Moeda.MoedaSistema.DólarParalelo));
 

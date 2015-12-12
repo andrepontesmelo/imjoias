@@ -1161,7 +1161,7 @@ namespace Entidades.Relacionamento.Venda
             venda.Data = Entidades.Configuração.DadosGlobais.Instância.HoraDataAtual;
             venda.cliente = cliente;
             venda.vendedor = vendedor;
-            //venda.Cotação = Entidades.Cotação.ObterCotaçãoVigente(moeda);
+            //venda.Cotação = Entidades.Financeiro.Cotação.ObterCotaçãoVigente(moeda);
             //venda.Cadastrar();
 
             return venda;

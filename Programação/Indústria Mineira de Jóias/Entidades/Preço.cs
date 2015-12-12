@@ -4,6 +4,7 @@ using System.Text;
 using Entidades.Configuração;
 using System.Globalization;
 using Entidades.Pagamentos;
+using Entidades.Financeiro;
 
 namespace Entidades
 {
@@ -29,7 +30,7 @@ namespace Entidades
         /// <summary>
         /// Cotação a ser utilizada.
         /// </summary>
-        private Entidades.Cotação cotação;
+        private Entidades.Financeiro.Cotação cotação;
 
         /// <summary>
         /// Índice a ser utilizada na mercadoria.
@@ -95,7 +96,7 @@ namespace Entidades
         /// <summary>
         /// Cotação a ser utilizada.
         /// </summary>
-        public Entidades.Cotação Cotação
+        public Entidades.Financeiro.Cotação Cotação
         {
             get { return cotação; }
             set

@@ -76,7 +76,7 @@ namespace Apresentação.Financeiro.Saída
                 verificadorMercadoria.Enabled = false;
 
                 if (!s.Cadastrado && s.Cotação == 0)
-                    s.Cotação = Entidades.Cotação.ObterCotaçãoVigente(s.TabelaPreço.Moeda);
+                    s.Cotação = Entidades.Financeiro.Cotação.ObterCotaçãoVigente(s.TabelaPreço.Moeda);
 
                 digitação.Cotação = s.Cotação;
 

@@ -205,11 +205,11 @@
     <Compile Include="Configuração\ConfiguraçãoUsuário.cs" />
     <Compile Include="Configuração\ConfiguraçõesUsuário.cs" />
     <Compile Include="Controle\Dívida.cs" />
-    <Compile Include="Cotação.cs">
+    <Compile Include="Financeiro\Cotação.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Configuração\DadosGlobais.cs" />
-    <Compile Include="Crédito.cs" />
+    <Compile Include="Financeiro\Crédito.cs" />
     <Compile Include="DataSet\EtiquetaFormato.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

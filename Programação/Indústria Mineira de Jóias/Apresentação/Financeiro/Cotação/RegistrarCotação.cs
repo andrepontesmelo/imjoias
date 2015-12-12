@@ -12,7 +12,7 @@ namespace Apresentação.Financeiro.Cotação
 {
     public partial class RegistrarCotação : Apresentação.Formulários.JanelaExplicativa
     {
-        public delegate void RegistrarCotaçãoDelegate(Entidades.Cotação cotação);
+        public delegate void RegistrarCotaçãoDelegate(Entidades.Financeiro.Cotação cotação);
         public RegistrarCotaçãoDelegate CotaçãoRegistrada;
         private CultureInfo cultura;
         private Moeda moeda;
@@ -40,7 +40,7 @@ namespace Apresentação.Financeiro.Cotação
         /// </summary>
         private void btnOK_Click(object sender, EventArgs e)
         {
-            Entidades.Cotação novaCotação;
+            Entidades.Financeiro.Cotação novaCotação;
             
             UseWaitCursor = true;
 
@@ -57,7 +57,7 @@ namespace Apresentação.Financeiro.Cotação
             //    return;
             //}
 
-            novaCotação = Entidades.Cotação.RegistrarCotação(moeda, txtCotação.Double, data.Value);
+            novaCotação = Entidades.Financeiro.Cotação.RegistrarCotação(moeda, txtCotação.Double, data.Value);
 
             // Dispara o evento
             if (CotaçãoRegistrada != null)

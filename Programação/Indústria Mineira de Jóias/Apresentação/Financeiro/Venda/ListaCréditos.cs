@@ -230,9 +230,9 @@ namespace Apresentação.Financeiro.Venda
         }
 
 
-        internal void AdicionarCadastrando(List<Entidades.Crédito> créditosNãoUtilizados)
+        internal void AdicionarCadastrando(List<Entidades.Financeiro.Crédito> créditosNãoUtilizados)
         {
-            foreach (Entidades.Crédito p in créditosNãoUtilizados) 
+            foreach (Entidades.Financeiro.Crédito p in créditosNãoUtilizados) 
             {
                 VendaCrédito crédito = new VendaCrédito(venda);
                 crédito.ValorBruto = p.Valor;

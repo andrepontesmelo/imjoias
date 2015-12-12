@@ -100,7 +100,7 @@ namespace Apresentação.Financeiro.Indicadores
             }
         }
 
-        public Entidades.Cotação Selecionado
+        public Entidades.Financeiro.Cotação Selecionado
         {
             get
             {
@@ -131,9 +131,9 @@ namespace Apresentação.Financeiro.Indicadores
         {
             if (autoAlimentação)
             {
-                Entidades.Cotação[] cotações;
+                Entidades.Financeiro.Cotação[] cotações;
 
-                cotações = Entidades.Cotação.ObterCotações(moeda, períodoInicial, períodoFinal);
+                cotações = Entidades.Financeiro.Cotação.ObterCotações(moeda, períodoInicial, períodoFinal);
 
                 CarregarCotações(cotações);
             }
@@ -143,7 +143,7 @@ namespace Apresentação.Financeiro.Indicadores
         /// Carrega um conjunto de cotações na lista.
         /// </summary>
         /// <param name="cotações">Cotações a serem carregadas.</param>
-        public void CarregarCotações(Entidades.Cotação[] cotações)
+        public void CarregarCotações(Entidades.Financeiro.Cotação[] cotações)
         {
 
             UseWaitCursor = true;
@@ -158,13 +158,13 @@ namespace Apresentação.Financeiro.Indicadores
             desatualizado = false;
         }
 
-        private Dictionary<ListViewItem, Entidades.Cotação> hashItemCotação = new Dictionary<ListViewItem,Entidades.Cotação>();
+        private Dictionary<ListViewItem, Entidades.Financeiro.Cotação> hashItemCotação = new Dictionary<ListViewItem,Entidades.Financeiro.Cotação>();
 
         /// <summary>
         /// Adiciona uma cotação à lista. Pode não Adicionar, 
         /// caso o período não esteja sendo observado.
         /// </summary>
-        public ListViewItem AdicionarCotação(Entidades.Cotação cotação)
+        public ListViewItem AdicionarCotação(Entidades.Financeiro.Cotação cotação)
         {
             if (cotação.Data >= períodoInicial && cotação.Data <= períodoFinal)
             {
@@ -200,13 +200,13 @@ namespace Apresentação.Financeiro.Indicadores
                 CarregarCotações();
         }
 
-        private delegate void MostrarCotaçõesCallback(Entidades.Cotação[] cotações);
+        private delegate void MostrarCotaçõesCallback(Entidades.Financeiro.Cotação[] cotações);
 
         /// <summary>
         /// Mostra um conjunto de cotações.
         /// </summary>
         /// <param name="cotações">Conjunto de cotações a ser exibido.</param>
-        public void MostrarCotações(Entidades.Cotação[] cotações)
+        public void MostrarCotações(Entidades.Financeiro.Cotação[] cotações)
         {
             if (InvokeRequired)
             {

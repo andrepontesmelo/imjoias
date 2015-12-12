@@ -11,12 +11,7 @@ namespace Apresentação.Financeiro.Crédito
 {
     public partial class JanelaCadastroCrédito : JanelaExplicativa
     {
-        private Entidades.Crédito entidade;
-
-        //public Entidades.Crédito Entidade
-        //{
-        //    get { return entidade; }
-        //}
+        private Entidades.Financeiro.Crédito entidade;
 
         public JanelaCadastroCrédito()
         {
@@ -25,14 +20,14 @@ namespace Apresentação.Financeiro.Crédito
 
         public void AbrirParaCadastro(Entidades.Pessoa.Pessoa pessoa)
         {
-            entidade = new Entidades.Crédito();
+            entidade = new Entidades.Financeiro.Crédito();
             entidade.Pessoa = pessoa;
             CarregarEntidade(entidade);
             txtValor.Text = "";
             txtValor.Focus();
         }
 
-        public void CarregarEntidade(Entidades.Crédito entidade)
+        public void CarregarEntidade(Entidades.Financeiro.Crédito entidade)
         {
             this.entidade = entidade;
 

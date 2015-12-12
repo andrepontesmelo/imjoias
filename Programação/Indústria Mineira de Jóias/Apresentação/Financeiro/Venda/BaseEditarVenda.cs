@@ -310,7 +310,7 @@ namespace Apresentação.Financeiro.Venda
             Abrir(venda);
         }
 
-        private void dadosVenda_CotaçãoAlterada(Entidades.Cotação cotação)
+        private void dadosVenda_CotaçãoAlterada(Entidades.Financeiro.Cotação cotação)
         {
             // Neste ponto a nova cotação já foi gravada no bd.
 
@@ -409,7 +409,7 @@ namespace Apresentação.Financeiro.Venda
             if (!ConferirTravamento()) {
                 Apresentação.Formulários.AguardeDB.Mostrar();
 
-                List<Entidades.Crédito> créditosNãoUtilizados = Entidades.Crédito.ObterCréditosNãoUtilizados(Relacionamento.Pessoa);
+                List<Entidades.Financeiro.Crédito> créditosNãoUtilizados = Entidades.Financeiro.Crédito.ObterCréditosNãoUtilizados(Relacionamento.Pessoa);
 
                 tabs.SelectTab(tabCréditos);
                 listaCréditos.AdicionarCadastrando(créditosNãoUtilizados);

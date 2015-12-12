@@ -24,7 +24,7 @@ namespace Apresentação.Mercadoria.Cotação
         /// <summary>
         /// Serve para informar se a cotação escolhida não é a mais recente
         /// </summary>
-        Entidades.Cotação últimaCotação;
+        Entidades.Financeiro.Cotação últimaCotação;
 
         private volatile bool valorDefinido = false;
 
@@ -45,7 +45,7 @@ namespace Apresentação.Mercadoria.Cotação
         private bool mostrarListaCotações = true;
 
         // Último evento disparado.
-        private Entidades.Cotação últimaEscolha = null;
+        private Entidades.Financeiro.Cotação últimaEscolha = null;
 
         /// <summary>
         /// Indica se o contexto e controles flutuantes foram carregados.
@@ -75,7 +75,7 @@ namespace Apresentação.Mercadoria.Cotação
         /// Invoque DispararEscolheuCotação ao invés de EscolheuCotação.
         /// Isto porque deve-se evitar Escolhas repetidas.
         /// </summary>
-        public delegate void Escolha(Entidades.Cotação escolha);
+        public delegate void Escolha(Entidades.Financeiro.Cotação escolha);
         public event Escolha EscolheuCotação;
 
         #endregion
@@ -205,11 +205,11 @@ namespace Apresentação.Mercadoria.Cotação
         /// <summary>
         /// Cotação escolhida.
         /// </summary>
-        public Entidades.Cotação Cotação
+        public Entidades.Financeiro.Cotação  Cotação
         {
             get
             {
-                Entidades.Cotação cotação;
+                Entidades.Financeiro.Cotação  cotação;
 
                 if (painelFlutuante == null)
                     return null;
@@ -444,7 +444,7 @@ namespace Apresentação.Mercadoria.Cotação
 
                 if (moeda != null)
                 {
-                    últimaCotação = Entidades.Cotação.ObterCotaçãoVigente(moeda);
+                    últimaCotação = Entidades.Financeiro.Cotação.ObterCotaçãoVigente(moeda);
 
                     if (iniciarValorAtual && (txt.Double == 0 || !valorDefinido))
                         AtribuirCotação(últimaCotação);
@@ -452,7 +452,7 @@ namespace Apresentação.Mercadoria.Cotação
                 else
                     últimaCotação = null;
             }
-            catch (Entidades.Cotação.CotaçãoInexistente)
+            catch (Entidades.Financeiro.Cotação.CotaçãoInexistente)
             {
                 txt.Text = "";
 
@@ -536,7 +536,7 @@ namespace Apresentação.Mercadoria.Cotação
             }
             else
             {
-                Entidades.Cotação escolha = Cotação;
+                Entidades.Financeiro.Cotação escolha = Cotação;
 
                 if (escolha == null)
                     txt.Text = "";
@@ -667,7 +667,7 @@ namespace Apresentação.Mercadoria.Cotação
         /// </summary>
         private void lista_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Entidades.Cotação escolha = this.Cotação;
+            Entidades.Financeiro.Cotação escolha = this.Cotação;
 
             /* As 2 verificações antes de atribuir o txt.Text resolvem
              * um possível loop infinito. Se sempre que a seleção da lista mudar
@@ -704,7 +704,7 @@ namespace Apresentação.Mercadoria.Cotação
         /// </summary>
         private void DispararEscolheuCotação()
         {
-            Entidades.Cotação escolha = Cotação;
+            Entidades.Financeiro.Cotação escolha = Cotação;
 
             if (escolha != null)
                 txt.Double = escolha.Valor;
@@ -752,7 +752,7 @@ namespace Apresentação.Mercadoria.Cotação
             if (moeda.Código == 4)
                 return;
 
-            Entidades.Cotação escolha = Cotação;
+            Entidades.Financeiro.Cotação escolha = Cotação;
 
             if (escolha != null)
             {
@@ -760,8 +760,8 @@ namespace Apresentação.Mercadoria.Cotação
                     SinalizarCotaçãoNãoCadastrada();
                 else if (Data.HasValue) 
                 {
-                    Entidades.Cotação[] cotações = 
-                        Entidades.Cotação.ObterListaCotaçõesAtéDia(moeda, Data.Value);
+                    Entidades.Financeiro.Cotação[] cotações = 
+                        Entidades.Financeiro.Cotação.ObterListaCotaçõesAtéDia(moeda, Data.Value);
 
                     if (cotações.Length > 0)
                     {
@@ -907,13 +907,13 @@ namespace Apresentação.Mercadoria.Cotação
         //    sponsor.Unregister((MarshalByRefObject)cotação);
         //}
 
-        private delegate void AtribuirCotaçãoCallback(Entidades.Cotação cotação);
+        private delegate void AtribuirCotaçãoCallback(Entidades.Financeiro.Cotação cotação);
 
         /// <summary>
         /// Atribui uma cotação ao TxtCotação.
         /// </summary>
         /// <param name="cotação">Cotação a ser atribuída.</param>
-        private void AtribuirCotação(Entidades.Cotação cotação)
+        private void AtribuirCotação(Entidades.Financeiro.Cotação cotação)
         {
             if (painelFlutuante == null)
                 Carregar();
@@ -950,7 +950,7 @@ namespace Apresentação.Mercadoria.Cotação
         ///// Pergunta se o usuário deseja atualizar para
         ///// a cotação recentemente cadastrada.
         ///// </summary>
-        //private void PerguntarAtualização(Entidades.Cotação cotação)
+        //private void PerguntarAtualização(Entidades.Financeiro.Cotação cotação)
         //{
         //    Thread thread;
 
@@ -968,7 +968,7 @@ namespace Apresentação.Mercadoria.Cotação
         ///// <param name="obj">ICotação</param>
         //private void PerguntarAtualizaçãoAssíncrono(object obj)
         //{
-        //    Entidades.Cotação cotação = (Entidades.Cotação)obj;
+        //    Entidades.Financeiro.Cotação cotação = (Entidades.Financeiro.Cotação)obj;
 
         //    using (BalãoCotaçãoNova dlg = new BalãoCotaçãoNova(cotação))
         //    {

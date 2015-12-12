@@ -14,7 +14,7 @@ namespace Apresentação.Usuário.Financeiro
         /// Constrói uma janela de notificação de cotação do ouro.
         /// </summary>
         /// <param name="cotação">Cotação atual.</param>
-        public NotificaçãoCotação(Entidades.Cotação cotação)
+        public NotificaçãoCotação(Entidades.Financeiro.Cotação cotação)
         {
             InitializeComponent();
 
@@ -33,15 +33,15 @@ namespace Apresentação.Usuário.Financeiro
         /// Atualiza imagem, conforme mudança da cotação.
         /// </summary>
         /// <param name="cotação">Cotação atual.</param>
-        private void AtualizarImagem(Entidades.Cotação cotação)
+        private void AtualizarImagem(Entidades.Financeiro.Cotação cotação)
         {
-            Entidades.Cotação[] cotações;
+            Entidades.Financeiro.Cotação[] cotações;
 
-            cotações = Entidades.Cotação.ObterListaCotaçõesAnteriores(cotação.Moeda, 2);
+            cotações = Entidades.Financeiro.Cotação.ObterListaCotaçõesAnteriores(cotação.Moeda, 2);
 
             if (cotações.Length > 1)
             {
-                Entidades.Cotação anterior;
+                Entidades.Financeiro.Cotação anterior;
 
                 anterior = cotações[1];
 

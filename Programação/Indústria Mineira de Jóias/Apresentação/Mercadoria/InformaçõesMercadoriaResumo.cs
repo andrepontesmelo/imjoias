@@ -26,7 +26,7 @@ namespace Apresentação.Mercadoria
 
         // Atributos
         private Entidades.Mercadoria.Mercadoria mercadoria;
-        private Entidades.Cotação cotação;
+        private Entidades.Financeiro.Cotação cotação;
         private int[] dias = new int[] { 0, 30, 45, 60 };
 
         // Eventos
@@ -89,7 +89,7 @@ namespace Apresentação.Mercadoria
         private IContainer components;
 
         /// <param name="mercadoria">Mercadoria para exibição</param>
-        public InformaçõesMercadoriaResumo(Entidades.Mercadoria.Mercadoria mercadoria, Entidades.Cotação cotação)
+        public InformaçõesMercadoriaResumo(Entidades.Mercadoria.Mercadoria mercadoria, Entidades.Financeiro.Cotação cotação)
         {
             InitializeComponent();
 
@@ -860,7 +860,7 @@ namespace Apresentação.Mercadoria
         /// <summary>
         /// Cotação a ser utilizada.
         /// </summary>
-        public Entidades.Cotação Cotação
+        public Entidades.Financeiro.Cotação Cotação
         {
             get { return cotação; }
             set
@@ -879,7 +879,7 @@ namespace Apresentação.Mercadoria
             {
                 // Atacado
                 mercadoria.TabelaPreço = Tabela.ObterTabela(3);
-                cotação = Entidades.Cotação.ObterCotaçãoVigente(Moeda.ObterMoeda(Moeda.MoedaSistema.Ouro));
+                cotação = Entidades.Financeiro.Cotação.ObterCotaçãoVigente(Moeda.ObterMoeda(Moeda.MoedaSistema.Ouro));
 
                 lblPreçoÁVistaAtacado.Text = CalcularPreço(dias[0]);
                 lblPreço30Atacado.Text = CalcularPreço(dias[1]);
@@ -893,7 +893,7 @@ namespace Apresentação.Mercadoria
 
                 // Consignado
                 mercadoria.TabelaPreço = Tabela.ObterTabela(2);
-                cotação = Entidades.Cotação.ObterCotaçãoVigente(Moeda.ObterMoeda(5));
+                cotação = Entidades.Financeiro.Cotação.ObterCotaçãoVigente(Moeda.ObterMoeda(5));
                 lblPreçoÁVistaConsignado.Text = CalcularPreço(dias[0]);
                 lblPreço30Consignado.Text = CalcularPreço(dias[1]);
                 lblPreço30x60Consignado.Text = CalcularPreço(dias[2]);

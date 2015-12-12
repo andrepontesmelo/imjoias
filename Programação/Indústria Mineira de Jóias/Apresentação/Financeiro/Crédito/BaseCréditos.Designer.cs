@@ -36,6 +36,7 @@
             this.colData = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colValor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colDescrição = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colVenda = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.quadro2.SuspendLayout();
@@ -142,7 +143,8 @@
             this.lstCréditos.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colData,
             this.colValor,
-            this.colDescrição});
+            this.colDescrição,
+            this.colVenda});
             this.lstCréditos.FullRowSelect = true;
             this.lstCréditos.Location = new System.Drawing.Point(0, 26);
             this.lstCréditos.Name = "lstCréditos";
@@ -166,7 +168,11 @@
             // colDescrição
             // 
             this.colDescrição.Text = "Descrição";
-            this.colDescrição.Width = 500;
+            this.colDescrição.Width = 106;
+            // 
+            // colVenda
+            // 
+            this.colVenda.Text = "Venda";
             // 
             // BaseCréditos
             // 
@@ -197,5 +203,6 @@
         private System.Windows.Forms.ColumnHeader colData;
         private System.Windows.Forms.ColumnHeader colValor;
         private System.Windows.Forms.ColumnHeader colDescrição;
+        private System.Windows.Forms.ColumnHeader colVenda;
     }
 }

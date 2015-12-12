@@ -16,7 +16,7 @@ namespace Apresentação.Financeiro.Pagamento
         }
         //protected override Entidades.Pagamentos.Pagamento CriarEntidade()
         //{
-        //    return new Entidades.Crédito();
+        //    return new Entidades.Financeiro.Crédito();
         //}
 
         //public override void PrepararParaAlteração(Entidades.Pagamentos.Pagamento pagamento)

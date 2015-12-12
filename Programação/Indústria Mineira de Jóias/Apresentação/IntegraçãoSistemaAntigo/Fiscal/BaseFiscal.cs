@@ -9,6 +9,7 @@ using System.IO;
 using Entidades;
 using System.Diagnostics;
 using Apresentação.Formulários;
+using Entidades.Financeiro;
 
 namespace Apresentação.IntegraçãoSistemaAntigo.Fiscal
 {
@@ -66,7 +67,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Fiscal
 
 
             // Obtem a cotação de varejo
-            cotação = Entidades.Cotação.ObterCotaçãoVigente(Entidades.Moeda.ObterMoeda(4)).Valor;
+            cotação = Entidades.Financeiro.Cotação.ObterCotaçãoVigente(Entidades.Moeda.ObterMoeda(4)).Valor;
 
             List<IDbConnection> conexõesRemovidas = new List<IDbConnection>();
             // Abre banco de dados

@@ -99,18 +99,18 @@ namespace Apresentação.Financeiro.Indicadores
 
         public void Recarregar()
         {
-            Entidades.Cotação[] cotações;
+            Entidades.Financeiro.Cotação[] cotações;
             double[] valores;
             string[] rótulos;
             int i = 0;
 
             recarregar = false;
 
-            cotações = Entidades.Cotação.ObterCotações(moeda, períodoInicial, períodoFinal);
+            cotações = Entidades.Financeiro.Cotação.ObterCotações(moeda, períodoInicial, períodoFinal);
             valores = new double[cotações.Length];
             rótulos = new string[cotações.Length];
 
-            foreach (Entidades.Cotação cotação in cotações)
+            foreach (Entidades.Financeiro.Cotação cotação in cotações)
             {
                 valores[i] = cotação.Valor;
                 rótulos[i++] = cotação.Data.Value.ToString("dd/MM/yy");
@@ -151,7 +151,7 @@ namespace Apresentação.Financeiro.Indicadores
         /// Adiciona uma cotação ao gráfico.
         /// Só é adicionado se o período for interessante.
         /// </summary>
-        public void AdicionarCotação(Entidades.Cotação cotação)
+        public void AdicionarCotação(Entidades.Financeiro.Cotação cotação)
         {
             if (cotação.Data >= períodoInicial && cotação.Data <= períodoFinal)
             {

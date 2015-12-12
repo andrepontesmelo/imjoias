@@ -483,7 +483,7 @@ namespace Apresentação.Álbum.Edição.Fotos
                 m.Peso = Seleção.Peso.Value;
 
             InformaçõesMercadoriaResumo janela = new InformaçõesMercadoriaResumo(m,
-                Entidades.Cotação.ObterCotaçãoVigente(Entidades.Moeda.ObterMoeda(Entidades.Moeda.MoedaSistema.Ouro)));
+                Entidades.Financeiro.Cotação.ObterCotaçãoVigente(Entidades.Moeda.ObterMoeda(Entidades.Moeda.MoedaSistema.Ouro)));
 
             janela.Show();
         }
