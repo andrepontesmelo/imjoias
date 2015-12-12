@@ -176,10 +176,10 @@ namespace Entidades.Relacionamento.Venda
         /// <summary>
         /// Obtém os débitos de uma venda.
         /// </summary>
-        public static VendaDébito[] ObterDébitos(Venda venda)
+        public static List<VendaDébito> ObterDébitos(Venda venda)
         {
-           VendaDébito[] débitos = Mapear<VendaDébito>(
-                "SELECT codigo, descricao, valorbruto, valorliquido, data, diasdejuros, cobrarjuros, pagamento FROM vendadebito WHERE venda = " + DbTransformar(venda.Código)).ToArray();
+           List<VendaDébito> débitos = Mapear<VendaDébito>(
+                "SELECT codigo, descricao, valorbruto, valorliquido, data, diasdejuros, cobrarjuros, pagamento FROM vendadebito WHERE venda = " + DbTransformar(venda.Código));
 
             foreach (VendaDébito débito in débitos)
                 débito.venda = venda;
