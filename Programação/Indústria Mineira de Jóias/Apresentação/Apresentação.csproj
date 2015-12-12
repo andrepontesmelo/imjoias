@@ -1658,6 +1658,7 @@
     <Compile Include="IntegraçãoSistemaAntigo\BaseCodBarras.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="IntegraçãoSistemaAntigo\Controles\Mercadorias\Gramas.cs" />
     <Compile Include="IntegraçãoSistemaAntigo\ProcessoIntegração.cs" />
     <Compile Include="IntegraçãoSistemaAntigo\Cadcli\BaseCadCli.cs">
       <SubType>UserControl</SubType>
