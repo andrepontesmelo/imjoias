@@ -6,6 +6,7 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using Apresentação.Formulários;
+using Entidades.Financeiro;
 
 namespace Apresentação.Financeiro.Crédito
 {
@@ -47,8 +48,7 @@ namespace Apresentação.Financeiro.Crédito
             List<Entidades.Financeiro.Crédito> entidades = 
                 Entidades.Financeiro.Crédito.ObterCréditos(Pessoa);
 
-            List<Entidades.Financeiro.Crédito> créditosNãoUtilizados =
-                Entidades.Financeiro.Crédito.ObterCréditosNãoUtilizados(Pessoa);
+            Dictionary<uint, ulong> hashCréditoVenda = VendaCrédito.ObterHashCréditoVenda(Pessoa.Código);
 
             foreach (Entidades.Financeiro.Crédito entidade in entidades) 
             {
@@ -57,7 +57,12 @@ namespace Apresentação.Financeiro.Crédito
                 item.SubItems.Add(entidade.Valor.ToString("C"));
                 item.SubItems.Add(entidade.Descrição);
 
-                if (créditosNãoUtilizados.Contains(entidade))
+                ulong códigoVenda;
+
+                if (hashCréditoVenda.TryGetValue(entidade.Código, out códigoVenda))
+                {
+                    item.SubItems.Add(códigoVenda.ToString());
+                } else
                     item.BackColor = Color.GreenYellow;
 
                 lstCréditos.Items.Add(item);
@@ -65,6 +70,7 @@ namespace Apresentação.Financeiro.Crédito
 
             AguardeDB.Fechar();
         }
+
 
         private void lstCréditos_DoubleClick(object sender, EventArgs e)
         {

@@ -237,6 +237,7 @@
     <Compile Include="Etiqueta\EtiquetaMercadoria.cs" />
     <Compile Include="Etiqueta\SaquinhoEtiqueta.cs" />
     <Compile Include="FaturamentoMercadorias.cs" />
+    <Compile Include="Financeiro\VendaCredito.cs" />
     <Compile Include="Fiscal\Cfop.cs" />
     <Compile Include="Fiscal\Nfe.cs" />
     <Compile Include="IAcessoMercadoria.cs">
