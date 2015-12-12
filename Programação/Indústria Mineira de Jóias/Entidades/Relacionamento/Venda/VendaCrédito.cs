@@ -176,15 +176,15 @@ namespace Entidades.Relacionamento.Venda
         /// <summary>
         /// Obtém os Créditos de uma venda.
         /// </summary>
-        public static VendaCrédito[] ObterCréditos(Venda venda)
+        public static List<VendaCrédito> ObterCréditos(Venda venda)
         {
-            VendaCrédito[] Créditos = Mapear<VendaCrédito>(
-                 "SELECT codigo, descricao, valorbruto, valorliquido, data, diasdejuros, cobrarjuros, credito FROM vendacredito WHERE venda = " + DbTransformar(venda.Código)).ToArray();
+            List<VendaCrédito> créditos = Mapear<VendaCrédito>(
+                 "SELECT codigo, descricao, valorbruto, valorliquido, data, diasdejuros, cobrarjuros, credito FROM vendacredito WHERE venda = " + DbTransformar(venda.Código));
 
-            foreach (VendaCrédito Crédito in Créditos)
-                Crédito.venda = venda;
+            foreach (VendaCrédito crédito in créditos)
+                crédito.venda = venda;
 
-            return Créditos;
+            return créditos;
         }
 
         #endregion
