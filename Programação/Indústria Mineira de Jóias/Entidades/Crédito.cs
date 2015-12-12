@@ -67,20 +67,6 @@ namespace Entidades
             }
         }
 
-
-        //public Entidades.Relacionamento.Venda.Venda Venda
-        //{
-        //    get
-        //    {
-        //        return venda;
-        //    }
-        //    set
-        //    {
-        //        venda = value;
-        //        DefinirDesatualizado();
-        //    }
-        //}
-
         public Crédito()
         {
             data = Entidades.Configuração.DadosGlobais.Instância.HoraDataAtual;
