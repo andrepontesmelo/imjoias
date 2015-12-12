@@ -47,12 +47,18 @@ namespace Apresentação.Financeiro.Crédito
             List<Entidades.Crédito> entidades = 
                 Entidades.Crédito.ObterCréditos(Pessoa);
 
+            List<Entidades.Crédito> créditosNãoUtilizados =
+                Entidades.Crédito.ObterCréditosNãoUtilizados(Pessoa);
+
             foreach (Entidades.Crédito entidade in entidades) 
             {
                 ListViewItem item = new ListViewItem(entidade.Data.ToShortDateString());
                 hashCréditos[item] = entidade;
                 item.SubItems.Add(entidade.Valor.ToString("C"));
                 item.SubItems.Add(entidade.Descrição);
+
+                if (créditosNãoUtilizados.Contains(entidade))
+                    item.BackColor = Color.GreenYellow;
 
                 lstCréditos.Items.Add(item);
             }
