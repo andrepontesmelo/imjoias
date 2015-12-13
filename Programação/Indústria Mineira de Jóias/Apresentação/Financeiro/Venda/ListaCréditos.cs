@@ -160,7 +160,15 @@ namespace Apresentação.Financeiro.Venda
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
-            if (!venda.Travado)
+            if (!venda.Cadastrado)
+            {
+                MessageBox.Show(
+                ParentForm,
+                "Não é possível adicionar nenhum crédito à venda não cadastrada.",
+                "Créditos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return;
+            } else if (!venda.Travado)
                 using (EditarCrédito dlg = new EditarCrédito(venda))
                 {
                     if (dlg.ShowDialog(ParentForm) == DialogResult.OK)
