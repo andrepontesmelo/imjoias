@@ -132,12 +132,22 @@ namespace Apresentação.Financeiro.Venda
 
             if (!venda.Travado)
             {
+                if (lista.SelectedItems.Count == 0)
+                    return;
+
+                if (MessageBox.Show(this,
+                    "Confirma exclusão de " + lista.SelectedItems.Count.ToString() +
+                    " crédito" + (lista.SelectedItems.Count == 1 ? "" : "s") + " ? ",
+                    "Confirmação",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
+                    return;
+
                 foreach (ListViewItem i in lista.SelectedItems)
                 {
                     VendaCrédito Crédito = (VendaCrédito)i.Tag;
                     venda.ItensCrédito.Remover(Crédito);
                 }
-
             }
             else
                 MessageBox.Show(

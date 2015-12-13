@@ -95,6 +95,14 @@ namespace Apresentação.Financeiro.Crédito
         {
             if (lstCréditos.SelectedItems.Count > 0)
             {
+                if (MessageBox.Show(this,
+                    "Confirma exclusão de " + lstCréditos.SelectedItems.Count.ToString() +
+                    " crédito" + (lstCréditos.SelectedItems.Count == 1 ? "" : "s") + " ? ",
+                    "Confirmação",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
+                    return;
+
                 foreach (ListViewItem item in lstCréditos.SelectedItems)
                 {
                     Entidades.Financeiro.Crédito crédito = hashCréditos[item];
