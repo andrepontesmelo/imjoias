@@ -14,6 +14,7 @@ using Apresentação.Formulários.Impressão;
 using Apresentação.Impressão;
 using Apresentação.Financeiro.Acerto;
 using Negócio;
+using Acesso.Comum.Exceções;
 
 namespace Apresentação.Financeiro
 {
@@ -319,7 +320,20 @@ namespace Apresentação.Financeiro
             if (entidade.Cadastrado)
                 Relacionamento.Atualizar();
             else
-                Relacionamento.Cadastrar();
+            {
+                try
+                {
+                    Relacionamento.Cadastrar();
+                } catch (OperaçãoCancelada err)
+                {
+                    MessageBox.Show(this,
+                        "Venda ainda não foi salva.",
+                        "Operação cancelada",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+            }
+
         }
     }
 }
