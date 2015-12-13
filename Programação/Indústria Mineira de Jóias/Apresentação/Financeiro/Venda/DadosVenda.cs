@@ -546,11 +546,13 @@ namespace Apresentação.Financeiro.Venda
         {
             Entidades.Relacionamento.Venda.Venda entidade = (Entidades.Relacionamento.Venda.Venda)obj;
 
+            string título = "Venda não cadastrada";
+
             if (entidade.Cliente == null)
             {
                 MessageBox.Show(ParentForm,
                     "Por favor, defina o cliente desta venda.",
-                    "Venda",
+                    título,
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 cancelar = true;
@@ -559,7 +561,7 @@ namespace Apresentação.Financeiro.Venda
             {
                 MessageBox.Show(ParentForm,
                     "Por favor, defina o vendedor desta venda.",
-                    "Venda",
+                    título,
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 cancelar = true;
@@ -568,7 +570,7 @@ namespace Apresentação.Financeiro.Venda
             {
                 MessageBox.Show(ParentForm,
                     "Por favor, defina corretamente o valor da cotação a ser utilizado.",
-                    "Venda",
+                    título,
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 cancelar = true;
