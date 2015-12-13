@@ -95,12 +95,12 @@ namespace Apresentação.Formulários.Impressão
         {
             if (tipo != TipoDocumento.Acerto)
                 NotificaçãoSimples.Mostrar(
-                    "Impressão completada!",
+                    "Impresso!",
                     "Documento " + Enum.GetName(typeof(TipoDocumento), tipo) +
                     " " + código.ToString() + " foi impresso com sucesso.");
             else
                 NotificaçãoSimples.Mostrar(
-                    "Impressão completada!",
+                    "Impresso!!",
                     "O acerto foi impresso com sucesso.");
 
             FinalizarImpressão();
