@@ -12,6 +12,7 @@ using Entidades.Pagamentos;
 using Entidades.Balanço;
 using Entidades.Privilégio;
 using System.Text;
+using Acesso.Comum.Exceções;
 
 namespace Entidades.Relacionamento.Venda
 {
@@ -50,7 +51,6 @@ namespace Entidades.Relacionamento.Venda
         protected DbComposição<VendaDébito> itensDébito;
         protected DbComposição<VendaCrédito> itensCrédito;
 
-        
 		#region Propriedades
 
         public bool Rastreada
@@ -1538,9 +1538,19 @@ namespace Entidades.Relacionamento.Venda
         private void AoAlterarItensDébito(DbManipulação entidade)
         {
             if (!Cadastrado)
-                Cadastrar();
+                CadastrarCapturandoErro();
 
             entidade.Atualizar();
+        }
+
+        private void CadastrarCapturandoErro()
+        {
+            try
+            {
+                Cadastrar();
+            } catch (OperaçãoCancelada)
+            {
+            }
         }
 
         /// <summary>
@@ -1549,7 +1559,7 @@ namespace Entidades.Relacionamento.Venda
         private void AoAlterarItensCrédito(DbManipulação entidade)
         {
             if (!Cadastrado)
-                Cadastrar();
+                CadastrarCapturandoErro();
 
             entidade.Atualizar();
         }
