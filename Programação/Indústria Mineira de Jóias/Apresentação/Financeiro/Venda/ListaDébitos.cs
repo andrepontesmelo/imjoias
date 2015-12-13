@@ -152,7 +152,15 @@ namespace Apresentação.Financeiro.Venda
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
-            if (!venda.Travado)
+            if (!venda.Cadastrado)
+            {
+               MessageBox.Show(
+               ParentForm,
+               "Não é possível adicionar nenhum débito à venda não cadastrada.",
+               "Débitos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+               
+                return;
+            } else if (!venda.Travado)
                 using (EditarDébito dlg = new EditarDébito(venda))
                 {
                     if (dlg.ShowDialog(ParentForm) == DialogResult.OK)

@@ -243,9 +243,9 @@ namespace Apresentação.Financeiro.Venda
             // 
             this.tabDébitos.Controls.Add(this.listaDébitos);
             this.tabDébitos.ImageIndex = 4;
-            this.tabDébitos.Location = new System.Drawing.Point(4, 22);
+            this.tabDébitos.Location = new System.Drawing.Point(4, 23);
             this.tabDébitos.Name = "tabDébitos";
-            this.tabDébitos.Size = new System.Drawing.Size(582, 548);
+            this.tabDébitos.Size = new System.Drawing.Size(492, 453);
             this.tabDébitos.TabIndex = 4;
             this.tabDébitos.Text = "(+) Débitos";
             this.tabDébitos.UseVisualStyleBackColor = true;
@@ -255,7 +255,7 @@ namespace Apresentação.Financeiro.Venda
             this.listaDébitos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listaDébitos.Location = new System.Drawing.Point(0, 0);
             this.listaDébitos.Name = "listaDébitos";
-            this.listaDébitos.Size = new System.Drawing.Size(582, 548);
+            this.listaDébitos.Size = new System.Drawing.Size(492, 453);
             this.listaDébitos.TabIndex = 0;
             // 
             // listaCréditos

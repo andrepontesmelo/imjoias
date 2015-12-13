@@ -30,8 +30,8 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.lst = new System.Windows.Forms.ListView();
-            this.colTabela = new System.Windows.Forms.ColumnHeader();
-            this.colSetor = new System.Windows.Forms.ColumnHeader();
+            this.colTabela = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colSetor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnOK = new System.Windows.Forms.Button();
             this.botãoLiberarRecurso = new Apresentação.Formulários.BotãoLiberarRecurso();
             ((System.ComponentModel.ISupportInitialize)(this.picÍcone)).BeginInit();
@@ -53,7 +53,8 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 107);
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(17, 103);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(89, 13);
             this.label1.TabIndex = 3;
@@ -61,9 +62,9 @@
             // 
             // lst
             // 
-            this.lst.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lst.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lst.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colTabela,
             this.colSetor});
@@ -74,8 +75,8 @@
             this.lst.TabIndex = 4;
             this.lst.UseCompatibleStateImageBehavior = false;
             this.lst.View = System.Windows.Forms.View.Details;
-            this.lst.DoubleClick += new System.EventHandler(this.lst_DoubleClick);
             this.lst.SelectedIndexChanged += new System.EventHandler(this.lst_SelectedIndexChanged);
+            this.lst.DoubleClick += new System.EventHandler(this.lst_DoubleClick);
             // 
             // colTabela
             // 
@@ -105,7 +106,7 @@
             this.botãoLiberarRecurso.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.botãoLiberarRecurso.AutoSize = true;
             this.botãoLiberarRecurso.Descrição = "Este recurso permite que o funcionário utilize tabela de preço de qualquer setor " +
-                "para registrar saída, retorno ou venda para o cliente.";
+    "para registrar saída, retorno ou venda para o cliente.";
             this.botãoLiberarRecurso.Location = new System.Drawing.Point(20, 273);
             this.botãoLiberarRecurso.Name = "botãoLiberarRecurso";
             this.botãoLiberarRecurso.Privilégios = Entidades.Privilégio.Permissão.EscolherQualquerTabela;
