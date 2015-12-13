@@ -42,6 +42,7 @@ namespace Apresentação.Financeiro.Crédito
         {
             AguardeDB.Mostrar();
 
+            lstCréditos.SuspendLayout();
             lstCréditos.Items.Clear();
             hashCréditos = new Dictionary<ListViewItem, Entidades.Financeiro.Crédito>();
 
@@ -51,24 +52,31 @@ namespace Apresentação.Financeiro.Crédito
             Dictionary<uint, ulong> hashCréditoVenda = VendaCrédito.ObterHashCréditoVenda(Pessoa.Código);
 
             foreach (Entidades.Financeiro.Crédito entidade in entidades) 
-            {
-                ListViewItem item = new ListViewItem(entidade.Data.ToShortDateString());
-                hashCréditos[item] = entidade;
-                item.SubItems.Add(entidade.Valor.ToString("C"));
-                item.SubItems.Add(entidade.Descrição);
+                AdicionarItem(hashCréditoVenda, entidade);
 
-                ulong códigoVenda;
+            lstCréditos.AutoResizeColumns(entidades.Count == 0 ? ColumnHeaderAutoResizeStyle.HeaderSize : ColumnHeaderAutoResizeStyle.ColumnContent);
 
-                if (hashCréditoVenda.TryGetValue(entidade.Código, out códigoVenda))
-                {
-                    item.SubItems.Add(códigoVenda.ToString());
-                } else
-                    item.BackColor = Color.GreenYellow;
-
-                lstCréditos.Items.Add(item);
-            }
-
+            lstCréditos.ResumeLayout();
             AguardeDB.Fechar();
+        }
+
+        private void AdicionarItem(Dictionary<uint, ulong> hashCréditoVenda, Entidades.Financeiro.Crédito entidade)
+        {
+            ListViewItem item = new ListViewItem(entidade.Data.ToShortDateString());
+            hashCréditos[item] = entidade;
+            item.SubItems.Add(entidade.Valor.ToString("C"));
+            item.SubItems.Add(entidade.Descrição);
+
+            ulong códigoVenda;
+
+            if (hashCréditoVenda.TryGetValue(entidade.Código, out códigoVenda))
+            {
+                item.SubItems.Add(códigoVenda.ToString());
+            }
+            else
+                item.BackColor = Color.GreenYellow;
+
+            lstCréditos.Items.Add(item);
         }
 
 
