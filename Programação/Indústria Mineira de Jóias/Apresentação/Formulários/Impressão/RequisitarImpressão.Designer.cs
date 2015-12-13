@@ -35,8 +35,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RequisitarImpressão));
             this.label1 = new System.Windows.Forms.Label();
             this.lstImpressoras = new System.Windows.Forms.ListView();
-            this.colImpressora = new System.Windows.Forms.ColumnHeader();
-            this.colMáquina = new System.Windows.Forms.ColumnHeader();
+            this.colImpressora = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colMáquina = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
@@ -73,7 +73,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 103);
+            this.label1.Location = new System.Drawing.Point(12, 100);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(123, 13);
             this.label1.TabIndex = 3;
