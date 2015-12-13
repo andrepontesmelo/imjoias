@@ -304,19 +304,19 @@ namespace Apresentação.Financeiro.Venda
 
             if (colecao.Count > 1)
             {
-                if (MessageBox.Show("Deseja apagar as vendas de código " + vendasCodigo.ToString() + "? ", "Apagar várias vendas", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                if (MessageBox.Show("Deseja apagar as vendas de código " + vendasCodigo.ToString() + "? ", "Apagar várias vendas", 
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
                     != DialogResult.Yes)
                     return;
             } else
             {
-                if (MessageBox.Show("Deseja apagar a venda de código " + vendasCodigo.ToString() + "? ", "Apagar uma venda", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-    != DialogResult.Yes)
+                if (MessageBox.Show("Deseja apagar a venda de código " + vendasCodigo.ToString() + "? ", "Apagar uma venda", 
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
+                    != DialogResult.Yes)
                     return;
             }
 
-
             Apresentação.Formulários.AguardeDB.Mostrar();
-
 
             foreach (IDadosVenda item in colecao)
             {
