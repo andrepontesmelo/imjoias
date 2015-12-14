@@ -22,26 +22,33 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 */
 	public class Indices
 	{
-        private const int tabelaConsignado = 2;
-        private const int tabelaAtacado = 3;
-        private const int tabelaAltoAtacado = 4;
-        private const int tabelaVarejo = 1;
-        private const int tabelaVarejoConsulta = 5;
-        private const int tabelaRepresentante = 6;
+        private const int TABELA_CONSIGNADO = 2;
+        private const int TABELA_ATACADO = 3;
+        private const int TABELA_ALTO_ATACADO = 4;
+        private const int TABELA_VAREJO = 1;
+        private const int TABELA_VAREJO_CONSULTA = 5;
+        private const int TABELA_REPRESENTANTE = 6;
+
+        private const string COLUNA_CADMER_VAREJO = "VR_3060902";
+        private const string COLUNA_CADMER_VAREJO_CONSULTA = "VR_VISTA2";
+
+        private const string MERCADORIA = "mercadoria";
+        private const string REFERÊNCIA = "referencia";
+        private const string TABELA = "tabela";
+        private const string GRUPO = "grupo";
+        private const string FAIXA = "faixa";
 
         private double cotaçãoVarejo;
 
 		private DataTable cadmer, gramas;
 		private DataTable tabelaNovaMercadoria, tabelaCoeficiente;
-		//private BaseMercadorias.ReportarInconsistenciaDelegate ReportarErro;
 	
 		public Indices (DataSet dataSetVelho, DataSet dataSetNovo)
 		{
             cadmer = dataSetVelho.Tables["cadmer"];
             gramas = dataSetVelho.Tables["gramas"];
-            tabelaNovaMercadoria = dataSetNovo.Tables["mercadoria"];
+            tabelaNovaMercadoria = dataSetNovo.Tables[MERCADORIA];
             tabelaCoeficiente = dataSetNovo.Tables["tabelamercadoria"];
-			//ReportarErro = ReportarErroFunção;
 		}
 
 		public void Transpor(double cotaçãoVarejo, StringBuilder saída)
@@ -114,7 +121,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 
             foreach (DataRow atual in tabelaCoeficiente.Rows)
             {
-                hashTabRefItem.Add(atual["tabela"].ToString().Trim() + atual["mercadoria"].ToString().Trim(), atual);
+                hashTabRefItem.Add(atual[TABELA].ToString().Trim() + atual[MERCADORIA].ToString().Trim(), atual);
             }
             
         }
@@ -129,9 +136,9 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             bool erro = false;
             bool depeso;
 
-            if (!hashReferênciaItem.TryGetValue(itemMercadoria["referencia"].ToString().Trim(), out itemMercadoriaAntiga))
+            if (!hashReferênciaItem.TryGetValue(itemMercadoria[REFERÊNCIA].ToString().Trim(), out itemMercadoriaAntiga))
             {
-                // saida.AppendLine("Coeficiente: A mercadoria foi apagada do dbf '" + itemMercadoria["referencia"].ToString() + "'.");
+                // saida.AppendLine("Coeficiente: A mercadoria foi apagada do dbf '" + itemMercadoria[REFERÊNCIA].ToString() + "'.");
                 return;
             }
 
@@ -161,13 +168,13 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 
         private DataRow TransporAA(DataRow itemMercadoria, StringBuilder consulta, double coeficienteAutoAtacado, bool erro, DataRow linha)
         {
-            if (hashTabRefItem.TryGetValue(tabelaAltoAtacado.ToString().Trim() + itemMercadoria["referencia"].ToString().Trim(), out linha))
+            if (hashTabRefItem.TryGetValue(TABELA_ALTO_ATACADO.ToString().Trim() + itemMercadoria[REFERÊNCIA].ToString().Trim(), out linha))
             {
-                AlterarIndiceExistente(itemMercadoria, tabelaAltoAtacado, coeficienteAutoAtacado, consulta);
+                AlterarIndiceExistente(itemMercadoria, TABELA_ALTO_ATACADO, coeficienteAutoAtacado, consulta);
             }
             else if (!erro)
             {
-                AdicionarIndiceNaoExistente(itemMercadoria, tabelaAltoAtacado, coeficienteAutoAtacado, consulta);
+                AdicionarIndiceNaoExistente(itemMercadoria, TABELA_ALTO_ATACADO, coeficienteAutoAtacado, consulta);
             }
 
             return linha;
@@ -175,52 +182,52 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 
         private DataRow TransporVarejoConsulta(DataRow itemMercadoria, StringBuilder consulta, double valorVarejoConsulta, bool erro, DataRow linha)
         {
-            if (hashTabRefItem.TryGetValue(tabelaVarejoConsulta.ToString().Trim() + itemMercadoria["referencia"].ToString().Trim(), out linha))
+            if (hashTabRefItem.TryGetValue(TABELA_VAREJO_CONSULTA.ToString().Trim() + itemMercadoria[REFERÊNCIA].ToString().Trim(), out linha))
             {
-                AlterarIndiceExistente(itemMercadoria, tabelaVarejoConsulta, valorVarejoConsulta, consulta);
+                AlterarIndiceExistente(itemMercadoria, TABELA_VAREJO_CONSULTA, valorVarejoConsulta, consulta);
             }
             else if (!erro)
             {
-                AdicionarIndiceNaoExistente(itemMercadoria, tabelaVarejoConsulta, valorVarejoConsulta, consulta);
+                AdicionarIndiceNaoExistente(itemMercadoria, TABELA_VAREJO_CONSULTA, valorVarejoConsulta, consulta);
             }
             return linha;
         }
 
         private DataRow TransporVarejo(DataRow itemMercadoria, StringBuilder consulta, double valorVarejo, bool erro, DataRow linha)
         {
-            if (hashTabRefItem.TryGetValue(tabelaVarejo.ToString().Trim() + itemMercadoria["referencia"].ToString().Trim(), out linha))
+            if (hashTabRefItem.TryGetValue(TABELA_VAREJO.ToString().Trim() + itemMercadoria[REFERÊNCIA].ToString().Trim(), out linha))
             {
-                AlterarIndiceExistente(itemMercadoria, tabelaVarejo, valorVarejo, consulta);
+                AlterarIndiceExistente(itemMercadoria, TABELA_VAREJO, valorVarejo, consulta);
             }
             else if (!erro)
             {
-                AdicionarIndiceNaoExistente(itemMercadoria, tabelaVarejo, valorVarejo, consulta);
+                AdicionarIndiceNaoExistente(itemMercadoria, TABELA_VAREJO, valorVarejo, consulta);
             }
             return linha;
         }
 
         private DataRow TransporConsignado(DataRow itemMercadoria, StringBuilder consulta, double coeficienteAtacado, bool erro, DataRow linha)
         {
-            if (hashTabRefItem.TryGetValue(tabelaConsignado.ToString().Trim() + itemMercadoria["referencia"].ToString().Trim(), out linha))
+            if (hashTabRefItem.TryGetValue(TABELA_CONSIGNADO.ToString().Trim() + itemMercadoria[REFERÊNCIA].ToString().Trim(), out linha))
             {
-                AlterarIndiceExistente(itemMercadoria, tabelaConsignado, coeficienteAtacado, consulta);
+                AlterarIndiceExistente(itemMercadoria, TABELA_CONSIGNADO, coeficienteAtacado, consulta);
             }
             else if (!erro)
             {
-                AdicionarIndiceNaoExistente(itemMercadoria, tabelaConsignado, coeficienteAtacado, consulta);
+                AdicionarIndiceNaoExistente(itemMercadoria, TABELA_CONSIGNADO, coeficienteAtacado, consulta);
             }
             return linha;
         }
 
         private DataRow TranporRepresentante(DataRow itemMercadoria, StringBuilder consulta, double coeficienteAtacado, bool erro, DataRow linha)
         {
-            if (hashTabRefItem.TryGetValue(tabelaRepresentante.ToString().Trim() + itemMercadoria["referencia"].ToString().Trim(), out linha))
+            if (hashTabRefItem.TryGetValue(TABELA_REPRESENTANTE.ToString().Trim() + itemMercadoria[REFERÊNCIA].ToString().Trim(), out linha))
             {
-                AlterarIndiceExistente(itemMercadoria, tabelaRepresentante, coeficienteAtacado, consulta);
+                AlterarIndiceExistente(itemMercadoria, TABELA_REPRESENTANTE, coeficienteAtacado, consulta);
             }
             else if (!erro)
             {
-                AdicionarIndiceNaoExistente(itemMercadoria, tabelaRepresentante, coeficienteAtacado, consulta);
+                AdicionarIndiceNaoExistente(itemMercadoria, TABELA_REPRESENTANTE, coeficienteAtacado, consulta);
             }
 
             return linha;
@@ -229,13 +236,13 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
         private DataRow TransporAtacado(DataRow itemMercadoria, StringBuilder consulta, double coeficienteAtacado, bool erro)
         {
             DataRow linha;
-            if (hashTabRefItem.TryGetValue(tabelaAtacado.ToString().Trim() + itemMercadoria["referencia"].ToString().Trim(), out linha))
+            if (hashTabRefItem.TryGetValue(TABELA_ATACADO.ToString().Trim() + itemMercadoria[REFERÊNCIA].ToString().Trim(), out linha))
             {
-                AlterarIndiceExistente(itemMercadoria, tabelaAtacado, coeficienteAtacado, consulta);
+                AlterarIndiceExistente(itemMercadoria, TABELA_ATACADO, coeficienteAtacado, consulta);
             }
             else if (!erro)
             {
-                AdicionarIndiceNaoExistente(itemMercadoria, tabelaAtacado, coeficienteAtacado, consulta);
+                AdicionarIndiceNaoExistente(itemMercadoria, TABELA_ATACADO, coeficienteAtacado, consulta);
             }
             return linha;
         }
@@ -246,14 +253,12 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             {
                 coeficienteAtacado = double.Parse(itemMercadoriaAntiga["CM_VISTA"].ToString());
                 coeficienteAutoAtacado = coeficienteAtacado;
-
-                valorVarejo = double.Parse(itemMercadoriaAntiga["VR_3060902"].ToString());
-                valorVarejoConsulta = Math.Round(Entidades.Preço.CorrigirInverso(60, valorVarejo, Entidades.Configuração.DadosGlobais.Instância.Juros), 2);
-
+                valorVarejo = double.Parse(itemMercadoriaAntiga[COLUNA_CADMER_VAREJO].ToString());
+                valorVarejoConsulta = double.Parse(itemMercadoriaAntiga[COLUNA_CADMER_VAREJO_CONSULTA].ToString());
             }
             catch (Exception err)
             {
-                saida.AppendLine("Coeficiente: cm_vista é nulo para '" + itemMercadoria["referencia"].ToString() + "'. coeficienete será 99999. " + err.Message);
+                saida.AppendLine("Coeficiente: cm_vista é nulo para '" + itemMercadoria[REFERÊNCIA].ToString() + "'. coeficienete será 99999. " + err.Message);
 
                 coeficienteAtacado
                     = coeficienteAutoAtacado
@@ -268,18 +273,18 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             try
             {
                 coeficienteAtacado =
-                    ObterGVistaDeGramas(4, itemMercadoria["faixa"].ToString(), int.Parse(itemMercadoria["grupo"].ToString()));
+                    ObterGVistaDeGramas(4, itemMercadoria[FAIXA].ToString(), int.Parse(itemMercadoria[GRUPO].ToString()));
 
                 coeficienteAutoAtacado =
-                    ObterGVistaDeGramas(8, itemMercadoria["faixa"].ToString(), int.Parse(itemMercadoria["grupo"].ToString()));
+                    ObterGVistaDeGramas(8, itemMercadoria[FAIXA].ToString(), int.Parse(itemMercadoria[GRUPO].ToString()));
 
 
-                valorVarejo = double.Parse(itemMercadoriaAntiga["VR_3060902"].ToString());
-                valorVarejoConsulta = Math.Round(Entidades.Preço.CorrigirInverso(60, valorVarejo, Entidades.Configuração.DadosGlobais.Instância.Juros), 2);
+                valorVarejo = double.Parse(itemMercadoriaAntiga[COLUNA_CADMER_VAREJO].ToString());
+                valorVarejoConsulta = double.Parse(itemMercadoriaAntiga[COLUNA_CADMER_VAREJO_CONSULTA].ToString());
             }
             catch (Exception e)
             {
-                saida.AppendLine("Coeficiente: Erro ao cadastrar coeficiente para '" + itemMercadoria["referencia"].ToString() + "'. valor será 99999. " + e.Message);
+                saida.AppendLine("Coeficiente: Erro ao cadastrar coeficiente para '" + itemMercadoria[REFERÊNCIA].ToString() + "'. valor será 99999. " + e.Message);
 
                 coeficienteAtacado
                     = coeficienteAutoAtacado
@@ -298,13 +303,13 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
         {
 
             consulta.Append("update tabelamercadoria set coeficiente = '" + DbTransformar(coeficiente) + "' WHERE "
-                + " mercadoria = '" + itemMercadoria["referencia"].ToString() + "' AND tabela = " + tabela.ToString() + ";");
+                + " mercadoria = '" + itemMercadoria[REFERÊNCIA].ToString() + "' AND tabela = " + tabela.ToString() + ";");
         }
 
         private static void AdicionarIndiceNaoExistente(DataRow itemMercadoria, int tabela, double coeficiente, StringBuilder consulta)
         {
             consulta.Append("insert into tabelamercadoria (coeficiente,mercadoria,tabela) VALUES ('" +  DbTransformar(coeficiente) + "',"
-                + "'" + itemMercadoria["referencia"].ToString() + "'," + tabela.ToString() + ");");
+                + "'" + itemMercadoria[REFERÊNCIA].ToString() + "'," + tabela.ToString() + ");");
         }
 
 		private static bool ConferirDePeso(DataRow mercadoria)
@@ -319,8 +324,8 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 		/// Peça é de grama.
 		/// Ver no inicio comentário no inicio da classe para saber para quê serve.
 		/// </summary>
-		/// <param name="faixa"></param>
-		/// <param name="grupo"></param>
+		/// <param name=FAIXA></param>
+		/// <param name=GRUPO></param>
 		/// <returns></returns>
 		private double ObterGVistaDeGramas(int tabela, string faixa, int grupo)
 		{
