@@ -551,7 +551,7 @@ namespace Apresentação.Atendimento
             this.classificador.Location = new System.Drawing.Point(3, 25);
             this.classificador.Name = "classificador";
             this.classificador.Pessoa = null;
-            this.classificador.Size = new System.Drawing.Size(191, 155);
+            this.classificador.Size = new System.Drawing.Size(188, 155);
             this.classificador.TabIndex = 10;
             // 
             // quadroObs
