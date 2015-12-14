@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Entidades.Mercadoria;
+﻿using Entidades.Mercadoria;
 using Entidades.PedidoConserto;
+using System.Collections.Generic;
 
 namespace Entidades.Pessoa
 {
@@ -137,6 +135,10 @@ namespace Entidades.Pessoa
             if (consertosProntos > 0)
                 pendências.AddLast(new ClientePendência(Identificações.PedidoPronto, "Cons. prontos", consertosProntos.ToString()));
 
+
+            double crédito = Entidades.Financeiro.Crédito.ObterSomaCréditos(cliente);
+            if (crédito != 0)
+                pendências.AddFirst(new ClientePendência("Crédito", crédito.ToString("C")));
 
             if (dívida > 0)
                 pendências.AddFirst(new ClientePendência(totalPagamentosPendentes.ToString() + " " +

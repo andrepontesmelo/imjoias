@@ -278,7 +278,6 @@
     </Compile>
     <Compile Include="Pagamentos\Cheque.cs" />
     <Compile Include="Pagamentos\Dolar.cs" />
-    <Compile Include="Pagamentos\Crédito.cs" />
     <Compile Include="Pagamentos\Dinheiro.cs" />
     <Compile Include="Pagamentos\IPagamento.cs" />
     <Compile Include="Pagamentos\IProrrogável.cs" />
