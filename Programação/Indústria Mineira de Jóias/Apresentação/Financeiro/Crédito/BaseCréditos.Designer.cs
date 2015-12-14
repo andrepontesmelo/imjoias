@@ -172,7 +172,8 @@
             // 
             // colVenda
             // 
-            this.colVenda.Text = "Venda";
+            this.colVenda.Text = "Gasto na Venda";
+            this.colVenda.Width = 122;
             // 
             // BaseCréditos
             // 
