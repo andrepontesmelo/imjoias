@@ -284,7 +284,6 @@ namespace Entidades.Acerto
                     new DbAção<Retorno>(RemoverRetorno));
 
             retornos.AoAdicionar += new DbComposição<Retorno>.EventoComposição(AoAdicionarRetorno);
-            retornos.AoRemover += new DbComposição<Retorno>.EventoComposição(AoRemoverRetorno);
         }
 
         private void ObterVendas()
@@ -526,15 +525,6 @@ namespace Entidades.Acerto
             GarantirConsistênciaAdição(entidade, composição);
             entidade.DefinirAcertoConsignado(this);
             entidade.AntesDeAtualizar += new DbManipulaçãoCancelávelHandler(AntesDeAtualizarRelacionamento);
-        }
-
-        /// <summary>
-        /// Ocorre ao remover um retorno.
-        /// </summary>
-        private void AoRemoverRetorno(DbComposição<Retorno> composição, Retorno entidade)
-        {
-            if (entidade.AcertoConsignado != null && entidade.AcertoConsignado.Equals(this))
-                entidade.DefinirAcertoConsignado(null);
         }
 
         /// <summary>
