@@ -21,9 +21,6 @@ namespace Entidades.Pagamentos
         {
             vencimento = DadosGlobais.Instância.HoraDataAtual;
             data = vencimento;
-
-            //// Toda nota promissória é pendente.
-            //pendente = true;
         }
 
         public NotaPromissória(ulong cliente, int código, double valor, DateTime data, DateTime? prorrogadopara, bool pendente, DateTime vencimento, bool cadastrado, bool cobrarJuros)
