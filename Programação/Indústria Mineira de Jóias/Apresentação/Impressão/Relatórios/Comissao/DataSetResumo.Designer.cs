@@ -587,6 +587,8 @@ namespace Apresentação.Impressão.Relatórios.Comissao {
             
             private global::System.Data.DataColumn columnsetor;
             
+            private global::System.Data.DataColumn columnfaturamentocompartilhado;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ItensDataTable() {
@@ -670,6 +672,14 @@ namespace Apresentação.Impressão.Relatórios.Comissao {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn faturamentocompartilhadoColumn {
+                get {
+                    return this.columnfaturamentocompartilhado;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -705,7 +715,7 @@ namespace Apresentação.Impressão.Relatórios.Comissao {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ItensRow AddItensRow(string nomecomissaopara, double valorv, double valorc, double apagar, double valore, string setor) {
+            public ItensRow AddItensRow(string nomecomissaopara, double valorv, double valorc, double apagar, double valore, string setor, decimal faturamentocompartilhado) {
                 ItensRow rowItensRow = ((ItensRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         nomecomissaopara,
@@ -713,7 +723,8 @@ namespace Apresentação.Impressão.Relatórios.Comissao {
                         valorc,
                         apagar,
                         valore,
-                        setor};
+                        setor,
+                        faturamentocompartilhado};
                 rowItensRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowItensRow);
                 return rowItensRow;
@@ -742,6 +753,7 @@ namespace Apresentação.Impressão.Relatórios.Comissao {
                 this.columnapagar = base.Columns["apagar"];
                 this.columnvalore = base.Columns["valore"];
                 this.columnsetor = base.Columns["setor"];
+                this.columnfaturamentocompartilhado = base.Columns["faturamentocompartilhado"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -759,6 +771,8 @@ namespace Apresentação.Impressão.Relatórios.Comissao {
                 base.Columns.Add(this.columnvalore);
                 this.columnsetor = new global::System.Data.DataColumn("setor", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnsetor);
+                this.columnfaturamentocompartilhado = new global::System.Data.DataColumn("faturamentocompartilhado", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnfaturamentocompartilhado);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1068,6 +1082,22 @@ namespace Apresentação.Impressão.Relatórios.Comissao {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal faturamentocompartilhado {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableItens.faturamentocompartilhadoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'faturamentocompartilhado\' in table \'Itens\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItens.faturamentocompartilhadoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsnomecomissaoparaNull() {
                 return this.IsNull(this.tableItens.nomecomissaoparaColumn);
             }
@@ -1136,6 +1166,18 @@ namespace Apresentação.Impressão.Relatórios.Comissao {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetsetorNull() {
                 this[this.tableItens.setorColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsfaturamentocompartilhadoNull() {
+                return this.IsNull(this.tableItens.faturamentocompartilhadoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetfaturamentocompartilhadoNull() {
+                this[this.tableItens.faturamentocompartilhadoColumn] = global::System.Convert.DBNull;
             }
         }
         

@@ -26,6 +26,7 @@ namespace Apresentação.Impressão.Relatórios.Comissao
             {
                 DataRow item = tabelaItens.NewRow();
                 item["valorv"] = entidade.Valorv;
+                item["faturamentocompartilhado"] = entidade.FaturamentoCompartilhado;
                 item["valorc"] = entidade.Valorc;
                 item["valore"] = entidade.Valore;
                 item["apagar"] = entidade.APagar;
