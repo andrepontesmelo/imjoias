@@ -25,7 +25,12 @@ namespace Apresentação.Impressão.Relatórios.Comissao
             foreach (ImpressãoCompartilhada entidade in lstEntidades)
             {
                 DataRow item = tabelaItens.NewRow();
-                item["Valorv"] = entidade.Valorv;
+
+                if (entidade.Comissaopara == entidade.Representante)
+                    item["Valorv"] = 0;
+                else
+                    item["Valorv"] = entidade.Valorv;
+
                 item["Valorc"] = entidade.Valorc;
                 item["Valore"] = entidade.Valore;
                 item["Apagar"] = entidade.APagar;
