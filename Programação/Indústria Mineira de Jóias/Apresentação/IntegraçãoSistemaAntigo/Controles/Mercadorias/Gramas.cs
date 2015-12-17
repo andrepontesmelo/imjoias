@@ -35,6 +35,8 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             StringBuilder consulta = new StringBuilder("");
             int vezAtual = 0;
 
+            consulta.AppendLine("DELETE FROM grama; ");
+
             foreach (DataRow grama in gramas.Rows)
             {
                 int códigoTabela = int.Parse(grama["G_CODTAB"].ToString());
