@@ -838,6 +838,9 @@ namespace Apresentação.Pessoa.Consultas
                             if (lista != null)
                                 lista.Visible = false;
 
+                            if (Selecionado != null)
+                                Selecionado(sender, null);
+
                             return;
                         }
 
