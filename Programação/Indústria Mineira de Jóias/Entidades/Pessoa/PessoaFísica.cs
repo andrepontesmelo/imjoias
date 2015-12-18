@@ -368,7 +368,7 @@ namespace Entidades.Pessoa
 		{
 			string comando = "SELECT p.* FROM pessoa p JOIN pessoafisica pf"
 				+ " ON p.codigo = pf.codigo"
-				+ " WHERE pf.di LIKE '%" + di + "%'";
+                + " WHERE  replace(replace(replace(replace(pf.di,'.',''),',',''),'-',''),' ','') LIKE '%" + di + "%'";
 
 			return Mapear<Pessoa>(comando);
 		}
