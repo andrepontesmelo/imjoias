@@ -170,6 +170,7 @@ namespace Apresentação.Pessoa.Consultas
             this.txtPessoa.Pessoa = null;
             this.txtPessoa.Size = new System.Drawing.Size(590, 20);
             this.txtPessoa.TabIndex = 0;
+            this.txtPessoa.Selecionado += new System.EventHandler(this.txtPessoa_Selecionado);
             this.txtPessoa.TxtChanged += new System.EventHandler(this.txtPessoa_TxtChanged);
             this.txtPessoa.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPessoa_KeyDown);
             // 
@@ -440,6 +441,11 @@ namespace Apresentação.Pessoa.Consultas
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            FecharOk();
+        }
+
+        private void FecharOk()
+        {
             this.DialogResult = DialogResult.OK;
             Close();
         }
@@ -497,6 +503,11 @@ namespace Apresentação.Pessoa.Consultas
                 return true;
             }
             return base.ProcessDialogKey(keyData);
+        }
+
+        private void txtPessoa_Selecionado(object sender, EventArgs e)
+        {
+            FecharOk();
         }
 	}
 }
