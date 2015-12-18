@@ -473,5 +473,15 @@ namespace Apresentação.Financeiro.Venda
             cmbPrestações.DropDownStyle = ComboBoxStyle.DropDown;
             cmbPrestações.Text = strDias;
         }
+
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            if (Form.ModifierKeys == Keys.None && (keyData == Keys.Escape))
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessDialogKey(keyData);
+        }
     }
 }
