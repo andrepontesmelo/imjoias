@@ -115,7 +115,8 @@ namespace Apresentação.Pessoa.Consultas
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 145);
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Location = new System.Drawing.Point(12, 144);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(76, 13);
             this.label2.TabIndex = 6;
@@ -166,7 +167,6 @@ namespace Apresentação.Pessoa.Consultas
             this.txtPessoa.Location = new System.Drawing.Point(15, 161);
             this.txtPessoa.MostrarBotãoProcurar = false;
             this.txtPessoa.Name = "txtPessoa";
-            this.txtPessoa.NãoPodeSerNulo = false;
             this.txtPessoa.Pessoa = null;
             this.txtPessoa.Size = new System.Drawing.Size(590, 20);
             this.txtPessoa.TabIndex = 0;
@@ -177,25 +177,25 @@ namespace Apresentação.Pessoa.Consultas
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.ClientSize = new System.Drawing.Size(616, 536);
-            this.Controls.Add(this.txtProcura);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.txtPessoa);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.cmbDado);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtProcura);
             this.KeyPreview = true;
             this.Name = "ProcurarPessoa";
             this.Text = "Procurar pessoa";
             this.Activated += new System.EventHandler(this.ProcurarPessoa_Activated);
             this.Load += new System.EventHandler(this.ProcurarPessoa_Load);
+            this.Controls.SetChildIndex(this.txtProcura, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.cmbDado, 0);
-            this.Controls.SetChildIndex(this.label2, 0);
             this.Controls.SetChildIndex(this.txtPessoa, 0);
             this.Controls.SetChildIndex(this.btnOK, 0);
             this.Controls.SetChildIndex(this.btnCancelar, 0);
-            this.Controls.SetChildIndex(this.txtProcura, 0);
+            this.Controls.SetChildIndex(this.label2, 0);
             ((System.ComponentModel.ISupportInitialize)(this.picÍcone)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -460,10 +460,23 @@ namespace Apresentação.Pessoa.Consultas
             }
         }
 
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+            AtualizarCampoProcuraVisível();
+        }
+
         private void cmbDado_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtPessoa.Visible = cmbDado.SelectedItem.ToString() == "Nome";
-            txtProcura.Visible = !txtPessoa.Visible;
+            AtualizarCampoProcuraVisível();
+        }
+
+        private void AtualizarCampoProcuraVisível()
+        {
+            bool nomeSelecionado = cmbDado.SelectedItem.ToString().Equals("Nome");
+
+            txtPessoa.Visible = nomeSelecionado;
+            txtProcura.Visible = !nomeSelecionado;
         }
 
         private void txtProcura_TextChanged(object sender, EventArgs e)
