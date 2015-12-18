@@ -992,7 +992,7 @@ namespace Entidades.Pessoa
         public static List<Pessoa> ObterPessoasPorTelefone(string telefone)
         {
             string cmd = "SELECT p.*, pf.* FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo, telefone t"
-                + " WHERE t.telefone LIKE '%" + telefone + "%'"
+                + " WHERE replace(replace(replace(replace(t.telefone,'(',''),')',''),'-',''),' ','') LIKE '%" + telefone + "%'"
                 + " AND t.pessoa = p.codigo ";
 
             return RealizarConsulta(cmd, 0, Pessoa.TotalAtributos);
