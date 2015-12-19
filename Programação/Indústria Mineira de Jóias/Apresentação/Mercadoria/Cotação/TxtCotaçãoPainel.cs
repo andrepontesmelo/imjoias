@@ -543,7 +543,10 @@ namespace Apresentação.Mercadoria.Cotação
                 if (hashValorListViewItem.TryGetValue(valor, out itemEncontrado))
                 {
                     itemEncontrado.Selected = true;
-                    itemEncontrado.EnsureVisible();
+                    
+                    if (this.Visible)
+                        itemEncontrado.EnsureVisible();
+
                     seleção =  hashListViewItemCotação[itemEncontrado];
                 }
                 else
@@ -578,51 +581,6 @@ namespace Apresentação.Mercadoria.Cotação
                 this.SelectedIndexChanged(this, new EventArgs());
 		}
         
-        /*
-		/// <summary>
-		/// Obtem a lista de cotações de um dia, ou se não tiver,
-		/// pega a lista de cotações do dia em que tem a última cotação.
-		/// Para cotação de hoje, use dia = DateTime.MaxValue.
-		/// </summary>
-		private ArrayList ObterListaCotações(DateTime dia)
-		{
-			ArrayList lista = null;
-			Negócio.ICotação últimaCotação;
-
-#if DEBUG
-			if (dia == DateTime.MinValue)
-				throw new Exception("Você utilizou DateTime.MinValue. O padrão para data do dia é DateTime.MaxValue.");
-#endif
-
-			if (dia != DateTime.MaxValue)
-				lista = cotações.ObterListaCotaçõesAnteriores(dia, 1);
-
-			// Obtém cotação vigente
-			if ((lista == null) || (lista.Count == 0))
-				lista = cotações.ObterListaCotaçõesAnteriores(1);
-
-			// Verifica se existem cotações no sistema:
-			if (lista.Count == 0) 
-				return null;
-            			
-			// É necessário para a data da cotação obtida para pegar outras do dia
-			últimaCotação = (Negócio.ICotação) lista[0];
-			lista         = cotações.ObterListaCotaçõesDoDia(últimaCotação.Entidade.Data);
-
-            // Registra a lista de cotações
-            foreach (ICotação c in lista)
-                sponsor.Register((MarshalByRefObject)c);
-
-            
-#if DEBUG
-			if (lista.Count == 0)
-				throw new Exception("Não faz sentido, pois agora a pouco existia uma cotação e agora não existe mais ?");
-#endif
-
-			return lista;
-		}
-        */
-
         /// <summary>
         /// Ocorre ao mudar a seleção.
         /// </summary>
