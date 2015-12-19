@@ -1,14 +1,8 @@
+using Entidades;
 using System;
-using System.Collections;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Threading;
-using System.Runtime.Remoting.Lifetime;
 using System.Windows.Forms;
-using Apresentação.Formulários;
-using Entidades;
-using Apresentação.Mercadoria.Cotação;
 
 namespace Apresentação.Mercadoria.Cotação
 {
@@ -277,16 +271,16 @@ namespace Apresentação.Mercadoria.Cotação
             this.txt.Location = new System.Drawing.Point(0, 0);
             this.txt.MaxWholeDigits = 9;
             this.txt.Name = "txt";
-            this.txt.RangeMax = 1.7976931348623157E+308;
-            this.txt.RangeMin = -1.7976931348623157E+308;
+            this.txt.RangeMax = 1.7976931348623157E+308D;
+            this.txt.RangeMin = -1.7976931348623157E+308D;
             this.txt.Size = new System.Drawing.Size(145, 20);
             this.txt.TabIndex = 0;
-            this.txt.Enter += new System.EventHandler(this.txt_Enter);
             this.txt.Click += new System.EventHandler(this.txt_Click);
-            this.txt.Leave += new System.EventHandler(this.OnLeave);
-            this.txt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_KeyPress);
             this.txt.TextChanged += new System.EventHandler(this.txt_TextChanged);
+            this.txt.Enter += new System.EventHandler(this.txt_Enter);
             this.txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.conjunto_keyDown);
+            this.txt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_KeyPress);
+            this.txt.Leave += new System.EventHandler(this.OnLeave);
             // 
             // toolTipOk
             // 
@@ -294,8 +288,8 @@ namespace Apresentação.Mercadoria.Cotação
             // 
             // picCotação
             // 
-            this.picCotação.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.picCotação.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.picCotação.BackColor = System.Drawing.SystemColors.Window;
             this.picCotação.Location = new System.Drawing.Point(126, 1);
             this.picCotação.Name = "picCotação";
@@ -401,8 +395,6 @@ namespace Apresentação.Mercadoria.Cotação
 
             painelFlutuante.Bounds = new Rectangle
                 (posiçãoPanel, new Size(this.Width, painelFlutuante.Height));
-
-            painelFlutuante.BringToFront();
         }
 
 
@@ -437,10 +429,10 @@ namespace Apresentação.Mercadoria.Cotação
             
             try
             {
+                
                 if (painelFlutuante == null)
                     ConstruirPainel();
 
-                carregado = true;
 
                 if (moeda != null)
                 {
@@ -451,6 +443,15 @@ namespace Apresentação.Mercadoria.Cotação
                 }
                 else
                     últimaCotação = null;
+
+                if (!DesignMode && TopLevelControl != null && (!this.TopLevelControl.Controls.Contains(painelFlutuante)))
+                {
+                    this.TopLevelControl.SuspendLayout();
+                    this.TopLevelControl.Controls.Add(painelFlutuante);
+                    ReposicionarPainelFlutuante();
+                    this.TopLevelControl.ResumeLayout();
+                }
+
             }
             catch (Entidades.Financeiro.Cotação.CotaçãoInexistente)
             {
@@ -473,22 +474,13 @@ namespace Apresentação.Mercadoria.Cotação
                 MessageBox.Show("Não foi possível carregar as cotações. O seguinte erro ocorreu:\n\n" + e.ToString(),
                     "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
-
-            if (!DesignMode && TopLevelControl != null)
+            finally
             {
-                Carregar();
-
-                this.TopLevelControl.SuspendLayout();
-                this.TopLevelControl.Controls.Add(painelFlutuante);
-                this.TopLevelControl.ResumeLayout();
-
-                ReposicionarPainelFlutuante();
+                carregado = true;
             }
+
+            
+
         }
 
         /// <summary>
@@ -629,19 +621,6 @@ namespace Apresentação.Mercadoria.Cotação
         /// </summary>
         private void txt_Enter(object sender, EventArgs e)
         {
-            if (!ReadOnly)
-            {
-                if (painelFlutuante == null)
-                    Carregar();
-
-                painelFlutuante.BringToFront();
-                painelFlutuante.Visible = mostrarListaCotações;
-
-                txt.ForeColor = SystemColors.ControlText;
-                txt.BackColor = SystemColors.Window;
-
-                picCotação.Visible = false;
-            }
         }
 
         /// <summary>
@@ -658,8 +637,24 @@ namespace Apresentação.Mercadoria.Cotação
         /// </summary>
         private void txt_Click(object sender, EventArgs e)
         {
-            if (carregado && !ReadOnly)
-                painelFlutuante.Visible = mostrarListaCotações;
+            if (!ReadOnly)
+            {
+                if (painelFlutuante == null)
+                    Carregar();
+
+                if (carregado)
+                {
+                    painelFlutuante.BringToFront();
+                    painelFlutuante.Visible = mostrarListaCotações;
+                }
+
+
+                txt.ForeColor = SystemColors.ControlText;
+                txt.BackColor = SystemColors.Window;
+
+                picCotação.Visible = false;
+            }
+
         }
 
         /// <summary>
@@ -853,60 +848,6 @@ namespace Apresentação.Mercadoria.Cotação
             painelFlutuante.SelecionarÚltimo();
         }
 
-        ///// <summary>
-        ///// Ocorre quando uma cotação executa alguma ação.
-        ///// </summary>
-        ///// <param name="sujeito">Cotação.</param>
-        ///// <param name="ação">Ação realizada.</param>
-        //private void ObservandoCotações(ISujeito sujeito, int ação, object objeto)
-        //{
-        //    ICotação cotação = (ICotação) sujeito;
-
-        //    switch ((AçãoCotação) ação)
-        //    {
-        //        case AçãoCotação.NovaCotação:
-        //            últimaCotação = cotação.Entidade.Data;
-
-        //            if (avisarNovaCotação)
-        //                PerguntarAtualização(cotação);
-        //            break;
-        //    }
-        //}
-
-        ///// <summary>
-        ///// Pergunta se o usuário deseja atualizar para
-        ///// a cotação recentemente cadastrada.
-        ///// </summary>
-        //private void PerguntarAtualização(ICotação cotação)
-        //{
-        //    Thread thread;
-
-        //    thread = new Thread(new ParameterizedThreadStart(PerguntarAtualizaçãoAssíncrono));
-        //    thread.Name = "TxtCotação - perguntar por atualização";
-        //    thread.Start(cotação);
-        //}
-
-        ///// <summary>
-        ///// Chamada para questionar usuário assincronamente
-        ///// se ele deseja atualizar a cotação.
-        ///// </summary>
-        ///// <param name="obj">ICotação</param>
-        //private void PerguntarAtualizaçãoAssíncrono(object obj)
-        //{
-        //    ICotação cotação = (ICotação)obj;
-        //    ClientSponsor sponsor = new ClientSponsor();
-
-        //    sponsor.Register((MarshalByRefObject)cotação);
-
-        //    using (BalãoCotaçãoNova dlg = new BalãoCotaçãoNova(cotação))
-        //    {
-        //        if (dlg.ShowDialog(this) == DialogResult.Yes)
-        //            AtribuirCotação(cotação);
-        //    }
-
-        //    sponsor.Unregister((MarshalByRefObject)cotação);
-        //}
-
         private delegate void AtribuirCotaçãoCallback(Entidades.Financeiro.Cotação cotação);
 
         /// <summary>
@@ -936,46 +877,7 @@ namespace Apresentação.Mercadoria.Cotação
 
         private void TxtCotação_Load(object sender, EventArgs e)
         {
-            if (!DesignMode)
-            {
-                Carregar();
-            }
-            else
-            {
-                txt.Prefix = moedaSistema.ToString();
-            }
         }
-
-        ///// <summary>
-        ///// Pergunta se o usuário deseja atualizar para
-        ///// a cotação recentemente cadastrada.
-        ///// </summary>
-        //private void PerguntarAtualização(Entidades.Financeiro.Cotação cotação)
-        //{
-        //    Thread thread;
-
-        //    thread = new Thread(new ParameterizedThreadStart(PerguntarAtualizaçãoAssíncrono));
-        //    thread.Name = "TxtCotação - perguntar por atualização";
-        //    thread.IsBackground = true;
-        //    thread.Start(cotação);
-        //}
-
-
-        ///// <summary>
-        ///// Chamada para questionar usuário assincronamente
-        ///// se ele deseja atualizar a cotação.
-        ///// </summary>
-        ///// <param name="obj">ICotação</param>
-        //private void PerguntarAtualizaçãoAssíncrono(object obj)
-        //{
-        //    Entidades.Financeiro.Cotação cotação = (Entidades.Financeiro.Cotação)obj;
-
-        //    using (BalãoCotaçãoNova dlg = new BalãoCotaçãoNova(cotação))
-        //    {
-        //        if (dlg.ShowDialog(this) == DialogResult.Yes)
-        //            AtribuirCotação(cotação);
-        //    }
-        //}
 
         private void txt_KeyPress(object sender, KeyPressEventArgs e)
         {
