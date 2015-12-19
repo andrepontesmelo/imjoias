@@ -201,8 +201,10 @@
             // 
             // EscolherAcerto
             // 
+            this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(595, 507);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.btnCancelar);
