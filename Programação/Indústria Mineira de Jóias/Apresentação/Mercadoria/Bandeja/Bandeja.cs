@@ -1,15 +1,14 @@
+using Apresentação.Financeiro;
+using Apresentação.Formulários;
+using Entidades;
+using Entidades.Configuração;
+using Entidades.Pessoa;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
 using System.Windows.Forms;
-using Entidades;
-using Entidades.Configuração;
-using Apresentação.Formulários;
-using Entidades.Pessoa;
-using Apresentação.Financeiro;
 
 namespace Apresentação.Mercadoria.Bandeja
 {
@@ -40,7 +39,7 @@ namespace Apresentação.Mercadoria.Bandeja
         /// <summary>
         /// Tabelas que podem ser escolhidas pelo usuário.
         /// </summary>
-        private Tabela[] tabelas = null;
+        private List<Tabela> tabelas = null;
 
         /// <summary>
         /// Nem todos os saquinhos estão nesta hash.
@@ -190,7 +189,7 @@ namespace Apresentação.Mercadoria.Bandeja
         /// Tabelas que o usuário pode escolher.
         /// </summary>
         [Browsable(false), ReadOnly(true)]
-        public Tabela[] Tabelas
+        public List<Tabela> Tabelas
         {
             get { return tabelas; }
             set
@@ -198,14 +197,14 @@ namespace Apresentação.Mercadoria.Bandeja
                 tabelas = value;
 
                 cmbTabela.Items.Clear();
-                cmbTabela.Items.AddRange(value);
+                cmbTabela.Items.AddRange(value.ToArray());
 
                 if (!cmbTabela.Items.Contains(tabela))
                     cmbTabela.Items.Add(tabela);
 
                 cmbTabela.SelectedItem = tabela;
 
-                cmbTabela.Enabled = permitirSeleçãoTabela && value.Length > 0;
+                cmbTabela.Enabled = permitirSeleçãoTabela && value.Count > 0;
             }
         }
 
@@ -321,9 +320,6 @@ namespace Apresentação.Mercadoria.Bandeja
 			{
 				lista.Sorting = value ? System.Windows.Forms.SortOrder.Ascending :
 					System.Windows.Forms.SortOrder.None;
-
-                //// Usuário só pode subir e descer quando não ordenado automaticamente.
-                //btnSubir.Visible = btnDescer.Visible = separador2.Visible = !value;
 			}
 		}
 
@@ -379,17 +375,6 @@ namespace Apresentação.Mercadoria.Bandeja
             else if (btnAgrupar.Checked != value)
                 btnAgrupar.Checked = value;
         }
-
-        //private void DefinirBotãoParcialAgrupamento(bool value)
-        //{
-        //    if (InvokeRequired)
-        //    {
-        //        DefinirBotãoAgrupamentoCallback método = new DefinirBotãoAgrupamentoCallback(DefinirBotãoParcialAgrupamento);
-        //        BeginInvoke(método, value);
-        //    }
-        //    else if (btnAgrupar. != value)
-        //        btnAgrupar.PartialPush = value;
-        //}
 
 		/// <summary>
 		/// Quantidade de ISaquinhos

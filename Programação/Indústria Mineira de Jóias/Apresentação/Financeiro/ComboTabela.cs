@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Forms;
-using Entidades;
+﻿using Apresentação.Mercadoria;
 using Apresentação.Mercadoria.Bandeja;
-using System.ComponentModel;
 using Apresentação.Mercadoria.Cotação;
-using Apresentação.Mercadoria;
+using Entidades;
 using Entidades.Privilégio;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace Apresentação.Financeiro
 {
@@ -169,14 +168,14 @@ namespace Apresentação.Financeiro
             {
                 try
                 {
-                    Tabela[] tabelas;
+                    List<Tabela> tabelas;
 
                     if (PermissãoFuncionário.ValidarPermissão(Permissão.EscolherQualquerTabela) || setor == null || setor == Setor.ObterSetor(Setor.SetorSistema.Representante))
                         tabelas = Tabela.ObterTabelas();
                     else
                         tabelas = Tabela.ObterTabelas(setor);
 
-                    base.Items.AddRange(tabelas);
+                    base.Items.AddRange(tabelas.ToArray());
 
                     carregado = true;
 

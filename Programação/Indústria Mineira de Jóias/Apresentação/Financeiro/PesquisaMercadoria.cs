@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using Negócio;
-using Apresentação.Formulários;
-using System.Collections;
-using Entidades.Mercadoria;
+﻿using Apresentação.Formulários;
 using Entidades;
+using Entidades.Mercadoria;
 using Entidades.Pessoa;
+using Negócio;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Apresentação.Financeiro
 {
@@ -85,9 +81,9 @@ namespace Apresentação.Financeiro
 
         private void PesquisaMercadoria_Load(object sender, EventArgs e)
         {
-            Tabela[] tabelas = Tabela.ObterTabelas(Funcionário.FuncionárioAtual.Setor);
+            List<Tabela> tabelas = Tabela.ObterTabelas(Funcionário.FuncionárioAtual.Setor);
 
-            if (tabelas.Length == 0)
+            if (tabelas.Count == 0)
                 cmbTabela.Seleção = Tabela.TabelaPadrão;
             else
                 cmbTabela.Seleção = tabelas[0];

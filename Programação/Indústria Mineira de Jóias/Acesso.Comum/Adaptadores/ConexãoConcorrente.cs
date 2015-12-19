@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Data;
 
 namespace Acesso.Comum.Adaptadores
@@ -54,7 +53,6 @@ namespace Acesso.Comum.Adaptadores
 
                     if (value > debug_ocupado)
                     {
-                        //debug_últimaOcupante = st.ToString();
                         debug_ocupantes.Push(arq);
                     }
                     else if (value < debug_ocupado)
@@ -86,31 +84,12 @@ namespace Acesso.Comum.Adaptadores
         internal System.Diagnostics.StackTrace cmdPilha;
         internal DateTime cmdCriação;
         internal string cmdTexto;
-        //, cmdAnterior;
         internal string cmdLeitor;
         public string Debug_ObtençãoConexão;
         public int Debug_ID = debug_contador++;
 
         public string PilhaDepuração { get { return cmdPilha.ToString(); } }
 #endif
-
-        ///// <summary>
-        ///// Verifica se a conexão está ocupada.
-        ///// </summary>
-        //internal int Ocupado
-        //{
-        //    get { return ocupado; }
-        //    set { ocupado = value; }
-        //}
-
-        ///// <summary>
-        ///// Até quando aguardar para considerar desocupado.
-        ///// </summary>
-        //internal DateTime AguardarAté
-        //{
-        //    get { return aguardarAté; }
-        //    set { aguardarAté = value; }
-        //}
 
         public IDbConnection ConexãoOriginal
         {

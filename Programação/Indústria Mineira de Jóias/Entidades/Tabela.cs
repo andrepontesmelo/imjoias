@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Acesso.Comum;
+﻿using Acesso.Comum;
 using Acesso.Comum.Cache;
-using System.Data;
 using Entidades.Configuração;
+using System.Collections.Generic;
 
 namespace Entidades
 {
@@ -59,37 +56,57 @@ namespace Entidades
         public static Tabela ObterTabela(uint código)
         {
             // Busca linear - apenas 6 registros.
-            Tabela[] todasTabelas = ObterTabelas();
+            List<Tabela> todasTabelas = ObterTabelas();
             foreach (Tabela t in todasTabelas)
                 if (t.Código == código)
                     return t;
 
             return null;
-
-            //return MapearÚnicaLinha<Tabela>("SELECT * FROM tabela WHERE codigo = " + DbTransformar(código));
         }
 
         /// <summary>
         /// Obtém todas as tabelas.
         /// </summary>
-        public static Tabela[] ObterTabelas()
+        public static List<Tabela> ObterTabelas()
         {
             if (tabelas == null)
-                tabelas = Mapear<Tabela>("SELECT * FROM tabela ORDER BY nome").ToArray();
+                tabelas = Mapear<Tabela>("SELECT * FROM tabela ORDER BY nome");
 
             return tabelas;
         }
 
-        private static Tabela[] tabelas = null;
+        private static List<Tabela> tabelas = null;
 
         /// <summary>
         /// Obtém todas as tabelas de um setor.
         /// </summary>
-        public static Tabela[] ObterTabelas(Setor setor)
+        public static List<Tabela> ObterTabelas(Setor setor)
         {
-            return Mapear<Tabela>("SELECT * FROM tabela WHERE setor = " + DbTransformar(setor.Código)
-                + " ORDER BY nome").ToArray();
+            if (hashSetorTabelas == null)
+                CriarHashSetorTabelas();
+
+            return hashSetorTabelas[setor];
         }
+
+        private static void CriarHashSetorTabelas()
+        {
+            hashSetorTabelas = new Dictionary<Setor, List<Tabela>>();
+            List<Tabela> todas = ObterTabelas();
+
+            foreach (Tabela t in todas)
+            {
+                List<Tabela> listaDesteSetor;
+                if (!hashSetorTabelas.TryGetValue(t.Setor, out listaDesteSetor))
+                {
+                    listaDesteSetor = new List<Tabela>();
+                    hashSetorTabelas.Add(t.Setor, listaDesteSetor);
+                }
+
+                listaDesteSetor.Add(t);
+            }
+        }
+
+        private static Dictionary<Setor, List<Tabela>> hashSetorTabelas = null;
 
         /// <summary>
         /// Obtém a primeira de um setor.
