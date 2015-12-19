@@ -30,7 +30,9 @@ namespace Apresentação.Financeiro.Acerto
         public bool PermitirAlteração
         {
             get { return dtPrevisão.Enabled; }
-            set { dtPrevisão.Enabled = value; }
+            set { 
+                dtPrevisão.Enabled = txtCotação.Enabled = value; 
+            }
         }
 
         [DefaultValue(false), Browsable(false), ReadOnly(true)]

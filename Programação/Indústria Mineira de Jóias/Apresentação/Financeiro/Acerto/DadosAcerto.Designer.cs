@@ -125,6 +125,7 @@
             // 
             this.txtCotação.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCotação.Cotação = null;
+            this.txtCotação.Enabled = false;
             this.txtCotação.IniciarValorAtual = false;
             this.txtCotação.Location = new System.Drawing.Point(7, 163);
             this.txtCotação.Name = "txtCotação";
