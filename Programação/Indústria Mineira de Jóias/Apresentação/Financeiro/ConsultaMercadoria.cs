@@ -1,15 +1,11 @@
+using Apresentação.Formulários;
+using Apresentação.Mercadoria;
+using Entidades;
+using Entidades.Configuração;
+using Entidades.Pessoa;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using Apresentação.Mercadoria;
-using Entidades.Configuração;
-using Entidades;
-using Entidades.Pessoa;
-using Apresentação.Formulários;
 
 namespace Apresentação.Financeiro
 {
@@ -34,9 +30,9 @@ namespace Apresentação.Financeiro
 
         private Tabela ObterTabelaPadrão()
         {
-            Tabela[] tabelas = Tabela.ObterTabelas(Funcionário.FuncionárioAtual.Setor);
+            List<Tabela> tabelas = Tabela.ObterTabelas(Funcionário.FuncionárioAtual.Setor);
 
-            if (tabelas.Length == 0)
+            if (tabelas.Count == 0)
                 return Tabela.TabelaPadrão;
             else
                 return cmbTabela.Seleção = tabelas[0];

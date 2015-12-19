@@ -36,7 +36,7 @@ namespace Apresentação.Financeiro
         {
             if (pessoa != null && pessoa.Setor != null)
             {
-                Tabela[] tabelas = Tabela.ObterTabelas(pessoa.Setor);
+                List<Tabela> tabelas = Tabela.ObterTabelas(pessoa.Setor);
 
                 foreach (Tabela tabela in tabelas)
                     if (!lista.Contains(tabela))
