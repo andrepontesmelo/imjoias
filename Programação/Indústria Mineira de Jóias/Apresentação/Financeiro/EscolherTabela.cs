@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using Apresentação.Formulários;
+﻿using Apresentação.Formulários;
 using Entidades;
 using Entidades.Pessoa;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Apresentação.Financeiro
 {
@@ -98,15 +95,20 @@ namespace Apresentação.Financeiro
                 AdicionarTabela(tabela, true);
         }
 
-        private void btnOK_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void EscolherTabela_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (DialogResult != DialogResult.OK)
                 DialogResult = DialogResult.Cancel;
+        }
+
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            if (Form.ModifierKeys == Keys.None && (keyData == Keys.Escape))
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessDialogKey(keyData);
         }
     }
 }
