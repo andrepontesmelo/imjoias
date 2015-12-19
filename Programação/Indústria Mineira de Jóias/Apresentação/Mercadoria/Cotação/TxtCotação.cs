@@ -596,7 +596,6 @@ namespace Apresentação.Mercadoria.Cotação
                     break;
             }
 
-            //if (txt.Focused)
             painelFlutuante.Visible = mostrarListaCotações;
         }
 

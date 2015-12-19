@@ -81,7 +81,7 @@
             this.informaçõesAcerto.Location = new System.Drawing.Point(560, 100);
             this.informaçõesAcerto.MostrarBotãoMinMax = false;
             this.informaçõesAcerto.Name = "informaçõesAcerto";
-            this.informaçõesAcerto.Size = new System.Drawing.Size(221, 228);
+            this.informaçõesAcerto.Size = new System.Drawing.Size(221, 249);
             this.informaçõesAcerto.TabIndex = 7;
             this.informaçõesAcerto.Tamanho = 30;
             this.informaçõesAcerto.Título = "Informações - Acerto";
@@ -89,7 +89,7 @@
             // botãoLiberarPrevisão
             // 
             this.botãoLiberarPrevisão.AutoSize = true;
-            this.botãoLiberarPrevisão.Location = new System.Drawing.Point(55, 69);
+            this.botãoLiberarPrevisão.Location = new System.Drawing.Point(6, 231);
             this.botãoLiberarPrevisão.Name = "botãoLiberarPrevisão";
             this.botãoLiberarPrevisão.Size = new System.Drawing.Size(46, 13);
             this.botãoLiberarPrevisão.TabIndex = 16;
