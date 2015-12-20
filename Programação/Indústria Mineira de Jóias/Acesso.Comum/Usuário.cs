@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using System.Threading;
 
 namespace Acesso.Comum
 {
@@ -22,6 +21,8 @@ namespace Acesso.Comum
 	[Serializable]
 	public class Usuário : System.Runtime.Remoting.Messaging.ILogicalThreadAffinative, IDisposable
 	{
+        private static readonly string USUÁRIO = "usuário";
+
 		#region Atributos
 
 		/// <summary>
@@ -79,8 +80,6 @@ namespace Acesso.Comum
 
 			if (conexão.State != ConnectionState.Broken && conexão.State != ConnectionState.Closed)
 				Chave = new Chave(usuário, senha);
-
-           
 		}
 
 		/// <summary>
@@ -95,17 +94,10 @@ namespace Acesso.Comum
 		/// </summary>
 		private void AtualizarContexto()
 		{
-            if (System.Runtime.Remoting.Messaging.CallContext.GetData("usuário") != null)
-            {
-                //Console.WriteLine("Atualizando contexto:");
-                //Console.WriteLine("- Anterior: {0}", System.Runtime.Remoting.Messaging.CallContext.GetData("usuário").ToString());
-
-                System.Runtime.Remoting.Messaging.CallContext.SetData("usuário", this);
-
-                //Console.WriteLine("- Atual: {0}", System.Runtime.Remoting.Messaging.CallContext.GetData("usuário").ToString());
-            }
-            else // Objeto da Thread atual
-                System.Threading.Thread.GetDomain().SetData("usuário", this);
+            if (System.Runtime.Remoting.Messaging.CallContext.GetData(USUÁRIO) != null)
+                System.Runtime.Remoting.Messaging.CallContext.SetData(USUÁRIO, this);
+            else
+                System.Threading.Thread.GetDomain().SetData(USUÁRIO, this);
 		}
 
 		/// <summary>
@@ -113,14 +105,8 @@ namespace Acesso.Comum
 		/// </summary>
 		public Chave Chave
 		{
-			get
-			{
-				return chave;
-			}
-			set
-			{
-				chave = value;
-			}
+			get { return chave; }
+			set { chave = value; }
 		}			
 
 		/// <summary>
@@ -179,16 +165,6 @@ namespace Acesso.Comum
             return usuários.CriarAdaptador(conexão, comando);
         }
 
-		/// <summary>
-		/// Obtém último código do auto-increment.
-		/// </summary>
-		/// <returns>Último código inserido.</returns>
-        [Obsolete("Favor utilizar ObterÚltimoCódigoInserido(conexão)", true)]
-        public static long ObterÚltimoCódigoInserido()
-		{
-            throw new NotSupportedException();
-		}
-
         /// <summary>
         /// Obtém último código do auto-increment.
         /// </summary>
@@ -204,10 +180,10 @@ namespace Acesso.Comum
 		/// <param name="e">Erro ocorrido</param>
         public void RegistrarErro(Exception e)
         {
-            IDbConnection conexão = Conexão;
             IDataReader leitor = null;
+            IDbConnection conexão = Conexão;
             usuários.DispararAoRegistrarErro(this, e);
-            bool bugJaExistia = false;
+            bool bugExistente = false;
 
             lock (conexão)
             {
@@ -220,64 +196,28 @@ namespace Acesso.Comum
 
                     try
                     {
-                        string cmdStr;
-
                         // Procurar pelo erro
-                        cmd.CommandText = cmdStr = "SELECT codigo, ocorrencias FROM bug WHERE "
+                        cmd.CommandText = "SELECT codigo, ocorrencias FROM bug WHERE "
                             + "message = " + DbManipulação.DbTransformar(e.Message) + " AND "
                             + "source = " + DbManipulação.DbTransformar(e.Source) + " AND "
                             + "stackTrace = " + DbManipulação.DbTransformar(e.StackTrace) + " AND "
                             + "targetSite " + (e.TargetSite != null ? "= " + DbManipulação.DbTransformar(e.TargetSite.ToString()) : "IS NULL") + " AND "
                             + "innerException " + (e.InnerException != null ? "= " + DbManipulação.DbTransformar(e.InnerException.ToString()) : "IS NULL");
-                        //							+ " FOR UPDATE";
 
-                        try {
-                            using (leitor = cmd.ExecuteReader()) 
-                            { 
-                                // Verificar se erro já existe
-                                bugJaExistia = leitor.Read();
-                                if (bugJaExistia)
-                                {
-                                    // Incrementar contador
-                                    cmdStr = "UPDATE bug SET "
-                                        + "ultimaData = " + DbManipulação.DbTransformar(DateTime.Now)
-                                        + ", stackTrace = " + DbManipulação.DbTransformar(e.StackTrace)
-                                        + ", ocorrencias = " + DbManipulação.DbTransformar(Convert.ToInt64(leitor.GetValue(1)) + 1)
-                                        + ", corrigido = 0"
-                                        + ", innerException = " + (e.InnerException != null ? DbManipulação.DbTransformar(e.InnerException.ToString()) : "NULL")
-                                        + " WHERE codigo = " + DbManipulação.DbTransformar(Convert.ToInt64(leitor.GetValue(0)));
-                            
-                                    cmd.CommandText = cmdStr;
-                                    cmd.ExecuteNonQuery();
-                                } 
-                            }
-                        } finally 
+                        using (leitor = cmd.ExecuteReader())
                         {
-                            if (leitor != null)
-                                leitor.Close();
+                            bugExistente = leitor.Read();
+
+                            if (bugExistente)
+                                IncrementarContadorBug(e, leitor, cmd);
+                            else
+                                RegistrarNovoBug(e, leitor, cmd);
+
+                            transação.Commit();
+
                         }
-
-                        if (!bugJaExistia)
-                        {
-                            // Inserir nova entrada
-                            cmd.CommandText = cmdStr = "INSERT INTO bug (primeiraData, ultimaData, message, source, stacktrace, targetsite, ocorrencias, innerException)"
-                                + " VALUES (" + DbManipulação.DbTransformar(DateTime.Now) + ", "
-                                + DbManipulação.DbTransformar(DateTime.Now) + ", "
-                                + DbManipulação.DbTransformar(e.Message) + ", "
-                                + DbManipulação.DbTransformar(e.Source) + ", "
-                                + DbManipulação.DbTransformar(e.StackTrace) + ", "
-                                + DbManipulação.DbTransformar(e.TargetSite) + ", "
-                                + "1, "
-                                + (e.InnerException != null ? DbManipulação.DbTransformar(e.InnerException.ToString()) : "NULL")
-                                + ")";
-
-                            cmd.ExecuteNonQuery();
-                        }
-
-                        transação.Commit();
-          
                     }
-                    catch
+                    catch (Exception)
                     {
                         transação.Rollback();
                     }
@@ -287,6 +227,45 @@ namespace Acesso.Comum
                     }
                 }
             }
+        }
+
+        private static void RegistrarNovoBug(Exception e, IDataReader leitor, IDbCommand cmd)
+        {
+            cmd.CommandText = "INSERT INTO bug (primeiraData, ultimaData, message, source, stacktrace, targetsite, ocorrencias, innerException)"
+                + " VALUES (" + DbManipulação.DbTransformar(DateTime.Now) + ", "
+                + DbManipulação.DbTransformar(DateTime.Now) + ", "
+                + DbManipulação.DbTransformar(e.Message) + ", "
+                + DbManipulação.DbTransformar(e.Source) + ", "
+                + DbManipulação.DbTransformar(e.StackTrace) + ", "
+                + DbManipulação.DbTransformar(e.TargetSite) + ", "
+                + "1, "
+                + (e.InnerException != null ? DbManipulação.DbTransformar(e.InnerException.ToString()) : "NULL")
+                + ")";
+
+            int x;
+
+            FecharLeitor(leitor);
+            x = cmd.ExecuteNonQuery();
+        }
+
+        private static void IncrementarContadorBug(Exception e, IDataReader leitor, IDbCommand cmd)
+        {
+            cmd.CommandText = "UPDATE bug SET "
+                + "ultimaData = " + DbManipulação.DbTransformar(DateTime.Now)
+                + ", stackTrace = " + DbManipulação.DbTransformar(e.StackTrace)
+                + ", ocorrencias = " + DbManipulação.DbTransformar(Convert.ToInt64(leitor.GetValue(1)) + 1)
+                + ", corrigido = 0"
+                + ", innerException = " + (e.InnerException != null ? DbManipulação.DbTransformar(e.InnerException.ToString()) : "NULL")
+                + " WHERE codigo = " + DbManipulação.DbTransformar(Convert.ToInt64(leitor.GetValue(0)));
+
+            FecharLeitor(leitor);
+            cmd.ExecuteNonQuery();
+        }
+
+        private static void FecharLeitor(IDataReader leitor)
+        {
+            if (leitor != null && !leitor.IsClosed)
+                leitor.Close();
         }
 
         /// <summary>
