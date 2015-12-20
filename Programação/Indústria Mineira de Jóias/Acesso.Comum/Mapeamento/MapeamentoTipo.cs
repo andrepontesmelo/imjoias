@@ -1,7 +1,8 @@
+using Acesso.Comum.Exceções;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Data;
-using Acesso.Comum.Exceções;
 
 namespace Acesso.Comum.Mapeamento
 {
@@ -10,17 +11,16 @@ namespace Acesso.Comum.Mapeamento
 	/// </summary>
 	internal class MapeamentoTipo
 	{
-		private Hashtable hashTipos;
+		private Dictionary<Type, DbType> hashTipos;
 
 		private MapeamentoTipo()
 		{
-			hashTipos = new Hashtable();
+            hashTipos = new Dictionary<Type, DbType>();
 
 			hashTipos.Add(typeof(char []), DbType.AnsiString);
 			hashTipos.Add(typeof(byte []), DbType.Binary);
 			hashTipos.Add(typeof(bool), DbType.Boolean);
 			hashTipos.Add(typeof(byte), DbType.Byte);
-			//hashTipos.Add(typeof(decimal), DbType.Currency);
 			hashTipos.Add(typeof(DateTime), DbType.DateTime);
 			hashTipos.Add(typeof(decimal), DbType.Decimal);
 			hashTipos.Add(typeof(double), DbType.Double);
@@ -66,7 +66,7 @@ namespace Acesso.Comum.Mapeamento
 				if (tipo == null)
 					throw new ExcessãoMapeamentoTipo("Tipo " + tipoFinal.FullName + " desconhecido no MapeamentoTipo!", tipoFinal);
 
-				return (DbType) hashTipos[tipo];
+				return hashTipos[tipo];
 			}
 		}
 	}

@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Reflection;
 
 namespace Acesso.Comum
 {
@@ -8,14 +10,14 @@ namespace Acesso.Comum
 	/// </summary>
 	internal class CacheMapeamento
 	{
-		private Hashtable mapeamentoAtributos;
+		private Dictionary<string, FieldInfo[]> mapeamentoAtributos;
 
 		/// <summary>
 		/// Constrói a cache
 		/// </summary>
 		public CacheMapeamento()
 		{
-			mapeamentoAtributos = new Hashtable();
+            mapeamentoAtributos = new Dictionary<string, FieldInfo[]>();
 		}
 
 		/// <summary>
@@ -25,13 +27,13 @@ namespace Acesso.Comum
 		{
 			get
 			{
-				object obj;
+				FieldInfo [] obj;
 				string chave;
 
 				chave = ObterChave(tipo, consulta);
-				obj   = mapeamentoAtributos[chave];
+				mapeamentoAtributos.TryGetValue(chave, out obj);
 
-				return (System.Reflection.FieldInfo []) obj;
+				return obj;
 			}
 			set
 			{

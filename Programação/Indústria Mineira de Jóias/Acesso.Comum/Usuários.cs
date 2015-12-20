@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.Common;
 
 using Acesso.Comum.Acompanhamento;
+using System.Collections.Generic;
 
 namespace Acesso.Comum
 {
@@ -14,7 +15,7 @@ namespace Acesso.Comum
 	public abstract class Usuários // : ContextBoundObject
 	{
 		// Atributos
-		private Hashtable usuários;
+		private Dictionary<Chave, Usuário> usuários;
 
 		// Delegações
 		public delegate void UsuárioHandler(Usuário usuário);
@@ -41,7 +42,7 @@ namespace Acesso.Comum
 		/// </summary>
 		public Usuários()
 		{
-			usuários = new Hashtable();
+			usuários = new Dictionary<Chave,Usuário>();
 		}
 
 		/// <summary>
@@ -234,7 +235,7 @@ namespace Acesso.Comum
 			{
 				string bla = this.ToString();
 
-				return usuários[chave] as Usuário;
+				return usuários[chave];
 			}
 		}
 
