@@ -1,12 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using Entidades.Relacionamento.Venda;
+using Apresentação.Formulários;
 using Entidades.Pagamentos;
+using Entidades.Relacionamento.Venda;
+using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Apresentação.Financeiro.Pagamento
 {
@@ -24,18 +21,17 @@ namespace Apresentação.Financeiro.Pagamento
         public Entidades.Pagamentos.Pagamento Pagamento
         {
             get { return pagamento; }
-            //set { pagamento = value; }
         }
 
         public virtual void PrepararParaAlteração(Entidades.Pagamentos.Pagamento pagamento)
         {
             this.pagamento = pagamento;
+
             txtValor.Double = pagamento.Valor;
             chkCobrarJuros.Checked = pagamento.CobrarJuros;
             data.Value = pagamento.Data;
             txtDescrição.Text = pagamento.Descrição;
             chkPagamentoPendente.Checked = pagamento.Pendente;
-            //RefazerListaVendas(null);
         }
 
         /// <summary>
@@ -51,8 +47,6 @@ namespace Apresentação.Financeiro.Pagamento
             if (venda != null)
                 pagamento.Venda = venda.Código;
 
-            //RefazerListaVendas(venda);
-            //MarcarVendasSemPagamentos();
             chkCobrarJuros.Checked = pagamento.CobrarJuros;
 
             if (venda != null)
@@ -112,65 +106,22 @@ namespace Apresentação.Financeiro.Pagamento
             if (PagamentoAlteradoOuRegistrado != null)
                 PagamentoAlteradoOuRegistrado(this, EventArgs.Empty);
 
-            Apresentação.Formulários.AguardeDB.Fechar();
+            AguardeDB.Fechar();
             UseWaitCursor = false;
         }
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            //// Verifica se existem apenas vendas desmarcadas
-            //if (chkListaVendas.CheckedItems.Count == 0 && chkListaVendas.Items.Count > 0
-            //    && !pagamento.Atualizado && (MessageBox.Show("Este pagamento está relacionado a NENHUMA venda. \nDeseja continuar? ", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
-            //        == DialogResult.No))
-            //{
-            //    return;
-            //}
-
-
             Gravar();
             DialogResult = DialogResult.OK;
-            Close();
+            Hide();
         }
-
-        //private void lnkAdicionar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        //{
-        //    List<IDadosVenda> vendasMarcadas;
-        //    EscolhaVendas janela = new EscolhaVendas();
-            
-        //    janela.Abrir(pagamento.Cliente);
-        //    janela.Marcar(pagamento.Vendas);
-        //    janela.ShowDialog(this);
-        //    vendasMarcadas = janela.ObterVendasMarcadas();
-        //    janela.Close();
-
-        //    pagamento.Vendas = vendasMarcadas;
-        //    pagamento.DefinirDesatualizado();
-        //    RefazerListaVendas(null);
-        //}
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
-                Close();
+            Hide();
         }
-
-        //private void chkListaVendas_ItemCheck(object sender, ItemCheckEventArgs e)
-        //{
-        //    if (e.NewValue == CheckState.Unchecked)
-        //    {
-        //        // Retirar o venda!
-        //        pagamento.Vendas.Remove((IDadosVenda)chkListaVendas.Items[e.Index]);
-        //        pagamento.DefinirDesatualizado();
-        //    }
-        //    else if (e.NewValue == CheckState.Checked)
-        //    {
-        //        // Adicionar a venda!
-        //        pagamento.Vendas.Add((IDadosVenda)chkListaVendas.Items[e.Index]);
-        //        pagamento.DefinirDesatualizado();
-        //    }
-        //    else
-        //        throw new NotSupportedException();
-        //}
 
         private void txtValor_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -194,16 +145,6 @@ namespace Apresentação.Financeiro.Pagamento
 
             if (pagamento != null)
                 pagamento.Pendente = chkPagamentoPendente.Checked;
-        }
-
-        private void Cadastro_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            //if (!pagamento.Cadastrado || !pagamento.Atualizado)
-            //{
-            //    e.Cancel =
-            //        MessageBox.Show(this, "Descartar alterações?", "Fechando a janela", MessageBoxButtons.YesNo)
-            //        == DialogResult.No;
-            //}
         }
 
         private void txtValor_Validated(object sender, EventArgs e)
@@ -230,9 +171,6 @@ namespace Apresentação.Financeiro.Pagamento
             else if (pagamento is NotaPromissória)
                 dlg = new CadastroNotaPromissória();
 
-            //else if (pagamento is Crédito)
-            //    dlg = new CadastroCrédito();
-
             else
                 throw new NotSupportedException();
 
@@ -254,6 +192,13 @@ namespace Apresentação.Financeiro.Pagamento
                 return true;
             }
             return base.ProcessDialogKey(keyData);
+        }
+
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+
+            txtValor.Focus();
         }
     }
 }
