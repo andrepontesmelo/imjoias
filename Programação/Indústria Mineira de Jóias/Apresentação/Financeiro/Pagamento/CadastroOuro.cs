@@ -100,6 +100,13 @@ namespace Apresentação.Financeiro.Pagamento
 
             AtualizarInterface();
         }
+
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+
+            txtPeso.Focus();
+        }
     }
 }
 
