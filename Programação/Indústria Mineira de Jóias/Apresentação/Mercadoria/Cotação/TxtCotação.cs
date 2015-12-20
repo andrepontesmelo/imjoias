@@ -109,6 +109,8 @@ namespace Apresentação.Mercadoria.Cotação
                 }
                 else
                     txt.Prefix = value.ToString();
+
+                Carregar();
             }
         }
 
@@ -363,7 +365,8 @@ namespace Apresentação.Mercadoria.Cotação
         /// </summary>
         private void ReposicionarPainelFlutuante()
         {
-            if (ParentForm == null)
+            
+             if (ParentForm == null)
                 return;
 
 #if DEBUG
