@@ -409,8 +409,23 @@ namespace Apresentação.Financeiro.Venda
             if (vendaEntidade == null)
                 return;
 
-            // Evita query provocada por vendaEntidade.Valor
-            double valorVenda = Math.Round(vendaEntidade.Valor, 2);
+            double valorVenda;
+
+            try
+            {
+                // Evita query provocada por vendaEntidade.Valor
+                valorVenda = Math.Round(vendaEntidade.Valor, 2);
+            } catch (Exception err)
+            {
+                MessageBox.Show(this,
+                    "Erro ao salvar a venda",
+                    err.Message,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                
+                return; 
+            }
+
             double créditos = Math.Round(vendaEntidade.CalcularCréditos(), 2);
             double débitos = Math.Round(vendaEntidade.CalcularDébitos(), 2);
 
