@@ -47,7 +47,7 @@ namespace Apresentação.Financeiro.Pagamento
             // 
             this.txtValor.BackColor = System.Drawing.Color.LightGray;
             this.txtValor.ReadOnly = true;
-            this.txtValor.Size = new System.Drawing.Size(220, 20);
+            this.txtValor.Size = new System.Drawing.Size(267, 20);
             // 
             // groupBox1
             // 
@@ -57,7 +57,7 @@ namespace Apresentação.Financeiro.Pagamento
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.txtCotação);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Size = new System.Drawing.Size(229, 353);
+            this.groupBox1.Size = new System.Drawing.Size(276, 353);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.Controls.SetChildIndex(this.data, 0);
             this.groupBox1.Controls.SetChildIndex(this.txtDescrição, 0);
@@ -81,19 +81,19 @@ namespace Apresentação.Financeiro.Pagamento
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(77, 452);
+            this.btnOk.Location = new System.Drawing.Point(124, 452);
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(153, 452);
+            this.btnCancelar.Location = new System.Drawing.Point(200, 452);
             // 
             // data
             // 
-            this.data.Size = new System.Drawing.Size(217, 20);
+            this.data.Size = new System.Drawing.Size(264, 20);
             // 
             // txtDescrição
             // 
-            this.txtDescrição.Size = new System.Drawing.Size(214, 91);
+            this.txtDescrição.Size = new System.Drawing.Size(261, 91);
             // 
             // lblTítulo
             // 
@@ -102,7 +102,7 @@ namespace Apresentação.Financeiro.Pagamento
             // 
             // lblDescrição
             // 
-            this.lblDescrição.Size = new System.Drawing.Size(145, 48);
+            this.lblDescrição.Size = new System.Drawing.Size(192, 48);
             this.lblDescrição.Text = "Se é para fundir, valor = peso * cotacao da venda * 0.750 * 0.9.           Se é o" +
     "uro mil, valor = peso * cotacao da venda.";
             // 
@@ -121,6 +121,8 @@ namespace Apresentação.Financeiro.Pagamento
             // 
             // txtCotação
             // 
+            this.txtCotação.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCotação.AvisarCotaçõesDesatualizadas = false;
             this.txtCotação.AvisarCotaçõesNãoCadastradas = false;
             this.txtCotação.AvisarNovaCotação = false;
@@ -128,7 +130,7 @@ namespace Apresentação.Financeiro.Pagamento
             this.txtCotação.IniciarValorAtual = false;
             this.txtCotação.Location = new System.Drawing.Point(5, 223);
             this.txtCotação.Name = "txtCotação";
-            this.txtCotação.Size = new System.Drawing.Size(214, 20);
+            this.txtCotação.Size = new System.Drawing.Size(259, 20);
             this.txtCotação.TabIndex = 19;
             this.txtCotação.Valor = 0D;
             this.txtCotação.Validated += new System.EventHandler(this.txtCotação_Validated);
@@ -145,6 +147,8 @@ namespace Apresentação.Financeiro.Pagamento
             // txtPeso
             // 
             this.txtPeso.AllowNegative = true;
+            this.txtPeso.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPeso.DigitsInGroup = 0;
             this.txtPeso.Flags = 0;
             this.txtPeso.Location = new System.Drawing.Point(2, 260);
@@ -154,7 +158,7 @@ namespace Apresentação.Financeiro.Pagamento
             this.txtPeso.Prefix = "";
             this.txtPeso.RangeMax = 1.7976931348623157E+308D;
             this.txtPeso.RangeMin = -1.7976931348623157E+308D;
-            this.txtPeso.Size = new System.Drawing.Size(217, 20);
+            this.txtPeso.Size = new System.Drawing.Size(262, 20);
             this.txtPeso.TabIndex = 21;
             this.txtPeso.Text = "1";
             this.txtPeso.Validated += new System.EventHandler(this.txtPeso_Validated);
@@ -185,7 +189,7 @@ namespace Apresentação.Financeiro.Pagamento
             // 
             // CadastroOuro
             // 
-            this.ClientSize = new System.Drawing.Size(233, 487);
+            this.ClientSize = new System.Drawing.Size(280, 487);
             this.Name = "CadastroOuro";
             this.Text = "Ouro";
             this.groupBox1.ResumeLayout(false);
