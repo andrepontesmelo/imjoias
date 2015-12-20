@@ -103,8 +103,8 @@ namespace Apresentação.Financeiro.Pagamento
             // lblDescrição
             // 
             this.lblDescrição.Size = new System.Drawing.Size(192, 48);
-            this.lblDescrição.Text = "Se é para fundir, valor = peso * cotacao da venda * 0.750 * 0.9.           Se é o" +
-    "uro mil, valor = peso * cotacao da venda.";
+            this.lblDescrição.Text = "Fundir: valor = peso * cotacao da venda * 0.750 * 0.9.\r\nMil:" +
+    " valor = peso * cotacao da venda.";
             // 
             // picÍcone
             // 
