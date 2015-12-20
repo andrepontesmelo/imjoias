@@ -1,19 +1,13 @@
-﻿using System;
+﻿using Apresentação.Formulários;
+using Entidades.Configuração;
+using Entidades.Pagamentos;
+using Entidades.Relacionamento.Venda;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
-using System.Collections;
-using Entidades.Pagamentos;
-using Acesso.Comum;
-using Apresentação.Formulários;
-using System.Threading;
-using Entidades.Relacionamento.Venda;
-using Entidades;
-using Entidades.Configuração;
-using Apresentação.Impressão.Relatórios.PagamentosCliente;
 
 namespace Apresentação.Financeiro.Pagamento
 {
@@ -187,8 +181,6 @@ namespace Apresentação.Financeiro.Pagamento
         private void lista_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             ordenador.OnClick(lista, e);
-            
-            //RefazerContagemLinhas();
         }
 
         private void RefazerContagemLinhas()
@@ -347,10 +339,11 @@ namespace Apresentação.Financeiro.Pagamento
                 // Remove os pagamentos!
                 foreach (ListaPagamentoItem item in pagamentosRemover)
                     item.Pagamento.Descadastrar();
-            }
 
-            Carregar();
+                Carregar();
+            } 
         }
+
         private void btnAlterar_Click(object sender, EventArgs e)
         {
             // Alterar é o mesmo que dar duplo clique no item
@@ -364,11 +357,20 @@ namespace Apresentação.Financeiro.Pagamento
             
             if (e.KeyCode == Keys.Delete)
                 Excluir();
+
+            if (e.Modifiers == Keys.Control && e.KeyCode == Keys.A)
+                SelecionarTudo();
+
+        }
+
+        private void SelecionarTudo()
+        {
+            foreach (ListViewItem item in lista.Items)
+                item.Selected = true;
         }
 
         private struct DadosBgCarregar
         {
-            //public Dictionary<Entidades.Pagamentos.Pagamento, string> hashCódPagamentoVinculo;
             public Entidades.Pagamentos.Pagamento[] entidades;
 
             // Dado o código do pagamento, retorna o código da venda em que o pagamento foi pago.
@@ -620,7 +622,7 @@ namespace Apresentação.Financeiro.Pagamento
             List<Entidades.Pagamentos.Pagamento> lst = new List<Entidades.Pagamentos.Pagamento>(lista.Items.Count);
             foreach (ListViewItem item in lista.Items)
                 lst.Add(hashItemListaPagamento[item].Pagamento);
-
+            
             return lst;
         }
     }
