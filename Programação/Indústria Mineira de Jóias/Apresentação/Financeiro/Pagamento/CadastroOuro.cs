@@ -1,4 +1,3 @@
-using Entidades;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,8 +13,6 @@ namespace Apresentação.Financeiro.Pagamento
         public CadastroOuro()
         {
             InitializeComponent();
-
-            txtCotação.MoedaSistema = Moeda.MoedaSistema.Ouro;
         }
 
         protected override Entidades.Pagamentos.Pagamento CriarEntidade()
@@ -102,13 +99,6 @@ namespace Apresentação.Financeiro.Pagamento
                 ((Entidades.Pagamentos.Ouro)Pagamento).ParaFundir = chkOuroFundir.Checked;
 
             AtualizarInterface();
-        }
-
-        protected override void OnShown(EventArgs e)
-        {
-            base.OnShown(e);
-
-            txtPeso.Focus();
         }
     }
 }
