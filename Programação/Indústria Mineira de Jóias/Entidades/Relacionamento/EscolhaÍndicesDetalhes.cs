@@ -25,7 +25,7 @@ namespace Entidades.Relacionamento
              " where saida.codigo=saidaitem.saida " + 
              " and referencia=" + DbTransformar(mercadoria.ReferênciaNumérica) + 
              " and acerto=" + DbTransformar(acerto) + 
-             " group by indice;");
+             " group by indice, saidaitem.data, saida.codigo, funcionario;");
         }
 
         public override string ToString()
