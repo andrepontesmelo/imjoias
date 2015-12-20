@@ -1,11 +1,8 @@
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
 using System.Windows.Forms;
-using Entidades.Pessoa;
-using System.Collections.Generic;
 
 namespace Apresentação.Pessoa.Consultas
 {
@@ -24,14 +21,12 @@ namespace Apresentação.Pessoa.Consultas
 		private volatile bool	segurarLista = false;
 		private bool			funcionários = false;	// Listar somente funcionários
         private bool            vendedores = false;	    // Listar somente vendedores (representantes + funcionários)
-		private Hashtable		refPessoas = null;		// Referência de pessoas para a listview (lista invertida)
-		//private Hashtable		setoresCódigo;			// Setores pelo código
+		private Dictionary<ListViewItem, Entidades.Pessoa.Pessoa> hashItemPessoa = new Dictionary<ListViewItem,Entidades.Pessoa.Pessoa>();	
 		private Entidades.Pessoa.Pessoa pessoa = null;			// Pessoa selecionada
 		private Entidades.Pessoa.Pessoa pessoaAnterior = null;  // Seleção anterior 
 		private bool			mostrarCabeçalho = true;
 		private bool			desligarPesquisa = false;
         private bool            somenteCadastrados = false;
-		
 
 		// Eventos
         [Description("Usuário seleciona uma pessoa da lista ou a pessoa é encontrada a partir do prefixo ou nome digitado pelo usuário.")]
@@ -68,7 +63,6 @@ namespace Apresentação.Pessoa.Consultas
 
 		public TextBoxPessoa()
 		{
-			// This call is required by the Windows.Forms Form Designer.
 			InitializeComponent();
 
 			// Cria colunas para listview
@@ -80,9 +74,7 @@ namespace Apresentação.Pessoa.Consultas
 			colDados.Width = 200;
 
             this.AlturaProposta = 3 * this.Height;
-
 			this.txt.ForeColor = SystemColors.ControlText;
-            //setoresCódigo = new Hashtable();
 		}
 
 		/// <summary> 
@@ -131,7 +123,6 @@ namespace Apresentação.Pessoa.Consultas
             this.txt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txt_KeyUp);
             this.txt.Leave += new System.EventHandler(this.txt_Leave);
             this.txt.Validating += new System.ComponentModel.CancelEventHandler(this.txt_Validating);
-            this.txt.Validated += new System.EventHandler(this.txt_Validated);
             // 
             // btnProcurar
             // 
@@ -216,31 +207,20 @@ namespace Apresentação.Pessoa.Consultas
 
                 return pessoa;
             }
-            set 
+            set
             {
-                //bool válido;
+                // Atribui pessoa referente à linha selecionada
+                if (pessoa != null)
+                    pessoaAnterior = pessoa;
 
-                ////válido  = value == null || !funcionários || value is Funcionário || Funcionário.ÉFuncionário(value);
-                ////válido &= value == null || !vendedores || value is Representante || value is Funcionário || Funcionário.ÉFuncionário(value) || Representante.ÉRepresentante(value);
+                pessoa = value;
 
-                //válido  = value == null || !funcionários || value is Funcionário || Funcionário.ÉFuncionário(value);
-                //válido &= value == null || !vendedores || value is Representante || value is Funcionário || Funcionário.ÉFuncionário(value) || Representante.ÉRepresentante(value);
+                // Garante que a textbox não vai requisitar pesquisa
+                travar = true;
 
-                //if (válido)
-                //{
-                    // Atribui pessoa referente à linha selecionada
-                    if (pessoa != null)
-                        pessoaAnterior = pessoa;
+                AtualizarTextBox();
 
-                    pessoa = value;
-
-                    // Garante que a textbox não vai requisitar pesquisa
-                    travar = true;
-
-                    AtualizarTextBox();
-
-                    travar = false;
-                //}
+                travar = false;
             }
         }
 
@@ -469,7 +449,6 @@ namespace Apresentação.Pessoa.Consultas
                     pontoZeroRaíz = this.ParentForm.PointToScreen(new Point(0, 0));
                     pontoZeroMeu = this.PointToScreen(new Point(0, 0));
 
-                    //novoZero = pontoZeromeu - pontoZeroRaíz;
                     novoZero = pontoZeroMeu;
                     novoZero.Offset(-1 * pontoZeroRaíz.X, -1 * pontoZeroRaíz.Y);
 
@@ -479,9 +458,6 @@ namespace Apresentação.Pessoa.Consultas
                 }
                 else
                     posiçãoLista = new Point(lista.Left, lista.Top);
-
-				//lista.Bounds = new Rectangle
-				//	(posiçãoLista, new Size(larguraProposta < larguraMínimaLista ? larguraMínimaLista : larguraProposta, alturaProposta < alturaMínimaLista ? alturaMínimaLista : alturaProposta));
 
 				lista.Bounds = new Rectangle
 					(posiçãoLista, new Size(larguraProposta, alturaProposta < alturaMínimaLista ? alturaMínimaLista : alturaProposta));
@@ -515,9 +491,6 @@ namespace Apresentação.Pessoa.Consultas
 
                 if (Parent != null)
                     Parent.UseWaitCursor = true;
-
-                //imagem.Visible = true;
-                //imagem.BringToFront();
             }
         }
 
@@ -535,13 +508,10 @@ namespace Apresentação.Pessoa.Consultas
             }
             else
             {
-                //txt.BackColor = Color.White;
                 UseWaitCursor = false;
                 
                 if (Parent != null)
                     Parent.UseWaitCursor = false;
-
-                //imagem.Visible = false;
             }
         }
 
@@ -579,11 +549,6 @@ namespace Apresentação.Pessoa.Consultas
 			this.TopLevelControl.Controls.Add(lista);
 			
 			lista.BringToFront();
-
-            ///* Se a lista for oculta antes de inserir no controle,
-            // * o programa trava. (Bug do .net, talvez?)
-            // */
-            //lista.Visible = false;
 		}
 
 		/// <summary>
@@ -628,8 +593,6 @@ namespace Apresentação.Pessoa.Consultas
                  * do Coletor.
                  * -- Júlio, 21/04/2006
                  */
-                //else
-                //    Coletor.Pesquisar(txt.Text);
 			}
 
             if ((pessoaAnterior == null) || ((pessoa != null) && (pessoa.Código != pessoaAnterior.Código)))
@@ -661,75 +624,16 @@ namespace Apresentação.Pessoa.Consultas
                     lista.Items.Clear();
 
                     // Recriar hashtable para encontrar entidades pela linha selecionada do listview
-                    refPessoas = new Hashtable(pessoas.Count);
+                    hashItemPessoa.Clear();
 
                     // Verificar se há pessoas para mostrar
                     if (pessoas.Count == 0)
                     {
-                        // Mostrar lista vazia para que o usuário não espere
-                        //lista.Visible = Focused && !travar && txt.Text.Length > 0;
-
                         lista.Visible = false;
-
                         return;
                     }
 
-
-                    ListViewItem[] itens = new ListViewItem[pessoas.Count];
-                    int x = 0;
-
-                    // Inserir pessoas
-                    foreach (Entidades.Pessoa.Pessoa pessoa in pessoas)
-                    {
-                        if (pessoa is Entidades.Pessoa.Funcionário)
-                        {
-                            Entidades.Setor setor;
-                            ListViewItem linha = new ListViewItem();
-
-                            linha.Text = pessoa.Nome;
-
-                            setor = ((Entidades.Pessoa.Funcionário)pessoa).Setor;
-
-                            // A pessoa pode não ter setor
-                            linha.SubItems.Add(setor == null ? "" : setor.Nome);
-
-                            refPessoas[linha] = pessoa;
-                            itens[x++] = linha;
-                        }
-                        else if (pessoa is Entidades.Pessoa.Representante)
-                        {
-                            ListViewItem linha = new ListViewItem();
-
-                            linha.Text = pessoa.Nome;
-                            linha.SubItems.Add("Representante");
-
-                            refPessoas[linha] = pessoa;
-                            itens[x++] = linha;
-                        }
-                        else if (pessoa != null)
-                        {
-                            ListViewItem linha = new ListViewItem();
-
-                            linha.Text = pessoa.Nome;
-
-                            List<Entidades.Pessoa.Endereço.Endereço> endereços
-                                = pessoa.Endereços.ExtrairElementos();
-
-                            if (endereços.Count != 0
-                                && (endereços[0].Localidade != null)
-                                && (endereços[0].Localidade.Estado != null))
-                                linha.SubItems.Add(endereços[0].Localidade.Nome + " / " + endereços[0].Localidade.Estado.Sigla);
-                            else
-                                linha.SubItems.Add("");
-                                
-                            //linha.SubItems.Add(((Entidades.Pessoa.PessoaCPFCNPJRG)pessoa).Documento);
-
-                            itens[x++] = linha;
-
-                            refPessoas[linha] = pessoa;
-                        }
-                    }
-
+                    ListViewItem[] itens = CriarItens(pessoas);
                     lista.Items.AddRange(itens);
 
                     /* Verificar se o controle ainda retém o foco para mostrar a lista
@@ -750,6 +654,63 @@ namespace Apresentação.Pessoa.Consultas
             { /* Ignorar */ }
 		}
 
+        private ListViewItem[] CriarItens(List<Entidades.Pessoa.Pessoa> pessoas)
+        {
+            ListViewItem[] itens = new ListViewItem[pessoas.Count];
+            int x = 0;
+
+            // Inserir pessoas
+            foreach (Entidades.Pessoa.Pessoa pessoa in pessoas)
+            {
+                if (pessoa is Entidades.Pessoa.Funcionário)
+                {
+                    Entidades.Setor setor;
+                    ListViewItem linha = new ListViewItem();
+
+                    linha.Text = pessoa.Nome;
+
+                    setor = ((Entidades.Pessoa.Funcionário)pessoa).Setor;
+
+                    // A pessoa pode não ter setor
+                    linha.SubItems.Add(setor == null ? "" : setor.Nome);
+
+                    hashItemPessoa[linha] = pessoa;
+                    itens[x++] = linha;
+                }
+                else if (pessoa is Entidades.Pessoa.Representante)
+                {
+                    ListViewItem linha = new ListViewItem();
+
+                    linha.Text = pessoa.Nome;
+                    linha.SubItems.Add("Representante");
+
+                    hashItemPessoa[linha] = pessoa;
+                    itens[x++] = linha;
+                }
+                else if (pessoa != null)
+                {
+                    ListViewItem linha = new ListViewItem();
+
+                    linha.Text = pessoa.Nome;
+
+                    List<Entidades.Pessoa.Endereço.Endereço> endereços
+                        = pessoa.Endereços.ExtrairElementos();
+
+                    if (endereços.Count != 0
+                        && (endereços[0].Localidade != null)
+                        && (endereços[0].Localidade.Estado != null))
+                        linha.SubItems.Add(endereços[0].Localidade.Nome + " / " + endereços[0].Localidade.Estado.Sigla);
+                    else
+                        linha.SubItems.Add("");
+
+                    itens[x++] = linha;
+
+                    hashItemPessoa[linha] = pessoa;
+                }
+            }
+            return itens;
+        }
+
 		/// <summary>
 		/// Ocorre quando se seleciona um item na lista
 		/// </summary>
@@ -769,7 +730,7 @@ namespace Apresentação.Pessoa.Consultas
             if (!ReadOnly)
             {
                 // Precisa ser a propriedade para não abrir a listView
-                Pessoa = refPessoas[item] as Entidades.Pessoa.Pessoa;
+                Pessoa = hashItemPessoa[item] as Entidades.Pessoa.Pessoa;
 
                 // Verificar se foi clicada
                 if (lista.Focused)
@@ -780,9 +741,6 @@ namespace Apresentação.Pessoa.Consultas
 
                 // Como foi selecionada uma pessoa, não é mais necessário segurar a lista
                 segurarLista = false;
-
-                //if (Selecionado != null)
-                //    Selecionado(this, null);
             }
         }
 
@@ -1192,16 +1150,9 @@ namespace Apresentação.Pessoa.Consultas
             e.Cancel = !Válido;
         }
 
-        private void txt_Validated(object sender, EventArgs e)
-        {
-        }
-
         private bool Válido
         {
-            get
-            {
-                return podeSerNulo || Pessoa != null;
-            }
+            get { return podeSerNulo || Pessoa != null; }
         }
 	}
 }
