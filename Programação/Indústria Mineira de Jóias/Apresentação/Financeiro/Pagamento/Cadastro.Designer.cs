@@ -256,7 +256,6 @@ namespace Apresentação.Financeiro.Pagamento
             this.Name = "Cadastro";
             this.ShowInTaskbar = true;
             this.Text = "Pagamento";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Cadastro_FormClosing);
             this.Controls.SetChildIndex(this.btnOk, 0);
             this.Controls.SetChildIndex(this.groupBox2, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
