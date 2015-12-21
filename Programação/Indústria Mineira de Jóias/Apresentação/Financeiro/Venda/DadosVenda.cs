@@ -339,6 +339,8 @@ namespace Apresentação.Financeiro.Venda
                 else
                     txtAcerto.Text = "Não definido";
 
+                
+
                 MostrarPreços();
 
                 if (vendaEntidade.Controle.HasValue)
@@ -551,7 +553,7 @@ namespace Apresentação.Financeiro.Venda
                 return;
 
             cmbTabela.Seleção = vendaEntidade.TabelaPreço;
-            cmbTabela.Enabled = vendaEntidade.Itens.Count == 0 && vendaEntidade.ItensDevolução.Count == 0;
+            cmbTabela.Enabled = vendaEntidade.Itens.Count == 0 && vendaEntidade.ItensDevolução.Count == 0 && vendaEntidade.AcertoConsignado == null;
         }
 
         /// <summary>
@@ -609,7 +611,7 @@ namespace Apresentação.Financeiro.Venda
             try
             {
                 if (vendaEntidade != null && vendaEntidade.Itens != null && vendaEntidade.ItensDevolução != null)
-                    cmbTabela.Enabled = !entidadeTravada && (vendaEntidade.Itens.Count == 0 && vendaEntidade.ItensDevolução.Count == 0);
+                    cmbTabela.Enabled = !entidadeTravada && (vendaEntidade.Itens.Count == 0 && vendaEntidade.ItensDevolução.Count == 0 && vendaEntidade.AcertoConsignado == null);
                 else
                     cmbTabela.Enabled = !entidadeTravada;
             }
@@ -861,6 +863,8 @@ namespace Apresentação.Financeiro.Venda
             }
             else
                 txtAcerto.Text = "Não definido";
+
+            AtualizarTravamento(vendaEntidade.TravadoEmCache);
 
             AoAlterarAcerto(this, EventArgs.Empty);
         }
