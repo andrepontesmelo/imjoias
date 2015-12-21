@@ -796,8 +796,7 @@ namespace Apresentação.Pessoa.Consultas
                             if (lista != null)
                                 lista.Visible = false;
 
-                            if (Selecionado != null)
-                                Selecionado(sender, null);
+                            NotificarEventoSelecionadoSeNecessário();
 
                             return;
                         }
@@ -874,9 +873,20 @@ namespace Apresentação.Pessoa.Consultas
             else if (Deselecionado != null && Pessoa == null && Válido)
                 Deselecionado(this, EventArgs.Empty);
             else if (Selecionado != null && Pessoa != null && Válido)
-                Selecionado(this, EventArgs.Empty);
+                NotificarEventoSelecionadoSeNecessário();
 
             UseWaitCursor = false;
+        }
+
+
+        private Entidades.Pessoa.Pessoa últimaPessoaSelecionada = null;
+        private void NotificarEventoSelecionadoSeNecessário()
+        {
+            if (Selecionado != null && Pessoa != null && Válido && Pessoa != últimaPessoaSelecionada)
+            {
+                últimaPessoaSelecionada = Pessoa;
+                Selecionado(this, EventArgs.Empty);
+            }
         }
 
 		/// <summary>
@@ -989,7 +999,7 @@ namespace Apresentação.Pessoa.Consultas
 
         private void Limpar()
         {
-            txt.Text = "";
+            txt.Clear();
         }
 
         public override bool Focused
@@ -1035,8 +1045,7 @@ namespace Apresentação.Pessoa.Consultas
             {
                 if (Pessoa != null)
                 {
-                    if (Selecionado != null)
-                        Selecionado(this, null);
+                    NotificarEventoSelecionadoSeNecessário();
                 }
                 else
                     if (Deselecionado != null)
@@ -1125,8 +1134,7 @@ namespace Apresentação.Pessoa.Consultas
             {
                 if (pessoa != null)
                 {
-                    if (Selecionado != null)
-                        Selecionado(this, null);
+                    NotificarEventoSelecionadoSeNecessário();
                 }
                 else
                     if (Deselecionado != null)
