@@ -199,7 +199,9 @@ namespace Apresentação.Formulários
             // 
             // SeleçãoPeríodo
             // 
+            this.AcceptButton = this.cmdOK;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+            this.CancelButton = this.cmdCancelar;
             this.ClientSize = new System.Drawing.Size(392, 198);
             this.Controls.Add(this.cmdCancelar);
             this.Controls.Add(this.cmdOK);
