@@ -85,7 +85,15 @@ namespace Entidades
             if (hashSetorTabelas == null)
                 CriarHashSetorTabelas();
 
-            return hashSetorTabelas[setor];
+            List<Tabela> tabelas = null;
+
+            if (!hashSetorTabelas.TryGetValue(setor, out tabelas))
+            {
+                tabelas = new List<Tabela>();
+                hashSetorTabelas.Add(setor, tabelas);
+            }
+            
+            return tabelas;
         }
 
         private static void CriarHashSetorTabelas()
