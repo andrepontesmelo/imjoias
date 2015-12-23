@@ -525,7 +525,7 @@ namespace Entidades.Álbum
         {
             return Mapear<Foto>(
                 "SELECT codigo,mercadoria,peso,descricao,data FROM foto WHERE codigo IN (SELECT foto FROM vinculofotoalbum WHERE album = "
-                + DbTransformar(álbum.Código) + ")").ToArray();
+                + DbTransformar(álbum.Código) + ") AND mercadoria in (select referencia from mercadoria where foradelinha=0) ").ToArray();
         }
 
         /// <summary>
