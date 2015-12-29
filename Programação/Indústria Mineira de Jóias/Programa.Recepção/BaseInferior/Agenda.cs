@@ -24,8 +24,7 @@ namespace Programa.Recepção.BaseInferior
 		private System.Windows.Forms.ColumnHeader colCidade;
 		private System.Windows.Forms.ColumnHeader colEstado;
 		private System.Windows.Forms.Label label1;
-		private Apresentação.Formulários.Quadro quadroAgenda;
-		private System.Windows.Forms.Label lblObs;
+        private Apresentação.Formulários.Quadro quadroAgenda;
 		private System.Windows.Forms.Label label2;
 		private Apresentação.Formulários.Opção opçãoIncluirTelefone;
 		private Apresentação.Formulários.Opção opçãoExcluir;
@@ -67,17 +66,16 @@ namespace Programa.Recepção.BaseInferior
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Agenda));
             this.txtNome = new System.Windows.Forms.TextBox();
             this.lstPessoas = new System.Windows.Forms.ListView();
-            this.colNome = new System.Windows.Forms.ColumnHeader();
-            this.colTelFixo = new System.Windows.Forms.ColumnHeader();
-            this.colTelCelular = new System.Windows.Forms.ColumnHeader();
-            this.colTelOutro = new System.Windows.Forms.ColumnHeader();
-            this.colCidade = new System.Windows.Forms.ColumnHeader();
-            this.colEstado = new System.Windows.Forms.ColumnHeader();
+            this.colNome = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colTelFixo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colTelCelular = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colTelOutro = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colCidade = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colEstado = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblPessoas = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.quadroAgenda = new Apresentação.Formulários.Quadro();
             this.opçãoIncluirTelefone = new Apresentação.Formulários.Opção();
-            this.lblObs = new System.Windows.Forms.Label();
             this.opçõesNome = new Apresentação.Formulários.Quadro();
             this.opçãoAlterar = new Apresentação.Formulários.Opção();
             this.opçãoExcluir = new Apresentação.Formulários.Opção();
@@ -97,21 +95,21 @@ namespace Programa.Recepção.BaseInferior
             // 
             // txtNome
             // 
-            this.txtNome.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNome.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNome.Location = new System.Drawing.Point(304, 16);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(464, 20);
             this.txtNome.TabIndex = 6;
-            this.txtNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNome_KeyPress);
             this.txtNome.TextChanged += new System.EventHandler(this.txtNome_TextChanged);
+            this.txtNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNome_KeyPress);
             // 
             // lstPessoas
             // 
             this.lstPessoas.AllowColumnReorder = true;
-            this.lstPessoas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lstPessoas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lstPessoas.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colNome,
             this.colTelFixo,
@@ -130,8 +128,8 @@ namespace Programa.Recepção.BaseInferior
             this.lstPessoas.UseCompatibleStateImageBehavior = false;
             this.lstPessoas.View = System.Windows.Forms.View.Details;
             this.lstPessoas.SelectedIndexChanged += new System.EventHandler(this.lstPessoas_SelectedIndexChanged);
-            this.lstPessoas.DoubleClick += new EventHandler(lstPessoas_DoubleClick);
-            // $
+            this.lstPessoas.DoubleClick += new System.EventHandler(this.lstPessoas_DoubleClick);
+            // 
             // colNome
             // 
             this.colNome.Text = "Nome";
@@ -188,14 +186,13 @@ namespace Programa.Recepção.BaseInferior
             this.quadroAgenda.bSupDirArredondada = true;
             this.quadroAgenda.bSupEsqArredondada = true;
             this.quadroAgenda.Controls.Add(this.opçãoIncluirTelefone);
-            this.quadroAgenda.Controls.Add(this.lblObs);
             this.quadroAgenda.Cor = System.Drawing.Color.Black;
             this.quadroAgenda.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadroAgenda.LetraTítulo = System.Drawing.Color.White;
             this.quadroAgenda.Location = new System.Drawing.Point(7, 16);
             this.quadroAgenda.MostrarBotãoMinMax = false;
             this.quadroAgenda.Name = "quadroAgenda";
-            this.quadroAgenda.Size = new System.Drawing.Size(160, 128);
+            this.quadroAgenda.Size = new System.Drawing.Size(160, 72);
             this.quadroAgenda.TabIndex = 7;
             this.quadroAgenda.Tamanho = 30;
             this.quadroAgenda.Título = "Agenda";
@@ -214,15 +211,6 @@ namespace Programa.Recepção.BaseInferior
             this.opçãoIncluirTelefone.TabIndex = 4;
             this.opçãoIncluirTelefone.Click += new System.EventHandler(this.opçãoIncluirTelefone_Click);
             // 
-            // lblObs
-            // 
-            this.lblObs.BackColor = System.Drawing.Color.Transparent;
-            this.lblObs.Location = new System.Drawing.Point(8, 80);
-            this.lblObs.Name = "lblObs";
-            this.lblObs.Size = new System.Drawing.Size(144, 40);
-            this.lblObs.TabIndex = 3;
-            this.lblObs.Text = "Os nomes incluídos nesta agenda pela recepcionista ficarão marcados em azul.";
-            // 
             // opçõesNome
             // 
             this.opçõesNome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -236,7 +224,7 @@ namespace Programa.Recepção.BaseInferior
             this.opçõesNome.Cor = System.Drawing.Color.Black;
             this.opçõesNome.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.opçõesNome.LetraTítulo = System.Drawing.Color.White;
-            this.opçõesNome.Location = new System.Drawing.Point(7, 160);
+            this.opçõesNome.Location = new System.Drawing.Point(7, 93);
             this.opçõesNome.MostrarBotãoMinMax = false;
             this.opçõesNome.Name = "opçõesNome";
             this.opçõesNome.Size = new System.Drawing.Size(160, 128);
