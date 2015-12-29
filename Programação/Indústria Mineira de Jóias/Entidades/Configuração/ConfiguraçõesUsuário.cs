@@ -55,6 +55,12 @@ namespace Entidades.Configuração
         /// </summary>
         private ConfiguraçõesUsuário()
         {
+            if (Entidades.Pessoa.Funcionário.FuncionárioAtual == null)
+            {
+                hashConfigurações = new Dictionary<string, object>();
+                return;
+            }
+
             IDbConnection conexão = Conexão;
 
             lock (conexão)
