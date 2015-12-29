@@ -24,6 +24,9 @@ namespace Entidades.Configuração
         /// <param name="valor">Valor a ser armazenado na chave.</param>
         protected override void Gravar()
         {
+            if (Entidades.Pessoa.Funcionário.FuncionárioAtual == null)
+                return;
+
             lock (ConfiguraçõesUsuário.Instância)
             {
                 IDbConnection conexão = Conexão;
