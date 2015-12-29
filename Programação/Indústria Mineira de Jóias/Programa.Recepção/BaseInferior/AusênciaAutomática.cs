@@ -43,7 +43,7 @@ namespace Programa.Recepção.BaseInferior
 			listaFuncionários    = new ArrayList();
 		}
 
-		/// <summary>
+        		/// <summary>
 		/// Ocorre ao carregar completamente o sistema.
 		/// </summary>
 		public override void AoCarregarCompletamente(Apresentação.Formulários.Splash splash)
@@ -72,6 +72,9 @@ namespace Programa.Recepção.BaseInferior
             {
                 Acesso.Comum.Usuários.UsuárioAtual.RegistrarErro(e);
             }
+
+            quadro.Location = new Point(7, 84);
+            quadroES.Location = new Point(7, 14);
 		}
 
 		/// <summary>
@@ -96,142 +99,148 @@ namespace Programa.Recepção.BaseInferior
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
-			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(AusênciaAutomática));
-			this.títuloBaseInferior = new Apresentação.Formulários.TítuloBaseInferior();
-			this.listaPessoas = new Apresentação.Atendimento.Comum.ListaPessoas();
-			this.quadro = new Apresentação.Formulários.Quadro();
-			this.opçãoAtribuirAusênciaTodos = new Apresentação.Formulários.Opção();
-			this.opçãoAtribuirAusência = new Apresentação.Formulários.Opção();
-			this.timer = new System.Windows.Forms.Timer(this.components);
-			this.quadroES = new Apresentação.Formulários.Quadro();
-			this.opçãoVoltar = new Apresentação.Formulários.Opção();
-			this.esquerda.SuspendLayout();
-			this.quadro.SuspendLayout();
-			this.quadroES.SuspendLayout();
-			this.SuspendLayout();
-			// 
-			// esquerda
-			// 
-			this.esquerda.Controls.Add(this.quadroES);
-			this.esquerda.Controls.Add(this.quadro);
-			
-			// 
-			// títuloBaseInferior
-			// 
-			this.títuloBaseInferior.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.títuloBaseInferior.BackColor = System.Drawing.Color.White;
-			this.títuloBaseInferior.Descrição = "O horário de trabalho terminou para os funcionários abaixo. Para confirmar a ausê" +
-				"ncia, basta clicar duas vezes nos nomes dos ausentes.";
-			this.títuloBaseInferior.Imagem = ((System.Drawing.Image)(resources.GetObject("títuloBaseInferior.Imagem")));
-			this.títuloBaseInferior.Location = new System.Drawing.Point(200, 8);
-			this.títuloBaseInferior.Name = "títuloBaseInferior";
-			this.títuloBaseInferior.Size = new System.Drawing.Size(584, 70);
-			this.títuloBaseInferior.TabIndex = 6;
-			this.títuloBaseInferior.Título = "Horário de trabalho";
-			// 
-			// listaPessoas
-			// 
-			this.listaPessoas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.listaPessoas.AutoScroll = true;
-			this.listaPessoas.Location = new System.Drawing.Point(200, 96);
-			this.listaPessoas.Name = "listaPessoas";
-			this.listaPessoas.Size = new System.Drawing.Size(584, 184);
-			this.listaPessoas.TabIndex = 7;
-			this.listaPessoas.PessoaIncluída += new Apresentação.Atendimento.Comum.ListaPessoas.PessoaSelecionadaDelegate(this.listaPessoas_PessoaIncluída);
-			this.listaPessoas.PessoaSelecionada += new Apresentação.Atendimento.Comum.ListaPessoas.PessoaSelecionadaDelegate(this.listaPessoas_PessoaSelecionada);
-			// 
-			// quadro
-			// 
-			this.quadro.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(128)), ((System.Byte)(255)), ((System.Byte)(255)), ((System.Byte)(255)));
-			this.quadro.bInfDirArredondada = true;
-			this.quadro.bInfEsqArredondada = true;
-			this.quadro.bSupDirArredondada = true;
-			this.quadro.bSupEsqArredondada = true;
-			this.quadro.Controls.Add(this.opçãoAtribuirAusênciaTodos);
-			this.quadro.Controls.Add(this.opçãoAtribuirAusência);
-			this.quadro.Cor = System.Drawing.Color.Black;
-			this.quadro.FundoTítulo = System.Drawing.Color.FromArgb(((System.Byte)(128)), ((System.Byte)(165)), ((System.Byte)(159)), ((System.Byte)(97)));
-			this.quadro.LetraTítulo = System.Drawing.Color.White;
-			this.quadro.Location = new System.Drawing.Point(8, 16);
-			this.quadro.MostrarBotãoMinMax = false;
-			this.quadro.Name = "quadro";
-			this.quadro.Size = new System.Drawing.Size(160, 96);
-			this.quadro.TabIndex = 0;
-			this.quadro.Tamanho = 30;
-			this.quadro.Título = "Confirmar ausência";
-			// 
-			// opçãoAtribuirAusênciaTodos
-			// 
-			this.opçãoAtribuirAusênciaTodos.BackColor = System.Drawing.Color.Transparent;
-			this.opçãoAtribuirAusênciaTodos.Descrição = "Atribuir ausência a todos";
-			this.opçãoAtribuirAusênciaTodos.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoAtribuirAusênciaTodos.Imagem")));
-			this.opçãoAtribuirAusênciaTodos.Location = new System.Drawing.Point(8, 64);
-			this.opçãoAtribuirAusênciaTodos.Name = "opçãoAtribuirAusênciaTodos";
-			this.opçãoAtribuirAusênciaTodos.Size = new System.Drawing.Size(150, 32);
-			this.opçãoAtribuirAusênciaTodos.TabIndex = 3;
-			// 
-			// opçãoAtribuirAusência
-			// 
-			this.opçãoAtribuirAusência.BackColor = System.Drawing.Color.Transparent;
-			this.opçãoAtribuirAusência.Descrição = "Atribuir ausência à seleção";
-			this.opçãoAtribuirAusência.Enabled = false;
-			this.opçãoAtribuirAusência.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoAtribuirAusência.Imagem")));
-			this.opçãoAtribuirAusência.Location = new System.Drawing.Point(8, 32);
-			this.opçãoAtribuirAusência.Name = "opçãoAtribuirAusência";
-			this.opçãoAtribuirAusência.Size = new System.Drawing.Size(150, 32);
-			this.opçãoAtribuirAusência.TabIndex = 2;
-            //// 
-            //// timer
-            //// 
-            //this.timer.Interval = 60000;
-            //this.timer.Tick += new System.EventHandler(this.timer_Tick);
-			// 
-			// quadroES
-			// 
-			this.quadroES.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(128)), ((System.Byte)(255)), ((System.Byte)(255)), ((System.Byte)(255)));
-			this.quadroES.bInfDirArredondada = true;
-			this.quadroES.bInfEsqArredondada = true;
-			this.quadroES.bSupDirArredondada = true;
-			this.quadroES.bSupEsqArredondada = true;
-			this.quadroES.Controls.Add(this.opçãoVoltar);
-			this.quadroES.Cor = System.Drawing.Color.Black;
-			this.quadroES.FundoTítulo = System.Drawing.Color.FromArgb(((System.Byte)(128)), ((System.Byte)(165)), ((System.Byte)(159)), ((System.Byte)(97)));
-			this.quadroES.LetraTítulo = System.Drawing.Color.White;
-			this.quadroES.Location = new System.Drawing.Point(8, 120);
-			this.quadroES.MostrarBotãoMinMax = false;
-			this.quadroES.Name = "quadroES";
-			this.quadroES.Size = new System.Drawing.Size(160, 64);
-			this.quadroES.TabIndex = 1;
-			this.quadroES.Tamanho = 30;
-			this.quadroES.Título = "Entrada e saída";
-			// 
-			// opçãoVoltar
-			// 
-			this.opçãoVoltar.BackColor = System.Drawing.Color.Transparent;
-			this.opçãoVoltar.Descrição = "Voltar à tela de entrada e saída de visitantes";
-			this.opçãoVoltar.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoVoltar.Imagem")));
-			this.opçãoVoltar.Location = new System.Drawing.Point(8, 32);
-			this.opçãoVoltar.Name = "opçãoVoltar";
-			this.opçãoVoltar.Size = new System.Drawing.Size(150, 32);
-			this.opçãoVoltar.TabIndex = 2;
-			this.opçãoVoltar.Click += new System.EventHandler(this.opçãoVoltar_Click);
-			// 
-			// AusênciaAutomática
-			// 
-			this.Controls.Add(this.listaPessoas);
-			this.Controls.Add(this.títuloBaseInferior);
-			this.Name = "AusênciaAutomática";
-			this.Controls.SetChildIndex(this.títuloBaseInferior, 0);
-			this.Controls.SetChildIndex(this.listaPessoas, 0);
-			this.Controls.SetChildIndex(this.esquerda, 0);
-			this.esquerda.ResumeLayout(false);
-			this.quadro.ResumeLayout(false);
-			this.quadroES.ResumeLayout(false);
-			this.ResumeLayout(false);
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AusênciaAutomática));
+            this.títuloBaseInferior = new Apresentação.Formulários.TítuloBaseInferior();
+            this.listaPessoas = new Apresentação.Atendimento.Comum.ListaPessoas();
+            this.quadro = new Apresentação.Formulários.Quadro();
+            this.opçãoAtribuirAusênciaTodos = new Apresentação.Formulários.Opção();
+            this.opçãoAtribuirAusência = new Apresentação.Formulários.Opção();
+            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.quadroES = new Apresentação.Formulários.Quadro();
+            this.opçãoVoltar = new Apresentação.Formulários.Opção();
+            this.esquerda.SuspendLayout();
+            this.quadro.SuspendLayout();
+            this.quadroES.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // esquerda
+            // 
+            this.esquerda.Controls.Add(this.quadroES);
+            this.esquerda.Controls.Add(this.quadro);
+            this.esquerda.Controls.SetChildIndex(this.quadro, 0);
+            this.esquerda.Controls.SetChildIndex(this.quadroES, 0);
+            // 
+            // títuloBaseInferior
+            // 
+            this.títuloBaseInferior.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.títuloBaseInferior.BackColor = System.Drawing.Color.White;
+            this.títuloBaseInferior.Descrição = "O horário de trabalho terminou para os funcionários abaixo. Para confirmar a ausê" +
+    "ncia, basta clicar duas vezes nos nomes dos ausentes.";
+            this.títuloBaseInferior.ÍconeArredondado = false;
+            this.títuloBaseInferior.Imagem = ((System.Drawing.Image)(resources.GetObject("títuloBaseInferior.Imagem")));
+            this.títuloBaseInferior.Location = new System.Drawing.Point(200, 8);
+            this.títuloBaseInferior.Name = "títuloBaseInferior";
+            this.títuloBaseInferior.Size = new System.Drawing.Size(584, 70);
+            this.títuloBaseInferior.TabIndex = 6;
+            this.títuloBaseInferior.Título = "Horário de trabalho";
+            // 
+            // listaPessoas
+            // 
+            this.listaPessoas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listaPessoas.AutoScroll = true;
+            this.listaPessoas.Location = new System.Drawing.Point(200, 96);
+            this.listaPessoas.Name = "listaPessoas";
+            this.listaPessoas.Size = new System.Drawing.Size(584, 184);
+            this.listaPessoas.TabIndex = 7;
+            this.listaPessoas.PessoaSelecionada += new Apresentação.Atendimento.Comum.ListaPessoas.PessoaSelecionadaDelegate(this.listaPessoas_PessoaSelecionada);
+            this.listaPessoas.PessoaIncluída += new Apresentação.Atendimento.Comum.ListaPessoas.PessoaSelecionadaDelegate(this.listaPessoas_PessoaIncluída);
+            // 
+            // quadro
+            // 
+            this.quadro.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.quadro.bInfDirArredondada = true;
+            this.quadro.bInfEsqArredondada = true;
+            this.quadro.bSupDirArredondada = true;
+            this.quadro.bSupEsqArredondada = true;
+            this.quadro.Controls.Add(this.opçãoAtribuirAusênciaTodos);
+            this.quadro.Controls.Add(this.opçãoAtribuirAusência);
+            this.quadro.Cor = System.Drawing.Color.Black;
+            this.quadro.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
+            this.quadro.LetraTítulo = System.Drawing.Color.White;
+            this.quadro.Location = new System.Drawing.Point(7, 84);
+            this.quadro.MostrarBotãoMinMax = false;
+            this.quadro.Name = "quadro";
+            this.quadro.Size = new System.Drawing.Size(160, 82);
+            this.quadro.TabIndex = 0;
+            this.quadro.Tamanho = 30;
+            this.quadro.Título = "Confirmar ausência";
+            // 
+            // opçãoAtribuirAusênciaTodos
+            // 
+            this.opçãoAtribuirAusênciaTodos.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoAtribuirAusênciaTodos.Descrição = "Atribuir ausência a todos";
+            this.opçãoAtribuirAusênciaTodos.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoAtribuirAusênciaTodos.Imagem")));
+            this.opçãoAtribuirAusênciaTodos.Location = new System.Drawing.Point(8, 53);
+            this.opçãoAtribuirAusênciaTodos.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoAtribuirAusênciaTodos.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoAtribuirAusênciaTodos.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoAtribuirAusênciaTodos.Name = "opçãoAtribuirAusênciaTodos";
+            this.opçãoAtribuirAusênciaTodos.Size = new System.Drawing.Size(150, 28);
+            this.opçãoAtribuirAusênciaTodos.TabIndex = 3;
+            // 
+            // opçãoAtribuirAusência
+            // 
+            this.opçãoAtribuirAusência.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoAtribuirAusência.Descrição = "Atribuir ausência à seleção";
+            this.opçãoAtribuirAusência.Enabled = false;
+            this.opçãoAtribuirAusência.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoAtribuirAusência.Imagem")));
+            this.opçãoAtribuirAusência.Location = new System.Drawing.Point(8, 32);
+            this.opçãoAtribuirAusência.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoAtribuirAusência.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoAtribuirAusência.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoAtribuirAusência.Name = "opçãoAtribuirAusência";
+            this.opçãoAtribuirAusência.Size = new System.Drawing.Size(150, 32);
+            this.opçãoAtribuirAusência.TabIndex = 2;
+            // 
+            // quadroES
+            // 
+            this.quadroES.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.quadroES.bInfDirArredondada = true;
+            this.quadroES.bInfEsqArredondada = true;
+            this.quadroES.bSupDirArredondada = true;
+            this.quadroES.bSupEsqArredondada = true;
+            this.quadroES.Controls.Add(this.opçãoVoltar);
+            this.quadroES.Cor = System.Drawing.Color.Black;
+            this.quadroES.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
+            this.quadroES.LetraTítulo = System.Drawing.Color.White;
+            this.quadroES.Location = new System.Drawing.Point(7, 14);
+            this.quadroES.MostrarBotãoMinMax = false;
+            this.quadroES.Name = "quadroES";
+            this.quadroES.Size = new System.Drawing.Size(160, 64);
+            this.quadroES.TabIndex = 1;
+            this.quadroES.Tamanho = 30;
+            this.quadroES.Título = "Entrada e saída";
+            // 
+            // opçãoVoltar
+            // 
+            this.opçãoVoltar.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoVoltar.Descrição = "Voltar à tela de entrada e saída de visitantes";
+            this.opçãoVoltar.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoVoltar.Imagem")));
+            this.opçãoVoltar.Location = new System.Drawing.Point(8, 32);
+            this.opçãoVoltar.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoVoltar.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoVoltar.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoVoltar.Name = "opçãoVoltar";
+            this.opçãoVoltar.Size = new System.Drawing.Size(150, 32);
+            this.opçãoVoltar.TabIndex = 2;
+            this.opçãoVoltar.Click += new System.EventHandler(this.opçãoVoltar_Click);
+            // 
+            // AusênciaAutomática
+            // 
+            this.Controls.Add(this.listaPessoas);
+            this.Controls.Add(this.títuloBaseInferior);
+            this.Name = "AusênciaAutomática";
+            this.Controls.SetChildIndex(this.títuloBaseInferior, 0);
+            this.Controls.SetChildIndex(this.listaPessoas, 0);
+            this.Controls.SetChildIndex(this.esquerda, 0);
+            this.esquerda.ResumeLayout(false);
+            this.quadro.ResumeLayout(false);
+            this.quadroES.ResumeLayout(false);
+            this.ResumeLayout(false);
 
 		}
 		#endregion
