@@ -156,11 +156,13 @@ namespace Programa.Recepção.BaseInferior
             // esquerda
             // 
             this.esquerda.Controls.Add(this.opçõesVendedor);
+            this.esquerda.Controls.Add(this.quadroInformação);
             this.esquerda.Controls.Add(this.opçõesGenéricas);
             this.esquerda.Controls.Add(this.opçõesVisitante);
             this.esquerda.Size = new System.Drawing.Size(187, 756);
             this.esquerda.Controls.SetChildIndex(this.opçõesVisitante, 0);
             this.esquerda.Controls.SetChildIndex(this.opçõesGenéricas, 0);
+            this.esquerda.Controls.SetChildIndex(this.quadroInformação, 0);
             this.esquerda.Controls.SetChildIndex(this.opçõesVendedor, 0);
             // 
             // opçõesVisitante
@@ -180,7 +182,7 @@ namespace Programa.Recepção.BaseInferior
             this.opçõesVisitante.Cor = System.Drawing.Color.Black;
             this.opçõesVisitante.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.opçõesVisitante.LetraTítulo = System.Drawing.Color.White;
-            this.opçõesVisitante.Location = new System.Drawing.Point(7, 219);
+            this.opçõesVisitante.Location = new System.Drawing.Point(7, 115);
             this.opçõesVisitante.MostrarBotãoMinMax = false;
             this.opçõesVisitante.Name = "opçõesVisitante";
             this.opçõesVisitante.Size = new System.Drawing.Size(160, 260);
@@ -283,7 +285,6 @@ namespace Programa.Recepção.BaseInferior
             // 
             this.opçõesGenéricas.BackColor = System.Drawing.Color.Transparent;
             this.opçõesGenéricas.Controls.Add(this.quadroVisitantes);
-            this.opçõesGenéricas.Controls.Add(this.quadroInformação);
             this.opçõesGenéricas.Location = new System.Drawing.Point(7, 16);
             this.opçõesGenéricas.Name = "opçõesGenéricas";
             this.opçõesGenéricas.Size = new System.Drawing.Size(160, 200);
@@ -301,7 +302,7 @@ namespace Programa.Recepção.BaseInferior
             this.quadroVisitantes.Cor = System.Drawing.Color.Black;
             this.quadroVisitantes.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadroVisitantes.LetraTítulo = System.Drawing.Color.White;
-            this.quadroVisitantes.Location = new System.Drawing.Point(0, 120);
+            this.quadroVisitantes.Location = new System.Drawing.Point(0, 110);
             this.quadroVisitantes.MostrarBotãoMinMax = false;
             this.quadroVisitantes.Name = "quadroVisitantes";
             this.quadroVisitantes.Size = new System.Drawing.Size(160, 77);
@@ -348,7 +349,7 @@ namespace Programa.Recepção.BaseInferior
             this.quadroInformação.Cor = System.Drawing.Color.Black;
             this.quadroInformação.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadroInformação.LetraTítulo = System.Drawing.Color.White;
-            this.quadroInformação.Location = new System.Drawing.Point(0, 0);
+            this.quadroInformação.Location = new System.Drawing.Point(7, 13);
             this.quadroInformação.MostrarBotãoMinMax = false;
             this.quadroInformação.Name = "quadroInformação";
             this.quadroInformação.Size = new System.Drawing.Size(160, 104);
@@ -365,14 +366,14 @@ namespace Programa.Recepção.BaseInferior
             this.label1.Size = new System.Drawing.Size(144, 64);
             this.label1.TabIndex = 1;
             this.label1.Text = "Selecionando um vendedor ou um visitante nos quadros ao lado direito, surgem aqui" +
-                " opções para estas pessoas.";
+    " opções para estas pessoas.";
             // 
             // opçõesVendedor
             // 
             this.opçõesVendedor.BackColor = System.Drawing.Color.Transparent;
             this.opçõesVendedor.Controls.Add(this.quadroVendedor);
             this.opçõesVendedor.Controls.Add(this.quadro1);
-            this.opçõesVendedor.Location = new System.Drawing.Point(7, 485);
+            this.opçõesVendedor.Location = new System.Drawing.Point(7, 381);
             this.opçõesVendedor.Name = "opçõesVendedor";
             this.opçõesVendedor.Size = new System.Drawing.Size(160, 273);
             this.opçõesVendedor.TabIndex = 10;
@@ -449,7 +450,7 @@ namespace Programa.Recepção.BaseInferior
             this.quadro1.Cor = System.Drawing.Color.Black;
             this.quadro1.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadro1.LetraTítulo = System.Drawing.Color.White;
-            this.quadro1.Location = new System.Drawing.Point(0, 152);
+            this.quadro1.Location = new System.Drawing.Point(0, 142);
             this.quadro1.MostrarBotãoMinMax = false;
             this.quadro1.Name = "quadro1";
             this.quadro1.Size = new System.Drawing.Size(160, 78);
@@ -487,17 +488,17 @@ namespace Programa.Recepção.BaseInferior
             // 
             // listaVisitantes
             // 
-            this.listaVisitantes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.listaVisitantes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listaVisitantes.BackColor = System.Drawing.Color.White;
             this.listaVisitantes.Location = new System.Drawing.Point(184, 0);
             this.listaVisitantes.Name = "listaVisitantes";
             this.listaVisitantes.Size = new System.Drawing.Size(600, 756);
             this.listaVisitantes.TabIndex = 5;
             this.listaVisitantes.AoSelecionarFuncionário += new System.EventHandler(this.listaVisitantes_AoSelecionarFuncionário);
-            this.listaVisitantes.DuploCliqueVendedores += new System.EventHandler(this.listaVisitantes_DuploCliqueVendedores);
             this.listaVisitantes.AoSelecionarVisitante += new System.EventHandler(this.listaVisitantes_AoSelecionarVisitante);
+            this.listaVisitantes.DuploCliqueVendedores += new System.EventHandler(this.listaVisitantes_DuploCliqueVendedores);
             // 
             // EntradaSaída
             // 
