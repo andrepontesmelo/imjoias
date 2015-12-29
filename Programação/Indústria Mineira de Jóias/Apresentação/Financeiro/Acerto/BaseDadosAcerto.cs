@@ -65,7 +65,7 @@ namespace Apresentação.Financeiro.Acerto
             }
             else
             {
-                botãoLiberarPrevisão.Text = "Alterar previsão";
+                botãoLiberarPrevisão.Text = "Alterar";
                 informaçõesAcerto.PermitirAlteração = false;
                 informaçõesAcerto.LiberarPrazo = true;
             }
