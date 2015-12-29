@@ -150,7 +150,8 @@ namespace Entidades.Agenda
             IDbConnection conexão = Conexão;
             List<Registro> registros = new List<Registro>();
 
-            string consulta = "SELECT * from agenda where palavraschave like '%" + Acentuação.Singleton.TirarAcentos(nome.Trim().ToLower()) + "%'";
+            string consulta = "SELECT * from agenda where palavraschave like '%" + 
+                Acentuação.Singleton.TirarAcentos(nome.Trim().ToLower().Replace("'", "")) + "%'";
 
             lock (conexão)
             {
