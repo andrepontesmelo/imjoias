@@ -7,6 +7,7 @@ using Entidades.Privilégio;
 using Entidades.Pessoa;
 using Apresentação.Formulários;
 using System.Collections.Generic;
+using System.Net.Mail;
 
 namespace Apresentação.Pessoa.Cadastro
 {
@@ -98,24 +99,24 @@ namespace Apresentação.Pessoa.Cadastro
             this.tabDadosPessoais = new System.Windows.Forms.TabPage();
             this.tabEndereço = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmbRegião = new Apresentação.Pessoa.Endereço.ComboBoxRegião();
             this.label2 = new System.Windows.Forms.Label();
             this.grpFísico = new System.Windows.Forms.GroupBox();
+            this.endereços = new Apresentação.Pessoa.Cadastro.EditorEndereços();
             this.grpEletrônico = new System.Windows.Forms.GroupBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabTelefone = new System.Windows.Forms.TabPage();
             this.grpTelefone = new System.Windows.Forms.GroupBox();
+            this.telefones = new Apresentação.Pessoa.Cadastro.EditorTelefones();
             this.tabObservações = new System.Windows.Forms.TabPage();
             this.txtObservações = new System.Windows.Forms.TextBox();
             this.tabDatas = new System.Windows.Forms.TabPage();
+            this.datasRelevantes = new Apresentação.Pessoa.Cadastro.EditorDataRelevante();
             this.ícones = new System.Windows.Forms.ImageList(this.components);
             this.cmdOK = new System.Windows.Forms.Button();
             this.cmdCancelar = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
-            this.cmbRegião = new Apresentação.Pessoa.Endereço.ComboBoxRegião();
-            this.endereços = new Apresentação.Pessoa.Cadastro.EditorEndereços();
-            this.telefones = new Apresentação.Pessoa.Cadastro.EditorTelefones();
-            this.datasRelevantes = new Apresentação.Pessoa.Cadastro.EditorDataRelevante();
             this.tab.SuspendLayout();
             this.tabEndereço.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -163,9 +164,9 @@ namespace Apresentação.Pessoa.Cadastro
             this.tabEndereço.Controls.Add(this.grpFísico);
             this.tabEndereço.Controls.Add(this.grpEletrônico);
             this.tabEndereço.ImageKey = "Endereço";
-            this.tabEndereço.Location = new System.Drawing.Point(4, 23);
+            this.tabEndereço.Location = new System.Drawing.Point(4, 42);
             this.tabEndereço.Name = "tabEndereço";
-            this.tabEndereço.Size = new System.Drawing.Size(400, 454);
+            this.tabEndereço.Size = new System.Drawing.Size(400, 435);
             this.tabEndereço.TabIndex = 1;
             this.tabEndereço.Text = "Endereço";
             this.tabEndereço.UseVisualStyleBackColor = true;
@@ -180,6 +181,15 @@ namespace Apresentação.Pessoa.Cadastro
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Atendimento";
+            // 
+            // cmbRegião
+            // 
+            this.cmbRegião.Location = new System.Drawing.Point(59, 19);
+            this.cmbRegião.Name = "cmbRegião";
+            this.cmbRegião.Região = null;
+            this.cmbRegião.Size = new System.Drawing.Size(329, 21);
+            this.cmbRegião.TabIndex = 1;
+            this.cmbRegião.Validated += new System.EventHandler(this.cmbRegião_Validated);
             // 
             // label2
             // 
@@ -198,10 +208,18 @@ namespace Apresentação.Pessoa.Cadastro
             this.grpFísico.Controls.Add(this.endereços);
             this.grpFísico.Location = new System.Drawing.Point(3, 108);
             this.grpFísico.Name = "grpFísico";
-            this.grpFísico.Size = new System.Drawing.Size(394, 347);
+            this.grpFísico.Size = new System.Drawing.Size(394, 328);
             this.grpFísico.TabIndex = 2;
             this.grpFísico.TabStop = false;
             this.grpFísico.Text = "Endereço físico";
+            // 
+            // endereços
+            // 
+            this.endereços.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.endereços.Location = new System.Drawing.Point(3, 16);
+            this.endereços.Name = "endereços";
+            this.endereços.Size = new System.Drawing.Size(388, 309);
+            this.endereços.TabIndex = 2;
             // 
             // grpEletrônico
             // 
@@ -224,6 +242,7 @@ namespace Apresentação.Pessoa.Cadastro
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(329, 20);
             this.txtEmail.TabIndex = 1;
+            this.txtEmail.Validating += new System.ComponentModel.CancelEventHandler(this.txtEmail_Validating);
             this.txtEmail.Validated += new System.EventHandler(this.txtEmail_Validated);
             // 
             // label1
@@ -256,6 +275,15 @@ namespace Apresentação.Pessoa.Cadastro
             this.grpTelefone.TabIndex = 1;
             this.grpTelefone.TabStop = false;
             this.grpTelefone.Text = "Telefone";
+            // 
+            // telefones
+            // 
+            this.telefones.AutoSize = true;
+            this.telefones.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.telefones.Location = new System.Drawing.Point(3, 16);
+            this.telefones.Name = "telefones";
+            this.telefones.Size = new System.Drawing.Size(394, 435);
+            this.telefones.TabIndex = 0;
             // 
             // tabObservações
             // 
@@ -296,6 +324,14 @@ namespace Apresentação.Pessoa.Cadastro
             this.tabDatas.TabIndex = 5;
             this.tabDatas.Text = "Datas relevantes";
             this.tabDatas.UseVisualStyleBackColor = true;
+            // 
+            // datasRelevantes
+            // 
+            this.datasRelevantes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.datasRelevantes.Location = new System.Drawing.Point(3, 3);
+            this.datasRelevantes.Name = "datasRelevantes";
+            this.datasRelevantes.Size = new System.Drawing.Size(394, 429);
+            this.datasRelevantes.TabIndex = 0;
             // 
             // ícones
             // 
@@ -343,40 +379,6 @@ namespace Apresentação.Pessoa.Cadastro
             this.btnExcluir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnExcluir.UseVisualStyleBackColor = true;
             this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
-            // 
-            // cmbRegião
-            // 
-            this.cmbRegião.Location = new System.Drawing.Point(59, 19);
-            this.cmbRegião.Name = "cmbRegião";
-            this.cmbRegião.Região = null;
-            this.cmbRegião.Size = new System.Drawing.Size(329, 21);
-            this.cmbRegião.TabIndex = 1;
-            this.cmbRegião.Validated += new System.EventHandler(this.cmbRegião_Validated);
-            // 
-            // endereços
-            // 
-            this.endereços.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.endereços.Location = new System.Drawing.Point(3, 16);
-            this.endereços.Name = "endereços";
-            this.endereços.Size = new System.Drawing.Size(388, 328);
-            this.endereços.TabIndex = 2;
-            // 
-            // telefones
-            // 
-            this.telefones.AutoSize = true;
-            this.telefones.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.telefones.Location = new System.Drawing.Point(3, 16);
-            this.telefones.Name = "telefones";
-            this.telefones.Size = new System.Drawing.Size(394, 435);
-            this.telefones.TabIndex = 0;
-            // 
-            // datasRelevantes
-            // 
-            this.datasRelevantes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.datasRelevantes.Location = new System.Drawing.Point(3, 3);
-            this.datasRelevantes.Name = "datasRelevantes";
-            this.datasRelevantes.Size = new System.Drawing.Size(394, 429);
-            this.datasRelevantes.TabIndex = 0;
             // 
             // CadastroPessoa
             // 
@@ -849,6 +851,22 @@ namespace Apresentação.Pessoa.Cadastro
                 return true;
             }
             return base.ProcessDialogKey(keyData);
+        }
+
+        private void txtEmail_Validating(object sender, CancelEventArgs e)
+        {
+            string[] emails = txtEmail.Text.Split(new char[] { ',', ' ', ';' });
+
+            try
+            {
+                foreach (String email in emails)
+                    new MailAddress(email);
+
+                e.Cancel = false;
+            } catch (Exception)
+            {
+                e.Cancel = true;
+            }
         }
     }
 }
