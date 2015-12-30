@@ -399,12 +399,12 @@ namespace Entidades
         /// </summary>
         /// <param name="funcionário">Funcionário em atendimento.</param>
         /// <returns>Se o funcionário está em atendimento.</returns>
-        public static Visita[] ObterAtendimentos(Funcionário funcionário)
+        public static List<Visita> ObterAtendimentos(Funcionário funcionário)
         {
-            Visita[] visitas = Mapear<Visita>(
+            List<Visita> visitas = Mapear<Visita>(
                     "SELECT v.* FROM visita v" +
                         " WHERE v.funcionario = " + DbTransformar(funcionário.Código) +
-                        " AND v.saida IS NULL").ToArray();
+                        " AND v.saida IS NULL");
 
             foreach (Visita visita in visitas)
                 visita.CarregarRelacionamentos();
@@ -417,11 +417,11 @@ namespace Entidades
         /// (i) se está na empresa;
         /// (ii) se chegou à empresa no dia corrente.
         /// </summary>
-        public static Visita[] ObterVisitasRelevantes()
+        public static List<Visita> ObterVisitasRelevantes()
         {
-            Visita[] visitas = Mapear<Visita>(
+            List<Visita> visitas = Mapear<Visita>(
                     "SELECT * FROM visita" +
-                    " WHERE saida IS NULL OR entrada >= CURDATE() ORDER BY entrada").ToArray();
+                    " WHERE saida IS NULL OR entrada >= CURDATE() ORDER BY entrada");
 
             foreach (Visita visita in visitas)
                 visita.CarregarRelacionamentos();
@@ -434,7 +434,7 @@ namespace Entidades
         /// (i) se está na empresa;
         /// (ii) se chegou à empresa no dia corrente.
         /// </summary>
-        public static Visita[] ObterVisitasRelevantes(Funcionário funcionário, Setor[] setores)
+        public static List<Visita> ObterVisitasRelevantes(Funcionário funcionário, Setor[] setores)
         {
             string strSetores = "";
 
@@ -449,7 +449,7 @@ namespace Entidades
                 strSetores += setor.Código;
             }
 
-            Visita[] visitas;
+            List<Visita> visitas;
 
             visitas = Mapear<Visita>(
                 "SELECT * FROM visita" +
@@ -458,7 +458,7 @@ namespace Entidades
                 DbTransformar(funcionário.Código) + "))" +
                 " AND setor IN (" + strSetores + ")" +
                 " AND entrada >= " + DbTransformar(DadosGlobais.Instância.HoraDataAtual.Date.Subtract(new TimeSpan(3, 0, 0, 0))) +
-                " ORDER BY entrada").ToArray();
+                " ORDER BY entrada");
 
             foreach (Visita visita in visitas)
                 visita.CarregarRelacionamentos();
@@ -468,46 +468,46 @@ namespace Entidades
 
         public string ExtrairNomes()
         {
-            string nomes = "";
+            StringBuilder nomes = new StringBuilder();
 
             foreach (Entidades.Pessoa.Pessoa pessoa in this.pessoas)
             {
                 if (nomes.Length > 0)
-                    nomes += ", ";
+                    nomes.Append(", ");
 
-                nomes += pessoa.PrimeiroNome;
+                nomes.Append(pessoa.PrimeiroNome);
             }
 
             foreach (string nome in this.nomes)
             {
                 if (nomes.Length > 0)
-                    nomes += ", ";
+                    nomes.Append(", ");
 
-                nomes += nome;
+                nomes.Append(nome);
             }
 
-            return nomes;
+            return nomes.ToString();
         }
 
-        public static string ExtrairNomes(params Visita[] visitas)
+        public static string ExtrairNomes(List<Visita> visitas)
         {
-            string nomes = "";
+            StringBuilder nomes = new StringBuilder();
 
             foreach (Visita visita in visitas)
             {
                 if (nomes.Length > 0)
-                    nomes += "; ";
+                    nomes.Append("; ");
 
-                nomes += visita.ExtrairNomes();
+                nomes.Append(visita.ExtrairNomes());
             }
 
-            return nomes;
+            return nomes.ToString();
         }
 
         protected override void Cadastrar(IDbCommand cmd)
         {
             entrada = DadosGlobais.Instância.HoraDataAtual;
-
+            Console.WriteLine("Entrada da visita: " + entrada.ToString());
             base.Cadastrar(cmd);
         }
 

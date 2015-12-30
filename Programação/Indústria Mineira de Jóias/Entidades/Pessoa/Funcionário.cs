@@ -494,7 +494,7 @@ namespace Entidades.Pessoa
         /// Determina se deve ordenar por ordenarPorRodízio.
         /// </param>
         /// <returns></returns>
-		public static Funcionário [] ObterFuncionários(bool ativos, bool ordenarPorRodízio)
+		public static List<Funcionário> ObterFuncionários(bool ativos, bool ordenarPorRodízio)
 		{
 			IDbConnection conexão = Conexão;
 
@@ -513,12 +513,12 @@ namespace Entidades.Pessoa
                     if (ordenarPorRodízio)
                         cmd.CommandText += " ORDER BY rodizio";
 
-                    return Mapear<Entidades.Pessoa.Funcionário>(cmd).ToArray();
+                    return Mapear<Entidades.Pessoa.Funcionário>(cmd);
                 }
 			}
 		}
 
-        public static Funcionário[] ObterFuncionários()
+        public static List<Funcionário> ObterFuncionários()
         {
             IDbConnection conexão = Conexão;
 
@@ -531,7 +531,7 @@ namespace Entidades.Pessoa
                         + " WHERE p.codigo = f.codigo AND f.codigo = pf.codigo"
                         + " AND f.empresa = e.codigo";
 
-                    return Mapear<Entidades.Pessoa.Funcionário>(cmd).ToArray();
+                    return Mapear<Entidades.Pessoa.Funcionário>(cmd);
                 }
             }
         }
@@ -615,8 +615,8 @@ namespace Entidades.Pessoa
         private static Dictionary<ulong, Funcionário> hashFuncionários = null;
         private static void ConstruirHashFuncionários()
         {
-            Funcionário[] funcionários = ObterFuncionários();
-            hashFuncionários = new Dictionary<ulong, Funcionário>(funcionários.Length);
+            List<Funcionário> funcionários = ObterFuncionários();
+            hashFuncionários = new Dictionary<ulong, Funcionário>(funcionários.Count);
             foreach (Funcionário f in funcionários)
                 hashFuncionários[f.Código] = f;
         }

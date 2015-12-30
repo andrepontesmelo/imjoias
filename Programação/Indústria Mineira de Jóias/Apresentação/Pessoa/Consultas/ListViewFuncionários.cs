@@ -41,7 +41,9 @@ namespace Apresentação.Pessoa.Consultas
 			// This call is required by the Windows.Forms Form Designer.
 			InitializeComponent();
 
-			if (this.DesignMode)
+            bool designMode = (LicenseManager.UsageMode == LicenseUsageMode.Designtime);
+
+            if (designMode)
 				return;
 
 			linhas = new Hashtable();

@@ -1,20 +1,13 @@
-using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
-using System.Runtime.Remoting.Lifetime;
-using System.Windows.Forms;
-
-using Programa.Recepção.Formulários.EntradaSaída;
-using Programa.Recepção.BaseInferior.Controles;
-
-using System.Collections.Generic;
-using Entidades.Pessoa;
-using Entidades;
-using Negócio;
-using Entidades.Configuração;
 using Apresentação.Formulários;
 using Apresentação.Pessoa;
+using Entidades;
+using Entidades.Configuração;
+using Entidades.Pessoa;
+using Negócio;
+using Programa.Recepção.Formulários.EntradaSaída;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Programa.Recepção.BaseInferior
 {
@@ -25,7 +18,6 @@ namespace Programa.Recepção.BaseInferior
 
 		// Bases pré-carregadas
 		private RegistrarVisitante	biRegistrarVisitante = new RegistrarVisitante();
-		//		private Controles.RegistrarAcompanhante	registrarAcompanhante = new RegistrarAcompanhante();
 
 		// Designer
 		private Controles.ListaVisitantes		 listaVisitantes;
@@ -99,17 +91,10 @@ namespace Programa.Recepção.BaseInferior
 			if( disposing )
 			{
 				if (components != null) 
-				{
 					components.Dispose();
-				}
-
-				//				registrarVisitante.Dispose();
-				//				registrarAcompanhante.Dispose();
 			}
-			base.Dispose( disposing );
 
-			//			registrarVisitante = null;
-			//			registrarAcompanhante = null;
+            base.Dispose( disposing );
 		}
 
 		#region Designer generated code
@@ -560,150 +545,9 @@ namespace Programa.Recepção.BaseInferior
 
 		#region Visitantes
 
-		/*		/// <summary>
-				/// Registrar visitante
-				/// </summary>
-				private void registrarVisitante_OK()
-				{
-					// Procurar cadastro do visitante
-					PessoaFísica cadastro = null;
-					IVisitante visitante;
-
-					if (registrarVisitante.Cadastro != null)
-						cadastro = Recepção.Controle.ObterPessoaFísica(registrarVisitante.Cadastro.Código);
-					else
-					{
-						PessoaFísica [] pessoas = Entidades.Pessoa.PessoaFísica.ObterPessoas(registrarVisitante.Nome);
-
-						if (pessoas.Count > 0)
-						{
-							using (Apresentação.Pessoa.Consultas.SelecionarPessoa escolher = new Apresentação.Pessoa.Consultas.SelecionarPessoa(pessoas, registrarVisitante.Nome))
-							{
-								if (escolher.ShowDialog(this.ParentForm) != DialogResult.OK)
-									return;
-
-								if (escolher.PessoaEscolhida != null)
-									cadastro = (PessoaFísica) escolher.PessoaEscolhida;
-							}
-						}
-					}
-
-					if (cadastro == null)
-					{
-						// Registrar cadastro anônimo
-						visitante = Recepção.Controle.NovoVisitante(
-							registrarVisitante.Nome,
-							registrarVisitante.Motivo,
-							registrarVisitante.Setor,
-							registrarVisitante.Funcionário);
-					}
-					else
-					{
-						// Registrar baseado no cadastro
-						visitante = Recepção.Controle.NovoVisitante(
-							cadastro,
-							registrarVisitante.Motivo,
-							registrarVisitante.Setor,
-							registrarVisitante.Funcionário);
-					}
-
-					// Registrar acompanhantes
-					foreach (object obj in registrarVisitante.Acompanhantes)
-						if (obj.GetType() == typeof(string))
-						{
-							// Registrar acompanhante anônimo
-							Recepção.Controle.AdicionarAcompanhante(
-								(string) obj,
-								visitante);
-						}
-						else if (obj.GetType() == typeof(PessoaCPFCNPJRG))
-						{
-							PessoaFísica pessoaFísica;
-					
-							pessoaFísica = Recepção.Controle.ObterPessoaFísica(((PessoaCPFCNPJRG) obj).Código);
-
-							if (pessoaFísica != null)
-							{
-								// Registrar baseado no cadastro
-								Recepção.Controle.AdicionarAcompanhante(
-									pessoaFísica,
-									visitante);
-							}
-							else
-								// Registrar acompanhante anônimo
-								Recepção.Controle.AdicionarAcompanhante(
-									obj.ToString(),
-									visitante);
-						}
-
-					SubstituirBase(this, this);
-				}
-
-				private void opçõesVisitante_NovoAcompanhante(object sender, DateTime visitante)
-				{
-					registrarAcompanhante.VisitaBase = visitante;
-
-					SubstituirBase(this, registrarAcompanhante);
-				}
-
-				private void registrarAcompanhante_OK()
-				{
-					// Procurar cadastro do visitante
-					ArrayList pessoas;
-					PessoaFísica cadastro = null;
-
-					pessoas = Recepção.Controle.ObterPessoaFísica(registrarAcompanhante.Nome);
-
-					if (pessoas.Count > 0)
-					{
-						Apresentação.Pessoa.Consultas.SelecionarPessoa escolher = new Apresentação.Pessoa.Consultas.SelecionarPessoa(pessoas, registrarAcompanhante.Nome);
-
-						if (escolher.ShowDialog(this.ParentForm) != DialogResult.OK)
-						{
-							escolher.Dispose();
-							return;
-						}
-
-						if (escolher.PessoaEscolhida != null)
-							cadastro = (PessoaFísica) escolher.PessoaEscolhida;
-
-						escolher.Dispose();
-					}
-
-					IVisitante acompanhante;
-
-					try
-					{
-						if (cadastro == null)
-						{
-							// Registrar cadastro anônimo
-							acompanhante = Recepção.Controle.AdicionarAcompanhante(
-								registrarAcompanhante.Nome,
-								registrarAcompanhante.VisitaBase);
-						}
-						else
-						{
-							// Registrar baseado no cadastro
-							acompanhante = Recepção.Controle.AdicionarAcompanhante(
-								cadastro,
-								registrarAcompanhante.VisitaBase);
-						}
-					}
-					catch (Exception e)
-					{
-						MessageBox.Show("Não foi possível registrar acompanhante!\n\n" + e.Message,
-							"Registro de acompanhante",
-							MessageBoxButtons.OK,
-							MessageBoxIcon.Error);
-					}
-
-					SubstituirBase(this, this);			
-				}
-		*/
-
 		private void opçãoVisitanteAtribuirVendedor_Click(object sender, System.EventArgs e)
 		{
-            Funcionário[] funcionários = Funcionário.ObterFuncionários(true, false);
+            List<Funcionário> funcionários = Funcionário.ObterFuncionários(true, false);
             Visita visita;
 
             visita = listaVisitantes.VisitaSelecionada;
@@ -741,7 +585,7 @@ namespace Programa.Recepção.BaseInferior
                         !Rodízio.ObterRodízio(visita.Setor).Atendentes.Contains(funcionário);
 
                     if (funcionárioAtendendoAntes != null)
-                        if (funcionárioAtendendoAntes.Situação == EstadoFuncionário.Atendendo && Visita.ObterAtendimentos(funcionárioAtendendoAntes).Length == 0)
+                        if (funcionárioAtendendoAntes.Situação == EstadoFuncionário.Atendendo && Visita.ObterAtendimentos(funcionárioAtendendoAntes).Count == 0)
                             funcionárioAtendendoAntes.Situação = EstadoFuncionário.Disponível;
 
                 }
@@ -849,7 +693,7 @@ namespace Programa.Recepção.BaseInferior
 
 
                 if (visita.Atendente != null)
-                    if (visita.Atendente.Situação == EstadoFuncionário.Atendendo && Visita.ObterAtendimentos(visita.Atendente).Length == 0)
+                    if (visita.Atendente.Situação == EstadoFuncionário.Atendendo && Visita.ObterAtendimentos(visita.Atendente).Count == 0)
                         visita.Atendente.Situação = EstadoFuncionário.Disponível;
 
                 if (visita.Setor != null)

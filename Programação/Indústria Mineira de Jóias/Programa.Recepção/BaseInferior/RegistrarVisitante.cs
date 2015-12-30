@@ -1,13 +1,10 @@
-using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Forms;
-using Entidades;
-using Entidades.Pessoa;
-using System.Threading;
-using Entidades.Configuração;
 using Apresentação.Formulários;
+using Entidades;
+using Entidades.Configuração;
+using Entidades.Pessoa;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Programa.Recepção.BaseInferior
 {
@@ -63,7 +60,7 @@ namespace Programa.Recepção.BaseInferior
 			base.AoCarregarCompletamente(splash);
 
 			// Funcionários
-            Funcionário[] funcionários = Funcionário.ObterFuncionários(true, false);
+            List<Funcionário> funcionários = Funcionário.ObterFuncionários(true, false);
 
 			cmbAPessoa.Sorted = false;
 
@@ -140,12 +137,13 @@ namespace Programa.Recepção.BaseInferior
             // 
             this.esquerda.Controls.Add(this.quadroInformativo);
             this.esquerda.Size = new System.Drawing.Size(187, 440);
+            this.esquerda.Controls.SetChildIndex(this.quadroInformativo, 0);
             // 
             // lblNome
             // 
             this.lblNome.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblNome.AutoSize = true;
-            this.lblNome.Location = new System.Drawing.Point(309, 80);
+            this.lblNome.Location = new System.Drawing.Point(276, 80);
             this.lblNome.Name = "lblNome";
             this.lblNome.Size = new System.Drawing.Size(38, 13);
             this.lblNome.TabIndex = 5;
@@ -155,7 +153,7 @@ namespace Programa.Recepção.BaseInferior
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(309, 128);
+            this.label2.Location = new System.Drawing.Point(276, 128);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(47, 13);
             this.label2.TabIndex = 9;
@@ -164,28 +162,28 @@ namespace Programa.Recepção.BaseInferior
             // txtEntrada
             // 
             this.txtEntrada.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtEntrada.Location = new System.Drawing.Point(309, 144);
+            this.txtEntrada.Location = new System.Drawing.Point(284, 144);
             this.txtEntrada.Mask = "00/00/0000 90:00";
             this.txtEntrada.Name = "txtEntrada";
             this.txtEntrada.ReadOnly = true;
-            this.txtEntrada.Size = new System.Drawing.Size(144, 20);
+            this.txtEntrada.Size = new System.Drawing.Size(186, 20);
             this.txtEntrada.TabIndex = 10;
             this.txtEntrada.ValidatingType = typeof(System.DateTime);
             // 
             // txtSaída
             // 
             this.txtSaída.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtSaída.Location = new System.Drawing.Point(493, 144);
+            this.txtSaída.Location = new System.Drawing.Point(492, 144);
             this.txtSaída.Name = "txtSaída";
             this.txtSaída.ReadOnly = true;
-            this.txtSaída.Size = new System.Drawing.Size(144, 20);
+            this.txtSaída.Size = new System.Drawing.Size(136, 20);
             this.txtSaída.TabIndex = 12;
             // 
             // label3
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(493, 128);
+            this.label3.Location = new System.Drawing.Point(489, 128);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(39, 13);
             this.label3.TabIndex = 11;
@@ -202,9 +200,9 @@ namespace Programa.Recepção.BaseInferior
             this.groupBox2.Controls.Add(this.optAAtacado);
             this.groupBox2.Controls.Add(this.optAVarejo);
             this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.groupBox2.Location = new System.Drawing.Point(309, 296);
+            this.groupBox2.Location = new System.Drawing.Point(276, 296);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(328, 104);
+            this.groupBox2.Size = new System.Drawing.Size(410, 104);
             this.groupBox2.TabIndex = 14;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Atendimento";
@@ -215,7 +213,7 @@ namespace Programa.Recepção.BaseInferior
             this.cmbAPessoa.Enabled = false;
             this.cmbAPessoa.Location = new System.Drawing.Point(216, 26);
             this.cmbAPessoa.Name = "cmbAPessoa";
-            this.cmbAPessoa.Size = new System.Drawing.Size(104, 21);
+            this.cmbAPessoa.Size = new System.Drawing.Size(136, 21);
             this.cmbAPessoa.Sorted = true;
             this.cmbAPessoa.TabIndex = 6;
             // 
@@ -235,7 +233,7 @@ namespace Programa.Recepção.BaseInferior
             this.cmbAOutro.Enabled = false;
             this.cmbAOutro.Location = new System.Drawing.Point(216, 58);
             this.cmbAOutro.Name = "cmbAOutro";
-            this.cmbAOutro.Size = new System.Drawing.Size(104, 21);
+            this.cmbAOutro.Size = new System.Drawing.Size(136, 21);
             this.cmbAOutro.Sorted = true;
             this.cmbAOutro.TabIndex = 4;
             // 
@@ -282,11 +280,11 @@ namespace Programa.Recepção.BaseInferior
             this.cmdOK.BackColor = System.Drawing.SystemColors.Control;
             this.cmdOK.Enabled = false;
             this.cmdOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.cmdOK.Location = new System.Drawing.Point(565, 408);
+            this.cmdOK.Location = new System.Drawing.Point(611, 406);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(75, 23);
             this.cmdOK.TabIndex = 16;
-            this.cmdOK.Text = "Ok";
+            this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = false;
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
             // 
@@ -295,7 +293,7 @@ namespace Programa.Recepção.BaseInferior
             this.cmdCancelar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cmdCancelar.BackColor = System.Drawing.SystemColors.Control;
             this.cmdCancelar.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.cmdCancelar.Location = new System.Drawing.Point(477, 408);
+            this.cmdCancelar.Location = new System.Drawing.Point(529, 406);
             this.cmdCancelar.Name = "cmdCancelar";
             this.cmdCancelar.Size = new System.Drawing.Size(75, 23);
             this.cmdCancelar.TabIndex = 17;
@@ -314,7 +312,7 @@ namespace Programa.Recepção.BaseInferior
             this.quadroInformativo.Cor = System.Drawing.Color.Black;
             this.quadroInformativo.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadroInformativo.LetraTítulo = System.Drawing.Color.White;
-            this.quadroInformativo.Location = new System.Drawing.Point(8, 16);
+            this.quadroInformativo.Location = new System.Drawing.Point(7, 16);
             this.quadroInformativo.MostrarBotãoMinMax = false;
             this.quadroInformativo.Name = "quadroInformativo";
             this.quadroInformativo.Size = new System.Drawing.Size(160, 128);
@@ -330,18 +328,20 @@ namespace Programa.Recepção.BaseInferior
             this.label4.Size = new System.Drawing.Size(152, 88);
             this.label4.TabIndex = 1;
             this.label4.Text = "Ao término do cadastro, será possível inserir acompanhantes. Escolhendo o setor d" +
-                "e atendimento, automaticamente o cliente será inserido no rodízio de atendimento" +
-                ".";
+    "e atendimento, automaticamente o cliente será inserido no rodízio de atendimento" +
+    ".";
             // 
             // txtNome
             // 
+            this.txtNome.AlturaProposta = 60;
             this.txtNome.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtNome.Location = new System.Drawing.Point(309, 96);
+            this.txtNome.Location = new System.Drawing.Point(284, 96);
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(328, 20);
+            this.txtNome.Pessoa = null;
+            this.txtNome.Size = new System.Drawing.Size(344, 20);
             this.txtNome.TabIndex = 18;
-            this.txtNome.Leave += new System.EventHandler(this.txtNome_Leave);
             this.txtNome.NomeAlterado += new System.EventHandler(this.txtNome_TextChanged);
+            this.txtNome.Leave += new System.EventHandler(this.txtNome_Leave);
             // 
             // groupBox1
             // 
@@ -350,18 +350,20 @@ namespace Programa.Recepção.BaseInferior
             this.groupBox1.Controls.Add(this.cmdExcluir);
             this.groupBox1.Controls.Add(this.cmdAdicionar);
             this.groupBox1.Controls.Add(this.lstAcompanhantes);
-            this.groupBox1.Location = new System.Drawing.Point(309, 176);
+            this.groupBox1.Location = new System.Drawing.Point(276, 176);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(328, 112);
+            this.groupBox1.Size = new System.Drawing.Size(410, 112);
             this.groupBox1.TabIndex = 19;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Acompanhantes";
             // 
             // txtAcompanhante
             // 
+            this.txtAcompanhante.AlturaProposta = 60;
             this.txtAcompanhante.Location = new System.Drawing.Point(8, 16);
             this.txtAcompanhante.Name = "txtAcompanhante";
-            this.txtAcompanhante.Size = new System.Drawing.Size(256, 20);
+            this.txtAcompanhante.Pessoa = null;
+            this.txtAcompanhante.Size = new System.Drawing.Size(344, 20);
             this.txtAcompanhante.TabIndex = 19;
             this.txtAcompanhante.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtAcompanhante_KeyUp);
             // 
@@ -370,7 +372,7 @@ namespace Programa.Recepção.BaseInferior
             this.cmdExcluir.BackColor = System.Drawing.SystemColors.Control;
             this.cmdExcluir.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cmdExcluir.Image = ((System.Drawing.Image)(resources.GetObject("cmdExcluir.Image")));
-            this.cmdExcluir.Location = new System.Drawing.Point(296, 16);
+            this.cmdExcluir.Location = new System.Drawing.Point(382, 14);
             this.cmdExcluir.Name = "cmdExcluir";
             this.cmdExcluir.Size = new System.Drawing.Size(20, 20);
             this.cmdExcluir.TabIndex = 3;
@@ -382,7 +384,7 @@ namespace Programa.Recepção.BaseInferior
             this.cmdAdicionar.BackColor = System.Drawing.SystemColors.Control;
             this.cmdAdicionar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cmdAdicionar.Image = ((System.Drawing.Image)(resources.GetObject("cmdAdicionar.Image")));
-            this.cmdAdicionar.Location = new System.Drawing.Point(272, 16);
+            this.cmdAdicionar.Location = new System.Drawing.Point(358, 14);
             this.cmdAdicionar.Name = "cmdAdicionar";
             this.cmdAdicionar.Size = new System.Drawing.Size(20, 20);
             this.cmdAdicionar.TabIndex = 2;
@@ -391,23 +393,24 @@ namespace Programa.Recepção.BaseInferior
             // 
             // lstAcompanhantes
             // 
-            this.lstAcompanhantes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lstAcompanhantes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lstAcompanhantes.IntegralHeight = false;
             this.lstAcompanhantes.Location = new System.Drawing.Point(8, 40);
             this.lstAcompanhantes.Name = "lstAcompanhantes";
             this.lstAcompanhantes.ScrollAlwaysVisible = true;
-            this.lstAcompanhantes.Size = new System.Drawing.Size(312, 64);
+            this.lstAcompanhantes.Size = new System.Drawing.Size(344, 64);
             this.lstAcompanhantes.TabIndex = 0;
             // 
             // títuloBaseInferior
             // 
-            this.títuloBaseInferior.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.títuloBaseInferior.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.títuloBaseInferior.BackColor = System.Drawing.Color.White;
             this.títuloBaseInferior.Descrição = "Preencha os dados acerca do visitante que está adentrando na empresa. Estes dados" +
-                " serão utilizados durante o atendimento.";
+    " serão utilizados durante o atendimento.";
+            this.títuloBaseInferior.ÍconeArredondado = false;
             this.títuloBaseInferior.Imagem = ((System.Drawing.Image)(resources.GetObject("títuloBaseInferior.Imagem")));
             this.títuloBaseInferior.Location = new System.Drawing.Point(216, 8);
             this.títuloBaseInferior.Name = "títuloBaseInferior";
@@ -502,127 +505,113 @@ namespace Programa.Recepção.BaseInferior
 		/// <summary>
 		/// Ocorre quando o usuário clica em OK
 		/// </summary>
-		private void cmdOK_Click(object sender, System.EventArgs e)
-		{
+        private void cmdOK_Click(object sender, System.EventArgs e)
+        {
             Visita visita;
 
             Cursor = Cursors.WaitCursor;
-
             AguardeDB.Mostrar();
 
-            try
+            // Procurar cadastro do visitante
+            if (cadastro != null)
             {
-                // Procurar cadastro do visitante
-                if (cadastro != null)
-                {
-                    // Garantir que o cadastro recuperará o tipo de pessoa correto.
-                    cadastro = Entidades.Pessoa.Pessoa.ObterPessoa(cadastro.Código);
+                // Garantir que o cadastro recuperará o tipo de pessoa correto.
+                cadastro = Entidades.Pessoa.Pessoa.ObterPessoa(cadastro.Código);
 
-                    if (!(cadastro is Entidades.Pessoa.PessoaFísica))
-                        cadastro = null;
-                }
-                else
-                {
-                    PessoaFísica[] pessoas = Entidades.Pessoa.PessoaFísica.ObterPessoas(Nome);
+                if (!(cadastro is Entidades.Pessoa.PessoaFísica))
+                    cadastro = null;
+            }
+            else
+            {
+                PessoaFísica[] pessoas = Entidades.Pessoa.PessoaFísica.ObterPessoas(Nome);
 
-                    if (pessoas.Length > 0)
+                if (pessoas.Length > 0)
+                {
+                    using (Apresentação.Pessoa.Consultas.SelecionarPessoa escolher = new Apresentação.Pessoa.Consultas.SelecionarPessoa(pessoas, Nome))
                     {
-                        using (Apresentação.Pessoa.Consultas.SelecionarPessoa escolher = new Apresentação.Pessoa.Consultas.SelecionarPessoa(pessoas, Nome))
-                        {
-                            AguardeDB.Suspensão(true);
+                        AguardeDB.Suspensão(true);
 
-                            if (escolher.ShowDialog(this.ParentForm) != DialogResult.OK)
-                                return;
+                        if (escolher.ShowDialog(this.ParentForm) != DialogResult.OK)
+                            return;
 
-                            AguardeDB.Suspensão(false);
+                        AguardeDB.Suspensão(false);
 
-                            if (escolher.PessoaEscolhida != null)
-                                cadastro = (PessoaFísica)escolher.PessoaEscolhida;
-                        }
+                        if (escolher.PessoaEscolhida != null)
+                            cadastro = (PessoaFísica)escolher.PessoaEscolhida;
                     }
                 }
+            }
 
-                try
+            if (cadastro == null)
+            {
+                // Registrar cadastro anônimo
+                visita = new Visita();
+                visita.Nomes.Adicionar(Nome);
+                visita.Setor = Setor;
+            }
+            else
+            {
+
+                // Registrar baseado no cadastro
+                visita = new Visita((PessoaFísica)cadastro);
+                visita.Setor = Setor;
+
+                if (visita.Setor != null && cadastro.Setor != null &&
+                    visita.Setor.Código != cadastro.Setor.Código)
                 {
-                    if (cadastro == null)
+                    AguardeDB.Fechar();
+                    if (MessageBox.Show(
+                        ParentForm,
+                        "ATENÇÃO\n\nO(a) cliente " + cadastro.PrimeiroNome +
+                        " está cadastrado como cliente do setor " + cadastro.Setor.Nome +
+                        ". No entanto, você marcou o cliente para o setor " + visita.Setor.Nome +
+                        ".\n\nDeseja continuar assim mesmo?",
+                        "Registro de visitante",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning,
+                        MessageBoxDefaultButton.Button2) == DialogResult.No)
                     {
-                        // Registrar cadastro anônimo
-                        visita = new Visita();
-                        visita.Nomes.Adicionar(Nome);
-                        visita.Setor = Setor;
+                        return;
                     }
-                    else
+                }
+            }
+
+            visita.Cadastrar();
+            RegistrarAcompanhantes(visita);
+         
+            AguardeDB.Fechar();
+            Cursor = Cursors.Default;
+        }
+
+
+        private void RegistrarAcompanhantes(Visita visita)
+        {
+            foreach (object obj in Acompanhantes)
+                if (obj is string)
+                    visita.Nomes.Adicionar((string)obj);
+                else if (obj is PessoaCPFCNPJRG)
+                {
+                    PessoaFísica pessoaFísica;
+
+                    pessoaFísica = Entidades.Pessoa.PessoaFísica.ObterPessoa(((PessoaCPFCNPJRG)obj).Código);
+
+                    if (pessoaFísica != null)
                     {
                         // Registrar baseado no cadastro
-                        visita = new Visita((PessoaFísica)cadastro);
-                        visita.Setor = Setor;
-
-                        if (visita.Setor != null && cadastro.Setor != null &&
-                            visita.Setor.Código != cadastro.Setor.Código)
-                        {
-                            if (MessageBox.Show(
-                                ParentForm,
-                                "ATENÇÃO\n\nO(a) cliente " + cadastro.PrimeiroNome +
-                                " está cadastrado como cliente do setor " + cadastro.Setor.Nome +
-                                ". No entanto, você marcou o cliente para o setor " + visita.Setor.Nome +
-                                ".\n\nDeseja continuar assim mesmo?",
-                                "Registro de visitante",
-                                MessageBoxButtons.YesNo, MessageBoxIcon.Warning,
-                                MessageBoxDefaultButton.Button2) == DialogResult.No)
-                            {
-                                return;
-                            }
-                        }
+                        visita.Pessoas.Adicionar(pessoaFísica);
                     }
-
-                    visita.Cadastrar();
-                }
-                catch (Exception erro)
-                {
-                    AguardeDB.Suspensão(true);
-                    MessageBox.Show("Erro ao adicionar novo visitante.\n\n" + erro.ToString());
-                    AguardeDB.Suspensão(false);
-                    Acesso.Comum.Usuários.UsuárioAtual.RegistrarErro(erro);
-
-                    Cursor = Cursors.Default;
-
-                    return;
+                    else
+                        // Registrar acompanhante anônimo
+                        visita.Nomes.Adicionar(((PessoaCPFCNPJRG)obj).Nome);
                 }
 
-                // Registrar acompanhantes
-                foreach (object obj in Acompanhantes)
-                    if (obj is string)
-                        visita.Nomes.Adicionar((string)obj);
-                    else if (obj is PessoaCPFCNPJRG)
-                    {
-                        PessoaFísica pessoaFísica;
+            visita.Atualizar();
 
-                        pessoaFísica = Entidades.Pessoa.PessoaFísica.ObterPessoa(((PessoaCPFCNPJRG)obj).Código);
+            AoCadastrar(visita);
 
-                        if (pessoaFísica != null)
-                        {
-                            // Registrar baseado no cadastro
-                            visita.Pessoas.Adicionar(pessoaFísica);
-                        }
-                        else
-                            // Registrar acompanhante anônimo
-                            visita.Nomes.Adicionar(((PessoaCPFCNPJRG)obj).Nome);
-                    }
+            Preparar();
 
-                visita.Atualizar();
-
-                AoCadastrar(visita);
-
-                Preparar();
-
-                SubstituirBaseParaInicial();
-            }
-            finally
-            {
-                AguardeDB.Fechar();
-                Cursor = Cursors.Default;
-            }
-		}
+            SubstituirBaseParaInicial();
+        }
 
 		/// <summary>
 		/// Ocorre quando a opção de funcionário específica é marcado

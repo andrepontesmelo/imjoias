@@ -63,7 +63,7 @@ namespace Apresentação.Atendimento.Clientes
         /// </summary>
         public void AdicionarVisita(Visita visita)
         {
-            ListViewItem item = new ListViewItem(Visita.ExtrairNomes(visita));
+            ListViewItem item = new ListViewItem(visita.ExtrairNomes());
 
             item.SubItems.Add(visita.Setor != null ? visita.Setor.Nome : "");
 
