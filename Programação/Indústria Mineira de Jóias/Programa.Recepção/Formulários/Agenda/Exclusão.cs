@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace Programa.Recepção.Formulários.Agenda
@@ -16,7 +12,6 @@ namespace Programa.Recepção.Formulários.Agenda
 
 		public Exclusão(string nome)
 		{
-			// This call is required by the Windows Form Designer.
 			InitializeComponent();
 
 			txtNome.Text = nome;
@@ -36,6 +31,17 @@ namespace Programa.Recepção.Formulários.Agenda
 			}
 			base.Dispose( disposing );
 		}
+
+
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            if (Form.ModifierKeys == Keys.None && (keyData == Keys.Escape))
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessDialogKey(keyData);
+        }
 
 		#region Designer generated code
 		/// <summary>

@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace Programa.Recepção.Formulários.Agenda
@@ -24,6 +20,16 @@ namespace Programa.Recepção.Formulários.Agenda
         private Apresentação.Pessoa.TxtTelefone txtFixo;
         private Apresentação.Pessoa.TxtTelefone txtOutro;
 		private System.ComponentModel.IContainer components = null;
+
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            if (Form.ModifierKeys == Keys.None && (keyData == Keys.Escape))
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessDialogKey(keyData);
+        }
 
 		public Telefone()
 		{

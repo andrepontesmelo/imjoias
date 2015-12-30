@@ -1,7 +1,7 @@
 using System;
-using System.Drawing;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading;
@@ -436,6 +436,16 @@ namespace Apresentação.Formulários
             {
                 MessageBox.Show(e.ToString(), "Erro ao mostrar janela de notificação");
             }
+        }
+
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            if (Form.ModifierKeys == Keys.None && (keyData == Keys.Escape))
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessDialogKey(keyData);
         }
 	}
 }

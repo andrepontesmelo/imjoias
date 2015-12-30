@@ -25,15 +25,9 @@ namespace Apresentação.Formulários
 
 		public JanelaExplicativa()
 		{
-			//
-			// Required for Windows Form Designer support
-			//
 			InitializeComponent();
 
-            //base.ShowInTaskbar = true;
             isGlassSupported = Environment.OSVersion.Version.Major >= 6;
-            
-            //DefinirBorda();
 		}
 
         public JanelaExplicativa(bool efeitoVista)
@@ -48,17 +42,12 @@ namespace Apresentação.Formulários
             get { return base.ShowInTaskbar; }
             set
             {
-                //if (DesignMode)
-                {
-                    /* APENAS FINGE QUE MUDA! Não mudar!
+                     /* APENAS FINGE QUE MUDA! Não mudar!
                      * Dá pau com o efeito de vidro (pq? sei lá!)
                      * -- Júlio, 23/11/2006
                      */
                     base.ShowInTaskbar = value;
-                    //DefinirBorda();
-                    //RecreateHandle();
-                }
-            }
+             }
         }
 
 		/// <summary>
@@ -187,27 +176,12 @@ namespace Apresentação.Formulários
                     
                     VistaAPI.DwmExtendFrameIntoClientArea(this.Handle, ref marg);
 
-                    //            SolidBrush blackBrush = new SolidBrush(Color.Black);
-                    //if (isGlassSupported)
-                    //    e.Graphics.FillRectangle(Brushes.Black, 0, 0, this.ClientSize.Width, topo.Height);
-
-                    //topo.BackColor = Color.Black;
-                    //topo.BorderStyle = BorderStyle.None;
-                    //lblDescrição.BackColor = Color.Black;
-                    //lblTítulo.BackColor = Color.Black;
                     topo.Visible = false;
                     lblDescrição.Visible = false;
                     lblTítulo.Visible = false;
                     topo.Controls.Remove(picÍcone);
                     Controls.Add(picÍcone);
                     picÍcone.BackColor = Color.Black;
-
-                    //Text = "";
-
-                    //lblTítulo.ForeColor = SystemColors.ActiveCaptionText;
-                    //lblDescrição.ForeColor = SystemColors.ActiveCaptionText;
-
-                    //topo.Paint += new PaintEventHandler(topo_Paint);
                 }
             }
         }
@@ -215,36 +189,10 @@ namespace Apresentação.Formulários
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-        //}
-        //void topo_Paint(object sender, PaintEventArgs e)
-        //{
             if (isGlassSupported)
             {
                 e.Graphics.FillRectangle(Brushes.Black,
                     0, 0, ClientSize.Width, topo.Height);
-
-                //e.Graphics.DrawImage(picÍcone.Image,
-                //    new Rectangle(picÍcone.Location, picÍcone.Size));
-
-                //e.Graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
-                //e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-                //e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
-
-                //e.Graphics.DrawString(
-                //    lblTítulo.Text,
-                //    lblTítulo.Font,
-                //    Brushes.Black,
-                //    new PointF(lblTítulo.Left, lblTítulo.Top));
-
-                //e.Graphics.DrawString(
-                //    lblDescrição.Text,
-                //    lblDescrição.Font,
-                //    Brushes.Black,
-                //    new RectangleF(
-                //    lblDescrição.Left,
-                //    lblDescrição.Top,
-                //    lblDescrição.Width,
-                //    lblDescrição.Height));
 
                 VistaAPI.DrawGlowingText(e.Graphics,
                     lblTítulo.Text,
@@ -258,6 +206,17 @@ namespace Apresentação.Formulários
                     new Rectangle(lblDescrição.Location, lblDescrição.Size),
                     WindowState == FormWindowState.Normal ? Color.Black : Color.White, TextFormatFlags.NoPrefix | TextFormatFlags.WordBreak);
             }
+        }
+
+
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            if (Form.ModifierKeys == Keys.None && (keyData == Keys.Escape))
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessDialogKey(keyData);
         }
 
         // make windows do the work for us by lieing to it about where the user clicked

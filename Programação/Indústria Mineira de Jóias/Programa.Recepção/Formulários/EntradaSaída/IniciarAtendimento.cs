@@ -1,10 +1,7 @@
-using System;
-using System.Drawing;
-using System.Collections;
-using System.ComponentModel;
-using System.Windows.Forms;
-using Negócio;
 using Entidades.Pessoa;
+using Negócio;
+using System;
+using System.Windows.Forms;
 
 
 namespace Programa.Recepção.Formulários.EntradaSaída
@@ -320,5 +317,16 @@ namespace Programa.Recepção.Formulários.EntradaSaída
             espera.Enabled = false;
             alarme.Enabled = false;
         }
+
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            if (Form.ModifierKeys == Keys.None && (keyData == Keys.Escape))
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessDialogKey(keyData);
+        }
+
 	}
 }
