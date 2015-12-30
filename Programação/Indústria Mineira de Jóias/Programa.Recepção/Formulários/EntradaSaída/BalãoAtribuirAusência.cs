@@ -1,8 +1,3 @@
-using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Forms;
 
 namespace Programa.Recepção.Formulários.EntradaSaída
 {
@@ -17,10 +12,7 @@ namespace Programa.Recepção.Formulários.EntradaSaída
 
 		public BalãoAtribuirAusência()
 		{
-			// This call is required by the Windows Form Designer.
 			InitializeComponent();
-
-			// TODO: Add any initialization after the InitializeComponent call
 		}
 
 		/// <summary>

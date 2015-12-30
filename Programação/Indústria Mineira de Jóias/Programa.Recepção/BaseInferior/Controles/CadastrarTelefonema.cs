@@ -1,11 +1,7 @@
-using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Windows.Forms;
 using Entidades;
 using Entidades.Configuração;
+using System;
+using System.Windows.Forms;
 
 namespace Programa.Recepção.BaseInferior.Controles
 {
@@ -360,8 +356,6 @@ namespace Programa.Recepção.BaseInferior.Controles
 			txtCidade.Text = txtCidade.Text.Trim();
 			txtDestinoNome.Text = txtDestinoNome.Text.Trim();
 
-			//Alteração andré abaixo: o destino pode ser <vazio> sim !  
-			// retirei || txtDestinoNome.Text.Length < 1
 			if (txtOrigemNome.Text.Length < 1 ||
 				txtTelefone.Text.Length < 1 ||
 				txtCidade.Text.Length < 1)
@@ -383,10 +377,6 @@ namespace Programa.Recepção.BaseInferior.Controles
 
 		public void Preparar()
 		{
-			if (!this.DesignMode)
-			{
-				//txtDestinoNome.Controle = Recepção.Controle;
-			}
 			txtOrigemNome.Focus();
 			txtOrigemNome.Text = "";
 			optOrigemFuncionário.Checked = true;
