@@ -337,6 +337,7 @@ namespace Programa.Recepção.BaseInferior
 
                 lstPessoas.Items.Clear();
                 lstPessoas.Items.AddRange(itens);
+                lstPessoas.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
 			}
 
             txtNome.Enabled = true;
