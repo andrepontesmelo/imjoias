@@ -89,36 +89,21 @@ namespace Programa.Recepção.BaseInferior.Controles
 
 		private void Carregar()
 		{
-			try
-			{
-                // Inserir vendedores.
-                Funcionário[] atendentes = Funcionário.ObterFuncionários(true, false);
+            // Inserir vendedores.
+            List<Funcionário> atendentes = Funcionário.ObterFuncionários(true, false);
 
-                foreach (Funcionário funcionário in atendentes)
-                    AdicionarFuncionário(funcionário);
+            foreach (Funcionário funcionário in atendentes)
+                AdicionarFuncionário(funcionário);
                 
-                // Inserir visitantes
-                Visita[] visitas = Visita.ObterVisitasRelevantes();
+            // Inserir visitantes
+            List<Visita> visitas = Visita.ObterVisitasRelevantes();
 
-				foreach (Visita visita in visitas)
-				{
-					AdicionarVisita(visita);
-
-					if (visita.Saída.HasValue)
-						AtualizarVisita(visita);
-				}
-			}
-			catch (Exception e)
+			foreach (Visita visita in visitas)
 			{
-				try
-				{
-					Acesso.Comum.Usuários.UsuárioAtual.RegistrarErro(e);
-					MessageBox.Show("Ocorreu o seguinte erro carregando ListaVisitantes:\n\n" + e.ToString());
-				}
-				catch
-				{
-					MessageBox.Show("Ocorreu o seguinte erro carregando ListaVisitantes que não pôde ser registrado:\n\n" + e.ToString());
-				}
+				AdicionarVisita(visita);
+
+				if (visita.Saída.HasValue)
+					AtualizarVisita(visita);
 			}
 		}
 
@@ -130,12 +115,12 @@ namespace Programa.Recepção.BaseInferior.Controles
 		/// <param name="funcionário">Funcionário a ser inserido</param>
 		private void AdicionarFuncionário(Funcionário funcionário)
 		{
-            Visita[] atendimentos = Visita.ObterAtendimentos(funcionário);
+            List<Visita> atendimentos = Visita.ObterAtendimentos(funcionário);
             ListViewItem item = new ListViewItem(funcionário.Nome);
             string strAtendimentos = Visita.ExtrairNomes(atendimentos);
 
             if (funcionário.Situação == EstadoFuncionário.Atendendo)
-                if (atendimentos.Length == 0)
+                if (atendimentos.Count == 0)
                     funcionário.Situação = EstadoFuncionário.Desconhecido; 
             
             item.SubItems.Add(funcionário.Ramal.ToString());

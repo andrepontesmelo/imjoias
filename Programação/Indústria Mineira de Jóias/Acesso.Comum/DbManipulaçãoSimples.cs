@@ -2,10 +2,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Data;
 using System.Globalization;
 using System.Reflection;
+using System.Text;
 
 namespace Acesso.Comum
 {
@@ -108,16 +108,6 @@ namespace Acesso.Comum
         /// Obtém último código inserido no auto-increment.
         /// </summary>
         /// <returns>Último código inserido.</returns>
-        [Obsolete("Utilize o método ObterÚltimoCódigoInserido(conexão)", true)]
-        protected static long ObterÚltimoCódigoInserido()
-        {
-            return Acesso.Comum.Usuários.UsuárioAtual.ObterÚltimoCódigoInserido(Conexão);
-        }
-
-        /// <summary>
-        /// Obtém último código inserido no auto-increment.
-        /// </summary>
-        /// <returns>Último código inserido.</returns>
         protected static long ObterÚltimoCódigoInserido(IDbConnection conexão)
         {
             return Acesso.Comum.Usuários.UsuárioAtual.ObterÚltimoCódigoInserido(conexão);
@@ -188,7 +178,6 @@ namespace Acesso.Comum
             if (conversores.Length == 1)
             {
                 DbConversor conversor = conversores[0].Conversor;
-
                 return DbTransformar(conversor.ConverterParaDB(obj));
             }
 
@@ -217,7 +206,6 @@ namespace Acesso.Comum
         {
             if (dt == DateTime.MinValue)
                 return "null";
-                //return "'0000-00-00 00:00:00'";
             else
                 return "'" + dt.ToString("yyyy-MM-dd HH:mm:ss", DateTimeFormatInfo.InvariantInfo) + "'";
         }
@@ -235,7 +223,6 @@ namespace Acesso.Comum
 
             s = s.Replace("\\", "\\\\");
             s = s.Replace("'", "\\'");
-            //s = s.Replace("%", "\\%");
 
             return encapsular ? DbEncapsular(s) : s;
         }
@@ -381,21 +368,6 @@ namespace Acesso.Comum
                 return "null";
             }
         }
-        /*
-                    public string DbTransformar(byte [] bv)
-                    {
-                        string valor = "";
-
-                        foreach (byte b in bv)
-                        {
-                            if ((char) b == '\'')
-                                valor += "\\";
-                            valor += (char) b;
-                        }
-
-                        return valor;
-                    }
-            */
         #endregion
 
 
@@ -589,23 +561,15 @@ namespace Acesso.Comum
 
             lock (conexão)
             {
-                try
+                Usuários.UsuárioAtual.GerenciadorConexões.RemoverConexão(conexão);
+                using (IDbCommand cmd = conexão.CreateCommand())
                 {
-                    Usuários.UsuárioAtual.GerenciadorConexões.RemoverConexão(conexão);
-                    using (IDbCommand cmd = conexão.CreateCommand())
-                    {
-                        cmd.CommandText = comando;
+                    cmd.CommandText = comando;
 
-                        return Mapear<DbTipo>(cmd);
-                    }
-                } catch (Exception err)
-                {
-                    throw err;
+                    return Mapear<DbTipo>(cmd);
                 }
-                finally
-                {
-                    Usuários.UsuárioAtual.GerenciadorConexões.AdicionarConexão(conexão);
-                }
+
+                Usuários.UsuárioAtual.GerenciadorConexões.AdicionarConexão(conexão);
             }
         }
 
@@ -725,8 +689,6 @@ namespace Acesso.Comum
             // Verificar cada coluna
             for (int i = 0; i < atributos.Length; i++)
             {
-                try
-                {
                     if (!dao.IsDBNull(i))
                     {
                         /*
@@ -759,15 +721,6 @@ namespace Acesso.Comum
                     } // Fim do se é diferente de DBNull.
                     else if (atributos[i].FieldType.IsSubclassOf(typeof(Nullable)))
                         atributos[i].SetValue(obj, null);
-                }
-                catch (Exception erro)
-                {
-                    throw new Exception("Erro mapeando atributo: " + atributos[i].Name + "\n" +
-                        "Tipo: " + atributos[i].FieldType.ToString() + "\n" +
-                        "FieldType: " + atributos[i].FieldType.ToString() + "\n" +
-                        "\nMensagem: " + erro.Message,
-                        erro);
-                } // Fim do try.
             } // Fim da repetição para atributos.
 
             /* Verificar se objeto é do tipo DbManipulação
@@ -884,33 +837,19 @@ namespace Acesso.Comum
 
             using (IDataReader dao = cmd.ExecuteReader())
             {
-                try
-                {
-                    System.Reflection.FieldInfo[] atributos;
+                System.Reflection.FieldInfo[] atributos;
 
-                    // Mapeando objeto de destino
-                    atributos = cacheMapeamento[tipo, cmd.CommandText];
+                // Mapeando objeto de destino
+                atributos = cacheMapeamento[tipo, cmd.CommandText];
 
-                    if (atributos == null)
-                        cacheMapeamento[tipo, cmd.CommandText] = atributos = MapearAtributos(tipo, dao);
+                if (atributos == null)
+                    cacheMapeamento[tipo, cmd.CommandText] = atributos = MapearAtributos(tipo, dao);
 
-                    // Lê dados
-                    while (dao.Read())
-                        conjunto.Add(MapearLinhaObjeto<DbTipo>(dao, atributos, mapeamentoPendente));
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine();
-                    Console.WriteLine("Ocorreu um erro enquanto mapeava para o tipo {0}:", tipo.FullName);
-                    Console.WriteLine(e.ToString());
-                    Console.WriteLine();
+                // Lê dados
+                while (dao.Read())
+                    conjunto.Add(MapearLinhaObjeto<DbTipo>(dao, atributos, mapeamentoPendente));
 
-                    throw new Exception("Erro enquanto mapeava objeto do tipo " + tipo.FullName, e);
-                }
-                finally
-                {
-                    dao.Close();
-                }
+                dao.Close();
             }
 
             ResolverPendências(cmd, mapeamentoPendente);
