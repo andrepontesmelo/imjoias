@@ -1,13 +1,8 @@
+using Entidades.Agenda;
+using Programa.Recepção.Formulários.Agenda;
 using System;
 using System.Collections.Generic;
-using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
 using System.Windows.Forms;
-using System.Threading;
-using Apresentação.Pessoa.Consultas;
-using Programa.Recepção.Formulários.Agenda;
-using Entidades.Agenda;
 
 namespace Programa.Recepção.BaseInferior
 {
@@ -302,7 +297,7 @@ namespace Programa.Recepção.BaseInferior
 		/// <summary>
 		/// Insere uma linha no ListView
 		/// </summary>
-		private void InserirLinha(Registro r)
+		private ListViewItem CriarLinha(Registro r)
 		{
 			ListViewItem linha;
 
@@ -314,8 +309,7 @@ namespace Programa.Recepção.BaseInferior
 			linha.SubItems.Add(r.EndCidade);
 			linha.SubItems.Add(r.EndEstado);
 
-			// Inserir linha
-			lstPessoas.Items.Add(linha);
+            return linha;
 		}
 
 		/// <summary>
@@ -330,14 +324,19 @@ namespace Programa.Recepção.BaseInferior
 		{
             txtNome.Enabled = false;
 
-			lstPessoas.Items.Clear();
-
 			if (!String.IsNullOrEmpty(nome))
 			{
                 List<Registro> registros = Registro.Buscar(nome);
 
+                ListViewItem[] itens = new ListViewItem[registros.Count];
+
+                int x = 0;
+
                 foreach (Registro r in registros)
-                    InserirLinha(r);
+                    itens[x++] = CriarLinha(r);
+
+                lstPessoas.Items.Clear();
+                lstPessoas.Items.AddRange(itens);
 			}
 
             txtNome.Enabled = true;
@@ -359,7 +358,6 @@ namespace Programa.Recepção.BaseInferior
 		{
 			if (e.KeyChar == 13)	// Enter
 			{
-				//coletor.ProcurarImeditamente();
 				e.Handled = true;
                 RealizarBusca(txtNome.Text.Trim());
 				txtNome.SelectAll();
@@ -389,7 +387,7 @@ namespace Programa.Recepção.BaseInferior
                         else
                         {
                             novo.Cadastrar();
-                            InserirLinha(novo);
+                            CriarLinha(novo);
                         }
 
                     }
