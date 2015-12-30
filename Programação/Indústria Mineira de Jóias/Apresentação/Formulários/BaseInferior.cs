@@ -376,19 +376,19 @@ namespace Apresentação.Formulários
             {
                 IPósCargaSistema controlePósCarga = controle as IPósCargaSistema;
 
-                try
-                {
+                //try
+                //{
                     if (controlePósCarga != null)
                         controlePósCarga.AoCarregarCompletamente(splash);
 
                     DispararPósCarga(controle.Controls, splash);
-                }
-                catch (Exception e)
-                {
-                    Acesso.Comum.Usuários.UsuárioAtual.RegistrarErro(e);
-                    falha = true;
-                    problema += "\n" + controle.GetType().ToString();
-                }
+                //}
+                //catch (Exception e)
+                //{
+                //    Acesso.Comum.Usuários.UsuárioAtual.RegistrarErro(e);
+                //    falha = true;
+                //    problema += "\n" + controle.GetType().ToString();
+                //}
             }
 
             if (falha)

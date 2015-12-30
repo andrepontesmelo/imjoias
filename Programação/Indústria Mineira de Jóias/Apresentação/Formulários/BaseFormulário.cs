@@ -319,31 +319,28 @@ namespace Apresentação.Formulários
 
             foreach (Botão botão in barraBotões.Botões)
             {
-                //if (splash != null)
-                //    splash.Mensagem = "Carregando botões principais: " + botão.Texto;
-
-                try
-                {
+                //try
+                //{
                     botão.Controlador.AoCarregarCompletamente(splash);
-                }
-                catch (ExceçãoBotãoNãoSuportado)
-                {
-                    remoção.Add(botão);
-                }
-                catch (ExceçãoPósCarga e)
-                {
-                    problema += "\n" + e.Message;
-                    falha = true;
-                }
-                catch (Exception e)
-                {
-#if DEBUG
-                    System.Windows.Forms.MessageBox.Show(e.ToString());
-#endif
-                    Acesso.Comum.Usuários.UsuárioAtual.RegistrarErro(e);
-                    problema += "\n" + baseInferior.GetType().ToString();
-                    falha = true;
-                }
+//                }
+//                catch (ExceçãoBotãoNãoSuportado)
+//                {
+//                    remoção.Add(botão);
+//                }
+//                catch (ExceçãoPósCarga e)
+//                {
+//                    problema += "\n" + e.Message;
+//                    falha = true;
+//                }
+//                catch (Exception e)
+//                {
+//#if DEBUG
+//                    System.Windows.Forms.MessageBox.Show(e.ToString());
+//#endif
+//                    Acesso.Comum.Usuários.UsuárioAtual.RegistrarErro(e);
+//                    problema += "\n" + baseInferior.GetType().ToString();
+//                    falha = true;
+//                }
             }
 
             foreach (Botão botão in remoção)

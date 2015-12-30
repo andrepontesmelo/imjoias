@@ -474,24 +474,24 @@ namespace Apresentação.Formulários
 
             foreach (BaseInferior baseInferior in basesInferiores)
             {
-                try
-                {
+                //try
+                //{
                     baseInferior.AoCarregarCompletamente(splash);
-                }
-                catch (ExceçãoPósCarga e)
-                {
-                    problema += "\n" + e.Message;
-                    falha = true;
-                }
-                catch (Exception e)
-                {
-#if DEBUG
-                    System.Windows.Forms.MessageBox.Show(e.ToString());
-#endif
-                    Acesso.Comum.Usuários.UsuárioAtual.RegistrarErro(e);
-                    problema += "\n" + baseInferior.GetType().ToString();
-                    falha = true;
-                }
+//                }
+//                catch (ExceçãoPósCarga e)
+//                {
+//                    problema += "\n" + e.Message;
+//                    falha = true;
+//                }
+//                catch (Exception e)
+//                {
+//#if DEBUG
+//                    System.Windows.Forms.MessageBox.Show(e.ToString());
+//#endif
+//                    Acesso.Comum.Usuários.UsuárioAtual.RegistrarErro(e);
+//                    problema += "\n" + baseInferior.GetType().ToString();
+//                    falha = true;
+//                }
             }
 
             if (falha)
