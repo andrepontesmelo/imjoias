@@ -192,10 +192,15 @@ namespace Entidades.Configuração
                     últimaSincronização = DateTime.Now;
                 }
                 else
-                    hora = DateTime.Now.Add(difHora);
+                    hora = TruncarMilesimosSegundos(DateTime.Now.Add(difHora));
 
                 return hora;
             }
+        }
+
+        private DateTime TruncarMilesimosSegundos(DateTime dateTime)
+        {
+            return new DateTime(dateTime.Ticks - (dateTime.Ticks % TimeSpan.TicksPerSecond), dateTime.Kind);
         }
 
         /// <summary>
