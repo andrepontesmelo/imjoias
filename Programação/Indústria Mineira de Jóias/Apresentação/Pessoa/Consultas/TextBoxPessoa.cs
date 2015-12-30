@@ -635,6 +635,7 @@ namespace Apresentação.Pessoa.Consultas
 
                     ListViewItem[] itens = CriarItens(pessoas);
                     lista.Items.AddRange(itens);
+                    lista.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
 
                     /* Verificar se o controle ainda retém o foco para mostrar a lista
                      * O foco no TextBox é sempre falso neste ponto, talvez porque esta
