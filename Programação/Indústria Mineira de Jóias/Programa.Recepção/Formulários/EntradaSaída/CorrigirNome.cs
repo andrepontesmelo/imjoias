@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using Apresentação.Formulários;
+﻿using Apresentação.Formulários;
 
 
 namespace Programa.Recepção.Formulários.EntradaSaída
@@ -18,6 +11,7 @@ namespace Programa.Recepção.Formulários.EntradaSaída
 
             this.txtNome.Text = nome;
         }
+
 
         public string Nome
         {

@@ -1,12 +1,7 @@
-using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Forms;
-using Entidades;
-using Apresentação.Pessoa.Consultas;
-using Entidades.Pessoa;
 using Apresentação.Pessoa;
+using Entidades;
+using Entidades.Pessoa;
+using System.Windows.Forms;
 
 namespace Programa.Recepção.BaseInferior
 {

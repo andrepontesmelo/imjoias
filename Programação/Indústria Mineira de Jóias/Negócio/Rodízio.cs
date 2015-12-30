@@ -83,6 +83,7 @@ namespace Negócio
 
             if (hashRodízio.TryGetValue(setor.Código, out rodízio))
                 return rodízio;
+            
 
             ConfiguraçãoGlobal<string> tipoRodízio = new ConfiguraçãoGlobal<string>("Rodízio", "PAcP");
             ConfiguraçãoGlobal<string> tipoRodízioSetor = new ConfiguraçãoGlobal<string>("Rodízio - " + setor.Nome, tipoRodízio.Valor);

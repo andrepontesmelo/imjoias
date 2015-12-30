@@ -1,13 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
+using Apresentação.Formulários;
 using Entidades;
 using Entidades.Configuração;
-using Apresentação.Formulários;
+using System;
 
 namespace Programa.Recepção.Formulários.EntradaSaída
 {

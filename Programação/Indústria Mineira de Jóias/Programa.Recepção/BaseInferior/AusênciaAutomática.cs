@@ -1,13 +1,8 @@
+using Entidades.Pessoa;
 using System;
 using System.Collections;
-using System.ComponentModel;
 using System.Drawing;
-using System.Threading;
-using System.Runtime.Remoting.Lifetime;
 using System.Windows.Forms;
-using Apresentação.Atendimento.Comum;
-using Apresentação.Atendimento.Atendente;
-using Entidades.Pessoa;
 
 namespace Programa.Recepção.BaseInferior
 {

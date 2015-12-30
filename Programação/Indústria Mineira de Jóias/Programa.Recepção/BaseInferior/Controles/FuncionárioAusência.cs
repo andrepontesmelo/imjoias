@@ -1,10 +1,6 @@
-using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
-using System.Threading;
-using System.Windows.Forms;
 using Entidades.Pessoa;
+using System;
+using System.Windows.Forms;
 
 namespace Programa.Recepção.BaseInferior.Controles
 {
