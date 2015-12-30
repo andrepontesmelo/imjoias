@@ -313,9 +313,9 @@ namespace Entidades.Pessoa
 
             sql.Append("SELECT * FROM pessoa p JOIN pessoafisica pf");
             sql.Append(" ON p.codigo = pf.codigo");
-            sql.Append(" WHERE p.nome LIKE ");
+            sql.Append(" WHERE p.nome LIKE '");
             sql.Append(DbTransformar(nome, false));
-            sql.Append("%");
+            sql.Append("%'");
 
 			return Mapear<PessoaFísica>(sql.ToString()).ToArray();
 		}
