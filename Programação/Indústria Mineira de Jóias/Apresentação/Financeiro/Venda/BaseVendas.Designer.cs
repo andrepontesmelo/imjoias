@@ -129,7 +129,7 @@ namespace Apresentação.Financeiro.Venda
             // 
             this.opçãoRegistrarNovaVenda.BackColor = System.Drawing.Color.Transparent;
             this.opçãoRegistrarNovaVenda.Descrição = "Registrar nova venda...";
-            this.opçãoRegistrarNovaVenda.Imagem = global::Apresentação.Resource.share;
+            this.opçãoRegistrarNovaVenda.Imagem = global::Apresentação.Resource.NewCardHS;
             this.opçãoRegistrarNovaVenda.Location = new System.Drawing.Point(7, 58);
             this.opçãoRegistrarNovaVenda.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.opçãoRegistrarNovaVenda.MaximumSize = new System.Drawing.Size(150, 100);
@@ -173,6 +173,7 @@ namespace Apresentação.Financeiro.Venda
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lista.ItemSelecionado = null;
+            this.lista.ItensSelecionados = ((System.Collections.Generic.List<Entidades.Relacionamento.Venda.IDadosVenda>)(resources.GetObject("lista.ItensSelecionados")));
             this.lista.Location = new System.Drawing.Point(3, 29);
             this.lista.Name = "lista";
             this.lista.Size = new System.Drawing.Size(588, 296);
@@ -216,7 +217,7 @@ namespace Apresentação.Financeiro.Venda
             this.quadroComprasDesteFuncionário.Location = new System.Drawing.Point(7, 170);
             this.quadroComprasDesteFuncionário.MostrarBotãoMinMax = false;
             this.quadroComprasDesteFuncionário.Name = "quadroComprasDesteFuncionário";
-            this.quadroComprasDesteFuncionário.Size = new System.Drawing.Size(160, 68);
+            this.quadroComprasDesteFuncionário.Size = new System.Drawing.Size(160, 52);
             this.quadroComprasDesteFuncionário.TabIndex = 1;
             this.quadroComprasDesteFuncionário.Tamanho = 30;
             this.quadroComprasDesteFuncionário.Título = "Funcionário";
@@ -225,15 +226,15 @@ namespace Apresentação.Financeiro.Venda
             // opçãoComprasDesteFuncionário
             // 
             this.opçãoComprasDesteFuncionário.BackColor = System.Drawing.Color.Transparent;
-            this.opçãoComprasDesteFuncionário.Descrição = "Mostrar compras deste funcionário";
-            this.opçãoComprasDesteFuncionário.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoComprasDesteFuncionário.Imagem")));
+            this.opçãoComprasDesteFuncionário.Descrição = "Visualizar compras";
+            this.opçãoComprasDesteFuncionário.Imagem = global::Apresentação.Resource.folderopen1;
             this.opçãoComprasDesteFuncionário.Location = new System.Drawing.Point(5, 28);
             this.opçãoComprasDesteFuncionário.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoComprasDesteFuncionário.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoComprasDesteFuncionário.MinimumSize = new System.Drawing.Size(150, 16);
             this.opçãoComprasDesteFuncionário.Name = "opçãoComprasDesteFuncionário";
             this.opçãoComprasDesteFuncionário.PermitirLiberaçãoRecurso = true;
-            this.opçãoComprasDesteFuncionário.Size = new System.Drawing.Size(150, 36);
+            this.opçãoComprasDesteFuncionário.Size = new System.Drawing.Size(150, 17);
             this.opçãoComprasDesteFuncionário.TabIndex = 7;
             this.opçãoComprasDesteFuncionário.Click += new System.EventHandler(this.opçãoComprasDesteFuncionário_Click);
             // 
@@ -247,7 +248,7 @@ namespace Apresentação.Financeiro.Venda
             this.semaforoLegenda1.Cor = System.Drawing.Color.Black;
             this.semaforoLegenda1.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.semaforoLegenda1.LetraTítulo = System.Drawing.Color.White;
-            this.semaforoLegenda1.Location = new System.Drawing.Point(7, 244);
+            this.semaforoLegenda1.Location = new System.Drawing.Point(7, 229);
             this.semaforoLegenda1.MostrarBotãoMinMax = false;
             this.semaforoLegenda1.Name = "semaforoLegenda1";
             this.semaforoLegenda1.Size = new System.Drawing.Size(160, 155);

@@ -1,17 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using Entidades.Relacionamento.Venda;
-using Apresentação.Impressão.Relatórios.Venda;
-using Apresentação.Impressão;
-using Apresentação.Formulários.Impressão;
-using Entidades.Acerto;
 using Apresentação.Financeiro.Acerto;
 using Apresentação.Formulários;
+using Apresentação.Formulários.Impressão;
+using Apresentação.Impressão;
+using Entidades.Acerto;
+using Entidades.Relacionamento.Venda;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Windows.Forms;
 
 namespace Apresentação.Financeiro.Venda
 {
@@ -26,7 +22,7 @@ namespace Apresentação.Financeiro.Venda
         /// Forçar tratar a pessoa seleciona como cliente.
         /// Mostra compras dela ao invés de vendas.
         /// </summary>
-        private bool forçarTrataloCliente = false;
+        private bool forçarHistóricoCompras = false;
 
         /// <summary>
         /// Datas que delimitam a exibição das vendas
@@ -49,7 +45,7 @@ namespace Apresentação.Financeiro.Venda
     
         private void MudarLeiaute(bool cliente)
         {
-            if (cliente)
+            if (cliente || forçarHistóricoCompras)
             {
                 quadroLista.Título = título.Título = "Histórico de compras";
                 opçãoProcurar.Descrição = "Procurar compra...";
@@ -65,12 +61,18 @@ namespace Apresentação.Financeiro.Venda
                 quadroComprasDesteFuncionário.Visible = true;
             }
         }
+        
+        public BaseVendas(Entidades.Pessoa.Pessoa pessoa)
+            : this(pessoa, false)
+        {
 
+        }
 
-        public BaseVendas(Entidades.Pessoa.Pessoa pessoa) : this()
+        public BaseVendas(Entidades.Pessoa.Pessoa pessoa, bool forçarHistóricoCompras) : this()
         {
             this.pessoa = pessoa;
             título.Descrição = pessoa.Nome;
+            this.forçarHistóricoCompras = forçarHistóricoCompras;
 
             MudarLeiaute(Entidades.Pessoa.Pessoa.ÉCliente(pessoa));
             título.Descrição = pessoa.Nome;
@@ -119,7 +121,6 @@ namespace Apresentação.Financeiro.Venda
                 System.Windows.Forms.Cursor.Current = Cursors.AppStarting;
 
                 UseWaitCursor = true;
-                //Apresentação.Formulários.AguardeDB.Mostrar();
 
                 Application.DoEvents();
 
@@ -143,7 +144,7 @@ namespace Apresentação.Financeiro.Venda
             {
                 dataInício = janela.DataInício;
                 dataFim = janela.DataFim;
-                lista.Carregar(pessoa, forçarTrataloCliente);
+                lista.Carregar(pessoa, forçarHistóricoCompras);
             }
 
             janela.Close();
@@ -279,9 +280,9 @@ namespace Apresentação.Financeiro.Venda
         private void opçãoComprasDesteFuncionário_Click(object sender, EventArgs e)
         {
             AguardeDB.Mostrar();
-            forçarTrataloCliente = true;
+            forçarHistóricoCompras = true;
             quadroComprasDesteFuncionário.Visible = false;
-            lista.Carregar(pessoa, forçarTrataloCliente);
+            lista.Carregar(pessoa, forçarHistóricoCompras);
             MudarLeiaute(true);
             AguardeDB.Fechar(); 
         }
@@ -332,7 +333,7 @@ namespace Apresentação.Financeiro.Venda
                 }
             }
 
-            lista.Carregar(pessoa, forçarTrataloCliente);
+            lista.Carregar(pessoa, forçarHistóricoCompras);
 
             Apresentação.Formulários.AguardeDB.Fechar();
 
@@ -356,7 +357,7 @@ namespace Apresentação.Financeiro.Venda
             últimoItemSelecionado = lista.ItemSelecionado;
             últimosItensChecados = lista.ItensSelecionados;
             
-            lista.Carregar(pessoa, forçarTrataloCliente);
+            lista.Carregar(pessoa, forçarHistóricoCompras);
             lista.ItemSelecionado = últimoItemSelecionado;
             lista.ItensSelecionados = últimosItensChecados;
         }
