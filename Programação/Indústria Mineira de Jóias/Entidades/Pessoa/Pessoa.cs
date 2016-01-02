@@ -696,12 +696,10 @@ namespace Entidades.Pessoa
             chaveBusca = chaveBusca.Trim();
             chaveBusca = chaveBusca.Replace("%%", "%").Replace("'","").Replace("\"","").Replace("\\","").Replace("  "," ").Replace("  "," ");
             
-            string tmpNome = chaveBusca.Replace(' ', '%');
+            //string tmpNome = chaveBusca.Replace(' ', '%');
 
             StringBuilder comando = new StringBuilder();
 
-            /* select * from (select * from (select * from pessoa where nome like 'melo%' order by nome) a UNION select * from (select * from pessoa where nome like '%melo%' order by nome desc) b) tudo limit 5 
-             */
             lock (conexão)
             {
                 Usuários.UsuárioAtual.GerenciadorConexões.RemoverConexão(conexão);
@@ -713,113 +711,20 @@ namespace Entidades.Pessoa
 
                     try
                     {
-                        comando.Append("select * from (select * from ");
+                        comando.Append("SELECT p.codigo as cod, p.nome, p.setor, p.email, p.observacoes, p.ultimaVisita, p.dataRegistro, p.dataAlteracao, p.classificacoes, p.maiorVenda, p.credito, p.fornecedor, p.regiao, pf.*,pj.codigo as c, pj.cnpj, pj.fantasia, pj.inscEstadual, pj.inscMunicipal FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE  ");
 
                         // Inclui busca por código da pessoa
                         if (chaveÉNúmero)
                         {
-                            comando.Append("(SELECT p.codigo as cod, p.nome, p.setor, p.email, p.observacoes, p.ultimaVisita, p.dataRegistro, p.dataAlteracao, p.classificacoes, p.maiorVenda, p.credito, p.fornecedor, p.regiao, pf.*,pj.codigo as c, pj.cnpj, pj.fantasia, pj.inscEstadual, pj.inscMunicipal FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE p.codigo= ");
+                            comando.Append(" p.codigo= ");
                             comando.Append(DbTransformar(código));
-                            comando.Append(" ) cod UNION select * from ");
-                        }
-
-                        if (chaveBusca.Length < 4)
-                        {
-                            comando.Append(" ( SELECT p.codigo as cod, p.nome, p.setor, p.email, p.observacoes, p.ultimaVisita, p.dataRegistro, p.dataAlteracao, p.classificacoes, p.maiorVenda, p.credito, p.fornecedor, p.regiao, pf.*,pj.codigo as c, pj.cnpj, pj.fantasia, pj.inscEstadual, pj.inscMunicipal FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE nome LIKE '");
-                            comando.Append(chaveBusca);
-                            comando.Append("%' ) peq order by nome ");
                         }
                         else
                         {
-                            // pontes melo%
-                            comando.Append("  (SELECT p.codigo as cod, p.nome, p.setor, p.email, p.observacoes, p.ultimaVisita, p.dataRegistro, p.dataAlteracao, p.classificacoes, p.maiorVenda, p.credito, p.fornecedor, p.regiao, pf.*,pj.codigo as c, pj.cnpj, pj.fantasia, pj.inscEstadual, pj.inscMunicipal FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE nome LIKE '");
-                            comando.Append(tmpNome.Substring(0, tmpNome.Length).Replace('%', ' '));
-                            comando.Append("%' ORDER BY nome ");
-
-                            comando.Append(") aa UNION select * from ");
-
-                            // %pontes melo
-                            comando.Append(" (SELECT p.codigo as cod, p.nome, p.setor, p.email, p.observacoes, p.ultimaVisita, p.dataRegistro, p.dataAlteracao, p.classificacoes, p.maiorVenda, p.credito, p.fornecedor, p.regiao, pf.*,pj.codigo as c, pj.cnpj, pj.fantasia, pj.inscEstadual, pj.inscMunicipal FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE nome LIKE '%");
-                            comando.Append(chaveBusca);
-                            comando.Append("' ORDER BY nome ) ab UNION select * from ");
-
-                            //// Busca no nome fantasia
-                            //comando.Append(" (SELECT p.codigo as cod, p.nome, p.setor, p.email, p.observacoes, p.ultimaVisita, p.dataRegistro, p.dataAlteracao, p.classificacoes, p.maiorVenda, p.credito, p.fornecedor, p.regiao, pf.*,pj.codigo as c, pj.cnpj, pj.fantasia, pj.inscEstadual, pj.inscMunicipal FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE pj.fantasia LIKE '%");
-                            //comando.Append(chaveBusca);
-                            //comando.Append("%' ORDER BY nome ) fant UNION select * from ");
-
-                            // %pontes melo%
-                            comando.Append(" (SELECT p.codigo as cod, p.nome, p.setor, p.email, p.observacoes, p.ultimaVisita, p.dataRegistro, p.dataAlteracao, p.classificacoes, p.maiorVenda, p.credito, p.fornecedor, p.regiao, pf.*,pj.codigo as c, pj.cnpj, pj.fantasia, pj.inscEstadual, pj.inscMunicipal FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE nome LIKE '%");
-                            comando.Append(chaveBusca);
-                            comando.Append("%' ORDER BY nome ) abw ");
-
-                            if (chaveBusca.Contains(" "))
-                            {
-                                // %pontes%melo%
-                                comando.Append(" UNION select * from   (SELECT p.codigo as cod, p.nome, p.setor, p.email, p.observacoes, p.ultimaVisita, p.dataRegistro, p.dataAlteracao, p.classificacoes, p.maiorVenda, p.credito, p.fornecedor, p.regiao, pf.*,pj.codigo as c, pj.cnpj, pj.fantasia, pj.inscEstadual, pj.inscMunicipal FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE nome LIKE '%");
-                                comando.Append(tmpNome.Substring(0, tmpNome.Length));
-                                comando.Append("%' ORDER BY nome ) a ");
-
-                                String[] palavras = chaveBusca.Split(' ');
-                                //// Se tiver 'André Pontes Melo', faz as seguintes consultas:
-                                //// André Pontes Melo%
-                                //// André Pontes%
-                                //// André% =)
-                                //for (int x = palavras.Length - 1; x >= 0; x--)
-                                //{
-                                //    comando.Append(" UNION select * from   (SELECT p.codigo as cod, p.nome, p.setor, p.email, p.observacoes, p.ultimaVisita, p.dataRegistro, p.dataAlteracao, p.classificacoes, p.maiorVenda, p.credito, p.fornecedor, p.regiao, pf.*,pj.codigo as c, pj.cnpj, pj.fantasia, pj.inscEstadual, pj.inscMunicipal FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE nome LIKE '");
-                                //    bool primeiro = true;
-                                //    for (int y = 0; y <= x; y++)
-                                //    {
-                                //        if (!primeiro)
-                                //        {
-                                //            comando.Append(" ");
-                                //        }
-
-                                //        comando.Append(palavras[y]);
-                                //        primeiro = false;
-                                //    }
-                                //    comando.Append("%' ORDER BY nome ) a");
-                                //    comando.Append(x.ToString());
-                                //}
-
-                                // %pontes% OR %melo%
-                                String[] nomes = chaveBusca.Split(' ');
-                                List<String> lstNomesGrandes = new List<string>();
-                                foreach (string parte in nomes)
-                                {
-                                    if (parte.Length < 4) continue;
-                                    lstNomesGrandes.Add(parte);
-                                }
-    
-                                if (lstNomesGrandes.Count > 0)
-                                {
-                                    comando.Append(" UNION select * from (SELECT p.codigo as cod, p.nome, p.setor, p.email, p.observacoes, p.ultimaVisita, p.dataRegistro, p.dataAlteracao, p.classificacoes, p.maiorVenda, p.credito, p.fornecedor, p.regiao, pf.*,pj.codigo as c, pj.cnpj, pj.fantasia, pj.inscEstadual, pj.inscMunicipal FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE ");
-
-                                    bool primeiro = true;
-                                    foreach (string nomeGrande in lstNomesGrandes)
-                                    {
-                                        if (!primeiro)
-                                            comando.Append(" OR ");
-
-                                        comando.Append("nome LIKE '%");
-                                        comando.Append(nomeGrande);
-                                        comando.Append("%' ");
-                                        primeiro = false;
-                                    }
-
-                                    comando.Append(" order by nome) b ");
-                                }
-
-                                comando.Append(" UNION select * from (SELECT p.codigo as cod, p.nome, p.setor, p.email,  p.observacoes, p.ultimaVisita, p.dataRegistro, p.dataAlteracao, p.classificacoes, p.maiorVenda, p.credito, p.fornecedor, p.regiao, pf.*,pj.codigo as c, pj.cnpj, pj.fantasia, pj.inscEstadual, pj.inscMunicipal   FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE observacoes LIKE '%");
-
-                                //comando.Append(tmpNome.Substring(0, tmpNome.Length - 2));
-                                comando.Append(chaveBusca);
-
-                                comando.Append("%' order by nome) obs ");
-                            }
+                            comando.Append(" match(nome) against ('" + chaveBusca + "') ");
                         }
-                        comando.Append(" ) tudo limit ");
+
+                        comando.Append(" limit ");
                         comando.Append(limite.ToString());
 
                         cmd.CommandText = comando.ToString();
@@ -843,9 +748,6 @@ namespace Entidades.Pessoa
                 return dados;
             }
         }
-
-
-
 
         public static List<Pessoa> ObterPessoas()
         {
