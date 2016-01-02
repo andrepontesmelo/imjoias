@@ -1,28 +1,20 @@
+using Apresentação.Atendimento.Clientes;
+using Apresentação.Atendimento.Clientes.Pedido;
+using Apresentação.Atendimento.Comum;
+using Apresentação.Financeiro.Acerto;
+using Apresentação.Financeiro.Venda;
+using Apresentação.Formulários;
+using Apresentação.Mercadoria;
+using Apresentação.Pessoa.Cadastro;
+using Entidades;
+using Entidades.Acerto;
+using Entidades.Pessoa;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Runtime.Remoting.Lifetime;
-using System.Windows.Forms;
-
-using Apresentação.Formulários;
-using Apresentação.Pessoa.Cadastro;
-
-using Entidades;
-using Entidades.Pessoa;
-
-using Apresentação.Financeiro.Venda;
-using System.Threading;
-using Apresentação.Financeiro.Acerto;
-using Entidades.Acerto;
-using Entidades.Relacionamento.Venda;
-using Apresentação.Atendimento.Clientes.Pedido;
-using System.Drawing.Printing;
-using Apresentação.Atendimento.Clientes;
-using Apresentação.Atendimento.Comum;
 using System.Text;
-using Apresentação.Mercadoria;
+using System.Windows.Forms;
 
 namespace Apresentação.Atendimento
 {
@@ -72,6 +64,7 @@ namespace Apresentação.Atendimento
         private SinalizaçãoMercadoriaEmFalta sinalizaçãoMercadoriaEmFalta;
         private Opção opçãoCréditos;
         private SumárioAcerto sumárioAcerto1;
+        private Opção opçãoCompras;
         private System.ComponentModel.IContainer components = null;
 
 		/// <summary>
@@ -148,7 +141,6 @@ namespace Apresentação.Atendimento
 		/// </summary>
 		private void InitializeComponent()
 		{
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseAtendimento));
             this.título = new Apresentação.Formulários.TítuloBaseInferior();
             this.quadroCliente = new Apresentação.Formulários.Quadro();
             this.opçãoAbrir = new Apresentação.Formulários.Opção();
@@ -165,6 +157,7 @@ namespace Apresentação.Atendimento
             this.colItem = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colDescrição = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.quadroVendas = new Apresentação.Formulários.Quadro();
+            this.opçãoCompras = new Apresentação.Formulários.Opção();
             this.opçãoCréditos = new Apresentação.Formulários.Opção();
             this.opçãoPagamentos = new Apresentação.Formulários.Opção();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -290,7 +283,7 @@ namespace Apresentação.Atendimento
             // 
             this.opçãoVendas.BackColor = System.Drawing.Color.Transparent;
             this.opçãoVendas.Descrição = "Visualizar vendas";
-            this.opçãoVendas.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoVendas.Imagem")));
+            this.opçãoVendas.Imagem = global::Apresentação.Resource.folderopen1;
             this.opçãoVendas.Location = new System.Drawing.Point(7, 30);
             this.opçãoVendas.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.opçãoVendas.MaximumSize = new System.Drawing.Size(150, 100);
@@ -371,8 +364,8 @@ namespace Apresentação.Atendimento
             // 
             this.opçãoConsignadoVenda.BackColor = System.Drawing.Color.Transparent;
             this.opçãoConsignadoVenda.Descrição = "Registrar venda";
-            this.opçãoConsignadoVenda.Imagem = global::Apresentação.Resource.pagar_em_dólares__pequeno_1;
-            this.opçãoConsignadoVenda.Location = new System.Drawing.Point(7, 50);
+            this.opçãoConsignadoVenda.Imagem = global::Apresentação.Resource.NewCardHS;
+            this.opçãoConsignadoVenda.Location = new System.Drawing.Point(7, 70);
             this.opçãoConsignadoVenda.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.opçãoConsignadoVenda.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoConsignadoVenda.MinimumSize = new System.Drawing.Size(150, 16);
@@ -439,13 +432,13 @@ namespace Apresentação.Atendimento
             // 
             this.quadroVendas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.quadroVendas.AutoSize = true;
             this.quadroVendas.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.quadroVendas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.quadroVendas.bInfDirArredondada = true;
             this.quadroVendas.bInfEsqArredondada = true;
             this.quadroVendas.bSupDirArredondada = true;
             this.quadroVendas.bSupEsqArredondada = true;
+            this.quadroVendas.Controls.Add(this.opçãoCompras);
             this.quadroVendas.Controls.Add(this.opçãoVendas);
             this.quadroVendas.Controls.Add(this.opçãoCréditos);
             this.quadroVendas.Controls.Add(this.opçãoPagamentos);
@@ -457,17 +450,32 @@ namespace Apresentação.Atendimento
             this.quadroVendas.MostrarBotãoMinMax = false;
             this.quadroVendas.Name = "quadroVendas";
             this.quadroVendas.Privilégio = Entidades.Privilégio.Permissão.Vendas;
-            this.quadroVendas.Size = new System.Drawing.Size(162, 113);
+            this.quadroVendas.Size = new System.Drawing.Size(160, 133);
             this.quadroVendas.TabIndex = 3;
             this.quadroVendas.Tamanho = 30;
             this.quadroVendas.Título = "Financeiro";
+            // 
+            // opçãoCompras
+            // 
+            this.opçãoCompras.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoCompras.Descrição = "Visualizar compras";
+            this.opçãoCompras.Imagem = global::Apresentação.Resource.folderopen1;
+            this.opçãoCompras.Location = new System.Drawing.Point(7, 50);
+            this.opçãoCompras.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoCompras.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoCompras.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoCompras.Name = "opçãoCompras";
+            this.opçãoCompras.PermitirLiberaçãoRecurso = true;
+            this.opçãoCompras.Size = new System.Drawing.Size(150, 16);
+            this.opçãoCompras.TabIndex = 9;
+            this.opçãoCompras.Click += new System.EventHandler(this.opçãoComprasDesteFuncionário_Click);
             // 
             // opçãoCréditos
             // 
             this.opçãoCréditos.BackColor = System.Drawing.Color.Transparent;
             this.opçãoCréditos.Descrição = "Créditos";
             this.opçãoCréditos.Imagem = global::Apresentação.Resource.credito;
-            this.opçãoCréditos.Location = new System.Drawing.Point(7, 90);
+            this.opçãoCréditos.Location = new System.Drawing.Point(7, 110);
             this.opçãoCréditos.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoCréditos.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoCréditos.MinimumSize = new System.Drawing.Size(150, 16);
@@ -481,7 +489,7 @@ namespace Apresentação.Atendimento
             this.opçãoPagamentos.BackColor = System.Drawing.Color.Transparent;
             this.opçãoPagamentos.Descrição = "Pagamentos";
             this.opçãoPagamentos.Imagem = global::Apresentação.Resource.pagamento1;
-            this.opçãoPagamentos.Location = new System.Drawing.Point(7, 70);
+            this.opçãoPagamentos.Location = new System.Drawing.Point(7, 90);
             this.opçãoPagamentos.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoPagamentos.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoPagamentos.MinimumSize = new System.Drawing.Size(150, 16);
@@ -661,7 +669,7 @@ namespace Apresentação.Atendimento
             this.quadroModoAtendimento.Cor = System.Drawing.Color.Black;
             this.quadroModoAtendimento.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.quadroModoAtendimento.LetraTítulo = System.Drawing.Color.White;
-            this.quadroModoAtendimento.Location = new System.Drawing.Point(7, 407);
+            this.quadroModoAtendimento.Location = new System.Drawing.Point(7, 423);
             this.quadroModoAtendimento.MostrarBotãoMinMax = false;
             this.quadroModoAtendimento.Name = "quadroModoAtendimento";
             this.quadroModoAtendimento.Size = new System.Drawing.Size(160, 62);
@@ -696,10 +704,10 @@ namespace Apresentação.Atendimento
             this.quadro1.Cor = System.Drawing.Color.Black;
             this.quadro1.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadro1.LetraTítulo = System.Drawing.Color.White;
-            this.quadro1.Location = new System.Drawing.Point(7, 312);
+            this.quadro1.Location = new System.Drawing.Point(7, 338);
             this.quadro1.MostrarBotãoMinMax = false;
             this.quadro1.Name = "quadro1";
-            this.quadro1.Size = new System.Drawing.Size(160, 89);
+            this.quadro1.Size = new System.Drawing.Size(160, 79);
             this.quadro1.TabIndex = 5;
             this.quadro1.Tamanho = 30;
             this.quadro1.Título = "Serviços";
@@ -721,14 +729,14 @@ namespace Apresentação.Atendimento
             // opçãoMalaDireta
             // 
             this.opçãoMalaDireta.BackColor = System.Drawing.Color.Transparent;
-            this.opçãoMalaDireta.Descrição = "Imprimir etiqueta para mala-direta";
+            this.opçãoMalaDireta.Descrição = "Imprimir mala-direta";
             this.opçãoMalaDireta.Imagem = global::Apresentação.Resource.LABELS1;
             this.opçãoMalaDireta.Location = new System.Drawing.Point(7, 50);
             this.opçãoMalaDireta.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoMalaDireta.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoMalaDireta.MinimumSize = new System.Drawing.Size(150, 16);
             this.opçãoMalaDireta.Name = "opçãoMalaDireta";
-            this.opçãoMalaDireta.Size = new System.Drawing.Size(150, 33);
+            this.opçãoMalaDireta.Size = new System.Drawing.Size(150, 19);
             this.opçãoMalaDireta.TabIndex = 3;
             this.opçãoMalaDireta.Click += new System.EventHandler(this.opçãoMalaDireta_Click);
             // 
@@ -742,7 +750,6 @@ namespace Apresentação.Atendimento
             this.Controls.SetChildIndex(this.título, 0);
             this.Controls.SetChildIndex(this.esquerda, 0);
             this.esquerda.ResumeLayout(false);
-            this.esquerda.PerformLayout();
             this.quadroCliente.ResumeLayout(false);
             this.quadroRelacionar.ResumeLayout(false);
             this.quadroPendências.ResumeLayout(false);
@@ -792,6 +799,16 @@ namespace Apresentação.Atendimento
             opçãoVendas.Enabled = Entidades.Privilégio.PermissãoFuncionário.ValidarPermissão(Entidades.Privilégio.Permissão.Faturamento)
                 || !Entidades.Pessoa.Funcionário.ÉFuncionárioOuRepresentante(pessoa)
                 || pessoa.Código == Funcionário.FuncionárioAtual.Código;
+
+            if (Entidades.Pessoa.Pessoa.ÉCliente(cliente))
+            {
+                opçãoVendas.Descrição = "Visualizar compras";
+                opçãoCompras.Visible = false;
+            } else
+            {
+                opçãoVendas.Descrição = "Visualizar vendas";
+                opçãoCompras.Visible = true;
+            }
 
         }
 
@@ -1332,6 +1349,14 @@ namespace Apresentação.Atendimento
         {
             quadroObs.Width = tableLayoutPanel1.Width - quadroPendências.Width - 20;
             quadroObs.Height = tableLayoutPanel1.Height;
+        }
+
+        private void opçãoComprasDesteFuncionário_Click(object sender, EventArgs e)
+        {
+            UseWaitCursor = true;
+            Apresentação.Financeiro.Venda.BaseVendas baseVendas = new Apresentação.Financeiro.Venda.BaseVendas(pessoa, true);
+            SubstituirBase(baseVendas);
+            UseWaitCursor = false;
         }
     }
 }
