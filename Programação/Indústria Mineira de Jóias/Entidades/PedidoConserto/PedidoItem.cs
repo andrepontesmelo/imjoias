@@ -12,7 +12,7 @@ namespace Entidades.PedidoConserto
         private long codigo;
         private long pedido;
         private int quantidade;
-        private string mercadoria;
+        private string mercadoria = null;
         private string descricao;
 #pragma warning restore 0649
 
@@ -95,32 +95,6 @@ namespace Entidades.PedidoConserto
         {
             return Mapear<PedidoItem>("select * from pedidoitem where pedido=" + DbTransformar(pedido.Código));
         }
-
-        ///// <summary>
-        ///// Retorna uma hash que, dado o código do pedido,
-        ///// é retornado uma lista de itens dele.
-        ///// </summary>
-        ///// <param name="pedidos"></param>
-        ///// <returns></returns>
-        //public static Dictionary<long, List<PedidoItem>> Obter(IEnumerable<Entidades.PedidoConserto.Pedido> pedidos)
-        //{
-        //    Dictionary<long, List<PedidoItem>> hashItens = new Dictionary<long, List<PedidoItem>>();
-
-        //    List<PedidoItem> itens = Mapear<PedidoItem>("select * from pedidoitem where pedido IN " + DbTransformarConjunto(pedidos));
-        //    foreach (PedidoItem i in itens)
-        //    {
-        //        List<PedidoItem> lista;
-        //        if (!hashItens.TryGetValue(i.Pedido, out lista))
-        //        {
-        //            lista = new List<PedidoItem>();
-        //            hashItens[i.Pedido] = lista;
-        //        }
-
-        //        lista.Add(i);
-        //    }
-
-        //    return hashItens;
-        //}
 
         public static List<PedidoItem> Obter(List<Pedido> pedidos)
         {
