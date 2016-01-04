@@ -149,7 +149,8 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 
             nomeFinal = nomeFinal.Replace("c/", " com ");
             nomeFinal = nomeFinal.Replace("brilhs.", " brilhantes ");
-            nomeFinal = nomeFinal.Replace("esm", " esmeraldas ");
+            nomeFinal = nomeFinal.Replace("esm ", " esmeraldas ");
+            nomeFinal = nomeFinal.Replace("esm. ", " esmeraldas ");
 
             string [] palavras = nomeFinal.Split(' ');
             foreach (string palavraAtual in palavras)
