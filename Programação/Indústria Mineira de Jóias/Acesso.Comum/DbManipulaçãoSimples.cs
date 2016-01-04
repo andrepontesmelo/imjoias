@@ -566,10 +566,13 @@ namespace Acesso.Comum
                 {
                     cmd.CommandText = comando;
 
-                    return Mapear<DbTipo>(cmd);
+                    List<DbTipo> resultado = Mapear<DbTipo>(cmd);
+
+                    Usuários.UsuárioAtual.GerenciadorConexões.AdicionarConexão(conexão);
+
+                    return resultado;
                 }
 
-                Usuários.UsuárioAtual.GerenciadorConexões.AdicionarConexão(conexão);
             }
         }
 
