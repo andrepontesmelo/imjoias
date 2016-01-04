@@ -144,7 +144,9 @@ namespace Apresentação.Atendimento.Clientes.Pedido
 
         private void AtualizarFornecedorApartirDaReferência(bool gravar)
         {
-            entidade.ReferênciaNumérica = txtMercadoria.ReferênciaNumérica;
+            entidade.ReferênciaNumérica = 
+                (txtMercadoria.ReferênciaNumérica.Length == 0 ? null : txtMercadoria.ReferênciaNumérica); 
+            
             MercadoriaFornecedor info = MercadoriaFornecedor.ObterFornecedor(entidade.ReferênciaNumérica);
 
             if (info != null)
