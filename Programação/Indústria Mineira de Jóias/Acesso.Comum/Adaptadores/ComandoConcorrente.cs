@@ -2,8 +2,6 @@
 #define RASTRO_SIMPLES
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Data;
 using System.Diagnostics;
 
@@ -51,7 +49,6 @@ namespace Acesso.Comum.Adaptadores
 #endif
                 Console.WriteLine();
 				Console.WriteLine("{0}", CommandText);
-                //Console.WriteLine("=> Conexão {0}", conexão.Debug_ID);
 
                 foreach (IDbDataParameter parâmetro in cmd.Parameters)
                     Console.WriteLine("=> Parâmetro {0} = {1}",
@@ -114,10 +111,6 @@ namespace Acesso.Comum.Adaptadores
 
         private static void NotificarTempo(TimeSpan tempo)
         {
-            //            double tempoMs = tempo.TotalMilliseconds;
-            //           media = (((media * qtdComandos) + tempoMs) / (++qtdComandos));
-
-            //Console.WriteLine("Tempo de execução: {0}ms (Media = {1}ms)\n", tempo.TotalMilliseconds.ToString("#"), media.ToString("#,0"));
             if (tempo.TotalMilliseconds > 500)
                 Console.Write(" {0} ms só de execução, ", tempo.TotalMilliseconds.ToString("#"));
         }
@@ -137,9 +130,6 @@ namespace Acesso.Comum.Adaptadores
             set
             {
                 cmd.CommandText = value;
-//#if DEBUG
-//                conexão.cmdTexto = cmd.CommandText;
-//#endif
             }
         }
 
@@ -186,9 +176,6 @@ namespace Acesso.Comum.Adaptadores
 
         public int ExecuteNonQuery()
         {
-//            Debug.Assert(conexão.Ocupado <= 1, "Conexão não ocupada");
-            //Debug.Assert(conexão.AguardarAté < DateTime.Now);
-
             conexão.Ocupado++;
             conexão.AguardarAté = DateTime.MinValue;
 
@@ -199,7 +186,6 @@ namespace Acesso.Comum.Adaptadores
                     Debug.Fail("Comando liberado com leitor aberto",
                         string.Format("O comando {0} foi liberado com o leitor aberto.", conexão.cmdLeitor));
 
-                //conexão.cmdTexto = CommandText;
                 conexão.cmdPilha = new StackTrace(3, true);
 #endif
 #if DEBUG && RASTRO
@@ -217,23 +203,14 @@ namespace Acesso.Comum.Adaptadores
             return cmd.ExecuteNonQuery();
 #endif
             }
-#if DEBUG
-            catch (Exception e)
-            {
-                Debug.Fail(cmd.CommandText + "\n\n" + e.Message);
-                throw e;
-            }
-#endif
             finally
             {
                 conexão.Ocupado--;
-//                Debug.Assert(conexão.Ocupado <= 1, "Conexão não ocupada");
             }
         }
 
         public IDataReader ExecuteReader(CommandBehavior behavior)
         {
-//            Debug.Assert(conexão.Ocupado <= 1, "Conexão ocupada");
             Debug.Assert(conexão.AguardarAté < DateTime.Now);
 
             conexão.Ocupado++;
@@ -246,7 +223,6 @@ namespace Acesso.Comum.Adaptadores
                     Debug.Fail("Comando liberado com leitor aberto",
                         string.Format("O comando {0} foi liberado com o leitor aberto.", conexão.cmdLeitor));
 
-                //conexão.cmdTexto = CommandText;
                 conexão.cmdPilha = new StackTrace(3, true);
 #endif
 #if DEBUG && RASTRO
@@ -265,23 +241,14 @@ namespace Acesso.Comum.Adaptadores
             return new LeitorConcorrente(conexão, cmd.ExecuteReader(behavior));
 #endif
             }
-#if DEBUG
-            catch (Exception e)
-            {
-                Debug.Fail(e.Message);
-                throw e;
-            }
-#endif
             finally
             {
                 conexão.Ocupado--;
-//                Debug.Assert(conexão.Ocupado <= 1, "Conexão ocupada");
             }
         }
 
         public IDataReader ExecuteReader()
         {
-//            Debug.Assert(conexão.Ocupado <= 1, "Conexão ocupada");
             Debug.Assert(conexão.AguardarAté < DateTime.Now);
 
             conexão.Ocupado++;
@@ -294,7 +261,6 @@ namespace Acesso.Comum.Adaptadores
                     Debug.Fail("Comando liberado com leitor aberto",
                         string.Format("O comando {0} foi liberado com o leitor aberto.", conexão.cmdLeitor));
 
-                //conexão.cmdTexto = CommandText;
                 conexão.cmdPilha = new StackTrace(3, true);
 #endif
 #if DEBUG && RASTRO
@@ -313,23 +279,14 @@ namespace Acesso.Comum.Adaptadores
             return new LeitorConcorrente(conexão, cmd.ExecuteReader());
 #endif
             }
-#if DEBUG
-            catch (Exception e)
-            {
-                Debug.Fail(e.Message + "\n" + cmd.CommandText);
-                throw e;
-            }
-#endif
             finally
             {
                 conexão.Ocupado--;
-//                Debug.Assert(conexão.Ocupado <= 1, "Conexão ocupada");
             }
         }
 
         public object ExecuteScalar()
         {
-//            Debug.Assert(conexão.Ocupado <= 1, "Conexão ocupada");
             Debug.Assert(conexão.AguardarAté < DateTime.Now);
 
             conexão.Ocupado++;
@@ -342,7 +299,6 @@ namespace Acesso.Comum.Adaptadores
                     Debug.Fail("Comando liberado com leitor aberto",
                         string.Format("O comando {0} foi liberado com o leitor aberto.", conexão.cmdLeitor));
 
-                //conexão.cmdTexto = CommandText;
                 conexão.cmdPilha = new StackTrace(3, true);
 #endif
                 if (cmd == null)
@@ -366,17 +322,9 @@ namespace Acesso.Comum.Adaptadores
             return  cmd.ExecuteScalar();
 #endif
             }
-#if DEBUG
-            catch (Exception e)
-            {
-                Debug.Fail(e.Message);
-                throw e;
-            }
-#endif
             finally
             {
                 conexão.Ocupado--;
-//                Debug.Assert(conexão.Ocupado <= 1, "Conexão ocupada");
             }
         }
 
@@ -417,24 +365,13 @@ namespace Acesso.Comum.Adaptadores
         public void Dispose()
         {
 #if DEBUG
-            //Debug.Assert(conexão.cmdTexto == CommandText, "Comando da conexão é diferente do comando sendo liberado.");
-
             Debug.Assert(conexão.cmdLeitor == null,
                 "Comando liberado com leitor aberto",
                 string.Format("O comando {0} foi liberado com o leitor aberto.", conexão.cmdLeitor));
 
-            //Debug.Assert(conexão.Ocupado == 1,
-            //    "Comando muito mais ocupado do que deveria!");
-
             Debug.Assert(conexão.AguardarAté < DateTime.Now);
-
-            //conexão.cmdAnterior = conexão.cmdTexto;
-            //conexão.cmdTexto = null;
-
-            //Console.WriteLine("\aLiberando conexão {0} ({1})", conexão.Debug_ID, conexão.Ocupado);
 #endif
             conexão.Ocupado--;
-            //Debug.Assert(conexão.Ocupado == 0, "Conexão ocupada"); 
             cmd.Dispose();
         }
     }
