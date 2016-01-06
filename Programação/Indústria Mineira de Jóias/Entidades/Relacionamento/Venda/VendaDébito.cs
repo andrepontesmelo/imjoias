@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Acesso.Comum;
-using Entidades.Pessoa;
+﻿using Acesso.Comum;
 using Entidades.Configuração;
+using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Text;
 
 namespace Entidades.Relacionamento.Venda
 {
@@ -94,11 +93,6 @@ namespace Entidades.Relacionamento.Venda
         /// </summary>
          public long? Pagamento { get { return pagamento; } set { pagamento = value; DefinirDesatualizado(); } }
 
-        ///// <summary>
-        ///// Determina se deve pagar comissão pelo débito.
-        ///// </summary>
-        //public bool Comissão { get { return comissão; } set { comissão = value; AtualizarComissão(); } }
-
         #endregion
 
         #region Manipulação de dados
@@ -142,32 +136,9 @@ namespace Entidades.Relacionamento.Venda
         /// </summary>
         private void AssegurarManipulação()
         {
-            /* O setor financeiro faz alterações em vendas acertadas.
-             * Não há problemas nisso. André, 15/12/07
-             *
-            if (venda.Acertado)
-                throw new NotSupportedException("Não é possível atualizar um item de uma venda acertada.");
-            */
-
             if (venda.Travado)
                 throw new NotSupportedException("Não é possível atualizar um item de uma venda travada.");
         }
-
-        ///// <summary>
-        ///// Atualiza a comissão no banco de dados.
-        ///// </summary>
-        //private void AtualizarComissão()
-        //{
-        //    IDbConnection conexão = Conexão;
-
-        //    lock (conexão)
-        //        using (IDbCommand cmd = conexão.CreateCommand())
-        //        {
-        //            cmd.CommandText = "UPDATE vendadebito SET comissao = " + DbTransformar(comissão)
-        //                + " WHERE codigo = " + DbTransformar(código);
-        //            cmd.ExecuteNonQuery();
-        //        }
-        //}
 
         #endregion
 
@@ -210,6 +181,88 @@ namespace Entidades.Relacionamento.Venda
             DefinirDesatualizado();
 
             return valorliquido;
+        }
+
+        public static void TransferirPagamentosParaDébitosEmTransação(List<KeyValuePair<Pagamentos.Pagamento, VendaDébito>> lstPagamentoDébitos)
+        {
+            if (lstPagamentoDébitos.Count == 0)
+                return;
+
+            IDbConnection conexão = Conexão;
+
+            lock (conexão)
+            {
+                using (IDbTransaction transação = conexão.BeginTransaction())
+                {
+                    try
+                    {
+                        foreach (KeyValuePair<Pagamentos.Pagamento, VendaDébito> parPagamentoDébito in lstPagamentoDébitos)
+                        {
+                            Pagamentos.Pagamento pagamento = parPagamentoDébito.Key;
+                            VendaDébito vendaDébito = parPagamentoDébito.Value;
+
+                            InsereTransacionado(conexão, transação, pagamento);
+                            InsereTransacionado(conexão, transação, pagamento, vendaDébito);
+                        }
+
+                        transação.Commit();
+
+                    }
+                    catch (Exception)
+                    {
+                        if (transação != null)
+                            transação.Rollback();
+                    }
+                }
+            }
+        }
+
+        private static void InsereTransacionado(IDbConnection conexão, IDbTransaction transação, Pagamentos.Pagamento pagamento)
+        {
+            using (IDbCommand cmd = conexão.CreateCommand())
+            {
+                cmd.Transaction = transação;
+
+                cmd.CommandText = " update pagamento set pendente = 0 where codigo = " +
+                    DbTransformar(pagamento.Código);
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        private static void InsereTransacionado(IDbConnection conexão, IDbTransaction transação, Pagamentos.Pagamento pagamento, VendaDébito vendaDébito)
+        {
+            using (IDbCommand cmd = conexão.CreateCommand())
+            {
+                cmd.Transaction = transação;
+
+                StringBuilder comandoStr = new StringBuilder();
+
+                comandoStr.Append(" INSERT INTO vendadebito(venda, descricao, valorliquido, valorbruto, data, diasdejuros, cobrarjuros, pagamento) VALUES (");
+                comandoStr.Append(DbTransformar(vendaDébito.Venda.Código));
+                comandoStr.Append(", ");
+                comandoStr.Append(DbTransformar(vendaDébito.Descrição, true));
+                comandoStr.Append(", ");
+                comandoStr.Append(DbTransformar(vendaDébito.ValorLíquido));
+                comandoStr.Append(", ");
+                comandoStr.Append(DbTransformar(vendaDébito.ValorBruto));
+                comandoStr.Append(", ");
+                comandoStr.Append(DbTransformar(vendaDébito.Data));
+                comandoStr.Append(", ");
+                comandoStr.Append(DbTransformar(vendaDébito.DiasDeJuros));
+                comandoStr.Append(", ");
+                comandoStr.Append(DbTransformar(vendaDébito.CobrarJuros));
+                comandoStr.Append(", ");
+                comandoStr.Append(DbTransformar(pagamento.Código));
+                comandoStr.Append(" ) ");
+
+                cmd.CommandText = comandoStr.ToString();
+
+                if (pagamento.Código != vendaDébito.Pagamento.Value)
+                    throw new InvalidProgramException();
+
+                cmd.ExecuteNonQuery();
+            }
         }
     }
 }

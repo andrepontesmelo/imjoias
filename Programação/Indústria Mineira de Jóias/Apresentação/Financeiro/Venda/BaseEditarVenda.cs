@@ -396,19 +396,25 @@ namespace Apresentação.Financeiro.Venda
 
         private void opçãoCobrançaAutomática_Click(object sender, EventArgs e)
         {
-            if (!ConferirTravamento())
-            {
-                Apresentação.Formulários.AguardeDB.Mostrar();
+            
 
-                Entidades.Pagamentos.Pagamento[] pagamentos =
-                    Entidades.Pagamentos.Pagamento.ObterPagamentos(Relacionamento.Pessoa, true);
+                if (!ConferirTravamento())
+                {
+                    Apresentação.Formulários.AguardeDB.Mostrar();
 
-                tabs.SelectTab(tabDébitos);
-                listaDébitos.AdicionarCadastrando(pagamentos);
-                Apresentação.Formulários.AguardeDB.Fechar();
-            }
-            else
-                opçãoCobrançaAutomática.Enabled = false;
+
+                    Entidades.Pagamentos.Pagamento[] pagamentos =
+                        Entidades.Pagamentos.Pagamento.ObterPagamentos(Relacionamento.Pessoa, true);
+
+                    tabs.SelectTab(tabDébitos);
+                    
+
+                    listaDébitos.AdicionarCadastrando(pagamentos);
+                    
+                    Apresentação.Formulários.AguardeDB.Fechar();
+                }
+                else
+                    opçãoCobrançaAutomática.Enabled = false;
         }
 
         private void opçãoGastarCréditosCliente_Click(object sender, EventArgs e)
