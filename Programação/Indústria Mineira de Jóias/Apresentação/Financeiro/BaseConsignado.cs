@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Runtime.Remoting.Lifetime;
-using System.Windows.Forms;
+﻿using Apresentação.Financeiro.Acerto;
 using Apresentação.Formulários;
-using Apresentação.Impressão;
 using Apresentação.Formulários.Impressão;
-using Entidades.Configuração;
-using Apresentação.Financeiro.Acerto;
+using Apresentação.Impressão;
 using Entidades.Acerto;
-using Entidades.Relacionamento;
+using Entidades.Configuração;
 using Entidades.Privilégio;
+using Entidades.Relacionamento;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Apresentação.Financeiro
 {
@@ -131,8 +127,6 @@ namespace Apresentação.Financeiro
             InitializeComponent();
 
             this.pessoa = cliente;
-            //this.título.Descrição = cliente.Nome;
-
         }
 
         void BaseConsignado_DoubleClick(object sender, EventArgs e)
@@ -493,33 +487,14 @@ namespace Apresentação.Financeiro
                 }
             }
 
-            //using (Apresentação.Formulários.Aguarde janelaAguarde = new Aguarde("Obtendo dados para impressão", listaDocumentos.Count))
-            //{
-            //    janelaAguarde.Abrir();
-
-            //    janela = new Impressão();
-            //    janela.Título = "Impressão";
-            //    janela.Descrição = "O(s) documento(s) não poderão ser modificados após a impressão";
-
-            //    foreach (Entidades.Relacionamento.Relacionamento r in listaDocumentos)
-            //    {
-            //        janelaAguarde.Passo(r.ToString());
-            //        InserirImpressão(r, janela);
-            //    }
-
-            //    janelaAguarde.Close();
-            //}
-
             UseWaitCursor = false;
-
-            //janela.Abrir(this);
         }
 
         /// <summary>
         /// Ocorre quando a trava de um relacionamento é alterada
         /// pela interface gráfica.
         /// </summary>
-        private void TravaAlterada(BaseEditarRelacionamento sender, Entidades.Relacionamento.RelacionamentoAcerto e)
+        private void TravaAlterada(BaseEditarRelacionamento sender, Entidades.Relacionamento.RelacionamentoAcerto e, bool vendaTravada)
         {
             ListaConsignado lista = ObterLista();
 

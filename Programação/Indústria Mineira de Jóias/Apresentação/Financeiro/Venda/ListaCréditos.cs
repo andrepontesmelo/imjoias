@@ -35,9 +35,9 @@ namespace Apresentação.Financeiro.Venda
 
         }
 
-        void baseEditarVenda_TravaAlterada(BaseEditarRelacionamento sender, Entidades.Relacionamento.Relacionamento e)
+        void baseEditarVenda_TravaAlterada(BaseEditarRelacionamento sender, Entidades.Relacionamento.Relacionamento e, bool entidadeTravada)
         {
-            AtualizarEnables();
+            AtualizarEnables(entidadeTravada);
         }
 
 
@@ -96,7 +96,7 @@ namespace Apresentação.Financeiro.Venda
             item.SubItems.Add(Crédito.DiasDeJuros.ToString());
             item.SubItems.Add(Crédito.ValorBruto.ToString("C", cultura));
             item.SubItems.Add(Crédito.ValorLíquido.ToString("C", cultura));
-            //item.SubItems.Add(Crédito.Comissão ? "Sim" : "Não");
+
             item.Tag = Crédito;
 
             lista.Items.Add(item);
@@ -104,12 +104,12 @@ namespace Apresentação.Financeiro.Venda
 
         private void lista_SelectedIndexChanged(object sender, EventArgs e)
         {
-            AtualizarEnables();
+            AtualizarEnables(venda.TravadoEmCache);
         }
 
-        private void AtualizarEnables()
+        private void AtualizarEnables(bool vendaTravada)
         {
-            if (venda.Travado)
+            if (vendaTravada)
             {
                 btnAlterar.Enabled = btnExcluir.Enabled = false;
                 btnAdicionar.Enabled = false;
@@ -125,7 +125,8 @@ namespace Apresentação.Financeiro.Venda
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            AtualizarEnables();
+            AtualizarEnables(venda.Travado);
+
             if (!btnExcluir.Enabled)
                 return;
 
@@ -183,7 +184,7 @@ namespace Apresentação.Financeiro.Venda
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            AtualizarEnables();
+            AtualizarEnables(venda.Travado);
 
             if (!btnAlterar.Enabled)
                 return;

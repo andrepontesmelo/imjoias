@@ -26,7 +26,6 @@ namespace Entidades.Relacionamento.Venda
         [DbAtributo(TipoAtributo.Ignorar)]
         protected double?       valortotal;
         
-        protected double        comissao;
         protected double        desconto;
         protected double        taxajuros = DadosGlobais.Instância.Juros;
         protected uint          diasSemJuros;
@@ -1827,6 +1826,13 @@ namespace Entidades.Relacionamento.Venda
         public string CódigoFormatado
         {
             get { return FormatarCódigo(Código); }
+        }
+
+        public void TransferirPagamentosParaDébitosEmTransação(List<KeyValuePair<Pagamento, VendaDébito>> lstPagamentoDébitos)
+        {
+            itensDébito = null;
+
+            VendaDébito.TransferirPagamentosParaDébitosEmTransação(lstPagamentoDébitos);
         }
     }
 }

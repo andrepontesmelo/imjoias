@@ -1,12 +1,9 @@
-﻿using System;
+﻿using Apresentação.Formulários;
+using Entidades.Relacionamento.Venda;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
-using Entidades.Relacionamento.Venda;
-using Apresentação.Formulários;
 
 namespace Apresentação.Financeiro.Venda
 {
@@ -34,9 +31,9 @@ namespace Apresentação.Financeiro.Venda
 
         }
 
-        void baseEditarVenda_TravaAlterada(BaseEditarRelacionamento sender, Entidades.Relacionamento.Relacionamento e)
+        void baseEditarVenda_TravaAlterada(BaseEditarRelacionamento sender, Entidades.Relacionamento.Relacionamento e, bool vendaTravada)
         {
-            AtualizarEnables();
+            AtualizarEnables(vendaTravada);
         }
         
 
@@ -52,11 +49,14 @@ namespace Apresentação.Financeiro.Venda
 
         private void Carregar()
         {
-            lista.Items.Clear();
+            if (bgCarregar.IsBusy)
+            {
+                lista.Items.Clear();
 
-            SinalizaçãoCarga.Sinalizar(lista, "Carregando dados...", "Aguarde enquanto os débitos são carregados.");
+                SinalizaçãoCarga.Sinalizar(lista, "Carregando dados...", "Aguarde enquanto os débitos são carregados.");
 
-            bgCarregar.RunWorkerAsync();
+                bgCarregar.RunWorkerAsync();
+            }
         }
 
         void ItensDébito_AoRemover(Acesso.Comum.DbComposição<VendaDébito> composição, VendaDébito entidade)
@@ -95,7 +95,7 @@ namespace Apresentação.Financeiro.Venda
             item.SubItems.Add(débito.DiasDeJuros.ToString());
             item.SubItems.Add(débito.ValorBruto.ToString("C", cultura));
             item.SubItems.Add(débito.ValorLíquido.ToString("C", cultura));
-            //item.SubItems.Add(débito.Comissão ? "Sim" : "Não");
+
             item.Tag = débito;
 
             lista.Items.Add(item);
@@ -103,12 +103,12 @@ namespace Apresentação.Financeiro.Venda
 
         private void lista_SelectedIndexChanged(object sender, EventArgs e)
         {
-            AtualizarEnables();
+            AtualizarEnables(venda.Travado);
         }
 
-        private void AtualizarEnables()
+        private void AtualizarEnables(bool vendaTravada)
         {
-            if (venda.Travado)
+            if (vendaTravada)
             {
                 btnAlterar.Enabled = btnExcluir.Enabled = false;
                 btnAdicionar.Enabled = false;
@@ -124,10 +124,15 @@ namespace Apresentação.Financeiro.Venda
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            AtualizarEnables();
+            Excluir();
+        }
+
+        private void Excluir()
+        {
+            AtualizarEnables(venda.Travado);
+
             if (!btnExcluir.Enabled)
                 return;
-
 
             if (!venda.Travado)
             {
@@ -142,15 +147,20 @@ namespace Apresentação.Financeiro.Venda
                     MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
                     return;
 
+                List<ListViewItem> itens = new List<ListViewItem>();
+
                 foreach (ListViewItem i in lista.SelectedItems)
                 {
-                    VendaDébito débito = (VendaDébito) i.Tag;
+                    VendaDébito débito = (VendaDébito)i.Tag;
                     if (débito.Pagamento.HasValue)
                         Entidades.Pagamentos.PagamentoGenérico.MarcarPendência(débito.Pagamento.Value, true);
 
                     venda.ItensDébito.Remover(débito);
+                    itens.Add(i);
                 }
 
+                foreach (ListViewItem i in itens)
+                    lista.Items.Remove(i);
             }
             else
                 MessageBox.Show(
@@ -186,7 +196,7 @@ namespace Apresentação.Financeiro.Venda
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            AtualizarEnables();
+            AtualizarEnables(venda.Travado);
 
             if (!btnAlterar.Enabled)
                 return;
@@ -252,9 +262,12 @@ namespace Apresentação.Financeiro.Venda
 
         internal void AdicionarCadastrando(Entidades.Pagamentos.Pagamento[] pagamentos)
         {
+            List<KeyValuePair<Entidades.Pagamentos.Pagamento, VendaDébito>> lstPagamentoDébitos = new List<KeyValuePair<Entidades.Pagamentos.Pagamento, VendaDébito>>();
+
             foreach (Entidades.Pagamentos.Pagamento p in pagamentos)
             {
                 VendaDébito débito = new VendaDébito(venda);
+
                 débito.ValorBruto = p.Valor;
                 débito.Descrição = p.DescriçãoCompleta;
                 débito.Data = p.ÚltimoVencimento;
@@ -264,10 +277,13 @@ namespace Apresentação.Financeiro.Venda
                 débito.Pagamento = p.Código;
                 p.Devolvido = false;
                 p.Pendente = false;
-                venda.ItensDébito.Adicionar(débito);
-                venda.ItensDébito.Atualizar();
-                p.Atualizar();
+
+                lstPagamentoDébitos.Add(new KeyValuePair<Entidades.Pagamentos.Pagamento, VendaDébito>(p, débito));
             }
+
+            venda.TransferirPagamentosParaDébitosEmTransação(lstPagamentoDébitos);
+
+            Carregar();
         }
 
         internal void DataDaVendaFoiAtualizada(DateTime data)
@@ -285,6 +301,21 @@ namespace Apresentação.Financeiro.Venda
         private void lista_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             ordenador.OnClick(lista, e);
+        }
+
+        private void lista_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+                Excluir();
+
+            if (e.Modifiers == Keys.Control && e.KeyCode == Keys.A)
+                SelecionarTudo();
+        }
+
+        private void SelecionarTudo()
+        {
+            foreach (ListViewItem item in lista.Items)
+                item.Selected = true;
         }
     }
 }

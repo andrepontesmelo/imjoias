@@ -94,6 +94,7 @@
             this.lista.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lista_ColumnClick);
             this.lista.SelectedIndexChanged += new System.EventHandler(this.lista_SelectedIndexChanged);
             this.lista.DoubleClick += new System.EventHandler(this.lista_DoubleClick);
+            this.lista.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lista_KeyDown);
             // 
             // colData
             // 

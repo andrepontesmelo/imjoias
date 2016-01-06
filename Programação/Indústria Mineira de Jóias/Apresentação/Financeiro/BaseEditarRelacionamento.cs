@@ -1,20 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
-using System.Windows.Forms;
-using System.Runtime.Remoting.Lifetime;
-using Apresentação.Mercadoria.Bandeja;
-using Entidades;
-using Entidades.Relacionamento;
+﻿using Acesso.Comum.Exceções;
+using Apresentação.Financeiro.Acerto;
 using Apresentação.Formulários;
 using Apresentação.Formulários.Impressão;
 using Apresentação.Impressão;
-using Apresentação.Financeiro.Acerto;
+using Entidades.Relacionamento;
 using Negócio;
-using Acesso.Comum.Exceções;
+using System;
+using System.Windows.Forms;
 
 namespace Apresentação.Financeiro
 {
@@ -35,7 +27,7 @@ namespace Apresentação.Financeiro
         /// <summary>
         /// Ocorre quando a trava é alterada.
         /// </summary>
-        public delegate void TravaAlteradaHandler(BaseEditarRelacionamento sender, RelacionamentoAcerto e);
+        public delegate void TravaAlteradaHandler(BaseEditarRelacionamento sender, RelacionamentoAcerto e, bool entidadeTravada);
 
         public event TravaAlteradaHandler TravaAlterada;
 
@@ -109,7 +101,7 @@ namespace Apresentação.Financeiro
             digitação.AtualizarTravamento(entidadeTravada);
 
             if (TravaAlterada != null)
-                TravaAlterada(this, entidade as RelacionamentoAcerto);
+                TravaAlterada(this, entidade as RelacionamentoAcerto, entidadeTravada);
         }
 
         /// <summary>
@@ -259,13 +251,6 @@ namespace Apresentação.Financeiro
             bool entidadeTravada = relacionamentoAcerto.Travado;
 
             AtualizarTravamento(entidadeTravada);
-
-            //if (entidadeTravada && mostrarMensagemErro)
-            //{
-            //    Beepador.Erro();
-            //    MessageBox.Show(this, "O documento não pode ser alterado porque encontra-se travado. \nContacte o supervisor para seu destravamento.",
-            //        "Documento travado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            //}
 
             return entidadeTravada;
         }
