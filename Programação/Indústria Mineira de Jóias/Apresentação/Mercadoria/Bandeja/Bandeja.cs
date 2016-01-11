@@ -427,6 +427,11 @@ namespace Apresentação.Mercadoria.Bandeja
         {
             base.OnLoad(e);
 
+            bool designMode = (LicenseManager.UsageMode == LicenseUsageMode.Designtime);
+
+            if (designMode)
+                return;
+
             if (PermitirSeleçãoTabela && Tabelas == null)
                 Tabelas = Tabela.ObterTabelas(Funcionário.FuncionárioAtual.Setor);
         }
