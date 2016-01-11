@@ -23,13 +23,20 @@ namespace Entidades.Balanço
         public double QtdVenda
         {
             get { return qtdVenda; }
-            set { qtdVenda = value; }
+            set { 
+                qtdVenda = value;
+                AtualizarQuantidadeAcerto();
+            }
         }
 
         public double QtdRetorno
         {
             get { return qtdRetorno; }
-            set { qtdRetorno = value; }
+            set
+            {
+                qtdRetorno = value;
+                AtualizarQuantidadeAcerto();
+            }
         }
 
         public virtual double QtdAcerto
@@ -40,7 +47,11 @@ namespace Entidades.Balanço
         public double QtdSedex
         {
             get { return qtdSedex; }
-            set { qtdSedex = value; }
+            set 
+            { 
+                qtdSedex = value;
+                AtualizarQuantidadeAcerto();
+            }
         }
 
         private double peso;
@@ -59,7 +70,10 @@ namespace Entidades.Balanço
         public double QtdSaída
         {
             get { return qtdSaída; }
-            set { qtdSaída = value; }
+            set { 
+                qtdSaída = value;
+                AtualizarQuantidadeAcerto();
+            }
         }
 
         public SaquinhoBalanço(Mercadoria.Mercadoria m, double qtd, double peso, double índice)
@@ -68,10 +82,13 @@ namespace Entidades.Balanço
             this.peso = peso;
             this.índice = índice;
 
-            // Quantidade não tem o menor sentido. Apenas para ser adicionável na bandeja:
-            this.Quantidade = 1;
+            this.Quantidade = qtd;
         }
 
+        private void AtualizarQuantidadeAcerto()
+        {
+            this.Quantidade = QtdAcerto;
+        }
 
         public override void PreencherDataRow(System.Data.DataRow linha)
         {
