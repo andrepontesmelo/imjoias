@@ -711,6 +711,9 @@ namespace Entidades.Pessoa
 
                     try
                     {
+                        if (!chaveÉNúmero)
+                            comando.Append("select * from (");
+
                         comando.Append("SELECT p.codigo as cod, p.nome, p.setor, p.email, p.observacoes, p.ultimaVisita, p.dataRegistro, p.dataAlteracao, p.classificacoes, p.maiorVenda, p.credito, p.fornecedor, p.regiao, pf.*,pj.codigo as c, pj.cnpj, pj.fantasia, pj.inscEstadual, pj.inscMunicipal FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE  ");
 
                         // Inclui busca por código da pessoa
@@ -721,6 +724,13 @@ namespace Entidades.Pessoa
                         }
                         else
                         {
+
+                            // gomes%
+                            comando.Append(" nome LIKE '");
+                            comando.Append(chaveBusca.Substring(0, chaveBusca.Length).Replace('%', ' '));
+                            comando.Append("%' ORDER BY nome ");
+                            comando.Append(") aa UNION select * FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE ");
+
                             comando.Append(" match(nome) against ('" + chaveBusca + "') ");
                         }
 
