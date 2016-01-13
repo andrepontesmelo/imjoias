@@ -49,7 +49,7 @@ namespace Apresentação.Financeiro.Venda
 
         private void Carregar()
         {
-            if (bgCarregar.IsBusy)
+            if (!bgCarregar.IsBusy)
             {
                 lista.Items.Clear();
 
