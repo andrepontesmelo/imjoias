@@ -113,17 +113,14 @@ namespace Apresentação.Financeiro
             if (relacionamento == null)
                 throw new NullReferenceException("Relacionamento é nulo no Abrir() do RelacionamentoBaseInferior");
 
-            // Registra o objeto de contexto
             this.entidade = relacionamento;
 
             txtObservação.Text = relacionamento.Observações == null ? "" : relacionamento.Observações;
-            //AguardeDB.Mostrar();
 
             // Abre as bandejas
             CamposLivres = true;
             digitação.Abrir(relacionamento.Itens, relacionamento, this);
             CamposLivres = false;
-            //AguardeDB.Fechar();
 
             RelacionamentoAcerto relacionamentoAcerto = relacionamento as RelacionamentoAcerto;
 

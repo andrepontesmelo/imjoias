@@ -188,9 +188,7 @@ namespace Apresentação.Financeiro.Venda
             this.dadosVenda.Size = new System.Drawing.Size(582, 548);
             this.dadosVenda.TabIndex = 0;
             this.dadosVenda.CotaçãoAlterada += new Apresentação.Financeiro.Venda.DadosVenda.CotaçãoAlteradaDelegate(this.dadosVenda_CotaçãoAlterada);
-            this.dadosVenda.AoAlterarVendedor += new System.EventHandler(this.dadosVenda_AoAlterarVendedor);
             this.dadosVenda.AoAlterarCliente += new System.EventHandler(this.dadosVenda_AoAlterarCliente);
-            this.dadosVenda.AoAlterarTabela += new System.EventHandler(this.dadosVenda_AoAlterarTabela);
             this.dadosVenda.AoAlterarAcerto += new System.EventHandler(this.dadosVenda_AoAlterarAcerto);
             this.dadosVenda.AoAlterarDataVenda += new System.EventHandler(this.dadosVenda_AoAlterarDataVenda);
             this.dadosVenda.AoAlterarDiasSemJurosOuTaxaJuros += new System.EventHandler(this.dadosVenda_AoAlterarDiasSemJuros);

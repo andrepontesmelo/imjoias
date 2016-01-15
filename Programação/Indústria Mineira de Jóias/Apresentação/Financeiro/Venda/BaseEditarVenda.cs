@@ -1,17 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
+using Apresentação.Formulários;
 using Apresentação.Impressão.Relatórios.Venda;
+using Entidades.Acerto;
 using Entidades.Pessoa;
 using Entidades.Privilégio;
-using Entidades.Configuração;
-using Entidades.Acerto;
-using System.Collections;
-using Apresentação.Formulários;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Apresentação.Financeiro.Venda
 {
@@ -130,9 +124,11 @@ namespace Apresentação.Financeiro.Venda
                 if (!dadosVenda.Enabled)
                     tabs.TabIndex = 1;
 
+                bool vendaTravada = v.Travado;
+
                 if (v.Vendedor != null && !Representante.ÉRepresentante(v.Vendedor) && !PermissãoFuncionário.ValidarPermissão(Permissão.VendasEditar))
                 {
-                    if (v.Travado)
+                    if (vendaTravada)
                     {
                         dadosVenda.Enabled = false;
                         listaPagamentos.Enabled = false;
@@ -145,10 +141,7 @@ namespace Apresentação.Financeiro.Venda
                     }
                 }
 
-                opçãoCobrançaAutomática.Enabled =
-                opçãoGastarCréditosCliente.Enabled = 
-                    (v.Cliente != null && (!v.Travado));
-                
+                AtualizarEnabledPuxarDébitosCréditos(vendaTravada);
             }
             finally
             {
@@ -192,6 +185,8 @@ namespace Apresentação.Financeiro.Venda
         {
             if (entidade == Relacionamento)
                 MostrarTítulo();
+
+            AtualizarTravamento(Relacionamento.Travado);   
 
             listaPagamentos.Carregar();
         }
@@ -253,10 +248,15 @@ namespace Apresentação.Financeiro.Venda
             digitaçãoDevolução.AtualizarTravamento(entidadeTravada);
             dadosVenda.AtualizarTravamento(entidadeTravada);
             //listaPagamentos.AtualizarTravamento(entidadeTravada);
-            
+
+            AtualizarEnabledPuxarDébitosCréditos(entidadeTravada);
+        }
+
+        private void AtualizarEnabledPuxarDébitosCréditos(bool entidadeTravada)
+        {
             opçãoCobrançaAutomática.Enabled =
-                opçãoGastarCréditosCliente.Enabled = 
-            (Relacionamento.Pessoa != null && (!entidadeTravada));
+                opçãoGastarCréditosCliente.Enabled =
+            (Relacionamento.Pessoa != null && (!entidadeTravada) && Relacionamento.Cadastrado);
         }
 
         /// <summary>
@@ -337,17 +337,22 @@ namespace Apresentação.Financeiro.Venda
 
         }
 
-        private void dadosVenda_AoAlterarVendedor(object sender, EventArgs e)
-        {
-        }
-
         void dadosVenda_AoAlterarCliente(object sender, System.EventArgs e)
         {
             listaPagamentos.Venda = dadosVenda.Venda;
 
-            opçãoCobrançaAutomática.Enabled =
-                opçãoGastarCréditosCliente.Enabled = 
-            (Relacionamento.Pessoa != null && (!dadosVenda.Venda.Travado));
+            AtualizarEnabledPuxarDébitosCréditos(Relacionamento.TravadoEmCache);
+
+            CadastrarVendaSeNecessário();
+        }
+
+        private void CadastrarVendaSeNecessário()
+        {
+            if (!dadosVenda.Venda.Cadastrado
+                && dadosVenda.Venda.Cliente != null
+                && dadosVenda.Venda.Vendedor != null)
+
+                dadosVenda.Venda.Cadastrar();
         }
 
         public void MostrarItens()
@@ -378,11 +383,6 @@ namespace Apresentação.Financeiro.Venda
             verificadorMercadoria.Enabled = Relacionamento.AcertoConsignado != null;            
         }
 
-
-        private void dadosVenda_AoAlterarTabela(object sender, EventArgs e)
-        {
-        }
-
         void dadosVenda_AoAlterarDataVenda(object sender, System.EventArgs e)
         {
             listaCréditos.DataDaVendaFoiAtualizada(dadosVenda.Venda.Data);
@@ -396,25 +396,27 @@ namespace Apresentação.Financeiro.Venda
 
         private void opçãoCobrançaAutomática_Click(object sender, EventArgs e)
         {
-            
-
-                if (!ConferirTravamento())
-                {
-                    Apresentação.Formulários.AguardeDB.Mostrar();
+            if (!ConferirTravamento())
+            {
+                Apresentação.Formulários.AguardeDB.Mostrar();
 
 
-                    Entidades.Pagamentos.Pagamento[] pagamentos =
-                        Entidades.Pagamentos.Pagamento.ObterPagamentos(Relacionamento.Pessoa, true);
+                Entidades.Pagamentos.Pagamento[] pagamentos =
+                    Entidades.Pagamentos.Pagamento.ObterPagamentos(Relacionamento.Pessoa, true);
 
-                    tabs.SelectTab(tabDébitos);
-                    
+                tabs.SelectTab(tabDébitos);
 
-                    listaDébitos.AdicionarCadastrando(pagamentos);
-                    
-                    Apresentação.Formulários.AguardeDB.Fechar();
-                }
-                else
-                    opçãoCobrançaAutomática.Enabled = false;
+
+                listaDébitos.AdicionarCadastrando(pagamentos);
+
+                Apresentação.Formulários.AguardeDB.Fechar();
+            }
+            else
+            {
+                opçãoCobrançaAutomática.Enabled =  
+                    opçãoGastarCréditosCliente.Enabled = false;
+
+            }
         }
 
         private void opçãoGastarCréditosCliente_Click(object sender, EventArgs e)
