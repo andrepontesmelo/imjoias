@@ -1722,17 +1722,6 @@ namespace Entidades.Pessoa
         {
             if (Entidades.Pessoa.Funcionário.ÉFuncionário(pessoa))
             {
-                Funcionário f;
-
-                if (pessoa is Funcionário)
-                    f = (Funcionário)pessoa;
-                else
-                    f = Funcionário.ObterPessoa(pessoa.Código);
-
-                if (f.DataSaída.HasValue)
-                    return true;
-
-                // É funcionário
                 return false;
             }
             else
