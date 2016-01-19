@@ -28,8 +28,11 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             
             CadastrarFornecedores(conexão, fornecedoresParaCadastro);
             fornecedores = ObterNovosFornecedores(conexão);
-            
+
             Dictionary<string, bool> vinculos = ObtemNovoVinculosAtuais(conexão);
+            ApagaVínculosCoexistentes(conexão, referências, fornecedores, vinculos, dataSetVelho);
+
+            vinculos = ObtemNovoVinculosAtuais(conexão);
             AdicionarNovosVínculos(conexão, referências, fornecedores, vinculos, dataSetVelho);
 
             SobrescreveInicio(conexão, dataSetVelho, referências, fornecedores);
@@ -83,6 +86,8 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             using (IDbCommand cmd = cn.CreateCommand())
             {
                 cmd.CommandText = sql.ToString();
+                cmd.CommandTimeout = (int) TimeSpan.FromMinutes(10).TotalSeconds;
+
                 cmd.ExecuteNonQuery();
             }
 
@@ -187,6 +192,49 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 
             return hashFornecedoresParaCadastrar;
         }
+
+
+        private void ApagaVínculosCoexistentes(IDbConnection cn,
+            Dictionary<string, bool> hashExisteReferência,
+            Dictionary<string, int> hashFornecedoresCadastrados,
+            Dictionary<string, bool> vinculosAtuais, DataSet dataSetVelho)
+        {
+            IDbCommand cmd = null;
+            StringBuilder sqlExclusão = new StringBuilder("DELETE FROM vinculomercadoriafornecedor where mercadoria in (");
+            bool primeiro = true;
+
+            DataTable tabelaVelha = ObterTabelaVelha(dataSetVelho);
+
+            foreach (DataRow mercadoria in tabelaVelha.Rows)
+            {
+                string referência = mercadoria[COLUNA_GESANO_REFERÊNCIA_MERCADORIA].ToString().Trim();
+
+                if (hashExisteReferência.ContainsKey(referência)
+                    && vinculosAtuais.ContainsKey(referência)
+                    )
+                {
+                    if (!primeiro)
+                        sqlExclusão.Append(",");
+
+                    primeiro = false;
+
+                    sqlExclusão.Append("'");
+                    sqlExclusão.Append(referência);
+                    sqlExclusão.Append("'");
+                }
+            }
+
+            sqlExclusão.Append(")");
+
+            if (!primeiro)
+            {
+                // Existe pelo menos um para inserir.
+                cmd = cn.CreateCommand();
+                cmd.CommandText = sqlExclusão.ToString();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
 
         private void AdicionarNovosVínculos(IDbConnection cn, 
             Dictionary<string, bool> hashExisteReferência,
