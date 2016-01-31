@@ -15,16 +15,8 @@ namespace Acesso.MySQL
         private static string últimaStrConexão; 
 
         private const string bdPadrão = "imjoias";
-
-#if !DEBUG
-        ////// Servidor Firma
         private const string hostPadrão = "192.168.1.25";
         private const int portPadrão = 46033;
-#else
-        // Banco de desenvolvimento
-        private const string hostPadrão = "192.168.122.1";
-        private const int portPadrão = 3306;
-#endif
 
         /// <summary>
 		/// Host padrão, que pode ser substituído pelo registro "host"

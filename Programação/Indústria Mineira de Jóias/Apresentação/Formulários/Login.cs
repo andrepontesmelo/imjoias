@@ -184,14 +184,6 @@ namespace Apresentação.Formulários
         {
             bool conectado = false;
 
-#if DEBUG
-
-            Acesso.Comum.Usuários.UsuárioAtual =
-            usuários.EfetuarLogin("andrep", "***REMOVED***");
-            conectado = true;
-            return true;
-#endif
-
             // Constrói janela de login
             using (Login loginDlg = new Login())
             {
