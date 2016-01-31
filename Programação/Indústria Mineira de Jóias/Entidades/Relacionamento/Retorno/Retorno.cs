@@ -71,7 +71,7 @@ namespace Entidades.Relacionamento.Retorno
 			this.travado = false;
 
 			this.data = data;
-			this.digitadopor = digitadopor;
+			base.digitadopor = digitadopor;
 			this.pessoa = pessoa;
 		}
 

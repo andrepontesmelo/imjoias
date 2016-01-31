@@ -233,7 +233,7 @@ namespace Acesso.Comum
 		{
 			get
 			{
-				string bla = this.ToString();
+				string bla = ToString();
 
 				return usuários[chave];
 			}

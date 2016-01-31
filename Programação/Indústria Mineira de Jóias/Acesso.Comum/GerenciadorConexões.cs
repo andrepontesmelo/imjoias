@@ -68,11 +68,9 @@ namespace Acesso.Comum
 
         public event AtualizarContextoCallback AtualizarContexto;
 
-#if DEBUG
         public delegate void ConexãoPresaCallback(string comando, TimeSpan tempoPassado, System.Diagnostics.StackTrace pilha);
         public event ConexãoPresaCallback ConexãoPresa;
         private DateTime debugÚltimaSinalização = DateTime.Now;
-#endif
 
 
         /// <summary>

@@ -95,7 +95,7 @@ namespace Apresentação.Formulários
                     bool cancelouLogin = !Login.EfetuarLogin(usuários, splash);
 
                     if (cancelouLogin)
-                        throw new LoginNãoEfetuado();
+                        //throw new LoginNãoEfetuado();
 
                     if (Acesso.Comum.Usuários.UsuárioAtual == null)
                         throw new LoginOuSenhaIncorretos();

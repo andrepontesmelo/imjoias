@@ -306,7 +306,7 @@ namespace Apresentação.Financeiro
                 try
                 {
                     Relacionamento.Cadastrar();
-                } catch (OperaçãoCancelada err)
+                } catch (OperaçãoCancelada)
                 {
                     MessageBox.Show(this,
                         "Venda ainda não foi salva.",
