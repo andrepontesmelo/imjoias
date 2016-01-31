@@ -29,7 +29,7 @@
     <ManifestCertificateThumbprint>6A418318E58EED9B0E1E0A9649B5BCE177F80F72</ManifestCertificateThumbprint>
     <ManifestKeyFile>Programa.Recepção_TemporaryKey.pfx</ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <OldToolsVersion>3.5</OldToolsVersion>
     <TargetZone>LocalIntranet</TargetZone>
