@@ -94,6 +94,12 @@
     <CodeAnalysisRuleDirectories>;c:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>chave.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -1184,7 +1190,6 @@
     <Compile Include="Impressão\Etiquetas\Sedex\ControleImpressãoSedex.cs" />
     <Compile Include="Impressão\Etiquetas\Sedex\DataSetEtiquetaSedex.cs">
       <DependentUpon>DataSetEtiquetaSedex.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Etiquetas\Sedex\DataSetEtiquetaSedex.Designer.cs">
       <DependentUpon>DataSetEtiquetaSedex.xsd</DependentUpon>
@@ -1194,8 +1199,8 @@
     <Compile Include="Impressão\Etiquetas\Sedex\EtiquetaSedexCrystal.cs">
       <DependentUpon>EtiquetaSedexCrystal.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\JanelaOpçõesImpressão.cs">
       <SubType>Form</SubType>
@@ -1222,7 +1227,6 @@
     <Compile Include="Impressão\Relatórios\Acerto\ControleImpressãoAcerto.cs" />
     <Compile Include="Impressão\Relatórios\Acerto\DataSetAcerto.cs">
       <DependentUpon>DataSetAcerto.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Relatórios\Acerto\DataSetAcerto.Designer.cs">
       <DependentUpon>DataSetAcerto.xsd</DependentUpon>
@@ -1232,8 +1236,8 @@
     <Compile Include="Impressão\Relatórios\Acerto\Relatório.cs">
       <DependentUpon>Relatório.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Relatórios\Comissao\ControladorImpressãoComissãoSetor.cs" />
     <Compile Include="Impressão\Relatórios\Comissao\ControladorImpressãoComissãoVenda.cs" />
@@ -1243,7 +1247,6 @@
     <Compile Include="Impressão\Relatórios\Comissao\ControladorImpressãoResumo.cs" />
     <Compile Include="Impressão\Relatórios\Comissao\DataSetComissaoVenda.cs">
       <DependentUpon>DataSetComissaoVenda.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Relatórios\Comissao\DataSetComissaoVenda.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1257,7 +1260,6 @@
     </Compile>
     <Compile Include="Impressão\Relatórios\Comissao\DataSetRegraPessoa.cs">
       <DependentUpon>DataSetRegraPessoa.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Relatórios\Comissao\DataSetRegraPessoa.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1276,7 +1278,6 @@
     </Compile>
     <Compile Include="Impressão\Relatórios\Comissao\DataSetVendaItem.cs">
       <DependentUpon>DataSetVendaItem.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Relatórios\Comissao\DataSetVendaItem.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1322,7 +1323,6 @@
     <Compile Include="Impressão\Relatórios\ControleImpressãoRelacionamento.cs" />
     <Compile Include="Impressão\Relatórios\DataSetBalanço.cs">
       <DependentUpon>DataSetBalanço.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Relatórios\DataSetBalanço.Designer.cs">
       <DependentUpon>DataSetBalanço.xsd</DependentUpon>
@@ -1342,7 +1342,6 @@
     <Compile Include="Impressão\Relatórios\Estoque\Entrada\ControleImpressãoEntrada.cs" />
     <Compile Include="Impressão\Relatórios\Estoque\Entrada\DataSetEntrada.cs">
       <DependentUpon>DataSetEntrada.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Relatórios\Estoque\Entrada\DataSetEntrada.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1370,8 +1369,8 @@
     <Compile Include="Impressão\Relatórios\Estoque\Referência\RelatórioReferência.cs">
       <DependentUpon>RelatórioReferência.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Relatórios\Estoque\Fornecedor\ControleImpressãoFornecedor.cs" />
     <Compile Include="Impressão\Relatórios\Estoque\Resumo\ControleImpressãoResumo.cs" />
@@ -1391,7 +1390,6 @@
     <Compile Include="Impressão\Relatórios\Mercadoria\DadosRelatórioMercadoria.cs" />
     <Compile Include="Impressão\Relatórios\Mercadoria\DataSetMercadoria.cs">
       <DependentUpon>DataSetMercadoria.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Relatórios\Mercadoria\DataSetMercadoria.Designer.cs">
       <DependentUpon>DataSetMercadoria.xsd</DependentUpon>
@@ -1401,13 +1399,12 @@
     <Compile Include="Impressão\Relatórios\Mercadoria\Relatório.cs">
       <DependentUpon>Relatório.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Relatórios\NotaPromissória\ControleImpressão.cs" />
     <Compile Include="Impressão\Relatórios\NotaPromissória\DataSetNotaPromissória.cs">
       <DependentUpon>DataSetNotaPromissória.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Relatórios\NotaPromissória\DataSetNotaPromissória.Designer.cs">
       <DependentUpon>DataSetNotaPromissória.xsd</DependentUpon>
@@ -1417,13 +1414,12 @@
     <Compile Include="Impressão\Relatórios\NotaPromissória\Relatório.cs">
       <DependentUpon>Relatório.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Relatórios\PagamentosCliente\ControleImpressãoPagamentosCliente.cs" />
     <Compile Include="Impressão\Relatórios\PagamentosCliente\DataSetPagamentosCliente.cs">
       <DependentUpon>DataSetPagamentosCliente.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Relatórios\PagamentosCliente\DataSetPagamentosCliente.Designer.cs">
       <DependentUpon>DataSetPagamentosCliente.xsd</DependentUpon>
@@ -1434,8 +1430,8 @@
     <Compile Include="Impressão\Relatórios\PagamentosCliente\PagamentosCliente.cs">
       <DependentUpon>PagamentosCliente.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Clientes\Pedido\BaseReferênciasEmFalta.cs">
       <SubType>UserControl</SubType>
@@ -1446,7 +1442,6 @@
     <Compile Include="Impressão\Relatórios\Pedido\ControleImpressãoPedido.cs" />
     <Compile Include="Impressão\Relatórios\Pedido\DataSetPedido.cs">
       <DependentUpon>DataSetPedido.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Relatórios\Pedido\DataSetPedido.Designer.cs">
       <DependentUpon>DataSetPedido.xsd</DependentUpon>
@@ -1456,7 +1451,6 @@
     <Compile Include="Impressão\Relatórios\Pedido\MercadoriaEmFaltaCliente\ControleImpressão.cs" />
     <Compile Include="Impressão\Relatórios\Pedido\MercadoriaEmFaltaCliente\DataSetMercadoriaEmFaltaCliente.cs">
       <DependentUpon>DataSetMercadoriaEmFaltaCliente.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Relatórios\Pedido\MercadoriaEmFaltaCliente\DataSetMercadoriaEmFaltaCliente.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1484,7 +1478,6 @@
     <Compile Include="Impressão\Relatórios\Pedido\PedidosParaFornecedores\ControleImpressãoPedidosParaFornecedores.cs" />
     <Compile Include="Impressão\Relatórios\Pedido\PedidosParaFornecedores\DataSetPedidosParaFornecedores.cs">
       <DependentUpon>DataSetPedidosParaFornecedores.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Relatórios\Pedido\PedidosParaFornecedores\DataSetPedidosParaFornecedores.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1506,7 +1499,6 @@
     <Compile Include="Impressão\Relatórios\Pedido\Recibo\ControleImpressão.cs" />
     <Compile Include="Impressão\Relatórios\Pedido\Recibo\DataSetRecibo.cs">
       <DependentUpon>DataSetRecibo.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Relatórios\Pedido\Recibo\DataSetRecibo.Designer.cs">
       <DependentUpon>DataSetRecibo.xsd</DependentUpon>
@@ -1528,8 +1520,8 @@
     <Compile Include="Impressão\Relatórios\Pedido\Relatório.cs">
       <DependentUpon>Relatório.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Relatórios\Pessoa\ControleImpressãoPessoa.cs" />
     <Compile Include="Impressão\Relatórios\Pessoa\DadosRelatórioPessoa.cs" />
@@ -1541,26 +1533,25 @@
     <Compile Include="Impressão\Relatórios\Pessoa\RelatórioPessoa.cs">
       <DependentUpon>RelatórioPessoa.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Relatórios\RelatórioBalanço.cs">
       <DependentUpon>RelatórioBalanço.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Relatórios\RelatórioEtiqueta.cs">
       <DependentUpon>RelatórioEtiqueta.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Relatórios\RelatórioImpressão.cs" />
     <Compile Include="Impressão\Relatórios\Retorno\ControleImpressãoRetorno.cs" />
     <Compile Include="Impressão\Relatórios\Retorno\DataSetRetorno.cs">
       <DependentUpon>DataSetRetorno.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Relatórios\Retorno\DataSetRetorno.Designer.cs">
       <DependentUpon>DataSetRetorno.xsd</DependentUpon>
@@ -1570,14 +1561,13 @@
     <Compile Include="Impressão\Relatórios\Retorno\Relatório.cs">
       <DependentUpon>Relatório.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Relatórios\Saída.cs" />
     <Compile Include="Impressão\Relatórios\Saída\ControleImpressãoSaída.cs" />
     <Compile Include="Impressão\Relatórios\Saída\DataSetSaída.cs">
       <DependentUpon>DataSetSaída.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Relatórios\Saída\DataSetSaída.Designer.cs">
       <DependentUpon>DataSetSaída.xsd</DependentUpon>
@@ -1587,20 +1577,19 @@
     <Compile Include="Impressão\Relatórios\Saída\Relatório.cs">
       <DependentUpon>Relatório.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Relatórios\TrabalhoImpressão.cs" />
     <Compile Include="Impressão\Relatórios\Venda\ControleImpressãoVenda.cs" />
     <Compile Include="Impressão\Relatórios\Venda\Crédito.cs">
       <DependentUpon>Crédito.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Relatórios\Venda\DataSetVenda.cs">
       <DependentUpon>DataSetVenda.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Relatórios\Venda\DataSetVenda.Designer.cs">
       <DependentUpon>DataSetVenda.xsd</DependentUpon>
@@ -1610,30 +1599,29 @@
     <Compile Include="Impressão\Relatórios\Venda\Débitos.cs">
       <DependentUpon>Débitos.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Relatórios\Venda\ModosPagamento.cs">
       <DependentUpon>ModosPagamento.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Relatórios\Venda\Pagamentos.cs">
       <DependentUpon>Pagamentos.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Relatórios\Venda\Relatório.cs">
       <DependentUpon>Relatório.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Relatórios\Álbum\DataSetÁlbum.cs">
       <DependentUpon>DataSetÁlbum.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Relatórios\Álbum\DataSetÁlbum.Designer.cs">
       <DependentUpon>DataSetÁlbum.xsd</DependentUpon>
@@ -1643,8 +1631,8 @@
     <Compile Include="Impressão\Relatórios\Álbum\Relatório.cs">
       <DependentUpon>Relatório.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Servidor\GerenteImpressoras.cs" />
     <Compile Include="Impressão\Servidor\Serviço.cs" />
@@ -1986,7 +1974,6 @@
     </Compile>
     <Compile Include="Pessoa\Endereço\DsEstado.cs">
       <DependentUpon>DsEstado.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Pessoa\Endereço\DsEstado.Designer.cs">
       <DependentUpon>DsEstado.xsd</DependentUpon>
@@ -3295,6 +3282,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="chave.pfx" />
     <None Include="Impressão\Relatórios\Comissao\DataSetComissaoVenda.xsc">
       <DependentUpon>DataSetComissaoVenda.xsd</DependentUpon>
     </None>
@@ -3471,25 +3459,34 @@
     <Reference Include="Aga.Controls">
       <HintPath>..\..\Aga.Controls.dll</HintPath>
     </Reference>
-    <Reference Include="AMS.TextBox">
-      <HintPath>..\..\AMS.TextBox.dll</HintPath>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Desktop\dlls\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
     </Reference>
-    <Reference Include="Balloon.NET">
-      <HintPath>..\..\Balloon.NET.dll</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Data.AdoDotNetInterop, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Crystal10\CrystalDecisions.Data.AdoDotNetInterop.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Desktop\dlls\CrystalDecisions.Data.AdoDotNetInterop.dll</HintPath>
     </Reference>
-    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.VSDesigner, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Crystal10\CrystalDecisions.VSDesigner.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Desktop\dlls\CrystalDecisions.ReportSource.dll</HintPath>
     </Reference>
-    <Reference Include="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Desktop\dlls\CrystalDecisions.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.VSDesigner, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Desktop\dlls\CrystalDecisions.VSDesigner.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Desktop\dlls\CrystalDecisions.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Desktop\dlls\CrystalDecisions.Windows.Forms.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -4188,8 +4185,12 @@
     <None Include="Financeiro\Resources\warning.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Balloon.NET\Balloon.NET.csproj">
+      <Project>{0e6f1b58-b832-4d96-9be9-a61ddaa18c4c}</Project>
+      <Name>Balloon.NET</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\CódigoDeBarras\CódigoDeBarras.csproj">
-      <Project>{6CECA623-BA18-49B1-8298-4F1DCB192F29}</Project>
+      <Project>{6ceca623-ba18-49b1-8298-4f1dcb192f29}</Project>
       <Name>CódigoDeBarras</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Report.Designer\Report.Designer.csproj">
@@ -4199,6 +4200,10 @@
     <ProjectReference Include="..\..\Report\Report.csproj">
       <Project>{D57011E1-546B-437E-8999-A3C90C0A733F}</Project>
       <Name>Report</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ValidatingText\TextBox.csproj">
+      <Project>{6bf0180e-73ed-4dbc-9ae2-8597a4d18e6d}</Project>
+      <Name>TextBox</Name>
     </ProjectReference>
     <ProjectReference Include="..\Acesso - MySQL\Acesso - MySQL.csproj">
       <Project>{8490E476-B38E-4405-A1B2-24BF7F20343F}</Project>
@@ -4213,7 +4218,7 @@
       <Name>Entidades</Name>
     </ProjectReference>
     <ProjectReference Include="..\Negócio\Negócio.csproj">
-      <Project>{80F2CB41-B349-4349-8667-E67C50CD79CF}</Project>
+      <Project>{80f2cb41-b349-4349-8667-e67c50cd79cf}</Project>
       <Name>Negócio</Name>
     </ProjectReference>
   </ItemGroup>
