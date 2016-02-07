@@ -15,14 +15,19 @@ namespace Acesso.MySQL
         private static string últimaStrConexão; 
 
         private const string bdPadrão = "imjoias";
-        private const string hostPadrão = "192.168.1.25";
-        private const int portPadrão = 46033;
 
+#if DEBUG
+        private const string hostPadrão = "192.168.1.20";
+        private const int portPadrão = 3306;
+#else
+        //private const string hostPadrão = "192.168.1.25";
+        //private const int portPadrão = 46033;
+#endif
         /// <summary>
-		/// Host padrão, que pode ser substituído pelo registro "host"
-		/// na chave "Local\Software\Indústria Mineira de Jóias".
-		/// </summary>
-        
+        /// Host padrão, que pode ser substituído pelo registro "host"
+        /// na chave "Local\Software\Indústria Mineira de Jóias".
+        /// </summary>
+
         private const int	   portaNegócio = 8085;
 
 		/// <summary>
