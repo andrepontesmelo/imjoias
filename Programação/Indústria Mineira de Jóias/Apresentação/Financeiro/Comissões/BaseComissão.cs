@@ -175,30 +175,5 @@ namespace Apresentação.Financeiro.Comissões
         {
             SubstituirBase(new BaseVendaSemComissão());
         }
-
-
-        //void janela_FuncionárioSelecionado(Entidades.Pessoa.Pessoa funcionário)
-        //{
-        //    // Cria nova comissão
-        //    Comissão novaComissão = new Comissã);
-        //    novaComissão.Funcionário = funcionário;
-        //    novaComissão.Cadastrar();
-
-        //    BaseEditarComissão novaBase = new BaseEditarComissão();
-        //    novaBase.Abrir(novaComissão);
-        //    SubstituirBase(novaBase);
-        //}
-
-        //private void lstComissões_DoubleClick(object sender, EventArgs e)
-        //{
-        //    if (lstComissões.SelectedItems.Count > 0)
-        //    {
-        //        Comissão c = hashComissões[lstComissões.SelectedItems[0]];
-
-        //        BaseEditarComissão novaBase = new BaseEditarComissão();
-        //        novaBase.Abrir(c);
-        //        SubstituirBase(novaBase);
-        //    }
-        //}
     }
 }

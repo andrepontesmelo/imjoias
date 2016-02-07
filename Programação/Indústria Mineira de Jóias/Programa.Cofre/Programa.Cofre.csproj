@@ -225,6 +225,7 @@
     <None Include="app.config" />
     <None Include="chave.pfx" />
     <None Include="chave.snk" />
+    <None Include="packages.config" />
     <None Include="Programa.Cofre_TemporaryKey.pfx" />
     <None Include="Properties\app.manifest" />
     <None Include="Resources\aperto de mão.jpg" />
