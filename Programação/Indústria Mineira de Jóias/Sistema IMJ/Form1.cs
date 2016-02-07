@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using Tamir.SharpSsh.jsch;
-using Tamir.SharpSsh.jsch.examples;
-using Tamir.SharpSsh;
-using System.IO;
-using ICSharpCode.SharpZipLib.Zip;
+﻿using ICSharpCode.SharpZipLib.Zip;
+using System;
 using System.Diagnostics;
-using System.Collections;
+using System.IO;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
+using Tamir.SharpSsh;
+using Apresentação.Formulários;
 
 namespace Sistema_IMJ
 {
@@ -26,71 +20,92 @@ namespace Sistema_IMJ
      */
     public partial class Form1 : Form
     {
-        // Configurações do servidor.
-        private string host = "imj.ignorelist.com";
-        private int porta = 9000;
-        private string atualizadorUsuário = "atualizador";
-        private string atualizadorSenha = "***REMOVED***";
+        
+        // Servidor.
+        private string HOST = "192.168.1.20";
+        private int PORTA = 9000;
+        private string USUARIO_ATUALIZADOR = "atualizador";
+        private string SENHA_ATUALIZADOR = "";
+        private const string NOME_ARQUIVO = "sistema.zip";
+        private const int INTERVALO_TENTATIVA_MS = 1000;
+        private const string NOME_PROCESSO = "IMJ";
 
-        // Configurações do cliente.
-        private string nomePastaCliente = @"SistemaIMJ\";
-        private int numeroMáximoTentativasConexão = 3;
+        // Cliente.
+        private string NOME_PASTA_CLIENTE = @"imjoias\";
+        private int MÁXIMO_TENTATIVAS = 3;
 
-        private Apresentação.Formulários.Splash splash;
+        private Splash splash;
         private string diretórioSistema, arquivoEXELocal, arquivoZipLocal;
+
+        private bool NecessárioAtualizar
+        {
+            get
+            {
+                if (File.Exists(arquivoZipLocal))
+                {
+                    DateTime dataMeuAplicativo = File.GetLastWriteTime(arquivoZipLocal);
+                    DateTime dataAplicativoNoServidor = DateTime.MinValue;
+
+                    try
+                    {
+                        dataAplicativoNoServidor = ObterDataÚltimaVersão();
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Não foi possível conectar-se ao servidor para atualização de versão.\nA versão local será lançada.");
+                        ExecutarImjoias();
+                    }
+
+                    if (dataMeuAplicativo < dataAplicativoNoServidor)
+                        return true;
+                }
+                else
+                    return true;
+
+                if (!File.Exists(arquivoEXELocal))
+                    return true;
+
+                return false;
+            }
+        }
 
         public Form1()
         {
-            splash = new Apresentação.Formulários.Splash();
+            splash = new Splash();
             splash.MostrarCarregandoVersão();
             splash.Show();
             Application.DoEvents();
 
-            
-            // Mata toda as versões do aplicativo
-            foreach (Process clsProcess in Process.GetProcesses())
-            {
-                if (clsProcess.ProcessName.Contains("IMJ")
-                    && (clsProcess.ProcessName != Process.GetCurrentProcess().ProcessName))
-                {
-                    clsProcess.Kill();
-                }
-            }
+            MataAplicativoImjoias();
 
             // Constantes
-            diretórioSistema = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), nomePastaCliente);
-            arquivoEXELocal = Path.Combine(diretórioSistema, "IMJ.EXE");
-            arquivoZipLocal = Path.Combine(diretórioSistema, "sistema.zip");
+            diretórioSistema = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), NOME_PASTA_CLIENTE);
+            arquivoEXELocal = Path.Combine(diretórioSistema, NOME_PROCESSO + ".EXE");
+            arquivoZipLocal = Path.Combine(diretórioSistema, NOME_ARQUIVO);
 
+            if (NecessárioAtualizar)
+                Atualizar();
 
-            if (File.Exists(arquivoZipLocal))
-            {
-                DateTime dataMeuAplicativo = File.GetLastWriteTime(arquivoZipLocal);
-                DateTime dataAplicativoNoServidor = DateTime.MinValue;
-
-                try
-                {
-                    dataAplicativoNoServidor = ObterDataÚltimaVersão();
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Não foi possível conectar-se ao servidor para atualização de versão.\nA versão local será lançada.");
-                    ExecutaProgramaFinalmente();
-                }
-
-                if (dataMeuAplicativo < dataAplicativoNoServidor)
-                    DescarregarÚltimaVersão();
-            }
-            else
-                DescarregarÚltimaVersão();
-
-            if (!File.Exists(arquivoEXELocal))
-                DescarregarÚltimaVersão();
-
-            ExecutaProgramaFinalmente();
+            ExecutarImjoias();
         }
 
-        private void ExecutaProgramaFinalmente()
+        private static void MataAplicativoImjoias()
+        {
+            foreach (Process clsProcess in Process.GetProcesses())
+            {
+                if (clsProcess.ProcessName.Contains(NOME_PROCESSO)
+                    && (clsProcess.ProcessName != Process.GetCurrentProcess().ProcessName))
+                {
+                    try
+                    {
+                        clsProcess.Kill();
+                    }
+                    catch (Exception) { }
+                }
+            }
+        }
+
+        private void ExecutarImjoias()
         {
             // Executa o programa 
             System.Diagnostics.Process Proc = new System.Diagnostics.Process();
@@ -112,7 +127,7 @@ namespace Sistema_IMJ
         /// e baixa o arquivo sistema.zip,
         /// descompacta no diretório diretórioSistema, sobrescrevendo os arquivos.
         /// </summary>
-        private void DescarregarÚltimaVersão()
+        private void Atualizar()
         {
             // Garante que a data de criação do arquivo local seja atualizada ao descarregar
             if (File.Exists(arquivoZipLocal))
@@ -121,29 +136,27 @@ namespace Sistema_IMJ
             if (!Directory.Exists(diretórioSistema))
                 Directory.CreateDirectory(diretórioSistema);
 
-            Tamir.SharpSsh.Sftp sshCp = new Tamir.SharpSsh.Sftp(host, atualizadorUsuário, atualizadorSenha);
+            Tamir.SharpSsh.Sftp sshCp = new Tamir.SharpSsh.Sftp(HOST, USUARIO_ATUALIZADOR, SENHA_ATUALIZADOR);
 
             sshCp.OnTransferProgress += new FileTransferEvent(sshCp_OnTransferProgress);
 
-            sshCp.Connect(porta);
-            sshCp.Get("sistema.zip", arquivoZipLocal);
+            sshCp.Connect(PORTA);
+            sshCp.Get(NOME_ARQUIVO, arquivoZipLocal);
 
             FastZip zip = new FastZip();
             zip.CreateEmptyDirectories = true;
-
-  
 
             zip.ExtractZip(arquivoZipLocal, diretórioSistema, ".*");
         }
 
         private DateTime ObterDataÚltimaVersão()
         {
-            SshShell shell = new SshShell(host, atualizadorUsuário, atualizadorSenha);
+            SshShell shell = new SshShell(HOST, USUARIO_ATUALIZADOR, SENHA_ATUALIZADOR);
 
             //This statement must be prior to connecting
             shell.RedirectToConsole();
 
-            shell.Connect(porta);
+            shell.Connect(PORTA);
 
             byte[] vetor = System.Text.Encoding.Unicode.GetBytes("stat sistema.zip | grep Change\n");
             MemoryStream entrada = new MemoryStream(vetor);
@@ -164,23 +177,20 @@ namespace Sistema_IMJ
                 posição = dadosRecebidos.IndexOf("Change");
                 
                 if (posição == -1) 
-                    System.Threading.Thread.Sleep(1000);
+                    System.Threading.Thread.Sleep(INTERVALO_TENTATIVA_MS);
 
-                if (tentativaAtual > numeroMáximoTentativasConexão)
-                {
+                if (tentativaAtual > MÁXIMO_TENTATIVAS)
+                
                     throw new Exception();
-                }
+                
             }
-            dadosRecebidos = System.Text.RegularExpressions.Regex.Match(dadosRecebidos, @"\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d.\d* -\d\d\d\d").Value;
-            //dadosRecebidos =  dadosRecebidos.Substring(posição + 8);
-            //dadosRecebidos = dadosRecebidos.Substring(0, dadosRecebidos.IndexOf('.'));
+
+            dadosRecebidos = Regex.Match(dadosRecebidos, @"\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d.\d* -\d\d\d\d").Value;
 
             DateTime dataCriação = DateTime.Parse(dadosRecebidos);
 
             if (shell.ShellOpened)
-            {
                 shell.Close();
-            }
 
             return dataCriação;
         }
