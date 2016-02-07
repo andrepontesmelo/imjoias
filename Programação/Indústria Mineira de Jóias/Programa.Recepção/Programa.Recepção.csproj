@@ -128,9 +128,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Balloon.NET">
-      <HintPath>..\..\Balloon.NET.dll</HintPath>
-    </Reference>
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
@@ -146,6 +143,10 @@
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
     </Reference>
+    <ProjectReference Include="..\..\Balloon.NET\Balloon.NET.csproj">
+      <Project>{0e6f1b58-b832-4d96-9be9-a61ddaa18c4c}</Project>
+      <Name>Balloon.NET</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Acesso - MySQL\Acesso - MySQL.csproj">
       <Project>{8490E476-B38E-4405-A1B2-24BF7F20343F}</Project>
       <Name>Acesso - MySQL</Name>

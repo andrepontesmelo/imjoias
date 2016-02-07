@@ -65,16 +65,6 @@ namespace Apresentação.Financeiro.Comissões
             // 
             this.nodeTextBox1.DataPropertyName = "Teste";
             // 
-            // nodeTextBox2
-            // 
-            this.nodeTextBox2.Column = 1;
-            this.nodeTextBox2.DataPropertyName = "QueCoisa";
-            // 
-            // nodeTextBox3
-            // 
-            this.nodeTextBox3.Column = 2;
-            this.nodeTextBox3.DataPropertyName = "asdadsads";
-            // 
             // lst
             // 
             this.lst.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
