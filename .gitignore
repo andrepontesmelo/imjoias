@@ -1,3 +1,4 @@
+# Visual Studio
 /build/
 *.suo
 *.v12.suo
@@ -13,6 +14,12 @@ Release/
 *.log
 TestResult.xml
 *.VisualState.xml
-Version.cs
-Version.h
-Version.cpp
+*.dll
+*.exe
+*.exe.config
+*.ini
+
+# Nuget
+/packages/
+!packages/repositories.config
+UpgradeLog.htm
