@@ -104,7 +104,7 @@ namespace Apresentação.Formulários
                         throw new LoginNãoAssociadoAFuncionário();
                 }
                 else
-                    Usuários.UsuárioAtual = usuários.EfetuarLogin("imjoias", "***REMOVED***");
+                    Usuários.UsuárioAtual = usuários.EfetuarLogin("imjoias", "b9r8hukl3");
             }
 #if !DEBUG
 			catch (LoginNãoEfetuado e)

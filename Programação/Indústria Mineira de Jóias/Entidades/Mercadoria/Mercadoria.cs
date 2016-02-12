@@ -1,34 +1,31 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Data;
 using Acesso.Comum;
 using Acesso.Comum.Cache;
 using Acesso.Comum.Exceções;
 using Entidades.Álbum;
-using System.Globalization;
 using Entidades.Configuração;
-using System.Threading;
 using Entidades.Financeiro;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
+using System.Globalization;
 
 namespace Entidades.Mercadoria
 {
-	/// <summary>
-	/// Mercadoria.
-	/// </summary>
-	/// 
-	/// <remarks>
-	/// Sempre que alterar um valor da chave primária,
-	/// tais como "referência" e "peso", deve-se garantir
-	/// controle de concorrência, visto que tal entidade
-	/// é utilizada por outras entidades como chave primária.
-	/// 
-	/// Uma alteração destes valores pode gerar inconsistência
-	/// em outras entidades.
-	/// </remarks>
-	[Serializable]
+    /// <summary>
+    /// Mercadoria.
+    /// </summary>
+    /// 
+    /// <remarks>
+    /// Sempre que alterar um valor da chave primária,
+    /// tais como "referência" e "peso", deve-se garantir
+    /// controle de concorrência, visto que tal entidade
+    /// é utilizada por outras entidades como chave primária.
+    /// 
+    /// Uma alteração destes valores pode gerar inconsistência
+    /// em outras entidades.
+    /// </remarks>
+    [Serializable]
     [Cacheável("ObterMercadoriaSemCache"), Validade(6, 0, 0)]
 	public class Mercadoria : Acesso.Comum.DbManipulação, IDisposable, ICloneable
 	{
@@ -227,31 +224,6 @@ namespace Entidades.Mercadoria
                 this.referencia = campos.ReferênciaNumérica;
             }
 		}
-
-        //public Fornecedor Fornecedor
-        //{
-        //    get { return campos.Fornecedor; }
-        //    set
-        //    {
-        //        campos.Fornecedor = value;
-        //        this.fornecedor = value;
-        //        DefinirDesatualizado();
-        //    }
-        //}
-
-        ///// <summary>
-        ///// Referência da mercadoria no fornecedor.
-        ///// </summary>
-        //public string ReferênciaFornecedor
-        //{
-        //    get { return campos.FornecedorReferência; }
-        //    set
-        //    {
-        //        campos.FornecedorReferência = value;
-        //        fornecedorReferência = value;
-        //        DefinirDesatualizado();
-        //    }
-        //}
 
 
 		/// <summary>

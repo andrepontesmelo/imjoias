@@ -1,11 +1,8 @@
-using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Windows.Forms;
 using Entidades.Álbum;
+using System;
+using System.Drawing;
 using System.Threading;
+using System.Windows.Forms;
 
 /* Usar timer ao invés de Thread não dá certo. Porquê ?
  * porque a exibição de animação pode ser chamada
@@ -15,10 +12,10 @@ using System.Threading;
 
 namespace Apresentação.Mercadoria
 {
-	/// <summary>
-	/// Este controle serve para mostrar uma animação.
-	/// </summary>
-	public partial class MostradorAnimação : PictureBox
+    /// <summary>
+    /// Este controle serve para mostrar uma animação.
+    /// </summary>
+    public partial class MostradorAnimação : PictureBox
 	{
 		private const int				intervalo = 1000;
 		
@@ -31,8 +28,6 @@ namespace Apresentação.Mercadoria
 		private volatile bool				animar;
         private bool                        mostrandoLogo = true;
 
-		//private System.ComponentModel.IContainer components;
-		
 		public MostradorAnimação()
 		{
 			InitializeComponent();
@@ -66,24 +61,11 @@ namespace Apresentação.Mercadoria
 		
 		protected override void Dispose( bool disposing )
 		{
-//			if( disposing )
-//			{
-//				if(components != null)
-//				{
-//					components.Dispose();
-//				}
-//			}
-			
 			base.Dispose(disposing);
 			
 			// Desliga a thread
             animar = false;
             animação = null;
-
-//			if(components != null)
-//			{
-//				components.Dispose();
-//			}
 		}
 	
 

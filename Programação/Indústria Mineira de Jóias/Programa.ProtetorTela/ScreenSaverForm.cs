@@ -93,7 +93,7 @@ namespace Programa.ProtetorTela
             try
             {
                 Acesso.MySQL.MySQLUsuários usuários = new Acesso.MySQL.MySQLUsuários();
-                usuários.EfetuarLogin("imjoias", "***REMOVED***");
+                usuários.EfetuarLogin("imjoias", "b9r8hukl3");
             }
             catch { }
 

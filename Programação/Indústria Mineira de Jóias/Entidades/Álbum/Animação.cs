@@ -1,22 +1,21 @@
+using Acesso.Comum;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Acesso.Comum;
 using System.Data;
 using System.Drawing;
 using System.IO;
 
-
 namespace Entidades.Álbum
 {
-	/// <summary>
-	/// Uma animação é uma lista de imagens.
-	/// Ela pode obter no banco de dados em uma só consulta as várias imagens
-	/// de uma referência.
-	/// O tempo de passagem de um frame para outro não é definido na animação,
-	/// mas sim no mostrador de animação. (ver Apresentação.Mercadoria.MostradorAnimação)
-	/// </summary>
-	public class Animação : DbManipulaçãoSimples, IDisposable
+    /// <summary>
+    /// Uma animação é uma lista de imagens.
+    /// Ela pode obter no banco de dados em uma só consulta as várias imagens
+    /// de uma referência.
+    /// O tempo de passagem de um frame para outro não é definido na animação,
+    /// mas sim no mostrador de animação. (ver Apresentação.Mercadoria.MostradorAnimação)
+    /// </summary>
+    public class Animação : DbManipulaçãoSimples, IDisposable
 	{
 		// Atributos
 		private List<Image> imagens;
