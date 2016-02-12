@@ -548,9 +548,6 @@ namespace Entidades.Álbum
 
             consulta = "SELECT codigo,mercadoria,peso,descricao,data FROM foto WHERE mercadoria = " + DbTransformar(mercadoria.ReferênciaNumérica);
 
-            if (mercadoria.DePeso)
-                consulta += " AND peso = " + DbTransformar(mercadoria.Peso);
-
             return Mapear<Foto>(consulta).ToArray();
         }
 

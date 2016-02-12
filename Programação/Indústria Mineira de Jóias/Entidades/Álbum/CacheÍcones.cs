@@ -45,7 +45,7 @@ namespace Entidades.Álbum
             if (mercadoriaFoto.DePeso)
                 peso = mercadoriaFoto.Peso;
 
-            if (hashÍcones.TryGetValue(GerarChave(mercadoriaFoto.ReferênciaNumérica, peso), out entidade))
+            if (hashÍcones.TryGetValue(GerarChave(mercadoriaFoto.ReferênciaNumérica), out entidade))
             {
                 return entidade;
             }
@@ -61,9 +61,9 @@ namespace Entidades.Álbum
         }
 
 
-        private static string GerarChave(string referenciaNuméria, double peso)
+        private static string GerarChave(string referenciaNuméria)
         {
-            return referenciaNuméria + "#" + peso.ToString();
+            return referenciaNuméria;
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace Entidades.Álbum
                                 else
                                     peso = leitor.GetDouble(1);
 
-                                chave = GerarChave(leitor.GetString(0), peso);
+                                chave = GerarChave(leitor.GetString(0));
                                 hashÍcones[chave] = new Ícone((byte[])leitor.GetValue(2));
                             }
                         }
