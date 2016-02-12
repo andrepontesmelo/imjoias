@@ -140,7 +140,7 @@ namespace Entidades.Álbum
                                     peso = leitor.GetDouble(1);
 
                                 códigoFoto = (uint)leitor.GetInt32(2);
-                                string chave = GerarChave(referência, peso);
+                                string chave = GerarChave(referência);
 
                                 hashMercadoriaMiniatura[chave] = códigoFoto;
                             }
@@ -350,17 +350,12 @@ namespace Entidades.Álbum
 
         private static string GerarChave(Entidades.Mercadoria.Mercadoria mercadoria)
         {
-            double peso = 0;
-
-            if (mercadoria.DePeso)
-                peso = mercadoria.Peso;
-
-            return GerarChave(mercadoria.ReferênciaNumérica, peso);
+            return GerarChave(mercadoria.ReferênciaNumérica);
         }
 
-        private static string GerarChave(string referência, double peso)
+        private static string GerarChave(string referência)
         {
-            return referência + "#" + peso.ToString();
+            return referência;
         }
 
         /// <summary>

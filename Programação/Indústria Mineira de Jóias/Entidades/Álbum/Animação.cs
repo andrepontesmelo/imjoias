@@ -94,9 +94,6 @@ namespace Entidades.Álbum
                 {
                     cmd.CommandText = "SELECT foto FROM foto WHERE mercadoria = " + DbTransformar(mercadoria.ReferênciaNumérica);
 
-                    if (mercadoria.DePeso && mercadoria.Peso > 0)
-                        cmd.CommandText += " AND (peso IS NULL OR peso = " + DbTransformar(mercadoria.Peso) + ")";
-
                     using (leitor = cmd.ExecuteReader())
                     {
 
