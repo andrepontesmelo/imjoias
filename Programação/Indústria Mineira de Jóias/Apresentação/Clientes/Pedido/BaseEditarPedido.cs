@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
-using System.Windows.Forms;
-using Apresentação.Formulários;
-using Entidades.Pessoa;
+﻿using Apresentação.Formulários;
 using Entidades.Configuração;
-using Apresentação.Impressão.Relatórios.Pedido.Recibo;
-using Entidades;
 using Entidades.PedidoConserto;
+using Entidades.Pessoa;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Apresentação.Atendimento.Clientes.Pedido
 {
@@ -64,175 +58,173 @@ namespace Apresentação.Atendimento.Clientes.Pedido
             Gravar();
         }
 
+        private void Carregar(Entidades.PedidoConserto.Pedido pedido)
+        {
+            modo = ModoEdição.Alteração;
+
+            AtualizarToolTips(pedido);
+
+            optPertenceCliente.Checked = this.pedido.PertenceAoCliente;
+            optPertenceEmpresa.Checked = !this.pedido.PertenceAoCliente;
+
+            AtualizarVisibilidadeControlesDeOficina();
+            AtualizarVisibilidadeEncomendaItem();
+
+            switch (this.pedido.TipoPedido)
+            {
+                case Entidades.PedidoConserto.Pedido.Tipo.Conserto:
+                    radioConserto.Checked = true;
+
+                    if (this.pedido.DataOficina.HasValue)
+                        dtOficina.Value = this.pedido.DataOficina.Value;
+
+                    break;
+
+                case Entidades.PedidoConserto.Pedido.Tipo.Pedido:
+                    radioEncomenda.Checked = true;
+
+                    break;
+            }
+
+            switch (this.pedido.EntregaPedido)
+            {
+                case Entidades.PedidoConserto.Pedido.Entrega.Despachar:
+                    chkDespachar.Checked = true;
+                    break;
+
+                case Entidades.PedidoConserto.Pedido.Entrega.Levar:
+                    chkLevar.Checked = true;
+                    break;
+            }
+
+
+            txtValor.Double = this.pedido.Valor;
+
+            if (this.pedido.Cliente != null)
+                txtCliente.Pessoa = this.pedido.Cliente;
+            else
+                txtCliente.Text = this.pedido.NomeDoCliente;
+
+            if (this.pedido.Cliente != null && this.pedido.Cliente.Região != null)
+                txtRegião.Text = txtCliente.Pessoa.Região.Nome + " " + (this.pedido.Representante == null ? "" : " (" + this.pedido.Representante.PrimeiroNome + ")");
+            else
+                txtRegião.Text = "";
+
+            txtFuncionário.Pessoa = this.pedido.Receptor;
+            txtFuncionário.ReadOnly = true;
+            dtRecepção.Value = this.pedido.DataRecepção;
+            dtPrevisão.Value = this.pedido.DataPrevisão;
+
+            if (this.pedido.DataConclusão.HasValue)
+            {
+                dtConclusão.Value = this.pedido.DataConclusão.Value;
+                btnConclusao.Visible = false;
+                dtConclusão.Visible = true;
+                btnRemoverDataConclusão.Visible = true;
+            }
+            else
+            {
+                dtConclusão.Visible = false;
+                dtConclusão.Enabled = true;
+                btnConclusao.Visible = true;
+                btnRemoverDataConclusão.Visible = false;
+            }
+
+            if (this.pedido.DataEntrega.HasValue)
+            {
+                dtEntrega.Text = ObterEntreguePor();
+
+                dtEntrega.Visible = true;
+                btnEntregar.Visible = false;
+                btnRemoverDataEntrega.Visible = true;
+            }
+            else
+            {
+                dtEntrega.Visible = false;
+                dtEntrega.Enabled = true;
+                btnEntregar.Visible = true;
+                btnRemoverDataEntrega.Visible = false;
+            }
+
+            txtDescrição.Text = this.pedido.Observações;
+
+            títuloBaseInferior1.Título = (this.pedido.TipoPedido == Entidades.PedidoConserto.Pedido.Tipo.Pedido ? "Pedido " : "Conserto ") + this.pedido.Código.ToString();
+            títuloBaseInferior1.Descrição = "Visualize ou edite os dados do pedido, caso necessário.";
+        }
+
+        private void Criar()
+        {
+            modo = ModoEdição.Inserção;
+            pedido = new Entidades.PedidoConserto.Pedido();
+            pedido.TipoPedido = Entidades.PedidoConserto.Pedido.Tipo.Pedido;
+            radioEncomenda.Checked = true;
+
+            radioConserto.Checked = false;
+
+            chkDespachar.Checked = true;
+            chkLevar.Checked = false;
+            pedido.EntregaPedido = Entidades.PedidoConserto.Pedido.Entrega.Despachar;
+
+            radioConserto.Enabled = radioEncomenda.Enabled = true;
+            txtCliente.Pessoa = null;
+            txtCliente.ReadOnly = false;
+            txtFuncionário.Pessoa = Funcionário.FuncionárioAtual;
+            txtFuncionário.ReadOnly = false;
+            dtRecepção.Value = DadosGlobais.Instância.HoraDataAtual;
+
+            // Como é um novo pedido, permitir gravação
+            abrindo = false;
+            AtualizarPrevisão();
+            abrindo = true;
+
+            dtPrevisão.Enabled = true;
+            dtConclusão.Visible = false;
+            dtConclusão.Enabled = true;
+            btnConclusao.Visible = true;
+            dtEntrega.Visible = false;
+            dtEntrega.Enabled = true;
+            btnEntregar.Visible = true;
+            txtDescrição.Text = "";
+            títuloBaseInferior1.Título = "Novo pedido";
+            títuloBaseInferior1.Descrição = "";
+            Gravar();
+        }
+
+        private void AtualizarTravamento()
+        {
+            bool travar = (modo == ModoEdição.Alteração && !Entidades.Privilégio.PermissãoFuncionário.ValidarPermissão(Entidades.Privilégio.Permissão.EditarPedidosConsertos));
+            opçãoExcluir.Visible = !travar;
+
+            grpIdentificação.Enabled = !travar;
+            grpObservações.Enabled = !travar;
+            grpItens.Enabled = !travar;
+            grpRecepção.Enabled = !travar;
+
+            quadroManutenção.Enabled = !travar;
+        }
+
+        private void CarregarItens()
+        {
+            flow.Controls.Clear();
+            List<PedidoItem> itens = PedidoItem.Obter(pedido);
+            foreach (PedidoItem i in itens)
+                AdicionarItem(i);
+
+            abrindo = false;
+        }
+
         public Entidades.PedidoConserto.Pedido Pedido
         {
             get { return pedido; }
             set
             {
-                // Nao grava enquanto está abrindo
                 abrindo = true;
-
                 pedido = value;
 
                 if (value != null)
-                {
-                    modo = ModoEdição.Alteração;
-
-                    AtualizarToolTips(value);
-
-                    optPertenceCliente.Checked = pedido.PertenceAoCliente;
-                    optPertenceEmpresa.Checked = !pedido.PertenceAoCliente;
-
-                    AtualizarVisibilidadeControlesDeOficina();
-                    AtualizarVisibilidadeEncomendaItem();
-
-                    switch (pedido.TipoPedido)
-                    {
-                        case Entidades.PedidoConserto.Pedido.Tipo.Conserto:
-                            radioConserto.Checked = true;
-
-                            if (pedido.DataOficina.HasValue)
-                                dtOficina.Value = pedido.DataOficina.Value;
-
-                            break;
-
-                        case Entidades.PedidoConserto.Pedido.Tipo.Pedido:
-                            radioEncomenda.Checked = true;
-                            
-                            break;
-                    }
-
-                    switch (pedido.EntregaPedido)
-                    {
-                        case Entidades.PedidoConserto.Pedido.Entrega.Despachar:
-                            chkDespachar.Checked = true;
-                            break;
-
-                        case Entidades.PedidoConserto.Pedido.Entrega.Levar:
-                            chkLevar.Checked = true;
-                            break;
-                    }
-
-
-                    //radioConserto.Enabled = radioEncomenda.Checked = true;
-
-                    //if (pedido.Controle.HasValue)
-                    //    txtControle.Int = (int)pedido.Controle.Value;
-                    //else
-                    //    txtControle.Text = "";
-
-                    //txtControle.ReadOnly = true;
-                    txtValor.Double = pedido.Valor;
-
-                    if (pedido.Cliente != null)
-                        txtCliente.Pessoa = pedido.Cliente;
-                    else
-                        txtCliente.Text = pedido.NomeDoCliente;
-
-                    //txtCliente.ReadOnly = true;
-                    //txtRepresentante.Pessoa = pedido.Representante;
-                    //txtRepresentante.ReadOnly = true;
-                    if (pedido.Cliente != null && pedido.Cliente.Região != null)
-                        txtRegião.Text = txtCliente.Pessoa.Região.Nome + " " + (pedido.Representante == null ? "" : " (" + pedido.Representante.PrimeiroNome + ")");
-                    else
-                        txtRegião.Text = "";
-                    
-                    txtFuncionário.Pessoa = pedido.Receptor;
-                    txtFuncionário.ReadOnly = true;
-                    dtRecepção.Value = pedido.DataRecepção;
-
-
-                    //dtRecepção.Enabled = false;
-                    dtPrevisão.Value = pedido.DataPrevisão;
-
-                    //dtPrevisão.Enabled = false;
-
-                    if (pedido.DataConclusão.HasValue)
-                    {
-                        dtConclusão.Value = pedido.DataConclusão.Value;
-                        //dtConclusão.Enabled = false;
-                        btnConclusao.Visible = false;
-                        dtConclusão.Visible = true;
-                        btnRemoverDataConclusão.Visible = true;
-                    }
-                    else
-                    {
-                        dtConclusão.Visible = false;
-                        dtConclusão.Enabled = true;
-                        btnConclusao.Visible = true;
-                        btnRemoverDataConclusão.Visible = false;
-                    }
-
-                    if (pedido.DataEntrega.HasValue)
-                    {
-                        dtEntrega.Text = ObterEntreguePor();
-
-                        dtEntrega.Visible = true;
-                        //dtEntrega.Enabled = false;
-                        btnEntregar.Visible = false;
-                        btnRemoverDataEntrega.Visible = true;
-                    }
-                    else
-                    {
-                        dtEntrega.Visible = false;
-                        dtEntrega.Enabled = true;
-                        btnEntregar.Visible = true;
-                        btnRemoverDataEntrega.Visible = false;
-                    }
-
-                    txtDescrição.Text = pedido.Observações;
-                    //txtDescrição.ReadOnly = true;
-
-                    títuloBaseInferior1.Título = (pedido.TipoPedido == Entidades.PedidoConserto.Pedido.Tipo.Pedido ? "Pedido " : "Conserto ") + pedido.Código.ToString();
-                    títuloBaseInferior1.Descrição = "Visualize ou edite os dados do pedido, caso necessário.";
-                 //   grpEntrega.Visible = grpRecepção.Visible = grpObservações.Visible = true;
-                }
+                    Carregar(value);
                 else
-                {
-                    modo = ModoEdição.Inserção;
-                    pedido = new Entidades.PedidoConserto.Pedido();
-                    pedido.TipoPedido = Entidades.PedidoConserto.Pedido.Tipo.Pedido;
-                    radioEncomenda.Checked = true;
-
-                    radioConserto.Checked = false;
-                    
-                    //txtDescrição.ReadOnly = true;
-
-                    chkDespachar.Checked = true;
-                    chkLevar.Checked = false;
-                    pedido.EntregaPedido = Entidades.PedidoConserto.Pedido.Entrega.Despachar;
-
-                    radioConserto.Enabled = radioEncomenda.Enabled = true;
-                    //txtControle.Text = "";
-                    //txtControle.ReadOnly = false;
-                    txtCliente.Pessoa = null;
-                    txtCliente.ReadOnly = false;
-                    //txtRepresentante.Pessoa = null;
-                    //txtRepresentante.ReadOnly = false;
-                    txtFuncionário.Pessoa = Funcionário.FuncionárioAtual;
-                    txtFuncionário.ReadOnly = false;
-                    dtRecepção.Value = DadosGlobais.Instância.HoraDataAtual;
-                    //dtRecepção.Enabled = false;
-                    
-                    // Como é um novo pedido, permitir gravação
-                    abrindo = false;
-                    AtualizarPrevisão();
-                    abrindo = true;
-
-                    dtPrevisão.Enabled = true;
-                    dtConclusão.Visible = false;
-                    dtConclusão.Enabled = true;
-                    btnConclusao.Visible = true;
-                    dtEntrega.Visible = false;
-                    dtEntrega.Enabled = true;
-                    btnEntregar.Visible = true;
-                    txtDescrição.Text = "";
-                    títuloBaseInferior1.Título = "Novo pedido";
-                    títuloBaseInferior1.Descrição = "";
-                    //grpEntrega.Visible = grpRecepção.Visible = grpObservações.Visible = false;
-                    Gravar();
-
-                }
+                    Criar();
 
                 pedido.DepoisDeCadastrar += new Acesso.Comum.DbManipulação.DbManipulaçãoHandler(pedido_DepoisDeCadastrar);
 
@@ -242,32 +234,12 @@ namespace Apresentação.Atendimento.Clientes.Pedido
                 else if (!pedido.DataEntrega.HasValue)
                     dtEntrega.Text = "";
 
-                bool travar = (modo == ModoEdição.Alteração && !Entidades.Privilégio.PermissãoFuncionário.ValidarPermissão(Entidades.Privilégio.Permissão.EditarPedidosConsertos));
-                opçãoExcluir.Visible = !travar;
-
-                grpIdentificação.Enabled = !travar;
-                grpObservações.Enabled = !travar;
-                grpItens.Enabled = !travar;
-                grpRecepção.Enabled = !travar;
-
-                // Entrega de pedidos à clientes sempre é liberada
-                //grpEntrega.Enabled = !travar;
-
-
-                quadroManutenção.Enabled = !travar;
+                AtualizarTravamento();
 
                 dtRecepção.Enabled = 
                     Entidades.Privilégio.PermissãoFuncionário.ValidarPermissão(Entidades.Privilégio.Permissão.EditarPedidosConsertos);
 
-                // Carrega itens de pedido
-                flow.Controls.Clear();
-                List<PedidoItem> itens = PedidoItem.Obter(pedido);
-                foreach (PedidoItem i in itens)
-                {
-                    AdicionarItem(i);
-                }
-
-                abrindo = false;
+                CarregarItens();
             }
         }
 
@@ -299,7 +271,6 @@ namespace Apresentação.Atendimento.Clientes.Pedido
             EncomendaItem itemGráfico = new EncomendaItem(item);
             itemGráfico.SolicitouExclusão += new EventHandler(itemGráfico_SolicitouExclusão);
             flow.Controls.Add(itemGráfico);
-            //itemGráfico.Width = flow.Width - 10;
 
             return itemGráfico;
         }
@@ -313,7 +284,6 @@ namespace Apresentação.Atendimento.Clientes.Pedido
 
         void pedido_DepoisDeCadastrar(Acesso.Comum.DbManipulação entidade)
         {
-            //grpEntrega.Visible = grpRecepção.Visible = grpObservações.Visible = true;
             txtFuncionário.ReadOnly = false;
             títuloBaseInferior1.Título = "Pedido " + pedido.Código.ToString();
         }
@@ -402,14 +372,6 @@ namespace Apresentação.Atendimento.Clientes.Pedido
             Gravar();
         }
 
-        //private void txtRepresentante_Validated(object sender, EventArgs e)
-        //{
-        //    pedido.Representante = txtRepresentante.Pessoa as Representante;
-
-        //    if (pedido.Cadastrado)
-        //        pedido.Atualizar();
-        //}
-
         private void txtFuncionário_Validated(object sender, EventArgs e)
         {
             pedido.Receptor = txtFuncionário.Pessoa as Funcionário;
@@ -457,7 +419,7 @@ namespace Apresentação.Atendimento.Clientes.Pedido
         private void txtDescrição_Validated(object sender, EventArgs e)
         {
             pedido.Observações = txtDescrição.Text;
-            pedido.Atualizar();
+            Gravar();
         }
 
         private void btnConclusao_Click(object sender, EventArgs e)
@@ -706,14 +668,6 @@ namespace Apresentação.Atendimento.Clientes.Pedido
 
             novo.Cadastrar();
             AdicionarItem(novo).Focus();
-        }
-
-        private void flow_Resize(object sender, EventArgs e)
-        {
-            //foreach (Control c in flow.Controls)
-            //{
-            //    c.Width = flow.ClientRectangle.Width - 10;
-            //}
         }
 
         private void BaseEditarPedido_Resize(object sender, EventArgs e)

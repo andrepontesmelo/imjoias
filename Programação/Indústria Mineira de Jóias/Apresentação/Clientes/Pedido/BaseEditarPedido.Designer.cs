@@ -645,7 +645,6 @@
             this.flow.Name = "flow";
             this.flow.Size = new System.Drawing.Size(375, 339);
             this.flow.TabIndex = 1;
-            this.flow.Resize += new System.EventHandler(this.flow_Resize);
             // 
             // BaseEditarPedido
             // 

@@ -81,6 +81,7 @@
             // 
             // txtReferênciaFornecedor
             // 
+            this.txtReferênciaFornecedor.Enabled = false;
             this.txtReferênciaFornecedor.Location = new System.Drawing.Point(53, 54);
             this.txtReferênciaFornecedor.Name = "txtReferênciaFornecedor";
             this.txtReferênciaFornecedor.Size = new System.Drawing.Size(164, 20);
@@ -91,9 +92,9 @@
             // 
             // txtDescrição
             // 
-            this.txtDescrição.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDescrição.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDescrição.Location = new System.Drawing.Point(223, 15);
             this.txtDescrição.Multiline = true;
             this.txtDescrição.Name = "txtDescrição";
@@ -160,6 +161,7 @@
             // 
             // txtFornecedor
             // 
+            this.txtFornecedor.Enabled = false;
             this.txtFornecedor.Location = new System.Drawing.Point(4, 54);
             this.txtFornecedor.Name = "txtFornecedor";
             this.txtFornecedor.Referência = "";

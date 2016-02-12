@@ -93,19 +93,7 @@ namespace Apresentação.Atendimento.Clientes.Pedido
         private void Gravar()
         {
             if (!carregando)
-            {
                 entidade.Atualizar();
-                Entidades.Fornecedor fornecedor = txtFornecedor.ObterFornecedor();
-                if (fornecedor == null)
-                {
-                    fornecedor = new Entidades.Fornecedor();
-                    fornecedor.Nome = txtFornecedor.Txt.Text.Trim();
-
-                    fornecedor.Cadastrar();
-                }
-
-                MercadoriaFornecedor.DeterminarFornecedor(txtMercadoria.ReferênciaNumérica, (int) fornecedor.Código, txtReferênciaFornecedor.Text);
-            }
         }
 
         private void txtReferênciaFornecedor_Leave(object sender, EventArgs e)
@@ -122,10 +110,6 @@ namespace Apresentação.Atendimento.Clientes.Pedido
         private void EncomendaItem_MouseEnter(object sender, EventArgs e)
         {
             BackColor = System.Drawing.SystemColors.ActiveCaption;
-
-            // Funcionamento do scrol no flow-layout que o contém.
-            // Foi comentado porquê atrapalha a digitação do usuário, retirando o foco das caixas de texto.
-            //Parent.Focus();
         }
 
         private void EncomendaItem_MouseLeave(object sender, EventArgs e)
