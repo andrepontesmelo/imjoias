@@ -16,7 +16,7 @@ public class AcessoBD
             strConexão = "Data Source=localhost";
             strConexão += ";Database=imjoias";
             strConexão += ";User Id=imjoias";
-            strConexão += ";Password=***REMOVED***";
+            strConexão += ";Password=b9r8hukl3";
             strConexão += ";Pooling=False";
             strConexão += ";Port=3306";
 

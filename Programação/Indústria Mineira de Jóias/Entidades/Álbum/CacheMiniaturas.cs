@@ -1,11 +1,9 @@
-﻿using System;
+﻿using Acesso.Comum;
+using System;
 using System.Collections.Generic;
-using System.Text;
-using Acesso.Comum;
-using System.Xml;
 using System.Data;
-using System.Drawing;
-using System.IO;
+using System.Text;
+using System.Xml;
 
 namespace Entidades.Álbum
 {
@@ -91,7 +89,6 @@ namespace Entidades.Álbum
         public void Inserir(uint código, DbFoto miniatura)
         {
             hashMiniaturas[código] = miniatura;
-            // Console.WriteLine("Inserindo miniatura na cache...");
             if ((DateTime.Now - últimoSalvamento).TotalSeconds > intervaloSegundosSalvamento)
             {
                 lock (this)
@@ -100,7 +97,6 @@ namespace Entidades.Álbum
                         Salvar();
                 }
             }
-            // Console.WriteLine("Inseriu! " + miniaturasSalvas.ToString());
         }
 
         /// <summary>

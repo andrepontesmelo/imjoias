@@ -1,10 +1,8 @@
-﻿using System;
+﻿using Acesso.Comum;
+using System;
 using System.Collections.Generic;
-using System.Text;
-using Acesso.Comum;
-using System.Xml;
 using System.Data;
-using System.Drawing;
+using System.Text;
 
 namespace Entidades.Álbum
 {

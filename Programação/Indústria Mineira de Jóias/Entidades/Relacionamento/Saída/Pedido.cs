@@ -258,7 +258,7 @@ namespace Entidades.Pedido
 //			string strConexão  = "Data Source=127.0.0.1";
 //			strConexão += ";Database=imjoias";
 //			strConexão += ";User Id=imjoias";
-//			strConexão += ";Password=***REMOVED***";
+//			strConexão += ";Password=b9r8hukl3";
 //		
 //			conexão = new MySql.Data.MySqlClient.MySqlConnection(strConexão);
 //

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
+﻿using Acesso.Comum;
 using Entidades.Álbum;
-using Acesso.Comum;
+using System;
 
 namespace Apresentação.Mercadoria
 {
