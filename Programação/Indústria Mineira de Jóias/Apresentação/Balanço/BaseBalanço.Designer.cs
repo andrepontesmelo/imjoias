@@ -89,10 +89,10 @@
             this.tabs.Controls.Add(this.tabRetornos);
             this.tabs.Controls.Add(this.tabVendas);
             this.tabs.Controls.Add(this.tabSedex);
-            this.tabs.Location = new System.Drawing.Point(193, 97);
+            this.tabs.Location = new System.Drawing.Point(193, 75);
             this.tabs.Name = "tabs";
             this.tabs.SelectedIndex = 0;
-            this.tabs.Size = new System.Drawing.Size(594, 353);
+            this.tabs.Size = new System.Drawing.Size(594, 388);
             this.tabs.TabIndex = 8;
             // 
             // tabSaídas
@@ -101,19 +101,17 @@
             this.tabSaídas.Location = new System.Drawing.Point(4, 22);
             this.tabSaídas.Name = "tabSaídas";
             this.tabSaídas.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSaídas.Size = new System.Drawing.Size(586, 327);
+            this.tabSaídas.Size = new System.Drawing.Size(586, 362);
             this.tabSaídas.TabIndex = 0;
             this.tabSaídas.Text = "Saídas (+)";
             this.tabSaídas.UseVisualStyleBackColor = true;
             // 
             // listaSaídas
             // 
-            this.listaSaídas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listaSaídas.Location = new System.Drawing.Point(0, 0);
+            this.listaSaídas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listaSaídas.Location = new System.Drawing.Point(3, 3);
             this.listaSaídas.Name = "listaSaídas";
-            this.listaSaídas.Size = new System.Drawing.Size(586, 327);
+            this.listaSaídas.Size = new System.Drawing.Size(580, 356);
             this.listaSaídas.TabIndex = 0;
             this.listaSaídas.AoMarcar += new System.EventHandler(this.listaSaídas_AoMarcar);
             this.listaSaídas.DoubleClick += new System.EventHandler(this.listaSaídas_DoubleClick);
@@ -124,19 +122,17 @@
             this.tabRetornos.Location = new System.Drawing.Point(4, 22);
             this.tabRetornos.Name = "tabRetornos";
             this.tabRetornos.Padding = new System.Windows.Forms.Padding(3);
-            this.tabRetornos.Size = new System.Drawing.Size(586, 327);
+            this.tabRetornos.Size = new System.Drawing.Size(586, 362);
             this.tabRetornos.TabIndex = 1;
             this.tabRetornos.Text = "Retornos (-)";
             this.tabRetornos.UseVisualStyleBackColor = true;
             // 
             // listaRetornos
             // 
-            this.listaRetornos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listaRetornos.Location = new System.Drawing.Point(0, 0);
+            this.listaRetornos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listaRetornos.Location = new System.Drawing.Point(3, 3);
             this.listaRetornos.Name = "listaRetornos";
-            this.listaRetornos.Size = new System.Drawing.Size(586, 157);
+            this.listaRetornos.Size = new System.Drawing.Size(580, 356);
             this.listaRetornos.TabIndex = 0;
             this.listaRetornos.AoMarcar += new System.EventHandler(this.listaRetornos_AoMarcar);
             this.listaRetornos.DoubleClick += new System.EventHandler(this.listaRetornos_DoubleClick);
@@ -147,21 +143,19 @@
             this.tabVendas.Location = new System.Drawing.Point(4, 22);
             this.tabVendas.Name = "tabVendas";
             this.tabVendas.Padding = new System.Windows.Forms.Padding(3);
-            this.tabVendas.Size = new System.Drawing.Size(586, 327);
+            this.tabVendas.Size = new System.Drawing.Size(586, 362);
             this.tabVendas.TabIndex = 2;
             this.tabVendas.Text = "Vendas (-)";
             this.tabVendas.UseVisualStyleBackColor = true;
             // 
             // listaVendas
             // 
-            this.listaVendas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listaVendas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listaVendas.ItemSelecionado = null;
-            this.listaVendas.ItensSelecionados = ((System.Collections.Generic.List<Entidades.Relacionamento.Venda.IDadosVenda>)(resources.GetObject("listaVendas.ItensChecados")));
-            this.listaVendas.Location = new System.Drawing.Point(1, 3);
+            this.listaVendas.ItensSelecionados = ((System.Collections.Generic.List<Entidades.Relacionamento.Venda.IDadosVenda>)(resources.GetObject("listaVendas.ItensSelecionados")));
+            this.listaVendas.Location = new System.Drawing.Point(3, 3);
             this.listaVendas.Name = "listaVendas";
-            this.listaVendas.Size = new System.Drawing.Size(585, 154);
+            this.listaVendas.Size = new System.Drawing.Size(580, 356);
             this.listaVendas.TabIndex = 0;
             this.listaVendas.AoDuploClique += new Apresentação.Financeiro.Venda.ListViewVendas.DelegaçãoVenda(this.listaVendas_AoDuploClique);
             // 
@@ -171,22 +165,20 @@
             this.tabSedex.Location = new System.Drawing.Point(4, 22);
             this.tabSedex.Name = "tabSedex";
             this.tabSedex.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSedex.Size = new System.Drawing.Size(586, 327);
+            this.tabSedex.Size = new System.Drawing.Size(586, 362);
             this.tabSedex.TabIndex = 3;
             this.tabSedex.Text = "Sedex (+)";
             this.tabSedex.UseVisualStyleBackColor = true;
             // 
             // listaSedex
             // 
-            this.listaSedex.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.listaSedex.ApenasNãoAcertado = false;
+            this.listaSedex.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listaSedex.ItemSelecionado = null;
-            this.listaSedex.ItensSelecionados = ((System.Collections.Generic.List<Entidades.Relacionamento.Venda.IDadosVenda>)(resources.GetObject("listaSedex.ItensChecados")));
-            this.listaSedex.Location = new System.Drawing.Point(1, 1);
+            this.listaSedex.ItensSelecionados = ((System.Collections.Generic.List<Entidades.Relacionamento.Venda.IDadosVenda>)(resources.GetObject("listaSedex.ItensSelecionados")));
+            this.listaSedex.Location = new System.Drawing.Point(3, 3);
             this.listaSedex.Name = "listaSedex";
-            this.listaSedex.Size = new System.Drawing.Size(585, 154);
+            this.listaSedex.Size = new System.Drawing.Size(580, 356);
             this.listaSedex.TabIndex = 1;
             this.listaSedex.AoDuploClique += new Apresentação.Financeiro.Venda.ListViewVendas.DelegaçãoVenda(this.listaSedex_AoDuploClique);
             // 
@@ -204,7 +196,7 @@
             this.quadro1.Location = new System.Drawing.Point(7, 13);
             this.quadro1.MostrarBotãoMinMax = false;
             this.quadro1.Name = "quadro1";
-            this.quadro1.Size = new System.Drawing.Size(160, 74);
+            this.quadro1.Size = new System.Drawing.Size(160, 60);
             this.quadro1.TabIndex = 1;
             this.quadro1.Tamanho = 30;
             this.quadro1.Título = "Próximo passo";
@@ -213,8 +205,8 @@
             // 
             this.opçãoAbrirBalanço.BackColor = System.Drawing.Color.Transparent;
             this.opçãoAbrirBalanço.Descrição = "Contabilizar mercadorias";
-            this.opçãoAbrirBalanço.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoAbrirBalanço.Imagem")));
-            this.opçãoAbrirBalanço.Location = new System.Drawing.Point(5, 50);
+            this.opçãoAbrirBalanço.Imagem = global::Apresentação.Resource.ok1;
+            this.opçãoAbrirBalanço.Location = new System.Drawing.Point(7, 30);
             this.opçãoAbrirBalanço.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoAbrirBalanço.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoAbrirBalanço.MinimumSize = new System.Drawing.Size(150, 16);
@@ -235,7 +227,7 @@
             this.quadro2.Cor = System.Drawing.Color.Black;
             this.quadro2.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadro2.LetraTítulo = System.Drawing.Color.White;
-            this.quadro2.Location = new System.Drawing.Point(7, 267);
+            this.quadro2.Location = new System.Drawing.Point(7, 79);
             this.quadro2.MostrarBotãoMinMax = false;
             this.quadro2.Name = "quadro2";
             this.quadro2.Size = new System.Drawing.Size(160, 154);
@@ -248,7 +240,7 @@
             // 
             this.opçãoFiltrar.BackColor = System.Drawing.Color.Transparent;
             this.opçãoFiltrar.Descrição = "Filtrar...";
-            this.opçãoFiltrar.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoFiltrar.Imagem")));
+            this.opçãoFiltrar.Imagem = global::Apresentação.Resource.propriedades;
             this.opçãoFiltrar.Location = new System.Drawing.Point(10, 130);
             this.opçãoFiltrar.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoFiltrar.MaximumSize = new System.Drawing.Size(150, 100);
@@ -263,10 +255,10 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Location = new System.Drawing.Point(3, 32);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(147, 81);
+            this.label1.Size = new System.Drawing.Size(157, 81);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Atualmente todos os documentos relacionados no sistema estão sendo exibidos. É po" +
-    "ssível filtrar documentos relativas à pessoas específicas";
+            this.label1.Text = "Atualmente todos os documentos relacionados no sistema estão sendo exibidos.    \r" +
+    "\nÉ possível filtrar documentos relativas à pessoas específicas";
             // 
             // itemLayout1
             // 

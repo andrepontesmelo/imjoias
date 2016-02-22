@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
-using System.Windows.Forms;
-using Entidades.Acerto;
-using Apresentação.Balanço;
+﻿using Apresentação.Balanço;
 using Entidades.Relacionamento;
+using System;
 
 namespace Apresentação.Administrativo.Balanço
 {
@@ -28,22 +21,6 @@ namespace Apresentação.Administrativo.Balanço
 
         private void opção1_Click(object sender, EventArgs e)
         {
-            //ControleAcertoMercadorias acerto;
-            //BaseResumo baseResumo;
-
-            //Apresentação.Formulários.AguardeDB.Mostrar();
-
-            //// Faz a contabilização das mercadorias
-            //acerto = new ControleAcertoMercadorias(listaSaídas.ObterCódigosMarcados(),
-            //    listaRetornos.ObterCódigosMarcados(),
-            //    listaVendas.ObterCódigosMarcados());
-
-            //baseResumo = new BaseResumo();
-            //baseResumo.Carregar(acerto);
-
-            //SubstituirBase(baseResumo);
-            //Apresentação.Formulários.AguardeDB.Fechar();
-
             SubstituirBase(new BaseResumo(listaSaídas.ObterCódigosMarcados(),
                 listaRetornos.ObterCódigosMarcados(),
                 listaVendas.ObterCódigosSelecionados(), 
