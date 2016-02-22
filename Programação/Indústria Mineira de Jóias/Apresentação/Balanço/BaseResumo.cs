@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
-using System.Windows.Forms;
-using Apresentação.Impressão.Relatórios;
-using Apresentação.Formulários;
+﻿using Apresentação.Formulários;
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using Apresentação.Impressão.Relatórios.Balanço;
 
 namespace Apresentação.Administrativo.Balanço
 {
@@ -27,8 +22,6 @@ namespace Apresentação.Administrativo.Balanço
         {
             InitializeComponent();
 
-            //vendas.AddRange(sedex);
-
             balanço = new Negócio.ControleBalanço(saídas, retornos, vendas, sedex);
             bandeja.AdicionarVários(new ArrayList(balanço.ColeçãoSaquinhos));
         }
@@ -37,9 +30,9 @@ namespace Apresentação.Administrativo.Balanço
         {
             using (JanelaImpressão dlg = new JanelaImpressão())
             {
-                RelatórioBalanço relatório = new Apresentação.Impressão.Relatórios.RelatórioBalanço();
+                RelatórioBalanço relatório = new RelatórioBalanço();
                 relatório.SetDataSource(balanço.ObterImpressão());
-                //relatório.PrintOptions.PrinterName = impressora;
+                
                 dlg.InserirDocumento(relatório, "Balanço");
 
                 dlg.Título = "Balanço";

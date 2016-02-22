@@ -1317,10 +1317,10 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Relatórios\ControleImpressãoRelacionamento.cs" />
-    <Compile Include="Impressão\Relatórios\DataSetBalanço.cs">
+    <Compile Include="Impressão\Relatórios\Balanço\DataSetBalanço.cs">
       <DependentUpon>DataSetBalanço.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Impressão\Relatórios\DataSetBalanço.Designer.cs">
+    <Compile Include="Impressão\Relatórios\Balanço\DataSetBalanço.Designer.cs">
       <DependentUpon>DataSetBalanço.xsd</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1532,7 +1532,7 @@
       <DesignTime>True</DesignTime>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Impressão\Relatórios\RelatórioBalanço.cs">
+    <Compile Include="Impressão\Relatórios\Balanço\RelatórioBalanço.cs">
       <DependentUpon>RelatórioBalanço.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -3050,7 +3050,7 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RelatórioPessoa.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Impressão\Relatórios\RelatórioBalanço.rpt">
+    <EmbeddedResource Include="Impressão\Relatórios\Balanço\RelatórioBalanço.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RelatórioBalanço.cs</LastGenOutput>
     </EmbeddedResource>
@@ -4568,15 +4568,15 @@
     <None Include="Impressão\Relatórios\Acerto\DataSetAcerto.xss">
       <DependentUpon>DataSetAcerto.xsd</DependentUpon>
     </None>
-    <None Include="Impressão\Relatórios\DataSetBalanço.xsc">
+    <None Include="Impressão\Relatórios\Balanço\DataSetBalanço.xsc">
       <DependentUpon>DataSetBalanço.xsd</DependentUpon>
     </None>
-    <None Include="Impressão\Relatórios\DataSetBalanço.xsd">
+    <None Include="Impressão\Relatórios\Balanço\DataSetBalanço.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DataSetBalanço.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="Impressão\Relatórios\DataSetBalanço.xss">
+    <None Include="Impressão\Relatórios\Balanço\DataSetBalanço.xss">
       <DependentUpon>DataSetBalanço.xsd</DependentUpon>
     </None>
     <None Include="Impressão\Relatórios\DataSetPagamento.xsc">
@@ -5433,9 +5433,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Impressão\Relatórios\Balanço\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
