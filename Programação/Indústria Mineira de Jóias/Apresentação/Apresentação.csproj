@@ -2292,7 +2292,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Balanço\BaseBalanço.resx">
       <DependentUpon>BaseBalanço.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Balanço\BaseResumo.resx">
       <DependentUpon>BaseResumo.cs</DependentUpon>
@@ -4197,7 +4196,7 @@
       <Name>Acesso.Comum</Name>
     </ProjectReference>
     <ProjectReference Include="..\Entidades\Entidades.csproj">
-      <Project>{E1A76D2D-85F3-4202-B316-3C6BDD3220F9}</Project>
+      <Project>{e1a76d2d-85f3-4202-b316-3c6bdd3220f9}</Project>
       <Name>Entidades</Name>
     </ProjectReference>
     <ProjectReference Include="..\Negócio\Negócio.csproj">
