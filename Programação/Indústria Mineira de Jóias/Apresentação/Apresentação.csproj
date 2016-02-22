@@ -3224,8 +3224,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="SinalizaçãoPedido.resx">
       <DependentUpon>SinalizaçãoPedido.cs</DependentUpon>
@@ -5409,6 +5409,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="IntegraçãoSistemaAntigo\App.ico" />
+    <None Include="Resources\PrintPreview.png" />
+    <None Include="Resources\visualizacao_impressao4.png" />
     <None Include="Resources\comissao.png" />
     <None Include="Resources\fiscal.png" />
     <None Include="Resources\nfe.png" />
