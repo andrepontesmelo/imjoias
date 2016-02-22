@@ -91,6 +91,8 @@ namespace Entidades.Privilégio
 
         Álbum                   = 0x00800000,
         ManipularComissão       = 0x01000000,
-        Técnico                 = 0x02000000
+        Técnico                 = 0x02000000,
+        Estoque                 = 0x04000000,
+        Balanço                 = 0x08000000
     }
 }

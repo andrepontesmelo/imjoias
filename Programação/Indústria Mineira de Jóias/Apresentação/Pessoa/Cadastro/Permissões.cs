@@ -32,7 +32,6 @@ namespace Apresentação.Pessoa.Cadastro
 
                 txtUsuário.ReadOnly = value.Cadastrado && !String.IsNullOrEmpty(value.Usuário);
                 txtUsuário.Text = value.Usuário;
-                lblSenha.Visible = !txtUsuário.ReadOnly;
             }
         }
 

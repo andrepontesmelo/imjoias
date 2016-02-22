@@ -67,16 +67,16 @@ namespace Apresentação.Administrativo
         {
             base.AoCarregarCompletamente(splash);
 
-            bool técnico = (Entidades.Privilégio.PermissãoFuncionário.ValidarPermissão(Permissão.Técnico));
+            bool técnico = PermissãoFuncionário.ValidarPermissão(Permissão.Técnico);
 
             quadroExportação.Visible = técnico;
             quadroExportacaoCupom.Visible = técnico;
             quadroExportaVenda.Visible = técnico;
-            quadroOpçãoBalanço.Visible = técnico;
             quadroOpçãoImportação.Visible = técnico;
-            quadroControleEstoque.Visible = técnico;
 
-            quadroComissão.Visible = Entidades.Privilégio.PermissãoFuncionário.ValidarPermissão(Permissão.ManipularComissão);
+            quadroOpçãoBalanço.Visible = PermissãoFuncionário.ValidarPermissão(Permissão.Balanço);
+            quadroControleEstoque.Visible = PermissãoFuncionário.ValidarPermissão(Permissão.Estoque);
+            quadroComissão.Visible = PermissãoFuncionário.ValidarPermissão(Permissão.ManipularComissão);
         }
 
         private void quadroControleEstoque_Click(object sender, EventArgs e)

@@ -42,6 +42,7 @@
             this.chkConsignadoRetorno = new Apresentação.Pessoa.Cadastro.ChkPermissão();
             this.chkConsignadoSaída = new Apresentação.Pessoa.Cadastro.ChkPermissão();
             this.grpFinanceiro = new System.Windows.Forms.GroupBox();
+            this.chkPermissãoFaturamento = new Apresentação.Pessoa.Cadastro.ChkPermissão();
             this.chkManipularComissão = new Apresentação.Pessoa.Cadastro.ChkPermissão();
             this.chkPersonalizarVenda = new Apresentação.Pessoa.Cadastro.ChkPermissão();
             this.chkVisualizarHistórico = new Apresentação.Pessoa.Cadastro.ChkPermissão();
@@ -52,17 +53,17 @@
             this.chkVendasAcesso = new Apresentação.Pessoa.Cadastro.ChkPermissão();
             this.chkFinanceiroCotação = new Apresentação.Pessoa.Cadastro.ChkPermissão();
             this.grpBancoDados = new System.Windows.Forms.GroupBox();
-            this.lblSenha = new System.Windows.Forms.Label();
             this.txtUsuário = new System.Windows.Forms.TextBox();
             this.lblUsuário = new System.Windows.Forms.Label();
             this.grpMercadoria = new System.Windows.Forms.GroupBox();
+            this.chkPermissãoBalanço = new Apresentação.Pessoa.Cadastro.ChkPermissão();
+            this.chkPermissãoEstoque = new Apresentação.Pessoa.Cadastro.ChkPermissão();
             this.chkPermissãoTécnico = new Apresentação.Pessoa.Cadastro.ChkPermissão();
             this.chkPermissão1 = new Apresentação.Pessoa.Cadastro.ChkPermissão();
             this.chkPedidosConsertos = new Apresentação.Pessoa.Cadastro.ChkPermissão();
             this.chkEditarMercadorias = new Apresentação.Pessoa.Cadastro.ChkPermissão();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.btnPrivVendedor = new System.Windows.Forms.Button();
-            this.chkPermissãoFaturamento = new Apresentação.Pessoa.Cadastro.ChkPermissão();
             this.grpCadastro.SuspendLayout();
             this.grpConsignado.SuspendLayout();
             this.grpFinanceiro.SuspendLayout();
@@ -134,7 +135,7 @@
             this.grpConsignado.Controls.Add(this.chkConsignadoDestrancar);
             this.grpConsignado.Controls.Add(this.chkConsignadoRetorno);
             this.grpConsignado.Controls.Add(this.chkConsignadoSaída);
-            this.grpConsignado.Location = new System.Drawing.Point(198, 133);
+            this.grpConsignado.Location = new System.Drawing.Point(198, 84);
             this.grpConsignado.Name = "grpConsignado";
             this.grpConsignado.Size = new System.Drawing.Size(185, 158);
             this.grpConsignado.TabIndex = 1;
@@ -147,7 +148,7 @@
             this.chkEscolherDocumentos.Location = new System.Drawing.Point(6, 134);
             this.chkEscolherDocumentos.Name = "chkEscolherDocumentos";
             this.chkEscolherDocumentos.Privilégio = Entidades.Privilégio.Permissão.MoverDocumentoAcerto;
-            this.chkEscolherDocumentos.Size = new System.Drawing.Size(178, 17);
+            this.chkEscolherDocumentos.Size = new System.Drawing.Size(167, 17);
             this.chkEscolherDocumentos.TabIndex = 6;
             this.chkEscolherDocumentos.Text = "Mover documentos em acerto";
             this.toolTip.SetToolTip(this.chkEscolherDocumentos, "Permite mover um documento de um acerto para outro. ");
@@ -231,6 +232,17 @@
             this.grpFinanceiro.TabIndex = 2;
             this.grpFinanceiro.TabStop = false;
             this.grpFinanceiro.Text = "Financeiro";
+            // 
+            // chkPermissãoFaturamento
+            // 
+            this.chkPermissãoFaturamento.AutoSize = true;
+            this.chkPermissãoFaturamento.Location = new System.Drawing.Point(6, 248);
+            this.chkPermissãoFaturamento.Name = "chkPermissãoFaturamento";
+            this.chkPermissãoFaturamento.Privilégio = Entidades.Privilégio.Permissão.Faturamento;
+            this.chkPermissãoFaturamento.Size = new System.Drawing.Size(85, 17);
+            this.chkPermissãoFaturamento.TabIndex = 10;
+            this.chkPermissãoFaturamento.Text = "Faturamento";
+            this.chkPermissãoFaturamento.UseVisualStyleBackColor = true;
             // 
             // chkManipularComissão
             // 
@@ -339,28 +351,14 @@
             // 
             // grpBancoDados
             // 
-            this.grpBancoDados.Controls.Add(this.lblSenha);
             this.grpBancoDados.Controls.Add(this.txtUsuário);
             this.grpBancoDados.Controls.Add(this.lblUsuário);
             this.grpBancoDados.Location = new System.Drawing.Point(197, 32);
             this.grpBancoDados.Name = "grpBancoDados";
-            this.grpBancoDados.Size = new System.Drawing.Size(185, 95);
+            this.grpBancoDados.Size = new System.Drawing.Size(185, 49);
             this.grpBancoDados.TabIndex = 3;
             this.grpBancoDados.TabStop = false;
             this.grpBancoDados.Text = "Banco de dados";
-            // 
-            // lblSenha
-            // 
-            this.lblSenha.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblSenha.Location = new System.Drawing.Point(6, 42);
-            this.lblSenha.Name = "lblSenha";
-            this.lblSenha.Size = new System.Drawing.Size(173, 43);
-            this.lblSenha.TabIndex = 4;
-            this.lblSenha.Text = "A senha inicialmente é vazia e deverá ser alterado pelo funcionário no primeiro a" +
-    "cesso.";
-            this.lblSenha.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtUsuário
             // 
@@ -381,20 +379,42 @@
             // 
             // grpMercadoria
             // 
+            this.grpMercadoria.Controls.Add(this.chkPermissãoBalanço);
+            this.grpMercadoria.Controls.Add(this.chkPermissãoEstoque);
             this.grpMercadoria.Controls.Add(this.chkPermissãoTécnico);
             this.grpMercadoria.Controls.Add(this.chkPermissão1);
             this.grpMercadoria.Controls.Add(this.chkPedidosConsertos);
             this.grpMercadoria.Controls.Add(this.chkEditarMercadorias);
-            this.grpMercadoria.Location = new System.Drawing.Point(197, 297);
+            this.grpMercadoria.Location = new System.Drawing.Point(197, 248);
             this.grpMercadoria.Name = "grpMercadoria";
-            this.grpMercadoria.Size = new System.Drawing.Size(185, 128);
+            this.grpMercadoria.Size = new System.Drawing.Size(185, 171);
             this.grpMercadoria.TabIndex = 4;
             this.grpMercadoria.TabStop = false;
             this.grpMercadoria.Text = "Outros";
             // 
+            // chkPermissãoBalanço
+            // 
+            this.chkPermissãoBalanço.Location = new System.Drawing.Point(6, 147);
+            this.chkPermissãoBalanço.Name = "chkPermissãoBalanço";
+            this.chkPermissãoBalanço.Privilégio = Entidades.Privilégio.Permissão.Balanço;
+            this.chkPermissãoBalanço.Size = new System.Drawing.Size(173, 24);
+            this.chkPermissãoBalanço.TabIndex = 3;
+            this.chkPermissãoBalanço.Text = "Balanço";
+            this.chkPermissãoBalanço.UseVisualStyleBackColor = true;
+            // 
+            // chkPermissãoEstoque
+            // 
+            this.chkPermissãoEstoque.Location = new System.Drawing.Point(6, 125);
+            this.chkPermissãoEstoque.Name = "chkPermissãoEstoque";
+            this.chkPermissãoEstoque.Privilégio = Entidades.Privilégio.Permissão.Estoque;
+            this.chkPermissãoEstoque.Size = new System.Drawing.Size(173, 24);
+            this.chkPermissãoEstoque.TabIndex = 3;
+            this.chkPermissãoEstoque.Text = "Estoque";
+            this.chkPermissãoEstoque.UseVisualStyleBackColor = true;
+            // 
             // chkPermissãoTécnico
             // 
-            this.chkPermissãoTécnico.Location = new System.Drawing.Point(7, 95);
+            this.chkPermissãoTécnico.Location = new System.Drawing.Point(6, 95);
             this.chkPermissãoTécnico.Name = "chkPermissãoTécnico";
             this.chkPermissãoTécnico.Privilégio = Entidades.Privilégio.Permissão.Técnico;
             this.chkPermissãoTécnico.Size = new System.Drawing.Size(173, 30);
@@ -404,7 +424,7 @@
             // 
             // chkPermissão1
             // 
-            this.chkPermissão1.Location = new System.Drawing.Point(7, 68);
+            this.chkPermissão1.Location = new System.Drawing.Point(6, 68);
             this.chkPermissão1.Name = "chkPermissão1";
             this.chkPermissão1.Privilégio = Entidades.Privilégio.Permissão.Álbum;
             this.chkPermissão1.Size = new System.Drawing.Size(173, 30);
@@ -448,17 +468,6 @@
             this.btnPrivVendedor.Text = "Definir privilégios de vendedor";
             this.btnPrivVendedor.UseVisualStyleBackColor = true;
             this.btnPrivVendedor.Click += new System.EventHandler(this.btnPrivVendedor_Click);
-            // 
-            // chkPermissãoFaturamento
-            // 
-            this.chkPermissãoFaturamento.AutoSize = true;
-            this.chkPermissãoFaturamento.Location = new System.Drawing.Point(6, 248);
-            this.chkPermissãoFaturamento.Name = "chkPermissãoFaturamento";
-            this.chkPermissãoFaturamento.Privilégio = Entidades.Privilégio.Permissão.Faturamento;
-            this.chkPermissãoFaturamento.Size = new System.Drawing.Size(85, 17);
-            this.chkPermissãoFaturamento.TabIndex = 10;
-            this.chkPermissãoFaturamento.Text = "Faturamento";
-            this.chkPermissãoFaturamento.UseVisualStyleBackColor = true;
             // 
             // Permissões
             // 
@@ -505,7 +514,6 @@
         private System.Windows.Forms.GroupBox grpBancoDados;
         private System.Windows.Forms.TextBox txtUsuário;
         private System.Windows.Forms.Label lblUsuário;
-        private System.Windows.Forms.Label lblSenha;
         private ChkPermissão chkVendasVerificar;
         private ChkPermissão chkZerarAcerto;
         private System.Windows.Forms.GroupBox grpMercadoria;
@@ -523,5 +531,7 @@
         private ChkPermissão chkManipularComissão;
         private ChkPermissão chkPermissãoTécnico;
         private ChkPermissão chkPermissãoFaturamento;
+        private ChkPermissão chkPermissãoBalanço;
+        private ChkPermissão chkPermissãoEstoque;
     }
 }
