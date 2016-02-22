@@ -428,6 +428,8 @@ namespace Apresentação.Financeiro.Pagamento
 
             if (venda != null)
                 statusStrip1.Items.Add(valorTotalLíquidoStrip);
+            else
+                statusStrip1.Items.Add(valorPendente);
         }
 
         private void AtualizarAcessibilidadeGráfica()
@@ -479,7 +481,7 @@ namespace Apresentação.Financeiro.Pagamento
 
             DadosBgCarregar dados = (DadosBgCarregar)e.Result;
             DateTime hoje = DadosGlobais.Instância.HoraDataAtual;
-            double valorTotal = 0, valorTotalLíquido = 0;
+            double valorTotal = 0, valorTotalLíquido = 0, valorPendente = 0;
 
             // Insere os itens
             foreach (Entidades.Pagamentos.Pagamento p in dados.entidades)
@@ -487,7 +489,7 @@ namespace Apresentação.Financeiro.Pagamento
                 if (!DevoAdicionar(p))
                     continue;
 
-                ListViewItem item = CriarItem(ref dados, hoje, ref valorTotal, ref valorTotalLíquido, p);
+                ListViewItem item = CriarItem(ref dados, hoje, ref valorTotal, ref valorTotalLíquido, ref valorPendente, p);
                 lista.Items.Add(item);
 
                 // Torna buscável
@@ -501,7 +503,7 @@ namespace Apresentação.Financeiro.Pagamento
             // Espicha a ultima coluna
             colPagoNaVenda.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
 
-            AtualizaStatusbar(valorTotal, valorTotalLíquido);
+            AtualizaStatusbar(valorTotal, valorTotalLíquido, valorPendente);
 
             RefazerContagemLinhas();
 
@@ -510,16 +512,27 @@ namespace Apresentação.Financeiro.Pagamento
             SinalizaçãoCarga.Dessinalizar(lista);
         }
 
-        private void AtualizaStatusbar(double valorTotal, double valorTotalLíquido)
+        private void AtualizaStatusbar(double valorTotal, double valorTotalLíquido, double valorLíquidoPendente)
         {
             qtdStatusStrip.Text = lista.Items.Count.ToString()
                 + (lista.Items.Count == 1 ? " item" : " itens");
 
-            valorTotalStrip.Text = valorTotal.ToString("C");
-            valorTotalLíquidoStrip.Text = valorTotalLíquido.ToString("C") + " (líquido)";
+            valorTotalStrip.Text = "Total: " + valorTotal.ToString("C");
+
+            if (valorTotal > 0)
+            {
+                string porcentagemPendente = Math.Round(100 * valorLíquidoPendente / valorTotal).ToString() + " %";
+                valorPendente.Text = porcentagemPendente + " Pendente: " + valorLíquidoPendente.ToString("C");
+
+                valorTotalLíquidoStrip.Text = valorTotalLíquido.ToString("C") + " (líquido)";
+            }
+            else
+            {
+                valorPendente.Text = valorTotalLíquidoStrip.Text = "";
+            }
         }
 
-        private ListViewItem CriarItem(ref DadosBgCarregar dados, DateTime hoje, ref double valorTotal, ref double valorTotalLíquido, Entidades.Pagamentos.Pagamento p)
+        private ListViewItem CriarItem(ref DadosBgCarregar dados, DateTime hoje, ref double valorTotal, ref double valorTotalLíquido, ref double valorPendente, Entidades.Pagamentos.Pagamento p)
         {
             ListViewItem item = new ListViewItem(new string[11] { "", "", "", "", "", "", "", "", "", "", "" });
             ListaPagamentoItem itemPagamento = new ListaPagamentoItem(p);
@@ -554,6 +567,9 @@ namespace Apresentação.Financeiro.Pagamento
                 item.SubItems[colVencimento.Index].Text =
                     itemPagamento.Vencimento.Value.ToString("dd/MM/yyyy");
             }
+
+            if (p.Pendente)
+                valorPendente += p.Valor;
 
             if (venda != null)
             {

@@ -60,6 +60,7 @@
             this.valorTotalStrip = new System.Windows.Forms.ToolStripStatusLabel();
             this.valorTotalLíquidoStrip = new System.Windows.Forms.ToolStripStatusLabel();
             this.bgCarregar = new System.ComponentModel.BackgroundWorker();
+            this.valorPendente = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -298,7 +299,8 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.qtdStatusStrip,
             this.valorTotalStrip,
-            this.valorTotalLíquidoStrip});
+            this.valorTotalLíquidoStrip,
+            this.valorPendente});
             this.statusStrip1.Location = new System.Drawing.Point(0, 234);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(737, 22);
@@ -327,6 +329,12 @@
             // 
             this.bgCarregar.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgCarregar_DoWork);
             this.bgCarregar.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgCarregar_RunWorkerCompleted);
+            // 
+            // valorPendente
+            // 
+            this.valorPendente.Name = "valorPendente";
+            this.valorPendente.Size = new System.Drawing.Size(83, 17);
+            this.valorPendente.Text = "valorPendente";
             // 
             // ListaPagamento
             // 
@@ -380,5 +388,6 @@
         private System.Windows.Forms.ToolStripStatusLabel valorTotalLíquidoStrip;
         private System.Windows.Forms.ColumnHeader colDescrição;
         private System.Windows.Forms.ColumnHeader colContador;
+        private System.Windows.Forms.ToolStripStatusLabel valorPendente;
     }
 }
