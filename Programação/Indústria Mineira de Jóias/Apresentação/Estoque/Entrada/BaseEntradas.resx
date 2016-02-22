@@ -120,10 +120,10 @@
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="títuloBaseInferior1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADr4AAA6+AepCscAAAABtSURBVDhPtYwBDoAgDMR4+p7Gz9SDw0y5DU20SbMAHeVP
-        Nucr/OLdFLUQeUEFT51Q0WmtFVODRzNrYTTRDI9zx18izPTtkN90cDHCaDLVIFjJVIMAZJOpplUJyw8A
-        okxmMWrJyyxGLXmZfUUpO7qVQKcQw692AAAAAElFTkSuQmCC
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        vQAADr0BR/uQrQAAAG1JREFUOE+1jAEOgCAMxHj6nsbP1IPDTLkNTbRJswAd5U825yv84t0UtRB5QQVP
+        nVDRaa0VU4NHM2thNNEMj3PHXyLM9O2Q33RwMcJoMtUgWMlUgwBkk6mmVQnLDwCiTGYxasnLLEYteZl9
+        RSk7upVApxDDr3YAAAAASUVORK5CYII=
 </value>
   </data>
 </root>

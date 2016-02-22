@@ -12,6 +12,7 @@ namespace Apresentação.Estoque.Entrada
     public partial class ListaEntradas : UserControl
     {
         public event EventHandler AoDuploClique;
+        public event EventHandler AoExcluir;
 
         public ListaEntradas()
         {
@@ -74,6 +75,9 @@ namespace Apresentação.Estoque.Entrada
         {
             if (e.KeyCode == Keys.A && e.Control)
                 SelecionarTudo();
+
+            if (e.KeyCode == Keys.Delete && AoExcluir != null)
+                AoExcluir(sender, e);
         }
 
         private void SelecionarTudo()

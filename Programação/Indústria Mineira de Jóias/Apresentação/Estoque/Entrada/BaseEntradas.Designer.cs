@@ -141,6 +141,7 @@
             this.listaEntradas.Size = new System.Drawing.Size(588, 196);
             this.listaEntradas.TabIndex = 2;
             this.listaEntradas.AoDuploClique += new System.EventHandler(this.listaEntradas_AoDuploClique);
+            this.listaEntradas.AoExcluir += new System.EventHandler(this.listaEntradas_AoExcluir);
             // 
             // BaseEntradas
             // 
