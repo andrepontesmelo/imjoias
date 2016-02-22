@@ -224,5 +224,17 @@ namespace Apresentação.Financeiro.Saída
                 }
             }
         }
-	}
+
+        protected override void InserirDocumento(JanelaImpressão j)
+        {
+            Relatório relatório = new Apresentação.Impressão.Relatórios.Saída.Relatório();
+
+            new Apresentação.Impressão.Relatórios.Saída.ControleImpressãoSaída().PrepararImpressão(relatório,
+                (Entidades.Relacionamento.Saída.Saída) Relacionamento);
+
+            j.Título = "Impressão de saída";
+            j.Descrição = "";
+            j.InserirDocumento(relatório, "Saída");
+        }
+    }
 }

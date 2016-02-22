@@ -10,19 +10,19 @@ using System.Windows.Forms;
 
 namespace Apresentação.Financeiro
 {
-    public partial class BaseEditarRelacionamento : Apresentação.Formulários.BaseInferior
+    abstract public partial class BaseEditarRelacionamento : Apresentação.Formulários.BaseInferior
     {
         private Entidades.Relacionamento.Relacionamento entidade;
 
         // Componentes
         private AMS.TextBox.IntegerTextBox integerTextBox1;
         private System.ComponentModel.IContainer components = null;
-        private Apresentação.Formulários.Quadro quadroAlternaBandeja;
-        protected System.Windows.Forms.RadioButton optAgrupado;
-        private System.Windows.Forms.RadioButton optHistórico;
-        protected Apresentação.Formulários.TítuloBaseInferior título;
-        private Apresentação.Formulários.Quadro quadroOpçãoPedido;
-        private Apresentação.Formulários.Opção opçãoImprimir;
+        private Quadro quadroAlternaBandeja;
+        protected RadioButton optAgrupado;
+        private RadioButton optHistórico;
+        protected TítuloBaseInferior título;
+        private Quadro quadroOpçãoPedido;
+        private Opção opçãoImprimir;
 
         /// <summary>
         /// Ocorre quando a trava é alterada.
@@ -189,10 +189,7 @@ namespace Apresentação.Financeiro
             AtualizarTravamento(travado);
         }
 
-        protected virtual bool ValidarPermissãoDestravar()
-        {
-            throw new Exception("Método abastrato");
-        }
+        protected abstract bool ValidarPermissãoDestravar();
 
         private void opçãoDestravar_Click(object sender, EventArgs e)
         {
@@ -317,5 +314,16 @@ namespace Apresentação.Financeiro
             }
 
         }
+
+        private void opçãoVisualizarImpressão_Click(object sender, EventArgs e)
+        {
+            Apresentação.Formulários.JanelaImpressão j = new Formulários.JanelaImpressão();
+
+            InserirDocumento(j);
+
+            j.Show();
+        }
+
+        protected abstract void InserirDocumento(Formulários.JanelaImpressão j);
     }
 }
