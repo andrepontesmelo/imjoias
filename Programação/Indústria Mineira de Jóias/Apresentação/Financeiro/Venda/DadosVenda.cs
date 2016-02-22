@@ -770,6 +770,7 @@ namespace Apresentação.Financeiro.Venda
                         return;
                     }
 
+                chkRastreada.Checked = false;
                 vendaEntidade.Quitar();
 
                 AtualizarChkVendaQuitada();
