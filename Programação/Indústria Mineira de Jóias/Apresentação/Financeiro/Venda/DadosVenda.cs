@@ -1,20 +1,16 @@
-﻿using System;
+﻿using Apresentação.Financeiro.Acerto;
+using Apresentação.Formulários;
+using Entidades;
+using Entidades.Acerto;
+using Entidades.Pagamentos;
+using Entidades.Pessoa;
+using Entidades.Privilégio;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
 using System.Text;
 using System.Windows.Forms;
-using Entidades.Pessoa;
-using Apresentação.Formulários;
-using Entidades;
-using Entidades.Privilégio;
-using Entidades.Configuração;
-using Entidades.Pagamentos;
-using System.Threading;
-using Entidades.Acerto;
-using Apresentação.Financeiro.Acerto;
-using System.Collections;
 
 namespace Apresentação.Financeiro.Venda
 {
@@ -366,19 +362,26 @@ namespace Apresentação.Financeiro.Venda
 
         private void AtualizarChkVendaQuitada()
         {
-            if (vendaEntidade.Quitação.HasValue)
+            if (vendaEntidade != null)
             {
-                chkVendaQuitada.Checked = true;
-                chkVendaQuitada.Text = "Venda quitada em " + vendaEntidade.Quitação.Value.ToString();
-            }
-            else
-            {
-                chkVendaQuitada.Checked = false;
-                chkVendaQuitada.Text = "Venda quitada";
-            }
+                if (vendaEntidade.Quitação.HasValue)
+                {
+                    chkVendaQuitada.Checked = true;
+                    chkVendaQuitada.Text = "Venda quitada em " + vendaEntidade.Quitação.Value.ToString();
+                }
+                else
+                {
+                    chkVendaQuitada.Checked = false;
+                    chkVendaQuitada.Text = "Venda quitada";
+                }
 
-            bool comissãoAberta = !Entidades.ComissãoCálculo.Comissão.ComissãoFechada(vendaEntidade.Código);
-            chkVendaQuitada.Enabled = comissãoAberta && PermissãoFuncionário.ValidarPermissão(Permissão.ManipularComissão);
+                bool comissãoAberta = !Entidades.ComissãoCálculo.Comissão.ComissãoFechada(vendaEntidade.Código);
+                chkVendaQuitada.Enabled = comissãoAberta && PermissãoFuncionário.ValidarPermissão(Permissão.ManipularComissão)
+                    && vendaEntidade.Cadastrado;
+            } else
+            {
+                chkVendaQuitada.Enabled = false;
+            }
         }
 
         void chkRastreada_CheckedChanged(object sender, EventArgs e)
@@ -627,6 +630,8 @@ namespace Apresentação.Financeiro.Venda
             //chkAcertado.Enabled = true;
             chkRastreada.Enabled = true;
             chkSedex.Enabled = true;
+
+            AtualizarChkVendaQuitada();
         }
 
         /// <summary>
@@ -765,6 +770,7 @@ namespace Apresentação.Financeiro.Venda
                         return;
                     }
 
+                chkRastreada.Checked = false;
                 vendaEntidade.Quitar();
 
                 AtualizarChkVendaQuitada();

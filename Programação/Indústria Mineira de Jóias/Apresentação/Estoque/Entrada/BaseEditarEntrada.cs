@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Apresentação.Formulários;
+using Apresentação.Impressão.Relatórios.Estoque.Entrada;
 
 namespace Apresentação.Estoque.Entrada
 {
@@ -44,6 +45,23 @@ namespace Apresentação.Estoque.Entrada
         protected override Apresentação.Impressão.TipoDocumento TipoDocumento
         {
             get { return Apresentação.Impressão.TipoDocumento.Entrada; }
+        }
+
+        protected override void InserirDocumento(JanelaImpressão j)
+        {
+            RelatorioEntrada relatório = new Apresentação.Impressão.Relatórios.Estoque.Entrada.RelatorioEntrada();
+
+            new Impressão.Relatórios.Entrada.ControleImpressãoEntrada().PrepararImpressão(relatório,
+                (Entidades.Estoque.Entrada) Relacionamento);
+
+            j.Título = "Impressão de entrada";
+            j.Descrição = "";
+            j.InserirDocumento(relatório, "Entrada");
+        }
+
+        protected override bool ValidarPermissãoDestravar()
+        {
+            throw new NotImplementedException();
         }
     }
 }

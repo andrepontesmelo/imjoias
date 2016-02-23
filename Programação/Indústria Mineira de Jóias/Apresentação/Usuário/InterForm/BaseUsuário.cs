@@ -1,16 +1,14 @@
 using System;
-using System.Collections;
 using System.ComponentModel;
-using System.Drawing;
-using System.Runtime.Remoting.Lifetime;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace Apresentação.Usuário.InterForm
 {
-	/// <summary>
-	/// Base contendo ambiente do funcionário.
-	/// </summary>
-	public class BaseUsuário : Apresentação.Formulários.BaseInferior
+    /// <summary>
+    /// Base contendo ambiente do funcionário.
+    /// </summary>
+    public class BaseUsuário : Apresentação.Formulários.BaseInferior
 	{
 		/// <summary>
 		/// Funcionário atual.
@@ -26,7 +24,8 @@ namespace Apresentação.Usuário.InterForm
         private Apresentação.Formulários.Opção opçãoSenha;
         protected Apresentação.Formulários.Quadro quadroRamais;
         private Apresentação.Usuário.Funcionários.Ramais ramais;
-		private System.ComponentModel.IContainer components = null;
+        private Formulários.Opção opçãoNovidades;
+        private System.ComponentModel.IContainer components = null;
 
 		/// <summary>
 		/// Esta construtora permite que classes que herdem dessa
@@ -81,6 +80,7 @@ namespace Apresentação.Usuário.InterForm
             this.título = new Apresentação.Formulários.TítuloBaseInferior();
             this.listaAgendamentos = new Apresentação.Usuário.Agendamentos.ListaAgendamentosAtuais();
             this.quadroPrivado = new Apresentação.Formulários.Quadro();
+            this.opçãoNovidades = new Apresentação.Formulários.Opção();
             this.opçãoAgendamentos = new Apresentação.Formulários.Opção();
             this.opçãoRamal = new Apresentação.Formulários.Opção();
             this.opçãoSenha = new Apresentação.Formulários.Opção();
@@ -129,6 +129,7 @@ namespace Apresentação.Usuário.InterForm
             this.quadroPrivado.bInfEsqArredondada = true;
             this.quadroPrivado.bSupDirArredondada = true;
             this.quadroPrivado.bSupEsqArredondada = true;
+            this.quadroPrivado.Controls.Add(this.opçãoNovidades);
             this.quadroPrivado.Controls.Add(this.opçãoAgendamentos);
             this.quadroPrivado.Controls.Add(this.opçãoRamal);
             this.quadroPrivado.Controls.Add(this.opçãoSenha);
@@ -138,22 +139,36 @@ namespace Apresentação.Usuário.InterForm
             this.quadroPrivado.Location = new System.Drawing.Point(7, 13);
             this.quadroPrivado.MostrarBotãoMinMax = false;
             this.quadroPrivado.Name = "quadroPrivado";
-            this.quadroPrivado.Size = new System.Drawing.Size(160, 99);
+            this.quadroPrivado.Size = new System.Drawing.Size(160, 114);
             this.quadroPrivado.TabIndex = 1;
             this.quadroPrivado.Tamanho = 30;
-            this.quadroPrivado.Título = "Acesso privado";
+            this.quadroPrivado.Título = "Ações";
+            // 
+            // opçãoNovidades
+            // 
+            this.opçãoNovidades.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoNovidades.Descrição = "Ver novidades da versão";
+            this.opçãoNovidades.Imagem = global::Apresentação.Resource.eventlogInfo3;
+            this.opçãoNovidades.Location = new System.Drawing.Point(7, 90);
+            this.opçãoNovidades.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoNovidades.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoNovidades.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoNovidades.Name = "opçãoNovidades";
+            this.opçãoNovidades.Size = new System.Drawing.Size(150, 16);
+            this.opçãoNovidades.TabIndex = 6;
+            this.opçãoNovidades.Click += new System.EventHandler(this.opçãoNovidades_Click);
             // 
             // opçãoAgendamentos
             // 
             this.opçãoAgendamentos.BackColor = System.Drawing.Color.Transparent;
             this.opçãoAgendamentos.Descrição = "Editar agendamentos";
             this.opçãoAgendamentos.Imagem = global::Apresentação.Resource.DedoMenor;
-            this.opçãoAgendamentos.Location = new System.Drawing.Point(5, 29);
+            this.opçãoAgendamentos.Location = new System.Drawing.Point(7, 30);
             this.opçãoAgendamentos.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoAgendamentos.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoAgendamentos.MinimumSize = new System.Drawing.Size(150, 16);
             this.opçãoAgendamentos.Name = "opçãoAgendamentos";
-            this.opçãoAgendamentos.Size = new System.Drawing.Size(150, 24);
+            this.opçãoAgendamentos.Size = new System.Drawing.Size(150, 16);
             this.opçãoAgendamentos.TabIndex = 2;
             this.opçãoAgendamentos.Click += new System.EventHandler(this.opçãoAgendamentos_Click);
             // 
@@ -162,12 +177,12 @@ namespace Apresentação.Usuário.InterForm
             this.opçãoRamal.BackColor = System.Drawing.Color.Transparent;
             this.opçãoRamal.Descrição = "Alterar ramal";
             this.opçãoRamal.Imagem = global::Apresentação.Resource.botão___telefone;
-            this.opçãoRamal.Location = new System.Drawing.Point(5, 53);
+            this.opçãoRamal.Location = new System.Drawing.Point(7, 50);
             this.opçãoRamal.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoRamal.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoRamal.MinimumSize = new System.Drawing.Size(150, 16);
             this.opçãoRamal.Name = "opçãoRamal";
-            this.opçãoRamal.Size = new System.Drawing.Size(150, 24);
+            this.opçãoRamal.Size = new System.Drawing.Size(150, 16);
             this.opçãoRamal.TabIndex = 3;
             this.opçãoRamal.Click += new System.EventHandler(this.opçãoRamal_Click);
             // 
@@ -176,12 +191,12 @@ namespace Apresentação.Usuário.InterForm
             this.opçãoSenha.BackColor = System.Drawing.Color.Transparent;
             this.opçãoSenha.Descrição = "Alterar senha";
             this.opçãoSenha.Imagem = global::Apresentação.Resource.keys;
-            this.opçãoSenha.Location = new System.Drawing.Point(5, 77);
+            this.opçãoSenha.Location = new System.Drawing.Point(7, 70);
             this.opçãoSenha.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoSenha.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoSenha.MinimumSize = new System.Drawing.Size(150, 16);
             this.opçãoSenha.Name = "opçãoSenha";
-            this.opçãoSenha.Size = new System.Drawing.Size(150, 24);
+            this.opçãoSenha.Size = new System.Drawing.Size(150, 16);
             this.opçãoSenha.TabIndex = 4;
             this.opçãoSenha.Click += new System.EventHandler(this.opçãoSenha_Click);
             // 
@@ -280,28 +295,9 @@ namespace Apresentação.Usuário.InterForm
             SubstituirBase(new Apresentação.Atendimento.BaseAtendimento(ramais.Seleção));
         }
 
-
-        ///// <summary>
-        ///// Ocorre ao receber mensagem de observação do funcionário atual.
-        ///// </summary>
-        ///// <param name="sujeito">Sujeito da ação.</param>
-        ///// <param name="ação">Ação tomada.</param>
-        ///// <param name="dados">Dados da ação.</param>
-        //private void AoObservarFuncionário(ISujeito sujeito, int ação, object dados)
-        //{
-        //    if (sujeito != funcionário)
-        //        throw new Exception("O sujeito não é o funcionário observado!");
-
-        //    AoObservarFuncionário((AçãoFuncionário) ação, dados);
-        //}
-
-        ///// <summary>
-        ///// Ocorre ao observar uma ação do funcionário atual.
-        ///// </summary>
-        ///// <param name="ação">Ação do funcionário.</param>
-        ///// <param name="dados">Dados da ação.</param>
-        //protected virtual void AoObservarFuncionário(AçãoFuncionário ação, object dados)
-        //{
-        //}
-	}
+        private void opçãoNovidades_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/andrepontesmelo/imjoias/commits/" + Versão.Descrição);
+        }
+    }
 }

@@ -294,7 +294,7 @@ namespace Apresentação.Financeiro
             this.opçãoMoverAcerto.Name = "opçãoMoverAcerto";
             this.opçãoMoverAcerto.PermitirLiberaçãoRecurso = true;
             this.opçãoMoverAcerto.Privilégio = Entidades.Privilégio.Permissão.MoverDocumentoAcerto;
-            this.opçãoMoverAcerto.Size = new System.Drawing.Size(150, 24);
+            this.opçãoMoverAcerto.Size = new System.Drawing.Size(150, 21);
             this.opçãoMoverAcerto.TabIndex = 6;
             this.opçãoMoverAcerto.Click += new System.EventHandler(this.opçãoMoverAcerto_Click);
             // 

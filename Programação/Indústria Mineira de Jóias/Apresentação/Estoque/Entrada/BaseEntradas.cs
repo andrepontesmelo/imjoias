@@ -1,12 +1,8 @@
-﻿using System;
+﻿using Apresentação.Formulários;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Apresentação.Formulários;
 
 namespace Apresentação.Estoque.Entrada
 {
@@ -15,11 +11,6 @@ namespace Apresentação.Estoque.Entrada
         public BaseEntradas()
         {
             InitializeComponent();
-        }
-
-        private void opção1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void opçãoNova_Click(object sender, EventArgs e)
@@ -42,7 +33,7 @@ namespace Apresentação.Estoque.Entrada
                 AbrirBaseEditar(lstSeleção[0]);
         }
 
-        private void opçãoExcluir_Click(object sender, EventArgs eArg)
+        private void Excluir()
         {
             List<Entidades.Estoque.Entrada> lstSeleção = listaEntradas.Seleção;
 
@@ -61,7 +52,7 @@ namespace Apresentação.Estoque.Entrada
             msg.Append("Deseja apagar o(s) seguinte(s) ");
             msg.Append(lstSeleção.Count);
             msg.Append(" documento(s) ?\n\n");
-            
+
             foreach (Entidades.Estoque.Entrada e in lstSeleção)
             {
                 msg.Append(" * ");
@@ -87,11 +78,21 @@ namespace Apresentação.Estoque.Entrada
             listaEntradas.Carregar();
         }
 
+        private void opçãoExcluir_Click(object sender, EventArgs eArg)
+        {
+            Excluir();
+        }
+
         protected override void AoExibir()
         {
             base.AoExibir();
 
             listaEntradas.Carregar();
+        }
+
+        private void listaEntradas_AoExcluir(object sender, EventArgs e)
+        {
+            Excluir();
         }
     }
 }

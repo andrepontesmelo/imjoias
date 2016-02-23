@@ -45,12 +45,6 @@ namespace Apresentação.Financeiro.Venda
             base.digitação = digitação;
 
             Digitação.MostrarPreço = true;
-
-
-            ///* Como a base já insere a tab de itens em primeiro,
-            // * é necessário reposicionar as tabs:
-            // */
-
             digitaçãoDevolução.PermitirSeleçãoTabela = false;
             digitação.PermitirSeleçãoTabela = false;
 
@@ -464,6 +458,17 @@ namespace Apresentação.Financeiro.Venda
             if (tabs.SelectedTab == tabVenda)
                 dadosVenda.MostrarPreços();
         }
+
+        protected override void InserirDocumento(JanelaImpressão j)
+        {
+            Relatório relatório = new Apresentação.Impressão.Relatórios.Venda.Relatório();
+
+            new Apresentação.Impressão.Relatórios.Venda.ControleImpressãoVenda().PrepararImpressão(relatório,
+                (Entidades.Relacionamento.Venda.Venda)Relacionamento);
+
+            j.Título = "Impressão de venda";
+            j.Descrição = "";
+            j.InserirDocumento(relatório, "Venda");
+        }
     }
 }
-

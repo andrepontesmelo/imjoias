@@ -38,11 +38,14 @@ namespace Apresentação.Formulários
             // 
             // lblDescrição
             // 
-            this.lblDescrição.Size = new System.Drawing.Size(631, 48);
+            this.lblDescrição.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDescrição.Size = new System.Drawing.Size(958, 48);
             // 
             // picÍcone
             // 
-            this.picÍcone.Image = global::Apresentação.Resource.impressora__altura_58_;
+            this.picÍcone.Image = global::Apresentação.Resource.PrintPreview;
+            this.picÍcone.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             // 
             // btnCancelar
             // 
@@ -75,9 +78,9 @@ namespace Apresentação.Formulários
             // 
             // tabControl
             // 
-            this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl.Location = new System.Drawing.Point(2, 93);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;

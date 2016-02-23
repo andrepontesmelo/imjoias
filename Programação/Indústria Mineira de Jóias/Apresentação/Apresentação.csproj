@@ -34,6 +34,8 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -1315,10 +1317,10 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Relatórios\ControleImpressãoRelacionamento.cs" />
-    <Compile Include="Impressão\Relatórios\DataSetBalanço.cs">
+    <Compile Include="Impressão\Relatórios\Balanço\DataSetBalanço.cs">
       <DependentUpon>DataSetBalanço.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Impressão\Relatórios\DataSetBalanço.Designer.cs">
+    <Compile Include="Impressão\Relatórios\Balanço\DataSetBalanço.Designer.cs">
       <DependentUpon>DataSetBalanço.xsd</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1530,7 +1532,7 @@
       <DesignTime>True</DesignTime>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Impressão\Relatórios\RelatórioBalanço.cs">
+    <Compile Include="Impressão\Relatórios\Balanço\RelatórioBalanço.cs">
       <DependentUpon>RelatórioBalanço.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -3048,7 +3050,7 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RelatórioPessoa.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Impressão\Relatórios\RelatórioBalanço.rpt">
+    <EmbeddedResource Include="Impressão\Relatórios\Balanço\RelatórioBalanço.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RelatórioBalanço.cs</LastGenOutput>
     </EmbeddedResource>
@@ -3222,8 +3224,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="SinalizaçãoPedido.resx">
       <DependentUpon>SinalizaçãoPedido.cs</DependentUpon>
@@ -4566,15 +4568,15 @@
     <None Include="Impressão\Relatórios\Acerto\DataSetAcerto.xss">
       <DependentUpon>DataSetAcerto.xsd</DependentUpon>
     </None>
-    <None Include="Impressão\Relatórios\DataSetBalanço.xsc">
+    <None Include="Impressão\Relatórios\Balanço\DataSetBalanço.xsc">
       <DependentUpon>DataSetBalanço.xsd</DependentUpon>
     </None>
-    <None Include="Impressão\Relatórios\DataSetBalanço.xsd">
+    <None Include="Impressão\Relatórios\Balanço\DataSetBalanço.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DataSetBalanço.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="Impressão\Relatórios\DataSetBalanço.xss">
+    <None Include="Impressão\Relatórios\Balanço\DataSetBalanço.xss">
       <DependentUpon>DataSetBalanço.xsd</DependentUpon>
     </None>
     <None Include="Impressão\Relatórios\DataSetPagamento.xsc">
@@ -5407,6 +5409,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="IntegraçãoSistemaAntigo\App.ico" />
+    <None Include="Resources\PrintPreview.png" />
+    <None Include="Resources\visualizacao_impressao4.png" />
     <None Include="Resources\comissao.png" />
     <None Include="Resources\fiscal.png" />
     <None Include="Resources\nfe.png" />
@@ -5431,10 +5435,15 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Impressão\Relatórios\Balanço\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <Import Project="..\packages\StrongNamer.0.0.1\build\StrongNamer.targets" Condition="Exists('..\packages\StrongNamer.0.0.1\build\StrongNamer.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\StrongNamer.0.0.1\build\StrongNamer.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\StrongNamer.0.0.1\build\StrongNamer.targets'))" />
+  </Target>
 </Project>

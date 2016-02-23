@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Data;
-using Entidades.Relacionamento.Venda;
-using Entidades;
+﻿using Entidades;
 using Entidades.Pagamentos;
 using Entidades.Pessoa;
 using Entidades.Pessoa.Endereço;
+using Entidades.Relacionamento.Venda;
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Data;
 
 namespace Apresentação.Impressão.Relatórios.Venda
 {
@@ -21,7 +20,7 @@ namespace Apresentação.Impressão.Relatórios.Venda
         protected override void MapearInformações(DataRow linha, Entidades.Relacionamento.Venda.Venda venda)
         {
             double dívida, juros, jurosPagamentos;
-            List<Entidades.Pagamentos.Pagamento> pagamentos;
+            List<Pagamento> pagamentos;
             string[] prestações;
            
             base.MapearInformações(linha, venda);
@@ -33,7 +32,7 @@ namespace Apresentação.Impressão.Relatórios.Venda
 
             venda.CalcularDívida(venda.DataCobrança, out dívida, out juros, pagamentos, prestações);
 
-            jurosPagamentos = Entidades.Pagamentos.Pagamento.CalcularJuros(listaPagamentos, venda.DataCobrança, venda.TaxaJuros);
+            jurosPagamentos = Pagamento.CalcularJuros(listaPagamentos, venda.DataCobrança, venda.TaxaJuros);
 
             List<IPagamento> lst = new List<IPagamento>();
             foreach (Pagamento p in pagamentos)
@@ -56,10 +55,10 @@ namespace Apresentação.Impressão.Relatórios.Venda
 
         private static void PreencherLinha(DataRow linha, Entidades.Relacionamento.Venda.Venda venda, double dívida, double jurosPagamentos, List<IPagamento> listaPagamentos, List<IPagamento> lst)
         {
-            linha["valorPago"] = Entidades.Pagamentos.Pagamento.CalcularValorPago(lst);
+            linha["valorPago"] = Pagamento.CalcularValorPago(lst);
             linha["dívida"] = dívida;
             linha["juros"] = jurosPagamentos;
-            linha["pagoLíquido"] = Entidades.Pagamentos.Pagamento.CalcularValorPagoLíquido(listaPagamentos, venda.DataCobrança, venda.TaxaJuros);
+            linha["pagoLíquido"] = Pagamento.CalcularValorPagoLíquido(listaPagamentos, venda.DataCobrança, venda.TaxaJuros);
             linha["mostrarDívida"] = true;
             linha["funcionário"] = Entidades.Pessoa.Pessoa.ReduzirNome(venda.Vendedor.Nome);
             linha["cotação"] = venda.Cotação;
@@ -206,6 +205,10 @@ namespace Apresentação.Impressão.Relatórios.Venda
 
         private static void PreencherFormasPagamento(Entidades.Relacionamento.Venda.Venda venda, DataTable tabelaModoPagamentos, DataRow linhaInfo)
         {
+            Pagamento[] pagamentos = Pagamento.ObterPagamentos(venda);
+            if (pagamentos.Length > 0)
+                return;
+
             foreach (Entidades.Relacionamento.Venda.ModoPagamento m in ModoPagamento.ObterModosPagamento(venda))
             {
                 int[] dias = Preço.InterpretarDiasPrestações(m.Prestações);
@@ -238,20 +241,6 @@ namespace Apresentação.Impressão.Relatórios.Venda
         private static void PreencherVendasRelacionadas(DataRow linhaInfo)
         {
             linhaInfo["mostrarVendasRelacionadas"] = false;
-            //double valorTotalVendasRelacionadas = 0;
-            //foreach (VendaSintetizada v in ObterVendasRelacionadas(venda))
-            //{
-            //    DataRow item = tabelaVendasRelacionadas.NewRow();
-            //    item["data"] = v.Data.ToShortDateString();
-            //    item["código"] = v.Código.ToString();
-            //    item["controle"] = v.Controle.ToString();
-            //    item["valorVenda"] = v.Valor.ToString("C");
-            //    tabelaVendasRelacionadas.Rows.Add(item);
-            //    linhaInfo["mostrarVendasRelacionadas"] = true;
-            //    //valorTotalVendasRelacionadas += v.Valor;
-            // }
-            //linhaInfo["valorTotalVendasRelacionadas"] = valorTotalVendasRelacionadas.ToString("C");
-
         }
 
         private bool PreencherDevoluções(Entidades.Relacionamento.Venda.Venda venda, DataTable itens, DataRow linhaInfo)

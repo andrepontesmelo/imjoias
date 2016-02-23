@@ -187,6 +187,18 @@ namespace Apresentação.Financeiro.Retorno
             baseInferior.Carregar(Relacionamento.AcertoConsignado);
             SubstituirBase(baseInferior);
         }
-	}
+
+        protected override void InserirDocumento(Apresentação.Formulários.JanelaImpressão j)
+        {
+            Relatório relatório = new Apresentação.Impressão.Relatórios.Retorno.Relatório();
+
+            new Apresentação.Impressão.Relatórios.Retorno.ControleImpressãoRetorno().PrepararImpressão(relatório,
+                (Entidades.Relacionamento.Retorno.Retorno) Relacionamento);
+
+            j.Título = "Impressão de retorno";
+            j.Descrição = "";
+            j.InserirDocumento(relatório, "Retorno");
+        }
+    }
 }
 
