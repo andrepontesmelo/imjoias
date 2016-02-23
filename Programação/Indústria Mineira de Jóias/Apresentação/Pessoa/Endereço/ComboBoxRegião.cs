@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
-using System.Windows.Forms;
-using Apresentação.Formulários;
+﻿using Apresentação.Formulários;
 using Entidades.Pessoa.Endereço;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Apresentação.Pessoa.Endereço
 {
@@ -183,7 +179,7 @@ namespace Apresentação.Pessoa.Endereço
             }
 
             cmbRegião.Items.AddRange(regiões);
-            cmbRegião.SelectedIndex = 0;
+            cmbRegião.SelectedIndex = -1;
         }
     }
 }
