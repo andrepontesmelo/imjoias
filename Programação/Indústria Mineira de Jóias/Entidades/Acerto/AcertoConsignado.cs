@@ -764,20 +764,6 @@ namespace Entidades.Acerto
 
             Venda venda = entidade as Venda;
 
-#if ACERTOCONSIGNADO_REPRESENTANTE_CARTA_BRANCA
-            /* Representantes levam mercadoria com índice de alto-atacado
-             * e enviam nota de venda com preço de atacado.
-             * (Bizarro, não?)
-             * 
-             * Assim, os itens relacionados em uma venda serão simplesmente
-             * ignorados, não verificando se o índice bate.
-             * 
-             * -- Júlio, 09/01/2007
-             */
-            if (venda != null && Representante.ÉRepresentante(venda.Vendedor))
-                return;
-#endif
-
             entidade.AntesDeCadastrarItem += new Entidades.Relacionamento.Relacionamento.AntesDeCadastrarItemCallback(AntesDeCadastrarItemRelacionamento);
         }
 
@@ -798,17 +784,6 @@ namespace Entidades.Acerto
             else if (!entidade.TabelaPreço.Equals(TabelaPreço)
                 && (cliente.Setor == null || Setor.ObterSetor(Setor.SetorSistema.AltoAtacado).Código != cliente.Setor.Código))
             {
-#if ACERTOCONSIGNADO_REPRESENTANTE_CARTA_BRANCA
-                Venda venda = entidade as Venda;
-
-                /* Representantes levam mercadoria com índice de alto-atacado
-                 * e enviam nota de venda com preço de atacado.
-                 * (Bizarro, não?)
-                 * -- Júlio, 09/01/2007
-                 */
-                if (venda != null && Representante.ÉRepresentante(venda.Vendedor))
-                    return;
-#endif
                 throw new DocumentoInconsistente("A tabela de preço não é a mesma utilizada no acerto.");
             }
 

@@ -20,8 +20,8 @@ namespace Acesso.MySQL
         private const string hostPadrão = "192.168.1.20";
         private const int portPadrão = 3306;
 #else
-        //private const string hostPadrão = "192.168.1.25";
-        //private const int portPadrão = 46033;
+        private const string hostPadrão = "192.168.1.25";
+        private const int portPadrão = 46033;
 #endif
         /// <summary>
         /// Host padrão, que pode ser substituído pelo registro "host"

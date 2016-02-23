@@ -416,10 +416,10 @@ namespace Apresentação.Financeiro
                 bandejaHistórico.PermitirSeleçãoTabela = false;
             }
 
+            bool acertoPossuiTabela = entidadeAcerto.AcertoConsignado != null && entidadeAcerto.AcertoConsignado.TabelaPreço != null;
             if (entidade.TabelaPreço == null)
             {
-                if (entidadeAcerto.AcertoConsignado != null && entidadeAcerto.AcertoConsignado.TabelaPreço != null
-                    && !(entidade is Entidades.Relacionamento.Venda.Venda))
+                if (acertoPossuiTabela)
                     entidadeAcerto.TabelaPreço = entidadeAcerto.AcertoConsignado.TabelaPreço;
                 else
                     QuestionarTabelaPreço(entidadeAcerto);
