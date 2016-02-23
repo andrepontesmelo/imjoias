@@ -1463,6 +1463,16 @@ namespace Apresentação {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap powr_price_table_thumbnail {
+            get {
+                object obj = ResourceManager.GetObject("powr-price-table-thumbnail", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap predios {
             get {
                 object obj = ResourceManager.GetObject("predios", resourceCulture);
@@ -1756,6 +1766,16 @@ namespace Apresentação {
         internal static System.Drawing.Bitmap sunglasses2 {
             get {
                 object obj = ResourceManager.GetObject("sunglasses2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tabela_precos_90 {
+            get {
+                object obj = ResourceManager.GetObject("tabela-precos_90", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

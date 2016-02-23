@@ -48,7 +48,7 @@
             // 
             // picÍcone
             // 
-            this.picÍcone.Image = global::Apresentação.Resource.dinheiro;
+            this.picÍcone.Image = global::Apresentação.Resource.tabela_precos_90;
             // 
             // label1
             // 
