@@ -48,9 +48,9 @@ namespace Apresentação.Fotos
             // 
             // quadroIdentificação
             // 
-            this.quadroIdentificação.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.quadroIdentificação.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.quadroIdentificação.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(239)))), ((int)(((byte)(221)))));
             this.quadroIdentificação.bInfDirArredondada = true;
             this.quadroIdentificação.bInfEsqArredondada = true;
@@ -83,8 +83,8 @@ namespace Apresentação.Fotos
             // 
             // txtDescriçãoMercadoria
             // 
-            this.txtDescriçãoMercadoria.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDescriçãoMercadoria.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDescriçãoMercadoria.Location = new System.Drawing.Point(80, 161);
             this.txtDescriçãoMercadoria.Name = "txtDescriçãoMercadoria";
             this.txtDescriçãoMercadoria.ReadOnly = true;
@@ -94,8 +94,8 @@ namespace Apresentação.Fotos
             // 
             // txtReferência
             // 
-            this.txtReferência.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtReferência.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtReferência.ControlePeso = this.txtPeso;
             this.txtReferência.Location = new System.Drawing.Point(80, 32);
             this.txtReferência.Name = "txtReferência";
@@ -104,27 +104,28 @@ namespace Apresentação.Fotos
             this.txtReferência.SomenteCadastrado = true;
             this.txtReferência.TabIndex = 0;
             this.txtReferência.ReferênciaConfirmada += new System.EventHandler(this.txtReferência_ReferênciaConfirmada);
-            this.txtReferência.Enter += new System.EventHandler(this.AoGanharFocoEmTextBox);
             this.txtReferência.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtKeyDown);
+            this.txtReferência.Enter += new System.EventHandler(this.AoGanharFocoEmTextBox);
             // 
             // txtPeso
             // 
             this.txtPeso.AllowNegative = true;
-            this.txtPeso.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPeso.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPeso.DigitsInGroup = 0;
+            this.txtPeso.Enabled = false;
             this.txtPeso.Flags = 0;
             this.txtPeso.Location = new System.Drawing.Point(80, 58);
             this.txtPeso.MaxDecimalPlaces = 4;
             this.txtPeso.MaxWholeDigits = 9;
             this.txtPeso.Name = "txtPeso";
             this.txtPeso.Prefix = "";
-            this.txtPeso.RangeMax = 1.7976931348623157E+308;
-            this.txtPeso.RangeMin = -1.7976931348623157E+308;
+            this.txtPeso.RangeMax = 1.7976931348623157E+308D;
+            this.txtPeso.RangeMin = -1.7976931348623157E+308D;
             this.txtPeso.Size = new System.Drawing.Size(367, 20);
             this.txtPeso.TabIndex = 1;
-            this.txtPeso.Leave += new System.EventHandler(this.txtPeso_Leave);
             this.txtPeso.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPeso_KeyPress);
+            this.txtPeso.Leave += new System.EventHandler(this.txtPeso_Leave);
             // 
             // label1
             // 
@@ -153,18 +154,15 @@ namespace Apresentação.Fotos
             this.label2.TabIndex = 3;
             this.label2.Text = "Descrição:";
             // 
-            // txtDetalhesFornecedor
+            // txtFornecedorReferência
             // 
-            this.txtFornecedorReferência.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFornecedorReferência.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFornecedorReferência.Enabled = false;
             this.txtFornecedorReferência.Location = new System.Drawing.Point(80, 110);
-            this.txtFornecedorReferência.Name = "txtDetalhesFornecedor";
+            this.txtFornecedorReferência.Name = "txtFornecedorReferência";
             this.txtFornecedorReferência.Size = new System.Drawing.Size(367, 20);
             this.txtFornecedorReferência.TabIndex = 3;
-            this.txtFornecedorReferência.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtKeyDown);
-            this.txtFornecedorReferência.Leave += new System.EventHandler(this.txtDetalhesFornecedor_Leave);
-            this.txtFornecedorReferência.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDetalhesFornecedor_KeyPress);
-            this.txtFornecedorReferência.Enter += new System.EventHandler(this.AoGanharFocoEmTextBox);
             // 
             // label3
             // 
@@ -185,8 +183,8 @@ namespace Apresentação.Fotos
             // 
             // txtData
             // 
-            this.txtData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtData.Location = new System.Drawing.Point(80, 187);
             this.txtData.Name = "txtData";
             this.txtData.ReadOnly = true;
@@ -196,30 +194,29 @@ namespace Apresentação.Fotos
             // 
             // txtDescrição
             // 
-            this.txtDescrição.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDescrição.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDescrição.Location = new System.Drawing.Point(80, 136);
             this.txtDescrição.Name = "txtDescrição";
             this.txtDescrição.Size = new System.Drawing.Size(367, 20);
             this.txtDescrição.TabIndex = 4;
-            this.txtDescrição.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtKeyDown);
-            this.txtDescrição.Leave += new System.EventHandler(this.txtDescrição_Leave);
-            this.txtDescrição.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescrição_KeyPress);
             this.txtDescrição.Enter += new System.EventHandler(this.AoGanharFocoEmTextBox);
+            this.txtDescrição.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtKeyDown);
+            this.txtDescrição.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescrição_KeyPress);
+            this.txtDescrição.Leave += new System.EventHandler(this.txtDescrição_Leave);
             // 
             // txtFornecedor
             // 
-            this.txtFornecedor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFornecedor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFornecedor.Enabled = false;
             this.txtFornecedor.Location = new System.Drawing.Point(80, 84);
             this.txtFornecedor.Name = "txtFornecedor";
             this.txtFornecedor.Referência = "";
             this.txtFornecedor.Size = new System.Drawing.Size(367, 20);
             this.txtFornecedor.TabIndex = 2;
-            this.txtFornecedor.Leave += new System.EventHandler(this.txtFornecedor_Leave);
-            this.txtFornecedor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFornecedor_KeyPress);
-            this.txtFornecedor.Enter += new System.EventHandler(this.AoGanharFocoEmTextBox);
             this.txtFornecedor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtKeyDown);
+            this.txtFornecedor.Enter += new System.EventHandler(this.AoGanharFocoEmTextBox);
             // 
             // label4
             // 

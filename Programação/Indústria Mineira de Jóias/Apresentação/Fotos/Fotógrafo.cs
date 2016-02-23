@@ -559,7 +559,6 @@ namespace Apresentação.Álbum.Edição.Fotos
 
                 Cursor.Current = Cursors.WaitCursor;
 
-                quadroMercadoria.CadastrarFornecedorSeNecessário();
                 quadroMercadoria.Foto.Imagem = painelFotos.FotoSelecionada;
                 
                 // Refaz lista de álbuns da foto conforme o que está na tela

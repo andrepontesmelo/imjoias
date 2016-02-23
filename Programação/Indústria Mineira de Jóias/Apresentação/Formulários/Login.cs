@@ -1,24 +1,13 @@
-using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Forms;
 using Acesso.Comum;
-using Entidades.Privilégio;
-using System.Data;
 using Entidades.Pessoa;
+using Entidades.Privilégio;
+using System;
+using System.Data;
+using System.Windows.Forms;
 
 namespace Apresentação.Formulários
 {
-	/// <summary>
-	/// Janela para efetuação de login
-	/// </summary>
-	/// <example>
-	/// if (!Login.EfetuarLogin(controle))
-	///     Application.Exit();
-	/// }
-	/// </example>
-	public sealed class Login : Apresentação.Formulários.JanelaExplicativa
+    public sealed class Login : Apresentação.Formulários.JanelaExplicativa
 	{
 		private System.Windows.Forms.Label lblUsuário;
 		private System.Windows.Forms.TextBox txtUsuário;
@@ -245,8 +234,6 @@ namespace Apresentação.Formulários
 #if DEBUG
                 Acesso.Comum.Usuários.UsuárioAtual.GerenciadorConexões.ConexãoPresa += new GerenciadorConexões.ConexãoPresaCallback(GerenciadorConexões_ConexãoPresa);
 #endif
-
-                // Sempre aqui será verdadeiro.
                 return true;
             }
         }
@@ -497,4 +484,3 @@ namespace Apresentação.Formulários
         }
     }
 }
-
