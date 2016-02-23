@@ -1,32 +1,27 @@
-using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Forms;
-using Apresentação.Mercadoria.Bandeja;
-using Entidades;
-using Apresentação.Financeiro;
 using Apresentação.Formulários;
 using Apresentação.Impressão.Relatórios.Saída;
 using Entidades.Configuração;
+using Entidades.Pessoa;
 using Entidades.Privilégio;
+using System;
+using System.Windows.Forms;
 
 namespace Apresentação.Financeiro.Saída
 {
-	/// <summary>
-	/// Controle para relacionar mercadoria de uma de saída.
-	/// Ao ser aberto, já deve-se saber para quem está sendo relacionada a saída.
-	/// Este controle 
-	/// Propõe-se o uso de dois conceitos:
-	///		- Pedido travado: é aquele que não pode ser mais alterado. Caso necessário uma modificação, 
-	///		é necessário criar novo pedido apartir do anterior. Um pedido nunca pode ser modificado
-	///		 por segurança.
-	///		
-	///		- Pedido acertado: é aquele que já foi pago. Trata-se de uma precaução: assim que o usuário pede 
-	///		um acerto, que envolvem venda, pedido e retorno, caso seja erroneamente computado algum item_venda 
-	///		ou item_retorno que seja referente à um pedido já acertado, o programa deve emitir uma mensagem de erro.
-	/// </summary>
-	public class SaídaBaseInferior : BaseEditarRelacionamento
+    /// <summary>
+    /// Controle para relacionar mercadoria de uma de saída.
+    /// Ao ser aberto, já deve-se saber para quem está sendo relacionada a saída.
+    /// Este controle 
+    /// Propõe-se o uso de dois conceitos:
+    ///		- Pedido travado: é aquele que não pode ser mais alterado. Caso necessário uma modificação, 
+    ///		é necessário criar novo pedido apartir do anterior. Um pedido nunca pode ser modificado
+    ///		 por segurança.
+    ///		
+    ///		- Pedido acertado: é aquele que já foi pago. Trata-se de uma precaução: assim que o usuário pede 
+    ///		um acerto, que envolvem venda, pedido e retorno, caso seja erroneamente computado algum item_venda 
+    ///		ou item_retorno que seja referente à um pedido já acertado, o programa deve emitir uma mensagem de erro.
+    /// </summary>
+    public class SaídaBaseInferior : BaseEditarRelacionamento
 	{
         private Quadro quadroAcerto;
         private Opção opçãoRemarcarAcerto;
@@ -51,7 +46,7 @@ namespace Apresentação.Financeiro.Saída
 
         protected override bool ValidarPermissãoDestravar()
         {
-            return Entidades.Privilégio.PermissãoFuncionário.ValidarPermissão(Entidades.Privilégio.Permissão.ConsignadoDestravar);
+            return PermissãoFuncionário.ValidarPermissão(Permissão.ConsignadoDestravar);
         }
 
         protected override Apresentação.Impressão.TipoDocumento TipoDocumento
@@ -67,8 +62,7 @@ namespace Apresentação.Financeiro.Saída
 		public override void Abrir(Entidades.Relacionamento.Relacionamento relacionamento)
 		{
             Entidades.Relacionamento.Saída.Saída s = (Entidades.Relacionamento.Saída.Saída)relacionamento;
-
-            Apresentação.Formulários.AguardeDB.Mostrar();
+            AguardeDB.Mostrar();
 
             try
             {
@@ -89,16 +83,16 @@ namespace Apresentação.Financeiro.Saída
                     título.Descrição = "Saída ainda não cadastrada";
                     s.DepoisDeCadastrar += new Acesso.Comum.DbManipulação.DbManipulaçãoHandler(DepoisDeCadastrar);
                 }
-            }
+            } 
             finally
             {
-                Apresentação.Formulários.AguardeDB.Fechar();
+                AguardeDB.Fechar();
             }
 
             if (s.Itens.Count == 0)
                 try
                 {
-                    Apresentação.Pessoa.AlertaClassificação.Alertar(s.Pessoa, Entidades.Pessoa.Classificação.TipoAlerta.Saída);
+                    Pessoa.AlertaClassificação.Alertar(s.Pessoa, Classificação.TipoAlerta.Saída);
                 }
                 catch (PermissãoNegada)
                 {
@@ -215,7 +209,7 @@ namespace Apresentação.Financeiro.Saída
 
         private void opçãoRemarcarAcerto_Click(object sender, EventArgs e)
         {
-            using (Apresentação.Financeiro.Acerto.CriarAcerto dlg = new Apresentação.Financeiro.Acerto.CriarAcerto(Relacionamento.AcertoConsignado))
+            using (Acerto.CriarAcerto dlg = new Acerto.CriarAcerto(Relacionamento.AcertoConsignado))
             {
                 if (dlg.ShowDialog(ParentForm) == DialogResult.OK)
                 {
@@ -227,9 +221,9 @@ namespace Apresentação.Financeiro.Saída
 
         protected override void InserirDocumento(JanelaImpressão j)
         {
-            Relatório relatório = new Apresentação.Impressão.Relatórios.Saída.Relatório();
+            Relatório relatório = new Relatório();
 
-            new Apresentação.Impressão.Relatórios.Saída.ControleImpressãoSaída().PrepararImpressão(relatório,
+            new ControleImpressãoSaída().PrepararImpressão(relatório,
                 (Entidades.Relacionamento.Saída.Saída) Relacionamento);
 
             j.Título = "Impressão de saída";

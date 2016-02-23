@@ -1,3 +1,4 @@
+using Acesso.Comum.Exceções;
 using Apresentação.Atendimento.Clientes;
 using Apresentação.Atendimento.Clientes.Pedido;
 using Apresentação.Atendimento.Comum;
@@ -1175,7 +1176,7 @@ namespace Apresentação.Atendimento
                 baseVenda.PrepararNovaVenda(pessoa);
                 SubstituirBase(baseVenda);
             }
-            catch (OperationCanceledException)
+            catch (OperaçãoCancelada)
             {
             }
             finally

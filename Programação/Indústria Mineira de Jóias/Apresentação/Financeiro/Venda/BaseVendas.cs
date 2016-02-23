@@ -1,3 +1,4 @@
+using Acesso.Comum.Exceções;
 using Apresentação.Financeiro.Acerto;
 using Apresentação.Formulários;
 using Apresentação.Formulários.Impressão;
@@ -93,7 +94,7 @@ namespace Apresentação.Financeiro.Venda
                 baseEditarVenda.PrepararNovaVenda(pessoa);
                 SubstituirBase(baseEditarVenda);
             }
-            catch (OperationCanceledException)
+            catch (OperaçãoCancelada)
             { 
             }
             finally

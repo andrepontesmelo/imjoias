@@ -1,17 +1,14 @@
+using Acesso.Comum.Exceções;
+using Apresentação.Formulários;
+using Apresentação.Mercadoria.Bandeja;
+using Entidades;
+using Entidades.Pessoa;
+using Entidades.Relacionamento;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-
-using Entidades;
-using Entidades.Relacionamento;
-using System.Collections;
-using Apresentação.Mercadoria.Bandeja;
-using Apresentação.Formulários;
-using Entidades.Pessoa;
 
 namespace Apresentação.Financeiro
 {
@@ -32,7 +29,6 @@ namespace Apresentação.Financeiro
         {
             set { verificador = value; }
         }
-
 
         private BaseEditarRelacionamento baseInferior;
 
@@ -461,7 +457,7 @@ namespace Apresentação.Financeiro
         /// <summary>
         /// Questiona qual tabela de preço será utilizada.
         /// </summary>
-        private void QuestionarTabelaPreço(Entidades.Relacionamento.RelacionamentoAcerto entidade)
+        private void QuestionarTabelaPreço(RelacionamentoAcerto entidade)
         {
             Entidades.Pessoa.Pessoa pessoa;
             Entidades.Relacionamento.Venda.Venda venda = entidade as Entidades.Relacionamento.Venda.Venda;
@@ -480,7 +476,7 @@ namespace Apresentação.Financeiro
                 AguardeDB.Suspensão(false);
 
                 if (dlg.DialogResult == DialogResult.Cancel)
-                    throw new OperationCanceledException();
+                    throw new OperaçãoCancelada(entidade);
 
                 entidade.TabelaPreço = dlg.Tabela;
             }

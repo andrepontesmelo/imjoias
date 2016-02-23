@@ -1,4 +1,5 @@
-﻿using Apresentação.Financeiro.Acerto;
+﻿using Acesso.Comum.Exceções;
+using Apresentação.Financeiro.Acerto;
 using Apresentação.Formulários;
 using Apresentação.Formulários.Impressão;
 using Apresentação.Impressão;
@@ -103,8 +104,15 @@ namespace Apresentação.Financeiro
                 if (acerto != null)
                     acerto.Remover(relacionamento);
             }
-
-            UseWaitCursor = false;
+            catch (OperaçãoCancelada)
+            {
+                if (acerto != null)
+                    acerto.Remover(relacionamento);
+            }
+            finally
+            {
+                UseWaitCursor = false;
+            }
         }
 
         protected virtual BaseEditarRelacionamento CriarBaseConsignado()
