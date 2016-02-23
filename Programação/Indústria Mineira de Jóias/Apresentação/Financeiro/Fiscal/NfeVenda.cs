@@ -202,7 +202,7 @@ namespace Apresentação.Financeiro.Fiscal
             s.WriteLine("M||");
             s.WriteLine("N|");
             s.WriteLine("N10h|0|900||||||||||||||");
-            s.WriteLine("O|||||0|");
+            s.WriteLine("O|||||999|");
             s.WriteLine("O08|53|");
             s.WriteLine("Q|");
             s.WriteLine("Q04|07|");
