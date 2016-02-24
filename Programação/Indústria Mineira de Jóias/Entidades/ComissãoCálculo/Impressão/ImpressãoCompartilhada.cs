@@ -1,12 +1,9 @@
-﻿using Acesso.Comum;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text;
 
 namespace Entidades.ComissãoCálculo.Impressão
 {
-    public class ImpressãoCompartilhada : DbManipulaçãoAutomática
+    public class ImpressãoCompartilhada : Impressão
     {
         private string nomerepresentante;
 
@@ -61,7 +58,7 @@ namespace Entidades.ComissãoCálculo.Impressão
         public ImpressãoCompartilhada()
         { }
 
-        public static List<ImpressãoCompartilhada> Obter(Comissão c)
+        public static List<ImpressãoCompartilhada> Obter(Comissão c, Filtro filtro)
         {
             StringBuilder str = new StringBuilder();
 
@@ -93,16 +90,14 @@ namespace Entidades.ComissãoCálculo.Impressão
             str.Append(" select nomerepresentante, nomevendedor, nomecomissaopara, sum(valorv)  as valorv, sum(valorc) as valorc, sum(valore) as valore from ( select vdor.nome as nomevendedor, rep.nome as nomerepresentante, cp.nome as nomecomissaopara,valorv, valorc, 0 as valore from comissao_venda cv");
             str.Append(" join venda v on cv.venda=v.codigo join pessoa cli on cli.codigo=v.cliente join regiao r on cli.regiao=r.codigo join representante re on re.codigo=r.representante join pessoa rep on rep.codigo=r.representante join pessoa vdor on vdor.codigo=v.vendedor join pessoa cp on cp.codigo=cv.comissaopara join comissaovenda cve on cve.venda=cv.venda and cve.pessoa=cv.comissaopara and cve.comissao=");
             str.Append(DbTransformar(c.Código));
-            
-            // Regra 7: Comissão compartilhada representante atacado.
-            str.Append(" where regra=7 ");
+            AplicarFiltro(str, filtro);
+            str.Append(" AND regra=7 ");
             str.Append(" UNION ALL select vdor.nome as nomevendedor, rep.nome as nomerepresentante, cp.nome as nomecomissaopara, valorv, 0 as valorc, valorc as valore from comissao_venda cv ");
             str.Append(" join venda v on cv.venda=v.codigo join pessoa cli on cli.codigo=v.cliente join regiao r on cli.regiao=r.codigo join representante re on re.codigo=r.representante join pessoa rep on rep.codigo=r.representante ");
             str.Append(" join pessoa vdor on vdor.codigo=v.vendedor join pessoa cp on cp.codigo=cv.comissaopara join comissaoestornovenda cve on cve.venda=cv.venda and cve.pessoa=cv.comissaopara and cve.comissao=");
             str.Append(DbTransformar(c.Código));
-
-            // Regra 7: Comissão compartilhada representante atacado.
-            str.Append(" where regra =7 ");
+            AplicarFiltro(str, filtro);
+            str.Append(" AND regra =7 ");
             str.Append(" ) vvv group by nomerepresentante, nomevendedor, nomecomissaopara order by nomerepresentante, nomevendedor, sum(valorc)-sum(valore)  " );
             return Mapear<ImpressãoCompartilhada>(str.ToString());
         }

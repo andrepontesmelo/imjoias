@@ -1,12 +1,9 @@
-﻿using Acesso.Comum;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text;
 
 namespace Entidades.ComissãoCálculo.Impressão
 {
-    public class ImpressãoRegraPessoa : DbManipulaçãoAutomática
+    public class ImpressãoRegraPessoa : Impressão
     {
         private string nomecomissaopara;
 
@@ -54,7 +51,7 @@ namespace Entidades.ComissãoCálculo.Impressão
 
         public ImpressãoRegraPessoa() { }
 
-        public static List<ImpressãoRegraPessoa> Obter(Comissão c)
+        public static List<ImpressãoRegraPessoa> Obter(Comissão c, Filtro filtro)
         {
             StringBuilder str = new StringBuilder();
 
@@ -72,14 +69,17 @@ namespace Entidades.ComissãoCálculo.Impressão
 //) vvv group by regra, nomecomissaopara
 
 
-            str.Append(" select regra, nomecomissaopara, sum(valorv) as valorv, sum(valorc) as valorc, sum(valore) as valore from ( select regra, cp.nome as nomecomissaopara, valorv, valorc, 0 as valore from comissao_venda  cv ");
+            str.Append(" select regra, nomecomissaopara, sum(valorv) as valorv, sum(valorc) as valorc, sum(valore) as valore from ( select regra, cp.nome as nomecomissaopara, cp.codigo as codigocomissaopara, valorv, valorc, 0 as valore from comissao_venda  cv ");
             str.Append(" join venda v on cv.venda=v.codigo join pessoa cp on cp.codigo=cv.comissaopara join comissaovenda cve on cve.venda=cv.venda and cve.pessoa=cv.comissaopara and cve.comissao= ");
             str.Append(DbTransformar(c.Código));
-
-            str.Append(" UNION ALL select regra, cp.nome as nomecomissaopara, valorv, 0 as valorc, valorc as valore from comissao_venda  cv ");
+            AplicarFiltro(str, filtro);
+            str.Append(" UNION ALL select regra, cp.nome as nomecomissaopara, cp.codigo as codigocomissaopara, valorv, 0 as valorc, valorc as valore from comissao_venda  cv ");
             str.Append(" join venda v on cv.venda=v.codigo join pessoa cp on cp.codigo=cv.comissaopara join comissaoestornovenda cve on cve.venda=cv.venda and cve.pessoa=cv.comissaopara and cve.comissao= ");
             str.Append(DbTransformar(c.Código));
-            str.Append(" ) vvv group by regra, nomecomissaopara having abs( sum(valorc)-sum(valore) ) > 0.01 order by regra, sum(valorc)-sum(valore) desc");
+            AplicarFiltro(str, filtro);
+            str.Append(" ) vvv ");
+
+            str.Append(" group by regra, nomecomissaopara having abs( sum(valorc)-sum(valore) ) > 0.01 order by regra, sum(valorc)-sum(valore) desc");
 
             return Mapear<ImpressãoRegraPessoa>(str.ToString());
         }

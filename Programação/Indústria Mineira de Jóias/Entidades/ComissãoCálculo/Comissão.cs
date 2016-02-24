@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Acesso.Comum;
-using System.Data;
-using Entidades.Pessoa.Endereço;
+﻿using Acesso.Comum;
 using Entidades.ComissãoCálculo.Impressão;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Text;
 
 namespace Entidades.ComissãoCálculo
 {
@@ -143,14 +142,14 @@ namespace Entidades.ComissãoCálculo
             }
         }
 
-        public List<Impressão.ImpressãoComissãoVenda> ObterImpressãoVenda()
+        public List<Impressão.ImpressãoComissãoVenda> ObterImpressãoVenda(Filtro filtro)
         {
-            return Impressão.ImpressãoComissãoVenda.Obter(this);
+            return Impressão.ImpressãoComissãoVenda.Obter(this, filtro);
         }
 
-        public List<Impressão.ImpressãoComissãoVendaItem> ObterImpressãoVendaItem()
+        public List<Impressão.ImpressãoComissãoVendaItem> ObterImpressãoVendaItem(Filtro filtro)
         {
-            return Impressão.ImpressãoComissãoVendaItem.Obter(this);
+            return Impressão.ImpressãoComissãoVendaItem.Obter(this, filtro);
         }
 
         public List<Impressão.ImpressãoResumo> ObterImpressãoResumo(Filtro filtro)
@@ -158,14 +157,14 @@ namespace Entidades.ComissãoCálculo
             return Impressão.ImpressãoResumo.Obter(this, filtro);
         }
 
-        public List<Impressão.ImpressãoRegraPessoa> ObterImpressãoRegraPessoa()
+        public List<Impressão.ImpressãoRegraPessoa> ObterImpressãoRegraPessoa(Filtro filtro)
         {
-            return Impressão.ImpressãoRegraPessoa.Obter(this); 
+            return Impressão.ImpressãoRegraPessoa.Obter(this, filtro); 
         }
 
-        public List<Impressão.ImpressãoCompartilhada> ObterImpressãoCompartilhada()
+        public List<Impressão.ImpressãoCompartilhada> ObterImpressãoCompartilhada(Filtro filtro)
         {
-            return Impressão.ImpressãoCompartilhada.Obter(this);
+            return Impressão.ImpressãoCompartilhada.Obter(this, filtro);
         }
 
         public List<Impressão.ImpressãoSetor> ObterImpressãoSetor(Filtro filtro)

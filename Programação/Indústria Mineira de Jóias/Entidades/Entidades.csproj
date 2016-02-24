@@ -182,6 +182,7 @@
     <Compile Include="ComissãoCálculo\EnumRegra.cs" />
     <Compile Include="ComissãoCálculo\FaixaValor.cs" />
     <Compile Include="ComissãoCálculo\Impressão\Filtro.cs" />
+    <Compile Include="ComissãoCálculo\Impressão\Impressão.cs" />
     <Compile Include="ComissãoCálculo\Impressão\ImpressãoComissãoVendaItem.cs" />
     <Compile Include="ComissãoCálculo\Impressão\ImpressãoCompartilhada.cs" />
     <Compile Include="ComissãoCálculo\Impressão\ImpressãoRegraPessoa.cs" />

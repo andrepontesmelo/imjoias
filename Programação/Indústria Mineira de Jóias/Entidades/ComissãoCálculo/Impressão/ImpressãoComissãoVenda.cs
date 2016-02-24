@@ -1,13 +1,11 @@
-﻿using Acesso.Comum;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Text;
 
 namespace Entidades.ComissãoCálculo.Impressão
 {
-    public class ImpressãoComissãoVenda : DbManipulaçãoAutomática
+    public class ImpressãoComissãoVenda : Impressão
     {
         private bool comissaoparavendedor;
 
@@ -88,7 +86,7 @@ namespace Entidades.ComissãoCálculo.Impressão
         {
         }
 
-        public static List<ImpressãoComissãoVenda> Obter(Comissão c)
+        public static List<ImpressãoComissãoVenda> Obter(Comissão c, Filtro filtro)
         {
             StringBuilder str = new StringBuilder();
 
@@ -108,9 +106,11 @@ namespace Entidades.ComissãoCálculo.Impressão
             str.Append("select * from (select v.desconto, v.vendedor=cv.comissaopara as comissaoparavendedor, v.data as data, v.cliente, regra, cp.nome as nomecomissaopara, cv.venda, sum(valorv) as valorv, sum(valorc) as valorc, 0 as valore from comissao_venda  cv ");
             str.Append(" join venda v on cv.venda=v.codigo join pessoa cp on cp.codigo=cv.comissaopara join comissaovenda cve on cve.venda=cv.venda and cve.pessoa=cv.comissaopara and cve.comissao=");
             str.Append(DbTransformar(c.Código));
+            AplicarFiltro(str, filtro);
             str.Append(" group by cv.venda, cv.comissaopara, regra) aa UNION (select v.desconto, v.vendedor=cv.comissaopara as comissaoparavendedor, v.data as data, v.cliente, regra, cp.nome as nomecomissaopara, cv.venda, sum(valorv), 0 as valorc, sum(valorc) as valore from comissao_venda  cv ");
             str.Append(" join venda v on cv.venda=v.codigo join pessoa cp on cp.codigo=cv.comissaopara join comissaoestornovenda cve on cve.venda=cv.venda and cve.pessoa=cv.comissaopara and cve.comissao=");
             str.Append(DbTransformar(c.Código));
+            AplicarFiltro(str, filtro);
             str.Append(" group by cv.venda, cv.comissaopara, regra) order by data, nomecomissaopara ");
 
             return Mapear<ImpressãoComissãoVenda>(str.ToString());
@@ -140,6 +140,5 @@ namespace Entidades.ComissãoCálculo.Impressão
             item["desconto"] = Desconto;
             tabelaItens.Rows.Add(item);
         }
-
     }
 }

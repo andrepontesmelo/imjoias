@@ -1,13 +1,5 @@
 ﻿using Apresentação.Formulários;
 using Entidades.ComissãoCálculo.Impressão;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 
 namespace Apresentação.Financeiro.Comissões
 {
@@ -61,7 +53,7 @@ namespace Apresentação.Financeiro.Comissões
                 = new Apresentação.Impressão.Relatórios.Comissao.RelatorioComissaoVenda();
 
             new Apresentação.Impressão.Relatórios.Comissao.ControladorImpressãoComissãoVenda().
-                PrepararImpressão(r, comissão.ObterImpressãoVenda(), comissão);
+                PrepararImpressão(r, comissão.ObterImpressãoVenda(filtro), comissão);
 
             Título = "Comissão #" + comissão.Código.ToString();
             Descrição = "Relatório de vendas";
@@ -74,7 +66,7 @@ namespace Apresentação.Financeiro.Comissões
                 = new Apresentação.Impressão.Relatórios.Comissao.RelatorioComissaoVendaItem();
 
             new Apresentação.Impressão.Relatórios.Comissao.ControladorImpressãoComissãoVendaItem().
-                PrepararImpressão(r, comissão.ObterImpressãoVendaItem(), comissão);
+                PrepararImpressão(r, comissão.ObterImpressãoVendaItem(filtro), comissão);
 
             Título = "Comissão #" + comissão.Código.ToString();
             Descrição = "Relatório de Item";
@@ -85,11 +77,12 @@ namespace Apresentação.Financeiro.Comissões
 
         public void InserirRelatórioRegraPessoa()
         {
+            
             Apresentação.Impressão.Relatórios.Comissao.RelatorioRegraPessoa r
                 = new Apresentação.Impressão.Relatórios.Comissao.RelatorioRegraPessoa();
 
             new Apresentação.Impressão.Relatórios.Comissao.ControladorImpressãoRegraPessoa().
-                PrepararImpressão(r, comissão.ObterImpressãoRegraPessoa(), comissão);
+                PrepararImpressão(r, comissão.ObterImpressãoRegraPessoa(filtro), comissão);
 
             Título = "Comissão #" + comissão.Código.ToString();
             Descrição = "Relatório Regra";
@@ -112,7 +105,7 @@ namespace Apresentação.Financeiro.Comissões
                 = new Apresentação.Impressão.Relatórios.Comissao.RelatorioCompartilhada();
 
             new Apresentação.Impressão.Relatórios.Comissao.ControladorImpressãoCompartilhada().
-                PrepararImpressão(r, comissão.ObterImpressãoCompartilhada(), comissão);
+                PrepararImpressão(r, comissão.ObterImpressãoCompartilhada(filtro), comissão);
 
             Título = "Comissão #" + comissão.Código.ToString();
             Descrição = "Relatório de comissão compartilhada representante e atacado.";

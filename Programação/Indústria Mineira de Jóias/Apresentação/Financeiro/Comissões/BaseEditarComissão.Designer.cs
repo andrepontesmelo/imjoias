@@ -231,7 +231,7 @@
             this.quadro1.Cor = System.Drawing.Color.Black;
             this.quadro1.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadro1.LetraTítulo = System.Drawing.Color.White;
-            this.quadro1.Location = new System.Drawing.Point(7, 79);
+            this.quadro1.Location = new System.Drawing.Point(7, 223);
             this.quadro1.MostrarBotãoMinMax = false;
             this.quadro1.Name = "quadro1";
             this.quadro1.Size = new System.Drawing.Size(160, 178);
@@ -355,7 +355,7 @@
             this.quadroFiltrarExibição.Cor = System.Drawing.Color.Black;
             this.quadroFiltrarExibição.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadroFiltrarExibição.LetraTítulo = System.Drawing.Color.White;
-            this.quadroFiltrarExibição.Location = new System.Drawing.Point(7, 263);
+            this.quadroFiltrarExibição.Location = new System.Drawing.Point(7, 79);
             this.quadroFiltrarExibição.MostrarBotãoMinMax = false;
             this.quadroFiltrarExibição.Name = "quadroFiltrarExibição";
             this.quadroFiltrarExibição.Size = new System.Drawing.Size(160, 138);

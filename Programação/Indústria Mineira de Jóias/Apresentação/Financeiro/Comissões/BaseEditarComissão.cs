@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
-using System.Windows.Forms;
+﻿using Apresentação.Atendimento;
+using Apresentação.Financeiro.Venda;
 using Apresentação.Formulários;
 using Entidades.ComissãoCálculo;
-using Apresentação.Financeiro.Venda;
-using Apresentação.Atendimento;
 using Entidades.ComissãoCálculo.Impressão;
+using System;
+using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace Apresentação.Financeiro.Comissões
 {
@@ -118,11 +114,6 @@ namespace Apresentação.Financeiro.Comissões
         {
             this.comissão = comissão;
 
-            //resultadoPrecisaSerRecalculado = true;
-            //listViewVendas.Carregar(true, comissão.Funcionário);
-            //listViewVendas.Marcar(comissão.ObterVendas());
-            ////listViewVendas.AoMarcar += new EventHandler(listViewVendas_AoMarcar);
-            //this.entidade = comissão;
             títuloBaseInferior.Título = "Edição de comissão No " + comissão.Código.ToString() +
                 " - " + comissão.MêsReferência.ToString("MMMM/yyyy");
             títuloBaseInferior.Descrição = comissão.Descrição;
@@ -137,16 +128,6 @@ namespace Apresentação.Financeiro.Comissões
             aberturaVenda.Carregar(DiaInicial, DiaFinal, ComissãoPara, comissão, true, false);
             aberturaEstorno.Carregar(DiaInicial, DiaFinal, ComissãoPara, comissão, true, true);
         }
-
-        //private void listViewVendas_AoMarcar(object sender, EventArgs e)
-        //{
-        //    //// entidade é nula ao carregar tela.
-        //    //if (entidade != null)
-        //    //{
-        //    //    resultadoPrecisaSerRecalculado = true;
-        //    //    entidade.DeterminarVendas(listViewVendas.ObterCódigosMarcados());
-        //    //}
-        //}
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
@@ -187,8 +168,6 @@ namespace Apresentação.Financeiro.Comissões
             VerificarVisibilidadeLinkAplicarCancelar();
         }
 
-
-
         private void opçãoRecarregar_Click(object sender, EventArgs e)
         {
             CarregarListasVendasAbertaseFechadas();
@@ -213,9 +192,6 @@ namespace Apresentação.Financeiro.Comissões
             {
                 Recarregar();
             }
-
-            //quadroFiltrarExibição.Visible = 
-            //    tabs.SelectedTab != tabVendedores;
         }
 
         private void Recarregar()

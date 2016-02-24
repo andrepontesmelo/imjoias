@@ -309,7 +309,9 @@
     <Compile Include="Financeiro\Comissões\BaseEditarComissão.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\Comissões\BaseEditarComissão.Designer.cs" />
+    <Compile Include="Financeiro\Comissões\BaseEditarComissão.Designer.cs">
+      <DependentUpon>BaseEditarComissão.cs</DependentUpon>
+    </Compile>
     <Compile Include="Financeiro\Comissões\BaseVendaSemComissão.cs">
       <SubType>UserControl</SubType>
     </Compile>
