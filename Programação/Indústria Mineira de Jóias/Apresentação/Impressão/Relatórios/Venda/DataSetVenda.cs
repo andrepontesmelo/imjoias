@@ -7,11 +7,11 @@
         partial class VendasRelacionadasDataTable
         {
         }
-    
+
         partial class PagamentosDataTable
         {
         }
-    
+
         partial class InformaçõesDataTable
         {
         }
@@ -19,7 +19,7 @@
         partial class DébitoDataTable
         {
         }
-    
+
         partial class ItensDataTable
         {
         }

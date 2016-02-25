@@ -845,7 +845,7 @@ namespace Apresentação.Atendimento
             List<Entidades.Pessoa.Endereço.Endereço> endereços = cliente.Endereços.ExtrairElementos();
 
             string strTelefones = ObterTelefones(pessoa);
-            if (!String.IsNullOrWhiteSpace(strTelefones))
+            if (strTelefones != null && strTelefones.Trim().Length > 0)
                 descrição.Append(" ").Append(strTelefones);
 
             if (endereços.Count > 0 && endereços[0].Localidade != null)

@@ -240,7 +240,7 @@ namespace Entidades.Pessoa.Endereço
         {
             get
             {
-                return (String.IsNullOrWhiteSpace(logradouro) || descrição == null || localidade == null);
+                return (logradouro == null || logradouro.Trim() == "" || descrição == null || localidade == null);
             }
         }
     }

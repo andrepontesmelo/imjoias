@@ -555,7 +555,7 @@ namespace Entidades.Pessoa
             }
         }
 
-        private static SortedSet<ulong> lstCódigosFuncionários = null;
+        private static LinkedList<ulong> lstCódigosFuncionários = null;
 
         public static bool ÉFuncionárioOuRepresentante(Entidades.Pessoa.Pessoa pessoa)
         {
@@ -571,7 +571,7 @@ namespace Entidades.Pessoa
         {
             if (lstCódigosFuncionários == null)
             {
-                lstCódigosFuncionários = new SortedSet<ulong>();
+                lstCódigosFuncionários = new LinkedList<ulong>();
 
                 IDbConnection conexão = Conexão;
 
@@ -585,7 +585,7 @@ namespace Entidades.Pessoa
                         {
                             while (leitor.Read())
                             {
-                                lstCódigosFuncionários.Add((ulong)leitor.GetInt64(0));
+                                lstCódigosFuncionários.AddLast((ulong)leitor.GetInt64(0));
                             }
                         }
                     }

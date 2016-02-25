@@ -305,7 +305,7 @@ namespace Entidades
             int qtd;
             string[] prazos = prestações.Split('x', 'X');
 
-            if (prazos.Length == 0 || String.IsNullOrWhiteSpace(prestações))
+            if (prazos.Length == 0 || prestações == null || prestações.Trim() == "")
                 return 0;
 
             qtd = prazos.Length;

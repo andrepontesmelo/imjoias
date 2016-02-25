@@ -1,7 +1,9 @@
-﻿namespace Apresentação.Impressão.Relatórios.Comissao {
-    
-    
-    public partial class DataSetRegraPessoa {
+﻿namespace Apresentação.Impressão.Relatórios.Comissao
+{
+
+
+    public partial class DataSetRegraPessoa
+    {
         partial class ItensDataTable
         {
         }

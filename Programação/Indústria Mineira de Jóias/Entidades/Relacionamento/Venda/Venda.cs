@@ -1078,7 +1078,7 @@ namespace Entidades.Relacionamento.Venda
                  * -- Júlio, 18/10/2007
                  */
 
-                consulta.Clear();
+                consulta = new StringBuilder();
 
                 consulta.Append("select vendadevolucao.referencia, mercadoria.digito, vendadevolucao.peso, sum(quantidade), vendadevolucao.indice as qtd from vendadevolucao, venda, ");
                 consulta.Append(" mercadoria where venda.codigo=vendadevolucao.venda AND venda.codigo IN ");

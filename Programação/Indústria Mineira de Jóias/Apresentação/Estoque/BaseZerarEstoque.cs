@@ -20,7 +20,7 @@ namespace Apresentação.Estoque
 
         private void opçãoZerarEstoqueAgora_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(txtObservações.Text))
+            if (txtObservações.Text == null || txtObservações.Text.Trim() == "")
             {
                 MessageBox.Show(this, "Entre com alguma descrição",
                     "Sem descrição", 

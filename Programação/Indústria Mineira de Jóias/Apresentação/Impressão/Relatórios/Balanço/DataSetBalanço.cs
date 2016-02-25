@@ -1,7 +1,7 @@
 ﻿namespace Apresentação.Impressão.Relatórios.Balanço.DataSetBalançoTableAdapters
 {
 }
-namespace Apresentação.Impressão.Relatórios.DataSetBalançoTableAdapters
+namespace Apresentação.Impressão.Relatórios.Balanço.DataSetBalançoTableAdapters
 {
 }
 namespace Apresentação.Impressão.Relatórios

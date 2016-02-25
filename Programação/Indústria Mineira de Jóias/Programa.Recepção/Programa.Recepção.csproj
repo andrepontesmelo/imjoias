@@ -35,7 +35,7 @@
     <TargetZone>LocalIntranet</TargetZone>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
     <SignAssembly>false</SignAssembly>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <PublishUrl>C:\Users\andrep\Desktop\recepcao\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>

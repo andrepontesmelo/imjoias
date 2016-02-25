@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Apresentação</RootNamespace>
     <AssemblyName>Apresentação</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <StartupObject>
     </StartupObject>
@@ -1372,6 +1372,9 @@
     </Compile>
     <Compile Include="Impressão\Relatórios\Estoque\Fornecedor\ControleImpressãoFornecedor.cs" />
     <Compile Include="Impressão\Relatórios\Estoque\Resumo\ControleImpressãoResumo.cs" />
+    <Compile Include="Impressão\Relatórios\Estoque\Resumo\DataSetResumo.cs">
+      <DependentUpon>DataSetResumo.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Impressão\Relatórios\Estoque\Resumo\DataSetResumo.Designer.cs">
       <DependentUpon>DataSetResumo.xsd</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -2296,6 +2299,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Balanço\BaseBalanço.resx">
       <DependentUpon>BaseBalanço.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Balanço\BaseResumo.resx">
       <DependentUpon>BaseResumo.cs</DependentUpon>

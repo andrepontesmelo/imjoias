@@ -1,7 +1,9 @@
-﻿namespace Apresentação.Impressão.Relatórios.Comissao {
-    
-    
-    public partial class DataSetVendaItem {
+﻿namespace Apresentação.Impressão.Relatórios.Comissao
+{
+
+
+    public partial class DataSetVendaItem
+    {
         partial class InformacoesDataTable
         {
         }

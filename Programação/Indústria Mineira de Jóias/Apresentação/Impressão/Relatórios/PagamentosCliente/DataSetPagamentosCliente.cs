@@ -1,8 +1,9 @@
 ﻿namespace Apresentação.Impressão.Relatórios.PagamentosCliente
 {
-    
-    
-    public partial class DataSetPagamentosCliente {
+
+
+    public partial class DataSetPagamentosCliente
+    {
         partial class InformaçõesDataTable
         {
         }
