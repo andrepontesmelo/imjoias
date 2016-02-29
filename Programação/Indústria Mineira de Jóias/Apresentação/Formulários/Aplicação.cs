@@ -88,9 +88,9 @@ namespace Apresentação.Formulários
                     bool cancelouLogin = !Login.EfetuarLogin(usuários, splash);
 
                     if (cancelouLogin)
-                        //throw new LoginNãoEfetuado();
+                        throw new LoginNãoEfetuado();
 
-                    if (Acesso.Comum.Usuários.UsuárioAtual == null)
+                    if (Usuários.UsuárioAtual == null)
                         throw new LoginOuSenhaIncorretos();
 
                     if (Entidades.Pessoa.Funcionário.FuncionárioAtual == null)
@@ -174,24 +174,16 @@ namespace Apresentação.Formulários
             if (splash != null)
             {
                 splash.Show();
-                //splash.Mensagem = "Carregando controles...";
                 splash.Update();
             }
 
-            //GC.Collect();
-
-            
-
             Formulário.DispararAoCarregar(splash);
-
-            //GC.Collect();
 
             if (splash != null)
             {
                 splash.Close();
                 splash.Dispose();
                 splash = null;
-                //GC.Collect();
             }
         }
 
