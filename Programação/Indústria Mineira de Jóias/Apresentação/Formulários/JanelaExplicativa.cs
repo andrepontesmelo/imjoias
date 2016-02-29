@@ -97,10 +97,11 @@ namespace Apresentação.Formulários
             // 
             this.lblTítulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTítulo.AutoSize = true;
             this.lblTítulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTítulo.Location = new System.Drawing.Point(72, 16);
             this.lblTítulo.Name = "lblTítulo";
-            this.lblTítulo.Size = new System.Drawing.Size(313, 20);
+            this.lblTítulo.Size = new System.Drawing.Size(53, 20);
             this.lblTítulo.TabIndex = 4;
             this.lblTítulo.Text = "Título";
             // 
@@ -137,6 +138,7 @@ namespace Apresentação.Formulários
             this.Text = "JanelaExplicativa";
             this.Resize += new System.EventHandler(this.JanelaExplicativa_Resize);
             this.topo.ResumeLayout(false);
+            this.topo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picÍcone)).EndInit();
             this.ResumeLayout(false);
 
