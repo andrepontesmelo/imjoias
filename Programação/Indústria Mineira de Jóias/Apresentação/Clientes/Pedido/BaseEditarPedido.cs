@@ -28,7 +28,6 @@ namespace Apresentação.Atendimento.Clientes.Pedido
             }
         }
 
-                
         public BaseEditarPedido()
         {
             InitializeComponent();
@@ -394,10 +393,15 @@ namespace Apresentação.Atendimento.Clientes.Pedido
             if (abrindo)
                 throw new Exception("Mudança na entidade enquanto estava carregando-a");
 
+            ConfiguraçãoGlobal<int> previsãoConserto = new ConfiguraçãoGlobal<int>("PrevisãoConserto", 15);
+            ConfiguraçãoGlobal<int> previsãoPedido = new ConfiguraçãoGlobal<int>("PrevisãoPedido", 30);
+
+
             if (pedido.TipoPedido == Entidades.PedidoConserto.Pedido.Tipo.Conserto)
-                pedido.DataPrevisão = dtRecepção.Value.AddDays(8);
+                
+                pedido.DataPrevisão = dtRecepção.Value.AddDays(previsãoConserto.Valor);
             else
-                pedido.DataPrevisão = dtRecepção.Value.AddDays(30);
+                pedido.DataPrevisão = dtRecepção.Value.AddDays(previsãoPedido.Valor);
 
             dtPrevisão.Value = pedido.DataPrevisão;
         }

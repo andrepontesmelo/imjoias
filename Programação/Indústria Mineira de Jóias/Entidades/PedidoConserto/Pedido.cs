@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Acesso.Comum;
-using Entidades.Pessoa;
-using System.Data;
+﻿using Acesso.Comum;
 using Entidades.Configuração;
+using Entidades.Pessoa;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Text;
 
 namespace Entidades.PedidoConserto
 {
@@ -155,20 +155,7 @@ namespace Entidades.PedidoConserto
 
             public override object ConverterParaDB(object valor)
             {
-                //switch ((Entrega) valor)
-                //{
-                //    case Entrega.Levar:
-                //        return 'L';
-                //        break;
-
-                //    case Entrega.Despachar:
-                //        return 'D';
-                //        break;
-
-                //    default:
-                //        throw new NotSupportedException();
-                
-                return (int)valor;
+                return (int) valor;
             }
         }
 
@@ -178,11 +165,6 @@ namespace Entidades.PedidoConserto
         /// Código do pedido.
         /// </summary>
         public ulong Código { get { return código; } }
-
-        ///// <summary>
-        ///// Número de controle do pedido.
-        ///// </summary>
-        //public uint? Controle { get { return controle; } set { controle = value; DefinirDesatualizado(); } }
 
         /// <summary>
         /// Se o pedido/conserto pertence ao cliente ou se pertence à empresa.
@@ -234,7 +216,6 @@ namespace Entidades.PedidoConserto
         public DateTime? DataConclusão { get { return dataConclusão; } set { dataConclusão = value; DefinirDesatualizado(); } }
 
         public DateTime? DataOficina { get { return dataOficina; } set { dataOficina = value; DefinirDesatualizado(); } }
-
 
         /// <summary>
         /// Data da entrega do pedido.
