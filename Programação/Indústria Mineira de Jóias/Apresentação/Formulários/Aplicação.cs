@@ -1,10 +1,6 @@
-﻿//#define SERVIÇO_IMPRESSÃO
-
+﻿using Acesso.Comum;
 using System;
-using System.Collections;
 using System.Windows.Forms;
-using Acesso.Comum;
-using System.Threading;
 
 namespace Apresentação.Formulários
 {
@@ -17,9 +13,6 @@ namespace Apresentação.Formulários
         private BaseFormulário formulário;
         private Splash splash = null;
         private bool requisitarNovaSenha = false;
-#if SERVIÇO_IMPRESSÃO
-        private Apresentação.Impressão.Servidor.Serviço serviçoImpressão;
-#endif
 
         public bool RequisitarNovaSenha
         {
@@ -148,30 +141,8 @@ namespace Apresentação.Formulários
 #endif
             }
 
-#if SERVIÇO_IMPRESSÃO
-            try
-            {
-                if (splash != null)
-                    splash.Mensagem = "Preparando serviço de impressão remota...";
-
-                Thread thread = new Thread(new ThreadStart(PrepararServiçoImpressão));
-                thread.IsBackground = true;
-                thread.Start();
-            }
-            catch { }
-#endif
         }
 
-#if SERVIÇO_IMPRESSÃO
-        private void PrepararServiçoImpressão()
-        {
-            try
-            {
-                serviçoImpressão = new Apresentação.Impressão.Servidor.Serviço();
-            }
-            catch { }
-        }
-#endif
 
         /// <summary>
         /// Ocorre quando um erro é registrado por um usuário.
@@ -274,7 +245,7 @@ namespace Apresentação.Formulários
             }
             catch { }
 
-            
+
 #if !DEBUG
 			try
 #endif
@@ -325,18 +296,10 @@ namespace Apresentação.Formulários
                 Console.WriteLine("========================================================");
 #endif
 
-                
-                
-                 
-                 Application.Run(aplicação);
 
-#if SERVIÇO_IMPRESSÃO
-                try
-                {
-                    aplicação.serviçoImpressão.Dispose();
-                }
-                catch { }
-#endif
+
+
+                Application.Run(aplicação);
 
                 GC.Collect();
             }
