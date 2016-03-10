@@ -19,10 +19,10 @@ using System.Windows.Forms;
 
 namespace Apresentação.Atendimento
 {
-	/// <summary>
-	/// Base inferior para atendimento.
-	/// </summary>
-	public class BaseAtendimento : Apresentação.Formulários.BaseInferior
+    /// <summary>
+    /// Base inferior para atendimento.
+    /// </summary>
+    public class BaseAtendimento : Apresentação.Formulários.BaseInferior
 	{
         /// <summary>
         /// Entidade da pessoa atual.

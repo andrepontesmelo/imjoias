@@ -95,59 +95,6 @@ namespace Apresentação.Atendimento.Comum
 			get { return seleção; }
 		}
 
-        ///// <summary>
-        ///// Itens
-        ///// </summary>
-        //[Browsable(false), ReadOnly(true)]
-        //public ColeçãoListaPessoasItemBusca Itens
-        //{
-        //    get { return itens; }
-        //}
-
-        ///// <summary>
-        ///// Número de colunas a mostrar
-        ///// </summary>
-        //[DefaultValue(2)]
-        //public int Colunas
-        //{
-        //    get { return colunas; }
-        //    set
-        //    {
-        //        colunas = value;
-        //        //				Reorganizar();
-        //    }
-        //}
-
-        ///// <summary>
-        ///// Determina se o número de colunas será atribuído automaticamente.
-        ///// </summary>
-        //[DefaultValue(true), Description("Se verdadeiro, determina o número de colunas automaticamente.")]
-        //public bool AutoColunas
-        //{
-        //    get { return autoColunas; }
-        //    set
-        //    {
-        //        autoColunas = value;
-
-        //        if (value)
-        //            Reorganizar();
-        //    }
-        //}
-
-        ///// <summary>
-        ///// Distância entre colunas
-        ///// </summary>
-        //[DefaultValue(15)]
-        //public int DistânciaEntreColunas
-        //{
-        //    get { return distânciaEntreColunas; }
-        //    set
-        //    {
-        //        distânciaEntreColunas = value;
-        //        Reorganizar();
-        //    }
-        //}
-
 		#endregion
 
         public void SelecionarPeloTeclado()

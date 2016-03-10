@@ -87,20 +87,6 @@ namespace Entidades.Pessoa
         [DbRelacionamento("codigo", "setor")]
         protected Setor setor;
 
-        //protected DbComposição<RelacionamentoInterpessoal> relacionamentos;
-
-        //[DbColuna("avaliacaoVolVarejo")]
-        //protected byte? avaliaçãoVolVarejo;
-
-        //[DbColuna("avaliacaoVolAtacado")]
-        //protected byte? avaliaçãoVolAtacado;
-
-        //[DbColuna("avaliacaoPagamento")]
-        //protected byte? avaliaçãoPagamento;
-
-        //[DbColuna("avaliacaoVendaConsignado")]
-        //protected byte? avaliaçãoVendaConsignado;
-
         protected DbComposição<DataRelevante> datasRelevantes;
 
         protected double? maiorVenda;
@@ -194,38 +180,6 @@ namespace Entidades.Pessoa
             }
         }
 
-
-        ///// <summary>
-        ///// Foto da pessoa.
-        ///// </summary>
-        //public Image Foto
-        //{
-        //    get
-        //    {
-        //        lock (this)
-        //        {
-        //            if (foto == null && estadoFoto == EstadoFoto.Desconhecido)
-        //                ObterFoto();
-        //        }
-
-        //        return foto;
-        //    }
-        //    set
-        //    {
-        //        lock (this)
-        //        {
-        //            /* Necessário garantir que existe foto, para atribuir
-        //             * informações de foto inexistente ou existente.
-        //             */
-        //            if (foto == null && estadoFoto == EstadoFoto.Desconhecido)
-        //                ObterFoto();
-
-        //            foto = value;
-        //            estadoFoto |= EstadoFoto.Desatualizada;
-        //        }
-        //    }
-        //}
-
         /// <summary>
         /// Flag de classificações para ser utilizado
         /// com a classe <c>Classificação</c>.
@@ -291,44 +245,6 @@ namespace Entidades.Pessoa
         }
 
         public Setor Setor { get { return setor; } set { setor = value; DefinirDesatualizado(); } }
-
-        ///// <summary>
-        ///// Lista de relacionamentos interpessoais.
-        ///// </summary>
-        //public DbComposição<RelacionamentoInterpessoal> Relacionamentos
-        //{
-        //    get
-        //    {
-        //        if (relacionamentos == null)
-        //            relacionamentos = new DbComposição<RelacionamentoInterpessoal>(RelacionamentoInterpessoal.ObterRelacionamentos(this));
-
-        //        return relacionamentos;
-        //    }
-        //}
-
-        //public byte? AvaliaçãoVolVarejo
-        //{
-        //    get { return avaliaçãoVolVarejo; }
-        //    set { avaliaçãoVolVarejo = value; DefinirDesatualizado(); }
-        //}
-
-        //public  byte? AvaliaçãoVolAtacado
-        //{
-        //    get { return avaliaçãoVolAtacado; }
-        //    set { avaliaçãoVolAtacado = value; DefinirDesatualizado(); }
-        //}
-
-        //public byte? AvaliaçãoPagamento
-        //{
-        //    get { return avaliaçãoPagamento; }
-        //    set { avaliaçãoPagamento = value; DefinirDesatualizado(); }
-        //}
-
-        //public byte? AvaliaçãoVendaConsignado
-        //{
-        //    get { return avaliaçãoVendaConsignado; }
-        //    set { avaliaçãoVendaConsignado = value; DefinirDesatualizado(); }
-        //}
 
         public DbComposição<DataRelevante> DatasRelevantes
         {
@@ -533,90 +449,6 @@ namespace Entidades.Pessoa
             }
         }
         
-
-        ///// <summary>
-        ///// Hash para pessoas com foto.
-        ///// Deve ser usado apenas dentro de ObterFoto para evitar consultas desnecessarias.
-        ///// </summary>
-        //private static List<ulong> pessoasComFoto = null;
-
-        ///// <summary>
-        ///// Recupera a foto do banco de dados.
-        ///// </summary>
-        //private void ObterFoto()
-        //{
-        //    IDbConnection conexão;
-
-        //    lock (this)
-        //    {
-        //        if (!Cadastrado)
-        //        {
-        //            foto = null;
-        //            estadoFoto = EstadoFoto.Inexistente;
-        //        }
-        //        else
-        //        {
-        //            if (pessoasComFoto == null)
-        //            {
-        //                // Cria a hash!
-        //                pessoasComFoto = new List<ulong>();
-        //                conexão = Conexão;
-        //                IDataReader leitor;
-
-        //                lock (conexão)
-        //                {
-        //                    using (IDbCommand cmd = conexão.CreateCommand())
-        //                    {
-        //                        cmd.CommandText = "SELECT codigo FROM pessoafoto";
-
-        //                        leitor = cmd.ExecuteReader() ;
-
-        //                        while (leitor.Read())
-        //                        {
-        //                            pessoasComFoto.Add((ulong) leitor.GetInt64(0));
-        //                        }
-
-        //                        if (leitor != null)
-        //                            leitor.Close();
-        //                    }
-        //                }
-        //            }
-
-        //            if (!pessoasComFoto.Contains(Código))
-        //            {
-        //                // Sai fora economizando consulta!
-        //                foto = null;
-        //                estadoFoto = EstadoFoto.Inexistente;
-        //                return;
-        //            }
-
-        //            object objFoto;
-        //            conexão = Conexão;
-
-        //            lock (conexão)
-        //            {
-        //                using (IDbCommand cmd = conexão.CreateCommand())
-        //                {
-        //                    cmd.CommandText = "SELECT foto FROM pessoafoto WHERE codigo = " + DbTransformar(Código);
-
-        //                    objFoto = cmd.ExecuteScalar();
-        //                }
-        //            }
-
-        //            if (objFoto != null && objFoto.GetType() != typeof(DBNull))
-        //            {
-        //                this.foto = (byte[])objFoto;
-        //                estadoFoto = EstadoFoto.Cadastrada;
-        //            }
-        //            else
-        //            {
-        //                this.foto = null;
-        //                estadoFoto = EstadoFoto.Inexistente;
-        //            }
-        //        }
-        //    }
-        //}
-
         /// <summary>
         /// Obtém uma pessoa a partir de um código.
         /// </summary>
@@ -638,7 +470,6 @@ namespace Entidades.Pessoa
             else
             {
                 // É pessoa jurídica.
-                //return Pessoa.ObterPessoa((ulong) leitor.GetInt64(inicioPessoa));
                 return PessoaJurídica.Obter(leitor, inicioPessoa, inicioPessoaJuridica);
             }
         }
@@ -695,8 +526,6 @@ namespace Entidades.Pessoa
             IDbConnection conexão = Conexão;
             chaveBusca = chaveBusca.Trim();
             chaveBusca = chaveBusca.Replace("%%", "%").Replace("'","").Replace("\"","").Replace("\\","").Replace("  "," ").Replace("  "," ");
-            
-            //string tmpNome = chaveBusca.Replace(' ', '%');
 
             StringBuilder comando = new StringBuilder();
 
@@ -936,10 +765,6 @@ namespace Entidades.Pessoa
         /// <returns>Vetor de pessoas-física e jurídicas.</returns>
         public static List<Pessoa> ObterPessoas(string nome)
         {
-            //string nomeQualquer = nome.Replace(' ', '%').Replace("'", @"\'");
-
-            //return RealizarConsulta("SELECT * FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo" +
-            //  " WHERE p.nome LIKE '%" + nomeQualquer + "%' LIMIT " + DbTransformar(limite), 0, Pessoa.TotalAtributos);
             return ObterPessoas(nome, LIMITE_PADRÃO_PESSOAS);
         }
 
@@ -1069,19 +894,6 @@ namespace Entidades.Pessoa
         /// <returns>Lista de vendedores.</returns>
         public static IList<Pessoa> ObterVendedores()
         {
-            //List<Pessoa> vendedores;
-            //Funcionário[] funcionários;
-            //Representante[] representantes;
-
-            //funcionários = Funcionário.ObterFuncionários(true, false);
-            //representantes = Representante.ObterRepresentantes();
-            //vendedores = new List<Pessoa>(funcionários.Length + representantes.Length);
-
-            //vendedores.AddRange(funcionários);
-            //vendedores.AddRange(representantes);
-
-            //return vendedores;
-
             string cmd = "SELECT p.*, pf.*, f.* FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join funcionario f on pf.codigo=f.codigo "
             + " WHERE p.codigo in (select vendedor from venda) and f.dataSaida is null ";
 
@@ -1178,21 +990,7 @@ namespace Entidades.Pessoa
         public static void ReduzirNomes(System.Data.DataSet dataSet, int coluna)
         {
             foreach (DataRow linha in dataSet.Tables[0].Rows)
-            {
-                //string[] nomes;
-                //string novoNome;
-
-                //nomes = ((string)linha[coluna]).Split(' ');
-                //novoNome = nomes[0];
-
-                //for (int i = 1; i < nomes.Length; i++)
-                //    if (nomes[i].Length > 3)
-                //        novoNome += " " + nomes[i][0] + '.';
-
-                //linha[coluna] = novoNome;
-
                 linha[coluna] = ReduzirNome((string)linha[coluna]);
-            }
         }
 
         public static String ReduzirNome(string nome)
@@ -1227,8 +1025,6 @@ namespace Entidades.Pessoa
  "nome, setor, " +
                             "email, observacoes, ultimaVisita, classificacoes, " +
                             "dataRegistro, dataAlteracao, " +
-                //"avaliacaoVolVarejo, " +
-                //"avaliacaoVolAtacado, avaliacaoPagamento, avaliacaoVendaConsignado, " +
                             "maiorVenda, credito, fornecedor, regiao) " +
                             "VALUES (" +
 #if PERMITIR_IMPORTAÇÃO
@@ -1246,10 +1042,6 @@ namespace Entidades.Pessoa
                             "NOW(), " +
 #endif
  "NOW(), " +
-                //DbTransformar(this.avaliaçãoVolVarejo) + ", " +
-                //DbTransformar(this.avaliaçãoVolAtacado) + ", " +
-                //DbTransformar(this.avaliaçãoPagamento) + ", " +
-                //DbTransformar(this.avaliaçãoVendaConsignado) + ", " +
                             DbTransformar(this.maiorVenda) + ", " +
                             DbTransformar(this.crédito) + ", " +
                             DbTransformar(this.fornecedor) + ", " +
@@ -1271,45 +1063,10 @@ namespace Entidades.Pessoa
             if (telefones != null)
                 CadastrarEntidade(cmd, telefones);
 
-            //if (relacionamentos != null)
-            //    CadastrarEntidade(cmd, relacionamentos);
-
             if (datasRelevantes != null)
                 CadastrarEntidade(cmd, datasRelevantes);
 
-            //// Cadastrar foto, se houver
-            //if (this.Foto != null)
-            //    CadastrarFoto(cmd);
         }
-
-        ///// <summary>
-        ///// Cadastra foto no banco de dados.
-        ///// </summary>
-        //private void CadastrarFoto(IDbCommand cmd)
-        //{
-        //    if (this.foto != null)
-        //    {
-        //        byte[] foto = this.foto;
-        //        IDbDataParameter arg = cmd.CreateParameter();
-
-        //        arg.ParameterName = "?foto";
-        //        arg.DbType = DbType.Binary;
-        //        arg.Value = foto;
-
-        //        cmd.Parameters.Add(arg);
-
-        //        cmd.CommandText = "INSERT INTO pessoafoto (codigo, foto) VALUES " +
-        //            "(" + this.Código.ToString() + ", ?foto)";
-
-        //        cmd.ExecuteNonQuery();
-
-        //        estadoFoto = EstadoFoto.Cadastrada;
-
-        //        if (pessoasComFoto != null && !pessoasComFoto.Contains(Código))
-        //            pessoasComFoto.Add(Código);
-
-        //    }
-        //}
 
         /// <summary>
         /// Verifica se a entidade encontra-se atualizada.
@@ -1321,23 +1078,6 @@ namespace Entidades.Pessoa
                 return base.Atualizado && estadoFoto != EstadoFoto.Desatualizada;
             }
         }
-
-        ///// <summary>
-        ///// Atualiza a entidade no banco de dados.
-        ///// </summary>
-        ///// <remarks>
-        ///// O implementador deverá atribuir o valor
-        ///// verdadeiro para o atributo "atualizado".
-        ///// </remarks>
-        //public override void Atualizar()
-        //{
-        //    if (Atualizado && (estadoFoto & EstadoFoto.Desatualizada) > 0)
-        //        AtualizarFoto();
-        //    else
-        //        base.Atualizar();
-
-        //    //CacheDb.Instância.Remover(this);
-        //}
 
         /// <summary>
         /// Atualiza a entidade no banco de dados.
@@ -1354,10 +1094,6 @@ namespace Entidades.Pessoa
                 " ultimaVisita = " + DbTransformar(this.últimaVisita) + ", " +
                 " classificacoes = " + DbTransformar(this.classificações) + ", " +
                 " dataAlteracao = NOW(), " +
-                //" avaliacaoVolVarejo = " + DbTransformar(this.avaliaçãoVolVarejo) + ", " +
-                //" avaliacaoVolAtacado = " + DbTransformar(this.avaliaçãoVolAtacado) + ", " +
-                //" avaliacaoPagamento = " + DbTransformar(this.avaliaçãoPagamento) + ", " +
-                //" avaliacaoVendaConsignado = " + DbTransformar(this.avaliaçãoVendaConsignado) + ", " +
                 " maiorVenda = " + DbTransformar(this.maiorVenda) + ", " +
                 " credito = " + DbTransformar(this.crédito) + ", " +
                 " fornecedor = " + DbTransformar(this.fornecedor) + ", " +
@@ -1375,78 +1111,9 @@ namespace Entidades.Pessoa
             if (telefones != null)
                 AtualizarEntidade(cmd, telefones);
 
-            //if ((estadoFoto & EstadoFoto.Desatualizada) > 0)
-            //    AtualizarFoto(cmd);
-
-            //if (relacionamentos != null)
-            //    AtualizarEntidade(cmd, relacionamentos);
-
             if (datasRelevantes != null)
                 AtualizarEntidade(cmd, datasRelevantes);
         }
-
-        ///// <summary>
-        ///// Cria comando para atualização de foto.
-        ///// </summary>
-        //private void AtualizarFoto()
-        //{
-        //    IDbConnection conexão = Conexão;
-
-        //    lock (conexão)
-        //        using (IDbCommand cmd = conexão.CreateCommand())
-        //            AtualizarFoto(cmd);
-        //}
-
-        ///// <summary>
-        ///// Atualiza a foto.
-        ///// </summary>
-        ///// <param name="cmd">Atualização de foto.</param>
-        //private void AtualizarFoto(IDbCommand cmd)
-        //{
-        //    switch (estadoFoto)
-        //    {
-        //        case EstadoFoto.Inexistente | EstadoFoto.Desatualizada:
-        //            if (foto != null)
-        //                CadastrarFoto(cmd);
-        //            else
-        //                estadoFoto = EstadoFoto.Inexistente;
-        //            break;
-
-        //        case EstadoFoto.Cadastrada | EstadoFoto.Desatualizada:
-        //            if (foto != null)
-        //                DescadastrarFoto(cmd);
-        //            else
-        //                SubstituirFoto(cmd);
-        //            break;
-        //    }
-        //}
-
-        ///// <summary>
-        ///// Substitui foto já existente.
-        ///// </summary>
-        ///// <param name="cmd">Comando do banco de dados.</param>
-        //private void SubstituirFoto(IDbCommand cmd)
-        //{
-        //    if (foto == null)
-        //        DescadastrarFoto(cmd);
-        //    else
-        //    {
-        //        IDataParameter arg = cmd.CreateParameter();
-        //        arg.ParameterName = "?foto";
-        //        arg.DbType = DbType.Binary;
-        //        arg.Value = (byte[])foto;
-
-        //        cmd.Parameters.Add(arg);
-
-        //        cmd.CommandText = "UPDATE pessoafoto SET " +
-        //            "foto = ?foto " +
-        //            "WHERE codigo = " + DbTransformar(Código);
-
-        //        cmd.ExecuteNonQuery();
-
-        //        estadoFoto = EstadoFoto.Cadastrada;
-        //    }
-        //}
 
         /// <summary>
         /// Atualiza os dados sobre o último acesso.
@@ -1480,32 +1147,13 @@ namespace Entidades.Pessoa
             if (Acerto.AcertoConsignado.ObterAcertosPendentes(this).Length > 0)
                 throw new ExceçãoClientePossuiPendências(this, "Existem acertos pendentes.");
 
-            //if ((estadoFoto & EstadoFoto.Cadastrada) > 0)
-            //    DescadastrarFoto(cmd);
-
             DescadastrarEntidade(cmd, Endereços);
             DescadastrarEntidade(cmd, Telefones);
-            //DescadastrarEntidade(cmd, Relacionamentos);
             DescadastrarEntidade(cmd, DatasRelevantes);
 
             cmd.CommandText = "DELETE FROM pessoa WHERE codigo = " + DbTransformar(codigo);
             cmd.ExecuteNonQuery();
         }
-
-        ///// <summary>
-        ///// Descadastra foto do banco de dados.
-        ///// </summary>
-        ///// <param name="cmd">Comando do banco de dados.</param>
-        //private void DescadastrarFoto(IDbCommand cmd)
-        //{
-        //    cmd.CommandText = "DELETE FROM pessoafoto WHERE codigo = " + DbTransformar(Código);
-        //    cmd.ExecuteNonQuery();
-
-        //    estadoFoto = EstadoFoto.Inexistente;
-
-        //    if (pessoasComFoto != null && pessoasComFoto.Contains(Código))
-        //        pessoasComFoto.Remove(Código);
-        //}
 
         /// <summary>
         /// Atualiza a classificação da pessoa.
@@ -1574,22 +1222,6 @@ namespace Entidades.Pessoa
             if (Cadastrado)
                 telefones.AdicionarJáCadastrado(tels);
         }
-
-        ///// <summary>
-        ///// Obtém o relacionamento que esta pessoa possui com outra.
-        ///// </summary>
-        ///// <param name="pessoa">Pessoa com que será verificado o relacionamento.</param>
-        ///// <returns>O tipo de relacionamento desta pessoa com a outra passada por parâmetro.</returns>
-        //public TipoRelacionamento ObterRelacionamento(Pessoa pessoa)
-        //{
-        //    foreach (RelacionamentoInterpessoal relacionamento in Relacionamentos)
-        //        if (relacionamento.Pessoa2.Equals(pessoa))
-        //            return relacionamento.TipoRelacionamento;
-        //        else if (relacionamento.Pessoa1.Equals(pessoa))
-        //            return RelacionamentoInterpessoal.InverterRelacionamento(relacionamento.TipoRelacionamento);
-
-        //    return TipoRelacionamento.Nenhum;
-        //}
 
         public override bool Equals(object obj)
         {

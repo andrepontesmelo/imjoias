@@ -88,8 +88,6 @@ namespace Apresentação.Atendimento.Comum
 
             Primária = primária;
 			Secundária = secundária;
-			//lblDescrição.Text = descrição;
-            //picFoto.BackgroundImage = ícone;
 
             pnlÍcone.BackgroundImage = ícone;
 		}
@@ -279,7 +277,6 @@ namespace Apresentação.Atendimento.Comum
             this.Select();
 			lblPrimária.ForeColor = SystemColors.ActiveCaptionText;
 			lblSecundária.ForeColor = SystemColors.ActiveCaptionText;;
-			//lblDescrição.ForeColor = SystemColors.ActiveCaptionText;
 			this.BackColor = SystemColors.ActiveCaption;
 		}
 
@@ -290,7 +287,6 @@ namespace Apresentação.Atendimento.Comum
 		{
 			lblPrimária.ForeColor = Color.Black;
 			lblSecundária.ForeColor = Color.Black;
-			//lblDescrição.ForeColor = Color.Blue;
 			this.BackColor = Color.FromArgb(224, 224, 224);
 
             this.BorderStyle = BorderStyle.None;
@@ -326,13 +322,6 @@ namespace Apresentação.Atendimento.Comum
 			if (e.KeyCode == Keys.Enter)
 				this.OnClick(new EventArgs());
 		}
-
-        //[Bindable(false)]
-        //public string Descrição
-        //{
-        //    get { return lblDescrição.Text; }
-        //    set { lblDescrição.Text = value; }
-        //}
 
 		/// <summary>
 		/// Dispara evento de fechar.
