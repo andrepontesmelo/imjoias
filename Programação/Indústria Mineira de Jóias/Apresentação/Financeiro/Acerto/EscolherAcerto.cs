@@ -1,9 +1,13 @@
-﻿using Apresentação.Formulários;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Windows.Forms;
+using Apresentação.Formulários;
 using Entidades.Acerto;
 using Entidades.Pessoa;
-using System;
-using System.Drawing;
-using System.Windows.Forms;
 
 namespace Apresentação.Financeiro.Acerto
 {
@@ -148,7 +152,6 @@ namespace Apresentação.Financeiro.Acerto
             acerto.FuncConsignado = Funcionário.FuncionárioAtual;
             acerto.Cliente = pessoa;
 
-            acerto.Cadastrar();
             return acerto;
         }
 
