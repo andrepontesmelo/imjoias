@@ -371,7 +371,7 @@ namespace Entidades.Pagamentos
                     cmd.CommandText += " where cliente=" + DbTransformar(cliente.Código);
 
                     if (somentePendente)
-                        cmd.CommandText += " AND (pendente = 1 OR devolvido = 1)";
+                        cmd.CommandText += " AND pendente = 1 ";
                 }
 
                 if (venda != null)
