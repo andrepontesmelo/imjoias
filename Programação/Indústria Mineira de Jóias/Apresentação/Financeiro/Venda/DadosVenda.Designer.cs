@@ -758,7 +758,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.BackColor = System.Drawing.Color.Transparent;
+            this.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.chkSedex);
             this.Controls.Add(this.btnTrocarClienteVendedor);

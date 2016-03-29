@@ -77,7 +77,7 @@
             // 
             // opçãoAbrir
             // 
-            this.opçãoAbrir.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoAbrir.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoAbrir.Descrição = "Abrir";
             this.opçãoAbrir.Imagem = global::Apresentação.Resource.openfolderHS;
             this.opçãoAbrir.Location = new System.Drawing.Point(5, 30);

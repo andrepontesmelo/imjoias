@@ -108,7 +108,7 @@
             // 
             this.imagens.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
             this.imagens.ImageSize = new System.Drawing.Size(133, 100);
-            this.imagens.TransparentColor = System.Drawing.Color.Transparent;
+            this.imagens.TransparentColor = System.Drawing.Color.PaleGoldenrod;
             // 
             // bgRecuperação
             // 

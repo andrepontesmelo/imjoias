@@ -66,7 +66,7 @@ namespace Apresentação.Atendimento.Comum
             // flow
             // 
             this.flow.AutoScroll = true;
-            this.flow.BackColor = System.Drawing.Color.Transparent;
+            this.flow.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.flow.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flow.Location = new System.Drawing.Point(0, 0);
             this.flow.Name = "flow";

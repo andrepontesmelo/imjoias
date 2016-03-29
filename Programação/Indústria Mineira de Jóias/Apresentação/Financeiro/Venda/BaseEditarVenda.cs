@@ -29,7 +29,7 @@ namespace Apresentação.Financeiro.Venda
             // 
             digitação.Anchor = base.digitação.Anchor;
             digitação.Dock = base.digitação.Dock;
-            digitação.BackColor = System.Drawing.Color.Transparent;
+            digitação.BackColor = System.Drawing.Color.PaleGoldenrod;
             digitação.Location = base.digitação.Location;
             digitação.Name = "digitação";
             digitação.Size = base.digitação.Size;

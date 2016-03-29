@@ -39,7 +39,7 @@
             // 
             // opção1
             // 
-            this.opção1.BackColor = System.Drawing.Color.Transparent;
+            this.opção1.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opção1.Descrição = "Venda do dia";
             this.opção1.Imagem = ((System.Drawing.Image)(resources.GetObject("opção1.Imagem")));
             this.opção1.Location = new System.Drawing.Point(5, 30);
@@ -53,7 +53,7 @@
             // 
             // opção2
             // 
-            this.opção2.BackColor = System.Drawing.Color.Transparent;
+            this.opção2.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opção2.Descrição = "Nota fiscal";
             this.opção2.Imagem = ((System.Drawing.Image)(resources.GetObject("opção2.Imagem")));
             this.opção2.Location = new System.Drawing.Point(5, 50);
@@ -67,7 +67,7 @@
             // 
             // opção3
             // 
-            this.opção3.BackColor = System.Drawing.Color.Transparent;
+            this.opção3.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opção3.Descrição = "Quitada; c. aberta";
             this.opção3.Imagem = ((System.Drawing.Image)(resources.GetObject("opção3.Imagem")));
             this.opção3.Location = new System.Drawing.Point(5, 110);
@@ -80,7 +80,7 @@
             // 
             // opção4
             // 
-            this.opção4.BackColor = System.Drawing.Color.Transparent;
+            this.opção4.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opção4.Descrição = "Comissão fechada";
             this.opção4.Imagem = ((System.Drawing.Image)(resources.GetObject("opção4.Imagem")));
             this.opção4.Location = new System.Drawing.Point(5, 130);
@@ -93,7 +93,7 @@
             // 
             // opção5
             // 
-            this.opção5.BackColor = System.Drawing.Color.Transparent;
+            this.opção5.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opção5.Descrição = "Não quitada";
             this.opção5.Imagem = ((System.Drawing.Image)(resources.GetObject("opção5.Imagem")));
             this.opção5.Location = new System.Drawing.Point(5, 90);
@@ -106,7 +106,7 @@
             // 
             // opção6
             // 
-            this.opção6.BackColor = System.Drawing.Color.Transparent;
+            this.opção6.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opção6.Descrição = "Cobrança";
             this.opção6.Imagem = ((System.Drawing.Image)(resources.GetObject("opção6.Imagem")));
             this.opção6.Location = new System.Drawing.Point(5, 70);

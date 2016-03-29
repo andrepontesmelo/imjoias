@@ -75,11 +75,11 @@ namespace Apresentação.Usuário.Visitantes
             // 
             this.imageList.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
-            this.imageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList.TransparentColor = System.Drawing.Color.PaleGoldenrod;
             // 
             // picÍcone
             // 
-            this.picÍcone.BackColor = System.Drawing.Color.Transparent;
+            this.picÍcone.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.picÍcone.Location = new System.Drawing.Point(10, 32);
             this.picÍcone.Name = "picÍcone";
             this.picÍcone.Size = new System.Drawing.Size(16, 16);
@@ -89,7 +89,7 @@ namespace Apresentação.Usuário.Visitantes
             // 
             // lblNome
             // 
-            this.lblNome.BackColor = System.Drawing.Color.Transparent;
+            this.lblNome.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
             this.lblNome.Location = new System.Drawing.Point(32, 32);
             this.lblNome.Name = "lblNome";
@@ -99,7 +99,7 @@ namespace Apresentação.Usuário.Visitantes
             // 
             // lblAtendimento
             // 
-            this.lblAtendimento.BackColor = System.Drawing.Color.Transparent;
+            this.lblAtendimento.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblAtendimento.Location = new System.Drawing.Point(32, 56);
             this.lblAtendimento.Name = "lblAtendimento";
             this.lblAtendimento.Size = new System.Drawing.Size(216, 40);

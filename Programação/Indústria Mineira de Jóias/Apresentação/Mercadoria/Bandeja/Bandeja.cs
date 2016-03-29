@@ -1823,18 +1823,18 @@ namespace Apresentação.Mercadoria.Bandeja
             // 
             this.imagensGrandes.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
             this.imagensGrandes.ImageSize = new System.Drawing.Size(32, 32);
-            this.imagensGrandes.TransparentColor = System.Drawing.Color.Transparent;
+            this.imagensGrandes.TransparentColor = System.Drawing.Color.PaleGoldenrod;
             // 
             // imagensPequenas
             // 
             this.imagensPequenas.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
             this.imagensPequenas.ImageSize = new System.Drawing.Size(20, 20);
-            this.imagensPequenas.TransparentColor = System.Drawing.Color.Transparent;
+            this.imagensPequenas.TransparentColor = System.Drawing.Color.PaleGoldenrod;
             // 
             // imagensBarraFerramentas
             // 
             this.imagensBarraFerramentas.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imagensBarraFerramentas.ImageStream")));
-            this.imagensBarraFerramentas.TransparentColor = System.Drawing.Color.Transparent;
+            this.imagensBarraFerramentas.TransparentColor = System.Drawing.Color.PaleGoldenrod;
             this.imagensBarraFerramentas.Images.SetKeyName(0, "");
             this.imagensBarraFerramentas.Images.SetKeyName(1, "");
             this.imagensBarraFerramentas.Images.SetKeyName(2, "");

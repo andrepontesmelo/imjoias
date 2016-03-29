@@ -230,7 +230,7 @@ namespace Apresentação.Fotos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Transparent;
+            this.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.Controls.Add(this.quadroIdentificação);
             this.MinimumSize = new System.Drawing.Size(216, 213);
             this.Name = "IdentificaçãoMercadoria";

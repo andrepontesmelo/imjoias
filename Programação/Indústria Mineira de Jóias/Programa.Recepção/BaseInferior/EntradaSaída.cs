@@ -178,7 +178,7 @@ namespace Programa.Recepção.BaseInferior
             // 
             // label3
             // 
-            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(8, 32);
             this.label3.Name = "label3";
@@ -188,7 +188,7 @@ namespace Programa.Recepção.BaseInferior
             // 
             // opçãoVisitanteRegistrarSaída
             // 
-            this.opçãoVisitanteRegistrarSaída.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoVisitanteRegistrarSaída.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoVisitanteRegistrarSaída.Descrição = "Registrar saída";
             this.opçãoVisitanteRegistrarSaída.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoVisitanteRegistrarSaída.Imagem")));
             this.opçãoVisitanteRegistrarSaída.Location = new System.Drawing.Point(5, 105);
@@ -202,7 +202,7 @@ namespace Programa.Recepção.BaseInferior
             // 
             // opçãoRenomear
             // 
-            this.opçãoRenomear.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoRenomear.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoRenomear.Descrição = "Corrigir nome";
             this.opçãoRenomear.Imagem = global::Programa.Recepção.Properties.Resources.RenameFolderHS;
             this.opçãoRenomear.Location = new System.Drawing.Point(5, 129);
@@ -216,7 +216,7 @@ namespace Programa.Recepção.BaseInferior
             // 
             // opçãoVisitaVisualizar
             // 
-            this.opçãoVisitaVisualizar.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoVisitaVisualizar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoVisitaVisualizar.Descrição = "Visualizar visitas";
             this.opçãoVisitaVisualizar.Imagem = global::Programa.Recepção.Properties.Resources.relatório;
             this.opçãoVisitaVisualizar.Location = new System.Drawing.Point(5, 232);
@@ -230,7 +230,7 @@ namespace Programa.Recepção.BaseInferior
             // 
             // opçãoVisitanteAtribuirVendedor
             // 
-            this.opçãoVisitanteAtribuirVendedor.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoVisitanteAtribuirVendedor.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoVisitanteAtribuirVendedor.Descrição = "Atribuir vendedor";
             this.opçãoVisitanteAtribuirVendedor.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoVisitanteAtribuirVendedor.Imagem")));
             this.opçãoVisitanteAtribuirVendedor.Location = new System.Drawing.Point(5, 81);
@@ -244,7 +244,7 @@ namespace Programa.Recepção.BaseInferior
             // 
             // opçãoVisitanteRegistrarNovoVisitante
             // 
-            this.opçãoVisitanteRegistrarNovoVisitante.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoVisitanteRegistrarNovoVisitante.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoVisitanteRegistrarNovoVisitante.Descrição = "Registrar entrada de novo visitante";
             this.opçãoVisitanteRegistrarNovoVisitante.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoVisitanteRegistrarNovoVisitante.Imagem")));
             this.opçãoVisitanteRegistrarNovoVisitante.Location = new System.Drawing.Point(5, 200);
@@ -258,7 +258,7 @@ namespace Programa.Recepção.BaseInferior
             // 
             // label2
             // 
-            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(5, 160);
             this.label2.Name = "label2";
@@ -268,7 +268,7 @@ namespace Programa.Recepção.BaseInferior
             // 
             // opçõesGenéricas
             // 
-            this.opçõesGenéricas.BackColor = System.Drawing.Color.Transparent;
+            this.opçõesGenéricas.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçõesGenéricas.Controls.Add(this.quadroVisitantes);
             this.opçõesGenéricas.Location = new System.Drawing.Point(7, 16);
             this.opçõesGenéricas.Name = "opçõesGenéricas";
@@ -297,7 +297,7 @@ namespace Programa.Recepção.BaseInferior
             // 
             // opçãoGenéricaRegistrarEntrada
             // 
-            this.opçãoGenéricaRegistrarEntrada.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoGenéricaRegistrarEntrada.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoGenéricaRegistrarEntrada.Descrição = "Registrar entrada";
             this.opçãoGenéricaRegistrarEntrada.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoGenéricaRegistrarEntrada.Imagem")));
             this.opçãoGenéricaRegistrarEntrada.Location = new System.Drawing.Point(8, 32);
@@ -311,7 +311,7 @@ namespace Programa.Recepção.BaseInferior
             // 
             // opçãoVisualizar
             // 
-            this.opçãoVisualizar.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoVisualizar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoVisualizar.Descrição = "Visualizar visitas";
             this.opçãoVisualizar.Imagem = global::Programa.Recepção.Properties.Resources.relatório;
             this.opçãoVisualizar.Location = new System.Drawing.Point(8, 56);
@@ -344,7 +344,7 @@ namespace Programa.Recepção.BaseInferior
             // 
             // label1
             // 
-            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(8, 32);
             this.label1.Name = "label1";
@@ -355,7 +355,7 @@ namespace Programa.Recepção.BaseInferior
             // 
             // opçõesVendedor
             // 
-            this.opçõesVendedor.BackColor = System.Drawing.Color.Transparent;
+            this.opçõesVendedor.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçõesVendedor.Controls.Add(this.quadroVendedor);
             this.opçõesVendedor.Controls.Add(this.quadro1);
             this.opçõesVendedor.Location = new System.Drawing.Point(7, 381);
@@ -387,7 +387,7 @@ namespace Programa.Recepção.BaseInferior
             // 
             // opçãoVendedorAlterarEstado
             // 
-            this.opçãoVendedorAlterarEstado.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoVendedorAlterarEstado.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoVendedorAlterarEstado.Descrição = "Alterar estado";
             this.opçãoVendedorAlterarEstado.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoVendedorAlterarEstado.Imagem")));
             this.opçãoVendedorAlterarEstado.Location = new System.Drawing.Point(8, 80);
@@ -401,7 +401,7 @@ namespace Programa.Recepção.BaseInferior
             // 
             // label4
             // 
-            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(8, 32);
             this.label4.Name = "label4";
@@ -411,7 +411,7 @@ namespace Programa.Recepção.BaseInferior
             // 
             // opçãoVendedorRodízio
             // 
-            this.opçãoVendedorRodízio.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoVendedorRodízio.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoVendedorRodízio.Descrição = "Modificar opções de rodízio";
             this.opçãoVendedorRodízio.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoVendedorRodízio.Imagem")));
             this.opçãoVendedorRodízio.Location = new System.Drawing.Point(8, 104);
@@ -445,7 +445,7 @@ namespace Programa.Recepção.BaseInferior
             // 
             // opçãoVendedorVisualizarVisitantes
             // 
-            this.opçãoVendedorVisualizarVisitantes.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoVendedorVisualizarVisitantes.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoVendedorVisualizarVisitantes.Descrição = "Visualizar visitas";
             this.opçãoVendedorVisualizarVisitantes.Imagem = global::Programa.Recepção.Properties.Resources.relatório;
             this.opçãoVendedorVisualizarVisitantes.Location = new System.Drawing.Point(5, 56);
@@ -459,7 +459,7 @@ namespace Programa.Recepção.BaseInferior
             // 
             // opçãoVendedorRegistrarEntrada
             // 
-            this.opçãoVendedorRegistrarEntrada.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoVendedorRegistrarEntrada.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoVendedorRegistrarEntrada.Descrição = "Registrar entrada";
             this.opçãoVendedorRegistrarEntrada.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoVendedorRegistrarEntrada.Imagem")));
             this.opçãoVendedorRegistrarEntrada.Location = new System.Drawing.Point(5, 32);

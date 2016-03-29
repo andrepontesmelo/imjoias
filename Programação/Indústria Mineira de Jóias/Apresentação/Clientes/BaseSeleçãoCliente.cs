@@ -161,7 +161,7 @@ namespace Apresentação.Atendimento.Clientes
             // 
             // opçãoProcurar
             // 
-            this.opçãoProcurar.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoProcurar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoProcurar.Descrição = "Busca avançada";
             this.opçãoProcurar.Imagem = global::Apresentação.Resource.search4people;
             this.opçãoProcurar.Location = new System.Drawing.Point(7, 30);
@@ -175,7 +175,7 @@ namespace Apresentação.Atendimento.Clientes
             // 
             // opçãoCadastrar
             // 
-            this.opçãoCadastrar.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoCadastrar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoCadastrar.Descrição = "Cadastrar";
             this.opçãoCadastrar.Imagem = global::Apresentação.Resource.newfolder1;
             this.opçãoCadastrar.Location = new System.Drawing.Point(7, 50);
@@ -190,7 +190,7 @@ namespace Apresentação.Atendimento.Clientes
             // 
             // opçãoImprimir
             // 
-            this.opçãoImprimir.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoImprimir.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoImprimir.Descrição = "Imprimir cadastros...";
             this.opçãoImprimir.Imagem = global::Apresentação.Resource.Impressora_3D;
             this.opçãoImprimir.Location = new System.Drawing.Point(7, 70);
@@ -267,7 +267,7 @@ namespace Apresentação.Atendimento.Clientes
             this.listaDatasRelevantes.AutoColunas = false;
             this.listaDatasRelevantes.AutoScroll = true;
             this.listaDatasRelevantes.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.listaDatasRelevantes.BackColor = System.Drawing.Color.Transparent;
+            this.listaDatasRelevantes.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.listaDatasRelevantes.Colunas = 1;
             this.listaDatasRelevantes.Location = new System.Drawing.Point(8, 35);
             this.listaDatasRelevantes.Name = "listaDatasRelevantes";
@@ -286,7 +286,7 @@ namespace Apresentação.Atendimento.Clientes
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(5, 8);
             this.label1.Name = "label1";

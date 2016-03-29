@@ -112,7 +112,7 @@ namespace Apresentação.Mercadoria
             // 
             this.imagens.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
             this.imagens.ImageSize = new System.Drawing.Size(32, 32);
-            this.imagens.TransparentColor = System.Drawing.Color.Transparent;
+            this.imagens.TransparentColor = System.Drawing.Color.PaleGoldenrod;
             // 
             // ListViewMercadoria
             // 

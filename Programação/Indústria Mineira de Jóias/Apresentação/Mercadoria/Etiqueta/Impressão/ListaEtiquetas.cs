@@ -165,7 +165,7 @@ namespace Apresentação.Mercadoria.Etiqueta.Impressão
             // 
             // opçãoNovo
             // 
-            this.opçãoNovo.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoNovo.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoNovo.Descrição = "Criar novo formato";
             this.opçãoNovo.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoNovo.Imagem")));
             this.opçãoNovo.Location = new System.Drawing.Point(8, 32);
@@ -202,7 +202,7 @@ namespace Apresentação.Mercadoria.Etiqueta.Impressão
             // 
             // opçãoRenomear
             // 
-            this.opçãoRenomear.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoRenomear.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoRenomear.Descrição = "Renomear";
             this.opçãoRenomear.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoRenomear.Imagem")));
             this.opçãoRenomear.Location = new System.Drawing.Point(8, 128);
@@ -216,7 +216,7 @@ namespace Apresentação.Mercadoria.Etiqueta.Impressão
             // 
             // opçãoEditar
             // 
-            this.opçãoEditar.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoEditar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoEditar.Descrição = "Editar formato";
             this.opçãoEditar.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoEditar.Imagem")));
             this.opçãoEditar.Location = new System.Drawing.Point(8, 104);
@@ -230,7 +230,7 @@ namespace Apresentação.Mercadoria.Etiqueta.Impressão
             // 
             // label1
             // 
-            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label1.Location = new System.Drawing.Point(8, 32);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(144, 40);
@@ -239,7 +239,7 @@ namespace Apresentação.Mercadoria.Etiqueta.Impressão
             // 
             // opçãoExcluir
             // 
-            this.opçãoExcluir.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoExcluir.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoExcluir.Descrição = "Excluir formato";
             this.opçãoExcluir.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoExcluir.Imagem")));
             this.opçãoExcluir.Location = new System.Drawing.Point(8, 80);

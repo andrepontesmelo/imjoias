@@ -194,7 +194,7 @@ namespace Programa.Recepção.BaseInferior
             // 
             // opçãoIncluirTelefone
             // 
-            this.opçãoIncluirTelefone.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoIncluirTelefone.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoIncluirTelefone.Descrição = "Incluir telefone na agenda da recepção";
             this.opçãoIncluirTelefone.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoIncluirTelefone.Imagem")));
             this.opçãoIncluirTelefone.Location = new System.Drawing.Point(8, 32);
@@ -230,7 +230,7 @@ namespace Programa.Recepção.BaseInferior
             // 
             // opçãoAlterar
             // 
-            this.opçãoAlterar.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoAlterar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoAlterar.Descrição = "Alterar dados";
             this.opçãoAlterar.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoAlterar.Imagem")));
             this.opçãoAlterar.Location = new System.Drawing.Point(8, 104);
@@ -244,7 +244,7 @@ namespace Programa.Recepção.BaseInferior
             // 
             // opçãoExcluir
             // 
-            this.opçãoExcluir.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoExcluir.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoExcluir.Descrição = "Excluir";
             this.opçãoExcluir.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoExcluir.Imagem")));
             this.opçãoExcluir.Location = new System.Drawing.Point(8, 80);
@@ -258,7 +258,7 @@ namespace Programa.Recepção.BaseInferior
             // 
             // label2
             // 
-            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(8, 32);
             this.label2.Name = "label2";

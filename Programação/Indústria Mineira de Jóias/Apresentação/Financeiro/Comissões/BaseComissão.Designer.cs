@@ -129,7 +129,7 @@
             // 
             // opçãoExcluir
             // 
-            this.opçãoExcluir.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoExcluir.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoExcluir.Descrição = "Excluir";
             this.opçãoExcluir.Imagem = global::Apresentação.Resource.Excluir;
             this.opçãoExcluir.Location = new System.Drawing.Point(7, 90);
@@ -143,7 +143,7 @@
             // 
             // opçãoEditar
             // 
-            this.opçãoEditar.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoEditar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoEditar.Descrição = "Editar";
             this.opçãoEditar.Imagem = global::Apresentação.Resource.arrow_switch;
             this.opçãoEditar.Location = new System.Drawing.Point(7, 70);
@@ -157,7 +157,7 @@
             // 
             // opçãoAbrir
             // 
-            this.opçãoAbrir.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoAbrir.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoAbrir.Descrição = "Abrir";
             this.opçãoAbrir.Imagem = global::Apresentação.Resource.openfolderHS1;
             this.opçãoAbrir.Location = new System.Drawing.Point(7, 50);
@@ -171,7 +171,7 @@
             // 
             // opçãoNova
             // 
-            this.opçãoNova.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoNova.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoNova.Descrição = "Nova";
             this.opçãoNova.ForeColor = System.Drawing.Color.Thistle;
             this.opçãoNova.Imagem = global::Apresentação.Resource.novo;
@@ -205,7 +205,7 @@
             // 
             // opçãoImprimir
             // 
-            this.opçãoImprimir.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoImprimir.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoImprimir.Descrição = "Imprimir";
             this.opçãoImprimir.Imagem = global::Apresentação.Resource.impressora___163;
             this.opçãoImprimir.Location = new System.Drawing.Point(7, 30);
@@ -238,7 +238,7 @@
             // 
             // opçãoVendasSemComissão
             // 
-            this.opçãoVendasSemComissão.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoVendasSemComissão.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoVendasSemComissão.Descrição = "Vendas sem comissão";
             this.opçãoVendasSemComissão.Imagem = global::Apresentação.Resource.ImportXMLHS1;
             this.opçãoVendasSemComissão.Location = new System.Drawing.Point(7, 30);

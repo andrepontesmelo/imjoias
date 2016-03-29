@@ -87,7 +87,7 @@ namespace Apresentação.Formulários
             // 
             // quadroNavegação
             // 
-            this.quadroNavegação.BackColor = System.Drawing.Color.Transparent;
+            this.quadroNavegação.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.quadroNavegação.Location = new System.Drawing.Point(7, 13);
             this.quadroNavegação.MaximumSize = new System.Drawing.Size(160, 48);
             this.quadroNavegação.MinimumSize = new System.Drawing.Size(160, 48);

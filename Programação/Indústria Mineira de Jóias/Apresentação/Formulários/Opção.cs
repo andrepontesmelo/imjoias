@@ -32,7 +32,7 @@ namespace Apresentação.Formulários
 			InitializeComponent();
 
 			this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
-			this.BackColor = Color.Transparent;
+			this.BackColor = Color.PaleGoldenrod;
 		}
 
 		/// <summary> 

@@ -64,13 +64,13 @@ namespace Apresentação.Usuário.Financeiro
             // imageList
             // 
             this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
-            this.imageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList.TransparentColor = System.Drawing.Color.PaleGoldenrod;
             this.imageList.Images.SetKeyName(0, "aumento");
             this.imageList.Images.SetKeyName(1, "queda");
             // 
             // imagem
             // 
-            this.imagem.BackColor = System.Drawing.Color.Transparent;
+            this.imagem.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.imagem.BackgroundImage = global::Apresentação.Resource.botão___ouro;
             this.imagem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.imagem.Location = new System.Drawing.Point(20, 37);

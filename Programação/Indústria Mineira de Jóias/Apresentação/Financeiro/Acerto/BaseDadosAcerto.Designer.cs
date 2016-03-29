@@ -133,7 +133,7 @@
             // 
             // btnCalcularDesconto
             // 
-            this.btnCalcularDesconto.BackColor = System.Drawing.Color.Transparent;
+            this.btnCalcularDesconto.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.btnCalcularDesconto.Descrição = "Calcular desconto";
             this.btnCalcularDesconto.Imagem = global::Apresentação.Resource.CalculatorHS;
             this.btnCalcularDesconto.Location = new System.Drawing.Point(7, 70);
@@ -147,7 +147,7 @@
             // 
             // opçãoIniciarRetorno
             // 
-            this.opçãoIniciarRetorno.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoIniciarRetorno.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoIniciarRetorno.Descrição = "Iniciar retorno...";
             this.opçãoIniciarRetorno.Imagem = global::Apresentação.Resource.Retorno__Ícone_;
             this.opçãoIniciarRetorno.Location = new System.Drawing.Point(7, 30);
@@ -162,7 +162,7 @@
             // 
             // opçãoContabilizar
             // 
-            this.opçãoContabilizar.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoContabilizar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoContabilizar.Descrição = "Contabilizar mercadorias";
             this.opçãoContabilizar.Imagem = global::Apresentação.Resource.CalculatorHS;
             this.opçãoContabilizar.Location = new System.Drawing.Point(7, 50);

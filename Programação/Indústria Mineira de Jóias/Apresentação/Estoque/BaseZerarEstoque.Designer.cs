@@ -90,7 +90,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label1.Location = new System.Drawing.Point(7, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 13);
@@ -99,7 +99,7 @@
             // 
             // opçãoZerarEstoqueAgora
             // 
-            this.opçãoZerarEstoqueAgora.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoZerarEstoqueAgora.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoZerarEstoqueAgora.Descrição = "Zerar estoque agora";
             this.opçãoZerarEstoqueAgora.Imagem = global::Apresentação.Resource.none;
             this.opçãoZerarEstoqueAgora.Location = new System.Drawing.Point(7, 200);
@@ -175,7 +175,7 @@
             // 
             // opçãoExcluir
             // 
-            this.opçãoExcluir.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoExcluir.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoExcluir.Descrição = "Excluir registro(s)";
             this.opçãoExcluir.Imagem = global::Apresentação.Resource.Excluir;
             this.opçãoExcluir.Location = new System.Drawing.Point(7, 30);

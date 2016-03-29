@@ -152,7 +152,7 @@ namespace Apresentação.Mercadoria.Etiqueta.Impressão
             // 
             // chkFormatoAutomático
             // 
-            this.chkFormatoAutomático.BackColor = System.Drawing.Color.Transparent;
+            this.chkFormatoAutomático.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.chkFormatoAutomático.Checked = true;
             this.chkFormatoAutomático.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkFormatoAutomático.Location = new System.Drawing.Point(16, 128);
@@ -349,7 +349,7 @@ namespace Apresentação.Mercadoria.Etiqueta.Impressão
             // 
             // opçãoEditarEtiquetas
             // 
-            this.opçãoEditarEtiquetas.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoEditarEtiquetas.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoEditarEtiquetas.Descrição = "Editar formatos...";
             this.opçãoEditarEtiquetas.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoEditarEtiquetas.Imagem")));
             this.opçãoEditarEtiquetas.Location = new System.Drawing.Point(8, 52);
@@ -363,7 +363,7 @@ namespace Apresentação.Mercadoria.Etiqueta.Impressão
             // 
             // opçãoImprimir
             // 
-            this.opçãoImprimir.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoImprimir.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoImprimir.Descrição = "Imprimir";
             this.opçãoImprimir.Enabled = false;
             this.opçãoImprimir.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoImprimir.Imagem")));
@@ -409,7 +409,7 @@ namespace Apresentação.Mercadoria.Etiqueta.Impressão
             // 
             // label3
             // 
-            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label3.Location = new System.Drawing.Point(8, 32);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(144, 80);

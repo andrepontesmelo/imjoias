@@ -91,7 +91,7 @@ namespace Programa.Recepção.BaseInferior
             this.lblInf.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblInf.BackColor = System.Drawing.Color.Transparent;
+            this.lblInf.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblInf.Location = new System.Drawing.Point(8, 32);
             this.lblInf.Name = "lblInf";
             this.lblInf.Size = new System.Drawing.Size(144, 80);

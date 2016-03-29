@@ -92,7 +92,7 @@
             // 
             // btnRelatórioReferência
             // 
-            this.btnRelatórioReferência.BackColor = System.Drawing.Color.Transparent;
+            this.btnRelatórioReferência.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.btnRelatórioReferência.Descrição = "Referência";
             this.btnRelatórioReferência.Imagem = global::Apresentação.Resource.relatório;
             this.btnRelatórioReferência.Location = new System.Drawing.Point(7, 70);
@@ -106,7 +106,7 @@
             // 
             // btnRelatórioFornecedor
             // 
-            this.btnRelatórioFornecedor.BackColor = System.Drawing.Color.Transparent;
+            this.btnRelatórioFornecedor.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.btnRelatórioFornecedor.Descrição = "Fornecedor";
             this.btnRelatórioFornecedor.Imagem = global::Apresentação.Resource.relatório;
             this.btnRelatórioFornecedor.Location = new System.Drawing.Point(7, 50);
@@ -120,7 +120,7 @@
             // 
             // btnRelatórioResumo
             // 
-            this.btnRelatórioResumo.BackColor = System.Drawing.Color.Transparent;
+            this.btnRelatórioResumo.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.btnRelatórioResumo.Descrição = "Resumo";
             this.btnRelatórioResumo.Imagem = global::Apresentação.Resource.relatório;
             this.btnRelatórioResumo.Location = new System.Drawing.Point(7, 30);
@@ -155,7 +155,7 @@
             // 
             // opçãoConfigurações
             // 
-            this.opçãoConfigurações.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoConfigurações.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoConfigurações.Descrição = "Configurações...";
             this.opçãoConfigurações.Imagem = global::Apresentação.Resource.repair;
             this.opçãoConfigurações.Location = new System.Drawing.Point(7, 70);
@@ -169,7 +169,7 @@
             // 
             // opçãoZerarEstoque
             // 
-            this.opçãoZerarEstoque.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoZerarEstoque.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoZerarEstoque.Descrição = "Zerar Estoque";
             this.opçãoZerarEstoque.Imagem = global::Apresentação.Resource.none;
             this.opçãoZerarEstoque.Location = new System.Drawing.Point(7, 50);
@@ -183,7 +183,7 @@
             // 
             // btnEntradas
             // 
-            this.btnEntradas.BackColor = System.Drawing.Color.Transparent;
+            this.btnEntradas.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.btnEntradas.Descrição = "Entradas";
             this.btnEntradas.Imagem = global::Apresentação.Resource.VariaçãoPositiva;
             this.btnEntradas.Location = new System.Drawing.Point(7, 30);
@@ -216,7 +216,7 @@
             // 
             // btnExtrato
             // 
-            this.btnExtrato.BackColor = System.Drawing.Color.Transparent;
+            this.btnExtrato.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.btnExtrato.Descrição = "Extrato";
             this.btnExtrato.Imagem = global::Apresentação.Resource.propriedades__altura_58_1;
             this.btnExtrato.Location = new System.Drawing.Point(7, 30);

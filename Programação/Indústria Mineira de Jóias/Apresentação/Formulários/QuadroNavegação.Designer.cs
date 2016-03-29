@@ -56,7 +56,7 @@
             // 
             // opçãoVoltar
             // 
-            this.opçãoVoltar.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoVoltar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoVoltar.Descrição = "Ir para tela anterior";
             this.opçãoVoltar.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoVoltar.Imagem")));
             this.opçãoVoltar.Location = new System.Drawing.Point(6, 27);
@@ -70,7 +70,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Transparent;
+            this.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.Controls.Add(this.quadro);
             this.MaximumSize = new System.Drawing.Size(160, 48);
             this.MinimumSize = new System.Drawing.Size(160, 48);

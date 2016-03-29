@@ -91,11 +91,11 @@
             // 
             // gráfico
             // 
-            this.gráfico.BackColor = System.Drawing.Color.Transparent;
+            this.gráfico.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.gráfico.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gráfico.EixoX = "Mercadoria";
             this.gráfico.EixoY = "% Faturamento";
-            this.gráfico.FundoCor = System.Drawing.Color.Transparent;
+            this.gráfico.FundoCor = System.Drawing.Color.PaleGoldenrod;
             this.gráfico.GapHorizontal = 0;
             this.gráfico.InteiroY = false;
             this.gráfico.Legendas = null;

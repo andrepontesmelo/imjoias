@@ -96,7 +96,7 @@ namespace Apresentação.Financeiro.Venda
             // 
             // opçãoMoverAcerto
             // 
-            this.opçãoMoverAcerto.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoMoverAcerto.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoMoverAcerto.Descrição = "Mover para outro acerto...";
             this.opçãoMoverAcerto.Imagem = global::Apresentação.Resource.Acerto__Pequeno_;
             this.opçãoMoverAcerto.Location = new System.Drawing.Point(5, 106);
@@ -112,7 +112,7 @@ namespace Apresentação.Financeiro.Venda
             // 
             // opçãoExcluirVendas
             // 
-            this.opçãoExcluirVendas.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoExcluirVendas.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoExcluirVendas.Descrição = "Excluir vendas...";
             this.opçãoExcluirVendas.Imagem = global::Apresentação.Resource.Excluir;
             this.opçãoExcluirVendas.Location = new System.Drawing.Point(5, 128);
@@ -127,7 +127,7 @@ namespace Apresentação.Financeiro.Venda
             // 
             // opçãoRegistrarNovaVenda
             // 
-            this.opçãoRegistrarNovaVenda.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoRegistrarNovaVenda.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoRegistrarNovaVenda.Descrição = "Registrar nova venda...";
             this.opçãoRegistrarNovaVenda.Imagem = global::Apresentação.Resource.NewCardHS;
             this.opçãoRegistrarNovaVenda.Location = new System.Drawing.Point(7, 58);
@@ -141,7 +141,7 @@ namespace Apresentação.Financeiro.Venda
             // 
             // opçãoProcurar
             // 
-            this.opçãoProcurar.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoProcurar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoProcurar.Descrição = "Procurar por venda...";
             this.opçãoProcurar.Imagem = global::Apresentação.Resource.search;
             this.opçãoProcurar.Location = new System.Drawing.Point(7, 34);
@@ -155,7 +155,7 @@ namespace Apresentação.Financeiro.Venda
             // 
             // opçãoImpressão
             // 
-            this.opçãoImpressão.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoImpressão.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoImpressão.Descrição = "Imprimir...";
             this.opçãoImpressão.Imagem = global::Apresentação.Resource.Impressora_3D;
             this.opçãoImpressão.Location = new System.Drawing.Point(7, 82);
@@ -225,7 +225,7 @@ namespace Apresentação.Financeiro.Venda
             // 
             // opçãoComprasDesteFuncionário
             // 
-            this.opçãoComprasDesteFuncionário.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoComprasDesteFuncionário.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoComprasDesteFuncionário.Descrição = "Visualizar compras";
             this.opçãoComprasDesteFuncionário.Imagem = global::Apresentação.Resource.folderopen1;
             this.opçãoComprasDesteFuncionário.Location = new System.Drawing.Point(5, 28);

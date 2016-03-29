@@ -61,7 +61,7 @@ namespace Apresentação.Administrativo.Balanço
             // 
             // opçãoImprimir
             // 
-            this.opçãoImprimir.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoImprimir.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoImprimir.Descrição = "Imprimir";
             this.opçãoImprimir.Imagem = global::Apresentação.Resource.impressora___161;
             this.opçãoImprimir.Location = new System.Drawing.Point(7, 30);

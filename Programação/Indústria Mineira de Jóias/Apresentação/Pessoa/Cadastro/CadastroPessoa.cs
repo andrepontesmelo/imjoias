@@ -148,7 +148,7 @@ namespace Apresentação.Pessoa.Cadastro
             // 
             // tabDadosPessoais
             // 
-            this.tabDadosPessoais.BackColor = System.Drawing.Color.Transparent;
+            this.tabDadosPessoais.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.tabDadosPessoais.ImageKey = "Dados Pessoais";
             this.tabDadosPessoais.Location = new System.Drawing.Point(4, 42);
             this.tabDadosPessoais.Name = "tabDadosPessoais";
@@ -159,7 +159,7 @@ namespace Apresentação.Pessoa.Cadastro
             // 
             // tabEndereço
             // 
-            this.tabEndereço.BackColor = System.Drawing.Color.Transparent;
+            this.tabEndereço.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.tabEndereço.Controls.Add(this.groupBox1);
             this.tabEndereço.Controls.Add(this.grpFísico);
             this.tabEndereço.Controls.Add(this.grpEletrônico);
@@ -287,7 +287,7 @@ namespace Apresentação.Pessoa.Cadastro
             // 
             // tabObservações
             // 
-            this.tabObservações.BackColor = System.Drawing.Color.Transparent;
+            this.tabObservações.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.tabObservações.Controls.Add(this.txtObservações);
             this.tabObservações.ImageKey = "Observações";
             this.tabObservações.Location = new System.Drawing.Point(4, 23);
@@ -336,7 +336,7 @@ namespace Apresentação.Pessoa.Cadastro
             // ícones
             // 
             this.ícones.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ícones.ImageStream")));
-            this.ícones.TransparentColor = System.Drawing.Color.Transparent;
+            this.ícones.TransparentColor = System.Drawing.Color.PaleGoldenrod;
             this.ícones.Images.SetKeyName(0, "Dados Pessoais");
             this.ícones.Images.SetKeyName(1, "Endereço");
             this.ícones.Images.SetKeyName(2, "Observações");

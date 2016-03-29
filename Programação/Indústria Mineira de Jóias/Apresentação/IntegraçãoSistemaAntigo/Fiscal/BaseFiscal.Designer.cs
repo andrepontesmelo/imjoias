@@ -65,7 +65,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Fiscal
             // 
             // opçãoInício
             // 
-            this.opçãoInício.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoInício.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoInício.Descrição = "Início";
             this.opçãoInício.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoInício.Imagem")));
             this.opçãoInício.Location = new System.Drawing.Point(5, 36);

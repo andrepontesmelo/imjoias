@@ -123,7 +123,7 @@
             // 
             // label4
             // 
-            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label4.Location = new System.Drawing.Point(7, 84);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(119, 18);
@@ -144,7 +144,7 @@
             // 
             // label2
             // 
-            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.label2.Location = new System.Drawing.Point(7, 44);
             this.label2.Name = "label2";
@@ -185,7 +185,7 @@
             // 
             // opçãoImprimirPromissórias
             // 
-            this.opçãoImprimirPromissórias.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoImprimirPromissórias.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoImprimirPromissórias.Descrição = "Promissória(s)";
             this.opçãoImprimirPromissórias.Imagem = global::Apresentação.Resource.impressora___161;
             this.opçãoImprimirPromissórias.Location = new System.Drawing.Point(7, 50);
@@ -199,7 +199,7 @@
             // 
             // opçãoImprimir
             // 
-            this.opçãoImprimir.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoImprimir.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoImprimir.Descrição = "Listagem";
             this.opçãoImprimir.Imagem = global::Apresentação.Resource.impressora___161;
             this.opçãoImprimir.Location = new System.Drawing.Point(7, 30);

@@ -61,7 +61,7 @@
 //            // 
 //            this.lblDescrição.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 //                        | System.Windows.Forms.AnchorStyles.Right)));
-//            this.lblDescrição.BackColor = System.Drawing.Color.Transparent;
+//            this.lblDescrição.BackColor = System.Drawing.Color.PaleGoldenrod;
 //            this.lblDescrição.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 //            this.lblDescrição.Location = new System.Drawing.Point(18, 40);
 //            this.lblDescrição.Name = "lblDescrição";
@@ -74,7 +74,7 @@
 //            // 
 //            this.lblCódigos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 //                        | System.Windows.Forms.AnchorStyles.Right)));
-//            this.lblCódigos.BackColor = System.Drawing.Color.Transparent;
+//            this.lblCódigos.BackColor = System.Drawing.Color.PaleGoldenrod;
 //            this.lblCódigos.ForeColor = System.Drawing.Color.Maroon;
 //            this.lblCódigos.Location = new System.Drawing.Point(19, 123);
 //            this.lblCódigos.Name = "lblCódigos";

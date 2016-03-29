@@ -55,7 +55,7 @@
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.tbl.AutoSize = true;
-            this.tbl.BackColor = System.Drawing.Color.Transparent;
+            this.tbl.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.tbl.ColumnCount = 3;
             this.tbl.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tbl.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 105F));

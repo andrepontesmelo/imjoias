@@ -25,7 +25,7 @@ namespace Apresentação.Formulários
 		public BarraBotões()
 		{
             SetStyle(ControlStyles.SupportsTransparentBackColor, true);
-            BackColor = Color.FromKnownColor(KnownColor.Transparent);
+            BackColor = Color.FromKnownColor(KnownColor.PaleGoldenrod);
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
 

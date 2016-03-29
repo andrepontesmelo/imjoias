@@ -110,7 +110,7 @@
             // optPeríodoTodo
             // 
             this.optPeríodoTodo.AutoSize = true;
-            this.optPeríodoTodo.BackColor = System.Drawing.Color.Transparent;
+            this.optPeríodoTodo.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.optPeríodoTodo.Location = new System.Drawing.Point(7, 30);
             this.optPeríodoTodo.Name = "optPeríodoTodo";
             this.optPeríodoTodo.Size = new System.Drawing.Size(50, 17);
@@ -122,7 +122,7 @@
             // optPeríodoPrevisto
             // 
             this.optPeríodoPrevisto.AutoSize = true;
-            this.optPeríodoPrevisto.BackColor = System.Drawing.Color.Transparent;
+            this.optPeríodoPrevisto.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.optPeríodoPrevisto.Location = new System.Drawing.Point(7, 50);
             this.optPeríodoPrevisto.Name = "optPeríodoPrevisto";
             this.optPeríodoPrevisto.Size = new System.Drawing.Size(92, 17);
@@ -135,7 +135,7 @@
             // optPeríodoRegistrado
             // 
             this.optPeríodoRegistrado.AutoSize = true;
-            this.optPeríodoRegistrado.BackColor = System.Drawing.Color.Transparent;
+            this.optPeríodoRegistrado.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.optPeríodoRegistrado.Checked = true;
             this.optPeríodoRegistrado.Location = new System.Drawing.Point(7, 70);
             this.optPeríodoRegistrado.Name = "optPeríodoRegistrado";
@@ -149,7 +149,7 @@
             // 
             // opçãoImprimir
             // 
-            this.opçãoImprimir.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoImprimir.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoImprimir.Descrição = "Listagem";
             this.opçãoImprimir.Imagem = global::Apresentação.Resource.Impressora_3D;
             this.opçãoImprimir.Location = new System.Drawing.Point(7, 50);
@@ -185,7 +185,7 @@
             // 
             // opçãoImprimirResumo
             // 
-            this.opçãoImprimirResumo.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoImprimirResumo.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoImprimirResumo.Descrição = "Resumo";
             this.opçãoImprimirResumo.Imagem = global::Apresentação.Resource.Impressora_3D;
             this.opçãoImprimirResumo.Location = new System.Drawing.Point(7, 70);
@@ -199,7 +199,7 @@
             // 
             // opçãoNovo
             // 
-            this.opçãoNovo.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoNovo.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoNovo.Descrição = "Novo";
             this.opçãoNovo.Imagem = global::Apresentação.Resource.document1;
             this.opçãoNovo.Location = new System.Drawing.Point(7, 30);
@@ -213,7 +213,7 @@
             // 
             // opçãoExcluir
             // 
-            this.opçãoExcluir.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoExcluir.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoExcluir.Descrição = "Excluir";
             this.opçãoExcluir.Imagem = global::Apresentação.Resource.delete;
             this.opçãoExcluir.Location = new System.Drawing.Point(7, 90);
@@ -227,7 +227,7 @@
             // 
             // opçãoMostraPedidosJaEntregues
             // 
-            this.opçãoMostraPedidosJaEntregues.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoMostraPedidosJaEntregues.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoMostraPedidosJaEntregues.Descrição = "Mostrar entregues";
             this.opçãoMostraPedidosJaEntregues.Imagem = global::Apresentação.Resource.Filter2HS;
             this.opçãoMostraPedidosJaEntregues.Location = new System.Drawing.Point(5, 70);
@@ -241,7 +241,7 @@
             // 
             // opçãoOcutarPedidosJaEntregues
             // 
-            this.opçãoOcutarPedidosJaEntregues.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoOcutarPedidosJaEntregues.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoOcutarPedidosJaEntregues.Descrição = "Ocultar entregues";
             this.opçãoOcutarPedidosJaEntregues.Imagem = global::Apresentação.Resource.Filter2HS;
             this.opçãoOcutarPedidosJaEntregues.Location = new System.Drawing.Point(7, 70);
@@ -279,7 +279,7 @@
             // optExibePedidos
             // 
             this.optExibePedidos.AutoSize = true;
-            this.optExibePedidos.BackColor = System.Drawing.Color.Transparent;
+            this.optExibePedidos.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.optExibePedidos.Checked = true;
             this.optExibePedidos.Location = new System.Drawing.Point(7, 30);
             this.optExibePedidos.Name = "optExibePedidos";
@@ -293,7 +293,7 @@
             // optExibeConsertos
             // 
             this.optExibeConsertos.AutoSize = true;
-            this.optExibeConsertos.BackColor = System.Drawing.Color.Transparent;
+            this.optExibeConsertos.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.optExibeConsertos.Location = new System.Drawing.Point(7, 50);
             this.optExibeConsertos.Name = "optExibeConsertos";
             this.optExibeConsertos.Size = new System.Drawing.Size(72, 17);

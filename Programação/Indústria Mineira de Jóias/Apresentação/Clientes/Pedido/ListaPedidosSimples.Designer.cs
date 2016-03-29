@@ -133,7 +133,7 @@
             // imageList
             // 
             this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
-            this.imageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList.TransparentColor = System.Drawing.Color.PaleGoldenrod;
             this.imageList.Images.SetKeyName(0, "Error.png");
             this.imageList.Images.SetKeyName(1, "warning.ico");
             this.imageList.Images.SetKeyName(2, "oksimples.gif");

@@ -142,7 +142,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label2.Location = new System.Drawing.Point(7, 31);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(144, 66);

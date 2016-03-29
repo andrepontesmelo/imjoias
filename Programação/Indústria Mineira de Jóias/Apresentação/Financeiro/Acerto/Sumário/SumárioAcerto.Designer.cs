@@ -303,7 +303,7 @@
             // lblRetornoPorcento
             // 
             this.lblRetornoPorcento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblRetornoPorcento.BackColor = System.Drawing.Color.Transparent;
+            this.lblRetornoPorcento.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblRetornoPorcento.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRetornoPorcento.Location = new System.Drawing.Point(99, 112);
             this.lblRetornoPorcento.Name = "lblRetornoPorcento";

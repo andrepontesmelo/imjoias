@@ -143,7 +143,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Vendas
             // 
             // label1
             // 
-            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label1.Location = new System.Drawing.Point(40, 40);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(64, 40);
@@ -178,7 +178,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Vendas
             // 
             // label2
             // 
-            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label2.Location = new System.Drawing.Point(40, 32);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(64, 40);
@@ -206,7 +206,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Vendas
             // 
             // label3
             // 
-            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label3.Location = new System.Drawing.Point(28, 40);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(102, 40);

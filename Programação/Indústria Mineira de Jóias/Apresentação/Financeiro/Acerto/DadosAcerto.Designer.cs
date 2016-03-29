@@ -43,7 +43,7 @@
             // lblMarcação
             // 
             this.lblMarcação.AutoSize = true;
-            this.lblMarcação.BackColor = System.Drawing.Color.Transparent;
+            this.lblMarcação.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblMarcação.Location = new System.Drawing.Point(3, 29);
             this.lblMarcação.Name = "lblMarcação";
             this.lblMarcação.Size = new System.Drawing.Size(41, 13);
@@ -61,7 +61,7 @@
             // lblPrevisão
             // 
             this.lblPrevisão.AutoSize = true;
-            this.lblPrevisão.BackColor = System.Drawing.Color.Transparent;
+            this.lblPrevisão.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblPrevisão.Location = new System.Drawing.Point(3, 69);
             this.lblPrevisão.Name = "lblPrevisão";
             this.lblPrevisão.Size = new System.Drawing.Size(51, 13);
@@ -82,7 +82,7 @@
             // lblEfetivação
             // 
             this.lblEfetivação.AutoSize = true;
-            this.lblEfetivação.BackColor = System.Drawing.Color.Transparent;
+            this.lblEfetivação.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblEfetivação.Location = new System.Drawing.Point(3, 108);
             this.lblEfetivação.Name = "lblEfetivação";
             this.lblEfetivação.Size = new System.Drawing.Size(147, 13);
@@ -100,7 +100,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label1.Location = new System.Drawing.Point(4, 186);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(43, 13);
@@ -138,7 +138,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label2.Location = new System.Drawing.Point(4, 147);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(50, 13);

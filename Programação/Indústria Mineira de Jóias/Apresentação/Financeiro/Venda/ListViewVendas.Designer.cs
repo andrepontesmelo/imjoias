@@ -120,7 +120,7 @@
             // imageListSemaforos
             // 
             this.imageListSemaforos.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListSemaforos.ImageStream")));
-            this.imageListSemaforos.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageListSemaforos.TransparentColor = System.Drawing.Color.PaleGoldenrod;
             this.imageListSemaforos.Images.SetKeyName(0, "semaforo_vermelho.png");
             this.imageListSemaforos.Images.SetKeyName(1, "semaforo_marron.png");
             this.imageListSemaforos.Images.SetKeyName(2, "semaforo_amarelo.png");

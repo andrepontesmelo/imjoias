@@ -264,7 +264,7 @@ namespace Apresentação.Financeiro
             // 
             // opçãoNovoRelacionamento
             // 
-            this.opçãoNovoRelacionamento.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoNovoRelacionamento.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoNovoRelacionamento.Descrição = "Criar documento";
             this.opçãoNovoRelacionamento.Imagem = global::Apresentação.Resource.novo;
             this.opçãoNovoRelacionamento.Location = new System.Drawing.Point(7, 30);
@@ -278,7 +278,7 @@ namespace Apresentação.Financeiro
             // 
             // opçãoImprimir
             // 
-            this.opçãoImprimir.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoImprimir.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoImprimir.Descrição = "Imprimir...";
             this.opçãoImprimir.Imagem = global::Apresentação.Resource.Impressora_3D;
             this.opçãoImprimir.Location = new System.Drawing.Point(7, 50);
@@ -292,7 +292,7 @@ namespace Apresentação.Financeiro
             // 
             // opçãoMoverAcerto
             // 
-            this.opçãoMoverAcerto.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoMoverAcerto.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoMoverAcerto.Descrição = "Mover para outro acerto...";
             this.opçãoMoverAcerto.Imagem = global::Apresentação.Resource.Acerto__Pequeno_;
             this.opçãoMoverAcerto.Location = new System.Drawing.Point(7, 70);
@@ -308,7 +308,7 @@ namespace Apresentação.Financeiro
             // 
             // opçãoAbrirSeleção
             // 
-            this.opçãoAbrirSeleção.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoAbrirSeleção.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoAbrirSeleção.Descrição = "Abrir...";
             this.opçãoAbrirSeleção.Imagem = global::Apresentação.Resource.openfolderHS;
             this.opçãoAbrirSeleção.Location = new System.Drawing.Point(7, 30);
@@ -343,7 +343,7 @@ namespace Apresentação.Financeiro
             // 
             // opçãoExcluír
             // 
-            this.opçãoExcluír.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoExcluír.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoExcluír.Descrição = "Excluir";
             this.opçãoExcluír.Imagem = global::Apresentação.Resource.Excluir;
             this.opçãoExcluír.Location = new System.Drawing.Point(7, 50);

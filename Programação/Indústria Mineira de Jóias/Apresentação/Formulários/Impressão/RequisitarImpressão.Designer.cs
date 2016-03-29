@@ -121,7 +121,7 @@
             // imageList
             // 
             this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
-            this.imageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList.TransparentColor = System.Drawing.Color.PaleGoldenrod;
             this.imageList.Images.SetKeyName(0, "Ruim");
             this.imageList.Images.SetKeyName(1, "Bom");
             this.imageList.Images.SetKeyName(2, "Perfeito");

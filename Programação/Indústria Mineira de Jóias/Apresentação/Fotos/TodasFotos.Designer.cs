@@ -112,7 +112,7 @@
             // 
             this.opçãoTodasFotos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.opçãoTodasFotos.AutoSize = true;
-            this.opçãoTodasFotos.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoTodasFotos.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoTodasFotos.Descrição = "Visualizar todas as fotos";
             this.opçãoTodasFotos.Imagem = global::Apresentação.Resource.botão___agenda;
             this.opçãoTodasFotos.Location = new System.Drawing.Point(331, 265);

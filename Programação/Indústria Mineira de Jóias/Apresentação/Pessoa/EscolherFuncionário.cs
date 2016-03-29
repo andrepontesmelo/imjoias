@@ -187,7 +187,7 @@ namespace Apresentação.Pessoa
             // lblFuncionários
             // 
             this.lblFuncionários.AutoSize = true;
-            this.lblFuncionários.BackColor = System.Drawing.Color.Transparent;
+            this.lblFuncionários.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblFuncionários.Location = new System.Drawing.Point(24, 104);
             this.lblFuncionários.Name = "lblFuncionários";
             this.lblFuncionários.Size = new System.Drawing.Size(70, 13);

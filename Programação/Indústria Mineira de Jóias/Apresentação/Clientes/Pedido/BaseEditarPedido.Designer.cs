@@ -581,7 +581,7 @@
             // 
             // opçãoExcluir
             // 
-            this.opçãoExcluir.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoExcluir.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoExcluir.Descrição = "Excluir";
             this.opçãoExcluir.Imagem = global::Apresentação.Resource.delete;
             this.opçãoExcluir.Location = new System.Drawing.Point(7, 30);
@@ -597,7 +597,7 @@
             // 
             // opçãoImprimir
             // 
-            this.opçãoImprimir.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoImprimir.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoImprimir.Descrição = "Gerar recibo";
             this.opçãoImprimir.Imagem = global::Apresentação.Resource.Impressora_3D;
             this.opçãoImprimir.Location = new System.Drawing.Point(7, 50);

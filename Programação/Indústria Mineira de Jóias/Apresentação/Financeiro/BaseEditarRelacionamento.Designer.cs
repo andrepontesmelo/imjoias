@@ -73,7 +73,7 @@ namespace Apresentação.Financeiro
             // 
             // digitação
             // 
-            this.digitação.BackColor = System.Drawing.Color.Transparent;
+            this.digitação.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.digitação.Dock = System.Windows.Forms.DockStyle.Fill;
             this.digitação.Location = new System.Drawing.Point(3, 3);
             this.digitação.MinimumSize = new System.Drawing.Size(350, 300);
@@ -122,7 +122,7 @@ namespace Apresentação.Financeiro
             // 
             // optAgrupado
             // 
-            this.optAgrupado.BackColor = System.Drawing.Color.Transparent;
+            this.optAgrupado.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.optAgrupado.Checked = true;
             this.optAgrupado.Location = new System.Drawing.Point(7, 30);
             this.optAgrupado.Name = "optAgrupado";
@@ -135,7 +135,7 @@ namespace Apresentação.Financeiro
             // 
             // optHistórico
             // 
-            this.optHistórico.BackColor = System.Drawing.Color.Transparent;
+            this.optHistórico.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.optHistórico.Location = new System.Drawing.Point(7, 45);
             this.optHistórico.Name = "optHistórico";
             this.optHistórico.Size = new System.Drawing.Size(145, 23);
@@ -180,7 +180,7 @@ namespace Apresentação.Financeiro
             // 
             // opçãoVisualizarImpressão
             // 
-            this.opçãoVisualizarImpressão.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoVisualizarImpressão.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoVisualizarImpressão.Descrição = "Visualizar Impressão";
             this.opçãoVisualizarImpressão.Imagem = global::Apresentação.Resource.visualizacao_impressao4;
             this.opçãoVisualizarImpressão.Location = new System.Drawing.Point(7, 50);
@@ -194,7 +194,7 @@ namespace Apresentação.Financeiro
             // 
             // btnExcluir
             // 
-            this.btnExcluir.BackColor = System.Drawing.Color.Transparent;
+            this.btnExcluir.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.btnExcluir.Descrição = "Excluir documento";
             this.btnExcluir.Imagem = global::Apresentação.Resource.Excluir;
             this.btnExcluir.Location = new System.Drawing.Point(7, 79);
@@ -209,7 +209,7 @@ namespace Apresentação.Financeiro
             // 
             // opçãoImprimir
             // 
-            this.opçãoImprimir.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoImprimir.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoImprimir.Descrição = "Imprimir...";
             this.opçãoImprimir.Imagem = global::Apresentação.Resource.impressora___161;
             this.opçãoImprimir.Location = new System.Drawing.Point(7, 30);
@@ -223,7 +223,7 @@ namespace Apresentação.Financeiro
             // 
             // opçãoDestravar
             // 
-            this.opçãoDestravar.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoDestravar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoDestravar.Descrição = "Destravar";
             this.opçãoDestravar.Imagem = global::Apresentação.Resource.cadeado_aberto;
             this.opçãoDestravar.Location = new System.Drawing.Point(13, 105);
@@ -260,7 +260,7 @@ namespace Apresentação.Financeiro
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.pictureBox1.Image = global::Apresentação.Resource.cadeado_fechado;
             this.pictureBox1.Location = new System.Drawing.Point(130, 76);
             this.pictureBox1.Name = "pictureBox1";
@@ -270,7 +270,7 @@ namespace Apresentação.Financeiro
             // 
             // lblTravamento
             // 
-            this.lblTravamento.BackColor = System.Drawing.Color.Transparent;
+            this.lblTravamento.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblTravamento.Location = new System.Drawing.Point(10, 32);
             this.lblTravamento.Name = "lblTravamento";
             this.lblTravamento.Size = new System.Drawing.Size(116, 70);

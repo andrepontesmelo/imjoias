@@ -165,7 +165,7 @@
             // 
             // opçãoImprimir
             // 
-            this.opçãoImprimir.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoImprimir.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoImprimir.Descrição = "Imprimir listagem";
             this.opçãoImprimir.Imagem = global::Apresentação.Resource.Impressora_3D;
             this.opçãoImprimir.Location = new System.Drawing.Point(7, 30);

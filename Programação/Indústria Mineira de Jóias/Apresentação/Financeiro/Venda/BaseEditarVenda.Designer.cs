@@ -134,7 +134,7 @@ namespace Apresentação.Financeiro.Venda
             // 
             // digitaçãoDevolução
             // 
-            this.digitaçãoDevolução.BackColor = System.Drawing.Color.Transparent;
+            this.digitaçãoDevolução.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.digitaçãoDevolução.Dock = System.Windows.Forms.DockStyle.Fill;
             this.digitaçãoDevolução.Location = new System.Drawing.Point(0, 0);
             this.digitaçãoDevolução.MinimumSize = new System.Drawing.Size(350, 300);
@@ -161,7 +161,7 @@ namespace Apresentação.Financeiro.Venda
             this.listaPagamentos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listaPagamentos.BackColor = System.Drawing.Color.Transparent;
+            this.listaPagamentos.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.listaPagamentos.Location = new System.Drawing.Point(3, 3);
             this.listaPagamentos.Name = "listaPagamentos";
             this.listaPagamentos.Size = new System.Drawing.Size(576, 542);
@@ -181,7 +181,7 @@ namespace Apresentação.Financeiro.Venda
             // dadosVenda
             // 
             this.dadosVenda.AutoScroll = true;
-            this.dadosVenda.BackColor = System.Drawing.Color.Transparent;
+            this.dadosVenda.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.dadosVenda.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dadosVenda.Location = new System.Drawing.Point(0, 0);
             this.dadosVenda.Name = "dadosVenda";
@@ -225,7 +225,7 @@ namespace Apresentação.Financeiro.Venda
             // 
             // opçãoFormaPagamento
             // 
-            this.opçãoFormaPagamento.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoFormaPagamento.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoFormaPagamento.Descrição = "Escolher forma de pagamento...";
             this.opçãoFormaPagamento.Imagem = global::Apresentação.Resource.moedaunica;
             this.opçãoFormaPagamento.Location = new System.Drawing.Point(7, 30);
@@ -297,7 +297,7 @@ namespace Apresentação.Financeiro.Venda
             // 
             // opçãoGastarCréditosCliente
             // 
-            this.opçãoGastarCréditosCliente.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoGastarCréditosCliente.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoGastarCréditosCliente.Descrição = "Gastar créditos do cliente nesta venda";
             this.opçãoGastarCréditosCliente.Imagem = global::Apresentação.Resource.moedaunica;
             this.opçãoGastarCréditosCliente.Location = new System.Drawing.Point(7, 60);
@@ -311,7 +311,7 @@ namespace Apresentação.Financeiro.Venda
             // 
             // opçãoCobrançaAutomática
             // 
-            this.opçãoCobrançaAutomática.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoCobrançaAutomática.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoCobrançaAutomática.Descrição = "Cobrar pagamentos pendentes como débitos";
             this.opçãoCobrançaAutomática.Imagem = global::Apresentação.Resource.moedaunica;
             this.opçãoCobrançaAutomática.Location = new System.Drawing.Point(7, 30);

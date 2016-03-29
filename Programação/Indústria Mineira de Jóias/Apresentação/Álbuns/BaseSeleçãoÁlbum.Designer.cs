@@ -89,7 +89,7 @@
             // 
             // opçãoTodasFotos
             // 
-            this.opçãoTodasFotos.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoTodasFotos.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoTodasFotos.Descrição = "Visualizar todas as fotos";
             this.opçãoTodasFotos.Imagem = global::Apresentação.Resource.botão___agenda;
             this.opçãoTodasFotos.Location = new System.Drawing.Point(7, 70);
@@ -103,7 +103,7 @@
             // 
             // opçãoImportarFoto
             // 
-            this.opçãoImportarFoto.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoImportarFoto.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoImportarFoto.Descrição = "Importar foto...";
             this.opçãoImportarFoto.Imagem = global::Apresentação.Resource.camera;
             this.opçãoImportarFoto.Location = new System.Drawing.Point(7, 50);
@@ -117,7 +117,7 @@
             // 
             // opçãoNovo
             // 
-            this.opçãoNovo.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoNovo.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoNovo.Descrição = "Novo álbum";
             this.opçãoNovo.Imagem = global::Apresentação.Resource._3228_icon;
             this.opçãoNovo.Location = new System.Drawing.Point(7, 30);
@@ -154,7 +154,7 @@
             // 
             // opçãoExtrairFotos
             // 
-            this.opçãoExtrairFotos.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoExtrairFotos.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoExtrairFotos.Descrição = "Exportar";
             this.opçãoExtrairFotos.Imagem = global::Apresentação.Resource.saveHS;
             this.opçãoExtrairFotos.Location = new System.Drawing.Point(7, 90);
@@ -168,7 +168,7 @@
             // 
             // opçãoEditar
             // 
-            this.opçãoEditar.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoEditar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoEditar.Descrição = "Editar...";
             this.opçãoEditar.Imagem = global::Apresentação.Resource.propriedades;
             this.opçãoEditar.Location = new System.Drawing.Point(7, 30);
@@ -182,7 +182,7 @@
             // 
             // opçãoRemover
             // 
-            this.opçãoRemover.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoRemover.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoRemover.Descrição = "Excluir";
             this.opçãoRemover.Imagem = global::Apresentação.Resource.Excluir;
             this.opçãoRemover.Location = new System.Drawing.Point(7, 50);
@@ -196,7 +196,7 @@
             // 
             // opçãoImprimir
             // 
-            this.opçãoImprimir.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoImprimir.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoImprimir.Descrição = "Imprimir...";
             this.opçãoImprimir.Imagem = global::Apresentação.Resource.Impressora_3D;
             this.opçãoImprimir.Location = new System.Drawing.Point(7, 70);

@@ -150,7 +150,7 @@ namespace Report.Designer.Editor
 			// 
 			this.toolBarIcons.ImageSize = new System.Drawing.Size(16, 16);
 			this.toolBarIcons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("toolBarIcons.ImageStream")));
-			this.toolBarIcons.TransparentColor = System.Drawing.Color.Transparent;
+			this.toolBarIcons.TransparentColor = System.Drawing.Color.PaleGoldenrod;
 			// 
 			// mainMenu1
 			// 
@@ -276,7 +276,7 @@ namespace Report.Designer.Editor
 			// 
 			this.toggleIcons.ImageSize = new System.Drawing.Size(16, 16);
 			this.toggleIcons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("toggleIcons.ImageStream")));
-			this.toggleIcons.TransparentColor = System.Drawing.Color.Transparent;
+			this.toggleIcons.TransparentColor = System.Drawing.Color.PaleGoldenrod;
 			// 
 			// panelProperties
 			// 

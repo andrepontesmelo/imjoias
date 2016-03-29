@@ -175,7 +175,7 @@ namespace Apresentação.Financeiro
             // 
             // DigitaçãoComum
             // 
-            this.BackColor = System.Drawing.Color.Transparent;
+            this.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.Controls.Add(this.quadroAgrupado);
             this.Controls.Add(this.quadroFoto);
             this.Controls.Add(this.quadroMercadoria);

@@ -433,7 +433,7 @@ namespace Apresentação.Mercadoria.Etiqueta.Impressão
 			// 
 			// lblEspaçamentoVertical
 			// 
-			this.lblEspaçamentoVertical.BackColor = System.Drawing.Color.Transparent;
+			this.lblEspaçamentoVertical.BackColor = System.Drawing.Color.PaleGoldenrod;
 			this.lblEspaçamentoVertical.Location = new System.Drawing.Point(8, 154);
 			this.lblEspaçamentoVertical.Name = "lblEspaçamentoVertical";
 			this.lblEspaçamentoVertical.Size = new System.Drawing.Size(100, 32);
@@ -488,7 +488,7 @@ namespace Apresentação.Mercadoria.Etiqueta.Impressão
 			// 
 			// lblEspaçamentoHorizontal
 			// 
-			this.lblEspaçamentoHorizontal.BackColor = System.Drawing.Color.Transparent;
+			this.lblEspaçamentoHorizontal.BackColor = System.Drawing.Color.PaleGoldenrod;
 			this.lblEspaçamentoHorizontal.Location = new System.Drawing.Point(8, 122);
 			this.lblEspaçamentoHorizontal.Name = "lblEspaçamentoHorizontal";
 			this.lblEspaçamentoHorizontal.Size = new System.Drawing.Size(100, 32);
@@ -497,7 +497,7 @@ namespace Apresentação.Mercadoria.Etiqueta.Impressão
 			// 
 			// lblTamanho
 			// 
-			this.lblTamanho.BackColor = System.Drawing.Color.Transparent;
+			this.lblTamanho.BackColor = System.Drawing.Color.PaleGoldenrod;
 			this.lblTamanho.Location = new System.Drawing.Point(8, 26);
 			this.lblTamanho.Name = "lblTamanho";
 			this.lblTamanho.Size = new System.Drawing.Size(104, 32);
@@ -528,7 +528,7 @@ namespace Apresentação.Mercadoria.Etiqueta.Impressão
 			this.painelElementos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
 				| System.Windows.Forms.AnchorStyles.Left) 
 				| System.Windows.Forms.AnchorStyles.Right)));
-			this.painelElementos.BackColor = System.Drawing.Color.Transparent;
+			this.painelElementos.BackColor = System.Drawing.Color.PaleGoldenrod;
 			this.painelElementos.Controls.Add(this.barraElementos);
 			this.painelElementos.Location = new System.Drawing.Point(8, 80);
 			this.painelElementos.Name = "painelElementos";
@@ -604,11 +604,11 @@ namespace Apresentação.Mercadoria.Etiqueta.Impressão
 			// 
 			this.íconesElementos.ImageSize = new System.Drawing.Size(16, 16);
 			this.íconesElementos.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("íconesElementos.ImageStream")));
-			this.íconesElementos.TransparentColor = System.Drawing.Color.Transparent;
+			this.íconesElementos.TransparentColor = System.Drawing.Color.PaleGoldenrod;
 			// 
 			// label1
 			// 
-			this.label1.BackColor = System.Drawing.Color.Transparent;
+			this.label1.BackColor = System.Drawing.Color.PaleGoldenrod;
 			this.label1.Location = new System.Drawing.Point(8, 32);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(144, 40);
@@ -636,7 +636,7 @@ namespace Apresentação.Mercadoria.Etiqueta.Impressão
 			// 
 			// opçãoCancelar
 			// 
-			this.opçãoCancelar.BackColor = System.Drawing.Color.Transparent;
+			this.opçãoCancelar.BackColor = System.Drawing.Color.PaleGoldenrod;
 			this.opçãoCancelar.Descrição = "Cancelar";
 			this.opçãoCancelar.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoCancelar.Imagem")));
 			this.opçãoCancelar.Location = new System.Drawing.Point(8, 56);
@@ -647,7 +647,7 @@ namespace Apresentação.Mercadoria.Etiqueta.Impressão
 			// 
 			// opçãoSalvar
 			// 
-			this.opçãoSalvar.BackColor = System.Drawing.Color.Transparent;
+			this.opçãoSalvar.BackColor = System.Drawing.Color.PaleGoldenrod;
 			this.opçãoSalvar.Descrição = "Salvar configuração";
 			this.opçãoSalvar.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoSalvar.Imagem")));
 			this.opçãoSalvar.Location = new System.Drawing.Point(8, 32);

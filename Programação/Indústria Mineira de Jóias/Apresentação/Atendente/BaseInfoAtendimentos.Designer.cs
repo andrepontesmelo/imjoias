@@ -88,7 +88,7 @@
             // 
             // opçãoAlterarPeríodo
             // 
-            this.opçãoAlterarPeríodo.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoAlterarPeríodo.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoAlterarPeríodo.Descrição = "Alterar período...";
             this.opçãoAlterarPeríodo.Imagem = global::Apresentação.Resource.calendário___inclinado;
             this.opçãoAlterarPeríodo.Location = new System.Drawing.Point(7, 30);
@@ -102,7 +102,7 @@
             // 
             // opçãoRecarregar
             // 
-            this.opçãoRecarregar.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoRecarregar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoRecarregar.Descrição = "Recarregar lista";
             this.opçãoRecarregar.Imagem = global::Apresentação.Resource.rodízio;
             this.opçãoRecarregar.Location = new System.Drawing.Point(7, 50);

@@ -177,7 +177,7 @@ namespace Apresentação.Mercadoria
             // lblReferência
             // 
             this.lblReferência.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblReferência.BackColor = System.Drawing.Color.Transparent;
+            this.lblReferência.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblReferência.Font = new System.Drawing.Font("Arial", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReferência.Location = new System.Drawing.Point(195, 37);
             this.lblReferência.Name = "lblReferência";
@@ -261,7 +261,7 @@ namespace Apresentação.Mercadoria
             // lblFaixaGrupoPeso
             // 
             this.lblFaixaGrupoPeso.AutoSize = true;
-            this.lblFaixaGrupoPeso.BackColor = System.Drawing.Color.Transparent;
+            this.lblFaixaGrupoPeso.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblFaixaGrupoPeso.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFaixaGrupoPeso.Location = new System.Drawing.Point(394, 37);
             this.lblFaixaGrupoPeso.Name = "lblFaixaGrupoPeso";
@@ -272,7 +272,7 @@ namespace Apresentação.Mercadoria
             // 
             // lblDescrição
             // 
-            this.lblDescrição.BackColor = System.Drawing.Color.Transparent;
+            this.lblDescrição.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblDescrição.Location = new System.Drawing.Point(203, 63);
             this.lblDescrição.Name = "lblDescrição";
             this.lblDescrição.Size = new System.Drawing.Size(285, 24);
@@ -378,7 +378,7 @@ namespace Apresentação.Mercadoria
             // lblRótuloPreço4
             // 
             this.lblRótuloPreço4.AutoSize = true;
-            this.lblRótuloPreço4.BackColor = System.Drawing.Color.Transparent;
+            this.lblRótuloPreço4.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblRótuloPreço4.ContextMenuStrip = this.mnuPreço;
             this.lblRótuloPreço4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblRótuloPreço4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -392,7 +392,7 @@ namespace Apresentação.Mercadoria
             // lblRótuloPreço3
             // 
             this.lblRótuloPreço3.AutoSize = true;
-            this.lblRótuloPreço3.BackColor = System.Drawing.Color.Transparent;
+            this.lblRótuloPreço3.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblRótuloPreço3.ContextMenuStrip = this.mnuPreço;
             this.lblRótuloPreço3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblRótuloPreço3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -422,7 +422,7 @@ namespace Apresentação.Mercadoria
             // lblRótuloPreço2
             // 
             this.lblRótuloPreço2.AutoSize = true;
-            this.lblRótuloPreço2.BackColor = System.Drawing.Color.Transparent;
+            this.lblRótuloPreço2.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblRótuloPreço2.ContextMenuStrip = this.mnuPreço;
             this.lblRótuloPreço2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblRótuloPreço2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -453,7 +453,7 @@ namespace Apresentação.Mercadoria
             // lblRótuloPreço1
             // 
             this.lblRótuloPreço1.AutoSize = true;
-            this.lblRótuloPreço1.BackColor = System.Drawing.Color.Transparent;
+            this.lblRótuloPreço1.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblRótuloPreço1.ContextMenuStrip = this.mnuPreço;
             this.lblRótuloPreço1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblRótuloPreço1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -517,7 +517,7 @@ namespace Apresentação.Mercadoria
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label5.ContextMenuStrip = this.mnuPreço;
             this.label5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -531,7 +531,7 @@ namespace Apresentação.Mercadoria
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label7.ContextMenuStrip = this.mnuPreço;
             this.label7.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -561,7 +561,7 @@ namespace Apresentação.Mercadoria
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.BackColor = System.Drawing.Color.Transparent;
+            this.label9.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label9.ContextMenuStrip = this.mnuPreço;
             this.label9.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -592,7 +592,7 @@ namespace Apresentação.Mercadoria
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.Color.Transparent;
+            this.label11.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label11.ContextMenuStrip = this.mnuPreço;
             this.label11.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -656,7 +656,7 @@ namespace Apresentação.Mercadoria
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.BackColor = System.Drawing.Color.Transparent;
+            this.label12.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label12.ContextMenuStrip = this.mnuPreço;
             this.label12.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -670,7 +670,7 @@ namespace Apresentação.Mercadoria
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.BackColor = System.Drawing.Color.Transparent;
+            this.label13.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label13.ContextMenuStrip = this.mnuPreço;
             this.label13.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -700,7 +700,7 @@ namespace Apresentação.Mercadoria
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.BackColor = System.Drawing.Color.Transparent;
+            this.label15.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label15.ContextMenuStrip = this.mnuPreço;
             this.label15.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -731,7 +731,7 @@ namespace Apresentação.Mercadoria
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.BackColor = System.Drawing.Color.Transparent;
+            this.label17.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label17.ContextMenuStrip = this.mnuPreço;
             this.label17.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -744,7 +744,7 @@ namespace Apresentação.Mercadoria
             // 
             // picFoto
             // 
-            this.picFoto.BackColor = System.Drawing.Color.Transparent;
+            this.picFoto.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.picFoto.Image = ((System.Drawing.Image)(resources.GetObject("picFoto.Image")));
             this.picFoto.Location = new System.Drawing.Point(45, 88);
             this.picFoto.Name = "picFoto";

@@ -45,7 +45,7 @@
             // 
             // picMoeda
             // 
-            this.picMoeda.BackColor = System.Drawing.Color.Transparent;
+            this.picMoeda.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.picMoeda.Image = global::Apresentação.Resource.moeda;
             this.picMoeda.Location = new System.Drawing.Point(3, 3);
             this.picMoeda.Name = "picMoeda";
@@ -57,7 +57,7 @@
             // lnkVisualizar
             // 
             this.lnkVisualizar.AutoSize = true;
-            this.lnkVisualizar.BackColor = System.Drawing.Color.Transparent;
+            this.lnkVisualizar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lnkVisualizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lnkVisualizar.Location = new System.Drawing.Point(4, 69);
             this.lnkVisualizar.Name = "lnkVisualizar";
@@ -70,7 +70,7 @@
             // lnkAtualizar
             // 
             this.lnkAtualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lnkAtualizar.BackColor = System.Drawing.Color.Transparent;
+            this.lnkAtualizar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lnkAtualizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lnkAtualizar.Location = new System.Drawing.Point(157, 69);
             this.lnkAtualizar.Name = "lnkAtualizar";
@@ -109,7 +109,7 @@
             // lblMoeda
             // 
             this.lblMoeda.AutoSize = true;
-            this.lblMoeda.BackColor = System.Drawing.Color.Transparent;
+            this.lblMoeda.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblMoeda.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMoeda.Location = new System.Drawing.Point(58, 3);
             this.lblMoeda.Name = "lblMoeda";
@@ -120,7 +120,7 @@
             // lblCotação
             // 
             this.lblCotação.AutoSize = true;
-            this.lblCotação.BackColor = System.Drawing.Color.Transparent;
+            this.lblCotação.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblCotação.Location = new System.Drawing.Point(58, 20);
             this.lblCotação.Name = "lblCotação";
             this.lblCotação.Size = new System.Drawing.Size(50, 13);
@@ -130,7 +130,7 @@
             // picVariação
             // 
             this.picVariação.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picVariação.BackColor = System.Drawing.Color.Transparent;
+            this.picVariação.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.picVariação.Image = global::Apresentação.Resource.VariaçãoPositiva;
             this.picVariação.Location = new System.Drawing.Point(188, 36);
             this.picVariação.Name = "picVariação";
@@ -142,7 +142,7 @@
             // lblVariação
             // 
             this.lblVariação.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblVariação.BackColor = System.Drawing.Color.Transparent;
+            this.lblVariação.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblVariação.ForeColor = System.Drawing.Color.Green;
             this.lblVariação.Location = new System.Drawing.Point(58, 36);
             this.lblVariação.Name = "lblVariação";
@@ -154,7 +154,7 @@
             // lblAtualização
             // 
             this.lblAtualização.AutoSize = true;
-            this.lblAtualização.BackColor = System.Drawing.Color.Transparent;
+            this.lblAtualização.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblAtualização.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAtualização.Location = new System.Drawing.Point(4, 57);
             this.lblAtualização.Name = "lblAtualização";
@@ -166,7 +166,7 @@
             // 
             this.lnkCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lnkCancelar.AutoSize = true;
-            this.lnkCancelar.BackColor = System.Drawing.Color.Transparent;
+            this.lnkCancelar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lnkCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lnkCancelar.Location = new System.Drawing.Point(112, 69);
             this.lnkCancelar.Name = "lnkCancelar";
@@ -182,7 +182,7 @@
             // 
             this.lblValor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblValor.BackColor = System.Drawing.Color.Transparent;
+            this.lblValor.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblValor.Location = new System.Drawing.Point(114, 20);
             this.lblValor.Name = "lblValor";
             this.lblValor.Size = new System.Drawing.Size(90, 13);

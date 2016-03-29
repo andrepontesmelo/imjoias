@@ -140,7 +140,7 @@ namespace Apresentação.Álbum.Edição.Fotos
             // 
             // opçãoEditar
             // 
-            this.opçãoEditar.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoEditar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoEditar.Descrição = "Editar foto...";
             this.opçãoEditar.Imagem = global::Apresentação.Resource.propriedades;
             this.opçãoEditar.Location = new System.Drawing.Point(5, 31);
@@ -154,7 +154,7 @@ namespace Apresentação.Álbum.Edição.Fotos
             // 
             // opçãoExcluir
             // 
-            this.opçãoExcluir.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoExcluir.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoExcluir.Descrição = "Excluir foto";
             this.opçãoExcluir.Imagem = global::Apresentação.Resource.Excluir;
             this.opçãoExcluir.Location = new System.Drawing.Point(5, 55);
@@ -187,7 +187,7 @@ namespace Apresentação.Álbum.Edição.Fotos
             // 
             // opçãoProcurar
             // 
-            this.opçãoProcurar.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoProcurar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoProcurar.Descrição = "Procurar outra mercadoria...";
             this.opçãoProcurar.Imagem = global::Apresentação.Resource.Lupa;
             this.opçãoProcurar.Location = new System.Drawing.Point(5, 32);
@@ -201,7 +201,7 @@ namespace Apresentação.Álbum.Edição.Fotos
             // 
             // opçãoExportar
             // 
-            this.opçãoExportar.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoExportar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoExportar.Descrição = "Exportar para arquivo...";
             this.opçãoExportar.Imagem = global::Apresentação.Resource.saveHS;
             this.opçãoExportar.Location = new System.Drawing.Point(5, 77);

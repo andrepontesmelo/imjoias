@@ -84,7 +84,7 @@ namespace Apresentação.Financeiro
             // icones
             // 
             this.icones.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("icones.ImageStream")));
-            this.icones.TransparentColor = System.Drawing.Color.Transparent;
+            this.icones.TransparentColor = System.Drawing.Color.PaleGoldenrod;
             this.icones.Images.SetKeyName(0, "");
             this.icones.Images.SetKeyName(1, "");
             // 

@@ -62,7 +62,7 @@
             // 
             // ListaPessoaDataImportante
             // 
-            this.BackColor = System.Drawing.Color.Transparent;
+            this.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.Name = "ListaPessoaDataImportante";
             this.Size = new System.Drawing.Size(227, 70);
             ((System.ComponentModel.ISupportInitialize)(this.picFoto)).EndInit();

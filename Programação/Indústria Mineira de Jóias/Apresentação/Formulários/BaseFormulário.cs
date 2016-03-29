@@ -170,7 +170,7 @@ namespace Apresentação.Formulários
             // 
             // topo
             // 
-            this.topo.BackColor = System.Drawing.Color.Transparent;
+            this.topo.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.topo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("topo.BackgroundImage")));
             this.topo.Controls.Add(this.barraBotões);
             this.topo.Dock = System.Windows.Forms.DockStyle.Top;
@@ -201,7 +201,7 @@ namespace Apresentação.Formulários
             // 
             this.barraBotões.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.barraBotões.BackColor = System.Drawing.Color.Transparent;
+            this.barraBotões.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.barraBotões.Botões = new Apresentação.Formulários.Botão[0];
             this.barraBotões.Cursor = System.Windows.Forms.Cursors.Hand;
             this.barraBotões.Location = new System.Drawing.Point(188, 0);

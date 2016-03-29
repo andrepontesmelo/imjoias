@@ -226,7 +226,7 @@ namespace Apresentação.Pessoa.Cadastro
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.groupBox1.Controls.Add(this.optFeminino);
             this.groupBox1.Controls.Add(this.optMasculino);
             this.groupBox1.Location = new System.Drawing.Point(217, 162);
@@ -238,7 +238,7 @@ namespace Apresentação.Pessoa.Cadastro
             // 
             // optFeminino
             // 
-            this.optFeminino.BackColor = System.Drawing.Color.Transparent;
+            this.optFeminino.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.optFeminino.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.optFeminino.Location = new System.Drawing.Point(8, 48);
             this.optFeminino.Name = "optFeminino";
@@ -250,7 +250,7 @@ namespace Apresentação.Pessoa.Cadastro
             // 
             // optMasculino
             // 
-            this.optMasculino.BackColor = System.Drawing.Color.Transparent;
+            this.optMasculino.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.optMasculino.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.optMasculino.Location = new System.Drawing.Point(8, 24);
             this.optMasculino.Name = "optMasculino";
@@ -262,7 +262,7 @@ namespace Apresentação.Pessoa.Cadastro
             // 
             // groupBox2
             // 
-            this.groupBox2.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox2.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.groupBox2.Controls.Add(this.optOutro);
             this.groupBox2.Controls.Add(this.optViuvo);
             this.groupBox2.Controls.Add(this.optDivorciado);
@@ -277,7 +277,7 @@ namespace Apresentação.Pessoa.Cadastro
             // 
             // optOutro
             // 
-            this.optOutro.BackColor = System.Drawing.Color.Transparent;
+            this.optOutro.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.optOutro.Checked = true;
             this.optOutro.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.optOutro.Location = new System.Drawing.Point(105, 47);
@@ -291,7 +291,7 @@ namespace Apresentação.Pessoa.Cadastro
             // 
             // optViuvo
             // 
-            this.optViuvo.BackColor = System.Drawing.Color.Transparent;
+            this.optViuvo.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.optViuvo.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.optViuvo.Location = new System.Drawing.Point(105, 25);
             this.optViuvo.Name = "optViuvo";
@@ -303,7 +303,7 @@ namespace Apresentação.Pessoa.Cadastro
             // 
             // optDivorciado
             // 
-            this.optDivorciado.BackColor = System.Drawing.Color.Transparent;
+            this.optDivorciado.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.optDivorciado.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.optDivorciado.Location = new System.Drawing.Point(8, 69);
             this.optDivorciado.Name = "optDivorciado";
@@ -315,7 +315,7 @@ namespace Apresentação.Pessoa.Cadastro
             // 
             // optCasado
             // 
-            this.optCasado.BackColor = System.Drawing.Color.Transparent;
+            this.optCasado.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.optCasado.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.optCasado.Location = new System.Drawing.Point(8, 47);
             this.optCasado.Name = "optCasado";
@@ -327,7 +327,7 @@ namespace Apresentação.Pessoa.Cadastro
             // 
             // optSolteiro
             // 
-            this.optSolteiro.BackColor = System.Drawing.Color.Transparent;
+            this.optSolteiro.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.optSolteiro.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.optSolteiro.Location = new System.Drawing.Point(8, 25);
             this.optSolteiro.Name = "optSolteiro";

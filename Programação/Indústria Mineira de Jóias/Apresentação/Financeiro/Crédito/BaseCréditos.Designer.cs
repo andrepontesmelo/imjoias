@@ -85,9 +85,9 @@
             // 
             // opçãoNovoCrédito
             // 
-            this.opçãoNovoCrédito.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoNovoCrédito.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoNovoCrédito.Descrição = "Novo";
-            this.opçãoNovoCrédito.ForeColor = System.Drawing.Color.Transparent;
+            this.opçãoNovoCrédito.ForeColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoNovoCrédito.Imagem = global::Apresentação.Resource.Dardo;
             this.opçãoNovoCrédito.Location = new System.Drawing.Point(7, 30);
             this.opçãoNovoCrédito.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -100,7 +100,7 @@
             // 
             // opçãoExcluir
             // 
-            this.opçãoExcluir.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoExcluir.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoExcluir.Descrição = "Excluir";
             this.opçãoExcluir.Imagem = global::Apresentação.Resource.Excluir;
             this.opçãoExcluir.Location = new System.Drawing.Point(7, 50);

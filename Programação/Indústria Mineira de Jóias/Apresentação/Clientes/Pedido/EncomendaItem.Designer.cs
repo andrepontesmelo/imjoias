@@ -147,7 +147,7 @@
             // 
             // opçãoExcluir
             // 
-            this.opçãoExcluir.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoExcluir.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoExcluir.Descrição = "Excluir";
             this.opçãoExcluir.Imagem = global::Apresentação.Resource.delete;
             this.opçãoExcluir.Location = new System.Drawing.Point(4, 83);
@@ -187,7 +187,7 @@
             // 
             // btnRastrear
             // 
-            this.btnRastrear.BackColor = System.Drawing.Color.Transparent;
+            this.btnRastrear.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.btnRastrear.Descrição = "Rastrear";
             this.btnRastrear.Imagem = global::Apresentação.Resource.Lupa11;
             this.btnRastrear.Location = new System.Drawing.Point(4, 101);

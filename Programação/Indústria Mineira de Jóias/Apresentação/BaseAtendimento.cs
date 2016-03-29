@@ -238,7 +238,7 @@ namespace Apresentação.Atendimento
             // 
             // opçãoAbrir
             // 
-            this.opçãoAbrir.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoAbrir.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoAbrir.Descrição = "Abrir ficha...";
             this.opçãoAbrir.Imagem = global::Apresentação.Resource.folderopen1;
             this.opçãoAbrir.Location = new System.Drawing.Point(7, 30);
@@ -253,7 +253,7 @@ namespace Apresentação.Atendimento
             // 
             // opçãoOcultar
             // 
-            this.opçãoOcultar.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoOcultar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoOcultar.Descrição = "Ocultar dados";
             this.opçãoOcultar.Imagem = global::Apresentação.Resource.sunglasses_transp1;
             this.opçãoOcultar.Location = new System.Drawing.Point(7, 50);
@@ -267,7 +267,7 @@ namespace Apresentação.Atendimento
             // 
             // opçãoOutro
             // 
-            this.opçãoOutro.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoOutro.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoOutro.Descrição = "Escolher outra pessoa";
             this.opçãoOutro.Imagem = global::Apresentação.Resource.delete;
             this.opçãoOutro.Location = new System.Drawing.Point(3, 81);
@@ -282,7 +282,7 @@ namespace Apresentação.Atendimento
             // 
             // opçãoVendas
             // 
-            this.opçãoVendas.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoVendas.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoVendas.Descrição = "Visualizar vendas";
             this.opçãoVendas.Imagem = global::Apresentação.Resource.folderopen1;
             this.opçãoVendas.Location = new System.Drawing.Point(7, 30);
@@ -319,7 +319,7 @@ namespace Apresentação.Atendimento
             // 
             // opçãoSaída
             // 
-            this.opçãoSaída.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoSaída.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoSaída.Descrição = "Saídas";
             this.opçãoSaída.Imagem = global::Apresentação.Resource.Saída__Pequeno_1;
             this.opçãoSaída.Location = new System.Drawing.Point(7, 30);
@@ -334,7 +334,7 @@ namespace Apresentação.Atendimento
             // 
             // opçãoRetorno
             // 
-            this.opçãoRetorno.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoRetorno.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoRetorno.Descrição = "Retornos";
             this.opçãoRetorno.Imagem = global::Apresentação.Resource.Retorno__Ícone_;
             this.opçãoRetorno.Location = new System.Drawing.Point(7, 50);
@@ -349,7 +349,7 @@ namespace Apresentação.Atendimento
             // 
             // opçãoAcerto
             // 
-            this.opçãoAcerto.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoAcerto.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoAcerto.Descrição = "Acerto de mercadorias";
             this.opçãoAcerto.Imagem = global::Apresentação.Resource.Acerto__Pequeno_;
             this.opçãoAcerto.Location = new System.Drawing.Point(6, 76);
@@ -363,7 +363,7 @@ namespace Apresentação.Atendimento
             // 
             // opçãoConsignadoVenda
             // 
-            this.opçãoConsignadoVenda.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoConsignadoVenda.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoConsignadoVenda.Descrição = "Registrar venda";
             this.opçãoConsignadoVenda.Imagem = global::Apresentação.Resource.NewCardHS;
             this.opçãoConsignadoVenda.Location = new System.Drawing.Point(7, 70);
@@ -458,7 +458,7 @@ namespace Apresentação.Atendimento
             // 
             // opçãoCompras
             // 
-            this.opçãoCompras.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoCompras.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoCompras.Descrição = "Visualizar compras";
             this.opçãoCompras.Imagem = global::Apresentação.Resource.folderopen1;
             this.opçãoCompras.Location = new System.Drawing.Point(7, 50);
@@ -473,7 +473,7 @@ namespace Apresentação.Atendimento
             // 
             // opçãoCréditos
             // 
-            this.opçãoCréditos.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoCréditos.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoCréditos.Descrição = "Créditos";
             this.opçãoCréditos.Imagem = global::Apresentação.Resource.credito;
             this.opçãoCréditos.Location = new System.Drawing.Point(7, 110);
@@ -487,7 +487,7 @@ namespace Apresentação.Atendimento
             // 
             // opçãoPagamentos
             // 
-            this.opçãoPagamentos.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoPagamentos.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoPagamentos.Descrição = "Pagamentos";
             this.opçãoPagamentos.Imagem = global::Apresentação.Resource.pagamento1;
             this.opçãoPagamentos.Location = new System.Drawing.Point(7, 90);
@@ -681,7 +681,7 @@ namespace Apresentação.Atendimento
             // 
             // opçãoEncerrarAtendimento
             // 
-            this.opçãoEncerrarAtendimento.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoEncerrarAtendimento.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoEncerrarAtendimento.Descrição = "Encerrar modo de atendimento";
             this.opçãoEncerrarAtendimento.Imagem = global::Apresentação.Resource.turnkey1;
             this.opçãoEncerrarAtendimento.Location = new System.Drawing.Point(7, 30);
@@ -715,7 +715,7 @@ namespace Apresentação.Atendimento
             // 
             // opçãoPedido
             // 
-            this.opçãoPedido.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoPedido.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoPedido.Descrição = "Pedidos e consertos";
             this.opçãoPedido.Imagem = global::Apresentação.Resource.Pedido1;
             this.opçãoPedido.Location = new System.Drawing.Point(7, 30);
@@ -729,7 +729,7 @@ namespace Apresentação.Atendimento
             // 
             // opçãoMalaDireta
             // 
-            this.opçãoMalaDireta.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoMalaDireta.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoMalaDireta.Descrição = "Imprimir mala-direta";
             this.opçãoMalaDireta.Imagem = global::Apresentação.Resource.LABELS1;
             this.opçãoMalaDireta.Location = new System.Drawing.Point(7, 50);

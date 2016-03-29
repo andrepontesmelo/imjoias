@@ -179,7 +179,7 @@ namespace Apresentação.Financeiro.Saída
             // 
             // opçãoRemarcarAcerto
             // 
-            this.opçãoRemarcarAcerto.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoRemarcarAcerto.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoRemarcarAcerto.Descrição = "Remarcar";
             this.opçãoRemarcarAcerto.Imagem = global::Apresentação.Resource.Acerto__Pequeno_;
             this.opçãoRemarcarAcerto.Location = new System.Drawing.Point(7, 30);

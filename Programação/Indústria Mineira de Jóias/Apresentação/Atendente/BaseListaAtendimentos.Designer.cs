@@ -65,7 +65,7 @@
             // 
             // opçãoHistóricoAtendimentos
             // 
-            this.opçãoHistóricoAtendimentos.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoHistóricoAtendimentos.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoHistóricoAtendimentos.Descrição = "Visualizar histórico de atendimentos";
             this.opçãoHistóricoAtendimentos.Imagem = global::Apresentação.Resource.document1;
             this.opçãoHistóricoAtendimentos.Location = new System.Drawing.Point(7, 30);

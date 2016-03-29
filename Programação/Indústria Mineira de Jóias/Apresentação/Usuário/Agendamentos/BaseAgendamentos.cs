@@ -112,7 +112,7 @@ namespace Apresentação.Usuário.Agendamentos
             // 
             // opçãoExcluirAgendamento
             // 
-            this.opçãoExcluirAgendamento.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoExcluirAgendamento.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoExcluirAgendamento.Descrição = "Excluir";
             this.opçãoExcluirAgendamento.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoExcluirAgendamento.Imagem")));
             this.opçãoExcluirAgendamento.Location = new System.Drawing.Point(7, 50);
@@ -126,7 +126,7 @@ namespace Apresentação.Usuário.Agendamentos
             // 
             // opçãoAlterarAgendamentoAtual
             // 
-            this.opçãoAlterarAgendamentoAtual.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoAlterarAgendamentoAtual.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoAlterarAgendamentoAtual.Descrição = "Alterar";
             this.opçãoAlterarAgendamentoAtual.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoAlterarAgendamentoAtual.Imagem")));
             this.opçãoAlterarAgendamentoAtual.Location = new System.Drawing.Point(7, 30);
@@ -183,7 +183,7 @@ namespace Apresentação.Usuário.Agendamentos
             // 
             // opçãoNovoAgendamento
             // 
-            this.opçãoNovoAgendamento.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoNovoAgendamento.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoNovoAgendamento.Descrição = "Novo agendamento";
             this.opçãoNovoAgendamento.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoNovoAgendamento.Imagem")));
             this.opçãoNovoAgendamento.Location = new System.Drawing.Point(7, 30);

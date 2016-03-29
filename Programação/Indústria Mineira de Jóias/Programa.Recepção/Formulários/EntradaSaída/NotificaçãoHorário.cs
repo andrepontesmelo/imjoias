@@ -95,7 +95,7 @@ namespace Programa.Recepção.Formulários.EntradaSaída
 			// 
 			// lblHorário
 			// 
-			this.lblHorário.BackColor = System.Drawing.Color.Transparent;
+			this.lblHorário.BackColor = System.Drawing.Color.PaleGoldenrod;
 			this.lblHorário.Location = new System.Drawing.Point(80, 48);
 			this.lblHorário.Name = "lblHorário";
 			this.lblHorário.Size = new System.Drawing.Size(200, 32);

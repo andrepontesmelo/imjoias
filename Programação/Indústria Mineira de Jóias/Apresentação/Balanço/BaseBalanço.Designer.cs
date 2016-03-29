@@ -203,7 +203,7 @@
             // 
             // opçãoAbrirBalanço
             // 
-            this.opçãoAbrirBalanço.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoAbrirBalanço.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoAbrirBalanço.Descrição = "Contabilizar mercadorias";
             this.opçãoAbrirBalanço.Imagem = global::Apresentação.Resource.ok1;
             this.opçãoAbrirBalanço.Location = new System.Drawing.Point(7, 30);
@@ -238,7 +238,7 @@
             // 
             // opçãoFiltrar
             // 
-            this.opçãoFiltrar.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoFiltrar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoFiltrar.Descrição = "Filtrar...";
             this.opçãoFiltrar.Imagem = global::Apresentação.Resource.propriedades;
             this.opçãoFiltrar.Location = new System.Drawing.Point(10, 130);
@@ -252,7 +252,7 @@
             // 
             // label1
             // 
-            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label1.Location = new System.Drawing.Point(3, 32);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(157, 81);

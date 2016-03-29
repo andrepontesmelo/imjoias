@@ -153,7 +153,7 @@ namespace Apresentação.Financeiro.Retorno
             // 
             // opçãoContabilizar
             // 
-            this.opçãoContabilizar.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoContabilizar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoContabilizar.Descrição = "Contabilizar mercadorias";
             this.opçãoContabilizar.Imagem = global::Apresentação.Resource.CalculatorHS;
             this.opçãoContabilizar.Location = new System.Drawing.Point(7, 30);

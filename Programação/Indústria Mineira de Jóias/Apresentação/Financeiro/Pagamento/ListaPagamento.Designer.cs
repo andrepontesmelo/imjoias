@@ -157,7 +157,7 @@
             // 
             this.imageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
             this.imageList.ImageSize = new System.Drawing.Size(16, 16);
-            this.imageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList.TransparentColor = System.Drawing.Color.PaleGoldenrod;
             // 
             // toolStrip
             // 

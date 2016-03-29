@@ -46,7 +46,7 @@ namespace Apresentação.Formulários
 			this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
 
-			this.BackColor = Color.FromArgb(128, 255, 255, 255); //Color.Transparent;
+			this.BackColor = Color.FromArgb(128, 255, 255, 255); //Color.PaleGoldenrod;
 
 			for (int i = 0; i < 4; i++)
 				bordaArredondada[i] = true;
@@ -119,7 +119,7 @@ namespace Apresentação.Formulários
             // listaIcones
             // 
             this.listaIcones.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("listaIcones.ImageStream")));
-            this.listaIcones.TransparentColor = System.Drawing.Color.Transparent;
+            this.listaIcones.TransparentColor = System.Drawing.Color.PaleGoldenrod;
             this.listaIcones.Images.SetKeyName(0, "");
             this.listaIcones.Images.SetKeyName(1, "");
             this.listaIcones.Images.SetKeyName(2, "");

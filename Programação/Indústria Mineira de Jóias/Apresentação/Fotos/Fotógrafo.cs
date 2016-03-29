@@ -189,7 +189,7 @@ namespace Apresentação.Álbum.Edição.Fotos
             // 
             // opçãoRemoverFundo
             // 
-            this.opçãoRemoverFundo.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoRemoverFundo.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoRemoverFundo.Descrição = "Remover o fundo...";
             this.opçãoRemoverFundo.Imagem = global::Apresentação.Resource.Excluir;
             this.opçãoRemoverFundo.Location = new System.Drawing.Point(10, 81);
@@ -204,7 +204,7 @@ namespace Apresentação.Álbum.Edição.Fotos
             // 
             // btnImportar
             // 
-            this.btnImportar.BackColor = System.Drawing.Color.Transparent;
+            this.btnImportar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.btnImportar.Descrição = "Escolher arquivo...";
             this.btnImportar.Imagem = global::Apresentação.Resource.openfolderHS;
             this.btnImportar.Location = new System.Drawing.Point(10, 57);
@@ -218,7 +218,7 @@ namespace Apresentação.Álbum.Edição.Fotos
             // 
             // opçãoProcurar
             // 
-            this.opçãoProcurar.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoProcurar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoProcurar.Descrição = "Alterar outra fotografia";
             this.opçãoProcurar.Imagem = global::Apresentação.Resource.Lupa;
             this.opçãoProcurar.Location = new System.Drawing.Point(10, 98);
@@ -233,7 +233,7 @@ namespace Apresentação.Álbum.Edição.Fotos
             // 
             // opçãoApagarFoto
             // 
-            this.opçãoApagarFoto.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoApagarFoto.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoApagarFoto.Descrição = "Excluir";
             this.opçãoApagarFoto.Enabled = false;
             this.opçãoApagarFoto.Imagem = global::Apresentação.Resource.Excluir;
@@ -423,7 +423,7 @@ namespace Apresentação.Álbum.Edição.Fotos
             // 
             this.quadroMercadoria.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.quadroMercadoria.BackColor = System.Drawing.Color.Transparent;
+            this.quadroMercadoria.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.quadroMercadoria.ListaÁlbuns = this.listaÁlbuns;
             this.quadroMercadoria.Location = new System.Drawing.Point(680, 70);
             this.quadroMercadoria.MaximumSize = new System.Drawing.Size(1024, 193);

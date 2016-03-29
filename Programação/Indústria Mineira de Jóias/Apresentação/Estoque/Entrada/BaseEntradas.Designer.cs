@@ -83,7 +83,7 @@
             // 
             // opçãoExcluir
             // 
-            this.opçãoExcluir.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoExcluir.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoExcluir.Descrição = "Excluir";
             this.opçãoExcluir.Imagem = global::Apresentação.Resource.Excluir;
             this.opçãoExcluir.Location = new System.Drawing.Point(7, 50);
@@ -97,7 +97,7 @@
             // 
             // opçãoNova
             // 
-            this.opçãoNova.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoNova.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoNova.Descrição = "Nova";
             this.opçãoNova.Imagem = global::Apresentação.Resource._3228_icon;
             this.opçãoNova.Location = new System.Drawing.Point(7, 30);

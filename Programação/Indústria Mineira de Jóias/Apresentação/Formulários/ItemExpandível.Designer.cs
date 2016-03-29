@@ -40,7 +40,7 @@
             // 
             this.tabela.AutoSize = true;
             this.tabela.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tabela.BackColor = System.Drawing.Color.Transparent;
+            this.tabela.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.tabela.ColumnCount = 3;
             this.tabela.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tabela.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));

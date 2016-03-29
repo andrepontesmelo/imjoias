@@ -70,7 +70,7 @@ namespace Apresentação.Pessoa.Cadastro
 			InitializeComponent();
 /*
 			this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
-			this.BackColor = Color.Transparent;
+			this.BackColor = Color.PaleGoldenrod;
 */
 
             foreach (Control controle in Controls)

@@ -242,7 +242,7 @@
             // 
             // lblEspaçamentoVertical
             // 
-            this.lblEspaçamentoVertical.BackColor = System.Drawing.Color.Transparent;
+            this.lblEspaçamentoVertical.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblEspaçamentoVertical.Location = new System.Drawing.Point(8, 154);
             this.lblEspaçamentoVertical.Name = "lblEspaçamentoVertical";
             this.lblEspaçamentoVertical.Size = new System.Drawing.Size(100, 32);
@@ -294,7 +294,7 @@
             // 
             // lblEspaçamentoHorizontal
             // 
-            this.lblEspaçamentoHorizontal.BackColor = System.Drawing.Color.Transparent;
+            this.lblEspaçamentoHorizontal.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblEspaçamentoHorizontal.Location = new System.Drawing.Point(8, 122);
             this.lblEspaçamentoHorizontal.Name = "lblEspaçamentoHorizontal";
             this.lblEspaçamentoHorizontal.Size = new System.Drawing.Size(100, 32);
@@ -303,7 +303,7 @@
             // 
             // lblTamanho
             // 
-            this.lblTamanho.BackColor = System.Drawing.Color.Transparent;
+            this.lblTamanho.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblTamanho.Location = new System.Drawing.Point(8, 26);
             this.lblTamanho.Name = "lblTamanho";
             this.lblTamanho.Size = new System.Drawing.Size(104, 32);
@@ -412,7 +412,7 @@
             // 
             // opçãoCancelar
             // 
-            this.opçãoCancelar.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoCancelar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoCancelar.Descrição = "Cancelar";
             this.opçãoCancelar.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoCancelar.Imagem")));
             this.opçãoCancelar.Location = new System.Drawing.Point(7, 50);
@@ -425,7 +425,7 @@
             // 
             // opçãoSalvar
             // 
-            this.opçãoSalvar.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoSalvar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoSalvar.Descrição = "Salvar configuração";
             this.opçãoSalvar.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoSalvar.Imagem")));
             this.opçãoSalvar.Location = new System.Drawing.Point(7, 30);
@@ -463,7 +463,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.painelElementos.AutoSize = true;
-            this.painelElementos.BackColor = System.Drawing.Color.Transparent;
+            this.painelElementos.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.painelElementos.Location = new System.Drawing.Point(8, 80);
             this.painelElementos.Margin = new System.Windows.Forms.Padding(3, 3, 3, 6);
             this.painelElementos.Name = "painelElementos";
@@ -472,7 +472,7 @@
             // 
             // label1
             // 
-            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label1.Location = new System.Drawing.Point(8, 32);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(144, 40);

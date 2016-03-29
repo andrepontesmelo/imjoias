@@ -90,7 +90,7 @@ namespace Apresentação.Álbum.Edição.Álbuns
             // 
             // opçãoExcluir
             // 
-            this.opçãoExcluir.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoExcluir.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoExcluir.Descrição = "Excluir";
             this.opçãoExcluir.Imagem = global::Apresentação.Resource.Excluir;
             this.opçãoExcluir.Location = new System.Drawing.Point(7, 30);
@@ -104,7 +104,7 @@ namespace Apresentação.Álbum.Edição.Álbuns
             // 
             // opçãoRenomear
             // 
-            this.opçãoRenomear.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoRenomear.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoRenomear.Descrição = "Renomear...";
             this.opçãoRenomear.Imagem = global::Apresentação.Resource.RenameFolderHS1;
             this.opçãoRenomear.Location = new System.Drawing.Point(7, 50);
@@ -118,7 +118,7 @@ namespace Apresentação.Álbum.Edição.Álbuns
             // 
             // opçãoImprimir
             // 
-            this.opçãoImprimir.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoImprimir.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoImprimir.Descrição = "Imprimir";
             this.opçãoImprimir.Imagem = global::Apresentação.Resource.Impressora_3D;
             this.opçãoImprimir.Location = new System.Drawing.Point(7, 70);

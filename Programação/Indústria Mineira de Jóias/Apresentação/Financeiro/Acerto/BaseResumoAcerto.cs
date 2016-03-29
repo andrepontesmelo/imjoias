@@ -175,7 +175,7 @@ namespace Apresentação.Financeiro.Acerto
             // 
             // opçãoImprimir
             // 
-            this.opçãoImprimir.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoImprimir.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoImprimir.Descrição = "Imprimir...";
             this.opçãoImprimir.Imagem = global::Apresentação.Resource.impressora___161;
             this.opçãoImprimir.Location = new System.Drawing.Point(7, 30);
@@ -189,7 +189,7 @@ namespace Apresentação.Financeiro.Acerto
             // 
             // opçãoZerarAcerto
             // 
-            this.opçãoZerarAcerto.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoZerarAcerto.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoZerarAcerto.Descrição = "Zerar acerto";
             this.opçãoZerarAcerto.Imagem = global::Apresentação.Resource.none;
             this.opçãoZerarAcerto.Location = new System.Drawing.Point(7, 50);
@@ -203,7 +203,7 @@ namespace Apresentação.Financeiro.Acerto
             // 
             // opçãoLançarVendas
             // 
-            this.opçãoLançarVendas.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoLançarVendas.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoLançarVendas.Descrição = "Gerar venda...";
             this.opçãoLançarVendas.Imagem = global::Apresentação.Resource.pagar_em_dólares__pequeno_1;
             this.opçãoLançarVendas.Location = new System.Drawing.Point(7, 30);
@@ -238,7 +238,7 @@ namespace Apresentação.Financeiro.Acerto
             // 
             // label1
             // 
-            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label1.Location = new System.Drawing.Point(7, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(154, 61);
@@ -248,7 +248,7 @@ namespace Apresentação.Financeiro.Acerto
             // 
             // opçãoRastro
             // 
-            this.opçãoRastro.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoRastro.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoRastro.Descrição = "Rastrear";
             this.opçãoRastro.Imagem = global::Apresentação.Resource.search;
             this.opçãoRastro.Location = new System.Drawing.Point(7, 90);
@@ -299,7 +299,7 @@ namespace Apresentação.Financeiro.Acerto
             // 
             this.lblFecharBateu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblFecharBateu.AutoSize = true;
-            this.lblFecharBateu.BackColor = System.Drawing.Color.Transparent;
+            this.lblFecharBateu.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblFecharBateu.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblFecharBateu.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblFecharBateu.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -315,7 +315,7 @@ namespace Apresentação.Financeiro.Acerto
             // 
             this.lnkZerar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lnkZerar.AutoSize = true;
-            this.lnkZerar.BackColor = System.Drawing.Color.Transparent;
+            this.lnkZerar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lnkZerar.LinkColor = System.Drawing.Color.LightBlue;
             this.lnkZerar.Location = new System.Drawing.Point(513, 41);
             this.lnkZerar.Name = "lnkZerar";
@@ -331,7 +331,7 @@ namespace Apresentação.Financeiro.Acerto
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label3.ForeColor = System.Drawing.Color.OldLace;
             this.label3.Location = new System.Drawing.Point(61, 21);
             this.label3.Name = "label3";
@@ -342,7 +342,7 @@ namespace Apresentação.Financeiro.Acerto
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label2.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.GhostWhite;
             this.label2.Location = new System.Drawing.Point(61, 3);
@@ -353,7 +353,7 @@ namespace Apresentação.Financeiro.Acerto
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.Image = global::Apresentação.Resource.Shaking_Hands;
             this.pictureBox1.Location = new System.Drawing.Point(3, 3);
@@ -385,7 +385,7 @@ namespace Apresentação.Financeiro.Acerto
             // 
             // opçãoRetorno
             // 
-            this.opçãoRetorno.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoRetorno.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoRetorno.Descrição = "Novo retorno...";
             this.opçãoRetorno.Imagem = global::Apresentação.Resource.Retorno__Ícone_;
             this.opçãoRetorno.Location = new System.Drawing.Point(7, 50);
@@ -419,7 +419,7 @@ namespace Apresentação.Financeiro.Acerto
             // 
             // lblFórmula
             // 
-            this.lblFórmula.BackColor = System.Drawing.Color.Transparent;
+            this.lblFórmula.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblFórmula.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFórmula.Location = new System.Drawing.Point(3, 30);
             this.lblFórmula.Name = "lblFórmula";
@@ -431,7 +431,7 @@ namespace Apresentação.Financeiro.Acerto
             // opçãoAlterarFórmula
             // 
             this.opçãoAlterarFórmula.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.opçãoAlterarFórmula.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoAlterarFórmula.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoAlterarFórmula.Descrição = "Alterar fórmula";
             this.opçãoAlterarFórmula.Imagem = global::Apresentação.Resource.propriedades;
             this.opçãoAlterarFórmula.Location = new System.Drawing.Point(5, 73);

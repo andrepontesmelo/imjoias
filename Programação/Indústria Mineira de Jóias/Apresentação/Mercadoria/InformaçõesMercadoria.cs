@@ -152,7 +152,7 @@ namespace Apresentação.Mercadoria
             // lblReferência
             // 
             this.lblReferência.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblReferência.BackColor = System.Drawing.Color.Transparent;
+            this.lblReferência.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblReferência.Font = new System.Drawing.Font("Arial", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReferência.Location = new System.Drawing.Point(303, 38);
             this.lblReferência.Name = "lblReferência";
@@ -178,7 +178,7 @@ namespace Apresentação.Mercadoria
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label1.Location = new System.Drawing.Point(81, 347);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(31, 13);
@@ -189,7 +189,7 @@ namespace Apresentação.Mercadoria
             // lblRótuloÍndice
             // 
             this.lblRótuloÍndice.AutoSize = true;
-            this.lblRótuloÍndice.BackColor = System.Drawing.Color.Transparent;
+            this.lblRótuloÍndice.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblRótuloÍndice.Location = new System.Drawing.Point(84, 381);
             this.lblRótuloÍndice.Name = "lblRótuloÍndice";
             this.lblRótuloÍndice.Size = new System.Drawing.Size(36, 13);
@@ -303,7 +303,7 @@ namespace Apresentação.Mercadoria
             // lblRótuloPreço1
             // 
             this.lblRótuloPreço1.AutoSize = true;
-            this.lblRótuloPreço1.BackColor = System.Drawing.Color.Transparent;
+            this.lblRótuloPreço1.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblRótuloPreço1.ContextMenuStrip = this.mnuPreço;
             this.lblRótuloPreço1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblRótuloPreço1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -331,7 +331,7 @@ namespace Apresentação.Mercadoria
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label6.Location = new System.Drawing.Point(84, 418);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(71, 13);
@@ -341,7 +341,7 @@ namespace Apresentação.Mercadoria
             // 
             // lblDescrição
             // 
-            this.lblDescrição.BackColor = System.Drawing.Color.Transparent;
+            this.lblDescrição.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblDescrição.Location = new System.Drawing.Point(192, 63);
             this.lblDescrição.Name = "lblDescrição";
             this.lblDescrição.Size = new System.Drawing.Size(290, 24);
@@ -383,7 +383,7 @@ namespace Apresentação.Mercadoria
             // lblRótuloPreço30
             // 
             this.lblRótuloPreço30.AutoSize = true;
-            this.lblRótuloPreço30.BackColor = System.Drawing.Color.Transparent;
+            this.lblRótuloPreço30.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblRótuloPreço30.ContextMenuStrip = this.mnuPreço;
             this.lblRótuloPreço30.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblRótuloPreço30.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -413,7 +413,7 @@ namespace Apresentação.Mercadoria
             // lblRótuloPreço30x60
             // 
             this.lblRótuloPreço30x60.AutoSize = true;
-            this.lblRótuloPreço30x60.BackColor = System.Drawing.Color.Transparent;
+            this.lblRótuloPreço30x60.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblRótuloPreço30x60.ContextMenuStrip = this.mnuPreço;
             this.lblRótuloPreço30x60.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblRótuloPreço30x60.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -460,7 +460,7 @@ namespace Apresentação.Mercadoria
             // lblRótuloPreço30x60x90
             // 
             this.lblRótuloPreço30x60x90.AutoSize = true;
-            this.lblRótuloPreço30x60x90.BackColor = System.Drawing.Color.Transparent;
+            this.lblRótuloPreço30x60x90.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblRótuloPreço30x60x90.ContextMenuStrip = this.mnuPreço;
             this.lblRótuloPreço30x60x90.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblRótuloPreço30x60x90.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -479,7 +479,7 @@ namespace Apresentação.Mercadoria
             // 
             this.lblCotação.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCotação.AutoSize = true;
-            this.lblCotação.BackColor = System.Drawing.Color.Transparent;
+            this.lblCotação.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblCotação.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCotação.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
             this.lblCotação.Location = new System.Drawing.Point(249, 379);
@@ -520,7 +520,7 @@ namespace Apresentação.Mercadoria
             // 
             // picFoto
             // 
-            this.picFoto.BackColor = System.Drawing.Color.Transparent;
+            this.picFoto.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.picFoto.Image = ((System.Drawing.Image)(resources.GetObject("picFoto.Image")));
             this.picFoto.Location = new System.Drawing.Point(45, 88);
             this.picFoto.Name = "picFoto";

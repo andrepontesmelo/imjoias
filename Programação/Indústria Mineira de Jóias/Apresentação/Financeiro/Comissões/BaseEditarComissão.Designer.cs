@@ -205,7 +205,7 @@
             // imagens
             // 
             this.imagens.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imagens.ImageStream")));
-            this.imagens.TransparentColor = System.Drawing.Color.Transparent;
+            this.imagens.TransparentColor = System.Drawing.Color.PaleGoldenrod;
             this.imagens.Images.SetKeyName(0, "fasten.gif");
             this.imagens.Images.SetKeyName(1, "Aperto de mão 2 (transparente).png");
             this.imagens.Images.SetKeyName(2, "botão - pessoas.png");
@@ -241,7 +241,7 @@
             // 
             // opçãoSetor
             // 
-            this.opçãoSetor.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoSetor.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoSetor.Descrição = "Setor";
             this.opçãoSetor.Imagem = global::Apresentação.Resource.Impressora_3D;
             this.opçãoSetor.Location = new System.Drawing.Point(7, 50);
@@ -255,7 +255,7 @@
             // 
             // opçãoVendaItem
             // 
-            this.opçãoVendaItem.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoVendaItem.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoVendaItem.Descrição = "Item";
             this.opçãoVendaItem.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoVendaItem.Imagem")));
             this.opçãoVendaItem.Location = new System.Drawing.Point(7, 110);
@@ -269,7 +269,7 @@
             // 
             // opçãoRelatórioCompartilhada
             // 
-            this.opçãoRelatórioCompartilhada.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoRelatórioCompartilhada.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoRelatórioCompartilhada.Descrição = "Compartilhada";
             this.opçãoRelatórioCompartilhada.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoRelatórioCompartilhada.Imagem")));
             this.opçãoRelatórioCompartilhada.Location = new System.Drawing.Point(7, 130);
@@ -283,7 +283,7 @@
             // 
             // opçãoRelatórioRegraPessoa
             // 
-            this.opçãoRelatórioRegraPessoa.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoRelatórioRegraPessoa.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoRelatórioRegraPessoa.Descrição = "Regra";
             this.opçãoRelatórioRegraPessoa.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoRelatórioRegraPessoa.Imagem")));
             this.opçãoRelatórioRegraPessoa.Location = new System.Drawing.Point(7, 70);
@@ -297,7 +297,7 @@
             // 
             // opçãoImprimirTodos
             // 
-            this.opçãoImprimirTodos.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoImprimirTodos.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoImprimirTodos.Descrição = "Mostrar Todos";
             this.opçãoImprimirTodos.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoImprimirTodos.Imagem")));
             this.opçãoImprimirTodos.Location = new System.Drawing.Point(7, 150);
@@ -311,7 +311,7 @@
             // 
             // opçãoRelatórioResumo
             // 
-            this.opçãoRelatórioResumo.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoRelatórioResumo.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoRelatórioResumo.Descrição = "Resumo";
             this.opçãoRelatórioResumo.Imagem = global::Apresentação.Resource.Impressora_3D;
             this.opçãoRelatórioResumo.Location = new System.Drawing.Point(7, 30);
@@ -325,7 +325,7 @@
             // 
             // opçãoRelatórioPorVenda
             // 
-            this.opçãoRelatórioPorVenda.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoRelatórioPorVenda.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoRelatórioPorVenda.Descrição = "Venda";
             this.opçãoRelatórioPorVenda.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoRelatórioPorVenda.Imagem")));
             this.opçãoRelatórioPorVenda.Location = new System.Drawing.Point(7, 90);
@@ -366,7 +366,7 @@
             // iconeDataFinal
             // 
             this.iconeDataFinal.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.iconeDataFinal.BackColor = System.Drawing.Color.Transparent;
+            this.iconeDataFinal.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.iconeDataFinal.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("iconeDataFinal.BackgroundImage")));
             this.iconeDataFinal.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.iconeDataFinal.Location = new System.Drawing.Point(7, 72);
@@ -380,7 +380,7 @@
             // iconeDataInicial
             // 
             this.iconeDataInicial.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.iconeDataInicial.BackColor = System.Drawing.Color.Transparent;
+            this.iconeDataInicial.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.iconeDataInicial.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("iconeDataInicial.BackgroundImage")));
             this.iconeDataInicial.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.iconeDataInicial.Location = new System.Drawing.Point(7, 52);
@@ -394,7 +394,7 @@
             // iconeFiltroPessoa
             // 
             this.iconeFiltroPessoa.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.iconeFiltroPessoa.BackColor = System.Drawing.Color.Transparent;
+            this.iconeFiltroPessoa.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.iconeFiltroPessoa.BackgroundImage = global::Apresentação.Resource.search4people;
             this.iconeFiltroPessoa.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.iconeFiltroPessoa.Location = new System.Drawing.Point(7, 30);
@@ -419,7 +419,7 @@
             // 
             // opçãoCancelarFiltros
             // 
-            this.opçãoCancelarFiltros.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoCancelarFiltros.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoCancelarFiltros.Descrição = "Cancelar";
             this.opçãoCancelarFiltros.Imagem = global::Apresentação.Resource.Edit_UndoHS;
             this.opçãoCancelarFiltros.Location = new System.Drawing.Point(7, 117);
@@ -434,7 +434,7 @@
             // 
             // opçãoAplicarFiltros
             // 
-            this.opçãoAplicarFiltros.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoAplicarFiltros.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoAplicarFiltros.Descrição = "Aplicar";
             this.opçãoAplicarFiltros.Imagem = global::Apresentação.Resource.Flag_greenHS;
             this.opçãoAplicarFiltros.Location = new System.Drawing.Point(7, 97);
@@ -491,7 +491,7 @@
             // 
             // opçãoRecarregar
             // 
-            this.opçãoRecarregar.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoRecarregar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoRecarregar.Descrição = "Recarregar";
             this.opçãoRecarregar.Imagem = global::Apresentação.Resource.Arrow;
             this.opçãoRecarregar.Location = new System.Drawing.Point(7, 30);

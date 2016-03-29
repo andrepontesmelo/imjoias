@@ -86,7 +86,7 @@
             // 
             // opçãoRefazerÍcones
             // 
-            this.opçãoRefazerÍcones.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoRefazerÍcones.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoRefazerÍcones.Descrição = "Refazer ícones";
             this.opçãoRefazerÍcones.Imagem = global::Apresentação.Resource.repair;
             this.opçãoRefazerÍcones.Location = new System.Drawing.Point(7, 50);
@@ -100,7 +100,7 @@
             // 
             // opçãoPrefetch
             // 
-            this.opçãoPrefetch.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoPrefetch.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoPrefetch.Descrição = "Pré-carga de miniaturas";
             this.opçãoPrefetch.Imagem = global::Apresentação.Resource.repair;
             this.opçãoPrefetch.Location = new System.Drawing.Point(7, 30);

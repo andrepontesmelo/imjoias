@@ -826,7 +826,7 @@ namespace Apresentação.Usuário.Funcionários
             // 
             // opção1
             // 
-            this.opção1.BackColor = System.Drawing.Color.Transparent;
+            this.opção1.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opção1.Descrição = "Executar tarefa 1";
             this.opção1.Imagem = ((System.Drawing.Image)(resources.GetObject("opção1.Imagem")));
             this.opção1.Location = new System.Drawing.Point(6, 28);
@@ -839,7 +839,7 @@ namespace Apresentação.Usuário.Funcionários
             // 
             // opção2
             // 
-            this.opção2.BackColor = System.Drawing.Color.Transparent;
+            this.opção2.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opção2.Descrição = "Executar tarefa 2";
             this.opção2.Imagem = global::Apresentação.Resource.empregado;
             this.opção2.Location = new System.Drawing.Point(5, 52);
@@ -871,7 +871,7 @@ namespace Apresentação.Usuário.Funcionários
             // 
             // label23
             // 
-            this.label23.BackColor = System.Drawing.Color.Transparent;
+            this.label23.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label23.Location = new System.Drawing.Point(3, 28);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(145, 71);

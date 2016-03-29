@@ -146,7 +146,7 @@ namespace Apresentação.Usuário.InterForm
             // 
             // opçãoNovidades
             // 
-            this.opçãoNovidades.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoNovidades.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoNovidades.Descrição = "Ver novidades da versão";
             this.opçãoNovidades.Imagem = global::Apresentação.Resource.eventlogInfo3;
             this.opçãoNovidades.Location = new System.Drawing.Point(7, 90);
@@ -160,7 +160,7 @@ namespace Apresentação.Usuário.InterForm
             // 
             // opçãoAgendamentos
             // 
-            this.opçãoAgendamentos.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoAgendamentos.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoAgendamentos.Descrição = "Editar agendamentos";
             this.opçãoAgendamentos.Imagem = global::Apresentação.Resource.DedoMenor;
             this.opçãoAgendamentos.Location = new System.Drawing.Point(7, 30);
@@ -174,7 +174,7 @@ namespace Apresentação.Usuário.InterForm
             // 
             // opçãoRamal
             // 
-            this.opçãoRamal.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoRamal.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoRamal.Descrição = "Alterar ramal";
             this.opçãoRamal.Imagem = global::Apresentação.Resource.botão___telefone;
             this.opçãoRamal.Location = new System.Drawing.Point(7, 50);
@@ -188,7 +188,7 @@ namespace Apresentação.Usuário.InterForm
             // 
             // opçãoSenha
             // 
-            this.opçãoSenha.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoSenha.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoSenha.Descrição = "Alterar senha";
             this.opçãoSenha.Imagem = global::Apresentação.Resource.keys;
             this.opçãoSenha.Location = new System.Drawing.Point(7, 70);

@@ -108,7 +108,7 @@ namespace Apresentação.Formulários
 			// picLogotipo
 			// 
 			this.picLogotipo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.picLogotipo.BackColor = System.Drawing.Color.Transparent;
+			this.picLogotipo.BackColor = System.Drawing.Color.PaleGoldenrod;
 			this.picLogotipo.Image = ((System.Drawing.Image)(resources.GetObject("picLogotipo.Image")));
 			this.picLogotipo.Location = new System.Drawing.Point(256, 88);
 			this.picLogotipo.Name = "picLogotipo";

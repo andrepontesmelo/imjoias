@@ -71,7 +71,7 @@
             // 
             // opçãoEditar
             // 
-            this.opçãoEditar.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoEditar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoEditar.Descrição = "Iniciar manutenção...";
             this.opçãoEditar.Imagem = global::Apresentação.Resource.propriedades;
             this.opçãoEditar.Location = new System.Drawing.Point(7, 30);

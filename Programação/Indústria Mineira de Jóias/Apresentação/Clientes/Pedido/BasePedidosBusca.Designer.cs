@@ -110,7 +110,7 @@
             // 
             // opçãoLocalizar
             // 
-            this.opçãoLocalizar.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoLocalizar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoLocalizar.Descrição = "Busca avançada";
             this.opçãoLocalizar.Imagem = global::Apresentação.Resource.Lupa;
             this.opçãoLocalizar.Location = new System.Drawing.Point(7, 30);
@@ -124,7 +124,7 @@
             // 
             // opçãoNovo
             // 
-            this.opçãoNovo.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoNovo.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoNovo.Descrição = "Cadastrar";
             this.opçãoNovo.Imagem = global::Apresentação.Resource.document1;
             this.opçãoNovo.Location = new System.Drawing.Point(7, 50);
@@ -138,7 +138,7 @@
             // 
             // opçãoReferênciasEmFalta
             // 
-            this.opçãoReferênciasEmFalta.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoReferênciasEmFalta.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoReferênciasEmFalta.Descrição = "Mercadorias em falta";
             this.opçãoReferênciasEmFalta.Imagem = global::Apresentação.Resource.warning;
             this.opçãoReferênciasEmFalta.Location = new System.Drawing.Point(7, 30);

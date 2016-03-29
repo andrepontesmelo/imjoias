@@ -166,7 +166,7 @@ namespace Programa.Recepção.BaseInferior
             // 
             // opçãoAtribuirAusênciaTodos
             // 
-            this.opçãoAtribuirAusênciaTodos.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoAtribuirAusênciaTodos.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoAtribuirAusênciaTodos.Descrição = "Atribuir ausência a todos";
             this.opçãoAtribuirAusênciaTodos.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoAtribuirAusênciaTodos.Imagem")));
             this.opçãoAtribuirAusênciaTodos.Location = new System.Drawing.Point(8, 53);
@@ -179,7 +179,7 @@ namespace Programa.Recepção.BaseInferior
             // 
             // opçãoAtribuirAusência
             // 
-            this.opçãoAtribuirAusência.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoAtribuirAusência.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoAtribuirAusência.Descrição = "Atribuir ausência à seleção";
             this.opçãoAtribuirAusência.Enabled = false;
             this.opçãoAtribuirAusência.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoAtribuirAusência.Imagem")));
@@ -212,7 +212,7 @@ namespace Programa.Recepção.BaseInferior
             // 
             // opçãoVoltar
             // 
-            this.opçãoVoltar.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoVoltar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.opçãoVoltar.Descrição = "Voltar à tela de entrada e saída de visitantes";
             this.opçãoVoltar.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoVoltar.Imagem")));
             this.opçãoVoltar.Location = new System.Drawing.Point(8, 32);

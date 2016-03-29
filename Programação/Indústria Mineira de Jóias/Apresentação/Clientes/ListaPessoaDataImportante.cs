@@ -67,7 +67,7 @@ namespace Apresentação.Atendimento.Clientes
         protected internal override void Desselecionar()
         {
             base.Desselecionar();
-            this.BackColor = Color.Transparent;
+            this.BackColor = Color.PaleGoldenrod;
         }
     }
 }

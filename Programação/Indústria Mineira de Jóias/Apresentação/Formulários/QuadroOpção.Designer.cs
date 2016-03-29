@@ -53,7 +53,7 @@ namespace Apresentação.Formulários
             // 
             // pic
             // 
-            this.pic.BackColor = System.Drawing.Color.Transparent;
+            this.pic.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.pic.Image = global::Apresentação.Resource.ooops;
             this.pic.Location = new System.Drawing.Point(3, 3);
             this.pic.Name = "pic";
@@ -66,7 +66,7 @@ namespace Apresentação.Formulários
             // lblTítulo
             // 
             this.lblTítulo.AutoSize = true;
-            this.lblTítulo.BackColor = System.Drawing.Color.Transparent;
+            this.lblTítulo.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblTítulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTítulo.Location = new System.Drawing.Point(73, 3);
             this.lblTítulo.Name = "lblTítulo";
@@ -81,7 +81,7 @@ namespace Apresentação.Formulários
             this.lblDescrição.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblDescrição.BackColor = System.Drawing.Color.Transparent;
+            this.lblDescrição.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblDescrição.Location = new System.Drawing.Point(73, 23);
             this.lblDescrição.Name = "lblDescrição";
             this.lblDescrição.Size = new System.Drawing.Size(219, 44);
