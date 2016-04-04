@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetMercadoriaEmFaltaCliente" targetNamespace="http://tempuri.org/DataSetMercadoriaEmFaltaCliente.xsd" xmlns:mstns="http://tempuri.org/DataSetMercadoriaEmFaltaCliente.xsd" xmlns="http://tempuri.org/DataSetMercadoriaEmFaltaCliente.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetMercadoriaEmFaltaCliente" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetMercadoriaEmFaltaCliente" msprop:Generator_UserDSName="DataSetMercadoriaEmFaltaCliente">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Informações" msprop:Generator_TableClassName="InformaçõesDataTable" msprop:Generator_TableVarName="tableInformações" msprop:Generator_TablePropName="Informações" msprop:Generator_RowDeletingName="InformaçõesRowDeleting" msprop:Generator_UserTableName="Informações" msprop:Generator_RowChangingName="InformaçõesRowChanging" msprop:Generator_RowEvHandlerName="InformaçõesRowChangeEventHandler" msprop:Generator_RowDeletedName="InformaçõesRowDeleted" msprop:Generator_RowEvArgName="InformaçõesRowChangeEvent" msprop:Generator_RowChangedName="InformaçõesRowChanged" msprop:Generator_RowClassName="InformaçõesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="cliente" msprop:Generator_ColumnVarNameInTable="columncliente" msprop:Generator_ColumnPropNameInRow="cliente" msprop:Generator_ColumnPropNameInTable="clienteColumn" msprop:Generator_UserColumnName="cliente" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Itens" msprop:Generator_TableClassName="ItensDataTable" msprop:Generator_TableVarName="tableItens" msprop:Generator_TablePropName="Itens" msprop:Generator_RowDeletingName="ItensRowDeleting" msprop:Generator_UserTableName="Itens" msprop:Generator_RowChangingName="ItensRowChanging" msprop:Generator_RowEvHandlerName="ItensRowChangeEventHandler" msprop:Generator_RowDeletedName="ItensRowDeleted" msprop:Generator_RowEvArgName="ItensRowChangeEvent" msprop:Generator_RowChangedName="ItensRowChanged" msprop:Generator_RowClassName="ItensRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="referência" msprop:Generator_ColumnVarNameInTable="columnreferência" msprop:Generator_ColumnPropNameInRow="referência" msprop:Generator_ColumnPropNameInTable="referênciaColumn" msprop:Generator_UserColumnName="referência" type="xs:string" minOccurs="0" />
+              <xs:element name="pedido" msprop:Generator_ColumnVarNameInTable="columnpedido" msprop:Generator_ColumnPropNameInRow="pedido" msprop:Generator_ColumnPropNameInTable="pedidoColumn" msprop:Generator_UserColumnName="pedido" type="xs:string" minOccurs="0" />
+              <xs:element name="qtdPedido" msprop:Generator_ColumnVarNameInTable="columnqtdPedido" msprop:Generator_ColumnPropNameInRow="qtdPedido" msprop:Generator_ColumnPropNameInTable="qtdPedidoColumn" msprop:Generator_UserColumnName="qtdPedido" type="xs:string" minOccurs="0" />
+              <xs:element name="qtdConsignação" msprop:Generator_ColumnVarNameInTable="columnqtdConsignação" msprop:Generator_ColumnPropNameInRow="qtdConsignação" msprop:Generator_ColumnPropNameInTable="qtdConsignaçãoColumn" msprop:Generator_UserColumnName="qtdConsignação" type="xs:string" minOccurs="0" />
+              <xs:element name="dataPedido" msprop:Generator_ColumnVarNameInTable="columndataPedido" msprop:Generator_ColumnPropNameInRow="dataPedido" msprop:Generator_ColumnPropNameInTable="dataPedidoColumn" msprop:Generator_UserColumnName="dataPedido" type="xs:string" minOccurs="0" />
+              <xs:element name="cliente" msprop:Generator_ColumnVarNameInTable="columncliente" msprop:Generator_ColumnPropNameInRow="cliente" msprop:Generator_ColumnPropNameInTable="clienteColumn" msprop:Generator_UserColumnName="cliente" type="xs:string" minOccurs="0" />
+              <xs:element name="descrição" msprop:Generator_ColumnVarNameInTable="columndescrição" msprop:Generator_ColumnPropNameInRow="descrição" msprop:Generator_ColumnPropNameInTable="descriçãoColumn" msprop:Generator_UserColumnName="descrição" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
