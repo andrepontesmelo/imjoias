@@ -161,9 +161,9 @@ namespace Apresentação.Formulários
 		{
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseFormulário));
             this.topo = new System.Windows.Forms.Panel();
+            this.barraBotões = new Apresentação.Formulários.BarraBotões();
             this.conteúdo = new System.Windows.Forms.Panel();
             this.baseInferior = new Apresentação.Formulários.BaseInferior();
-            this.barraBotões = new Apresentação.Formulários.BarraBotões();
             this.topo.SuspendLayout();
             this.conteúdo.SuspendLayout();
             this.SuspendLayout();
@@ -178,6 +178,18 @@ namespace Apresentação.Formulários
             this.topo.Name = "topo";
             this.topo.Size = new System.Drawing.Size(1200, 93);
             this.topo.TabIndex = 2;
+            // 
+            // barraBotões
+            // 
+            this.barraBotões.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.barraBotões.BackColor = System.Drawing.Color.Transparent;
+            this.barraBotões.Botões = new Apresentação.Formulários.Botão[0];
+            this.barraBotões.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.barraBotões.Location = new System.Drawing.Point(188, 0);
+            this.barraBotões.Name = "barraBotões";
+            this.barraBotões.Size = new System.Drawing.Size(1012, 75);
+            this.barraBotões.TabIndex = 0;
             // 
             // conteúdo
             // 
@@ -197,18 +209,6 @@ namespace Apresentação.Formulários
             this.baseInferior.Size = new System.Drawing.Size(1200, 490);
             this.baseInferior.TabIndex = 4;
             // 
-            // barraBotões
-            // 
-            this.barraBotões.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.barraBotões.BackColor = System.Drawing.Color.Transparent;
-            this.barraBotões.Botões = new Apresentação.Formulários.Botão[0];
-            this.barraBotões.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.barraBotões.Location = new System.Drawing.Point(188, 0);
-            this.barraBotões.Name = "barraBotões";
-            this.barraBotões.Size = new System.Drawing.Size(1012, 75);
-            this.barraBotões.TabIndex = 0;
-            // 
             // BaseFormulário
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
@@ -220,7 +220,7 @@ namespace Apresentação.Formulários
             this.MinimumSize = new System.Drawing.Size(640, 480);
             this.Name = "BaseFormulário";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Indústria Mineira de Jóias";
+            this.Text = "Indústria Mineira de Joias";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.topo.ResumeLayout(false);
             this.conteúdo.ResumeLayout(false);
@@ -382,7 +382,7 @@ namespace Apresentação.Formulários
             // Dispara o evento
 			AoCarregarCompletamente(splash);
 
-            this.Text = "Indústria Mineira de Jóias " + Versão.Descrição;
+            this.Text = "Indústria Mineira de Joias " + Versão.Descrição;
 
 #if DEBUG
             this.Text += " @ " + Acesso.MySQL.MySQLUsuários.Host;

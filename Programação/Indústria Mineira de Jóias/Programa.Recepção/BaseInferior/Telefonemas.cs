@@ -243,7 +243,7 @@ namespace Programa.Recepção.BaseInferior
 				telefonema.Cadastrar();
 			}
 
-			MessageBox.Show(this, "Telefonema registrado com sucesso!", "Indústria Mineira de Jóias", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			MessageBox.Show(this, "Telefonema registrado com sucesso!", "Indústria Mineira de Joias", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 			cadastrarTelefonema.Preparar();
 		}

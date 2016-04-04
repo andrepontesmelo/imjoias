@@ -7,7 +7,7 @@
     <ProjectGuid>{E6354C79-9CC9-4236-8FB9-B822E0B31CEC}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ApplicationIcon>imjoias.ico</ApplicationIcon>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
     <AssemblyKeyContainerName>
     </AssemblyKeyContainerName>
     <AssemblyName>IMJ</AssemblyName>
@@ -221,7 +221,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Content Include="imjoias.ico" />
+    <Content Include="favicon.ico" />
     <None Include="app.config" />
     <None Include="chave.pfx" />
     <None Include="chave.snk" />

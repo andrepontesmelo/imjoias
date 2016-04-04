@@ -25,7 +25,7 @@ namespace Entidades.Configuração
 			registroUsuário = regIMJ.OpenSubKey(prefixo + nome + sufixo);
 
 			if (registroUsuário == null)
-				throw new ChaveInexistente("Indústria Mineira de Jóias\\" + prefixo + nome + sufixo);
+				throw new ChaveInexistente("Indústria Mineira de Joias\\" + prefixo + nome + sufixo);
 		}
 
 		/// <summary>
@@ -37,7 +37,7 @@ namespace Entidades.Configuração
 			registro = registroUsuário.OpenSubKey(chave, true);
 
 			if (registro == null)
-				throw new ChaveInexistente("Indústria Mineira de Jóias\\" + prefixo + nome + sufixo + "\\" + chave);
+				throw new ChaveInexistente("Indústria Mineira de Joias\\" + prefixo + nome + sufixo + "\\" + chave);
 		}
 
 		/// <summary>
@@ -52,10 +52,10 @@ namespace Entidades.Configuração
 
 			nome        = Usuários.UsuárioAtual.Nome;
 			regSoftware = Registry.LocalMachine.OpenSubKey("Software", true);
-			regIMJ      = regSoftware.OpenSubKey("Indústria Mineira de Jóias", true);
+			regIMJ      = regSoftware.OpenSubKey("Indústria Mineira de Joias", true);
 
 			if (regIMJ == null)
-				regIMJ = regSoftware.CreateSubKey("Indústria Mineira de Jóias");
+				regIMJ = regSoftware.CreateSubKey("Indústria Mineira de Joias");
 
 			regUsuário = regIMJ.OpenSubKey(prefixo + nome + sufixo, true);
 
