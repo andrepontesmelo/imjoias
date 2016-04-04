@@ -220,7 +220,7 @@ namespace Apresentação.Formulários
             this.MinimumSize = new System.Drawing.Size(640, 480);
             this.Name = "BaseFormulário";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Indústria Mineira de Jóias";
+            this.Text = "Indústria Mineira de Joias";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.topo.ResumeLayout(false);
             this.conteúdo.ResumeLayout(false);
@@ -382,7 +382,7 @@ namespace Apresentação.Formulários
             // Dispara o evento
 			AoCarregarCompletamente(splash);
 
-            this.Text = "Indústria Mineira de Jóias " + Versão.Descrição;
+            this.Text = "Indústria Mineira de Joias " + Versão.Descrição;
 
 #if DEBUG
             this.Text += " @ " + Acesso.MySQL.MySQLUsuários.Host;

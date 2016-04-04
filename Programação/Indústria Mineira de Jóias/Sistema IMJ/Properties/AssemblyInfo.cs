@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Sistema IMJ")]
 [assembly: AssemblyDescription("Aplicativo de ínicio do sistema da empresa")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Indústria Mineira de Jóias")]
+[assembly: AssemblyCompany("Indústria Mineira de Joias")]
 [assembly: AssemblyProduct("Sistema IMJ")]
 [assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]

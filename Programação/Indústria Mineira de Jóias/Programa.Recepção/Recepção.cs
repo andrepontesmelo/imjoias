@@ -149,7 +149,7 @@ namespace Programa.Recepção
 			this.ClientSize = new System.Drawing.Size(792, 446);
 			this.MinimumSize = new System.Drawing.Size(800, 480);
 			this.Name = "Recepção";
-			this.Text = "Indústria Mineira de Jóias - Recepção";
+			this.Text = "Indústria Mineira de Joias - Recepção";
 			this.topo.ResumeLayout(false);
 			this.barraBotões.ResumeLayout(false);
 			this.ResumeLayout(false);

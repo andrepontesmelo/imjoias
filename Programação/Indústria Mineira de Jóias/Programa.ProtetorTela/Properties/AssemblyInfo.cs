@@ -5,10 +5,10 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Protetor de Tela da Indústria Mineira de Jóias")]
-[assembly: AssemblyDescription("Indústria Mineira de Jóias - Protetor de Tela")]
-[assembly: AssemblyConfiguration("Indústria Mineira de Jóias")]
-[assembly: AssemblyCompany("Indústria Mineira de Jóias")]
+[assembly: AssemblyTitle("Protetor de Tela da Indústria Mineira de Joias")]
+[assembly: AssemblyDescription("Indústria Mineira de Joias - Protetor de Tela")]
+[assembly: AssemblyConfiguration("Indústria Mineira de Joias")]
+[assembly: AssemblyCompany("Indústria Mineira de Joias")]
 [assembly: AssemblyProduct("Programa.ProtetorTela")]
 [assembly: AssemblyCopyright("Copyright ©  2006")]
 [assembly: AssemblyTrademark("")]

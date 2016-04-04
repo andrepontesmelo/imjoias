@@ -9,9 +9,9 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyTitle("Entidades da Camada de Acesso")]
 [assembly: AssemblyDescription("Entidades para manipulação de dados na camada de acesso")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Indústria Mineira de Jóias")]
+[assembly: AssemblyCompany("Indústria Mineira de Joias")]
 [assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("Indústria Mineira de Jóias")]
+[assembly: AssemblyCopyright("Indústria Mineira de Joias")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]		
 

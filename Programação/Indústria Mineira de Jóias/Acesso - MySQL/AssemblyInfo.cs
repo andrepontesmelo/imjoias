@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyTitle("Camada de Acesso - MySQL")]
 [assembly: AssemblyDescription("Implementação da camada de acesso para banco de dados MySQL")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Indústria Mineira de Jóias")]
+[assembly: AssemblyCompany("Indústria Mineira de Joias")]
 [assembly: AssemblyProduct("")]
 [assembly: AssemblyCopyright("Júlio César e Melo")]
 [assembly: AssemblyTrademark("")]

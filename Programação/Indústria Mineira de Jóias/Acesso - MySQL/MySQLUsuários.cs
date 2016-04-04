@@ -25,7 +25,7 @@ namespace Acesso.MySQL
 #endif
         /// <summary>
         /// Host padrão, que pode ser substituído pelo registro "host"
-        /// na chave "Local\Software\Indústria Mineira de Jóias".
+        /// na chave "Local\Software\Indústria Mineira de Joias".
         /// </summary>
 
         private const int	   portaNegócio = 8085;
@@ -42,7 +42,7 @@ namespace Acesso.MySQL
 					string host;
 
 					Microsoft.Win32.RegistryKey reg = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software");
-					reg = reg.OpenSubKey("Indústria Mineira de Jóias");
+					reg = reg.OpenSubKey("Indústria Mineira de Joias");
 
                     if (reg != null)
                         host = (string) reg.GetValue("host", hostPadrão);
@@ -67,7 +67,7 @@ namespace Acesso.MySQL
                     string bd;
 
                     Microsoft.Win32.RegistryKey reg = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software");
-                    reg = reg.OpenSubKey("Indústria Mineira de Jóias");
+                    reg = reg.OpenSubKey("Indústria Mineira de Joias");
 
                     if (reg != null)
                         bd = (string)reg.GetValue("bd", bdPadrão);
@@ -92,7 +92,7 @@ namespace Acesso.MySQL
                     int port;
 
                     Microsoft.Win32.RegistryKey reg = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("Software");
-                    reg = reg.OpenSubKey("Indústria Mineira de Jóias");
+                    reg = reg.OpenSubKey("Indústria Mineira de Joias");
 
                     if (reg != null)
                         port = Convert.ToInt32(reg.GetValue("port", portPadrão));

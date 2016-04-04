@@ -111,7 +111,7 @@ namespace Apresentação.Formulários
 			}
 			catch (Exception e)
 			{
-				MessageBox.Show(e.Message, "Indústria Mineira de Jóias",
+				MessageBox.Show(e.Message, "Indústria Mineira de Joias",
 					MessageBoxButtons.OK,
 					MessageBoxIcon.Error);
 
