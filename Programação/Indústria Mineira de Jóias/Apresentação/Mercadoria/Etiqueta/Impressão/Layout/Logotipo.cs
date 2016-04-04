@@ -7,7 +7,7 @@ using System.Globalization;
 namespace Apresentação.Mercadoria.Etiqueta.Impressão.Layout
 {
 	/// <summary>
-	/// Logotipo da Indústria Mineira de Jóias
+	/// Logotipo da Indústria Mineira de Joias
 	/// </summary>
 	public class Logotipo : Report.Layout.Complex.PrintableItem
 	{

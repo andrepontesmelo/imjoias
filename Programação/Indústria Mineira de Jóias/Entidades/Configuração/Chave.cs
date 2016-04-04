@@ -19,10 +19,10 @@ namespace Entidades.Configuração
 		protected Chave()
 		{
 			regSoftware = Registry.LocalMachine.OpenSubKey("Software");
-			regIMJ      = regSoftware.OpenSubKey("Indústria Mineira de Jóias", true);
+			regIMJ      = regSoftware.OpenSubKey("Indústria Mineira de Joias", true);
 
 			if (regIMJ == null)
-				throw new ChaveInexistente("Indústria Mineira de Jóias");
+				throw new ChaveInexistente("Indústria Mineira de Joias");
 		}
 
 		/// <summary>
@@ -34,7 +34,7 @@ namespace Entidades.Configuração
 			registro = regIMJ.OpenSubKey(nome, true);
 
 			if (registro == null)
-				throw new ChaveInexistente("Indústria Mineira de Jóias\\" + nome);
+				throw new ChaveInexistente("Indústria Mineira de Joias\\" + nome);
 		}
 
 		/// <summary>

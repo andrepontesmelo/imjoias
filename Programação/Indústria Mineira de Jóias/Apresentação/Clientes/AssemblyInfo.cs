@@ -9,9 +9,9 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyTitle("Apresentação - Atendimento")]
 [assembly: AssemblyDescription("Controles e janelas para atendimento ao cliente ou representante.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Indústria Mineira de Jóias")]
+[assembly: AssemblyCompany("Indústria Mineira de Joias")]
 [assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("Indústria Mineira de Jóias")]
+[assembly: AssemblyCopyright("Indústria Mineira de Joias")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]		
 

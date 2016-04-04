@@ -269,7 +269,7 @@ namespace Apresentação.Mercadoria.Etiqueta.Impressão
 			this.ClientSize = new System.Drawing.Size(418, 344);
 			this.Controls.Add(this.assistente);
 			this.Name = "ImprimirEscolha";
-			this.Text = "Indústria Mineira de Jóias";
+			this.Text = "Indústria Mineira de Joias";
 			this.TopMost = false;
 			this.Controls.SetChildIndex(this.assistente, 0);
 			this.assistente.ResumeLayout(false);

@@ -152,7 +152,7 @@ namespace Apresentação.Formulários
             this.ShowIcon = true;
             this.ShowInTaskbar = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Indústria Mineira de Jóias";
+            this.Text = "Indústria Mineira de Joias";
             this.Controls.SetChildIndex(this.lblUsuário, 0);
             this.Controls.SetChildIndex(this.txtUsuário, 0);
             this.Controls.SetChildIndex(this.lblSenha, 0);
@@ -201,7 +201,7 @@ namespace Apresentação.Formulários
 
                                 if (Acesso.Comum.Usuários.UsuárioAtual == null)
                                     MessageBox.Show("Senha ou usuário incorreto!",
-                                        "Indústria Mineira de Jóias",
+                                        "Indústria Mineira de Joias",
                                         MessageBoxButtons.OK,
                                         MessageBoxIcon.Stop);
                                 else
@@ -215,7 +215,7 @@ namespace Apresentação.Formulários
                                     splash.Mensagem = "Não foi possível autenticar usuário";
 
                                 MessageBox.Show("Não foi possível autenticar usuário.\r\n\r\nOcorreu o seguinte erro: " + e.Message,
-                                    "Indústria Mineira de Jóias",
+                                    "Indústria Mineira de Joias",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Error);
                             }

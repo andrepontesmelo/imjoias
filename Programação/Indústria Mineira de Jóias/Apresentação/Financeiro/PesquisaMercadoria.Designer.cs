@@ -121,7 +121,7 @@
             this.groupBox1.Size = new System.Drawing.Size(211, 88);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Tipo de Jóia";
+            this.groupBox1.Text = "Tipo de Joia";
             // 
             // chkTipo
             // 
