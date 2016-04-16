@@ -38,21 +38,19 @@ namespace Apresentação.Atendimento.Comum
 
         public static Bitmap ObterÍconeComFundoECódigo(Entidades.Pessoa.Pessoa pessoa)
         {
-            
             Bitmap ícone = ObterÍcone(pessoa);
             Bitmap novo = new Bitmap(larguraCaixa, alturaCaixa);
             Graphics desenhador = Graphics.FromImage(novo);
 
             desenhador.Clear(Color.Black);
 
-            //Cria retângulo na posição 10,10 com 50 por 50
             Rectangle rect = new Rectangle(0, 0, larguraCaixa, alturaCaixa);
 
             Color corFundo;
 
             if (pessoa.Setor != null &&
                 pessoa.Setor.Código == Setor.ObterSetor(Setor.SetorSistema.Varejo).Código)
-                corFundo = Color.Gray;
+                corFundo = Color.White;
             else
                 corFundo = Color.DarkGreen;
 
