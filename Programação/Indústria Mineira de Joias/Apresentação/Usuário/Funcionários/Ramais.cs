@@ -67,7 +67,7 @@ namespace Apresentação.Usuário.Funcionários
 
                     foreach (Entidades.Pessoa.Ramal ramal in (Entidades.Pessoa.Ramal[])e.Result)
                     {
-                        ListViewItem item = new ListViewItem(new string[] { ramal.Nome, ramal.Número.ToString() });
+                        ListViewItem item = new ListViewItem(new string[] { Entidades.Pessoa.Pessoa.ReduzirNome(ramal.Nome), ramal.Número.ToString() });
                         item.Tag = ramal;
                         item.Group = hashSetorGrupo[Setor.ObterSetor(ramal.Setor)];
                         lst.Items.Add(item);
