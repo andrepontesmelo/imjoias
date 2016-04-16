@@ -73,11 +73,6 @@ namespace Apresentação.Usuário.InterForm
 		internal void Atualizar(Entidades.Pessoa.Funcionário funcionário)
 		{
 			Texto  = funcionário.PrimeiroNome;
-
-            //if (funcionário.Foto == null)
-            //    RecuperarImagemOriginal();
-            //else
-            //    Imagem = ConstruirBorda(funcionário.Foto);
 		}
 
 		/// <summary>

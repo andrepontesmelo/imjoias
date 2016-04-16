@@ -475,7 +475,7 @@ namespace Entidades
                 if (nomes.Length > 0)
                     nomes.Append(", ");
 
-                nomes.Append(pessoa.PrimeiroNome);
+                nomes.Append(pessoa.Nome);
             }
 
             foreach (string nome in this.nomes)

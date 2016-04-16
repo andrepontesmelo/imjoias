@@ -962,27 +962,6 @@ namespace Entidades.Pessoa
         }
 
         /// <summary>
-        /// Extrai nome de várias pessoas, formando uma string
-        /// separando cada nome (apenas o primeiro nome) por vírgula.
-        /// </summary>
-        public static string ExtrairNomes(Pessoa[] pessoas)
-        {
-            string nomes = "";
-
-            foreach (Pessoa pessoa in pessoas)
-            {
-                if (nomes.Length > 0)
-                    nomes += ", ";
-
-                nomes += pessoa.PrimeiroNome;
-            }
-
-            return nomes;
-        }
-
-
-
-        /// <summary>
         /// Reduz nomes em um dataset
         /// </summary>
         /// <param name="dataSet">DataSet que contém os dados</param>

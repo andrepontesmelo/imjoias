@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
-using System.Windows.Forms;
-using Apresentação.Atendimento.Comum;
+﻿using Apresentação.Atendimento.Comum;
 using Entidades;
-using Entidades.Pessoa;
 
 namespace Apresentação.Atendimento.Atendente
 {
@@ -33,9 +25,7 @@ namespace Apresentação.Atendimento.Atendente
                     lblDescrição.Text = string.Format(
                         "Atendido em {0:dd/MM/yyyy, HH:mm} por {1}",
                         visita.Espera.HasValue ? visita.Entrada.AddSeconds(visita.Espera.Value) : visita.Entrada,
-                        visita.Atendente.PrimeiroNome);
-
-                    AtribuirFotoAtendente();
+                        visita.Atendente.Nome);
                 }
                 else
                     lblDescrição.Text = string.Format(
@@ -56,20 +46,7 @@ namespace Apresentação.Atendimento.Atendente
                     "Em atendimento desde {0:dd/MM/yyyy, HH:mm} por {1}",
                     visita.Espera.HasValue ? visita.Entrada.AddSeconds(visita.Espera.Value) : visita.Entrada,
                     visita.Atendente.PrimeiroNome);
-
-                AtribuirFotoAtendente();
             }
-        }
-
-        private static void AtribuirFotoAtendente()
-        {
-            //if (visita.Atendente != null)
-            //{
-            //    Image foto = visita.Atendente.Foto;
-
-            //    if (foto != null)
-            //        picFoto.Image = foto;
-            //}
         }
 
         public override int CompareTo(object obj)
