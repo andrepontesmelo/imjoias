@@ -60,7 +60,7 @@ namespace Apresentação.Atendimento.Comum
             
             //cria o degrade no retângulo
             desenhador.FillRectangle(linBrush, rect);
-            desenhador.DrawImage(ícone, (larguraCaixa - larguraÍcone) / 2, -4 + (alturaCaixa - alturaÍcone) / 2, larguraÍcone, alturaÍcone);
+            desenhador.DrawImage(ícone, (larguraCaixa - larguraÍcone) / 2, -8 + (alturaCaixa - alturaÍcone) / 2, larguraÍcone, alturaÍcone);
 
             StringFormat formato = new StringFormat();
             formato.Alignment = StringAlignment.Center;
@@ -68,7 +68,7 @@ namespace Apresentação.Atendimento.Comum
             SizeF tamanhoTexto = desenhador.MeasureString(pessoa.Código.ToString(), fonteTexto);
 
             desenhador.DrawString(pessoa.Código.ToString(), fonteTexto, Brushes.Black,
-                new RectangleF(0, alturaCaixa - tamanhoTexto.Height + 4, larguraCaixa, tamanhoTexto.Height), formato);
+                new RectangleF(0, alturaCaixa - tamanhoTexto.Height, larguraCaixa, tamanhoTexto.Height), formato);
 
             return novo;
         }
