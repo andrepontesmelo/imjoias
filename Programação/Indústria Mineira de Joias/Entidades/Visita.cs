@@ -264,7 +264,7 @@ namespace Entidades
         /// <param name="pInicial">Período inicial.</param>
         /// <param name="pFinal">Período final.</param>
         /// <returns>Visitas neste período.</returns>
-        public static Visita[] ObterVisitas(DateTime pInicial, DateTime pFinal)
+        public static List<Visita> ObterVisitas(DateTime pInicial, DateTime pFinal)
         {
             /* Esta consulta pode ser otimizada,
              * porém sua complexidade será aumentada.
@@ -272,16 +272,16 @@ namespace Entidades
              * foi optado por deixá-la mais simples.
              * -- Júlio, 12/04/2006
              */
-            Visita[] vetor;
+            List<Visita> visitas;
 
-            vetor = Mapear<Visita>(
+            visitas = Mapear<Visita>(
                 "SELECT * FROM visita WHERE entrada BETWEEN "
-                + DbTransformar(pInicial) + " AND" + DbTransformar(pFinal)).ToArray();
+                + DbTransformar(pInicial) + " AND" + DbTransformar(pFinal));
 
-            foreach (Visita visita in vetor)
+            foreach (Visita visita in visitas)
                 visita.CarregarRelacionamentos();
 
-            return vetor;
+            return visitas;
         }
 
         /// <summary>
@@ -290,18 +290,18 @@ namespace Entidades
         /// </summary>
         /// <param name="pInicial">Período inicial.</param>
         /// <returns>Visitas neste período.</returns>
-        public static Visita[] ObterVisitas(DateTime pInicial)
+        public static List<Visita> ObterVisitas(DateTime pInicial)
         {
-            Visita[] vetor;
+            List<Visita> visitas;
 
-            vetor = Mapear<Visita>(
+            visitas = Mapear<Visita>(
                 "SELECT * FROM visita WHERE entrada > "
-                + DbTransformar(pInicial) +  " OR saida > " + DbTransformar(pInicial)).ToArray();
+                + DbTransformar(pInicial) +  " OR saida > " + DbTransformar(pInicial));
 
-            foreach (Visita visita in vetor)
+            foreach (Visita visita in visitas)
                 visita.CarregarRelacionamentos();
 
-            return vetor;
+            return visitas;
         }
 
         /// <summary>

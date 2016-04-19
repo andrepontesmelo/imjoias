@@ -64,7 +64,7 @@ namespace Apresentação.Atendimento.Atendente
 
             try
             {
-                Visita[] visitas = Visita.ObterVisitas(períodoInicial, períodoFinal);
+                List<Visita> visitas = Visita.ObterVisitas(períodoInicial, períodoFinal);
 
                 listViewVisitantes.Limpar();
                 listViewVisitantes.AdicionarVisitas(visitas);

@@ -86,7 +86,7 @@ namespace Apresentação.Usuário.Visitantes
 
                 if (funcionárioAtual.Situação != EstadoFuncionário.Atendendo)
                 {
-                    Visita[] visitas;
+                    List<Visita> visitas;
 
                     visitas = Visita.ObterVisitas(últimaVerificação);
 

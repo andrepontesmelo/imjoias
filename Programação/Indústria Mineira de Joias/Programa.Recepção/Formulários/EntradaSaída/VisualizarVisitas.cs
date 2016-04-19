@@ -2,6 +2,7 @@ using Apresentação.Formulários;
 using Entidades;
 using Entidades.Configuração;
 using System;
+using System.Collections.Generic;
 
 namespace Programa.Recepção.Formulários.EntradaSaída
 {
@@ -10,7 +11,7 @@ namespace Programa.Recepção.Formulários.EntradaSaída
         public VisualizarVisitas()
         {
             DateTime hoje = DadosGlobais.Instância.HoraDataAtual;
-            Visita[] visitas;
+            List<Visita> visitas;
 
             AguardeDB.Mostrar();
 

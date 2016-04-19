@@ -52,7 +52,7 @@ namespace Apresentação.Atendimento.Clientes
         /// Adiciona um vetor de visitas à lista.
         /// </summary>
         /// <param name="visitas">Vetor de visitas.</param>
-        public void AdicionarVisitas(Visita[] visitas)
+        public void AdicionarVisitas(List<Visita> visitas)
         {
             foreach (Visita visita in visitas)
                 AdicionarVisita(visita);
