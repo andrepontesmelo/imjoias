@@ -258,6 +258,14 @@ namespace Acesso.Comum
             }
         }
 
+        public void AdicionarJáCadastrado(Entidade item)
+        {
+            lock (this)
+            {
+                listaItens.Add(item);
+            }
+        }
+
         /// <summary>
         /// Remove um item.
         /// </summary>

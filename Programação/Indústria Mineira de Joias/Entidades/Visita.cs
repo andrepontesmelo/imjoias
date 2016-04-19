@@ -253,7 +253,7 @@ namespace Entidades
                         + " ORDER BY entrada LIMIT 1");
 
             if (visita != null)
-                visita.CarregarRelacionamentos();
+                CarregarRelacionamentos(new List<Visita>() { visita });
 
             return visita;
         }
@@ -271,15 +271,18 @@ namespace Entidades
              * Como ela raramente é utilizada,
              * foi optado por deixá-la mais simples.
              * -- Júlio, 12/04/2006
+             * 
+             * Consulta otimizada para carga em apenas uma SQL. 
+             * -- André, 19/04/2016.
              */
+
             List<Visita> visitas;
 
             visitas = Mapear<Visita>(
                 "SELECT * FROM visita WHERE entrada BETWEEN "
                 + DbTransformar(pInicial) + " AND" + DbTransformar(pFinal));
 
-            foreach (Visita visita in visitas)
-                visita.CarregarRelacionamentos();
+            CarregarRelacionamentos(visitas);
 
             return visitas;
         }
@@ -298,17 +301,60 @@ namespace Entidades
                 "SELECT * FROM visita WHERE entrada > "
                 + DbTransformar(pInicial) +  " OR saida > " + DbTransformar(pInicial));
 
-            foreach (Visita visita in visitas)
-                visita.CarregarRelacionamentos();
+            CarregarRelacionamentos(visitas);
 
             return visitas;
+        }
+
+        private static Dictionary<DateTime, Visita> CriarHash(List<Visita> visitas)
+        {
+            Dictionary<DateTime, Visita> hash = new Dictionary<DateTime, Visita>();
+
+            foreach (Visita v in visitas)
+            {
+                hash[v.entrada] = v;
+            }
+
+            return hash;
+        }
+
+        private static string ExtrairCódigos(List<Visita> visitas)
+        {
+            StringBuilder str = new StringBuilder("(");
+            bool primeiro = true;
+
+            foreach (Visita visita in visitas)
+            {
+                if (primeiro)
+                    primeiro = false;
+                else
+                    str.Append(", ");
+
+                str.Append(DbTransformar(visita.Entrada));
+            }
+
+            str.Append(") ");
+
+            return str.ToString();
         }
 
         /// <summary>
         /// Carrega todos os relacionamentos da visita.
         /// </summary>
-        private void CarregarRelacionamentos()
+        private static void CarregarRelacionamentos(List<Visita> visitas)
         {
+            IDataReader leitor = null;
+            string códigos = ExtrairCódigos(visitas);
+            StringBuilder str = new StringBuilder();
+            Dictionary<DateTime, Visita> hash = CriarHash(visitas);
+
+            str.Append("select n.visita, n.nome, null as pessoaFisica from visitanome n where visita in ");
+            str.Append(códigos);
+            str.Append(" UNION SELECT f.visita, null as nome, f.pessoaFisica from visitapessoafisica f where visita in ");
+            str.Append(códigos);
+
+            string myStr = str.ToString();
+            
             IDbConnection conexão = Conexão;
 
             lock (conexão)
@@ -319,52 +365,28 @@ namespace Entidades
                 {
                     using (IDbCommand cmd = conexão.CreateCommand())
                     {
-                        IDataReader leitor;
-
-                        #region Carregar nomes
-
-                        cmd.CommandText = "SELECT nome FROM visitanome WHERE visita = " + DbTransformar(entrada);
+                        cmd.CommandText = str.ToString();
 
                         using (leitor = cmd.ExecuteReader())
                         {
-
-                            try
+                            while (leitor.Read())
                             {
-                                while (leitor.Read())
-                                    nomes.AdicionarJáCadastrado(leitor.GetString(0));
-                            }
-                            finally
-                            {
-                                if (leitor != null)
-                                    leitor.Close();
-                            }
-                        }
+                                Visita visita = hash[leitor.GetDateTime(0)];
 
-                        #endregion
+                                if (!leitor.IsDBNull(1))
+                                    visita.nomes.AdicionarJáCadastrado(leitor.GetString(1));
 
-                        #region Carregar pessoas cadastradas
-
-                        cmd.CommandText = "SELECT pessoafisica FROM visitapessoafisica WHERE visita = " + DbTransformar(entrada);
-
-                        using (leitor = cmd.ExecuteReader())
-                        {
-
-                            try
-                            {
-                                while (leitor.Read())
-                                    pessoas.AdicionarJáCadastrado(PessoaFísica.ObterPessoa(Convert.ToUInt64(leitor.GetValue(0))));
-                            }
-                            finally
-                            {
-                                if (leitor != null)
-                                    leitor.Close();
+                                if (!leitor.IsDBNull(2))
+                                    visita.pessoas.AdicionarJáCadastrado(PessoaFísica.ObterPessoa(Convert.ToUInt64(leitor.GetValue(2))));
                             }
                         }
-
-                        #endregion
                     }
-                } finally {
+                } finally
+                {
                     Usuários.UsuárioAtual.GerenciadorConexões.AdicionarConexão(conexão);
+
+                    if (leitor != null)
+                        leitor.Close();
                 }
             }
         }
@@ -406,8 +428,7 @@ namespace Entidades
                         " WHERE v.funcionario = " + DbTransformar(funcionário.Código) +
                         " AND v.saida IS NULL");
 
-            foreach (Visita visita in visitas)
-                visita.CarregarRelacionamentos();
+            CarregarRelacionamentos(visitas);
 
             return visitas;
         }
@@ -423,8 +444,7 @@ namespace Entidades
                     "SELECT * FROM visita" +
                     " WHERE saida IS NULL OR entrada >= CURDATE() ORDER BY entrada");
 
-            foreach (Visita visita in visitas)
-                visita.CarregarRelacionamentos();
+            CarregarRelacionamentos(visitas);
 
             return visitas;
         }
@@ -460,8 +480,7 @@ namespace Entidades
                 " AND entrada >= " + DbTransformar(DadosGlobais.Instância.HoraDataAtual.Date.Subtract(new TimeSpan(3, 0, 0, 0))) +
                 " ORDER BY entrada");
 
-            foreach (Visita visita in visitas)
-                visita.CarregarRelacionamentos();
+            CarregarRelacionamentos(visitas);
 
             return visitas;
         }
