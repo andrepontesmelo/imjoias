@@ -56,6 +56,11 @@ namespace Apresentação.Atendimento.Clientes
         {
             foreach (Visita visita in visitas)
                 AdicionarVisita(visita);
+
+            colVisitante.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
+            colAtendente.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
+            colEntrada.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
+            colSaída.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
 
         /// <summary>
