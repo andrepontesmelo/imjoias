@@ -672,6 +672,22 @@ namespace Entidades.Pessoa
             return pessoas;
         }
 
+        public static Dictionary<ulong, Pessoa> ObterPessoas(SortedSet<ulong> códigos)
+        {
+            string cmd = "SELECT * FROM pessoa left join pessoafisica ON pessoa.codigo = pessoafisica.codigo WHERE"
+                + " pessoa.codigo in " + DbTransformarConjunto(códigos);
+
+            List<Pessoa> pessoas = RealizarConsulta(cmd, 0, Pessoa.TotalAtributos);
+
+            Dictionary<ulong, Pessoa> hash = new Dictionary<ulong, Pessoa>();
+            foreach (Pessoa p in pessoas)
+            {
+                hash[p.Código] = p;
+            }
+
+            return hash;
+        }
+
         /// <summary>
         /// Obtém PessoaFísica, Jurídica e Representantes de um setor em
         /// um período específico.

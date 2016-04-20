@@ -53,7 +53,7 @@ namespace Entidades
         /// <summary>
         /// Lista de visitantes cadastrados.
         /// </summary>
-        private DbComposiçãoInalterável<PessoaFísica> pessoas;
+        private DbComposiçãoInalterável<Pessoa.Pessoa> pessoas;
 
         /// <summary>
         /// Atendente da visita.
@@ -140,7 +140,7 @@ namespace Entidades
         /// <summary>
         /// Lista de visitantes cadastrados.
         /// </summary>
-        public DbComposiçãoInalterável<PessoaFísica> Pessoas
+        public DbComposiçãoInalterável<Pessoa.Pessoa> Pessoas
         {
             get { return pessoas; }
         }
@@ -165,9 +165,9 @@ namespace Entidades
                 new DbAção<string>(CadastrarNome),
                 new DbAção<string>(DescadastrarNome));
 
-            pessoas = new DbComposiçãoInalterável<PessoaFísica>(
-                new DbAção<PessoaFísica>(CadastrarPessoa),
-                new DbAção<PessoaFísica>(DescadastrarPessoa));
+            pessoas = new DbComposiçãoInalterável<Pessoa.Pessoa>(
+                new DbAção<Pessoa.Pessoa>(CadastrarPessoa),
+                new DbAção<Pessoa.Pessoa>(DescadastrarPessoa));
         }
 
         /// <summary>
@@ -214,11 +214,11 @@ namespace Entidades
         /// <summary>
         /// Cadastra a pessoa como visitante.
         /// </summary>
-        private void CadastrarPessoa(IDbCommand cmd, PessoaFísica pessoa)
+        private void CadastrarPessoa(IDbCommand cmd, Pessoa.Pessoa pessoaFísica)
         {
             cmd.CommandText = "INSERT INTO visitapessoafisica (visita, pessoafisica) VALUES ("
                 + DbTransformar(entrada) + ","
-                + DbTransformar(pessoa.Código) + ")";
+                + DbTransformar(pessoaFísica.Código) + ")";
 
             cmd.ExecuteNonQuery();
         }
@@ -226,11 +226,11 @@ namespace Entidades
         /// <summary>
         /// Descadastra a pessoa como visitante.
         /// </summary>
-        private void DescadastrarPessoa(IDbCommand cmd, PessoaFísica pessoa)
+        private void DescadastrarPessoa(IDbCommand cmd, Pessoa.Pessoa pessoaFísica)
         {
             cmd.CommandText = "DELETE FROM visitapessoafisica WHERE "
                 + "entrada = " + DbTransformar(entrada) + " AND "
-                + "pessoafisica = " + DbTransformar(pessoa.Código);
+                + "pessoafisica = " + DbTransformar(pessoaFísica.Código);
 
             cmd.ExecuteNonQuery();
         }
@@ -343,11 +343,16 @@ namespace Entidades
         /// </summary>
         private static void CarregarRelacionamentos(List<Visita> visitas)
         {
+            if (visitas.Count == 0)
+                return;
+
             IDataReader leitor = null;
             string códigos = ExtrairCódigos(visitas);
             StringBuilder str = new StringBuilder();
             Dictionary<DateTime, Visita> hash = CriarHash(visitas);
-
+            Dictionary<DateTime, ulong> hashVisitaCódigo = new Dictionary<DateTime, ulong>();
+            SortedSet<ulong> conjuntoPessoas = new SortedSet<ulong>();
+ 
             str.Append("select n.visita, n.nome, null as pessoaFisica from visitanome n where visita in ");
             str.Append(códigos);
             str.Append(" UNION SELECT f.visita, null as nome, f.pessoaFisica from visitapessoafisica f where visita in ");
@@ -356,7 +361,7 @@ namespace Entidades
             string myStr = str.ToString();
             
             IDbConnection conexão = Conexão;
-
+        
             lock (conexão)
             {
                 Usuários.UsuárioAtual.GerenciadorConexões.RemoverConexão(conexão);
@@ -377,7 +382,11 @@ namespace Entidades
                                     visita.nomes.AdicionarJáCadastrado(leitor.GetString(1));
 
                                 if (!leitor.IsDBNull(2))
-                                    visita.pessoas.AdicionarJáCadastrado(PessoaFísica.ObterPessoa(Convert.ToUInt64(leitor.GetValue(2))));
+                                {
+                                    ulong código = Convert.ToUInt64(leitor.GetValue(2));
+                                    hashVisitaCódigo.Add(visita.entrada, código);
+                                    conjuntoPessoas.Add(código);
+                                }
                             }
                         }
                     }
@@ -387,6 +396,22 @@ namespace Entidades
 
                     if (leitor != null)
                         leitor.Close();
+                }
+            }
+
+            Dictionary<ulong, Entidades.Pessoa.Pessoa> hashPessoas = 
+                Entidades.Pessoa.Pessoa.ObterPessoas(conjuntoPessoas);
+
+            foreach(KeyValuePair<DateTime, Visita> par in hash)
+            {
+                DateTime entrada = par.Key;
+                Visita visita = par.Value;
+                ulong código;
+
+                if (hashVisitaCódigo.TryGetValue(entrada, out código))
+                {
+                    Entidades.Pessoa.Pessoa pessoa = hashPessoas[código];
+                    visita.Pessoas.AdicionarJáCadastrado(pessoa);
                 }
             }
         }
