@@ -253,7 +253,7 @@ namespace Entidades
                         + " ORDER BY entrada LIMIT 1");
 
             if (visita != null)
-                CarregarRelacionamentos(new List<Visita>() { visita });
+                CarregarRelacionamentos(new List<Visita>() { visita }, " v.entrada = " + DbTransformar(visita.Entrada));
 
             return visita;
         }
@@ -278,11 +278,11 @@ namespace Entidades
 
             List<Visita> visitas;
 
-            visitas = Mapear<Visita>(
-                "SELECT * FROM visita WHERE entrada BETWEEN "
-                + DbTransformar(pInicial) + " AND" + DbTransformar(pFinal));
+            string where = " v.entrada BETWEEN " + DbTransformar(pInicial) + " AND " + DbTransformar(pFinal);
 
-            CarregarRelacionamentos(visitas);
+            visitas = Mapear<Visita>("SELECT * FROM visita v WHERE " + where);
+
+            CarregarRelacionamentos(visitas, where);
 
             return visitas;
         }
@@ -297,11 +297,11 @@ namespace Entidades
         {
             List<Visita> visitas;
 
+            string where = " v.entrada > " + DbTransformar(pInicial) +  " OR v.saida > " + DbTransformar(pInicial);
             visitas = Mapear<Visita>(
-                "SELECT * FROM visita WHERE entrada > "
-                + DbTransformar(pInicial) +  " OR saida > " + DbTransformar(pInicial));
+                "SELECT * FROM visita v WHERE " + where);
 
-            CarregarRelacionamentos(visitas);
+            CarregarRelacionamentos(visitas, where);
 
             return visitas;
         }
@@ -318,45 +318,25 @@ namespace Entidades
             return hash;
         }
 
-        private static string ExtrairCódigos(List<Visita> visitas)
-        {
-            StringBuilder str = new StringBuilder("(");
-            bool primeiro = true;
-
-            foreach (Visita visita in visitas)
-            {
-                if (primeiro)
-                    primeiro = false;
-                else
-                    str.Append(", ");
-
-                str.Append(DbTransformar(visita.Entrada));
-            }
-
-            str.Append(") ");
-
-            return str.ToString();
-        }
-
+   
         /// <summary>
         /// Carrega todos os relacionamentos da visita.
         /// </summary>
-        private static void CarregarRelacionamentos(List<Visita> visitas)
+        private static void CarregarRelacionamentos(List<Visita> visitas, string where)
         {
             if (visitas.Count == 0)
                 return;
 
             IDataReader leitor = null;
-            string códigos = ExtrairCódigos(visitas);
             StringBuilder str = new StringBuilder();
             Dictionary<DateTime, Visita> hash = CriarHash(visitas);
             Dictionary<DateTime, ulong> hashVisitaCódigo = new Dictionary<DateTime, ulong>();
             SortedSet<ulong> conjuntoPessoas = new SortedSet<ulong>();
  
-            str.Append("select n.visita, n.nome, null as pessoaFisica from visitanome n where visita in ");
-            str.Append(códigos);
-            str.Append(" UNION SELECT f.visita, null as nome, f.pessoaFisica from visitapessoafisica f where visita in ");
-            str.Append(códigos);
+            str.Append("select n.visita, n.nome, null as pessoaFisica from visitanome n JOIN visita v on n.visita=v.entrada where ");
+            str.Append(where);
+            str.Append(" UNION SELECT f.visita, null as nome, f.pessoaFisica from visitapessoafisica f JOIN visita v on f.visita=v.entrada where ");
+            str.Append(where);
 
             string myStr = str.ToString();
             
@@ -448,12 +428,11 @@ namespace Entidades
         /// <returns>Se o funcionário está em atendimento.</returns>
         public static List<Visita> ObterAtendimentos(Funcionário funcionário)
         {
-            List<Visita> visitas = Mapear<Visita>(
-                    "SELECT v.* FROM visita v" +
-                        " WHERE v.funcionario = " + DbTransformar(funcionário.Código) +
-                        " AND v.saida IS NULL");
+            string where = " v.funcionario = " + DbTransformar(funcionário.Código) + " AND v.saida IS NULL";
 
-            CarregarRelacionamentos(visitas);
+            List<Visita> visitas = Mapear<Visita>("SELECT v.* FROM visita v WHERE " + where);
+
+            CarregarRelacionamentos(visitas, where);
 
             return visitas;
         }
@@ -465,11 +444,11 @@ namespace Entidades
         /// </summary>
         public static List<Visita> ObterVisitasRelevantes()
         {
-            List<Visita> visitas = Mapear<Visita>(
-                    "SELECT * FROM visita" +
-                    " WHERE saida IS NULL OR entrada >= CURDATE() ORDER BY entrada");
+            string where = " v.saida IS NULL OR v.entrada >= CURDATE() ";
+            List<Visita> visitas = Mapear<Visita>("SELECT * FROM visita v WHERE " + 
+                where + " ORDER BY entrada ");
 
-            CarregarRelacionamentos(visitas);
+            CarregarRelacionamentos(visitas,  where);
 
             return visitas;
         }
@@ -496,16 +475,16 @@ namespace Entidades
 
             List<Visita> visitas;
 
-            visitas = Mapear<Visita>(
-                "SELECT * FROM visita" +
-                " WHERE saida IS NULL OR entrada >= date(" +
+            string where = " v.saida IS NULL OR v.entrada >= date(" +
                 "(SELECT MAX(entrada) FROM visita WHERE funcionario = " +
                 DbTransformar(funcionário.Código) + "))" +
                 " AND setor IN (" + strSetores + ")" +
                 " AND entrada >= " + DbTransformar(DadosGlobais.Instância.HoraDataAtual.Date.Subtract(new TimeSpan(3, 0, 0, 0))) +
-                " ORDER BY entrada");
+                " ORDER BY entrada";
 
-            CarregarRelacionamentos(visitas);
+            visitas = Mapear<Visita>("SELECT * FROM visita v WHERE " + where);
+
+            CarregarRelacionamentos(visitas, where);
 
             return visitas;
         }

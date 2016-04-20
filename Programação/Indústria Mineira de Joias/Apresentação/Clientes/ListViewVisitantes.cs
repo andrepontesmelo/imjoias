@@ -54,8 +54,16 @@ namespace Apresentação.Atendimento.Clientes
         /// <param name="visitas">Vetor de visitas.</param>
         public void AdicionarVisitas(List<Visita> visitas)
         {
+            ListViewItem[] itens = new ListViewItem[visitas.Count];
+            int x = 0;
+
             foreach (Visita visita in visitas)
-                AdicionarVisita(visita);
+            {
+                itens[x] = CriarItem(visita);
+                x++;
+            }
+
+            lstVisitantes.Items.AddRange(itens);
 
             colVisitante.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
             colAtendente.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
@@ -63,10 +71,7 @@ namespace Apresentação.Atendimento.Clientes
             colSaída.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
 
-        /// <summary>
-        /// Trata evento de visitante que entrou na empresa
-        /// </summary>
-        public void AdicionarVisita(Visita visita)
+        private ListViewItem CriarItem(Visita visita)
         {
             ListViewItem item = new ListViewItem(visita.ExtrairNomes());
 
@@ -121,13 +126,21 @@ namespace Apresentação.Atendimento.Clientes
             else
                 item.SubItems.Add("");
 
-            lstVisitantes.Items.Add(item);
-
             // Adicionar na hashtable de linhas
             hashLinhaVisita[item] = visita;
             hashVisitaLinha[visita.Entrada] = item;
 
-            // Garantir visibilidade
+            return item;
+        }
+
+        /// <summary>
+        /// Trata evento de visitante que entrou na empresa
+        /// </summary>
+        public void AdicionarVisita(Visita visita)
+        {
+            ListViewItem item = CriarItem(visita);
+
+            lstVisitantes.Items.Add(item);
             item.EnsureVisible();
         }
 
