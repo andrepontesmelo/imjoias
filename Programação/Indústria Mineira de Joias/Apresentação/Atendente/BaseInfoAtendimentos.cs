@@ -45,9 +45,8 @@ namespace Apresentação.Atendimento.Atendente
             using (SeleçãoPeríodo dlg = new SeleçãoPeríodo(
                 "Histórico de atendimentos",
                 "Escolha o período para exibição do histórico de atendimentos.",
-                períodoInicial, períodoInicial))
+                períodoInicial, períodoFinal))
             {
-                dlg.PeríodoInicialMínimo = DadosGlobais.Instância.HoraDataAtual.Subtract(new TimeSpan(60, 0, 0, 0));
 
                 if (dlg.ShowDialog(ParentForm) == DialogResult.OK)
                 {
