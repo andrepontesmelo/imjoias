@@ -674,6 +674,9 @@ namespace Entidades.Pessoa
 
         public static Dictionary<ulong, Pessoa> ObterPessoas(SortedSet<ulong> códigos)
         {
+            if (códigos.Count == 0)
+                return new Dictionary<ulong, Pessoa>();
+
             string cmd = "SELECT * FROM pessoa left join pessoafisica ON pessoa.codigo = pessoafisica.codigo WHERE"
                 + " pessoa.codigo in " + DbTransformarConjunto(códigos);
 
