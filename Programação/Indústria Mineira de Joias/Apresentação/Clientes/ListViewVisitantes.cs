@@ -1,11 +1,8 @@
-﻿using System;
+﻿using Entidades;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
-using Entidades;
 
 namespace Apresentação.Atendimento.Clientes
 {
@@ -18,6 +15,7 @@ namespace Apresentação.Atendimento.Clientes
         /// desseleciona uma visita.
         /// </summary>
         public event VisitaCallback AoMudarSeleção;
+        public event VisitaCallback AoDuploClique;
 
         private Dictionary<DateTime, ListViewItem> hashVisitaLinha = new Dictionary<DateTime, ListViewItem>();
         private Dictionary<ListViewItem, Visita> hashLinhaVisita = new Dictionary<ListViewItem, Visita>();
@@ -200,6 +198,16 @@ namespace Apresentação.Atendimento.Clientes
         {
             if (AoMudarSeleção != null)
                 AoMudarSeleção(VisitaSelecionada);
+        }
+
+        private void lstVisitantes_DoubleClick(object sender, EventArgs e)
+        {
+            Visita visita = VisitaSelecionada;
+
+            if (visita == null || AoDuploClique == null)
+                return;
+
+            AoDuploClique(visita);
         }
     }
 }

@@ -65,6 +65,7 @@
             this.listViewVisitantes.Name = "listViewVisitantes";
             this.listViewVisitantes.Size = new System.Drawing.Size(591, 190);
             this.listViewVisitantes.TabIndex = 7;
+            this.listViewVisitantes.AoDuploClique += new Apresentação.Atendimento.Clientes.ListViewVisitantes.VisitaCallback(this.listViewVisitantes_AoDuploClique);
             // 
             // quadroLista
             // 

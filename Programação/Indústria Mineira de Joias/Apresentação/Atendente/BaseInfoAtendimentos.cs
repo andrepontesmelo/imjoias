@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
-using System.Windows.Forms;
-using Apresentação.Formulários;
-using Entidades.Configuração;
+﻿using Apresentação.Formulários;
 using Entidades;
+using Entidades.Configuração;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Apresentação.Atendimento.Atendente
 {
@@ -72,6 +68,15 @@ namespace Apresentação.Atendimento.Atendente
             {
                 AguardeDB.Fechar();
             }
+        }
+
+        private void listViewVisitantes_AoDuploClique(Visita visita)
+        {
+            List<Entidades.Pessoa.Pessoa> lstPessoas = visita.Pessoas.ExtrairElementos();
+            if (lstPessoas.Count == 0)
+                return;
+
+            SubstituirBase(new BaseAtendimento(lstPessoas[0]));
         }
     }
 }

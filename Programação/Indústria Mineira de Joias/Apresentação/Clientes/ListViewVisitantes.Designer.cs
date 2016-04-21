@@ -32,11 +32,11 @@
             System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Aguardando", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Em atendimento", System.Windows.Forms.HorizontalAlignment.Left);
             this.lstVisitantes = new System.Windows.Forms.ListView();
-            this.colVisitante = new System.Windows.Forms.ColumnHeader();
-            this.colSetor = new System.Windows.Forms.ColumnHeader();
-            this.colAtendente = new System.Windows.Forms.ColumnHeader();
-            this.colEntrada = new System.Windows.Forms.ColumnHeader();
-            this.colSaída = new System.Windows.Forms.ColumnHeader();
+            this.colVisitante = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colSetor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colAtendente = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colEntrada = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colSaída = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lstVisitantes
@@ -67,6 +67,7 @@
             this.lstVisitantes.UseCompatibleStateImageBehavior = false;
             this.lstVisitantes.View = System.Windows.Forms.View.Details;
             this.lstVisitantes.SelectedIndexChanged += new System.EventHandler(this.lstVisitantes_SelectedIndexChanged);
+            this.lstVisitantes.DoubleClick += new System.EventHandler(this.lstVisitantes_DoubleClick);
             // 
             // colVisitante
             // 
