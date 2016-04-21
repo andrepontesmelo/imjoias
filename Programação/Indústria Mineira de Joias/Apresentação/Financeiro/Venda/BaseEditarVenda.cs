@@ -60,7 +60,7 @@ namespace Apresentação.Financeiro.Venda
 
         protected override bool ValidarPermissãoDestravar()
         {
-            return Entidades.Privilégio.PermissãoFuncionário.ValidarPermissão(Entidades.Privilégio.Permissão.VendasDestravar);
+            return PermissãoFuncionário.ValidarPermissão(Permissão.VendasDestravar);
         }
 
         protected override Apresentação.Impressão.TipoDocumento TipoDocumento
@@ -126,7 +126,6 @@ namespace Apresentação.Financeiro.Venda
                     {
                         dadosVenda.Enabled = false;
                         listaPagamentos.Enabled = false;
-                        //txtObservações.ReadOnly = true;
                     }
                     else
                     {
@@ -139,13 +138,13 @@ namespace Apresentação.Financeiro.Venda
             }
             finally
             {
-                Apresentação.Formulários.AguardeDB.Fechar();
+                AguardeDB.Fechar();
             }
 
             if (v.Itens.Count == 0 && v.Cliente != null)
                 try
                 {
-                    Apresentação.Pessoa.AlertaClassificação.Alertar(v.Cliente, Classificação.TipoAlerta.Venda);
+                    Pessoa.AlertaClassificação.Alertar(v.Cliente, Classificação.TipoAlerta.Venda);
                 }
                 catch (PermissãoNegada erro)
                 {
@@ -239,10 +238,9 @@ namespace Apresentação.Financeiro.Venda
                 lblTravamento.Text = "Este documento não pode ser alterado nem excluído uma vez que já está com a comissão fechada.";
                 opçãoDestravar.Visible = false;
             }
+
             digitaçãoDevolução.AtualizarTravamento(entidadeTravada);
             dadosVenda.AtualizarTravamento(entidadeTravada);
-            //listaPagamentos.AtualizarTravamento(entidadeTravada);
-
             AtualizarEnabledPuxarDébitosCréditos(entidadeTravada);
         }
 
@@ -263,7 +261,7 @@ namespace Apresentação.Financeiro.Venda
             Entidades.Pessoa.Pessoa cliente, vendedor;
             Entidades.Relacionamento.Venda.Venda venda;
 
-            if (Entidades.Pessoa.Funcionário.ÉVendedor(pessoa))
+            if (Funcionário.ÉVendedor(pessoa))
             {
                 vendedor = pessoa;
                 cliente = null;
@@ -278,9 +276,9 @@ namespace Apresentação.Financeiro.Venda
             venda = Entidades.Relacionamento.Venda.Venda.CriarNovaVenda(cliente, vendedor);
 
             // Todas as vendas de representante tem acerto
-            if (venda.AcertoConsignado == null && Entidades.Pessoa.Representante.ÉRepresentante(pessoa))
+            if (venda.AcertoConsignado == null && Representante.ÉRepresentante(pessoa))
             {
-                AcertoConsignado acerto = Apresentação.Financeiro.Acerto.EscolherAcerto.QuestionarUsuário(ParentForm, pessoa, false);
+                AcertoConsignado acerto = Acerto.EscolherAcerto.QuestionarUsuário(ParentForm, pessoa, false);
                 
                 if (acerto == null)
                     MessageBox.Show(
@@ -296,7 +294,7 @@ namespace Apresentação.Financeiro.Venda
             if (venda.AcertoConsignado == null && pessoa.Setor == Entidades.Setor.ObterSetor(Entidades.Setor.SetorSistema.Varejo))
             {
                 AcertoConsignado acerto = 
-                    Apresentação.Financeiro.Acerto.EscolherAcerto.QuestionarUsuário(ParentForm, Entidades.Pessoa.Pessoa.Varejo, false);
+                    Acerto.EscolherAcerto.QuestionarUsuário(ParentForm, Entidades.Pessoa.Pessoa.Varejo, false);
 
                 if (acerto == null)
                     MessageBox.Show(
@@ -360,8 +358,6 @@ namespace Apresentação.Financeiro.Venda
             {
                 if (dlg.ShowDialog(ParentForm) == DialogResult.OK)
                 {
-                    //quadroPagamento.Visible = false;
-
                     dadosVenda.MostrarPreços();
                     listaPagamentos.Carregar();
 
@@ -392,37 +388,34 @@ namespace Apresentação.Financeiro.Venda
         {
             if (!ConferirTravamento())
             {
-                Apresentação.Formulários.AguardeDB.Mostrar();
-
+                AguardeDB.Mostrar();
 
                 Entidades.Pagamentos.Pagamento[] pagamentos =
                     Entidades.Pagamentos.Pagamento.ObterPagamentos(Relacionamento.Pessoa, true);
 
                 tabs.SelectTab(tabDébitos);
 
-
                 listaDébitos.AdicionarCadastrando(pagamentos);
 
-                Apresentação.Formulários.AguardeDB.Fechar();
+                AguardeDB.Fechar();
             }
             else
             {
                 opçãoCobrançaAutomática.Enabled =  
                     opçãoGastarCréditosCliente.Enabled = false;
-
             }
         }
 
         private void opçãoGastarCréditosCliente_Click(object sender, EventArgs e)
         {
             if (!ConferirTravamento()) {
-                Apresentação.Formulários.AguardeDB.Mostrar();
+                AguardeDB.Mostrar();
 
                 List<Entidades.Financeiro.Crédito> créditosNãoUtilizados = Entidades.Financeiro.Crédito.ObterCréditosNãoUtilizados(Relacionamento.Pessoa);
 
                 tabs.SelectTab(tabCréditos);
                 listaCréditos.AdicionarCadastrando(créditosNãoUtilizados);
-                Apresentação.Formulários.AguardeDB.Fechar();
+                AguardeDB.Fechar();
             }
             else
                 opçãoGastarCréditosCliente.Enabled = false;
