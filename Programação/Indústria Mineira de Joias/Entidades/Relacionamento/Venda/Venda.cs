@@ -245,7 +245,7 @@ namespace Entidades.Relacionamento.Venda
                     prestações = ObterPrestações(out pagamentos);
                     foreach (Pagamento p in pagamentos) listaPagamentos.Add(p);
 
-                    CalcularDívida(Data, out dívida, out juros, pagamentos, prestações);
+                    CalcularDívida(DataCobrança, out dívida, out juros, pagamentos, prestações);
                 }
                 catch { }
 
