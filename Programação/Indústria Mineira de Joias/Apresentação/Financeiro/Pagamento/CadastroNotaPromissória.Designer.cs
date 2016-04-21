@@ -93,8 +93,7 @@ namespace Apresentação.Financeiro.Pagamento
             // lblDescrição
             // 
             this.lblDescrição.Size = new System.Drawing.Size(147, 48);
-            this.lblDescrição.Text = "À direita você pode incluir vendas que e" +
-    "stejam relacionas com esta nota promissória.";
+            this.lblDescrição.Text = "";
             // 
             // picÍcone
             // 

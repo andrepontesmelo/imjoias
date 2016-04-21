@@ -68,8 +68,7 @@ namespace Apresentação.Financeiro.Pagamento
             // lblDescrição
             // 
             this.lblDescrição.Size = new System.Drawing.Size(176, 48);
-            this.lblDescrição.Text = "À direita você pode incluir vendas que e" +
-    "stejam relacionas com esta quantia.\r\n\r\n";
+            this.lblDescrição.Text = "";
             // 
             // picÍcone
             // 
