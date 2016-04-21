@@ -429,19 +429,23 @@ namespace Apresentação.Financeiro.Venda
 
         }
 
+        private Relatório ObterRelatório()
+        {
+            Relatório relatório = new Relatório();
+
+            new ControleImpressãoVenda().PrepararImpressãoVenda(relatório,
+                (Entidades.Relacionamento.Venda.Venda)Relacionamento,
+                listaPagamentos.ObterPagamentosExibidos()
+                );
+
+            return relatório;
+        }
+
         protected override void Imprimir()
         {
             AguardeDB.Mostrar();
-            Apresentação.Impressão.Relatórios.Venda.ControleImpressãoVenda 
-                controle = new ControleImpressãoVenda();
 
-            Apresentação.Impressão.Relatórios.Venda.Relatório relatório = new
-                Apresentação.Impressão.Relatórios.Venda.Relatório();
-
-            controle.PrepararImpressãoVenda(relatório, 
-                (Entidades.Relacionamento.Venda.Venda) Relacionamento,
-                listaPagamentos.ObterPagamentosExibidos()
-                );
+            Relatório relatório = ObterRelatório();
 
             PrintDialog printDialog = new PrintDialog();
             AguardeDB.Fechar();
@@ -449,7 +453,8 @@ namespace Apresentação.Financeiro.Venda
             if (resultado == DialogResult.OK)
             {
                 relatório.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
-                relatório.PrintToPrinter(printDialog.PrinterSettings.Copies, false, printDialog.PrinterSettings.FromPage, printDialog.PrinterSettings.ToPage);
+                relatório.PrintToPrinter(printDialog.PrinterSettings.Copies, false,
+                    printDialog.PrinterSettings.FromPage, printDialog.PrinterSettings.ToPage);
             }
         }
 
@@ -461,10 +466,7 @@ namespace Apresentação.Financeiro.Venda
 
         protected override void InserirDocumento(JanelaImpressão j)
         {
-            Relatório relatório = new Apresentação.Impressão.Relatórios.Venda.Relatório();
-
-            new Apresentação.Impressão.Relatórios.Venda.ControleImpressãoVenda().PrepararImpressão(relatório,
-                (Entidades.Relacionamento.Venda.Venda)Relacionamento);
+            Relatório relatório = ObterRelatório();
 
             j.Título = "Impressão de venda";
             j.Descrição = "";
