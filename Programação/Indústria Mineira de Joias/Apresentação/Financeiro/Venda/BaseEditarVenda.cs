@@ -157,6 +157,7 @@ namespace Apresentação.Financeiro.Venda
                     AtualizarTravamento(true);
                 }
 
+            CadastrarVendaSeNecessário();
         }
 
         void v_AoCancelarCadastro(object sender, EventArgs e)
