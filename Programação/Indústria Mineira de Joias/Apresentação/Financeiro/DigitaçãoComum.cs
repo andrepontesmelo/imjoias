@@ -86,20 +86,6 @@ namespace Apresentação.Financeiro
             set { bandejaAgrupada.Cotação = value; bandejaHistórico.Cotação = value;  }
         }
 
-        //private bool PermitirÍndiceDiferenteDoVigente { get; set; }
-
-        //public enum TipoDigitação
-        //{
-        //    NãoDefinido,
-        //    Venda,
-        //    Devolução
-        //}
-
-        ///// <summary>
-        ///// Tipo de digitação.
-        ///// </summary>
-        //private TipoDigitação tipo = TipoDigitação.NãoDefinido;
-
         /// <summary>
         /// Hash que mapeia saquinho ao item relacionado.
         /// </summary>
@@ -133,9 +119,6 @@ namespace Apresentação.Financeiro
             quadroMercadoria.Enabled = !entidadeTravada;
             bandejaAgrupada.MostrarExcluir = !entidadeTravada;
             bandejaAgrupada.PermitirExclusão = !entidadeTravada;
-
-            
-            // Não pode disparar o evento 'EntidadeTravada', pois faz ciclo.
         }
 
         /// <summary>
@@ -148,13 +131,12 @@ namespace Apresentação.Financeiro
             hashSaquinhoItemRelacionado.Clear();
             ArrayList lista = new ArrayList();
 
-            foreach (Entidades.Relacionamento.HistóricoRelacionamentoItem item in coleção)
+            foreach (HistóricoRelacionamentoItem item in coleção)
             {
                 Saquinho saquinho = new Saquinho(item.Mercadoria, item.Quantidade);
 
                 lista.Add(saquinho);
                 hashSaquinhoItemRelacionado.Add(saquinho, item);
-                
             }
 
             bandejaAgrupada.AdicionarVários(lista);
@@ -340,7 +322,6 @@ namespace Apresentação.Financeiro
                     }
                     else
                     {
-                        //MessageBox.Show("Será utilizado o indice vigente (" + mercadoria.Índice.ToString() + ")", "Escolha do índice", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         throw new Exception("Cancelado pelo usuário");
                     }
 
@@ -374,12 +355,7 @@ namespace Apresentação.Financeiro
             bandejaAgrupada.Adicionar(novoSaquinho);
 
             DateTime agora = Entidades.Configuração.DadosGlobais.Instância.HoraDataAtual;
-            
-            // Retira
-            //bandejaHistórico.Adicionar(new SaquinhoHistóricoRelacionado(coleção.Relacionar(saquinhoOriginal.Mercadoria, saquinhoOriginal.Quantidade * -1)));
-            //já é removido
 
-            // Relaciona
             try
             {
                 bandejaHistórico.Adicionar(new SaquinhoHistóricoRelacionado(coleção.Relacionar(novoSaquinho.Mercadoria, novaQtd, novoSaquinho.Mercadoria.ÍndiceArredondado)));
@@ -401,7 +377,7 @@ namespace Apresentação.Financeiro
             this.coleção = coleção;
             this.entidade = entidade;
 
-            Entidades.Relacionamento.RelacionamentoAcerto entidadeAcerto = entidade as Entidades.Relacionamento.RelacionamentoAcerto;
+            RelacionamentoAcerto entidadeAcerto = entidade as RelacionamentoAcerto;
 
             /* Não permitir edição de tabela em documentos cujo
              * acerto possui tabela definida.
@@ -519,7 +495,6 @@ namespace Apresentação.Financeiro
         private void bandejaAgrupada_AntesExclusão(ref bool cancelado)
         {
             bool travado = baseInferior.ConferirTravamento();
-
             cancelado = travado;
         }
 
@@ -537,7 +512,6 @@ namespace Apresentação.Financeiro
                 // Des-selecionou
                 quadroMercadoria.AlternarParaAdicionar();
             }
-
         }
 
         private void bandejaHistórico_SeleçãoMudou(Bandeja bandeja, ISaquinho saquinho)
