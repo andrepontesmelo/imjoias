@@ -1,24 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using Apresentação.Formulários;
+﻿using Apresentação.Formulários;
 using Apresentação.Impressão.Relatórios.Estoque.Entrada;
+using Entidades.Relacionamento;
+using System;
 
 namespace Apresentação.Estoque.Entrada
 {
-    public partial class BaseEditarEntrada : Apresentação.Financeiro.BaseEditarRelacionamento
+    public partial class BaseEditarEntrada : Financeiro.BaseEditarRelacionamento
     {
         public BaseEditarEntrada()
         {
             InitializeComponent();
         }
 
-        public override void Abrir(Entidades.Relacionamento.Relacionamento relacionamento)
+        public override void Abrir(Relacionamento relacionamento)
         {
             base.Abrir(relacionamento);
 
@@ -27,7 +21,7 @@ namespace Apresentação.Estoque.Entrada
             relacionamento.DepoisDeCadastrar += relacionamento_DepoisDeCadastrar;
         }
 
-        private void DefinirTítulo(Entidades.Relacionamento.Relacionamento relacionamento)
+        private void DefinirTítulo(Relacionamento relacionamento)
         {
             título.Descrição = "";
             
@@ -37,19 +31,24 @@ namespace Apresentação.Estoque.Entrada
                 título.Título = "Novo documento de entrada";
         }
 
-        void relacionamento_DepoisDeCadastrar(Acesso.Comum.DbManipulação entidade)
+        public override Relacionamento ReobterRelacionamento()
         {
-            DefinirTítulo(entidade as Entidades.Relacionamento.Relacionamento);
+            return Entidades.Estoque.Entrada.Obter((ulong) Relacionamento.Código);
         }
 
-        protected override Apresentação.Impressão.TipoDocumento TipoDocumento
+        void relacionamento_DepoisDeCadastrar(Acesso.Comum.DbManipulação entidade)
         {
-            get { return Apresentação.Impressão.TipoDocumento.Entrada; }
+            DefinirTítulo(entidade as Relacionamento);
+        }
+
+        protected override Impressão.TipoDocumento TipoDocumento
+        {
+            get { return Impressão.TipoDocumento.Entrada; }
         }
 
         protected override void InserirDocumento(JanelaImpressão j)
         {
-            RelatorioEntrada relatório = new Apresentação.Impressão.Relatórios.Estoque.Entrada.RelatorioEntrada();
+            RelatorioEntrada relatório = new RelatorioEntrada();
 
             new Impressão.Relatórios.Entrada.ControleImpressãoEntrada().PrepararImpressão(relatório,
                 (Entidades.Estoque.Entrada) Relacionamento);

@@ -21,7 +21,7 @@ namespace Apresentação.Financeiro
         /// <summary>
         /// Pode ser itens de saída, itens de retorno, itens de venda ou itens de devolução
         /// </summary>
-        private Entidades.Relacionamento.HistóricoRelacionamento coleção;
+        private HistóricoRelacionamento coleção;
 
         private VerificadorMercadoria verificador;
 
@@ -35,7 +35,7 @@ namespace Apresentação.Financeiro
         /// <summary>
         /// Venda, retorno ou saída
         /// </summary>
-        protected Entidades.Relacionamento.Relacionamento entidade;
+        protected Relacionamento entidade;
         
         public enum TipoExibição { TipoAgrupado, TipoHistórico }
         private TipoExibição tipoExibiçãoAtual;
@@ -45,7 +45,7 @@ namespace Apresentação.Financeiro
 
         public delegate void TabelAlteradaCallback(DigitaçãoComum sender, Tabela tabela);
         public event TabelAlteradaCallback AoAlterarTabela;
-
+        
         public TipoExibição TipoExibiçãoAtual
         {
             get { return tipoExibiçãoAtual; }
@@ -125,7 +125,7 @@ namespace Apresentação.Financeiro
         /// Carrega entidade, preenchendo o controle.
         /// Solicitado no Set da propriedade Coleção
         /// </summary>
-        private void RecuperarEntidade(Entidades.Relacionamento.HistóricoRelacionamento coleção)
+        private void RecuperarEntidade(HistóricoRelacionamento coleção)
         {
             bandejaAgrupada.LimparLista();
             hashSaquinhoItemRelacionado.Clear();
@@ -146,7 +146,7 @@ namespace Apresentação.Financeiro
         {
             Adicionar(mercadoria, quantidade, modoJanelaÍndice, true);
         }
-
+ 
         private bool ConferirTravamento()
         {
             try
@@ -172,6 +172,17 @@ namespace Apresentação.Financeiro
             }
 
             return false;
+        }
+
+        private void RecarregarDocumentoInconsistente()
+        {
+            MessageBox.Show(
+            ParentForm,
+            "O documento foi alterado por outro usuário.\n\nEste relacionamento será recarregado para obter as novas alterações.",
+            "Alteração simultânea",
+            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            baseInferior.Recarregar();
         }
 
         private void Adicionar(Entidades.Mercadoria.Mercadoria mercadoria, double quantidade, ModoJanelaÍndice modoJanelaÍndice, bool conferirTravamento)
@@ -203,7 +214,7 @@ namespace Apresentação.Financeiro
             {
                 itemAdicionado = coleção.Relacionar(mercadoria, quantidade, índice);
             }
-            catch (Acesso.Comum.Exceções.OperaçãoCancelada)
+            catch (OperaçãoCancelada)
             {
                 MessageBox.Show(
                     ParentForm,
@@ -211,14 +222,9 @@ namespace Apresentação.Financeiro
                     "Relacionamento de mercadoria",
                     MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
-            }
-            catch (Exception e)
+            } catch (InvalidAsynchronousStateException)
             {
-                MessageBox.Show(ParentForm,
-                    "Ocorreu um erro enquanto a mercadoria era registrada no banco de dados.\n\n" + e.Message,
-                    "Relacionamento de mercadoria",
-                    MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                Acesso.Comum.Usuários.UsuárioAtual.RegistrarErro(e);
+                RecarregarDocumentoInconsistente();
                 return;
             }
 
@@ -329,11 +335,17 @@ namespace Apresentação.Financeiro
                 return;
             }
 
-            bandejaAgrupada.Remover(saquinhoOriginal);
+            try
+            {
+                bandejaAgrupada.Remover(saquinhoOriginal);
+            } catch (OperationCanceledException)
+            {
+                return;
+            }
 
             ISaquinho novoSaquinho = saquinhoOriginal.Clone(novaQtd);
             novoSaquinho.Mercadoria.EsquecerCoeficientePersonalizado();
-            
+
             if (novoSaquinho.Mercadoria.DePeso)
                 novoSaquinho.Mercadoria.Peso = novoPeso;
 
@@ -345,7 +357,7 @@ namespace Apresentação.Financeiro
             {
                 bandejaHistórico.Adicionar(new SaquinhoHistóricoRelacionado(coleção.Relacionar(novoSaquinho.Mercadoria, novaQtd, novoSaquinho.Mercadoria.ÍndiceArredondado)));
             }
-            catch (Acesso.Comum.Exceções.OperaçãoCancelada)
+            catch (OperaçãoCancelada)
             {
                 MessageBox.Show(
                     ParentForm,
@@ -353,10 +365,13 @@ namespace Apresentação.Financeiro
                     "Relacionamento de mercadoria",
                     MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
+            } catch (InvalidAsynchronousStateException)
+            {
+                RecarregarDocumentoInconsistente();
             }
         }
 
-        internal void Abrir(HistóricoRelacionamento coleção, Entidades.Relacionamento.Relacionamento entidade, BaseEditarRelacionamento baseInferior)
+        internal void Abrir(HistóricoRelacionamento coleção, Relacionamento entidade, BaseEditarRelacionamento baseInferior)
         {
             this.baseInferior = baseInferior;
             this.coleção = coleção;
@@ -367,13 +382,16 @@ namespace Apresentação.Financeiro
             /* Não permitir edição de tabela em documentos cujo
              * acerto possui tabela definida.
              */
-            if (entidadeAcerto == null || entidadeAcerto.AcertoConsignado != null && entidadeAcerto.AcertoConsignado.TabelaPreço != null)
+            if (entidadeAcerto == null || entidadeAcerto.AcertoConsignado != null && 
+                entidadeAcerto.AcertoConsignado.TabelaPreço != null)
             {
                 bandejaAgrupada.PermitirSeleçãoTabela = false;
                 bandejaHistórico.PermitirSeleçãoTabela = false;
             }
 
-            bool acertoPossuiTabela = entidadeAcerto.AcertoConsignado != null && entidadeAcerto.AcertoConsignado.TabelaPreço != null;
+            bool acertoPossuiTabela = entidadeAcerto != null && 
+                entidadeAcerto.AcertoConsignado != null && entidadeAcerto.AcertoConsignado.TabelaPreço != null;
+
             if (entidade.TabelaPreço == null)
             {
                 if (acertoPossuiTabela)
@@ -445,7 +463,7 @@ namespace Apresentação.Financeiro
 
         void AoAlterarTabelaEntidade(Acesso.Comum.DbManipulação entidade)
         {
-            Relacionamento entidadeAcerto = (Relacionamento) this.entidade;
+            Relacionamento entidadeAcerto = this.entidade;
             if (this.entidade == entidade)
             {
                 quadroMercadoria.Tabela = entidadeAcerto.TabelaPreço;
@@ -465,7 +483,7 @@ namespace Apresentação.Financeiro
                     HistóricoRelacionamentoItem item = coleção.Relacionar(saquinho.Mercadoria, saquinho.Quantidade * -1, saquinho.Mercadoria.ÍndiceArredondado);
                     bandejaHistórico.Adicionar(new SaquinhoHistóricoRelacionado(item));
                 }
-                catch (Acesso.Comum.Exceções.OperaçãoCancelada)
+                catch (OperaçãoCancelada)
                 {
                     MessageBox.Show(
                         ParentForm,
@@ -473,6 +491,10 @@ namespace Apresentação.Financeiro
                         "Relacionamento de mercadoria",
                         MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     return;
+                } catch (InvalidAsynchronousStateException)
+                {
+                    RecarregarDocumentoInconsistente();
+                    throw new OperationCanceledException();
                 }
             }
         }
@@ -550,23 +572,18 @@ namespace Apresentação.Financeiro
         {
             if (!baseInferior.ConferirTravamento())
             {
-
                 ISaquinho saquinhoParaReAdicionar = saquinho.Clone(saquinho.Quantidade);
-                bool deuErro = false;
                 try
                 {
                     EscolherÍndice(saquinhoParaReAdicionar.Mercadoria, ModoJanelaÍndice.MostrarSempre);
+                    bandejaAgrupada.Remover(saquinho);
                 }
                 catch
                 {
-                    deuErro = true;
+                    return;
                 }
 
-                if (!deuErro)
-                {
-                    bandejaAgrupada.Remover(saquinho);
-                    Adicionar(saquinhoParaReAdicionar.Mercadoria, saquinhoParaReAdicionar.Quantidade, ModoJanelaÍndice.NuncaMostrarNãoAlterandoÍndice);
-                }
+                Adicionar(saquinhoParaReAdicionar.Mercadoria, saquinhoParaReAdicionar.Quantidade, ModoJanelaÍndice.NuncaMostrarNãoAlterandoÍndice);
             }
         }
 

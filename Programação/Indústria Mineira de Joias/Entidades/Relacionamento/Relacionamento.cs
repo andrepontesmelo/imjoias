@@ -1,20 +1,19 @@
-using System;
 using Acesso.Comum;
+using Entidades.Configuração;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
-using Entidades.Acerto;
-using System.Collections;
-using Entidades.Configuração;
 
 namespace Entidades.Relacionamento
 {
-	/// <summary>
-	/// Não chama Consignado porque é genérico para saída, retorno e venda também!
-	/// </summary>
+    /// <summary>
+    /// Não chama Consignado porque é genérico para saída, retorno e venda também!
+    /// </summary>
     [Serializable, DbTransação]
-	public abstract class Relacionamento : Acesso.Comum.DbManipulaçãoAutomática
+	public abstract class Relacionamento : DbManipulaçãoAutomática
 	{
-        public event DbManipulação.DbManipulaçãoHandler AoAlterarTabela;
+        public event DbManipulaçãoHandler AoAlterarTabela;
 
         [DbRelacionamento("código", "tabela")]
         protected Tabela tabela;
@@ -27,13 +26,12 @@ namespace Entidades.Relacionamento
         protected Pessoa.Funcionário digitadopor;
 
 		[DbChavePrimária(true)]
-		protected long                      codigo;
+		protected long codigo;
 
-        protected DateTime                  data;
+        protected DateTime data;
 
         [DbColuna("observacoes")]
         protected string observações;
-
         
         public delegate void AntesDeCadastrarItemCallback(HistóricoRelacionamentoItem item, out bool cancelar);
 
@@ -44,10 +42,11 @@ namespace Entidades.Relacionamento
 
         #region Propriedades
 
-        public string Observações { get { return observações; } set { observações = value; DefinirDesatualizado(); } }
-
-
-
+        public string Observações
+        {
+            get { return observações; }
+            set { observações = value; DefinirDesatualizado(); }
+        }
 
         public Tabela TabelaPreço
         {

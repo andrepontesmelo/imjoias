@@ -1,17 +1,10 @@
-using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Forms;
-using Entidades;
-using Entidades.Relacionamento.Saída;
-using Entidades.Relacionamento;
-using System.Collections.Generic;
 using Apresentação.Formulários;
+using Entidades.Relacionamento;
+using System.Windows.Forms;
 
 namespace Apresentação.Financeiro
 {
-    public class BandejaRelacionamento : Apresentação.Mercadoria.Bandeja.Bandeja
+    public class BandejaRelacionamento : Mercadoria.Bandeja.Bandeja
     {
         private System.ComponentModel.IContainer components = null;
 
@@ -53,6 +46,9 @@ namespace Apresentação.Financeiro
         {
             // Indice que deve ser mostrado é o do saquinho e nao da mercadoria.
             bool erroAlteracaoConcorrente;
+
+            LimparLista();
+
             AdicionarVários(coleção.ObterSaquinhosAgrupados(out erroAlteracaoConcorrente));
 
             if (erroAlteracaoConcorrente)
@@ -64,12 +60,6 @@ namespace Apresentação.Financeiro
                     "Favor verificar.", "Documento inconsistente",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
-            //ArrayList saquinhos = coleção.ObterSaquinhosAgrupados();
-            //foreach (Saquinho s in saquinhos)
-            //{
-            //    AdicionarListView(s);
-            //}
         }
     }
 }

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Apresentação.Financeiro
 {
-    abstract public partial class BaseEditarRelacionamento : Apresentação.Formulários.BaseInferior
+    abstract public partial class BaseEditarRelacionamento : BaseInferior
     {
-        private Entidades.Relacionamento.Relacionamento entidade;
+        private Relacionamento entidade;
 
         // Componentes
         private AMS.TextBox.IntegerTextBox integerTextBox1;
@@ -27,7 +27,8 @@ namespace Apresentação.Financeiro
         /// <summary>
         /// Ocorre quando a trava é alterada.
         /// </summary>
-        public delegate void TravaAlteradaHandler(BaseEditarRelacionamento sender, RelacionamentoAcerto e, bool entidadeTravada);
+        public delegate void TravaAlteradaHandler(BaseEditarRelacionamento sender, 
+            RelacionamentoAcerto e, bool entidadeTravada);
 
         public event TravaAlteradaHandler TravaAlterada;
 
@@ -75,7 +76,7 @@ namespace Apresentação.Financeiro
 
         protected virtual TipoDocumento TipoDocumento { get { return TipoDocumento.Desconhecido; } }
 
-        protected Entidades.Relacionamento.Relacionamento Relacionamento
+        protected Relacionamento Relacionamento
         {
             get { return entidade; }
         }
@@ -155,7 +156,19 @@ namespace Apresentação.Financeiro
                 relacionamentoAcerto.AcertoConsignado.Remover(Relacionamento);
         }
 
-        protected virtual void AlternarBandeja(object sender, System.EventArgs e)
+        public virtual Relacionamento ReobterRelacionamento()
+        {
+            long código = Relacionamento.Código;
+
+            if (Relacionamento is Entidades.Relacionamento.Saída.Saída)
+                return Entidades.Relacionamento.Saída.Saída.ObterSaída(código);
+            else if (Relacionamento is Entidades.Relacionamento.Retorno.Retorno)
+                return Entidades.Relacionamento.Retorno.Retorno.ObterRetorno(código);
+
+            throw new NotImplementedException(Relacionamento.GetType().ToString());
+        }
+
+        protected virtual void AlternarBandeja(object sender, EventArgs e)
         {
             if (optAgrupado.Checked)
                 digitação.TipoExibiçãoAtual = DigitaçãoComum.TipoExibição.TipoAgrupado;
@@ -179,7 +192,7 @@ namespace Apresentação.Financeiro
 
         }
 
-        private void opçãoImprimir_Click(object sender, System.EventArgs e)
+        private void opçãoImprimir_Click(object sender, EventArgs e)
         {
             Imprimir();
         }
@@ -195,26 +208,28 @@ namespace Apresentação.Financeiro
         {
             RelacionamentoAcerto relacionamentoAcerto = Relacionamento as RelacionamentoAcerto;
 
-
             bool entidadeTravada = relacionamentoAcerto.Travado;
             AtualizarTravamento(entidadeTravada);
 
             if (!entidadeTravada)
             {
-                //Beepador.Erro();
-                MessageBox.Show(this, "O documento já está destravado", "Erro ao destravar documento de consignado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show(this, "O documento já está destravado", "Erro ao destravar documento de consignado", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
             else if (!ValidarPermissãoDestravar())
             {
-                MessageBox.Show(this, "Você não tem permissão para destravar o documento.\n", "Não é possível destravar documento", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show(this, "Você não tem permissão para destravar o documento.\n", 
+                    "Não é possível destravar documento", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            if (MessageBox.Show(this, "Você rasgou o documento já impresso ? ", "Destravar documento de consignado", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            if (MessageBox.Show(this, "Você rasgou o documento já impresso ? ", "Destravar documento de consignado", 
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 == DialogResult.No)
             {
-                MessageBox.Show(this, "Você deveria rasgá-lo antes, caso contrário existirão duas versões impressas diferentes, o que gera confusão.", "Destravar documento de consignado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show(this, "Você deveria rasgá-lo antes, caso contrário existirão duas versões impressas diferentes, o que gera confusão.", 
+                    "Destravar documento de consignado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
             
@@ -226,7 +241,8 @@ namespace Apresentação.Financeiro
             catch (Exception err)
             {
                 Beepador.Erro();
-                MessageBox.Show(this, " O servidor não pode destravar documento de consignado\n\n" + err.Message, "Erro ao destravar consignado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show(this, " O servidor não pode destravar documento de consignado\n\n" + err.Message, 
+                    "Erro ao destravar consignado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
         }
@@ -317,13 +333,16 @@ namespace Apresentação.Financeiro
 
         private void opçãoVisualizarImpressão_Click(object sender, EventArgs e)
         {
-            Apresentação.Formulários.JanelaImpressão j = new Formulários.JanelaImpressão();
-
+            Formulários.JanelaImpressão j = new Formulários.JanelaImpressão();
             InserirDocumento(j);
-
             j.Show();
         }
 
         protected abstract void InserirDocumento(Formulários.JanelaImpressão j);
+
+        public void Recarregar()
+        {
+            Abrir(ReobterRelacionamento());
+        }
     }
 }

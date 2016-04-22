@@ -16,7 +16,7 @@ namespace Apresentação.Mercadoria.Bandeja
     /// Um saquinho da bandeja nunca deve ser utilizado fora dela.
     /// A bandeja deve sempre copiar os dados ao envia-los para fora.
     /// </summary>
-	public class Bandeja : System.Windows.Forms.UserControl, IEnumerable, IPósCargaSistema
+	public class Bandeja : UserControl, IEnumerable, IPósCargaSistema
 	{
         /// <summary>
         /// Tempo que a sinalização de mudança na bandeja
@@ -541,18 +541,13 @@ namespace Apresentação.Mercadoria.Bandeja
 			}
 			if (nISaquinhos == 1 && SeleçãoMudou != null)
 			{
-                //SeleçãoMudou(this, (ISaquinho) items[lista.SelectedItems[0]]);
                 SeleçãoMudou(this, hashListViewItemSaquinho[lista.SelectedItems[0]]);
-
-                //btnSubir.Enabled = lista.SelectedIndices[0] > 0;
-                //btnDescer.Enabled = lista.SelectedIndices[0] < lista.Items.Count - 1;
 			}
 			else if (nISaquinhos > 1 && SaquinhosSelecionados != null)
 			{
 				ISaquinho [] ISaquinhos = new ISaquinho[nISaquinhos];
 
 				for (int i = 0; i < nISaquinhos; i++)
-                    //ISaquinhos[i] = (ISaquinho) items[lista.SelectedItems[i]];
                     ISaquinhos[i] = hashListViewItemSaquinho[lista.SelectedItems[i]];
 
 				SaquinhosSelecionados(this, ISaquinhos);
@@ -677,7 +672,6 @@ namespace Apresentação.Mercadoria.Bandeja
                         double totalÍndicePeso = 0;
                         double totalÍndicePeça = 0;
                         double totalPreço = 0;
-                        //string    totalPesoStr;
                         bool selecionados = (lista.SelectedItems.Count > 0);
 
                         if (selecionados)
@@ -772,7 +766,7 @@ namespace Apresentação.Mercadoria.Bandeja
 
                                 panelQuantidade.Text = merc.Descrição;
                             }
-                        else // listaEntidades.ISaquinho.ISaquinhos.Count == 0
+                        else 
                             panelQuantidade.Text = "Nenhum item para exibição";
 
                         panelPesoTotal.Text = Entidades.Mercadoria.Mercadoria.FormatarPeso(totalPeso);
@@ -812,38 +806,22 @@ namespace Apresentação.Mercadoria.Bandeja
 
 		private void AtualizarEnabledBotõesBarraFerramentas()
 		{
-			if (lista.SelectedItems.Count == 0)
-			{
-				btnExcluir.Enabled = false;
+            if (lista.SelectedItems.Count == 0)
+            {
+                btnExcluir.Enabled = false;
                 mnuExcluir.Enabled = false;
                 mnuAlterarÍndice.Enabled = false;
                 btnAlterarÍndice.Enabled = false;
-                //btnAlterar.Enabled = false;
-				mnuConsultar.Enabled = false;
-                //btnDescer.Enabled = false;
-                //btnSubir.Enabled = false;
-			}
-			else
-			{
-				btnExcluir.Enabled = permitirExclusão;
-                //btnAlterar.Enabled = true;
+                mnuConsultar.Enabled = false;
+            }
+            else
+            {
+                btnExcluir.Enabled = permitirExclusão;
                 mnuAlterarÍndice.Enabled = permitirExclusão;
                 btnAlterarÍndice.Enabled = permitirExclusão;
-				mnuExcluir.Enabled = permitirExclusão;
-				mnuConsultar.Enabled = true;
-				
-                ////Subir e descer só quando tem apenas 1 selecionado.
-                //if (lista.SelectedItems.Count == 1) 
-                //{
-                //    btnDescer.Enabled = (lista.SelectedItems[0].Index != lista.Items.Count - 1);
-                //    btnSubir.Enabled = (lista.SelectedItems[0].Index != 0);
-                //} 
-                //else
-                //{
-                //    btnDescer.Enabled = false;
-                //    btnSubir.Enabled = false;
-                //}
-			}
+                mnuExcluir.Enabled = permitirExclusão;
+                mnuConsultar.Enabled = true;
+            }				
 		}
 
 		/// <summary>
@@ -1155,7 +1133,9 @@ namespace Apresentação.Mercadoria.Bandeja
             {
                 sinalização.Imagem = mercadoria.Ícone;
             }
-            catch { /* Ignorar */ }
+            catch
+            {
+            }
         }
 
         /// <summary>
@@ -1180,7 +1160,6 @@ namespace Apresentação.Mercadoria.Bandeja
                 if (hashAgrupamento.TryGetValue(chave, out agrupável))
                 {
                     // O próprio Remover() irá retirar da hashAgrupamento.
-                    //hashAgrupamento.Remove(chave);
                     saquinhoOriginal = saquinhoOriginal.Clone(saquinhoOriginal.Quantidade + agrupável.Quantidade);
                     RemoverInterno(agrupável);
                     hashAgrupamento[chave] = saquinhoOriginal;
@@ -1449,16 +1428,20 @@ namespace Apresentação.Mercadoria.Bandeja
 			foreach (ListViewItem item in lista.SelectedItems)
 				exclusão.Add(item);
 
-            // A remoção trava o VS com leiaute suspenso. (até no VS2005)
-			//SuspendeLeiaute = true;
-
 			foreach (ListViewItem item in exclusão)
 			{
 				ISaquinho s = hashListViewItemSaquinho[item];
 
                 if (item.Selected)
                 {
-                    Remover((Saquinho) s);
+                    try
+                    {
+                        Remover((Saquinho)s);
+                    } catch (OperationCanceledException)
+                    {
+                        return;
+                    }
+
                     listaExcluídos.Add(s);
                 }
 			}

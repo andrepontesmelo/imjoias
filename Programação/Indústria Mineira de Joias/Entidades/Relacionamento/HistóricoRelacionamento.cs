@@ -4,6 +4,7 @@ using System.Collections;
 using Acesso.Comum;
 using System.Data;
 using System.Text;
+using System.ComponentModel;
 
 namespace Entidades.Relacionamento
 {
@@ -76,6 +77,9 @@ namespace Entidades.Relacionamento
             if (!entidadePai.Cadastrado)
                 entidadePai.Cadastrar();
             
+            if (lista.Count != ContarItens())
+                throw new InvalidAsynchronousStateException();
+
             novoItem.Cadastrar();
 
             Adicionar(novoItem);
@@ -192,6 +196,22 @@ namespace Entidades.Relacionamento
         }
 
 
+        private long ContarItens()
+        {
+            IDbConnection conexão = Conexão;
+
+            lock (conexão)
+            {
+                using (IDbCommand cmd = conexão.CreateCommand())
+                {
+                    cmd.CommandText = "select count(*) from " + Tabela + " where " + TabelaPai + " = " + DbTransformar(entidadePai.Código);
+                    long qtd = (long) cmd.ExecuteScalar(); ;
+
+                    return qtd;
+                }
+            }
+        }
+
         private enum Ordem { ordemSaída, ordemReferência, ordemPeso, ordemQuantidade, ordemData, ordemFuncionário, ordemCódigo, ordemÍndice }
 
         /// <summary>
@@ -230,11 +250,6 @@ namespace Entidades.Relacionamento
                             Entidades.Mercadoria.Mercadoria m = Mercadoria.Mercadoria.ObterMercadoria(referência, peso, entidadePai.TabelaPreço);
 
                             m.Índice = índice;
-
-                            //if (m.DePeso)
-                            //    m.Coeficiente = índice / peso;
-                            //else
-                            //    m.Coeficiente = índice;
 
                             HistóricoRelacionamentoItem item = ConstruirItemHistórico(
                                 m,

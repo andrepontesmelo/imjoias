@@ -6,16 +6,17 @@ using Entidades.Privilégio;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using Entidades.Relacionamento;
 
 namespace Apresentação.Financeiro.Venda
 {
-    public partial class BaseEditarVenda : Apresentação.Financeiro.BaseEditarRelacionamento
+    public partial class BaseEditarVenda : BaseEditarRelacionamento
     {
-        protected new Entidades.Relacionamento.RelacionamentoAcerto Relacionamento
+        protected new RelacionamentoAcerto Relacionamento
         {
             get
             {
-                return base.Relacionamento as Entidades.Relacionamento.RelacionamentoAcerto;
+                return base.Relacionamento as RelacionamentoAcerto;
             }
         }
 
@@ -34,8 +35,8 @@ namespace Apresentação.Financeiro.Venda
             digitação.Name = "digitação";
             digitação.Size = base.digitação.Size;
             digitação.TabIndex = base.digitação.TabIndex;
-            digitação.TipoExibiçãoAtual = Apresentação.Financeiro.DigitaçãoComum.TipoExibição.TipoAgrupado;
-            ((DigitaçãoVenda)digitação).Verificador = verificadorMercadoria;
+            digitação.TipoExibiçãoAtual = DigitaçãoComum.TipoExibição.TipoAgrupado;
+            digitação.Verificador = verificadorMercadoria;
             verificadorMercadoria.SetVerificarMercadoria(digitação, true);
             verificadorMercadoria.SetVerificarMercadoria(digitaçãoDevolução, true);
             digitaçãoDevolução.Verificador = verificadorMercadoria;
@@ -48,13 +49,13 @@ namespace Apresentação.Financeiro.Venda
             digitaçãoDevolução.PermitirSeleçãoTabela = false;
             digitação.PermitirSeleçãoTabela = false;
 
-            if (this.DesignMode) return;
+            if (DesignMode) return;
 
-            this.tabs.SuspendLayout();
-            this.tabs.Controls.Clear();
-            this.tabs.Controls.AddRange(new Control[] {
+            tabs.SuspendLayout();
+            tabs.Controls.Clear();
+            tabs.Controls.AddRange(new Control[] {
                 tabVenda, tabItens, tabDébitos, tabCréditos, tabDevolução, tabPagamentos, tabObservações });
-            this.tabs.ResumeLayout();
+            tabs.ResumeLayout();
            
         }
 
@@ -158,6 +159,11 @@ namespace Apresentação.Financeiro.Venda
                 }
 
             CadastrarVendaSeNecessário();
+        }
+
+        public override Relacionamento ReobterRelacionamento()
+        {
+            return Entidades.Relacionamento.Venda.Venda.ObterVenda(Relacionamento.Código);
         }
 
         void v_AoCancelarCadastro(object sender, EventArgs e)

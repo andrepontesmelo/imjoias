@@ -141,6 +141,8 @@ namespace Apresentação.Financeiro
 
         public void Abrir(HistóricoRelacionamento coleção)
         {
+            LimparLista();
+
             ArrayList lista = new ArrayList(coleção.Count);
 
             foreach (HistóricoRelacionamentoItem item in coleção)
