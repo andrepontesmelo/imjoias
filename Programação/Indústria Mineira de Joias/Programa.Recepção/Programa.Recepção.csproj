@@ -1,0 +1,390 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{419E72D5-4B39-4532-9A8A-89A11F002A79}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>imjoias.ico</ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>IMJ.Recepcao</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Programa.Recepção</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <ManifestCertificateThumbprint>6A418318E58EED9B0E1E0A9649B5BCE177F80F72</ManifestCertificateThumbprint>
+    <ManifestKeyFile>Programa.Recepção_TemporaryKey.pfx</ManifestKeyFile>
+    <GenerateManifests>true</GenerateManifests>
+    <SignManifests>false</SignManifests>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetZone>LocalIntranet</TargetZone>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+    <SignAssembly>false</SignAssembly>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <PublishUrl>C:\Users\andrep\Desktop\recepcao\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Unc</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>\\192.168.1.20\pub\recepcao\</InstallUrl>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Optimize>true</Optimize>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <Optimize>true</Optimize>
+    <FileAlignment>4096</FileAlignment>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="..\..\Balloon.NET\Balloon.NET.csproj">
+      <Project>{0e6f1b58-b832-4d96-9be9-a61ddaa18c4c}</Project>
+      <Name>Balloon.NET</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Acesso - MySQL\Acesso - MySQL.csproj">
+      <Project>{8490E476-B38E-4405-A1B2-24BF7F20343F}</Project>
+      <Name>Acesso - MySQL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Acesso.Comum\Acesso.Comum.csproj">
+      <Name>Acesso.Comum</Name>
+      <Project>{48DA2925-CF1F-4875-8A00-6851C7ABEEB8}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Apresentação\Apresentação.csproj">
+      <Project>{6AA4653A-554C-4A2D-92EF-CBC55B57FCED}</Project>
+      <Name>Apresentação</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entidades\Entidades.csproj">
+      <Name>Entidades</Name>
+      <Project>{E1A76D2D-85F3-4202-B316-3C6BDD3220F9}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Negócio\Negócio.csproj">
+      <Project>{80F2CB41-B349-4349-8667-E67C50CD79CF}</Project>
+      <Name>Negócio</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AgendaTelefone.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseInferior\Agenda.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaseInferior\AusênciaAutomática.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaseInferior\Controles\CadastrarTelefonema.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaseInferior\Controles\FuncionárioAusência.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaseInferior\Controles\ListaVisitantes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaseInferior\Controles\PessoaEscolhida.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseInferior\EntradaSaída.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaseInferior\RegistrarVisitante.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaseInferior\Telefonemas.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControladorBotãoRodízio.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Formulários\Agenda\Exclusão.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulários\Agenda\Telefone.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulários\EntradaSaída\AtribuirAtendimento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulários\EntradaSaída\BalãoAtribuirAusência.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulários\EntradaSaída\CorrigirNome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulários\EntradaSaída\CorrigirNome.Designer.cs">
+      <DependentUpon>CorrigirNome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formulários\EntradaSaída\IniciarAtendimento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulários\EntradaSaída\NotificaçãoHorário.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulários\EntradaSaída\RegistrarSaída.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulários\EntradaSaída\RodízioPropriedades.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulários\EntradaSaída\VisualizarVisitas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulários\EntradaSaída\VisualizarVisitas.Designer.cs">
+      <DependentUpon>VisualizarVisitas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Recepção.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <EmbeddedResource Include="BaseInferior\Agenda.resx">
+      <DependentUpon>Agenda.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseInferior\AusênciaAutomática.resx">
+      <DependentUpon>AusênciaAutomática.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseInferior\Controles\CadastrarTelefonema.resx">
+      <DependentUpon>CadastrarTelefonema.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseInferior\Controles\FuncionárioAusência.resx">
+      <DependentUpon>FuncionárioAusência.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseInferior\Controles\ListaVisitantes.resx">
+      <DependentUpon>ListaVisitantes.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseInferior\EntradaSaída.resx">
+      <DependentUpon>EntradaSaída.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseInferior\RegistrarVisitante.resx">
+      <DependentUpon>RegistrarVisitante.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseInferior\Telefonemas.resx">
+      <DependentUpon>Telefonemas.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulários\Agenda\Exclusão.resx">
+      <DependentUpon>Exclusão.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulários\Agenda\Telefone.resx">
+      <DependentUpon>Telefone.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulários\EntradaSaída\AtribuirAtendimento.resx">
+      <DependentUpon>AtribuirAtendimento.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulários\EntradaSaída\BalãoAtribuirAusência.resx">
+      <DependentUpon>BalãoAtribuirAusência.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulários\EntradaSaída\CorrigirNome.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>CorrigirNome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulários\EntradaSaída\IniciarAtendimento.resx">
+      <DependentUpon>IniciarAtendimento.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulários\EntradaSaída\NotificaçãoHorário.resx">
+      <DependentUpon>NotificaçãoHorário.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulários\EntradaSaída\RegistrarSaída.resx">
+      <DependentUpon>RegistrarSaída.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulários\EntradaSaída\RodízioPropriedades.resx">
+      <DependentUpon>RodízioPropriedades.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulários\EntradaSaída\VisualizarVisitas.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>VisualizarVisitas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recepção.resx">
+      <DependentUpon>Recepção.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Resources\botão - pessoas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\relatório.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Programa.Recepção_TemporaryKey.pfx" />
+    <None Include="Properties\app.manifest" />
+    <None Include="Resources\RenameFolderHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="imjoias.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties PolicyFile="" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
