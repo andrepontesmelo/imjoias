@@ -537,13 +537,16 @@ namespace Entidades.Pessoa
                     // Procura por código da pessoa
                     long código;
                     bool chaveÉNúmero = long.TryParse(chaveBusca, out código);
+                    string chaveCoringa = chaveBusca.Replace(' ', '%');
 
                     try
                     {
                         if (!chaveÉNúmero)
                             comando.Append("select * from (");
 
-                        comando.Append("SELECT p.codigo as cod, p.nome, p.setor, p.email, p.observacoes, p.ultimaVisita, p.dataRegistro, p.dataAlteracao, p.classificacoes, p.maiorVenda, p.credito, p.fornecedor, p.regiao, pf.*,pj.codigo as c, pj.cnpj, pj.fantasia, pj.inscEstadual, pj.inscMunicipal FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE  ");
+                        comando.Append("SELECT p.codigo as cod, p.nome, p.setor, p.email, p.observacoes, p.ultimaVisita, p.dataRegistro, p.dataAlteracao, p.classificacoes, p.maiorVenda, ");
+                        comando.Append(" p.credito, p.fornecedor, p.regiao, pf.*,pj.codigo as c, pj.cnpj, pj.fantasia, pj.inscEstadual, pj.inscMunicipal FROM pessoa p ");
+                        comando.Append(" left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE  ");
 
                         // Inclui busca por código da pessoa
                         if (chaveÉNúmero)
@@ -553,12 +556,23 @@ namespace Entidades.Pessoa
                         }
                         else
                         {
-
-                            // gomes%
+                            // nilma%
                             comando.Append(" nome LIKE '");
                             comando.Append(chaveBusca.Substring(0, chaveBusca.Length).Replace('%', ' '));
                             comando.Append("%' ORDER BY nome ");
-                            comando.Append(") aa UNION select * FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE ");
+                            comando.Append(") aa ");
+
+                            if (chaveBusca.Contains(" "))
+                            {
+                                // nilma%souza%
+                                comando.Append(" UNION select * from   (SELECT p.codigo as cod, p.nome, p.setor, p.email, p.observacoes, p.ultimaVisita, p.dataRegistro, p.dataAlteracao, ");
+                                comando.Append(" p.classificacoes, p.maiorVenda, p.credito, p.fornecedor, p.regiao, pf.*,pj.codigo as c, pj.cnpj, pj.fantasia, pj.inscEstadual, pj.inscMunicipal ");
+                                comando.Append(" FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE nome LIKE '");
+                                comando.Append(chaveCoringa.Substring(0, chaveCoringa.Length));
+                                comando.Append("%' ORDER BY nome ) a ");
+                            }
+
+                            comando.Append(" UNION select * FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE ");
 
                             comando.Append(" match(nome) against ('" + chaveBusca + "') ");
                         }
