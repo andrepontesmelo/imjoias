@@ -525,7 +525,7 @@ namespace Entidades.Pessoa
             List<Pessoa> dados = new List<Pessoa>(limite);
             IDbConnection conexão = Conexão;
             chaveBusca = chaveBusca.Trim();
-            chaveBusca = chaveBusca.Replace("%%", "%").Replace("'","").Replace("\"","").Replace("\\","").Replace("  "," ").Replace("  "," ");
+            chaveBusca = chaveBusca.Replace("%", "").Replace("'","").Replace("\"","").Replace("\\","").Replace("  "," ").Replace("  "," ");
 
             StringBuilder comando = new StringBuilder();
 
@@ -558,7 +558,7 @@ namespace Entidades.Pessoa
                         {
                             // nilma%
                             comando.Append(" nome LIKE '");
-                            comando.Append(chaveBusca.Substring(0, chaveBusca.Length).Replace('%', ' '));
+                            comando.Append(chaveBusca);
                             comando.Append("%' ");
 
                             if (chaveBusca.Contains(" "))
@@ -577,15 +577,22 @@ namespace Entidades.Pessoa
                             comando.Append(" match(nome) against ('" + chaveBusca + "') ");
 
                             // Fulltext search @ pessoajuridica.fantasia
-                            // comando.Append(" UNION select * FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE ");
-                            comando.Append(" OR match(fantasia) against ('" + chaveBusca + "') ");
+                            comando.Append(" UNION select * FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE ");
+                            comando.Append(" match(fantasia) against ('" + chaveBusca + "') ");
+
+                            // Fulltext search @ pessoa.email
+                            comando.Append(" UNION select * FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE ");
+                            comando.Append(" match(email) against ('" + chaveBusca + "') ");
+
+                            // Fulltext search @ pessoa.observacoes
+                            comando.Append(" UNION select * FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE ");
+                            comando.Append(" match(observacoes) against ('" + chaveBusca + "') ");
                         }
 
                         comando.Append(" limit ");
                         comando.Append(limite.ToString());
 
                         cmd.CommandText = comando.ToString();
-                        //System.Windows.Forms.MessageBox.Show(comando.ToString());
                         using (leitor = cmd.ExecuteReader())
                         {
                             while (leitor.Read())
