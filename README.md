@@ -38,8 +38,3 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 ![Label](https://raw.githubusercontent.com/andrepontesmelo/imjoias/screenshots/Telas/etiqueta.jpg
  "Label")
 
-## Sales
-
-![Sale](https://raw.githubusercontent.com/andrepontesmelo/imjoias/screenshots/Telas/venda.jpg
- "Sale")
-
