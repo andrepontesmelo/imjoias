@@ -559,32 +559,33 @@ namespace Entidades.Pessoa
                             // nilma%
                             comando.Append(" nome LIKE '");
                             comando.Append(chaveBusca.Substring(0, chaveBusca.Length).Replace('%', ' '));
-                            comando.Append("%' ORDER BY nome ");
-                            comando.Append(") aa ");
+                            comando.Append("%' ");
 
                             if (chaveBusca.Contains(" "))
                             {
                                 // nilma%souza%
-                                comando.Append(" UNION select * from   (SELECT p.codigo as cod, p.nome, p.setor, p.email, p.observacoes, p.ultimaVisita, p.dataRegistro, p.dataAlteracao, ");
-                                comando.Append(" p.classificacoes, p.maiorVenda, p.credito, p.fornecedor, p.regiao, pf.*,pj.codigo as c, pj.cnpj, pj.fantasia, pj.inscEstadual, pj.inscMunicipal ");
-                                comando.Append(" FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE nome LIKE '");
+                                comando.Append(" OR nome LIKE '");
                                 comando.Append(chaveCoringa.Substring(0, chaveCoringa.Length));
-                                comando.Append("%' ORDER BY nome ) a ");
+                                comando.Append("%' ");
                             }
+
+                            comando.Append(" ORDER BY nome ");
+                            comando.Append(") aa ");
 
                             // Fulltext search @ pessoa.nome
                             comando.Append(" UNION select * FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE ");
                             comando.Append(" match(nome) against ('" + chaveBusca + "') ");
 
                             // Fulltext search @ pessoajuridica.fantasia
-                            comando.Append(" UNION select * FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE ");
-                            comando.Append(" match(fantasia) against ('" + chaveBusca + "') ");
+                            // comando.Append(" UNION select * FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE ");
+                            comando.Append(" OR match(fantasia) against ('" + chaveBusca + "') ");
                         }
 
                         comando.Append(" limit ");
                         comando.Append(limite.ToString());
 
                         cmd.CommandText = comando.ToString();
+                        //System.Windows.Forms.MessageBox.Show(comando.ToString());
                         using (leitor = cmd.ExecuteReader())
                         {
                             while (leitor.Read())
