@@ -572,9 +572,13 @@ namespace Entidades.Pessoa
                                 comando.Append("%' ORDER BY nome ) a ");
                             }
 
+                            // Fulltext search @ pessoa.nome
                             comando.Append(" UNION select * FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE ");
-
                             comando.Append(" match(nome) against ('" + chaveBusca + "') ");
+
+                            // Fulltext search @ pessoajuridica.fantasia
+                            comando.Append(" UNION select * FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE ");
+                            comando.Append(" match(fantasia) against ('" + chaveBusca + "') ");
                         }
 
                         comando.Append(" limit ");
