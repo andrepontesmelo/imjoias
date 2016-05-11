@@ -1,3 +1,4 @@
+using Apresentação.Financeiro.Comissões;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -25,6 +26,7 @@ namespace Apresentação.Usuário.InterForm
         protected Apresentação.Formulários.Quadro quadroRamais;
         private Apresentação.Usuário.Funcionários.Ramais ramais;
         private Formulários.Opção opçãoNovidades;
+        private Formulários.Opção opçãoComissão;
         private System.ComponentModel.IContainer components = null;
 
 		/// <summary>
@@ -80,6 +82,7 @@ namespace Apresentação.Usuário.InterForm
             this.título = new Apresentação.Formulários.TítuloBaseInferior();
             this.listaAgendamentos = new Apresentação.Usuário.Agendamentos.ListaAgendamentosAtuais();
             this.quadroPrivado = new Apresentação.Formulários.Quadro();
+            this.opçãoComissão = new Apresentação.Formulários.Opção();
             this.opçãoNovidades = new Apresentação.Formulários.Opção();
             this.opçãoAgendamentos = new Apresentação.Formulários.Opção();
             this.opçãoRamal = new Apresentação.Formulários.Opção();
@@ -129,6 +132,7 @@ namespace Apresentação.Usuário.InterForm
             this.quadroPrivado.bInfEsqArredondada = true;
             this.quadroPrivado.bSupDirArredondada = true;
             this.quadroPrivado.bSupEsqArredondada = true;
+            this.quadroPrivado.Controls.Add(this.opçãoComissão);
             this.quadroPrivado.Controls.Add(this.opçãoNovidades);
             this.quadroPrivado.Controls.Add(this.opçãoAgendamentos);
             this.quadroPrivado.Controls.Add(this.opçãoRamal);
@@ -139,17 +143,31 @@ namespace Apresentação.Usuário.InterForm
             this.quadroPrivado.Location = new System.Drawing.Point(7, 13);
             this.quadroPrivado.MostrarBotãoMinMax = false;
             this.quadroPrivado.Name = "quadroPrivado";
-            this.quadroPrivado.Size = new System.Drawing.Size(160, 114);
+            this.quadroPrivado.Size = new System.Drawing.Size(160, 131);
             this.quadroPrivado.TabIndex = 1;
             this.quadroPrivado.Tamanho = 30;
             this.quadroPrivado.Título = "Ações";
+            // 
+            // opçãoComissão
+            // 
+            this.opçãoComissão.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoComissão.Descrição = "Minha comissão";
+            this.opçãoComissão.Imagem = global::Apresentação.Resource.comissao;
+            this.opçãoComissão.Location = new System.Drawing.Point(7, 90);
+            this.opçãoComissão.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoComissão.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoComissão.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoComissão.Name = "opçãoComissão";
+            this.opçãoComissão.Size = new System.Drawing.Size(150, 16);
+            this.opçãoComissão.TabIndex = 7;
+            this.opçãoComissão.Click += new System.EventHandler(this.opçãoComissão_Click);
             // 
             // opçãoNovidades
             // 
             this.opçãoNovidades.BackColor = System.Drawing.Color.Transparent;
             this.opçãoNovidades.Descrição = "Ver novidades da versão";
             this.opçãoNovidades.Imagem = global::Apresentação.Resource.eventlogInfo3;
-            this.opçãoNovidades.Location = new System.Drawing.Point(7, 90);
+            this.opçãoNovidades.Location = new System.Drawing.Point(7, 110);
             this.opçãoNovidades.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoNovidades.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoNovidades.MinimumSize = new System.Drawing.Size(150, 16);
@@ -298,6 +316,11 @@ namespace Apresentação.Usuário.InterForm
         private void opçãoNovidades_Click(object sender, EventArgs e)
         {
             Process.Start("https://github.com/andrepontesmelo/imjoias/commits/" + Versão.Descrição);
+        }
+
+        private void opçãoComissão_Click(object sender, EventArgs e)
+        {
+            SubstituirBase(new BaseComissão());
         }
     }
 }

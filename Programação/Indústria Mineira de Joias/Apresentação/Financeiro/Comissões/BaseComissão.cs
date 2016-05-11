@@ -1,22 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
+﻿using Entidades.ComissãoCálculo;
+using System;
 using System.Windows.Forms;
-using Entidades.Relacionamento.Venda;
-using Entidades;
-using Apresentação.Financeiro.Venda;
-using Apresentação.Formulários;
-using Entidades.ComissãoCálculo;
 
 namespace Apresentação.Financeiro.Comissões
 {
-    public partial class BaseComissão : Apresentação.Formulários.BaseInferior
+    public partial class BaseComissão : Formulários.BaseInferior
     {
-        //private Dictionary<ListViewItem, Comissão> hashComissões;
-
         public BaseComissão()
         {
             InitializeComponent();
@@ -26,33 +15,22 @@ namespace Apresentação.Financeiro.Comissões
         {
             base.AoExibir();
 
+            quadro1.Visible = quadro2.Visible = quadro3.Visible = Comissão.UsuárioPodeManipularComissão;
+
+            if (!Comissão.UsuárioPodeManipularComissão)
+                títuloBaseInferior.Descrição = "Acesso somente leitura.";
+
             listaComissões.Carregar();
-
-            //// Recarrega a lista de comissões.
-            //List<Comissão> lista = Comissão.ObterComissões();
-            //hashComissões = new Dictionary<ListViewItem, Comissão>();
-            //lstComissões.Items.Clear();
-            //foreach (Comissão c in lista)
-            //{
-            //    ListViewItem novoItem = new ListViewItem();
-            //    novoItem.Text = c.Código.ToString();
-            //    novoItem.SubItems.Add(c.Funcionário.Nome);
-            //    novoItem.SubItems.Add(c.Descrição);
-            //    lstComissões.Items.Add(novoItem);
-            //    hashComissões[novoItem] = c;
-            //}
-
-            //if (lista.Count == 0)
-            //    CriarComissão();
         }
 
         private void opçãoNova_Click(object sender, EventArgs e)
         {
+            Comissão.AssegurarPermissãoManipulaçãoComissão();
+
             JanelaNovaComissão janela = new JanelaNovaComissão();
             janela.EventoComissãoAlterardaOuCadastrada += janela_EventoComissãoAlterardaOuCadastrada;
             janela.ShowDialog();
         }
-
 
         private void opçãoAlterarEstado_Click(object sender, EventArgs e)
         {
@@ -61,6 +39,8 @@ namespace Apresentação.Financeiro.Comissões
 
         private void Editar()
         {
+            Comissão.AssegurarPermissãoManipulaçãoComissão();
+
             UseWaitCursor = true;
             Application.DoEvents();
 
@@ -68,7 +48,6 @@ namespace Apresentação.Financeiro.Comissões
 
             if (selecionado == null)
                 return;
-
 
             JanelaNovaComissão janela = new JanelaNovaComissão();
             janela.EventoComissãoAlterardaOuCadastrada += janela_EventoComissãoAlterardaOuCadastrada;
@@ -90,6 +69,8 @@ namespace Apresentação.Financeiro.Comissões
 
         private void Excluir()
         {
+            Comissão.AssegurarPermissãoManipulaçãoComissão();
+
             Comissão selecionado = listaComissões.Selecionado;
 
             if (selecionado == null)
@@ -145,6 +126,9 @@ namespace Apresentação.Financeiro.Comissões
 
         private void listaComissões_AoPressionar(Keys teclas)
         {
+            if (!Comissão.UsuárioPodeManipularComissão)
+                return;
+
             switch (teclas)
             {
                 case Keys.F2:
@@ -161,6 +145,8 @@ namespace Apresentação.Financeiro.Comissões
 
         private void opçãoImprimir_Click(object sender, EventArgs e)
         {
+            Comissão.AssegurarPermissãoManipulaçãoComissão();
+
             Comissão selecionado = listaComissões.Selecionado;
 
             if (selecionado == null)
@@ -173,6 +159,7 @@ namespace Apresentação.Financeiro.Comissões
 
         private void opçãoVendasSemComissão_Click(object sender, EventArgs e)
         {
+            Comissão.AssegurarPermissãoManipulaçãoComissão();
             SubstituirBase(new BaseVendaSemComissão());
         }
     }
