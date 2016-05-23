@@ -1,15 +1,11 @@
-﻿using System;
+﻿using Apresentação.Formulários;
+using Entidades;
+using Entidades.ComissãoCálculo;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using Entidades.ComissãoCálculo;
-using Apresentação.Formulários;
-using Entidades;
 using System.Globalization;
+using System.Windows.Forms;
 
 namespace Apresentação.Financeiro.Comissões
 {
@@ -58,15 +54,12 @@ namespace Apresentação.Financeiro.Comissões
         {
             Comissão comissão = (Comissão)e.Argument;
             List<Entidades.Pessoa.Pessoa> pessoasTodas = Entidades.Pessoa.Pessoa.ObterPessoasComissionadas();
-            //List<Entidades.Pessoa.Pessoa> pessoasChecadas = Entidades.Pessoa.Pessoa.ObterPessoasNaComissão(comissão.Código);
             List<Entidades.Pessoa.Pessoa> pessoasChecadas = pessoasTodas;
             vetorPessoas = new Entidades.Pessoa.Pessoa[pessoasTodas.Count];
             List<KeyValuePair<Entidades.Pessoa.Pessoa, bool>> lstParPessoaChecada = new List<KeyValuePair<Entidades.Pessoa.Pessoa, bool>>();
+
             foreach (Entidades.Pessoa.Pessoa p in pessoasTodas)
-            {
                 lstParPessoaChecada.Add(new KeyValuePair<Entidades.Pessoa.Pessoa, bool>(p, pessoasChecadas.Contains(p)));
-  
-            }
 
             resumos = Resumo.Obter(comissão.Código);
 
@@ -96,6 +89,7 @@ namespace Apresentação.Financeiro.Comissões
                 vetorPessoas[x++] = par.Key;
                 novoItem.Checked = par.Value;
                 Resumo resumo = ObterResumo(par.Key);
+
                 if (resumo != null)
                 {
                     novoItem.SubItems.AddRange(new string[] {formatarValor(resumo.Comissaoaberta), 

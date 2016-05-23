@@ -11,23 +11,20 @@ namespace Apresentação.Financeiro.Comissões
 {
     public partial class BaseEditarComissão : BaseInferior
     {
-        /// <summary>
-        /// O processamento de comissão só é feito quando o usuário abre a aba do resultado.
-        /// É reculado quando tem alteração de venda selecionada.
-        /// </summary>
-        //private bool resultadoPrecisaSerRecalculado;
         Comissão comissão;
         private bool necessárioRecarregar = false;
 
         public BaseEditarComissão()
         {
             InitializeComponent();
+
+            comissãoPara = NovaComissãoPara = Comissão.UsuárioPodeManipularComissão ? null :
+                Entidades.Pessoa.Funcionário.FuncionárioAtual;
         }
 
         private DateTime? diaInicial = null;
         private DateTime? diaFinal = null;
-        private Entidades.Pessoa.Pessoa comissãoPara = null;
-
+        private Entidades.Pessoa.Pessoa comissãoPara;
 
         private DateTime? DiaInicial
         {
@@ -88,7 +85,12 @@ namespace Apresentação.Financeiro.Comissões
        
         private Entidades.Pessoa.Pessoa NovaComissãoPara
         {
-            get { return comboboxFuncionário.Enabled ? comboboxFuncionário.Funcionário : null; }
+            get {
+                if (!Comissão.UsuárioPodeManipularComissão)
+                    return Entidades.Pessoa.Funcionário.FuncionárioAtual;
+
+                return comboboxFuncionário.Enabled ? comboboxFuncionário.Funcionário : null;
+            }
             set
             {
                 comissãoPara = value;
@@ -110,14 +112,25 @@ namespace Apresentação.Financeiro.Comissões
             set { comissãoPara = value; }
         }
      
+        private void AlternarExibiçãoSomenteLeitura()
+        {
+            tabs.Controls.Remove(tabVendedores);
+            tabs.Controls.Remove(tabAjuda);
+            quadro1.Visible = quadro3.Visible = iconeFiltroPessoa.Visible = comboboxFuncionário.Visible = false;
+            comissãoPara = comboboxFuncionário.Funcionário = Entidades.Pessoa.Funcionário.FuncionárioAtual;
+        }
+
         public void Abrir(Comissão comissão)
         {
             this.comissão = comissão;
-
-            títuloBaseInferior.Título = "Edição de comissão No " + comissão.Código.ToString() +
+            títuloBaseInferior.Título = (Comissão.UsuárioPodeManipularComissão ? "Edição de comissão" : "Comissão de " + 
+                Entidades.Pessoa.Pessoa.ReduzirNome(ComissãoPara.Nome)) + " nº " + comissão.Código.ToString() +
                 " - " + comissão.MêsReferência.ToString("MMMM/yyyy");
-            títuloBaseInferior.Descrição = comissão.Descrição;
 
+            if (!Comissão.UsuárioPodeManipularComissão)
+                AlternarExibiçãoSomenteLeitura();
+
+            títuloBaseInferior.Descrição = comissão.Descrição;
             CarregarListasVendasAbertaseFechadas();
 
             lstComissionados.Carregar(comissão);
@@ -265,7 +278,6 @@ namespace Apresentação.Financeiro.Comissões
         private void iconeDataFinal_Click(object sender, EventArgs e)
         {
             dataFinal.Enabled = !dataFinal.Enabled;
-
             VerificarVisibilidadeLinkAplicarCancelar();
         }
 

@@ -88,57 +88,6 @@ namespace Entidades.Pessoa
             if (cpf == null || cpf.Trim().Length == 0)
                 return true;
 
-
-            /* Nao funciona. Teste com tudo 1 e veja que passa.
-             * 
-            const string máscara = "\\d\\d\\d.\\d\\d\\d.\\d\\d\\d-\\d\\d";
-
-			if (cpf == null || cpf.Length <= 0)
-				return true;
-	
-			if (!Regex.Match(cpf, máscara).Success)
-				return false;
-	
-			if (cpf == "000.000.000-00")
-				return false;
-	
-			int cálculo;
-	
-			cálculo = 10 * (cpf[0] - '0')
-				+ 9 * (cpf[1] - '0')
-				+ 8 * (cpf[2] - '0')
-				+ 7 * (cpf[4] - '0')
-				+ 6 * (cpf[5] - '0')
-				+ 5 * (cpf[6] - '0')
-				+ 4 * (cpf[8] - '0')
-				+ 3 * (cpf[9] - '0')
-				+ 2 * (cpf[10] - '0');
-	
-			cálculo = cálculo - 11 * (int) (cálculo / 11);
-	
-			if ((cálculo <= 1 && cpf[12] != '0')
-				|| (cálculo > 1 && cpf[12] != '0' + 11 - cálculo))
-				return false;
-	
-			cálculo = 11 * (cpf[0] - '0')
-				+ 10 * (cpf[1] - '0')
-				+ 9 * (cpf[2] - '0')
-				+ 8 * (cpf[4] - '0')
-				+ 7 * (cpf[5] - '0')
-				+ 6 * (cpf[6] - '0')
-				+ 5 * (cpf[8] - '0')
-				+ 4 * (cpf[9] - '0')
-				+ 3 * (cpf[10] - '0')
-				+ 2 * (cpf[12] - '0');
-	
-			cálculo = cálculo - 11 * (int) (cálculo / 11);
-	
-			if ((cálculo <= 1 && cpf[13] != '0')
-				|| (cálculo > 1 && cpf[13] != '0' + 11 - cálculo))
-				return false;
-	
-			return true;
-             */
             int[] multiplicador1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
             int[] multiplicador2 = new int[10] { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
             string tempCpf;
@@ -535,7 +484,7 @@ namespace Entidades.Pessoa
                 nomeMae = leitor.GetString(inicioAtributoPessoaFisica + 8);
 
             if (leitor[inicioAtributoPessoaFisica + 9] != DBNull.Value)
-                naturalidadeCódigo = (ulong) leitor.GetInt64(inicioAtributoPessoaFisica + 9);  //Localidade.ObterLocalidade((uint)leitor[inicioAtributoPessoaFisica + 9]);
+                naturalidadeCódigo = (ulong) leitor.GetInt64(inicioAtributoPessoaFisica + 9);
 
             if (leitor[inicioAtributoPessoaFisica + 10] != DBNull.Value)
                 profissão = leitor.GetString(inicioAtributoPessoaFisica + 10);

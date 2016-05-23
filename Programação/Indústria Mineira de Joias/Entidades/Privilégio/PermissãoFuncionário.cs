@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Text;
-
-using Acesso.Comum;
+﻿using Acesso.Comum;
 using Acesso.Comum.Cache;
+using System;
 
 namespace Entidades.Privilégio
 {
@@ -67,7 +63,7 @@ namespace Entidades.Privilégio
             {
                 try
                 {
-                    Acesso.Comum.Usuários.UsuárioAtual.RegistrarErro(e);
+                    Usuários.UsuárioAtual.RegistrarErro(e);
                 }
                 catch { }
 

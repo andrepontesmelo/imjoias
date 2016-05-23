@@ -81,6 +81,8 @@ namespace Apresentação.Financeiro.Comissões
             if (bg.IsBusy)
                 return;
 
+            Comissão.AssegurarManipulaçãoComissãoPara(comissãoPara);
+
             AguardeDB.Mostrar();
             UseWaitCursor = true;
 

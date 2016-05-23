@@ -14,52 +14,52 @@ namespace Apresentação.Atendimento.Comum
 	public class ListaPessoasItemBusca : System.Windows.Forms.UserControl, IComparable
 	{
         // Atributos
-		protected System.Windows.Forms.Label lblPrimária;
+        protected System.Windows.Forms.Label lblPrimária;
 		protected System.Windows.Forms.Label lblSecundária;
         protected Label lblMeio;
         protected Panel pnlÍcone;
 
+        private const int TAMANHO_MÁXIMO_PRIMÁRIO = 80;
 
 		// Eventos
 		public event EventHandler	Fechar;
 
+        protected void AlterarTextoFonte(Label label, string texto)
+        {
+            AlterarTextoFonte(label, texto, texto.Length);
+        }
+
+        protected void AlterarTextoFonte(Label label, string texto, int máximoCaracteresTexto)
+        {
+            if (texto.Length > máximoCaracteresTexto)
+                texto = texto.Substring(0, máximoCaracteresTexto - 4) + " ...";
+
+            label.SuspendLayout();
+            label.Text = texto;
+            AjustarTamanhoFonte(label);
+            label.ResumeLayout();
+        }
+
+        private void AjustarTamanhoFonte(Label label)
+        {
+            Graphics graphics = label.CreateGraphics();
+            SizeF textSize = graphics.MeasureString(label.Text, label.Font);
+
+            float falta = textSize.Width + 100 - label.Width;
+            if (falta > 0)
+                label.Font = new Font(label.Font.FontFamily, label.Font.Size - Math.Abs(falta) / 200, FontStyle.Bold);
+        }
+
         public string Primária 
         { 
             get { return lblPrimária.Text; }
-
-            set
-            {
-                Graphics graphics = lblPrimária.CreateGraphics();
-                SizeF textSize = graphics.MeasureString(value, lblPrimária.Font);
-
-                while (textSize.Width >= lblPrimária.Width * 2 && lblPrimária.Font.Size >= 6)
-                {
-                    lblPrimária.Font = new Font(lblPrimária.Font.FontFamily, lblPrimária.Font.Size - 2, FontStyle.Bold);
-                    textSize = graphics.MeasureString(value, lblPrimária.Font);
-                }
-
-                lblPrimária.Text = value;
-            }
-
+            set { AlterarTextoFonte(lblPrimária, value, TAMANHO_MÁXIMO_PRIMÁRIO); }
         }
+
         public string Secundária 
         { 
-            get 
-            { return lblSecundária.Text; }
-
-            set
-            {
-                Graphics graphics = lblSecundária.CreateGraphics();
-                SizeF textSize = graphics.MeasureString(value, lblSecundária.Font);
-
-                while (textSize.Width >= lblSecundária.Width && lblSecundária.Font.Size > 7)
-                {
-                    lblSecundária.Font = new Font(lblSecundária.Font.FontFamily, lblSecundária.Font.Size - 1);
-                    textSize = graphics.MeasureString(value, lblSecundária.Font);
-                }
-
-                lblSecundária.Text = value;
-            }
+            get { return lblSecundária.Text; }
+            set { AlterarTextoFonte(lblSecundária, value); }
         }
 
 		/// <summary> 

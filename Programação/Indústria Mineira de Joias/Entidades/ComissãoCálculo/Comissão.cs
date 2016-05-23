@@ -1,5 +1,7 @@
 ﻿using Acesso.Comum;
 using Entidades.ComissãoCálculo.Impressão;
+using Entidades.Pessoa;
+using Entidades.Privilégio;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -104,6 +106,12 @@ namespace Entidades.ComissãoCálculo
             }
         }
 
+        public static void AssegurarManipulaçãoComissãoPara(Pessoa.Pessoa comissãoPara)
+        {
+            if (comissãoPara == null || comissãoPara.Código != Funcionário.FuncionárioAtual.Código)
+                Comissão.AssegurarPermissãoManipulaçãoComissão();
+        }
+
         public int AbrirLançamentos(List<ComissãoValor> selecionados, bool estorno)
         {
             IDbConnection conexão = Conexão;
@@ -142,34 +150,34 @@ namespace Entidades.ComissãoCálculo
             }
         }
 
-        public List<Impressão.ImpressãoComissãoVenda> ObterImpressãoVenda(Filtro filtro)
+        public List<ImpressãoComissãoVenda> ObterImpressãoVenda(Filtro filtro)
         {
-            return Impressão.ImpressãoComissãoVenda.Obter(this, filtro);
+            return ImpressãoComissãoVenda.Obter(this, filtro);
         }
 
-        public List<Impressão.ImpressãoComissãoVendaItem> ObterImpressãoVendaItem(Filtro filtro)
+        public List<ImpressãoComissãoVendaItem> ObterImpressãoVendaItem(Filtro filtro)
         {
-            return Impressão.ImpressãoComissãoVendaItem.Obter(this, filtro);
+            return ImpressãoComissãoVendaItem.Obter(this, filtro);
         }
 
-        public List<Impressão.ImpressãoResumo> ObterImpressãoResumo(Filtro filtro)
+        public List<ImpressãoResumo> ObterImpressãoResumo(Filtro filtro)
         {
-            return Impressão.ImpressãoResumo.Obter(this, filtro);
+            return ImpressãoResumo.Obter(this, filtro);
         }
 
-        public List<Impressão.ImpressãoRegraPessoa> ObterImpressãoRegraPessoa(Filtro filtro)
+        public List<ImpressãoRegraPessoa> ObterImpressãoRegraPessoa(Filtro filtro)
         {
-            return Impressão.ImpressãoRegraPessoa.Obter(this, filtro); 
+            return ImpressãoRegraPessoa.Obter(this, filtro); 
         }
 
-        public List<Impressão.ImpressãoCompartilhada> ObterImpressãoCompartilhada(Filtro filtro)
+        public List<ImpressãoCompartilhada> ObterImpressãoCompartilhada(Filtro filtro)
         {
-            return Impressão.ImpressãoCompartilhada.Obter(this, filtro);
+            return ImpressãoCompartilhada.Obter(this, filtro);
         }
 
-        public List<Impressão.ImpressãoSetor> ObterImpressãoSetor(Filtro filtro)
+        public List<ImpressãoSetor> ObterImpressãoSetor(Filtro filtro)
         {
-            return Impressão.ImpressãoSetor.Obter(this, filtro);
+            return ImpressãoSetor.Obter(this, filtro);
         }
 
         public static bool ComissãoFechada(long venda)
@@ -185,11 +193,23 @@ namespace Entidades.ComissãoCálculo
                 if (objeto == null)
                     return false;
 
-                long saldo = (long)objeto;
+                long saldo = (long) objeto;
 
                 return saldo == 1;
             }
         }
-       
+
+        public static bool UsuárioPodeManipularComissão
+        {
+            get
+            {
+                return PermissãoFuncionário.ValidarPermissão(Permissão.ManipularComissão);
+            }
+        }
+
+        public static void AssegurarPermissãoManipulaçãoComissão()
+        {
+            PermissãoFuncionário.AssegurarPermissão(Permissão.ManipularComissão);
+        }
     }
 }

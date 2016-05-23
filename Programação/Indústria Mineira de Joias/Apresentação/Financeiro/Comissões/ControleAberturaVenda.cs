@@ -39,6 +39,10 @@ namespace Apresentação.Financeiro.Comissões
             this.emAberto = emAberto;
             this.estorno = estorno;
 
+            btnAdicionarLançamento.Visible = btnRemoverLançamento.Visible = Comissão.UsuárioPodeManipularComissão;
+
+            Comissão.AssegurarManipulaçãoComissãoPara(comissãoPara);
+
             Recarregar();
         }
 

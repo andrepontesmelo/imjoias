@@ -7,16 +7,11 @@ namespace Apresentação.Pessoa.Consultas
 	/// <summary>
 	/// Coleta pessoas do banco de dados
 	/// </summary>
-	public class ColetorPessoas : Apresentação.Formulários.Consultas.Coletor
+	public class ColetorPessoas : Coletor
 	{
-        /* O limite de itens deve ser pequeno. O grande gargalo da busca
-         * está no mapeamento automatico das entidades recuperadas (Mapear())
-         * Quanto mais itens recuperados, maior o tempo de demora do coletor.
-         */
-
 		// Constantes
         private readonly int    padrãoLimiteMínimo = 80;
-        private readonly int?   padrãoLimiteMáximo = 160;
+        private readonly int?   padrãoLimiteMáximo = 105;
         private readonly int    padrãoDemoraMáximaMs = 500;
 
 		// Atributos
@@ -81,23 +76,7 @@ namespace Apresentação.Pessoa.Consultas
 			else if (funcionários)
 				pessoas = Entidades.Pessoa.Funcionário.ObterFuncionários(chave, controladorLimite.LimiteDinâmico);
 			else
-				//pessoas = Entidades.Pessoa.PessoaCPFCNPJRG.ObterPessoas(chave, controladorLimite.LimiteDinâmico);
                 pessoas = Entidades.Pessoa.Pessoa.ObterPessoas(chave, controladorLimite.LimiteDinâmico);
-
-            //if (ulong.TryParse(chave, out código))
-            //{
-            //    Entidades.Pessoa.Pessoa pessoa = Entidades.Pessoa.Pessoa.ObterPessoa(código);
-
-            //    if (pessoas.Count == 0)
-            //        pessoas = new List<Entidades.Pessoa.Pessoa> { pessoa };
-            //    else
-            //    {
-            //        List<Entidades.Pessoa.Pessoa> lista = new List<Entidades.Pessoa.Pessoa>(pessoas);
-            //        lista.Add(pessoa);
-            //        pessoas = lista.ToArray();
-            //    }
-            //}
-
 
 			recuperaçãoPessoas(pessoas);
             controladorLimite.CronometrarFimObter();

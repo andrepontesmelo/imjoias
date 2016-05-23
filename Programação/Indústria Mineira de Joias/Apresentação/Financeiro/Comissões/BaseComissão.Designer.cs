@@ -257,7 +257,6 @@
             this.Controls.Add(this.títuloBaseInferior);
             this.Controls.Add(this.quadro);
             this.Name = "BaseComissão";
-            this.Privilégio = Entidades.Privilégio.Permissão.ManipularComissão;
             this.Size = new System.Drawing.Size(800, 439);
             this.Controls.SetChildIndex(this.quadro, 0);
             this.Controls.SetChildIndex(this.títuloBaseInferior, 0);

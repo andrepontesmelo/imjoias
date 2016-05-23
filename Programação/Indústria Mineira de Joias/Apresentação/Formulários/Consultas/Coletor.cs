@@ -9,12 +9,12 @@ namespace Apresentação.Formulários.Consultas
 	public abstract class Coletor
 	{
 		// Constantes
-		private const int		tempoEsperaAlteraçãoInicial = 10;		// milissegundo
-		private const int		tempoEsperaAlteraçãoMáximo  = 200;		// milissegundo
-		private const int       mínimoAcréscimo             = 10;		// milissegundo
-		private const int       máximoAcréscimo             = 700;
-		private const int       incrementoAcréscimo         = 50;
-		private const int       decrementoAcréscimo         = 5;
+		private const int		tempoEsperaAlteraçãoInicial = 1000;		// milissegundo
+		private const int		tempoEsperaAlteraçãoMáximo  = 1000;		// milissegundo
+		private const int       mínimoAcréscimo             = 100;		// milissegundo
+		private const int       máximoAcréscimo             = 500;
+		private const int       incrementoAcréscimo         = 100;
+		private const int       decrementoAcréscimo         = 100;
 
 		// Atributos
 		private volatile string chave;					// Chave a ser pesquisada
@@ -158,12 +158,14 @@ namespace Apresentação.Formulários.Consultas
                 if (ignorarAlteração && !chave.StartsWith(this.chave))
                     ignorarAlteração = false;
 
-                // Atribuir novo valor de chave
-                this.chave = chave;
-                this.alterada = true;
-
                 taxaDigitação.Registrar();
 
+                if (this.chave != null && chave.Trim() == this.chave.Trim())
+                    return;
+
+                this.chave = chave;
+                this.alterada = true;
+                
                 cancelar = false;
 
                 lock (this)
