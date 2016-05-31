@@ -298,7 +298,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 
                 strNovosVinculos.Append("'").Append(mercadoria[COLUNA_GESANO_REFERÊNCIA_MERCADORIA].ToString().Trim()).Append("',");
                 strNovosVinculos.Append(códigoFornecedor.ToString()).Append(",'");
-                strNovosVinculos.Append(referênciaFornecedor).Append("',");
+                strNovosVinculos.Append(referênciaFornecedor.Replace(FORA_DE_LINHA_FORNECEDOR, "")).Append("',");
 
                 bool foraDelinha = referênciaFornecedor.ToUpper().Contains(FORA_DE_LINHA_FORNECEDOR.ToUpper());
                 strNovosVinculos.Append(foraDelinha).Append(",");
