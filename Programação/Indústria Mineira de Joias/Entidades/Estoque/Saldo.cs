@@ -1,7 +1,6 @@
 ﻿using Acesso.Comum;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace Entidades.Estoque
@@ -85,6 +84,14 @@ namespace Entidades.Estoque
             set { depeso = value; }
         }
 
+        private bool foradelinha;
+
+        public bool ForaDeLinhaFornecedor
+        {
+            get { return foradelinha; } 
+            set { foradelinha = value;  }
+        }
+
         public Saldo()
         { }
 
@@ -104,15 +111,14 @@ namespace Entidades.Estoque
 
             StringBuilder consulta = new StringBuilder();
 
-            consulta.Append("select v.inicio, v.referenciafornecedor as referenciafornecedor, m.referencia, ");
-
+            consulta.Append("select v.inicio, v.referenciafornecedor as referenciafornecedor, v.foradelinha, m.referencia, ");
             consulta.Append(usarPesoMédio ? " m.peso " : " ifnull(e.peso, m.peso) " );
 
             consulta.Append(" as peso, sum(ifnull(e.entrada,0)) as entrada,sum(ifnull(e.venda,0)) as venda ,sum(ifnull(e.devolucao,0)) as devolucao,sum(ifnull(e.saldo,0)) as saldo, " +
                 " m.depeso, f.nome as fornecedornome from mercadoria m left join estoque_saldo e " +
                 " on e.referencia=m.referencia " +
                 " join vinculomercadoriafornecedor v on m.referencia=v.mercadoria join fornecedor f on v.fornecedor=f.codigo " +
-                " WHERE foradelinha=0 AND " +
+                " WHERE m.foradelinha=0 AND " +
                 (fornecedorÚnico != null ? " f.codigo= " + DbTransformar(fornecedorÚnico.Código) + " AND " : "") +
                 " ( m.depeso=" + (incluirPeso ? "1" : "0") +
                 " or m.depeso=" + (incluirReferências ? "0" : "1") +
@@ -132,7 +138,12 @@ namespace Entidades.Estoque
         }
 
         public double ProdudoPesoSaldo
-        { get { return peso * saldo;  } }
+        {
+            get
+            {
+                return peso * saldo;
+            }
+        }
 
         public string InícioFormatado 
         {
@@ -141,7 +152,7 @@ namespace Entidades.Estoque
 
         public string ReferênciaFormatadaComDígito 
         {
-            get { return Entidades.Mercadoria.Mercadoria.MascararReferência(Referencia, true); }
+            get { return Mercadoria.Mercadoria.MascararReferência(Referencia, true); }
         }
     }
 }
