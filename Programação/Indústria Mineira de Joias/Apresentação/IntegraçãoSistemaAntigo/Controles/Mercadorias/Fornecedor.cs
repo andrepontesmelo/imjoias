@@ -264,7 +264,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
         {
             IDbCommand cmd = null;
             StringBuilder strNovosVinculos = new StringBuilder("INSERT into vinculomercadoriafornecedor ");
-            strNovosVinculos.Append(" (mercadoria, fornecedor, referenciafornecedor, peso) values (");
+            strNovosVinculos.Append(" (mercadoria, fornecedor, referenciafornecedor, foradelinha, peso) values (");
 
             bool primeiro = true;
             DataTable tabelaVelha = ObterTabelaVelha();
@@ -299,8 +299,11 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
                 strNovosVinculos.Append("'").Append(mercadoria[COLUNA_GESANO_REFERÊNCIA_MERCADORIA].ToString().Trim()).Append("',");
                 strNovosVinculos.Append(códigoFornecedor.ToString()).Append(",'");
                 strNovosVinculos.Append(referênciaFornecedor).Append("',");
-                strNovosVinculos.Append(mercadoria[COLUNA_GESANO_PESO].ToString().Replace(",", ".").Trim()).Append(")");
 
+                bool foraDelinha = referênciaFornecedor.ToUpper().Contains(FORA_DE_LINHA_FORNECEDOR.ToUpper());
+                strNovosVinculos.Append(foraDelinha).Append(",");
+
+                strNovosVinculos.Append(mercadoria[COLUNA_GESANO_PESO].ToString().Replace(",", ".").Trim()).Append(")");
                 vinculosAtuais.Add(mercadoria[COLUNA_GESANO_REFERÊNCIA_MERCADORIA].ToString().Trim(), true);
 
                 return true;
