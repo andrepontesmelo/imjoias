@@ -1,22 +1,17 @@
-using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Globalization;
-using System.Windows.Forms;
-using Apresentação.Formulários.Consultas;
 using Entidades;
-using Balloon.NET;
 using Entidades.Mercadoria;
 using Negócio;
+using System;
+using System.ComponentModel;
+using System.Globalization;
+using System.Windows.Forms;
 
 namespace Apresentação.Mercadoria
 {
-	/// <summary>
-	/// TextBox para preenchimento da referência de mercadoria.
-	/// </summary>
-	public class TxtMercadoria : System.Windows.Forms.UserControl
+    /// <summary>
+    /// TextBox para preenchimento da referência de mercadoria.
+    /// </summary>
+    public class TxtMercadoria : UserControl
 	{
 		/// <summary>
 		/// Taxa de milissegundos/tecla que implica em velocidade
@@ -25,17 +20,6 @@ namespace Apresentação.Mercadoria
         /// de barras.
 		/// </summary>
         private const int taxaMáximaDigitaçãoHumana = 15;
-
-        // Taxa muito lenta. Em 3 semanas, uma vez detectou digitação manual como código de barras
-        //private const int taxaMáximaDigitaçãoHumana = 60;	 
-
-#if ENSINAR_REPETIÇÃO
-        /// <summary>
-        /// Determina o intervalo mínimo entre repetições de exibição
-        /// de balão, expresso em segundos.
-        /// </summary>
-        private const int intervaloRepetiçãoBalão = 60 * 15;    /* segundos */
-#endif
 
         /// <summary>
         /// Determina o tempo de validade de uma entrada de mercadoria
@@ -360,6 +344,13 @@ namespace Apresentação.Mercadoria
             }
 		}
 
+        private void CorrigePeso(Entidades.Mercadoria.Mercadoria mercadoria)
+        {
+            // Corrige o peso
+            if (mercadoria != null && mercadoria.DePeso && controlePeso != null)
+                mercadoria.Peso = controlePeso.Double;
+        }
+
 		/// <summary>
 		/// Mercadoria atual.
 		/// </summary>
@@ -367,32 +358,19 @@ namespace Apresentação.Mercadoria
 		public Entidades.Mercadoria.Mercadoria Mercadoria
 		{
 			get
-			{
-				Entidades.Mercadoria.Mercadoria mercadoria = null;
+            {
+                Entidades.Mercadoria.Mercadoria mercadoria = null;
 
                 if (referênciaCadastrada)
                 {
-                    /* Mercadoria retornada deve ser fresca do Bd.
-                     * Caso seja cacheada, vários saquinhos da bandeja
-                     * poderão referenciar a mesma mercadoria.
-                     */
-                    //if (lst != null)
-                        //mercadoria = lst.ObterMercadoriaLista(txt.Text);
-
                     mercadoria = Entidades.Mercadoria.Mercadoria.ObterMercadoria(txt.Text, tabela);
 
-                    // Corrige o peso
-                    if (mercadoria != null && mercadoria.DePeso && controlePeso != null)
-                        mercadoria.Peso = controlePeso.Double;
+                    CorrigePeso(mercadoria);
 
                     return mercadoria;
                 }
-                else
-                {
-                    // Mercadoria nao cadastrada
-                    return null;
-                }
 
+                return null;
             }
 		}
 
@@ -470,17 +448,6 @@ namespace Apresentação.Mercadoria
 
 		private delegate void ConstruirListViewCallback();
 
-		/// <summary>
-		/// Constrói a ListView
-		/// </summary>
-		/// <remarks>
-		/// Os métodos que chamam, logo depois tem o segunte código:
-		/// Se coletor não é nulo, fecha coletor e abre um novo.
-		/// este trecho foi retirado do ConstuirListView() porquê
-		/// existe o caso do listview não ser constuido, 
-		/// e o coletor precisar ser construido
-		/// que é o caso de ter a propriedade UtilizarListView = false 
-		/// </remarks>
 		private void ConstruirListView()
 		{
 			if (this.InvokeRequired)
@@ -490,43 +457,40 @@ namespace Apresentação.Mercadoria
 			}
 			else
 			{
-#if DEBUG
-				if ((!DesignMode) && (!utilizarListView))
-					throw new Exception("Foi chamado ConstruirListView() com utilizarListView falso");
-#endif
-
-				// Constrói a lista
-				lst = new ListViewMercadoria();
-				lst.Width = this.Width;
-				lst.Height = this.Height * 10;
-				lst.Name = this.Name + "Lista";
-				lst.AoSelecionarMercadoria += new Apresentação.Mercadoria.ListViewMercadoria.SeleçãoMercadoria(lst_AoSelecionarMercadoria);
-
-                if (this.Parent == null)
-                    return;
-
-				// Adiciona ao formulário
-				this.Parent.SuspendLayout();
-				this.Parent.Controls.Add(lst);
-
-				if (utilizarListView)
-				{
-					ReposicionarLista();
-					lst.BringToFront();
-				}
-
-				this.Parent.ResumeLayout();
-
-				//			txt.ForeColor = corTextoInconsistente;
-
+                ConstruirLista();
 				ConstruirColetor();
 			}
 		}
 
-		/// <summary>
-		/// Reposiciona lista
-		/// </summary>
-		private void ReposicionarLista()
+        private void ConstruirLista()
+        {
+            // Constrói a lista
+            lst = new ListViewMercadoria();
+            lst.Width = this.Width;
+            lst.Height = this.Height * 10;
+            lst.Name = this.Name + "Lista";
+            lst.AoSelecionarMercadoria += new ListViewMercadoria.SeleçãoMercadoria(lst_AoSelecionarMercadoria);
+
+            if (this.Parent == null)
+                return;
+
+            // Adiciona ao formulário
+            this.Parent.SuspendLayout();
+            this.Parent.Controls.Add(lst);
+
+            if (utilizarListView)
+            {
+                ReposicionarLista();
+                lst.BringToFront();
+            }
+
+            this.Parent.ResumeLayout();
+        }
+
+        /// <summary>
+        /// Reposiciona lista
+        /// </summary>
+        private void ReposicionarLista()
 		{
 #if DEBUG
 			if ((!DesignMode) && (!utilizarListView))
@@ -609,11 +573,22 @@ namespace Apresentação.Mercadoria
                 referênciaAnterior = null;
 		}
 
+        private bool deveMostrarBalão()
+        {
+            return !referênciaCadastrada && mostrarBalãoRefNãoEncontrada && !Focused && (txt.NumericText.Length != 0);
+        }
+
 		/// <summary>
 		/// Ocorre quando o textbox perde o foco
 		/// </summary>
 		private void txt_Leave(object sender, System.EventArgs e)
 		{
+            if (!ValidateChildren())
+            {
+                txt.Text = "";
+                return;
+            }
+
             últimoUso = DateTime.Now;
 
 			lock (this)
@@ -624,22 +599,9 @@ namespace Apresentação.Mercadoria
 					MostrarLista(false);
 			}
 
-			if (!referênciaCadastrada && mostrarBalãoRefNãoEncontrada && !Focused && (txt.NumericText.Length != 0))
-			{
-				Control controleAtual = this.ParentForm.ActiveControl;
+            if (deveMostrarBalão())
+                MostrarBalão();
 
-				BalãoReferênciaNãoEncontrada balão = new BalãoReferênciaNãoEncontrada();
-			
-                balão.ShowBalloon(this.txt);
-				controleAtual.Focus();
-
-				Beepador.BalãoReferênciaNãoEncontrada();
-			}
-
-#if ENSINAR_REPETIÇÃO
-            if ((txt.Text == referênciaAnterior) && DigitaçãoManual)
-                EnsinarRepetição();
-#endif
 
             if (referênciaCadastrada)
             {
@@ -649,20 +611,29 @@ namespace Apresentação.Mercadoria
 
             Dessinalizar();
 
-            /* Aqui já deu excessao dizendo que o Background não pode começar novo 
-             * trabalho estando ele ocupado. Mesmo tento o trabalho já cancelado anteriormente.
-             */
             if (!bgPrepararMercadoria.IsBusy)
                 bgPrepararMercadoria.RunWorkerAsync();
 		}
 
-		/// <summary>
-		/// Ocorre quando o textbox muda de tamanho ou é
-		/// redimensionado
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void txt_Move(object sender, System.EventArgs e)
+        private void MostrarBalão()
+        {
+            Control controleAtual = this.ParentForm.ActiveControl;
+
+            BalãoReferênciaNãoEncontrada balão = new BalãoReferênciaNãoEncontrada();
+
+            balão.ShowBalloon(this.txt);
+            controleAtual.Focus();
+
+            Beepador.BalãoReferênciaNãoEncontrada();
+        }
+
+        /// <summary>
+        /// Ocorre quando o textbox muda de tamanho ou é
+        /// redimensionado
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txt_Move(object sender, System.EventArgs e)
 		{
 			if (utilizarListView)
 				ReposicionarLista();
@@ -702,20 +673,6 @@ namespace Apresentação.Mercadoria
 			if (utilizarListView)
 				mostrarLista = true;
 
-			/* solução para bug:
-			 * assim que você entra '1',
-			 * e em seguida clica em alguma merc da lista,
-			 * o valitating do txt é chamado, e aparece um balão
-			 * de falando que mercadoria '1' não é válida.
-			 * A solução foi chamar o validating novamente,
-			 * assim que o usuário acaba de clicar no item da lista.
-			 * Este validating irá dar o dispose no balão que nem deveria
-			 * ter aparecido.
-			 * É dificil implementar de tal forma que o balão não apareça,
-			 * porque o validating ou o leave do txt são chamados antes do
-			 * click ou index changed da lista. 
-			 * André, 12-março-05
-			 */
 			txt_Validating(this, new CancelEventArgs());
 
             Dessinalizar();
@@ -827,28 +784,8 @@ namespace Apresentação.Mercadoria
             }
 		}
 
-        /// <summary>
-        /// Completa a caixa com o resto da referência.
-        /// </summary>
-        /// <remarks>
-        /// Este método completa da seguinte maneira:
-        /// - Se nada foi digitado, completa com a referência anterior;
-        /// - Se a referência foi parcialmente digitada, completa
-        ///   com a primeira referência que completa encontrada
-        ///   no banco de dados.
-        /// </remarks>
-        /// <returns>
-        /// Retorna verdadeiro se obteve sucesso.
-        /// </returns>
         public bool CompletarReferência()
         {
-            /* Isto não pode ser feito porque a referência pode ser inválida, 
-             * necessitando verificação no banco de dados. Falso deve ser retornado nesse caso.
-             */
-            //if (txt.Text.Length == txt.MaxLength)
-            //    return true;
-
-            // Verificar se deve completar com referência anterior.
             if (txt.Text.Length == 0 && referênciaAnterior != null)
             {
                 string aux = referênciaAnterior;
@@ -856,12 +793,6 @@ namespace Apresentação.Mercadoria
                 txt.Text = aux;
                 return true;
             }
-            /* Só é possível continuar se existir o coletor.
-             * O coletor só existirá se existir ListView.
-             * Portanto, é necessári oque o TxtMercadoria utilize
-             * ListView para poder completar a referência.
-             * -- Júlio, 20/06/2006
-             */
             else if (utilizarListView)
             {
                 string referência = null;
@@ -879,11 +810,6 @@ namespace Apresentação.Mercadoria
 
                         referência = coletor.RecuperarPrimeiroSomente(refNumérica);
 
-                        /* Como a consulta acima não verifica o dígito,
-                         * a condição abaixo garante que uma mercadoria digitada
-                         * com dígito errado não seja validada.
-                         * -- Júlio, 10/01/2007
-                         */
                         if (referência != null && !referência.StartsWith(txt.Text))
                             referência = null;
                     }
@@ -936,8 +862,6 @@ namespace Apresentação.Mercadoria
             return false;
         }
 
-
-
 		/// <summary>
 		/// Validação da referência
 		/// </summary>
@@ -949,15 +873,10 @@ namespace Apresentação.Mercadoria
 
                 if (!referênciaCadastrada)
                 {
-                    //txt.ForeColor = corTextoInconsistente;
-
-                    // Como nao tá cadastrado, qualquer exigencia é suficiente pra nao aceitar.
                     e.Cancel = permitirSomenteCadastrado || permitirSomenteDelinha;
                 }
                 else
                 {
-                    //txt.ForeColor = corTextoConsistente;
-
                     // Referencia está cadastrada. Mas é de linha?
                     e.Cancel = e.Cancel || (SomenteDeLinha && Mercadoria.ForaDeLinha);
                 }
@@ -1243,51 +1162,6 @@ namespace Apresentação.Mercadoria
                 catch { }
             }
         }
-
-#if ENSINAR_REPETIÇÃO
-        /// <summary>
-        /// Exibe balão ensinando como repetir a referência anterior.
-        /// </summary>
-        private void EnsinarRepetição()
-        {
-            if (DateTime.Now - últimoUso < TimeSpan.FromSeconds(validadeParaRepetição) && DateTime.Now - últimoBalãoRepetição > TimeSpan.FromSeconds(intervaloRepetiçãoBalão))
-            {
-                try
-                {
-                    if (InvokeRequired)
-                    {
-                        SinalizaçãoCallback método = new SinalizaçãoCallback(EnsinarRepetição);
-                        BeginInvoke(método);
-                    }
-                    else
-                    {
-                        Control controleAtual;
-
-                        if (ParentForm != null)
-                            controleAtual = this.ParentForm.ActiveControl;
-                        else
-                            controleAtual = null;
-
-                        BalãoReferênciaRedigitada balão = new BalãoReferênciaRedigitada();
-
-                        balão.ShowBalloon(this);
-
-                        if (controleAtual != null)
-                            controleAtual.Focus();
-
-                        últimoBalãoRepetição = DateTime.Now;
-                    }
-                }
-                catch (Exception e)
-                {
-#if DEBUG
-                    MessageBox.Show(e.ToString());
-#endif
-                    Acesso.Comum.Usuários.UsuárioAtual.RegistrarErro(e);
-                }
-            }
-        }
-#endif
 
         /// <summary>
         /// Ocorre em segundo plano, preparando dados da
