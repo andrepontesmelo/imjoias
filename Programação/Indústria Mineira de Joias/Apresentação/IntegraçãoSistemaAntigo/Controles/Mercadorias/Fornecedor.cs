@@ -10,6 +10,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 	public class Fornecedor
 	{
         private static string COLUNA_GESANO_REFERÊNCIA_MERCADORIA = "GA_CODMER";
+        private static string COLUNA_GESANO_PESO = "GA_PESO";
         private static string COLUNA_GESANO_CODIGO_FORNECEDOR = "GA_FORNEC";
         private static string COLUNA_GESANO_REFERÊNCIA_FORNECEDOR = "GA_REFFOR";
         private static string COLUNA_GESANO_INICIO = "GA_MESANO";
@@ -242,7 +243,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             Dictionary<string, bool> vinculosAtuais, DataSet dataSetVelho)
         {
             IDbCommand cmd = null;
-            StringBuilder strNovosVinculos = new StringBuilder("INSERT into vinculomercadoriafornecedor (mercadoria, fornecedor, referenciafornecedor) values (");
+            StringBuilder strNovosVinculos = new StringBuilder("INSERT into vinculomercadoriafornecedor (mercadoria, fornecedor, referenciafornecedor, peso) values (");
             bool primeiro = true;
 
             DataTable tabelaVelha = ObterTabelaVelha(dataSetVelho);
@@ -266,7 +267,8 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 
                     strNovosVinculos.Append("'").Append(mercadoria[COLUNA_GESANO_REFERÊNCIA_MERCADORIA].ToString().Trim()).Append("',");
                     strNovosVinculos.Append(códigoFornecedor.ToString()).Append(",'");
-                    strNovosVinculos.Append(referênciaFornecedor).Append("')");
+                    strNovosVinculos.Append(referênciaFornecedor).Append("',");
+                    strNovosVinculos.Append(mercadoria[COLUNA_GESANO_PESO].ToString().Replace(",", ".").Trim()).Append(")");
 
                     vinculosAtuais.Add(mercadoria[COLUNA_GESANO_REFERÊNCIA_MERCADORIA].ToString().Trim(), true);
                 }
