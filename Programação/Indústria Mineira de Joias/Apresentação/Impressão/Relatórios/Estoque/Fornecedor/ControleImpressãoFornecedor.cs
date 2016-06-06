@@ -40,6 +40,7 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Fornecedor
             linha["fornecedor"] = s.FornecedorNome.Trim();
             linha["reffornecedor"] = (String.IsNullOrEmpty(s.FornecedorReferência) ? "" :  s.FornecedorReferência.Trim().ToUpper());
             linha["pesosaldo"] = s.ProdudoPesoSaldo;
+            linha["foradelinhafornecedor"] = s.ForaDeLinhaFornecedor;
         }
 
         public virtual void PrepararImpressão(ReportClass relatório, List<Entidades.Estoque.Saldo> itens)

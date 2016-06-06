@@ -30,6 +30,7 @@
               <xs:element name="reffornecedor" msprop:Generator_ColumnVarNameInTable="columnreffornecedor" msprop:Generator_ColumnPropNameInRow="reffornecedor" msprop:Generator_ColumnPropNameInTable="reffornecedorColumn" msprop:Generator_UserColumnName="reffornecedor" type="xs:string" minOccurs="0" />
               <xs:element name="pesosaldo" msprop:Generator_ColumnVarNameInTable="columnpesosaldo" msprop:Generator_ColumnPropNameInRow="pesosaldo" msprop:Generator_ColumnPropNameInTable="pesosaldoColumn" msprop:Generator_UserColumnName="pesosaldo" type="xs:double" minOccurs="0" />
               <xs:element name="inicio" msprop:Generator_ColumnVarNameInTable="columninicio" msprop:Generator_ColumnPropNameInRow="inicio" msprop:Generator_ColumnPropNameInTable="inicioColumn" msprop:Generator_UserColumnName="inicio" type="xs:string" minOccurs="0" />
+              <xs:element name="foradelinhafornecedor" msprop:Generator_ColumnVarNameInTable="columnforadelinhafornecedor" msprop:Generator_ColumnPropNameInRow="foradelinhafornecedor" msprop:Generator_ColumnPropNameInTable="foradelinhafornecedorColumn" msprop:Generator_UserColumnName="foradelinhafornecedor" type="xs:boolean" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
