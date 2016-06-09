@@ -1,8 +1,6 @@
-﻿using System;
+﻿using Acesso.Comum;
+using System;
 using System.Collections.Generic;
-using System.Text;
-using Acesso.Comum;
-using System.Data;
 
 namespace Entidades.Mercadoria
 {
@@ -14,6 +12,8 @@ namespace Entidades.Mercadoria
         private string referenciafornecedor;
         private string mercadoria;
         private DateTime inicio;
+        private bool foradelinha;
+        private decimal peso;
 
 #pragma warning restore 0649
 
@@ -22,7 +22,6 @@ namespace Entidades.Mercadoria
             get { return inicio; }
             set { inicio = value; }
         }
-
 
         public int FornecedorCódigo 
         { 
@@ -42,37 +41,18 @@ namespace Entidades.Mercadoria
             }
         }
 
-        public MercadoriaFornecedor()
+        public bool ForaDeLinha
         {
+            get { return foradelinha; }
+        }
+        
+        public decimal PesoFornecedor
+        {
+            get { return peso; }
         }
 
-        /// <summary>
-        /// Se o fornecedor for nulo, o vinculo é  apenas descadastrado.
-        /// </summary>
-        public static void DeterminarFornecedor(string referênciaNumérica, int? fornecedor, string referênciaFornecedor)
+        public MercadoriaFornecedor()
         {
-            IDbConnection conexão = Conexão;
-
-            lock (conexão)
-            {
-                using (IDbCommand cmd = conexão.CreateCommand())
-                {
-                    cmd.CommandText = "delete from vinculomercadoriafornecedor where mercadoria = " + DbTransformar(referênciaNumérica) ;
-                    cmd.ExecuteNonQuery();
-                }
-
-                if (fornecedor.HasValue)
-                {
-                    using (IDbCommand cmd = conexão.CreateCommand())
-                    {
-                            cmd.CommandText = "insert into vinculomercadoriafornecedor (fornecedor, referenciafornecedor, mercadoria) values  (" +
-                                DbTransformar(fornecedor.Value) + ", " +
-                                DbTransformar(referênciaFornecedor) + ", " +
-                                DbTransformar(referênciaNumérica) + ")";
-                            cmd.ExecuteNonQuery();
-                    }
-                }
-            }
         }
 
         public static MercadoriaFornecedor ObterFornecedor(string referênciaNumérica)
