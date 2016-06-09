@@ -7,23 +7,8 @@ using System.Xml;
 
 namespace Entidades.Álbum
 {
-    /// <summary>
-    /// Cache de miniaturas para as fotos.
-    ///
-    ///
-    /// É utilizada ao abrir o listview de navegação do álbum;
-    /// Também é utilizada no QuadroFoto.
-    /// 
-    /// Mantem em mémórias duas hashes:
-    ///  hashMiniaturas: dado o código da foto, retorna sua miniatura,
-    ///  hashMercadoriaMiniatura: dado a chave (referencia, peso), retorna o código da miniatura.
-    ///  
-    /// as imagens já redimensionadas (miniaturas) são salvas localmente em um arquivo XML 
-    /// (cache para evitar acessos ao banco).
-    /// </summary>
     public class CacheMiniaturas : DbManipulaçãoSimples
     {
-        // Intervalo em segundos entre um salvamento e outro da cache de miniaturas.
         private static readonly int intervaloSegundosSalvamento = 20;
 
         private Encoding codificador = System.Text.Encoding.Default;
@@ -99,11 +84,6 @@ namespace Entidades.Álbum
             }
         }
 
-        /// <summary>
-        /// Carrega as duas hashes.
-        /// 1) Carrega do banco de dados a hash[referencia,peso] -> código foto.
-        /// 2) Carrega do XML a hash[código foto] -> imagem da miniatura.
-        /// </summary>
         private void Carregar()
         {
             hashMercadoriaMiniatura = new Dictionary<string, uint>(StringComparer.Ordinal);
@@ -119,7 +99,7 @@ namespace Entidades.Álbum
 
                 using (IDbCommand cmd = conexão.CreateCommand())
                 {
-                    cmd.CommandText = "SELECT mercadoria, peso, codigo FROM foto";
+                    cmd.CommandText = "SELECT mercadoria, codigo FROM foto";
 
                     using (leitor = cmd.ExecuteReader())
                     {
@@ -130,12 +110,8 @@ namespace Entidades.Álbum
                             {
                                 string referência = leitor.GetString(0);
                                 uint códigoFoto;
-                                double peso = 0;
 
-                                if (!leitor.IsDBNull(1))
-                                    peso = leitor.GetDouble(1);
-
-                                códigoFoto = (uint)leitor.GetInt32(2);
+                                códigoFoto = (uint)leitor.GetInt32(1);
                                 string chave = GerarChave(referência);
 
                                 hashMercadoriaMiniatura[chave] = códigoFoto;
@@ -309,7 +285,6 @@ namespace Entidades.Álbum
 
                                     if (foto.Imagem != null)
                                     {
-
                                         double proporção = foto.Imagem.Width / (double)foto.Imagem.Height;
                                         int width, height;
 
@@ -324,7 +299,6 @@ namespace Entidades.Álbum
                                             height = Foto.tamanhoMaiorLadoMiniatura;
                                         }
 
-                                        // Insere na cache:
                                         Inserir(entidade.Código, foto.Imagem.GetThumbnailImage(width, height, null, IntPtr.Zero));
                                     }
                                 }
@@ -344,7 +318,7 @@ namespace Entidades.Álbum
             Console.WriteLine("Obtenção em batch de " + fotos.Count.ToString() + ". Foi necessário SQL p/ " + contadorObtençãoFoto.ToString() + " fotos.");
         }
 
-        private static string GerarChave(Entidades.Mercadoria.Mercadoria mercadoria)
+        private static string GerarChave(Mercadoria.Mercadoria mercadoria)
         {
             return GerarChave(mercadoria.ReferênciaNumérica);
         }
@@ -360,7 +334,7 @@ namespace Entidades.Álbum
         /// </summary>
         /// <param name="mercadoria"></param>
         /// <returns></returns>
-        public DbFoto Obter(Entidades.Mercadoria.Mercadoria mercadoria)
+        public DbFoto Obter(Mercadoria.Mercadoria mercadoria)
         {
             if (mercadoria == null)
                 return null;
@@ -373,9 +347,6 @@ namespace Entidades.Álbum
                 return null;
         }
 
-        /// <summary>
-        /// Dado a chave GerarChave(referencia, peso), retorna o código de sua miniatura.
-        /// </summary>
         private Dictionary<string, uint> hashMercadoriaMiniatura;
 
         /// <summary>

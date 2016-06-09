@@ -479,9 +479,6 @@ namespace Apresentação.Álbum.Edição.Fotos
             Entidades.Mercadoria.Mercadoria m =
                 Entidades.Mercadoria.Mercadoria.ObterMercadoria(Seleção.ReferênciaFormatada, Entidades.Tabela.TabelaPadrão);
 
-            if (Seleção.Peso.HasValue)
-                m.Peso = Seleção.Peso.Value;
-
             InformaçõesMercadoriaResumo janela = new InformaçõesMercadoriaResumo(m,
                 Entidades.Financeiro.Cotação.ObterCotaçãoVigente(Entidades.Moeda.ObterMoeda(Entidades.Moeda.MoedaSistema.Ouro)));
 

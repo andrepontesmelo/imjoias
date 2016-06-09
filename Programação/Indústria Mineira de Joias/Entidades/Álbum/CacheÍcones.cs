@@ -8,7 +8,7 @@ namespace Entidades.Álbum
 {
     public class CacheÍcones : DbManipulaçãoSimples
     {
-        private Encoding codificador = System.Text.Encoding.Default;
+        private Encoding codificador = Encoding.Default;
 
         private static CacheÍcones instância;
 
@@ -38,19 +38,11 @@ namespace Entidades.Álbum
         public Ícone Obter(Entidades.Mercadoria.Mercadoria mercadoriaFoto)
         {
             Ícone entidade;
-            double peso = 0;
-
-            if (mercadoriaFoto.DePeso)
-                peso = mercadoriaFoto.Peso;
 
             if (hashÍcones.TryGetValue(GerarChave(mercadoriaFoto.ReferênciaNumérica), out entidade))
-            {
                 return entidade;
-            }
             else
-            {
                 return null;
-            }
         }
 
         private CacheÍcones()
@@ -74,7 +66,7 @@ namespace Entidades.Álbum
             Console.WriteLine("Consulta de obtenção de ícones!");
 
             hashÍcones = new Dictionary<string, Ícone>(StringComparer.Ordinal);
-            string consulta = "SELECT mercadoria, peso, icone FROM foto where icone is not null";
+            string consulta = "SELECT mercadoria, icone FROM foto where icone is not null";
 
             IDbConnection conexão = Conexão;
 
@@ -97,15 +89,8 @@ namespace Entidades.Álbum
                             while (leitor.Read())
                             {
                                 string chave;
-                                double peso;
-
-                                if (leitor.IsDBNull(1))
-                                    peso = 0;
-                                else
-                                    peso = leitor.GetDouble(1);
-
                                 chave = GerarChave(leitor.GetString(0));
-                                hashÍcones[chave] = new Ícone((byte[])leitor.GetValue(2));
+                                hashÍcones[chave] = new Ícone((byte[])leitor.GetValue(1));
                             }
                         }
                     }
@@ -115,7 +100,6 @@ namespace Entidades.Álbum
                             leitor.Close();
 
                         Usuários.UsuárioAtual.GerenciadorConexões.AdicionarConexão(conexão);
-
                     }
                 }
             }

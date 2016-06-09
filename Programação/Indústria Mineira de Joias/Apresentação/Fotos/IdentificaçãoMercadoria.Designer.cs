@@ -96,7 +96,6 @@ namespace Apresentação.Fotos
             // 
             this.txtReferência.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtReferência.ControlePeso = this.txtPeso;
             this.txtReferência.Location = new System.Drawing.Point(80, 32);
             this.txtReferência.Name = "txtReferência";
             this.txtReferência.Referência = "";
@@ -124,8 +123,6 @@ namespace Apresentação.Fotos
             this.txtPeso.RangeMin = -1.7976931348623157E+308D;
             this.txtPeso.Size = new System.Drawing.Size(367, 20);
             this.txtPeso.TabIndex = 1;
-            this.txtPeso.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPeso_KeyPress);
-            this.txtPeso.Leave += new System.EventHandler(this.txtPeso_Leave);
             // 
             // label1
             // 
