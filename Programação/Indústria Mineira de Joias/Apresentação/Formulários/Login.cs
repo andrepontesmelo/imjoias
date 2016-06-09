@@ -7,14 +7,14 @@ using System.Windows.Forms;
 
 namespace Apresentação.Formulários
 {
-    public sealed class Login : Apresentação.Formulários.JanelaExplicativa
+    public sealed class Login : JanelaExplicativa
 	{
-		private System.Windows.Forms.Label lblUsuário;
-		private System.Windows.Forms.TextBox txtUsuário;
-		private System.Windows.Forms.Label lblSenha;
-		private System.Windows.Forms.TextBox txtSenha;
-		private System.Windows.Forms.Button cmdOK;
-		private System.Windows.Forms.Button cmdCancelar;
+		private Label lblUsuário;
+		private TextBox txtUsuário;
+		private Label lblSenha;
+		private TextBox txtSenha;
+		private Button cmdOK;
+		private Button cmdCancelar;
 		private System.ComponentModel.IContainer components = null;
 
 		/// <summary>
@@ -171,8 +171,12 @@ namespace Apresentação.Formulários
         /// <returns>Falso se usuário cancelou</returns>
         public static bool EfetuarLogin(Usuários usuários, Splash splash)
         {
-            bool conectado = false;
+#if DEBUG
+            Usuários.UsuárioAtual = usuários.EfetuarLogin("andrep", "andrep");
+            return true;
+#endif
 
+            bool conectado = false;
             // Constrói janela de login
             using (Login loginDlg = new Login())
             {
@@ -196,10 +200,9 @@ namespace Apresentação.Formulários
 
                             try
                             {
-                                Acesso.Comum.Usuários.UsuárioAtual =
-                                    usuários.EfetuarLogin(loginDlg.txtUsuário.Text, loginDlg.txtSenha.Text);
+                                Usuários.UsuárioAtual = usuários.EfetuarLogin(loginDlg.txtUsuário.Text, loginDlg.txtSenha.Text);
 
-                                if (Acesso.Comum.Usuários.UsuárioAtual == null)
+                                if (Usuários.UsuárioAtual == null)
                                     MessageBox.Show("Senha ou usuário incorreto!",
                                         "Indústria Mineira de Joias",
                                         MessageBoxButtons.OK,
@@ -232,7 +235,7 @@ namespace Apresentação.Formulários
                 } while (!conectado);
 
 #if DEBUG
-                Acesso.Comum.Usuários.UsuárioAtual.GerenciadorConexões.ConexãoPresa += new GerenciadorConexões.ConexãoPresaCallback(GerenciadorConexões_ConexãoPresa);
+                Usuários.UsuárioAtual.GerenciadorConexões.ConexãoPresa += new GerenciadorConexões.ConexãoPresaCallback(GerenciadorConexões_ConexãoPresa);
 #endif
                 return true;
             }
@@ -253,9 +256,6 @@ namespace Apresentação.Formulários
         }
 #endif
 
-        /// <summary>
-		/// Validação do txtUsuário.
-		/// </summary>
 		private void txtUsuário_Validating(object sender, System.ComponentModel.CancelEventArgs e)
 		{
 			if (txtUsuário.Text.IndexOf(' ') >= 0)
@@ -269,15 +269,6 @@ namespace Apresentação.Formulários
 			}
 		}
 
-        /// <summary>
-        /// Requisita liberação de recursos e armazena no histórico
-        /// do funcionário que autorizou e do funcionário autorizado
-        /// sobre a liberação e a justificativa.
-        /// </summary>
-        /// <param name="privilégios">Privilégios necessários.</param>
-        /// <param name="recurso">Recurso a ser liberado.</param>
-        /// <param name="descrição">Descrição do recurso.</param>
-        /// <returns>Se o recurso foi liberado.</returns>
         public static bool LiberarRecurso(IWin32Window owner, Permissão privilégios, string recurso, string descrição)
         {
             if (PermissãoFuncionário.ValidarPermissão(privilégios))
@@ -286,16 +277,6 @@ namespace Apresentação.Formulários
             return ExigirIdentificação(owner, privilégios, Funcionário.FuncionárioAtual, null, recurso, descrição);
         }
 
-        /// <summary>
-        /// Exige identificação de usuário com privilégios suficientes
-        /// para prosseguir, armazenando no histórico da pessoa autorizada
-        /// e do responsável uma justificativa para o ato.
-        /// </summary>
-        /// <param name="privilégios">Privilégios necessários.</param>
-        /// <param name="título">Título da janela.</param>
-        /// <param name="recurso">Recurso necessário que constará no histórico.</param>
-        /// <param name="descrição">Descrição da janela, instruindo o usuário.</param>
-        /// <returns>Autorização concedida.</returns>
         public static bool ExigirIdentificação(IWin32Window owner, Permissão privilégios, Entidades.Pessoa.Pessoa autorizada, string título, string recurso, string descrição)
         {
             using (Login dlg = new Login())
