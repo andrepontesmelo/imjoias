@@ -479,21 +479,23 @@ namespace Apresentação.Financeiro
                 return;
             }
 
-            using (RequisitarImpressão dlg = new RequisitarImpressão(TipoDocumento))
-            {
-                dlg.PermitirEscolherPágina = listaDocumentos.Count == 1;
+            // TODO Implementar
 
-                if (dlg.ShowDialog(ParentForm) == DialogResult.OK)
-                {
-                    FilaImpressão fila = FilaImpressão.ObterFila(dlg.ControleImpressão, dlg.Impressora);
-                    ulong[] códigos = new ulong[listaDocumentos.Count];
+            //using (RequisitarImpressão dlg = new RequisitarImpressão(TipoDocumento))
+            //{
+            //    dlg.PermitirEscolherPágina = listaDocumentos.Count == 1;
 
-                    for (int i = 0; i < listaDocumentos.Count; i++)
-                        códigos[i] = (ulong)listaDocumentos[i].Código;
+            //    if (dlg.ShowDialog(ParentForm) == DialogResult.OK)
+            //    {
+            //        FilaImpressão fila = FilaImpressão.ObterFila(dlg.ControleImpressão, dlg.Impressora);
+            //        ulong[] códigos = new ulong[listaDocumentos.Count];
 
-                    fila.Imprimir(códigos, dlg.NúmeroCópias);
-                }
-            }
+            //        for (int i = 0; i < listaDocumentos.Count; i++)
+            //            códigos[i] = (ulong)listaDocumentos[i].Código;
+
+            //        fila.Imprimir(códigos, dlg.NúmeroCópias);
+            //    }
+            //}
 
             UseWaitCursor = false;
         }

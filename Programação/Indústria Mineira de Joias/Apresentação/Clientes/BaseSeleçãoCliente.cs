@@ -623,31 +623,34 @@ namespace Apresentação.Atendimento.Clientes
             DispararEscolha(((ListaPessoaDataImportante)item).Data.Pessoa);
         }
 
+
         private void opçãoImprimir_Click(object sender, EventArgs e)
         {
             Impressão.JanelaOpçõesImpressão janelaOpções = new Apresentação.Atendimento.Clientes.Impressão.JanelaOpçõesImpressão();
 
             if (janelaOpções.ShowDialog() != DialogResult.OK)
                 return;
-            
 
-            using (RequisitarImpressão dlg = new RequisitarImpressão(TipoDocumento.Pessoa))
-            {
-                if (dlg.ShowDialog(ParentForm) == DialogResult.OK)
-                {
-                    Apresentação.Formulários.AguardeDB.Mostrar();
+            // TODO Implementar!
+            throw new NotImplementedException();
 
-                    DadosRelatório dados = new DadosRelatórioPessoa(
-                        janelaOpções.Ordem, janelaOpções.Região);
+            //using (RequisitarImpressão dlg = new RequisitarImpressão(TipoDocumento.Pessoa))
+            //{
+            //    if (dlg.ShowDialog(ParentForm) == DialogResult.OK)
+            //    {
+            //        Apresentação.Formulários.AguardeDB.Mostrar();
 
-                    dados.Tipo = TipoDocumento.Pessoa;
-                    dados.Cópias = dlg.NúmeroCópias;
+            //        DadosRelatório dados = new DadosRelatórioPessoa(
+            //            janelaOpções.Ordem, janelaOpções.Região);
 
-                    dlg.ControleImpressão.RequisitarImpressão(dlg.Impressora, dados);
-                    Apresentação.Formulários.AguardeDB.Fechar();
+            //        dados.Tipo = TipoDocumento.Pessoa;
+            //        dados.Cópias = dlg.NúmeroCópias;
 
-                }
-            }
+            //        dlg.ControleImpressão.RequisitarImpressão(dlg.Impressora, dados);
+            //        Apresentação.Formulários.AguardeDB.Fechar();
+
+            //    }
+            //}
 
         }
 

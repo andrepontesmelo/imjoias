@@ -178,17 +178,19 @@ namespace Apresentação.Financeiro
 
         protected virtual void Imprimir()
         {
-            using (RequisitarImpressão dlg = new RequisitarImpressão(TipoDocumento))
-            {
-                dlg.PermitirEscolherPágina = true;
+            //using (RequisitarImpressão dlg = new RequisitarImpressão(TipoDocumento))
+            //{
+            //    dlg.PermitirEscolherPágina = true;
 
-                if (dlg.ShowDialog(ParentForm) == DialogResult.OK)
-                {
-                    FilaImpressão fila = FilaImpressão.ObterFila(dlg.ControleImpressão, dlg.Impressora);
+            //    if (dlg.ShowDialog(ParentForm) == DialogResult.OK)
+            //    {
+            //        FilaImpressão fila = FilaImpressão.ObterFila(dlg.ControleImpressão, dlg.Impressora);
 
-                    fila.Imprimir((ulong)entidade.Código, dlg.PáginaInicial, dlg.PáginaFinal, dlg.NúmeroCópias);
-                }
-            }
+            //        fila.Imprimir((ulong)entidade.Código, dlg.PáginaInicial, dlg.PáginaFinal, dlg.NúmeroCópias);
+            //    }
+            //}
+
+            // TODO Implementar
 
         }
 

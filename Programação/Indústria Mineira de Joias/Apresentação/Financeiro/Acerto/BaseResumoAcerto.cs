@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Forms;
+﻿using Apresentação.Financeiro.Retorno;
+using Apresentação.Financeiro.Saída;
+using Apresentação.Financeiro.Venda;
 using Apresentação.Formulários;
 using Entidades.Acerto;
-using Apresentação.Financeiro.Venda;
-using Apresentação.Financeiro.Saída;
-using Apresentação.Financeiro.Retorno;
-using Apresentação.Impressão;
-using Apresentação.Formulários.Impressão;
-using Entidades.Privilégio;
 using Entidades.Pessoa;
+using Entidades.Privilégio;
+using System;
+using System.Windows.Forms;
 
 namespace Apresentação.Financeiro.Acerto
 {
@@ -676,26 +672,25 @@ namespace Apresentação.Financeiro.Acerto
 
         private void opçãoImprimir_Click(object sender, EventArgs e)
         {
-            //JanelaImpressão j = new Apresentação.Financeiro.Acerto.JanelaImpressão(bandejaAcerto.Acerto);
-            //j.Abrir(this);
-
             if (!acerto.Cotação.HasValue)
             {
                 MessageBox.Show("Por favor, atribua uma cotação ao acerto", "Operação cancelada", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            using (RequisitarImpressão dlg = new RequisitarImpressão(TipoDocumento.Acerto))
-            {
-                dlg.PermitirEscolherPágina = true;
+            // TODO Implementar
 
-                if (dlg.ShowDialog(ParentForm) == DialogResult.OK)
-                {
-                    FilaImpressão fila = FilaImpressão.ObterFila(dlg.ControleImpressão, dlg.Impressora);
+            //using (RequisitarImpressão dlg = new RequisitarImpressão(TipoDocumento.Acerto))
+            //{
+            //    dlg.PermitirEscolherPágina = true;
+
+            //    if (dlg.ShowDialog(ParentForm) == DialogResult.OK)
+            //    {
+            //        FilaImpressão fila = FilaImpressão.ObterFila(dlg.ControleImpressão, dlg.Impressora);
                 
-                    fila.Imprimir(bandejaAcerto.Acerto, dlg.PáginaInicial, dlg.PáginaFinal, dlg.NúmeroCópias);
-                }
-            }
+            //        fila.Imprimir(bandejaAcerto.Acerto, dlg.PáginaInicial, dlg.PáginaFinal, dlg.NúmeroCópias);
+            //    }
+            //}
         }
 
 
