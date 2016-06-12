@@ -1,27 +1,18 @@
-using System;
-using System.Collections;
 using System.ComponentModel;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace Apresentação.Mercadoria.Bandeja
 {
-	public class BalãoSugestãoNovoOuro : Balloon.NET.BalloonWindow
+    public class BalãoSugestãoNovoOuro : Balloon.NET.BalloonWindow
 	{
-		private System.Windows.Forms.Label label1;
-		private System.ComponentModel.IContainer components = null;
+		private Label label1;
+		private IContainer components = null;
 
 		public BalãoSugestãoNovoOuro()
 		{
-			// This call is required by the Windows Form Designer.
 			InitializeComponent();
-
-			// TODO: Add any initialization after the InitializeComponent call
 		}
 
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
 		protected override void Dispose( bool disposing )
 		{
 			if( disposing )

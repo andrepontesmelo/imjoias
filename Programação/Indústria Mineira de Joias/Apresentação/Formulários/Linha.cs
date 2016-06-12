@@ -1,34 +1,16 @@
-using System;
-using System.Collections;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Windows.Forms;
 
 namespace Apresentação.Formulários
 {
-	/// <summary>
-	/// Summary description for Linha.
-	/// </summary>
-	public class Linha : System.Windows.Forms.UserControl
+    public class Linha : System.Windows.Forms.UserControl
 	{
-		/// <summary> 
-		/// Required designer variable.
-		/// </summary>
 		private System.ComponentModel.Container components = null;
 
 		public Linha()
 		{
-			// This call is required by the Windows.Forms Form Designer.
 			InitializeComponent();
-
-			// TODO: Add any initialization after the InitializeComponent call
-
 		}
 
-		/// <summary> 
-		/// Clean up any resources being used.
-		/// </summary>
 		protected override void Dispose( bool disposing )
 		{
 			if( disposing )
@@ -70,6 +52,5 @@ namespace Apresentação.Formulários
 		{
 			this.Height = 2;
 		}
-
 	}
 }

@@ -1,93 +1,76 @@
-using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Windows.Forms;
 using Entidades;
-
-
-using Apresentação.Mercadoria.Bandeja;
+using System.Collections;
+using System.Windows.Forms;
+using System;
+using System.Collections.Generic;
 
 namespace Apresentação.Mercadoria.Resumo
 {
-	/// <summary>
-	/// Apartir de uma lista de saquinhos,
-	/// é possível computar quantas gramas existem por faixa. 
-	/// Este tipo de informação é extremamente útil na empresa,
-	/// em todo e qualquer coleção de mercadoria.
-	/// Este controle tem a finalidade de apresentar um resumo para o usuário de qualquer coleção de saquinhos.
-	/// O processamento é feito localmente. No entanto, pode-se experimentar realiza-lo em servidor para melhor desempenho.
-	/// 
-   	/// </summary>
-	public class Resumo : System.Windows.Forms.Form
+    public class Resumo : Form
 	{
-		private System.Windows.Forms.TabControl tabControl1;
-		private System.Windows.Forms.TabPage tabFaixas;
-		private System.Windows.Forms.ListView lstFaixas;
-		private System.Windows.Forms.ColumnHeader colFaixa;
-		private System.Windows.Forms.ColumnHeader colUnidades;
-		private System.Windows.Forms.ColumnHeader colPeso;
-		private System.Windows.Forms.ColumnHeader colÍndice;
-		/// <summary> 
-		/// Required designer variable.
-		/// </summary>
-		private System.ComponentModel.Container components = null;
+		private TabControl tabControl1;
+		private TabPage tabFaixas;
+		private ListView lstFaixas;
+		private ColumnHeader colFaixa;
+		private ColumnHeader colUnidades;
+		private ColumnHeader colPeso;
+		private ColumnHeader colÍndice;
+
+        private System.ComponentModel.Container components = null;
 
 		public Resumo()
 		{
-			// This call is required by the Windows.Forms Form Designer.
 			InitializeComponent();
-
-			// TODO: Add any initialization after the InitializeComponent call
-
 		}
 
 		public void Carregar(ArrayList listaSaquinhos)
 		{
-			// Guarda: listviewitem Chave: string faixa
-			Hashtable itensFaixa = new Hashtable();
-
-
-			// Somatório
-			foreach (Saquinho s in listaSaquinhos)
-			{
-				if (!itensFaixa.ContainsKey(s.Mercadoria.Faixa))
-				{
-					// Cria item para esta nova faixa.
-					ResumoItem novoItem = new ResumoItem(s.Quantidade, s.Peso, s.Mercadoria.Índice, s.Mercadoria.Faixa.ToString());
-					itensFaixa[s.Mercadoria.Faixa] = novoItem;
-
-				} 
-				else
-				{
-					ResumoItem itemExistente = (ResumoItem) itensFaixa[s.Mercadoria.Faixa];
-
-					itemExistente.Acrescentar(s.Quantidade, s.Peso, s.Mercadoria.Índice);
-				}
-			}
-
-			// Preenche listview
-			foreach (object obj in itensFaixa)
-			{
-				ResumoItem r = (ResumoItem) ((DictionaryEntry) obj).Value;
-
-				ListViewItem novoItem = new ListViewItem(new string[lstFaixas.Columns.Count]);
-				novoItem.Text = (r.Faixa != null ? r.Faixa.ToString() : "");
-				
-				novoItem.SubItems[colUnidades.Index].Text = r.Quantidade.ToString();
-				novoItem.SubItems[colPeso.Index].Text = r.Peso.ToString();
-				novoItem.SubItems[colÍndice.Index].Text = r.Índice.ToString();
-
-				lstFaixas.Items.Add(novoItem);
-			}
-				
+            Dictionary<string, ResumoItem> itensFaixa = CriaHash(listaSaquinhos);
+            PreencheListView(itensFaixa);
 		}
 
-		/// <summary> 
-		/// Clean up any resources being used.
-		/// </summary>
-		protected override void Dispose( bool disposing )
+        private Dictionary<string, ResumoItem> CriaHash(ArrayList listaSaquinhos)
+        {
+            Dictionary<string, ResumoItem> itensFaixa = new Dictionary<string, ResumoItem>();
+
+            foreach (Saquinho s in listaSaquinhos)
+            {
+                if (!itensFaixa.ContainsKey(s.Mercadoria.Faixa))
+                {
+                    // Cria item para esta nova faixa.
+                    ResumoItem novoItem = new ResumoItem(s.Quantidade, s.Peso, s.Mercadoria.Índice, s.Mercadoria.Faixa.ToString());
+                    itensFaixa[s.Mercadoria.Faixa] = novoItem;
+
+                }
+                else
+                {
+                    ResumoItem itemExistente = itensFaixa[s.Mercadoria.Faixa];
+                    itemExistente.Acrescentar(s.Quantidade, s.Peso, s.Mercadoria.Índice);
+                }
+            }
+
+            return itensFaixa;
+        }
+
+        private void PreencheListView(Dictionary<string, ResumoItem> itensFaixa)
+        {
+            foreach (ResumoItem resumoItem in itensFaixa.Values)
+            {
+                ListViewItem novoItem = new ListViewItem(new string[lstFaixas.Columns.Count]);
+                novoItem.Text = (resumoItem.Faixa != null ? resumoItem.Faixa.ToString() : "");
+
+                novoItem.SubItems[colUnidades.Index].Text = resumoItem.Quantidade.ToString();
+                novoItem.SubItems[colPeso.Index].Text = resumoItem.Peso.ToString();
+                novoItem.SubItems[colÍndice.Index].Text = resumoItem.Índice.ToString();
+
+                lstFaixas.Items.Add(novoItem);
+            }
+        }
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        protected override void Dispose( bool disposing )
 		{
 			if( disposing )
 			{
