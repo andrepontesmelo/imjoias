@@ -48,9 +48,9 @@ namespace Apresentação.Financeiro.Retorno
             return new RetornoBaseInferior();
         }
 
-        protected override ListaConsignado ObterLista()
-        {
-            return lista;
+        protected override ListaConsignado Lista
+        { 
+            get { return lista; }
         }
     }
 }
