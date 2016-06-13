@@ -1,35 +1,33 @@
+using Apresentação.Atendimento.Comum;
+using Apresentação.Formulários;
+using Apresentação.Impressão.Relatórios.Pessoa;
+using Apresentação.Pessoa.Consultas;
+using Entidades;
+using Entidades.Pessoa;
+using Entidades.Pessoa.Impressão;
 using System;
 using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Forms;
-using Apresentação.Atendimento.Comum;
-using Apresentação.Pessoa.Consultas;
-using Entidades.Pessoa;
-using Entidades;
-using Apresentação.Atendimento.Atendente;
-using Entidades.Configuração;
-using Apresentação.Formulários.Impressão;
-using Apresentação.Impressão;
-using Apresentação.Impressão.Relatórios.Pessoa;
 using System.Collections.Generic;
-using Apresentação.Formulários;
+using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace Apresentação.Atendimento.Clientes
 {
-	/// <summary>
-	/// Base inferior da janela para seleção de clientes.
-	/// </summary>
-	public class BaseSeleçãoCliente : Apresentação.Formulários.BaseInferior
+    /// <summary>
+    /// Base inferior da janela para seleção de clientes.
+    /// </summary>
+    public class BaseSeleçãoCliente : BaseInferior
 	{
         private ColetorPessoas coletor;
         public static int QuantidadeDeDiasParaObtençãoDeDatasRelevantes = 1;
         private static int? QtdMáximaDatasInicialmenteMostradas = null;
 
-		/// <summary>
-		/// Mensagem exibida enquanto se carrega os dados.
-		/// </summary>
-		private const string strCarregando = "A lista de clientes está sendo carregada, mas você pode continuar"
+        Impressão.JanelaOpçõesImpressão janelaOpções;
+
+        /// <summary>
+        /// Mensagem exibida enquanto se carrega os dados.
+        /// </summary>
+        private const string strCarregando = "A lista de clientes está sendo carregada, mas você pode continuar"
 			+ " utilizando o sistema normalmente até que o processo termine.";
 
 		/// <summary>
@@ -61,19 +59,19 @@ namespace Apresentação.Atendimento.Clientes
 		private delegate void DSinalizarCarga(string descrição);
 		private delegate void DAdicionarItens(ICollection c);
         protected delegate void DAdicionarDataRelevante(DataRelevante[] c);
-		private Apresentação.Formulários.Quadro quadroClientes;
-		private Apresentação.Formulários.Opção opçãoProcurar;
-		private Apresentação.Formulários.TítuloBaseInferior título;
-        private Apresentação.Formulários.Opção opçãoCadastrar;
+		private Quadro quadroClientes;
+		private Opção opçãoProcurar;
+		private TítuloBaseInferior título;
+        private Opção opçãoCadastrar;
         private TableLayoutPanel tableLayoutPanel1;
-        private Apresentação.Formulários.QuadroSimples quadroDatasRelevantes;
-        private Apresentação.Formulários.Linha linha1;
+        private QuadroSimples quadroDatasRelevantes;
+        private Linha linha1;
         private Label label1;
         protected ListaPessoas listaDatasRelevantes;
-        private Apresentação.Formulários.Opção opçãoImprimir;
+        private Opção opçãoImprimir;
         private ListaPessoasBusca listaPessoasBusca;
         private TextBox txtBusca;
-		private System.ComponentModel.IContainer components = null;
+		private IContainer components = null;
 
 		public BaseSeleçãoCliente()
 		{
@@ -83,9 +81,6 @@ namespace Apresentação.Atendimento.Clientes
             coletor = new ColetorPessoas(new ColetorPessoas.RecuperaçãoPessoasDelegate(Recuperação));
 		}
 
-        /// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
 		protected override void Dispose( bool disposing )
 		{
 			if( disposing )
@@ -492,9 +487,6 @@ namespace Apresentação.Atendimento.Clientes
             {
                 AlterarCursor(Cursors.No);
 
-                /* Como esta chamada é assíncrona, não há como tratar
-                 * erro fora dela.
-                 */
                 MessageBox.Show("Ocorreu um erro enquanto carregava clientes provenientes de setores específicos."
                     + "\n\n" + e.ToString(), "Erro carregando dados", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
@@ -565,9 +557,7 @@ namespace Apresentação.Atendimento.Clientes
         {
             AdicionarDatasRelevantes(datas, QtdMáximaDatasInicialmenteMostradas);
         }
-        /// <summary>
-        /// Adiciona datas relevantes na exibição.
-        /// </summary>
+
         protected void AdicionarDatasRelevantes(DataRelevante[] datas, int? limite)
         {
             this.datas = datas;
@@ -626,32 +616,35 @@ namespace Apresentação.Atendimento.Clientes
 
         private void opçãoImprimir_Click(object sender, EventArgs e)
         {
-            Impressão.JanelaOpçõesImpressão janelaOpções = new Apresentação.Atendimento.Clientes.Impressão.JanelaOpçõesImpressão();
+             janelaOpções = new Impressão.JanelaOpçõesImpressão();
 
             if (janelaOpções.ShowDialog() != DialogResult.OK)
                 return;
 
-            // TODO Implementar!
-            throw new NotImplementedException();
+            Imprimir();
+        }
 
-            //using (RequisitarImpressão dlg = new RequisitarImpressão(TipoDocumento.Pessoa))
-            //{
-            //    if (dlg.ShowDialog(ParentForm) == DialogResult.OK)
-            //    {
-            //        Apresentação.Formulários.AguardeDB.Mostrar();
+        private void Imprimir()
+        {
+            AguardeDB.Mostrar();
 
-            //        DadosRelatório dados = new DadosRelatórioPessoa(
-            //            janelaOpções.Ordem, janelaOpções.Região);
+            RelatórioPessoa documento = ObterDocumento();
 
-            //        dados.Tipo = TipoDocumento.Pessoa;
-            //        dados.Cópias = dlg.NúmeroCópias;
+            JanelaImpressão visualizadorImpressão = new JanelaImpressão();
+            visualizadorImpressão.InserirDocumento(documento, "Pessoas");
 
-            //        dlg.ControleImpressão.RequisitarImpressão(dlg.Impressora, dados);
-            //        Apresentação.Formulários.AguardeDB.Fechar();
+            AguardeDB.Fechar();
 
-            //    }
-            //}
+            visualizadorImpressão.Show();
+        }
 
+        private RelatórioPessoa ObterDocumento()
+        {
+            List<PessoaImpressão> pessoas = PessoaImpressão.ObterPessoas(janelaOpções.Ordem, janelaOpções.Região);
+            RelatórioPessoa documento = new RelatórioPessoa();
+            new ControleImpressãoPessoa().PrepararImpressão(documento, pessoas, janelaOpções.Região);
+
+            return documento;
         }
 
         /// <summary>
@@ -667,7 +660,6 @@ namespace Apresentação.Atendimento.Clientes
             listaPessoasBusca.Visible = true;
             listaPessoasBusca.ResumeLayout();
         }
-
 
         /// <summary>
         /// Ocorre quando o coletor recupera nomes
@@ -691,7 +683,8 @@ namespace Apresentação.Atendimento.Clientes
                 }
             }
             catch (ObjectDisposedException)
-            { /* Ignorar */ }
+            {
+            }
         }
 
         private delegate void RecuperaçãoCallback(List<Entidades.Pessoa.Pessoa> pessoas);
