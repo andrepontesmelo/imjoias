@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Data;
+﻿using CrystalDecisions.CrystalReports.Engine;
 using Entidades.Relacionamento;
-using CrystalDecisions.CrystalReports.Engine;
+using System;
+using System.Data;
 
 namespace Apresentação.Impressão.Relatórios
 {
     public class ControleImpressãoRelacionamento<TDataSet, TRelacionamento>
         where TDataSet : DataSet, new()
-        where TRelacionamento : Entidades.Relacionamento.Relacionamento
+        where TRelacionamento : Relacionamento
     {
         public virtual TDataSet GerarDataSet(TRelacionamento relacionamento)
         {
@@ -17,7 +15,21 @@ namespace Apresentação.Impressão.Relatórios
             DataTable tabelaItens = ds.Tables["Itens"];
             DataTable tabelaInformações = ds.Tables["Informações"];
 
-            // Preencher itens do relacionamento
+            PreencherItens(relacionamento, tabelaItens);
+            PreencherInformaçõesGerais(relacionamento, tabelaInformações);
+
+            return ds;
+        }
+
+        private void PreencherInformaçõesGerais(TRelacionamento relacionamento, DataTable tabelaInformações)
+        {
+            DataRow linhaInfo = tabelaInformações.NewRow();
+            MapearInformações(linhaInfo, relacionamento);
+            tabelaInformações.Rows.Add(linhaInfo);
+        }
+
+        private void PreencherItens(TRelacionamento relacionamento, DataTable tabelaItens)
+        {
             bool erro;
             foreach (SaquinhoRelacionamento s in relacionamento.Itens.ObterSaquinhosAgrupadosOrdenados(out erro))
             {
@@ -25,18 +37,8 @@ namespace Apresentação.Impressão.Relatórios
                 MapearItem(linha, s, relacionamento);
                 tabelaItens.Rows.Add(linha);
             }
-
-            // Preencher informações gerais
-            DataRow linhaInfo = tabelaInformações.NewRow();
-            MapearInformações(linhaInfo, relacionamento);
-            tabelaInformações.Rows.Add(linhaInfo);
-
-            return ds;
         }
 
-        /// <summary>
-        /// Mapeia um saquinho para uma linha da tabela de itens do DataSet.
-        /// </summary>
         protected virtual void MapearItem(DataRow linha, SaquinhoRelacionamento s, TRelacionamento relacionamento)
         {
             linha["referência"] = s.Mercadoria.Referência;
@@ -52,25 +54,27 @@ namespace Apresentação.Impressão.Relatórios
         {
                 return relacionamento.Código.ToString();
         }
-        /// <summary>
-        /// Mapeia informações gerais do relacionamento à linha única da tabela Informações.
-        /// </summary>
+
         protected virtual void MapearInformações(DataRow linha, TRelacionamento relacionamento)
         {
-            // Nome do funcionário que digitou
             linha["funcionário"] = relacionamento.DigitadoPor.Nome;
             linha["data"] = relacionamento.Data.ToShortDateString();
             linha["código"] = ObterCódigoDocumento(relacionamento);
-            
+
+            if (!String.IsNullOrEmpty(relacionamento.Observações))
+                linha["observações"] = relacionamento.Observações;
+
+            MapearInformaçõesAcerto(linha, relacionamento);
+        }
+
+        private static void MapearInformaçõesAcerto(DataRow linha, TRelacionamento relacionamento)
+        {
             if (relacionamento is RelacionamentoAcerto)
             {
                 RelacionamentoAcerto relacionamentoAcerto = relacionamento as RelacionamentoAcerto;
                 linha["tabela"] = relacionamentoAcerto.TabelaPreço.Nome;
                 linha["pessoa"] = relacionamentoAcerto.Pessoa.Nome + " (" + relacionamentoAcerto.Pessoa.Código + ")";
             }
-
-            if (!String.IsNullOrEmpty(relacionamento.Observações))
-                linha["observações"] = relacionamento.Observações;
         }
 
         public virtual void PrepararImpressão(ReportClass relatório, TRelacionamento relacionamento)
