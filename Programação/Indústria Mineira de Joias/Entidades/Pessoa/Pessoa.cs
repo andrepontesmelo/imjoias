@@ -22,7 +22,7 @@ namespace Entidades.Pessoa
     public class Pessoa : Acesso.Comum.DbManipulação, IComparable
     {
         public static readonly int LIMITE_PADRÃO_PESSOAS = 400;
-        public static readonly int TotalAtributos = 13;
+        public static readonly int TotalAtributos = 12;
 
         #region Atributos
 
@@ -89,8 +89,6 @@ namespace Entidades.Pessoa
         [DbColuna("credito")]
         protected double? crédito;
 
-        protected bool fornecedor = false;
-
         [DbRelacionamento("código", "regiao"), DbColuna("regiao")]
         protected Região região;
 
@@ -106,6 +104,7 @@ namespace Entidades.Pessoa
         public ulong Código
         {
             get { return codigo; }
+            set { codigo = value; }
         }
 
         /// <summary>
@@ -281,15 +280,6 @@ namespace Entidades.Pessoa
 
                 return nn;
             }
-        }
-
-        /// <summary>
-        /// Opção herdada do banco de dados antigo.
-        /// </summary>
-        // TODO: Verificar se este campo será extingüido.
-        public bool Fornecedor
-        {
-            get { return fornecedor; }
         }
 
         public Região Região
@@ -523,7 +513,7 @@ namespace Entidades.Pessoa
                         if (!chaveÉNúmero)
                             comando.Append("select * from (");
 
-                        comando.Append("SELECT p.codigo as cod, p.nome, p.setor, p.email, p.observacoes, p.ultimaVisita, p.dataRegistro, p.dataAlteracao, p.classificacoes, p.maiorVenda, p.credito, p.fornecedor, p.regiao, pf.*,pj.codigo as c, pj.cnpj, pj.fantasia, pj.inscEstadual, pj.inscMunicipal FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE  ");
+                        comando.Append("SELECT p.codigo as cod, p.nome, p.setor, p.email, p.observacoes, p.ultimaVisita, p.dataRegistro, p.dataAlteracao, p.classificacoes, p.maiorVenda, p.credito, p.regiao, pf.*,pj.codigo as c, pj.cnpj, pj.fantasia, pj.inscEstadual, pj.inscMunicipal FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE  ");
 
                         // Inclui busca por código da pessoa
                         if (chaveÉNúmero)
@@ -582,7 +572,7 @@ namespace Entidades.Pessoa
                 {
                     try
                     {
-                        cmd.CommandText = "SELECT p.codigo as cod, p.nome, p.setor, p.email, p.observacoes, p.ultimaVisita, p.dataRegistro, p.dataAlteracao, p.classificacoes, p.maiorVenda, p.credito, p.fornecedor, p.regiao, pf.* FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo ";
+                        cmd.CommandText = "SELECT p.codigo as cod, p.nome, p.setor, p.email, p.observacoes, p.ultimaVisita, p.dataRegistro, p.dataAlteracao, p.classificacoes, p.maiorVenda, p.credito, p.regiao, pf.* FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo ";
                         using (leitor = cmd.ExecuteReader())
                         {
                             while (leitor.Read())
@@ -1000,7 +990,7 @@ namespace Entidades.Pessoa
  "nome, setor, " +
                             "email, observacoes, ultimaVisita, classificacoes, " +
                             "dataRegistro, dataAlteracao, " +
-                            "maiorVenda, credito, fornecedor, regiao) " +
+                            "maiorVenda, credito, regiao) " +
                             "VALUES (" +
  DbTransformar(this.Nome) + ", " +
                             (this.setor != null ? DbTransformar(this.Setor.Código) : "NULL") + ", " +
@@ -1012,7 +1002,6 @@ namespace Entidades.Pessoa
  "NOW(), " +
                             DbTransformar(this.maiorVenda) + ", " +
                             DbTransformar(this.crédito) + ", " +
-                            DbTransformar(this.fornecedor) + ", " +
                             (this.região != null ? DbTransformar(this.região.Código) : DbTransformar((string)null)) + ")";
 
             cmd.ExecuteNonQuery();
@@ -1061,7 +1050,6 @@ namespace Entidades.Pessoa
                 " dataAlteracao = NOW(), " +
                 " maiorVenda = " + DbTransformar(this.maiorVenda) + ", " +
                 " credito = " + DbTransformar(this.crédito) + ", " +
-                " fornecedor = " + DbTransformar(this.fornecedor) + ", " +
                 " regiao = " + (this.região != null ? DbTransformar(this.região.Código) : DbTransformar((string)null)) +
                 " WHERE codigo = " + DbTransformar(this.codigo);
 
@@ -1357,10 +1345,8 @@ namespace Entidades.Pessoa
             if (leitor[inicioAtributo + 10] != DBNull.Value)
                 crédito = leitor.GetDouble(inicioAtributo + 10);
 
-            fornecedor = leitor.GetBoolean(inicioAtributo + 11);
-
-            if (leitor[inicioAtributo + 12] != DBNull.Value)
-                região = Região.ObterRegião((uint)leitor[inicioAtributo + 12]);
+            if (leitor[inicioAtributo + 11] != DBNull.Value)
+                região = Região.ObterRegião((uint)leitor[inicioAtributo + 11]);
 
         }
 
