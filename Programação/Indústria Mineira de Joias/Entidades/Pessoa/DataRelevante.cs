@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Acesso.Comum;
+﻿using Acesso.Comum;
 using Entidades.Configuração;
+using System;
+using System.Collections.Generic;
 using System.Data;
 
 namespace Entidades.Pessoa
@@ -90,7 +89,6 @@ namespace Entidades.Pessoa
         public static DataRelevante[] ObterPróximasDatasRelevantes(Setor setor, int dias)
         {
             List<DataRelevante> lista = null;
-            // *  A consulta Mapear é feita em 0.2 segs, enquanto o mapear gasta 4 segs. *
 
             if (setor != null)
             {
@@ -102,7 +100,7 @@ namespace Entidades.Pessoa
                            string.Format("SELECT p.codigo AS pessoa, pf.nascimento AS data, 'Aniversário' as descricao, 1 AS alertar, p.*, pf.* FROM pessoa p JOIN pessoa on p.codigo=pessoa.codigo JOIN pessoafisica pf ON p.codigo = pf.codigo WHERE CONCAT(YEAR(now()), '-', date_format(pf.nascimento, '%m-%d')) BETWEEN '{0:yyyy-MM-dd}' AND '{1:yyyy-MM-dd}' " +
                            " AND p.setor = {2}",
                             DadosGlobais.Instância.HoraDataAtual, DadosGlobais.Instância.HoraDataAtual.AddDays(dias),
-                            setor.Código), 0, 4, 17);
+                            setor.Código), 0, 4, 16);
             }
             else
             {
@@ -112,7 +110,7 @@ namespace Entidades.Pessoa
                            
                             string.Format("SELECT p.codigo AS pessoa, pf.nascimento AS data, 'Aniversário' as descricao, 1 AS alertar, p.*, pf.* FROM pessoa p JOIN pessoa on p.codigo=pessoa.codigo JOIN pessoafisica pf ON p.codigo = pf.codigo WHERE CONCAT(YEAR(now()), '-', date_format(pf.nascimento, '%m-%d')) BETWEEN '{0:yyyy-MM-dd}' AND '{1:yyyy-MM-dd}' ",
                             DadosGlobais.Instância.HoraDataAtual, DadosGlobais.Instância.HoraDataAtual.AddDays(dias))
-                            , 0, 4, 17);
+                            , 0, 4, 16);
             }
 
             return lista.ToArray();
