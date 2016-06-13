@@ -1,1 +1,0 @@
-%WINDIR%\Microsoft.NET\Framework\v4.0.30319\msbuild SharpSSH.sln /t:rebuild /p:Platform="Any CPU" /p:Configuration="Release" /m /v:M /fl /nr:false
