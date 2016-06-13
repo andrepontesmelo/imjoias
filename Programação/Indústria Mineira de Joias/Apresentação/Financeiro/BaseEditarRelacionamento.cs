@@ -1,7 +1,6 @@
 ﻿using Acesso.Comum.Exceções;
 using Apresentação.Financeiro.Acerto;
 using Apresentação.Formulários;
-using Apresentação.Formulários.Impressão;
 using Apresentação.Impressão;
 using Entidades.Relacionamento;
 using Negócio;
@@ -116,14 +115,9 @@ namespace Apresentação.Financeiro
             this.entidade = relacionamento;
 
             txtObservação.Text = relacionamento.Observações == null ? "" : relacionamento.Observações;
-
-            // Abre as bandejas
-            CamposLivres = true;
-            digitação.Abrir(relacionamento.Itens, relacionamento, this);
-            CamposLivres = false;
+            AbreBandejas(relacionamento);
 
             RelacionamentoAcerto relacionamentoAcerto = relacionamento as RelacionamentoAcerto;
-
 
             if (relacionamentoAcerto != null)
             {
@@ -136,6 +130,15 @@ namespace Apresentação.Financeiro
                 if (relacionamentoAcerto.AcertoConsignado != null && relacionamentoAcerto.AcertoConsignado.Acertado)
                     SinalizaçãoAcertado.Sinalizar(this);
             }
+        }
+
+        private void AbreBandejas(Relacionamento relacionamento)
+        {
+            AguardeDB.Mostrar();
+            CamposLivres = true;
+            digitação.Abrir(relacionamento.Itens, relacionamento, this);
+            CamposLivres = false;
+            AguardeDB.Fechar();
         }
 
         /// <summary>
