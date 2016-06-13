@@ -1,17 +1,12 @@
-#define PERMITIR_IMPORTAÇÃO
-
-using System;
-using System.Text.RegularExpressions;
-using System.Data;
-using System.IO;
-using System.Drawing;
-using System.Collections;
 using Acesso.Comum;
 using Acesso.Comum.Cache;
-using System.Collections.Generic;
 using Entidades.Configuração;
-using Entidades.Pessoa.Endereço;
 using Entidades.Controle;
+using Entidades.Pessoa.Endereço;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Data;
 using System.Text;
 
 namespace Entidades.Pessoa
@@ -111,15 +106,6 @@ namespace Entidades.Pessoa
         public ulong Código
         {
             get { return codigo; }
-#if PERMITIR_IMPORTAÇÃO
-            set
-            {
-                if (!Cadastrado)
-                    codigo = value;
-                else
-                    throw new NotSupportedException();
-            }
-#endif
         }
 
         /// <summary>
@@ -196,9 +182,6 @@ namespace Entidades.Pessoa
         public DateTime? DataRegistro
         {
             get { return dataRegistro; }
-#if PERMITIR_IMPORTAÇÃO
-            set { dataRegistro = value; DefinirDesatualizado(); }
-#endif
         }
 
         /// <summary>
@@ -307,9 +290,6 @@ namespace Entidades.Pessoa
         public bool Fornecedor
         {
             get { return fornecedor; }
-#if PERMITIR_IMPORTAÇÃO
-            set { fornecedor = value; DefinirDesatualizado(); }
-#endif
         }
 
         public Região Região
@@ -1017,28 +997,18 @@ namespace Entidades.Pessoa
             dataRegistro = dataAlteração = DadosGlobais.Instância.HoraDataAtual;
 
             cmd.CommandText = "INSERT INTO pessoa (" +
-#if PERMITIR_IMPORTAÇÃO
- (codigo > 0 ? "codigo, " : "") +
-#endif
  "nome, setor, " +
                             "email, observacoes, ultimaVisita, classificacoes, " +
                             "dataRegistro, dataAlteracao, " +
                             "maiorVenda, credito, fornecedor, regiao) " +
                             "VALUES (" +
-#if PERMITIR_IMPORTAÇÃO
- (codigo > 0 ? DbTransformar(codigo) + ", " : "") +
-#endif
  DbTransformar(this.Nome) + ", " +
                             (this.setor != null ? DbTransformar(this.Setor.Código) : "NULL") + ", " +
                             DbTransformar(this.email) + ", " +
                             DbTransformar(this.observações) + ", " +
                             DbTransformar(this.últimaVisita) + ", " +
                             DbTransformar(this.classificações) + ", " +
-#if PERMITIR_IMPORTAÇÃO
- DbTransformar(this.dataRegistro) + ", " +
-#else
                             "NOW(), " +
-#endif
  "NOW(), " +
                             DbTransformar(this.maiorVenda) + ", " +
                             DbTransformar(this.crédito) + ", " +
@@ -1047,9 +1017,6 @@ namespace Entidades.Pessoa
 
             cmd.ExecuteNonQuery();
 
-#if PERMITIR_IMPORTAÇÃO
-            if (this.codigo == 0)
-#endif
                 this.codigo = Convert.ToUInt64(ObterÚltimoCódigoInserido(cmd.Connection));
 
             if (endereços != null)
