@@ -38,7 +38,6 @@ namespace Apresentação.Financeiro
             this.quadroOpçãoPedido = new Apresentação.Formulários.Quadro();
             this.opçãoVisualizarImpressão = new Apresentação.Formulários.Opção();
             this.btnExcluir = new Apresentação.Formulários.Opção();
-            this.opçãoImprimir = new Apresentação.Formulários.Opção();
             this.opçãoDestravar = new Apresentação.Formulários.Opção();
             this.quadroTravamento = new Apresentação.Formulários.Quadro();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -112,7 +111,7 @@ namespace Apresentação.Financeiro
             this.quadroAlternaBandeja.Cor = System.Drawing.Color.Black;
             this.quadroAlternaBandeja.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadroAlternaBandeja.LetraTítulo = System.Drawing.Color.White;
-            this.quadroAlternaBandeja.Location = new System.Drawing.Point(7, 114);
+            this.quadroAlternaBandeja.Location = new System.Drawing.Point(7, 93);
             this.quadroAlternaBandeja.MostrarBotãoMinMax = false;
             this.quadroAlternaBandeja.Name = "quadroAlternaBandeja";
             this.quadroAlternaBandeja.Size = new System.Drawing.Size(160, 74);
@@ -136,7 +135,7 @@ namespace Apresentação.Financeiro
             // optHistórico
             // 
             this.optHistórico.BackColor = System.Drawing.Color.Transparent;
-            this.optHistórico.Location = new System.Drawing.Point(7, 45);
+            this.optHistórico.Location = new System.Drawing.Point(7, 50);
             this.optHistórico.Name = "optHistórico";
             this.optHistórico.Size = new System.Drawing.Size(145, 23);
             this.optHistórico.TabIndex = 6;
@@ -166,14 +165,13 @@ namespace Apresentação.Financeiro
             this.quadroOpçãoPedido.bSupEsqArredondada = true;
             this.quadroOpçãoPedido.Controls.Add(this.opçãoVisualizarImpressão);
             this.quadroOpçãoPedido.Controls.Add(this.btnExcluir);
-            this.quadroOpçãoPedido.Controls.Add(this.opçãoImprimir);
             this.quadroOpçãoPedido.Cor = System.Drawing.Color.Black;
             this.quadroOpçãoPedido.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadroOpçãoPedido.LetraTítulo = System.Drawing.Color.White;
             this.quadroOpçãoPedido.Location = new System.Drawing.Point(7, 13);
             this.quadroOpçãoPedido.MostrarBotãoMinMax = false;
             this.quadroOpçãoPedido.Name = "quadroOpçãoPedido";
-            this.quadroOpçãoPedido.Size = new System.Drawing.Size(160, 95);
+            this.quadroOpçãoPedido.Size = new System.Drawing.Size(160, 74);
             this.quadroOpçãoPedido.TabIndex = 3;
             this.quadroOpçãoPedido.Tamanho = 30;
             this.quadroOpçãoPedido.Título = "Documento";
@@ -183,7 +181,7 @@ namespace Apresentação.Financeiro
             this.opçãoVisualizarImpressão.BackColor = System.Drawing.Color.Transparent;
             this.opçãoVisualizarImpressão.Descrição = "Visualizar Impressão";
             this.opçãoVisualizarImpressão.Imagem = global::Apresentação.Resource.visualizacao_impressao4;
-            this.opçãoVisualizarImpressão.Location = new System.Drawing.Point(7, 50);
+            this.opçãoVisualizarImpressão.Location = new System.Drawing.Point(7, 30);
             this.opçãoVisualizarImpressão.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.opçãoVisualizarImpressão.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoVisualizarImpressão.MinimumSize = new System.Drawing.Size(0, 20);
@@ -197,7 +195,7 @@ namespace Apresentação.Financeiro
             this.btnExcluir.BackColor = System.Drawing.Color.Transparent;
             this.btnExcluir.Descrição = "Excluir documento";
             this.btnExcluir.Imagem = global::Apresentação.Resource.Excluir;
-            this.btnExcluir.Location = new System.Drawing.Point(7, 79);
+            this.btnExcluir.Location = new System.Drawing.Point(7, 50);
             this.btnExcluir.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnExcluir.MaximumSize = new System.Drawing.Size(150, 100);
             this.btnExcluir.MinimumSize = new System.Drawing.Size(150, 16);
@@ -206,20 +204,6 @@ namespace Apresentação.Financeiro
             this.btnExcluir.Size = new System.Drawing.Size(150, 16);
             this.btnExcluir.TabIndex = 4;
             this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
-            // 
-            // opçãoImprimir
-            // 
-            this.opçãoImprimir.BackColor = System.Drawing.Color.Transparent;
-            this.opçãoImprimir.Descrição = "Imprimir...";
-            this.opçãoImprimir.Imagem = global::Apresentação.Resource.impressora___161;
-            this.opçãoImprimir.Location = new System.Drawing.Point(7, 30);
-            this.opçãoImprimir.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.opçãoImprimir.MaximumSize = new System.Drawing.Size(150, 100);
-            this.opçãoImprimir.MinimumSize = new System.Drawing.Size(0, 20);
-            this.opçãoImprimir.Name = "opçãoImprimir";
-            this.opçãoImprimir.Size = new System.Drawing.Size(150, 20);
-            this.opçãoImprimir.TabIndex = 3;
-            this.opçãoImprimir.Click += new System.EventHandler(this.opçãoImprimir_Click);
             // 
             // opçãoDestravar
             // 
@@ -249,7 +233,7 @@ namespace Apresentação.Financeiro
             this.quadroTravamento.Cor = System.Drawing.Color.Black;
             this.quadroTravamento.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadroTravamento.LetraTítulo = System.Drawing.Color.White;
-            this.quadroTravamento.Location = new System.Drawing.Point(7, 194);
+            this.quadroTravamento.Location = new System.Drawing.Point(7, 172);
             this.quadroTravamento.MostrarBotãoMinMax = false;
             this.quadroTravamento.Name = "quadroTravamento";
             this.quadroTravamento.Size = new System.Drawing.Size(160, 129);

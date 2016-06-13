@@ -22,7 +22,6 @@ namespace Apresentação.Financeiro
         private RadioButton optHistórico;
         protected TítuloBaseInferior título;
         private Quadro quadroOpçãoPedido;
-        private Opção opçãoImprimir;
 
         /// <summary>
         /// Ocorre quando a trava é alterada.
@@ -176,29 +175,6 @@ namespace Apresentação.Financeiro
                 digitação.TipoExibiçãoAtual = DigitaçãoComum.TipoExibição.TipoHistórico;
         }
 
-        protected virtual void Imprimir()
-        {
-            //using (RequisitarImpressão dlg = new RequisitarImpressão(TipoDocumento))
-            //{
-            //    dlg.PermitirEscolherPágina = true;
-
-            //    if (dlg.ShowDialog(ParentForm) == DialogResult.OK)
-            //    {
-            //        FilaImpressão fila = FilaImpressão.ObterFila(dlg.ControleImpressão, dlg.Impressora);
-
-            //        fila.Imprimir((ulong)entidade.Código, dlg.PáginaInicial, dlg.PáginaFinal, dlg.NúmeroCópias);
-            //    }
-            //}
-
-            // TODO Implementar
-
-        }
-
-        private void opçãoImprimir_Click(object sender, EventArgs e)
-        {
-            Imprimir();
-        }
-
         void digitação_EntidadeTravada(bool travado)
         {
             AtualizarTravamento(travado);
@@ -323,18 +299,29 @@ namespace Apresentação.Financeiro
                     Relacionamento.Cadastrar();
                 } catch (OperaçãoCancelada)
                 {
-                    MessageBox.Show(this,
-                        "Venda ainda não foi salva.",
-                        "Operação cancelada",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
+                    MostrarMensagemEntidadeNãoSalva();
                 }
             }
 
         }
 
+        protected virtual void MostrarMensagemEntidadeNãoSalva()
+        {
+            MessageBox.Show(this,
+                     "Venda ainda não foi salva.",
+                     "Operação cancelada",
+                     MessageBoxButtons.OK,
+                     MessageBoxIcon.Information);
+        }
+
         private void opçãoVisualizarImpressão_Click(object sender, EventArgs e)
         {
+            if (!entidade.Cadastrado)
+            {
+                MostrarMensagemEntidadeNãoSalva();
+                return;
+            }
+
             Formulários.JanelaImpressão j = new Formulários.JanelaImpressão();
             InserirDocumento(j);
             j.Show();
