@@ -13,7 +13,7 @@ namespace Entidades.Pessoa
     /// Esta classe é marcada com DbTransação para verificar se o código
     /// extrapola o limite da variávei utilizada para flag.
     /// </remarks>
-    [DbTabela("classpessoa"), Cacheável("ObterClassificação"), DbTransação]
+    [DbTabela("classpessoa"), Cacheável("ObterClassificação"), DbTransação, NãoCopiarCache()]
     public class Classificação : ItemAlertável, IComparable
     {
         public enum CódigoSistema : int

@@ -2,6 +2,7 @@
 using Apresentação.Financeiro.Saída;
 using Apresentação.Financeiro.Venda;
 using Apresentação.Formulários;
+using Apresentação.Impressão.Relatórios.Acerto;
 using Entidades.Acerto;
 using Entidades.Pessoa;
 using Entidades.Privilégio;
@@ -525,12 +526,6 @@ namespace Apresentação.Financeiro.Acerto
 
             try
             {
-                /* Se o acerto estiver OK, entendo que qualquer um possa
-                 * zerar o acerto.
-                 * -- Júlio, 17/11/2006
-                 */
-                //Entidades.Privilégio.PermissãoFuncionário.AssegurarPermissão(Entidades.Privilégio.Permissão.ZerarAcerto);
-
                 bandejaAcerto.Acerto.Acertar();
 
                 AguardeDB.Fechar();
@@ -564,7 +559,6 @@ namespace Apresentação.Financeiro.Acerto
 
         private void Recarregar()
         {
-            // Apresentação.Formulários.AguardeDB.Mostrar();
             título.Título = "Acerto de Mercadorias (cod " + this.acerto.Código.ToString() + ") de " + this.acerto.Cliente.Nome;
 
             ControleAcertoMercadorias acerto = new ControleAcertoMercadorias(this.acerto); 
@@ -578,8 +572,6 @@ namespace Apresentação.Financeiro.Acerto
             lblFórmula.Text =
                 (this.acerto.FórmulaAcerto == FórmulaAcerto.Padrão) ?
                 "=\nSaída - Retorno - Venda" : "=\nVenda - Devolução";
-
-            //Apresentação.Formulários.AguardeDB.Fechar();
         }
 
         private void opçãoRastro_Click(object sender, EventArgs e)
@@ -659,16 +651,24 @@ namespace Apresentação.Financeiro.Acerto
                 }
                 finally
                 {
-                    Apresentação.Formulários.AguardeDB.Fechar();
+                    AguardeDB.Fechar();
                     UseWaitCursor = false;
                 }
             }
         }
 
-        private void bandejaAcerto_SeleçãoMudou(Apresentação.Mercadoria.Bandeja.Bandeja bandeja, Entidades.ISaquinho saquinho)
+        private void bandejaAcerto_SeleçãoMudou(Mercadoria.Bandeja.Bandeja bandeja, Entidades.ISaquinho saquinho)
         {
             quadroRastro.Visible = saquinho != null;
         }
+
+        private Relatório ObterRelatório()
+         {
+            Relatório relatório = new Relatório();
+             new ControleImpressãoAcerto().PrepararImpressão(relatório, new ControleAcertoMercadorias(acerto));
+  
+             return relatório;
+          }
 
         private void opçãoImprimir_Click(object sender, EventArgs e)
         {
@@ -678,26 +678,22 @@ namespace Apresentação.Financeiro.Acerto
                 return;
             }
 
-            // TODO Implementar
-
-            //using (RequisitarImpressão dlg = new RequisitarImpressão(TipoDocumento.Acerto))
-            //{
-            //    dlg.PermitirEscolherPágina = true;
-
-            //    if (dlg.ShowDialog(ParentForm) == DialogResult.OK)
-            //    {
-            //        FilaImpressão fila = FilaImpressão.ObterFila(dlg.ControleImpressão, dlg.Impressora);
-                
-            //        fila.Imprimir(bandejaAcerto.Acerto, dlg.PáginaInicial, dlg.PáginaFinal, dlg.NúmeroCópias);
-            //    }
-            //}
+            Imprimir();
         }
 
+        private void Imprimir()
+        {
+            AguardeDB.Mostrar();
+            JanelaImpressão visualizadorImpressão = new JanelaImpressão();
+            visualizadorImpressão.InserirDocumento(ObterRelatório(), "Acerto");
+            AguardeDB.Fechar();
+
+            visualizadorImpressão.Show();
+        }
 
         protected override void AoExibir()
         {
             base.AoExibir();
-
             Recarregar();
         }
 
@@ -754,33 +750,35 @@ namespace Apresentação.Financeiro.Acerto
 
         private void opçãoRetorno_Click(object sender, EventArgs e)
         {
-            Entidades.Relacionamento.Retorno.Retorno retorno;
-            Retorno.RetornoBaseInferior baseInferior = null;
+            Entidades.Relacionamento.Retorno.Retorno retorno = AdicionarNovoRetorno();
 
-            // Gerar retorno.
-            retorno = new Entidades.Relacionamento.Retorno.Retorno(acerto.Cliente);
-            retorno.DigitadoPor = Entidades.Pessoa.Funcionário.FuncionárioAtual;
-            retorno.TabelaPreço = acerto.TabelaPreço;
-
-            acerto.Retornos.Adicionar(retorno);
-
-            // Mudar interface gráfica.
             try
             {
-                baseInferior = new Apresentação.Financeiro.Retorno.RetornoBaseInferior();
-                baseInferior.Abrir(retorno);
+                SubstituirBase(ContruirBaseRetorno(retorno));
             }
             catch (ExceçãoTabelaVazia)
             {
                 acerto.Retornos.Remover(retorno);
-
-                if (baseInferior != null)
-                    baseInferior.Dispose();
-
                 return;
             }
+        }
 
-            SubstituirBase(baseInferior);
+        private RetornoBaseInferior ContruirBaseRetorno(Entidades.Relacionamento.Retorno.Retorno retorno)
+        {
+            RetornoBaseInferior baseInferior = new RetornoBaseInferior();
+            baseInferior.Abrir(retorno);
+            return baseInferior;
+        }
+
+        private Entidades.Relacionamento.Retorno.Retorno  AdicionarNovoRetorno()
+        {
+            Entidades.Relacionamento.Retorno.Retorno retorno = new Entidades.Relacionamento.Retorno.Retorno(acerto.Cliente);
+
+            retorno.DigitadoPor = Funcionário.FuncionárioAtual;
+            retorno.TabelaPreço = acerto.TabelaPreço;
+            acerto.Retornos.Adicionar(retorno);
+
+            return retorno;
         }
 
         private void opçãoAlterarFórmula_Click(object sender, EventArgs e)
@@ -792,10 +790,10 @@ namespace Apresentação.Financeiro.Acerto
                 && (acerto.FórmulaAcerto != janela.Fórmula))
             {
                 acerto.FórmulaAcerto = janela.Fórmula;
-                Apresentação.Formulários.AguardeDB.Mostrar();
+                AguardeDB.Mostrar();
                 acerto.Atualizar();
                 Recarregar();
-                Apresentação.Formulários.AguardeDB.Fechar();
+                AguardeDB.Fechar();
             }
         }
     }
