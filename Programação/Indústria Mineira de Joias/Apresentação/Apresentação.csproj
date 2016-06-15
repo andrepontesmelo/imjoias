@@ -102,6 +102,15 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>chave.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -1006,13 +1015,6 @@
     <Compile Include="Formulários\Impressão\BaseFormatarEtiqueta.Designer.cs">
       <DependentUpon>BaseFormatarEtiqueta.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formulários\Impressão\FilaImpressão.cs" />
-    <Compile Include="Formulários\Impressão\RequisitarImpressão.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Formulários\Impressão\RequisitarImpressão.Designer.cs">
-      <DependentUpon>RequisitarImpressão.cs</DependentUpon>
-    </Compile>
     <Compile Include="Formulários\Informativo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1172,17 +1174,6 @@
     <Compile Include="Fotos\Tratamento.cs" />
     <Compile Include="Fotos\TratamentoBase.cs" />
     <Compile Include="Fotos\TratamentoRemoverFundoComparando.cs" />
-    <Compile Include="Impressão\Cliente\ControleImpressão.cs" />
-    <Compile Include="Impressão\Comando.cs" />
-    <Compile Include="Impressão\Comunicador.cs" />
-    <Compile Include="Impressão\ConfiguraçãoImpressora.cs" />
-    <Compile Include="Impressão\DadosCandidatura.cs" />
-    <Compile Include="Impressão\DadosComunicação.cs" />
-    <Compile Include="Impressão\DadosDocumento.cs" />
-    <Compile Include="Impressão\DadosRelatório.cs" />
-    <Compile Include="Impressão\Disposição.cs" />
-    <Compile Include="Impressão\EnvioAtrasado.cs" />
-    <Compile Include="Impressão\Estado\EstadoComunicação.cs" />
     <Compile Include="Impressão\Etiquetas\Leiaute\Endereço.cs" />
     <Compile Include="Impressão\Etiquetas\MalaDireta.cs" />
     <Compile Include="Impressão\Etiquetas\Sedex\ControleImpressãoSedex.cs" />
@@ -1206,22 +1197,6 @@
     <Compile Include="Impressão\JanelaOpçõesImpressão.Designer.cs">
       <DependentUpon>JanelaOpçõesImpressão.cs</DependentUpon>
     </Compile>
-    <Compile Include="Impressão\Pacotes\Cabeçalho.cs" />
-    <Compile Include="Impressão\Pacotes\Candidatura.cs" />
-    <Compile Include="Impressão\Pacotes\ConsultaDisponibilidade.cs" />
-    <Compile Include="Impressão\Pacotes\ErroImpressão.cs" />
-    <Compile Include="Impressão\Pacotes\ImpressãoCompleta.cs" />
-    <Compile Include="Impressão\Pacotes\Interpretador.cs" />
-    <Compile Include="Impressão\Pacotes\InterpretadorCandidatura.cs" />
-    <Compile Include="Impressão\Pacotes\InterpretadorConsultaDisponibilidade.cs" />
-    <Compile Include="Impressão\Pacotes\InterpretadorErroImpressão.cs" />
-    <Compile Include="Impressão\Pacotes\InterpretadorImpressãoCompleta.cs" />
-    <Compile Include="Impressão\Pacotes\InterpretadorPacote.cs" />
-    <Compile Include="Impressão\Pacotes\InterpretadorRequisiçãoImpressão.cs" />
-    <Compile Include="Impressão\Pacotes\InterpretadorRequisiçãoRelatório.cs" />
-    <Compile Include="Impressão\Pacotes\RequisiçãoImpressão.cs" />
-    <Compile Include="Impressão\Pacotes\RequisiçãoRelatório.cs" />
-    <Compile Include="Impressão\Pacotes\Útil.cs" />
     <Compile Include="Impressão\Relatórios\Acerto\ControleImpressãoAcerto.cs" />
     <Compile Include="Impressão\Relatórios\Acerto\DataSetAcerto.cs">
       <DependentUpon>DataSetAcerto.xsd</DependentUpon>
@@ -1385,7 +1360,6 @@
     </Compile>
     <Compile Include="Impressão\Relatórios\Layout\Identificação.cs" />
     <Compile Include="Impressão\Relatórios\Mercadoria\ControleImpressãoMercadoria.cs" />
-    <Compile Include="Impressão\Relatórios\Mercadoria\DadosRelatórioMercadoria.cs" />
     <Compile Include="Impressão\Relatórios\Mercadoria\DataSetMercadoria.cs">
       <DependentUpon>DataSetMercadoria.xsd</DependentUpon>
     </Compile>
@@ -1522,7 +1496,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Impressão\Relatórios\Pessoa\ControleImpressãoPessoa.cs" />
-    <Compile Include="Impressão\Relatórios\Pessoa\DadosRelatórioPessoa.cs" />
     <Compile Include="Impressão\Relatórios\Pessoa\DataSetPessoa.Designer.cs">
       <DependentUpon>DataSetPessoa.xsd</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1546,7 +1519,6 @@
       <DesignTime>True</DesignTime>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Impressão\Relatórios\RelatórioImpressão.cs" />
     <Compile Include="Impressão\Relatórios\Retorno\ControleImpressãoRetorno.cs" />
     <Compile Include="Impressão\Relatórios\Retorno\DataSetRetorno.cs">
       <DependentUpon>DataSetRetorno.xsd</DependentUpon>
@@ -1562,7 +1534,6 @@
       <DesignTime>True</DesignTime>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Impressão\Relatórios\Saída.cs" />
     <Compile Include="Impressão\Relatórios\Saída\ControleImpressãoSaída.cs" />
     <Compile Include="Impressão\Relatórios\Saída\DataSetSaída.cs">
       <DependentUpon>DataSetSaída.xsd</DependentUpon>
@@ -1578,7 +1549,6 @@
       <DesignTime>True</DesignTime>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Impressão\Relatórios\TrabalhoImpressão.cs" />
     <Compile Include="Impressão\Relatórios\Venda\ControleImpressãoVenda.cs" />
     <Compile Include="Impressão\Relatórios\Venda\Crédito.cs">
       <DependentUpon>Crédito.rpt</DependentUpon>
@@ -1632,8 +1602,6 @@
       <DesignTime>True</DesignTime>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Impressão\Servidor\GerenteImpressoras.cs" />
-    <Compile Include="Impressão\Servidor\Serviço.cs" />
     <Compile Include="Impressão\TipoDocumento.cs" />
     <Compile Include="Impressão\VisualizarPáginaVirtual.cs">
       <SubType>Form</SubType>
@@ -2828,10 +2796,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formulários\Impressão\BaseFormatarEtiqueta.resx">
       <DependentUpon>BaseFormatarEtiqueta.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\Impressão\RequisitarImpressão.resx">
-      <DependentUpon>RequisitarImpressão.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Formulários\Informativo.resx">

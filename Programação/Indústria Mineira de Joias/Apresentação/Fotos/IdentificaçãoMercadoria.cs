@@ -58,10 +58,11 @@ namespace Apresentação.Fotos
                      * pelo TxtMeracadoria.
                      */
                     txtReferência.Referência = foto.ReferênciaFormatada;
+
                     txtReferência.CompletarReferência();
-                    
-                    if (foto.Peso.HasValue)
-                        txtPeso.Double = foto.Peso.Value;
+
+                    if (txtReferência.Mercadoria != null)
+                        txtPeso.Double = txtReferência.Mercadoria.Peso;
                     
                     CarregarFornecedor();
 
@@ -101,9 +102,6 @@ namespace Apresentação.Fotos
 
         private void CarregarPeso(Entidades.Mercadoria.Mercadoria mercadoria)
         {
-            if (!mercadoria.DePeso)
-                foto.Peso = null;
-
             txtPeso.Text = mercadoria.Peso.ToString();
         }
 
@@ -210,21 +208,6 @@ namespace Apresentação.Fotos
             if (Alterado != null)
                 Alterado(sender, e);
         }
-
-        /// <summary>
-        /// Ocorre ao deixar o TxtPeso.
-        /// </summary>
-        private void txtPeso_Leave(object sender, EventArgs e)
-        {
-            if (txtPeso.Enabled && txtPeso.Double > 0)
-                foto.Peso = txtPeso.Double;
-            else
-                foto.Peso = null;
-            
-            
-            if (Alterado != null)
-                Alterado(sender, e);
-        }
         
         /// <summary>
         /// Ocorre ao deixar o TxtDescrição.
@@ -253,15 +236,6 @@ namespace Apresentação.Fotos
 
                 if (listaÁlbuns != null)
                     listaÁlbuns.Foto = foto;
-            }
-        }
-
-        private void txtPeso_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == '\r' || e.KeyChar == '\n')
-            {
-                GetNextControl(sender as Control, true).Focus();
-                e.Handled = true;
             }
         }
 

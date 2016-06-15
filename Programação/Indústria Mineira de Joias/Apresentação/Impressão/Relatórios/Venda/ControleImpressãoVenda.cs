@@ -7,6 +7,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using CrystalDecisions.CrystalReports.Engine;
+using Entidades.Relacionamento;
 
 namespace Apresentação.Impressão.Relatórios.Venda
 {
@@ -281,6 +283,21 @@ namespace Apresentação.Impressão.Relatórios.Venda
         private static string FormatarDataCurta(DateTime data)
         {
             return data.ToString("dd/MM/yy");
+        }
+
+        internal static List<ReportClass> CriarImpressão(List<Relacionamento> listaDocumentos)
+        {
+            List<ReportClass> relatórios = new List<ReportClass>();
+            ControleImpressãoVenda controle = new ControleImpressãoVenda();
+
+            foreach (Entidades.Relacionamento.Venda.Venda venda in listaDocumentos)
+            {
+                ReportClass relatório = new Relatório();
+                controle.PrepararImpressão(relatório, venda);
+                relatórios.Add(relatório);
+            }
+
+            return relatórios;
         }
     }
 }

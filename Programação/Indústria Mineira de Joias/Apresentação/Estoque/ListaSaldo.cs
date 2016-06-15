@@ -112,6 +112,7 @@ namespace Apresentação.Estoque
             i.SubItems.Add(s.Peso.ToString());
             i.SubItems.Add(s.FornecedorNome);
             i.SubItems.Add(s.FornecedorReferência);
+            i.SubItems.Add(s.ForaDeLinhaFornecedor ? "FFL" : "");
             i.SubItems.Add(s.InícioFormatado);
             i.SubItems.Add(s.Entrada.ToString());
             i.SubItems.Add(s.Venda.ToString());

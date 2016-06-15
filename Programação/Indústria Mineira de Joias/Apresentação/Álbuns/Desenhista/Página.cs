@@ -345,7 +345,7 @@ namespace Apresentação.Álbum.Edição.Álbuns.Desenhista
                     if (str.Length > 0)
                         str += " - ";
 
-                    str += string.Format("9{0:###0.0}9", foto.Peso.HasValue ? foto.Peso : mercadoria.Peso);
+                    str += string.Format("9{0:###0.0}9", mercadoria.Peso);
                 }
 
                 if ((itens & ItensImpressão.Índice) > 0)
@@ -362,7 +362,7 @@ namespace Apresentação.Álbum.Edição.Álbuns.Desenhista
             {
                 string str;
 
-                str = string.Format("9{0:###0.0}9", foto.Peso.HasValue ? foto.Peso : mercadoria.Peso);
+                str = string.Format("9{0:###0.0}9", mercadoria.Peso);
 
                 if (str.Length > 0)
                     str += " - ";

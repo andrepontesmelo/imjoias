@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
-using System.Windows.Forms;
-using Apresentação.Formulários;
-using Apresentação.Álbum.Edição.Impressão;
-using Apresentação.Álbum.Edição.Álbuns.Desenhista;
+﻿using Apresentação.Álbum.Edição.Álbuns.Desenhista;
 using Apresentação.Álbum.Edição.Fotos;
+using Apresentação.Álbum.Edição.Impressão;
+using Apresentação.Formulários;
 using Entidades.Álbum;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 
 [assembly: ExporBotão(Entidades.Privilégio.Permissão.Álbum, 1, "Fotografias", true, typeof(Apresentação.Álbum.Edição.Álbuns.BaseSeleçãoÁlbum))]
 namespace Apresentação.Álbum.Edição.Álbuns
 {
-    public partial class BaseSeleçãoÁlbum : Apresentação.Formulários.BaseInferior
+    public partial class BaseSeleçãoÁlbum : BaseInferior
     {
         public BaseSeleçãoÁlbum()
         {
@@ -142,16 +139,14 @@ namespace Apresentação.Álbum.Edição.Álbuns
                 return;
             }
 
-
             folderBrowserDialog.Description = "Escolha o diretório destino";
 
             if (folderBrowserDialog.ShowDialog(this) == DialogResult.OK)
             {
                 Entidades.Álbum.Álbum album = lst.Seleção;
-                List<Entidades.Álbum.Foto> fotos = album.Fotos.ExtrairElementos();
+                List<Foto> fotos = album.Fotos.ExtrairElementos();
 
-                Apresentação.Formulários.Aguarde aguarde =
-                    new Aguarde("Extraíndo fotos", fotos.Count);
+                Aguarde aguarde = new Aguarde("Extraíndo fotos", fotos.Count);
 
                 aguarde.Abrir();
                 string path = folderBrowserDialog.SelectedPath;
@@ -159,7 +154,7 @@ namespace Apresentação.Álbum.Edição.Álbuns
                 if (!path.EndsWith(@"\"))
                     path = path + @"\";
 
-                foreach (Entidades.Álbum.Foto f in fotos)
+                foreach (Foto f in fotos)
                 {
                     Image imagem = f.Imagem;
 

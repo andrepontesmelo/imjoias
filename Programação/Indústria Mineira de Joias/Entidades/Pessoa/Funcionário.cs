@@ -8,44 +8,37 @@ using System.Collections.Generic;
 
 namespace Entidades.Pessoa
 {
-	/// <summary>
-	/// Funcionário da empresa.
-    /// </summary>
     [Serializable, DbTransação, Cacheável("ObterPessoaSemCache", "ObterFuncionárioPorUsuárioSemCache", "ObterFuncionárioSemCache")]
 	[NãoCopiarCache, Validade(6, 0, 0)]
     public class Funcionário : PessoaFísica
 	{
         private TimeSpan tempoAtualizaçãoSituação = new TimeSpan(0, 1, 00);
 
-		/// <summary>
-		/// Determina se a ordem do ordenarPorRodízio foi alterada.
-		/// </summary>
 		private bool rodízioAlterado = false;
 
-		#region Atributos
-		protected long?		ficha;					// TODO: Verificar se é índice ordenado
-		protected double	salario;
-		protected string	carteiraProfissional;
-		protected string	carteiraProfissionalSerie;
-		protected string	reservista;
-		protected string	reservistaSerie;
-		protected string	reservistaCategoria;
-		protected DateTime	dataAdmissao = DateTime.MinValue;
+		protected long? ficha;					
+		protected double salario;
+		protected string carteiraProfissional;
+		protected string carteiraProfissionalSerie;
+		protected string reservista;
+		protected string reservistaSerie;
+		protected string reservistaCategoria;
+		protected DateTime dataAdmissao = DateTime.MinValue;
 		protected DateTime?	dataSaida = null;
-		protected string	pis;
-		protected string	cbo;
-		protected string	tituloEleitor;
-		protected int		ramal;
-		protected uint		rodizio;
-		protected string	beneficiario;
-		protected string	beneficiarioParentesco;
-		protected string	cargo;
-		protected string	horarioTrabalho;
-		protected string	intervaloRefeicao;
-		protected string	horarioSabado;
-		protected ulong		empresa;
-		protected string	empresaNome = null;
-		protected string	usuario;
+		protected string pis;
+		protected string cbo;
+		protected string tituloEleitor;
+		protected int ramal;
+		protected uint rodizio;
+		protected string beneficiario;
+		protected string beneficiarioParentesco;
+		protected string cargo;
+		protected string horarioTrabalho;
+		protected string intervaloRefeicao;
+		protected string horarioSabado;
+		protected ulong	empresa;
+		protected string empresaNome = null;
+		protected string usuario;
 
         private DateTime últimaAtualizaçãoSituação = DateTime.Now;
 
@@ -65,8 +58,6 @@ namespace Entidades.Pessoa
 		/// </summary>
 		[DbAtributo(TipoAtributo.Ignorar)]
 		protected TabelaHorário tabelaHorário = null;
-
-		#endregion
 
 		#region Construtoras
 		

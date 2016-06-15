@@ -76,20 +76,13 @@ namespace Programa.ProtetorTela.UI
         /// </summary>
         private void PrepararDescrição()
         {
-            if (foto.Peso.HasValue)
-                descrição = String.Format(
-                    "{0}\nPeso: {1} g\n\n",
-                    foto.ReferênciaFormatada,
-                    foto.Peso.Value);
-            else
-                descrição = String.Format(
-                    "{0}\n\n",
-                    foto.ReferênciaFormatada);
+            descrição = String.Format(
+                "{0}\n\n",
+                foto.ReferênciaFormatada);
 
             if (foto.Descrição.Trim().Length == 0)
             {
                 Mercadoria mercadoria = Mercadoria.ObterMercadoria(foto.ReferênciaFormatada, Entidades.Tabela.TabelaPadrão);
-
                 descrição += mercadoria.Descrição;
             }
             else

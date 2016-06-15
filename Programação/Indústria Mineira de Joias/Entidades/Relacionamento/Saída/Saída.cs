@@ -1,32 +1,14 @@
-using System;
-using System.Data;
-using System.Collections;
-using System.Collections.Generic;
 using Acesso.Comum;
-using Entidades.Relacionamento.Venda;
-using Entidades.Relacionamento;
 using Entidades.Acerto;
-using Acesso.Comum.Cache;
 using Entidades.Balanço;
+using System;
+using System.Collections.Generic;
+using System.Data;
 
 namespace Entidades.Relacionamento.Saída
 {
-    /// <summary>
-    /// Uma saída é uma monitoração de mercadorias que foram relacionadas para alguem.
-    /// Não existe um histórico de quando que a mercadoria saiu ou entrou na firma.
-    /// Mas sim o número de quantas mercadorias já sairam, e quantas já retornaram.
-    /// 
-    /// A saída pode ser relacionado para
-    ///		- um cliente de atacado
-    ///		- um cliente de auto-atacado
-    ///		- um funcionário representante
-    ///		
-    /// Todo contexto saída possui uma entidade saída correspondente.
-    /// 
-    /// Todo: Documentar serialização
-    /// </summary>
     [Serializable, DbTabela("saida")]
-    public class Saída : Entidades.Relacionamento.RelacionamentoAcerto
+    public class Saída : RelacionamentoAcerto
     {
         [DbRelacionamento("codigo", "pessoa")]
         protected Pessoa.Pessoa pessoa;
@@ -116,49 +98,27 @@ namespace Entidades.Relacionamento.Saída
 
         private enum Ordem
         {
-            IndiceItem, DataItem, FuncionárioItem, Código, Referência, PesoSaída, Quantidade, Referencia, Nome, Teor, Peso, Faixa, Grupo, Digito, ForaDeLinha, DePeso
+            IndiceItem, DataItem, FuncionárioItem, Código, Referência, PesoSaída, Quantidade,
+            Referencia, Nome, Teor, Peso, Faixa, Grupo, Digito, ForaDeLinha, DePeso
         }
 
-        /// <summary>
-        /// Obtém as saídas vinculadas a um acerto.
-        /// </summary>
         public static List<Saída> ObterSaídas(AcertoConsignado acerto)
         {
             List<Saída> saídas = Mapear<Saída>(
                 "SELECT * FROM saida WHERE acerto = " + DbTransformar(acerto.Código));
 
-            // Saídas serão recuperadas quando necessário
-            //RecuperarColeções(saídas);
-
             return saídas;
         }
 
-        /// <summary>
-        /// Esta lista preenche 3 entidades de uma só vez:
-        ///		- Saída, itemsaida, Mercadoria (do itemsaida)
-        ///	
-        ///	Basicamente recupera todos as saídas não acertadas.
-        ///	a lista de itens e suas mercadorias também são obtidas
-        /// </summary>
-        /// <param name="pessoa"> Para quem foi relacionado </param>
         public static List<Saída> ObterSaídas(Pessoa.Pessoa pessoa, DateTime início, DateTime final, bool apenasNãoAcertados)
         {
-            // Obtém as saídas sem os itens, e cria uma hash para auxiliar futuramente
-            List<Saída> saídas = ObterSaídasSemItens(pessoa, início, final, apenasNãoAcertados);
-
-            return saídas;
+            return ObterSaídasSemItens(pessoa, início, final, apenasNãoAcertados);
         }
 
         private static List<Saída> ObterSaídasSemItens(Pessoa.Pessoa pessoa, DateTime início, DateTime final, bool apenasNãoAcertados)
         {
-            // Lista de interios, utilizado para carregar posteriormente as pessoas.
-            //ArrayList pessoas;
-            //long[] vPessoas;
-
-            //pessoas = new ArrayList();
-
             IDbConnection conexão;
-            List<Saída> saídas; // = new ArrayList();
+            List<Saída> saídas;
 
             conexão = Conexão;
 
@@ -166,7 +126,6 @@ namespace Entidades.Relacionamento.Saída
             {
                 using (IDbCommand cmd = conexão.CreateCommand())
                 {
-                    //cmd.CommandText = "SELECT codigo, data, pessoa, digitadopor, travado, acertado, tabela, acerto from saida where ";
                     cmd.CommandText = "SELECT * from saida where 1=1 ";
 
                     if (apenasNãoAcertados)
@@ -186,11 +145,6 @@ namespace Entidades.Relacionamento.Saída
         }
 
 
-        /// <summary>
-        /// Conta quantos saídas do cliente ainda não foram acertados.
-        /// </summary>
-        /// <param name="pessoa">Cliente.</param>
-        /// <returns>Número de saídas não acertados.</returns>
         public static uint ContarSaídasNãoAcertadas(Pessoa.Pessoa pessoa)
         {
             IDbConnection conexão;
@@ -236,12 +190,10 @@ namespace Entidades.Relacionamento.Saída
                                 double peso = leitor.GetDouble((int)OrdemAcerto.Peso);
                                 double índice = leitor.GetDouble((int)OrdemAcerto.Índice);
 
-                                //SaquinhoAcerto itemNovo = new SaquinhoAcerto(new Mercadoria.Mercadoria(referência, dígito, peso, índice), 0, peso, índice);
                                 SaquinhoAcerto itemNovo = SaquinhoAcerto.Construir(fórmula, new Mercadoria.Mercadoria(referência, dígito, peso, índice), 0, peso, índice);
 
                                 bool itemJáExistente;
 
-                                // Item a ser utilizado
                                 SaquinhoAcerto item;
 
                                 Mercadoria.Mercadoria mercadoria = new Mercadoria.Mercadoria(referência, dígito, peso, null);
@@ -300,7 +252,6 @@ namespace Entidades.Relacionamento.Saída
 
                                 bool itemJáExistente;
 
-                                // Item a ser utilizado
                                 SaquinhoBalanço item;
 
                                 Mercadoria.Mercadoria mercadoria = new Mercadoria.Mercadoria(referência, dígito, peso, null);
@@ -321,6 +272,7 @@ namespace Entidades.Relacionamento.Saída
                     {
                         if (leitor != null)
                             leitor.Close();
+
                         Usuários.UsuárioAtual.GerenciadorConexões.AdicionarConexão(conexão);
                     }
 
@@ -436,7 +388,6 @@ namespace Entidades.Relacionamento.Saída
                     }
                     catch
                     {
-                        // Não existem saídas...
                         return DateTime.MinValue;
                     }
                 }
@@ -463,7 +414,6 @@ namespace Entidades.Relacionamento.Saída
                     }
                     catch
                     {
-                        // Não existem saídas...
                         return DateTime.MinValue;
                     }
                 }
@@ -490,7 +440,6 @@ namespace Entidades.Relacionamento.Saída
                     }
                     catch
                     {
-                        // Não existem saídas...
                         return DateTime.MinValue;
                     }
                 }
@@ -506,10 +455,6 @@ namespace Entidades.Relacionamento.Saída
                 using (IDbCommand cmd = conexão.CreateCommand())
                 {
                     cmd.CommandText = "update saida set travado=1 ";
-
-                    //if (acertarTambém)
-                    //    cmd.CommandText += " AND acertado=1 ";
-                    
                     cmd.CommandText += " where codigo IN " + DbTransformarConjunto(códigos);
                     cmd.ExecuteNonQuery();
                 }

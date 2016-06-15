@@ -38,8 +38,6 @@ namespace Entidades.Álbum
 
 		private string		    mercadoria;			// Referência numérica
 
-        private double?         peso;
-
 		private string			descricao;
 		
 		private DateTime?		data;
@@ -114,16 +112,6 @@ namespace Entidades.Álbum
                 return referênciaFormatadaCache;
 			}
 		}
-
-		public double? Peso
-        {
-            get { return peso; }
-            set
-            {
-                peso = value;
-                DefinirDesatualizado();
-            }
-        }
 
 		public string Descrição
 		{
@@ -515,7 +503,7 @@ namespace Entidades.Álbum
         public static Foto[] ObterFotos(string referência)
         {
             return Mapear<Foto>(
-                "SELECT codigo,mercadoria,peso,descricao,data FROM foto WHERE mercadoria = " + DbTransformar(referência)).ToArray();
+                "SELECT codigo,mercadoria,descricao,data FROM foto WHERE mercadoria = " + DbTransformar(referência)).ToArray();
         }
 
         /// <summary>
@@ -524,7 +512,7 @@ namespace Entidades.Álbum
         public static Foto[] ObterFotos(Álbum álbum)
         {
             return Mapear<Foto>(
-                "SELECT codigo,mercadoria,peso,descricao,data FROM foto WHERE codigo IN (SELECT foto FROM vinculofotoalbum WHERE album = "
+                "SELECT codigo,mercadoria,descricao,data FROM foto WHERE codigo IN (SELECT foto FROM vinculofotoalbum WHERE album = "
                 + DbTransformar(álbum.Código) + ") AND mercadoria in (select referencia from mercadoria where foradelinha=0) ").ToArray();
         }
 
@@ -535,7 +523,7 @@ namespace Entidades.Álbum
         public static Foto ObterFoto(uint código)
         {
             return MapearÚnicaLinha<Foto>(
-                "SELECT codigo,mercadoria,peso,descricao,data FROM foto WHERE codigo = " + DbTransformar(código));
+                "SELECT codigo,mercadoria,descricao,data FROM foto WHERE codigo = " + DbTransformar(código));
         }
 
         /// <summary>
@@ -546,7 +534,7 @@ namespace Entidades.Álbum
         {
             string consulta;
 
-            consulta = "SELECT codigo,mercadoria,peso,descricao,data FROM foto WHERE mercadoria = " + DbTransformar(mercadoria.ReferênciaNumérica);
+            consulta = "SELECT codigo,mercadoria,descricao,data FROM foto WHERE mercadoria = " + DbTransformar(mercadoria.ReferênciaNumérica);
 
             return Mapear<Foto>(consulta).ToArray();
         }
@@ -564,9 +552,9 @@ namespace Entidades.Álbum
             string consulta;
 
             if (incluirForaDeLinha)
-                consulta = "SELECT codigo,mercadoria,peso,descricao,data FROM foto ORDER BY mercadoria";
+                consulta = "SELECT codigo,mercadoria,descricao,data FROM foto ORDER BY mercadoria";
             else
-                consulta = "SELECT f.codigo,f.mercadoria,f.peso,f.descricao, f.data FROM foto" +
+                consulta = "SELECT f.codigo,f.mercadoria,f.descricao, f.data FROM foto" +
                     " f JOIN mercadoria m ON f.mercadoria = m.referencia" +
                     " WHERE m.foradelinha = 0" +
                     " ORDER BY mercadoria";
@@ -594,11 +582,6 @@ namespace Entidades.Álbum
 
                                 f.codigo = (uint)leitor["codigo"];
                                 f.mercadoria = leitor.GetString(1);
-
-                                if (leitor["peso"] == DBNull.Value)
-                                    f.peso = null;
-                                else
-                                    f.peso = (double)leitor["peso"];
 
                                 if (leitor["descricao"] == DBNull.Value)
                                     f.descricao = "";
@@ -672,7 +655,7 @@ namespace Entidades.Álbum
         /// </summary>
         public static Foto[] ObterFotosAleatórias(int quantidade)
         {
-            string cmd = "SELECT f.codigo, f.mercadoria, f.peso, f.descricao FROM mercadoria m, foto f WHERE m.foradelinha = 0 AND m.referencia = f.mercadoria ORDER BY RAND() LIMIT " + quantidade.ToString();
+            string cmd = "SELECT f.codigo, f.mercadoria, f.descricao FROM mercadoria m, foto f WHERE m.foradelinha = 0 AND m.referencia = f.mercadoria ORDER BY RAND() LIMIT " + quantidade.ToString();
 
             return Mapear<Foto>(cmd).ToArray();
         }
@@ -682,7 +665,7 @@ namespace Entidades.Álbum
         /// </summary>
         public static Foto[] ObterÍconesAleatórios(int quantidade)
         {
-            string cmd = "SELECT f.codigo, f.mercadoria, f.peso, f.descricao, f.icone FROM mercadoria m, foto f WHERE m.foradelinha = 0 AND m.referencia = f.mercadoria ORDER BY RAND() LIMIT " + quantidade.ToString();
+            string cmd = "SELECT f.codigo, f.mercadoria, f.descricao, f.icone FROM mercadoria m, foto f WHERE m.foradelinha = 0 AND m.referencia = f.mercadoria ORDER BY RAND() LIMIT " + quantidade.ToString();
 
             return Mapear<Foto>(cmd).ToArray();
         }
@@ -799,7 +782,7 @@ namespace Entidades.Álbum
 
         public static Foto[] ObterFotosSemÍcone()
         {
-            string cmd = "SELECT f.codigo, f.mercadoria, f.peso, f.descricao, f.icone FROM foto f WHERE f.icone is null or length(f.icone) = 0";
+            string cmd = "SELECT f.codigo, f.mercadoria, f.descricao, f.icone FROM foto f WHERE f.icone is null or length(f.icone) = 0";
 
             return Mapear<Foto>(cmd).ToArray();
         }

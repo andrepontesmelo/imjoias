@@ -46,6 +46,7 @@
             this.status = new System.Windows.Forms.StatusBar();
             this.panelReferencias = new System.Windows.Forms.StatusBarPanel();
             this.panelPesoTotal = new System.Windows.Forms.StatusBarPanel();
+            this.colForaDeLinhaFornecedor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.localizador = new Apresentação.Formulários.Localizador();
             ((System.ComponentModel.ISupportInitialize)(this.panelReferencias)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelPesoTotal)).BeginInit();
@@ -61,6 +62,7 @@
             this.colPeso,
             this.colFornecedor,
             this.colRefFornecedor,
+            this.colForaDeLinhaFornecedor,
             this.colInicio,
             this.colEntrada,
             this.colVenda,
@@ -159,6 +161,10 @@
             this.panelPesoTotal.Name = "panelPesoTotal";
             this.panelPesoTotal.ToolTipText = "Somatória do peso levando em conta as quantidades";
             // 
+            // colForaDeLinhaFornecedor
+            // 
+            this.colForaDeLinhaFornecedor.Text = "Fora de linha no fornecedor";
+            // 
             // localizador
             // 
             this.localizador.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -207,5 +213,6 @@
         private Apresentação.Formulários.Localizador localizador;
         private System.Windows.Forms.ColumnHeader colInicio;
         private System.Windows.Forms.ColumnHeader colTotal;
+        private System.Windows.Forms.ColumnHeader colForaDeLinhaFornecedor;
     }
 }

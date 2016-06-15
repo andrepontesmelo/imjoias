@@ -1,19 +1,16 @@
-using System;
-using System.Drawing;
-using System.ComponentModel;
-using System.Windows.Forms;
-using System.Data;
-using System.Reflection;
 using Entidades.Privilégio;
-using System.IO;
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
+using System.Windows.Forms;
 
 namespace Apresentação.Formulários
 {
-	/// <summary>
-	/// Summary description for Form1.
-	/// </summary>
-	public class BaseFormulário : System.Windows.Forms.Form
+    /// <summary>
+    /// Summary description for Form1.
+    /// </summary>
+    public class BaseFormulário : System.Windows.Forms.Form
 	{
 		// Atributos
 		private BaseInferior baseAtual;
@@ -30,10 +27,10 @@ namespace Apresentação.Formulários
 		public event Substituição AoSubstituirBaseInferior;
 
 		// Formulário
-		protected System.Windows.Forms.Panel topo;
-		private System.Windows.Forms.Panel conteúdo;
-		protected Apresentação.Formulários.BaseInferior baseInferior;
-		protected Apresentação.Formulários.BarraBotões barraBotões;
+		protected Panel topo;
+		private Panel conteúdo;
+		protected BaseInferior baseInferior;
+		protected BarraBotões barraBotões;
 
 		/// <summary>
 		/// Required designer variable.
@@ -49,7 +46,7 @@ namespace Apresentação.Formulários
 
 			baseAtual = baseInferior;
 
-            if (System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width <= 800)
+            if (Screen.PrimaryScreen.Bounds.Width <= 800)
             {
                 FormBorderStyle = FormBorderStyle.None;
                 WindowState = FormWindowState.Maximized;
@@ -61,7 +58,8 @@ namespace Apresentação.Formulários
         /// </summary>
         private void CurrentDomain_AssemblyLoad(object sender, AssemblyLoadEventArgs args)
         {
-            foreach (ExporBotãoAttribute exportação in args.LoadedAssembly.GetCustomAttributes(typeof(ExporBotãoAttribute), true))
+            foreach (ExporBotãoAttribute exportação in 
+                args.LoadedAssembly.GetCustomAttributes(typeof(ExporBotãoAttribute), true))
             {
                 Botão botão = ExportarBotão(args.LoadedAssembly, exportação);
 
@@ -106,7 +104,8 @@ namespace Apresentação.Formulários
                         }
 
                         if (exportação.Controlador != null)
-                            botão.Controlador = (ControladorBaseInferior)exportação.Controlador.Assembly.CreateInstance(exportação.Controlador.FullName);
+                            botão.Controlador = (ControladorBaseInferior)exportação.Controlador.Assembly.
+                                CreateInstance(exportação.Controlador.FullName);
 
                         botão.RetornarÀPrimeira = exportação.RetornarÀPrimeira;
 
@@ -264,7 +263,7 @@ namespace Apresentação.Formulários
 
                 // Preparar nova base inferior.
                 b.SuspendLayout();
-                b.Dock = System.Windows.Forms.DockStyle.None;
+                b.Dock = DockStyle.None;
                 b.Size = conteúdo.Size;
                 b.Location = new System.Drawing.Point(0, 0);
                 b.ResumeLayout();
@@ -275,7 +274,7 @@ namespace Apresentação.Formulários
                 conteúdo.ResumeLayout();
                 this.ResumeLayout();
 
-                b.Dock = System.Windows.Forms.DockStyle.Fill;
+                b.Dock = DockStyle.Fill;
 
                 baseAtual.DispararAoSerSubstituido(b);
 
@@ -285,7 +284,6 @@ namespace Apresentação.Formulários
 
                 baseAtual = b;
 
-                // Dispara evento de exibição.
                 b.DispararAoExibir();
             }
             finally
@@ -301,7 +299,7 @@ namespace Apresentação.Formulários
 		protected internal void NovaBase(BaseInferior b)
 		{
 			b.BackColor = baseInferior.BackColor;
-			b.Dock = System.Windows.Forms.DockStyle.Fill;
+			b.Dock = DockStyle.Fill;
 			b.Name = "baseInferior";
 			b.Location = new System.Drawing.Point(0, 93);
 			b.Size = new System.Drawing.Size(792, 413);
@@ -319,28 +317,7 @@ namespace Apresentação.Formulários
 
             foreach (Botão botão in barraBotões.Botões)
             {
-                //try
-                //{
-                    botão.Controlador.AoCarregarCompletamente(splash);
-//                }
-//                catch (ExceçãoBotãoNãoSuportado)
-//                {
-//                    remoção.Add(botão);
-//                }
-//                catch (ExceçãoPósCarga e)
-//                {
-//                    problema += "\n" + e.Message;
-//                    falha = true;
-//                }
-//                catch (Exception e)
-//                {
-//#if DEBUG
-//                    System.Windows.Forms.MessageBox.Show(e.ToString());
-//#endif
-//                    Acesso.Comum.Usuários.UsuárioAtual.RegistrarErro(e);
-//                    problema += "\n" + baseInferior.GetType().ToString();
-//                    falha = true;
-//                }
+                botão.Controlador.AoCarregarCompletamente(splash);
             }
 
             foreach (Botão botão in remoção)
@@ -363,20 +340,15 @@ namespace Apresentação.Formulários
         /// 
 		public void DispararAoCarregar(Splash splash)
 		{
-			System.Windows.Forms.Cursor cursorAnterior = Cursor.Current;
+			Cursor cursorAnterior = Cursor.Current;
 
 			Cursor.Current = Cursors.WaitCursor;
 
             if (splash != null)
                 splash.Mensagem = "Carregando mercadorias ...";
-                //splash.Mensagem = "Consultando preços das mercadorias...";
 
             Entidades.Mercadoria.Mercadoria.IniciarCarga();
-            //Entidades.Pessoa.PessoaBusca.Instância.Preparar();
 
-            /* Carrega todos os botões declarados
-             * nos assemblys.
-             */
             ImportarBotões(splash);
 
             // Dispara o evento
@@ -398,43 +370,17 @@ namespace Apresentação.Formulários
         {
             try
             {
-                //if (splash != null)
-                //    splash.Mensagem = "Criando botões de usuário...";
-
-                // Insere todos os botões exportados.
-                //foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
                 string caminho = AppDomain.CurrentDomain.BaseDirectory;
-                //string[] partes = AppDomain.CurrentDomain.BaseDirectory
-
-                //for (int i = 0; i < partes.Length - 1; i++)
-                //    caminho += partes[i] + @"\";
 
                 if (splash != null)
                     splash.Mensagem = "Carregando controles gráficos ...";
 
                 string arquivo = Path.Combine(caminho, "Apresentação.dll");
 
-                //foreach (string arquivo in Directory.GetFiles(
-                //    caminho,
-                //    "Apresentação.dll", SearchOption.TopDirectoryOnly))
-                //{
-                    //if (splash != null)
-                    //{
-                    //    string[] pedaços = arquivo.Split('\\');
-                    //    splash.Mensagem = "Preparando Ambiente " + pedaços[pedaços.Length - 1].
-                    //        Replace("Apresentação.", "").Replace(".dll", "").Replace(".", " ");
-                        
-                    //}
-
-                    //Assembly assembly = Assembly.LoadFrom(arquivo);
                     Assembly assembly = Assembly.LoadFile(arquivo);
-
-                    //if (splash != null)
-                    //    splash.Mensagem = "Criando botões de usuário... (" + assembly.FullName + ")";
 
                     foreach (ExporBotãoAttribute exportação in assembly.GetCustomAttributes(typeof(ExporBotãoAttribute), true))
                         ExportarBotão(assembly, exportação);
-                //}
 
                 AppDomain.CurrentDomain.AssemblyLoad += new AssemblyLoadEventHandler(CurrentDomain_AssemblyLoad);
             }

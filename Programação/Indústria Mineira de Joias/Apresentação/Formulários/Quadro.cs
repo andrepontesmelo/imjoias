@@ -1,83 +1,70 @@
+using Entidades.Privilégio;
 using System;
-using System.Collections;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Data;
 using System.Windows.Forms;
-
-using Entidades.Privilégio;
 
 namespace Apresentação.Formulários
 {
-	/// <summary>
-	/// Summary description for Quadro.
-	/// </summary>
-	[Designer("System.Windows.Forms.Design.ParentControlDesigner,System.Design", 
-		 typeof(System.ComponentModel.Design.IDesigner))]
-	[Serializable]
-    public class Quadro : System.Windows.Forms.UserControl, IRequerPrivilégio
-	{
-		// Atributos
-		private string título = "Título";
-		private int tamanho = 30;
-		private GraphicsPath caminho = new GraphicsPath();
-		private Color cor = Color.Black;
-		private bool [] bordaArredondada = new bool[4];
-		private System.Windows.Forms.Label lblTítulo;
-		private System.Windows.Forms.ImageList listaIcones;
-		private System.ComponentModel.IContainer components;
-		private System.Windows.Forms.PictureBox botãoMinMax;
-		private bool minimizado = false;
-		private bool mostrarBotãoMinMax = false;
-		private Rectangle posiçãoOriginal;
+    [Designer("System.Windows.Forms.Design.ParentControlDesigner,System.Design",
+         typeof(System.ComponentModel.Design.IDesigner))]
+    [Serializable]
+    public class Quadro : UserControl, IRequerPrivilégio
+    {
+        private string título = "Título";
+        private int tamanho = 30;
+        private GraphicsPath caminho = new GraphicsPath();
+        private Color cor = Color.Black;
+        private bool[] bordaArredondada = new bool[4];
+        private Label lblTítulo;
+        private ImageList listaIcones;
+        private IContainer components;
+        private PictureBox botãoMinMax;
+        private bool minimizado = false;
+        private bool mostrarBotãoMinMax = false;
+        private Rectangle posiçãoOriginal;
         private Permissão privilégio = Permissão.Nenhuma;
 
-		//Ordem dos ícones no listaÍcones
-		private enum OrdemIcones { minimizar, minimizarMouseCima, minimizarApertado, maximizar, maximizarMouseCima, maximizarApertado};
-		
-		public Quadro()
-		{
-			// This call is required by the Windows.Forms Form Designer.
+        private enum OrdemIcones { minimizar, minimizarMouseCima, minimizarApertado, maximizar, maximizarMouseCima, maximizarApertado };
+
+        public Quadro()
+        {
             InitializeComponent();
-            
-			// TODO: Add any initialization after the InitializeComponent call
-			this.SetStyle(ControlStyles.Opaque, false);
-			this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
+
+            this.SetStyle(ControlStyles.Opaque, false);
+            this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
 
-			this.BackColor = Color.FromArgb(128, 255, 255, 255); //Color.Transparent;
+            this.BackColor = Color.FromArgb(128, 255, 255, 255);
 
-			for (int i = 0; i < 4; i++)
-				bordaArredondada[i] = true;
+            for (int i = 0; i < 4; i++)
+                bordaArredondada[i] = true;
 
-			lblTítulo.Width = Width;
+            lblTítulo.Width = Width;
 
-			botãoMinMax.Image = listaIcones.Images[(int) OrdemIcones.minimizar];
-		}
+            botãoMinMax.Image = listaIcones.Images[(int)OrdemIcones.minimizar];
+        }
 
-		/// <summary> 
-		/// Clean up any resources being used.
-		/// </summary>
-		protected override void Dispose( bool disposing )
-		{
-			if( disposing )
-			{
-				if(components != null)
-				{
-					components.Dispose();
-				}
-			}
-			base.Dispose( disposing );
-		}
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (components != null)
+                {
+                    components.Dispose();
+                }
+            }
+            base.Dispose(disposing);
+        }
 
-		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
+        #region Component Designer generated code
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Quadro));
             this.lblTítulo = new System.Windows.Forms.Label();
@@ -139,284 +126,272 @@ namespace Apresentação.Formulários
             ((System.ComponentModel.ISupportInitialize)(this.botãoMinMax)).EndInit();
             this.ResumeLayout(false);
 
-		}
-		#endregion
+        }
+        #endregion
 
-		// Propriedades -------------------------------------
-		[Browsable(true)]
-		public bool MostrarBotãoMinMax
-		{
-			get { return mostrarBotãoMinMax; }
-			set 
-			{ 
-				mostrarBotãoMinMax = value;
-				PreparaBotãoMinMax();
-			}
-		}
+        [Browsable(true)]
+        public bool MostrarBotãoMinMax
+        {
+            get { return mostrarBotãoMinMax; }
+            set
+            {
+                mostrarBotãoMinMax = value;
+                PreparaBotãoMinMax();
+            }
+        }
 
-		public Color Cor
-		{
-			get { return cor; }
-			set { cor = value; this.Refresh(); }
-		}
+        public Color Cor
+        {
+            get { return cor; }
+            set { cor = value; this.Refresh(); }
+        }
 
-		public int Tamanho
-		{
-			get { return tamanho; }
-			set
-			{
-				tamanho = value;
-				Quadro_Resize(this, null);
-				this.Refresh();
-			}
-		}
+        public int Tamanho
+        {
+            get { return tamanho; }
+            set
+            {
+                tamanho = value;
+                Quadro_Resize(this, null);
+                this.Refresh();
+            }
+        }
 
-		public bool bSupEsqArredondada
-		{
-			get { return bordaArredondada[0]; }
-			set { bordaArredondada[0] = value; Quadro_Resize(this, null); this.Refresh(); }
-		}
+        public bool bSupEsqArredondada
+        {
+            get { return bordaArredondada[0]; }
+            set { bordaArredondada[0] = value; Quadro_Resize(this, null); this.Refresh(); }
+        }
 
-		public bool bSupDirArredondada
-		{
-			get { return bordaArredondada[1]; }
-			set { bordaArredondada[1] = value; Quadro_Resize(this, null); this.Refresh(); }
-		}
+        public bool bSupDirArredondada
+        {
+            get { return bordaArredondada[1]; }
+            set { bordaArredondada[1] = value; Quadro_Resize(this, null); this.Refresh(); }
+        }
 
-		public bool bInfDirArredondada
-		{
-			get { return bordaArredondada[2]; }
-			set { bordaArredondada[2] = value; Quadro_Resize(this, null); this.Refresh(); }
-		}
+        public bool bInfDirArredondada
+        {
+            get { return bordaArredondada[2]; }
+            set { bordaArredondada[2] = value; Quadro_Resize(this, null); this.Refresh(); }
+        }
 
-		public bool bInfEsqArredondada
-		{
-			get { return bordaArredondada[3]; }
-			set { bordaArredondada[3] = value; Quadro_Resize(this, null); this.Refresh(); }
-		}
+        public bool bInfEsqArredondada
+        {
+            get { return bordaArredondada[3]; }
+            set { bordaArredondada[3] = value; Quadro_Resize(this, null); this.Refresh(); }
+        }
 
-		//		[DefaultValue("Título"), Browsable(true)]
-		public string Título
-		{
-			get { return título; }
-			set { lblTítulo.Text = título = value; }
-		}
+        public string Título
+        {
+            get { return título; }
+            set { lblTítulo.Text = título = value; }
+        }
 
-		public Color FundoTítulo
-		{
-			get { return lblTítulo.BackColor; }
-			set { lblTítulo.BackColor = value; }
-		}
+        public Color FundoTítulo
+        {
+            get { return lblTítulo.BackColor; }
+            set { lblTítulo.BackColor = value; }
+        }
 
-		public Color LetraTítulo
-		{
-			get { return lblTítulo.ForeColor; }
-			set { lblTítulo.ForeColor = value; }
-		}
+        public Color LetraTítulo
+        {
+            get { return lblTítulo.ForeColor; }
+            set { lblTítulo.ForeColor = value; }
+        }
 
-		/// <summary>
-		/// escolhe imagem correta(minimizar ou max), 
-		/// Desaparece ou mostra botão, posiciona corretamente.
-		/// </summary>
-		private void PreparaBotãoMinMax()
-		{
-			botãoMinMax.Image = minimizado ?
-                listaIcones.Images[(int) OrdemIcones.maximizar] : listaIcones.Images[(int) OrdemIcones.minimizar];
+        private void PreparaBotãoMinMax()
+        {
+            botãoMinMax.Image = minimizado ?
+                listaIcones.Images[(int)OrdemIcones.maximizar] : listaIcones.Images[(int)OrdemIcones.minimizar];
 
-			botãoMinMax.Left = lblTítulo.Width - botãoMinMax.Width - botãoMinMax.Top;
-			botãoMinMax.Visible = mostrarBotãoMinMax;
-		}
+            botãoMinMax.Left = lblTítulo.Width - botãoMinMax.Width - botãoMinMax.Top;
+            botãoMinMax.Visible = mostrarBotãoMinMax;
+        }
 
-		private void Quadro_Resize(object sender, System.EventArgs e)
-		{			
-			caminho.Reset();
+        private void Quadro_Resize(object sender, EventArgs e)
+        {
+            this.Region = new Region(DelimitaAreaDesenho());
 
-			// Delimita área de desenho
-			if (bordaArredondada[0])
-				caminho.AddArc(0, 0, tamanho, tamanho, 180, 90);
-			else
-			{
-				caminho.AddLine(0, tamanho, 0, 0);
-				caminho.AddLine(0, 0, tamanho, 0);
-			}
-
-			if (bordaArredondada[1])
-				caminho.AddArc(this.Width - tamanho, 0, tamanho, tamanho, 270, 90);
-			else
-			{
-				caminho.AddLine(this.Width - tamanho, 0, this.Width, 0);
-				caminho.AddLine(this.Width, 0, this.Width, tamanho);
-			}
-
-			if (bordaArredondada[2])
-				caminho.AddArc(this.Width - tamanho, this.Height - tamanho, tamanho, tamanho, 0, 90);
-			else
-			{
-				caminho.AddLine(this.Width, this.Height - tamanho, this.Width, this.Height);
-				caminho.AddLine(this.Width, this.Height, this.Width - tamanho, this.Height);
-			}
-
-			if (bordaArredondada[3])
-				caminho.AddArc(0, this.Height - tamanho, tamanho, tamanho, 90, 90);
-			else
-			{
-				caminho.AddLine(tamanho, this.Height, 0, this.Height);
-				caminho.AddLine(0, this.Height, 0, this.Height - tamanho);
-			}
-
-			caminho.CloseFigure();
-			
-			// Cria região baseada nos limites
-			this.Region = new Region(caminho);
-
-			lblTítulo.Width = Width;
-
-			PreparaBotãoMinMax();
-
+            lblTítulo.Width = Width;
+            PreparaBotãoMinMax();
             Invalidate();
-		}
+        }
 
-		private void Quadro_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
-		{
-			e.Graphics.DrawPath(new Pen(cor, 2), caminho);
-		}
+        private GraphicsPath DelimitaAreaDesenho()
+        {
+            caminho.Reset();
 
-		private void botãoMinMax_Click(object sender, System.EventArgs e)
-		{
-			if (minimizado)
-				Maximizar();
-			else
-				Minimizar();
+            if (bordaArredondada[0])
+                caminho.AddArc(0, 0, tamanho, tamanho, 180, 90);
+            else
+            {
+                caminho.AddLine(0, tamanho, 0, 0);
+                caminho.AddLine(0, 0, tamanho, 0);
+            }
 
-		}
+            if (bordaArredondada[1])
+                caminho.AddArc(this.Width - tamanho, 0, tamanho, tamanho, 270, 90);
+            else
+            {
+                caminho.AddLine(this.Width - tamanho, 0, this.Width, 0);
+                caminho.AddLine(this.Width, 0, this.Width, tamanho);
+            }
 
-		private void botãoMinMax_MouseEnter(object sender, System.EventArgs e)
-		{
-			if (!mostrarBotãoMinMax)
-				return;
+            if (bordaArredondada[2])
+                caminho.AddArc(this.Width - tamanho, this.Height - tamanho, tamanho, tamanho, 0, 90);
+            else
+            {
+                caminho.AddLine(this.Width, this.Height - tamanho, this.Width, this.Height);
+                caminho.AddLine(this.Width, this.Height, this.Width - tamanho, this.Height);
+            }
 
-			botãoMinMax.Image = minimizado ?
-                listaIcones.Images[(int) OrdemIcones.maximizarMouseCima] : listaIcones.Images[(int) OrdemIcones.minimizarMouseCima];
+            if (bordaArredondada[3])
+                caminho.AddArc(0, this.Height - tamanho, tamanho, tamanho, 90, 90);
+            else
+            {
+                caminho.AddLine(tamanho, this.Height, 0, this.Height);
+                caminho.AddLine(0, this.Height, 0, this.Height - tamanho);
+            }
 
-		}
+            caminho.CloseFigure();
 
-		private void botãoMinimizar_MouseLeave(object sender, System.EventArgs e)
-		{
-			PreparaBotãoMinMax();
-		}
+            return caminho;
+        }
 
-		private void botãoMinMax_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
-		{
-			if (!mostrarBotãoMinMax)
-				return;
+        private void Quadro_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.DrawPath(new Pen(cor, 2), caminho);
+        }
 
-			botãoMinMax.Image = minimizado ?
-                listaIcones.Images[(int) OrdemIcones.maximizarApertado] : listaIcones.Images[(int) OrdemIcones.minimizarApertado];
-		}
+        private void botãoMinMax_Click(object sender, EventArgs e)
+        {
+            if (minimizado)
+                Maximizar();
+            else
+                Minimizar();
 
-		private void botãoMinMax_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
-		{
-				PreparaBotãoMinMax();
-		}
+        }
 
-		public void Maximizar()
-		{
-			int meuÍndice;  // indice do controle atual nos controles do pai
-			int meuTop;		// top do controle atual.
-			int diferença;  // quantidade de pixels para subir outros controles
+        private void botãoMinMax_MouseEnter(object sender, EventArgs e)
+        {
+            if (!mostrarBotãoMinMax)
+                return;
 
-			minimizado = false;
+            botãoMinMax.Image = minimizado ?
+                listaIcones.Images[(int)OrdemIcones.maximizarMouseCima] : listaIcones.Images[(int)OrdemIcones.minimizarMouseCima];
+        }
 
-			meuÍndice = this.Parent.Controls.GetChildIndex(this, true);
-			meuTop = this.Parent.Controls[meuÍndice].Location.Y;
+        private void botãoMinimizar_MouseLeave(object sender, EventArgs e)
+        {
+            PreparaBotãoMinMax();
+        }
 
-			// Restaura posição original:
-			diferença = posiçãoOriginal.Height - this.Height;			
-			this.SuspendLayout();
-			this.Bounds = new 
-				Rectangle(Bounds.X, Bounds.Y, Width, Height + diferença);
-			/* não pode-se fazer this.Bounds = posiçãoOriginal;
-			 * pois caso um segundo quadro seja minimizado assim 
-			 * que o primeiro já foi minimizado
-			 * e então o primeiro é maximizado,
-			 * quando o segundo for maximizado, a posição restaurada
-			 * será errada, pois será aquela antiga.
-			 * André, 14/jan/05
-			 */
-			
-			// Muda a posição dos outros controles
-			foreach (Control c in this.Parent.Controls)
-			{
-				int topOriginalC
-					= c.Location.Y + diferença;
+        private void botãoMinMax_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (!mostrarBotãoMinMax)
+                return;
 
-				// mudar somente controles abaixo do quadro atual.
-				if (topOriginalC > meuTop + posiçãoOriginal.Height)
-					c.Bounds = new Rectangle(c.Location.X, c.Location.Y + diferença, c.Width, c.Height);
-			}
+            botãoMinMax.Image = minimizado ?
+                listaIcones.Images[(int)OrdemIcones.maximizarApertado] : listaIcones.Images[(int)OrdemIcones.minimizarApertado];
+        }
 
-			foreach (Control c in this.Parent.Controls)
-				c.ResumeLayout();
+        private void botãoMinMax_MouseUp(object sender, MouseEventArgs e)
+        {
+            PreparaBotãoMinMax();
+        }
 
-			PreparaBotãoMinMax();
-		}
+        private int ÍndiceControleAtualNoPai
+        {
+            get { return this.Parent.Controls.GetChildIndex(this, true); }
+        }
 
-		public void Minimizar() 
-		{
-			int meuÍndice;  // indice do controle atual nos controles do pai
-			int meuTop;		// top do controle atual.
-			int diferença;  // quantidade de pixels para abaixar outros controles
+        public void Maximizar()
+        {
+            this.SuspendLayout();
 
-			minimizado = true;
+            minimizado = false;
+            RestauraPosiçãoOriginal();
+            PreparaBotãoMinMax();
 
-			meuÍndice = this.Parent.Controls.GetChildIndex(this, true);
-			meuTop = this.Parent.Controls[meuÍndice].Location.Y;
+            ResumeLayoutComFilhos();
+        }
 
-			// Grava posição atual:
-			posiçãoOriginal = this.Bounds;
-			
-			// Muda a posição do próprio controle
-			this.SuspendLayout();
-			this.Bounds = new Rectangle(Location.X, Location.Y, Width, lblTítulo.Height); 
-			
-			// Muda a posição dos outros controles
-			diferença = this.Height - posiçãoOriginal.Height;
-			foreach (Control c in this.Parent.Controls)
-			{
-				// mudar somente controles abaixo do quadro atual.
-				if (c.Location.Y > meuTop + posiçãoOriginal.Height)
-				{
-					c.Bounds = new Rectangle(c.Location.X, c.Location.Y + diferença, c.Width, c.Height);
-				}
-			}
+        public void Minimizar()
+        {
+            this.SuspendLayout();
+            minimizado = true;
 
-			foreach (Control c in this.Parent.Controls)
-				c.ResumeLayout();
+            posiçãoOriginal = this.Bounds;
+            this.Bounds = new Rectangle(Location.X, Location.Y, Width, lblTítulo.Height);
 
-			PreparaBotãoMinMax();
-		}
+            MudaPosiçãoOutrosControles();
+            PreparaBotãoMinMax();
 
-		/// <summary>
-		/// Ocorre ao carregar o quadro.
-		/// </summary>
-		private void Quadro_Load(object sender, System.EventArgs e)
-		{
-			if (Parent != null && Parent.BackColor == Color.White && BackColor.R == 255 && BackColor.G == 255 && BackColor.B == 255 && BackColor.A != 255)
-				//BackColor = Color.FromArgb(232, 231, 202);
-				BackColor = Color.FromArgb(242, 239, 221);
+            ResumeLayoutComFilhos();
+        }
+
+        private void MudaPosiçãoOutrosControles()
+        {
+            int pixelsParaReduzirNosOutrosControles = this.Height - posiçãoOriginal.Height;
+            foreach (Control c in this.Parent.Controls)
+            {
+                if (c.Location.Y > TopControleAtual + posiçãoOriginal.Height)
+                    c.Bounds = new Rectangle(c.Location.X, c.Location.Y + pixelsParaReduzirNosOutrosControles, c.Width, c.Height);
+            }
+        }
+
+        private void ResumeLayoutComFilhos()
+        {
+            foreach (Control c in this.Parent.Controls)
+                c.ResumeLayout();
+
+            this.ResumeLayout();
+        }
+
+        private void RestauraPosiçãoOriginal()
+        {
+            int pixelsAdicionarOutrosControles = posiçãoOriginal.Height - this.Height;
+
+            this.Bounds = new
+                Rectangle(Bounds.X, Bounds.Y, Width, Height + pixelsAdicionarOutrosControles);
+
+            AjustaPosiçãoOutrosControles(pixelsAdicionarOutrosControles);
+        }
+
+        private void AjustaPosiçãoOutrosControles(int pixelsAdicionarOutrosControles)
+        {
+            foreach (Control c in this.Parent.Controls)
+            {
+                int topOriginalC
+                    = c.Location.Y + pixelsAdicionarOutrosControles;
+
+                if (topOriginalC > TopControleAtual + posiçãoOriginal.Height)
+                    c.Bounds = new Rectangle(c.Location.X, c.Location.Y + pixelsAdicionarOutrosControles, c.Width, c.Height);
+            }
+        }
+
+        private void Quadro_Load(object sender, System.EventArgs e)
+        {
+            if (Parent != null && Parent.BackColor == Color.White && BackColor.R == 255 && BackColor.G == 255 && BackColor.B == 255 && BackColor.A != 255)
+                BackColor = Color.FromArgb(242, 239, 221);
 
             if (!DesignMode && !PermissãoFuncionário.ValidarPermissão(privilégio))
                 Enabled = false;
-		}
+        }
 
-        /// <summary>
-        /// Privilégios necessários para exibição do quadro.
-        /// </summary>
         [DefaultValue(Permissão.Nenhuma), Description("Privilégios necessários para exibição do quadro."), Browsable(true)]
         public Permissão Privilégio
         {
             get { return privilégio; }
             set { this.privilégio = value; }
         }
-	}
+
+        public int TopControleAtual
+        {
+            get
+            {
+                return this.Parent.Controls[ÍndiceControleAtualNoPai].Location.Y;
+            }
+        }
+    }
 }

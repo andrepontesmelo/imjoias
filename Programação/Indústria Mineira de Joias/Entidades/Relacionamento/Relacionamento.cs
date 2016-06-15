@@ -7,9 +7,6 @@ using System.Data;
 
 namespace Entidades.Relacionamento
 {
-    /// <summary>
-    /// Não chama Consignado porque é genérico para saída, retorno e venda também!
-    /// </summary>
     [Serializable, DbTransação]
 	public abstract class Relacionamento : DbManipulaçãoAutomática
 	{
@@ -18,7 +15,6 @@ namespace Entidades.Relacionamento
         [DbRelacionamento("código", "tabela")]
         protected Tabela tabela;
 
-		// Atributos
 		[DbAtributo(TipoAtributo.Ignorar)]
 		private HistóricoRelacionamento	itens = null;
 
@@ -35,12 +31,7 @@ namespace Entidades.Relacionamento
         
         public delegate void AntesDeCadastrarItemCallback(HistóricoRelacionamentoItem item, out bool cancelar);
 
-        /// <summary>
-        /// Disparado antes de cadastrar um item.
-        /// </summary>
         public event AntesDeCadastrarItemCallback AntesDeCadastrarItem;
-
-        #region Propriedades
 
         public string Observações
         {
@@ -63,10 +54,6 @@ namespace Entidades.Relacionamento
             }
         }
 
-        /// <summary>
-        /// Verifica se é possível alterar a tabela de preços.
-        /// </summary>
-        /// <returns>Se é permitido a alteração da tabela de preços.</returns>
         public virtual bool PermiteAlteraçãoTabela()
         {
             return Itens.Count == 0;
@@ -120,39 +107,15 @@ namespace Entidades.Relacionamento
             }
         }
 
-
-        #endregion
-
-        //// Delegações
-        //public delegate Entidades.Relacionamento.Relacionamento ObterRelacionamento(long código);
-
 		public Relacionamento()
 		{
-            /* Deve-se tomar cuidado em atribuições na construtoras básicas de entidade.
-             * Neste comentado abaixo, o Mapear, ao gerar um objeto recem obtido do BD
-             * estava mudando a data. Este não era o problema, porque a data original seria carregada
-             * por cima depois. Porém a atrição abaixo torna a entidade recem obtida do bd Desatualizada.
-             */
-            //this.Data = DateTime.Now;
-
-            /* André, descordo do seu comentário acima. O mapear atribui "Cadastrado"
-             * e "Atualizado" ao término do mapear. Estes valores são inicialmente
-             * sempre falsos, sendo estabelecidos somente após construir o objeto.
-             * -- Júlio, 12/07/2006
-             */
 		}
 
-        /// <summary>
-        /// Deve ser chamado pelo RecuperarColeções()
-        /// </summary>
         internal virtual void RecuperarColeção(IDbCommand  cmd)
         {
             Itens.Recuperar(cmd);
         }
 
-        /// <summary>
-        /// Recupera coleções de um conjunto de relacionamentos.
-        /// </summary>
         protected static void RecuperarColeções(IEnumerable entidades)
         {
             IDbConnection conexão = Conexão;
@@ -161,16 +124,11 @@ namespace Entidades.Relacionamento
             {
                 lock (conexão)
                 {
-                    /* As coleções requerem acessar outras tabelas, tais como
-                     * Mercadoria e Pessoa. Se uma dessas entidades utilizarem a
-                     * mesma conexão, por estarem na mesma Thread, elas não terão
-                     * acesso ao DataReader.
-                     */
                     Usuários.UsuárioAtual.GerenciadorConexões.RemoverConexão(conexão);
 
                     try
                     {
-                        foreach (Entidades.Relacionamento.Relacionamento r in entidades)
+                        foreach (Relacionamento r in entidades)
                         {
                             r.itens = r.ConstruirItens();
                             r.RecuperarColeção(cmd);
@@ -184,7 +142,7 @@ namespace Entidades.Relacionamento
             }
         }
         
-        public static List<long> ObterCódigos(List<Entidades.Relacionamento.Relacionamento> lista)
+        public static List<long> ObterCódigos(List<Relacionamento> lista)
         {
             List<long> códigos = new List<long>(lista.Count);
 
@@ -201,10 +159,6 @@ namespace Entidades.Relacionamento
             base.Cadastrar(cmd);
         }
 
-        /// <summary>
-        /// Dispara evento antes de cadastrar um item.
-        /// </summary>
-        /// <param name="novoItem">Item a ser cadastrado.</param>
         internal void DispararAntesDeCadastrarItem(HistóricoRelacionamentoItem novoItem)
         {
             if (AntesDeCadastrarItem != null)
@@ -218,10 +172,6 @@ namespace Entidades.Relacionamento
             }
         }
 
-        /// <summary>
-        /// Libera recursos computacionais que podem ser recuperados
-        /// posteriormente.
-        /// </summary>
         public virtual void LiberarRecursos()
         {
             if (Cadastrado)

@@ -1,44 +1,41 @@
-using System;
-using System.ComponentModel;
-//using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-
 using Entidades.Privilégio;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Apresentação.Formulários
 {
-	/// <summary>
-	/// O controlador da base inferior é quem controla a
-	/// exibição das base inferiores correlacionadas em um
-	/// formulário, por meio de comunicação interna com as
-	/// classes <see cref="BaseFormulário"/> e <see cref="Botão"/>.
-	/// 
-	/// O intuíto do controlador é deixar o código da base inferior
-	/// mais enxuto, voltado somente à interface gráfica, permitindo
-	/// ao usuário, assim, a partir de um mesmo botão, acessar
+    /// <summary>
+    /// O controlador da base inferior é quem controla a
+    /// exibição das base inferiores correlacionadas em um
+    /// formulário, por meio de comunicação interna com as
+    /// classes <see cref="BaseFormulário"/> e <see cref="Botão"/>.
+    /// 
+    /// O intuíto do controlador é deixar o código da base inferior
+    /// mais enxuto, voltado somente à interface gráfica, permitindo
+    /// ao usuário, assim, a partir de um mesmo botão, acessar
     ///	diferentes bases inferiores.
     ///	</summary>
     ///	
     ///	<remarks>
-	/// As bases inferiores podem ser correlacionadas de duas maneiras:
-	///  i) Pelo SubstituirBase.
-	/// ii) Pelo método "Controlador.InserirBaseInferior";
-	/// 
-	/// Quando se utiliza o método SubstituirBase de uma base inferior,
-	/// não estando ela inserida no controlador pelo método
-	/// "InserirBaseInferior", a base a ser exibida será considerada
-	/// temporária, tendo seus recursos liberados logo que também,
-	/// substituída.
-	/// 
-	/// Quando a base inferior for inserida no controlador, ela será
-	/// considerada permanente e nunca terá seus recursos liberados
-	/// por ele.
-	/// 
-	/// Em um mesmo controlador, pode-se ter várias bases inferiores
-	/// inseridas.
-	/// </remarks>
-	public class ControladorBaseInferior : System.ComponentModel.Component
+    /// As bases inferiores podem ser correlacionadas de duas maneiras:
+    ///  i) Pelo SubstituirBase.
+    /// ii) Pelo método "Controlador.InserirBaseInferior";
+    /// 
+    /// Quando se utiliza o método SubstituirBase de uma base inferior,
+    /// não estando ela inserida no controlador pelo método
+    /// "InserirBaseInferior", a base a ser exibida será considerada
+    /// temporária, tendo seus recursos liberados logo que também,
+    /// substituída.
+    /// 
+    /// Quando a base inferior for inserida no controlador, ela será
+    /// considerada permanente e nunca terá seus recursos liberados
+    /// por ele.
+    /// 
+    /// Em um mesmo controlador, pode-se ter várias bases inferiores
+    /// inseridas.
+    /// </remarks>
+    public class ControladorBaseInferior : System.ComponentModel.Component
 	{
 		private BaseInferior        baseAtual;
 		private BaseFormulário      baseFormulário;
@@ -306,11 +303,6 @@ namespace Apresentação.Formulários
 		/// </summary>
 		internal void SubstituirBaseParaAnterior()
 		{
-            //if (baseAtual.baseAnterior == null)
-            //    throw new NullReferenceException("Não existe base anterior registrada.");
-
-            //SubstituirBase(baseAtual.baseAnterior, baseAtual);
-
             if (baseAtual.baseAnterior != null)
                 SubstituirBase(baseAtual.baseAnterior, baseAtual);
 		}
@@ -474,24 +466,7 @@ namespace Apresentação.Formulários
 
             foreach (BaseInferior baseInferior in basesInferiores)
             {
-                //try
-                //{
-                    baseInferior.AoCarregarCompletamente(splash);
-//                }
-//                catch (ExceçãoPósCarga e)
-//                {
-//                    problema += "\n" + e.Message;
-//                    falha = true;
-//                }
-//                catch (Exception e)
-//                {
-//#if DEBUG
-//                    System.Windows.Forms.MessageBox.Show(e.ToString());
-//#endif
-//                    Acesso.Comum.Usuários.UsuárioAtual.RegistrarErro(e);
-//                    problema += "\n" + baseInferior.GetType().ToString();
-//                    falha = true;
-//                }
+                baseInferior.AoCarregarCompletamente(splash);
             }
 
             if (falha)
@@ -504,7 +479,6 @@ namespace Apresentação.Formulários
 		/// <param name="baseInferior">Base inferior inserida.</param>
 		protected virtual void AoInserirBaseInferior(BaseInferior baseInferior)
 		{
-			// Nada aqui.
 		}
     }
 }

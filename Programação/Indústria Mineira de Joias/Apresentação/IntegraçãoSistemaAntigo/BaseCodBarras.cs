@@ -1,31 +1,24 @@
-using System;
-using System.Collections;
+using Apresentação.Formulários;
 using System.ComponentModel;
-using System.Drawing;
 using System.Windows.Forms;
-using System.Data;
 
 namespace Apresentação.IntegraçãoSistemaAntigo
 {
-	public class BaseCodBarras : Apresentação.Formulários.BaseInferior
+    public class BaseCodBarras : BaseInferior
 	{
-		private System.Windows.Forms.Button btnInicio;
-		private Apresentação.Formulários.Quadro quadroArquivo;
-		private System.Windows.Forms.TextBox txtArquivoMapeia;
-		private System.Windows.Forms.Button btnProcurar;
-		private System.ComponentModel.IContainer components = null;
+        private readonly string CAMINHO_DBF = @"c:\mapeia.dbf";
+
+		private Button btnInicio;
+		private Quadro quadroArquivo;
+		private TextBox txtArquivoMapeia;
+		private Button btnProcurar;
+		private IContainer components = null;
 
 		public BaseCodBarras()
 		{
-			// This call is required by the Windows Form Designer.
 			InitializeComponent();
-
-			// TODO: Add any initialization after the InitializeComponent call
 		}
 
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
 		protected override void Dispose( bool disposing )
 		{
 			if( disposing )
@@ -122,35 +115,31 @@ namespace Apresentação.IntegraçãoSistemaAntigo
 
 		private void btnProcurar_Click(object sender, System.EventArgs e)
 		{
-			using (System.Windows.Forms.SaveFileDialog dlgGrava = new SaveFileDialog())
+			using (SaveFileDialog dlgGrava = new SaveFileDialog())
 			{
-				dlgGrava.FileName = @"c:\mapeia.dbf";
+				dlgGrava.FileName = CAMINHO_DBF;
 				dlgGrava.OverwritePrompt = false;
 				dlgGrava.DefaultExt = "dbf";
-				if (dlgGrava.ShowDialog() == DialogResult.OK)
-				{
+
+                if (dlgGrava.ShowDialog() == DialogResult.OK)
 					txtArquivoMapeia.Text = dlgGrava.FileName;
 
-				}
-				dlgGrava.Dispose();
+                dlgGrava.Dispose();
 			}
 		}
 
 		private void btnInicio_Click(object sender, System.EventArgs e)
 		{
-            //fachadaFácil = (Negócio.Fachada.IIntegraçãoSistemaAntigo) Fachada;
-            //fachadaFácil = ;
             UseWaitCursor = true;
             btnInicio.Enabled = false;
 
-			//new Controles.CodBarras((Negócio.Fachada.IIntegraçãoSistemaAntigo) Fachada, txtArquivoMapeia.Text).Transpor();
             new Controles.CodBarras(txtArquivoMapeia.Text).Transpor();
             UseWaitCursor = false;
 
             btnInicio.Enabled = true;
-			System.Windows.Forms.MessageBox.Show(this, "Operação bem sucedida", "fim", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			MessageBox.Show(this, "Operação bem sucedida", "fim", 
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
-
 	}
 }
 

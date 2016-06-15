@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CrystalDecisions.CrystalReports.Engine;
+using Entidades.Relacionamento;
 
 namespace Apresentação.Impressão.Relatórios.Entrada
 {
@@ -19,6 +21,21 @@ namespace Apresentação.Impressão.Relatórios.Entrada
             Entidades.Estoque.Entrada relacionamento)
         {
             base.MapearItem(linha, s, relacionamento);
+        }
+
+        internal static List<ReportClass> CriarImpressão(List<Relacionamento> listaDocumentos)
+        {
+            List<ReportClass> relatórios = new List<ReportClass>();
+
+            ControleImpressãoEntrada controleEntrada = new ControleImpressãoEntrada();
+            foreach (Entidades.Estoque.Entrada entrada in listaDocumentos)
+            {
+                ReportClass relatório = new RelatorioEntrada();
+                controleEntrada.PrepararImpressão(relatório, entrada);
+                relatórios.Add(relatório);
+            }
+
+            return relatórios;
         }
     }
 }

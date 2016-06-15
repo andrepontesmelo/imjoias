@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using Entidades.Pessoa;
 using Entidades;
+using CrystalDecisions.CrystalReports.Engine;
+using Entidades.Relacionamento;
 
 namespace Apresentação.Impressão.Relatórios.Saída
 {
@@ -43,6 +45,21 @@ namespace Apresentação.Impressão.Relatórios.Saída
             base.MapearItem(linha, s, relacionamento);
 
             linha["preço"] = s.Mercadoria.CalcularPreço(relacionamento.Cotação).Valor;
+        }
+
+        internal static List<ReportClass> CriarImpressão(List<Relacionamento> listaDocumentos)
+        {
+            List<ReportClass> relatórios = new List<ReportClass>();
+            ControleImpressãoSaída controleSaída = new ControleImpressãoSaída();
+
+            foreach (Entidades.Relacionamento.Saída.Saída saida in listaDocumentos)
+            {
+                ReportClass relatório = new Relatório();
+                controleSaída.PrepararImpressão(relatório, saida);
+                relatórios.Add(relatório);
+            }
+
+            return relatórios;
         }
     }
 }

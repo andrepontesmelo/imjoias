@@ -1,25 +1,28 @@
+using Apresentação.Formulários;
+using Apresentação.Pessoa;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace Programa.Recepção.Formulários.Agenda
 {
-	sealed class Telefone : Apresentação.Formulários.JanelaExplicativa
+    sealed class Telefone : JanelaExplicativa
 	{
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.TextBox txtNome;
-		private System.Windows.Forms.GroupBox grpTelefone;
-		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.Label lblFixo;
-		private System.Windows.Forms.Button cmdOK;
-		private System.Windows.Forms.Button cmdCancelar;
-		private System.Windows.Forms.ComboBox txtEstado;
-		private System.Windows.Forms.Label label6;
-		private System.Windows.Forms.TextBox txtCidade;
-		private System.Windows.Forms.Label label5;
-        private Apresentação.Pessoa.TxtTelefone txtCelular;
-        private Apresentação.Pessoa.TxtTelefone txtFixo;
-        private Apresentação.Pessoa.TxtTelefone txtOutro;
-		private System.ComponentModel.IContainer components = null;
+		private Label label1;
+		private TextBox txtNome;
+		private GroupBox grpTelefone;
+		private Label label4;
+		private Label label3;
+		private Label lblFixo;
+		private Button cmdOK;
+		private Button cmdCancelar;
+		private ComboBox txtEstado;
+		private Label label6;
+		private TextBox txtCidade;
+		private Label label5;
+        private TxtTelefone txtCelular;
+        private TxtTelefone txtFixo;
+        private TxtTelefone txtOutro;
+		private IContainer components = null;
 
         protected override bool ProcessDialogKey(Keys keyData)
         {
@@ -33,15 +36,9 @@ namespace Programa.Recepção.Formulários.Agenda
 
 		public Telefone()
 		{
-			// This call is required by the Windows Form Designer.
 			InitializeComponent();
-
-			// TODO: Add any initialization after the InitializeComponent call
 		}
 
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
 		protected override void Dispose( bool disposing )
 		{
 			if( disposing )
@@ -312,7 +309,6 @@ namespace Programa.Recepção.Formulários.Agenda
 			cmdOK.Enabled = txtNome.Text.Trim().Length > 0;
 		}
 
-
 		public string Nome
 		{
 			get { return txtNome.Text; }
@@ -350,4 +346,3 @@ namespace Programa.Recepção.Formulários.Agenda
 		}
 	}
 }
-

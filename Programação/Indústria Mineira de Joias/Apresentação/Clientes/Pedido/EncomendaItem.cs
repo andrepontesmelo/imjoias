@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
-using System.Windows.Forms;
-using Entidades;
+﻿using Apresentação.Mercadoria;
 using Entidades.Mercadoria;
-using Apresentação.Financeiro.Acerto;
-using Apresentação.Mercadoria;
 using Entidades.PedidoConserto;
+using System;
+using System.Windows.Forms;
 
 namespace Apresentação.Atendimento.Clientes.Pedido
 {
@@ -159,7 +152,8 @@ namespace Apresentação.Atendimento.Clientes.Pedido
             }
             else
             {
-                MessageBox.Show("A referência " + txtMercadoria.Referência + " é não está cadastrada.", "Rastreamento cancelado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("A referência " + txtMercadoria.Referência + " é não está cadastrada.", 
+                    "Rastreamento cancelado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

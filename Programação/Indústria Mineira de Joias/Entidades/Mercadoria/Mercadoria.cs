@@ -726,7 +726,7 @@ namespace Entidades.Mercadoria
 
             DesmascararReferência(referênciaFormatada, out referênciaNumérica, out dígito);
 
-            if (!usarCache || !MercadoriaCampos.VerificarExistênciaÁrvore(referênciaNumérica))
+            if (!usarCache)
             {
                 IDbConnection conexão;
 
@@ -739,7 +739,6 @@ namespace Entidades.Mercadoria
                         cmd.CommandText = "SELECT COUNT(*) FROM mercadoria"
                             + " WHERE referencia = " + DbTransformar(referênciaNumérica)
                             + " AND digito = " + DbTransformar(dígito);
-                        //						+ " AND foradelinha = 0";
 
                         return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
                     }

@@ -168,8 +168,13 @@ namespace Apresentação.Financeiro.Venda
 
         void v_AoCancelarCadastro(object sender, EventArgs e)
         {
+            MostrarMensagemEntidadeNãoSalva();
+        }
+
+        protected override void MostrarMensagemEntidadeNãoSalva()
+        {
             MessageBox.Show(this,
-                "Venda ainda não foi cadastrada. Verifique se possui cliente e mercadoria. ",
+                "Venda ainda não foi cadastrada. Verifique se possui cliente.",
                 "Ainda não cadastrado",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
@@ -318,10 +323,9 @@ namespace Apresentação.Financeiro.Venda
 
         private void dadosVenda_CotaçãoAlterada(Entidades.Financeiro.Cotação cotação)
         {
-            // Neste ponto a nova cotação já foi gravada no bd.
+            digitaçãoDevolução.Cotação = cotação;
+            Digitação.Cotação = cotação;
 
-            // Atualiza as duas bandejas com a nova cotação.
-            digitaçãoDevolução.Cotação = Digitação.Cotação = cotação;
             listaPagamentos.Carregar();
         }
 
@@ -439,23 +443,6 @@ namespace Apresentação.Financeiro.Venda
                 );
 
             return relatório;
-        }
-
-        protected override void Imprimir()
-        {
-            AguardeDB.Mostrar();
-
-            Relatório relatório = ObterRelatório();
-
-            PrintDialog printDialog = new PrintDialog();
-            AguardeDB.Fechar();
-            DialogResult resultado = printDialog.ShowDialog(this);
-            if (resultado == DialogResult.OK)
-            {
-                relatório.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
-                relatório.PrintToPrinter(printDialog.PrinterSettings.Copies, false,
-                    printDialog.PrinterSettings.FromPage, printDialog.PrinterSettings.ToPage);
-            }
         }
 
         private void tabs_SelectedIndexChanged(object sender, EventArgs e)

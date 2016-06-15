@@ -49,9 +49,9 @@ namespace Apresentação.Financeiro.Saída
             return new SaídaBaseInferior();
         }
 
-        protected override ListaConsignado ObterLista()
+        protected override ListaConsignado Lista
         {
-            return listaSaídas;
+            get { return listaSaídas; }
         }
     }
 }

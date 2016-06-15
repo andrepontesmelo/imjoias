@@ -1,43 +1,40 @@
 ﻿using Acesso.Comum.Exceções;
 using Apresentação.Financeiro.Acerto;
 using Apresentação.Formulários;
-using Apresentação.Formulários.Impressão;
 using Apresentação.Impressão;
+using CrystalDecisions.CrystalReports.Engine;
 using Entidades.Acerto;
 using Entidades.Configuração;
 using Entidades.Privilégio;
 using Entidades.Relacionamento;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace Apresentação.Financeiro
 {
-    /// <summary>
-    /// Base inferior que exibe a listagem dos documentos de consignado para um cliente.
-    /// </summary>
-    public class BaseConsignado : Apresentação.Formulários.BaseInferior
+    public class BaseConsignado : BaseInferior
     {
-        // Cliente ou representante
         private Entidades.Pessoa.Pessoa pessoa;
 
-        protected Apresentação.Formulários.TítuloBaseInferior   título;
-        protected Apresentação.Formulários.Quadro               quadroRelacionamentos;
-        protected Apresentação.Formulários.Opção                opçãoNovoRelacionamento;
-        protected Apresentação.Formulários.Opção                opçãoAbrirSeleção;
-        private Apresentação.Formulários.Quadro                 quadroSeleção;
-        private Apresentação.Formulários.Opção opçãoImprimir;
+        protected TítuloBaseInferior título;
+        protected Quadro quadroRelacionamentos;
+        protected Opção opçãoNovoRelacionamento;
+        protected Opção opçãoAbrirSeleção;
+        private Quadro quadroSeleção;
+        private Opção opçãoImprimir;
         protected Opção opçãoExcluír;
         protected Quadro quadro;
         private Opção opçãoMoverAcerto;
-        private System.ComponentModel.IContainer                components = null;
+        private IContainer components = null;
 
         protected Entidades.Pessoa.Pessoa Cliente
         {
             get { return pessoa; }
         }
 
-        protected virtual Entidades.Relacionamento.Relacionamento CriarEntidade(Entidades.Pessoa.Pessoa pessoa)
+        protected virtual Relacionamento CriarEntidade(Entidades.Pessoa.Pessoa pessoa)
         {
             throw new Exception("método genérico");
         }
@@ -55,16 +52,9 @@ namespace Apresentação.Financeiro
 
             UseWaitCursor = true;
             
-            // Cria e abre controles de apresentação
-            Entidades.Relacionamento.Relacionamento relacionamento = CriarEntidade(pessoa);
-
+            Relacionamento relacionamento = CriarEntidade(pessoa);
             relacionamento.DigitadoPor = Entidades.Pessoa.Funcionário.FuncionárioAtual;
             relacionamento.Data = DadosGlobais.Instância.HoraDataAtual;
-
-            /* Cadastramento é feito quando o primeiro item é relacioando.
-             * -- Júlio, 28/10/2006
-             */
-            //relacionamento.Cadastrar();
 
             if (acerto.TabelaPreço != null && relacionamento is RelacionamentoAcerto)
                  ((RelacionamentoAcerto) relacionamento).TabelaPreço = acerto.TabelaPreço;
@@ -78,7 +68,7 @@ namespace Apresentação.Financeiro
                 else
                     throw new NotImplementedException("Falta verificação de tipo de documento para atribuição de acerto.");
             }
-            catch (Entidades.Acerto.AcertoConsignado.DocumentoInconsistente erro)
+            catch (AcertoConsignado.DocumentoInconsistente erro)
             {
                 MessageBox.Show(
                     ParentForm,
@@ -125,47 +115,46 @@ namespace Apresentação.Financeiro
             InitializeComponent();
         }
 
-        /// <summary>
-        /// Constrói a base inferior, carregando relacionamentos de um cliente.
-        /// </summary>
-        /// <param name="cliente">Cadastro do cliente.</param>
         public BaseConsignado(Entidades.Pessoa.Pessoa cliente)
         {
-            // This call is required by the Windows Form Designer.
             InitializeComponent();
-
             this.pessoa = cliente;
         }
 
         void BaseConsignado_DoubleClick(object sender, EventArgs e)
         {
-            if (ObterLista().SelectedItems.Count > 0)
+            if (Lista.SelectedItems.Count > 0)
                 Abrir();
         }
 
         void BaseConsignado_KeyDown(object sender, KeyEventArgs e)
         {
-            if ((e.KeyCode == Keys.Enter) && (ObterLista().SelectedItems.Count > 0))
+            if ((e.KeyCode == Keys.Enter) && (Lista.SelectedItems.Count > 0))
                 Abrir();
         }
 
-
-        protected virtual ListaConsignado ObterLista()
+        protected virtual ListaConsignado Lista
         {
-            throw new Exception("metodo abstrato");
+            get
+            {
+                throw new Exception("metodo abstrato");
+            }
         }
 
         public override void AoCarregarCompletamente(Splash splash)
         {
-            if (this.DesignMode) return;
+            if (this.DesignMode)
+                return;
 
             base.AoCarregarCompletamente(splash);
+            RegistraEventos();
+        }
 
-            // Registra os eventos
-            ListaConsignado lista = ObterLista();
-            lista.SelectedIndexChanged += new EventHandler(lista_SelectedIndexChanged);
-            lista.KeyDown += new KeyEventHandler(BaseConsignado_KeyDown);
-            lista.DoubleClick += new EventHandler(BaseConsignado_DoubleClick);
+        private void RegistraEventos()
+        {
+            Lista.SelectedIndexChanged += new EventHandler(lista_SelectedIndexChanged);
+            Lista.KeyDown += new KeyEventHandler(BaseConsignado_KeyDown);
+            Lista.DoubleClick += new EventHandler(BaseConsignado_DoubleClick);
         }
 
         protected override void AoExibir()
@@ -173,9 +162,7 @@ namespace Apresentação.Financeiro
             if (this.DesignMode) return;
 
             base.AoExibir();
-
-            // Recarrega lista, pois pode ter sido modificada.
-            ObterLista().Carregar(pessoa);
+            Lista.Carregar(pessoa);
         }
 
         void lista_SelectedIndexChanged(object sender, EventArgs e)
@@ -398,7 +385,7 @@ namespace Apresentação.Financeiro
         /// Dá lugar para uma nova base inferior de digitação de consignado.
         /// </summary>
         /// <param name="consignado"></param>
-        public BaseEditarRelacionamento PrepararBaseConsignado(Entidades.Relacionamento.Relacionamento consignado)
+        public BaseEditarRelacionamento PrepararBaseConsignado(Relacionamento consignado)
         {
             BaseEditarRelacionamento novaBase = CriarBaseConsignado();
 
@@ -411,13 +398,13 @@ namespace Apresentação.Financeiro
         private void Abrir()
         {
             UseWaitCursor = true;
-            ListaConsignado lista = ObterLista();
 
-            if (lista.SelectedItems.Count == 1)
+            if (Lista.SelectedItems.Count == 1)
             {
-                if (this.DesignMode) return;
+                if (this.DesignMode)
+                    return;
 
-                Entidades.Relacionamento.Relacionamento consignado = ObterLista().ItemSelecionado;
+                Relacionamento consignado = Lista.ItemSelecionado;
 
                 SubstituirBase(PrepararBaseConsignado(consignado));
             }
@@ -454,16 +441,40 @@ namespace Apresentação.Financeiro
         protected virtual TipoDocumento TipoDocumento
         { get { return TipoDocumento.Desconhecido; } }
 
+        private List<ReportClass> ObterRelatórios()
+        {
+            List<ReportClass> relatórios = new List<ReportClass>();
+            List<Relacionamento> listaDocumentos = Lista.ObterDocumentosMarcados();
+
+            switch (TipoDocumento)
+            {
+                case TipoDocumento.Saída:
+                    relatórios = Apresentação.Impressão.Relatórios.Saída.ControleImpressãoSaída.CriarImpressão(listaDocumentos);
+                    break;
+                case TipoDocumento.Retorno:
+                    relatórios = Apresentação.Impressão.Relatórios.Retorno.ControleImpressãoRetorno.CriarImpressão(listaDocumentos);
+                    break;
+                case TipoDocumento.Entrada:
+                    relatórios = Apresentação.Impressão.Relatórios.Entrada.ControleImpressãoEntrada.CriarImpressão(listaDocumentos);
+                    break;
+                case TipoDocumento.Venda:
+                    relatórios = Apresentação.Impressão.Relatórios.Venda.ControleImpressãoVenda.CriarImpressão(listaDocumentos);
+                    break;
+
+                default:
+                    throw new NotImplementedException();
+            }
+
+            return relatórios;
+        }
+
         private void opçãoImprimir_Click(object sender, EventArgs e)
         {
-            //Impressão janela;
-
             UseWaitCursor = true;
 
-            List<Entidades.Relacionamento.Relacionamento> listaDocumentos;
-                
-            ListaConsignado lista = ObterLista();
-            listaDocumentos = lista.ObterDocumentosMarcados();
+            List<Relacionamento> listaDocumentos;
+
+            listaDocumentos = Lista.ObterDocumentosMarcados();
 
             if (listaDocumentos.Count == 0)
             {
@@ -479,39 +490,25 @@ namespace Apresentação.Financeiro
                 return;
             }
 
-            using (RequisitarImpressão dlg = new RequisitarImpressão(TipoDocumento))
-            {
-                dlg.PermitirEscolherPágina = listaDocumentos.Count == 1;
+            List<ReportClass> relatórios = ObterRelatórios();
 
-                if (dlg.ShowDialog(ParentForm) == DialogResult.OK)
-                {
-                    FilaImpressão fila = FilaImpressão.ObterFila(dlg.ControleImpressão, dlg.Impressora);
-                    ulong[] códigos = new ulong[listaDocumentos.Count];
-
-                    for (int i = 0; i < listaDocumentos.Count; i++)
-                        códigos[i] = (ulong)listaDocumentos[i].Código;
-
-                    fila.Imprimir(códigos, dlg.NúmeroCópias);
-                }
-            }
+            Formulários.JanelaImpressão visualizador = new Formulários.JanelaImpressão();
+            int x = 0;
+            foreach (ReportClass relatório in relatórios)
+                visualizador.InserirDocumento(relatório, listaDocumentos[x++].ToString());
 
             UseWaitCursor = false;
+            visualizador.Show();
         }
 
-        /// <summary>
-        /// Ocorre quando a trava de um relacionamento é alterada
-        /// pela interface gráfica.
-        /// </summary>
-        private void TravaAlterada(BaseEditarRelacionamento sender, Entidades.Relacionamento.RelacionamentoAcerto e, bool vendaTravada)
+        private void TravaAlterada(BaseEditarRelacionamento sender, RelacionamentoAcerto e, bool vendaTravada)
         {
-            ListaConsignado lista = ObterLista();
-
-            lista.AoMudarTrava(e);
+            Lista.AoMudarTrava(e);
         }
 
         private void opçãoMoverAcerto_Click(object sender, EventArgs e)
         {
-            if (ObterLista().ObterDocumentosMarcados().Count == 0)
+            if (Lista.ObterDocumentosMarcados().Count == 0)
             {
                 MessageBox.Show(
                     ParentForm,
@@ -543,7 +540,7 @@ namespace Apresentação.Financeiro
 
                 try
                 {
-                    foreach (RelacionamentoAcerto relacionamento in ObterLista().ObterDocumentosMarcados())
+                    foreach (RelacionamentoAcerto relacionamento in Lista.ObterDocumentosMarcados())
                     {
                         if (relacionamento.AcertoConsignado == null || !relacionamento.AcertoConsignado.Equals(acerto))
                         {
