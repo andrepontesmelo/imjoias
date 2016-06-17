@@ -1,18 +1,18 @@
 using Acesso.Comum.Exceções;
 using Apresentação.Financeiro.Acerto;
 using Apresentação.Formulários;
-using Apresentação.Formulários.Impressão;
-using Apresentação.Impressão;
 using Entidades.Acerto;
 using Entidades.Relacionamento.Venda;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
+using CrystalDecisions.CrystalReports.Engine;
+using Apresentação.Impressão.Relatórios.Venda;
 
 namespace Apresentação.Financeiro.Venda
 {
-    public partial class BaseVendas : Apresentação.Formulários.BaseInferior
+    public partial class BaseVendas : BaseInferior
     {
         private Entidades.Pessoa.Pessoa pessoa;
         
@@ -41,7 +41,6 @@ namespace Apresentação.Financeiro.Venda
             TimeSpan umAno = TimeSpan.FromDays(365);
             dataInício = DateTime.Now - umAno;
             dataFim = DateTime.Now;
-            //AtualizarLabelIntervalo();
         }
     
         private void MudarLeiaute(bool cliente)
@@ -66,7 +65,6 @@ namespace Apresentação.Financeiro.Venda
         public BaseVendas(Entidades.Pessoa.Pessoa pessoa)
             : this(pessoa, false)
         {
-
         }
 
         public BaseVendas(Entidades.Pessoa.Pessoa pessoa, bool forçarHistóricoCompras) : this()
@@ -119,7 +117,7 @@ namespace Apresentação.Financeiro.Venda
             {
                 BaseEditarVenda baseEditarVenda;
 
-                System.Windows.Forms.Cursor.Current = Cursors.AppStarting;
+                Cursor.Current = Cursors.AppStarting;
 
                 UseWaitCursor = true;
 
@@ -130,7 +128,7 @@ namespace Apresentação.Financeiro.Venda
 
                 SubstituirBase(baseEditarVenda);
 
-                System.Windows.Forms.Cursor.Current = Cursors.Default;
+                Cursor.Current = Cursors.Default;
 
                 UseWaitCursor = false;
             }
@@ -162,7 +160,7 @@ namespace Apresentação.Financeiro.Venda
         private void opçãoImpressão_Click(object sender, EventArgs e)
         {
             UseWaitCursor = true;
-            
+
             List<IDadosVenda> listaDocumentos = lista.ObterVendasSelecionadas();
 
             if (listaDocumentos.Count == 0)
@@ -179,25 +177,42 @@ namespace Apresentação.Financeiro.Venda
                 return;
             }
 
-            // TODO Implementar 
+            AguardeDB.Mostrar();
 
-            //using (RequisitarImpressão dlg = new RequisitarImpressão(TipoDocumento.Venda))
-            //{
-            //    dlg.PermitirEscolherPágina = listaDocumentos.Count == 1;
+            Formulários.JanelaImpressão visualizadorImpressão = CriaJanelaImpressão();
 
-            //    if (dlg.ShowDialog(ParentForm) == DialogResult.OK)
-            //    {
-            //        FilaImpressão fila = FilaImpressão.ObterFila(dlg.ControleImpressão, dlg.Impressora);
-            //        ulong[] códigos = new ulong[listaDocumentos.Count];
-
-            //        for (int i = 0; i < listaDocumentos.Count; i++)
-            //            códigos[i] = (ulong)listaDocumentos[i].Código;
-
-            //        fila.Imprimir(códigos, dlg.NúmeroCópias);
-            //    }
-            //}
-    
+            AguardeDB.Fechar();
             UseWaitCursor = false;
+
+            visualizadorImpressão.Show();
+        }
+
+        private Formulários.JanelaImpressão CriaJanelaImpressão()
+        {
+            Formulários.JanelaImpressão visualizadorImpressão = new Formulários.JanelaImpressão();
+            List<ReportClass> relatórios = ObterRelatórios();
+            int x = 0;
+            foreach (ReportClass relatório in relatórios)
+            {
+                visualizadorImpressão.InserirDocumento(relatório, lista.ItensSelecionados[x++].ToString());
+            }
+
+            return visualizadorImpressão;
+        }
+
+        private List<ReportClass> ObterRelatórios()
+        {
+            List<ReportClass> relatórios = new List<ReportClass>();
+
+            foreach (IDadosVenda v in lista.ItensSelecionados)
+            {
+                Relatório relatório = new Relatório();
+                new ControleImpressãoVenda().PrepararImpressão(relatório, Entidades.Relacionamento.Venda.Venda.ObterVenda(v.Código));
+
+                relatórios.Add(relatório);
+            }
+
+            return relatórios;
         }
 
         private void opçãoMoverAcerto_Click(object sender, EventArgs e)
@@ -320,7 +335,7 @@ namespace Apresentação.Financeiro.Venda
                     return;
             }
 
-            Apresentação.Formulários.AguardeDB.Mostrar();
+            AguardeDB.Mostrar();
 
             foreach (IDadosVenda item in colecao)
             {
@@ -338,7 +353,7 @@ namespace Apresentação.Financeiro.Venda
 
             lista.Carregar(pessoa, forçarHistóricoCompras);
 
-            Apresentação.Formulários.AguardeDB.Fechar();
+            AguardeDB.Fechar();
 
             string ajuda = "Vendas com NF-e emitida e/ou comissão paga não podem ser excluídas.";
 
