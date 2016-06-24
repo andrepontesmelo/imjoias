@@ -339,7 +339,7 @@ namespace Entidades.Acerto
                 " join pessoa on cliente=pessoa.codigo " +
                 " left join pessoafisica pf on pessoa.codigo=pf.codigo " +
                 " left join pessoajuridica on pessoa.codigo=pessoajuridica.codigo " +
-                " WHERE dataefetiva is null ORDER BY previsao", 0, 9, 21).ToArray();
+                " WHERE dataefetiva is null ORDER BY previsao", 0, 9, 22).ToArray();
 
             TimeSpan tempo = DateTime.Now - inicio;
 
