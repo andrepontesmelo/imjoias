@@ -1,7 +1,12 @@
-﻿using Entidades.Pessoa;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Text;
 using System.Windows.Forms;
+using Entidades.Pessoa;
+using System.IO;
 
 namespace Apresentação.Pessoa.Cadastro
 {
@@ -44,6 +49,20 @@ namespace Apresentação.Pessoa.Cadastro
                 }
 
                 this.txtCódigo.Enabled = false;
+
+                //if (pessoa.Foto != null)
+                //    try
+                //    {
+                //        picFoto.Image = pessoa.Foto;
+                //    }
+                //    catch (Exception e)
+                //    {
+                //        Apresentação.Formulários.NotificaçãoSimples.Mostrar(
+                //            "Cadastro de pessoa",
+                //            "Não foi possível carregar a foto da pessoa.");
+
+                //        Acesso.Comum.Usuários.UsuárioAtual.RegistrarErro(e);
+                //    }
             }
         }
 
@@ -89,6 +108,60 @@ namespace Apresentação.Pessoa.Cadastro
             pessoa.InscMunicipal = ExtrairString(txtInscMunicipal);
         }
 
+        //private void picFoto_Click(object sender, EventArgs e)
+        //{
+        //início:
+        //    if (abrirArquivo.ShowDialog(this.ParentForm) == DialogResult.OK)
+        //    {
+        //        UseWaitCursor = true;
+
+        //        try
+        //        {
+        //            FileStream f = File.OpenRead(abrirArquivo.FileName);
+
+        //            picFoto.Image = Image.FromStream(f);
+        //            picFoto.Refresh();
+
+        //            f.Close();
+        //        }
+        //        catch (Exception erro)
+        //        {
+        //            MessageBox.Show(
+        //                ParentForm,
+        //                "Não foi possível carregar a foto. O seguinte erro ocorreu:\n\n" + erro.Message,
+        //                "Cadastro de pessoa física", MessageBoxButtons.OK,
+        //                MessageBoxIcon.Error);
+
+        //            picFoto.Image = null;
+        //        }
+        //    }
+        //    else if (MessageBox.Show(this.ParentForm,
+        //        "Deseja excluir a foto atual?",
+        //        "Cadastro de Pessoa Física",
+        //        MessageBoxButtons.YesNo,
+        //        MessageBoxIcon.Question) == DialogResult.Yes)
+        //    {
+        //        picFoto.Image = null;
+        //    }
+
+        //    //try
+        //    //{
+        //    //    pessoa.Foto = picFoto.Image;
+        //    //}
+        //    //catch
+        //    //{
+        //    //    if (MessageBox.Show(
+        //    //        ParentForm,
+        //    //        "Não foi possível importar a foto atual.",
+        //    //        "Cadastro de pessoa",
+        //    //        MessageBoxButtons.RetryCancel,
+        //    //        MessageBoxIcon.Error) == DialogResult.Retry)
+        //    //        goto início;
+        //    //}
+
+        //    UseWaitCursor = false;
+        //}
+
         private void txtCódigo_Validating(object sender, CancelEventArgs e)
         {
                 e.Cancel =
@@ -108,17 +181,16 @@ namespace Apresentação.Pessoa.Cadastro
 
         private void txtCNPJ_Validating(object sender, CancelEventArgs e)
         {
-            PessoaJurídica p = null;
+            Entidades.Pessoa.PessoaJurídica p = null;
 
             if (txtCNPJ.Text.Length != 0)
             {
-                p = PessoaJurídica.ObterPessoaPorCNPJ(txtCNPJ.Text);
+                p = Entidades.Pessoa.PessoaJurídica.ObterPessoaPorCNPJ(txtCNPJ.Text);
 
                 if (p != null && p.Código != pessoa.Código)
                 {
                     e.Cancel = true;
-                    MessageBox.Show("O CNPJ " + txtCNPJ.Text + " já está associado ao segunte cliente\n\nCódigo:" + 
-                        p.Código.ToString() + "\nNome:" + (p.Nome != null ? p.Nome : ""), "CNPJ já cadastrado", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    MessageBox.Show("O CNPJ " + txtCNPJ.Text + " já está associado ao segunte cliente\n\nCódigo:" + p.Código.ToString() + "\nNome:" + (p.Nome != null ? p.Nome : ""), "CNPJ já cadastrado", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
             }
             else
