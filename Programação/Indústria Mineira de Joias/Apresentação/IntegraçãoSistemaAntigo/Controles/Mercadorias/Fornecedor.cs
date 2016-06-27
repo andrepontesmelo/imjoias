@@ -1,4 +1,3 @@
-using Apresentação.Formulários;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,7 +6,7 @@ using System.Windows.Forms;
 
 namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 {
-	public class Fornecedor
+    public class Fornecedor
 	{
         private static string COLUNA_GESANO_REFERÊNCIA_MERCADORIA = "GA_CODMER";
         private static string COLUNA_GESANO_PESO = "GA_PESO";
@@ -19,7 +18,6 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
         private static int TEMPO_MAXIMO_SQL_MINUTOS = 10;
 
         private Dictionary<string, bool> hashExisteReferência;
-        private Dictionary<string, int> hashFornecedoresCadastrados;
         private Dictionary<string, bool> vinculosAtuais;
         private DataSet dataSetVelho;
 
@@ -31,21 +29,13 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             Dictionary<string, bool> referências = 
             ObterHashExisteReferência(Acesso.MySQL.MySQLUsuários.ObterÚltimaStrConexão().ToString(), out conexão);
 
-            Dictionary<string, int> fornecedores = ObterNovosFornecedores(conexão);
-            
-            Dictionary<string, bool> fornecedoresParaCadastro =
-                ObtemLegadoFornecedoresParaCadastrar();
-            
-            CadastrarFornecedores(conexão, fornecedoresParaCadastro);
-            fornecedores = ObterNovosFornecedores(conexão);
+            ApagaFornecedores(conexão);
 
-            Dictionary<string, bool> vinculos = ObtemNovoVinculosAtuais(conexão);
-            ApagaVínculosCoexistentes(conexão);
+            CadastrarFornecedores(conexão, ObtemLegadoFornecedoresParaCadastrar());
 
-            vinculos = ObtemNovoVinculosAtuais(conexão);
+
             AdicionarNovosVínculos(conexão);
-
-            SobrescreveInicio(conexão, referências, fornecedores);
+            SobrescreveInicio(conexão, referências);
 		}
 
         private void ReportaErro(string referência, string mesano, StringBuilder erros)
@@ -63,8 +53,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             erros.Append(mesano);
         }
 
-        private void SobrescreveInicio(IDbConnection cn, Dictionary<string, bool> referências, 
-            Dictionary<string, int> fornecedores)
+        private void SobrescreveInicio(IDbConnection cn, Dictionary<string, bool> referências)
         {
             StringBuilder erros = new StringBuilder();
             StringBuilder sql = new StringBuilder();
@@ -72,32 +61,31 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             DataTable tabelaVelha = ObterTabelaVelha();
 
             foreach (DataRow mercadoria in tabelaVelha.Rows)
-                SobrescreveInicio(mercadoria, referências, fornecedores, sql, erros);
+                SobrescreveInicio(mercadoria, referências, sql, erros);
 
             ExecutaBatchSQL(cn, sql.ToString());
             MostrarErros(erros.ToString());
         }
 
-        private void SobrescreveInicio(DataRow mercadoria, Dictionary<string, bool> referências, 
-            Dictionary<string, int> fornecedores, StringBuilder sql, StringBuilder erros)
+        private void SobrescreveInicio(DataRow mercadoria, Dictionary<string, bool> referências, StringBuilder sql, StringBuilder erros)
         {
             string referência = mercadoria[COLUNA_GESANO_REFERÊNCIA_MERCADORIA].ToString().Trim();
 
             if (referências.ContainsKey(referência))
             {
-                int codFornecedor = fornecedores[mercadoria[COLUNA_GESANO_CODIGO_FORNECEDOR].ToString().Trim()];
+                int codFornecedor =  int.Parse(mercadoria[COLUNA_GESANO_CODIGO_FORNECEDOR].ToString());
                 string mesano = mercadoria[COLUNA_GESANO_INICIO].ToString().Trim();
 
-                if (mesano != "")
+                if (String.IsNullOrEmpty(mesano))
+                    return;
+
+                try
                 {
-                    try
-                    {
-                        GeraSQLUpdateInicio(referência, mesano, sql);
-                    }
-                    catch (FormatException)
-                    {
-                        ReportaErro(referência, mesano, erros);
-                    }
+                    GeraSQLUpdateInicio(referência, mesano, sql);
+                }
+                catch (FormatException)
+                {
+                    ReportaErro(referência, mesano, erros);
                 }
             }
         }
@@ -166,98 +154,42 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 
         }
 
-        private Dictionary<string, int> ObterNovosFornecedores(IDbConnection cn)
-        {
-            hashFornecedoresCadastrados = new Dictionary<string, int>();
-            IDataReader leitor = null;
-            IDbCommand cmd = cn.CreateCommand();
-            cmd.CommandText = "select codigo, nome from fornecedor";
-
-            try
-            {
-                using (leitor = cmd.ExecuteReader())
-                {
-                    while (leitor.Read())
-                    {
-                        int codigo = leitor.GetInt32(0);
-                        string nome = leitor.GetString(1);
-
-                        hashFornecedoresCadastrados.Add(nome, codigo);
-                    }
-                }
-            }
-            finally
-            {
-                if (leitor != null)
-                    leitor.Close();
-            }
-
-            return hashFornecedoresCadastrados;
-        }
-
         private DataTable ObterTabelaVelha()
         {
             return dataSetVelho.Tables["gesano"];
         }
 
-        private Dictionary<string, bool> ObtemLegadoFornecedoresParaCadastrar()
+        private SortedSet<int> ObtemLegadoFornecedoresParaCadastrar()
         {
-            Dictionary<string, bool> hashFornecedoresParaCadastrar = new Dictionary<string, bool>();
+            SortedSet<int> códigos = new SortedSet<int>();
             DataTable tabelaVelha = ObterTabelaVelha();
 
             foreach (DataRow mercadoria in tabelaVelha.Rows)
             {
-                if (hashExisteReferência.ContainsKey(mercadoria[COLUNA_GESANO_REFERÊNCIA_MERCADORIA].ToString().Trim()))
-                {
-                    string nomeFornecedor = mercadoria[COLUNA_GESANO_CODIGO_FORNECEDOR].ToString().Trim();
-
-                    if (!hashFornecedoresCadastrados.ContainsKey(nomeFornecedor)
-                        && !hashFornecedoresParaCadastrar.ContainsKey(nomeFornecedor))
-                    {
-                        hashFornecedoresParaCadastrar.Add(nomeFornecedor, true);
-                    }
-                }
+                if (ExisteReferência(mercadoria))
+                    códigos.Add(int.Parse(mercadoria[COLUNA_GESANO_CODIGO_FORNECEDOR].ToString()));
             }
 
-            return hashFornecedoresParaCadastrar;
+            return códigos;
         }
 
-
-        private void ApagaVínculosCoexistentes(IDbConnection cn)
+        private bool ExisteReferência(DataRow mercadoria)
         {
-            IDbCommand cmd = null;
-            StringBuilder sqlExclusão = new StringBuilder("DELETE FROM vinculomercadoriafornecedor where mercadoria in (");
-            bool primeiro = true;
+            return hashExisteReferência.ContainsKey(mercadoria[COLUNA_GESANO_REFERÊNCIA_MERCADORIA].ToString().Trim());
+        }
 
-            DataTable tabelaVelha = ObterTabelaVelha();
+        private void ApagaFornecedores(IDbConnection cn)
+        {
+            IDbCommand cmd = cn.CreateCommand();
+            cmd = cn.CreateCommand();
+            cmd.CommandText = "DELETE FROM vinculomercadoriafornecedor";
+            cmd.ExecuteNonQuery();
 
-            foreach (DataRow mercadoria in tabelaVelha.Rows)
-            {
-                string referência = mercadoria[COLUNA_GESANO_REFERÊNCIA_MERCADORIA].ToString().Trim();
+            cmd = cn.CreateCommand();
+            cmd = cn.CreateCommand();
+            cmd.CommandText = "DELETE FROM fornecedor";
+            cmd.ExecuteNonQuery();
 
-                if (hashExisteReferência.ContainsKey(referência)
-                    && vinculosAtuais.ContainsKey(referência)
-                    )
-                {
-                    if (!primeiro)
-                        sqlExclusão.Append(",");
-
-                    primeiro = false;
-
-                    sqlExclusão.Append("'");
-                    sqlExclusão.Append(referência);
-                    sqlExclusão.Append("'");
-                }
-            }
-
-            sqlExclusão.Append(")");
-
-            if (!primeiro)
-            {
-                cmd = cn.CreateCommand();
-                cmd.CommandText = sqlExclusão.ToString();
-                cmd.ExecuteNonQuery();
-            }
         }
 
         private void AdicionarNovosVínculos(IDbConnection cn)
@@ -287,10 +219,9 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 
         private bool AdicionarVinculo(DataRow mercadoria, StringBuilder strNovosVinculos, bool primeiro)
         {
-            if (Existe(mercadoria) && !VinculoJáAdicionado(mercadoria))
+            if (ExisteReferência(mercadoria) && !VinculoJáAdicionado(mercadoria))
             {
-                string nomeFornecedor = mercadoria[COLUNA_GESANO_CODIGO_FORNECEDOR].ToString().Trim();
-                int códigoFornecedor = hashFornecedoresCadastrados[nomeFornecedor];
+                int códigoFornecedor = int.Parse(mercadoria[COLUNA_GESANO_CODIGO_FORNECEDOR].ToString());
                 string referênciaFornecedor = mercadoria[COLUNA_GESANO_REFERÊNCIA_FORNECEDOR].ToString().Trim();
 
                 if (!primeiro)
@@ -304,7 +235,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
                 strNovosVinculos.Append(foraDelinha).Append(",");
 
                 strNovosVinculos.Append(mercadoria[COLUNA_GESANO_PESO].ToString().Replace(",", ".").Trim()).Append(")");
-                vinculosAtuais.Add(mercadoria[COLUNA_GESANO_REFERÊNCIA_MERCADORIA].ToString().Trim(), true);
+                VínculosAtuais.Add(mercadoria[COLUNA_GESANO_REFERÊNCIA_MERCADORIA].ToString().Trim(), true);
 
                 return true;
             }
@@ -312,64 +243,42 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             return false;
         }
 
-        private bool Existe(DataRow mercadoria)
-        {
-            return hashExisteReferência.ContainsKey(mercadoria[COLUNA_GESANO_REFERÊNCIA_MERCADORIA].ToString().Trim());
-        }
-
         private bool VinculoJáAdicionado(DataRow mercadoria)
         {
-            return vinculosAtuais.ContainsKey(mercadoria[COLUNA_GESANO_REFERÊNCIA_MERCADORIA].ToString().Trim());
+            return VínculosAtuais.ContainsKey(mercadoria[COLUNA_GESANO_REFERÊNCIA_MERCADORIA].ToString().Trim());
         }
 
-        private void CadastrarFornecedores(IDbConnection cn, Dictionary<string, bool> hashFornecedoresParaCadastrar)
+        private Dictionary<string, bool> VínculosAtuais
+        {
+            get
+            {
+                if (vinculosAtuais == null)
+                    vinculosAtuais = new Dictionary<string, bool>();
+
+                return vinculosAtuais;
+            }
+        }
+
+        private void CadastrarFornecedores(IDbConnection cn, SortedSet<int> códigos)
         {
             IDbCommand cmd = cn.CreateCommand();
 
-            StringBuilder strNovosFornecedores = new StringBuilder("INSERT INTO fornecedor (nome) VALUES ");
+            string strNovosFornecedores = "INSERT INTO fornecedor (codigo) VALUES ";
             bool primeiro = true;
 
-            foreach (KeyValuePair<string, bool> par in hashFornecedoresParaCadastrar)
+            foreach (int código in códigos)
             {
                 if (!primeiro)
-                    strNovosFornecedores.Append(",");
+                    strNovosFornecedores += ",";
 
-                strNovosFornecedores.Append("('");
-                strNovosFornecedores.Append(par.Key.ToCharArray());
-                strNovosFornecedores.Append("')");
-
+                strNovosFornecedores += "(" + código + ")";
                 primeiro = false;
             }
 
-            cmd.CommandText = strNovosFornecedores.ToString();
+            cmd.CommandText = strNovosFornecedores;
 
             if (!primeiro)
                 cmd.ExecuteNonQuery();
-        }
-
-        private Dictionary<string, bool> ObtemNovoVinculosAtuais(IDbConnection cn)
-        {
-            vinculosAtuais = new Dictionary<string, bool>();
-
-            IDataReader leitor = null;
-            IDbCommand cmd = cn.CreateCommand();
-            cmd.CommandText = "select mercadoria from vinculomercadoriafornecedor";
-
-            try
-            {
-                using (leitor = cmd.ExecuteReader())
-                {
-                    while (leitor.Read())
-                        vinculosAtuais.Add(leitor.GetString(0), true);
-                }
-            }
-            finally
-            {
-                if (leitor != null)
-                    leitor.Close();
-            }
-
-            return vinculosAtuais;
         }
 	}
 }
