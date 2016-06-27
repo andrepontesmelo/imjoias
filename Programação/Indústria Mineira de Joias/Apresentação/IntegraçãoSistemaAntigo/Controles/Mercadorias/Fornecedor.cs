@@ -21,22 +21,35 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
         private Dictionary<string, bool> vinculosAtuais;
         private DataSet dataSetVelho;
 
-        public Fornecedor(DataSet dataSetVelho, DataSet dataSetNovo, Dbf dbfOrigem)
-		{
-            IDbConnection conexão;
+        private IDbConnection conexão;
+        private IDbTransaction transação;
+
+        public Fornecedor(DataSet dataSetVelho)
+        {
             this.dataSetVelho = dataSetVelho;
+        }
 
-            Dictionary<string, bool> referências = 
-            ObterHashExisteReferência(Acesso.MySQL.MySQLUsuários.ObterÚltimaStrConexão().ToString(), out conexão);
+        public void Transpor()
+        {
+            conexão = ObterConexãoAberta();
+            transação = conexão.BeginTransaction();
 
-            ApagaFornecedores(conexão);
+            Dictionary<string, bool> referências = ObterHashExisteReferência();
+            ApagaFornecedores();
+            CadastrarFornecedores(ObtemLegadoFornecedoresParaCadastrar());
+            CadastrarVínculos();
+            SobrescreveInicio(referências);
 
-            CadastrarFornecedores(conexão, ObtemLegadoFornecedoresParaCadastrar());
+            transação.Commit();
+            conexão.Close();
+        }
 
-
-            AdicionarNovosVínculos(conexão);
-            SobrescreveInicio(conexão, referências);
-		}
+        private static IDbConnection ObterConexãoAberta()
+        {
+            IDbConnection conexão = Acesso.MySQL.ConectorMysql.Instância.CriarConexão(Acesso.MySQL.MySQLUsuários.ObterÚltimaStrConexão());
+            conexão.Open();
+            return conexão;
+        }
 
         private void ReportaErro(string referência, string mesano, StringBuilder erros)
         { 
@@ -53,7 +66,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             erros.Append(mesano);
         }
 
-        private void SobrescreveInicio(IDbConnection cn, Dictionary<string, bool> referências)
+        private void SobrescreveInicio(Dictionary<string, bool> referências)
         {
             StringBuilder erros = new StringBuilder();
             StringBuilder sql = new StringBuilder();
@@ -63,7 +76,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             foreach (DataRow mercadoria in tabelaVelha.Rows)
                 SobrescreveInicio(mercadoria, referências, sql, erros);
 
-            ExecutaBatchSQL(cn, sql.ToString());
+            ExecutaBatchSQL(sql.ToString());
             MostrarErros(erros.ToString());
         }
 
@@ -99,12 +112,13 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             }
         }
 
-        private void ExecutaBatchSQL(IDbConnection cn, string sql)
+        private void ExecutaBatchSQL(string sql)
         {
-            using (IDbCommand cmd = cn.CreateCommand())
+            using (IDbCommand cmd = conexão.CreateCommand())
             {
+                cmd.Transaction = transação;
                 cmd.CommandText = sql;
-                cmd.CommandTimeout = (int)TimeSpan.FromMinutes(TEMPO_MAXIMO_SQL_MINUTOS).TotalSeconds;
+                cmd.CommandTimeout = (int) TimeSpan.FromMinutes(TEMPO_MAXIMO_SQL_MINUTOS).TotalSeconds;
 
                 cmd.ExecuteNonQuery();
             }
@@ -121,14 +135,11 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             sql.Append("'; ");
         }
 
-        private Dictionary<string, bool> ObterHashExisteReferência(String strConexão, out IDbConnection cn)
+        private Dictionary<string, bool> ObterHashExisteReferência()
         {
             hashExisteReferência = new Dictionary<string, bool>();
 
-            cn = Acesso.MySQL.ConectorMysql.Instância.CriarConexão(strConexão);
-            cn.Open();
-
-            using (IDbCommand cmd = cn.CreateCommand())
+            using (IDbCommand cmd = conexão.CreateCommand())
             {
                 cmd.CommandText = "select referencia from mercadoria where foradelinha=0";
                 IDataReader leitor = null;
@@ -178,21 +189,21 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             return hashExisteReferência.ContainsKey(mercadoria[COLUNA_GESANO_REFERÊNCIA_MERCADORIA].ToString().Trim());
         }
 
-        private void ApagaFornecedores(IDbConnection cn)
+        private void ApagaFornecedores()
         {
-            IDbCommand cmd = cn.CreateCommand();
-            cmd = cn.CreateCommand();
+            IDbCommand cmd = conexão.CreateCommand();
+            cmd.Transaction = transação;
+            cmd = conexão.CreateCommand();
             cmd.CommandText = "DELETE FROM vinculomercadoriafornecedor";
             cmd.ExecuteNonQuery();
 
-            cmd = cn.CreateCommand();
-            cmd = cn.CreateCommand();
+            cmd = conexão.CreateCommand();
+            cmd.Transaction = transação;
             cmd.CommandText = "DELETE FROM fornecedor";
             cmd.ExecuteNonQuery();
-
         }
 
-        private void AdicionarNovosVínculos(IDbConnection cn)
+        private void CadastrarVínculos()
         {
             IDbCommand cmd = null;
             StringBuilder strNovosVinculos = new StringBuilder("INSERT into vinculomercadoriafornecedor ");
@@ -209,12 +220,13 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
                     primeiro = false;
             }
 
-            if (!primeiro)
-            {
-                cmd = cn.CreateCommand();
-                cmd.CommandText = strNovosVinculos.ToString();
-                cmd.ExecuteNonQuery();
-            }
+            if (primeiro)
+                return;
+
+            cmd = conexão.CreateCommand();
+            cmd.Transaction = transação;
+            cmd.CommandText = strNovosVinculos.ToString();
+            cmd.ExecuteNonQuery();
         }
 
         private bool AdicionarVinculo(DataRow mercadoria, StringBuilder strNovosVinculos, bool primeiro)
@@ -259,9 +271,10 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             }
         }
 
-        private void CadastrarFornecedores(IDbConnection cn, SortedSet<int> códigos)
+        private void CadastrarFornecedores(SortedSet<int> códigos)
         {
-            IDbCommand cmd = cn.CreateCommand();
+            IDbCommand cmd = conexão.CreateCommand();
+            cmd.Transaction = transação;
 
             string strNovosFornecedores = "INSERT INTO fornecedor (codigo) VALUES ";
             bool primeiro = true;

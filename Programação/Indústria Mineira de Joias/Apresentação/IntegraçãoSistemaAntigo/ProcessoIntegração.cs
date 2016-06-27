@@ -71,10 +71,10 @@ namespace Apresentação.IntegraçãoSistemaAntigo
 
             Controles.Mercadorias.Faixas.dsNovo = dsNovo;
 
-            dbf = new Apresentação.IntegraçãoSistemaAntigo.Dbf(diretório);
+            dbf = new Dbf(diretório);
             dsVelho = dbf.ObterDataSetMercadoria();
             new Controles.Mercadorias.Gramas(dsVelho).Transpor(strSaída);
-            new Controles.Mercadorias.Fornecedor(dsVelho, dsNovo, dbf);
+            new Controles.Mercadorias.Fornecedor(dsVelho).Transpor();
             new Controles.Mercadorias.ComponenteDeCusto(dsVelho, dsNovo, dbf).Transpor();
             new Controles.Mercadorias.Mercadorias(dsVelho, dsNovo, dbf).Transpor(strSaída);
             new Controles.Mercadorias.VinculoMercadoriaComponenteCusto(dsVelho, dsNovo).Transpor(strSaída);
