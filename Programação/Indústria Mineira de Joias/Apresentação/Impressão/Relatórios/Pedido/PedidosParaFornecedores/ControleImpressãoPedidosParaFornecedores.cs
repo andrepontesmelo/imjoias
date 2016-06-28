@@ -1,13 +1,6 @@
-﻿using System;
+﻿using CrystalDecisions.CrystalReports.Engine;
 using System.Collections.Generic;
-using System.Text;
-using Entidades.Pessoa;
-using Entidades;
-using CrystalDecisions.CrystalReports.Engine;
 using System.Data;
-using System.Collections;
-using Entidades.Mercadoria;
-using Entidades.PedidoConserto;
 
 namespace Apresentação.Impressão.Relatórios.Pedido.PedidosParaFornecedores
 {
@@ -19,12 +12,11 @@ namespace Apresentação.Impressão.Relatórios.Pedido.PedidosParaFornecedores
             DataSetPedidosParaFornecedores ds = new DataSetPedidosParaFornecedores();
 
             DataTable tabelaFornecedor = ds.Tables["Fornecedor"];
-            List<Entidades.Fornecedor> fornecedores = Entidades.Fornecedor.ObterFornecedores();;
+            IList<Entidades.Fornecedor> fornecedores = Entidades.Fornecedor.ObterFornecedores();
             foreach (Entidades.Fornecedor f in fornecedores)
             {
                 DataRow linha = tabelaFornecedor.NewRow();
                 linha["código"] = f.Código;
-                linha["nome"] = f.Nome;
 
                 tabelaFornecedor.Rows.Add(linha);
             }

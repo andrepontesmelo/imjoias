@@ -38,7 +38,7 @@ namespace Apresentação.Atendimento.Clientes.Pedido
                 MercadoriaFornecedor fornecedor = MercadoriaFornecedor.ObterFornecedor(value.ReferênciaNumérica);
                 if (fornecedor != null)
                 {
-                    txtFornecedor.Txt.Text = fornecedor.Fornecedor.Nome;
+                    txtFornecedor.Text = fornecedor.FornecedorCódigo.ToString();
                     txtReferênciaFornecedor.Text = fornecedor.ReferênciaFornecedor;
                 }
                 carregando = false;
@@ -64,23 +64,6 @@ namespace Apresentação.Atendimento.Clientes.Pedido
             {
                 AtualizarFornecedorApartirDaReferência(false);
             }
-        }
-
-        private void txtFornecedor_Leave(object sender, EventArgs e)
-        {
-            Entidades.Fornecedor fornecedorVálido = txtFornecedor.ObterFornecedor();
-
-            if (fornecedorVálido != null)
-            {
-                MercadoriaFornecedor info = MercadoriaFornecedor.ObterFornecedor(txtMercadoria.Txt.Text);
-                if (info != null)
-                    txtReferênciaFornecedor.Text = info.ReferênciaFornecedor;
-            } else if (txtFornecedor.Txt.Text.Trim().Length == 0)
-            {
-                txtReferênciaFornecedor.Text = "";
-            }
-
-            Gravar();
         }
 
         private void Gravar()
@@ -128,12 +111,12 @@ namespace Apresentação.Atendimento.Clientes.Pedido
 
             if (info != null)
             {
-                txtFornecedor.Txt.Text = info.Fornecedor.Nome;
+                txtFornecedor.Text = info.FornecedorCódigo.ToString();
                 txtReferênciaFornecedor.Text = info.ReferênciaFornecedor;
             }
             else
             {
-                txtFornecedor.Txt.Text = "";
+                txtFornecedor.Text = "";
                 txtReferênciaFornecedor.Text = "";
             }
 

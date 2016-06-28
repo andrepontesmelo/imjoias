@@ -37,7 +37,7 @@ namespace Apresentação.Impressão.Relatórios.Estoque.Referência
 
             linha["peso"] = s.Peso;
             linha["depeso"] = s.Depeso;
-            linha["fornecedor"] = s.FornecedorNome.Trim();
+            linha["fornecedor"] = s.Fornecedor.ToString();
             linha["reffornecedor"] = (String.IsNullOrEmpty(s.FornecedorReferência) ? "" : s.FornecedorReferência.Trim().ToUpper());
             linha["pesosaldo"] = s.ProdudoPesoSaldo;
             linha["inicio"] = s.InícioFormatado;

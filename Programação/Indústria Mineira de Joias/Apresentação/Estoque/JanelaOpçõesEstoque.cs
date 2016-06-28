@@ -1,12 +1,5 @@
 ﻿using Apresentação.Formulários;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 
 namespace Apresentação.Estoque
 {
@@ -15,7 +8,7 @@ namespace Apresentação.Estoque
         private Entidades.Configuração.ConfiguraçãoUsuário<bool> configuraçãoReferência;
         private Entidades.Configuração.ConfiguraçãoUsuário<bool> configuraçãoPeso;
         private Entidades.Configuração.ConfiguraçãoUsuário<bool> configuraçãoPesoMédio;
-        private Entidades.Configuração.ConfiguraçãoUsuário<int> configuraçãoFornecedorÚnicoCódigoFornecedor;
+        private Entidades.Configuração.ConfiguraçãoUsuário<ulong> configuraçãoFornecedorÚnicoCódigoFornecedor;
 
         public JanelaOpçõesEstoque()
         {
@@ -26,7 +19,7 @@ namespace Apresentação.Estoque
 
             configuraçãoReferência = new Entidades.Configuração.ConfiguraçãoUsuário<bool>("estoque_opcoes_impressao_incluir_referencia", true);
             configuraçãoPeso =  new Entidades.Configuração.ConfiguraçãoUsuário<bool>("estoque_opcoes_impressao_incluir_peso", true);
-            configuraçãoFornecedorÚnicoCódigoFornecedor = new Entidades.Configuração.ConfiguraçãoUsuário<int>("estoque_opcoes_fornecedor_unico", 0);
+            configuraçãoFornecedorÚnicoCódigoFornecedor = new Entidades.Configuração.ConfiguraçãoUsuário<ulong>("estoque_opcoes_fornecedor_unico", 0);
 
             configuraçãoPesoMédio = new Entidades.Configuração.ConfiguraçãoUsuário<bool>("estoque_opcoes_peso_medio", false);
             chkReferência.Checked = configuraçãoReferência.Valor;
@@ -72,7 +65,7 @@ namespace Apresentação.Estoque
             configuraçãoPeso.Valor = IncluirPeso;
             configuraçãoReferência.Valor = IncluirReferência;
             configuraçãoFornecedorÚnicoCódigoFornecedor.Valor = 
-                (FornecedorÚnico == null ? 0 : (int) FornecedorÚnico.Código);
+                (FornecedorÚnico == null ? 0 : FornecedorÚnico.Código);
 
             DialogResult = System.Windows.Forms.DialogResult.OK;
             Hide();

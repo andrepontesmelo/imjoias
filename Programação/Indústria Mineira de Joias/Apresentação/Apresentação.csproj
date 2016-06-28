@@ -100,7 +100,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>chave.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>chave.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <PlatformTarget>x64</PlatformTarget>
@@ -295,7 +295,6 @@
       <DependentUpon>ListaPedidosSimples.cs</DependentUpon>
     </Compile>
     <Compile Include="Clientes\Pedido\Parâmetros.cs" />
-    <Compile Include="ColetorFornecedor.cs" />
     <Compile Include="ControladorInatividade.cs" />
     <Compile Include="Estoque\JanelaOpçõesEstoque.cs">
       <SubType>Form</SubType>
@@ -1652,9 +1651,6 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="IntegraçãoSistemaAntigo\Vendas\Venda.cs" />
-    <Compile Include="Fornecedor\ListViewFornecedor.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="Mercadoria\BalãoReferênciaForaDeLinha.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2123,9 +2119,6 @@
     </Compile>
     <Compile Include="SinalizaçãoPedido.Designer.cs">
       <DependentUpon>SinalizaçãoPedido.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Fornecedor\TxtFornecedor.cs">
-      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Usuário\Agendamentos\BaseAgendamentos.cs">
       <SubType>UserControl</SubType>
@@ -3060,10 +3053,6 @@
       <DependentUpon>VisualizarPáginaVirtual.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fornecedor\ListViewFornecedor.resx">
-      <DependentUpon>ListViewFornecedor.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Mercadoria\BalãoReferênciaForaDeLinha.resx">
       <DependentUpon>BalãoReferênciaForaDeLinha.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -3197,10 +3186,6 @@
       <DependentUpon>SinalizaçãoPedido.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fornecedor\TxtFornecedor.resx">
-      <DependentUpon>TxtFornecedor.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Álbuns\BaseEditarÁlbum.resx">
       <DependentUpon>BaseEditarÁlbum.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -3236,7 +3221,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="chave.pfx" />
+    <None Include="chave.snk" />
     <None Include="Impressão\Relatórios\Comissao\DataSetComissaoVenda.xsc">
       <DependentUpon>DataSetComissaoVenda.xsd</DependentUpon>
     </None>

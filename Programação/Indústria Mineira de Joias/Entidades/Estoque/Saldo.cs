@@ -15,13 +15,10 @@ namespace Entidades.Estoque
             set { inicio = value; }
         }
 
-        private string fornecedornome;
+        private ulong fornecedor;
 
-        public string FornecedorNome
-        {
-            get { return fornecedornome; }
-            set { fornecedornome = value; }
-        }
+        public ulong Fornecedor => fornecedor;
+
         private string referenciafornecedor;
 
         public string FornecedorReferência
@@ -115,11 +112,11 @@ namespace Entidades.Estoque
             consulta.Append(usarPesoMédio ? " m.peso " : " ifnull(e.peso, m.peso) " );
 
             consulta.Append(" as peso, sum(ifnull(e.entrada,0)) as entrada,sum(ifnull(e.venda,0)) as venda ,sum(ifnull(e.devolucao,0)) as devolucao,sum(ifnull(e.saldo,0)) as saldo, " +
-                " m.depeso, f.nome as fornecedornome from mercadoria m left join estoque_saldo e " +
+                " m.depeso, v.fornecedor from mercadoria m left join estoque_saldo e " +
                 " on e.referencia=m.referencia " +
-                " join vinculomercadoriafornecedor v on m.referencia=v.mercadoria join fornecedor f on v.fornecedor=f.codigo " +
+                " join vinculomercadoriafornecedor v on m.referencia=v.mercadoria " +
                 " WHERE m.foradelinha=0 AND " +
-                (fornecedorÚnico != null ? " f.codigo= " + DbTransformar(fornecedorÚnico.Código) + " AND " : "") +
+                (fornecedorÚnico != null ? " v.fornecedor= " + DbTransformar(fornecedorÚnico.Código) + " AND " : "") +
                 " ( m.depeso=" + (incluirPeso ? "1" : "0") +
                 " or m.depeso=" + (incluirReferências ? "0" : "1") +
                 " ) ");
@@ -128,9 +125,9 @@ namespace Entidades.Estoque
             string peso = (usarPesoMédio ? "m.peso" : "e.peso");
             consulta.Append(" m.referencia,");
             consulta.Append(peso);
-            consulta.Append(", inicio, referenciafornecedor, f.nome ");
+            consulta.Append(", inicio, referenciafornecedor, v.fornecedor ");
             consulta.Append(" ORDER BY ");
-            consulta.Append((ordem == Ordem.FornecedorReferênciaPeso ? " f.nome,  " : " "));
+            consulta.Append((ordem == Ordem.FornecedorReferênciaPeso ? " v.fornecedor ,  " : " "));
             consulta.Append(" m.referencia, ");
             consulta.Append(peso);
 

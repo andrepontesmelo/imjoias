@@ -130,7 +130,7 @@ namespace Apresentação.Impressão.Relatórios.Pedido
                 MercadoriaFornecedor fornecedor = null;
                 if ((p.ReferênciaNumérica != null) && fornecedores.TryGetValue(p.ReferênciaNumérica, out fornecedor))
                 {
-                    linha["fornecedor"] = fornecedor.Fornecedor.Nome;
+                    linha["fornecedor"] = fornecedor.FornecedorCódigo.ToString();
                     linha["refFornecedor"] = fornecedor.ReferênciaFornecedor;
                 }
 

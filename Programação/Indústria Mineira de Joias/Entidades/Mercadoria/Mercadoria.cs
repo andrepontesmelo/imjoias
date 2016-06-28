@@ -630,7 +630,12 @@ namespace Entidades.Mercadoria
         /// <param name="referência">Referência formatada da mercadoria</param>
         public static Mercadoria ObterMercadoria(string referência, Tabela tabela)
         {
-            return Acesso.Comum.Cache.CacheDb.Instância.ObterEntidade(typeof(Mercadoria), referência, tabela) as Mercadoria;
+            return CacheDb.Instância.ObterEntidade(typeof(Mercadoria), referência, tabela) as Mercadoria;
+        }
+
+        public static Mercadoria ObterMercadoria(string referência)
+        {
+            return ObterMercadoria(referência, Tabela.TabelaPadrão);
         }
 
         /// <summary>

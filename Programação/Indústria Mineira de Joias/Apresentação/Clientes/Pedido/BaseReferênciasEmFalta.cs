@@ -50,10 +50,7 @@ namespace Apresentação.Atendimento.Clientes.Pedido
         {
             ListViewItem item = new ListViewItem(new string[lista.Columns.Count]);
             item.SubItems[colReferência.Index].Text = m.ReferênciaFormatada;
-            Entidades.Fornecedor f = Entidades.Fornecedor.ObterFornecedor(m.Fornecedor);
-            if (f != null)
-                item.SubItems[colFornecedor.Index].Text = f.Nome;
-
+            item.SubItems[colFornecedor.Index].Text = m.Fornecedor.ToString();
             item.SubItems[colReferênciaFornecedor.Index].Text = m.ReferênciaFornecedor;
             item.SubItems[colPedidos.Index].Text = m.Pedidos;
             item.SubItems[colSaldoConsignado.Index].Text = m.SaldoConsignado.ToString();

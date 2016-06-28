@@ -1,5 +1,4 @@
 ﻿using Apresentação.Álbum.Edição.Álbuns;
-using Apresentação.Formulários.Fornecedor;
 using System;
 using System.ComponentModel;
 using System.Windows.Forms;
@@ -88,14 +87,15 @@ namespace Apresentação.Fotos
         {
 
             Entidades.Mercadoria.MercadoriaFornecedor fornecedor = Entidades.Mercadoria.MercadoriaFornecedor.ObterFornecedor(foto.ReferênciaNumérica);
+
             if (fornecedor != null)
             {
-                txtFornecedor.Txt.Text = fornecedor.Fornecedor.Nome;
+                txtFornecedor.Text = fornecedor.FornecedorCódigo.ToString();
                 txtFornecedorReferência.Text = fornecedor.ReferênciaFornecedor;
             }
             else
             {
-                txtFornecedor.Txt.Text = "";
+                txtFornecedor.Text = "";
                 txtFornecedorReferência.Text = "";
             }
         }
@@ -161,27 +161,25 @@ namespace Apresentação.Fotos
         /// <summary>
         /// Ocorre quando se pressiona alguma tecla na caixa de texto
         /// </summary>
-        private void TxtKeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        private void TxtKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
-            {
-                if (txtReferência.Txt.Focused && txtReferência.Txt.Text.Length != txtReferência.Txt.MaxLength)
-                    return;
+            if (e.KeyCode != Keys.Enter)
+                return;
 
-                Control próximo = this.GetNextControl((Control)sender, true);
+            if (txtReferência.Txt.Focused && txtReferência.Txt.Text.Length != txtReferência.Txt.MaxLength)
+                return;
 
-                // Salta controles não TextBox e não TxtFornecedor
-                while ((próximo as TextBox == null) &&
-                    (próximo as TxtFornecedor == null))
-                    próximo = this.GetNextControl(próximo, true);
+            Control próximo = this.GetNextControl((Control)sender, true);
 
-                TextBox txt = próximo as TextBox;
+            while (próximo as TextBox == null)
+                próximo = GetNextControl(próximo, true);
 
-                próximo.Focus();
+            TextBox txt = próximo as TextBox;
 
-                if (txt != null)
-                    txt.SelectAll();
-            }
+            próximo.Focus();
+
+            if (txt != null)
+                txt.SelectAll();
         }
 
         protected override void OnEnter(EventArgs e)

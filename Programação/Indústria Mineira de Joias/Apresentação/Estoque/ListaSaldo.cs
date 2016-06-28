@@ -1,13 +1,11 @@
-﻿using System;
+﻿using Apresentação.Formulários;
+using Entidades.Estoque;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using Entidades.Estoque;
-using Apresentação.Formulários;
 
 namespace Apresentação.Estoque
 {
@@ -16,7 +14,7 @@ namespace Apresentação.Estoque
         public event EventHandler AoDuploClique;
         private ListViewColumnSorter lvwColumnSorter;
 
-        private volatile List<Entidades.Estoque.Saldo> itens;
+        private volatile List<Saldo> itens;
         private volatile Entidades.Fornecedor[] arrayFornecedores;
         private JanelaOpçõesEstoque opções = null;
 
@@ -110,7 +108,7 @@ namespace Apresentação.Estoque
 
             i.Text = s.ReferênciaFormatadaComDígito;
             i.SubItems.Add(s.Peso.ToString());
-            i.SubItems.Add(s.FornecedorNome);
+            i.SubItems.Add(s.Fornecedor.ToString());
             i.SubItems.Add(s.FornecedorReferência);
             i.SubItems.Add(s.ForaDeLinhaFornecedor ? "FFL" : "");
             i.SubItems.Add(s.InícioFormatado);

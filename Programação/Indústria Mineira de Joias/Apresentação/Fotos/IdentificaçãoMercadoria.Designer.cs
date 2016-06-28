@@ -1,4 +1,5 @@
-﻿using Apresentação.Formulários.Fornecedor;
+﻿using System.Windows.Forms;
+
 namespace Apresentação.Fotos
 {
     partial class IdentificaçãoMercadoria
@@ -41,7 +42,7 @@ namespace Apresentação.Fotos
             this.label6 = new System.Windows.Forms.Label();
             this.txtData = new System.Windows.Forms.TextBox();
             this.txtDescrição = new System.Windows.Forms.TextBox();
-            this.txtFornecedor = new Apresentação.Formulários.Fornecedor.TxtFornecedor();
+            this.txtFornecedor = new TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.quadroIdentificação.SuspendLayout();
             this.SuspendLayout();
@@ -209,7 +210,6 @@ namespace Apresentação.Fotos
             this.txtFornecedor.Enabled = false;
             this.txtFornecedor.Location = new System.Drawing.Point(80, 84);
             this.txtFornecedor.Name = "txtFornecedor";
-            this.txtFornecedor.Referência = "";
             this.txtFornecedor.Size = new System.Drawing.Size(367, 20);
             this.txtFornecedor.TabIndex = 2;
             this.txtFornecedor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtKeyDown);
@@ -247,7 +247,7 @@ namespace Apresentação.Fotos
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtFornecedorReferência;
-        private TxtFornecedor txtFornecedor;
+        private TextBox txtFornecedor;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtDescrição;
         private System.Windows.Forms.Label label2;

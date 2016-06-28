@@ -1,4 +1,6 @@
-﻿namespace Apresentação.Atendimento.Clientes.Pedido
+﻿using System.Windows.Forms;
+
+namespace Apresentação.Atendimento.Clientes.Pedido
 {
     partial class EncomendaItem
     {
@@ -37,7 +39,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.opçãoExcluir = new Apresentação.Formulários.Opção();
-            this.txtFornecedor = new Apresentação.Formulários.Fornecedor.TxtFornecedor();
+            this.txtFornecedor = new TextBox();
             this.txtMercadoria = new Apresentação.Mercadoria.TxtMercadoria();
             this.btnRastrear = new Apresentação.Formulários.Opção();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuantidade)).BeginInit();
@@ -164,10 +166,8 @@
             this.txtFornecedor.Enabled = false;
             this.txtFornecedor.Location = new System.Drawing.Point(4, 54);
             this.txtFornecedor.Name = "txtFornecedor";
-            this.txtFornecedor.Referência = "";
             this.txtFornecedor.Size = new System.Drawing.Size(43, 20);
             this.txtFornecedor.TabIndex = 3;
-            this.txtFornecedor.Leave += new System.EventHandler(this.txtFornecedor_Leave);
             this.txtFornecedor.MouseEnter += new System.EventHandler(this.EncomendaItem_MouseEnter);
             this.txtFornecedor.MouseLeave += new System.EventHandler(this.EncomendaItem_MouseLeave);
             // 
@@ -231,7 +231,7 @@
         private Mercadoria.TxtMercadoria txtMercadoria;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private Apresentação.Formulários.Fornecedor.TxtFornecedor txtFornecedor;
+        private TextBox txtFornecedor;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtReferênciaFornecedor;
         private System.Windows.Forms.TextBox txtDescrição;

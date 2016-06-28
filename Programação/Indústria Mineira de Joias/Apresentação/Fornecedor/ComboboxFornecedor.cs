@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Apresentação.Fornecedor
@@ -24,7 +19,7 @@ namespace Apresentação.Fornecedor
 
         private void bg_DoWork(object sender, DoWorkEventArgs e)
         {
-            List<Entidades.Fornecedor> fornecedores = Entidades.Fornecedor.ObterFornecedores();
+            IList<Entidades.Fornecedor> fornecedores = Entidades.Fornecedor.ObterFornecedores();
 
             e.Result = fornecedores;
         }
@@ -41,9 +36,9 @@ namespace Apresentação.Fornecedor
                 Selecionar(códigoFornecedorParaSelecionar);
         }
 
-        private int códigoFornecedorParaSelecionar = 0;
+        private ulong códigoFornecedorParaSelecionar = 0;
 
-        internal void Selecionar(int códigoFornecedor)
+        internal void Selecionar(ulong códigoFornecedor)
         {
             if (bg.IsBusy)
             {

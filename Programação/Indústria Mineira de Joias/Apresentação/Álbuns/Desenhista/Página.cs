@@ -406,7 +406,7 @@ namespace Apresentação.Álbum.Edição.Álbuns.Desenhista
             if (fornecedor != null)
             {
                 if ((itens & ItensImpressão.Fornecedor) > 0)
-                    DesenharStringCentralizada(g, (fornecedor != null ? fornecedor.Fornecedor.Nome : ""), posiçãoAtual.X, ref y, itemDimensões.Width);
+                    DesenharStringCentralizada(g, (fornecedor != null ? fornecedor.FornecedorCódigo.ToString() : ""), posiçãoAtual.X, ref y, itemDimensões.Width);
 
                 if ((itens & ItensImpressão.FornecedorReferência) > 0)
                     DesenharStringCentralizada(g, (!String.IsNullOrEmpty(fornecedor.ReferênciaFornecedor) ? fornecedor.ReferênciaFornecedor : ""), posiçãoAtual.X, ref y, itemDimensões.Width);
