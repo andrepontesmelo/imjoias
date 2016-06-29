@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using Entidades.ComissãoCálculo;
+﻿using Apresentação.Financeiro.Comissões.Delegate;
 using Apresentação.Formulários;
-using Apresentação.Financeiro.Comissões.Delegate;
+using Entidades.ComissãoCálculo;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Apresentação.Financeiro.Comissões
 {
@@ -24,13 +19,14 @@ namespace Apresentação.Financeiro.Comissões
         private Entidades.Pessoa.Pessoa comissãoPara;
         private bool emAberto;
         private bool estorno;
+        private bool carregado = false;
 
         public ControleAberturaVenda()
         {
             InitializeComponent();
         }
 
-        internal void Carregar(DateTime? diaInicial, DateTime? diaFinal, Entidades.Pessoa.Pessoa comissãoPara, Comissão comissão, bool emAberto, bool estorno)
+        internal void DefinirLimites(DateTime? diaInicial, DateTime? diaFinal, Entidades.Pessoa.Pessoa comissãoPara, Comissão comissão, bool emAberto, bool estorno)
         {
             this.comissão = comissão;
             this.diaInicial = diaInicial;
@@ -42,11 +38,9 @@ namespace Apresentação.Financeiro.Comissões
             btnAdicionarLançamento.Visible = btnRemoverLançamento.Visible = Comissão.UsuárioPodeManipularComissão;
 
             Comissão.AssegurarManipulaçãoComissãoPara(comissãoPara);
-
-            Recarregar();
         }
 
-        public void Recarregar()
+        public void Carregar()
         {
             lstVendasAbertas.Carregar(diaInicial, diaFinal, comissãoPara, comissão, true, estorno);
             lstVendasFechadas.Carregar(diaInicial, diaFinal, comissãoPara, comissão, false, estorno);
@@ -75,7 +69,7 @@ namespace Apresentação.Financeiro.Comissões
             if (AoSerNecessárioRecarregar != null)
                 AoSerNecessárioRecarregar(sender, e);
             
-            Recarregar();
+            Carregar();
 
             AguardeDB.Fechar();
         }
@@ -90,7 +84,7 @@ namespace Apresentação.Financeiro.Comissões
             comissão.AbrirLançamentos(selecionados, estorno);
             if (AoSerNecessárioRecarregar != null)
                 AoSerNecessárioRecarregar(sender, e);
-            Recarregar();
+            Carregar();
 
             AguardeDB.Fechar();
         }
@@ -103,6 +97,15 @@ namespace Apresentação.Financeiro.Comissões
         private void lstVendasFechadas_AoDuploCliqueNoVazio(object sender, EventArgs e)
         {
             splitContainer1.Panel1Collapsed = !splitContainer1.Panel1Collapsed;
+        }
+
+        private void ControleAberturaVenda_VisibleChanged(object sender, EventArgs e)
+        {
+            if (!Visible || carregado)
+                return;
+
+            Carregar();
+            carregado = true;
         }
     }
 }

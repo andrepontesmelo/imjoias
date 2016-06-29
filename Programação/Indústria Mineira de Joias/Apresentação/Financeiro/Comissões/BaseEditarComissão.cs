@@ -138,8 +138,8 @@ namespace Apresentação.Financeiro.Comissões
 
         private void CarregarListasVendasAbertaseFechadas()
         {
-            aberturaVenda.Carregar(DiaInicial, DiaFinal, ComissãoPara, comissão, true, false);
-            aberturaEstorno.Carregar(DiaInicial, DiaFinal, ComissãoPara, comissão, true, true);
+            aberturaVenda.DefinirLimites(DiaInicial, DiaFinal, ComissãoPara, comissão, true, false);
+            aberturaEstorno.DefinirLimites(DiaInicial, DiaFinal, ComissãoPara, comissão, true, true);
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
