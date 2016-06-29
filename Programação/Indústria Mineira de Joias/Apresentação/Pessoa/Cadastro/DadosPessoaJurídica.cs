@@ -5,9 +5,6 @@ using System.Windows.Forms;
 
 namespace Apresentação.Pessoa.Cadastro
 {
-    /// <summary>
-    /// Controle para edição de dados de pessoa jurídica.
-    /// </summary>
     public partial class DadosPessoaJurídica : UserControl
     {
         private PessoaJurídica pessoa;
@@ -91,8 +88,7 @@ namespace Apresentação.Pessoa.Cadastro
 
         private void txtCódigo_Validating(object sender, CancelEventArgs e)
         {
-                e.Cancel =
-        Entidades.Pessoa.Pessoa.ObterPessoa((ulong)txtCódigo.Long) != null;
+            e.Cancel = !Entidades.Pessoa.Pessoa.CódigoNovaPessoaVálido((ulong) txtCódigo.Long);
         }
 
         private void txtCódigo_Validated(object sender, EventArgs e)

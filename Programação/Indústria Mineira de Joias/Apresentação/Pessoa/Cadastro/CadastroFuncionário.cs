@@ -1,15 +1,14 @@
+using Entidades;
+using Entidades.Configuração;
 using System;
 using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Forms;
-using Entidades;
 using System.Collections.Generic;
-using Entidades.Configuração;
+using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace Apresentação.Pessoa.Cadastro
 {
-	public class CadastroFuncionário : Apresentação.Pessoa.Cadastro.CadastroPessoa
+    public class CadastroFuncionário : CadastroPessoa
 	{
 		private System.Windows.Forms.TabPage tabTrabalho;
 		private Apresentação.Pessoa.Cadastro.DadosFuncionário funcionário;
@@ -33,14 +32,22 @@ namespace Apresentação.Pessoa.Cadastro
 		/// banco de dados.
 		/// </remarks>
 		public CadastroFuncionário()
-		{
+        {
             Entidades.Pessoa.Funcionário funcionário;
 
-			CarregarSetores();
+            CarregarSetores();
 
             funcionário = new Entidades.Pessoa.Funcionário();
 
-            // Construir horário padrão.
+            ConstruirHorárioPadrão(funcionário);
+
+            funcionário.DataAdmissão = DadosGlobais.Instância.HoraDataAtual.Date;
+
+            this.Funcionário = funcionário;
+        }
+
+        private static void ConstruirHorárioPadrão(Entidades.Pessoa.Funcionário funcionário)
+        {
             foreach (DayOfWeek dia in new DayOfWeek[] {
                 DayOfWeek.Monday, DayOfWeek.Tuesday,
                 DayOfWeek.Wednesday, DayOfWeek.Thursday,
@@ -60,21 +67,17 @@ namespace Apresentação.Pessoa.Cadastro
                     13, 00,
                     17, 59));
             }
+        }
 
-            funcionário.DataAdmissão = DadosGlobais.Instância.HoraDataAtual.Date;
-
-            this.Funcionário = funcionário;
-		}
-
-		/// <remarks>
-		/// A pessoa física NÃO é cadastrada/atualizada no
-		/// banco de dados.
-		/// </remarks>
-		/// <remarks>
-		/// O funcionário NÃO é cadastrada/atualizada no
-		/// banco de dados.
-		/// </remarks>
-		public CadastroFuncionário(Entidades.Pessoa.Funcionário funcionário)
+        /// <remarks>
+        /// A pessoa física NÃO é cadastrada/atualizada no
+        /// banco de dados.
+        /// </remarks>
+        /// <remarks>
+        /// O funcionário NÃO é cadastrada/atualizada no
+        /// banco de dados.
+        /// </remarks>
+        public CadastroFuncionário(Entidades.Pessoa.Funcionário funcionário)
 		{
             CarregarSetores();
 

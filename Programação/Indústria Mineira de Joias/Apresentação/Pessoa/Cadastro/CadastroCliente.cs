@@ -1,14 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 
 namespace Apresentação.Pessoa.Cadastro
 {
-    public partial class CadastroCliente : Apresentação.Pessoa.Cadastro.CadastroPessoa
+    public partial class CadastroCliente : CadastroPessoa
     {
         public CadastroCliente()
         {

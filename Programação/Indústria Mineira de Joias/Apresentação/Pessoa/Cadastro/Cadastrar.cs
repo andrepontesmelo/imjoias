@@ -1,35 +1,21 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Apresentação.Pessoa.Cadastro
 {
-    partial class Cadastrar : Apresentação.Formulários.JanelaExplicativa
+    partial class Cadastrar : Formulários.JanelaExplicativa
     {
         public Cadastrar()
         {
             InitializeComponent();
         }
 
-        /// <summary>
-        /// Ocorre ao passar do painel de definição do tipo
-        /// de pessoa.
-        /// </summary>
         private void painelTipoPessoa_ValidandoTransição(object sender, CancelEventArgs e)
         {
             e.Cancel = !(radioPFísica.Checked ^ radioPJurídica.Checked);
         }
 
-        /// <summary>
-        /// Ocorre ao sair do painel de definição do vínculo
-        /// da pessoa-física.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void painelVínculo_ValidandoTransição(object sender, CancelEventArgs e)
         {
             e.Cancel = radioPFísica.Checked && !(radioFuncionário.Checked || radioRepresentante.Checked || radioCliente.Checked);

@@ -1,16 +1,13 @@
-using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Windows.Forms;
-using System.IO;
 using Apresentação.Pessoa.Consultas;
 using Entidades.Configuração;
+using System;
+using System.ComponentModel;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Apresentação.Pessoa.Cadastro
 {
-	public class DadosPessoaFísica : System.Windows.Forms.UserControl
+    public class DadosPessoaFísica : System.Windows.Forms.UserControl
 	{
         private Entidades.Pessoa.PessoaFísica pessoa;
         private DateTime hoje;
@@ -58,7 +55,6 @@ namespace Apresentação.Pessoa.Cadastro
 
 		public DadosPessoaFísica()
 		{
-			// This call is required by the Windows.Forms Form Designer.
 			InitializeComponent();
 
             pessoa = new Entidades.Pessoa.PessoaFísica();
@@ -680,32 +676,10 @@ namespace Apresentação.Pessoa.Cadastro
 
                     txtPai.Text = pessoa.NomePai;
                     txtMãe.Text = pessoa.NomeMãe;
-
-                    //if (pessoa.Foto != null)
-                    //    try
-                    //    {
-                    //        picFoto.Image = pessoa.Foto;
-                    //    }
-                    //    catch (Exception e)
-                    //    {
-                    //        Apresentação.Formulários.NotificaçãoSimples.Mostrar(
-                    //            "Cadastro de pessoa",
-                    //            "Não foi possível carregar a foto da pessoa.");
-
-                    //        Acesso.Comum.Usuários.UsuárioAtual.RegistrarErro(e);
-                    //    }
                 }
             }
         }
 
-
-		/*** Métodos ***************************************************/
-
-		/// <summary>
-		/// Valida o CPF
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
 		private void txtCPF_Validating(object sender, System.ComponentModel.CancelEventArgs e)
 		{
             Entidades.Pessoa.PessoaFísica p = null;
@@ -729,60 +703,6 @@ namespace Apresentação.Pessoa.Cadastro
 			txtCPF.Refresh();
 			e.Cancel = true;
 		}
-
-        //private void lnkAlterarFoto_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
-        //{
-        //    início:
-        //    if (abrirArquivo.ShowDialog(this.ParentForm) == DialogResult.OK)
-        //    {
-        //        UseWaitCursor = true;
-
-        //        try
-        //        {
-        //            FileStream f = File.OpenRead(abrirArquivo.FileName);
-
-        //            picFoto.Image = Image.FromStream(f);
-        //            picFoto.Refresh();
-
-        //            f.Close();
-        //        }
-        //        catch (Exception erro)
-        //        {
-        //            MessageBox.Show(
-        //                ParentForm,
-        //                "Não foi possível carregar a foto. O seguinte erro ocorreu:\n\n" + erro.Message,
-        //                "Cadastro de pessoa física", MessageBoxButtons.OK,
-        //                MessageBoxIcon.Error);
-
-        //            picFoto.Image = null;
-        //        }
-        //    }
-        //    else if (MessageBox.Show(this.ParentForm,
-        //        "Deseja excluir a foto atual?",
-        //        "Cadastro de Pessoa Física",
-        //        MessageBoxButtons.YesNo,
-        //        MessageBoxIcon.Question) == DialogResult.Yes)
-        //    {
-        //        picFoto.Image = null;
-        //    }
-
-        //    //try
-        //    //{
-        //    //    pessoa.Foto = picFoto.Image;
-        //    //}
-        //    //catch
-        //    //{
-        //    //    if (MessageBox.Show(
-        //    //        ParentForm,
-        //    //        "Não foi possível importar a foto atual.",
-        //    //        "Cadastro de pessoa",
-        //    //        MessageBoxButtons.RetryCancel,
-        //    //        MessageBoxIcon.Error) == DialogResult.Retry)
-        //    //        goto início;
-        //    //}
-
-        //    UseWaitCursor = false;
-        //}
 
         private void txtNome_Validating(object sender, CancelEventArgs e)
         {
@@ -947,11 +867,6 @@ namespace Apresentação.Pessoa.Cadastro
                 pessoa.Sexo = Entidades.Pessoa.Sexo.Feminino;
         }
 
-        //private void picFoto_Click(object sender, EventArgs e)
-        //{
-        //    lnkAlterarFoto_LinkClicked(this, new LinkLabelLinkClickedEventArgs(lnkAlterarFoto.Links[0], MouseButtons.Left));
-        //}
-
         private void txtProfissão_Validated(object sender, EventArgs e)
         {
             string str;
@@ -971,9 +886,8 @@ namespace Apresentação.Pessoa.Cadastro
 
         private void txtCódigo_Validating(object sender, CancelEventArgs e)
         {
-            e.Cancel =
-                Entidades.Pessoa.Pessoa.ObterPessoa((ulong) txtCódigo.Long) != null;
-         }
+            e.Cancel = !Entidades.Pessoa.Pessoa.CódigoNovaPessoaVálido((ulong)txtCódigo.Long);
+        }
 
         private void txtCódigo_Validated(object sender, EventArgs e)
         {

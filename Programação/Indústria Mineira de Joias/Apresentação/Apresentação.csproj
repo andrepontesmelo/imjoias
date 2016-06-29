@@ -1845,14 +1845,6 @@
     <Compile Include="Pessoa\Cadastro\DadosPessoaJurídica.Designer.cs">
       <DependentUpon>DadosPessoaJurídica.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pessoa\Cadastro\DadosReferência.cs" />
-    <Compile Include="Pessoa\Cadastro\DadosReferência.Designer.cs">
-      <DependentUpon>DadosReferência.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Pessoa\Cadastro\DadosRelacionamento.cs" />
-    <Compile Include="Pessoa\Cadastro\DadosRelacionamento.Designer.cs">
-      <DependentUpon>DadosRelacionamento.cs</DependentUpon>
-    </Compile>
     <Compile Include="Pessoa\Cadastro\DadosTelefone.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -4848,14 +4840,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pessoa\Cadastro\DadosPessoaJurídica.resx">
       <DependentUpon>DadosPessoaJurídica.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Pessoa\Cadastro\DadosReferência.resx">
-      <DependentUpon>DadosReferência.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Pessoa\Cadastro\DadosRelacionamento.resx">
-      <DependentUpon>DadosRelacionamento.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Pessoa\Cadastro\DadosTelefone.resx">

@@ -1,20 +1,17 @@
-using System;
-using System.Drawing;
-using System.Collections;
-using System.ComponentModel;
-using System.Windows.Forms;
-using Entidades.Privilégio;
-using Entidades.Pessoa;
 using Apresentação.Formulários;
-using System.Collections.Generic;
+using Entidades.Pessoa;
+using Entidades.Privilégio;
+using System;
+using System.ComponentModel;
 using System.Net.Mail;
+using System.Windows.Forms;
 
 namespace Apresentação.Pessoa.Cadastro
 {
-	/// <summary>
-	/// Tela para cadastro de pessoa.
-	/// </summary>
-	public class CadastroPessoa : System.Windows.Forms.Form, Apresentação.Formulários.IRequerPrivilégio
+    /// <summary>
+    /// Tela para cadastro de pessoa.
+    /// </summary>
+    public class CadastroPessoa : Form, IRequerPrivilégio
 	{
 		private Entidades.Pessoa.Pessoa entidade;
         protected TabControl tab;
@@ -486,11 +483,11 @@ namespace Apresentação.Pessoa.Cadastro
             }
 		}
 
-        public Entidades.Privilégio.Permissão Privilégio
+        public Permissão Privilégio
         {
             get
             {
-                return Entidades.Privilégio.Permissão.CadastroAcesso;
+                return Permissão.CadastroAcesso;
             }
             set
             {
@@ -514,7 +511,7 @@ namespace Apresentação.Pessoa.Cadastro
             {
                 PermissãoFuncionário.AssegurarPermissão(Permissão.CadastroAcesso);
 
-                ligar = Entidades.Privilégio.PermissãoFuncionário.ValidarPermissão(Entidades.Privilégio.Permissão.CadastroEditar);
+                ligar = Entidades.Privilégio.PermissãoFuncionário.ValidarPermissão(Permissão.CadastroEditar);
             }
 
             tabDadosPessoais.Enabled = ligar;
@@ -530,16 +527,16 @@ namespace Apresentação.Pessoa.Cadastro
         /// </summary>
         public static Entidades.Pessoa.Pessoa MostrarCadastrar()
         {
-            using (Apresentação.Pessoa.Cadastro.Cadastrar dlg = new Cadastrar())
+            using (Cadastrar dlg = new Cadastrar())
             {
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     switch (dlg.TipoPessoa)
                     {
-                        case Entidades.Pessoa.TipoPessoa.Física:
+                        case TipoPessoa.Física:
                             return CadastrarNovaPessoaFísica(dlg.TipoPessoaFísica);
 
-                        case Entidades.Pessoa.TipoPessoa.Jurídica:
+                        case TipoPessoa.Jurídica:
                             return CadastrarNovaPessoaJurídica();
 
                         default:
@@ -551,92 +548,14 @@ namespace Apresentação.Pessoa.Cadastro
             }
         }
 
-        /// <summary>
-        /// Cadastra nova pessoa-física.
-        /// </summary>
-        private static Entidades.Pessoa.PessoaFísica CadastrarNovaPessoaFísica(Entidades.Pessoa.TipoPessoaFísica tipoPessoaFísica)
+        private static PessoaFísica CadastrarNovaPessoaFísica(TipoPessoaFísica tipoPessoaFísica)
         {
-            Entidades.Pessoa.PessoaFísica entidade = null;
-            CadastroPessoa dlg;
-            bool insistir;
-
-            // Constrói a janela.
-            switch (tipoPessoaFísica)
-            {
-                case Entidades.Pessoa.TipoPessoaFísica.Outro:
-                    dlg = new CadastroCliente(new PessoaFísica());
-                    break;
-
-                case Entidades.Pessoa.TipoPessoaFísica.Funcionário:
-                    dlg = new CadastroFuncionário(new Funcionário());
-                    break;
-
-                case Entidades.Pessoa.TipoPessoaFísica.Representante:
-                    dlg = new CadastroRepresentante(new Representante());
-                    break;
-
-                default:
-                    throw new NotSupportedException("Tipo de pessoa-física não suportado.");
-            }
+            PessoaFísica entidade = null;
+            CadastroPessoa dlg = ConstróiJanelaCadastro(tipoPessoaFísica);
 
             try
             {
-                // Tenta cadastrar.
-                do
-                {
-                    insistir = false;
-
-                    if (dlg.ShowDialog() == DialogResult.OK)
-                    {
-                        switch (tipoPessoaFísica)
-                        {
-                            case Entidades.Pessoa.TipoPessoaFísica.Outro:
-                                entidade = (PessoaFísica)dlg.Pessoa;
-                                break;
-
-                            case Entidades.Pessoa.TipoPessoaFísica.Funcionário:
-                                entidade = ((CadastroFuncionário)dlg).Funcionário;
-                                break;
-
-                            case Entidades.Pessoa.TipoPessoaFísica.Representante:
-                                entidade = (PessoaFísica)((CadastroRepresentante)dlg).Pessoa;
-                                break;
-
-                            default:
-                                throw new NotSupportedException("Tipo de pessoa-física não suportado.");
-                        }
-
-                        Apresentação.Formulários.AguardeDB.Mostrar();
-
-                        if (entidade.CPF != null && Entidades.Pessoa.PessoaFísica.VerificarExistênciaCPF(entidade.CPF))
-                        {
-                            Apresentação.Formulários.AguardeDB.Fechar();
-
-                            insistir = MessageBox.Show(
-                                "O CPF " + entidade.CPF + " já encontra-se cadastrado no banco de dados.",
-                                "Cadastro de Pessoa Física",
-                                MessageBoxButtons.RetryCancel, MessageBoxIcon.Information) == DialogResult.Retry;
-                        }
-                        else
-                        {
-                            try
-                            {
-                                entidade.Cadastrar();
-                                Apresentação.Formulários.AguardeDB.Fechar();
-                            }
-                            catch (Exception e)
-                            {
-                                Acesso.Comum.Usuários.UsuárioAtual.RegistrarErro(e);
-                                Apresentação.Formulários.AguardeDB.Fechar();
-
-                                insistir = MessageBox.Show(
-                                    "Não foi possível cadastrar a pessoa física. Por favor, verifique se os dados estão corretos.",
-                                    "Erro cadastrando pessoa física",
-                                    MessageBoxButtons.RetryCancel, MessageBoxIcon.Error) == DialogResult.Retry;
-                            }
-                        }
-                    }
-                } while (insistir);
+                TentaCadastrarPessoaFísica(tipoPessoaFísica, ref entidade, dlg);
             }
             finally
             {
@@ -646,60 +565,145 @@ namespace Apresentação.Pessoa.Cadastro
             return entidade;
         }
 
-        /// <summary>
-        /// Cadastro de pessoa jurídica.
-        /// </summary>
-        public static Entidades.Pessoa.PessoaJurídica CadastrarNovaPessoaJurídica()
+        private static void TentaCadastrarPessoaFísica(TipoPessoaFísica tipoPessoaFísica, ref PessoaFísica entidade, CadastroPessoa janela)
         {
             bool insistir;
-            CadastroPessoa dlg;
-            PessoaJurídica entidade;
 
-            using (dlg = new CadastroCliente(new PessoaJurídica()))
+            do
             {
-                // Tenta cadastrar.
-                do
+                insistir = false;
+
+                if (janela.ShowDialog() == DialogResult.OK)
                 {
-                    insistir = false;
-
-                    if (dlg.ShowDialog() == DialogResult.OK)
+                    switch (tipoPessoaFísica)
                     {
-                        Apresentação.Formulários.AguardeDB.Mostrar();
+                        case TipoPessoaFísica.Outro:
+                            entidade = (PessoaFísica)janela.Pessoa;
+                            break;
 
-                        entidade = (PessoaJurídica)dlg.Pessoa;
+                        case TipoPessoaFísica.Funcionário:
+                            entidade = ((CadastroFuncionário)janela).Funcionário;
+                            break;
 
-                        if (Entidades.Pessoa.PessoaJurídica.VerificarExistênciaCNPJ(entidade))
-                        {
-                            Apresentação.Formulários.AguardeDB.Fechar();
+                        case TipoPessoaFísica.Representante:
+                            entidade = (PessoaFísica)((CadastroRepresentante)janela).Pessoa;
+                            break;
 
-                            insistir = MessageBox.Show(
-                                "O CNPJ " + entidade.CNPJ + " já encontra-se cadastrado no banco de dados.",
-                                "Cadastro de Pessoa Jurídica",
-                                MessageBoxButtons.RetryCancel, MessageBoxIcon.Information) == DialogResult.Retry;
-                        }
-                        else
-                        {
-                            try
-                            {
-                                entidade.Cadastrar();
-                                Apresentação.Formulários.AguardeDB.Fechar();
-                            }
-                            catch (Exception e)
-                            {
-                                Acesso.Comum.Usuários.UsuárioAtual.RegistrarErro(e);
-                                Apresentação.Formulários.AguardeDB.Fechar();
+                        default:
+                            throw new NotSupportedException("Tipo de pessoa-física não suportado.");
+                    }
 
-                                insistir = MessageBox.Show(
-                                    "Não foi possível cadastrar a pessoa jurídica. Por favor, verifique se os dados estão corretos.",
-                                    "Erro cadastrando pessoa jurídica",
-                                    MessageBoxButtons.RetryCancel, MessageBoxIcon.Error) == DialogResult.Retry;
-                            }
-                        }
+                    AguardeDB.Mostrar();
+
+                    if (entidade.CPF != null && PessoaFísica.VerificarExistênciaCPF(entidade.CPF))
+                    {
+                        AguardeDB.Fechar();
+
+                        insistir = MessageBox.Show(
+                            "O CPF " + entidade.CPF + " já encontra-se cadastrado no banco de dados.",
+                            "Cadastro de Pessoa Física",
+                            MessageBoxButtons.RetryCancel, MessageBoxIcon.Information) == DialogResult.Retry;
                     }
                     else
-                        entidade = null;
-                } while (insistir);
+                    {
+                        try
+                        {
+                            entidade.Cadastrar();
+                            AguardeDB.Fechar();
+                        }
+                        catch (Exception e)
+                        {
+                            Acesso.Comum.Usuários.UsuárioAtual.RegistrarErro(e);
+                            AguardeDB.Fechar();
+
+                            insistir = MessageBox.Show(
+                                "Não foi possível cadastrar a pessoa física. Por favor, verifique se os dados estão corretos.",
+                                "Erro cadastrando pessoa física",
+                                MessageBoxButtons.RetryCancel, MessageBoxIcon.Error) == DialogResult.Retry;
+                        }
+                    }
+                }
+            } while (insistir);
+        }
+
+        private static CadastroPessoa ConstróiJanelaCadastro(TipoPessoaFísica tipoPessoaFísica)
+        {
+            CadastroPessoa dlg;
+            switch (tipoPessoaFísica)
+            {
+                case TipoPessoaFísica.Outro:
+                    dlg = new CadastroCliente(new PessoaFísica());
+                    break;
+
+                case TipoPessoaFísica.Funcionário:
+                    dlg = new CadastroFuncionário(new Funcionário());
+                    break;
+
+                case TipoPessoaFísica.Representante:
+                    dlg = new CadastroRepresentante(new Representante());
+                    break;
+
+                default:
+                    throw new NotSupportedException("Tipo de pessoa-física não suportado.");
             }
+
+            return dlg;
+        }
+
+        public static PessoaJurídica CadastrarNovaPessoaJurídica()
+        {
+            using (CadastroPessoa janela = new CadastroCliente(new PessoaJurídica()))
+            {
+                return TentaCadastrarPessoaJurídica(janela);
+            }
+        }
+
+        private static PessoaJurídica TentaCadastrarPessoaJurídica(CadastroPessoa dlg)
+        {
+            bool insistir;
+            PessoaJurídica entidade = null;
+
+            do
+            {
+                insistir = false;
+
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    AguardeDB.Mostrar();
+
+                    entidade = (PessoaJurídica)dlg.Pessoa;
+
+                    if (PessoaJurídica.VerificarExistênciaCNPJ(entidade))
+                    {
+                        AguardeDB.Fechar();
+
+                        insistir = MessageBox.Show(
+                            "O CNPJ " + entidade.CNPJ + " já encontra-se cadastrado no banco de dados.",
+                            "Cadastro de Pessoa Jurídica",
+                            MessageBoxButtons.RetryCancel, MessageBoxIcon.Information) == DialogResult.Retry;
+                    }
+                    else
+                    {
+                        try
+                        {
+                            entidade.Cadastrar();
+                            AguardeDB.Fechar();
+                        }
+                        catch (Exception e)
+                        {
+                            Acesso.Comum.Usuários.UsuárioAtual.RegistrarErro(e);
+                            AguardeDB.Fechar();
+
+                            insistir = MessageBox.Show(
+                                "Não foi possível cadastrar a pessoa jurídica. Por favor, verifique se os dados estão corretos.",
+                                "Erro cadastrando pessoa jurídica",
+                                MessageBoxButtons.RetryCancel, MessageBoxIcon.Error) == DialogResult.Retry;
+                        }
+                    }
+                }
+                else
+                    entidade = null;
+            } while (insistir);
 
             return entidade;
         }

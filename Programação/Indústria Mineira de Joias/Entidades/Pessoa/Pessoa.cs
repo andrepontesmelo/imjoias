@@ -11,41 +11,16 @@ using System.Text;
 
 namespace Entidades.Pessoa
 {
-    /// <summary>
-    /// Value-Object da tabela "PessoaFisica"
-    /// </summary>
-    /// <remarks>
-    /// Os herdeiros desta classe deverão sobrescrever o seguinte método:
-    /// protected virtual void CadastrarCascata(IDbCommand cmd)
-    /// </remarks>
     [Serializable, DbTransação, Cacheável("ObterPessoaSemCache"), NãoCopiarCache]
-    public class Pessoa : Acesso.Comum.DbManipulação, IComparable
+    public class Pessoa : DbManipulação, IComparable
     {
         public static readonly int LIMITE_PADRÃO_PESSOAS = 400;
         public static readonly int TotalAtributos = 12;
 
-        #region Atributos
-
-        /// <summary>
-        /// Chave primária.
-        /// </summary>
         protected ulong codigo;
-
-        /// <summary>
-        /// Nome da pessoa.
-        /// </summary>
         protected string nome;
-
-        /// <summary>
-        /// Conjunto de endereços.
-        /// </summary>
         protected DbComposição<Endereço.Endereço> endereços;
-
-        /// <summary>
-        /// Conjunto de telefones.
-        /// </summary>
         protected DbComposição<Telefone> telefones;
-
         protected string email;
 
         [DbColuna("observacoes")]
@@ -64,9 +39,6 @@ namespace Entidades.Pessoa
         [DbColuna("ultimaVisita")]
         protected DateTime? últimaVisita;
 
-        /// <summary>
-        /// Estado da foto em relação ao banco de dados.
-        /// </summary>
         [Flags]
         private enum EstadoFoto
         {
@@ -92,24 +64,12 @@ namespace Entidades.Pessoa
         [DbRelacionamento("código", "regiao"), DbColuna("regiao")]
         protected Região região;
 
-        #endregion
-
-        #region Propriedades
-
-        #region Propriedades da tabela
-
-        /// <summary>
-        /// Obtem o código da pessoa
-        /// </summary>
         public ulong Código
         {
             get { return codigo; }
             set { codigo = value; }
         }
 
-        /// <summary>
-        /// Nome da pessoa.
-        /// </summary>
         public string Nome
         {
             get
@@ -123,9 +83,6 @@ namespace Entidades.Pessoa
             }
         }
 
-        /// <summary>
-        /// Primeiro nome da pessoa.
-        /// </summary>
         public string PrimeiroNome
         {
             get
@@ -139,9 +96,6 @@ namespace Entidades.Pessoa
             }
         }
 
-        /// <summary>
-        /// Observações sobre a pessoa.
-        /// </summary>
         public string Observações
         {
             get { return observações; }
@@ -152,9 +106,6 @@ namespace Entidades.Pessoa
             }
         }
 
-        /// <summary>
-        /// E-Mail da pessoa.
-        /// </summary>
         public string EMail
         {
             get { return email; }
@@ -165,31 +116,15 @@ namespace Entidades.Pessoa
             }
         }
 
-        /// <summary>
-        /// Flag de classificações para ser utilizado
-        /// com a classe <c>Classificação</c>.
-        /// </summary>
         public ulong Classificações
         {
             get { return classificações; }
             set { classificações = value; DefinirDesatualizado(); }
         }
 
-        /// <summary>
-        /// Data de registro da pessoa.
-        /// </summary>
-        public DateTime? DataRegistro
-        {
-            get { return dataRegistro; }
-        }
+        public DateTime? DataRegistro => dataRegistro; 
 
-        /// <summary>
-        /// Data da última alteração.
-        /// </summary>
-        public DateTime? DataAlteração
-        {
-            get { return dataAlteração; }
-        }
+        public DateTime? DataAlteração => dataAlteração; 
 
         public DateTime? ÚltimaVisita
         {
@@ -197,9 +132,6 @@ namespace Entidades.Pessoa
             set { últimaVisita = value; DefinirDesatualizado(); }
         }
 
-        /// <summary>
-        /// Endereços da pessoa.
-        /// </summary>
         public DbComposição<Endereço.Endereço> Endereços
         {
             get
@@ -211,9 +143,6 @@ namespace Entidades.Pessoa
             }
         }
 
-        /// <summary>
-        /// Telefones da pessoa.
-        /// </summary>
         public DbComposição<Telefone> Telefones
         {
             get
@@ -288,18 +217,12 @@ namespace Entidades.Pessoa
             set { região = value; DefinirDesatualizado(); }
         }
 
-        #endregion
-
-        #endregion
-
         public Pessoa() { }
 
         public Pessoa(ulong código)
         {
             this.codigo = código;
         }
-
-        #region IComparable Members
 
         public int CompareTo(object obj)
         {
@@ -309,27 +232,8 @@ namespace Entidades.Pessoa
                 return Nome.CompareTo(obj.ToString());
         }
 
-        #endregion
+        public static Pessoa Varejo => ObterPessoa(1022);
 
-        /// <summary>
-        /// Usuário padrão para varejo
-        /// </summary>
-        public static Pessoa Varejo
-        {
-            get
-            {
-                return ObterPessoa(1022);
-            }
-        }
-
-        #region Recuperação de Dados
-
-        /// <summary>
-        /// Obtém nomes do banco de dados.
-        /// </summary>
-        /// <param name="nomeBase">Nome de base para pesquisa.</param>
-        /// <param name="limite">Limite de nomes.</param>
-        /// <returns>Vetor de nomes.</returns>
         public static string[] ObterNomes(string nomeBase, int limite)
         {
             IDbConnection conexão;
@@ -346,67 +250,8 @@ namespace Entidades.Pessoa
                     {
                         IDataReader leitor = null;
 
-
-                        string tmpNome;
-
-                        // Primeiramente inserir nome base
-                        tmpNome = nomeBase.Replace(' ', '%').Replace("%%", "%");
-
-                        cmd.CommandText = "SELECT nome FROM pessoa p WHERE nome LIKE '" +
-                            tmpNome + "%' ORDER BY nome ASC LIMIT " +
-                            limite.ToString();
-
-                        try
-                        {
-                            using (leitor = cmd.ExecuteReader())
-                            {
-                                while (leitor.Read())
-                                {
-                                    dados.Add(leitor.GetString(0));
-                                }
-                            }
-                        }
-                        finally
-                        {
-                            if (leitor != null)
-                                leitor.Close();
-                        }
-
-                        /*
-                         * Pesquisar demais nomes, se necessário
-                         */
-                        if (dados.Count == 0)
-                        {
-                            ICollection nomes = ExtrairNomes(nomeBase);
-
-                            cmd.CommandText = "SELECT nome FROM pessoa p WHERE ";
-
-                            foreach (string parte in nomes)
-                            {
-                                cmd.CommandText += "nome LIKE '%" +
-                                    parte + "%' AND ";
-                            }
-
-                            cmd.CommandText = cmd.CommandText.Remove(cmd.CommandText.Length - 3, 3)
-                                + " ORDER BY nome ASC LIMIT " + ((int)(limite - dados.Count)).ToString();
-
-                            try
-                            {
-                                using (leitor = cmd.ExecuteReader())
-                                {
-
-                                    while (leitor.Read())
-                                    {
-                                        dados.Add(leitor.GetString(0));
-                                    }
-                                }
-                            }
-                            finally
-                            {
-                                if (leitor != null)
-                                    leitor.Close();
-                            }
-                        }
+                        string tmpNome = InserirNomeBase(nomeBase, limite, dados, cmd, ref leitor);
+                        leitor = PesquisarDemaisNomes(nomeBase, limite, dados, cmd, leitor);
                     }
 
                 }
@@ -418,35 +263,88 @@ namespace Entidades.Pessoa
                 return (string[])dados.ToArray(typeof(string));
             }
         }
-        
-        /// <summary>
-        /// Obtém uma pessoa a partir de um código.
-        /// </summary>
-        /// <param name="código">Código da pessoa.</param>
-        /// <returns>Retorna uma pessoa-física ou jurídica.</returns>
+
+        private static string InserirNomeBase(string nomeBase, int limite, ArrayList dados, IDbCommand cmd, ref IDataReader leitor)
+        {
+            string tmpNome = nomeBase.Replace(' ', '%').Replace("%%", "%");
+            cmd.CommandText = "SELECT nome FROM pessoa p WHERE nome LIKE '" +
+                tmpNome + "%' ORDER BY nome ASC LIMIT " +
+                limite.ToString();
+
+            try
+            {
+                using (leitor = cmd.ExecuteReader())
+                {
+                    while (leitor.Read())
+                    {
+                        dados.Add(leitor.GetString(0));
+                    }
+                }
+            }
+            finally
+            {
+                if (leitor != null)
+                    leitor.Close();
+            }
+
+            return tmpNome;
+        }
+
+        private static IDataReader PesquisarDemaisNomes(string nomeBase, int limite, ArrayList dados, IDbCommand cmd, IDataReader leitor)
+        {
+            if (dados.Count == 0)
+            {
+                ICollection nomes = ExtrairNomes(nomeBase);
+
+                cmd.CommandText = "SELECT nome FROM pessoa p WHERE ";
+
+                foreach (string parte in nomes)
+                {
+                    cmd.CommandText += "nome LIKE '%" +
+                        parte + "%' AND ";
+                }
+
+                cmd.CommandText = cmd.CommandText.Remove(cmd.CommandText.Length - 3, 3)
+                    + " ORDER BY nome ASC LIMIT " + ((int)(limite - dados.Count)).ToString();
+
+                try
+                {
+                    using (leitor = cmd.ExecuteReader())
+                    {
+
+                        while (leitor.Read())
+                        {
+                            dados.Add(leitor.GetString(0));
+                        }
+                    }
+                }
+                finally
+                {
+                    if (leitor != null)
+                        leitor.Close();
+                }
+            }
+
+            return leitor;
+        }
+
         public static Pessoa ObterPessoa(ulong código)
         {
-            return (Entidades.Pessoa.Pessoa)CacheDb.Instância.ObterEntidade(typeof(Entidades.Pessoa.Pessoa), código);
+            return (Pessoa) CacheDb.Instância.ObterEntidade(typeof(Pessoa), código);
         }
 
         public static Pessoa ObterPessoa(IDataReader leitor, int inicioPessoa, int inicioPessoaFisica, int inicioPessoaJuridica)
         {
-            // campo codigo da pessoa física
             if (!leitor.IsDBNull(inicioPessoaFisica))
             {
-                // É pessoa física
                 return PessoaFísica.Obter(leitor, inicioPessoa, inicioPessoaFisica);
             }
             else
             {
-                // É pessoa jurídica.
                 return PessoaJurídica.Obter(leitor, inicioPessoa, inicioPessoaJuridica);
             }
         }
 
-        /// <summary>
-        /// Apenas deve ser chamado pelo CacheDb. 
-        /// </summary>
         public static Pessoa ObterPessoaSemCache(ulong código)
         {
             IDbConnection conexão = Conexão;
@@ -461,7 +359,8 @@ namespace Entidades.Pessoa
                 {
                     try
                     {
-                        cmd.CommandText = "SELECT * FROM pessoa left join pessoafisica on pessoa.codigo=pessoafisica.codigo  left join pessoajuridica pj on pessoa.codigo=pj.codigo WHERE pessoa.codigo = "
+                        cmd.CommandText = "SELECT * FROM pessoa left join pessoafisica on pessoa.codigo=pessoafisica.codigo left " + 
+                            " join pessoajuridica pj on pessoa.codigo=pj.codigo WHERE pessoa.codigo = "
                             + DbTransformar(código);
 
                         using (leitor = cmd.ExecuteReader())
@@ -482,7 +381,6 @@ namespace Entidades.Pessoa
 
             return p;
         }
-
 
         public static List<Pessoa> ObterPessoas(string chaveBusca, int limite)
         {
@@ -514,7 +412,9 @@ namespace Entidades.Pessoa
                         if (!chaveÉNúmero)
                             comando.Append("select * from (");
 
-                        comando.Append("SELECT p.codigo as cod, p.nome, p.setor, p.email, p.observacoes, p.ultimaVisita, p.dataRegistro, p.dataAlteracao, p.classificacoes, p.maiorVenda, p.credito, p.regiao, pf.*,pj.codigo as c, pj.cnpj, pj.fantasia, pj.inscEstadual, pj.inscMunicipal FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE  ");
+                        comando.Append("SELECT p.codigo as cod, p.nome, p.setor, p.email, p.observacoes, p.ultimaVisita, p.dataRegistro, " + 
+                            " p.dataAlteracao, p.classificacoes, p.maiorVenda, p.credito, p.regiao, pf.*,pj.codigo as c, pj.cnpj, pj.fantasia, " + 
+                            " pj.inscEstadual, pj.inscMunicipal FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE  ");
 
                         // Inclui busca por código da pessoa
                         if (chaveÉNúmero)
@@ -611,19 +511,12 @@ namespace Entidades.Pessoa
                     }
                 }
 
-                // Carrega o endereços das pessoas.
                 CarregarEndereços(dados);
 
                 return dados;
             }
         }
 
-
-        /// <summary>
-        /// Obtém pessoas de uma região.
-        /// </summary>
-        /// <param name="região">Região cujas pessoas serão recuperadas.</param>
-        /// <returns>Vetor de pessoas que pertencem à região.</returns>
         public static List<Pessoa> ObterPessoas(Região região)
         {
             return RealizarConsulta(
@@ -638,25 +531,15 @@ namespace Entidades.Pessoa
                 " WHERE classificacoes & 1 << ( " + classificação.Código.ToString() + " - 1) > 0", 0, Pessoa.TotalAtributos);
         }
 
-        /// <summary>
-        /// Obtém PessoaFísica, Jurídica e Representantes de um setor.
-        /// </summary>
-        /// <param name="setor">Setor cujas pessoas serão recuperadas.</param>
-        /// <returns>Vetor de pessoas.</returns>
         public static List<Pessoa> ObterPessoas(Entidades.Setor setor)
         {
             List<Pessoa> pessoas;
-
-            /* Verificar parâmetros. */
 
             if (setor == null)
                 throw new ArgumentNullException("setor");
 
             if (!setor.Cadastrado)
                 throw new ArgumentException("Setor não cadastrado.", "setor");
-
-
-            /* Construir consultas. */
 
             string cmd = "SELECT * FROM pessoa left join pessoafisica ON pessoa.codigo = pessoafisica.codigo WHERE"
                 + " pessoa.setor = " + DbTransformar(setor.Código);
@@ -685,20 +568,10 @@ namespace Entidades.Pessoa
             return hash;
         }
 
-        /// <summary>
-        /// Obtém PessoaFísica, Jurídica e Representantes de um setor em
-        /// um período específico.
-        /// </summary>
-        /// <param name="setor">Setor cujas pessoas serão recuperadas.</param>
-        /// <param name="início">Período inicial.</param>
-        /// <param name="final">Período final.</param>
-        /// <returns>Vetor de pessoas.</returns>
         public static List<Pessoa> ObterPessoas(Entidades.Setor setor, DateTime início, DateTime final)
         {
             List<Pessoa> pessoas;
             string cmd;
-
-            /* Verificar parâmetros. */
 
             if (setor == null)
                 throw new ArgumentNullException("setor");
@@ -708,9 +581,6 @@ namespace Entidades.Pessoa
 
             if (início >= final)
                 throw new ArgumentException("Período incorreto.");
-
-
-            /* Construir consultas. */
 
             cmd = "SELECT * FROM pessoa left join pessoafisica ON pessoa.codigo = pessoafisica.codigo WHERE"
                 + " pessoa.setor = " + DbTransformar(setor.Código)
@@ -727,10 +597,6 @@ namespace Entidades.Pessoa
             List<Pessoa> pessoas;
             string cmd;
 
-            /* Verificar parâmetros. */
-
-            /* Construir consultas. */
-
             cmd = "SELECT * FROM pessoa left join pessoafisica ON pessoa.codigo = pessoafisica.codigo WHERE regiao = " + DbTransformar(região.Código);
 
             pessoas = RealizarConsulta(cmd, 0, Pessoa.TotalAtributos);
@@ -738,11 +604,6 @@ namespace Entidades.Pessoa
             return pessoas;
         }
 
-        /// <summary>
-        /// Obtém pessoa a partir do telefone.
-        /// </summary>
-        /// <param name="telefone">Telefone da pessoa.</param>
-        /// <returns>Vetor de pessoas.</returns>
         public static List<Pessoa> ObterPessoasPorTelefone(string telefone)
         {
             string cmd = "SELECT p.*, pf.* FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo, telefone t"
@@ -771,11 +632,6 @@ namespace Entidades.Pessoa
             return retorno;
         }
 
-        /// <summary>
-        /// Obtém pessoa a partir do nome.
-        /// </summary>
-        /// <param name="nome">Nome da pessoa.</param>
-        /// <returns>Vetor de pessoas-física e jurídicas.</returns>
         public static List<Pessoa> ObterPessoas(string nome)
         {
             return ObterPessoas(nome, LIMITE_PADRÃO_PESSOAS);
@@ -820,11 +676,6 @@ namespace Entidades.Pessoa
                 "SELECT * FROM pessoa WHERE nome LIKE 'Consumidor Final'");
         }
 
-        /// <summary>
-        /// Obtém pessoa a partir da cidade.
-        /// </summary>
-        /// <param name="cidade">Cidade da pessoa.</param>
-        /// <returns>Vetor de pessoas-física e jurídicas.</returns>
         public static List<Pessoa> ObterPessoasPorCidade(Endereço.Localidade[] cidades)
         {
             if (cidades.Length == 0)
@@ -848,11 +699,6 @@ namespace Entidades.Pessoa
             return RealizarConsulta(cmd, 0, Pessoa.TotalAtributos);
         }
 
-        /// <summary>
-        /// Obtém pessoa a partir do estado.
-        /// </summary>
-        /// <param name="estados">Estado da pessoa.</param>
-        /// <returns>Vetor de pessoas-física e jurídicas.</returns>
         public static List<Pessoa> ObterPessoasPorEstado(Endereço.Estado[] estados)
         {
             string strEstados = "";
@@ -875,12 +721,6 @@ namespace Entidades.Pessoa
             return RealizarConsulta(cmd, 0, Pessoa.TotalAtributos);
         }
 
-        /// <summary>
-        /// Obtém vendedores.
-        /// </summary>
-        /// <param name="chave">Parte do nome a ser procurado.</param>
-        /// <param name="limite">Limite de pessoas a serem recuperadas.</param>
-        /// <returns>Vetor de vendedores.</returns>
         public static List<Pessoa> ObterVendedores(string chave, int limite)
         {
             List<Pessoa> lista;
@@ -901,10 +741,6 @@ namespace Entidades.Pessoa
             return lista;
         }
 
-        /// <summary>
-        /// Obtém vendedores.
-        /// </summary>
-        /// <returns>Lista de vendedores.</returns>
         public static IList<Pessoa> ObterVendedores()
         {
             string cmd = "SELECT p.*, pf.*, f.* FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join funcionario f on pf.codigo=f.codigo "
@@ -913,42 +749,31 @@ namespace Entidades.Pessoa
             return RealizarConsulta(cmd, 0, Pessoa.TotalAtributos);
         }
 
-        #endregion
-
-        #region Recuperação por cast
-
         public static implicit operator Pessoa(long código)
         {
-            return (Entidades.Pessoa.Pessoa)CacheDb.Instância.ObterEntidade(typeof(Entidades.Pessoa.Pessoa), Convert.ToUInt64(código));
+            return (Pessoa) CacheDb.Instância.ObterEntidade(typeof(Entidades.Pessoa.Pessoa), Convert.ToUInt64(código));
         }
 
         public static implicit operator Pessoa(ulong código)
         {
-            return (Entidades.Pessoa.Pessoa)CacheDb.Instância.ObterEntidade(typeof(Entidades.Pessoa.Pessoa), Convert.ToUInt64(código));
+            return (Pessoa )CacheDb.Instância.ObterEntidade(typeof(Entidades.Pessoa.Pessoa), Convert.ToUInt64(código));
         }
 
         public static implicit operator Pessoa(uint código)
         {
-            return (Entidades.Pessoa.Pessoa)CacheDb.Instância.ObterEntidade(typeof(Entidades.Pessoa.Pessoa), Convert.ToUInt64(código));
+            return (Pessoa )CacheDb.Instância.ObterEntidade(typeof(Entidades.Pessoa.Pessoa), Convert.ToUInt64(código));
         }
 
         public static implicit operator Pessoa(int código)
         {
-            return (Entidades.Pessoa.Pessoa)CacheDb.Instância.ObterEntidade(typeof(Entidades.Pessoa.Pessoa), Convert.ToUInt64(código));
+            return (Pessoa) CacheDb.Instância.ObterEntidade(typeof(Entidades.Pessoa.Pessoa), Convert.ToUInt64(código));
         }
-
-        #endregion
 
         public override string ToString()
         {
             return nome + " (cód " + Código.ToString() + ")";
         }
 
-        /// <summary>
-        /// Extrai nomes contidos em outro nome completo
-        /// </summary>
-        /// <param name="nome">Nome completo</param>
-        /// <returns>Nomes contidos</returns>
         public static ArrayList ExtrairNomes(string nome)
         {
 
@@ -974,11 +799,6 @@ namespace Entidades.Pessoa
             return nomes;
         }
 
-        /// <summary>
-        /// Reduz nomes em um dataset
-        /// </summary>
-        /// <param name="dataSet">DataSet que contém os dados</param>
-        /// <param name="coluna">Coluna que contém o nome. Começa do 0</param>
         public static void ReduzirNomes(System.Data.DataSet dataSet, int coluna)
         {
             foreach (DataRow linha in dataSet.Tables[0].Rows)
@@ -1000,36 +820,35 @@ namespace Entidades.Pessoa
             return novoNome;
         }
 
-
-        #region Atualização do banco de dados
-
-        /// <summary>
-        /// Cadastra a entidade no banco de dados.
-        /// </summary>
         protected override void Cadastrar(IDbCommand cmd)
         {
             dataRegistro = dataAlteração = DadosGlobais.Instância.HoraDataAtual;
 
+            bool códigoAutomático = Código == 0;
+
             cmd.CommandText = "INSERT INTO pessoa (" +
- "nome, setor, " +
+                            (códigoAutomático ? "" : "codigo, ") +
+                            "nome, setor, " +
                             "email, observacoes, ultimaVisita, classificacoes, " +
                             "dataRegistro, dataAlteracao, " +
                             "maiorVenda, credito, regiao) " +
                             "VALUES (" +
- DbTransformar(this.Nome) + ", " +
+                            (códigoAutomático ? "" : DbTransformar(Código) + ", ") +
+                            DbTransformar(this.Nome) + ", " +
                             (this.setor != null ? DbTransformar(this.Setor.Código) : "NULL") + ", " +
                             DbTransformar(this.email) + ", " +
                             DbTransformar(this.observações) + ", " +
                             DbTransformar(this.últimaVisita) + ", " +
                             DbTransformar(this.classificações) + ", " +
                             "NOW(), " +
- "NOW(), " +
+                            "NOW(), " +
                             DbTransformar(this.maiorVenda) + ", " +
                             DbTransformar(this.crédito) + ", " +
                             (this.região != null ? DbTransformar(this.região.Código) : DbTransformar((string)null)) + ")";
 
             cmd.ExecuteNonQuery();
 
+            if (códigoAutomático)
                 this.codigo = Convert.ToUInt64(ObterÚltimoCódigoInserido(cmd.Connection));
 
             if (endereços != null)
@@ -1046,9 +865,6 @@ namespace Entidades.Pessoa
 
         }
 
-        /// <summary>
-        /// Verifica se a entidade encontra-se atualizada.
-        /// </summary>
         public override bool Atualizado
         {
             get
@@ -1057,9 +873,6 @@ namespace Entidades.Pessoa
             }
         }
 
-        /// <summary>
-        /// Atualiza a entidade no banco de dados.
-        /// </summary>
         protected override void Atualizar(IDbCommand cmd)
         {
             dataAlteração = DadosGlobais.Instância.HoraDataAtual;
@@ -1092,11 +905,6 @@ namespace Entidades.Pessoa
                 AtualizarEntidade(cmd, datasRelevantes);
         }
 
-        /// <summary>
-        /// Atualiza os dados sobre o último acesso.
-        /// </summary>
-        /// <param name="cmd">Comando do banco de dados.</param>
-        /// <param name="entrada">Momento que visitante entrou na empresa.</param>
         public void AtualizarÚltimaVisita(IDbCommand cmd, DateTime entrada)
         {
             if (!Cadastrado)
@@ -1110,12 +918,8 @@ namespace Entidades.Pessoa
             cmd.ExecuteNonQuery();
         }
 
-        /// <summary>
-        /// Descadastra a entidade no banco de dados.
-        /// </summary>
         protected override void Descadastrar(IDbCommand cmd)
         {
-            /* Verificar se o cliente está em dia. */
             double dívida;
 
             if (Dívida.ObterVendasNãoQuitadas(this, out dívida).Length > 0)
@@ -1132,9 +936,6 @@ namespace Entidades.Pessoa
             cmd.ExecuteNonQuery();
         }
 
-        /// <summary>
-        /// Atualiza a classificação da pessoa.
-        /// </summary>
         public void AtualizarClassificação()
         {
             if (Cadastrado)
@@ -1154,8 +955,6 @@ namespace Entidades.Pessoa
             }
         }
 
-        #endregion
-
         private void CarregarEndereços()
         {
             endereços = new DbComposição<Entidades.Pessoa.Endereço.Endereço>();
@@ -1166,26 +965,24 @@ namespace Entidades.Pessoa
 
         public static void CarregarEndereços(List<Pessoa> pessoas)
         {
-            // Obtem os endereços
-
             Dictionary<ulong, DbComposição<Endereço.Endereço>> hashEndereços =
                 Endereço.Endereço.ObterEndereços(pessoas);
 
-            // Atribui os endereços às pessoas
+            AtribuiEndereçosÀsPessoas(pessoas, hashEndereços);
+        }
+
+        private static void AtribuiEndereçosÀsPessoas(List<Pessoa> pessoas, Dictionary<ulong, DbComposição<Endereço.Endereço>> hashEndereços)
+        {
             foreach (Pessoa p in pessoas)
             {
                 DbComposição<Endereço.Endereço> endereços = null;
 
                 if (!hashEndereços.TryGetValue(p.Código, out endereços))
-                {
-                    // A pessoa não tem endereço
-                    endereços = new DbComposição<Entidades.Pessoa.Endereço.Endereço>();
-                }
+                    endereços = new DbComposição<Endereço.Endereço>();
 
                 p.endereços = endereços;
             }
         }
-
 
         private void CarregarTelefones()
         {
@@ -1256,9 +1053,6 @@ namespace Entidades.Pessoa
             }
         }
 
-        /// <summary>
-        /// Verifica se novos endereços possuem novas localidades duplicadas.
-        /// </summary>
         private void VerificarEndereços()
         {
             List<Endereço.Endereço> lista = endereços.ExtrairElementos();
@@ -1289,11 +1083,6 @@ namespace Entidades.Pessoa
 
         DateTime últimoRegistro = DateTime.MinValue;
 
-        /// <summary>
-        /// Registra item no histórico da pessoa, em nome
-        /// do sistema.
-        /// </summary>
-        /// <param name="texto">Texto a constar no histórico da pessoa.</param>
         public void RegistrarHistórico(string texto)
         {
             TimeSpan diff = (DateTime.Now - últimoRegistro);
@@ -1316,25 +1105,16 @@ namespace Entidades.Pessoa
         {
             if (entidade is Pessoa)
                 return ((Pessoa)entidade).Código == this.Código;
-            else
-                return false;
+
+            return false;
         }
 
-        /// <summary>
-        /// Todas as pessoas são clientes
-        /// exceto os funcionários ainda não demitidos
-        /// e representantes.
-        /// </summary>
-        /// <param name="pessoa"></param>
-        /// <returns></returns>
-        public static bool ÉCliente(Entidades.Pessoa.Pessoa pessoa)
+        public static bool ÉCliente(Pessoa pessoa)
         {
-            if (Entidades.Pessoa.Funcionário.ÉFuncionário(pessoa))
-            {
+            if (Funcionário.ÉFuncionário(pessoa))
                 return false;
-            }
-            else
-                return !Entidades.Pessoa.Representante.ÉRepresentante(pessoa);
+
+            return !Representante.ÉRepresentante(pessoa);
         }
 
         protected virtual void LerAtributos(IDataReader leitor, int inicioAtributo)
@@ -1383,10 +1163,16 @@ namespace Entidades.Pessoa
             foreach (Pessoa p in pessoas)
                 códigos.Add(p.Código);
 
-            // Efetuar cadastro.
-            conexão = Conexão;
-            int linhasAlteradas = 0;
+            int linhasAlteradas;
+            ExecutaSqlTrocaRegião(região, out conexão, out cmd, códigos, out linhasAlteradas);
 
+            return linhasAlteradas;
+        }
+
+        private static void ExecutaSqlTrocaRegião(Região região, out IDbConnection conexão, out IDbCommand cmd, List<ulong> códigos, out int linhasAlteradas)
+        {
+            conexão = Conexão;
+            linhasAlteradas = 0;
             lock (conexão)
             {
                 using (cmd = conexão.CreateCommand())
@@ -1397,15 +1183,12 @@ namespace Entidades.Pessoa
                     linhasAlteradas = cmd.ExecuteNonQuery();
                 }
             }
-
-            return linhasAlteradas;
         }
 
         public static List<Pessoa> ObterPessoasComissionadas()
         {
             DateTime? dia = null;
 
-            //SELECT * FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo
             StringBuilder cmd = new StringBuilder("SELECT cp.*, pf.*, pj.* ");
 
             cmd.Append(" from comissao_valor c join pessoa cp on c.comissaopara=cp.codigo ");
@@ -1445,13 +1228,21 @@ namespace Entidades.Pessoa
 
         public bool PossuiAlgumEndereçoInválido()
         {
-            foreach (Entidades.Pessoa.Endereço.Endereço e in endereços)
+            foreach (Endereço.Endereço e in endereços)
             {
                 if (e.Inválido)
                     return true;
             }
          
             return false;
+        }
+
+        public static bool CódigoNovaPessoaVálido(ulong código)
+        {
+            bool respeitaLimite = código < 999999;
+            bool códigoEmUso = ObterPessoa(código) != null;
+
+            return respeitaLimite && !códigoEmUso;
         }
     }
 }

@@ -8,9 +8,6 @@ namespace Entidades.Pessoa
     [Serializable, Cacheável("ObterPessoaSemCache"), Cacheável("ObterPessoaPorCNPJSemCache")]
 	public class PessoaJurídica : Pessoa
 	{
-        /// <summary>
-        /// Nome fantasia.
-        /// </summary>
         protected string fantasia;
         
         protected string cnpj;
@@ -57,11 +54,6 @@ namespace Entidades.Pessoa
             set { inscMunicipal = value; DefinirDesatualizado(); }
         }
 
-        /// <summary>
-		/// Obtém pessoa-jurídica a partir do CNPJ.
-		/// </summary>
-		/// <param name="cnpj">CNPJ da pessoa-jurídica.</param>
-		/// <returns>Pessoa-jurídica.</returns>
 		public static PessoaJurídica ObterPessoaPorCNPJ(string cnpj)
         {
             return (PessoaJurídica) CacheDb.Instância.ObterEntidade(typeof(PessoaJurídica), cnpj);
@@ -106,11 +98,6 @@ namespace Entidades.Pessoa
             }
         }
 
-		/// <summary>
-		/// Obtém uma pessoa a partir de um código.
-		/// </summary>
-		/// <param name="código">Código da pessoa.</param>
-		/// <returns>Retorna uma pessoa-jurídica.</returns>
         public new static PessoaJurídica ObterPessoa(ulong código)
         {
             return (PessoaJurídica)CacheDb.Instância.ObterEntidade(typeof(PessoaJurídica), código);
@@ -119,19 +106,8 @@ namespace Entidades.Pessoa
         private new static PessoaJurídica ObterPessoaSemCache(ulong código)
 		{
             return Pessoa.ObterPessoaSemCache(código) as PessoaJurídica;
-            
-            //string comando = "SELECT * FROM pessoa p, pessoajuridica pj"
-            //    + " WHERE p.codigo = pj.codigo"
-            //    + " AND p.codigo = " + DbTransformar(código);
-
-            //return MapearÚnicaLinha<PessoaJurídica>(comando);
 		}
 
-        /// <summary>
-        /// Valida o CNPJ.
-        /// </summary>
-        /// <param name="cnpj">CNPJ formatado ou não.</param>
-        /// <returns>Se o CNPJ é válido.</returns>
         public static bool ValidarCNPJ(string cnpj)
         {
             int[] multiplicador1 = new int[12] { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
@@ -175,104 +151,8 @@ namespace Entidades.Pessoa
             digito = digito + resto.ToString();
 
             return cnpj.EndsWith(digito);
-
-            #region Não funciona
-
-            //int[] número;
-            //int d1, d2;
-            //int soma;
-
-            //if (!ExtrairNúmerosCNPJ(cnpj, out número))
-            //    return false;
-
-            //soma = número[0] * 5 + número[1] * 4 + número[2] * 3
-            //    + número[3] * 2 + número[4] * 9 + número[5] * 8
-            //    + número[6] * 7 + número[7] * 6 + número[8] * 5
-            //    + número[9] * 4 + número[10] * 3 + número[11] * 2;
-
-            //soma %= 11;
-
-            //d1 = soma < 2 ? 0 : 11 - soma;
-
-            //soma = número[0] * 6 + número[1] * 5 + número[2] * 4
-            //    + número[3] * 3 + número[4] * 2 + número[5] * 9
-            //    + número[6] * 8 + número[7] * 7 + número[8] * 6
-            //    + número[9] * 5 + número[10] * 4 + número[11] * 3
-            //    + número[12] * 2;
-
-            //soma %= 11;
-
-            //d2 = soma < 2 ? 0 : 11 - soma;
-
-            //return d1 == número[12] && d2 == número[13];
-
-            #endregion
-
-            #region Código em VB
-            /*
-        Dim Numero(13) As Integer
-        Dim soma As Integer
-        Dim i As Integer
-        Dim valida As Boolean
-        Dim resultado1 As Integer
-        Dim resultado2 As Integer
-
-        For i = 0 To Numero.Length - 1
-            Numero(i) = CInt(cnpj.Substring(i, 1))
-        Next
-
-        soma = Numero(0) * 5 + Numero(1) * 4 + Numero(2) * 3 + Numero(3) * 2 + Numero(4) * 9 + Numero(5) * 8 + Numero(6) * 7 + _
-                   Numero(7) * 6 + Numero(8) * 5 + Numero(9) * 4 + Numero(10) * 3 + Numero(11) * 2
-
-        soma = soma - (11 * (Int(soma / 11)))
-
-        If soma = 0 Or soma = 1 Then
-            resultado1 = 0
-        Else
-            resultado1 = 11 - soma
-        End If
-
-        If resultado1 = Numero(12) Then
-          soma = Numero(0) * 6 + Numero(1) * 5 + Numero(2) * 4 + Numero(3) * 3 + Numero(4) * 2 + Numero(5) * 9 + Numero(6) * 8 + _
-                       Numero(7) * 7 + Numero(8) * 6 + Numero(9) * 5 + Numero(10) * 4 + Numero(11) * 3 + Numero(12) * 2
-
-            soma = soma - (11 * (Int(soma / 11)))
-
-            If soma = 0 Or soma = 1 Then
-
-                resultado2 = 0
-
-            Else
-
-                resultado2 = 11 - soma
-
-            End If
-
-            If resultado2 = Numero(13) Then
-
-                Return True
-
-            Else
-
-                Return False
-
-            End If
-
-        Else
-
-            Return False
-
-        End If
-            */
-            #endregion
         }
 
-        /// <summary>
-        /// Extrai números do CNPJ.
-        /// </summary>
-        /// <param name="cnpj">CNPJ formatado ou não.</param>
-        /// <param name="número">Vetor que armazenará os números do CNPJ.</param>
-        /// <returns>Se foi possível extrair os 13 números do CNPJ.</returns>
         private static bool ExtrairNúmerosCNPJ(string cnpj, out int[] número)
         {
             int i = 0;
@@ -293,10 +173,6 @@ namespace Entidades.Pessoa
             }
         }
 
-        /// <summary>
-        /// Verifica existência de CNPJ.
-        /// </summary>
-        /// <returns>Se o CNPJ já está cadastrado.</returns>
         public static bool VerificarExistênciaCNPJ(PessoaJurídica entidade)
         {
             IDbConnection conexão = Conexão;
@@ -381,7 +257,6 @@ namespace Entidades.Pessoa
 
             PessoaJurídica entidade = new PessoaJurídica();
 
-            // Preenche os atributos da tabela pessoa.
             entidade.LerAtributos(leitor, inicioPessoa, inicioPessoaJuridica);
 
             entidade.DefinirCadastrado();
