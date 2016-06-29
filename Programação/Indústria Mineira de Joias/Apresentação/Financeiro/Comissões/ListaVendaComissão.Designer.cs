@@ -86,7 +86,6 @@ namespace Apresentação.Financeiro.Comissões
             this.lst.UseCompatibleStateImageBehavior = false;
             this.lst.View = System.Windows.Forms.View.Details;
             this.lst.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lst_ColumnClick);
-            this.lst.DoubleClick += new System.EventHandler(this.lst_DoubleClick);
             this.lst.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lst_KeyDown);
             this.lst.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lst_MouseClick);
             this.lst.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lst_MouseDown);

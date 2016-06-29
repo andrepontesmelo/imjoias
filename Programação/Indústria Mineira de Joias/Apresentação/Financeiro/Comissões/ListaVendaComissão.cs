@@ -1,16 +1,14 @@
-﻿using System;
+﻿using Apresentação.Atendimento.Comum;
+using Apresentação.Financeiro.Comissões.Delegate;
+using Apresentação.Formulários;
+using Entidades.ComissãoCálculo;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
-using System.Windows.Forms;
-using Entidades.ComissãoCálculo;
-using System.Globalization;
-using Apresentação.Atendimento.Comum;
-using Apresentação.Formulários;
-using Apresentação.Financeiro.Comissões.Delegate;
 using System.Diagnostics;
+using System.Drawing;
+using System.Globalization;
+using System.Windows.Forms;
 
 namespace Apresentação.Financeiro.Comissões
 {
@@ -37,12 +35,8 @@ namespace Apresentação.Financeiro.Comissões
             set { lst.BackColor = value; }
         }
 
-        private Apresentação.Formulários.ListViewColumnSorter ordenador;
+        private ListViewColumnSorter ordenador;
 
-        /// <summary>
-        /// em aberto são as comissões da parte esquerda da tela.
-        /// Em fechado são as comissões da parte direita da tela.
-        /// </summary>
         private bool emAberto;
 
         public ListaVendaComissão()
@@ -82,9 +76,6 @@ namespace Apresentação.Financeiro.Comissões
                 return;
 
             Comissão.AssegurarManipulaçãoComissãoPara(comissãoPara);
-
-            AguardeDB.Mostrar();
-            UseWaitCursor = true;
 
             this.diaInicial = diaInicial;
             this.diaFinal = diaFinal;
@@ -169,61 +160,72 @@ namespace Apresentação.Financeiro.Comissões
             AoSolicitarAbrirAtendimentoPessoa(cv.ComissãoPara); 
         }
 
-
+        private class ResultadoSegundoPlano
+        {
+            public ListViewItem[] itens;
+            public decimal totalVenda = 0;
+            public decimal totalComissão = 0;
+        }
 
         [DebuggerNonUserCode]
         private void bg_DoWork(object sender, DoWorkEventArgs e)
         {
+            if (hashRegraGrupo == null)
+                return;
+
+            ResultadoSegundoPlano resultado = new ResultadoSegundoPlano();
+
             List<ComissãoValor> lstComissões = ComissãoValor.Obter(diaInicial, diaFinal, comissãoPara, comissão, emAberto, estorno);
-            e.Result = lstComissões;
+
+            lst.Items.Clear();
+            resultado.itens = new ListViewItem[lstComissões.Count];
+            int posição = 0;
+
+            foreach (ComissãoValor cv in lstComissões)
+            {
+                resultado.totalVenda += (decimal)cv.ValorVenda;
+                resultado.totalComissão += (decimal)cv.ValorComissão;
+
+                lock (hashRegraGrupo)
+                {
+                    ListViewItem linha = new ListViewItem(hashRegraGrupo[cv.Regra]);
+                    linha.Text = Entidades.Relacionamento.Venda.Venda.FormatarCódigo(cv.Venda);
+
+                    string data = cv.Data.ToShortDateString();
+                    string nomeVendedor = Entidades.Pessoa.Pessoa.ReduzirNome(cv.Vendedor.Nome);
+                    string nomeCliente = cv.ClienteNome;
+                    string nomeComissãoPara = Entidades.Pessoa.Pessoa.ReduzirNome(cv.ComissãoPara.Nome);
+                    string nomeSetor = cv.Setor.Nome;
+                    string valorVenda = cv.ValorVenda.ToString("C", cultura);
+                    string valorComissão = cv.ValorComissão.ToString("C", cultura);
+
+                    string[] colunas = new string[7] { data,
+                    nomeVendedor,
+                    nomeCliente,
+                    nomeComissãoPara,
+                    nomeSetor,
+                    valorVenda,
+                    valorComissão
+                    };
+
+                    linha.SubItems.AddRange(colunas);
+
+                    linha.Tag = cv;
+                    resultado.itens[posição++] = linha;
+                }
+            }
+
+            e.Result = resultado;
         }
 
         [DebuggerNonUserCode]
         private void bg_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            List<ComissãoValor> lstComissões = (List<ComissãoValor>) e.Result;
+            ResultadoSegundoPlano resultado = (ResultadoSegundoPlano) e.Result;
 
-            decimal totalVenda = 0;
-            decimal totalComissão = 0;
-            
-            lst.Items.Clear();
-            foreach (ComissãoValor cv in lstComissões)
-            {
-                totalVenda += (decimal) cv.ValorVenda;
-                totalComissão += (decimal) cv.ValorComissão;
-
-                if (hashRegraGrupo != null)
-                {
-                    lock (hashRegraGrupo)
-                    {
-                        ListViewItem i = new ListViewItem(hashRegraGrupo[cv.Regra]);
-                        i.Text = Entidades.Relacionamento.Venda.Venda.FormatarCódigo(cv.Venda);
-
-                        string data = cv.Data.ToShortDateString();
-                        string nomeVendedor = Entidades.Pessoa.Pessoa.ReduzirNome(cv.Vendedor.Nome);
-                        string nomeCliente = cv.ClienteNome;
-                        string nomeComissãoPara = Entidades.Pessoa.Pessoa.ReduzirNome(cv.ComissãoPara.Nome);
-                        string nomeSetor = cv.Setor.Nome;
-                        string valorVenda = cv.ValorVenda.ToString("C", cultura);
-                        string valorComissão = cv.ValorComissão.ToString("C", cultura);
-
-                        string[] dados = new string[7] { data,
-                        nomeVendedor,
-                        nomeCliente,
-                        nomeComissãoPara,
-                        nomeSetor,
-                        valorVenda,
-                        valorComissão
-                        };
-
-                        i.SubItems.AddRange(dados);
-
-                        i.Tag = cv;
-                        lst.Items.Add(i);
-                    }
-                }
-            }
-
+            lst.SuspendLayout();
+            lst.Visible = false;
+            lst.Items.AddRange(resultado.itens);
             colCliente.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
             colCódigoVenda.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
             colComissaoPara.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
@@ -231,15 +233,13 @@ namespace Apresentação.Financeiro.Comissões
             colValorVenda.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
             colValorComissão.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
             colSetor.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
+            lst.Visible = true;
+            lst.ResumeLayout();
 
-            panelComissãoTotal.Text = "Comissão: " + totalComissão.ToString("C", cultura);
+            panelComissãoTotal.Text = "Comissão: " + resultado.totalComissão.ToString("C", cultura);
             panelComissãoTotal.AutoSize = StatusBarPanelAutoSize.Contents;
-
-            panelVendaTotal.Text = "Venda: " + totalVenda.ToString("C", cultura);
+            panelVendaTotal.Text = "Venda: " + resultado.totalVenda.ToString("C", cultura);
             panelVendaTotal.AutoSize = StatusBarPanelAutoSize.Contents;
-
-            UseWaitCursor = false;
-            AguardeDB.Fechar();
         }
 
         public List<ComissãoValor> Selecionados
@@ -274,11 +274,6 @@ namespace Apresentação.Financeiro.Comissões
         {
             if (e.KeyCode == Keys.A && e.Control)
                 SelecionarTudo();
-        }
-
-        private void lst_DoubleClick(object sender, EventArgs e)
-        {
-
         }
 
         private void lst_MouseDown(object sender, MouseEventArgs e)
