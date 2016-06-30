@@ -1,32 +1,20 @@
-using System;
-using System.Collections.Generic;
-using System.Collections;
 using Acesso.Comum;
-using System.Data;
-using System.Text;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 
 namespace Entidades.Relacionamento
 {
-	/// <summary>
-	/// Coleção de ItemRelacionado
-	/// Trata-se de um ArrayList personalizado.
-	/// Um Entidades.Relacionado contém um objeto ColeçãoItemRelacionado
-	/// </summary>
-	[Serializable]
+    [Serializable]
 	public abstract class HistóricoRelacionamento : DbManipulaçãoSimples, ICollection
 	{
-        /// <summary>
-        /// Venda, Retorno ou Saída
-        /// </summary>
         private Relacionamento entidadePai;
 
 		protected List<HistóricoRelacionamentoItem> lista;
 
-		/// <summary>
-		/// Constrói um ItemRelacionado de tipo específico
-		/// </summary>
-        protected abstract HistóricoRelacionamentoItem ConstruirItemHistórico(Mercadoria.Mercadoria mercadoria, double quantidade, DateTime data, Entidades.Pessoa.Funcionário funcionário, double índice);
+        protected abstract HistóricoRelacionamentoItem ConstruirItemHistórico(Mercadoria.Mercadoria mercadoria, double quantidade, DateTime data, Pessoa.Funcionário funcionário, double índice);
 
         protected virtual SaquinhoRelacionamento ConstuirItemAgrupado(Mercadoria.Mercadoria mercadoria, double quantidade, double indice)
         {
@@ -39,10 +27,6 @@ namespace Entidades.Relacionamento
             this.entidadePai = pai;
 		}
 
-		/// <summary>
-		/// Adiciona novo item à coleção. Não grava no Bd
-		/// </summary>
-		/// <param name="item">Item a ser adicionado.</param>
 		public virtual void Adicionar(HistóricoRelacionamentoItem item)
 		{
 			lista.Add(item);
@@ -71,7 +55,6 @@ namespace Entidades.Relacionamento
 
             novoItem = ConstruirItemHistórico(m, quantidade, agora, Entidades.Pessoa.Funcionário.FuncionárioAtual, índice);
 
-            // Este evento pode disparar OperaçãoCancelada.
             entidadePai.DispararAntesDeCadastrarItem(novoItem);
 
             if (!entidadePai.Cadastrado)

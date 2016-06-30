@@ -260,30 +260,13 @@ namespace Entidades.Relacionamento.Venda
         {
             get
             {
-                /* Comentei, pois valortotal hora fica desatualizado
-                 * quando existe novo débito ou modificação nos itens de venda ou devolução.
-                 * 
-                 * Para testar, edite uma venda, observe o "valortotal" na 1a aba
-                 * Depois altere algum item e confira o valortotal.
-                 */
-
-                //if (valortotal.HasValue)
-                //    return valortotal.Value;
-                //else
-                //{
                     CalcularValor();
                     
-                    // Grava no banco de dados
                     if (Cadastrado)
                         Atualizar();
 
                     return valortotal.Value;
-                //}
             }
-            //set
-            //{
-            //    throw new Exception("ValorTotal só pode ser calculado pelo CalcularValorTotal()");
-            //}
         }
 
         public double Cotação
