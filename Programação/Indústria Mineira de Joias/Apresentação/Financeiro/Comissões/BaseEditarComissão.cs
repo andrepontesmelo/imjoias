@@ -124,7 +124,7 @@ namespace Apresentação.Financeiro.Comissões
         {
             this.comissão = comissão;
             títuloBaseInferior.Título = (Comissão.UsuárioPodeManipularComissão ? "Edição de comissão" : "Comissão de " + 
-                Entidades.Pessoa.Pessoa.ReduzirNome(ComissãoPara.Nome)) + " nº " + comissão.Código.ToString() +
+                Entidades.Pessoa.Pessoa.AbreviarNome(ComissãoPara.Nome)) + " nº " + comissão.Código.ToString() +
                 " - " + comissão.MêsReferência.ToString("MMMM/yyyy");
 
             if (!Comissão.UsuárioPodeManipularComissão)

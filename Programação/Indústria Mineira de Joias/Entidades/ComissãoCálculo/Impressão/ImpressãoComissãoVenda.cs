@@ -136,7 +136,7 @@ namespace Entidades.ComissãoCálculo.Impressão
             item["apagar"] = APagar;
             item["data"] = Data.ToShortDateString();
             item["regra"] = Entidades.ComissãoCálculo.Regra.ObterNome(Regra);
-            item["nomecomissaopara"] = Entidades.Pessoa.Pessoa.ReduzirNome(Nomecomissaopara);
+            item["nomecomissaopara"] = Entidades.Pessoa.Pessoa.AbreviarNome(Nomecomissaopara);
             item["desconto"] = Desconto;
             tabelaItens.Rows.Add(item);
         }

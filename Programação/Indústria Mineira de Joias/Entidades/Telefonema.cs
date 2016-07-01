@@ -194,7 +194,7 @@ namespace Entidades
 				adaptador.Fill(ds);
 			}
 			
-			Pessoa.Pessoa.ReduzirNomes(ds, 2);
+			Pessoa.Pessoa.AbreviarNomes(ds, 2);
 
 			return ds;
 		}

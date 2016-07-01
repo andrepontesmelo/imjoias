@@ -192,9 +192,9 @@ namespace Apresentação.Financeiro.Comissões
                     linha.Text = Entidades.Relacionamento.Venda.Venda.FormatarCódigo(cv.Venda);
 
                     string data = cv.Data.ToShortDateString();
-                    string nomeVendedor = Entidades.Pessoa.Pessoa.ReduzirNome(cv.Vendedor.Nome);
+                    string nomeVendedor = Entidades.Pessoa.Pessoa.AbreviarNome(cv.Vendedor.Nome);
                     string nomeCliente = cv.ClienteNome;
-                    string nomeComissãoPara = Entidades.Pessoa.Pessoa.ReduzirNome(cv.ComissãoPara.Nome);
+                    string nomeComissãoPara = Entidades.Pessoa.Pessoa.AbreviarNome(cv.ComissãoPara.Nome);
                     string nomeSetor = cv.Setor.Nome;
                     string valorVenda = cv.ValorVenda.ToString("C", cultura);
                     string valorComissão = cv.ValorComissão.ToString("C", cultura);

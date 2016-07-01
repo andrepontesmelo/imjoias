@@ -62,7 +62,7 @@ namespace Apresentação.Impressão.Relatórios.Venda
             linha["juros"] = jurosPagamentos;
             linha["pagoLíquido"] = Pagamento.CalcularValorPagoLíquido(listaPagamentos, venda.DataCobrança, venda.TaxaJuros);
             linha["mostrarDívida"] = true;
-            linha["funcionário"] = Entidades.Pessoa.Pessoa.ReduzirNome(venda.Vendedor.Nome);
+            linha["funcionário"] = Entidades.Pessoa.Pessoa.AbreviarNome(venda.Vendedor.Nome);
             linha["cotação"] = venda.Cotação;
             linha["controle"] = venda.Controle.HasValue ? venda.Controle.Value.ToString() : "Sem número de controle";
             linha["valorVenda"] = venda.Itens.CalcularPreço(venda.Cotação);

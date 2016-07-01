@@ -48,7 +48,7 @@ namespace Apresentação.Estoque.Extrato
             foreach (Entidades.Estoque.Extrato extrato in lstExtrato)
             {
                 ListViewItem i = new ListViewItem(extrato.Data.ToShortDateString() + " " + extrato.Data.ToLongTimeString());
-                i.SubItems.Add(Entidades.Pessoa.Pessoa.ReduzirNome(extrato.Nome));
+                i.SubItems.Add(Entidades.Pessoa.Pessoa.AbreviarNome(extrato.Nome));
                 i.SubItems.Add(extrato.Entrada.ToString());
                 i.SubItems.Add(extrato.Venda.ToString());
                 i.SubItems.Add(extrato.Devolucao.ToString());

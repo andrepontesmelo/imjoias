@@ -39,7 +39,7 @@ namespace Apresentação.Impressão.Relatórios.Pedido
                     DataRow linha = tabelaRastro.NewRow();
                     linha["referênciaNumérica"] = par.Key;
                     linha["quantidade"] = rastro.Quantidade;
-                    linha["pessoaNome"] = Entidades.Pessoa.Pessoa.ReduzirNome(rastro.Pessoa.Nome);
+                    linha["pessoaNome"] = Entidades.Pessoa.Pessoa.AbreviarNome(rastro.Pessoa.Nome);
 
                     tabelaRastro.Rows.Add(linha);
                 }
@@ -102,7 +102,7 @@ namespace Apresentação.Impressão.Relatórios.Pedido
                 linha["cliente"] = pedido.NomeDoCliente;
                 
 
-            linha["representante"] = pedido.Representante != null ? Entidades.Pessoa.Pessoa.ReduzirNome(pedido.Representante.Nome) : "";
+            linha["representante"] = pedido.Representante != null ? Entidades.Pessoa.Pessoa.AbreviarNome(pedido.Representante.Nome) : "";
             linha["receptor"] = pedido.Receptor.PrimeiroNome;
             linha["dataRecepção"] = pedido.DataRecepção;
             linha["dataPrevisão"] = pedido.DataPrevisão;

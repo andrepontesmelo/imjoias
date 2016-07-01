@@ -78,7 +78,7 @@ namespace Apresentação.Pessoa
             hashItemPessoa.Clear();
             foreach (Entidades.Pessoa.Pessoa p in pessoas)
             {
-                string nomeReduzido = Entidades.Pessoa.Pessoa.ReduzirNome(p.Nome);
+                string nomeReduzido = Entidades.Pessoa.Pessoa.AbreviarNome(p.Nome);
                 hashPessoaItem.Add(p, nomeReduzido);
                 hashItemPessoa.Add(nomeReduzido, p);
                 comboBox1.Items.Add(nomeReduzido);

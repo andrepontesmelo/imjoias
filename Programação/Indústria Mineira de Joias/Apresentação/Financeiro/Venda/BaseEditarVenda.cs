@@ -230,7 +230,7 @@ namespace Apresentação.Financeiro.Venda
                 título.Descrição = "Venda ainda não cadastrada";
 
             if (v.Vendedor != null)
-                título.Descrição += "\nDe " + Entidades.Pessoa.Pessoa.ReduzirNome(v.Vendedor.Nome);
+                título.Descrição += "\nDe " + Entidades.Pessoa.Pessoa.AbreviarNome(v.Vendedor.Nome);
 
             if (v.Cliente != null)
                 título.Descrição += " para " + v.Cliente.Nome;

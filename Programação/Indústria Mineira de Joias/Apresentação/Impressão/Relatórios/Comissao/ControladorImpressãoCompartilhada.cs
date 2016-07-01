@@ -34,9 +34,9 @@ namespace Apresentação.Impressão.Relatórios.Comissao
                 item["Valorc"] = entidade.Valorc;
                 item["Valore"] = entidade.Valore;
                 item["Apagar"] = entidade.APagar;
-                item["Comissaopara"] = Entidades.Pessoa.Pessoa.ReduzirNome(entidade.Comissaopara);
-                item["Vendedor"] = Entidades.Pessoa.Pessoa.ReduzirNome(entidade.Vendedor);
-                item["Representante"] = Entidades.Pessoa.Pessoa.ReduzirNome(entidade.Representante);
+                item["Comissaopara"] = Entidades.Pessoa.Pessoa.AbreviarNome(entidade.Comissaopara);
+                item["Vendedor"] = Entidades.Pessoa.Pessoa.AbreviarNome(entidade.Vendedor);
+                item["Representante"] = Entidades.Pessoa.Pessoa.AbreviarNome(entidade.Representante);
 
                 tabelaItens.Rows.Add(item);
             }

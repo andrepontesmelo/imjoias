@@ -84,7 +84,7 @@ namespace Apresentação.Financeiro.Comissões
             int x = 0;
             foreach (KeyValuePair<Entidades.Pessoa.Pessoa,bool> par in lstParPessoaChecada)
             {
-                ListViewItem novoItem = new ListViewItem(Entidades.Pessoa.Pessoa.ReduzirNome(par.Key.Nome),
+                ListViewItem novoItem = new ListViewItem(Entidades.Pessoa.Pessoa.AbreviarNome(par.Key.Nome),
                     hashSetorGrupo[par.Key.Setor]);
                 vetorPessoas[x++] = par.Key;
                 novoItem.Checked = par.Value;

@@ -45,7 +45,7 @@ namespace Entidades.Estoque
             foreach (ZeragemEstoque z in retorno)
             {
                 ListViewItem item = new ListViewItem(z.Data.ToLongDateString() + " " + z.Data.ToLongTimeString());
-                item.SubItems.Add(Entidades.Pessoa.Pessoa.ReduzirNome(z.Funcionário.Nome));
+                item.SubItems.Add(Entidades.Pessoa.Pessoa.AbreviarNome(z.Funcionário.Nome));
                 item.SubItems.Add(z.ComissaoVigente.ToString());
                 item.SubItems.Add(z.Observações);
                 item.Tag = z;

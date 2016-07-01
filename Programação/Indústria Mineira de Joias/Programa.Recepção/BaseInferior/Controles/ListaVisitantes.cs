@@ -166,7 +166,7 @@ namespace Programa.Recepção.BaseInferior.Controles
                 if (strAtendimentos.Length > 0)
                     strAtendimentos += ", ";
 
-                strAtendimentos += Entidades.Pessoa.Pessoa.ReduzirNome(pessoa.Nome);
+                strAtendimentos += Entidades.Pessoa.Pessoa.AbreviarNome(pessoa.Nome);
             }
 
             return strAtendimentos;

@@ -247,22 +247,22 @@ namespace Apresentação.Atendimento.Clientes.Pedido
             toolTip.RemoveAll();
 
             if (value.FuncionárioOficina != null)
-                toolTip.SetToolTip(lblOficina, Entidades.Pessoa.Pessoa.ReduzirNome(value.FuncionárioOficina.Nome) + 
+                toolTip.SetToolTip(lblOficina, Entidades.Pessoa.Pessoa.AbreviarNome(value.FuncionárioOficina.Nome) + 
                     " registrou envio para oficina");
 
             if (value.FuncionárioConclusão != null)
-                toolTip.SetToolTip(lblDataConclusão, Entidades.Pessoa.Pessoa.ReduzirNome(value.FuncionárioConclusão.Nome) + 
+                toolTip.SetToolTip(lblDataConclusão, Entidades.Pessoa.Pessoa.AbreviarNome(value.FuncionárioConclusão.Nome) + 
                     " registrou conclusão");
 
             if (value.FuncionárioEntrega != null)
-                toolTip.SetToolTip(lblEntrega, Entidades.Pessoa.Pessoa.ReduzirNome(value.FuncionárioEntrega.Nome) + 
+                toolTip.SetToolTip(lblEntrega, Entidades.Pessoa.Pessoa.AbreviarNome(value.FuncionárioEntrega.Nome) + 
                     " registrou entrega");
         }
 
         private string ObterEntreguePor()
         {
             return pedido.DataEntrega.Value.ToShortDateString() + " por " +
-               Entidades.Pessoa.Pessoa.ReduzirNome(pedido.FuncionárioEntrega.Nome);
+               Entidades.Pessoa.Pessoa.AbreviarNome(pedido.FuncionárioEntrega.Nome);
         }
 
         private EncomendaItem AdicionarItem(PedidoItem item)

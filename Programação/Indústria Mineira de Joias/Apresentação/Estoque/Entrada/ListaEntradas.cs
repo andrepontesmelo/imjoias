@@ -36,7 +36,7 @@ namespace Apresentação.Estoque.Entrada
             {
                 ListViewItem i = new ListViewItem(entrada.Código.ToString());
                 i.SubItems.Add(entrada.Data.ToLongDateString());
-                i.SubItems.Add(Entidades.Pessoa.Pessoa.ReduzirNome(entrada.DigitadoPor.Nome));
+                i.SubItems.Add(Entidades.Pessoa.Pessoa.AbreviarNome(entrada.DigitadoPor.Nome));
                 i.SubItems.Add(entrada.Observações);
                 i.Tag = entrada;
                 listView1.Items.Add(i);

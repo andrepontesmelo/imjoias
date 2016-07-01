@@ -58,10 +58,15 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Pessoa\AbreviadorTests.cs" />
     <Compile Include="Preço.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Acesso.Comum\Acesso.Comum.csproj">
+      <Project>{48DA2925-CF1F-4875-8A00-6851C7ABEEB8}</Project>
+      <Name>Acesso.Comum</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Entidades\Entidades.csproj">
       <Project>{e1a76d2d-85f3-4202-b316-3c6bdd3220f9}</Project>
       <Name>Entidades</Name>

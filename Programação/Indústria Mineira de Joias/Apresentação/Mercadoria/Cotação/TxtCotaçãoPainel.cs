@@ -386,7 +386,7 @@ namespace Apresentação.Mercadoria.Cotação
                         novoItem = new ListViewItem(cotação.Data.Value.ToShortTimeString());
 
                     novoItem.SubItems.Add(cotação.Valor.ToString("C", DadosGlobais.Instância.Cultura));
-                    novoItem.SubItems.Add(Entidades.Pessoa.Pessoa.ReduzirNome(cotação.Funcionário.Nome));
+                    novoItem.SubItems.Add(Entidades.Pessoa.Pessoa.AbreviarNome(cotação.Funcionário.Nome));
 
                     lista.Items.Add(novoItem);
 

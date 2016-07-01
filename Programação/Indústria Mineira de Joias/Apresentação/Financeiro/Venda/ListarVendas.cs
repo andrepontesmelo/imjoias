@@ -39,7 +39,7 @@ namespace Apresentação.Financeiro.Venda
                         lblDescrição.Text = "Abaixo estão as compras de " + vendas[0].NomeCliente;
                         break;
                     case VínculoVendaPessoa.Vendedor:
-                        lblDescrição.Text = "Abaixo estão as vendas de " + Entidades.Pessoa.Pessoa.ReduzirNome(vendas[0].NomeVendedor);
+                        lblDescrição.Text = "Abaixo estão as vendas de " + Entidades.Pessoa.Pessoa.AbreviarNome(vendas[0].NomeVendedor);
                         break;
                     default:
                         lblDescrição.Text = "Listagem das vendas";

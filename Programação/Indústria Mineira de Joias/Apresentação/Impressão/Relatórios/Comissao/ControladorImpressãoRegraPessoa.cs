@@ -30,7 +30,7 @@ namespace Apresentação.Impressão.Relatórios.Comissao
                 item["valore"] = entidade.Valore;
                 item["apagar"] = entidade.APagar;
                 item["regra"] = Regra.ObterNome(entidade.Regra);
-                item["Comissaopara"] = Entidades.Pessoa.Pessoa.ReduzirNome(entidade.Nomecomissaopara);
+                item["Comissaopara"] = Entidades.Pessoa.Pessoa.AbreviarNome(entidade.Nomecomissaopara);
 
                 tabelaItens.Rows.Add(item);
             }

@@ -799,25 +799,15 @@ namespace Entidades.Pessoa
             return nomes;
         }
 
-        public static void ReduzirNomes(System.Data.DataSet dataSet, int coluna)
+        public static void AbreviarNomes(System.Data.DataSet dataSet, int coluna)
         {
             foreach (DataRow linha in dataSet.Tables[0].Rows)
-                linha[coluna] = ReduzirNome((string)linha[coluna]);
+                linha[coluna] = AbreviarNome((string)linha[coluna]);
         }
 
-        public static String ReduzirNome(string nome)
+        public static String AbreviarNome(string nome)
         {
-            string[] nomes;
-            string novoNome;
-
-            nomes = nome.Split(' ');
-            novoNome = nomes[0];
-
-            for (int i = 1; i < nomes.Length; i++)
-                if (nomes[i].Length > 3)
-                    novoNome += " " + nomes[i][0] + '.';
-
-            return novoNome;
+            return Abreviador.AbreviarÚltimoNome(nome);
         }
 
         protected override void Cadastrar(IDbCommand cmd)
