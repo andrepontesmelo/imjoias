@@ -3388,8 +3388,8 @@
     <None Include="Resources\money_bag1.png" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Aga.Controls, Version=1.7.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AdamsLair.TreeViewAdv.1.7.5.0\lib\net20\Aga.Controls.dll</HintPath>
+    <Reference Include="Aga.Controls, Version=1.7.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AdamsLair.TreeViewAdv.1.7.6.0\lib\net20\Aga.Controls.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
