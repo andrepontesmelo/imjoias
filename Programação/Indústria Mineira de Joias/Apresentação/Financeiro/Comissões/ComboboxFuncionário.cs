@@ -1,12 +1,8 @@
-﻿using System;
+﻿using Entidades.ComissãoCálculo;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using Entidades.ComissãoCálculo;
 
 namespace Apresentação.Pessoa
 {
@@ -18,8 +14,8 @@ namespace Apresentação.Pessoa
         }
 
         public event EventHandler FuncionárioAlterado;
-        private Dictionary<string, Entidades.Pessoa.Pessoa> hashItemPessoa = new Dictionary<string,Entidades.Pessoa.Pessoa>();
         private Dictionary<Entidades.Pessoa.Pessoa, string> hashPessoaItem = new Dictionary<Entidades.Pessoa.Pessoa, string>();
+        private Entidades.Pessoa.Pessoa[] pessoasCombobox;
         private Comissão comissão;
 
 
@@ -30,11 +26,7 @@ namespace Apresentação.Pessoa
                 if (comboBox1.SelectedItem == null)
                     return null;
 
-                Entidades.Pessoa.Pessoa retorno;
-                if (hashItemPessoa.TryGetValue((string)comboBox1.SelectedItem, out retorno))
-                    return retorno;
-                else 
-                    return null;
+                return pessoasCombobox[comboBox1.SelectedIndex];
             }
             set
             {
@@ -75,12 +67,14 @@ namespace Apresentação.Pessoa
 
             comboBox1.Items.Clear();
             hashPessoaItem.Clear();
-            hashItemPessoa.Clear();
+            pessoasCombobox = new Entidades.Pessoa.Pessoa[pessoas.Count];
+
+            int x = 0;
             foreach (Entidades.Pessoa.Pessoa p in pessoas)
             {
                 string nomeReduzido = Entidades.Pessoa.Pessoa.AbreviarNome(p.Nome);
                 hashPessoaItem.Add(p, nomeReduzido);
-                hashItemPessoa.Add(nomeReduzido, p);
+                pessoasCombobox[x++] = p;
                 comboBox1.Items.Add(nomeReduzido);
             }
         }
