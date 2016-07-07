@@ -152,7 +152,6 @@
             this.aberturaVenda.TabIndex = 0;
             this.aberturaVenda.AoSolicitarAbrirVenda += new Apresentação.Financeiro.Comissões.Delegate.VendaDelegate(this.aberturaVenda_AoSolicitarAbrirVenda);
             this.aberturaVenda.AoSolicitarAbrirAtendimentoPessoa += new Apresentação.Financeiro.Comissões.Delegate.PessoaDelegate(this.aberturaVenda_AoSolicitarAbrirAtendimentoPessoa);
-            this.aberturaVenda.AoSerNecessárioRecarregar += new System.EventHandler(this.aberturaVenda_AoSerNecessárioRecarregar);
             // 
             // tabEstornos
             // 
@@ -175,7 +174,6 @@
             this.aberturaEstorno.TabIndex = 0;
             this.aberturaEstorno.AoSolicitarAbrirVenda += new Apresentação.Financeiro.Comissões.Delegate.VendaDelegate(this.aberturaVenda_AoSolicitarAbrirVenda);
             this.aberturaEstorno.AoSolicitarAbrirAtendimentoPessoa += new Apresentação.Financeiro.Comissões.Delegate.PessoaDelegate(this.aberturaVenda_AoSolicitarAbrirAtendimentoPessoa);
-            this.aberturaEstorno.AoSerNecessárioRecarregar += new System.EventHandler(this.aberturaEstorno_AoSerNecessárioRecarregar);
             // 
             // tabAjuda
             // 

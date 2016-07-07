@@ -12,7 +12,6 @@ namespace Apresentação.Financeiro.Comissões
     public partial class BaseEditarComissão : BaseInferior
     {
         Comissão comissão;
-        private bool necessárioRecarregar = false;
 
         public BaseEditarComissão()
         {
@@ -131,12 +130,12 @@ namespace Apresentação.Financeiro.Comissões
                 AlternarExibiçãoSomenteLeitura();
 
             títuloBaseInferior.Descrição = comissão.Descrição;
-            CarregarListasVendasAbertaseFechadas();
+            DefinirNovosLimites();
 
-            lstComissionados.Carregar(comissão);
+            CarregarAbaAtual();
         }
 
-        private void CarregarListasVendasAbertaseFechadas()
+        private void DefinirNovosLimites()
         {
             aberturaVenda.DefinirLimites(DiaInicial, DiaFinal, ComissãoPara, comissão, true, false);
             aberturaEstorno.DefinirLimites(DiaInicial, DiaFinal, ComissãoPara, comissão, true, true);
@@ -167,7 +166,8 @@ namespace Apresentação.Financeiro.Comissões
             DiaFinal = NovoDiaFinal;
             ComissãoPara = NovaComissãoPara;
 
-            CarregarListasVendasAbertaseFechadas();
+            DefinirNovosLimites();
+            CarregarAbaAtual();
 
             VerificarVisibilidadeLinkAplicarCancelar();
         }
@@ -183,13 +183,8 @@ namespace Apresentação.Financeiro.Comissões
 
         private void opçãoRecarregar_Click(object sender, EventArgs e)
         {
-            CarregarListasVendasAbertaseFechadas();
-
-
-            comboboxFuncionário.Carregar(comissão);
-            lstComissionados.Carregar(comissão);
-
-            necessárioRecarregar = false;
+            DefinirNovosLimites();
+            CarregarAbaAtual();
         }
 
         public override void AoCarregarCompletamente(Splash splash)
@@ -201,18 +196,17 @@ namespace Apresentação.Financeiro.Comissões
 
         private void tabs_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (necessárioRecarregar)
-            {
-                Recarregar();
-            }
+            CarregarAbaAtual();
         }
 
-        private void Recarregar()
+        private void CarregarAbaAtual()
         {
-            CarregarListasVendasAbertaseFechadas();
-            comboboxFuncionário.Carregar(comissão);
-            lstComissionados.Carregar(comissão);
-            necessárioRecarregar = false;
+            if (tabs.SelectedTab == tabVendas)
+                aberturaVenda.Carregar();
+            else if (tabs.SelectedTab == tabEstornos)
+                aberturaEstorno.Carregar();
+            else if (tabs.SelectedTab == tabVendedores)
+                lstComissionados.Carregar(comissão);
         }
 
         private void dataFinal_ValueChanged(object sender, EventArgs e)
@@ -291,16 +285,6 @@ namespace Apresentação.Financeiro.Comissões
             Cursor = Cursors.Default;
         }
 
-        private void aberturaEstorno_AoSerNecessárioRecarregar(object sender, EventArgs e)
-        {
-            necessárioRecarregar = true;
-        }
-
-        private void aberturaVenda_AoSerNecessárioRecarregar(object sender, EventArgs e)
-        {
-            necessárioRecarregar = true;
-        }
-
         private void opçãoRelatórioResumo_Click(object sender, EventArgs e)
         {
             JanelaImpressãoComissão j = new JanelaImpressãoComissão(comissão, ObterFiltro());
@@ -347,7 +331,7 @@ namespace Apresentação.Financeiro.Comissões
         {
             base.AoExibir();
 
-            Recarregar();
+            CarregarAbaAtual();
         }
 
         private void opçãoVendaItem_Click(object sender, EventArgs e)

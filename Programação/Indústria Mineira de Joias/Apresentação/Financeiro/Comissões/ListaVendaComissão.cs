@@ -75,6 +75,7 @@ namespace Apresentação.Financeiro.Comissões
             if (bg.IsBusy)
                 return;
 
+
             Comissão.AssegurarManipulaçãoComissãoPara(comissãoPara);
 
             this.diaInicial = diaInicial;
@@ -85,6 +86,10 @@ namespace Apresentação.Financeiro.Comissões
             this.estorno = estorno;
 
             lst.Items.Clear();
+
+            UseWaitCursor = true;
+            AguardeDB.Mostrar();
+
             bg.RunWorkerAsync();
         }
 
@@ -240,6 +245,9 @@ namespace Apresentação.Financeiro.Comissões
             panelComissãoTotal.AutoSize = StatusBarPanelAutoSize.Contents;
             panelVendaTotal.Text = "Venda: " + resultado.totalVenda.ToString("C", cultura);
             panelVendaTotal.AutoSize = StatusBarPanelAutoSize.Contents;
+
+            AguardeDB.Fechar();
+            UseWaitCursor = false;
         }
 
         public List<ComissãoValor> Selecionados

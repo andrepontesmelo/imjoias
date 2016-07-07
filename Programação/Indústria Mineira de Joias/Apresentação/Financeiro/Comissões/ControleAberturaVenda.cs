@@ -64,14 +64,11 @@ namespace Apresentação.Financeiro.Comissões
             if (selecionados.Count == 0)
                 return;
 
-            AguardeDB.Mostrar();
             comissão.FecharLançamentos(selecionados, estorno);
             if (AoSerNecessárioRecarregar != null)
                 AoSerNecessárioRecarregar(sender, e);
             
             Carregar();
-
-            AguardeDB.Fechar();
         }
 
         private void btnRemoverLançamento_Click(object sender, EventArgs e)
@@ -80,13 +77,10 @@ namespace Apresentação.Financeiro.Comissões
             if (selecionados.Count == 0)
                 return;
 
-            AguardeDB.Mostrar();
             comissão.AbrirLançamentos(selecionados, estorno);
             if (AoSerNecessárioRecarregar != null)
                 AoSerNecessárioRecarregar(sender, e);
             Carregar();
-
-            AguardeDB.Fechar();
         }
 
         private void lstVendasAbertas_AoDuploClique(object sender, EventArgs e)
