@@ -72,19 +72,19 @@ namespace Entidades.ComissãoCálculo.Impressão
             //join venda v on cv.venda = v.codigo
             //join pessoa cp on cp.codigo = cv.vendedor
             //join setor s on cp.setor = s.codigo
-            //join comissaovenda cve on cve.venda = cv.venda and cve.comissao = 19
+            //join comissaovenda cve on cve.venda = cv.venda and cve.comissao = 19 AND cve.pessoa=v.vendedor
             //UNION ALL
             //select v.codigo, s.nome as setor, cp.nome as nomecomissaopara, cp.codigo as codigocomissaopara, 0 as valorv, 0 as faturamentocompartilhado, valorc, 0 as valore from comissao_venda cv
             //join venda v on cv.venda = v.codigo
             //join pessoa cp on cp.codigo = cv.comissaopara
             //join setor s on cp.setor = s.codigo
-            //join comissaovenda cve on cve.venda = cv.venda and cve.pessoa = cv.comissaopara and cve.comissao = 3
+            //join comissaovenda cve on cve.venda = cv.venda and cve.pessoa = v.vendedor and cve.comissao = 3
             //UNION ALL
             //select v.codigo, s.nome as setor, cp.nome as nomecomissaopara, cp.codigo as codigocomissaopara, valorv, 0 as faturamentocompartilhado, 0 as valorc, valorc as valore from comissao_venda cv
             //join venda v on cv.venda = v.codigo
             //join pessoa cp on cp.codigo = cv.comissaopara
             //join setor s on cp.setor = s.codigo
-            //join comissaoestornovenda cve on cve.venda = cv.venda and cve.pessoa = cv.comissaopara and cve.comissao = 3
+            //join comissaoestornovenda cve on cve.venda = cv.venda and cve.pessoa = v.vendedor and cve.comissao = 3  AND cve.pessoa=v.vendedor
             //UNION ALL
             //select 0 as codigo, 'Representante' as setor, p.nome as nomecomissaopara, p.codigo as codigocomissaopara, 0 as valorv, sum(valorv) as faturamentocompartilhado, 0 as valorc, 0 as valore
             //from representante r join pessoa p on r.codigo = p.codigo join comissao_venda c_v on p.codigo = c_v.comissaopara
@@ -100,6 +100,7 @@ namespace Entidades.ComissãoCálculo.Impressão
             str.Append(" join setor s on cp.setor = s.codigo ");
             str.Append(" join comissaovenda cve on cve.venda=cv.venda and cve.comissao= ");
             str.Append(DbTransformar(c.Código));
+            str.Append(" AND cve.pessoa=v.vendedor ");
             AplicarFiltro(str, filtro);
             str.Append(" UNION ALL ");
             str.Append(" select v.codigo, s.nome as setor, cp.nome as nomecomissaopara, cp.codigo as codigocomissaopara, 0 as valorv, 0 as faturamentocompartilhado, valorc, 0 as valore from comissao_venda cv ");
@@ -114,7 +115,7 @@ namespace Entidades.ComissãoCálculo.Impressão
             str.Append(" join venda v on cv.venda=v.codigo ");
             str.Append(" join pessoa cp on cp.codigo=cv.comissaopara ");
             str.Append(" join setor s on cp.setor = s.codigo ");
-            str.Append(" join comissaoestornovenda cve on cve.venda=cv.venda and cve.pessoa=cv.comissaopara and cve.comissao= ");
+            str.Append(" join comissaoestornovenda cve on cve.venda=cv.venda and cve.pessoa=v.vendedor and cve.comissao= ");
             str.Append(DbTransformar(c.Código));
             AplicarFiltro(str, filtro);
             str.Append(" UNION ALL ");
