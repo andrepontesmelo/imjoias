@@ -20,6 +20,9 @@ namespace Apresentação.Formulários
         public JanelaImpressão()
         {
             InitializeComponent();
+            Título = "Visualização de Impressão ";
+            Descrição = "";
+
             documentos = new List<ReportClass>();
         }
 

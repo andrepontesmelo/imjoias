@@ -114,8 +114,9 @@ namespace Apresentação.Atendimento.Clientes.Pedido
         private Formulários.JanelaImpressão CriarJanelaImpressão()
         {
             Formulários.JanelaImpressão visualizadorImpressão = new Formulários.JanelaImpressão();
+
             ReportClass relatório = ObterRelatório();
-            visualizadorImpressão.InserirDocumento(relatório, "Pedidos");
+            visualizadorImpressão.InserirDocumento(relatório, "Relatório");
 
             return visualizadorImpressão;
         }
@@ -134,7 +135,7 @@ namespace Apresentação.Atendimento.Clientes.Pedido
         {
             Formulários.JanelaImpressão visualizadorImpressão = new Formulários.JanelaImpressão();
             ReportClass relatório = ObterRelatórioFornecedores();
-            visualizadorImpressão.InserirDocumento(relatório, "Pedidos");
+            visualizadorImpressão.InserirDocumento(relatório, "Relatório");
 
             return visualizadorImpressão;
         }
