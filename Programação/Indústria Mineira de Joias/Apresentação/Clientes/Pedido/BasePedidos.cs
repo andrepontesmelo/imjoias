@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
-using System.Windows.Forms;
-using Apresentação.Formulários;
+﻿using Apresentação.Formulários;
 using Apresentação.Impressão.Relatórios.Pedido;
-using Apresentação.Formulários.Impressão;
-using Apresentação.Impressão;
-using Entidades.Configuração;
 using Apresentação.Impressão.Relatórios.Pedido.PedidosParaFornecedores;
+using CrystalDecisions.CrystalReports.Engine;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Apresentação.Atendimento.Clientes.Pedido
 {
@@ -99,11 +93,6 @@ namespace Apresentação.Atendimento.Clientes.Pedido
             }
         }
 
-        private void opçãoEscolherPeríodo_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void EscolherPeríodo()
         {
             using (SeleçãoPeríodo dlg = new SeleçãoPeríodo())
@@ -122,28 +111,47 @@ namespace Apresentação.Atendimento.Clientes.Pedido
             }
         }
 
-        private void opçãoImprimir_Click(object sender, EventArgs e)
+        private Formulários.JanelaImpressão CriarJanelaImpressão()
         {
-            AguardeDB.Mostrar();
-            bool imprimirConsertos;
+            Formulários.JanelaImpressão visualizadorImpressão = new Formulários.JanelaImpressão();
+            ReportClass relatório = ObterRelatório();
+            visualizadorImpressão.InserirDocumento(relatório, "Pedidos");
 
-            imprimirConsertos = !mostrarApenasPedidos;
+            return visualizadorImpressão;
+        }
 
-            ControleImpressãoPedido controle = new ControleImpressãoPedido();
+        private ReportClass ObterRelatório()
+        {
             Apresentação.Impressão.Relatórios.Pedido.Relatório relatório = new Apresentação.Impressão.Relatórios.Pedido.Relatório();
             List<Entidades.PedidoConserto.Pedido> pedidos = listaPedidos.ObterPedidos();
+            bool imprimirConsertos = !mostrarApenasPedidos;
+            new ControleImpressãoPedido().PrepararImpressão(relatório, pedidos, dataInício, dataFim, imprimirConsertos, optPeríodoPrevisto.Checked);
 
-            controle.PrepararImpressão(relatório, pedidos, dataInício, dataFim, imprimirConsertos, optPeríodoPrevisto.Checked);
+            return relatório;
+        }
 
-            PrintDialog printDialog = new PrintDialog();
-            AguardeDB.Fechar();
-            DialogResult resultado = printDialog.ShowDialog(this);
+        private Formulários.JanelaImpressão CriarJanelaImpressãoFornecedores()
+        {
+            Formulários.JanelaImpressão visualizadorImpressão = new Formulários.JanelaImpressão();
+            ReportClass relatório = ObterRelatórioFornecedores();
+            visualizadorImpressão.InserirDocumento(relatório, "Pedidos");
 
-            if (resultado == DialogResult.OK)
-            {
-                relatório.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
-                relatório.PrintToPrinter(printDialog.PrinterSettings.Copies, false, printDialog.PrinterSettings.FromPage, printDialog.PrinterSettings.ToPage);
-            } 
+            return visualizadorImpressão;
+        }
+
+        private ReportClass ObterRelatórioFornecedores()
+        {
+            Apresentação.Impressão.Relatórios.Pedido.PedidosParaFornecedores.Relatório relatório = new Apresentação.Impressão.Relatórios.Pedido.PedidosParaFornecedores.Relatório();
+
+            List<Entidades.PedidoConserto.Pedido> pedidos = listaPedidos.ObterPedidos();
+            ControleImpressãoPedidosParaFornecedores.PrepararImpressão(relatório, pedidos);
+
+            return relatório;
+        }
+
+        private void opçãoImprimir_Click(object sender, EventArgs e)
+        {
+            CriarJanelaImpressão().Show();
         }
 
         private void opçãoNovo_Click(object sender, EventArgs e)
@@ -166,19 +174,13 @@ namespace Apresentação.Atendimento.Clientes.Pedido
         private void optRecepção_CheckedChanged(object sender, EventArgs e)
         {
             if (optPeríodoRegistrado.Checked)
-            {
                 tipoData = TipoDataEnum.RegistradosNoPeríodo;
-                //Recarregar();
-            }
         }
 
         private void optPrevisão_CheckedChanged(object sender, EventArgs e)
         {
             if (optPeríodoPrevisto.Checked)
-            {
                 tipoData = TipoDataEnum.PrevistosParaOPeríodo;
-                //Recarregar();
-            }
         }
 
         private void opçãoMostraPedidosJaEntregues_Click(object sender, EventArgs e)
@@ -267,25 +269,7 @@ namespace Apresentação.Atendimento.Clientes.Pedido
 
         private void opçãoImprimirResumo_Click(object sender, EventArgs e)
         {
-            AguardeDB.Mostrar();
-
-            Apresentação.Impressão.Relatórios.Pedido.PedidosParaFornecedores.Relatório relatório
-                 = new Apresentação.Impressão.Relatórios.Pedido.PedidosParaFornecedores.Relatório();
-
-            List<Entidades.PedidoConserto.Pedido> pedidos = listaPedidos.ObterPedidos();
-
-            ControleImpressãoPedidosParaFornecedores.PrepararImpressão(relatório, pedidos);
-
-            PrintDialog printDialog = new PrintDialog();
-            AguardeDB.Fechar();
-
-            DialogResult resultado = printDialog.ShowDialog(this);
-
-            if (resultado == DialogResult.OK)
-            {
-                relatório.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
-                relatório.PrintToPrinter(printDialog.PrinterSettings.Copies, false, printDialog.PrinterSettings.FromPage, printDialog.PrinterSettings.ToPage);
-            }
+            CriarJanelaImpressãoFornecedores().Show();
         }
     }
 }
