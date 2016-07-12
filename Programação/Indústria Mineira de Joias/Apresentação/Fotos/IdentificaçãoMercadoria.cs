@@ -91,7 +91,7 @@ namespace Apresentação.Fotos
             if (fornecedor != null)
             {
                 txtFornecedor.Text = fornecedor.FornecedorCódigo.ToString();
-                txtFornecedorReferência.Text = fornecedor.ReferênciaFornecedor;
+                txtFornecedorReferência.Text = fornecedor.ReferênciaFornecedorComFFL;
             }
             else
             {

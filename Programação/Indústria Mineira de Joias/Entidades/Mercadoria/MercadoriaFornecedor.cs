@@ -27,6 +27,7 @@ namespace Entidades.Mercadoria
 
         public string ReferênciaFornecedor => referenciafornecedor;
 
+        public string ReferênciaFornecedorComFFL => referenciafornecedor + (foradelinha ? " FFL" : "");
         public bool ForaDeLinha => foradelinha;
 
         public decimal PesoFornecedor => peso;

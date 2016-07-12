@@ -131,7 +131,7 @@ namespace Apresentação.Impressão.Relatórios.Pedido
                 if ((p.ReferênciaNumérica != null) && fornecedores.TryGetValue(p.ReferênciaNumérica, out fornecedor))
                 {
                     linha["fornecedor"] = fornecedor.FornecedorCódigo.ToString();
-                    linha["refFornecedor"] = fornecedor.ReferênciaFornecedor;
+                    linha["refFornecedor"] = fornecedor.ReferênciaFornecedorComFFL;
                 }
 
                 tabelaItens.Rows.Add(linha);

@@ -39,7 +39,7 @@ namespace Apresentação.Atendimento.Clientes.Pedido
                 if (fornecedor != null)
                 {
                     txtFornecedor.Text = fornecedor.FornecedorCódigo.ToString();
-                    txtReferênciaFornecedor.Text = fornecedor.ReferênciaFornecedor;
+                    txtReferênciaFornecedor.Text = fornecedor.ReferênciaFornecedorComFFL;
                 }
                 carregando = false;
             }
@@ -112,7 +112,7 @@ namespace Apresentação.Atendimento.Clientes.Pedido
             if (info != null)
             {
                 txtFornecedor.Text = info.FornecedorCódigo.ToString();
-                txtReferênciaFornecedor.Text = info.ReferênciaFornecedor;
+                txtReferênciaFornecedor.Text = info.ReferênciaFornecedorComFFL;
             }
             else
             {
