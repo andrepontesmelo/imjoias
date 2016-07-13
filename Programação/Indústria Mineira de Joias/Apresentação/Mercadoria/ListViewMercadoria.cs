@@ -97,8 +97,10 @@ namespace Apresentação.Mercadoria
 
         private void Lst_Click(object sender, EventArgs e)
         {
-            SelecionarPróximo();
+            Selecionar(0);
+            Hide();
         }
+
         #endregion
 
         private delegate void LimparCallback();
@@ -251,7 +253,7 @@ namespace Apresentação.Mercadoria
 				AoSelecionarMercadoria(lst.SelectedItems[0].Text);
 		}
 
-        public void Selecionar(bool próximo)
+        public void Selecionar(int delta)
         {
             lock (lst)
             {
@@ -264,7 +266,7 @@ namespace Apresentação.Mercadoria
                     return;
                 }
 
-                int idx = lst.SelectedIndices[0] + (próximo ? 1 : -1);
+                int idx = lst.SelectedIndices[0] + delta;
                 bool idxVálido = (idx >= 0) && (idx < lst.Items.Count);
 
                 if (idxVálido)
@@ -279,12 +281,12 @@ namespace Apresentação.Mercadoria
 
         public void SelecionarPróximo()
 		{
-            Selecionar(true);
+            Selecionar(1);
         }
 
 		public void SelecionarAnterior()
 		{
-            Selecionar(false);
+            Selecionar(-1);
 		}
 
 		public ListView.ListViewItemCollection Items
