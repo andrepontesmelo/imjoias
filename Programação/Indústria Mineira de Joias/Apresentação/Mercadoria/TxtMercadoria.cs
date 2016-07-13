@@ -45,7 +45,6 @@ namespace Apresentação.Mercadoria
 			InitializeComponent();
 		}
 
-
         void ConfirmarReferência()
         {
             Entidades.Mercadoria.Mercadoria m = Mercadoria;

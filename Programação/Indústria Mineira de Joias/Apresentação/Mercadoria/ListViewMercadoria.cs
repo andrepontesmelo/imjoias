@@ -74,6 +74,7 @@ namespace Apresentação.Mercadoria
             this.lst.View = System.Windows.Forms.View.Details;
             this.lst.SelectedIndexChanged += new System.EventHandler(this.lst_SelectedIndexChanged);
             this.lst.Resize += new System.EventHandler(this.lst_Resize);
+            this.lst.Click += Lst_Click;
             // 
             // colReferência
             // 
@@ -93,9 +94,14 @@ namespace Apresentação.Mercadoria
             this.ResumeLayout(false);
 
 		}
-		#endregion
 
-		private delegate void LimparCallback();
+        private void Lst_Click(object sender, EventArgs e)
+        {
+            SelecionarPróximo();
+        }
+        #endregion
+
+        private delegate void LimparCallback();
 
 		private void Limpar()
 		{
@@ -245,54 +251,40 @@ namespace Apresentação.Mercadoria
 				AoSelecionarMercadoria(lst.SelectedItems[0].Text);
 		}
 
-		public void SelecionarPróximo()
-		{
-			lock (lst)
-			{
-				if (lst.Items.Count > 0)
-				{
-					if (lst.SelectedIndices.Count == 0)
-						lst.Items[0].Selected = true;
-					else
-					{
-						int idx = lst.SelectedIndices[0] + 1;
+        public void Selecionar(bool próximo)
+        {
+            lock (lst)
+            {
+                if (lst.Items.Count == 0)
+                    return;
 
-						if (idx < lst.Items.Count)
-						{
-							lst.SelectedItems.Clear();
-							lst.Items[idx].Selected = true;
-							lst.Items[idx].EnsureVisible();
-						} 
-						else
-						{
-							lst_SelectedIndexChanged(null, null);
-						}
-					}
-				}
-			}
-		}
+                if (lst.SelectedIndices.Count == 0)
+                {
+                    lst.Items[0].Selected = true;
+                    return;
+                }
+
+                int idx = lst.SelectedIndices[0] + (próximo ? 1 : -1);
+                bool idxVálido = (idx >= 0) && (idx < lst.Items.Count);
+
+                if (idxVálido)
+                {
+                    lst.SelectedItems.Clear();
+                    lst.Items[idx].Selected = true;
+                    lst.Items[idx].EnsureVisible();
+                }
+            }
+        }
+
+
+        public void SelecionarPróximo()
+		{
+            Selecionar(true);
+        }
 
 		public void SelecionarAnterior()
 		{
-			lock (lst)
-			{
-				if (lst.Items.Count > 0)
-				{
-					if (lst.SelectedIndices.Count == 0)
-						lst.Items[0].Selected = true;
-					else
-					{
-						int idx = lst.SelectedIndices[0] - 1;
-
-						if (idx >= 0)
-						{
-							lst.SelectedItems.Clear();
-							lst.Items[idx].Selected = true;
-							lst.Items[idx].EnsureVisible();
-						}
-					}
-				}
-			}
+            Selecionar(false);
 		}
 
 		public ListView.ListViewItemCollection Items
