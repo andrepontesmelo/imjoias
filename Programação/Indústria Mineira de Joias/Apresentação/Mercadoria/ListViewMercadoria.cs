@@ -1,60 +1,32 @@
+using Apresentação.Formulários;
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Threading;
 using System.Windows.Forms;
-using Apresentação.Formulários.Consultas;
-using Entidades;
-using System.IO;
-using System.Collections.Generic;
-using Apresentação.Formulários;
 
 namespace Apresentação.Mercadoria
 {
-	/// <summary>
-	/// ListView de mercadorias
-	/// </summary>
-	public class ListViewMercadoria : System.Windows.Forms.UserControl
+    public class ListViewMercadoria : UserControl
 	{
-		// Eventos
 		public delegate void SeleçãoMercadoria(string referência);
 		public event SeleçãoMercadoria AoSelecionarMercadoria;
 
-		// Atributos
         private IList<Entidades.Mercadoria.Mercadoria> mercadorias;
         private RecuperaçãoÍcone recuperaçãoÍcone;
 
-        ///// <summary>
-        ///// Hash de mercadorias.
-        ///// </summary>
-        //private Hashtable hashMercadorias = new Hashtable();
+		private ListView lst;
+		private ImageList imagens;
+		private ColumnHeader colReferência;
+		private IContainer components;
 
-		// Controle
-		private System.Windows.Forms.ListView lst;
-		private System.Windows.Forms.ImageList imagens;
-		private System.Windows.Forms.ColumnHeader colReferência;
-		private System.ComponentModel.IContainer components;
-
-		/// <summary>
-		/// Constrói a list view
-		/// </summary>
 		public ListViewMercadoria()
 		{
-			// This call is required by the Windows.Forms Form Designer.
 			InitializeComponent();
 
-            // Somente para Windows XP ou superior.
-            if (System.Environment.OSVersion.Version.Major >= 5)
-                recuperaçãoÍcone = new RecuperaçãoÍcone(this);
-            else
-                recuperaçãoÍcone = null;
+            recuperaçãoÍcone = new RecuperaçãoÍcone(this);
 		}
 
-		/// <summary> 
-		/// Clean up any resources being used.
-		/// </summary>
 		protected override void Dispose( bool disposing )
 		{
 			if( disposing )
@@ -101,7 +73,6 @@ namespace Apresentação.Mercadoria
             this.lst.UseCompatibleStateImageBehavior = false;
             this.lst.View = System.Windows.Forms.View.Details;
             this.lst.SelectedIndexChanged += new System.EventHandler(this.lst_SelectedIndexChanged);
-            this.lst.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lst_MouseMove);
             this.lst.Resize += new System.EventHandler(this.lst_Resize);
             // 
             // colReferência
@@ -126,21 +97,14 @@ namespace Apresentação.Mercadoria
 
 		private delegate void LimparCallback();
 
-		/// <summary>
-		/// Limpa a lista.
-		/// </summary>
 		private void Limpar()
 		{
 			lst.Items.Clear();
 			imagens.Images.Clear();
-            //hashMercadorias.Clear();
 		}
 
         private delegate void MostrarCallback(IList<Entidades.Mercadoria.Mercadoria> mercadorias);
 
-		/// <summary>
-		/// Mostra dados na ListView
-		/// </summary>
 		public void Mostrar(IList<Entidades.Mercadoria.Mercadoria> mercadorias)
 		{
             if (lst.InvokeRequired)
@@ -152,7 +116,6 @@ namespace Apresentação.Mercadoria
             else
 			    lock (lst)
 			    {
-				    // Limpar ítens
                     Limpar();
 
                     this.mercadorias = mercadorias;
@@ -170,10 +133,6 @@ namespace Apresentação.Mercadoria
 
 		private delegate void AdicionarItemCallback(string referência);
 
-		/// <summary>
-		/// Adiciona item na lista de forma segura.
-		/// </summary>
-		/// <param name="referência">Referência a ser adicionada.</param>
 		private void AdicionarItem(string referência)
 		{
 			if (lst.InvokeRequired)
@@ -189,10 +148,6 @@ namespace Apresentação.Mercadoria
 			}
 		}
 
-        /// <summary>
-        /// Adiciona item na lista de forma segura.
-        /// </summary>
-        /// <param name="referência">Referência a ser adicionada.</param>
         private void AdicionarVáriosItens(string[] referências)
         {
             if (lst.InvokeRequired)
@@ -227,18 +182,12 @@ namespace Apresentação.Mercadoria
                 if (lst.mercadorias == null || lst.mercadorias.Count == 0)
                     return;
 
-                //Entidades.Mercadoria.Mercadoria.ObterÍcones(lst.mercadorias);
-
                 lst.MostrarÍconesSeguramente(lst.mercadorias);
             }
 		}
 
 		private delegate void MostrarÍconesSeguramenteCallback(IList<Entidades.Mercadoria.Mercadoria> mercadorias);
 
-		/// <summary>
-		/// Mostra os ícones seguramente em relação à thread.
-		/// </summary>
-		/// <param name="mercadorias">Lista de mercadorias já com ícones carregados.</param>
         private void MostrarÍconesSeguramente(IList<Entidades.Mercadoria.Mercadoria> mercadorias)
 		{
 			if (lst.InvokeRequired)
@@ -264,9 +213,6 @@ namespace Apresentação.Mercadoria
 						{
 							imagens.Images.Add(ícone);
 
-							/* Pode ocorre da lista mudar. Sendo este o caso,
-							 * apenas ignorar.
-							 */
 							if (lst.Items[i].Text != mercadoria.Referência)
 								break;
 
@@ -285,17 +231,11 @@ namespace Apresentação.Mercadoria
 			}
 		}
 
-		/// <summary>
-		/// Ocorre quando altera-se o tamanho
-		/// </summary>
 		private void lst_Resize(object sender, System.EventArgs e)
 		{
 			colReferência.Width = lst.ClientSize.Width;
 		}
 
-		/// <summary>
-		/// Ocorre quando altera-se a seleção
-		/// </summary>
 		private void lst_SelectedIndexChanged(object sender, System.EventArgs e)
 		{
 			
@@ -305,9 +245,6 @@ namespace Apresentação.Mercadoria
 				AoSelecionarMercadoria(lst.SelectedItems[0].Text);
 		}
 
-		/// <summary>
-		/// Seleciona próximo elemento
-		/// </summary>
 		public void SelecionarPróximo()
 		{
 			lock (lst)
@@ -328,10 +265,6 @@ namespace Apresentação.Mercadoria
 						} 
 						else
 						{
-							/* caso em que só existe 1 elemento na lista
-							* e já está selecionado. O evento de sua nova
-							* seleção deve ser enviado. Isto é intuitivo.
-							*/ 
 							lst_SelectedIndexChanged(null, null);
 						}
 					}
@@ -339,9 +272,6 @@ namespace Apresentação.Mercadoria
 			}
 		}
 
-		/// <summary>
-		/// Seleciona elemento anterior
-		/// </summary>
 		public void SelecionarAnterior()
 		{
 			lock (lst)
@@ -372,22 +302,5 @@ namespace Apresentação.Mercadoria
 				return lst.Items;
 			}
 		}
-
-        private void lst_MouseMove(object sender, MouseEventArgs e)
-        {
-        }
-
-        ///// <summary>
-        ///// Obtém a mercadoria utilizada na lista.
-        ///// </summary>
-        ///// <param name="referência">Referência da mercadoria.</param>
-        ///// <returns>
-        ///// Mercadoria utilizada na lista ou null caso não
-        ///// esteja em uso.
-        ///// </returns>
-        //public Entidades.Mercadoria.Mercadoria ObterMercadoriaLista(string referência)
-        //{
-        //    return hashMercadorias[referência] as Entidades.Mercadoria.Mercadoria;
-        //}
 	}
 }
