@@ -10,7 +10,8 @@ namespace Apresentação.Mercadoria
     public class ListViewMercadoria : UserControl
 	{
 		public delegate void SeleçãoMercadoria(string referência);
-		public event SeleçãoMercadoria AoSelecionarMercadoria;
+		public event SeleçãoMercadoria AoAlterarMercadoriaSelecionada;
+        public event SeleçãoMercadoria AoSelecionarMercadoria;
 
         private IList<Entidades.Mercadoria.Mercadoria> mercadorias;
         private RecuperaçãoÍcone recuperaçãoÍcone;
@@ -95,13 +96,18 @@ namespace Apresentação.Mercadoria
 
 		}
 
+
+        #endregion
+
+
         private void Lst_Click(object sender, EventArgs e)
         {
             Selecionar(0);
             Hide();
-        }
 
-        #endregion
+            if (lst.SelectedItems.Count > 0)
+                AoSelecionarMercadoria?.Invoke(lst.SelectedItems[0].Text);
+        }
 
         private delegate void LimparCallback();
 
@@ -246,11 +252,10 @@ namespace Apresentação.Mercadoria
 
 		private void lst_SelectedIndexChanged(object sender, System.EventArgs e)
 		{
-			
             Update();
 
-			if (AoSelecionarMercadoria != null && lst.SelectedItems.Count == 1)
-				AoSelecionarMercadoria(lst.SelectedItems[0].Text);
+			if (AoAlterarMercadoriaSelecionada != null && lst.SelectedItems.Count == 1)
+				AoAlterarMercadoriaSelecionada(lst.SelectedItems[0].Text);
 		}
 
         public void Selecionar(int delta)

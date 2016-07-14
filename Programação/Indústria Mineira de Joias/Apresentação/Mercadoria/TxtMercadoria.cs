@@ -398,7 +398,13 @@ namespace Apresentação.Mercadoria
             lst.Width = this.Width;
             lst.Height = this.Height * 10;
             lst.Name = this.Name + "Lista";
-            lst.AoSelecionarMercadoria += new ListViewMercadoria.SeleçãoMercadoria(lst_AoSelecionarMercadoria);
+            lst.AoAlterarMercadoriaSelecionada += new ListViewMercadoria.SeleçãoMercadoria(lst_AoAlterarMercadoriaSelecionada);
+            lst.AoSelecionarMercadoria += Lst_AoSelecionarMercadoria;
+        }
+
+        private void Lst_AoSelecionarMercadoria(string referência)
+        {
+            ConfirmarReferência();
         }
 
         private void ReposicionarLista()
@@ -542,7 +548,7 @@ namespace Apresentação.Mercadoria
 
         public TextBox Txt => txt; 
 		
-		private void lst_AoSelecionarMercadoria(string referência)
+		private void lst_AoAlterarMercadoriaSelecionada(string referência)
 		{
 			lock (this)
 			{
