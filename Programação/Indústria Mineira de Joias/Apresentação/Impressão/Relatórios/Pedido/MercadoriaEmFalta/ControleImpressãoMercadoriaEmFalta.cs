@@ -28,7 +28,7 @@ namespace Apresentação.Impressão.Relatórios.Pedido.MercadoriaEmFalta
                 linha["fornecedor"] = item.Fornecedor;
                 linha["pedidos"] = item.Pedidos;
                 linha["detalhes"] = item.Detalhes;
-                linha["referênciaFornecedor"] = item.ReferênciaFornecedor;
+                linha["referênciaFornecedor"] = item.ReferênciaFornecedorFFL;
                 linha["saldoConsignado"] = item.SaldoConsignado;
 
                 tabelaPedidoItem.Rows.Add(linha);

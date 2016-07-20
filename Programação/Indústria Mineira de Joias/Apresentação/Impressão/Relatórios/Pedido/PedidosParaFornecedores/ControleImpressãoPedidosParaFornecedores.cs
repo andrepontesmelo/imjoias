@@ -8,19 +8,18 @@ namespace Apresentação.Impressão.Relatórios.Pedido.PedidosParaFornecedores
     {
         public static void PrepararImpressão(ReportClass relatório, List<Entidades.PedidoConserto.Pedido> pedidos)
         {
-            
             DataSetPedidosParaFornecedores ds = new DataSetPedidosParaFornecedores();
 
-            DataTable tabelaFornecedor = ds.Tables["Fornecedor"];
-            IList<Entidades.Fornecedor> fornecedores = Entidades.Fornecedor.ObterFornecedores();
-            foreach (Entidades.Fornecedor f in fornecedores)
-            {
-                DataRow linha = tabelaFornecedor.NewRow();
-                linha["código"] = f.Código;
+            PrepararFornecedores(ds);
+            PrepararItens(pedidos, ds);
+            PrepararObservações(pedidos, ds);
 
-                tabelaFornecedor.Rows.Add(linha);
-            }
+            relatório.SetDataSource(ds);
+            relatório.Subreports["RelatórioPedido.rpt"].SetDataSource(ds);
+        }
 
+        private static void PrepararItens(List<Entidades.PedidoConserto.Pedido> pedidos, DataSetPedidosParaFornecedores ds)
+        {
             DataTable tabelaPedidoItem = ds.Tables["PedidoItem"];
             List<Entidades.PedidoConserto.MercadoriaEmFalta> itens = Entidades.PedidoConserto.MercadoriaEmFalta.Obter(pedidos, true);
 
@@ -32,18 +31,31 @@ namespace Apresentação.Impressão.Relatórios.Pedido.PedidosParaFornecedores
                 linha["fornecedor"] = item.Fornecedor;
                 linha["pedidos"] = item.Pedidos;
                 linha["detalhes"] = item.Detalhes;
-                linha["referênciaFornecedor"] = item.ReferênciaFornecedor;
+                linha["referênciaFornecedor"] = item.ReferênciaFornecedorFFL;
                 linha["saldoConsignado"] = item.SaldoConsignado;
 
                 tabelaPedidoItem.Rows.Add(linha);
             }
+        }
 
-            // Observação dos pedidos
+        private static void PrepararFornecedores(DataSetPedidosParaFornecedores ds)
+        {
+            DataTable tabelaFornecedor = ds.Tables["Fornecedor"];
+            IList<Entidades.Fornecedor> fornecedores = Entidades.Fornecedor.ObterFornecedores();
+            foreach (Entidades.Fornecedor f in fornecedores)
+            {
+                DataRow linha = tabelaFornecedor.NewRow();
+                linha["código"] = f.Código;
+
+                tabelaFornecedor.Rows.Add(linha);
+            }
+        }
+
+        private static void PrepararObservações(List<Entidades.PedidoConserto.Pedido> pedidos, DataSetPedidosParaFornecedores ds)
+        {
             DataTable tabelaPedido = ds.Tables["Pedido"];
             foreach (Entidades.PedidoConserto.Pedido p in pedidos)
             {
-                //if (p.Observações != null && p.Observações.Trim().Length > 0
-                //    && numeraçãoPedidosMostrados.Contains(p.Código.ToString()))
                 if (!p.DataConclusão.HasValue && p.Observações != null && p.Observações.Trim().Length > 0)
                 {
                     DataRow linha = tabelaPedido.NewRow();
@@ -52,9 +64,6 @@ namespace Apresentação.Impressão.Relatórios.Pedido.PedidosParaFornecedores
                     tabelaPedido.Rows.Add(linha);
                 }
             }
-
-            relatório.SetDataSource(ds);
-            relatório.Subreports["RelatórioPedido.rpt"].SetDataSource(ds);
         }
     }
 }

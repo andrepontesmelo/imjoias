@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Acesso.Comum;
+using System;
 using System.Collections.Generic;
-using System.Text;
-using Acesso.Comum;
 
 namespace Entidades.PedidoConserto
 {
@@ -15,6 +14,7 @@ namespace Entidades.PedidoConserto
         private long fornecedor;
         private decimal quantidade;
         private string referenciaFornecedor;
+        private bool foradelinha;
         private int saldoConsignado;
         private string pedidos;
         private string detalhes;
@@ -29,74 +29,45 @@ namespace Entidades.PedidoConserto
             }
         }
 
-        public string ReferênciaFornecedor
-        {
-            get { return referenciaFornecedor; }
-        }
+        public string ReferênciaFornecedor => referenciaFornecedor;
 
-        /// <summary>
-        /// É a quantidade desta mercadoria que está nas saídas, abatendo vendas e devoluções.
-        /// É o saldo que está em consignado, o que pode ser recuperável em termos de mercadoria para a empresa.
-        /// </summary>
-        public int SaldoConsignado
-        {
-            get
-            {
-                return saldoConsignado;
-            }
-        }
+        public string ReferênciaFornecedorFFL => referenciaFornecedor + ( foradelinha ? " FFL " : "");
+
+        public int SaldoConsignado => saldoConsignado;
 
 
-        public long Fornecedor
-        {
-            get { return fornecedor; }
-        }
+        public long Fornecedor => fornecedor;
 
-        public decimal Quantidade
-        {
-            get { return quantidade; }
-        }
+        public decimal Quantidade => quantidade;
 
-        public String Pedidos
-        {
-            get 
-            {
-                return pedidos;
-            }
-        }
+        public String Pedidos => pedidos;
 
-        public String Detalhes
-        {
-            get
-            {
-                return detalhes;
-            }
-        }
+        public String Detalhes => detalhes;
 
-        /// <summary>
-        /// Considera apenas os pedidos em anexo.
-        /// Caso pedidos seja nulo, recupera todas as mercadorias em falta!
-        /// </summary>
-        /// <param name="pedidos"></param>
-        /// <returns></returns>
         public static List<MercadoriaEmFalta> Obter(List<Pedido> pedidos, bool somenteEmAberto)
         {
             if (pedidos != null && pedidos.Count == 0)
                 return new List<MercadoriaEmFalta>();
 
-            List<MercadoriaEmFalta> lista = 
+            List<MercadoriaEmFalta> lista =
                 Mapear<MercadoriaEmFalta>(
-                "select p.mercadoria as referenciaNumerica, fornecedor, sum(quantidade) as quantidade, GROUP_CONCAT(p.pedido) as pedidos, GROUP_CONCAT(p.descricao) as detalhes, referenciaFornecedor from pedido, pedidoitem p " + 
-" left join vinculomercadoriafornecedor v on p.mercadoria= v.mercadoria " +
-" where pedido.codigo=p.pedido and LENGTH(p.mercadoria) > 0 and tipo='E' " + 
-(pedidos == null ? "" : " AND p.pedido in " + DbTransformarConjunto(pedidos)) +
-(somenteEmAberto ? " AND dataConclusao is null " : "") + 
-" group by referenciaNumerica order by referenciaNumerica ");
+                "select p.mercadoria as referenciaNumerica, foradelinha, fornecedor, sum(quantidade) as quantidade, GROUP_CONCAT(p.pedido) as pedidos, GROUP_CONCAT(p.descricao) as detalhes, referenciaFornecedor from pedido, pedidoitem p " +
+                " left join vinculomercadoriafornecedor v on p.mercadoria= v.mercadoria " +
+                " where pedido.codigo=p.pedido and LENGTH(p.mercadoria) > 0 and tipo='E' " +
+                (pedidos == null ? "" : " AND p.pedido in " + DbTransformarConjunto(pedidos)) +
+                (somenteEmAberto ? " AND dataConclusao is null " : "") +
+                " group by referenciaNumerica order by referenciaNumerica ");
 
             Dictionary<string, List<Entidades.Mercadoria.Mercadoria.RastroConsignado>>
                 hashRastreamento = Mercadoria.Mercadoria.ObterRastreamento();
 
-            // Preenche o atributo saldoConsignado, que é a soma das quantidade em saídas - venda - retorno.
+            PreencheSaldoConsignado(lista, hashRastreamento);
+
+            return lista;
+        }
+
+        private static void PreencheSaldoConsignado(List<MercadoriaEmFalta> lista, Dictionary<string, List<Mercadoria.Mercadoria.RastroConsignado>> hashRastreamento)
+        {
             foreach (MercadoriaEmFalta referênciaEmFalta in lista)
             {
                 List<Entidades.Mercadoria.Mercadoria.RastroConsignado> rastro = null;
@@ -110,9 +81,6 @@ namespace Entidades.PedidoConserto
 
                 referênciaEmFalta.saldoConsignado = saldo;
             }
-
-
-            return lista;
         }
 
         public static List<Pedido> ObterPedidosQueTemMercadoriasEmFalta()
