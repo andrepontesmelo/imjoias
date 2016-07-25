@@ -1,19 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Windows.Forms;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Apresentação.Formulários
 {
-    /// <summary>
-    /// Deve ser aberta pelo método Abrir().
-    /// </summary>
-    public partial class JanelaImpressão : Apresentação.Formulários.JanelaExplicativa
+    public partial class JanelaImpressão : JanelaExplicativa
     {
         private List<ReportClass> documentos;
 
@@ -34,11 +27,11 @@ namespace Apresentação.Formulários
             documentos.Add(documento);
 
             // Insere controles
-            CrystalDecisions.Windows.Forms.CrystalReportViewer novoViewer;
-            System.Windows.Forms.TabPage novaTab;
+            CrystalReportViewer novoViewer;
+            TabPage novaTab;
 
-            novoViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            novaTab = new System.Windows.Forms.TabPage();
+            novoViewer = new CrystalReportViewer();
+            novaTab = new TabPage();
             tabControl.TabPages.Add(novaTab);
             tabControl.SuspendLayout();
             novaTab.SuspendLayout();
@@ -107,7 +100,7 @@ namespace Apresentação.Formulários
 
             if (resultado == DialogResult.OK)
             {
-                using (Apresentação.Formulários.Aguarde janela = new Aguarde("Imprimindo", documentos.Count))
+                using (Aguarde janela = new Aguarde("Imprimindo", documentos.Count))
                 {
                     janela.Abrir();
 
@@ -115,7 +108,8 @@ namespace Apresentação.Formulários
                     {
                         documento.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
 
-                        documento.PrintToPrinter(printDialog.PrinterSettings.Copies, false, printDialog.PrinterSettings.FromPage, printDialog.PrinterSettings.ToPage);
+                        documento.PrintToPrinter(printDialog.PrinterSettings.Copies, false, 
+                            printDialog.PrinterSettings.FromPage, printDialog.PrinterSettings.ToPage);
                         
                         janela.Passo();
                     }
@@ -125,8 +119,7 @@ namespace Apresentação.Formulários
                     janela.Close();
                 }
 
-                btnCancelar.Text = "&Fechar";
-                btnCancelar.Focus();
+                Close();
             }
         }
 
