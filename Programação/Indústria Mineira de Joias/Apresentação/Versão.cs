@@ -1,13 +1,7 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Apresentação
+﻿namespace Apresentação
 {
     public class Versão
     {
-        public static string Descrição = "v0.6.8.1";
+        public static string Descrição = "v0.6.8.4";
     }
 }
