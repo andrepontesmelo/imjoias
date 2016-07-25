@@ -93,34 +93,33 @@ namespace Apresentação.Formulários
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-            // Apenas pode selecionar intervalo se documento único.
             printDialog.AllowSelection = (documentos.Count == 1);
-            
+
             DialogResult resultado = printDialog.ShowDialog(this);
 
             if (resultado == DialogResult.OK)
             {
-                using (Aguarde janela = new Aguarde("Imprimindo", documentos.Count))
-                {
-                    janela.Abrir();
-
-                    foreach (ReportClass documento in documentos)
-                    {
-                        documento.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
-
-                        documento.PrintToPrinter(printDialog.PrinterSettings.Copies, false, 
-                            printDialog.PrinterSettings.FromPage, printDialog.PrinterSettings.ToPage);
-                        
-                        janela.Passo();
-                    }
-
-                    ApósImpresso();
-
-                    janela.Close();
-                }
-
+                Imprimir();
                 Close();
             }
+        }
+
+        private void Imprimir()
+        {
+            AguardeDB.Mostrar();
+
+            foreach (ReportClass documento in documentos)
+            {
+                documento.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
+
+                documento.PrintToPrinter(printDialog.PrinterSettings.Copies, false,
+                    printDialog.PrinterSettings.FromPage, printDialog.PrinterSettings.ToPage);
+            }
+
+
+            AguardeDB.Fechar();
+
+            ApósImpresso();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
