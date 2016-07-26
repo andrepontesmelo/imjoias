@@ -10,10 +10,6 @@ namespace Apresentação.Atendimento.Clientes
     {
         public delegate void VisitaCallback(Visita visita);
 
-        /// <summary>
-        /// Evento disparado quando usuário seleciona ou
-        /// desseleciona uma visita.
-        /// </summary>
         public event VisitaCallback AoMudarSeleção;
         public event VisitaCallback AoDuploClique;
 
@@ -25,9 +21,6 @@ namespace Apresentação.Atendimento.Clientes
             InitializeComponent();
         }
 
-        /// <summary>
-        /// Visita selecionada.
-        /// </summary>
         public Visita VisitaSelecionada
         {
             get
@@ -46,10 +39,6 @@ namespace Apresentação.Atendimento.Clientes
             lstVisitantes.Items.Clear();
         }
 
-        /// <summary>
-        /// Adiciona um vetor de visitas à lista.
-        /// </summary>
-        /// <param name="visitas">Vetor de visitas.</param>
         public void AdicionarVisitas(List<Visita> visitas)
         {
             ListViewItem[] itens = new ListViewItem[visitas.Count];
@@ -75,6 +64,16 @@ namespace Apresentação.Atendimento.Clientes
 
             item.SubItems.Add(visita.Setor != null ? visita.Setor.Nome : "");
 
+            AtribuirEspera(visita, item);
+            AtribuirDataEntrada(visita, item);
+            AtribuirSaída(visita, item);
+            AdicionarHashes(visita, item);
+
+            return item;
+        }
+
+        private void AtribuirEspera(Visita visita, ListViewItem item)
+        {
             if (visita.Espera.HasValue)
             {
                 item.SubItems.Add(visita.Atendente.Nome);
@@ -85,24 +84,16 @@ namespace Apresentação.Atendimento.Clientes
                 item.SubItems.Add("");
                 item.Group = lstVisitantes.Groups["lstGrpAguardando"];
             }
+        }
 
-            // Atribuir data de entrada
-            if (!visita.Saída.HasValue && visita.Entrada.Date != DateTime.Now.Date)
-            {
-                /* Pessoas em atendimento, porém com data diferente
-                 * são exibidas com data completa.
-                 */
-                TimeSpan dif = visita.Entrada.Date - DateTime.Now.Date;
+        private void AdicionarHashes(Visita visita, ListViewItem item)
+        {
+            hashLinhaVisita[item] = visita;
+            hashVisitaLinha[visita.Entrada] = item;
+        }
 
-                if (dif.Days == 1)
-                    item.SubItems.Add("Ontem, " + visita.Entrada.ToString("HH:mm"));
-                else
-                    item.SubItems.Add(visita.Entrada.ToString("dd/MM/yyyy HH:mm"));
-            }
-            else
-                item.SubItems.Add(visita.Entrada.ToLongTimeString());
-
-            // Atribuir saída
+        private void AtribuirSaída(Visita visita, ListViewItem item)
+        {
             if (visita.Saída.HasValue)
             {
                 item.SubItems.Add(visita.Saída.Value.ToLongTimeString());
@@ -123,17 +114,26 @@ namespace Apresentação.Atendimento.Clientes
             }
             else
                 item.SubItems.Add("");
-
-            // Adicionar na hashtable de linhas
-            hashLinhaVisita[item] = visita;
-            hashVisitaLinha[visita.Entrada] = item;
-
-            return item;
         }
 
-        /// <summary>
-        /// Trata evento de visitante que entrou na empresa
-        /// </summary>
+        private static void AtribuirDataEntrada(Visita visita, ListViewItem item)
+        {
+            if (!visita.Saída.HasValue && visita.Entrada.Date != DateTime.Now.Date)
+            {
+                /* Pessoas em atendimento, porém com data diferente
+                 * são exibidas com data completa.
+                 */
+                TimeSpan dif = visita.Entrada.Date - DateTime.Now.Date;
+
+                if (dif.Days == 1)
+                    item.SubItems.Add("Ontem, " + visita.Entrada.ToString("HH:mm"));
+                else
+                    item.SubItems.Add(visita.Entrada.ToString("dd/MM/yyyy HH:mm"));
+            }
+            else
+                item.SubItems.Add(visita.Entrada.ToLongTimeString());
+        }
+
         public void AdicionarVisita(Visita visita)
         {
             ListViewItem item = CriarItem(visita);
@@ -142,29 +142,20 @@ namespace Apresentação.Atendimento.Clientes
             item.EnsureVisible();
         }
 
-        /// <summary>
-        /// Remove visitante
-        /// </summary>
         public void RemoverVisita(Visita visita)
         {
             ListViewItem linha;
 
-            // Encontrar linha da listview
             linha = hashVisitaLinha[visita.Entrada];
 
             if (linha != null)
             {
                 hashVisitaLinha.Remove(visita.Entrada);
                 hashLinhaVisita.Remove(linha);
-
-                // Verificar se existe outras linhas para esta visita
                 linha.Remove();
             }
         }
 
-        /// <summary>
-        /// Atualiza o estado do visitante na lista de visitantes
-        /// </summary>
         public void AtualizarVisita(Visita visita)
         {
             ListViewItem linha;
@@ -191,9 +182,6 @@ namespace Apresentação.Atendimento.Clientes
             }
         }
 
-        /// <summary>
-        /// Ocorre quando usuário muda a seleção.
-        /// </summary>
         private void lstVisitantes_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (AoMudarSeleção != null)
