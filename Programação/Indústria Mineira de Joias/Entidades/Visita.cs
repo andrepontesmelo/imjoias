@@ -287,6 +287,23 @@ namespace Entidades
             return visitas;
         }
 
+
+        public static List<Visita> ObterVisitas(Pessoa.Pessoa pessoa)
+        {
+            List<Visita> visitas;
+
+            string códigoPessoa = DbTransformar(pessoa.Código);
+
+            visitas = Mapear<Visita>("SELECT v.* FROM visita v JOIN visitapessoafisica f on v.entrada=f.visita WHERE " +
+                " pessoafisica=" + códigoPessoa);
+
+            CarregarRelacionamentos(visitas, " entrada in (select visita from visitapessoafisica where pessoafisica=" + 
+                códigoPessoa + ")");
+
+            return visitas;
+        }
+
+
         /// <summary>
         /// Obtém clientes que visitaram ou sariam da empresa a partir
         /// de um determinado momento.
@@ -330,7 +347,7 @@ namespace Entidades
             IDataReader leitor = null;
             StringBuilder str = new StringBuilder();
             Dictionary<DateTime, Visita> hash = CriarHash(visitas);
-            Dictionary<DateTime, ulong> hashVisitaCódigo = new Dictionary<DateTime, ulong>();
+            Dictionary<DateTime, ulong> hashVisitaCódigoPessoaFísica = new Dictionary<DateTime, ulong>();
             SortedSet<ulong> conjuntoPessoas = new SortedSet<ulong>();
  
             str.Append("select n.visita, n.nome, null as pessoaFisica from visitanome n JOIN visita v on n.visita=v.entrada where ");
@@ -364,7 +381,7 @@ namespace Entidades
                                 if (!leitor.IsDBNull(2))
                                 {
                                     ulong código = Convert.ToUInt64(leitor.GetValue(2));
-                                    hashVisitaCódigo.Add(visita.entrada, código);
+                                    hashVisitaCódigoPessoaFísica.Add(visita.entrada, código);
                                     conjuntoPessoas.Add(código);
                                 }
                             }
@@ -379,18 +396,18 @@ namespace Entidades
                 }
             }
 
-            Dictionary<ulong, Entidades.Pessoa.Pessoa> hashPessoas = 
-                Entidades.Pessoa.Pessoa.ObterPessoas(conjuntoPessoas);
+            Dictionary<ulong, Pessoa.Pessoa> hashPessoas = 
+                Pessoa.Pessoa.ObterPessoas(conjuntoPessoas);
 
             foreach(KeyValuePair<DateTime, Visita> par in hash)
             {
                 DateTime entrada = par.Key;
                 Visita visita = par.Value;
-                ulong código;
+                ulong códigoPessoaFísica;
 
-                if (hashVisitaCódigo.TryGetValue(entrada, out código))
+                if (hashVisitaCódigoPessoaFísica.TryGetValue(entrada, out códigoPessoaFísica))
                 {
-                    Entidades.Pessoa.Pessoa pessoa = hashPessoas[código];
+                    Pessoa.Pessoa pessoa = hashPessoas[códigoPessoaFísica];
                     visita.Pessoas.AdicionarJáCadastrado(pessoa);
                 }
             }

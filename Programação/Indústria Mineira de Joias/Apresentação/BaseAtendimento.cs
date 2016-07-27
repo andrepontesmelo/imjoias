@@ -1,4 +1,5 @@
 using Acesso.Comum.Exceções;
+using Apresentação.Atendente;
 using Apresentação.Atendimento.Clientes;
 using Apresentação.Atendimento.Clientes.Pedido;
 using Apresentação.Atendimento.Comum;
@@ -66,6 +67,7 @@ namespace Apresentação.Atendimento
         private Opção opçãoCréditos;
         private SumárioAcerto sumárioAcerto1;
         private Opção opçãoCompras;
+        private Opção opçãoHistóricoAtendimentos;
         private System.ComponentModel.IContainer components = null;
 
 		/// <summary>
@@ -144,8 +146,9 @@ namespace Apresentação.Atendimento
 		{
             this.título = new Apresentação.Formulários.TítuloBaseInferior();
             this.quadroCliente = new Apresentação.Formulários.Quadro();
-            this.opçãoAbrir = new Apresentação.Formulários.Opção();
+            this.opçãoHistóricoAtendimentos = new Apresentação.Formulários.Opção();
             this.opçãoOcultar = new Apresentação.Formulários.Opção();
+            this.opçãoAbrir = new Apresentação.Formulários.Opção();
             this.opçãoOutro = new Apresentação.Formulários.Opção();
             this.opçãoVendas = new Apresentação.Formulários.Opção();
             this.quadroRelacionar = new Apresentação.Formulários.Quadro();
@@ -222,8 +225,9 @@ namespace Apresentação.Atendimento
             this.quadroCliente.bInfEsqArredondada = true;
             this.quadroCliente.bSupDirArredondada = true;
             this.quadroCliente.bSupEsqArredondada = true;
-            this.quadroCliente.Controls.Add(this.opçãoAbrir);
+            this.quadroCliente.Controls.Add(this.opçãoHistóricoAtendimentos);
             this.quadroCliente.Controls.Add(this.opçãoOcultar);
+            this.quadroCliente.Controls.Add(this.opçãoAbrir);
             this.quadroCliente.Controls.Add(this.opçãoOutro);
             this.quadroCliente.Cor = System.Drawing.Color.Black;
             this.quadroCliente.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
@@ -234,12 +238,41 @@ namespace Apresentação.Atendimento
             this.quadroCliente.Size = new System.Drawing.Size(160, 75);
             this.quadroCliente.TabIndex = 0;
             this.quadroCliente.Tamanho = 30;
-            this.quadroCliente.Título = "Ficha";
+            this.quadroCliente.Título = "Relacionamento";
+            // 
+            // opçãoHistóricoAtendimentos
+            // 
+            this.opçãoHistóricoAtendimentos.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoHistóricoAtendimentos.Descrição = "Atendimentos";
+            this.opçãoHistóricoAtendimentos.Imagem = global::Apresentação.Resource.Pedido1;
+            this.opçãoHistóricoAtendimentos.Location = new System.Drawing.Point(7, 50);
+            this.opçãoHistóricoAtendimentos.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoHistóricoAtendimentos.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoHistóricoAtendimentos.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoHistóricoAtendimentos.Name = "opçãoHistóricoAtendimentos";
+            this.opçãoHistóricoAtendimentos.Size = new System.Drawing.Size(150, 16);
+            this.opçãoHistóricoAtendimentos.TabIndex = 5;
+            this.opçãoHistóricoAtendimentos.Click += new System.EventHandler(this.opçãoHistóricoAtendimentos_Click);
+            // 
+            // opçãoOcultar
+            // 
+            this.opçãoOcultar.AutoSize = true;
+            this.opçãoOcultar.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoOcultar.Descrição = "";
+            this.opçãoOcultar.Imagem = global::Apresentação.Resource.sunglasses_transp1;
+            this.opçãoOcultar.Location = new System.Drawing.Point(130, 30);
+            this.opçãoOcultar.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoOcultar.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoOcultar.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoOcultar.Name = "opçãoOcultar";
+            this.opçãoOcultar.Size = new System.Drawing.Size(150, 19);
+            this.opçãoOcultar.TabIndex = 4;
+            this.opçãoOcultar.Click += new System.EventHandler(this.opçãoOcultar_Click);
             // 
             // opçãoAbrir
             // 
             this.opçãoAbrir.BackColor = System.Drawing.Color.Transparent;
-            this.opçãoAbrir.Descrição = "Abrir ficha...";
+            this.opçãoAbrir.Descrição = "Ficha";
             this.opçãoAbrir.Imagem = global::Apresentação.Resource.folderopen1;
             this.opçãoAbrir.Location = new System.Drawing.Point(7, 30);
             this.opçãoAbrir.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
@@ -250,20 +283,6 @@ namespace Apresentação.Atendimento
             this.opçãoAbrir.Size = new System.Drawing.Size(150, 16);
             this.opçãoAbrir.TabIndex = 2;
             this.opçãoAbrir.Click += new System.EventHandler(this.opçãoAbrir_Click);
-            // 
-            // opçãoOcultar
-            // 
-            this.opçãoOcultar.BackColor = System.Drawing.Color.Transparent;
-            this.opçãoOcultar.Descrição = "Ocultar dados";
-            this.opçãoOcultar.Imagem = global::Apresentação.Resource.sunglasses_transp1;
-            this.opçãoOcultar.Location = new System.Drawing.Point(7, 50);
-            this.opçãoOcultar.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.opçãoOcultar.MaximumSize = new System.Drawing.Size(150, 100);
-            this.opçãoOcultar.MinimumSize = new System.Drawing.Size(150, 16);
-            this.opçãoOcultar.Name = "opçãoOcultar";
-            this.opçãoOcultar.Size = new System.Drawing.Size(150, 18);
-            this.opçãoOcultar.TabIndex = 4;
-            this.opçãoOcultar.Click += new System.EventHandler(this.opçãoOcultar_Click);
             // 
             // opçãoOutro
             // 
@@ -371,7 +390,7 @@ namespace Apresentação.Atendimento
             this.opçãoConsignadoVenda.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoConsignadoVenda.MinimumSize = new System.Drawing.Size(150, 16);
             this.opçãoConsignadoVenda.Name = "opçãoConsignadoVenda";
-            this.opçãoConsignadoVenda.Privilégio = Entidades.Privilégio.Permissão.VendasRemoverControle;
+            this.opçãoConsignadoVenda.Privilégio = Entidades.Privilégio.Permissão.VendasEditar;
             this.opçãoConsignadoVenda.Size = new System.Drawing.Size(150, 17);
             this.opçãoConsignadoVenda.TabIndex = 5;
             this.opçãoConsignadoVenda.Click += new System.EventHandler(this.opçãoConsignadoVenda_Click);
@@ -752,6 +771,7 @@ namespace Apresentação.Atendimento
             this.Controls.SetChildIndex(this.esquerda, 0);
             this.esquerda.ResumeLayout(false);
             this.quadroCliente.ResumeLayout(false);
+            this.quadroCliente.PerformLayout();
             this.quadroRelacionar.ResumeLayout(false);
             this.quadroPendências.ResumeLayout(false);
             this.quadroVendas.ResumeLayout(false);
@@ -1358,6 +1378,12 @@ namespace Apresentação.Atendimento
             Apresentação.Financeiro.Venda.BaseVendas baseVendas = new Apresentação.Financeiro.Venda.BaseVendas(pessoa, true);
             SubstituirBase(baseVendas);
             UseWaitCursor = false;
+        }
+
+        private void opçãoHistóricoAtendimentos_Click(object sender, EventArgs e)
+        {
+            BaseInfoAtendimentosCliente novaBase = new BaseInfoAtendimentosCliente(Pessoa);
+            SubstituirBase(novaBase);
         }
     }
 }

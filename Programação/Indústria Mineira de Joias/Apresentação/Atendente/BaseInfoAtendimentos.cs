@@ -3,6 +3,7 @@ using Entidades;
 using Entidades.Configuração;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace Apresentação.Atendimento.Atendente
@@ -16,6 +17,11 @@ namespace Apresentação.Atendimento.Atendente
         {
             InitializeComponent();
 
+            bool design = LicenseManager.UsageMode == LicenseUsageMode.Designtime;
+
+            if (design)
+                return;
+
             períodoFinal = DadosGlobais.Instância.HoraDataAtual;
             períodoInicial = períodoFinal.Date.Subtract(new TimeSpan(7, 0, 0, 0));
 
@@ -27,8 +33,6 @@ namespace Apresentação.Atendimento.Atendente
             títuloBaseInferior.Descrição =
                 string.Format("Informações sobre atendimentos de {0:dd/MM/yyyy} a {1:dd/MM/yyyy}.",
                 períodoInicial, períodoFinal);
-
-            Recarregar();
         }
 
         private void opçãoRecarregar_Click(object sender, EventArgs e)
@@ -49,11 +53,18 @@ namespace Apresentação.Atendimento.Atendente
                     períodoInicial = dlg.PeríodoInicial;
                     períodoFinal = dlg.PeríodoFinal;
                     AtualizarPeríodo();
+                    Recarregar();
                 }
             }
         }
 
-        private void Recarregar()
+        protected override void AoExibirDaPrimeiraVez()
+        {
+            base.AoExibirDaPrimeiraVez();
+            Recarregar();
+        }
+
+        protected virtual void Recarregar()
         {
             AguardeDB.Mostrar();
 

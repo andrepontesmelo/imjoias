@@ -58,22 +58,23 @@
             this.quadroAtendimento.Location = new System.Drawing.Point(7, 116);
             this.quadroAtendimento.MostrarBotãoMinMax = false;
             this.quadroAtendimento.Name = "quadroAtendimento";
-            this.quadroAtendimento.Size = new System.Drawing.Size(160, 67);
+            this.quadroAtendimento.Size = new System.Drawing.Size(160, 54);
             this.quadroAtendimento.TabIndex = 3;
             this.quadroAtendimento.Tamanho = 30;
-            this.quadroAtendimento.Título = "Atendimento";
+            this.quadroAtendimento.Título = "Atendimentos";
             // 
             // opçãoHistóricoAtendimentos
             // 
+            this.opçãoHistóricoAtendimentos.AutoSize = true;
             this.opçãoHistóricoAtendimentos.BackColor = System.Drawing.Color.Transparent;
-            this.opçãoHistóricoAtendimentos.Descrição = "Visualizar histórico de atendimentos";
-            this.opçãoHistóricoAtendimentos.Imagem = global::Apresentação.Resource.document1;
+            this.opçãoHistóricoAtendimentos.Descrição = "Atendimentos";
+            this.opçãoHistóricoAtendimentos.Imagem = global::Apresentação.Resource.Pedido1;
             this.opçãoHistóricoAtendimentos.Location = new System.Drawing.Point(7, 30);
             this.opçãoHistóricoAtendimentos.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoHistóricoAtendimentos.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoHistóricoAtendimentos.MinimumSize = new System.Drawing.Size(150, 16);
             this.opçãoHistóricoAtendimentos.Name = "opçãoHistóricoAtendimentos";
-            this.opçãoHistóricoAtendimentos.Size = new System.Drawing.Size(150, 33);
+            this.opçãoHistóricoAtendimentos.Size = new System.Drawing.Size(150, 19);
             this.opçãoHistóricoAtendimentos.TabIndex = 2;
             this.opçãoHistóricoAtendimentos.Click += new System.EventHandler(this.opçãoHistóricoAtendimentos_Click);
             // 
@@ -84,6 +85,7 @@
             this.Name = "BaseListaAtendimentos";
             this.esquerda.ResumeLayout(false);
             this.quadroAtendimento.ResumeLayout(false);
+            this.quadroAtendimento.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -47,14 +47,14 @@
             this.títuloBaseInferior.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.títuloBaseInferior.BackColor = System.Drawing.Color.White;
-            this.títuloBaseInferior.Descrição = "Informações sobre atendimentos passados.";
+            this.títuloBaseInferior.Descrição = "Informações sobre atendimentos.";
             this.títuloBaseInferior.ÍconeArredondado = false;
             this.títuloBaseInferior.Imagem = global::Apresentação.Resource.atendimento;
             this.títuloBaseInferior.Location = new System.Drawing.Point(203, 13);
             this.títuloBaseInferior.Name = "títuloBaseInferior";
             this.títuloBaseInferior.Size = new System.Drawing.Size(581, 70);
             this.títuloBaseInferior.TabIndex = 6;
-            this.títuloBaseInferior.Título = "Atendimentos passados";
+            this.títuloBaseInferior.Título = "Histórico de Atendimentos";
             // 
             // listViewVisitantes
             // 
@@ -133,10 +133,10 @@
 
         #endregion
 
-        private Apresentação.Formulários.TítuloBaseInferior títuloBaseInferior;
-        private Apresentação.Atendimento.Clientes.ListViewVisitantes listViewVisitantes;
-        private Apresentação.Formulários.Quadro quadroLista;
-        private Apresentação.Formulários.Opção opçãoAlterarPeríodo;
-        private Apresentação.Formulários.Opção opçãoRecarregar;
+        protected Formulários.TítuloBaseInferior títuloBaseInferior;
+        protected Clientes.ListViewVisitantes listViewVisitantes;
+        protected Formulários.Quadro quadroLista;
+        protected Formulários.Opção opçãoAlterarPeríodo;
+        protected Formulários.Opção opçãoRecarregar;
     }
 }

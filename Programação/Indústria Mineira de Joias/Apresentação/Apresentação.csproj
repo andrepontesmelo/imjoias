@@ -100,7 +100,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>chave.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>chave2.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <PlatformTarget>x64</PlatformTarget>
@@ -125,6 +125,12 @@
     </Compile>
     <Compile Include="Atendente\BaseInfoAtendimentos.Designer.cs">
       <DependentUpon>BaseInfoAtendimentos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Atendente\BaseInfoAtendimentosCliente.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Atendente\BaseInfoAtendimentosCliente.Designer.cs">
+      <DependentUpon>BaseInfoAtendimentosCliente.cs</DependentUpon>
     </Compile>
     <Compile Include="Atendente\BaseListaAtendimentos.cs">
       <SubType>UserControl</SubType>
@@ -2223,6 +2229,9 @@
       <DependentUpon>BaseInfoAtendimentos.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Atendente\BaseInfoAtendimentosCliente.resx">
+      <DependentUpon>BaseInfoAtendimentosCliente.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Atendente\BaseListaAtendimentos.resx">
       <DependentUpon>BaseListaAtendimentos.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -3214,6 +3223,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="chave.snk" />
+    <None Include="chave2.snk" />
     <None Include="Impressão\Relatórios\Comissao\DataSetComissaoVenda.xsc">
       <DependentUpon>DataSetComissaoVenda.xsd</DependentUpon>
     </None>
