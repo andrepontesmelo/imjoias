@@ -298,5 +298,23 @@ namespace Entidades
             else
                 return false;
         }
+
+        internal static string ObterSetoresSeparadosPorVirgula(Setor[] setores)
+        {
+            if (setores.Length == 0)
+                return "";
+
+            string strSetores = "";
+
+            foreach (Setor setor in setores)
+            {
+                if (strSetores.Length > 0)
+                    strSetores += ", ";
+
+                strSetores += setor.Código;
+            }
+
+            return strSetores;
+        }
     }
 }

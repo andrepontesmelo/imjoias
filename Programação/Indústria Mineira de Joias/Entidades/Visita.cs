@@ -1,72 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Acesso.Comum;
-using Entidades.Pessoa;
-using System.Data;
-using System.Collections;
+﻿using Acesso.Comum;
 using Entidades.Configuração;
+using Entidades.Pessoa;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Text;
 
 namespace Entidades
 {
-    /// <summary>
-    /// Registro de visita.
-    /// </summary>
     [DbTransação]
     public class Visita : DbManipulaçãoAutomática
     {
-        #region Atributos
-
-        /// <summary>
-        /// Momento em que o visitante entrou na empresa.
-        /// </summary>
         [DbChavePrimária(false)]
         private DateTime entrada;
 
-        /// <summary>
-        /// Momento em que o visitante deixou a empresa.
-        /// </summary>
         [DbColuna("saida")]
         private DateTime? saída;
 
-        /// <summary>
-        /// Tempo em segundos de espera por atendimento.
-        /// </summary>
         private uint? espera;
 
-        /// <summary>
-        /// Motivo da visita do cliente.
-        /// </summary>
         private MotivoContato motivo;
 
-        /// <summary>
-        /// Setor de atendimento.
-        /// </summary>
         [DbRelacionamento("codigo", "setor")]
         private Setor setor;
 
-        /// <summary>
-        /// Lista de nomes dos visitantes não cadastrados.
-        /// </summary>
         private DbComposiçãoInalterável<string> nomes;
 
-        /// <summary>
-        /// Lista de visitantes cadastrados.
-        /// </summary>
         private DbComposiçãoInalterável<Pessoa.Pessoa> pessoas;
 
-        /// <summary>
-        /// Atendente da visita.
-        /// </summary>
         [DbColuna("funcionario"), DbRelacionamento("codigo", "funcionario")]
         private Funcionário atendente;
 
         [DbAtributo(TipoAtributo.Ignorar)]
         private bool atendimentoForaDoRodízio = false;
-
-        #endregion
-
-        #region Propriedades
 
         public bool AtendimentoForaDoRodízio
         {
@@ -74,13 +40,6 @@ namespace Entidades
             set { atendimentoForaDoRodízio = value; }
         }
 
-        /// <summary>
-        /// Momento em que o visitante entrou na empresa.
-        /// </summary>
-        /// <remarks>
-        /// Por ser chave primária, só pode ser alterado se
-        /// o objeto não estiver cadastrado no banco de dados.
-        /// </remarks>
         public DateTime Entrada
         {
             get { return entrada; }
@@ -93,72 +52,46 @@ namespace Entidades
             }
         }
 
-        /// <summary>
-        /// Momento em que o visitante deixou a empresa.
-        /// </summary>
         public DateTime? Saída
         {
             get { return saída; }
             set { saída = value; DefinirDesatualizado(); }
         }
 
-        /// <summary>
-        /// Tempo em segundos de espera por atendimento.
-        /// </summary>
         public uint? Espera
         {
             get { return espera; }
             set { espera = value; DefinirDesatualizado(); }
         }
 
-        /// <summary>
-        /// Motivo da visita do cliente.
-        /// </summary>
         private MotivoContato Motivo
         {
             get { return motivo; }
             set { motivo = value; DefinirDesatualizado(); }
         }
 
-        /// <summary>
-        /// Setor de atendimento.
-        /// </summary>
         public Setor Setor
         {
             get { return setor; }
             set { setor = value; DefinirDesatualizado(); }
         }
 
-        /// <summary>
-        /// Lista de nomes dos visitantes não cadastrados.
-        /// </summary>
         public DbComposiçãoInalterável<string> Nomes
         {
             get { return nomes; }
         }
 
-        /// <summary>
-        /// Lista de visitantes cadastrados.
-        /// </summary>
         public DbComposiçãoInalterável<Pessoa.Pessoa> Pessoas
         {
             get { return pessoas; }
         }
 
-        /// <summary>
-        /// Atendente da visita.
-        /// </summary>
         public Funcionário Atendente
         {
             get { return atendente; }
             set { atendente = value; DefinirDesatualizado(); }
         }
 
-        #endregion
-
-        /// <summary>
-        /// Constrói a visita.
-        /// </summary>
         public Visita()
         {
             nomes = new DbComposiçãoInalterável<string>(
@@ -170,10 +103,6 @@ namespace Entidades
                 new DbAção<Pessoa.Pessoa>(DescadastrarPessoa));
         }
 
-        /// <summary>
-        /// Constrói a visita considerando já um cliente para atendimento.
-        /// </summary>
-        /// <param name="clientes">Clientes a serem atendidos.</param>
         public Visita(params PessoaFísica[] clientes)
             : this()
         {
@@ -181,11 +110,6 @@ namespace Entidades
                 pessoas.Adicionar(cliente);
         }
 
-        #region Manipulação de nomes de visitantes.
-
-        /// <summary>
-        /// Cadastra um nome do visitante no banco de dados.
-        /// </summary>
         private void CadastrarNome(IDbCommand cmd, string nome)
         {
             cmd.CommandText = "INSERT INTO visitanome (visita, nome) VALUES ("
@@ -195,9 +119,6 @@ namespace Entidades
             cmd.ExecuteNonQuery();
         }
 
-        /// <summary>
-        /// Descadastra um nome do banco de dados.
-        /// </summary>
         private void DescadastrarNome(IDbCommand cmd, string nome)
         {
             cmd.CommandText = "DELETE FROM visitanome WHERE "
@@ -207,13 +128,6 @@ namespace Entidades
             cmd.ExecuteNonQuery();
         }
 
-        #endregion
-
-        #region Manipulação de visitantes cadastrados.
-
-        /// <summary>
-        /// Cadastra a pessoa como visitante.
-        /// </summary>
         private void CadastrarPessoa(IDbCommand cmd, Pessoa.Pessoa pessoaFísica)
         {
             cmd.CommandText = "INSERT INTO visitapessoafisica (visita, pessoafisica) VALUES ("
@@ -223,9 +137,6 @@ namespace Entidades
             cmd.ExecuteNonQuery();
         }
 
-        /// <summary>
-        /// Descadastra a pessoa como visitante.
-        /// </summary>
         private void DescadastrarPessoa(IDbCommand cmd, Pessoa.Pessoa pessoaFísica)
         {
             cmd.CommandText = "DELETE FROM visitapessoafisica WHERE "
@@ -235,15 +146,6 @@ namespace Entidades
             cmd.ExecuteNonQuery();
         }
 
-        #endregion
-
-        #region Recuperação do banco de dados
-
-        /// <summary>
-        /// Obtém próximo cliente a ser atendido por um setor.
-        /// </summary>
-        /// <param name="setor">Setor para atendimento.</param>
-        /// <returns>Dados da visita do cliente que é o próximo a ser atendido.</returns>
         public static Visita ObterPróximaVisitaEsperando(Setor setor)
         {
             Visita visita;
@@ -258,29 +160,11 @@ namespace Entidades
             return visita;
         }
 
-        /// <summary>
-        /// Obtém clientes que visitaram a empresa em um determinado período.
-        /// </summary>
-        /// <param name="pInicial">Período inicial.</param>
-        /// <param name="pFinal">Período final.</param>
-        /// <returns>Visitas neste período.</returns>
         public static List<Visita> ObterVisitas(DateTime pInicial, DateTime pFinal)
         {
-            /* Esta consulta pode ser otimizada,
-             * porém sua complexidade será aumentada.
-             * Como ela raramente é utilizada,
-             * foi optado por deixá-la mais simples.
-             * -- Júlio, 12/04/2006
-             * 
-             * Consulta otimizada para carga em apenas uma SQL. 
-             * -- André, 19/04/2016.
-             */
-
-            List<Visita> visitas;
-
             string where = " v.entrada BETWEEN " + DbTransformar(pInicial) + " AND " + DbTransformar(pFinal);
 
-            visitas = Mapear<Visita>("SELECT * FROM visita v WHERE " + where);
+            List<Visita> visitas = Mapear<Visita>("SELECT * FROM visita v WHERE " + where);
 
             CarregarRelacionamentos(visitas, where);
 
@@ -290,11 +174,9 @@ namespace Entidades
 
         public static List<Visita> ObterVisitas(Pessoa.Pessoa pessoa)
         {
-            List<Visita> visitas;
-
             string códigoPessoa = DbTransformar(pessoa.Código);
 
-            visitas = Mapear<Visita>("SELECT v.* FROM visita v JOIN visitapessoafisica f on v.entrada=f.visita WHERE " +
+            List<Visita> visitas = Mapear<Visita>("SELECT v.* FROM visita v JOIN visitapessoafisica f on v.entrada=f.visita WHERE " +
                 " pessoafisica=" + códigoPessoa);
 
             CarregarRelacionamentos(visitas, " entrada in (select visita from visitapessoafisica where pessoafisica=" + 
@@ -303,19 +185,11 @@ namespace Entidades
             return visitas;
         }
 
-
-        /// <summary>
-        /// Obtém clientes que visitaram ou sariam da empresa a partir
-        /// de um determinado momento.
-        /// </summary>
-        /// <param name="pInicial">Período inicial.</param>
-        /// <returns>Visitas neste período.</returns>
         public static List<Visita> ObterVisitas(DateTime pInicial)
         {
-            List<Visita> visitas;
-
             string where = " v.entrada > " + DbTransformar(pInicial) +  " OR v.saida > " + DbTransformar(pInicial);
-            visitas = Mapear<Visita>(
+
+            List<Visita> visitas = Mapear<Visita>(
                 "SELECT * FROM visita v WHERE " + where);
 
             CarregarRelacionamentos(visitas, where);
@@ -323,22 +197,16 @@ namespace Entidades
             return visitas;
         }
 
-        private static Dictionary<DateTime, Visita> CriarHash(List<Visita> visitas)
+        private static Dictionary<DateTime, Visita> CriarHashEntradaVisita(List<Visita> visitas)
         {
             Dictionary<DateTime, Visita> hash = new Dictionary<DateTime, Visita>();
 
             foreach (Visita v in visitas)
-            {
                 hash[v.entrada] = v;
-            }
 
             return hash;
         }
 
-   
-        /// <summary>
-        /// Carrega todos os relacionamentos da visita.
-        /// </summary>
         private static void CarregarRelacionamentos(List<Visita> visitas, string where)
         {
             if (visitas.Count == 0)
@@ -346,19 +214,21 @@ namespace Entidades
 
             IDataReader leitor = null;
             StringBuilder str = new StringBuilder();
-            Dictionary<DateTime, Visita> hash = CriarHash(visitas);
+            Dictionary<DateTime, Visita> hashEntradaVisita = CriarHashEntradaVisita(visitas);
             Dictionary<DateTime, ulong> hashVisitaCódigoPessoaFísica = new Dictionary<DateTime, ulong>();
             SortedSet<ulong> conjuntoPessoas = new SortedSet<ulong>();
- 
-            str.Append("select n.visita, n.nome, null as pessoaFisica from visitanome n JOIN visita v on n.visita=v.entrada where ");
+
+            str.Append("select n.visita, n.nome, null as pessoaFisica from visitanome n ");
+            str.Append(" JOIN visita v on n.visita=v.entrada where ");
             str.Append(where);
-            str.Append(" UNION SELECT f.visita, null as nome, f.pessoaFisica from visitapessoafisica f JOIN visita v on f.visita=v.entrada where ");
+            str.Append(" UNION SELECT f.visita, null as nome, f.pessoaFisica from visitapessoafisica f ");
+            str.Append(" JOIN visita v on f.visita=v.entrada where ");
             str.Append(where);
 
             string myStr = str.ToString();
-            
+
             IDbConnection conexão = Conexão;
-        
+
             lock (conexão)
             {
                 Usuários.UsuárioAtual.GerenciadorConexões.RemoverConexão(conexão);
@@ -371,35 +241,28 @@ namespace Entidades
 
                         using (leitor = cmd.ExecuteReader())
                         {
-                            while (leitor.Read())
-                            {
-                                Visita visita = hash[leitor.GetDateTime(0)];
-
-                                if (!leitor.IsDBNull(1))
-                                    visita.nomes.AdicionarJáCadastrado(leitor.GetString(1));
-
-                                if (!leitor.IsDBNull(2))
-                                {
-                                    ulong código = Convert.ToUInt64(leitor.GetValue(2));
-                                    hashVisitaCódigoPessoaFísica.Add(visita.entrada, código);
-                                    conjuntoPessoas.Add(código);
-                                }
-                            }
+                            Lê(leitor, hashEntradaVisita, hashVisitaCódigoPessoaFísica, conjuntoPessoas);
                         }
                     }
-                } finally
+                }
+                finally
                 {
-                    Usuários.UsuárioAtual.GerenciadorConexões.AdicionarConexão(conexão);
-
                     if (leitor != null)
                         leitor.Close();
+
+                    Usuários.UsuárioAtual.GerenciadorConexões.AdicionarConexão(conexão);
                 }
             }
 
-            Dictionary<ulong, Pessoa.Pessoa> hashPessoas = 
+            CarregarPessoasFísicas(hashEntradaVisita, hashVisitaCódigoPessoaFísica, conjuntoPessoas);
+        }
+
+        private static void CarregarPessoasFísicas(Dictionary<DateTime, Visita> hash, Dictionary<DateTime, ulong> hashVisitaCódigoPessoaFísica, SortedSet<ulong> conjuntoPessoas)
+        {
+            Dictionary<ulong, Pessoa.Pessoa> hashPessoas =
                 Pessoa.Pessoa.ObterPessoas(conjuntoPessoas);
 
-            foreach(KeyValuePair<DateTime, Visita> par in hash)
+            foreach (KeyValuePair<DateTime, Visita> par in hash)
             {
                 DateTime entrada = par.Key;
                 Visita visita = par.Value;
@@ -413,14 +276,25 @@ namespace Entidades
             }
         }
 
-        #endregion
+        private static void Lê(IDataReader leitor, Dictionary<DateTime, Visita> hash, Dictionary<DateTime, ulong> hashVisitaCódigoPessoaFísica, SortedSet<ulong> conjuntoPessoas)
+        {
+            while (leitor.Read())
+            {
+                Visita visita = hash[leitor.GetDateTime(0)];
 
-        /// <summary>
-        /// Verifica se um determinado funcionário está em atendimento.
-        /// </summary>
-        /// <param name="funcionário">Funcionário em atendimento.</param>
-        /// <returns>Se o funcionário está em atendimento.</returns>
-        public static bool VerificarAtendimento(Funcionário funcionário)
+                if (!leitor.IsDBNull(1))
+                    visita.nomes.AdicionarJáCadastrado(leitor.GetString(1));
+
+                if (!leitor.IsDBNull(2))
+                {
+                    ulong código = Convert.ToUInt64(leitor.GetValue(2));
+                    hashVisitaCódigoPessoaFísica.Add(visita.entrada, código);
+                    conjuntoPessoas.Add(código);
+                }
+            }
+        }
+
+        public static bool EmAtendimento(Funcionário funcionário)
         {
             IDbConnection conexão = Conexão;
             int qtd;
@@ -438,11 +312,6 @@ namespace Entidades
             return qtd > 0;
         }
 
-        /// <summary>
-        /// Verifica se um determinado funcionário está em atendimento.
-        /// </summary>
-        /// <param name="funcionário">Funcionário em atendimento.</param>
-        /// <returns>Se o funcionário está em atendimento.</returns>
         public static List<Visita> ObterAtendimentos(Funcionário funcionário)
         {
             string where = " v.funcionario = " + DbTransformar(funcionário.Código) + " AND v.saida IS NULL";
@@ -454,14 +323,10 @@ namespace Entidades
             return visitas;
         }
 
-        /// <summary>
-        /// Obtém visitas relevantes conforme os critérios:
-        /// (i) se está na empresa;
-        /// (ii) se chegou à empresa no dia corrente.
-        /// </summary>
         public static List<Visita> ObterVisitasRelevantes()
         {
             string where = " v.saida IS NULL OR v.entrada >= CURDATE() ";
+
             List<Visita> visitas = Mapear<Visita>("SELECT * FROM visita v WHERE " + 
                 where + " ORDER BY entrada ");
 
@@ -470,27 +335,12 @@ namespace Entidades
             return visitas;
         }
 
-        /// <summary>
-        /// Obtém visitas relevantes para um funcionário conforme os critérios:
-        /// (i) se está na empresa;
-        /// (ii) se chegou à empresa no dia corrente.
-        /// </summary>
         public static List<Visita> ObterVisitasRelevantes(Funcionário funcionário, Setor[] setores)
         {
-            string strSetores = "";
+            string strSetores = Setor.ObterSetoresSeparadosPorVirgula(setores);
 
-            if (setores.Length == 0)
+            if (String.IsNullOrEmpty(strSetores))
                 return null;
-            
-            foreach (Setor setor in setores)
-            {
-                if (strSetores.Length > 0)
-                    strSetores += ", ";
-
-                strSetores += setor.Código;
-            }
-
-            List<Visita> visitas;
 
             string where = " v.saida IS NULL OR v.entrada >= date(" +
                 "(SELECT MAX(entrada) FROM visita WHERE funcionario = " +
@@ -499,8 +349,7 @@ namespace Entidades
                 " AND entrada >= " + DbTransformar(DadosGlobais.Instância.HoraDataAtual.Date.Subtract(new TimeSpan(3, 0, 0, 0))) +
                 " ORDER BY entrada";
 
-            visitas = Mapear<Visita>("SELECT * FROM visita v WHERE " + where);
-
+            List<Visita> visitas = Mapear<Visita>("SELECT * FROM visita v WHERE " + where);
             CarregarRelacionamentos(visitas, where);
 
             return visitas;

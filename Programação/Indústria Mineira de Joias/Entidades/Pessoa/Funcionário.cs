@@ -79,7 +79,7 @@ namespace Entidades.Pessoa
         {
             get
             {
-                return Visita.VerificarAtendimento(this);
+                return Visita.EmAtendimento(this);
             }
         }
 
