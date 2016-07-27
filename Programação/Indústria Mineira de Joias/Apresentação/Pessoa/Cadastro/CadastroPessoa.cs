@@ -460,9 +460,9 @@ namespace Apresentação.Pessoa.Cadastro
                     double dias = Math.Round(TempoDesatualizado.TotalDays);
 
                     if (dias <= 1)
-                        Text = "Ultima alteração na cadastro foi em " + Pessoa.DataAlteração.Value.ToShortDateString() + ", às " + Pessoa.DataAlteração.Value.ToShortTimeString();
+                        Text = "Última alteração na cadastro foi em " + Pessoa.DataAlteração.Value.ToShortDateString() + ", às " + Pessoa.DataAlteração.Value.ToShortTimeString();
                     else
-                        Text = "Ultima alteração na cadastro tem " + dias + " dias";
+                        Text = "Última alteração na cadastro: " + dias + " dias";
                 }
 
                 // Prepara e adiciona controle na aba de dados pessoais.
