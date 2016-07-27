@@ -11,6 +11,8 @@ namespace Entidades
     [DbTransação]
     public class Visita : DbManipulaçãoAutomática
     {
+        private static readonly string SQL_ORDEM = " ORDER BY entrada desc ";
+
         [DbChavePrimária(false)]
         private DateTime entrada;
 
@@ -164,7 +166,7 @@ namespace Entidades
         {
             string where = " v.entrada BETWEEN " + DbTransformar(pInicial) + " AND " + DbTransformar(pFinal);
 
-            List<Visita> visitas = Mapear<Visita>("SELECT * FROM visita v WHERE " + where);
+            List<Visita> visitas = Mapear<Visita>("SELECT * FROM visita v WHERE " + where + SQL_ORDEM);
 
             CarregarRelacionamentos(visitas, where);
 
@@ -177,7 +179,7 @@ namespace Entidades
             string códigoPessoa = DbTransformar(pessoa.Código);
 
             List<Visita> visitas = Mapear<Visita>("SELECT v.* FROM visita v JOIN visitapessoafisica f on v.entrada=f.visita WHERE " +
-                " pessoafisica=" + códigoPessoa);
+                " pessoafisica=" + códigoPessoa + SQL_ORDEM);
 
             CarregarRelacionamentos(visitas, " entrada in (select visita from visitapessoafisica where pessoafisica=" + 
                 códigoPessoa + ")");
@@ -190,7 +192,7 @@ namespace Entidades
             string where = " v.entrada > " + DbTransformar(pInicial) +  " OR v.saida > " + DbTransformar(pInicial);
 
             List<Visita> visitas = Mapear<Visita>(
-                "SELECT * FROM visita v WHERE " + where);
+                "SELECT * FROM visita v WHERE " + where + SQL_ORDEM);
 
             CarregarRelacionamentos(visitas, where);
 
