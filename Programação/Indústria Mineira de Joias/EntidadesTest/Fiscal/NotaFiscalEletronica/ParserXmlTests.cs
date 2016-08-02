@@ -1,10 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Entidades.Fiscal.NotaFiscalEletronica;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using System.Reflection;
 
@@ -20,7 +14,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         [TestMethod()]
         public void LerArquivoTest()
         {
-            Assert.AreEqual(ParserXml.LerArquivo(ARQUIVO_ENTRADA).QuantidadeVendaItem, 28);
+            Assert.AreEqual(28, ParserXml.LerArquivo(ARQUIVO_ENTRADA).QuantidadeVendaItem);
         }
     }
 }
