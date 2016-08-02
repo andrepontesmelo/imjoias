@@ -1,11 +1,8 @@
 ﻿using Acesso.Comum;
 using Entidades.Configuração;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace Entidades.Fiscal
+namespace Entidades.Fiscal.NotaFiscalEletronica
 {
     public class Nfe : DbManipulaçãoAutomática
     {

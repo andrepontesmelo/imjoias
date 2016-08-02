@@ -1,18 +1,14 @@
-﻿using Acesso.Comum;
-using Entidades;
+﻿using Entidades;
 using Entidades.Configuração;
-using Entidades.Fiscal;
+using Entidades.Fiscal.NotaFiscalEletronica;
 using Entidades.Pessoa;
 using Entidades.Pessoa.Endereço;
 using Entidades.Relacionamento;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Apresentação.Financeiro.Fiscal
