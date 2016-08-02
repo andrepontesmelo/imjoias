@@ -1,8 +1,4 @@
-﻿using System;
-using System.Text.RegularExpressions;
-using System.Xml;
-using System.Xml.Linq;
-using System.Xml.XPath;
+﻿using System.Xml;
 
 namespace Entidades.Fiscal.NotaFiscalEletronica
 {
@@ -12,22 +8,10 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
 
         public ParserXml(string arquivo)
         {
-            // Remover namespaces xml
-            string conteudo = System.IO.File.ReadAllText(arquivo);
-            string filtro = @"xmlns(:\w+)?=""([^""]+)""|xsi(:\w+)?=""([^""]+)""";
-            conteudo = Regex.Replace(conteudo, filtro, "");
-
-            documento = new XmlDocument();
-            documento.LoadXml(conteudo);
+            documento = Xml.LerXmlSemNamespaces(arquivo);
         }
 
-        public int QuantidadeVendaItem
-        {
-            get
-            {
-                return documento.DocumentElement.SelectNodes("/nfeProc/NFe/infNFe/det").Count;
-            }
-        }
+        public int QuantidadeVendaItem => documento.DocumentElement.SelectNodes("/nfeProc/NFe/infNFe/det").Count;
 
         public static ParserXml LerArquivo(string arquivo)
         {

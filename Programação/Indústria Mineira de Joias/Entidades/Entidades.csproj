@@ -416,6 +416,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Visita.cs" />
+    <Compile Include="Xml.cs" />
     <Compile Include="Álbum\Animação.cs">
       <SubType>Code</SubType>
     </Compile>
