@@ -58,6 +58,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Fiscal\NotaFiscalEletronica\ParserXmlTests.cs" />
     <Compile Include="Pessoa\AbreviadorTests.cs" />
     <Compile Include="Preço.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,6 +72,10 @@
       <Project>{e1a76d2d-85f3-4202-b316-3c6bdd3220f9}</Project>
       <Name>Entidades</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Arquivos\nfe.xml" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
