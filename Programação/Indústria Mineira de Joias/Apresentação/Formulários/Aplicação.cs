@@ -135,7 +135,6 @@ namespace Apresentação.Formulários
             {
 #if DEBUG
                 MessageBox.Show("Ocorreu uma exceção não tratada e não depurável durante a criação do formulário:\n\n" + e.ToString());
-                Application.Exit();
 #else
 					throw new Exception("Não foi possível construir janela principal!", e);
 #endif
@@ -213,6 +212,11 @@ namespace Apresentação.Formulários
         public static void Executar(Usuários usuários)
         {
             Executar(typeof(BaseFormulário), usuários);
+        }
+
+        public static void Executar(Usuários usuários, bool efetuarLogin, Splash splash)
+        {
+            aplicação = new Aplicação(null, usuários, efetuarLogin, splash);
         }
 
         /// <summary>
