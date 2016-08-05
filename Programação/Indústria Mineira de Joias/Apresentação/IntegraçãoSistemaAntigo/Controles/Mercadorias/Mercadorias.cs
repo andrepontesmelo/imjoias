@@ -92,7 +92,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 
             try
             {
-                if (ConferirÉDePeso(novoItem["referencia"].ToString(), itemAtual["CM_CCUSTO"].ToString().Trim()))
+                if (ConferirÉDePeso(itemAtual))
                 {
                     novoItem["depeso"] = true;
                     novoItem["grupo"] = itemAtual["CM_GRUPO"]; //Grupo só faz sentido para merc. de peso.
@@ -211,8 +211,11 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
                 TransporItem(itemAtual, saída);
 		}
 
-		private static bool ConferirÉDePeso(String referência, String componenteCusto)
+		public static bool ConferirÉDePeso(DataRow cadmerItem)
 		{
+            string referência = cadmerItem["cm_codmer"].ToString();
+            string componenteCusto = cadmerItem["cm_ccusto"].ToString();
+
             if (componenteCusto.StartsWith("0A")
                 || componenteCusto.StartsWith("1A")
                 || componenteCusto.StartsWith("2A")
@@ -226,15 +229,19 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
                 || componenteCusto.StartsWith("19"))
                 return false;
 
-			/*
-							 * primeiro digito 3 ou 2 -> peso
-							 * quarto digito 9 ou 8   -> peso
-							 */
-		
-			if (referência.Length < 4)
-				throw new Exception("Não foi possível conferir se mercadoria '" + referência + "' é de peso. Pois não possui quarto digito.");
 
-			return Entidades.Mercadoria.Mercadoria.ConferirSeÉDePeso(referência);
-		}
-	}
+            if (referência.Length < 4)
+                return false;
+
+            if (referência.StartsWith("3") || referência.StartsWith("2"))
+                return true;
+
+            string quartoDigito = referência.Substring(3, 1);
+
+            if ((quartoDigito == "9") || (quartoDigito == "8"))
+                return true;
+
+            return false;
+        }
+    }
 }

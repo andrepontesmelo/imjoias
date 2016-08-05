@@ -1523,16 +1523,7 @@ namespace Entidades.Mercadoria
 
         public static bool ConferirSeÉDePeso(string referênciaNumérica)
         {
-            if (referênciaNumérica.StartsWith("3") || referênciaNumérica.StartsWith("2"))
-                return true;
-
-            string quartoDigito = referênciaNumérica.Substring(3, 1);
-
-            if ((quartoDigito == "9") || (quartoDigito == "8"))
-                return true;
-
-
-            return false;
+            return MercadoriaCampos.ObterMercadoria(referênciaNumérica).DePeso;
         }
 
         /// <summary>

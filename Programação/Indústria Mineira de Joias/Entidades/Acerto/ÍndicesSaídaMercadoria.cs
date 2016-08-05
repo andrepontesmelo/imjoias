@@ -41,7 +41,7 @@ namespace Entidades.Acerto
 
             public static string GerarChave(string referênciaNumérica, double peso)
             {
-                if (Entidades.Mercadoria.Mercadoria.ConferirSeÉDePeso(referênciaNumérica))
+                if (Mercadoria.Mercadoria.ConferirSeÉDePeso(referênciaNumérica))
                     return referênciaNumérica + "#" + peso.ToString();
                 else
                     return referênciaNumérica;

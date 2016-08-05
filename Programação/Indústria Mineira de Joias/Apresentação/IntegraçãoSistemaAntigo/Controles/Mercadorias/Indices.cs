@@ -115,7 +115,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             if (!deLinha)
                 return;
 
-            if (ConferirDePeso(itemMercadoria))
+            if (Mercadorias.ConferirÉDePeso(itemMercadoria))
                 CalcularCoeficienteDePeso(itemMercadoria, saida, ref coeficienteAtacado, ref coeficienteAutoAtacado, ref valorVarejo, ref valorVarejoConsulta, ref erro);
 			else 
                 CalcularCoeficienteDePeça(itemMercadoria, saida, ref coeficienteAtacado, ref coeficienteAutoAtacado, ref valorVarejo, ref valorVarejoConsulta, ref erro);
@@ -278,11 +278,6 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             consulta.Append("insert into tabelamercadoria (coeficiente,mercadoria,tabela) VALUES ('" +  DbTransformar(coeficiente) + "',"
                 + "'" + itemMercadoria[REFERÊNCIA].ToString() + "'," + tabela.ToString() + ");");
         }
-
-		private static bool ConferirDePeso(DataRow mercadoria)
-		{
-            return Entidades.Mercadoria.Mercadoria.ConferirSeÉDePeso(mercadoria[REFERÊNCIA].ToString());
-		}
 
 		/// <summary>
 		/// Peça é de grama.
