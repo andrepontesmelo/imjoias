@@ -301,7 +301,6 @@
       <DependentUpon>ListaPedidosSimples.cs</DependentUpon>
     </Compile>
     <Compile Include="Clientes\Pedido\Parâmetros.cs" />
-    <Compile Include="ControladorInatividade.cs" />
     <Compile Include="Estoque\JanelaOpçõesEstoque.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -1,22 +1,14 @@
-using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Forms;
 using Apresentação.Formulários;
-using Apresentação.Financeiro;
-//using System.Collections.Generic;
+using System;
 
 namespace Programa.Cofre
 {
-	public static class Principal
+    public static class Principal
 	{
         [STAThreadAttribute]
         private static void Main(string[] args)
         {
-            new Apresentação.ControladorInatividade().Iniciar();
-
-            Apresentação.Formulários.Aplicação.Executar(new Acesso.MySQL.MySQLUsuários());
+            Aplicação.Executar(new Acesso.MySQL.MySQLUsuários());
         }
 	}
 }
