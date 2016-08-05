@@ -1,3 +1,4 @@
+using Apresentação.Formulários;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -5,21 +6,6 @@ using System.Text;
 
 namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 {
-	/// <summary>
-	/// 
-	/// Preenchimento do campo 'coeficiente' de tabela 'mercadoria'
-	/// </summary>
-	/// 
-	/* Esquema para se obter o indíce: (seguindo orientação do hoffman)
-		* 	caso jóia é peso único
-			indice = cm_vista
-		caso contrário
-
-			olho no cadmer a faixa e grupo.
-			olho no gramas acho a faixa e grupo da mercadoria.
-			preciso do G_VISTA do gramas.
-			indice = G_VISTA * peso_especifico_da_joia (mas não se sabe o peso_específico_da_jóia);
-*/
 	public class Indices
 	{
         private const int TABELA_CONSIGNADO = 2;
@@ -33,21 +19,21 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
         private const string COLUNA_CADMER_VAREJO_CONSULTA = "VR_VISTA2";
 
         private const string MERCADORIA = "mercadoria";
-        private const string REFERÊNCIA = "referencia";
+        private const string REFERÊNCIA = "cm_codmer";
         private const string TABELA = "tabela";
-        private const string GRUPO = "grupo";
-        private const string FAIXA = "faixa";
+        private const string GRUPO = "cm_grupo";
+        private const string FAIXA = "cm_faixa";
+        private const string LINHA = "cm_linha";
 
         private double cotaçãoVarejo;
 
 		private DataTable cadmer, gramas;
-		private DataTable tabelaNovaMercadoria, tabelaCoeficiente;
+		private DataTable tabelaCoeficiente;
 	
 		public Indices (DataSet dataSetVelho, DataSet dataSetNovo)
 		{
             cadmer = dataSetVelho.Tables["cadmer"];
             gramas = dataSetVelho.Tables["gramas"];
-            tabelaNovaMercadoria = dataSetNovo.Tables[MERCADORIA];
             tabelaCoeficiente = dataSetNovo.Tables["tabelamercadoria"];
 		}
 
@@ -69,14 +55,14 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             CriarHash();
             int vezAtual = 0;
 
-            Apresentação.Formulários.Aguarde aguarde = new Apresentação.Formulários.Aguarde(
+            Aguarde aguarde = new Aguarde(
                 "Alterando indices do novo banco",
-                tabelaNovaMercadoria.Rows.Count, "Transpondo banco de dados", 
+                cadmer.Rows.Count, "Transpondo banco de dados", 
                 "Aguarde enquanto o banco de dados é sincronizado.");
 
             aguarde.Abrir();
 
-			foreach(DataRow itemMercadoria in tabelaNovaMercadoria.Rows)
+			foreach(DataRow itemMercadoria in cadmer.Rows)
 			{
                 aguarde.Passo();
     
@@ -107,47 +93,32 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 		}
 
         
-        // Item do banco de dados antigo
-        private Dictionary<string, DataRow> hashReferênciaItem, hashTabRefItem;
+        private Dictionary<string, DataRow> hashTabelaDataRowAntigo;
 
         private void CriarHash()
         {
-            hashReferênciaItem = new Dictionary<string, DataRow>(cadmer.Rows.Count, StringComparer.Ordinal);
-
-            foreach (DataRow atual in cadmer.Rows)
-                hashReferênciaItem.Add(atual["CM_CODMER"].ToString().Trim(), atual);
-
-            hashTabRefItem = new Dictionary<string, DataRow>(tabelaCoeficiente.Rows.Count, StringComparer.Ordinal);
+            hashTabelaDataRowAntigo = new Dictionary<string, DataRow>(tabelaCoeficiente.Rows.Count, StringComparer.Ordinal);
 
             foreach (DataRow atual in tabelaCoeficiente.Rows)
-            {
-                hashTabRefItem.Add(atual[TABELA].ToString().Trim() + atual[MERCADORIA].ToString().Trim(), atual);
-            }
-            
+                hashTabelaDataRowAntigo.Add(atual[TABELA].ToString().Trim() + atual[MERCADORIA].ToString().Trim(), atual);
         }
 
 		private void TransporMercadoria(DataRow itemMercadoria, StringBuilder consulta, StringBuilder saida)
 		{
-			DataRow itemMercadoriaAntiga; 
             double coeficienteAtacado = 0;
             double coeficienteAutoAtacado = 0;
             double valorVarejo = 0;
             double valorVarejoConsulta = 0;
             bool erro = false;
-            bool depeso;
+            bool deLinha = itemMercadoria[LINHA].ToString().Trim().ToUpper() == "S";
 
-            if (!hashReferênciaItem.TryGetValue(itemMercadoria[REFERÊNCIA].ToString().Trim(), out itemMercadoriaAntiga))
-            {
-                // saida.AppendLine("Coeficiente: A mercadoria foi apagada do dbf '" + itemMercadoria[REFERÊNCIA].ToString() + "'.");
+            if (!deLinha)
                 return;
-            }
 
-            depeso = ConferirDePeso(itemMercadoria);
-           
-            if (depeso)
-                CalcularCoeficienteDePeso(itemMercadoria, saida, itemMercadoriaAntiga, ref coeficienteAtacado, ref coeficienteAutoAtacado, ref valorVarejo, ref valorVarejoConsulta, ref erro);
+            if (ConferirDePeso(itemMercadoria))
+                CalcularCoeficienteDePeso(itemMercadoria, saida, ref coeficienteAtacado, ref coeficienteAutoAtacado, ref valorVarejo, ref valorVarejoConsulta, ref erro);
 			else 
-                CalcularCoeficienteDePeça(itemMercadoria, saida, itemMercadoriaAntiga, ref coeficienteAtacado, ref coeficienteAutoAtacado, ref valorVarejo, ref valorVarejoConsulta, ref erro);
+                CalcularCoeficienteDePeça(itemMercadoria, saida, ref coeficienteAtacado, ref coeficienteAutoAtacado, ref valorVarejo, ref valorVarejoConsulta, ref erro);
 
             DataRow linha;
 
@@ -159,16 +130,12 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             linha = TransporAA(itemMercadoria, consulta, coeficienteAutoAtacado, erro, linha);
 
             if (erro)
-                itemMercadoria["foradelinha"] = true;
-            else
-            {
-                itemMercadoria["depeso"] = depeso;
-            }
+                saida.AppendLine("Erro ao importar índice de: " + itemMercadoria[REFERÊNCIA].ToString());
 		}
 
         private DataRow TransporAA(DataRow itemMercadoria, StringBuilder consulta, double coeficienteAutoAtacado, bool erro, DataRow linha)
         {
-            if (hashTabRefItem.TryGetValue(TABELA_ALTO_ATACADO.ToString().Trim() + itemMercadoria[REFERÊNCIA].ToString().Trim(), out linha))
+            if (hashTabelaDataRowAntigo.TryGetValue(TABELA_ALTO_ATACADO.ToString().Trim() + itemMercadoria[REFERÊNCIA].ToString().Trim(), out linha))
             {
                 AlterarIndiceExistente(itemMercadoria, TABELA_ALTO_ATACADO, coeficienteAutoAtacado, consulta);
             }
@@ -182,7 +149,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 
         private DataRow TransporVarejoConsulta(DataRow itemMercadoria, StringBuilder consulta, double valorVarejoConsulta, bool erro, DataRow linha)
         {
-            if (hashTabRefItem.TryGetValue(TABELA_VAREJO_CONSULTA.ToString().Trim() + itemMercadoria[REFERÊNCIA].ToString().Trim(), out linha))
+            if (hashTabelaDataRowAntigo.TryGetValue(TABELA_VAREJO_CONSULTA.ToString().Trim() + itemMercadoria[REFERÊNCIA].ToString().Trim(), out linha))
             {
                 AlterarIndiceExistente(itemMercadoria, TABELA_VAREJO_CONSULTA, valorVarejoConsulta, consulta);
             }
@@ -195,7 +162,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 
         private DataRow TransporVarejo(DataRow itemMercadoria, StringBuilder consulta, double valorVarejo, bool erro, DataRow linha)
         {
-            if (hashTabRefItem.TryGetValue(TABELA_VAREJO.ToString().Trim() + itemMercadoria[REFERÊNCIA].ToString().Trim(), out linha))
+            if (hashTabelaDataRowAntigo.TryGetValue(TABELA_VAREJO.ToString().Trim() + itemMercadoria[REFERÊNCIA].ToString().Trim(), out linha))
             {
                 AlterarIndiceExistente(itemMercadoria, TABELA_VAREJO, valorVarejo, consulta);
             }
@@ -208,7 +175,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 
         private DataRow TransporConsignado(DataRow itemMercadoria, StringBuilder consulta, double coeficienteAtacado, bool erro, DataRow linha)
         {
-            if (hashTabRefItem.TryGetValue(TABELA_CONSIGNADO.ToString().Trim() + itemMercadoria[REFERÊNCIA].ToString().Trim(), out linha))
+            if (hashTabelaDataRowAntigo.TryGetValue(TABELA_CONSIGNADO.ToString().Trim() + itemMercadoria[REFERÊNCIA].ToString().Trim(), out linha))
             {
                 AlterarIndiceExistente(itemMercadoria, TABELA_CONSIGNADO, coeficienteAtacado, consulta);
             }
@@ -221,7 +188,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 
         private DataRow TranporRepresentante(DataRow itemMercadoria, StringBuilder consulta, double coeficienteAtacado, bool erro, DataRow linha)
         {
-            if (hashTabRefItem.TryGetValue(TABELA_REPRESENTANTE.ToString().Trim() + itemMercadoria[REFERÊNCIA].ToString().Trim(), out linha))
+            if (hashTabelaDataRowAntigo.TryGetValue(TABELA_REPRESENTANTE.ToString().Trim() + itemMercadoria[REFERÊNCIA].ToString().Trim(), out linha))
             {
                 AlterarIndiceExistente(itemMercadoria, TABELA_REPRESENTANTE, coeficienteAtacado, consulta);
             }
@@ -236,7 +203,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
         private DataRow TransporAtacado(DataRow itemMercadoria, StringBuilder consulta, double coeficienteAtacado, bool erro)
         {
             DataRow linha;
-            if (hashTabRefItem.TryGetValue(TABELA_ATACADO.ToString().Trim() + itemMercadoria[REFERÊNCIA].ToString().Trim(), out linha))
+            if (hashTabelaDataRowAntigo.TryGetValue(TABELA_ATACADO.ToString().Trim() + itemMercadoria[REFERÊNCIA].ToString().Trim(), out linha))
             {
                 AlterarIndiceExistente(itemMercadoria, TABELA_ATACADO, coeficienteAtacado, consulta);
             }
@@ -247,14 +214,14 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             return linha;
         }
 
-        private static void CalcularCoeficienteDePeça(DataRow itemMercadoria, StringBuilder saida, DataRow itemMercadoriaAntiga, ref double coeficienteAtacado, ref double coeficienteAutoAtacado, ref double valorVarejo, ref double valorVarejoConsulta, ref bool erro)
+        private static void CalcularCoeficienteDePeça(DataRow itemMercadoria, StringBuilder saida, ref double coeficienteAtacado, ref double coeficienteAutoAtacado, ref double valorVarejo, ref double valorVarejoConsulta, ref bool erro)
         {
             try
             {
-                coeficienteAtacado = double.Parse(itemMercadoriaAntiga["CM_VISTA"].ToString());
+                coeficienteAtacado = double.Parse(itemMercadoria["CM_VISTA"].ToString());
                 coeficienteAutoAtacado = coeficienteAtacado;
-                valorVarejo = double.Parse(itemMercadoriaAntiga[COLUNA_CADMER_VAREJO].ToString());
-                valorVarejoConsulta = double.Parse(itemMercadoriaAntiga[COLUNA_CADMER_VAREJO_CONSULTA].ToString());
+                valorVarejo = double.Parse(itemMercadoria[COLUNA_CADMER_VAREJO].ToString());
+                valorVarejoConsulta = double.Parse(itemMercadoria[COLUNA_CADMER_VAREJO_CONSULTA].ToString());
             }
             catch (Exception err)
             {
@@ -268,7 +235,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             }
         }
 
-        private void CalcularCoeficienteDePeso(DataRow itemMercadoria, StringBuilder saida, DataRow itemMercadoriaAntiga, ref double coeficienteAtacado, ref double coeficienteAutoAtacado, ref double valorVarejo, ref double valorVarejoConsulta, ref bool erro)
+        private void CalcularCoeficienteDePeso(DataRow itemMercadoria, StringBuilder saida, ref double coeficienteAtacado, ref double coeficienteAutoAtacado, ref double valorVarejo, ref double valorVarejoConsulta, ref bool erro)
         {
             try
             {
@@ -279,8 +246,8 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
                     ObterGVistaDeGramas(8, itemMercadoria[FAIXA].ToString(), int.Parse(itemMercadoria[GRUPO].ToString()));
 
 
-                valorVarejo = double.Parse(itemMercadoriaAntiga[COLUNA_CADMER_VAREJO].ToString());
-                valorVarejoConsulta = double.Parse(itemMercadoriaAntiga[COLUNA_CADMER_VAREJO_CONSULTA].ToString());
+                valorVarejo = double.Parse(itemMercadoria[COLUNA_CADMER_VAREJO].ToString());
+                valorVarejoConsulta = double.Parse(itemMercadoria[COLUNA_CADMER_VAREJO_CONSULTA].ToString());
             }
             catch (Exception e)
             {
@@ -314,10 +281,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 
 		private static bool ConferirDePeso(DataRow mercadoria)
 		{
-			if (mercadoria["depeso"].ToString() == "1") 
-				return true;
-			else
-				return false;
+            return Entidades.Mercadoria.Mercadoria.ConferirSeÉDePeso(mercadoria[REFERÊNCIA].ToString());
 		}
 
 		/// <summary>

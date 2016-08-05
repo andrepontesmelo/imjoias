@@ -50,6 +50,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 			ItemMercadoria item;
 			DataRow novoItem;
             string referênciaAntiga = itemAtual["CM_CODMER"].ToString().Trim();
+
             int posição;
 
             if (hashReferênciaIndiceNovo.TryGetValue(referênciaAntiga, out posição))

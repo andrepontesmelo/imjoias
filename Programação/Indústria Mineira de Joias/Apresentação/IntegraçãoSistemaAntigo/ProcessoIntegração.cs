@@ -73,18 +73,18 @@ namespace Apresentação.IntegraçãoSistemaAntigo
 
             dbf = new Dbf(diretório);
             dsVelho = dbf.ObterDataSetMercadoria();
-            new Controles.Mercadorias.Gramas(dsVelho).Transpor(strSaída);
-            new Controles.Mercadorias.Fornecedor(dsVelho).Transpor();
-            new Controles.Mercadorias.ComponenteDeCusto(dsVelho, dsNovo, dbf).Transpor();
+
             new Controles.Mercadorias.Mercadorias(dsVelho, dsNovo, dbf).Transpor(strSaída);
+            new Controles.Mercadorias.ComponenteDeCusto(dsVelho, dsNovo, dbf).Transpor();
             new Controles.Mercadorias.VinculoMercadoriaComponenteCusto(dsVelho, dsNovo).Transpor(strSaída);
+            double cotaçãoVarejo = Entidades.Financeiro.Cotação.ObterCotaçãoVigente(Entidades.Moeda.ObterMoeda(4)).Valor;
             MySQL.GravarDataSetTodasTabelas(dsNovo);
 
-            AguardeDB.Fechar();
-
-            double cotaçãoVarejo = Entidades.Financeiro.Cotação.ObterCotaçãoVigente(Entidades.Moeda.ObterMoeda(4)).Valor;
-
             new Controles.Mercadorias.Indices(dsVelho, dsNovo).Transpor(cotaçãoVarejo, strSaída);
+            new Controles.Mercadorias.Gramas(dsVelho).Transpor(strSaída);
+            new Controles.Mercadorias.Fornecedor(dsVelho).Transpor();
+
+            AguardeDB.Fechar();
 
             MySQL.AdicionarConexõesRemovidas(conexõesRemovidas);
         }
