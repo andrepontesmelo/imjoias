@@ -6,15 +6,15 @@ using System.Text;
 
 namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 {
-	public class Indices
+    public class Indices
 	{
-        private const int TABELA_CONSIGNADO = 2;
-        private const int TABELA_CONSIGNADO_X = 7;
-        private const int TABELA_ATACADO = 3;
-        private const int TABELA_ALTO_ATACADO = 4;
-        private const int TABELA_VAREJO = 1;
-        private const int TABELA_VAREJO_CONSULTA = 5;
-        private const int TABELA_REPRESENTANTE = 6;
+        private const int CODIGO_TABELA_CONSIGNADO = 2;
+        private const int CODIGO_TABELA_CONSIGNADO_X = 7;
+        private const int CODIGO_TABELA_ATACADO = 3;
+        private const int CODIGO_TABELA_ALTO_ATACADO = 4;
+        private const int CODIGO_TABELA_VAREJO = 1;
+        private const int CODIGO_TABELA_VAREJO_CONSULTA = 5;
+        private const int CODIGO_TABELA_REPRESENTANTE = 6;
 
         private const string COLUNA_CADMER_VAREJO = "VR_3060902";
         private const string COLUNA_CADMER_VAREJO_CONSULTA = "VR_VISTA2";
@@ -123,110 +123,28 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 
             DataRow linha;
 
-            linha = TransporAtacado(itemMercadoria, consulta, coeficienteAtacado, erro);
-            linha = TranporRepresentante(itemMercadoria, consulta, coeficienteAtacado, erro, linha);
-            linha = TransporConsignado(itemMercadoria, consulta, coeficienteAtacado, erro, linha);
-            linha = TransporConsignadoX(itemMercadoria, consulta, coeficienteAtacado, erro, linha);
-            linha = TransporVarejo(itemMercadoria, consulta, valorVarejo, erro, linha);
-            linha = TransporVarejoConsulta(itemMercadoria, consulta, valorVarejoConsulta, erro, linha);
-            linha = TransporAA(itemMercadoria, consulta, coeficienteAutoAtacado, erro, linha);
+            Transpor(itemMercadoria, consulta, coeficienteAtacado, CODIGO_TABELA_ATACADO, erro);
+            Transpor(itemMercadoria, consulta, coeficienteAtacado, CODIGO_TABELA_REPRESENTANTE, erro);
+            Transpor(itemMercadoria, consulta, coeficienteAtacado, CODIGO_TABELA_CONSIGNADO, erro);
+            Transpor(itemMercadoria, consulta, coeficienteAtacado, CODIGO_TABELA_CONSIGNADO_X, erro);
+            Transpor(itemMercadoria, consulta, valorVarejo, CODIGO_TABELA_VAREJO, erro);
+            Transpor(itemMercadoria, consulta, valorVarejoConsulta, CODIGO_TABELA_VAREJO_CONSULTA, erro);
+            Transpor(itemMercadoria, consulta, coeficienteAutoAtacado, CODIGO_TABELA_ALTO_ATACADO, erro);
 
             if (erro)
                 saida.AppendLine("Erro ao importar índice de: " + itemMercadoria[REFERÊNCIA].ToString());
 		}
 
-        private DataRow TransporAA(DataRow itemMercadoria, StringBuilder consulta, double coeficienteAutoAtacado, bool erro, DataRow linha)
+        private void Transpor(DataRow itemMercadoria, StringBuilder consulta, double coeficiente, int codigoTabela, bool erro)
         {
-            if (hashTabelaDataRowAntigo.TryGetValue(TABELA_ALTO_ATACADO.ToString().Trim() + itemMercadoria[REFERÊNCIA].ToString().Trim(), out linha))
+            if (hashTabelaDataRowAntigo.ContainsKey(codigoTabela.ToString() + itemMercadoria[REFERÊNCIA].ToString().Trim()))
             {
-                AlterarIndiceExistente(itemMercadoria, TABELA_ALTO_ATACADO, coeficienteAutoAtacado, consulta);
-            }
-            else if (!erro)
-            {
-                AdicionarIndiceNaoExistente(itemMercadoria, TABELA_ALTO_ATACADO, coeficienteAutoAtacado, consulta);
+                AlterarIndiceExistente(itemMercadoria, codigoTabela, coeficiente, consulta);
+                return;
             }
 
-            return linha;
-        }
-
-        private DataRow TransporVarejoConsulta(DataRow itemMercadoria, StringBuilder consulta, double valorVarejoConsulta, bool erro, DataRow linha)
-        {
-            if (hashTabelaDataRowAntigo.TryGetValue(TABELA_VAREJO_CONSULTA.ToString().Trim() + itemMercadoria[REFERÊNCIA].ToString().Trim(), out linha))
-            {
-                AlterarIndiceExistente(itemMercadoria, TABELA_VAREJO_CONSULTA, valorVarejoConsulta, consulta);
-            }
-            else if (!erro)
-            {
-                AdicionarIndiceNaoExistente(itemMercadoria, TABELA_VAREJO_CONSULTA, valorVarejoConsulta, consulta);
-            }
-            return linha;
-        }
-
-        private DataRow TransporVarejo(DataRow itemMercadoria, StringBuilder consulta, double valorVarejo, bool erro, DataRow linha)
-        {
-            if (hashTabelaDataRowAntigo.TryGetValue(TABELA_VAREJO.ToString().Trim() + itemMercadoria[REFERÊNCIA].ToString().Trim(), out linha))
-            {
-                AlterarIndiceExistente(itemMercadoria, TABELA_VAREJO, valorVarejo, consulta);
-            }
-            else if (!erro)
-            {
-                AdicionarIndiceNaoExistente(itemMercadoria, TABELA_VAREJO, valorVarejo, consulta);
-            }
-            return linha;
-        }
-
-        private DataRow TransporConsignado(DataRow itemMercadoria, StringBuilder consulta, double coeficienteAtacado, bool erro, DataRow linha)
-        {
-            if (hashTabelaDataRowAntigo.TryGetValue(TABELA_CONSIGNADO.ToString().Trim() + itemMercadoria[REFERÊNCIA].ToString().Trim(), out linha))
-            {
-                AlterarIndiceExistente(itemMercadoria, TABELA_CONSIGNADO, coeficienteAtacado, consulta);
-            }
-            else if (!erro)
-            {
-                AdicionarIndiceNaoExistente(itemMercadoria, TABELA_CONSIGNADO, coeficienteAtacado, consulta);
-            }
-            return linha;
-        }
-
-        private DataRow TransporConsignadoX(DataRow itemMercadoria, StringBuilder consulta, double coeficienteAtacado, bool erro, DataRow linha)
-        {
-            if (hashTabelaDataRowAntigo.TryGetValue(TABELA_CONSIGNADO_X.ToString().Trim() + itemMercadoria[REFERÊNCIA].ToString().Trim(), out linha))
-            {
-                AlterarIndiceExistente(itemMercadoria, TABELA_CONSIGNADO_X, coeficienteAtacado, consulta);
-            }
-            else if (!erro)
-            {
-                AdicionarIndiceNaoExistente(itemMercadoria, TABELA_CONSIGNADO_X, coeficienteAtacado, consulta);
-            }
-            return linha;
-        }
-
-        private DataRow TranporRepresentante(DataRow itemMercadoria, StringBuilder consulta, double coeficienteAtacado, bool erro, DataRow linha)
-        {
-            if (hashTabelaDataRowAntigo.TryGetValue(TABELA_REPRESENTANTE.ToString().Trim() + itemMercadoria[REFERÊNCIA].ToString().Trim(), out linha))
-            {
-                AlterarIndiceExistente(itemMercadoria, TABELA_REPRESENTANTE, coeficienteAtacado, consulta);
-            }
-            else if (!erro)
-            {
-                AdicionarIndiceNaoExistente(itemMercadoria, TABELA_REPRESENTANTE, coeficienteAtacado, consulta);
-            }
-
-            return linha;
-        }
-
-        private DataRow TransporAtacado(DataRow itemMercadoria, StringBuilder consulta, double coeficienteAtacado, bool erro)
-        {
-            DataRow linha;
-            if (hashTabelaDataRowAntigo.TryGetValue(TABELA_ATACADO.ToString().Trim() + itemMercadoria[REFERÊNCIA].ToString().Trim(), out linha))
-            {
-                AlterarIndiceExistente(itemMercadoria, TABELA_ATACADO, coeficienteAtacado, consulta);
-            }
-            else if (!erro)
-            {
-                AdicionarIndiceNaoExistente(itemMercadoria, TABELA_ATACADO, coeficienteAtacado, consulta);
-            }
-            return linha;
+            if (!erro)
+                AdicionarIndiceNaoExistente(itemMercadoria, codigoTabela, coeficiente, consulta);
         }
 
         private static void CalcularCoeficienteDePeça(DataRow itemMercadoria, StringBuilder saida, ref double coeficienteAtacado, ref double coeficienteAutoAtacado, ref double valorVarejo, ref double valorVarejoConsulta, ref bool erro)
