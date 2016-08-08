@@ -9,6 +9,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 	public class Indices
 	{
         private const int TABELA_CONSIGNADO = 2;
+        private const int TABELA_CONSIGNADO_X = 7;
         private const int TABELA_ATACADO = 3;
         private const int TABELA_ALTO_ATACADO = 4;
         private const int TABELA_VAREJO = 1;
@@ -125,6 +126,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             linha = TransporAtacado(itemMercadoria, consulta, coeficienteAtacado, erro);
             linha = TranporRepresentante(itemMercadoria, consulta, coeficienteAtacado, erro, linha);
             linha = TransporConsignado(itemMercadoria, consulta, coeficienteAtacado, erro, linha);
+            linha = TransporConsignadoX(itemMercadoria, consulta, coeficienteAtacado, erro, linha);
             linha = TransporVarejo(itemMercadoria, consulta, valorVarejo, erro, linha);
             linha = TransporVarejoConsulta(itemMercadoria, consulta, valorVarejoConsulta, erro, linha);
             linha = TransporAA(itemMercadoria, consulta, coeficienteAutoAtacado, erro, linha);
@@ -182,6 +184,19 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             else if (!erro)
             {
                 AdicionarIndiceNaoExistente(itemMercadoria, TABELA_CONSIGNADO, coeficienteAtacado, consulta);
+            }
+            return linha;
+        }
+
+        private DataRow TransporConsignadoX(DataRow itemMercadoria, StringBuilder consulta, double coeficienteAtacado, bool erro, DataRow linha)
+        {
+            if (hashTabelaDataRowAntigo.TryGetValue(TABELA_CONSIGNADO_X.ToString().Trim() + itemMercadoria[REFERÊNCIA].ToString().Trim(), out linha))
+            {
+                AlterarIndiceExistente(itemMercadoria, TABELA_CONSIGNADO_X, coeficienteAtacado, consulta);
+            }
+            else if (!erro)
+            {
+                AdicionarIndiceNaoExistente(itemMercadoria, TABELA_CONSIGNADO_X, coeficienteAtacado, consulta);
             }
             return linha;
         }
