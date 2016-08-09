@@ -122,44 +122,32 @@ namespace Negócio
             cmd.ExecuteNonQuery();
         }
 
-        struct DadosMercadoria
-        {
-            public string Referência;
-            public double Peso;
-            public bool DePeso;
-        }
-
         public Mercadoria[] ObterMercadorias()
         {
-            List<DadosMercadoria> referências = new List<DadosMercadoria>();
+            List<string> referências = new List<string>();
 
-            cmd.CommandText = "SELECT referencia, peso, depeso FROM tmpPesquisaMercadoria";
+            cmd.CommandText = "SELECT referencia FROM tmpPesquisaMercadoria";
 
             using (IDataReader leitor = cmd.ExecuteReader())
             {
                 try
                 {
                     while (leitor.Read())
-                    {
-                        DadosMercadoria dados;
-                        dados.Referência = leitor.GetString(0);
-                        dados.Peso = leitor.GetDouble(1);
-                        dados.DePeso = leitor.GetBoolean(2);
-                        referências.Add(dados);
-                    }
+                        referências.Add(leitor.GetString(0));
                 }
                 finally
                 {
-                    leitor.Close();
+                    if (leitor != null)
+                        leitor.Close();
                 }
             }
 
             Mercadoria[] mercadorias = new Mercadoria[referências.Count];
             int x = 0;
 
-            foreach (DadosMercadoria dados in referências)
+            foreach (string referência in referências)
             {
-                Mercadoria m = Mercadoria.ObterMercadoriaComCache(dados.Referência, tabela);
+                Mercadoria m = Mercadoria.ObterMercadoriaComCache(referência, tabela);
                 mercadorias[x++] = m;
             }
 
