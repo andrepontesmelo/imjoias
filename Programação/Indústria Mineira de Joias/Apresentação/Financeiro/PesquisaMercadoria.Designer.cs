@@ -185,7 +185,7 @@
             this.btnPesqusiar.TabIndex = 12;
             this.btnPesqusiar.Text = "Pesquisar";
             this.btnPesqusiar.UseVisualStyleBackColor = true;
-            this.btnPesqusiar.Click += new System.EventHandler(this.btnPesqusiar_Click);
+            this.btnPesqusiar.Click += new System.EventHandler(this.btnPesquisar_Click);
             // 
             // btnCancelar
             // 

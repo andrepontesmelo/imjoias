@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Apresentação.Financeiro
 {
-    public partial class ConsultaMercadoria : Apresentação.Formulários.JanelaExplicativa
+    public partial class ConsultaMercadoria : JanelaExplicativa
     {
         private ConfiguraçãoUsuário<uint> configuração = null;
 
@@ -24,7 +24,7 @@ namespace Apresentação.Financeiro
 
             configuração = new ConfiguraçãoUsuário<uint>("ÚltimaTabelaConsulta", Tabela.TabelaPadrão.Código);
 
-            txtCotação.Data = Entidades.Configuração.DadosGlobais.Instância.HoraDataAtual;
+            txtCotação.Data = DadosGlobais.Instância.HoraDataAtual;
             cmbTabela.Seleção = Tabela.ObterTabela(configuração.Valor);
         }
 
@@ -40,7 +40,6 @@ namespace Apresentação.Financeiro
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-            //cmbTabela
             if (txtMercadoria.Mercadoria == null)
             {
                 MessageBox.Show(this,
@@ -55,7 +54,7 @@ namespace Apresentação.Financeiro
 
             UseWaitCursor = true;
 
-            Apresentação.Formulários.AguardeDB.Mostrar();
+            AguardeDB.Mostrar();
 
             try
             {
@@ -111,27 +110,9 @@ namespace Apresentação.Financeiro
             finally
             {
                 UseWaitCursor = false;
-                Apresentação.Formulários.AguardeDB.Fechar();
+                AguardeDB.Fechar();
             }
-
-            /* A janela de consulta não escondia e, portanto,
-             * agora ela é fechada. De qualquer maneira, acredito
-             * que uma consulta de preço possa ser uma tarefa
-             * executada em cima de um trabalho em andamento
-             * (principalmente no cofre, mas não no atendimento)
-             * e, portanto, pode ser fechada logo após o uso.
-             * 
-             * Júlio, 08/03/2006
-             */
-
-            /* Foi solicitado em maio/2005 que a janela de consulta volte 
-             * a aparecer logo depois do fechamento da tela de informações.
-             * 
-             * André, 15/05/2006
-             */
-            // Close();
         }
-
 
         private void janelaInformações_Fechando(object sender, EventArgs args)
         {
@@ -197,9 +178,7 @@ namespace Apresentação.Financeiro
 
         private void cmbTabela_AoSelecionar(ComboTabela sender, Tabela moeda)
         {
-            // Necessário para que a mudança de tabela atualize a txtCotação
             txtCotação.Valor = 0;
-
             txtCotação.Moeda = moeda.Moeda;
         }
 
@@ -208,11 +187,6 @@ namespace Apresentação.Financeiro
             PesquisaMercadoria pesquisa = new PesquisaMercadoria();
             pesquisa.Show();
             Close();
-        }
-
-        private void ConsultaMercadoria_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void ConsultaMercadoria_KeyDown(object sender, KeyEventArgs e)
@@ -232,6 +206,4 @@ namespace Apresentação.Financeiro
             Close();
         }
     }
-
 }
-

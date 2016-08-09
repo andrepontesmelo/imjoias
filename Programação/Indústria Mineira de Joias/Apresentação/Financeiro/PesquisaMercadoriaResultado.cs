@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
+﻿using Entidades;
 using Entidades.Álbum;
-using Entidades;
-using Acesso.Comum;
 
 namespace Apresentação.Financeiro
 {
-    public partial class PesquisaMercadoriaResultado : Apresentação.Formulários.JanelaExplicativa
+    public partial class PesquisaMercadoriaResultado : Formulários.JanelaExplicativa
     {
         public PesquisaMercadoriaResultado(Entidades.Mercadoria.Mercadoria[] mercadorias, Tabela tabela, Entidades.Financeiro.Cotação cotação)
         {
@@ -19,7 +11,7 @@ namespace Apresentação.Financeiro
 
             listaFotos.Ordenar = false;
 
-            using (Apresentação.Formulários.Aguarde dlg = new Apresentação.Formulários.Aguarde("Carregando fotos...", mercadorias.Length))
+            using (Formulários.Aguarde dlg = new Formulários.Aguarde("Carregando fotos...", mercadorias.Length))
             {
                 dlg.Abrir();
 
@@ -28,9 +20,7 @@ namespace Apresentação.Financeiro
                     Foto foto = CacheMiniaturas.Instância.ObterFoto(m);
 
                     if (foto != null)
-                    {
                         listaFotos.Adicionar(foto);
-                    }
 
                     dlg.Passo();
                 }
@@ -40,7 +30,7 @@ namespace Apresentação.Financeiro
             txtCotação.Cotação = cotação;
         }
 
-        private void listaFotos_AoSelecionar(Entidades.Álbum.Foto foto)
+        private void listaFotos_AoSelecionar(Foto foto)
         {
             if (foto != null)
             {

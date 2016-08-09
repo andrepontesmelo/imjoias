@@ -234,7 +234,6 @@ namespace Apresentação.Financeiro
             this.Name = "ConsultaMercadoria";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Consulta de preço";
-            this.Load += new System.EventHandler(this.ConsultaMercadoria_Load);
             this.Shown += new System.EventHandler(this.ConsultaMercadoria_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ConsultaMercadoria_KeyDown);
             this.Controls.SetChildIndex(this.btnCancelar, 0);

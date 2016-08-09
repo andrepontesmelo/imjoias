@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Apresentação.Financeiro
 {
-    public partial class PesquisaMercadoria : Apresentação.Formulários.JanelaExplicativa
+    public partial class PesquisaMercadoria : JanelaExplicativa
     {
         public PesquisaMercadoria()
         {
@@ -30,7 +30,7 @@ namespace Apresentação.Financeiro
             }
         }
 
-        private void btnPesqusiar_Click(object sender, EventArgs e)
+        private void btnPesquisar_Click(object sender, EventArgs e)
         {
             PesquisaMercadoriaResultado resultado;
             Entidades.Mercadoria.Mercadoria[] mercadorias;
@@ -71,6 +71,7 @@ namespace Apresentação.Financeiro
             resultado = new PesquisaMercadoriaResultado(mercadorias, cmbTabela.Seleção, txtCotação.Cotação);
             DialogResult = DialogResult.OK;
             Close();
+
             resultado.Show();
         }
 
