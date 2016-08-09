@@ -31,11 +31,16 @@ namespace Negócio
             }
 
             cmd.CommandText = "CREATE TEMPORARY TABLE IF NOT EXISTS tmpPesquisaMercadoria "
-                + "SELECT m.referencia, m.peso, m.depeso, t.coeficiente AS indice FROM mercadoria m JOIN tabelamercadoria t ON m.referencia = t.mercadoria WHERE m.foradelinha = 0 AND m.depeso = 0 AND t.tabela = " + DbTransformar(tabela.Código);
+                + "SELECT m.referencia, m.peso, m.depeso, t.coeficiente AS indice FROM mercadoria m JOIN " + 
+                " tabelamercadoria t ON m.referencia = t.mercadoria WHERE m.foradelinha = 0 AND m.depeso = 0 " + 
+                " AND t.tabela = " + DbTransformar(tabela.Código);
             cmd.ExecuteNonQuery();
 
             cmd.CommandText = "INSERT INTO tmpPesquisaMercadoria "
-                + "SELECT m.referencia, m.peso, m.depeso, t.coeficiente * m.peso AS indice FROM mercadoria m JOIN tabelamercadoria t ON m.referencia = t.mercadoria WHERE m.foradelinha = 0 AND m.depeso = 1 AND m.peso IS NOT NULL AND t.tabela = " + DbTransformar(tabela.Código);
+                + "SELECT m.referencia, m.peso, m.depeso, t.coeficiente * m.peso AS indice FROM mercadoria m JOIN " + 
+                " tabelamercadoria t ON m.referencia = t.mercadoria WHERE m.foradelinha = 0 AND m.depeso = 1 " +
+                " AND m.peso IS NOT NULL AND t.tabela = " + DbTransformar(tabela.Código);
+
             cmd.ExecuteNonQuery();
 
         }
@@ -59,9 +64,18 @@ namespace Negócio
         public void FiltrarPedras(Pedra[] pedras)
         {
             StringBuilder str = new StringBuilder();
-            int cnt = 0;
 
             str.Append("DELETE FROM tmpPesquisaMercadoria WHERE SUBSTR(referencia, 7, 2) NOT IN (");
+
+            FiltrarPedras(pedras, str);
+
+            cmd.CommandText = str.ToString();
+            cmd.ExecuteNonQuery();
+        }
+
+        private static void FiltrarPedras(Pedra[] pedras, StringBuilder str)
+        {
+            int cnt = 0;
 
             foreach (Pedra pedra in pedras)
             {
@@ -75,17 +89,22 @@ namespace Negócio
             }
 
             str.Append(")");
-
-            cmd.CommandText = str.ToString();
-            cmd.ExecuteNonQuery();
         }
 
         public void FiltrarMetais(Metal[] metais)
         {
             StringBuilder str = new StringBuilder();
-            int cnt = 0;
 
             str.Append("DELETE FROM tmpPesquisaMercadoria WHERE SUBSTR(referencia, 9, 1) NOT IN (");
+            FiltrarMetais(metais, str);
+
+            cmd.CommandText = str.ToString();
+            cmd.ExecuteNonQuery();
+        }
+
+        private static void FiltrarMetais(Metal[] metais, StringBuilder str)
+        {
+            int cnt = 0;
 
             foreach (Metal metal in metais)
             {
@@ -96,17 +115,23 @@ namespace Negócio
             }
 
             str.Append(")");
-
-            cmd.CommandText = str.ToString();
-            cmd.ExecuteNonQuery();
         }
 
         public void FiltrarTipos(MercadoriaTipo[] tipos)
         {
             StringBuilder str = new StringBuilder();
-            int cnt = 0;
 
             str.Append("DELETE FROM tmpPesquisaMercadoria WHERE SUBSTR(referencia, 2, 2) NOT IN (");
+
+            FiltrarTipos(tipos, str);
+
+            cmd.CommandText = str.ToString();
+            cmd.ExecuteNonQuery();
+        }
+
+        private static void FiltrarTipos(MercadoriaTipo[] tipos, StringBuilder str)
+        {
+            int cnt = 0;
 
             foreach (MercadoriaTipo tipo in tipos)
             {
@@ -117,12 +142,28 @@ namespace Negócio
             }
 
             str.Append(")");
-
-            cmd.CommandText = str.ToString();
-            cmd.ExecuteNonQuery();
         }
 
         public Mercadoria[] ObterMercadorias()
+        {
+            return ObterMercadorias(ObterReferências());
+        }
+
+        private Mercadoria[] ObterMercadorias(List<string> referências)
+        {
+            Mercadoria[] mercadorias = new Mercadoria[referências.Count];
+            int x = 0;
+
+            foreach (string referência in referências)
+            {
+                Mercadoria m = Mercadoria.ObterMercadoriaComCache(referência, tabela);
+                mercadorias[x++] = m;
+            }
+
+            return mercadorias;
+        }
+
+        private List<string> ObterReferências()
         {
             List<string> referências = new List<string>();
 
@@ -142,16 +183,7 @@ namespace Negócio
                 }
             }
 
-            Mercadoria[] mercadorias = new Mercadoria[referências.Count];
-            int x = 0;
-
-            foreach (string referência in referências)
-            {
-                Mercadoria m = Mercadoria.ObterMercadoriaComCache(referência, tabela);
-                mercadorias[x++] = m;
-            }
-
-            return mercadorias;
+            return referências;
         }
     }
 }
