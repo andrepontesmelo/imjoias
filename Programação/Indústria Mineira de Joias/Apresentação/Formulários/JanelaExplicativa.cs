@@ -134,7 +134,7 @@ namespace Apresentação.Formulários
             this.Name = "JanelaExplicativa";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "JanelaExplicativa";
             this.Resize += new System.EventHandler(this.JanelaExplicativa_Resize);
             this.topo.ResumeLayout(false);
