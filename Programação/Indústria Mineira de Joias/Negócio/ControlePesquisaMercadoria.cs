@@ -35,8 +35,9 @@ namespace Negócio
             cmd.ExecuteNonQuery();
 
             cmd.CommandText = "INSERT INTO tmpPesquisaMercadoria "
-                + "SELECT m.referencia, f.peso, m.depeso, t.coeficiente * f.peso AS indice FROM foto f JOIN mercadoria m ON f.mercadoria = m.referencia JOIN tabelamercadoria t ON m.referencia = t.mercadoria WHERE m.foradelinha = 0 AND m.depeso = 1 AND f.peso IS NOT NULL AND t.tabela = " + DbTransformar(tabela.Código);
+                + "SELECT m.referencia, m.peso, m.depeso, t.coeficiente * m.peso AS indice FROM mercadoria m JOIN tabelamercadoria t ON m.referencia = t.mercadoria WHERE m.foradelinha = 0 AND m.depeso = 1 AND m.peso IS NOT NULL AND t.tabela = " + DbTransformar(tabela.Código);
             cmd.ExecuteNonQuery();
+
         }
 
         public void Dispose()

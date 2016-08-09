@@ -232,15 +232,15 @@ namespace Apresentação.Mercadoria.Cotação
 		/// veja comentário de Carregar() para saber o porquê.
 		/// </summary>
 		[Browsable(false)]
-		public DateTime Data
+		public DateTime? Data
 		{
 			get 
 			{ 
-				return data.Value; 
+				return data?.Value; 
 			}
 			set
 			{
-                DefinirData(value);
+                DefinirData(value.Value);
 			}
         }
 
@@ -380,7 +380,7 @@ namespace Apresentação.Mercadoria.Cotação
                 {
                     ListViewItem novoItem;
 
-                    if (cotação.Data.Value.Date != Data.Date)
+                    if (Data.HasValue && cotação.Data.Value.Date != Data.Value.Date)
                         novoItem = new ListViewItem("Anterior");
                     else
                         novoItem = new ListViewItem(cotação.Data.Value.ToShortTimeString());
