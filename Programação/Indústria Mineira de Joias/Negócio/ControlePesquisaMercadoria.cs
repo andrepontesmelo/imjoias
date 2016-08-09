@@ -158,12 +158,9 @@ namespace Negócio
 
             foreach (DadosMercadoria dados in referências)
             {
-                if (dados.DePeso)
-                    mercadorias.Add(Mercadoria.ObterMercadoria(dados.Referência, dados.Peso, tabela));
-                else
-                    mercadorias.Add(Mercadoria.ObterMercadoria(dados.Referência, tabela));
+                Mercadoria m = Mercadoria.ObterMercadoriaComCache(dados.Referência, tabela);
+                mercadorias.Add(m);
             }
-
             return mercadorias;
         }
     }

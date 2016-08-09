@@ -26,7 +26,7 @@ namespace Entidades.Mercadoria
     /// em outras entidades.
     /// </remarks>
     [Serializable]
-    [Cacheável("ObterMercadoriaSemCache"), Validade(6, 0, 0)]
+    [Cacheável("ObterMercadoriaComCache"), Validade(6, 0, 0)]
 	public class Mercadoria : Acesso.Comum.DbManipulação, IDisposable, ICloneable
 	{
         /// <summary>
@@ -657,7 +657,7 @@ namespace Entidades.Mercadoria
             return mercadoria;
         }
 
-		public static Mercadoria ObterMercadoriaSemCache(string referência, Tabela tabela)
+		public static Mercadoria ObterMercadoriaComCache(string referência, Tabela tabela)
 		{
             MercadoriaCampos campos = MercadoriaCampos.ObterMercadoria(referência);
 
