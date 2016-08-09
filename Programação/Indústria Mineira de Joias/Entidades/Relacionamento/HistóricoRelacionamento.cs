@@ -229,9 +229,8 @@ namespace Entidades.Relacionamento
                             int código = leitor.GetInt32((int)Ordem.ordemCódigo);
                             int códigoFuncionário = leitor.GetInt32((int)Ordem.ordemFuncionário);
 
-                            // Ajusta o índice na mercadoria 
-                            Entidades.Mercadoria.Mercadoria m = Mercadoria.Mercadoria.ObterMercadoria(referência, peso, entidadePai.TabelaPreço);
-
+                            Mercadoria.Mercadoria m = Mercadoria.Mercadoria.ObterMercadoriaComCache(referência, entidadePai.TabelaPreço);
+                            m.Peso = peso;
                             m.Índice = índice;
 
                             HistóricoRelacionamentoItem item = ConstruirItemHistórico(
