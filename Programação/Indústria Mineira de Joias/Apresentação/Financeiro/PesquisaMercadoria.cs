@@ -64,7 +64,7 @@ namespace Apresentação.Financeiro
 
                     aguarde.Passo();
 
-                    mercadorias = controle.ObterMercadorias().ToArray();
+                    mercadorias = controle.ObterMercadorias();
                 }
             }
 

@@ -129,7 +129,7 @@ namespace Negócio
             public bool DePeso;
         }
 
-        public List<Mercadoria> ObterMercadorias()
+        public Mercadoria[] ObterMercadorias()
         {
             List<DadosMercadoria> referências = new List<DadosMercadoria>();
 
@@ -154,13 +154,15 @@ namespace Negócio
                 }
             }
 
-            List<Mercadoria> mercadorias = new List<Mercadoria>(referências.Count);
+            Mercadoria[] mercadorias = new Mercadoria[referências.Count];
+            int x = 0;
 
             foreach (DadosMercadoria dados in referências)
             {
                 Mercadoria m = Mercadoria.ObterMercadoriaComCache(dados.Referência, tabela);
-                mercadorias.Add(m);
+                mercadorias[x++] = m;
             }
+
             return mercadorias;
         }
     }
