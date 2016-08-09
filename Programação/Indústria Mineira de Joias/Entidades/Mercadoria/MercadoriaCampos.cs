@@ -201,7 +201,6 @@ namespace Entidades.Mercadoria
 		public int Dígito
 		{
 			get { return digito; }
-//			set { digito = value; }
 		}
 
 		/// <summary>
@@ -267,7 +266,6 @@ namespace Entidades.Mercadoria
 		public virtual Coeficientes Coeficientes
 		{
             get { return coeficientes; } 
-//            set { coeficiente = value; DefinirDesatualizado(); }
 		}
 
 		/// <summary>
@@ -278,19 +276,6 @@ namespace Entidades.Mercadoria
 			get { return depeso; }
             set { depeso = value; DefinirDesatualizado(); }
 		}
-
-        /// <summary>
-        /// Uma mercadoria pode entrar em promoção. Trata-se de um desconto fixo para todas as 
-        /// mercadorias. A promoção não é uma para cada mercadoria porque é tradição da empresa
-        /// fazer uma unica promoção para liquidar algumas mercadorias pesadas após o balanço.
-        /// Além disto pode-se usar um label na etiqueta que ou aparece ou não, conforme
-        /// este valor booleano.
-        /// </summary>
-        public bool Promoção
-        {
-            get { return promocao; }
-            set { promocao = value; }
-        }
 
 		/// <summary>
 		/// Fora de linha

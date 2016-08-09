@@ -44,7 +44,6 @@ namespace Entidades.Mercadoria
                     preparando = true;
 
                 System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(Recuperar));
-                //                thread.Priority = System.Threading.ThreadPriority.BelowNormal;
                 thread.Name = "MercadoriaOca: " + Referência;
                 thread.Start();
 
@@ -208,21 +207,6 @@ namespace Entidades.Mercadoria
             }
         }
 
-        public bool Promoção
-        {
-            get
-            {
-                if (campos == null)
-                    Recuperar();
-
-                return campos.Promoção;
-            }
-            set
-            {
-                throw new NotSupportedException("Atribuição não é suportada pela mercadoria oca.");
-            }
-        }
-
         public bool ForaDeLinha
         {
             get
@@ -240,36 +224,6 @@ namespace Entidades.Mercadoria
                 throw new NotSupportedException("Atribuição não é suportada pela mercadoria oca.");
             }
         }
-
-        //public System.Drawing.Image Ícone
-        //{
-        //    get
-        //    {
-        //        if (campos == null)
-        //            Recuperar();
-
-        //        return campos.Ícone;
-        //    }
-        //}
-
-        //public bool ÍconeObtido
-        //{
-        //    get
-        //    {
-        //        if (campos == null)
-        //            return false;
-        //        else
-        //            return campos.ÍconeObtido;
-        //    }
-        //}
-
-        //public void PrepararÍcone()
-        //{
-        //    if (campos == null)
-        //        Recuperar();
-
-        //    campos.PrepararÍcone();
-        //}
 
         #endregion
     }

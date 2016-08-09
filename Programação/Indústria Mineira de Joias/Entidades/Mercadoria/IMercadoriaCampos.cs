@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
-using Entidades.Álbum;
-
-namespace Entidades.Mercadoria
+﻿namespace Entidades.Mercadoria
 {
     interface IMercadoriaCampos
     {
@@ -99,19 +93,6 @@ namespace Entidades.Mercadoria
         }
 
         /// <summary>
-        /// Uma mercadoria pode entrar em promoção. Trata-se de um desconto fixo para todas as 
-        /// mercadorias. A promoção não é uma para cada mercadoria porque é tradição da empresa
-        /// fazer uma unica promoção para liquidar algumas mercadorias pesadas após o balanço.
-        /// Além disto pode-se usar um label na etiqueta que ou aparece ou não, conforme
-        /// este valor booleano.
-        /// </summary>
-        bool Promoção
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// Fora de linha
         /// </summary>
         bool ForaDeLinha
@@ -119,29 +100,5 @@ namespace Entidades.Mercadoria
             get;
             set;
         }
-
-        ///// <summary>
-        ///// Ícone da mercadoria
-        ///// </summary>
-        //Image Ícone
-        //{
-        //    get;
-        //}
-
-        //bool ÍconeObtido { get; }
-
-        //void PrepararÍcone();
-
-        //Fornecedor Fornecedor
-        //{
-        //    get;
-        //    set;
-        //}
-
-        //string FornecedorReferência 
-        //{
-        //    get; 
-        //    set;
-        //}
     }
 }

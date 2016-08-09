@@ -359,19 +359,6 @@ namespace Entidades.Mercadoria
             set { campos.DePeso = value; }
 		}
 
-        /// <summary>
-        /// Uma mercadoria pode entrar em promoção. Trata-se de um desconto fixo para todas as 
-        /// mercadorias. A promoção não é uma para cada mercadoria porque é tradição da empresa
-        /// fazer uma unica promoção para liquidar algumas mercadorias pesadas após o balanço.
-        /// Além disto pode-se usar um label na etiqueta que ou aparece ou não, conforme
-        /// este valor booleano.
-        /// </summary>
-        public bool Promoção
-        {
-            get { return campos.Promoção; }
-            set { campos.Promoção = value; }
-        }
-
 		/// <summary>
 		/// Fora de linha
 		/// </summary>
@@ -380,7 +367,6 @@ namespace Entidades.Mercadoria
 			get { return campos.ForaDeLinha; }
             set { campos.ForaDeLinha = value; }
 		}
-
 
 		/// <summary>
 		/// Foto da mercadoria
@@ -406,7 +392,6 @@ namespace Entidades.Mercadoria
         public Tabela TabelaPreço { get { return tabela; } set { tabela = value; } }
 
 
-		
 		/// <summary>
 		/// Informa à propriedade Animação se ela obtém ou não, 
 		/// no caso de ser nulo.
@@ -832,11 +817,6 @@ namespace Entidades.Mercadoria
 				contador = (contador + 8) % (8 * 4);
 			}
             
-            /* O sistema já disparou 22 vezes a exceção
-             * Value was either too large or too small for an Int32.
-             * Na seguinte linha: o que pode ser?
-             * andre, 23-julho-2006
-             */
             try
             {
                 hash ^= Convert.ToInt32(Peso * 1000);
@@ -861,8 +841,7 @@ namespace Entidades.Mercadoria
                 && this.Descrição == outra.Descrição && this.Teor == outra.Teor
                 && this.Faixa == outra.Faixa
                 && this.Grupo == outra.Grupo && this.coeficiente == outra.coeficiente
-                && this.DePeso == outra.DePeso && this.ForaDeLinha == outra.ForaDeLinha
-                && this.Promoção == outra.Promoção;
+                && this.DePeso == outra.DePeso && this.ForaDeLinha == outra.ForaDeLinha;
 		}
 		
 		/// <summary>
