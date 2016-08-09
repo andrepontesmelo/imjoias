@@ -10,55 +10,52 @@ namespace Negócio
 {
     public class ControlePesquisaMercadoria : DbManipulaçãoSimples, IDisposable
     {
-        private IDbCommand cmd;
+        IDbConnection conexão;
         private Tabela tabela;
-        private IDbConnection cn = null;
 
         public ControlePesquisaMercadoria(Tabela tabela)
         {
             this.tabela = tabela;
+            conexão = Conexão;
 
             CriarTabela();
         }
 
         private void CriarTabela()
         {
-            if (cmd == null)
+            using (IDbCommand cmd = conexão.CreateCommand())
             {
-                cn = Conexão;
-                Usuários.UsuárioAtual.GerenciadorConexões.RemoverConexão(cn);
-                cmd = Conexão.CreateCommand();
+                cmd.CommandText = "CREATE TEMPORARY TABLE IF NOT EXISTS tmpPesquisaMercadoria "
+                    + "SELECT m.referencia, m.peso, m.depeso, t.coeficiente AS indice FROM mercadoria m JOIN " +
+                    " tabelamercadoria t ON m.referencia = t.mercadoria WHERE m.foradelinha = 0 AND m.depeso = 0 " +
+                    " AND t.tabela = " + DbTransformar(tabela.Código);
+                cmd.ExecuteNonQuery();
+
+                cmd.CommandText = "INSERT INTO tmpPesquisaMercadoria "
+                    + "SELECT m.referencia, m.peso, m.depeso, t.coeficiente * m.peso AS indice FROM mercadoria m JOIN " +
+                    " tabelamercadoria t ON m.referencia = t.mercadoria WHERE m.foradelinha = 0 AND m.depeso = 1 " +
+                    " AND m.peso IS NOT NULL AND t.tabela = " + DbTransformar(tabela.Código);
+
+                cmd.ExecuteNonQuery();
             }
-
-            cmd.CommandText = "CREATE TEMPORARY TABLE IF NOT EXISTS tmpPesquisaMercadoria "
-                + "SELECT m.referencia, m.peso, m.depeso, t.coeficiente AS indice FROM mercadoria m JOIN " + 
-                " tabelamercadoria t ON m.referencia = t.mercadoria WHERE m.foradelinha = 0 AND m.depeso = 0 " + 
-                " AND t.tabela = " + DbTransformar(tabela.Código);
-            cmd.ExecuteNonQuery();
-
-            cmd.CommandText = "INSERT INTO tmpPesquisaMercadoria "
-                + "SELECT m.referencia, m.peso, m.depeso, t.coeficiente * m.peso AS indice FROM mercadoria m JOIN " + 
-                " tabelamercadoria t ON m.referencia = t.mercadoria WHERE m.foradelinha = 0 AND m.depeso = 1 " +
-                " AND m.peso IS NOT NULL AND t.tabela = " + DbTransformar(tabela.Código);
-
-            cmd.ExecuteNonQuery();
-
         }
 
         public void Dispose()
         {
-            cmd.CommandText = "DROP TABLE tmpPesquisaMercadoria";
-            cmd.ExecuteNonQuery();
-            cmd.Dispose();
-
-            if (cn != null)
-                Usuários.UsuárioAtual.GerenciadorConexões.AdicionarConexão(cn);
+            using (IDbCommand cmd = conexão.CreateCommand())
+            {
+                cmd.CommandText = "DROP TABLE tmpPesquisaMercadoria";
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public void FiltrarÍndice(double índice)
         {
-            cmd.CommandText = "DELETE FROM tmpPesquisaMercadoria WHERE indice > " + DbTransformar(índice);
-            cmd.ExecuteNonQuery();
+            using (IDbCommand cmd = conexão.CreateCommand())
+            {
+                cmd.CommandText = "DELETE FROM tmpPesquisaMercadoria WHERE indice > " + DbTransformar(índice);
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public void FiltrarPedras(Pedra[] pedras)
@@ -69,8 +66,11 @@ namespace Negócio
 
             FiltrarPedras(pedras, str);
 
-            cmd.CommandText = str.ToString();
-            cmd.ExecuteNonQuery();
+            using (IDbCommand cmd = conexão.CreateCommand())
+            {
+                cmd.CommandText = str.ToString();
+                cmd.ExecuteNonQuery();
+            }
         }
 
         private static void FiltrarPedras(Pedra[] pedras, StringBuilder str)
@@ -98,8 +98,11 @@ namespace Negócio
             str.Append("DELETE FROM tmpPesquisaMercadoria WHERE SUBSTR(referencia, 9, 1) NOT IN (");
             FiltrarMetais(metais, str);
 
-            cmd.CommandText = str.ToString();
-            cmd.ExecuteNonQuery();
+            using (IDbCommand cmd = conexão.CreateCommand())
+            {
+                cmd.CommandText = str.ToString();
+                cmd.ExecuteNonQuery();
+            }
         }
 
         private static void FiltrarMetais(Metal[] metais, StringBuilder str)
@@ -125,8 +128,11 @@ namespace Negócio
 
             FiltrarTipos(tipos, str);
 
-            cmd.CommandText = str.ToString();
-            cmd.ExecuteNonQuery();
+            using (IDbCommand cmd = conexão.CreateCommand())
+            {
+                cmd.CommandText = str.ToString();
+                cmd.ExecuteNonQuery();
+            }
         }
 
         private static void FiltrarTipos(MercadoriaTipo[] tipos, StringBuilder str)
@@ -167,23 +173,26 @@ namespace Negócio
         {
             List<string> referências = new List<string>();
 
-            cmd.CommandText = "SELECT referencia FROM tmpPesquisaMercadoria";
-
-            using (IDataReader leitor = cmd.ExecuteReader())
+            using (IDbCommand cmd = conexão.CreateCommand())
             {
-                try
-                {
-                    while (leitor.Read())
-                        referências.Add(leitor.GetString(0));
-                }
-                finally
-                {
-                    if (leitor != null)
-                        leitor.Close();
-                }
-            }
+                cmd.CommandText = "SELECT referencia FROM tmpPesquisaMercadoria";
 
-            return referências;
+                using (IDataReader leitor = cmd.ExecuteReader())
+                {
+                    try
+                    {
+                        while (leitor.Read())
+                            referências.Add(leitor.GetString(0));
+                    }
+                    finally
+                    {
+                        if (leitor != null)
+                            leitor.Close();
+                    }
+                }
+
+                return referências;
+            }
         }
     }
 }
