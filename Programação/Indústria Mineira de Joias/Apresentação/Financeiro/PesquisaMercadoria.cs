@@ -38,9 +38,8 @@ namespace Apresentação.Financeiro
             mercadorias = CarregarMercadorias();
 
             resultado = new PesquisaMercadoriaResultado(mercadorias, cmbTabela.Seleção, txtCotação.Cotação);
-            DialogResult = DialogResult.OK;
 
-            resultado.Show();
+            resultado.ShowDialog(this);
         }
 
         private Entidades.Mercadoria.Mercadoria[] CarregarMercadorias()

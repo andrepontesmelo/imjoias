@@ -185,8 +185,7 @@ namespace Apresentação.Financeiro
         private void linkPesquisaAvançada_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             PesquisaMercadoria pesquisa = new PesquisaMercadoria();
-            pesquisa.Show();
-            Close();
+            pesquisa.ShowDialog(ParentForm);
         }
 
         private void ConsultaMercadoria_KeyDown(object sender, KeyEventArgs e)
