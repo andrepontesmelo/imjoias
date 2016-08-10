@@ -202,57 +202,11 @@ namespace Entidades.Mercadoria
             }
         }
 
-		/// <summary>
-		/// Referência formatada
-		/// </summary>
-		public string Referência
-		{
-			get { return campos.Referência; }
-            set
-            {
-                campos.Referência = value;
-                this.referencia = campos.ReferênciaNumérica;
-            }
-		}
-
-
-		/// <summary>
-		/// Dígito verificador
-		/// </summary>
-		/// 
-		/// <remarks>
-		/// O dígito não deve ser definido, mas sim calculado.
-		/// </remarks>
-		public int Dígito
-		{
-			get { return campos.Dígito; }
-		}
-
-		/// <summary>
-		/// Referência numérica não formatada, sem dígito.
-		/// </summary>
-		public string ReferênciaNumérica
-		{
-			get { return campos.ReferênciaNumérica; }
-		}
-
-		/// <summary>
-		/// Descrição da mercadoria
-		/// </summary>
-		public string Descrição
-		{
-			get { return campos.Descrição; }
-			set { campos.Descrição = value; }
-		}
-
-		/// <summary>
-		/// Teor da mercadoria
-		/// </summary>
-		public int Teor
-		{
-			get { return campos.Teor; }
-            set { campos.Teor = value; }
-		}
+		public string Referência => campos.Referência; 
+		public int Dígito => campos.Dígito;
+		public string ReferênciaNumérica => campos.ReferênciaNumérica;
+		public string Descrição => campos.Descrição;
+		public int Teor => campos.Teor;
 
 		/// <summary>
 		/// Peso da mercadoria
@@ -271,23 +225,8 @@ namespace Entidades.Mercadoria
             get { return FormatarPeso(Peso); }
         }
 
-		/// <summary>
-		/// Faixa da meracdoria
-		/// </summary>
-		public string Faixa
-		{
-			get { return campos.Faixa; }
-            set { campos.Faixa = value; }
-		}
-
-		/// <summary>
-		/// Grupo da mercadoria
-		/// </summary>
-		public int? Grupo
-		{
-			get { return campos.Grupo; }
-            set { campos.Grupo = value; }
-		}
+        public string Faixa => campos.Faixa;
+        public int? Grupo => campos.Grupo;
 
 		/// <summary>
 		/// Coeficiente da mercadoria. Só é igual ao índice para mercadorias de peça.
@@ -340,23 +279,8 @@ namespace Entidades.Mercadoria
             }
         }
 
-		/// <summary>
-		/// Mercadoria de peso
-		/// </summary>
-		public bool DePeso
-		{
-			get { return campos.DePeso; }
-            set { campos.DePeso = value; }
-		}
-
-		/// <summary>
-		/// Fora de linha
-		/// </summary>
-		public bool ForaDeLinha
-		{
-			get { return campos.ForaDeLinha; }
-            set { campos.ForaDeLinha = value; }
-		}
+		public bool DePeso => campos.DePeso;
+        public bool ForaDeLinha => campos.ForaDeLinha;
 
 		/// <summary>
 		/// Foto da mercadoria
