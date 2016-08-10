@@ -6,76 +6,42 @@ using System.Windows.Forms;
 
 namespace Apresentação.Mercadoria.Cotação
 {
-    /// <summary>
-    /// TxtCotação é o responsável pela obtenção em primeira mão 
-    /// dos objetos "Cotação" do contexto pela camada de Apresentação.
-    /// Assim que uma cotação é cadastrada, apenas este controle deve disparar o evento. 
-    /// Mas antes, ele deve pergutar através de um balão 
-    /// para o usuário se pretende ou não utilizar a nova cotação.
-    /// </summary>
     public class TxtCotação : UserControl
     {
-        /// <summary>
-        /// Serve para informar se a cotação escolhida não é a mais recente
-        /// </summary>
         Entidades.Financeiro.Cotação últimaCotação;
 
         private volatile bool valorDefinido = false;
 
-        /// <summary>
-        /// Moeda de trabalho.
-        /// </summary>
         private Moeda moeda;
 
-        // Balões
         private BalãoCotaçãoNãoCadastrada balãoNãoCadastrada = null;
         private BalãoCotaçãoDesatualizada balãoDesatualizada = null;
 
-        // Atributos das propriedades
         private bool avisarCotaçõesNãoCadastradas = true;
         private bool avisarCotaçõesDesatualizadas = true;
         private bool avisarNovaCotação = true;
         private bool iniciarValorAtual = true;
         private bool mostrarListaCotações = true;
 
-        // Último evento disparado.
         private Entidades.Financeiro.Cotação últimaEscolha = null;
 
-        /// <summary>
-        /// Indica se o contexto e controles flutuantes foram carregados.
-        /// Só são carregados quando necessário.
-        /// 
-        /// Estes controles não são carregados no incio do programa porque:
-        /// 1. inicialmente o contexto não pode ser obtido,
-        /// 2. os controles não podem ser adicionados ao controle maior-pai,
-        /// porque ele ainda não existe ou alguns filhos ainda não existem.
-        /// </summary>
         private bool carregado = false;
 
-        // Controles 
-        private TxtCotaçãoPainel            painelFlutuante;
+        private TxtCotaçãoPainel painelFlutuante;
         private AMS.TextBox.CurrencyTextBox txt;
-        private PictureBox                  picCotação;
+        private PictureBox picCotação;
 
-        private ToolTip                     toolTipOk;
-        private ToolTip                     toolTipDesatualizada;
-        private IContainer                  components;
+        private ToolTip toolTipOk;
+        private ToolTip toolTipDesatualizada;
+        private IContainer components;
 
         private Moeda.MoedaSistema? moedaSistema = Moeda.MoedaSistema.Ouro;
 
-        #region Eventos
+        bool modoDesenho = (LicenseManager.UsageMode == LicenseUsageMode.Designtime);
 
-        /// <summary>
-        /// Invoque DispararEscolheuCotação ao invés de EscolheuCotação.
-        /// Isto porque deve-se evitar Escolhas repetidas.
-        /// </summary>
         public delegate void Escolha(Entidades.Financeiro.Cotação escolha);
         public event Escolha EscolheuCotação;
 
-        #endregion
-
-        #region Propriedades
-        
         [Browsable(false), ReadOnly(true)]
         public Moeda Moeda
         {
@@ -100,7 +66,7 @@ namespace Apresentação.Mercadoria.Cotação
             {
                 moedaSistema = value;
 
-                if (!DesignMode)
+                if (!modoDesenho)
                 {
                     moeda = value.HasValue ? Moeda.ObterMoeda(value.Value) : null;
 
@@ -134,33 +100,27 @@ namespace Apresentação.Mercadoria.Cotação
             set { txt.Double = value; valorDefinido = true;  }
         }
 
-        /// <summary>
-        /// Pegue ou escolha a data para exibição das cotações.
-        /// </summary>
         [Browsable(false), DefaultValue(null)]
         public DateTime? Data
         {
             get
             {
-                if (DesignMode)
+                if (modoDesenho)
                     return null;
                 else
                     return painelFlutuante.Data;
             }
             set
             {
-                if (!DesignMode && carregado)
-                {
-                    DateTime valor;
+                DateTime valor;
 
-                    if (value.HasValue)
-                        valor = value.Value;
-                    else
-                        valor = DateTime.Today;
+                if (value.HasValue)
+                    valor = value.Value;
+                else
+                    valor = DateTime.Today;
 
-                    if (painelFlutuante != null)
-                        painelFlutuante.DefinirData(valor);
-                }
+                if (painelFlutuante != null)
+                    painelFlutuante.DefinirData(valor);
             }
         }
 
@@ -180,9 +140,6 @@ namespace Apresentação.Mercadoria.Cotação
             set { avisarCotaçõesDesatualizadas = value; }
         }
 
-        /// <summary>
-        /// Avisar quando surgirem novas cotações.
-        /// </summary>
         [DefaultValue(true),
             Description("Avisa quando nova cotação é cadastrada, permitindo atualização conforme escolha de usuário.")]
         public bool AvisarNovaCotação
@@ -191,9 +148,6 @@ namespace Apresentação.Mercadoria.Cotação
             set { avisarNovaCotação = value; }
         }
 
-        /// <summary>
-        /// Cotação escolhida.
-        /// </summary>
         public Entidades.Financeiro.Cotação  Cotação
         {
             get
@@ -217,9 +171,6 @@ namespace Apresentação.Mercadoria.Cotação
             }
         }
 
-        /// <summary>
-        /// Determina se o controle deve iniciar com o valor mais atual.
-        /// </summary>
         [DefaultValue(true), Description("Determina se o controle deve iniciar com o valor mais atual.")]
         public bool IniciarValorAtual
         {
@@ -227,17 +178,12 @@ namespace Apresentação.Mercadoria.Cotação
             set { iniciarValorAtual = value; }
         }
 
-        /// <summary>
-        /// Determina se deve ser exibido a lista de cotações.
-        /// </summary>
         [DefaultValue(true), Description("Determina se o controle deve mostrar a lista de cotações.")]
         public bool MostrarListaCotações
         {
             get { return mostrarListaCotações; }
             set { mostrarListaCotações = value; }
         }
-
-        #endregion
 
         /// <summary>
         /// Constrói o controle
@@ -350,12 +296,6 @@ namespace Apresentação.Mercadoria.Cotação
             base.Dispose(disposing);
         }
 
-        /// <summary>
-        /// O painel é flutuante porque está no controle toppest.
-        /// portanto, é necessário posiciona-lo corretamente uma vez
-        /// que os valores de posição trabalhados são relativos, e portanto,
-        /// diferentes.
-        /// </summary>
         private void ReposicionarPainelFlutuante()
         {
             if (ParentForm == null)
@@ -395,41 +335,23 @@ namespace Apresentação.Mercadoria.Cotação
         }
 
 
-        /// <summary>
-        /// Carrega controles que compões o painelFlutuante.
-        /// Caso o usuário deseje escolher a propridade, this.Data,
-        /// ele deve chamar o Carregar antes.
-        /// Veja comentário de 'carregado' no início do arquivo.
-        /// </summary>
         private void Carregar()
         {
-            if (DesignMode || Acesso.Comum.Usuários.UsuárioAtual == null || carregado)
+            if (modoDesenho || Acesso.Comum.Usuários.UsuárioAtual == null || carregado)
                 return;
 
-            try
-            {
-                if (moeda == null && moedaSistema.HasValue)
-                    moeda = Moeda.ObterMoeda(moedaSistema.Value);
-                else if (moeda == null)
-                    throw new Exception("Moeda é nula!");
-            }
-            catch (Exception e)
-            {
-                try
-                {
-                    Acesso.Comum.Usuários.UsuárioAtual.RegistrarErro(e);
-                }
-                catch { }
+            DefinirMoeda();
+            ConstruirPainelComCotação();
 
-                MessageBox.Show(e.ToString());
-            }
-            
+            carregado = true;
+        }
+
+        private void ConstruirPainelComCotação()
+        {
             try
             {
                 if (painelFlutuante == null)
                     ConstruirPainel();
-
-                carregado = true;
 
                 if (moeda != null)
                 {
@@ -464,11 +386,32 @@ namespace Apresentação.Mercadoria.Cotação
             }
         }
 
+        private void DefinirMoeda()
+        {
+            try
+            {
+                if (moeda == null && moedaSistema.HasValue)
+                    moeda = Moeda.ObterMoeda(moedaSistema.Value);
+                else if (moeda == null)
+                    throw new Exception("Moeda é nula!");
+            }
+            catch (Exception e)
+            {
+                try
+                {
+                    Acesso.Comum.Usuários.UsuárioAtual.RegistrarErro(e);
+                }
+                catch { }
+
+                MessageBox.Show(e.ToString());
+            }
+        }
+
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
 
-            if (!DesignMode && TopLevelControl != null)
+            if (!modoDesenho && TopLevelControl != null)
             {
                 Carregar();
 
@@ -604,7 +547,6 @@ namespace Apresentação.Mercadoria.Cotação
             if (this.Height > 20)
                 this.Height = 20;
 
-            // Painel flutuante é nulo em design mode
             if (painelFlutuante != null)
             {
                 painelFlutuante.Width = txt.Width = this.Width;
@@ -807,10 +749,6 @@ namespace Apresentação.Mercadoria.Cotação
             toolTipDesatualizada.Active = true;
         }
 
-        /// <summary>
-        /// Mostra balão informando que a cotação não encontra-se
-        /// cadastrada.
-        /// </summary>
         private void MostrarBalãoNãoCadastrada()
         {
             if (balãoNãoCadastrada == null)
@@ -819,10 +757,6 @@ namespace Apresentação.Mercadoria.Cotação
             balãoNãoCadastrada.ShowBalloon(txt);
         }
 
-        /// <summary>
-        /// Mostra balão informando que a cotação encontra-se
-        /// desatualizada.
-        /// </summary>
         private void MostrarBalãoDesatualizada()
         {
             if (balãoDesatualizada == null)
@@ -831,10 +765,6 @@ namespace Apresentação.Mercadoria.Cotação
             balãoDesatualizada.ShowBalloon(txt);
         }
 
-        /// <summary>
-        /// Já escolhe alguma cotação da data específica, caso exista.
-        /// </summary>
-        /// <param name="data"></param>
         public void AbrirCotaçãoDaData(DateTime data)
         {
             Data = data;
@@ -843,10 +773,6 @@ namespace Apresentação.Mercadoria.Cotação
 
         private delegate void AtribuirCotaçãoCallback(Entidades.Financeiro.Cotação cotação);
 
-        /// <summary>
-        /// Atribui uma cotação ao TxtCotação.
-        /// </summary>
-        /// <param name="cotação">Cotação a ser atribuída.</param>
         private void AtribuirCotação(Entidades.Financeiro.Cotação cotação)
         {
             if (painelFlutuante == null)
@@ -869,7 +795,7 @@ namespace Apresentação.Mercadoria.Cotação
 
         private void TxtCotação_Load(object sender, EventArgs e)
         {
-            if (!DesignMode)
+            if (!modoDesenho)
             {
                 Carregar();
             }

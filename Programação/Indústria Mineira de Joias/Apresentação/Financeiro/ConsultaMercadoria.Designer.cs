@@ -116,8 +116,8 @@ namespace Apresentação.Financeiro
             this.txtMercadoria.Size = new System.Drawing.Size(150, 20);
             this.txtMercadoria.SomenteCadastrado = true;
             this.txtMercadoria.TabIndex = 0;
-            this.txtMercadoria.EscPressionado += new System.EventHandler(this.txtMercadoria_EscPressionado);
             this.txtMercadoria.ReferênciaConfirmada += new System.EventHandler(this.txtMercadoria_ReferênciaConfirmada);
+            this.txtMercadoria.EscPressionado += new System.EventHandler(this.txtMercadoria_EscPressionado);
             this.txtMercadoria.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMercadoria_KeyDown);
             // 
             // btnCancelar
@@ -232,7 +232,6 @@ namespace Apresentação.Financeiro
             this.Controls.Add(this.btnCancelar);
             this.KeyPreview = true;
             this.Name = "ConsultaMercadoria";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Consulta de preço";
             this.Shown += new System.EventHandler(this.ConsultaMercadoria_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ConsultaMercadoria_KeyDown);
