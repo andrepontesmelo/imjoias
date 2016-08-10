@@ -1,14 +1,8 @@
+using Entidades;
 using System;
-using System.Collections;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Threading;
-using System.Runtime.Remoting.Lifetime;
 using System.Windows.Forms;
-using Apresentação.Formulários;
-using Entidades;
-using Apresentação.Mercadoria.Cotação;
 
 namespace Apresentação.Mercadoria.Cotação
 {
@@ -19,7 +13,7 @@ namespace Apresentação.Mercadoria.Cotação
     /// Mas antes, ele deve pergutar através de um balão 
     /// para o usuário se pretende ou não utilizar a nova cotação.
     /// </summary>
-    public class TxtCotação : System.Windows.Forms.UserControl
+    public class TxtCotação : UserControl
     {
         /// <summary>
         /// Serve para informar se a cotação escolhida não é a mais recente
@@ -157,17 +151,12 @@ namespace Apresentação.Mercadoria.Cotação
             {
                 if (!DesignMode && carregado)
                 {
-                    //TxtCotaçãoPainel.DefinirDataCallback método;
                     DateTime valor;
-
-                    //método = new TxtCotaçãoPainel.DefinirDataCallback(painelFlutuante.DefinirData);
 
                     if (value.HasValue)
                         valor = value.Value;
                     else
                         valor = DateTime.Today;
-
-                    //método.BeginInvoke(valor, new AsyncCallback(AoDefinirDataPainel), método);
 
                     if (painelFlutuante != null)
                         painelFlutuante.DefinirData(valor);
@@ -852,60 +841,6 @@ namespace Apresentação.Mercadoria.Cotação
             painelFlutuante.SelecionarÚltimo();
         }
 
-        ///// <summary>
-        ///// Ocorre quando uma cotação executa alguma ação.
-        ///// </summary>
-        ///// <param name="sujeito">Cotação.</param>
-        ///// <param name="ação">Ação realizada.</param>
-        //private void ObservandoCotações(ISujeito sujeito, int ação, object objeto)
-        //{
-        //    ICotação cotação = (ICotação) sujeito;
-
-        //    switch ((AçãoCotação) ação)
-        //    {
-        //        case AçãoCotação.NovaCotação:
-        //            últimaCotação = cotação.Entidade.Data;
-
-        //            if (avisarNovaCotação)
-        //                PerguntarAtualização(cotação);
-        //            break;
-        //    }
-        //}
-
-        ///// <summary>
-        ///// Pergunta se o usuário deseja atualizar para
-        ///// a cotação recentemente cadastrada.
-        ///// </summary>
-        //private void PerguntarAtualização(ICotação cotação)
-        //{
-        //    Thread thread;
-
-        //    thread = new Thread(new ParameterizedThreadStart(PerguntarAtualizaçãoAssíncrono));
-        //    thread.Name = "TxtCotação - perguntar por atualização";
-        //    thread.Start(cotação);
-        //}
-
-        ///// <summary>
-        ///// Chamada para questionar usuário assincronamente
-        ///// se ele deseja atualizar a cotação.
-        ///// </summary>
-        ///// <param name="obj">ICotação</param>
-        //private void PerguntarAtualizaçãoAssíncrono(object obj)
-        //{
-        //    ICotação cotação = (ICotação)obj;
-        //    ClientSponsor sponsor = new ClientSponsor();
-
-        //    sponsor.Register((MarshalByRefObject)cotação);
-
-        //    using (BalãoCotaçãoNova dlg = new BalãoCotaçãoNova(cotação))
-        //    {
-        //        if (dlg.ShowDialog(this) == DialogResult.Yes)
-        //            AtribuirCotação(cotação);
-        //    }
-
-        //    sponsor.Unregister((MarshalByRefObject)cotação);
-        //}
-
         private delegate void AtribuirCotaçãoCallback(Entidades.Financeiro.Cotação cotação);
 
         /// <summary>
@@ -920,7 +855,6 @@ namespace Apresentação.Mercadoria.Cotação
             if (painelFlutuante.InvokeRequired)
             {
                 AtribuirCotaçãoCallback método = new AtribuirCotaçãoCallback(AtribuirCotação);
-
                 painelFlutuante.BeginInvoke(método, cotação);
             }
             else
@@ -945,44 +879,8 @@ namespace Apresentação.Mercadoria.Cotação
             }
         }
 
-        ///// <summary>
-        ///// Pergunta se o usuário deseja atualizar para
-        ///// a cotação recentemente cadastrada.
-        ///// </summary>
-        //private void PerguntarAtualização(Entidades.Financeiro.Cotação cotação)
-        //{
-        //    Thread thread;
-
-        //    thread = new Thread(new ParameterizedThreadStart(PerguntarAtualizaçãoAssíncrono));
-        //    thread.Name = "TxtCotação - perguntar por atualização";
-        //    thread.IsBackground = true;
-        //    thread.Start(cotação);
-        //}
-
-
-        ///// <summary>
-        ///// Chamada para questionar usuário assincronamente
-        ///// se ele deseja atualizar a cotação.
-        ///// </summary>
-        ///// <param name="obj">ICotação</param>
-        //private void PerguntarAtualizaçãoAssíncrono(object obj)
-        //{
-        //    Entidades.Financeiro.Cotação cotação = (Entidades.Financeiro.Cotação)obj;
-
-        //    using (BalãoCotaçãoNova dlg = new BalãoCotaçãoNova(cotação))
-        //    {
-        //        if (dlg.ShowDialog(this) == DialogResult.Yes)
-        //            AtribuirCotação(cotação);
-        //    }
-        //}
-
         private void txt_KeyPress(object sender, KeyPressEventArgs e)
         {
-            /* O padrão da cultura atual é utilizar virgula. 
-             * No entanto, os funcionários utilizam o ponto do 
-             * teclado numérico.
-             */
-
             if (e.KeyChar == '.')
             {
                 e.KeyChar = ',';
@@ -990,9 +888,6 @@ namespace Apresentação.Mercadoria.Cotação
             }
         }
 
-        /// <summary>
-        /// Deixa o TxtCotação vazio.
-        /// </summary>
         public void Limpar()
         {
             txt.Text = "";

@@ -1,27 +1,24 @@
+using Entidades;
+using Entidades.Configuração;
 using System;
-using System.Runtime.Remoting.Lifetime;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Windows.Forms;
-using Entidades;
-using Entidades.Configuração;
 
 
 namespace Apresentação.Mercadoria.Cotação
 {
-	/// <summary>
-	/// Painel para exibição de cotações no TxtCotação.
-	/// </summary>
-	internal class TxtCotaçãoPainel : System.Windows.Forms.UserControl
+    /// <summary>
+    /// Painel para exibição de cotações no TxtCotação.
+    /// </summary>
+    internal class TxtCotaçãoPainel : UserControl
 	{
 		// Atributos
-		private Dictionary<ListViewItem, Entidades.Financeiro.Cotação>	hashListViewItemCotação;		// Armazena as cotações. chave: item da list view.
-		private Dictionary<double, ListViewItem>    hashValorListViewItem;			// chave: valor double da cotação.
-        private Entidades.Financeiro.Cotação                   seleção = null;
-        private Moeda                               moeda;
+		private Dictionary<ListViewItem, Entidades.Financeiro.Cotação> hashListViewItemCotação;
+		private Dictionary<double, ListViewItem> hashValorListViewItem; // chave: valor double da cotação.
+        private Entidades.Financeiro.Cotação seleção = null;
+        private Moeda moeda;
 
 		// Controles
 		private System.Windows.Forms.Panel          painelBase;
@@ -208,8 +205,6 @@ namespace Apresentação.Mercadoria.Cotação
 			base.OnLoad (e);
 		}
 
-        #region Propriedades
-
         /// <summary>
 		/// Determina se mostra cabeçalhos da lista.
 		/// </summary>
@@ -226,11 +221,6 @@ namespace Apresentação.Mercadoria.Cotação
 			}
 		}
 
-		/// <summary>
-		/// Pegue ou escolha a data para exibição das cotações.
-		/// chame Carregar() antes de escolher o valor da data.
-		/// veja comentário de Carregar() para saber o porquê.
-		/// </summary>
 		[Browsable(false)]
 		public DateTime? Data
 		{
@@ -243,8 +233,6 @@ namespace Apresentação.Mercadoria.Cotação
                 DefinirData(value.Value);
 			}
         }
-
-        #region Definição de data sincronizado
 
         public delegate void DefinirDataCallback(DateTime data);
 
@@ -269,8 +257,6 @@ namespace Apresentação.Mercadoria.Cotação
             this.data.Value = data.Date;
         }
 
-        #endregion
-
         /// <summary>
         /// Verifica se o painel possui foco.
         /// </summary>
@@ -279,7 +265,7 @@ namespace Apresentação.Mercadoria.Cotação
             get
             {
                 bool focado = base.Focused;
-                Queue fila = new Queue(); ;
+                Queue fila = new Queue();
 
                 fila.Enqueue(Controls);
 
@@ -298,13 +284,6 @@ namespace Apresentação.Mercadoria.Cotação
             }
         }
 
-        #endregion
-
-        /// <summary>
-		/// Obtem dados do contexto, e carrega itens no list view.
-		/// </summary>
-		/// <param name="dia">Dia para obtenção das cotações</param>
-		/// <returns>Se foram carregadas cotações.</returns>
 		private bool CarregarItens(DateTime dia)
 		{
             Entidades.Financeiro.Cotação[] cotações = null;
@@ -319,8 +298,6 @@ namespace Apresentação.Mercadoria.Cotação
                     cotações = new Entidades.Financeiro.Cotação[0];
 
                 seleção = null;
-
-                // Preenche a lista
                 PreencherListView(cotações);
             }
             catch (Exception e)
@@ -361,60 +338,78 @@ namespace Apresentação.Mercadoria.Cotação
             }
             else
             {
-                // Renova tabelas hash do controle
-                hashListViewItemCotação = new Dictionary<ListViewItem, Entidades.Financeiro.Cotação>();
-                hashValorListViewItem = new Dictionary<double, ListViewItem>();
+                RenovaTabelasHash();
+                LimpaListView();
 
-                // Limpa a list view
-                lista.Items.Clear();
-                seleção = null;
+                bool nenhumaCotaçãoCadastrada = (cotações == null || cotações.Length == 0);
 
-                // Nenhuma cotação cadastrada
-                if (cotações == null || cotações.Length == 0)
+                if (nenhumaCotaçãoCadastrada)
                     return;
-
-                // Insere cotações na lista
-                //listaCotações.ForEach(new Action<ICotação>(AdicionarNaListView));
 
                 foreach (Entidades.Financeiro.Cotação cotação in cotações)
                 {
-                    ListViewItem novoItem;
-
-                    if (Data.HasValue && cotação.Data.Value.Date != Data.Value.Date)
-                        novoItem = new ListViewItem("Anterior");
-                    else
-                        novoItem = new ListViewItem(cotação.Data.Value.ToShortTimeString());
-
-                    novoItem.SubItems.Add(cotação.Valor.ToString("C", DadosGlobais.Instância.Cultura));
-                    novoItem.SubItems.Add(Entidades.Pessoa.Pessoa.AbreviarNome(cotação.Funcionário.Nome));
-
-                    lista.Items.Add(novoItem);
-
-                    // Registra nas tabelas hash
-                    ListViewItem itemJáExistente;
-                    if (hashValorListViewItem.TryGetValue(cotação.Valor, out itemJáExistente))
-                    {
-                        // Ok, já tem. Mas a hash deve ter a cotação mais recente
-
-                        if (hashListViewItemCotação[itemJáExistente].Data
-                            < cotação.Data)
-                        {
-                            // Troca a hash
-                            hashValorListViewItem.Remove(cotação.Valor);
-                            hashValorListViewItem.Add(cotação.Valor, novoItem);
-                        }
-                    } else
-                        hashValorListViewItem.Add(cotação.Valor, novoItem);
-
-                    hashListViewItemCotação[novoItem] = cotação;
+                    ListViewItem item = CriarItem(cotação);
+                    lista.Items.Add(item);
+                    RegistraHashes(cotação, item);
                 }
             }
-		}
+        }
 
-		/// <summary>
-		/// Cotação selecionada.
-		/// </summary>
-		public Entidades.Financeiro.Cotação CotaçãoSelecionada
+        private void RenovaTabelasHash()
+        {
+            if (hashListViewItemCotação == null)
+                hashListViewItemCotação = new Dictionary<ListViewItem, Entidades.Financeiro.Cotação>();
+
+            hashListViewItemCotação.Clear();
+
+            if (hashValorListViewItem == null)
+                hashValorListViewItem = new Dictionary<double, ListViewItem>();
+
+            hashValorListViewItem.Clear();
+        }
+
+        private void LimpaListView()
+        {
+            lista.Items.Clear();
+            seleção = null;
+        }
+
+        private ListViewItem CriarItem(Entidades.Financeiro.Cotação cotação)
+        {
+            ListViewItem item;
+
+            if (Data.HasValue && cotação.Data.Value.Date != Data.Value.Date)
+                item = new ListViewItem("Anterior");
+            else
+                item = new ListViewItem(cotação.Data.Value.ToShortTimeString());
+
+            item.SubItems.Add(cotação.Valor.ToString("C", DadosGlobais.Instância.Cultura));
+            item.SubItems.Add(Entidades.Pessoa.Pessoa.AbreviarNome(cotação.Funcionário.Nome));
+            return item;
+        }
+
+        private void RegistraHashes(Entidades.Financeiro.Cotação cotação, ListViewItem novoItem)
+        {
+            ListViewItem itemJáExistente;
+            if (hashValorListViewItem.TryGetValue(cotação.Valor, out itemJáExistente))
+            {
+                if (hashListViewItemCotação[itemJáExistente].Data
+                    < cotação.Data)
+                {
+                    hashValorListViewItem.Remove(cotação.Valor);
+                    hashValorListViewItem.Add(cotação.Valor, novoItem);
+                }
+            }
+            else
+                hashValorListViewItem.Add(cotação.Valor, novoItem);
+
+            hashListViewItemCotação[novoItem] = cotação;
+        }
+
+        /// <summary>
+        /// Cotação selecionada.
+        /// </summary>
+        public Entidades.Financeiro.Cotação CotaçãoSelecionada
 		{
 			get
 			{
@@ -469,9 +464,6 @@ namespace Apresentação.Mercadoria.Cotação
                     int indiceSelecionado = lista.SelectedIndices[0];
                     lista.Items[indiceSelecionado].Selected = false;
                     lista.Items[indiceSelecionado + 1].Selected = true;
-                    /* as vezes, ficam 2 itens selecionados, mesmo com o multiselect = false.
-                    * bug do .net ?
-                    */
                 }
 			}
 		}
@@ -511,7 +503,6 @@ namespace Apresentação.Mercadoria.Cotação
                 if (lista.Items.Count != 0)
                 {
                     lista.Items[lista.Items.Count - 1].Selected = true;
-
                     seleção = hashListViewItemCotação[lista.Items[lista.Items.Count - 1]];
                 }
                 else
@@ -578,51 +569,6 @@ namespace Apresentação.Mercadoria.Cotação
                 this.SelectedIndexChanged(this, new EventArgs());
 		}
         
-        /*
-		/// <summary>
-		/// Obtem a lista de cotações de um dia, ou se não tiver,
-		/// pega a lista de cotações do dia em que tem a última cotação.
-		/// Para cotação de hoje, use dia = DateTime.MaxValue.
-		/// </summary>
-		private ArrayList ObterListaCotações(DateTime dia)
-		{
-			ArrayList lista = null;
-			Negócio.ICotação últimaCotação;
-
-#if DEBUG
-			if (dia == DateTime.MinValue)
-				throw new Exception("Você utilizou DateTime.MinValue. O padrão para data do dia é DateTime.MaxValue.");
-#endif
-
-			if (dia != DateTime.MaxValue)
-				lista = cotações.ObterListaCotaçõesAnteriores(dia, 1);
-
-			// Obtém cotação vigente
-			if ((lista == null) || (lista.Count == 0))
-				lista = cotações.ObterListaCotaçõesAnteriores(1);
-
-			// Verifica se existem cotações no sistema:
-			if (lista.Count == 0) 
-				return null;
-            			
-			// É necessário para a data da cotação obtida para pegar outras do dia
-			últimaCotação = (Negócio.ICotação) lista[0];
-			lista         = cotações.ObterListaCotaçõesDoDia(últimaCotação.Entidade.Data);
-
-            // Registra a lista de cotações
-            foreach (ICotação c in lista)
-                sponsor.Register((MarshalByRefObject)c);
-
-            
-#if DEBUG
-			if (lista.Count == 0)
-				throw new Exception("Não faz sentido, pois agora a pouco existia uma cotação e agora não existe mais ?");
-#endif
-
-			return lista;
-		}
-        */
-
         /// <summary>
         /// Ocorre ao mudar a seleção.
         /// </summary>
