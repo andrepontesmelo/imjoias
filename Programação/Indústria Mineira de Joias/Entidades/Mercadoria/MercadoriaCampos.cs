@@ -1,29 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Acesso.Comum;
+﻿using Acesso.Comum;
 using Acesso.Comum.Cache;
-using System.Drawing;
-using System.Data;
 using Acesso.Comum.Exceções;
-using System.Collections;
-using System.Threading;
 using Entidades.Árvores;
+using System;
+using System.Collections.Generic;
+using System.Data;
 
 namespace Entidades.Mercadoria
 {
-	/// <summary>
-	/// Mercadoria.
-	/// </summary>
-	/// 
-	/// <remarks>
-	/// Sempre que alterar um valor da chave primária,
-	/// tais como "referência" e "peso", deve-se garantir
-	/// controle de concorrência, visto que tal entidade
-	/// é utilizada por outras entidades como chave primária.
-	/// 
-	/// Uma alteração destes valores pode gerar inconsistência
-	/// em outras entidades.
+    /// <summary>
+    /// Mercadoria.
+    /// </summary>
+    /// 
+    /// <remarks>
+    /// Sempre que alterar um valor da chave primária,
+    /// tais como "referência" e "peso", deve-se garantir
+    /// controle de concorrência, visto que tal entidade
+    /// é utilizada por outras entidades como chave primária.
+    /// 
+    /// Uma alteração destes valores pode gerar inconsistência
+    /// em outras entidades.
     /// 
     /// Para otimizar a consulta de prefixos de mercadoria,
     /// o sistema carrega todas as mercadorias em segundo plano
@@ -32,45 +28,29 @@ namespace Entidades.Mercadoria
     /// Para todos os efeitos, pesquisas de referência completa
     /// irão verificar o banco de dados sempre que ela não for
     /// encontrada na árvore.
-	/// </remarks>
-	[Serializable]
+    /// </remarks>
+    [Serializable]
     [Cacheável("ObterMercadoriaSemCache"), Validade(0, 5, 0)]
     [DbTabela("mercadoria")]
-	class MercadoriaCampos : Acesso.Comum.DbManipulação, IDisposable, ICloneable, IMercadoriaCampos
+	class MercadoriaCampos : DbManipulação, IDisposable, ICloneable, IMercadoriaCampos
 	{
-		// Atributos
-		protected string			referencia;
-		protected int			    digito = -1;
-		protected string			nome;
-		protected int				teor;
-		protected double			peso;
-		protected string			faixa;
-		protected int?				grupo;
-		protected bool				depeso;
-		protected bool				foradelinha;
-        private   bool              promocao;
+		protected string referencia;
+		protected int digito = -1;
+		protected string nome;
+		protected int teor;
+		protected double peso;
+		protected string faixa;
+		protected int? grupo;
+		protected bool depeso;
+		protected bool foradelinha;
 
 		[NonSerialized]
-		private DbFoto				icone		= null;
-
+		private DbFoto icone = null;
         private Coeficientes coeficientes = null;
 
-        /// <summary>
-        /// Árvore para recuperação das mercadorias em cache.
-        /// </summary>
         private static volatile Patricia<MercadoriaCampos> árvore;
-
-        /// <summary>
-        /// Determina se a patrícia está sendo carregada ou não.
-        /// </summary>
-        private static volatile bool carregando = false;
-
-        /// <summary>
-        /// Controle de mercadorias cujas imagens foram carregadas.
-        /// </summary>
+        private static volatile bool carregandoPatricia = false;
         private static ControleCargaImagens controleCargaImagens = new ControleCargaImagens();
-
-		#region Construtoras
 
 		/// <summary>
 		/// Constrói uma mercadoria, sem obter do BD
@@ -80,7 +60,7 @@ namespace Entidades.Mercadoria
 		public MercadoriaCampos(string referência, int dígito)
 		{
 			this.referencia = referência;
-			this.digito     = dígito;
+			this.digito = dígito;
 
 #if DEBUG
             if (!ValidarReferênciaNumérica(referência))
@@ -89,8 +69,7 @@ namespace Entidades.Mercadoria
 		}
 
         public MercadoriaCampos(string referência, int dígito, bool foraDeLinha, bool dePeso,
-            double peso, string descrição, string faixa, int? grupo,
-            int teor)
+            double peso, string descrição, string faixa, int? grupo, int teor)
         {
             this.referencia = referência;
             this.digito = dígito;
@@ -117,8 +96,8 @@ namespace Entidades.Mercadoria
 		public MercadoriaCampos(string referência, int dígito, double peso)
 		{
 			this.referencia = referência;
-			this.digito     = dígito;
-			this.peso       = peso;
+			this.digito = dígito;
+			this.peso = peso;
 
 #if DEBUG
             if (this.referencia.Length != 11)
@@ -149,38 +128,30 @@ namespace Entidades.Mercadoria
 		/// </remarks>
 		public MercadoriaCampos() {}
 		
-		#endregion
+		private string referênciaFormatada = null;
 
-		#region Propriedades
-
-		// Armazenar a ref. formatada para não precisar chamar MascararReferência() toda vez.
-		private string referênciaFormatadaCache = null;
-
-		/// <summary>
-		/// Referência formatada
-		/// </summary>
 		public string Referência
 		{
 			get
 			{
-				if (referênciaFormatadaCache == null)
+				if (referênciaFormatada == null)
 				{
 					try
 					{
-						referênciaFormatadaCache = Mercadoria.MascararReferência(referencia, digito);
+						referênciaFormatada = Mercadoria.MascararReferência(referencia, digito);
 					}
 					catch
 					{
-						referênciaFormatadaCache = referencia + " <Referência inválida!>";
+						referênciaFormatada = referencia + " <Referência inválida!>";
 					}
 				}
 
-				return referênciaFormatadaCache;
+				return referênciaFormatada;
 			}
 			set
 			{
                 Mercadoria.DesmascararReferência(value, out this.referencia, out this.digito);
-				referênciaFormatadaCache = null;
+				referênciaFormatada = null;
 				// Caso o usuário obtenha a referência novamente, ela é re-processada.
                 DefinirCadastrado(false);
                 DefinirAtualizado(false);
@@ -191,17 +162,7 @@ namespace Entidades.Mercadoria
             }
 		}
 
-		/// <summary>
-		/// Dígito verificador
-		/// </summary>
-		/// 
-		/// <remarks>
-		/// O dígito não deve ser definido, mas sim calculado.
-		/// </remarks>
-		public int Dígito
-		{
-			get { return digito; }
-		}
+		public int Dígito => digito;
 
 		/// <summary>
 		/// Referência numérica não formatada, sem dígito.
@@ -286,9 +247,6 @@ namespace Entidades.Mercadoria
             set { foradelinha = value; DefinirDesatualizado(); }
 		}
 
-		#endregion
-
-		#region IDisposable Members
 
 		public void Dispose()
 		{
@@ -298,10 +256,6 @@ namespace Entidades.Mercadoria
                 icone = null;
             }
 		}
-
-		#endregion
-
-		#region Recuperação de dados
 
         public static IMercadoriaCampos[] ObterMercadorias(string prefixo, int limite)
         {
@@ -530,9 +484,6 @@ namespace Entidades.Mercadoria
 			}
 		}
 
-		#endregion
-
-		#region Comparação
 
 		/// <summary>
 		/// Gera um código hash.
@@ -549,11 +500,6 @@ namespace Entidades.Mercadoria
 				contador = (contador + 8) % (8 * 4);
 			}
 
-            /* O sistema já disparou 22 vezes a excessão
-             * Value was either too large or too small for an Int32.
-             * Na seguinte linha: o que pode ser?
-             * andre, 23-julho-2006
-             */
 			hash ^= Convert.ToInt32(peso * 1000);
 
 			return hash;
@@ -593,10 +539,6 @@ namespace Entidades.Mercadoria
 			return !(a == b);
 		}
 
-		#endregion
-
-		#region ICloneable Members
-
 		/// <summary>
 		/// Realiza uma cópia profunda do objeto
 		/// </summary>
@@ -610,16 +552,12 @@ namespace Entidades.Mercadoria
 				(string) Descrição.Clone() : null;
 			clonada.Faixa = Faixa;
 			clonada.ForaDeLinha = ForaDeLinha;
-			//clonada.Foto = (Image) Foto.Clone();
 			clonada.Grupo = Grupo;
 			clonada.PesoOriginal = PesoOriginal;
 			clonada.Teor = Teor;
-			//clonada.Ícone = (Image) Ícone.Clone();
 
 			return clonada;
 		}
-
-		#endregion
 
 		/// <summary>
 		/// Força a mercadoria como cadastrada.
@@ -639,47 +577,20 @@ namespace Entidades.Mercadoria
             DefinirAtualizado();
 		}
 
-		#region Atualização do banco de dados
-
-        /// <summary>
-        /// Cadastra a entidade no banco de dados.
-        /// </summary>
-        /// <remarks>
-        /// O implementador deverá atribuir o valor
-        /// verdadeiro para os atributos "cadastrado"
-        /// e "atualizado".
-        /// </remarks>
         protected override void Cadastrar(IDbCommand cmd)
         {
             throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// Atualiza a entidade no banco de dados.
-        /// </summary>
-        /// <remarks>
-        /// O implementador deverá atribuir o valor
-        /// verdadeiro para o atributo "atualizado".
-        /// </remarks>
         protected override void Atualizar(IDbCommand cmd)
         {
             throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// Descadastra a entidade no banco de dados.
-        /// </summary>
-        /// <remarks>
-        /// O implementador deverá atribuir o valor
-        /// falso para os atributos "cadastrado" e
-        /// "atualizado".
-        /// </remarks>
         protected override void Descadastrar(IDbCommand cmd)
         {
             throw new NotImplementedException();
         }
-
-		#endregion
 
         public static bool VerificarExistênciaÁrvore(string procura)
         {
@@ -704,10 +615,10 @@ namespace Entidades.Mercadoria
         /// </summary>
         public static void IniciarCarga()
         {
-            if (carregando)
+            if (carregandoPatricia)
                 return;
 
-            carregando = true;
+            carregandoPatricia = true;
             árvore     = null;
 
             Carregar();
@@ -780,11 +691,11 @@ namespace Entidades.Mercadoria
             catch (Exception e)
             {
                 System.Diagnostics.Debug.Assert(false, e.Message);
-                Acesso.Comum.Usuários.UsuárioAtual.RegistrarErro(new Exception("Erro montando árvore de mercadorias.", e));
+                Usuários.UsuárioAtual.RegistrarErro(new Exception("Erro montando árvore de mercadorias.", e));
             }
             finally
             {
-                carregando = false;
+                carregandoPatricia = false;
 #if DEBUG
                 System.Diagnostics.Debug.Assert(((Acesso.Comum.Adaptadores.ConexãoConcorrente)conexão).Ocupado == 0);
 #endif
