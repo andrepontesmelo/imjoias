@@ -288,7 +288,7 @@ namespace Apresentação.Mercadoria
 
                 if (referênciaCadastrada)
                 {
-                    mercadoria = Entidades.Mercadoria.Mercadoria.ObterMercadoria(txt.Text, tabela);
+                    mercadoria = Entidades.Mercadoria.Mercadoria.ObterMercadoriaComCache(txt.Text, tabela);
 
                     CorrigePeso(mercadoria);
 
