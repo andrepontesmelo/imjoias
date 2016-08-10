@@ -27,7 +27,7 @@ namespace Entidades.Mercadoria
     /// </remarks>
     [Serializable]
     [Cacheável("ObterMercadoriaComCache"), Validade(6, 0, 0)]
-	public class Mercadoria : Acesso.Comum.DbManipulação, IDisposable, ICloneable
+	public class Mercadoria : DbManipulação, IDisposable, ICloneable
 	{
         /// <summary>
         /// Campos compartilhados.
@@ -162,16 +162,6 @@ namespace Entidades.Mercadoria
 		internal Mercadoria(IMercadoriaCampos campos, Tabela tabela) : this(campos, campos.PesoOriginal, tabela)
 		{
         }
-
-        ///// <summary>
-        ///// Constrói uma mercadoria vazia.
-        ///// </summary>
-        ///// 
-        ///// <remarks>
-        ///// Evite utilizar esta construtora. Ela é útil
-        ///// nas funções Mapear de recuperação de BD.
-        ///// </remarks>
-        //public Mercadoria() {}
 		
 		#endregion
 
@@ -679,17 +669,7 @@ namespace Entidades.Mercadoria
 			fresca = ObterMercadoria(Referência, tabela);
 
 			if (fresca != null)
-			{
                 campos = fresca.campos;
-                //digito = fresca.digito;
-                //faixa = fresca.faixa;
-                //grupo = fresca.grupo;
-                //depeso = fresca.depeso;
-                //foradelinha = fresca.foradelinha;
-                //nome = fresca.nome;
-                //peso = fresca.peso;
-                //teor = fresca.teor;
-			}
 		}
 
 		/// <summary>
