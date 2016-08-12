@@ -53,8 +53,8 @@ namespace Apresentação.Financeiro.Pagamento
 
             if (venda == null)
                 ((Entidades.Pagamentos.Ouro)Pagamento).Cotação = Entidades.Financeiro.Cotação.ObterCotaçãoVigente(
-                    Entidades.Moeda.ObterMoeda(
-                    Entidades.Moeda.MoedaSistema.Ouro));
+                    Entidades.Moedas.MoedaObtenção.Instância.ObterMoeda(
+                    Entidades.Moedas.MoedaSistema.Ouro));
             else
                 ((Entidades.Pagamentos.Ouro)Pagamento).Cotação = venda.Cotação;
 

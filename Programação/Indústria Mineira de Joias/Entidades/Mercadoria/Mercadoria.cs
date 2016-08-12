@@ -4,6 +4,7 @@ using Acesso.Comum.Exceções;
 using Entidades.Álbum;
 using Entidades.Configuração;
 using Entidades.Financeiro;
+using Entidades.Moedas;
 using System;
 using System.Collections.Generic;
 using System.Data;

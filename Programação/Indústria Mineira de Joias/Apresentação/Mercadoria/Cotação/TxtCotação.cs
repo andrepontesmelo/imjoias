@@ -1,4 +1,5 @@
 using Entidades;
+using Entidades.Moedas;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -9,8 +10,6 @@ namespace Apresentação.Mercadoria.Cotação
     public class TxtCotação : UserControl
     {
         Entidades.Financeiro.Cotação últimaCotação;
-
-        private volatile bool valorDefinido = false;
 
         private Moeda moeda;
 
@@ -35,12 +34,14 @@ namespace Apresentação.Mercadoria.Cotação
         private ToolTip toolTipDesatualizada;
         private IContainer components;
 
-        private Moeda.MoedaSistema? moedaSistema = Moeda.MoedaSistema.Ouro;
+        private MoedaSistema? moedaSistema = Entidades.Moedas.MoedaSistema.Ouro;
 
         bool modoDesenho = (LicenseManager.UsageMode == LicenseUsageMode.Designtime);
 
         public delegate void Escolha(Entidades.Financeiro.Cotação escolha);
         public event Escolha EscolheuCotação;
+
+        private bool ValorDefinido => Valor != 0;
 
         [Browsable(false), ReadOnly(true)]
         public Moeda Moeda
@@ -52,14 +53,14 @@ namespace Apresentação.Mercadoria.Cotação
 
                 if (painelFlutuante != null)
                     painelFlutuante.Moeda = value;
-
-                carregado = false;
-                Carregar();
+                else
+                    Carregar();
+                
             }
         }
 
-        [Browsable(true), DisplayName("Moeda"), DefaultValue(Moeda.MoedaSistema.Ouro)]
-        public Moeda.MoedaSistema? MoedaSistema
+        [Browsable(true), DisplayName("Moeda"), DefaultValue(Entidades.Moedas.MoedaSistema.Ouro)]
+        public MoedaSistema? MoedaSistema
         {
             get { return moedaSistema; }
             set
@@ -68,7 +69,7 @@ namespace Apresentação.Mercadoria.Cotação
 
                 if (!modoDesenho)
                 {
-                    moeda = value.HasValue ? Moeda.ObterMoeda(value.Value) : null;
+                    moeda = value.HasValue ? MoedaObtenção.Instância.ObterMoeda(value.Value) : null;
 
                     if (painelFlutuante != null)
                         painelFlutuante.Moeda = moeda;
@@ -97,7 +98,7 @@ namespace Apresentação.Mercadoria.Cotação
         public double Valor
         {
             get { return txt.Double; }
-            set { txt.Double = value; valorDefinido = true;  }
+            set { txt.Double = value;  }
         }
 
         [Browsable(false), DefaultValue(null)]
@@ -298,9 +299,6 @@ namespace Apresentação.Mercadoria.Cotação
 
         private void ReposicionarPainelFlutuante()
         {
-            if (ParentForm == null)
-                return;
-
 #if DEBUG
             if (painelFlutuante == null)
                 throw new Exception("Não posso reposicionar o painel nulo");
@@ -314,8 +312,10 @@ namespace Apresentação.Mercadoria.Cotação
 									 */
 
             // Obter coordenada relativa
-            pontoZeroRaíz =
-                this.ParentForm.PointToScreen(new Point(0, 0));
+            if (ParentForm != null)
+                pontoZeroRaíz = ParentForm.PointToScreen(new Point(0, 0));
+            else
+                pontoZeroRaíz = Parent.PointToScreen(new Point(0, 0));
 
             pontoZeroMeu =
                 this.PointToScreen(new Point(0, 0));
@@ -324,26 +324,51 @@ namespace Apresentação.Mercadoria.Cotação
             novoZero = pontoZeroMeu;
             novoZero.Offset(-1 * pontoZeroRaíz.X, -1 * pontoZeroRaíz.Y);
 
-            // Abaixa
+            // Abaixa e para esquerda
             posiçãoPanel = novoZero;
-            posiçãoPanel.Offset(0, this.Height);
+            posiçãoPanel.Offset(-10, this.Height);
 
             painelFlutuante.Bounds = new Rectangle
-                (posiçãoPanel, new Size(this.Width, painelFlutuante.Height));
+                (posiçãoPanel, new Size(this.Width + 20, painelFlutuante.Height));
 
             painelFlutuante.BringToFront();
         }
 
-
-        private void Carregar()
+        protected override void OnLoad(EventArgs e)
         {
-            if (modoDesenho || Acesso.Comum.Usuários.UsuárioAtual == null || carregado)
+            base.OnLoad(e);
+
+            if (!modoDesenho && TopLevelControl != null)
+            {
+                Carregar();
+
+                this.TopLevelControl.SuspendLayout();
+                this.TopLevelControl.Controls.Add(painelFlutuante);
+                this.TopLevelControl.ResumeLayout();
+
+                ReposicionarPainelFlutuante();
+            }
+        }
+
+        public void Carregar()
+        {
+            if (modoDesenho || carregado)
                 return;
 
             DefinirMoeda();
             ConstruirPainelComCotação();
 
+            if (!modoDesenho && TopLevelControl != null)
+            {
+                this.TopLevelControl.SuspendLayout();
+                this.TopLevelControl.Controls.Add(painelFlutuante);
+                this.TopLevelControl.ResumeLayout();
+
+                ReposicionarPainelFlutuante();
+            }
+
             carregado = true;
+            painelFlutuante.CargaInicial();
         }
 
         private void ConstruirPainelComCotação()
@@ -357,7 +382,7 @@ namespace Apresentação.Mercadoria.Cotação
                 {
                     últimaCotação = Entidades.Financeiro.Cotação.ObterCotaçãoVigente(moeda);
 
-                    if (iniciarValorAtual && (txt.Double == 0 || !valorDefinido))
+                    if (iniciarValorAtual && !ValorDefinido)
                         AtribuirCotação(últimaCotação);
                 }
                 else
@@ -391,7 +416,7 @@ namespace Apresentação.Mercadoria.Cotação
             try
             {
                 if (moeda == null && moedaSistema.HasValue)
-                    moeda = Moeda.ObterMoeda(moedaSistema.Value);
+                    moeda = MoedaObtenção.Instância.ObterMoeda(moedaSistema.Value);
                 else if (moeda == null)
                     throw new Exception("Moeda é nula!");
             }
@@ -407,21 +432,6 @@ namespace Apresentação.Mercadoria.Cotação
             }
         }
 
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
-
-            if (!modoDesenho && TopLevelControl != null)
-            {
-                Carregar();
-
-                this.TopLevelControl.SuspendLayout();
-                this.TopLevelControl.Controls.Add(painelFlutuante);
-                this.TopLevelControl.ResumeLayout();
-
-                ReposicionarPainelFlutuante();
-            }
-        }
 
         /// <summary>
         /// Constrói painel a ser exibido com cotações.
@@ -431,7 +441,7 @@ namespace Apresentação.Mercadoria.Cotação
             try
             {
                 painelFlutuante = new TxtCotaçãoPainel();
-                painelFlutuante.Width = this.Width;
+                painelFlutuante.Width = this.Width + 20;
                 painelFlutuante.Visible = false;
                 painelFlutuante.Leave += new EventHandler(OnLeave);
                 painelFlutuante.ListaDoubleClick += new EventHandler(lista_DoubleClick);
@@ -494,13 +504,13 @@ namespace Apresentação.Mercadoria.Cotação
             método.EndInvoke(resultado);
 
             if (painelFlutuante.CotaçãoSelecionada != null || txt.Double <= 0)
-                painelFlutuante.SelecionarÚltimo();
+                painelFlutuante.SelecionarPrimeiro();
         }
 
         /// <summary>
         /// Ocorre ao pressionar uma tecla.
         /// </summary>
-        private void conjunto_keyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        private void conjunto_keyDown(object sender, KeyEventArgs e)
         {
             if (ReadOnly)
                 return;
@@ -549,7 +559,7 @@ namespace Apresentação.Mercadoria.Cotação
 
             if (painelFlutuante != null)
             {
-                painelFlutuante.Width = txt.Width = this.Width;
+                painelFlutuante.Width = txt.Width = this.Width + 20;
                 ReposicionarPainelFlutuante();
             }
         }
@@ -561,9 +571,6 @@ namespace Apresentação.Mercadoria.Cotação
         {
             if (!ReadOnly)
             {
-                if (painelFlutuante == null)
-                    Carregar();
-
                 painelFlutuante.BringToFront();
                 painelFlutuante.Visible = mostrarListaCotações;
 
@@ -579,7 +586,7 @@ namespace Apresentação.Mercadoria.Cotação
         /// </summary>
         private void txt_TextChanged(object sender, EventArgs e)
         {
-            if (painelFlutuante != null && !ReadOnly)
+           if (painelFlutuante != null && !ReadOnly)
                 painelFlutuante.Selecionar(txt.Double);
         }
 
@@ -599,12 +606,6 @@ namespace Apresentação.Mercadoria.Cotação
         {
             Entidades.Financeiro.Cotação escolha = this.Cotação;
 
-            /* As 2 verificações antes de atribuir o txt.Text resolvem
-             * um possível loop infinito. Se sempre que a seleção da lista mudar
-             * o txt também mudar, e sempre que o txt mudar a seleção mudar,
-             * então o programa trava. A idéia é só mudar o outro caso seja 
-             * realmente necessário. André, 27/01/05
-             */
             if (escolha == null)
             {
                 if (txt.Double <= 0)
@@ -678,8 +679,10 @@ namespace Apresentação.Mercadoria.Cotação
         /// </summary>
         private void IndicarCotação()
         {
-            // Varejo não trabalha com cotação
-            if (moeda.Código == 4)
+            if (!Enabled)
+                return;
+
+            if (moeda.Código == (uint) Entidades.Moedas.MoedaSistema.OuroVarejo)
                 return;
 
             Entidades.Financeiro.Cotação escolha = Cotação;
@@ -687,21 +690,24 @@ namespace Apresentação.Mercadoria.Cotação
             if (escolha != null)
             {
                 if (!escolha.Cadastrado)
-                    SinalizarCotaçãoNãoCadastrada();
-                else if (Data.HasValue) 
                 {
-                    Entidades.Financeiro.Cotação[] cotações = 
+                    SinalizarCotaçãoNãoCadastrada();
+                    return;
+                }
+                else if (Data.HasValue)
+                {
+                    Entidades.Financeiro.Cotação[] cotações =
                         Entidades.Financeiro.Cotação.ObterListaCotaçõesAtéDia(moeda, Data.Value);
 
-                    if (cotações.Length > 0)
+                    if (cotações.Length > 0 && escolha.Valor != cotações[0].Valor)
                     {
-                        if (escolha.Valor != cotações[0].Valor)
-                            SinalizarCotaçãoDesatualizada();
+                        SinalizarCotaçãoDesatualizada();
+                        return;
                     }
                 }
-                else
-                    SinalizarCotaçãoAtualizada();
             }
+
+            SinalizarCotaçãoAtualizada();
         }
 
         /// <summary>
@@ -768,16 +774,13 @@ namespace Apresentação.Mercadoria.Cotação
         public void AbrirCotaçãoDaData(DateTime data)
         {
             Data = data;
-            painelFlutuante.SelecionarÚltimo();
+            painelFlutuante.SelecionarPrimeiro();
         }
 
         private delegate void AtribuirCotaçãoCallback(Entidades.Financeiro.Cotação cotação);
 
         private void AtribuirCotação(Entidades.Financeiro.Cotação cotação)
         {
-            if (painelFlutuante == null)
-                Carregar();
-
             if (painelFlutuante.InvokeRequired)
             {
                 AtribuirCotaçãoCallback método = new AtribuirCotaçãoCallback(AtribuirCotação);
@@ -788,21 +791,18 @@ namespace Apresentação.Mercadoria.Cotação
                 txt.Double = cotação.Valor;
                 painelFlutuante.CotaçãoSelecionada = cotação;
 
-                DispararEscolheuCotação();
+                if (carregado)
+                    DispararEscolheuCotação();
             }
         }
 
 
         private void TxtCotação_Load(object sender, EventArgs e)
         {
-            if (!modoDesenho)
-            {
-                Carregar();
-            }
-            else
-            {
-                txt.Prefix = moedaSistema.ToString();
-            }
+            if (modoDesenho)
+                return;
+
+            //Carregar();
         }
 
         private void txt_KeyPress(object sender, KeyPressEventArgs e)

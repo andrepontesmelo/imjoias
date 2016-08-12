@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Forms;
-using Entidades;
+﻿using Entidades.Moedas;
+using System;
 using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace Apresentação.Mercadoria.Cotação
 {
@@ -48,7 +46,7 @@ namespace Apresentação.Mercadoria.Cotação
             if (!DesignMode)
                 if (!carregado && Acesso.Comum.Usuários.UsuárioAtual != null)
                 {
-                    Moeda[] moedas = Moeda.ObterMoedas();
+                    Moeda[] moedas = MoedaObtenção.Instância.ObterMoedas();
 
                     base.Items.AddRange(moedas);
 

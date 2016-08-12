@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
+﻿using Apresentação.Formulários;
+using Entidades.Moedas;
+using System;
 using System.Windows.Forms;
-using Apresentação.Formulários;
-using Entidades;
 
 namespace Apresentação.Financeiro.Indicadores
 {

@@ -121,7 +121,7 @@ namespace Apresentação.Financeiro.Pagamento
             this.txtCotação.Cotação = null;
             this.txtCotação.IniciarValorAtual = false;
             this.txtCotação.Location = new System.Drawing.Point(9, 226);
-            this.txtCotação.MoedaSistema = Entidades.Moeda.MoedaSistema.DólarParalelo;
+            this.txtCotação.MoedaSistema = Entidades.Moedas.MoedaSistema.DólarParalelo;
             this.txtCotação.Name = "txtCotação";
             this.txtCotação.Size = new System.Drawing.Size(208, 20);
             this.txtCotação.TabIndex = 19;

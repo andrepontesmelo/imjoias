@@ -1,6 +1,7 @@
 ﻿using Acesso.Comum;
 using Acesso.Comum.Cache;
 using Entidades.Configuração;
+using Entidades.Moedas;
 using System.Collections.Generic;
 
 namespace Entidades

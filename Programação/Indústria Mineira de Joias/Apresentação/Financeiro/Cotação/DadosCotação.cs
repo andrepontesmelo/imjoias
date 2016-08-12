@@ -12,6 +12,7 @@ using Entidades.Pessoa;
 using Apresentação.Formulários;
 using Entidades.Configuração;
 using System.Drawing.Drawing2D;
+using Entidades.Moedas;
 
 namespace Apresentação.Financeiro.Cotação
 {

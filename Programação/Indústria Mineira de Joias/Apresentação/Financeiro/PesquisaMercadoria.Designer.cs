@@ -77,11 +77,10 @@
             this.txtCotação.AvisarCotaçõesNãoCadastradas = false;
             this.txtCotação.Cotação = null;
             this.txtCotação.Location = new System.Drawing.Point(78, 131);
-            this.txtCotação.MostrarListaCotações = false;
             this.txtCotação.Name = "txtCotação";
             this.txtCotação.Size = new System.Drawing.Size(145, 20);
             this.txtCotação.TabIndex = 5;
-            this.txtCotação.Valor = 0;
+            this.txtCotação.Valor = 0D;
             // 
             // label2
             // 
@@ -108,8 +107,8 @@
             this.txtValorMáximo.Location = new System.Drawing.Point(78, 157);
             this.txtValorMáximo.MaxWholeDigits = 9;
             this.txtValorMáximo.Name = "txtValorMáximo";
-            this.txtValorMáximo.RangeMax = 1.7976931348623157E+308;
-            this.txtValorMáximo.RangeMin = -1.7976931348623157E+308;
+            this.txtValorMáximo.RangeMax = 1.7976931348623157E+308D;
+            this.txtValorMáximo.RangeMin = -1.7976931348623157E+308D;
             this.txtValorMáximo.Size = new System.Drawing.Size(145, 20);
             this.txtValorMáximo.TabIndex = 8;
             // 
@@ -130,7 +129,7 @@
             this.chkTipo.FormattingEnabled = true;
             this.chkTipo.Location = new System.Drawing.Point(3, 16);
             this.chkTipo.Name = "chkTipo";
-            this.chkTipo.Size = new System.Drawing.Size(205, 64);
+            this.chkTipo.Size = new System.Drawing.Size(205, 69);
             this.chkTipo.TabIndex = 0;
             // 
             // groupBox2
@@ -150,7 +149,7 @@
             this.chkMetal.FormattingEnabled = true;
             this.chkMetal.Location = new System.Drawing.Point(3, 16);
             this.chkMetal.Name = "chkMetal";
-            this.chkMetal.Size = new System.Drawing.Size(199, 64);
+            this.chkMetal.Size = new System.Drawing.Size(199, 69);
             this.chkMetal.TabIndex = 1;
             // 
             // groupBox3
@@ -172,7 +171,7 @@
             this.chkPedras.Location = new System.Drawing.Point(3, 16);
             this.chkPedras.MultiColumn = true;
             this.chkPedras.Name = "chkPedras";
-            this.chkPedras.Size = new System.Drawing.Size(413, 64);
+            this.chkPedras.Size = new System.Drawing.Size(413, 69);
             this.chkPedras.Sorted = true;
             this.chkPedras.TabIndex = 1;
             // 

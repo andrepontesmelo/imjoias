@@ -121,8 +121,6 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 			else 
                 CalcularCoeficienteDePeça(itemMercadoria, saida, ref coeficienteAtacado, ref coeficienteAutoAtacado, ref valorVarejo, ref valorVarejoConsulta, ref erro);
 
-            DataRow linha;
-
             Transpor(itemMercadoria, consulta, coeficienteAtacado, CODIGO_TABELA_ATACADO, erro);
             Transpor(itemMercadoria, consulta, coeficienteAtacado, CODIGO_TABELA_REPRESENTANTE, erro);
             Transpor(itemMercadoria, consulta, coeficienteAtacado, CODIGO_TABELA_CONSIGNADO, erro);

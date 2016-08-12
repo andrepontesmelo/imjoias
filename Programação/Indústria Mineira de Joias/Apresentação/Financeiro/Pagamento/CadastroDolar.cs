@@ -1,10 +1,5 @@
+using Entidades.Moedas;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 
 namespace Apresentação.Financeiro.Pagamento
 {
@@ -41,8 +36,8 @@ namespace Apresentação.Financeiro.Pagamento
             base.PrepararParaCadastro(venda, pessoa);
 
                 ((Entidades.Pagamentos.Dolar)Pagamento).Cotação = Entidades.Financeiro.Cotação.ObterCotaçãoVigente(
-                    Entidades.Moeda.ObterMoeda(
-                    Entidades.Moeda.MoedaSistema.DólarParalelo));
+                    MoedaObtenção.Instância.ObterMoeda(
+                    MoedaSistema.DólarParalelo));
 
             AtualizarInterface();
             txtValor.Focus();

@@ -1,15 +1,13 @@
+using Apresentação.Formulários;
+using Entidades;
+using Entidades.Financeiro;
+using Entidades.Moedas;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using System.IO;
-using Entidades;
 using System.Diagnostics;
-using Apresentação.Formulários;
-using Entidades.Financeiro;
+using System.IO;
+using System.Windows.Forms;
 
 namespace Apresentação.IntegraçãoSistemaAntigo.Fiscal
 {
@@ -67,14 +65,14 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Fiscal
 
 
             // Obtem a cotação de varejo
-            cotação = Entidades.Financeiro.Cotação.ObterCotaçãoVigente(Entidades.Moeda.ObterMoeda(4)).Valor;
+            cotação = Cotação.ObterCotaçãoVigente(MoedaObtenção.Instância.ObterMoeda(4)).Valor;
 
             List<IDbConnection> conexõesRemovidas = new List<IDbConnection>();
             // Abre banco de dados
             MySQL.AdicionarTabelaAoDataSet(ds, "mercadoria", conexõesRemovidas);
             MySQL.AdicionarTabelaAoDataSet(ds, "tabelamercadoria", conexõesRemovidas);
 
-            Apresentação.Formulários.Aguarde janela = new Apresentação.Formulários.Aguarde("Gerando entrada para impressora fiscal", ds.Tables["mercadoria"].Rows.Count);
+            Aguarde janela = new Aguarde("Gerando entrada para impressora fiscal", ds.Tables["mercadoria"].Rows.Count);
             janela.Abrir();
             using (StreamWriter arquivoPrincipal = new StreamWriter(nomeArquivoPrincipal))
             {
@@ -574,7 +572,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Fiscal
                     }
 
 
-                    Preço preçoMercadoria = mercadoria.CalcularPreço(Cotação.ObterCotaçãoVigente(Moeda.ObterMoeda(Moeda.MoedaSistema.OuroVarejo)));
+                    Preço preçoMercadoria = mercadoria.CalcularPreço(Cotação.ObterCotaçãoVigente(MoedaObtenção.Instância.ObterMoeda(MoedaSistema.OuroVarejo)));
                     string preçoStr = Math.Round(preçoMercadoria.Valor, 2).ToString().Replace(',', '.').Trim();
 
                     //string preçoStr = "99.99";

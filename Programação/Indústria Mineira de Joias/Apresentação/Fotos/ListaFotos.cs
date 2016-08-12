@@ -10,6 +10,7 @@ using Apresentação.Formulários;
 using System.Collections;
 using Acesso.Comum;
 using Apresentação.Mercadoria;
+using Entidades.Moedas;
 
 namespace Apresentação.Álbum.Edição.Fotos
 {
@@ -480,7 +481,7 @@ namespace Apresentação.Álbum.Edição.Fotos
                 Entidades.Mercadoria.Mercadoria.ObterMercadoria(Seleção.ReferênciaFormatada, Entidades.Tabela.TabelaPadrão);
 
             InformaçõesMercadoriaResumo janela = new InformaçõesMercadoriaResumo(m,
-                Entidades.Financeiro.Cotação.ObterCotaçãoVigente(Entidades.Moeda.ObterMoeda(Entidades.Moeda.MoedaSistema.Ouro)));
+                Entidades.Financeiro.Cotação.ObterCotaçãoVigente(MoedaObtenção.Instância.ObterMoeda(MoedaSistema.Ouro)));
 
             janela.Show();
         }

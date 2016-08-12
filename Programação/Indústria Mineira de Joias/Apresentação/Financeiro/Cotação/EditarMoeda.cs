@@ -9,6 +9,7 @@ using Apresentação.Formulários;
 using Entidades.Mercadoria;
 using System.Collections;
 using Entidades;
+using Entidades.Moedas;
 
 namespace Apresentação.Financeiro.Cotação
 {

@@ -1,21 +1,15 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-
-using Entidades;
 using Apresentação.Formulários;
+using Entidades.Moedas;
+using System;
+using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace Apresentação.Financeiro.Indicadores
 {
     /// <summary>
     /// Gráfico de cotação do ouro.
     /// </summary>
-    public partial class GráficoCotação : Apresentação.Formulários.Quadro
+    public partial class GráficoCotação : Quadro
     {
         /// <summary>
         /// Períodos de listagem.

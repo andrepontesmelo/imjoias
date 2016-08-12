@@ -2,6 +2,7 @@ using Apresentação.Formulários;
 using Apresentação.Mercadoria;
 using Entidades;
 using Entidades.Configuração;
+using Entidades.Moedas;
 using Entidades.Pessoa;
 using System;
 using System.Collections.Generic;
@@ -23,8 +24,7 @@ namespace Apresentação.Financeiro
             base.OnLoad(e);
 
             configuração = new ConfiguraçãoUsuário<uint>("ÚltimaTabelaConsulta", Tabela.TabelaPadrão.Código);
-
-            txtCotação.Data = DadosGlobais.Instância.HoraDataAtual;
+            //txtCotação.Data = DadosGlobais.Instância.HoraDataAtual;
             cmbTabela.Seleção = Tabela.ObterTabela(configuração.Valor);
         }
 
@@ -170,16 +170,10 @@ namespace Apresentação.Financeiro
 
         private void lnkHistóricoCotações_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Indicadores.JanelaHistóricoCotação histórico = new Apresentação.Financeiro.Indicadores.JanelaHistóricoCotação(
-                cmbTabela.Seleção != null ? cmbTabela.Seleção.Moeda : Entidades.Moeda.ObterMoeda(Entidades.Moeda.MoedaSistema.Ouro));
+            Indicadores.JanelaHistóricoCotação histórico = new Indicadores.JanelaHistóricoCotação(
+                cmbTabela.Seleção != null ? cmbTabela.Seleção.Moeda : MoedaObtenção.Instância.ObterMoeda(MoedaSistema.Ouro));
 
             histórico.Show(Owner);
-        }
-
-        private void cmbTabela_AoSelecionar(ComboTabela sender, Tabela moeda)
-        {
-            txtCotação.Valor = 0;
-            txtCotação.Moeda = moeda.Moeda;
         }
 
         private void linkPesquisaAvançada_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

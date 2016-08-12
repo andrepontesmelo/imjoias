@@ -1,16 +1,11 @@
+using Entidades.Moedas;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Globalization;
-using System.Text;
 using System.Windows.Forms;
-using Entidades;
 
 namespace Apresentação.Financeiro.Cotação
 {
-    public partial class RegistrarCotação : Apresentação.Formulários.JanelaExplicativa
+    public partial class RegistrarCotação : Formulários.JanelaExplicativa
     {
         public delegate void RegistrarCotaçãoDelegate(Entidades.Financeiro.Cotação cotação);
         public RegistrarCotaçãoDelegate CotaçãoRegistrada;

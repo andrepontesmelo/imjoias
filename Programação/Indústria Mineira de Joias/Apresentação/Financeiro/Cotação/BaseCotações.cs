@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using Apresentação.Formulários;
 using Entidades;
+using Entidades.Moedas;
 
 [assembly: ExporBotão(0, "Cotações", true, typeof(Apresentação.Financeiro.Cotação.BaseCotações))]
 
@@ -40,7 +41,7 @@ namespace Apresentação.Financeiro.Cotação
             {
                 flowLayoutPanel.Controls.Clear();
 
-                Moeda[] moedas = Moeda.ObterMoedas();
+                Moeda[] moedas = MoedaObtenção.Instância.ObterMoedas();
 
                 foreach (Moeda moeda in moedas)
                     AdicionarMoeda(moeda);

@@ -1,21 +1,17 @@
-using System;
-using System.Data;
-using System.Collections;
 using Acesso.Comum;
 using Acesso.Comum.Exceções;
 using Entidades.Configuração;
+using Entidades.Moedas;
 using Entidades.Privilégio;
+using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace Entidades.Financeiro
 {
-    /// <remarks>
-    /// Deve ser manipulado apenas pelo contexto.
-    /// </remarks>
 	[Serializable, DbTabela("cotacao"), DbTransação]
-	public class Cotação : Acesso.Comum.DbManipulaçãoAutomática
+	public class Cotação : DbManipulaçãoAutomática
 	{
-		// Atributos
         [DbChavePrimária(false)]
 		private DateTime? data;
 
@@ -25,9 +21,7 @@ namespace Entidades.Financeiro
         private double valor;
 
         [DbRelacionamento("codigo", "funcionario"), DbColuna("funcionario")]
-		private Entidades.Pessoa.Funcionário funcionário;
-
-        #region Propriedades
+		private Pessoa.Funcionário funcionário;
 
         public Moeda Moeda
         {
@@ -81,7 +75,7 @@ namespace Entidades.Financeiro
 			}
 		}
 
-		public Entidades.Pessoa.Funcionário Funcionário
+		public Pessoa.Funcionário Funcionário
 		{
 			get { return funcionário; }
 			set
@@ -96,15 +90,10 @@ namespace Entidades.Financeiro
 
 		public override string ToString()
 		{
-			return
-                valor.ToString("c", Entidades.Configuração.DadosGlobais.Instância.Cultura)
+			return valor.ToString("c", DadosGlobais.Instância.Cultura)
 				+ " funcionário: " + Funcionário.ToString()
 				+ " data: " + Data.ToString();
         }
-
-        #endregion
-
-        #region Recuperação de dados
 
         public class CotaçãoInexistente : ApplicationException
         {
@@ -193,9 +182,6 @@ namespace Entidades.Financeiro
                                     + " AND moeda = " + DbTransformar(moeda.Código)).ToArray();
         }
 
-		/// <summary>
-		/// Obtem somente cotações do dia do datetime especificado
-		/// </summary>
         public static Cotação[] ObterListaCotaçõesAtéDia(Moeda moeda, DateTime dia)
 		{
 			IDbConnection conexão;
@@ -206,32 +192,19 @@ namespace Entidades.Financeiro
             lock (conexão)
                 using (IDbCommand cmd = conexão.CreateCommand())
                 {
-                    cmd.CommandText = "(SELECT * FROM cotacao WHERE "
+                    cmd.CommandText = "SELECT * FROM ((SELECT * FROM cotacao WHERE "
                         + "DATE(data) = DATE(" + DbTransformar(dia) + ")"
                         + " AND moeda = " + DbTransformar(moeda.Código)
-                        + " ORDER BY data DESC)"
-                        + " UNION (SELECT * FROM cotacao WHERE "
+                        + " )  UNION (SELECT * FROM cotacao WHERE "
                         + "DATE(data) < DATE(" + DbTransformar(dia) + ")"
                         + " AND moeda = " + DbTransformar(moeda.Código)
-                        + " ORDER BY data DESC LIMIT 1)";
+                        + " ORDER BY data DESC LIMIT 1)) x order by data desc";
 
                     Mapear<Cotação>(cmd, lista);
-
-                    //if (lista.Count == 0)
-                    //{
-                    //    cmd.CommandText = "SELECT * FROM cotacao where "
-                    //        + "DATE(data) <= DATE(" + DbTransformar(dia) + ")"
-                    //        + " AND moeda = " + DbTransformar(moeda.Código)
-                    //        + " ORDER BY data DESC LIMIT 1";
-
-                    //    Mapear<Cotação>(cmd, lista);
-                    //}
                 }
 
 			return lista.ToArray();
 		}
-
-		#endregion
 
 		/// <summary>
 		/// Compara equivalência com outro objeto.
@@ -389,10 +362,6 @@ namespace Entidades.Financeiro
             base.Atualizar(cmd);
         }
 
-        /// <summary>
-        /// Calcula a variação percentual da cotação.
-        /// </summary>
-        /// <returns>Variação percentual entre 0 e 1.</returns>
         public double CalcularVariaçãoPercentual()
         {
             IDbConnection conexão = Conexão;

@@ -5,6 +5,7 @@ using Entidades.Configuração;
 using System.Globalization;
 using Entidades.Pagamentos;
 using Entidades.Financeiro;
+using Entidades.Moedas;
 
 namespace Entidades
 {

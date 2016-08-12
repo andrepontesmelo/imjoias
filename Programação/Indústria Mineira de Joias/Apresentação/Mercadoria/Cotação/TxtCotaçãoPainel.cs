@@ -1,5 +1,5 @@
-using Entidades;
 using Entidades.Configuração;
+using Entidades.Moedas;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,45 +9,41 @@ using System.Windows.Forms;
 
 namespace Apresentação.Mercadoria.Cotação
 {
-    /// <summary>
-    /// Painel para exibição de cotações no TxtCotação.
-    /// </summary>
     internal class TxtCotaçãoPainel : UserControl
 	{
-		// Atributos
 		private Dictionary<ListViewItem, Entidades.Financeiro.Cotação> hashListViewItemCotação;
 		private Dictionary<double, ListViewItem> hashValorListViewItem; // chave: valor double da cotação.
         private Entidades.Financeiro.Cotação seleção = null;
         private Moeda moeda;
 
-		// Controles
-		private System.Windows.Forms.Panel          painelBase;
-		private System.Windows.Forms.Panel          painelSuperior;
-		private System.Windows.Forms.Label          labelData;
-		private System.Windows.Forms.Panel          painelInferior;
-		private System.Windows.Forms.ListView       lista;
-		private System.Windows.Forms.ColumnHeader   colHora;
-		private System.Windows.Forms.ColumnHeader   colCotação;
-		private System.Windows.Forms.ColumnHeader   colFuncionário;
-		private System.Windows.Forms.DateTimePicker data;
+		private Panel painelBase;
+		private Panel painelSuperior;
+		private Panel painelInferior;
+		private ListView lista;
+		private ColumnHeader colHora;
+		private ColumnHeader colCotação;
+		private ColumnHeader colFuncionário;
+		private DateTimePicker data;
+        private IContainer components;
 
-		/// <summary> 
-		/// Required designer variable.
-		/// </summary>
-		private System.ComponentModel.Container components = null;
-
-		// Eventos
-		public event EventHandler SelectedIndexChanged;
+        public event EventHandler SelectedIndexChanged;
 		public event EventHandler ListaDoubleClick;
+
+        private bool emPréCarga = true;
+
+        public void CargaInicial()
+        {
+            emPréCarga = false;
+            Recarregar();
+        }
 
 		public TxtCotaçãoPainel()
 		{
-			// This call is required by the Windows.Forms Form Designer.
 			InitializeComponent();
 
             data.Value = DadosGlobais.Instância.HoraDataAtual;
 		}
-
+        
         public Moeda Moeda
         {
             get { return moeda; }
@@ -55,8 +51,14 @@ namespace Apresentação.Mercadoria.Cotação
             {
                 moeda = value;
 
-                CarregarItens(data.Value);
+                Recarregar();
+                SelecionarPrimeiro();
             }
+        }
+
+        private void Recarregar()
+        {
+            CarregarItens(data.Value);
         }
 
 		/// <summary> 
@@ -88,7 +90,6 @@ namespace Apresentação.Mercadoria.Cotação
             this.colCotação = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colFuncionário = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.painelSuperior = new System.Windows.Forms.Panel();
-            this.labelData = new System.Windows.Forms.Label();
             this.data = new System.Windows.Forms.DateTimePicker();
             this.painelBase.SuspendLayout();
             this.painelInferior.SuspendLayout();
@@ -103,7 +104,7 @@ namespace Apresentação.Mercadoria.Cotação
             this.painelBase.Dock = System.Windows.Forms.DockStyle.Fill;
             this.painelBase.Location = new System.Drawing.Point(0, 0);
             this.painelBase.Name = "painelBase";
-            this.painelBase.Size = new System.Drawing.Size(216, 96);
+            this.painelBase.Size = new System.Drawing.Size(216, 146);
             this.painelBase.TabIndex = 0;
             // 
             // painelInferior
@@ -112,7 +113,7 @@ namespace Apresentação.Mercadoria.Cotação
             this.painelInferior.Dock = System.Windows.Forms.DockStyle.Fill;
             this.painelInferior.Location = new System.Drawing.Point(0, 24);
             this.painelInferior.Name = "painelInferior";
-            this.painelInferior.Size = new System.Drawing.Size(214, 70);
+            this.painelInferior.Size = new System.Drawing.Size(214, 120);
             this.painelInferior.TabIndex = 5;
             // 
             // lista
@@ -123,12 +124,13 @@ namespace Apresentação.Mercadoria.Cotação
             this.colCotação,
             this.colFuncionário});
             this.lista.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lista.Font = new System.Drawing.Font("Segoe UI", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lista.FullRowSelect = true;
             this.lista.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lista.Location = new System.Drawing.Point(0, 0);
             this.lista.MultiSelect = false;
             this.lista.Name = "lista";
-            this.lista.Size = new System.Drawing.Size(214, 70);
+            this.lista.Size = new System.Drawing.Size(214, 120);
             this.lista.TabIndex = 0;
             this.lista.UseCompatibleStateImageBehavior = false;
             this.lista.View = System.Windows.Forms.View.Details;
@@ -137,24 +139,23 @@ namespace Apresentação.Mercadoria.Cotação
             // 
             // colHora
             // 
-            this.colHora.Text = "Hora";
-            this.colHora.Width = 36;
+            this.colHora.Text = "D/H";
+            this.colHora.Width = 45;
             // 
             // colCotação
             // 
             this.colCotação.Text = "Cotação";
             this.colCotação.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.colCotação.Width = 70;
+            this.colCotação.Width = 61;
             // 
             // colFuncionário
             // 
             this.colFuncionário.Text = "Responsável";
-            this.colFuncionário.Width = 105;
+            this.colFuncionário.Width = 65;
             // 
             // painelSuperior
             // 
             this.painelSuperior.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.painelSuperior.Controls.Add(this.labelData);
             this.painelSuperior.Controls.Add(this.data);
             this.painelSuperior.Dock = System.Windows.Forms.DockStyle.Top;
             this.painelSuperior.Location = new System.Drawing.Point(0, 0);
@@ -162,24 +163,14 @@ namespace Apresentação.Mercadoria.Cotação
             this.painelSuperior.Size = new System.Drawing.Size(214, 24);
             this.painelSuperior.TabIndex = 3;
             // 
-            // labelData
-            // 
-            this.labelData.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labelData.AutoSize = true;
-            this.labelData.Location = new System.Drawing.Point(56, 6);
-            this.labelData.Name = "labelData";
-            this.labelData.Size = new System.Drawing.Size(33, 13);
-            this.labelData.TabIndex = 1;
-            this.labelData.Text = "Data:";
-            // 
             // data
             // 
             this.data.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.data.CustomFormat = "dd/MM/yy";
             this.data.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.data.Location = new System.Drawing.Point(88, 2);
+            this.data.Location = new System.Drawing.Point(67, 2);
             this.data.Name = "data";
-            this.data.Size = new System.Drawing.Size(72, 20);
+            this.data.Size = new System.Drawing.Size(86, 20);
             this.data.TabIndex = 0;
             this.data.ValueChanged += new System.EventHandler(this.data_ValueChanged);
             // 
@@ -187,11 +178,10 @@ namespace Apresentação.Mercadoria.Cotação
             // 
             this.Controls.Add(this.painelBase);
             this.Name = "TxtCotaçãoPainel";
-            this.Size = new System.Drawing.Size(216, 96);
+            this.Size = new System.Drawing.Size(216, 146);
             this.painelBase.ResumeLayout(false);
             this.painelInferior.ResumeLayout(false);
             this.painelSuperior.ResumeLayout(false);
-            this.painelSuperior.PerformLayout();
             this.ResumeLayout(false);
 
 		}
@@ -247,8 +237,7 @@ namespace Apresentação.Mercadoria.Cotação
             {
                 this.data.Value = data.Date;
 
-                if (!DesignMode)
-                    CarregarItens(data);
+                Recarregar();
             }
         }
 
@@ -286,6 +275,10 @@ namespace Apresentação.Mercadoria.Cotação
 
 		private bool CarregarItens(DateTime dia)
 		{
+            if (emPréCarga)
+                return false;
+
+            Console.WriteLine(" Obtendo cotações até dia " + dia.ToString());
             Entidades.Financeiro.Cotação[] cotações = null;
 
             UseWaitCursor = true;
@@ -379,7 +372,7 @@ namespace Apresentação.Mercadoria.Cotação
             ListViewItem item;
 
             if (Data.HasValue && cotação.Data.Value.Date != Data.Value.Date)
-                item = new ListViewItem("Anterior");
+                item = new ListViewItem(cotação.Data.Value.ToString("dd/MM"));
             else
                 item = new ListViewItem(cotação.Data.Value.ToShortTimeString());
 
@@ -417,19 +410,9 @@ namespace Apresentação.Mercadoria.Cotação
 			}
 			set
 			{
-                if (value.Data.HasValue)
-                {
-                    // Altera a data do controle
-                    data.Value = value.Data.Value;
+                if (emPréCarga)
+                    return;
 
-                    // Verifica se é necessário carregar do banco de dados
-                    if (hashListViewItemCotação == null || !hashListViewItemCotação.ContainsValue(value))
-                        CarregarItens(value.Data.Value);
-                }
-                else
-                    data = null;
-
-                // Seleciona cotação escolhida
                 IDictionaryEnumerator enumerador = hashListViewItemCotação.GetEnumerator();
                 
                 while (enumerador.MoveNext())
@@ -484,16 +467,13 @@ namespace Apresentação.Mercadoria.Cotação
 			}
 		}
 
-        private delegate void SelecionarÚltimoCallback();
+        private delegate void SelecionarPrimeiroCallback();
 
-        /// <summary>
-        /// Seleciona o último elemento da lista.
-        /// </summary>
-        public void SelecionarÚltimo()
+        public void SelecionarPrimeiro()
         {
             if (InvokeRequired)
             {
-                SelecionarÚltimoCallback método = new SelecionarÚltimoCallback(SelecionarÚltimo);
+                SelecionarPrimeiroCallback método = new SelecionarPrimeiroCallback(SelecionarPrimeiro);
                 BeginInvoke(método);
             }
             else
@@ -502,8 +482,8 @@ namespace Apresentação.Mercadoria.Cotação
 
                 if (lista.Items.Count != 0)
                 {
-                    lista.Items[lista.Items.Count - 1].Selected = true;
-                    seleção = hashListViewItemCotação[lista.Items[lista.Items.Count - 1]];
+                    lista.Items[0].Selected = true;
+                    seleção = hashListViewItemCotação[lista.Items[0]];
                 }
                 else
                     seleção = null;
@@ -522,6 +502,9 @@ namespace Apresentação.Mercadoria.Cotação
 		/// <param name="valor">Valor a ser selecionado.</param>
 		public void Selecionar(double valor)
 		{
+            if (emPréCarga)
+                return;
+
             UseWaitCursor = true;
 
             try
