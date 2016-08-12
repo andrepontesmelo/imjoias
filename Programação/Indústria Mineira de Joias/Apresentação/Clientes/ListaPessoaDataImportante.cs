@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using Apresentação.Atendimento.Comum;
+using Entidades.Pessoa;
+using System;
 using System.Drawing;
 using System.Text;
-using System.Windows.Forms;
-using Entidades.Pessoa;
-using Apresentação.Atendimento.Comum;
 
 namespace Apresentação.Atendimento.Clientes
 {
-    public partial class ListaPessoaDataImportante : Apresentação.Atendimento.Comum.ListaPessoasItem
+    public partial class ListaPessoaDataImportante : ListaPessoasItem
     {
         private DataRelevante data;
 
@@ -43,9 +39,6 @@ namespace Apresentação.Atendimento.Clientes
             this.data = data;
 
             picFoto.Image = ControladorÍconePessoa.ObterÍcone(data.Pessoa);
-
-            //if (data.Pessoa.Foto != null)
-            //    picFoto.Image = data.Pessoa.Foto;
         }
 
         public override int CompareTo(object obj)
