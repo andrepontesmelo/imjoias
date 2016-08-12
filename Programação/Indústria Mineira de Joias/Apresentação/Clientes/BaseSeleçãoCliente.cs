@@ -71,7 +71,8 @@ namespace Apresentação.Atendimento.Clientes
         private Opção opçãoImprimir;
         private ListaPessoasBusca listaPessoasBusca;
         private TextBox txtBusca;
-		private IContainer components = null;
+        private Panel panel1;
+        private IContainer components = null;
 
 		public BaseSeleçãoCliente()
 		{
@@ -108,7 +109,6 @@ namespace Apresentação.Atendimento.Clientes
 		/// </summary>
 		private void InitializeComponent()
 		{
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseSeleçãoCliente));
             this.quadroClientes = new Apresentação.Formulários.Quadro();
             this.opçãoProcurar = new Apresentação.Formulários.Opção();
             this.opçãoCadastrar = new Apresentação.Formulários.Opção();
@@ -121,6 +121,7 @@ namespace Apresentação.Atendimento.Clientes
             this.linha1 = new Apresentação.Formulários.Linha();
             this.label1 = new System.Windows.Forms.Label();
             this.txtBusca = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.esquerda.SuspendLayout();
             this.quadroClientes.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -205,12 +206,12 @@ namespace Apresentação.Atendimento.Clientes
             this.título.BackColor = System.Drawing.Color.White;
             this.título.Descrição = "";
             this.título.ÍconeArredondado = false;
-            this.título.Imagem = ((System.Drawing.Image)(resources.GetObject("título.Imagem")));
+            this.título.Imagem = null;
             this.título.Location = new System.Drawing.Point(200, 8);
             this.título.Name = "título";
             this.título.Size = new System.Drawing.Size(544, 70);
             this.título.TabIndex = 10;
-            this.título.Título = "Busca de clientes ou funcionários";
+            this.título.Título = "";
             // 
             // tableLayoutPanel1
             // 
@@ -283,27 +284,37 @@ namespace Apresentação.Atendimento.Clientes
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(5, 8);
+            this.label1.Location = new System.Drawing.Point(56, 8);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(102, 13);
+            this.label1.Size = new System.Drawing.Size(71, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Datas importantes";
+            this.label1.Text = "Aniversários";
             // 
             // txtBusca
             // 
             this.txtBusca.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBusca.BackColor = System.Drawing.Color.Linen;
-            this.txtBusca.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBusca.Location = new System.Drawing.Point(270, 33);
+            this.txtBusca.BackColor = System.Drawing.Color.White;
+            this.txtBusca.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBusca.Location = new System.Drawing.Point(254, 16);
             this.txtBusca.Name = "txtBusca";
-            this.txtBusca.Size = new System.Drawing.Size(481, 33);
+            this.txtBusca.Size = new System.Drawing.Size(275, 33);
             this.txtBusca.TabIndex = 12;
             this.txtBusca.TextChanged += new System.EventHandler(this.txtBusca_TextChanged);
             this.txtBusca.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBusca_KeyDown);
             // 
+            // panel1
+            // 
+            this.panel1.BackgroundImage = global::Apresentação.Resource.search4people;
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panel1.Location = new System.Drawing.Point(210, 13);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(36, 44);
+            this.panel1.TabIndex = 13;
+            // 
             // BaseSeleçãoCliente
             // 
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.txtBusca);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.título);
@@ -313,6 +324,7 @@ namespace Apresentação.Atendimento.Clientes
             this.Controls.SetChildIndex(this.esquerda, 0);
             this.Controls.SetChildIndex(this.tableLayoutPanel1, 0);
             this.Controls.SetChildIndex(this.txtBusca, 0);
+            this.Controls.SetChildIndex(this.panel1, 0);
             this.esquerda.ResumeLayout(false);
             this.quadroClientes.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
