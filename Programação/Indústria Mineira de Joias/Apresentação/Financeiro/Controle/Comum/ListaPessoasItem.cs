@@ -105,16 +105,16 @@ namespace Apresentação.Atendimento.Comum
             this.picFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picFoto.TabIndex = 0;
             this.picFoto.TabStop = false;
-            this.picFoto.DoubleClick += new System.EventHandler(this.DuploClickInterno);
-            this.picFoto.MouseLeave += new System.EventHandler(this.ListaPessoasItem_MouseLeave);
             this.picFoto.Click += new System.EventHandler(this.ClickInterno);
+            this.picFoto.DoubleClick += new System.EventHandler(this.DuploClickInterno);
             this.picFoto.MouseEnter += new System.EventHandler(this.ListaPessoasItem_MouseEnter);
+            this.picFoto.MouseLeave += new System.EventHandler(this.ListaPessoasItem_MouseLeave);
             // 
             // lblPrimária
             // 
-            this.lblPrimária.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblPrimária.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrimária.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPrimária.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPrimária.ForeColor = System.Drawing.Color.Black;
             this.lblPrimária.Location = new System.Drawing.Point(72, 8);
             this.lblPrimária.Name = "lblPrimária";
@@ -122,27 +122,29 @@ namespace Apresentação.Atendimento.Comum
             this.lblPrimária.TabIndex = 1;
             this.lblPrimária.Text = "?";
             this.lblPrimária.UseMnemonic = false;
-            this.lblPrimária.MouseLeave += new System.EventHandler(this.ListaPessoasItem_MouseLeave);
-            this.lblPrimária.DoubleClick += new System.EventHandler(this.DuploClickInterno);
             this.lblPrimária.Click += new System.EventHandler(this.ClickInterno);
+            this.lblPrimária.DoubleClick += new System.EventHandler(this.DuploClickInterno);
             this.lblPrimária.MouseEnter += new System.EventHandler(this.ListaPessoasItem_MouseEnter);
+            this.lblPrimária.MouseLeave += new System.EventHandler(this.ListaPessoasItem_MouseLeave);
             // 
             // lblSecundária
             // 
+            this.lblSecundária.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSecundária.Location = new System.Drawing.Point(72, 28);
             this.lblSecundária.Name = "lblSecundária";
             this.lblSecundária.Size = new System.Drawing.Size(232, 28);
             this.lblSecundária.TabIndex = 4;
             this.lblSecundária.Text = "?";
-            this.lblSecundária.MouseLeave += new System.EventHandler(this.ListaPessoasItem_MouseLeave);
-            this.lblSecundária.DoubleClick += new System.EventHandler(this.DuploClickInterno);
             this.lblSecundária.Click += new System.EventHandler(this.ClickInterno);
+            this.lblSecundária.DoubleClick += new System.EventHandler(this.DuploClickInterno);
             this.lblSecundária.MouseEnter += new System.EventHandler(this.ListaPessoasItem_MouseEnter);
+            this.lblSecundária.MouseLeave += new System.EventHandler(this.ListaPessoasItem_MouseLeave);
             // 
             // lblDescrição
             // 
-            this.lblDescrição.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDescrição.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDescrição.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDescrição.ForeColor = System.Drawing.Color.Blue;
             this.lblDescrição.Location = new System.Drawing.Point(72, 56);
             this.lblDescrição.Name = "lblDescrição";
@@ -150,10 +152,10 @@ namespace Apresentação.Atendimento.Comum
             this.lblDescrição.TabIndex = 3;
             this.lblDescrição.Text = "Vazio";
             this.lblDescrição.UseMnemonic = false;
-            this.lblDescrição.MouseLeave += new System.EventHandler(this.ListaPessoasItem_MouseLeave);
-            this.lblDescrição.DoubleClick += new System.EventHandler(this.DuploClickInterno);
             this.lblDescrição.Click += new System.EventHandler(this.ClickInterno);
+            this.lblDescrição.DoubleClick += new System.EventHandler(this.DuploClickInterno);
             this.lblDescrição.MouseEnter += new System.EventHandler(this.ListaPessoasItem_MouseEnter);
+            this.lblDescrição.MouseLeave += new System.EventHandler(this.ListaPessoasItem_MouseLeave);
             // 
             // ListaPessoasItem
             // 
@@ -165,8 +167,8 @@ namespace Apresentação.Atendimento.Comum
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Name = "ListaPessoasItem";
             this.Size = new System.Drawing.Size(304, 88);
-            this.MouseLeave += new System.EventHandler(this.ListaPessoasItem_MouseLeave);
             this.MouseEnter += new System.EventHandler(this.ListaPessoasItem_MouseEnter);
+            this.MouseLeave += new System.EventHandler(this.ListaPessoasItem_MouseLeave);
             ((System.ComponentModel.ISupportInitialize)(this.picFoto)).EndInit();
             this.ResumeLayout(false);
 
@@ -225,19 +227,18 @@ namespace Apresentação.Atendimento.Comum
 		/// </summary>
         protected internal virtual void Selecionar()
 		{
-			lblPrimária.ForeColor = Color.Red;
-			lblSecundária.ForeColor = Color.Red;
+            //lblPrimária.Font = new Font(lblPrimária.Font, FontStyle.Bold | FontStyle.Underline);
 			this.BackColor = Color.WhiteSmoke;
-		}
+            this.BorderStyle = BorderStyle.FixedSingle;
+        }
 
-		/// <summary>
-		/// Seleciona item pelo teclado.
-		/// </summary>
+        /// <summary>
+        /// Seleciona item pelo teclado.
+        /// </summary>
         protected internal virtual void SelecionarViaTeclado()
 		{
 			lblPrimária.ForeColor = SystemColors.ActiveCaptionText;
 			lblSecundária.ForeColor = SystemColors.ActiveCaptionText;;
-			lblDescrição.ForeColor = SystemColors.ActiveCaptionText;
 			this.BackColor = SystemColors.ActiveCaption;
 		}
 
@@ -246,16 +247,15 @@ namespace Apresentação.Atendimento.Comum
 		/// </summary>
 		protected internal virtual void Desselecionar()
 		{
-			lblPrimária.ForeColor = Color.Black;
-			lblSecundária.ForeColor = Color.Black;
-			lblDescrição.ForeColor = Color.Blue;
-			this.BackColor = Color.FromArgb(235, 235, 218);
-		}
+            //lblPrimária.Font = new Font(lblPrimária.Font, FontStyle.Bold);
+            this.BackColor = Color.FromArgb(235, 235, 218);
+            this.BorderStyle = BorderStyle.None;
+        }
 
-		/// <summary>
-		/// Ocorre ao ganhar foco.
-		/// </summary>
-		protected override void OnGotFocus(EventArgs e)
+        /// <summary>
+        /// Ocorre ao ganhar foco.
+        /// </summary>
+        protected override void OnGotFocus(EventArgs e)
 		{
 			base.OnGotFocus (e);
 

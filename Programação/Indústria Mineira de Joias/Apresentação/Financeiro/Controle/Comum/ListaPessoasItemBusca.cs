@@ -262,10 +262,8 @@ namespace Apresentação.Atendimento.Comum
 		/// </summary>
         protected internal virtual void Selecionar()
 		{
-			lblPrimária.ForeColor = Color.Red;
-			lblSecundária.ForeColor = Color.Red;
 			this.BackColor = Color.WhiteSmoke;
-
+            //this.lblPrimária.Font = new Font(lblPrimária.Font, FontStyle.Bold | FontStyle.Underline);
             this.BorderStyle = BorderStyle.FixedSingle;
 		}
 
@@ -285,12 +283,10 @@ namespace Apresentação.Atendimento.Comum
 		/// </summary>
 		protected internal virtual void Desselecionar()
 		{
-			lblPrimária.ForeColor = Color.Black;
-			lblSecundária.ForeColor = Color.Black;
 			this.BackColor = Color.FromArgb(224, 224, 224);
-
             this.BorderStyle = BorderStyle.None;
-		}
+            //this.lblPrimária.Font = new Font(lblPrimária.Font, FontStyle.Bold);
+        }
 
 		/// <summary>
 		/// Ocorre ao ganhar foco.
