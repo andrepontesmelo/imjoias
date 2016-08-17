@@ -626,6 +626,9 @@ namespace Apresentação.Mercadoria.Cotação
         /// </summary>
         private void lista_DoubleClick(object sender, EventArgs e)
         {
+            if (!carregado)
+                return;
+            
             DispararEscolheuCotação();
             EsconderPainel();
         }
