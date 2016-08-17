@@ -258,53 +258,38 @@ namespace Apresentação.Financeiro.Cotação
         /// </summary>
         private void CadastrarNovaCotação()
         {
-            // Cadastra cotação.
-            AguardeDB.Mostrar();
-
             try
             {
-                try
+                if (!Entidades.Financeiro.Cotação.VerificarValor(moeda, txtCotação.Double))
                 {
-                    if (!Entidades.Financeiro.Cotação.VerificarValor(moeda, txtCotação.Double))
-                    {
-                        AguardeDB.Suspensão(true);
-
-                        if (MessageBox.Show(
-                            ParentForm,
-                            string.Format("O valor {0} para a cotação de {1} encontra-se distante dos últimos valores registrados.\n\nEste valor está correto?",
-                            txtCotação.Double, moeda.Nome),
-                            string.Format("{0} - Cotação", moeda.Nome),
-                            MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                            == DialogResult.No)
-                        {
-                            AguardeDB.Suspensão(false);
-                            txtCotação.Focus();
-                            txtCotação.SelectAll();
-                            return;
-                        }
-                    }
-                    cotação = Entidades.Financeiro.Cotação.RegistrarCotação(moeda, txtCotação.Double);
-                }
-                catch (Exception erro)
-                {
-                    Acesso.Comum.Usuários.UsuárioAtual.RegistrarErro(erro);
-
-                    AguardeDB.Suspensão(true);
-
-                    MessageBox.Show(
+                    if (MessageBox.Show(
                         ParentForm,
-                        "Não foi possível atualizar a cotação.",
+                        string.Format("O valor {0} para a cotação de {1} encontra-se distante dos últimos valores registrados.\n\nEste valor está correto?",
+                        txtCotação.Double, moeda.Nome),
                         string.Format("{0} - Cotação", moeda.Nome),
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                    AguardeDB.Suspensão(false);
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    {
+                        txtCotação.Focus();
+                        txtCotação.SelectAll();
+                        return;
+                    }
                 }
-                ExibirCotaçãoVigente();
+                cotação = Entidades.Financeiro.Cotação.RegistrarCotação(moeda, txtCotação.Double);
             }
-            finally
+            catch (Exception erro)
             {
-                AguardeDB.Fechar();
+                Acesso.Comum.Usuários.UsuárioAtual.RegistrarErro(erro);
+
+                AguardeDB.Suspensão(true);
+
+                MessageBox.Show(
+                    ParentForm,
+                    "Não foi possível atualizar a cotação.",
+                    string.Format("{0} - Cotação", moeda.Nome),
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            ExibirCotaçãoVigente();
         }
 
         /// <summary>
