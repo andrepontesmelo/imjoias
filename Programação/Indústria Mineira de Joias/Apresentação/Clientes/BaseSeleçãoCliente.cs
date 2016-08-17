@@ -97,9 +97,7 @@ namespace Apresentação.Atendimento.Clientes
         protected override void AoExibir()
         {
             base.AoExibir();
-            txtBusca.Text = "";
             txtBusca.Focus();
-            ultimaTeclaNaTxtBuscaÉEnter = false;
         }
 
 		#region Designer generated code

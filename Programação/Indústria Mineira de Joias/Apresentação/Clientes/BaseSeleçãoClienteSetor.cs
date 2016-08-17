@@ -107,28 +107,9 @@ namespace Apresentação.Atendimento.Clientes
 		protected override void AoExibirDaPrimeiraVez()
 		{
 			CarregarConfigurações();
-            
-
 			base.AoExibirDaPrimeiraVez ();
-		}
 
-        /// <summary>
-        /// Ocorre ao exibir a base inferior.
-        /// </summary>
-        protected override void AoExibir()
-        {
-            base.AoExibir();
             CarregarDados();
-
-
-            //base.AoExibir();
-
-            //if (próximaCarga <= DateTime.Now)
-            //    CarregarDados();
-
-            //opçãoProcurar_Click(this, new EventArgs());
-
-            ////timerRecarregarLista.Enabled = true;
         }
 
 		/// <summary>
