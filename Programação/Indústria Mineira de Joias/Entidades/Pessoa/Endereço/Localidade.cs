@@ -108,6 +108,9 @@ namespace Entidades.Pessoa.Endereço
 
         public static Localidade ObterLocalidade(Estado estado, string localidade)
         {
+            if (estado == null || localidade == null)
+                return null;
+
             return MapearÚnicaLinha<Localidade>(
                 "SELECT * FROM localidade WHERE estado = " + DbTransformar(estado.Código) + " AND nome LIKE " + DbTransformar(localidade.Trim()));
         }

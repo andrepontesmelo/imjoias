@@ -165,15 +165,15 @@ namespace Apresentação.Pessoa.Endereço
                          * em Localidade (veja comentário lá).
                          * -- Júlio, 23/09/2006
                          */
-                        foreach (FieldInfo campo in Localidade.GetType().GetFields(System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance
-                           | System.Reflection.BindingFlags.Public))
+                        foreach (FieldInfo campo in Localidade.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Instance
+                           | BindingFlags.Public))
                         {
                             campo.SetValue(localidade, campo.GetValue(aux));
                         }
 
                         ignorarCadastro = true;
                     }
-                    else
+                    else if (localidade.Nome != null)
                     {
                         // Vamos verificar se não houve erro de grafia.
                         Localidade[] todas = Localidade.ObterLocalidades(localidade.Estado);
@@ -189,14 +189,17 @@ namespace Apresentação.Pessoa.Endereço
                     }
                 }
 
-                // Vamos verificar se o nome não está incorreto.
-                if (!ignorarCadastro)
-                {
-                    Localidade[] aux = Localidade.ObterLocalidades(localidade.Nome);
+            // Vamos verificar se o nome não está incorreto.
+            if (!ignorarCadastro)
+            {
+                Localidade[] aux = null;
 
-                    if (aux.Length > 0)
-                        QuestionarSemelhantes(localidade, out ignorarCadastro, aux);
-                }
+                if (localidade.Nome != null)
+                    aux = Localidade.ObterLocalidades(localidade.Nome);
+
+                if (aux != null && aux.Length > 0)
+                    QuestionarSemelhantes(localidade, out ignorarCadastro, aux);
+            }
             }
             finally
             {
