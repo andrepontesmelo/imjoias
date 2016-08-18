@@ -1,22 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
 namespace Apresentação.Formulários
 {
-    /// <summary>
-    /// Janela para exibição de manipulação de dados no banco de dados.
-    /// </summary>
-    /// <example>
-    /// AguardeDB.Mostrar();
-    /// Entidades.Bla zé = Entidades.Bla.Carregar();
-    /// AguardeDB.Fechar();
-    /// </example>
     public sealed partial class AguardeDB : Form
     {
         private static volatile bool abortado = false;
@@ -24,15 +12,12 @@ namespace Apresentação.Formulários
         private FechandoCallback aoFechar;
         private SuspendendoCallback aoSuspender;
 
-        /// <summary>
-        /// Constrói a janela de aguarde.
-        /// </summary>
         private AguardeDB()
         {
             InitializeComponent();
 
-            AguardeDB.Fechando += aoFechar = new FechandoCallback(AoFechar);
-            AguardeDB.Suspendendo += aoSuspender = new SuspendendoCallback(AoSuspender);
+            Fechando += aoFechar = new FechandoCallback(AoFechar);
+            Suspendendo += aoSuspender = new SuspendendoCallback(AoSuspender);
 
             Application.EnterThreadModal += new EventHandler(Application_EnterThreadModal);
             Application.LeaveThreadModal += new EventHandler(Application_LeaveThreadModal);
@@ -48,7 +33,7 @@ namespace Apresentação.Formulários
                     Visible = contador > 0;
 
                     if (contador <= 0)
-                        Hide(); // Close();
+                        Hide();
                 }
             }
             catch { }
@@ -92,11 +77,6 @@ namespace Apresentação.Formulários
             }
         }
 
-
-        /// <summary>
-        /// Ocorre quando não existe mais nenhum dado sendo
-        /// carregado do banco de dados.
-        /// </summary>
         void AoFechar()
         {
             try
@@ -107,31 +87,18 @@ namespace Apresentação.Formulários
                     BeginInvoke(método);
                 }
                 else
-                {
                     Hide();
-                    //Close();
-                    //Dispose();
-                }
             }
             catch
             {
             }
         }
 
-        #region Itens estáticos
-
         private static Thread thread;
         private static volatile int contador;
 
-        /// <summary>
-        /// Mostra a janela em segundo plano.
-        /// </summary>
         public static void Mostrar()
         {
-            //#if DEBUG
-//            Console.WriteLine("AguardeDB Mostrando...");
-//            DepurarRastro();
-//#endif
             abortado = false;
 
             try
@@ -152,9 +119,6 @@ namespace Apresentação.Formulários
             }
         }
 
-        /// <summary>
-        /// Fecha a janela se todos os dados já estiverem sido carregados.
-        /// </summary>
         public static void Fechar()
         {
             try
@@ -185,9 +149,6 @@ namespace Apresentação.Formulários
             catch { }
         }
 
-        /// <summary>
-        /// Loop para mostrar janela.
-        /// </summary>
         private static void LoopMostrar()
         {
             try
@@ -213,15 +174,12 @@ namespace Apresentação.Formulários
         private static event FechandoCallback Fechando;
         private static event SuspendendoCallback Suspendendo;
 
-        #endregion
-
         private void AguardeDB_Shown(object sender, EventArgs e)
         {
             if (contador == 0 || abortado)
                 AoFechar();
         }
 
-#if DEBUG
         private static void DepurarRastro()
         {
             try
@@ -289,14 +247,11 @@ namespace Apresentação.Formulários
                 Console.WriteLine("Erro ao rastrear comando!");
             }
         }
-#endif
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
             if (abortado || contador <= 0)
-            {
                 Hide();
-            }
         }
     }
 }
