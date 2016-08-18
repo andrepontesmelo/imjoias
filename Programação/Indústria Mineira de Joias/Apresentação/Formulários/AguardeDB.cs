@@ -19,8 +19,8 @@ namespace Apresentação.Formulários
     /// </example>
     public sealed partial class AguardeDB : Form
     {
-        private static volatile bool abortar = false;
-        private static volatile bool suspendendo = false;
+        private static volatile bool abortado = false;
+        private static volatile bool suspenso = false;
         private FechandoCallback aoFechar;
         private SuspendendoCallback aoSuspender;
 
@@ -78,7 +78,7 @@ namespace Apresentação.Formulários
                 BeginInvoke(método, valor);
             } else
             {
-                suspendendo = valor;
+                suspenso = valor;
 
                 if (contador <= 0)
                     Hide();
@@ -132,7 +132,7 @@ namespace Apresentação.Formulários
 //            Console.WriteLine("AguardeDB Mostrando...");
 //            DepurarRastro();
 //#endif
-            abortar = false;
+            abortado = false;
 
             try
             {
@@ -163,7 +163,7 @@ namespace Apresentação.Formulários
                 if (Fechando != null)
                     Fechando();
                 else if (thread != null)
-                    abortar = true;
+                    abortado = true;
             }
             catch
             {
@@ -194,7 +194,7 @@ namespace Apresentação.Formulários
             {
                 using (AguardeDB janela = new AguardeDB())
                 {
-                    if (contador > 0 && !abortar && !suspendendo)
+                    if (contador > 0 && !abortado && !suspenso)
                         janela.ShowDialog();
                 }
             }
@@ -217,7 +217,7 @@ namespace Apresentação.Formulários
 
         private void AguardeDB_Shown(object sender, EventArgs e)
         {
-            if (contador == 0 || abortar)
+            if (contador == 0 || abortado)
                 AoFechar();
         }
 
@@ -293,7 +293,7 @@ namespace Apresentação.Formulários
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            if (abortar || contador <= 0)
+            if (abortado || contador <= 0)
             {
                 Hide();
             }
