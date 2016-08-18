@@ -20,6 +20,7 @@ namespace Apresentação.Formulários
     public sealed partial class AguardeDB : Form
     {
         private static volatile bool abortar = false;
+        private static volatile bool suspendendo = false;
         private FechandoCallback aoFechar;
         private SuspendendoCallback aoSuspender;
 
@@ -75,15 +76,19 @@ namespace Apresentação.Formulários
             {
                 SuspendendoCallback método = new SuspendendoCallback(AoSuspender);
                 BeginInvoke(método, valor);
-            }
-            else if (contador <= 0)
-                Hide();
-            else
+            } else
             {
-                if (valor)
+                suspendendo = valor;
+
+                if (contador <= 0)
                     Hide();
-                else if (!Disposing && Enabled)
-                    Show();
+                else
+                {
+                    if (valor)
+                        Hide();
+                    else if (!Disposing && Enabled)
+                        Show();
+                }
             }
         }
 
@@ -189,7 +194,7 @@ namespace Apresentação.Formulários
             {
                 using (AguardeDB janela = new AguardeDB())
                 {
-                    if (contador > 0 && !abortar)
+                    if (contador > 0 && !abortar && !suspendendo)
                         janela.ShowDialog();
                 }
             }
