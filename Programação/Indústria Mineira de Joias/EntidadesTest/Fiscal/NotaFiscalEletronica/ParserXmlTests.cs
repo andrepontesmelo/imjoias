@@ -25,39 +25,45 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         }
 
         [TestMethod()]
-        public void DeveLerTipoUnidade()
+        public void DeveLerTipoUnidadePar()
         {
-            Assert.AreEqual(TipoUnidade.Pca, parser.ObterTipoUnidade(10));
+            Assert.AreEqual(TipoUnidade.Par, parser.ObterTipoUnidade(1));
+        }
+
+        [TestMethod()]
+        public void DeveLerTipoUnidadeParPeça()
+        {
+            Assert.AreEqual(TipoUnidade.Pca, parser.ObterTipoUnidade(2));
         }
 
         [TestMethod()]
         public void DeveLerReferência()
         {
-            Assert.AreEqual("202459001007", parser.ObterReferência(10));
+            Assert.AreEqual("108025101006", parser.ObterReferência(12));
         }
 
         [TestMethod()]
         public void DeveLerQuantidadeItens()
         {
-            Assert.AreEqual(5, parser.ObterQuantidadeItens(11));
+            Assert.AreEqual(2, parser.ObterQuantidadeItens(12));
         }
 
         [TestMethod()]
         public void DeveLerValorUnitario()
         {
-            Assert.AreEqual(132, parser.ObterValorUnitario(11));
+            Assert.AreEqual(71.57M, parser.ObterValorUnitario(12));
         }
 
         [TestMethod()]
         public void DeveLerValor()
         {
-            Assert.AreEqual(660, parser.ObterValorUnitario(11));
+            Assert.AreEqual(143.14M, parser.ObterValor(12));
         }
 
         [TestMethod()]
         public void DeveLerDescrição()
         {
-            Assert.AreEqual("Cordao de Ouro", parser.ObterDescrição(11));
+            Assert.AreEqual("Gargantilha de Ouro", parser.ObterDescrição(11));
         }
     }
 }
