@@ -35,9 +35,6 @@ namespace Apresentação.Formulários
 
             Application.EnterThreadModal += new EventHandler(Application_EnterThreadModal);
             Application.LeaveThreadModal += new EventHandler(Application_LeaveThreadModal);
-
-            //if (contador <= 0)
-            //    throw new ApplicationException();
         }
 
         void Application_LeaveThreadModal(object sender, EventArgs e)
@@ -80,7 +77,7 @@ namespace Apresentação.Formulários
                 BeginInvoke(método, valor);
             }
             else if (contador <= 0)
-                Hide(); //Close();
+                Hide();
             else
             {
                 if (valor)
@@ -155,10 +152,6 @@ namespace Apresentação.Formulários
         /// </summary>
         public static void Fechar()
         {
-//#if DEBUG
-//            Console.WriteLine("AguardeDB Fechando...");
-//            DepurarRastro();
-//#endif
             try
             {
                 if (--contador <= 0 && Fechando != null)
