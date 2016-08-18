@@ -859,6 +859,12 @@ namespace Apresentação.Pessoa.Cadastro
 
         private void txtEmail_Validating(object sender, CancelEventArgs e)
         {
+            if (txtEmail.Text.Trim().Length == 0)
+            {
+                e.Cancel = false;
+                return;
+            }
+
             string[] emails = txtEmail.Text.Split(new char[] { ',', ' ', ';' });
 
             try
