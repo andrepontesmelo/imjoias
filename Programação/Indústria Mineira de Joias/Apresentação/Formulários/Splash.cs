@@ -1,84 +1,27 @@
-using System;
-using System.Drawing;
-using System.Collections;
-using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace Apresentação.Formulários
 {
-	/// <summary>
-	/// Summary description for Splash.
-	/// </summary>
-	public sealed class Splash : System.Windows.Forms.Form
+    public sealed class Splash : Form
 	{
-		private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label lblDesenvolvidoPor;
+		private PictureBox pictureBox1;
+        private Label lblDesenvolvidoPor;
         private Label lblMensagem;
         private Label lblVersão;
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
-		private System.ComponentModel.Container components = null;
 
-        private static DateTime DataCompilação()
-        {
-
-            DateTime resultado = new DateTime(2000, 1, 1);
-
-            System.Version v =
-            System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-
-
-            resultado = resultado.AddDays(v.Build);
-            resultado.AddSeconds(v.Revision * 2);
-
-            if (TimeZone.IsDaylightSavingTime(DateTime.Now, TimeZone.CurrentTimeZone.GetDaylightChanges(DateTime.Now.Year)))
-                resultado = resultado.AddHours(1);
-
-            return resultado;
-        }
+        private System.ComponentModel.Container components = null;
 
         public Splash()
         {
-            System.Windows.Forms.Cursor.Current = Cursors.AppStarting;
-            //
-            // Required for Windows Form Designer support
-            //
+            Cursor.Current = Cursors.AppStarting;
+
             InitializeComponent();
 
-            DateTime dataCompilação = DataCompilação();
-            //dataCompilação = dataCompilação.AddDays(-500);
-
-            TimeSpan diff = DateTime.Now.Date - dataCompilação;
-            int dias = (int) diff.TotalDays;
-
-            //lblVersão.Text = "Versão lançada " +
-            //    (dias == 0 ? "hoje " : (dias == 1 ? "ontem " : "há " + dias.ToString() + " dias"));
-
-            //lblVersão.Text += " (" + DateTime.Now.ToLongDateString() + ") ";
-
-            //lblHoje.Text = DateTime.Now.ToLongDateString();
-
-            if (dias == 0)
-                lblVersão.Text = "Compilado hoje";
-            else if (dias == 1)
-                lblVersão.Text = "Compilado ontem";
-            else if (dias <= 7)
-                lblVersão.Text = "Compilado há " + dias.ToString() + " dias";
-            else
-                lblVersão.Text = "Compilado " + dataCompilação.ToLongDateString();
+            lblVersão.Text = "";
 
             Application.DoEvents();
         }
 
-        public void MostrarCarregandoVersão()
-        {
-            lblVersão.Text = "Verificando se existe nova versão";
-        }
-
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
 		protected override void Dispose( bool disposing )
 		{
 			if( disposing )
@@ -187,85 +130,7 @@ namespace Apresentação.Formulários
 				lblMensagem.Text = value;
 				lblMensagem.Refresh();
                 Application.DoEvents();
-
-                //if (!jáVerificado)
-                //{
-                //    VerificarVersão();
-                //}
 			}
 		}
-
-        //private bool jáVerificado = false;
-
-        //private void VerificarVersão()
-        //{
-        //    if (Acesso.Comum.Usuários.UsuárioAtual != null)
-        //    {
-        //        Entidades.Configuração.DadosGlobais.Instância.ÚltimoLogInUsuário = DateTime.Now;
-
-        //        if (VersãoAntiga())
-        //        {
-        //            lblVersão.ForeColor = Color.Red;
-        //            lblVersão.Font = new Font(lblVersão.Font, FontStyle.Bold);
-
-        //            //lblInfoVersãoDesatualizada.Visible = true;
-        //            //lblDesenvolvidoPor.Visible = false;
-        //            lblMensagem.Visible = false;
-        //        }
-        //        else 
-        //        {
-        //            Entidades.Configuração.DadosGlobais.Instância.ÚltimaVersão = Application.ProductVersion;
-        //        }
-
-        //        jáVerificado = true;
-        //    }
-        //}
-
-        ///// <summary>
-        ///// Verifica se essa versão é antiga.
-        ///// </summary>
-        ///// <returns></returns>
-        //private bool VersãoAntiga()
-        //{
-        //    //string minha = Application.ProductVersion;
-        //    //string cadastrada = Entidades.Configuração.DadosGlobais.Instância.ÚltimaVersão;
-            
-        //    //string [] minhasPicada = minha.Split('.');
-        //    //string [] cadastradaPicada = cadastrada.Split('.');
-
-        //    //if (minhasPicada.Length != cadastradaPicada.Length)
-        //    //    throw new Exception("Falha ao verificar versão: Minha: " + minha + " Cadastrada: " + cadastrada);
-
-        //    //for (int x = 0; x < minhasPicada.Length; x++)
-        //    //{
-        //    //    int minhaInt;
-        //    //    int cadastradaInt;
-
-        //    //    int.TryParse(minhasPicada[x], out minhaInt);
-        //    //    int.TryParse(cadastradaPicada[x], out cadastradaInt);
-
-        //    //    if (minhaInt < cadastradaInt)
-        //    //        return true;
-        //    //    else if (minhaInt > cadastradaInt)
-        //    //        return false;
-        //    //}
-
-        //    return false;
-        //}
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
