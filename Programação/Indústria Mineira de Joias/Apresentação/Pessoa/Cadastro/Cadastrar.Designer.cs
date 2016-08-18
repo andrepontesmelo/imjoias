@@ -90,6 +90,7 @@ namespace Apresentação.Pessoa.Cadastro
             // radioPFísica
             // 
             this.radioPFísica.AutoSize = true;
+            this.radioPFísica.Checked = true;
             this.radioPFísica.Location = new System.Drawing.Point(43, 47);
             this.radioPFísica.Name = "radioPFísica";
             this.radioPFísica.Size = new System.Drawing.Size(89, 17);
@@ -114,7 +115,6 @@ namespace Apresentação.Pessoa.Cadastro
             this.radioPJurídica.Name = "radioPJurídica";
             this.radioPJurídica.Size = new System.Drawing.Size(98, 17);
             this.radioPJurídica.TabIndex = 11;
-            this.radioPJurídica.TabStop = true;
             this.radioPJurídica.Text = "Pessoa-jurídica";
             this.radioPJurídica.UseVisualStyleBackColor = true;
             // 
