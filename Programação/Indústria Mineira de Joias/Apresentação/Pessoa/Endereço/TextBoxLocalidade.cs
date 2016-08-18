@@ -161,6 +161,7 @@ namespace Apresentação.Pessoa.Endereço
             bool cancelar;
             using (EditarLocalidade dlg = new EditarLocalidade(localidade))
             {
+                AguardeDB.Suspensão(true);
                 if (dlg.ShowDialog(ParentForm) == DialogResult.OK)
                 {
                     Localidade = dlg.Localidade;
@@ -170,6 +171,7 @@ namespace Apresentação.Pessoa.Endereço
                 }
                 else
                     cancelar = true;
+                AguardeDB.Suspensão(false);
             }
 
             return cancelar;
