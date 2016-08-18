@@ -1,15 +1,11 @@
+using Apresentação.Formulários;
+using Entidades;
+using Entidades.Pessoa.Endereço;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using Apresentação.Formulários.Consultas;
-using Entidades.Pessoa.Endereço;
-using Apresentação.Formulários;
 using System.Reflection;
-using Entidades;
+using System.Windows.Forms;
 
 namespace Apresentação.Pessoa.Endereço
 {
@@ -75,10 +71,7 @@ namespace Apresentação.Pessoa.Endereço
         /// </summary>
         protected override void bgRecuperação_DoWork(object sender, DoWorkEventArgs e)
         {
-            Localidade[] localidades;
-
-            //localidades = Localidade.ObterLocalidades(TextBox.Text);
-            localidades = Localidade.ObterLocalidades(TextBox.Text, true);
+            Localidade[] localidades = Localidade.ObterLocalidades(TextBox.Text, true);
 
             e.Result = localidades;
         }
@@ -97,15 +90,12 @@ namespace Apresentação.Pessoa.Endereço
                 if (TxtPaís != null && TxtPaís.ReadOnly)
                     TxtPaís.País = null;
             }
-            else // if (localidades.Length == 1)
+            else 
                 Localidade = localidades[0];
 
             DispararAoAlterar();
         }
 
-        /// <summary>
-        /// Cria uma nova localidade.
-        /// </summary>
         private void CriarNovaLocalidade()
         {
             if (bgRecuperação.IsBusy)
@@ -152,44 +142,41 @@ namespace Apresentação.Pessoa.Endereço
                 if (localidade.Estado == null && TxtEstado != null && TxtEstado.Estado != null)
                     localidade.Estado = TxtEstado.Estado;
 
-                // Vamos verificar se realmente não existe a localidade.
-                if (localidade.Estado != null)
+                ignorarCadastro = VerificarLocalidadeNãoExistente(localidade, ignorarCadastro);
+                ignorarCadastro = VerificarNomeIncorreto(localidade, ignorarCadastro);
+            }
+            finally
+            {
+                AguardeDB.Fechar();
+            }
+
+            if (!ignorarCadastro)
+                cancelar = AbrirJanelaCadastrarLocalidade(entidade, localidade);
+            else
+                cancelar = false;
+        }
+
+        private bool AbrirJanelaCadastrarLocalidade(Acesso.Comum.DbManipulação entidade, Localidade localidade)
+        {
+            bool cancelar;
+            using (EditarLocalidade dlg = new EditarLocalidade(localidade))
+            {
+                if (dlg.ShowDialog(ParentForm) == DialogResult.OK)
                 {
-                    Localidade aux = Localidade.ObterLocalidade(localidade.Estado, localidade.Nome);
+                    Localidade = dlg.Localidade;
+                    cancelar = false;
 
-                    if (aux != null)
-                    {
-                        /* Vamos copiar a entidade no lugar desta.
-                         * Isto só é possível devido à verificação forçada
-                         * de "Cadastrado" inserido no método Cadastrar(IDbCommand)
-                         * em Localidade (veja comentário lá).
-                         * -- Júlio, 23/09/2006
-                         */
-                        foreach (FieldInfo campo in Localidade.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Instance
-                           | BindingFlags.Public))
-                        {
-                            campo.SetValue(localidade, campo.GetValue(aux));
-                        }
-
-                        ignorarCadastro = true;
-                    }
-                    else if (localidade.Nome != null)
-                    {
-                        // Vamos verificar se não houve erro de grafia.
-                        Localidade[] todas = Localidade.ObterLocalidades(localidade.Estado);
-                        List<Localidade> semelhantes = new List<Localidade>();
-                        int minDist = Math.Max(2, localidade.Nome.Length / 4);
-
-                        foreach (Localidade l in todas)
-                            if (DistânciaLevenshtein.CalcularDistância(localidade.Nome, l.Nome) <= minDist)
-                                semelhantes.Add(l);
-
-                        if (semelhantes.Count > 0)
-                            QuestionarSemelhantes(localidade, out ignorarCadastro, semelhantes.ToArray());
-                    }
+                    System.Diagnostics.Debug.Assert(Localidade == entidade);
                 }
+                else
+                    cancelar = true;
+            }
 
-            // Vamos verificar se o nome não está incorreto.
+            return cancelar;
+        }
+
+        private bool VerificarNomeIncorreto(Localidade localidade, bool ignorarCadastro)
+        {
             if (!ignorarCadastro)
             {
                 Localidade[] aux = null;
@@ -200,29 +187,48 @@ namespace Apresentação.Pessoa.Endereço
                 if (aux != null && aux.Length > 0)
                     QuestionarSemelhantes(localidade, out ignorarCadastro, aux);
             }
-            }
-            finally
-            {
-                AguardeDB.Fechar();
-            }
 
-            if (!ignorarCadastro)
+            return ignorarCadastro;
+        }
+
+        private bool VerificarLocalidadeNãoExistente(Localidade localidade, bool ignorarCadastro)
+        {
+            if (localidade.Estado != null)
             {
-                using (EditarLocalidade dlg = new EditarLocalidade(localidade))
+                Localidade localidadeRecemObtida = Localidade.ObterLocalidade(localidade.Estado, localidade.Nome);
+
+                if (localidadeRecemObtida != null)
                 {
-                    if (dlg.ShowDialog(ParentForm) == DialogResult.OK)
+                    foreach (FieldInfo campo in Localidade.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Instance
+                       | BindingFlags.Public))
                     {
-                        Localidade = dlg.Localidade;
-                        cancelar = false;
-
-                        System.Diagnostics.Debug.Assert(Localidade == entidade);
+                        campo.SetValue(localidade, campo.GetValue(localidadeRecemObtida));
                     }
-                    else
-                        cancelar = true;
+
+                    ignorarCadastro = true;
+                }
+                else if (localidade.Nome != null)
+                {
+                    ignorarCadastro = VerificarErroGrafia(localidade, ignorarCadastro);
                 }
             }
-            else
-                cancelar = false;
+
+            return ignorarCadastro;
+        }
+
+        private bool VerificarErroGrafia(Localidade localidade, bool ignorarCadastro)
+        {
+            Localidade[] todas = Localidade.ObterLocalidades(localidade.Estado);
+            List<Localidade> semelhantes = new List<Localidade>();
+            int minDist = Math.Max(2, localidade.Nome.Length / 4);
+
+            foreach (Localidade l in todas)
+                if (DistânciaLevenshtein.CalcularDistância(localidade.Nome, l.Nome) <= minDist)
+                    semelhantes.Add(l);
+
+            if (semelhantes.Count > 0)
+                QuestionarSemelhantes(localidade, out ignorarCadastro, semelhantes.ToArray());
+            return ignorarCadastro;
         }
 
         /// <summary>
@@ -236,22 +242,13 @@ namespace Apresentação.Pessoa.Endereço
         {
             AguardeDB.Suspensão(true);
 
-            MessageBox.Show(
-                ParentForm,
-                "Foram encontradas uma ou mais localidades com nome semelhante a " + localidade.Nome + ".\n\nPor favor, verifique se a localidade desejada encontra-se na lista que irá ser exibida a seguir. Caso a encontre, escolha-a e pressione \"OK\". Caso contrário, pressione \"Cancelar\" para iniciar o processo de cadastramento de localidade.",
-                "Localidade", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MostrarMensagemLocalidadesSemelhantes(localidade);
 
             using (ListarLocalidades dlg = new ListarLocalidades(aux))
             {
                 if (dlg.ShowDialog(ParentForm) == DialogResult.OK)
                 {
-                    // Copia o cadastro...
-                    foreach (FieldInfo campo in Localidade.GetType().GetFields(System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance
-                        | System.Reflection.BindingFlags.Public))
-                    {
-                        campo.SetValue(localidade, campo.GetValue(dlg.Seleção));
-                    }
-
+                    CopiaCadastro(localidade, dlg);
                     ignorarCadastro = true;
                 }
                 else
@@ -259,6 +256,20 @@ namespace Apresentação.Pessoa.Endereço
             }
 
             AguardeDB.Suspensão(false);
+        }
+
+        private void MostrarMensagemLocalidadesSemelhantes(Localidade localidade)
+        {
+            MessageBox.Show(
+                ParentForm,
+                "Foram encontradas uma ou mais localidades com nome semelhante a " + localidade.Nome + ".\n\nPor favor, verifique se a localidade desejada encontra-se na lista que irá ser exibida a seguir. Caso a encontre, escolha-a e pressione \"OK\". Caso contrário, pressione \"Cancelar\" para iniciar o processo de cadastramento de localidade.",
+                "Localidade", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void CopiaCadastro(Localidade localidade, ListarLocalidades dlg)
+        {
+            foreach (FieldInfo campo in Localidade.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public))
+                campo.SetValue(localidade, campo.GetValue(dlg.Seleção));
         }
 
         /// <summary>

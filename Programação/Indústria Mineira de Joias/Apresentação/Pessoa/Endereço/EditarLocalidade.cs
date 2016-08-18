@@ -172,33 +172,31 @@ namespace Apresentação.Pessoa.Endereço
             AguardeDB.Mostrar();
 
             dsEstado.Clear();
+            CarregarEstadoPais();
 
-            // DataSet "Estado"
-            IDbConnection conexão;
-            DbDataAdapter adapPaís, adapEstado;
-
-            conexão = Usuários.UsuárioAtual.Conexão;
-
-            lock (conexão)
-            {
-                dsEstado.Clear();
-                adapPaís = Usuários.UsuárioAtual.CriarAdaptadorDados(conexão, "SELECT codigo, nome FROM pais");
-                adapPaís.Fill(dsEstado.País);
-
-                adapEstado = Usuários.UsuárioAtual.CriarAdaptadorDados(conexão, "SELECT codigo, pais, nome FROM estado");
-                adapEstado.Fill(dsEstado._Estado);
-            }
-
-            // Campo "Região"
             cmbRegião.Items.Add(strMesma);
             cmbRegião.Items.AddRange(Região.ObterRegiões());
-
             cmbRegião.SelectedItem = strMesma;
 
             if (localidade != null && cmbEstado.SelectedItem != null)
                 localidade.Estado = Estado.ObterEstado(ulong.Parse((string)cmbEstado.SelectedValue));
 
             AguardeDB.Fechar();
+        }
+
+        private void CarregarEstadoPais()
+        {
+            IDbConnection conexão = Usuários.UsuárioAtual.Conexão;
+
+            lock (conexão)
+            {
+                dsEstado.Clear();
+                using (DbDataAdapter adapPaís = Usuários.UsuárioAtual.CriarAdaptadorDados(conexão, "SELECT codigo, nome FROM pais"))
+                    adapPaís.Fill(dsEstado.País);
+
+                using (DbDataAdapter adapEstado = Usuários.UsuárioAtual.CriarAdaptadorDados(conexão, "SELECT codigo, pais, nome FROM estado"))
+                    adapEstado.Fill(dsEstado._Estado);
+            }
         }
 
         private void btnAdicionarPaís_Click(object sender, EventArgs e)
