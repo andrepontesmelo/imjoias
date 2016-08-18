@@ -126,7 +126,7 @@ namespace Apresentação.Financeiro
             {
                 cotação = value;
 
-                if (Seleção != null)
+                if (Seleção != null && cotação != null)
                     cotação.Moeda = Seleção.Moeda;
             }
         }
@@ -179,7 +179,7 @@ namespace Apresentação.Financeiro
 
                     carregado = true;
 
-                    if (Seleção != null)
+                    if (Seleção != null && cotação != null)
                         cotação.Moeda = Seleção.Moeda;
                 }
                 catch (Exception e)
@@ -203,10 +203,8 @@ namespace Apresentação.Financeiro
         {
             base.OnSelectedIndexChanged(e);
 
-            if (cotação != null && Seleção != null)
-            {
+            if (Seleção != null && cotação.Moeda != null)
                 cotação.Moeda = Seleção.Moeda;
-            }
 
             foreach (Bandeja bandeja in bandejas)
                 bandeja.Tabela = Seleção;

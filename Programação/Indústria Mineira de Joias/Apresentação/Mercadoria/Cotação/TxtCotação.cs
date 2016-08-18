@@ -780,6 +780,11 @@ namespace Apresentação.Mercadoria.Cotação
             painelFlutuante.SelecionarPrimeiro();
         }
 
+        public void SelecionarPrimeiro()
+        {
+            painelFlutuante?.SelecionarPrimeiro();
+        }
+
         private delegate void AtribuirCotaçãoCallback(Entidades.Financeiro.Cotação cotação);
 
         private void AtribuirCotação(Entidades.Financeiro.Cotação cotação)
@@ -804,8 +809,6 @@ namespace Apresentação.Mercadoria.Cotação
         {
             if (modoDesenho)
                 return;
-
-            //Carregar();
         }
 
         private void txt_KeyPress(object sender, KeyPressEventArgs e)
@@ -820,6 +823,12 @@ namespace Apresentação.Mercadoria.Cotação
         public void Limpar()
         {
             txt.Text = "";
+        }
+
+        public void DefinirMoedaSelecionandoPrimeiro(Moeda moeda)
+        {
+            Moeda = moeda;
+            SelecionarPrimeiro();
         }
     }
 }

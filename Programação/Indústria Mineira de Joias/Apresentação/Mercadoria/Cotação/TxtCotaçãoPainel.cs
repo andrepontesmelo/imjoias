@@ -52,7 +52,6 @@ namespace Apresentação.Mercadoria.Cotação
                 moeda = value;
 
                 Recarregar();
-                SelecionarPrimeiro();
             }
         }
 
