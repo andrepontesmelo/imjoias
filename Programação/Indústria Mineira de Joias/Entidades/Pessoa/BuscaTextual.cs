@@ -9,7 +9,8 @@ namespace Entidades.Pessoa
     public class BuscaTextual : Pessoa
     {
         public static readonly int LIMITE_PADRÃO_PESSOAS = 400;
-        private static readonly string PREFIXO_CIDADE = "cidade:";
+
+        private static readonly string PREFIXO_CIDADE = "cidade";
 
         private enum TipoBusca
         {
