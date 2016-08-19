@@ -9,6 +9,14 @@ namespace Entidades.Pessoa
     public class BuscaTextual : Pessoa
     {
         public static readonly int LIMITE_PADRÃO_PESSOAS = 400;
+        private static readonly string PREFIXO_CIDADE = "cidade:";
+
+        private enum TipoBusca
+        {
+            CódigoPessoa,
+            TextualGeral,
+            Cidade
+        }
 
         public static List<Pessoa> ObterPessoas(string nome)
         {
@@ -52,19 +60,30 @@ namespace Entidades.Pessoa
         {
             StringBuilder comando = new StringBuilder();
 
-            long código;
-            bool chaveÉNúmero = long.TryParse(chaveBusca, out código);
+            TipoBusca tipo = ObterTipo(chaveBusca);
 
-            if (!chaveÉNúmero)
+            if (tipo != TipoBusca.CódigoPessoa)
                 comando.Append("select * from (");
 
             AdicionaSeleção(comando);
-            AdicionaCondição(chaveBusca, comando, código, chaveÉNúmero);
+            AdicionaCondição(chaveBusca, comando, tipo);
             AdicionaLimite(limite, comando);
 
             cmd.CommandText = comando.ToString();
 
             return ObterPessoas(cmd, leitor);
+        }
+
+        private static TipoBusca ObterTipo(string chaveBusca)
+        {
+            if (chaveBusca.StartsWith(PREFIXO_CIDADE, StringComparison.CurrentCultureIgnoreCase))
+                return TipoBusca.Cidade;
+
+            long código;
+            if (long.TryParse(chaveBusca, out código))
+                return TipoBusca.CódigoPessoa;
+
+            return TipoBusca.TextualGeral;
         }
 
         private static string LimparBusca(string chaveBusca)
@@ -81,12 +100,38 @@ namespace Entidades.Pessoa
                 " pj.inscEstadual, pj.inscMunicipal FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE  ");
         }
 
-        private static void AdicionaCondição(string chaveBusca, StringBuilder comando, long código, bool chaveÉNúmero)
+        private static void AdicionaCondição(string chaveBusca, StringBuilder comando, TipoBusca tipo)
         {
-            if (chaveÉNúmero)
-                CondiçãoChaveNumérica(comando, código);
-            else
-                CondiçãoChaveTextual(chaveBusca, comando);
+            long código;
+            long.TryParse(chaveBusca, out código);
+
+            switch (tipo)
+            {
+                case TipoBusca.CódigoPessoa:
+                    CondiçãoChaveNumérica(comando, código);
+                    break;
+
+                case TipoBusca.Cidade:
+                    CondiçãoCidade(chaveBusca, comando);
+                    break;
+
+                case TipoBusca.TextualGeral:
+                    CondiçãoChaveTextual(chaveBusca, comando);
+                    break;
+
+                default:
+                    throw new NotImplementedException();
+            }
+        }
+
+        private static void CondiçãoCidade(string chaveBusca, StringBuilder comando)
+        {
+            chaveBusca = chaveBusca.ToLower().Replace(PREFIXO_CIDADE, "").Trim();
+            string chaveComCoringas = chaveBusca.Replace(' ', '%');
+
+            comando.Append(" p.codigo in (select e.pessoa from endereco e join localidade l on e.localidade=l.codigo where l.nome like '%");
+            comando.Append(chaveComCoringas);
+            comando.Append("%' ) ) aa  ");
         }
 
         private static void Finalizar(IDataReader leitor, IDbConnection conexão)
@@ -150,25 +195,30 @@ namespace Entidades.Pessoa
 
         private static void BuscaTextualNomePessoa(string chaveBusca, StringBuilder comando)
         {
-            comando.Append(" UNION select * FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE ");
+            AdicionaUnião(comando);
             comando.Append(" match(nome) against ('" + chaveBusca + "') ");
+        }
+
+        private static void AdicionaUnião(StringBuilder comando)
+        {
+            comando.Append(" UNION select * FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE ");
         }
 
         private static void BuscaTextualFantasia(string chaveBusca, StringBuilder comando)
         {
-            comando.Append(" UNION select * FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE ");
+            AdicionaUnião(comando);
             comando.Append(" match(fantasia) against ('" + chaveBusca + "') ");
         }
 
         private static void BuscaTextualEmail(string chaveBusca, StringBuilder comando)
         {
-            comando.Append(" UNION select * FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE ");
+            AdicionaUnião(comando);
             comando.Append(" match(email) against ('" + chaveBusca + "') ");
         }
 
         private static void BuscaTextualObservações(string chaveBusca, StringBuilder comando)
         {
-            comando.Append(" UNION select * FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE ");
+            AdicionaUnião(comando);
             comando.Append(" match(observacoes) against ('" + chaveBusca + "') ");
         }
     }
