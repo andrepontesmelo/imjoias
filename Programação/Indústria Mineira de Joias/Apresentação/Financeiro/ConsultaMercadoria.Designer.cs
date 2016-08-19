@@ -179,13 +179,13 @@ namespace Apresentação.Financeiro
             this.cmbTabela.Name = "cmbTabela";
             this.cmbTabela.Size = new System.Drawing.Size(142, 21);
             this.cmbTabela.TabIndex = 6;
+            this.cmbTabela.AoSelecionar += new ComboTabela.TabelaCallback(this.cmbTabela_AoSelecionar);
             // 
             // txtCotação
             // 
             this.txtCotação.Cotação = null;
             this.txtCotação.Location = new System.Drawing.Point(9, 71);
-            this.txtCotação.MostrarListaCotações = true;
-            this.txtCotação.Name = "txtCotação";
+            this.txtCotação.Name = "ção";
             this.txtCotação.Size = new System.Drawing.Size(145, 20);
             this.txtCotação.TabIndex = 4;
             this.txtCotação.Valor = 0D;

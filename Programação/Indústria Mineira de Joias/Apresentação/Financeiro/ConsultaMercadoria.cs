@@ -24,7 +24,6 @@ namespace Apresentação.Financeiro
             base.OnLoad(e);
 
             configuração = new ConfiguraçãoUsuário<uint>("ÚltimaTabelaConsulta", Tabela.TabelaPadrão.Código);
-            //txtCotação.Data = DadosGlobais.Instância.HoraDataAtual;
             cmbTabela.Seleção = Tabela.ObterTabela(configuração.Valor);
         }
 
@@ -197,6 +196,11 @@ namespace Apresentação.Financeiro
         private void txtMercadoria_EscPressionado(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void cmbTabela_AoSelecionar(ComboTabela sender, Tabela moeda)
+        {
+            txtCotação.SelecionarPrimeiro();
         }
     }
 }
