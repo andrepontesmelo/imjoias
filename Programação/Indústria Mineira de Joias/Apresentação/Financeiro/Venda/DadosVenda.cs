@@ -308,48 +308,48 @@ namespace Apresentação.Financeiro.Venda
 
             carregando = true;
 
-            if (!DesignMode)
+            if (DesignMode)
+                return;
+
+            txtCotação.Carregar();
+
+            chkRastreada.Checked = venda.Rastreada;
+            chkSedex.Checked = venda.Sedex;
+
+            txtDiasSemJuros.Int = (int)venda.DiasSemJuros;
+
+            txtCliente.Pessoa = venda.Cliente;
+            txtVendedor.Pessoa = venda.Vendedor;
+
+            if (venda.Cadastrado)
+                txtCotação.Valor = venda.Cotação;
+
+            txtData.Value = venda.Data;
+
+            if (venda.AcertoConsignado != null)
             {
-                chkRastreada.Checked = venda.Rastreada;
-                chkSedex.Checked = venda.Sedex;
-
-                txtDiasSemJuros.Int = (int) venda.DiasSemJuros; 
-
-                txtCliente.Pessoa = venda.Cliente;
-                txtVendedor.Pessoa = venda.Vendedor;
-
-                if (venda.Cadastrado)
-                    txtCotação.Valor = venda.Cotação;
-
-                txtData.Value = venda.Data;
-
-                if (venda.AcertoConsignado != null)
-                {
-                    if (venda.AcertoConsignado.Previsão.HasValue)
-                        txtAcerto.Text = string.Format(
-                            "{0}, {1:dd/MM/yyyy} às {1:HH:mm}",
-                            venda.AcertoConsignado.Código, venda.AcertoConsignado.Previsão.Value);
-                    else
-                        txtAcerto.Text = venda.AcertoConsignado.Código.ToString();
-                }
+                if (venda.AcertoConsignado.Previsão.HasValue)
+                    txtAcerto.Text = string.Format(
+                        "{0}, {1:dd/MM/yyyy} às {1:HH:mm}",
+                        venda.AcertoConsignado.Código, venda.AcertoConsignado.Previsão.Value);
                 else
-                    txtAcerto.Text = "Não definido";
-
-                
-
-                MostrarPreços();
-
-                if (vendaEntidade.Controle.HasValue)
-                    txtControle.Text = venda.Controle.ToString();
-
-                PrepararTabelas();
-
-                vendaEntidade.AntesDeCadastrar += new Acesso.Comum.DbManipulação.DbManipulaçãoCancelávelHandler(AntesDeCadastrarVenda);
-
-                AtualizarChkVendaQuitada();
-
-                Enabled = PermissãoFuncionário.ValidarPermissão(Permissão.PersonalizarVenda);
+                    txtAcerto.Text = venda.AcertoConsignado.Código.ToString();
             }
+            else
+                txtAcerto.Text = "Não definido";
+
+            MostrarPreços();
+
+            if (vendaEntidade.Controle.HasValue)
+                txtControle.Text = venda.Controle.ToString();
+
+            PrepararTabelas();
+
+            vendaEntidade.AntesDeCadastrar += new Acesso.Comum.DbManipulação.DbManipulaçãoCancelávelHandler(AntesDeCadastrarVenda);
+
+            AtualizarChkVendaQuitada();
+
+            Enabled = PermissãoFuncionário.ValidarPermissão(Permissão.PersonalizarVenda);
 
             carregando = false;
 
