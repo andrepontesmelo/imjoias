@@ -1,6 +1,7 @@
 using System;
 using Apresentação.Formulários.Consultas;
 using System.Collections.Generic;
+using Entidades.Pessoa;
 
 namespace Apresentação.Pessoa.Consultas
 {
@@ -74,9 +75,9 @@ namespace Apresentação.Pessoa.Consultas
             if (vendedores && !funcionários)
                 pessoas = Entidades.Pessoa.Pessoa.ObterVendedores(chave, controladorLimite.LimiteDinâmico);
 			else if (funcionários)
-				pessoas = Entidades.Pessoa.Funcionário.ObterFuncionários(chave, controladorLimite.LimiteDinâmico);
+				pessoas = Funcionário.ObterFuncionários(chave, controladorLimite.LimiteDinâmico);
 			else
-                pessoas = Entidades.Pessoa.Pessoa.ObterPessoas(chave, controladorLimite.LimiteDinâmico);
+                pessoas = BuscaTextual.ObterPessoas(chave, controladorLimite.LimiteDinâmico);
 
 			recuperaçãoPessoas(pessoas);
             controladorLimite.CronometrarFimObter();

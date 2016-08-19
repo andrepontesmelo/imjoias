@@ -1,3 +1,5 @@
+using Apresentação.Formulários;
+using Entidades.Pessoa;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,10 +8,10 @@ using System.Windows.Forms;
 
 namespace Apresentação.Pessoa.Consultas
 {
-	/// <summary>
-	/// Summary description for TextBoxPessoa.
-	/// </summary>
-	public class TextBoxPessoa : System.Windows.Forms.UserControl
+    /// <summary>
+    /// Summary description for TextBoxPessoa.
+    /// </summary>
+    public class TextBoxPessoa : UserControl
 	{
 		// Constantes
 		public const int alturaMínimaLista = 160;
@@ -558,8 +560,8 @@ namespace Apresentação.Pessoa.Consultas
 		{
 			coletor = new ColetorPessoas(new ColetorPessoas.RecuperaçãoPessoasDelegate(Recuperação));
 			coletor.Funcionários = funcionários;
-			coletor.FinalDeBusca += new Apresentação.Formulários.Consultas.Coletor.FinalDeBuscaDelegate(coletor_FinalDeBusca);
-            coletor.InícioDeBusca += new Apresentação.Formulários.Consultas.Coletor.InícioDeBuscaDelegate(coletor_InícioDeBusca);
+			coletor.FinalDeBusca += new Formulários.Consultas.Coletor.FinalDeBuscaDelegate(coletor_FinalDeBusca);
+            coletor.InícioDeBusca += new Formulários.Consultas.Coletor.InícioDeBuscaDelegate(coletor_InícioDeBusca);
 			coletor.IgnorarMaiúsculoMinúsculo = true;
 		}
 
@@ -804,9 +806,10 @@ namespace Apresentação.Pessoa.Consultas
 
                         if (somenteCadastrados && lista.Items.Count > 0)
                         {
-                            Apresentação.Formulários.AguardeDB.Mostrar();
-                            List<Entidades.Pessoa.Pessoa> pessoas = Entidades.Pessoa.Pessoa.ObterPessoas(texto.Trim());
-                            Apresentação.Formulários.AguardeDB.Fechar();
+                            AguardeDB.Mostrar();
+                            List<Entidades.Pessoa.Pessoa> pessoas = BuscaTextual.ObterPessoas(texto.Trim());
+                            AguardeDB.Fechar();
+
                             using (ProcurarPessoaResultados dlg = new ProcurarPessoaResultados(pessoas))
                             {
                                 if (dlg.ShowDialog(ParentForm) == DialogResult.OK)
@@ -969,25 +972,21 @@ namespace Apresentação.Pessoa.Consultas
             }
 		}
 
-		private void txt_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
+		private void txt_KeyUp(object sender, KeyEventArgs e)
 		{
             if (!Enabled)
                 return;
 
             if (txt.Focused && !travar && !desligarPesquisa && lista != null && pessoa == null && e.KeyCode != Keys.Enter)
             {
-                /* Requisitar pesquisa de nome ou esconder janela,
-                 * conforme dados digitados.
-                 */
                 lista.Visible = false;
-
                 Coletor.Pesquisar(txt.Text);
             }
 
             this.OnKeyUp(e);
 		}
 
-		private void txt_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
+		private void txt_KeyPress(object sender, KeyPressEventArgs e)
 		{
             if (!Enabled)
                 return;
@@ -1093,15 +1092,15 @@ namespace Apresentação.Pessoa.Consultas
                 {
                     List<Entidades.Pessoa.Pessoa> funcionários;
 
-                    funcionários = Entidades.Pessoa.Funcionário.ObterFuncionários(txt.Text, 2);
+                    funcionários = Funcionário.ObterFuncionários(txt.Text, 2);
 
                     if (funcionários.Count == 1)
                         Pessoa = funcionários[0];
                     else
                     {
-                        Entidades.Pessoa.Representante[] representantes;
+                        Representante[] representantes;
 
-                        representantes = Entidades.Pessoa.Representante.ObterRepresentantes(txt.Text, 2);
+                        representantes = Representante.ObterRepresentantes(txt.Text, 2);
 
                         if (representantes.Length == 1)
                             Pessoa = representantes[0];
@@ -1113,7 +1112,7 @@ namespace Apresentação.Pessoa.Consultas
                 {
                     List<Entidades.Pessoa.Pessoa> funcionários;
 
-                    funcionários = Entidades.Pessoa.Funcionário.ObterFuncionários(txt.Text, 2);
+                    funcionários = Funcionário.ObterFuncionários(txt.Text, 2);
 
                     if (funcionários.Count == 1)
                         Pessoa = funcionários[0];
@@ -1122,7 +1121,7 @@ namespace Apresentação.Pessoa.Consultas
                 }
                 else
                 {
-                    List<Entidades.Pessoa.Pessoa> pessoas = Entidades.Pessoa.Pessoa.ObterPessoas(txt.Text, 2);
+                    List<Entidades.Pessoa.Pessoa> pessoas = BuscaTextual.ObterPessoas(txt.Text, 2);
 
                     if (pessoas.Count == 1)
                         Pessoa = pessoas[0];

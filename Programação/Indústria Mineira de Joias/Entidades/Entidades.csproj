@@ -304,6 +304,7 @@
     <Compile Include="PedidoConserto\PedidoItem.cs" />
     <Compile Include="PedidoConserto\MercadoriaEmFalta.cs" />
     <Compile Include="Pessoa\Abreviador.cs" />
+    <Compile Include="Pessoa\BuscaTextual.cs" />
     <Compile Include="Pessoa\Classificação.cs" />
     <Compile Include="Pessoa\DataRelevante.cs" />
     <Compile Include="Pessoa\Endereço\CEP.cs" />

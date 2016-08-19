@@ -14,7 +14,6 @@ namespace Entidades.Pessoa
     [Serializable, DbTransação, Cacheável("ObterPessoaSemCache"), NãoCopiarCache]
     public class Pessoa : DbManipulação, IComparable
     {
-        public static readonly int LIMITE_PADRÃO_PESSOAS = 400;
         public static readonly int TotalAtributos = 12;
 
         protected ulong codigo;
@@ -382,106 +381,6 @@ namespace Entidades.Pessoa
             return p;
         }
 
-        public static List<Pessoa> ObterPessoas(string chaveBusca, int limite)
-        {
-            if (String.IsNullOrEmpty(chaveBusca))
-            {
-                return new List<Pessoa>(Representante.ObterRepresentantes());
-            }
-
-            IDataReader leitor = null;
-            List<Pessoa> dados = new List<Pessoa>(limite);
-            IDbConnection conexão = Conexão;
-            chaveBusca = chaveBusca.Trim();
-            chaveBusca = chaveBusca.Replace("%", "").Replace("'","").Replace("\"","").Replace("\\","").Replace("  "," ").Replace("  "," ");
-
-            StringBuilder comando = new StringBuilder();
-
-            lock (conexão)
-            {
-                Usuários.UsuárioAtual.GerenciadorConexões.RemoverConexão(conexão);
-                using (IDbCommand cmd = conexão.CreateCommand())
-                {
-                    // Procura por código da pessoa
-                    long código;
-                    bool chaveÉNúmero = long.TryParse(chaveBusca, out código);
-                    string chaveCoringa = chaveBusca.Replace(' ', '%');
-
-                    try
-                    {
-                        if (!chaveÉNúmero)
-                            comando.Append("select * from (");
-
-                        comando.Append("SELECT p.codigo as cod, p.nome, p.setor, p.email, p.observacoes, p.ultimaVisita, p.dataRegistro, " + 
-                            " p.dataAlteracao, p.classificacoes, p.maiorVenda, p.credito, p.regiao, pf.*,pj.codigo as c, pj.cnpj, pj.fantasia, " + 
-                            " pj.inscEstadual, pj.inscMunicipal FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE  ");
-
-                        // Inclui busca por código da pessoa
-                        if (chaveÉNúmero)
-                        {
-                            comando.Append(" p.codigo= ");
-                            comando.Append(DbTransformar(código));
-                        }
-                        else
-                        {
-                            // nilma%
-                            comando.Append(" nome LIKE '");
-                            comando.Append(chaveBusca);
-                            comando.Append("%' ");
-
-                            if (chaveBusca.Contains(" "))
-                            {
-                                // nilma%souza%
-                                comando.Append(" OR nome LIKE '");
-                                comando.Append(chaveCoringa.Substring(0, chaveCoringa.Length));
-                                comando.Append("%' ");
-                            }
-
-                            comando.Append(" ORDER BY nome ");
-                            comando.Append(") aa ");
-
-                            // Fulltext search @ pessoa.nome
-                            comando.Append(" UNION select * FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE ");
-                            comando.Append(" match(nome) against ('" + chaveBusca + "') ");
-
-                            // Fulltext search @ pessoajuridica.fantasia
-                            comando.Append(" UNION select * FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE ");
-                            comando.Append(" match(fantasia) against ('" + chaveBusca + "') ");
-
-                            // Fulltext search @ pessoa.email
-                            comando.Append(" UNION select * FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE ");
-                            comando.Append(" match(email) against ('" + chaveBusca + "') ");
-
-                            // Fulltext search @ pessoa.observacoes
-                            comando.Append(" UNION select * FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE ");
-                            comando.Append(" match(observacoes) against ('" + chaveBusca + "') ");
-                        }
-
-                        comando.Append(" limit ");
-                        comando.Append(limite.ToString());
-
-                        cmd.CommandText = comando.ToString();
-                        using (leitor = cmd.ExecuteReader())
-                        {
-                            while (leitor.Read())
-                                dados.Add(Pessoa.ObterPessoa(leitor, 0, TotalAtributos, TotalAtributos + PessoaFísica.TotalAtributos));
-                        }
-                    }
-                    finally
-                    {
-                        if (leitor != null)
-                            leitor.Close();
-                        Usuários.UsuárioAtual.GerenciadorConexões.AdicionarConexão(conexão);
-                    }
-                }
-
-                // Carrega o endereços das pessoas.
-                CarregarEndereços(dados);
-
-                return dados;
-            }
-        }
-
         public static List<Pessoa> ObterPessoas()
         {
             IDataReader leitor = null;
@@ -630,11 +529,6 @@ namespace Entidades.Pessoa
             retorno = códigoPessoas.ToString();
 
             return retorno;
-        }
-
-        public static List<Pessoa> ObterPessoas(string nome)
-        {
-            return ObterPessoas(nome, LIMITE_PADRÃO_PESSOAS);
         }
 
         private static List<Pessoa> RealizarConsulta(string consulta, int inícioPessoa, int inícioPessoaFísica)

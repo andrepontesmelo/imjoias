@@ -338,7 +338,7 @@ namespace Apresentação.Pessoa.Consultas
                         break;
 
                     case TipoChave.Nome:
-                        pessoas = Entidades.Pessoa.Pessoa.ObterPessoas(chave);
+                        pessoas = BuscaTextual.ObterPessoas(chave);
                         break;
 
                     case TipoChave.CPF:
