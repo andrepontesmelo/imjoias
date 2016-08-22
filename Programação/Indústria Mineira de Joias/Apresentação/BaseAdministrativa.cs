@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Apresentação.Administrativo
 {
-    public partial class BaseAdministrativa : Apresentação.Formulários.BaseInferior
+    public partial class BaseAdministrativa : BaseInferior
     {
         public BaseAdministrativa()
         {
@@ -36,9 +36,9 @@ namespace Apresentação.Administrativo
             new ProcessoIntegração().ImportarDadosDoSistemaLegado();
         }
 
-        private void quadroExportação_Click(object sender, EventArgs e)
+        private void quadroFiscalExportaçãoAtacadoBR500_Click(object sender, EventArgs e)
         {
-            IntegraçãoSistemaAntigo.Fiscal.BaseFiscal.GerarArquivoFiscal();
+            IntegraçãoSistemaAntigo.Fiscal.BaseFiscal.ExportarAtacadoBR500();
         }
 
         private void quadroComissão_Click(object sender, EventArgs e)
@@ -53,14 +53,14 @@ namespace Apresentação.Administrativo
                     MessageBoxIcon.Exclamation);
         }
 
-        private void quadroExportacaoCupom_Click(object sender, EventArgs e)
+        private void quadroFiscalExportacaoEconnectVarejo_Click(object sender, EventArgs e)
         {
-            IntegraçãoSistemaAntigo.Fiscal.BaseFiscal.GerarArquivoCupom();
+            IntegraçãoSistemaAntigo.Fiscal.BaseFiscal.ExportarVEconnectVarejo();
         }
 
         private void quadroExportaVenda_Click(object sender, EventArgs e)
         {
-            Apresentação.Financeiro.Fiscal.NfeVenda.GerarNfeVenda(this);
+            Financeiro.Fiscal.NfeVenda.GerarNfeVenda(this);
         }
 
         public override void AoCarregarCompletamente(Splash splash)
@@ -69,8 +69,8 @@ namespace Apresentação.Administrativo
 
             bool técnico = PermissãoFuncionário.ValidarPermissão(Permissão.Técnico);
 
-            quadroExportação.Visible = técnico;
-            quadroExportacaoCupom.Visible = técnico;
+            quadroFiscalExportaçãoAtacadoBR500.Visible = técnico;
+            quadroFiscalExportacaoEconnectVarejo.Visible = técnico;
             quadroExportaVenda.Visible = técnico;
             quadroOpçãoImportação.Visible = técnico;
 

@@ -33,8 +33,8 @@ namespace Apresentação.Administrativo
             this.títuloBaseInferior = new Apresentação.Formulários.TítuloBaseInferior();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.quadroOpçãoImportação = new Apresentação.Formulários.QuadroOpção();
-            this.quadroExportação = new Apresentação.Formulários.QuadroOpção();
-            this.quadroExportacaoCupom = new Apresentação.Formulários.QuadroOpção();
+            this.quadroFiscalExportaçãoAtacadoBR500 = new Apresentação.Formulários.QuadroOpção();
+            this.quadroFiscalExportacaoEconnectVarejo = new Apresentação.Formulários.QuadroOpção();
             this.quadroExportaVenda = new Apresentação.Formulários.QuadroOpção();
             this.quadroOpçãoBalanço = new Apresentação.Formulários.QuadroOpção();
             this.quadroComissão = new Apresentação.Formulários.QuadroOpção();
@@ -67,8 +67,8 @@ namespace Apresentação.Administrativo
             | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.Controls.Add(this.quadroOpçãoImportação);
-            this.flowLayoutPanel1.Controls.Add(this.quadroExportação);
-            this.flowLayoutPanel1.Controls.Add(this.quadroExportacaoCupom);
+            this.flowLayoutPanel1.Controls.Add(this.quadroFiscalExportaçãoAtacadoBR500);
+            this.flowLayoutPanel1.Controls.Add(this.quadroFiscalExportacaoEconnectVarejo);
             this.flowLayoutPanel1.Controls.Add(this.quadroExportaVenda);
             this.flowLayoutPanel1.Controls.Add(this.quadroOpçãoBalanço);
             this.flowLayoutPanel1.Controls.Add(this.quadroComissão);
@@ -96,33 +96,33 @@ namespace Apresentação.Administrativo
             this.quadroOpçãoImportação.Título = "Integração";
             this.quadroOpçãoImportação.Click += new System.EventHandler(this.quadroOpçãoImportação_Click);
             // 
-            // quadroExportação
+            // quadroFiscalExportaçãoAtacadoBR500
             // 
-            this.quadroExportação.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.quadroExportação.Descrição = "Gerador de arquivos para PDV formato antigo (BR-500)";
-            this.quadroExportação.Ícone = ((System.Drawing.Image)(resources.GetObject("quadroExportação.Ícone")));
-            this.quadroExportação.Location = new System.Drawing.Point(3, 79);
-            this.quadroExportação.MaximumSize = new System.Drawing.Size(600, 70);
-            this.quadroExportação.MinimumSize = new System.Drawing.Size(200, 70);
-            this.quadroExportação.Name = "quadroExportação";
-            this.quadroExportação.Size = new System.Drawing.Size(295, 70);
-            this.quadroExportação.TabIndex = 2;
-            this.quadroExportação.Título = "PDV BR-500";
-            this.quadroExportação.Click += new System.EventHandler(this.quadroExportação_Click);
+            this.quadroFiscalExportaçãoAtacadoBR500.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.quadroFiscalExportaçãoAtacadoBR500.Descrição = "Gerador de arquivos para PDV formato antigo (BR-500)";
+            this.quadroFiscalExportaçãoAtacadoBR500.Ícone = ((System.Drawing.Image)(resources.GetObject("quadroFiscalExportaçãoAtacadoBR500.Ícone")));
+            this.quadroFiscalExportaçãoAtacadoBR500.Location = new System.Drawing.Point(3, 79);
+            this.quadroFiscalExportaçãoAtacadoBR500.MaximumSize = new System.Drawing.Size(600, 70);
+            this.quadroFiscalExportaçãoAtacadoBR500.MinimumSize = new System.Drawing.Size(200, 70);
+            this.quadroFiscalExportaçãoAtacadoBR500.Name = "quadroFiscalExportaçãoAtacadoBR500";
+            this.quadroFiscalExportaçãoAtacadoBR500.Size = new System.Drawing.Size(295, 70);
+            this.quadroFiscalExportaçãoAtacadoBR500.TabIndex = 2;
+            this.quadroFiscalExportaçãoAtacadoBR500.Título = "PDV BR-500";
+            this.quadroFiscalExportaçãoAtacadoBR500.Click += new System.EventHandler(this.quadroFiscalExportaçãoAtacadoBR500_Click);
             // 
-            // quadroExportacaoCupom
+            // quadroFiscalExportacaoEconnectVarejo
             // 
-            this.quadroExportacaoCupom.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.quadroExportacaoCupom.Descrição = "Gerador de arquivos para PDV formato e-connect.";
-            this.quadroExportacaoCupom.Ícone = ((System.Drawing.Image)(resources.GetObject("quadroExportacaoCupom.Ícone")));
-            this.quadroExportacaoCupom.Location = new System.Drawing.Point(3, 155);
-            this.quadroExportacaoCupom.MaximumSize = new System.Drawing.Size(600, 70);
-            this.quadroExportacaoCupom.MinimumSize = new System.Drawing.Size(200, 70);
-            this.quadroExportacaoCupom.Name = "quadroExportacaoCupom";
-            this.quadroExportacaoCupom.Size = new System.Drawing.Size(295, 70);
-            this.quadroExportacaoCupom.TabIndex = 4;
-            this.quadroExportacaoCupom.Título = "PDV e-connect";
-            this.quadroExportacaoCupom.Click += new System.EventHandler(this.quadroExportacaoCupom_Click);
+            this.quadroFiscalExportacaoEconnectVarejo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.quadroFiscalExportacaoEconnectVarejo.Descrição = "Gerador de arquivos para PDV formato e-connect.";
+            this.quadroFiscalExportacaoEconnectVarejo.Ícone = ((System.Drawing.Image)(resources.GetObject("quadroFiscalExportacaoEconnectVarejo.Ícone")));
+            this.quadroFiscalExportacaoEconnectVarejo.Location = new System.Drawing.Point(3, 155);
+            this.quadroFiscalExportacaoEconnectVarejo.MaximumSize = new System.Drawing.Size(600, 70);
+            this.quadroFiscalExportacaoEconnectVarejo.MinimumSize = new System.Drawing.Size(200, 70);
+            this.quadroFiscalExportacaoEconnectVarejo.Name = "quadroFiscalExportacaoEconnectVarejo";
+            this.quadroFiscalExportacaoEconnectVarejo.Size = new System.Drawing.Size(295, 70);
+            this.quadroFiscalExportacaoEconnectVarejo.TabIndex = 4;
+            this.quadroFiscalExportacaoEconnectVarejo.Título = "PDV e-connect";
+            this.quadroFiscalExportacaoEconnectVarejo.Click += new System.EventHandler(this.quadroFiscalExportacaoEconnectVarejo_Click);
             // 
             // quadroExportaVenda
             // 
@@ -201,9 +201,9 @@ namespace Apresentação.Administrativo
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private Apresentação.Formulários.QuadroOpção quadroOpçãoBalanço;
         private Apresentação.Formulários.QuadroOpção quadroOpçãoImportação;
-        private Apresentação.Formulários.QuadroOpção quadroExportação;
+        private Apresentação.Formulários.QuadroOpção quadroFiscalExportaçãoAtacadoBR500;
         private Apresentação.Formulários.QuadroOpção quadroComissão;
-        private Formulários.QuadroOpção quadroExportacaoCupom;
+        private Formulários.QuadroOpção quadroFiscalExportacaoEconnectVarejo;
         private Formulários.QuadroOpção quadroExportaVenda;
         private Formulários.QuadroOpção quadroControleEstoque;
     }

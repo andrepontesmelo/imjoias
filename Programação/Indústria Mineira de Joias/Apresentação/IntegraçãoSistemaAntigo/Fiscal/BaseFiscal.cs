@@ -23,7 +23,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Fiscal
             InitializeComponent();
         }
 
-        public static void GerarArquivoFiscal()
+        public static void ExportarAtacadoBR500()
         {
             string datayyyymmdd = DateTime.Now.Date.ToString("yyyyMMdd");
 
@@ -415,7 +415,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Fiscal
 
         private void opçãoInício_Click(object sender, EventArgs e)
         {
-            GerarArquivoCupom();
+            ExportarVEconnectVarejo();
         }
 
         /// <summary>
@@ -495,7 +495,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Fiscal
         /// <summary>
         /// Gera aquivos relacionados à impressora fiscal de varejo padrão E-Connect.
         /// </summary>
-        internal static void GerarArquivoCupom()
+        internal static void ExportarVEconnectVarejo()
         {
             // d:\
             string caminho;
