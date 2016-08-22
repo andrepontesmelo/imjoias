@@ -71,6 +71,9 @@ namespace Apresentação.Administrativo
 
             quadroFiscalExportaçãoAtacadoBR500.Visible = técnico;
             quadroFiscalExportacaoEconnectVarejo.Visible = técnico;
+            quadroFiscalImportaçãoXmlAtacado.Visible = técnico;
+            quadroFiscalImportaçãoXmlVarejo.Visible = técnico;
+
             quadroExportaVenda.Visible = técnico;
             quadroOpçãoImportação.Visible = técnico;
 
@@ -82,6 +85,16 @@ namespace Apresentação.Administrativo
         private void quadroControleEstoque_Click(object sender, EventArgs e)
         {
             SubstituirBase(new Estoque.BaseEstoque());
+        }
+
+        private void quadroFiscalImportaçãoXmlVarejo_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Ainda não implementado.");
+        }
+
+        private void quadroFiscalImportaçãoXmlAtacado_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Ainda não implementado.");
         }
     }
 }
