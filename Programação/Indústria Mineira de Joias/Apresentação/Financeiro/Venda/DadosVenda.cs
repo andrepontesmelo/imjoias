@@ -2,6 +2,7 @@
 using Apresentação.Formulários;
 using Entidades;
 using Entidades.Acerto;
+using Entidades.Moedas;
 using Entidades.Pagamentos;
 using Entidades.Pessoa;
 using Entidades.Privilégio;
@@ -311,8 +312,8 @@ namespace Apresentação.Financeiro.Venda
             if (DesignMode)
                 return;
 
+            txtCotação.Moeda = venda.TabelaPreço.Moeda;
             txtCotação.Carregar();
-
             chkRastreada.Checked = venda.Rastreada;
             chkSedex.Checked = venda.Sedex;
 
