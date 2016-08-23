@@ -22,7 +22,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
 
         private string ObterTexto(string caminho)
         {
-            return documento.DocumentElement.SelectSingleNode(caminho).InnerText;
+            return ObterNó(caminho).InnerText;
         }
 
         private decimal ObterDecimal(string caminho)
@@ -91,9 +91,24 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
             return new ParserXml(arquivo);
         }
 
+        private XmlNode ObterNó(string caminho)
+        {
+            return documento.DocumentElement.SelectSingleNode(caminho);
+        }
+
+        public string ObterAtributo(string caminho, string atributo)
+        {
+            return ObterNó(caminho).Attributes[atributo].Value;
+        }
+
+        public string ObterAtributo(string atributo)
+        {
+            return ObterAtributo(XML_CAMINHO_RAIZ, atributo);
+        }
+
         public string LerId()
         {
-            return documento.DocumentElement.SelectSingleNode(XML_CAMINHO_RAIZ).Attributes["Id"].Value;
+            return ObterAtributo("Id");
         }
     }
 }
