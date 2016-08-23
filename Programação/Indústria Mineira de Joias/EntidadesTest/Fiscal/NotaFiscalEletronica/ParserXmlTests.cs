@@ -103,5 +103,11 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         {
             Assert.AreEqual(TipoUnidade.Grs, ParserXml.ObterTipoUnidade("grama"));
         }
+
+        [TestMethod()]
+        public void DeveLerCódigo()
+        {
+            Assert.AreEqual("NFe3112345678929000103550010000003481006016004", parser.LerId());
+        }
     }
 }

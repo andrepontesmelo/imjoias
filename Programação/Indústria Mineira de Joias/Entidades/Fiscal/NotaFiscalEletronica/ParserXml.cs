@@ -6,11 +6,13 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
     public class ParserXml
     {
         private XmlDocument documento;
-        private static readonly string XML_CAMINHO_DET = "/nfeProc/NFe/infNFe/det";
+        private static readonly string XML_CAMINHO_RAIZ = "/nfeProc/NFe/infNFe";
+        private static readonly string XML_CAMINHO_ITENS = XML_CAMINHO_RAIZ + "/ide";
+        private static readonly string XML_CAMINHO_VENDA = XML_CAMINHO_RAIZ + "/det";
 
         private string ObterCaminhoRaiz(int vendaItem)
         {
-            return XML_CAMINHO_DET + "[" + vendaItem.ToString() + "]/prod";
+            return XML_CAMINHO_VENDA + "[" + vendaItem.ToString() + "]/prod";
         }
 
         private string ObterCaminhoAtributo(int vendaItem, string atributo)
@@ -37,14 +39,20 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
         {
             get
             {
-                XmlNodeList lista = documento.DocumentElement.SelectNodes(XML_CAMINHO_DET);
+                XmlNodeList lista = documento.DocumentElement.SelectNodes(XML_CAMINHO_VENDA);
 
                 return lista == null ? 0 : lista.Count;
             }
         }
 
-        public TipoUnidade ObterTipoUnidade(string descrição)
+        public static TipoUnidade ObterTipoUnidade(string descrição)
         {
+            if (descrição.ToLower().StartsWith("gr"))
+                return TipoUnidade.Grs;
+
+            if (descrição.ToLower().CompareTo("peca") == 0)
+                return TipoUnidade.Pca;
+
             return (TipoUnidade) Enum.Parse(typeof(TipoUnidade), descrição, true);
         }
 
@@ -81,6 +89,11 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
         public static ParserXml LerArquivo(string arquivo)
         {
             return new ParserXml(arquivo);
+        }
+
+        public string LerId()
+        {
+            return documento.DocumentElement.SelectSingleNode(XML_CAMINHO_RAIZ).Attributes["Id"].Value;
         }
     }
 }
