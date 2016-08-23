@@ -13,6 +13,9 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         private static string ARQUIVO_ENTRADA_GRAMAS = Directory.GetParent(Directory.GetParent(Path.GetDirectoryName(
             Assembly.GetExecutingAssembly().Location)).FullName).FullName + @"\Arquivos\nfe_gramas.xml";
 
+        private static string ARQUIVO_ENTRADA_UNIDADE = Directory.GetParent(Directory.GetParent(Path.GetDirectoryName(
+            Assembly.GetExecutingAssembly().Location)).FullName).FullName + @"\Arquivos\nfe_unidade.xml";
+
         ParserXml parser;
 
         [TestInitialize]
@@ -75,5 +78,13 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
             parser = ParserXml.LerArquivo(ARQUIVO_ENTRADA_GRAMAS);
             Assert.AreEqual(TipoUnidade.Grs, parser.ObterTipoUnidade(1));
         }
+
+        [TestMethod()]
+        public void DeveLerUnidadeComercialUnidade()
+        {
+            parser = ParserXml.LerArquivo(ARQUIVO_ENTRADA_UNIDADE);
+            Assert.AreEqual(TipoUnidade.Un, parser.ObterTipoUnidade(1));
+        }
+
     }
 }
