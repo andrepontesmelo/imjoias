@@ -3,6 +3,7 @@
     public enum TipoUnidade
     {
         Pca,
-        Par
+        Par,
+        Grs
     }
 }

@@ -76,6 +76,7 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Arquivos\nfe.xml" />
+    <Content Include="Arquivos\nfe_gramas.xml" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

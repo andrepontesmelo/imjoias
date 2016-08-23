@@ -10,6 +10,9 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         private static string ARQUIVO_ENTRADA = Directory.GetParent(Directory.GetParent(Path.GetDirectoryName(
             Assembly.GetExecutingAssembly().Location)).FullName).FullName + @"\Arquivos\nfe.xml";
 
+        private static string ARQUIVO_ENTRADA_GRAMAS = Directory.GetParent(Directory.GetParent(Path.GetDirectoryName(
+            Assembly.GetExecutingAssembly().Location)).FullName).FullName + @"\Arquivos\nfe_gramas.xml";
+
         ParserXml parser;
 
         [TestInitialize]
@@ -64,6 +67,13 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         public void DeveLerDescrição()
         {
             Assert.AreEqual("Gargantilha de Ouro", parser.ObterDescrição(11));
+        }
+
+        [TestMethod()]
+        public void DeveLerUnidadeComercialGramas()
+        {
+            parser = ParserXml.LerArquivo(ARQUIVO_ENTRADA_GRAMAS);
+            Assert.AreEqual(TipoUnidade.Grs, parser.ObterTipoUnidade(1));
         }
     }
 }

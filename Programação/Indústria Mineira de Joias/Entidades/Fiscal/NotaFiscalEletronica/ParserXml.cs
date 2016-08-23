@@ -33,11 +33,19 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
             documento = Xml.LerXmlSemNamespaces(arquivo);
         }
 
-        public int QuantidadeVendaItem => documento.DocumentElement.SelectNodes(XML_CAMINHO_DET).Count;
+        public int QuantidadeVendaItem
+        {
+            get
+            {
+                XmlNodeList lista = documento.DocumentElement.SelectNodes(XML_CAMINHO_DET);
+
+                return lista == null ? 0 : lista.Count;
+            }
+        }
 
         public TipoUnidade ObterTipoUnidade(int vendaItem)
         {
-            return (TipoUnidade) Enum.Parse(typeof(TipoUnidade), ObterTexto(ObterCaminhoAtributo(vendaItem, "uCom")));
+            return (TipoUnidade) Enum.Parse(typeof(TipoUnidade), ObterTexto(ObterCaminhoAtributo(vendaItem, "uCom")), true);
         }
 
         public string ObterReferência(int vendaItem)
