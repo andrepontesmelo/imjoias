@@ -43,9 +43,14 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
             }
         }
 
+        public TipoUnidade ObterTipoUnidade(string descrição)
+        {
+            return (TipoUnidade) Enum.Parse(typeof(TipoUnidade), descrição, true);
+        }
+
         public TipoUnidade ObterTipoUnidade(int vendaItem)
         {
-            return (TipoUnidade) Enum.Parse(typeof(TipoUnidade), ObterTexto(ObterCaminhoAtributo(vendaItem, "uCom")), true);
+            return ObterTipoUnidade(ObterTexto(ObterCaminhoAtributo(vendaItem, "uCom")));
         }
 
         public string ObterReferência(int vendaItem)
