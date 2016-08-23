@@ -91,5 +91,17 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         {
             Assert.AreEqual(TipoUnidade.Pca, ParserXml.ObterTipoUnidade("peca"));
         }
+
+        [TestMethod()]
+        public void DeveLerUnidadeComercialGramasDoisDigitos()
+        {
+            Assert.AreEqual(TipoUnidade.Grs, ParserXml.ObterTipoUnidade("gr"));
+        }
+
+        [TestMethod()]
+        public void DeveLerUnidadeComercialGramasCincoDigitos()
+        {
+            Assert.AreEqual(TipoUnidade.Grs, ParserXml.ObterTipoUnidade("grama"));
+        }
     }
 }
