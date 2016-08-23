@@ -86,5 +86,10 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
             Assert.AreEqual(TipoUnidade.Un, parser.ObterTipoUnidade(1));
         }
 
+        [TestMethod()]
+        public void DeveLerUnidadeComercialPeça()
+        {
+            Assert.AreEqual(TipoUnidade.Pca, ParserXml.ObterTipoUnidade("peca"));
+        }
     }
 }
