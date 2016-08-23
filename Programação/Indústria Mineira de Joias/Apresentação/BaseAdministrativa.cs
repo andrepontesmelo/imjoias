@@ -1,6 +1,7 @@
 using Apresentação.Financeiro.Comissões;
 using Apresentação.Formulários;
 using Apresentação.IntegraçãoSistemaAntigo;
+using Entidades.Fiscal;
 using Entidades.Privilégio;
 using System;
 using System.Windows.Forms;
@@ -94,7 +95,11 @@ namespace Apresentação.Administrativo
 
         private void quadroFiscalImportaçãoXmlAtacado_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Ainda não implementado.");
+            FolderBrowserDialog janela = new FolderBrowserDialog();
+            if (janela.ShowDialog() != DialogResult.OK)
+                return;
+
+            new Importador().ImportarXmls(janela.SelectedPath);
         }
     }
 }
