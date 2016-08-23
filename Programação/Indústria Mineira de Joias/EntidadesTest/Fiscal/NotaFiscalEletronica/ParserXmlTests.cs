@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.IO;
 using System.Reflection;
 
@@ -108,6 +109,13 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         public void DeveLerCódigo()
         {
             Assert.AreEqual("NFe3112345678929000103550010000003481006016004", parser.LerId());
+        }
+
+        [TestMethod()]
+        public void DeveLerDataEmissão()
+        {
+            DateTime emissão = DateTime.Parse("2016-05-10T13:54:00-03:00");
+            Assert.AreEqual(emissão, parser.LerDataEmissão());
         }
     }
 }

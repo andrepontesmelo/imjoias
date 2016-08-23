@@ -7,12 +7,12 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
     {
         private XmlDocument documento;
         private static readonly string XML_CAMINHO_RAIZ = "/nfeProc/NFe/infNFe";
-        private static readonly string XML_CAMINHO_ITENS = XML_CAMINHO_RAIZ + "/ide";
-        private static readonly string XML_CAMINHO_VENDA = XML_CAMINHO_RAIZ + "/det";
+        private static readonly string XML_CAMINHO_VENDA = XML_CAMINHO_RAIZ + "/ide";
+        private static readonly string XML_CAMINHO_ITENS = XML_CAMINHO_RAIZ + "/det";
 
         private string ObterCaminhoRaiz(int vendaItem)
         {
-            return XML_CAMINHO_VENDA + "[" + vendaItem.ToString() + "]/prod";
+            return XML_CAMINHO_ITENS + "[" + vendaItem.ToString() + "]/prod";
         }
 
         private string ObterCaminhoAtributo(int vendaItem, string atributo)
@@ -39,7 +39,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
         {
             get
             {
-                XmlNodeList lista = documento.DocumentElement.SelectNodes(XML_CAMINHO_VENDA);
+                XmlNodeList lista = documento.DocumentElement.SelectNodes(XML_CAMINHO_ITENS);
 
                 return lista == null ? 0 : lista.Count;
             }
@@ -109,6 +109,11 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
         public string LerId()
         {
             return ObterAtributo("Id");
+        }
+
+        public DateTime LerDataEmissão()
+        {
+            return DateTime.Parse(ObterTexto(XML_CAMINHO_VENDA + "/dhEmi"));
         }
     }
 }
