@@ -789,6 +789,9 @@ namespace Apresentação.Mercadoria.Cotação
 
         private void AtribuirCotação(Entidades.Financeiro.Cotação cotação)
         {
+            if (painelFlutuante == null)
+                return;
+
             if (painelFlutuante.InvokeRequired)
             {
                 AtribuirCotaçãoCallback método = new AtribuirCotaçãoCallback(AtribuirCotação);
