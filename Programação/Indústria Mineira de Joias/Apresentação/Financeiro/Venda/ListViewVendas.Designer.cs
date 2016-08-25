@@ -47,8 +47,6 @@
             this.btnSelecionarTudo = new System.Windows.Forms.ToolStripButton();
             this.btnSelecionarNada = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnAcertado = new System.Windows.Forms.ToolStripButton();
-            this.lblDesde = new System.Windows.Forms.ToolStripLabel();
             this.btnGerarNfe = new System.Windows.Forms.ToolStripButton();
             this.panelInterno = new System.Windows.Forms.Panel();
             this.localizador = new Apresentação.Formulários.Localizador();
@@ -164,8 +162,6 @@
             this.btnSelecionarTudo,
             this.btnSelecionarNada,
             this.toolStripSeparator1,
-            this.btnAcertado,
-            this.lblDesde,
             this.btnGerarNfe});
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
@@ -212,23 +208,6 @@
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // btnAcertado
-            // 
-            this.btnAcertado.CheckOnClick = true;
-            this.btnAcertado.Image = global::Apresentação.Resource.Acerto__Pequeno_;
-            this.btnAcertado.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAcertado.Name = "btnAcertado";
-            this.btnAcertado.Size = new System.Drawing.Size(161, 22);
-            this.btnAcertado.Text = "Mostrar vendas acertadas";
-            this.btnAcertado.CheckedChanged += new System.EventHandler(this.btnAcertado_CheckedChanged);
-            // 
-            // lblDesde
-            // 
-            this.lblDesde.Name = "lblDesde";
-            this.lblDesde.Size = new System.Drawing.Size(55, 22);
-            this.lblDesde.Text = "(desde...)";
-            this.lblDesde.Visible = false;
             // 
             // btnGerarNfe
             // 
@@ -304,8 +283,6 @@
         private System.Windows.Forms.ColumnHeader colControle;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton btnAcertado;
-        private System.Windows.Forms.ToolStripLabel lblDesde;
         private System.Windows.Forms.ToolStripButton btnGerarNfe;
         private System.Windows.Forms.ImageList imageListSemaforos;
     }

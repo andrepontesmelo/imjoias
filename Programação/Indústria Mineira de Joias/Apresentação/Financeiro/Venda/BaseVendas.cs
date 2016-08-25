@@ -50,14 +50,12 @@ namespace Apresentação.Financeiro.Venda
                 quadroLista.Título = título.Título = "Histórico de compras";
                 opçãoProcurar.Descrição = "Procurar compra...";
                 opçãoRegistrarNovaVenda.Descrição = "Registrar nova compra...";
-                lista.ApenasNãoAcertado = false;
             }
             else
             {
                 quadroLista.Título = título.Título = "Histórico de vendas";
                 opçãoProcurar.Descrição = "Procurar por venda...";
                 opçãoRegistrarNovaVenda.Descrição = "Registrar nova venda...";
-                lista.ApenasNãoAcertado = true;
                 quadroComprasDesteFuncionário.Visible = true;
             }
         }

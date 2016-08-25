@@ -9,7 +9,7 @@ namespace Apresentação.Financeiro.Venda
 {
     public partial class ListViewVendas : UserControl
     {
-        private bool apenasNãoAcertadas = true;
+        private bool apenasNãoAcertadas = false;
         private bool handleCriado = false;
 
         private Dictionary<ListViewItem, IDadosVenda> hashListViewItemVenda = null;
@@ -20,14 +20,13 @@ namespace Apresentação.Financeiro.Venda
         private Delegate recarregar;
         private object[] recarregarParâmetros;
 
-        [DefaultValue(true), Description("Determina se serão exibidas somente vendas não acertadas.")]
+        [DefaultValue(false), Description("Determina se serão exibidas somente vendas não acertadas.")]
         public bool ApenasNãoAcertado
         {
             get { return apenasNãoAcertadas; }
             set
             {
                 apenasNãoAcertadas = value;
-                btnAcertado.Checked = !value;
 
                 if (recarregar != null)
                     recarregar.DynamicInvoke(recarregarParâmetros);
@@ -522,12 +521,6 @@ namespace Apresentação.Financeiro.Venda
         {
             foreach (ListViewItem item in lista.Items)
                 item.Selected = true;
-        }
-
-        private void btnAcertado_CheckedChanged(object sender, EventArgs e)
-        {
-            if (ApenasNãoAcertado != !btnAcertado.Checked)
-                ApenasNãoAcertado = !btnAcertado.Checked;
         }
 
         private void ListViewVendas_Paint(object sender, PaintEventArgs e)

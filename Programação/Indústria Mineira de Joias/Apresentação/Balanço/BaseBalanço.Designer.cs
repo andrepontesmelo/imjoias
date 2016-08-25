@@ -172,7 +172,6 @@
             // 
             // listaSedex
             // 
-            this.listaSedex.ApenasNãoAcertado = false;
             this.listaSedex.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listaSedex.ItemSelecionado = null;
             this.listaSedex.ItensSelecionados = ((System.Collections.Generic.List<Entidades.Relacionamento.Venda.IDadosVenda>)(resources.GetObject("listaSedex.ItensSelecionados")));

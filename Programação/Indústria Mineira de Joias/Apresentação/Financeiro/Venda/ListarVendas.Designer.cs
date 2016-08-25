@@ -56,7 +56,6 @@ namespace Apresentação.Financeiro.Venda
             this.lista.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lista.ApenasNãoAcertado = false;
             this.lista.ItemSelecionado = null;
             this.lista.ItensSelecionados = ((System.Collections.Generic.List<Entidades.Relacionamento.Venda.IDadosVenda>)(resources.GetObject("lista.ItensSelecionados")));
             this.lista.Location = new System.Drawing.Point(12, 99);
