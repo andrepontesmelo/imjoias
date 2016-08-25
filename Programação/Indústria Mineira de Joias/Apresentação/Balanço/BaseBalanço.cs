@@ -40,8 +40,8 @@ namespace Apresentação.Administrativo.Balanço
 
             listaRetornos.Marcar(PersistênciaDocumentosBalanço.Instância.ListaRetornos);
             listaSaídas.Marcar(PersistênciaDocumentosBalanço.Instância.ListaSaídas);
-            listaVendas.Selecionar(PersistênciaDocumentosBalanço.Instância.ListaVendas);
-            listaSedex.Selecionar(PersistênciaDocumentosBalanço.Instância.ListaSedex);
+            listaVendas.SelecionarApenas(PersistênciaDocumentosBalanço.Instância.ListaVendas);
+            listaSedex.SelecionarApenas(PersistênciaDocumentosBalanço.Instância.ListaSedex);
         }
 
         private void opçãoFiltrar_Click(object sender, EventArgs e)
