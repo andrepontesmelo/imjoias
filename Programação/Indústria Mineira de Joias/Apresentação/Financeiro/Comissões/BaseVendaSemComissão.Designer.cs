@@ -51,7 +51,6 @@
             this.listViewVendas.Name = "listViewVendas";
             this.listViewVendas.Size = new System.Drawing.Size(592, 238);
             this.listViewVendas.TabIndex = 6;
-            this.listViewVendas.AoSalvarNfe += new System.EventHandler(this.listViewVendas_AoSalvarNfe);
             this.listViewVendas.AoDuploClique += new Apresentação.Financeiro.Venda.ListViewVendas.DelegaçãoVenda(this.listViewVendas_AoDuploClique);
             // 
             // títuloBaseInferior1

@@ -16,7 +16,6 @@ namespace Apresentação.Financeiro.Venda
         private Dictionary<long, ListViewItem> hashCódigoItem = null;
         private VínculoVendaPessoa tipoExibição = VínculoVendaPessoa.Cliente;
 
-        public event EventHandler AoSalvarNfe;
         private Delegate recarregar;
         private object[] recarregarParâmetros;
 
@@ -189,8 +188,6 @@ namespace Apresentação.Financeiro.Venda
             ((ListViewVendasOrdenador)lista.ListViewItemSorter).DefinirColuna(colData);
             lista.Sorting = SortOrder.Descending;
             lista.Sort();
-
-            btnGerarNfe.Visible = Entidades.Privilégio.PermissãoFuncionário.ValidarPermissão(Entidades.Privilégio.Permissão.Técnico);
         }
 
         void ListViewVendas_HandleCreated(object sender, EventArgs e)
@@ -526,22 +523,6 @@ namespace Apresentação.Financeiro.Venda
         private void ListViewVendas_Paint(object sender, PaintEventArgs e)
         {
             lista.Focus();
-        }
-
-        private void btnGerarNfe_Click(object sender, EventArgs e)
-        {
-            if (ItemSelecionado.HasValue)
-            {
-                Fiscal.JanelaNFe janela = new Fiscal.JanelaNFe();
-                janela.AoSalvarNfe += janela_AoSalvarNfe;
-                janela.CarregarVenda(ItemSelecionado.Value);
-                janela.ShowDialog(this);
-            }
-        }
-
-        void janela_AoSalvarNfe(object sender, EventArgs e)
-        {
-            AoSalvarNfe(sender, e);
         }
     }
 

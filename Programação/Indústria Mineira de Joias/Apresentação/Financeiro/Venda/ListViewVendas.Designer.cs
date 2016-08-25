@@ -47,7 +47,6 @@
             this.btnSelecionarTudo = new System.Windows.Forms.ToolStripButton();
             this.btnSelecionarNada = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnGerarNfe = new System.Windows.Forms.ToolStripButton();
             this.panelInterno = new System.Windows.Forms.Panel();
             this.localizador = new Apresentação.Formulários.Localizador();
             ((System.ComponentModel.ISupportInitialize)(this.painelQuantidade)).BeginInit();
@@ -161,8 +160,7 @@
             this.toolStripSeparator,
             this.btnSelecionarTudo,
             this.btnSelecionarNada,
-            this.toolStripSeparator1,
-            this.btnGerarNfe});
+            this.toolStripSeparator1});
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Size = new System.Drawing.Size(807, 25);
@@ -208,15 +206,6 @@
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // btnGerarNfe
-            // 
-            this.btnGerarNfe.Image = ((System.Drawing.Image)(resources.GetObject("btnGerarNfe.Image")));
-            this.btnGerarNfe.ImageTransparentColor = System.Drawing.Color.White;
-            this.btnGerarNfe.Name = "btnGerarNfe";
-            this.btnGerarNfe.Size = new System.Drawing.Size(84, 22);
-            this.btnGerarNfe.Text = "Gerar NF-e";
-            this.btnGerarNfe.Click += new System.EventHandler(this.btnGerarNfe_Click);
             // 
             // panelInterno
             // 
@@ -283,7 +272,6 @@
         private System.Windows.Forms.ColumnHeader colControle;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton btnGerarNfe;
         private System.Windows.Forms.ImageList imageListSemaforos;
     }
 }

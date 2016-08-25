@@ -363,11 +363,6 @@ namespace Apresentação.Financeiro.Venda
                 MessageBox.Show("Vendas descadastradas: " + vendasDescadastradas + "\n\n\nVendas não descadastradas:" + vendasNãoDescadastradas + "\n\n" + ajuda, "Nem todas foram excluídas", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void lista_AoSalvarNfe(object sender, EventArgs e)
-        {
-            Recarregar();
-        }
-
         private void Recarregar()
         {
             últimoItemSelecionado = lista.ItemSelecionado;
