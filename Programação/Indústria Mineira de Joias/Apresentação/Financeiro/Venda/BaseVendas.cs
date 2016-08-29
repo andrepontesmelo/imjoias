@@ -372,5 +372,11 @@ namespace Apresentação.Financeiro.Venda
             lista.ItemSelecionado = últimoItemSelecionado;
             lista.ItensSelecionados = últimosItensChecados;
         }
+
+        private void SemaforoLegenda1_aoClicarLegenda(Entidades.Relacionamento.Venda.SemaforoEnum legenda)
+        {
+            lista.MostrarLegenda(legenda);
+        }
+
     }
 }

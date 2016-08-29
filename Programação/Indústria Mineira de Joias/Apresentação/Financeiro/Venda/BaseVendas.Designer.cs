@@ -254,6 +254,7 @@ namespace Apresentação.Financeiro.Venda
             this.semaforoLegenda1.TabIndex = 2;
             this.semaforoLegenda1.Tamanho = 30;
             this.semaforoLegenda1.Título = "Legenda";
+            this.semaforoLegenda1.ClicouNaLegenda += SemaforoLegenda1_aoClicarLegenda;
             // 
             // BaseVendas
             // 

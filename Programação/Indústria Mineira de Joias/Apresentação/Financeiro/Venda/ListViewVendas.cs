@@ -387,6 +387,25 @@ namespace Apresentação.Financeiro.Venda
             return listaMarcadas;
         }
 
+        internal void MostrarLegenda(SemaforoEnum legenda)
+        {
+            ListViewGroup grupo = lista.Groups[(int)legenda];
+
+            if (grupo.Items.Count == 0)
+                return;
+
+            AgruparPorLegenda(true);
+
+            grupo.Items[0].EnsureVisible();
+        }
+
+        private void AgruparPorLegenda(bool agrupar)
+        {
+            btnAgruparLegenda.Checked = agrupar;
+            lista.ShowGroups = agrupar;
+            configuraçãoUsuárioAgruparLegenda.Valor = agrupar;
+        }
+
         public List<long> ObterCódigosSelecionados()
         {
             List<long> listaMarcadas = new List<long>(lista.SelectedItems.Count);
@@ -530,8 +549,7 @@ namespace Apresentação.Financeiro.Venda
 
         private void btnAgruparLegenda_Click(object sender, EventArgs e)
         {
-            lista.ShowGroups = btnAgruparLegenda.Checked;
-            configuraçãoUsuárioAgruparLegenda.Valor = btnAgruparLegenda.Checked;
+            AgruparPorLegenda(btnAgruparLegenda.Checked);
         }
     }
 
