@@ -291,6 +291,7 @@ namespace Apresentação.Financeiro.Venda
         {
             ListViewItem item = new ListViewItem(venda.Data.ToString("dd/MM/yyyy", Entidades.Configuração.DadosGlobais.Instância.Cultura));
             item.ImageIndex = (int)venda.Semáforo;
+            item.Group = lista.Groups[(int)venda.Semáforo];
 
             item.SubItems.AddRange(new string[] { "", "", "", "", "", "", "", "" });
             item.SubItems[colCódigo.Index].Text = venda.CódigoFormatado;
@@ -523,6 +524,11 @@ namespace Apresentação.Financeiro.Venda
         private void ListViewVendas_Paint(object sender, PaintEventArgs e)
         {
             lista.Focus();
+        }
+
+        private void btnAgruparLegenda_Click(object sender, EventArgs e)
+        {
+            lista.ShowGroups = btnAgruparLegenda.Checked;
         }
     }
 
