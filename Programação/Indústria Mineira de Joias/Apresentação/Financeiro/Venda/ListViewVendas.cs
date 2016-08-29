@@ -15,6 +15,7 @@ namespace Apresentação.Financeiro.Venda
         private Dictionary<ListViewItem, IDadosVenda> hashListViewItemVenda = null;
         private Dictionary<long, ListViewItem> hashCódigoItem = null;
         private VínculoVendaPessoa tipoExibição = VínculoVendaPessoa.Cliente;
+        Entidades.Configuração.ConfiguraçãoUsuário<bool> configuraçãoUsuárioAgruparLegenda = new Entidades.Configuração.ConfiguraçãoUsuário<bool>("configuraçãoUsuárioAgruparLegenda", false);
 
         private Delegate recarregar;
         private object[] recarregarParâmetros;
@@ -255,6 +256,7 @@ namespace Apresentação.Financeiro.Venda
             AtualizarStatus();
             AtualizarTamanhoColunas();
             lista.Sort();
+            lista.ShowGroups = btnAgruparLegenda.Checked = configuraçãoUsuárioAgruparLegenda.Valor;
             lista.ResumeLayout();
 
             Visible = true;
@@ -529,6 +531,7 @@ namespace Apresentação.Financeiro.Venda
         private void btnAgruparLegenda_Click(object sender, EventArgs e)
         {
             lista.ShowGroups = btnAgruparLegenda.Checked;
+            configuraçãoUsuárioAgruparLegenda.Valor = btnAgruparLegenda.Checked;
         }
     }
 

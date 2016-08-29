@@ -95,7 +95,6 @@
             this.lista.HideSelection = false;
             this.lista.Location = new System.Drawing.Point(0, 0);
             this.lista.Name = "lista";
-            this.lista.ShowGroups = false;
             this.lista.Size = new System.Drawing.Size(804, 155);
             this.lista.SmallImageList = this.imageListSemaforos;
             this.lista.Sorting = System.Windows.Forms.SortOrder.Ascending;
