@@ -179,6 +179,7 @@ namespace Apresentação.Financeiro.Venda
             this.lista.Size = new System.Drawing.Size(588, 296);
             this.lista.TabIndex = 7;
             this.lista.AoDuploClique += new Apresentação.Financeiro.Venda.ListViewVendas.DelegaçãoVenda(this.lista_AoDuploClique);
+            this.lista.LegendasContabilizadas += Lista_LegendasContabilizadas;
             // 
             // quadroLista
             // 

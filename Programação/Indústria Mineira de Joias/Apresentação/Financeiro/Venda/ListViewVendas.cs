@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Apresentação.Financeiro.Venda
@@ -19,6 +20,9 @@ namespace Apresentação.Financeiro.Venda
 
         private Delegate recarregar;
         private object[] recarregarParâmetros;
+
+        public delegate void DelegateLegendasContabilizadas(int[] legendas);
+        public event DelegateLegendasContabilizadas LegendasContabilizadas;
 
         [DefaultValue(false), Description("Determina se serão exibidas somente vendas não acertadas.")]
         public bool ApenasNãoAcertado
@@ -248,7 +252,7 @@ namespace Apresentação.Financeiro.Venda
                 return;
 
             double somatorioValor = AdicionarVendas(vendas);
-
+            ContabilizarLegendas(vendas);
 
             InformaçõesStatus.Instância.QtdVendas = lista.Items.Count;
             InformaçõesStatus.Instância.ValorTotal = somatorioValor;
@@ -261,6 +265,17 @@ namespace Apresentação.Financeiro.Venda
 
             Visible = true;
             ResumeLayout();
+        }
+
+        private void ContabilizarLegendas(IDadosVenda[] vendas)
+        {
+            int totalLegendas = Enum.GetValues(typeof(SemaforoEnum)).Cast<int>().Max() + 1;
+            int[] legendas = new int[totalLegendas];
+
+            foreach (IDadosVenda v in vendas)
+                legendas[(int)v.Semáforo]++;
+
+            LegendasContabilizadas?.Invoke(legendas);
         }
 
         private double AdicionarVendas(IDadosVenda[] vendas)

@@ -378,5 +378,9 @@ namespace Apresentação.Financeiro.Venda
             lista.MostrarLegenda(legenda);
         }
 
+        private void Lista_LegendasContabilizadas(int[] legendas)
+        {
+            semaforoLegenda1.AtualizarContagemLegendas(legendas);
+        }
     }
 }
