@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Não quitada", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Cobrança", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Quitada com comissão aberta", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("grpComissãoFechada", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("Venda do dia", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup6 = new System.Windows.Forms.ListViewGroup("Nota fiscal", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Venda do dia", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Nota fiscal", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Cobrança", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("Não quitada", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("Quitada com comissão aberta", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup6 = new System.Windows.Forms.ListViewGroup("grpComissãoFechada", System.Windows.Forms.HorizontalAlignment.Left);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListViewVendas));
             this.lista = new System.Windows.Forms.ListView();
             this.colData = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -73,18 +73,18 @@
             this.colValor});
             this.lista.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lista.FullRowSelect = true;
-            listViewGroup1.Header = "Não quitada";
-            listViewGroup1.Name = "grpNaoQuitada";
-            listViewGroup2.Header = "Cobrança";
-            listViewGroup2.Name = "grpCobrança";
-            listViewGroup3.Header = "Quitada com comissão aberta";
-            listViewGroup3.Name = "grpQuitadaComissãoAberta";
-            listViewGroup4.Header = "grpComissãoFechada";
-            listViewGroup4.Name = "Comissão fechada";
-            listViewGroup5.Header = "Venda do dia";
-            listViewGroup5.Name = "grpVendaDia";
-            listViewGroup6.Header = "Nota fiscal";
-            listViewGroup6.Name = "grpNFe";
+            listViewGroup1.Header = "Venda do dia";
+            listViewGroup1.Name = "grpVendaDia";
+            listViewGroup2.Header = "Nota fiscal";
+            listViewGroup2.Name = "grpNFe";
+            listViewGroup3.Header = "Cobrança";
+            listViewGroup3.Name = "grpCobrança";
+            listViewGroup4.Header = "Não quitada";
+            listViewGroup4.Name = "grpNaoQuitada";
+            listViewGroup5.Header = "Quitada com comissão aberta";
+            listViewGroup5.Name = "grpQuitadaComissãoAberta";
+            listViewGroup6.Header = "grpComissãoFechada";
+            listViewGroup6.Name = "Comissão fechada";
             this.lista.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
             listViewGroup1,
             listViewGroup2,

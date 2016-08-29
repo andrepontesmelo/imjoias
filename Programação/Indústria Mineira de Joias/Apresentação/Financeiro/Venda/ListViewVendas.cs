@@ -308,7 +308,7 @@ namespace Apresentação.Financeiro.Venda
         {
             ListViewItem item = new ListViewItem(venda.Data.ToString("dd/MM/yyyy", Entidades.Configuração.DadosGlobais.Instância.Cultura));
             item.ImageIndex = (int)venda.Semáforo;
-            item.Group = lista.Groups[(int)venda.Semáforo];
+            item.Group = lista.Groups[ObterIndiceSemáforo(venda.Semáforo)];
 
             item.SubItems.AddRange(new string[] { "", "", "", "", "", "", "", "" });
             item.SubItems[colCódigo.Index].Text = venda.CódigoFormatado;
@@ -326,6 +326,27 @@ namespace Apresentação.Financeiro.Venda
             item.UseItemStyleForSubItems = true;
 
             return item;
+        }
+
+        private int ObterIndiceSemáforo(SemaforoEnum semáforo)
+        {
+            switch (semáforo)
+            {
+                case SemaforoEnum.DoDia:
+                    return 0;
+                case SemaforoEnum.Nfe:
+                    return 1;
+                case SemaforoEnum.Cobrança:
+                    return 2;
+                case SemaforoEnum.NãoQuitado:
+                    return 3;
+                case SemaforoEnum.Quitado:
+                    return 4;
+                case SemaforoEnum.ComissãoFechada:
+                    return 5;
+            }
+
+            throw new NotImplementedException();
         }
 
         private void AtualizarStatus()
@@ -402,16 +423,27 @@ namespace Apresentação.Financeiro.Venda
             return listaMarcadas;
         }
 
-        internal void MostrarLegenda(SemaforoEnum legenda)
+        internal void MostrarLegenda(SemaforoEnum semáforo)
         {
-            ListViewGroup grupo = lista.Groups[(int)legenda];
+            ListViewGroup grupo = lista.Groups[ObterIndiceSemáforo(semáforo)];
 
             if (grupo.Items.Count == 0)
                 return;
 
             AgruparPorLegenda(true);
+            MostrarPrimeiroItem(grupo);
+        }
 
-            grupo.Items[0].EnsureVisible();
+        private void MostrarPrimeiroItem(ListViewGroup grupo)
+        {
+            int menorIndice = int.MaxValue;
+            foreach (ListViewItem i in grupo.Items)
+            {
+                if (i.Index < menorIndice)
+                    menorIndice = i.Index;
+            }
+
+            lista.Items[menorIndice].EnsureVisible();
         }
 
         private void AgruparPorLegenda(bool agrupar)
