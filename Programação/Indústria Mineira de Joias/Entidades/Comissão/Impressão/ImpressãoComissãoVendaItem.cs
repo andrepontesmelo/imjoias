@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Entidades.ComissãoCálculo.Impressão
+namespace Entidades.Comissão.Impressão
 {
     public class ImpressãoComissãoVendaItem : ImpressãoComissãoVenda
     {

@@ -6,7 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Entidades.ComissãoCálculo;
+using Entidades.Comissão;
 using Apresentação.Formulários;
 using Entidades.Estoque;
 

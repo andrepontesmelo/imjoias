@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
-namespace Entidades.ComissãoCálculo
+namespace Entidades.Comissão
 {
     public class ComissãoValor : DbManipulaçãoAutomática
     {

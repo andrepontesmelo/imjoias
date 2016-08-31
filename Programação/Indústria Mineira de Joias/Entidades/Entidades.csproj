@@ -185,22 +185,19 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Balanço\SaquinhoBalanço.cs" />
-    <Compile Include="ComissãoCálculo\ComissaoValor.cs" />
-    <Compile Include="ComissãoCálculo\Comissão.cs" />
-    <Compile Include="ComissãoCálculo\ComissãoSetorFaixa.cs" />
-    <Compile Include="ComissãoCálculo\EnumRegra.cs" />
-    <Compile Include="ComissãoCálculo\FaixaValor.cs" />
-    <Compile Include="ComissãoCálculo\Impressão\Filtro.cs" />
-    <Compile Include="ComissãoCálculo\Impressão\Impressão.cs" />
-    <Compile Include="ComissãoCálculo\Impressão\ImpressãoComissãoVendaItem.cs" />
-    <Compile Include="ComissãoCálculo\Impressão\ImpressãoCompartilhada.cs" />
-    <Compile Include="ComissãoCálculo\Impressão\ImpressãoRegraPessoa.cs" />
-    <Compile Include="ComissãoCálculo\Impressão\ImpressãoResumo.cs" />
-    <Compile Include="ComissãoCálculo\Impressão\ImpressãoComissãoVenda.cs" />
-    <Compile Include="ComissãoCálculo\Impressão\ImpressãoSetor.cs" />
-    <Compile Include="ComissãoCálculo\Regra.cs" />
-    <Compile Include="ComissãoCálculo\Resumo.cs" />
-    <Compile Include="ComissãoCálculo\VendaFaixaValor.cs" />
+    <Compile Include="Comissão\ComissaoValor.cs" />
+    <Compile Include="Comissão\Comissão.cs" />
+    <Compile Include="Comissão\EnumRegra.cs" />
+    <Compile Include="Comissão\Impressão\Filtro.cs" />
+    <Compile Include="Comissão\Impressão\Impressão.cs" />
+    <Compile Include="Comissão\Impressão\ImpressãoComissãoVendaItem.cs" />
+    <Compile Include="Comissão\Impressão\ImpressãoCompartilhada.cs" />
+    <Compile Include="Comissão\Impressão\ImpressãoRegraPessoa.cs" />
+    <Compile Include="Comissão\Impressão\ImpressãoResumo.cs" />
+    <Compile Include="Comissão\Impressão\ImpressãoComissãoVenda.cs" />
+    <Compile Include="Comissão\Impressão\ImpressãoSetor.cs" />
+    <Compile Include="Comissão\Regra.cs" />
+    <Compile Include="Comissão\Resumo.cs" />
     <Compile Include="Configuração\CacheChaves.cs" />
     <Compile Include="Configuração\Chave.cs">
       <SubType>Code</SubType>

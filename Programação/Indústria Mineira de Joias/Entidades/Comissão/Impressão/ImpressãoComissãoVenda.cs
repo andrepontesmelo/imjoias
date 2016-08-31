@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Text;
 
-namespace Entidades.ComissãoCálculo.Impressão
+namespace Entidades.Comissão.Impressão
 {
     public class ImpressãoComissãoVenda : Impressão
     {
@@ -135,7 +135,7 @@ namespace Entidades.ComissãoCálculo.Impressão
             item["valore"] = Valore;
             item["apagar"] = APagar;
             item["data"] = Data.ToShortDateString();
-            item["regra"] = Entidades.ComissãoCálculo.Regra.ObterNome(Regra);
+            item["regra"] = Entidades.Comissão.Regra.ObterNome(Regra);
             item["nomecomissaopara"] = Entidades.Pessoa.Pessoa.AbreviarNome(Nomecomissaopara);
             item["desconto"] = Desconto;
             tabelaItens.Rows.Add(item);

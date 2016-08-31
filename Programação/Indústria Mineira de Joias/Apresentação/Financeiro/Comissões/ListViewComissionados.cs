@@ -1,6 +1,6 @@
 ﻿using Apresentação.Formulários;
 using Entidades;
-using Entidades.ComissãoCálculo;
+using Entidades.Comissão;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

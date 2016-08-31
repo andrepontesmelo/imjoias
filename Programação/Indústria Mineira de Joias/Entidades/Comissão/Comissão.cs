@@ -1,5 +1,5 @@
 ﻿using Acesso.Comum;
-using Entidades.ComissãoCálculo.Impressão;
+using Entidades.Comissão.Impressão;
 using Entidades.Pessoa;
 using Entidades.Privilégio;
 using System;
@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Text;
 
-namespace Entidades.ComissãoCálculo
+namespace Entidades.Comissão
 {
     /// <summary>
     /// Documento de comissão, de várias pessoas, geralmente de um mês.

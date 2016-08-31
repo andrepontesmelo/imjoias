@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Entidades.ComissãoCálculo
+namespace Entidades.Comissão
 {
     public class Regra
     {

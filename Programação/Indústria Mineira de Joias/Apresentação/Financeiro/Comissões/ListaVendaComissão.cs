@@ -1,7 +1,7 @@
 ﻿using Apresentação.Atendimento.Comum;
 using Apresentação.Financeiro.Comissões.Delegate;
 using Apresentação.Formulários;
-using Entidades.ComissãoCálculo;
+using Entidades.Comissão;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

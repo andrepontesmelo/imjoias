@@ -2,7 +2,7 @@
 using System;
 using System.Text;
 
-namespace Entidades.ComissãoCálculo.Impressão
+namespace Entidades.Comissão.Impressão
 {
     public abstract class Impressão : DbManipulaçãoAutomática
     {

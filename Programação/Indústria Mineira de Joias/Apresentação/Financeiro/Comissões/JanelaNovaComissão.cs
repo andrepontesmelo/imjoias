@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using Apresentação.Formulários;
-using Entidades.ComissãoCálculo;
+using Entidades.Comissão;
 
 namespace Apresentação.Financeiro.Comissões
 {
