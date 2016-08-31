@@ -83,20 +83,11 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Fiscal
                         janela.Passo();
                         string referencia = (string)m["referencia"];
                         bool foraDeLinha = ((byte)m["foradelinha"]) != 0;
-                        //if (referencia == "20405600145")
-                        //{
-                        //    bool debug = true;
-                        //}
 
                         if (referencia.Length >= 10 && !foraDeLinha)
                         {
                             arquivoPrincipal.Write("0");
                             string referenciaCortada = Cortar(referencia.Remove(1, 1), 10, '0', false);
-                            //if (referenciaCortada == "2405600145")
-                            //{
-                            //    bool debug2 = true;
-                            //}
-
                             // Arquivo EAN
 
                             // Operação: Inclusão
