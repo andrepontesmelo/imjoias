@@ -83,8 +83,8 @@
             listViewGroup4.Name = "grpNaoQuitada";
             listViewGroup5.Header = "Quitada com comissão aberta";
             listViewGroup5.Name = "grpQuitadaComissãoAberta";
-            listViewGroup6.Header = "grpComissãoFechada";
-            listViewGroup6.Name = "Comissão fechada";
+            listViewGroup6.Header = "Comissão fechada";
+            listViewGroup6.Name = "grpComissãoFechada";
             this.lista.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
             listViewGroup1,
             listViewGroup2,
