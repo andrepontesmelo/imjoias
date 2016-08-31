@@ -50,23 +50,28 @@ namespace Negócio.Integração
                 componente = new Entidades.Mercadoria.ComponenteCusto();
 
             TransporAtributos(itemLegado, componente);
-
             return componente;
         }
 
         private static void TransporAtributos(DataRow itemLegado, Entidades.Mercadoria.ComponenteCusto componente)
         {
             componente.Nome = itemLegado["CC_NOME"].ToString();
-            componente.Valor = double.Parse(itemLegado["CC_VALOR"].ToString());
             componente.Código = itemLegado["CC_COD"].ToString().ToUpper().Trim();
 
             bool transpondoDólar = componente.Código.Equals("10");
-            bool itemCotadoEmDólar = double.Parse(itemLegado["CC_DOLAR"].ToString()) != 0;
+            double valorEmDólar = double.Parse(itemLegado["CC_DOLAR"].ToString());
+            bool itemCotadoEmDólar = valorEmDólar != 0;
 
             if (!transpondoDólar && itemCotadoEmDólar)
+            {
                 componente.MultiplicarComponenteCusto = "10";
+                componente.Valor = valorEmDólar;
+            }
             else
+            {
                 componente.MultiplicarComponenteCusto = null;
+                componente.Valor = double.Parse(itemLegado["CC_VALOR"].ToString());
+            }
         }
     }
 }
