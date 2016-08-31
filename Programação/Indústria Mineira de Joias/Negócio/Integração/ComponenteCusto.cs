@@ -64,10 +64,7 @@ namespace Negócio.Integração
             bool itemCotadoEmDólar = double.Parse(itemLegado["CC_DOLAR"].ToString()) != 0;
 
             if (!transpondoDólar && itemCotadoEmDólar)
-            {
-                componente.Valor = double.Parse(itemLegado["CC_DOLAR"].ToString());
                 componente.MultiplicarComponenteCusto = "10";
-            }
             else
                 componente.MultiplicarComponenteCusto = null;
         }
