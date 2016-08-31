@@ -261,6 +261,8 @@
     <Compile Include="Mercadoria\Coeficientes.cs" />
     <Compile Include="Mercadoria\Componente\Componente.cs" />
     <Compile Include="Mercadoria\Componente\ComponenteCusto.cs" />
+    <Compile Include="Mercadoria\Componente\VinculoMercadoriaComponente.cs" />
+    <Compile Include="Mercadoria\Componente\VinculoMercadoriaComponenteFiscal.cs" />
     <Compile Include="Mercadoria\ControleCargaImagens.cs" />
     <Compile Include="Mercadoria\Faixa.cs" />
     <Compile Include="Mercadoria\IMercadoriaCampos.cs" />

@@ -1,60 +1,18 @@
-using Acesso.Comum;
 using System.Collections.Generic;
 using System.Data;
 
 namespace Entidades.Mercadoria.Componente
 {
-    public class VinculoMercadoriaComponenteCusto : DbManipulaçãoAutomática
+    public class VinculoMercadoriaComponenteCusto : VinculoMercadoriaComponente
     {
-        [DbChavePrimária(false)]
-        private string mercadoria;
-
-        [DbChavePrimária(false)]
-        private string componentecusto;
-
-        private double quantidade;
-
         public VinculoMercadoriaComponenteCusto() { }
-        public VinculoMercadoriaComponenteCusto(string mercadoria, string componentecusto, double quantidade)
+        public VinculoMercadoriaComponenteCusto(string mercadoria, string componente, double quantidade) : base(mercadoria, componente, quantidade)
         {
-            this.mercadoria = mercadoria;
-            this.componentecusto = componentecusto;
-            this.quantidade = quantidade;
-        }
-
-        public string ComponenteCusto
-        {
-            get { return componentecusto; }
-            set
-            {
-                componentecusto = value;
-                DefinirDesatualizado();
-            }
-        }
-
-        public double Quantidade
-        {
-            get { return quantidade; }
-            set 
-            { 
-                quantidade = value;
-                DefinirDesatualizado();
-            }
-        }
-
-        public string Mercadoria
-        {
-            get { return mercadoria; }
         }
 
         public static void GravarVinculos(List<VinculoMercadoriaComponenteCusto> lista, Mercadoria mercadoria)
         {
-            IDbCommand cmd;
-            IDbConnection conexão;
-
-            string consulta;
-
-            consulta = "delete from vinculomercadoriacomponentecusto where mercadoria=" + DbTransformar(mercadoria.ReferênciaNumérica) + ";";
+            string consulta = "delete from vinculomercadoriacomponentecusto where mercadoria=" + DbTransformar(mercadoria.ReferênciaNumérica) + ";";
 
             if (lista.Count != 0)
             {
@@ -68,16 +26,16 @@ namespace Entidades.Mercadoria.Componente
                     else
                         primeiro = false;
 
-                    consulta += v.Mercadoria + "," + DbTransformar(v.ComponenteCusto) + "," + DbTransformar(v.Quantidade);
+                    consulta += v.Mercadoria + "," + DbTransformar(v.Componente) + "," + DbTransformar(v.Quantidade);
                 }
 
                 consulta += ");";
             }
 
-            conexão = Conexão;
+            IDbConnection conexão = Conexão;
             lock (conexão)
             {
-                cmd = conexão.CreateCommand();
+                var cmd = conexão.CreateCommand();
                 cmd.CommandText = consulta;
                 cmd.ExecuteNonQuery();
             }
@@ -98,14 +56,14 @@ namespace Entidades.Mercadoria.Componente
 
             Atualizar();
 
-            if (componenteAnterior != ComponenteCusto)
+            if (componenteAnterior != Componente)
             {
                 conexão = Conexão;
                 lock (conexão)
                 {
                     cmd = conexão.CreateCommand();
                     cmd.CommandText = "update vinculomercadoriacomponentecusto set componentecusto="
-                    + DbTransformar(ComponenteCusto) +
+                    + DbTransformar(Componente) +
                     " WHERE mercadoria=" + DbTransformar(mercadoria)
                     + " AND componentecusto=" + DbTransformar(componenteAnterior);
 
