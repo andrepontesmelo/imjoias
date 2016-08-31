@@ -1,5 +1,6 @@
 ﻿using Acesso.Comum;
 using Acesso.Comum.Cache;
+using Entidades.Mercadoria.Componente;
 using System.Drawing;
 
 namespace Entidades.Moedas
@@ -13,7 +14,7 @@ namespace Entidades.Moedas
         private string nome;
 
         [DbRelacionamento("codigo", "componentecusto")]
-        private Mercadoria.ComponenteCusto componenteCusto;
+        private ComponenteCusto componenteCusto;
 
         [DbColuna("icone")]
         private DbFoto ícone;
@@ -26,7 +27,7 @@ namespace Entidades.Moedas
 
         public string Nome { get { return nome; } set { nome = value; DefinirDesatualizado(); } }
 
-        public Mercadoria.ComponenteCusto ComponenteCusto
+        public ComponenteCusto ComponenteCusto
         {
             get { return componenteCusto; }
             set { componenteCusto = value; DefinirDesatualizado(); }

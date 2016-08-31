@@ -1,3 +1,4 @@
+using Entidades.Mercadoria.Componente;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -29,7 +30,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
                 string originalStringComponenteCusto;
                 string referência;
 
-                Entidades.Mercadoria.ComponenteCusto.LiberarCache();
+                ComponenteCusto.LiberarCache();
 
                 // Apaga vinculos antigos
                 IDbConnection conexão = Acesso.Comum.Usuários.UsuárioAtual.Conexão;
@@ -106,7 +107,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 			/// <param name="componenteCusto"></param>
 			private void InserirVinculoComponenteCusto(string referência, double quantidade, string componenteCusto)
 			{
-                if (Entidades.Mercadoria.ComponenteCusto.Obter(componenteCusto) == null)
+                if (ComponenteCusto.Obter(componenteCusto) == null)
                 {
                     throw new Exception("Componente não cadastrado: " + componenteCusto);
                 }

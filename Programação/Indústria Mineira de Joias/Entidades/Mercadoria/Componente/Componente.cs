@@ -1,7 +1,7 @@
 using Acesso.Comum;
 using Acesso.Comum.Cache;
 
-namespace Entidades.Mercadoria
+namespace Entidades.Mercadoria.Componente
 {
     [Cacheável("Obter")]
     public class Componente : DbManipulaçãoAutomática

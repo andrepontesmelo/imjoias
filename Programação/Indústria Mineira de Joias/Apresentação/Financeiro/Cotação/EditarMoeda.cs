@@ -1,5 +1,6 @@
 ﻿using Apresentação.Formulários;
 using Entidades.Mercadoria;
+using Entidades.Mercadoria.Componente;
 using Entidades.Moedas;
 using System;
 using System.ComponentModel;

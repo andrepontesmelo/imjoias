@@ -97,7 +97,7 @@
     <Compile Include="ClienteNTP.cs" />
     <Compile Include="ControleBalanço.cs" />
     <Compile Include="ControlePesquisaMercadoria.cs" />
-    <Compile Include="Integração\ComponenteCusto.cs" />
+    <Compile Include="Integração\IntegraçãoComponenteCusto.cs" />
     <Compile Include="Rodízio.cs" />
     <Compile Include="RodízioPAcP.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

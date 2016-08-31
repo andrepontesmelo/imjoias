@@ -1,5 +1,6 @@
 using Apresentação.Formulários;
 using Entidades.Moedas;
+using Negócio.Integração;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,7 +11,7 @@ using System.Windows.Forms;
 
 namespace Apresentação.IntegraçãoSistemaAntigo
 {
-	public class ProcessoIntegração 
+    public class ProcessoIntegração 
 	{
 		public ProcessoIntegração()
 		{
@@ -76,7 +77,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo
             dsVelho = dbf.ObterDataSetMercadoria();
 
             new Controles.Mercadorias.Mercadorias(dsVelho, dsNovo, dbf).Transpor(strSaída);
-            new Negócio.Integração.ComponenteCusto().Transpor(dsVelho);
+            new IntegraçãoComponenteCusto().Transpor(dsVelho);
             MySQL.GravarDataSetTodasTabelas(dsNovo);
 
             dsNovo = ObterDataSetMercadoria(conexõesRemovidas);

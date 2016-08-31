@@ -1,18 +1,19 @@
-﻿using System;
+﻿using Entidades.Mercadoria.Componente;
+using System;
 using System.Collections.Generic;
 using System.Data;
 
 namespace Negócio.Integração
 {
-    public class ComponenteCusto
+    public class IntegraçãoComponenteCusto
     {
-        List<Entidades.Mercadoria.ComponenteCusto> lstPendênciaCadastro;
-        List<Entidades.Mercadoria.ComponenteCusto> lstPendênciaAtualização;
+        List<ComponenteCusto> lstPendênciaCadastro;
+        List<ComponenteCusto> lstPendênciaAtualização;
 
-        public ComponenteCusto()
+        public IntegraçãoComponenteCusto()
         {
-            lstPendênciaCadastro = new List<Entidades.Mercadoria.ComponenteCusto>();
-            lstPendênciaAtualização = new List<Entidades.Mercadoria.ComponenteCusto>();
+            lstPendênciaCadastro = new List<ComponenteCusto>();
+            lstPendênciaAtualização = new List<ComponenteCusto>();
         }
 
         public void Transpor(DataSet legado)
@@ -20,16 +21,15 @@ namespace Negócio.Integração
             foreach (DataRow itemAtual in legado.Tables["ccusto"].Rows)
                 TransporItem(itemAtual);
 
-            Entidades.Mercadoria.ComponenteCusto.CadastrarAtualizarTransaçãoÚnica(lstPendênciaCadastro, lstPendênciaAtualização);
+            ComponenteCusto.CadastrarAtualizarTransaçãoÚnica(lstPendênciaCadastro, lstPendênciaAtualização);
         }
 
         private void TransporItem(DataRow legado)
         {
-            Entidades.Mercadoria.ComponenteCusto componente = ObterComponente(legado);
-            AdicionarPendência(componente);
+            AdicionarPendência(ObterComponente(legado));
         }
 
-        private void AdicionarPendência(Entidades.Mercadoria.ComponenteCusto componente)
+        private void AdicionarPendência(ComponenteCusto componente)
         {
             if (componente.Código == null)
                 throw new Exception("Código nulo");
@@ -41,19 +41,18 @@ namespace Negócio.Integração
                 lstPendênciaAtualização.Add(componente);
         }
 
-        private static Entidades.Mercadoria.ComponenteCusto ObterComponente(DataRow itemLegado)
+        private static ComponenteCusto ObterComponente(DataRow itemLegado)
         {
-            Entidades.Mercadoria.ComponenteCusto componente =
-                Entidades.Mercadoria.ComponenteCusto.Obter(itemLegado["CC_COD"].ToString().Trim());
+            ComponenteCusto componente = ComponenteCusto.Obter(itemLegado["CC_COD"].ToString().Trim());
 
             if (componente == null)
-                componente = new Entidades.Mercadoria.ComponenteCusto();
+                componente = new ComponenteCusto();
 
             TransporAtributos(itemLegado, componente);
             return componente;
         }
 
-        private static void TransporAtributos(DataRow itemLegado, Entidades.Mercadoria.ComponenteCusto componente)
+        private static void TransporAtributos(DataRow itemLegado, ComponenteCusto componente)
         {
             componente.Nome = itemLegado["CC_NOME"].ToString();
             componente.Código = itemLegado["CC_COD"].ToString().ToUpper().Trim();

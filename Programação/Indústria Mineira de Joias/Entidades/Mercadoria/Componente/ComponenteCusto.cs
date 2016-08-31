@@ -4,7 +4,7 @@ using System;
 using System.Data;
 using System.Text;
 
-namespace Entidades.Mercadoria
+namespace Entidades.Mercadoria.Componente
 {
     [Cacheável("Obter")]
     public class ComponenteCusto : Componente
