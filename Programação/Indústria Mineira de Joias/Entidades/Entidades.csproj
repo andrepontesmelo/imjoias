@@ -272,7 +272,7 @@
     <Compile Include="Mercadoria\Metal.cs" />
     <Compile Include="Mercadoria\Pedra.cs" />
     <Compile Include="Mercadoria\TabelaMercadoria.cs" />
-    <Compile Include="Mercadoria\VinculoMercadoriaComponenteCusto.cs" />
+    <Compile Include="Mercadoria\Componente\VinculoMercadoriaComponenteCusto.cs" />
     <Compile Include="Mercadoria\Mercadoria.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -1,12 +1,8 @@
-using System;
+using Acesso.Comum;
 using System.Collections.Generic;
-using System.Text;
 using System.Data;
 
-using Acesso.Comum;
-using System.Collections;
-
-namespace Entidades.Mercadoria 
+namespace Entidades.Mercadoria.Componente
 {
     public class VinculoMercadoriaComponenteCusto : DbManipulaçãoAutomática
     {
@@ -89,10 +85,7 @@ namespace Entidades.Mercadoria
 
         public static List<VinculoMercadoriaComponenteCusto> ObterVinculos(Mercadoria mercadoria)
         {
-            string consulta;
-            
-
-            consulta = "select * from vinculomercadoriacomponentecusto where "
+            string consulta = "select * from vinculomercadoriacomponentecusto where "
             + "mercadoria=" + DbTransformar(mercadoria.ReferênciaNumérica);
 
             return Mapear<VinculoMercadoriaComponenteCusto>(consulta);
@@ -103,7 +96,6 @@ namespace Entidades.Mercadoria
             IDbCommand cmd;
             IDbConnection conexão;
 
-            // Atualizar comum
             Atualizar();
 
             if (componenteAnterior != ComponenteCusto)
