@@ -1630,7 +1630,6 @@
     <Compile Include="IntegraçãoSistemaAntigo\Consignado\Retorno.cs" />
     <Compile Include="IntegraçãoSistemaAntigo\Consignado\Saida.cs" />
     <Compile Include="IntegraçãoSistemaAntigo\Controles\CodBarras.cs" />
-    <Compile Include="IntegraçãoSistemaAntigo\Controles\Mercadorias\ComponenteDeCusto.cs" />
     <Compile Include="IntegraçãoSistemaAntigo\Controles\Mercadorias\Fornecedor.cs" />
     <Compile Include="IntegraçãoSistemaAntigo\Controles\Mercadorias\Faixas.cs" />
     <Compile Include="IntegraçãoSistemaAntigo\Controles\Mercadorias\Indices.cs" />

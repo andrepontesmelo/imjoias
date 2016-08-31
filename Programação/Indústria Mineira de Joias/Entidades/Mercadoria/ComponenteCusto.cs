@@ -1,203 +1,159 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Acesso.Comum;
-using System.Data;
-using System.Collections;
 using Acesso.Comum.Cache;
+using System.Collections.Generic;
+using System;
+using System.Data;
+using System.Text;
 
 namespace Entidades.Mercadoria
 {
     [Cacheável("Obter")]
-    public class ComponenteCusto : DbManipulaçãoAutomática
+    public class ComponenteCusto : Componente
     {
-        // Atributos
-        [DbChavePrimária(false)]
-        private string codigo;
-
-        private string nome;
         private string multiplicarcomponentecusto;
         private double valor;
 
-        private static Hashtable hashCódigoComponente = null;
-
-        #region Propriedades
-
-        public string Código
-        {
-            get { return codigo; }
-            set 
-            { 
-                codigo = value;
-                DefinirDesatualizado();
-            }
-        }
-
-        public string Nome
-        {
-            get { return nome; }
-            set 
-            { 
-                nome = value;
-                DefinirDesatualizado();
-            }
-
-        }
+        private static Dictionary<string, ComponenteCusto> hashCódigoComponente = null;
+        private static List<ComponenteCusto> lista = null;
 
         public string MultiplicarComponenteCusto
         {
             get { return multiplicarcomponentecusto; }
-            set 
-            { 
+            set
+            {
+                if (value == multiplicarcomponentecusto)
+                    return;
+
                 multiplicarcomponentecusto = value;
                 DefinirDesatualizado();
             }
+        }
+
+        public static void CadastrarAtualizarTransaçãoÚnica(List<ComponenteCusto> lstPendênciaCadastro, 
+            List<ComponenteCusto> lstPendênciaAtualização)
+        {
+            IDbConnection conexão = Conexão;
+            IDbTransaction transação = conexão.BeginTransaction();
+
+            CadastrarTransação(lstPendênciaCadastro, transação);
+            AtualizarTransação(lstPendênciaAtualização, transação);
+
+            transação.Commit();
+        }
+
+        public static void LiberarCache()
+        {
+            hashCódigoComponente = null;
+            lista = null;
+        }
+
+        private static void AtualizarTransação(List<ComponenteCusto> lstPendênciaAtualização, IDbTransaction transação)
+        {
+            ExecutarComandoTransação(ObterComandoAtualização(lstPendênciaAtualização), transação);
+        }
+
+        private static string ObterComandoAtualização(List<ComponenteCusto> lstPendênciaAtualização)
+        {
+            StringBuilder cmd = new StringBuilder();
+
+            foreach (ComponenteCusto c in lstPendênciaAtualização)
+            {
+                cmd.Append(string.Format("update componente set nome='{0}' where codigo='{1}';", c.Nome, c.Código));
+
+                cmd.Append(string.Format("update componentecusto set multiplicarcomponentecusto={0}, valor='{2}' where codigo='{1}';",
+                    ObterSQLMultiplicadorComponenteCusto(c), c.Código, c.Valor));
+            }
+
+            return cmd.ToString();
+        }
+
+        private static void CadastrarTransação(List<ComponenteCusto> lstPendênciaCadastro, IDbTransaction transação)
+        {
+            ExecutarComandoTransação(ObterComandoCadastro(lstPendênciaCadastro), transação);
+        }
+
+        private static string ObterComandoCadastro(List<ComponenteCusto> lstPendênciaCadastro)
+        {
+            StringBuilder cmd = new StringBuilder();
+
+            foreach (ComponenteCusto c in lstPendênciaCadastro)
+            {
+                cmd.Append(string.Format("insert into componente (codigo, nome) values ('{0}', '{1}');", c.Código, c.Nome));
+
+                cmd.Append(string.Format("insert into componentecusto (codigo, multiplicarcomponentecusto, valor) VALUES ('{0}', {1}, '{2}');",
+                    c.Código, ObterSQLMultiplicadorComponenteCusto(c), c.Valor));
+            }
+
+            return cmd.ToString();
+        }
+
+        private static string ObterSQLMultiplicadorComponenteCusto(ComponenteCusto c)
+        {
+            if (String.IsNullOrWhiteSpace(c.MultiplicarComponenteCusto))
+                return "NULL";
+
+            return string.Format("'{0}'", c.MultiplicarComponenteCusto.Trim().ToUpper());
         }
 
         public double Valor
         {
             get { return valor; }
             set 
-            { 
+            {
+                if (value.Equals(valor))
+                    return;
+
                 valor = value;
                 DefinirDesatualizado();
             }
         }
-        
-        #endregion
 
-        /// <summary>
-        /// Obtém todos os componentes
-        /// </summary>
-        /// <returns>Lista de ComponenteCusto</returns>
-        public static List<ComponenteCusto> ObterComponentes()
-        {
-            List<ComponenteCusto> lista;
-
-            lista = Mapear<ComponenteCusto>("select * from componentecusto");
-
-            // Aproveita para refrescar a hash
-            hashCódigoComponente = CriarHash(lista);
-
-            return lista;
-        }
-
-        public static ComponenteCusto Obter(string código)
-        {
-            return MapearÚnicaLinha<ComponenteCusto>("select * from componentecusto where codigo=" + DbTransformar(código));
-        }
-
-        /// <summary>
-        /// Multiplica o valor relativo do componente
-        /// pelo valor absoluto do componente referenciado, recursivamente 
-        /// </summary>
-        public double ObterValorAbsoluto()
-        {
-            if (MultiplicarComponenteCusto == null)
-                return Valor;
-            else
-            {
-                ComponenteCusto referência;
-                referência = (ComponenteCusto) HashCódigoComponente[MultiplicarComponenteCusto];
-
-                return Valor * referência.ObterValorAbsoluto();
-            }
-        }
-
-        
-        /// <summary>
-        /// Verifica se a adição de uma referência no objeto atual é inviável.
-        /// uso:
-        /// NovaDepenciaNãoOK = possívelDependência.GeraReferênciaCíclica(this);
-        /// </summary>
-        public bool GeraReferênciaCíclica(ComponenteCusto primeiroComponente)
-        {
-            ComponenteCusto meuDependente;
-            
-            if (this.MultiplicarComponenteCusto == null)
-                return false;
-            
-            meuDependente = (ComponenteCusto) HashCódigoComponente[MultiplicarComponenteCusto];
-
-            if (meuDependente == primeiroComponente)
-                return true;
-            else 
-                return meuDependente.GeraReferênciaCíclica(primeiroComponente);
-        }
-
-        public override string ToString()
-        {
-            return Código.ToString() + " - " + Nome.ToString();
-        }
-
-        /// <summary>
-        /// Retorna falso quando não existe o código.
-        /// </summary>
-        /// <param name="Código"></param>
-        /// <returns></returns>
-        public static bool VerificarExistência(string Código)
-        {
-            IDbCommand cmd;
-            IDbConnection conexão;
-
-            conexão = Conexão;
-
-            lock (conexão)
-            {
-                cmd = conexão.CreateCommand();
-                cmd.CommandText = "select count(*) from componentecusto where codigo=" + DbTransformar(Código);
-                return ((long) cmd.ExecuteScalar()) != 0;
-            }
-        }
-
-        /// <summary>
-        /// Cria uma hash. Chave: código, Valor: componente.
-        /// </summary>
-        private static Hashtable CriarHash(List<ComponenteCusto> componentes)
-        {
-            Hashtable hash = new Hashtable(componentes.Count);
-
-            foreach (ComponenteCusto c in componentes)
-                hash.Add(c.Código, c);
-
-            return hash;
-        }
-
-        private static Hashtable HashCódigoComponente
+        public static List<ComponenteCusto> Lista
         {
             get
             {
-                if (hashCódigoComponente == null)
-                {
-                    // Obter componentes já cria a hash
-                    ObterComponentes();
-                }
+                if (lista == null)
+                    Carregar();
 
-                return hashCódigoComponente;
+                return lista;
             }
+        }
+
+        private static Dictionary<string, ComponenteCusto> ObterHash()
+        {
+            if (hashCódigoComponente == null)
+                Carregar();
+
+            return hashCódigoComponente;
+        }
+
+        private static void Carregar()
+        {
+            lista = Mapear<ComponenteCusto>("select * from componentecusto c join componente n on c.codigo=n.codigo");
+            hashCódigoComponente = CriarHash(lista);
+        }
+
+        public static new ComponenteCusto Obter(string código)
+        {
+            ComponenteCusto retorno = null;
+
+            ObterHash().TryGetValue(código, out retorno);
+
+            return retorno;
+        }
+
+        private static Dictionary<string, ComponenteCusto> CriarHash(List<ComponenteCusto> componentes)
+        {
+            hashCódigoComponente = new Dictionary<string, ComponenteCusto>(componentes.Count);
+
+            foreach (ComponenteCusto c in componentes)
+                hashCódigoComponente.Add(c.Código, c);
+
+            return hashCódigoComponente;
         }
 
         public static implicit operator ComponenteCusto(string código)
         {
-            return HashCódigoComponente[código] as ComponenteCusto;
-        }
-
-        public bool ExisteVínculo(Mercadoria mercadoria)
-        {
-            IDbCommand cmd;
-            IDbConnection conexão;
-
-            conexão = Conexão;
-
-            lock (conexão)
-            {
-                cmd = conexão.CreateCommand();
-                cmd.CommandText = "select count(*) from vinculomercadoriacomponentecusto "
-                + " where mercadoria=" + DbTransformar(mercadoria.ReferênciaNumérica)
-                + " AND componentecusto=" + DbTransformar(Código);
-
-                return ((long)cmd.ExecuteScalar()) != 0;
-            }
+            return ObterHash()[código] as ComponenteCusto;
         }
     }
 }

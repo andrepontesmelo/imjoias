@@ -1,6 +1,4 @@
-﻿//#define RASTRO
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
@@ -9,22 +7,11 @@ using System.Text;
 
 namespace Acesso.Comum
 {
-    /// <summary>
-    /// Classe abstrata para objetos que manipulam o
-    /// banco de dados.
-    /// </summary>
-    /// <remarks>
-    /// Entidades devem ser implementadas utilizando a
-    /// classe herdeira DbManipulação.
-    /// </remarks>
     [Serializable]
     public abstract class DbManipulaçãoSimples
     {
         public static IDbConnection conexãoAlternativa = null;
 
-        /// <summary>
-        /// Conexão do usuário.
-        /// </summary>
         protected static IDbConnection Conexão
         {
             get
@@ -38,18 +25,13 @@ namespace Acesso.Comum
                 Rastrear();
 #endif
 
-                usr = Acesso.Comum.Usuários.UsuárioAtual;
+                usr = Usuários.UsuárioAtual;
 
                 return usr != null ? usr.Conexão : null;
             }
         }
 
-        #region Depuração de código
-
 #if DEBUG
-        /// <summary>
-        /// Mostra rastro do ponto em que está sendo acessado a conexão.
-        /// </summary>
         private static void Rastrear()
         {
 #if RASTRO
@@ -102,40 +84,25 @@ namespace Acesso.Comum
         }
 #endif
 
-        #endregion
-
-        /// <summary>
-        /// Obtém último código inserido no auto-increment.
-        /// </summary>
-        /// <returns>Último código inserido.</returns>
         protected static long ObterÚltimoCódigoInserido(IDbConnection conexão)
         {
-            return Acesso.Comum.Usuários.UsuárioAtual.ObterÚltimoCódigoInserido(conexão);
+            return Usuários.UsuárioAtual.ObterÚltimoCódigoInserido(conexão);
         }
 
-        /// <summary>
-        /// Cria adaptador existente no assembly da conexão.
-        /// </summary>
-        /// <param name="conexão">Conexão de origem</param>
-        /// <returns>Adaptador para a conexão</returns>
         protected static IDbDataAdapter CriarAdaptador(IDbConnection conexão)
         {
-            System.Reflection.Assembly assembly;
-
-            assembly = conexão.GetType().Assembly;
+            Assembly assembly = conexão.GetType().Assembly;
 
             foreach (Type tipo in assembly.GetTypes())
             {
                 Type tipoInterface = tipo.GetInterface("IDbDataAdapter");
 
                 if (tipoInterface != null)
-                    return (IDbDataAdapter)assembly.CreateInstance(tipoInterface.FullName);
+                    return (IDbDataAdapter) assembly.CreateInstance(tipoInterface.FullName);
             }
 
             throw new NotSupportedException("Não é possível encontrar a interface para IDbDataAdapter no assembly da conexão fornecida.");
         }
-
-        #region Transformação de dados
 
         protected internal static string DbTransformarConjunto(System.Collections.IEnumerable valores)
         {
@@ -183,7 +150,6 @@ namespace Acesso.Comum
 
             if (obj is DbManipulaçãoAutomática) return DbTransformar((DbManipulaçãoAutomática)obj);
 
-            // Tipo não suportado.
             throw new NotSupportedException("Transformação de objeto do tipo " + obj.GetType().Name + " não suportada!");
         }
 
@@ -201,7 +167,6 @@ namespace Acesso.Comum
             throw new NotSupportedException("Código inalcansável atingido!???");
         }
 
-        /// <returns> já retorna com aspas </returns>
         public static string DbTransformar(DateTime dt)
         {
             if (dt == DateTime.MinValue)
@@ -215,7 +180,6 @@ namespace Acesso.Comum
             return DbTransformar(s, true);
         }
 
-        /// <param name="encapsular">Colocar aspas envolta</param>
         protected internal static string DbTransformar(string s, bool encapsular)
         {
             if (s == null)
@@ -227,9 +191,6 @@ namespace Acesso.Comum
             return encapsular ? DbEncapsular(s) : s;
         }
 
-        /// <summary>
-        /// Coloca aspas(') em volta
-        /// </summary>
         protected internal static string DbEncapsular(string s)
         {
             return "'" + s + "'";
@@ -357,7 +318,7 @@ namespace Acesso.Comum
             return valor.HasValue ? DbTransformar(valor.Value) : "null";
         }
 
-        protected internal static string DbTransformar(System.Reflection.MethodBase mb)
+        protected internal static string DbTransformar(MethodBase mb)
         {
             try
             {
@@ -368,25 +329,16 @@ namespace Acesso.Comum
                 return "null";
             }
         }
-        #endregion
-
-
-        #region Mapeamento
 
         private static CacheMapeamento cacheMapeamento = new CacheMapeamento();
 
-        #region Estrutura para mapeamento posterior
-
-        /// <summary>
-        /// Estrutura contendo objeto e campo.
-        /// </summary>
         protected struct ObjCampoValor
         {
             public object objeto;
-            public System.Reflection.FieldInfo campo;
+            public FieldInfo campo;
             public object valor;
 
-            public ObjCampoValor(object objeto, System.Reflection.FieldInfo campo, object valor)
+            public ObjCampoValor(object objeto, FieldInfo campo, object valor)
             {
                 this.objeto = objeto;
                 this.campo = campo;
@@ -394,28 +346,10 @@ namespace Acesso.Comum
             }
         }
 
-        #endregion
-
-        #region Mapeamento de campo
-
-        /// <summary>
-        /// Delegação para atribuição de campos.
-        /// </summary>
-        /// <param name="destino">Objeto cujo campo terá valor atribuído.</param>
-        /// <param name="campo">Campo que será atribuído.</param>
-        /// <param name="leitor">Leitor de dados do banco de dados.</param>
-        /// <param name="iColuna">Número da coluna do banco de dados.</param>
         private delegate void MapearCampoCallback(object destino, FieldInfo campo, IDataReader leitor, int iColuna);
 
-        /// <summary>
-        /// Gerencia diferentes métodos para recuperação do banco de dados
-        /// para cada tipo de objeto.
-        /// </summary>
         private class MapeamentoCampo
         {
-            /// <summary>
-            /// Hash contendo instruções para mapeamento de campos.
-            /// </summary>
             private Dictionary<Type, MapearCampoCallback> hashMapCampo = new Dictionary<Type, MapearCampoCallback>();
 
             public MapeamentoCampo()
@@ -453,8 +387,6 @@ namespace Acesso.Comum
             {
                 hashMapCampo.Add(tipo, método);
             }
-
-            #region Mapeamento
 
             private void MapearBool(object destino, FieldInfo campo, IDataReader leitor, int iColuna)
             {
@@ -531,8 +463,6 @@ namespace Acesso.Comum
                 campo.SetValue(destino, (float?)leitor.GetFloat(iColuna));
             }
 
-            #endregion
-
             public bool Conhece(Type tipo)
             {
                 return hashMapCampo.ContainsKey(tipo);
@@ -543,8 +473,6 @@ namespace Acesso.Comum
         /// Indexador que mapea tipo para método de recuperação do banco de dados.
         /// </summary>
         private static MapeamentoCampo mapeamentoCampo = new MapeamentoCampo();
-
-        #endregion
 
         /// <summary>
         /// Mapear uma linha de uma tabela via ADO.NET para
@@ -576,13 +504,6 @@ namespace Acesso.Comum
             }
         }
 
-        /// <summary>
-        /// Mapear uma linha de uma tabela via ADO.NET para
-        /// Value-Object.
-        /// </summary>
-        /// <param name="tipo">Tipo dos dados a serem mapeados</param>
-        /// <param name="obj">Value-Object</param>
-        /// <param name="cmd">Comando do banco de dados.</param>
         protected static List<DbTipo> Mapear<DbTipo>(IDbCommand cmd) where DbTipo : new()
         {
             List<DbTipo> conjunto = new List<DbTipo>();
@@ -592,48 +513,27 @@ namespace Acesso.Comum
             return conjunto;
         }
 
-        /// <summary>
-        /// Constrói lista de atributos mapeados da tabela de banco de dados
-        /// </summary>
-        /// <param name="tipo">Tipo do objeto de destino</param>
-        /// <param name="dao">Leitor do banco de dados</param>
-        /// <returns>Lista de atributos</returns>
-        protected internal static System.Reflection.FieldInfo[] MapearAtributos(Type tipo, IDataReader dao)
+        protected internal static FieldInfo[] MapearAtributos(Type tipo, IDataReader dao)
         {
-            System.Reflection.FieldInfo[] atributos;
+            FieldInfo[] atributos;
             int colunas;
 
-            // Mapeando objeto de destino
             colunas = dao.FieldCount;
-            atributos = new System.Reflection.FieldInfo[colunas];
+            atributos = new FieldInfo[colunas];
 
             for (int i = 0; i < colunas; i++)
             {
                 string colunaDao = dao.GetName(i);
 
                 atributos[i] = tipo.GetField(colunaDao,
-                    System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance
-                    | System.Reflection.BindingFlags.Public);
+                    BindingFlags.NonPublic | BindingFlags.Instance
+                    | BindingFlags.Public);
 
                 if (atributos[i] == null)
                 {
                     bool ok = false;
 
-                    // Verificar atributos personalizados.
-                    foreach (FieldInfo campo in tipo.GetFields(
-                        System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance
-                        | System.Reflection.BindingFlags.Public))
-                    {
-                        DbColuna[] custAtrib = (DbColuna[])campo.GetCustomAttributes(typeof(DbColuna), true);
-
-                        foreach (DbColuna coluna in custAtrib)
-                            if (string.Compare(coluna.Coluna, colunaDao, true) == 0)
-                            {
-                                atributos[i] = campo;
-                                ok = true;
-                                break;
-                            }
-                    }
+                    ok = VerificarAtributosPersonalizados(tipo, atributos, i, colunaDao, ok);
 
                     if (!ok)
                     {
@@ -642,7 +542,6 @@ namespace Acesso.Comum
                     }
                 }
 
-                // Verificar se existe conversão para este tipo.
                 DbConversão[] conversões = (DbConversão[])atributos[i].FieldType.GetCustomAttributes(typeof(DbConversão), true);
 
                 if (conversões.Length > 0 && !mapeamentoCampo.Conhece(atributos[i].FieldType))
@@ -652,21 +551,30 @@ namespace Acesso.Comum
             return atributos;
         }
 
-        /// <summary>
-        /// Mapear uma linha de uma tabela de banco de dados a um objeto
-        /// </summary>
-        /// <param name="tipo">Tipo do objeto de destino</param>
-        /// <param name="dao">Leitor do banco de dados</param>
-        /// <returns>Objeto preenchido</returns>
-        protected static DbTipo MapearLinhaObjeto<DbTipo>(IDataReader dao, System.Reflection.FieldInfo[] atributos, LinkedList<ObjCampoValor> mapeamentoPendente) where DbTipo : new()
+        private static bool VerificarAtributosPersonalizados(Type tipo, FieldInfo[] atributos, int i, string colunaDao, bool ok)
+        {
+            foreach (FieldInfo campo in tipo.GetFields(
+                BindingFlags.NonPublic | BindingFlags.Instance
+                | BindingFlags.Public))
+            {
+                DbColuna[] custAtrib = (DbColuna[])campo.GetCustomAttributes(typeof(DbColuna), true);
+
+                foreach (DbColuna coluna in custAtrib)
+                    if (string.Compare(coluna.Coluna, colunaDao, true) == 0)
+                    {
+                        atributos[i] = campo;
+                        ok = true;
+                        break;
+                    }
+            }
+
+            return ok;
+        }
+
+        protected static DbTipo MapearLinhaObjeto<DbTipo>(IDataReader dao, FieldInfo[] atributos, LinkedList<ObjCampoValor> mapeamentoPendente) where DbTipo : new()
         {
             Type tipo = typeof(DbTipo);
 
-            /* Valores precisam ser encapsulados para que seja possível
-             * atribuir seus valores utilizando Reflection. Caso contrário,
-             * o valor nunca será atualizado pelo mapeamento.
-             * -- Júlio, 05/12/2006
-             */
             if (tipo.IsValueType)
             {
                 object capsula = (object)(new DbTipo());
@@ -681,24 +589,12 @@ namespace Acesso.Comum
             }
         }
 
-        /// <summary>
-        /// Mapear uma linha de uma tabela de banco de dados a um objeto.
-        /// </summary>
-        /// <param name="tipo">Tipo do objeto de destino</param>
-        /// <param name="dao">Leitor do banco de dados</param>
-        /// <param name="obj">Objeto a ser preenchido</param>
-        private static void MapearLinhaObjeto(Type tipo, IDataReader dao, System.Reflection.FieldInfo[] atributos, object obj, LinkedList<ObjCampoValor> mapeamentoPendente)
+        private static void MapearLinhaObjeto(Type tipo, IDataReader dao, FieldInfo[] atributos, object obj, LinkedList<ObjCampoValor> mapeamentoPendente)
         {
-            // Verificar cada coluna
             for (int i = 0; i < atributos.Length; i++)
             {
                     if (!dao.IsDBNull(i))
                     {
-                        /*
-                         * Um relacionamento só pode ser obtido após o fechamento do
-                         * DAO.
-                         * -- Júlio, 22/10/2005
-                         */
                         if (atributos[i].GetCustomAttributes(typeof(DbRelacionamento), true).Length > 0)
                         {
                             object valor = dao[i];
@@ -720,43 +616,24 @@ namespace Acesso.Comum
                             }
                             else
                                 método(obj, atributos[i], dao, i);
-                        } // Fim do se é um relacionamento.
-                    } // Fim do se é diferente de DBNull.
+                        } 
+                    } 
                     else if (atributos[i].FieldType.IsSubclassOf(typeof(Nullable)))
                         atributos[i].SetValue(obj, null);
-            } // Fim da repetição para atributos.
+            } 
 
-            /* Verificar se objeto é do tipo DbManipulação
-             * e atribuir estados de entidade cadastrada
-             * e atualizada, conforme banco de dados.
-             */
             if (tipo.IsSubclassOf(typeof(DbManipulação)))
             {
                 DbManipulação dbObj = (DbManipulação)((object)obj);
-
                 dbObj.cadastrado = dbObj.atualizado = true;
             }
         }
 
-        /// <summary>
-        /// Marca campo para mapeamento posterior.
-        /// </summary>
-        /// <param name="obj">Objeto que possui o campo a ser mapeado.</param>
-        /// <param name="campo">Campo a ser mapeado posteriormente.</param>
-        /// <param name="valor">Valor do campo a ser mapeado.</param>
-        private static void MapearPosteriormente(object obj, System.Reflection.FieldInfo campo, object valor, LinkedList<ObjCampoValor> mapeamentoPendente)
+        private static void MapearPosteriormente(object obj, FieldInfo campo, object valor, LinkedList<ObjCampoValor> mapeamentoPendente)
         {
             mapeamentoPendente.AddLast(new ObjCampoValor(obj, campo, valor));
         }
 
-        /// <summary>
-        /// Resolve qualquer pendência existente.
-        /// </summary>
-        /// <remarks>
-        /// Uma pendência pode surgir devido à necessidade de recuperar
-        /// um outro conjunto de dados enquanto um IDataReader está aberto,
-        /// impossibilitando a realização da nova consulta na mesma conexão.
-        /// </remarks>
         protected static void ResolverPendências(IDbCommand cmd, LinkedList<ObjCampoValor> mapeamentoPendente)
         {
 #if DEBUG
@@ -785,7 +662,6 @@ namespace Acesso.Comum
                         object pEntidade = Cache.CacheDb.Instância.ObterEntidade(pendência.campo.FieldType, pendência.valor);
                         DbManipulação pManipulável = pEntidade as DbManipulação;
                         
-                        //pendência.campo.SetValue(pendência.objeto, pendência.valor);
                         pendência.campo.SetValue(
                             pendência.objeto,
                             pEntidade);
@@ -840,15 +716,13 @@ namespace Acesso.Comum
 
             using (IDataReader dao = cmd.ExecuteReader())
             {
-                System.Reflection.FieldInfo[] atributos;
+                FieldInfo[] atributos;
 
-                // Mapeando objeto de destino
                 atributos = cacheMapeamento[tipo, cmd.CommandText];
 
                 if (atributos == null)
                     cacheMapeamento[tipo, cmd.CommandText] = atributos = MapearAtributos(tipo, dao);
 
-                // Lê dados
                 while (dao.Read())
                     conjunto.Add(MapearLinhaObjeto<DbTipo>(dao, atributos, mapeamentoPendente));
 
@@ -860,12 +734,6 @@ namespace Acesso.Comum
             return conjunto;
         }
 
-        /// <summary>
-        /// Mapear uma única linha de uma tabela via ADO.NET para Value-Object.
-        /// </summary>
-        /// <param name="tipo">Tipo dos dados a serem mapeados</param>
-        /// <param name="dao">Leitor de banco de dados</param>
-        /// <returns>Objeto preenchido</returns>
         protected static DbTipo MapearÚnicaLinha<DbTipo>(string comando) where DbTipo : new()
         {
             IDbConnection conexão;
@@ -892,19 +760,10 @@ namespace Acesso.Comum
             }
         }
 
-        /// <summary>
-        /// Mapear uma única linha de uma tabela via ADO.NET para Value-Object.
-        /// </summary>
-        /// <param name="tipo">Tipo dos dados a serem mapeados</param>
-        /// <param name="dao">Leitor de banco de dados. Obs.: O lock não é realizado dentro deste método.</param>
-        /// <returns>Objeto preenchido</returns>
-        /// <remarks>
-        /// Lock não é realizado.
-        /// </remarks>
         protected static DbTipo MapearÚnicaLinha<DbTipo>(IDbCommand cmd) where DbTipo : new()
         {
             LinkedList<ObjCampoValor> mapeamentoPendente = new LinkedList<ObjCampoValor>();
-            System.Reflection.FieldInfo[] atributos;
+            FieldInfo[] atributos;
             IDataReader leitor = null;
             DbTipo obj;
             Type tipo = typeof(DbTipo);
@@ -935,6 +794,16 @@ namespace Acesso.Comum
             return obj;
         }
 
-        #endregion
+        protected static void ExecutarComandoTransação(string comandoSql, IDbTransaction transação)
+        {
+            if (String.IsNullOrEmpty(comandoSql))
+                return;
+
+            IDbCommand comando = transação.Connection.CreateCommand();
+            comando.Transaction = transação;
+
+            comando.CommandText = comandoSql;
+            comando.ExecuteNonQuery();
+        }
     }
 }

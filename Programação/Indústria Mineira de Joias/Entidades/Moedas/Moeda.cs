@@ -12,7 +12,7 @@ namespace Entidades.Moedas
         private bool sistema;
         private string nome;
 
-        [DbRelacionamento("codigo", "componenteCusto")]
+        [DbRelacionamento("codigo", "componentecusto")]
         private Mercadoria.ComponenteCusto componenteCusto;
 
         [DbColuna("icone")]
@@ -26,7 +26,7 @@ namespace Entidades.Moedas
 
         public string Nome { get { return nome; } set { nome = value; DefinirDesatualizado(); } }
 
-        public Mercadoria.ComponenteCusto ComponenteDeCusto
+        public Mercadoria.ComponenteCusto ComponenteCusto
         {
             get { return componenteCusto; }
             set { componenteCusto = value; DefinirDesatualizado(); }

@@ -262,6 +262,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Mercadoria\Coeficientes.cs" />
+    <Compile Include="Mercadoria\Componente.cs" />
     <Compile Include="Mercadoria\ComponenteCusto.cs" />
     <Compile Include="Mercadoria\ControleCargaImagens.cs" />
     <Compile Include="Mercadoria\Faixa.cs" />

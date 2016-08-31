@@ -16,7 +16,8 @@ namespace Apresentação.Financeiro.Venda
         private Dictionary<ListViewItem, IDadosVenda> hashListViewItemVenda = null;
         private Dictionary<long, ListViewItem> hashCódigoItem = null;
         private VínculoVendaPessoa tipoExibição = VínculoVendaPessoa.Cliente;
-        Entidades.Configuração.ConfiguraçãoUsuário<bool> configuraçãoUsuárioAgruparLegenda = new Entidades.Configuração.ConfiguraçãoUsuário<bool>("configuraçãoUsuárioAgruparLegenda", false);
+        Entidades.Configuração.ConfiguraçãoUsuário<bool> configuraçãoUsuárioAgruparLegenda = 
+            new Entidades.Configuração.ConfiguraçãoUsuário<bool>("configuraçãoUsuárioAgruparLegenda", false);
 
         private Delegate recarregar;
         private object[] recarregarParâmetros;
