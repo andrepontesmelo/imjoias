@@ -15,7 +15,10 @@ namespace Entidades.Mercadoria
         {
             get { return codigo; }
             set 
-            { 
+            {
+                if (codigo.Equals(value))
+                    return;
+
                 codigo = value;
                 DefinirDesatualizado();
             }

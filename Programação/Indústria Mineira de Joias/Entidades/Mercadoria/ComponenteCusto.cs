@@ -59,8 +59,8 @@ namespace Entidades.Mercadoria
             {
                 cmd.Append(string.Format("update componente set nome='{0}' where codigo='{1}';", c.Nome, c.Código));
 
-                cmd.Append(string.Format("update componentecusto set multiplicarcomponentecusto={0}, valor='{2}' where codigo='{1}';",
-                    ObterSQLMultiplicadorComponenteCusto(c), c.Código, c.Valor));
+                cmd.Append(string.Format("update componentecusto set multiplicarcomponentecusto={0}, valor='{1}' where codigo='{2}';",
+                    ObterSQLMultiplicadorComponenteCusto(c), DbTransformar(c.Valor), c.Código));
             }
 
             return cmd.ToString();
@@ -80,7 +80,7 @@ namespace Entidades.Mercadoria
                 cmd.Append(string.Format("insert into componente (codigo, nome) values ('{0}', '{1}');", c.Código, c.Nome));
 
                 cmd.Append(string.Format("insert into componentecusto (codigo, multiplicarcomponentecusto, valor) VALUES ('{0}', {1}, '{2}');",
-                    c.Código, ObterSQLMultiplicadorComponenteCusto(c), c.Valor));
+                    c.Código, ObterSQLMultiplicadorComponenteCusto(c), DbTransformar(c.Valor)));
             }
 
             return cmd.ToString();
