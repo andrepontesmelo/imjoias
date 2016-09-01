@@ -27,7 +27,17 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
 
         private decimal ObterDecimal(string caminho)
         {
-            return decimal.Parse(ObterTexto(caminho).Replace('.', ','));
+            return decimal.Parse(TrocarSeparaçãoDecimalVirgula(ObterTexto(caminho)));
+        }
+
+        private string TrocarSeparaçãoDecimalVirgula(string decimalUsandoPonto)
+        {
+            return decimalUsandoPonto.Replace('.', ',');
+        }
+
+        private int ObterInteiro(string caminho)
+        {
+            return int.Parse(TrocarSeparaçãoDecimalVirgula(ObterTexto(caminho)));
         }
 
         public ParserXml(string arquivo)
@@ -111,14 +121,19 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
             return ObterAtributo("Id");
         }
 
+        private string ObterCaminhoAtributoVenda(string atributo)
+        {
+            return string.Format("{0}/{1}", XML_CAMINHO_VENDA, atributo);
+        }
+
         public DateTime LerDataEmissão()
         {
-            return DateTime.Parse(ObterTexto(XML_CAMINHO_VENDA + "/dhEmi"));
+            return DateTime.Parse(ObterTexto(ObterCaminhoAtributoVenda("/dhEmi")));
         }
 
         public int LerNNF()
         {
-            return 0;
+            return ObterInteiro(ObterCaminhoAtributoVenda("/nNF"));
         }
     }
 }
