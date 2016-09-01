@@ -112,6 +112,12 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         }
 
         [TestMethod()]
+        public void DeveLerNNF()
+        {
+            Assert.AreEqual(348, parser.LerNNF());
+        }
+
+        [TestMethod()]
         public void DeveLerDataEmissão()
         {
             DateTime emissão = DateTime.Parse("2016-05-10T13:54:00-03:00");

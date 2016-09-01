@@ -115,5 +115,10 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
         {
             return DateTime.Parse(ObterTexto(XML_CAMINHO_VENDA + "/dhEmi"));
         }
+
+        public int LerNNF()
+        {
+            return 0;
+        }
     }
 }
