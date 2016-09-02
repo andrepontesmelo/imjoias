@@ -943,6 +943,12 @@
     <Compile Include="Financeiro\VerificadorMercadoria.Designer.cs">
       <DependentUpon>VerificadorMercadoria.cs</DependentUpon>
     </Compile>
+    <Compile Include="Fiscal\BaseFiscal.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Fiscal\BaseFiscal.Designer.cs">
+      <DependentUpon>BaseFiscal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formulários\Aguarde.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2733,6 +2739,9 @@
     <EmbeddedResource Include="Financeiro\VerificadorMercadoria.resx">
       <DependentUpon>VerificadorMercadoria.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fiscal\BaseFiscal.resx">
+      <DependentUpon>BaseFiscal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formulários\Aguarde.resx">
       <DependentUpon>Aguarde.cs</DependentUpon>

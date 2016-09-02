@@ -246,7 +246,7 @@
     <Compile Include="FaturamentoMercadorias.cs" />
     <Compile Include="Financeiro\VendaCredito.cs" />
     <Compile Include="Fiscal\Cfop.cs" />
-    <Compile Include="Fiscal\Importador.cs" />
+    <Compile Include="Fiscal\ImportadorXMLAtacado.cs" />
     <Compile Include="Fiscal\NotaFiscalEletronica\Nfe.cs" />
     <Compile Include="Fiscal\NotaFiscalEletronica\ParserXml.cs" />
     <Compile Include="Fiscal\TipoUnidade.cs" />

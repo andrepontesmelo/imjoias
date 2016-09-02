@@ -1,7 +1,7 @@
 using Apresentação.Financeiro.Comissões;
+using Apresentação.Fiscal;
 using Apresentação.Formulários;
 using Apresentação.IntegraçãoSistemaAntigo;
-using Entidades.Fiscal;
 using Entidades.Privilégio;
 using System;
 using System.Windows.Forms;
@@ -72,8 +72,8 @@ namespace Apresentação.Administrativo
 
             quadroFiscalExportaçãoAtacadoBR500.Visible = técnico;
             quadroFiscalExportacaoEconnectVarejo.Visible = técnico;
-            quadroFiscalImportaçãoXmlAtacado.Visible = técnico;
-            quadroFiscalImportaçãoXmlVarejo.Visible = técnico;
+            quadroFiscal.Visible = técnico;
+            quadroFiscal.Visible = técnico;
 
             quadroExportaVenda.Visible = técnico;
             quadroOpçãoImportação.Visible = técnico;
@@ -88,18 +88,9 @@ namespace Apresentação.Administrativo
             SubstituirBase(new Estoque.BaseEstoque());
         }
 
-        private void quadroFiscalImportaçãoXmlVarejo_Click(object sender, EventArgs e)
+        private void quadroFiscal_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Ainda não implementado.");
-        }
-
-        private void quadroFiscalImportaçãoXmlAtacado_Click(object sender, EventArgs e)
-        {
-            FolderBrowserDialog janela = new FolderBrowserDialog();
-            if (janela.ShowDialog() != DialogResult.OK)
-                return;
-
-            new Importador().ImportarXmls(janela.SelectedPath);
+            SubstituirBase(new BaseFiscal());
         }
     }
 }

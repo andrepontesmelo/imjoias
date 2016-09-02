@@ -4,11 +4,11 @@ using System.IO;
 
 namespace Entidades.Fiscal
 {
-    public class Importador
+    public class ImportadorXMLAtacado
     {
         public static readonly string PADRÂO_ARQUIVO = "*.xml";
 
-        public Importador()
+        public ImportadorXMLAtacado()
         {
         }
 
