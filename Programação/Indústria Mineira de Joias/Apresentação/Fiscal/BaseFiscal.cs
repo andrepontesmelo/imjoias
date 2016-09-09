@@ -1,4 +1,5 @@
-﻿using Entidades.Fiscal;
+﻿using Apresentação.Formulários;
+using Entidades.Fiscal;
 using Entidades.Fiscal.NotaFiscalEletronica;
 using System;
 using System.Windows.Forms;
@@ -33,8 +34,17 @@ namespace Apresentação.Fiscal
         {
             string caminho = ObterDiretório();
 
+            string erros = null;
+
+            AguardeDB.Mostrar();
+
             if (caminho != null)
-                new ImportadorPDFAtacado().ImportarPdfs(caminho);
+                erros = new ImportadorPDFAtacado().ImportarPdfs(caminho);
+
+            AguardeDB.Fechar();
+
+            if (!String.IsNullOrEmpty(erros))
+                MessageBox.Show(this, erros, "Resultado",  MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Text;
 
 namespace Entidades.Fiscal.NotaFiscalEletronica
 {
     public class ImportadorPDFAtacado : Importador
     {
-        public void ImportarPdfs(string caminho)
+        public string ImportarPdfs(string caminho)
         {
             List<string> arquivos = ObterArquivos(caminho, "*.pdf", System.IO.SearchOption.AllDirectories);
             List<ExcessãoNãoPodeExtrairNfeNomeArquivo> erros;
@@ -18,6 +18,19 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
 
             List<Pdf> pdfsFiltrados = FiltrarCadastrados(pdfs, NfePdf.ObterNfes());
             NfePdf.Cadastrar(pdfsFiltrados);
+
+            CacheVendaPdf.Instância.Recarregar();
+
+            return ObterErros(erros);
+        }
+
+        private string ObterErros(List<ExcessãoNãoPodeExtrairNfeNomeArquivo> erros)
+        {
+            StringBuilder saida = new StringBuilder();
+            foreach (ExcessãoNãoPodeExtrairNfeNomeArquivo erro in erros)
+                saida.AppendLine(erro.Message);
+
+            return saida.ToString();
         }
 
         private List<Pdf> FiltrarCadastrados(List<Pdf> pdfs, List<long> pdfsCadastrados)

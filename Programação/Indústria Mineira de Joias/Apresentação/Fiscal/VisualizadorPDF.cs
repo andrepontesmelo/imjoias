@@ -1,19 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
+﻿using Entidades.Fiscal.NotaFiscalEletronica;
+using Entidades.Relacionamento.Venda;
+using System;
 using System.Windows.Forms;
 
 namespace Apresentação.Fiscal
 {
-    public partial class VisualizadorPDF : Apresentação.Formulários.JanelaExplicativa
+    public partial class VisualizadorPDF : Form
     {
         public VisualizadorPDF()
         {
             InitializeComponent();
-            ((AcroPDFLib.IAcroAXDocShim)axAcroPDF.GetOcx()).LoadFile(@"C:\Users\Andre\Desktop\Fiscal\owncloud-fiscal\Danfes e arquivos nfe apartir de abril 2015\Carla Aparecida de Queiros Braga\carla aparecida de queiros braga 02062016 000352.pdf");
+        }
+
+        public void Carregar(IDadosVenda venda)
+        {
+            Text = string.Format("Nota fiscal eletrônica da venda {0}", venda.CódigoFormatado);
+            NfePdf nfe = NfePdf.Obter(venda.Código);
+            string arquivoTemporário = System.IO.Path.GetTempPath() + Guid.NewGuid().ToString() + ".pdf";
+            System.IO.File.WriteAllBytes(arquivoTemporário, nfe.Pdf);
+
+            ((AcroPDFLib.IAcroAXDocShim)axAcroPDF.GetOcx()).LoadFile(arquivoTemporário);
+
+            System.IO.File.Delete(arquivoTemporário);
         }
     }
 }

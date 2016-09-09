@@ -2,6 +2,7 @@
 using Entidades.Configuração;
 using System;
 using Entidades.Relacionamento.Venda;
+using System.Collections.Generic;
 
 namespace Entidades.Fiscal.NotaFiscalEletronica
 {

@@ -54,9 +54,9 @@
             this.btnSelecionarNada = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnAgruparLegenda = new System.Windows.Forms.ToolStripButton();
+            this.btnAbrirPdf = new System.Windows.Forms.ToolStripButton();
             this.panelInterno = new System.Windows.Forms.Panel();
             this.localizador = new Apresentação.Formulários.Localizador();
-            this.btnAbrirPdf = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.painelQuantidade)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.painelValor)).BeginInit();
             this.toolStrip.SuspendLayout();
@@ -246,6 +246,15 @@
             this.btnAgruparLegenda.Text = "Agrupar por legenda";
             this.btnAgruparLegenda.Click += new System.EventHandler(this.btnAgruparLegenda_Click);
             // 
+            // btnAbrirPdf
+            // 
+            this.btnAbrirPdf.Image = ((System.Drawing.Image)(resources.GetObject("btnAbrirPdf.Image")));
+            this.btnAbrirPdf.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAbrirPdf.Name = "btnAbrirPdf";
+            this.btnAbrirPdf.Size = new System.Drawing.Size(48, 22);
+            this.btnAbrirPdf.Text = "NFe";
+            this.btnAbrirPdf.Click += new System.EventHandler(this.btnAbrirPdf_Click);
+            // 
             // panelInterno
             // 
             this.panelInterno.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -270,15 +279,6 @@
             this.localizador.RealçarItens += new Apresentação.Formulários.Localizador.RealçarDelegate(this.localizador_RealçarItens);
             this.localizador.DesrealçarTudo += new System.EventHandler(this.localizador_DesrealçarTudo);
             this.localizador.EncontrarItem += new Apresentação.Formulários.Localizador.EncontrarDelegate(this.localizador_EncontrarItem);
-            // 
-            // btnAbrirPdf
-            // 
-            this.btnAbrirPdf.Image = ((System.Drawing.Image)(resources.GetObject("btnAbrirPdf.Image")));
-            this.btnAbrirPdf.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAbrirPdf.Name = "btnAbrirPdf";
-            this.btnAbrirPdf.Size = new System.Drawing.Size(74, 22);
-            this.btnAbrirPdf.Text = "Abrir Pdf";
-            this.btnAbrirPdf.Click += new System.EventHandler(this.btnAbrirPdf_Click);
             // 
             // ListViewVendas
             // 

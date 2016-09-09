@@ -1,4 +1,6 @@
-﻿using Entidades.Relacionamento.Venda;
+﻿using Apresentação.Fiscal;
+using Entidades.Fiscal.NotaFiscalEletronica;
+using Entidades.Relacionamento.Venda;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -98,19 +100,25 @@ namespace Apresentação.Financeiro.Venda
             }
         }
 
-        public long? ItemSelecionado
+        public IDadosVenda VendaSelecionada
         {
             get
             {
                 IDadosVenda venda;
 
-                if (lista.SelectedIndices.Count != 1)
+                if (lista.SelectedIndices.Count != 1
+                    || !hashListViewItemVenda.TryGetValue(lista.SelectedItems[0], out venda))
                     return null;
 
-                if (hashListViewItemVenda.TryGetValue(lista.SelectedItems[0], out venda))
-                    return venda.Código;
-                else
-                    return null;
+                return venda;
+            }
+        }
+
+        public long? ItemSelecionado
+        {
+            get
+            {
+                return VendaSelecionada?.Código;
             }
             set
             {
@@ -511,6 +519,11 @@ namespace Apresentação.Financeiro.Venda
         private void lista_SelectedIndexChanged(object sender, EventArgs e)
         {
             AoSelecionar?.Invoke(ItemSelecionado);
+
+            if (VendaSelecionada == null)
+                return;
+
+            btnAbrirPdf.Enabled = CacheVendaPdf.Instância.ObterVendasPdfs().Contains(VendaSelecionada.Código);
         }
 
         private void lista_DoubleClick(object sender, EventArgs e)
@@ -602,7 +615,9 @@ namespace Apresentação.Financeiro.Venda
 
         private void btnAbrirPdf_Click(object sender, EventArgs e)
         {
-            new Apresentação.Fiscal.VisualizadorPDF().ShowDialog(this);
+            VisualizadorPDF visualizador = new VisualizadorPDF();
+            visualizador.Carregar(VendaSelecionada);
+            visualizador.ShowDialog(this);
         }
     }
 

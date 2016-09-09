@@ -30,32 +30,26 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VisualizadorPDF));
             this.axAcroPDF = new AxAcroPDFLib.AxAcroPDF();
-            ((System.ComponentModel.ISupportInitialize)(this.picÍcone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axAcroPDF)).BeginInit();
             this.SuspendLayout();
             // 
-            // lblDescrição
-            // 
-            this.lblDescrição.Size = new System.Drawing.Size(1052, 48);
-            // 
             // axAcroPDF
             // 
-            this.axAcroPDF.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.axAcroPDF.Dock = System.Windows.Forms.DockStyle.Fill;
             this.axAcroPDF.Enabled = true;
-            this.axAcroPDF.Location = new System.Drawing.Point(0, 93);
+            this.axAcroPDF.Location = new System.Drawing.Point(0, 0);
             this.axAcroPDF.Name = "axAcroPDF";
             this.axAcroPDF.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axAcroPDF.OcxState")));
-            this.axAcroPDF.Size = new System.Drawing.Size(1140, 423);
+            this.axAcroPDF.Size = new System.Drawing.Size(1140, 516);
             this.axAcroPDF.TabIndex = 3;
             // 
             // VisualizadorPDF
             // 
             this.ClientSize = new System.Drawing.Size(1140, 516);
             this.Controls.Add(this.axAcroPDF);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "VisualizadorPDF";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Controls.SetChildIndex(this.axAcroPDF, 0);
-            ((System.ComponentModel.ISupportInitialize)(this.picÍcone)).EndInit();
+            this.Text = "Visualização de NFe";
             ((System.ComponentModel.ISupportInitialize)(this.axAcroPDF)).EndInit();
             this.ResumeLayout(false);
 

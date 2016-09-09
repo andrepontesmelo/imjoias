@@ -9,6 +9,10 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
         private long nfe;
         private byte[] pdf;
 
+        public NfePdf()
+        {
+        }
+
         public NfePdf(Pdf arquivo)
         {
             arquivo.AssegurarCódigoExistente();
@@ -44,9 +48,13 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
         internal static void Cadastrar(List<Pdf> pdfsFiltrados)
         {
             foreach (Pdf pdf in pdfsFiltrados)
-            {
                 DeArquivo(pdf).Cadastrar();
-            }
+        }
+
+        public static NfePdf Obter(long venda)
+        {
+            string sql = string.Format("select * from nfepdf where nfe=(select nfe from nfe where venda={0})", DbTransformar(venda));
+            return MapearÚnicaLinha<NfePdf>(sql);
         }
     }
 }

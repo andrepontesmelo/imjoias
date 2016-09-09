@@ -249,6 +249,7 @@
     <Compile Include="Fiscal\Importador.cs" />
     <Compile Include="Fiscal\ImportadorPDFAtacado.cs" />
     <Compile Include="Fiscal\ImportadorXMLAtacado.cs" />
+    <Compile Include="Fiscal\NotaFiscalEletronica\CacheVendaPdf.cs" />
     <Compile Include="Fiscal\NotaFiscalEletronica\ExcessãoCódigoDuplicado.cs" />
     <Compile Include="Fiscal\NotaFiscalEletronica\ExcessãoNãoPodeExtrairNfeNomeArquivo.cs" />
     <Compile Include="Fiscal\NotaFiscalEletronica\NfeVenda.cs" />
