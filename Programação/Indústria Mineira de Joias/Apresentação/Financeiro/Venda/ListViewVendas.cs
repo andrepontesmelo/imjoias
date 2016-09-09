@@ -599,6 +599,11 @@ namespace Apresentação.Financeiro.Venda
         {
             AgruparPorLegenda(btnAgruparLegenda.Checked);
         }
+
+        private void btnAbrirPdf_Click(object sender, EventArgs e)
+        {
+            new Apresentação.Fiscal.VisualizadorPDF().ShowDialog(this);
+        }
     }
 
     public class InformaçõesStatus

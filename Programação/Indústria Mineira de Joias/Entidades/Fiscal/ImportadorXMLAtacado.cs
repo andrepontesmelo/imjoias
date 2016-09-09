@@ -4,7 +4,7 @@ using System.IO;
 
 namespace Entidades.Fiscal
 {
-    public class ImportadorXMLAtacado
+    public class ImportadorXMLAtacado : Importador
     {
         public static readonly string PADRÂO_ARQUIVO = "*.xml";
 
@@ -21,7 +21,7 @@ namespace Entidades.Fiscal
 
         public void ImportarXmls(string pasta, SearchOption opções)
         {
-            List<string> arquivos = ObterArquivos(pasta, opções);
+            List<string> arquivos = ObterArquivos(pasta, PADRÂO_ARQUIVO, opções);
             List<string> arquivosErro = new List<string>();
             int x = 0;
             foreach (string arquivo in arquivos)
@@ -49,15 +49,6 @@ namespace Entidades.Fiscal
             }
 
             Console.WriteLine(arquivosErro.ToString());
-        }
-
-        private List<string> ObterArquivos(string pasta, SearchOption opções)
-        {
-            List<string> arquivos = new List<string>();
-            foreach (string arquivo in Directory.EnumerateFiles(pasta, PADRÂO_ARQUIVO, opções))
-                arquivos.Add(arquivo);
-
-            return arquivos;
         }
     }
 }

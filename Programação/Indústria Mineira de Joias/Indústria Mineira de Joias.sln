@@ -26,7 +26,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apresentação", "Apresentaçã
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CódigoDeBarras", "..\CódigoDeBarras\CódigoDeBarras.csproj", "{6CECA623-BA18-49B1-8298-4F1DCB192F29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntidadesTest", "EntidadesTest\EntidadesTest.csproj", "{13A598CA-6D59-492D-AA05-F34E8689D8AD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntidadesTests", "EntidadesTest\EntidadesTests.csproj", "{13A598CA-6D59-492D-AA05-F34E8689D8AD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Balloon.NET", "..\Balloon.NET\Balloon.NET.csproj", "{0E6F1B58-B832-4D96-9BE9-A61DDAA18C4C}"
 EndProject

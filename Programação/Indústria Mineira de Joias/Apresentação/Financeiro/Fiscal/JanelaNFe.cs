@@ -1,16 +1,12 @@
 ﻿using Apresentação.Formulários;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using Entidades.Configuração;
 using Entidades.Fiscal;
+using Entidades.Fiscal.NotaFiscalEletronica;
+using System;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
+using System.Windows.Forms;
 
 namespace Apresentação.Financeiro.Fiscal
 {
@@ -57,7 +53,7 @@ namespace Apresentação.Financeiro.Fiscal
 
         private void Carregar(Entidades.Relacionamento.Venda.Venda v)
         {
-            Apresentação.Financeiro.Venda.DadosVenda dv = new Venda.DadosVenda();
+            Venda.DadosVenda dv = new Venda.DadosVenda();
             dv.Abrir(v, null);
             flow.Controls.Add(dv);
             dv.Width = flow.ClientSize.Width;
@@ -95,6 +91,7 @@ namespace Apresentação.Financeiro.Fiscal
             }
 
             NfeVenda nota = new NfeVenda(v, códigoNfe, códigoCFOP, códigoFatura, aliquota);
+            NfeVendaTxt escritorTxt = new NfeVendaTxt(nota);
 
             FolderBrowserDialog janela = new FolderBrowserDialog();
             DialogResult resultado = janela.ShowDialog();
@@ -109,17 +106,15 @@ namespace Apresentação.Financeiro.Fiscal
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question);
 
-                    if (apagar == System.Windows.Forms.DialogResult.No)
-                    {
+                    if (apagar == DialogResult.No)
                         return;
-                    }
 
                     File.Delete(arquivo);
                 }
 
                 try
                 {
-                    nota.Salvar(arquivo);
+                    escritorTxt.Salvar(arquivo);
                 }
                 catch (Exception erro)
                 {
@@ -130,7 +125,7 @@ namespace Apresentação.Financeiro.Fiscal
                     return;
                 }
 
-                nota.SalvarBd();
+                nota.Cadastrar();
 
                 if (AoSalvarNfe != null)
                     AoSalvarNfe(null, null);
@@ -228,7 +223,7 @@ namespace Apresentação.Financeiro.Fiscal
             janela.ShowDialog(this);
         }
 
-        void janela_AoEscolher(Entidades.Fiscal.Cfop entidade)
+        void janela_AoEscolher(Cfop entidade)
         {
             txtCFOP.Text = entidade.Codigo.ToString();
             txtCFOPDesc.Text = entidade.Descricao;

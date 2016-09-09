@@ -34,7 +34,7 @@
             System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Cobrança", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("Não quitada", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("Quitada com comissão aberta", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup6 = new System.Windows.Forms.ListViewGroup("grpComissãoFechada", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup6 = new System.Windows.Forms.ListViewGroup("Comissão fechada", System.Windows.Forms.HorizontalAlignment.Left);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListViewVendas));
             this.lista = new System.Windows.Forms.ListView();
             this.colData = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -56,6 +56,7 @@
             this.btnAgruparLegenda = new System.Windows.Forms.ToolStripButton();
             this.panelInterno = new System.Windows.Forms.Panel();
             this.localizador = new Apresentação.Formulários.Localizador();
+            this.btnAbrirPdf = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.painelQuantidade)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.painelValor)).BeginInit();
             this.toolStrip.SuspendLayout();
@@ -187,7 +188,8 @@
             this.btnSelecionarTudo,
             this.btnSelecionarNada,
             this.toolStripSeparator1,
-            this.btnAgruparLegenda});
+            this.btnAgruparLegenda,
+            this.btnAbrirPdf});
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Size = new System.Drawing.Size(807, 25);
@@ -269,6 +271,15 @@
             this.localizador.DesrealçarTudo += new System.EventHandler(this.localizador_DesrealçarTudo);
             this.localizador.EncontrarItem += new Apresentação.Formulários.Localizador.EncontrarDelegate(this.localizador_EncontrarItem);
             // 
+            // btnAbrirPdf
+            // 
+            this.btnAbrirPdf.Image = ((System.Drawing.Image)(resources.GetObject("btnAbrirPdf.Image")));
+            this.btnAbrirPdf.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAbrirPdf.Name = "btnAbrirPdf";
+            this.btnAbrirPdf.Size = new System.Drawing.Size(74, 22);
+            this.btnAbrirPdf.Text = "Abrir Pdf";
+            this.btnAbrirPdf.Click += new System.EventHandler(this.btnAbrirPdf_Click);
+            // 
             // ListViewVendas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -311,5 +322,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ImageList imageListSemaforos;
         private System.Windows.Forms.ToolStripButton btnAgruparLegenda;
+        private System.Windows.Forms.ToolStripButton btnAbrirPdf;
     }
 }

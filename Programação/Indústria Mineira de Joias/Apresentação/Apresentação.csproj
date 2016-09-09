@@ -566,7 +566,6 @@
     <Compile Include="Financeiro\Fiscal\JanelaNFe.Designer.cs">
       <DependentUpon>JanelaNFe.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Fiscal\NfeVenda.cs" />
     <Compile Include="Financeiro\Indicadores\JanelaCalculoJuros.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -948,6 +947,12 @@
     </Compile>
     <Compile Include="Fiscal\BaseFiscal.Designer.cs">
       <DependentUpon>BaseFiscal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fiscal\VisualizadorPDF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fiscal\VisualizadorPDF.Designer.cs">
+      <DependentUpon>VisualizadorPDF.cs</DependentUpon>
     </Compile>
     <Compile Include="Formulários\Aguarde.cs">
       <SubType>Form</SubType>
@@ -2742,6 +2747,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Fiscal\BaseFiscal.resx">
       <DependentUpon>BaseFiscal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fiscal\VisualizadorPDF.resx">
+      <DependentUpon>VisualizadorPDF.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formulários\Aguarde.resx">
       <DependentUpon>Aguarde.cs</DependentUpon>
@@ -5388,7 +5396,25 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <COMReference Include="AcroPDFLib">
+      <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="AxAcroPDFLib">
+      <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+  </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>

@@ -504,6 +504,30 @@ namespace Acesso.Comum
             }
         }
 
+        protected static List<long> MapearCódigos(string sql)
+        {
+            List<long> resultado = new List<long>();
+
+            IDbConnection conexão = Conexão;
+
+            using (IDbCommand cmd = conexão.CreateCommand())
+            {
+                cmd.CommandText = sql;
+
+                using (IDataReader leitor = cmd.ExecuteReader())
+                {
+                    while (leitor.Read())
+                        resultado.Add(leitor.GetInt64(0));
+
+                    if (!leitor.IsClosed)
+                        leitor.Close();
+                }
+            }
+
+            return resultado;
+        }
+
+
         protected static List<DbTipo> Mapear<DbTipo>(IDbCommand cmd) where DbTipo : new()
         {
             List<DbTipo> conjunto = new List<DbTipo>();

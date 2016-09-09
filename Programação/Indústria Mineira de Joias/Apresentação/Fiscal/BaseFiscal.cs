@@ -1,4 +1,5 @@
 ﻿using Entidades.Fiscal;
+using Entidades.Fiscal.NotaFiscalEletronica;
 using System;
 using System.Windows.Forms;
 
@@ -11,13 +12,29 @@ namespace Apresentação.Fiscal
             InitializeComponent();
         }
 
-        private void opçãoImportaçãoXMLAtacado_Click(object sender, EventArgs e)
+        private string ObterDiretório()
         {
             FolderBrowserDialog janela = new FolderBrowserDialog();
             if (janela.ShowDialog() != DialogResult.OK)
-                return;
+                return null;
 
-            new ImportadorXMLAtacado().ImportarXmls(janela.SelectedPath);
+            return janela.SelectedPath;
+        }
+
+        private void opçãoImportaçãoXMLAtacado_Click(object sender, EventArgs e)
+        {
+            string caminho = ObterDiretório();
+
+            if (caminho != null)
+                new ImportadorXMLAtacado().ImportarXmls(caminho);
+        }
+
+        private void opçãoImportaçãoPDFAtacado_Click(object sender, EventArgs e)
+        {
+            string caminho = ObterDiretório();
+
+            if (caminho != null)
+                new ImportadorPDFAtacado().ImportarPdfs(caminho);
         }
     }
 }

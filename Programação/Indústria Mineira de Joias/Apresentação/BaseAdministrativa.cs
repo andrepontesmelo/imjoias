@@ -1,4 +1,5 @@
 using Apresentação.Financeiro.Comissões;
+using Apresentação.Financeiro.Fiscal;
 using Apresentação.Fiscal;
 using Apresentação.Formulários;
 using Apresentação.IntegraçãoSistemaAntigo;
@@ -61,7 +62,8 @@ namespace Apresentação.Administrativo
 
         private void quadroExportaVenda_Click(object sender, EventArgs e)
         {
-            Financeiro.Fiscal.NfeVenda.GerarNfeVenda(this);
+            JanelaNFe janela = new JanelaNFe();
+            janela.ShowDialog(this);
         }
 
         public override void AoCarregarCompletamente(Splash splash)

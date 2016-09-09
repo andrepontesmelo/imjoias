@@ -33,6 +33,7 @@
             this.opçãoImportaçãoXMLAtacado = new Apresentação.Formulários.Opção();
             this.opçãoImportaçãoTDMVarejo = new Apresentação.Formulários.Opção();
             this.títuloBaseInferior1 = new Apresentação.Formulários.TítuloBaseInferior();
+            this.opçãoImportaçãoPDFAtacado = new Apresentação.Formulários.Opção();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.SuspendLayout();
@@ -49,6 +50,7 @@
             this.quadro1.bInfEsqArredondada = true;
             this.quadro1.bSupDirArredondada = true;
             this.quadro1.bSupEsqArredondada = true;
+            this.quadro1.Controls.Add(this.opçãoImportaçãoPDFAtacado);
             this.quadro1.Controls.Add(this.opçãoImportaçãoXMLAtacado);
             this.quadro1.Controls.Add(this.opçãoImportaçãoTDMVarejo);
             this.quadro1.Cor = System.Drawing.Color.Black;
@@ -57,7 +59,7 @@
             this.quadro1.Location = new System.Drawing.Point(7, 14);
             this.quadro1.MostrarBotãoMinMax = false;
             this.quadro1.Name = "quadro1";
-            this.quadro1.Size = new System.Drawing.Size(160, 76);
+            this.quadro1.Size = new System.Drawing.Size(160, 112);
             this.quadro1.TabIndex = 1;
             this.quadro1.Tamanho = 30;
             this.quadro1.Título = "Importação";
@@ -81,7 +83,7 @@
             this.opçãoImportaçãoTDMVarejo.BackColor = System.Drawing.Color.Transparent;
             this.opçãoImportaçãoTDMVarejo.Descrição = "Varejo - TDM";
             this.opçãoImportaçãoTDMVarejo.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoImportaçãoTDMVarejo.Imagem")));
-            this.opçãoImportaçãoTDMVarejo.Location = new System.Drawing.Point(7, 50);
+            this.opçãoImportaçãoTDMVarejo.Location = new System.Drawing.Point(7, 90);
             this.opçãoImportaçãoTDMVarejo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoImportaçãoTDMVarejo.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoImportaçãoTDMVarejo.MinimumSize = new System.Drawing.Size(150, 16);
@@ -103,6 +105,20 @@
             this.títuloBaseInferior1.TabIndex = 6;
             this.títuloBaseInferior1.Título = "Fiscal";
             // 
+            // opçãoImportaçãoPDFAtacado
+            // 
+            this.opçãoImportaçãoPDFAtacado.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoImportaçãoPDFAtacado.Descrição = "Atacado - PDF";
+            this.opçãoImportaçãoPDFAtacado.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoImportaçãoPDFAtacado.Imagem")));
+            this.opçãoImportaçãoPDFAtacado.Location = new System.Drawing.Point(7, 50);
+            this.opçãoImportaçãoPDFAtacado.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoImportaçãoPDFAtacado.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoImportaçãoPDFAtacado.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoImportaçãoPDFAtacado.Name = "opçãoImportaçãoPDFAtacado";
+            this.opçãoImportaçãoPDFAtacado.Size = new System.Drawing.Size(150, 16);
+            this.opçãoImportaçãoPDFAtacado.TabIndex = 4;
+            this.opçãoImportaçãoPDFAtacado.Click += new System.EventHandler(this.opçãoImportaçãoPDFAtacado_Click);
+            // 
             // BaseFiscal
             // 
             this.Controls.Add(this.títuloBaseInferior1);
@@ -121,5 +137,6 @@
         private Formulários.Opção opçãoImportaçãoTDMVarejo;
         private Formulários.TítuloBaseInferior títuloBaseInferior1;
         private Formulários.Opção opçãoImportaçãoXMLAtacado;
+        private Formulários.Opção opçãoImportaçãoPDFAtacado;
     }
 }
