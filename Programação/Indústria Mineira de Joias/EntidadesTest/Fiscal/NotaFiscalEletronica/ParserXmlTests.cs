@@ -123,5 +123,12 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
             DateTime emissão = DateTime.Parse("2016-05-10T13:54:00-03:00");
             Assert.AreEqual(emissão, parser.LerDataEmissão());
         }
+
+        [TestMethod()]
+        public void DeveLerCancelamento()
+        {
+            Assert.IsFalse(parser.LerCancelamento());
+        }
+
     }
 }

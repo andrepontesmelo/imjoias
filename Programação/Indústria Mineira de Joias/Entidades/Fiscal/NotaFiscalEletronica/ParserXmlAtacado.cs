@@ -135,5 +135,10 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
         {
             return ObterInteiro(ObterCaminhoAtributoVenda("/nNF"));
         }
+
+        public bool LerCancelamento()
+        {
+            return ObterNó("/nfeProc/protNFe/infProt")["TRetCancNFe"] != null;
+        }
     }
 }

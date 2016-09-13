@@ -11,11 +11,11 @@
 
         public VendaFiscal Transformar()
         {
-            VendaFiscal entidade = new VendaFiscal(TipoVenda.NFe, parser.LerDataEmissão());
+            VendaFiscal entidade = new VendaFiscal(TipoVenda.NFe, 
+                parser.LerDataEmissão(), 
+                parser.LerCancelamento());
 
             return entidade;
         }
-
-
     }
 }

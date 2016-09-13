@@ -1256,7 +1256,7 @@
             <nProt>131162145083699</nProt>
             <digVal>eNBAGfiDS4n0RCHbPcdZCru2lj99</digVal>
             <cStat>100</cStat>
-            <xMotivo>Autorizado o uso da NF-e</xMotivo>
+          <xMotivo>Autorizado o uso da NF-e</xMotivo>
         </infProt>
     </protNFe>
 </nfeProc>
