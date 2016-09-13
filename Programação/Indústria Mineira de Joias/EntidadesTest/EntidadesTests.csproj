@@ -43,6 +43,10 @@
     <OutputPath>bin\x64\Release\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="InterpretadorTDM, Version=1.0.6100.16459, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\InterpretadorTDM.1.0.2\lib\InterpretadorTDM.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -58,6 +62,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Fiscal\Cupom\AdaptadorVarejoTests.cs" />
+    <Compile Include="Fiscal\NotaFiscalEletronica\AdaptadorAtacadoTests.cs" />
     <Compile Include="Fiscal\NotaFiscalEletronica\ParserXmlTests.cs" />
     <Compile Include="Fiscal\NotaFiscalEletronica\PdfTests.cs" />
     <Compile Include="Pessoa\AbreviadorTests.cs" />
@@ -74,7 +80,10 @@
       <Name>Entidades</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Arquivos\arquivo.tdm" />
+    <None Include="packages.config" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Arquivos\nfe.xml" />
     <Content Include="Arquivos\nfe_gramas.xml" />

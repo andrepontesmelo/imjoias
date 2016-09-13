@@ -1,6 +1,6 @@
 ﻿namespace Entidades.Fiscal
 {
-    interface ITransformavelVendaFiscal
+    public interface ITransformavelVendaFiscal
     {
         VendaFiscal Transformar();
     }
