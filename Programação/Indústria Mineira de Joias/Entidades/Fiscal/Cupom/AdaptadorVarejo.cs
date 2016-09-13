@@ -14,7 +14,7 @@ namespace Entidades.Fiscal.Cupom
         public VendaFiscal Transformar()
         {
             VendaFiscal entidade = new VendaFiscal(TipoVenda.Cupom, cupom.DataInicioEmissao);
-
+            
             return entidade;
         }
     }
