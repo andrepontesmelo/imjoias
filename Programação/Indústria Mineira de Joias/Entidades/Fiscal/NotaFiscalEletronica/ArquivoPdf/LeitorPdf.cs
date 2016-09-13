@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Entidades.Fiscal.NotaFiscalEletronica.Excessões;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 
-namespace Entidades.Fiscal.NotaFiscalEletronica
+namespace Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf
 {
-    public class Pdf
+    public class LeitorPdf
     {
         private string nomeArquivo;
         private int? nfe;
@@ -18,7 +19,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
             return File.ReadAllBytes(nomeArquivo);
         }
 
-        private Pdf(string nomeArquivo) : this(nomeArquivo, ExtrairNfe(nomeArquivo))
+        private LeitorPdf(string nomeArquivo) : this(nomeArquivo, ExtrairNfe(nomeArquivo))
         {
         }
 
@@ -54,22 +55,22 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
             return nfe.HasValue && outroNfe.HasValue && nfe.Value.Equals(outroNfe.Value);
         }
 
-        private Pdf(string nomeArquivo, int nfe)
+        private LeitorPdf(string nomeArquivo, int nfe)
         {
             this.nomeArquivo = nomeArquivo;
             this.nfe = nfe;
         }
 
-        internal static List<Pdf> Interpretar(List<string> arquivos, out List<ExcessãoNãoPodeExtrairNfeNomeArquivo> erros)
+        internal static List<LeitorPdf> Interpretar(List<string> arquivos, out List<ExcessãoNãoPodeExtrairNfeNomeArquivo> erros)
         {
-            List<Pdf> lista = new List<Pdf>();
+            List<LeitorPdf> lista = new List<LeitorPdf>();
             erros = new List<ExcessãoNãoPodeExtrairNfeNomeArquivo>();
 
             foreach (string arquivo in arquivos)
             {
                 try
                 {
-                    lista.Add(new Pdf(arquivo));
+                    lista.Add(new LeitorPdf(arquivo));
                 } catch (ExcessãoNãoPodeExtrairNfeNomeArquivo erro)
                 {
                     erros.Add(erro);

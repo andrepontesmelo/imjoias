@@ -3,7 +3,7 @@ using Entidades.Configuração;
 using System;
 using System.Collections.Generic;
 
-namespace Entidades.Fiscal.NotaFiscalEletronica
+namespace Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf
 {
     public class CacheVendaPdf : DbManipulaçãoSimples
     {

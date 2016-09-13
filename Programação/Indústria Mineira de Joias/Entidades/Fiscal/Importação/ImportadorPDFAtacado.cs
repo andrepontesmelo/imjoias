@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf;
+using Entidades.Fiscal.NotaFiscalEletronica.Excessões;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Entidades.Fiscal.NotaFiscalEletronica
+namespace Entidades.Fiscal.Importação
 {
     public class ImportadorPDFAtacado : Importador
     {
@@ -10,13 +11,13 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
         {
             List<string> arquivos = ObterArquivos(caminho, "*.pdf", System.IO.SearchOption.AllDirectories);
             List<ExcessãoNãoPodeExtrairNfeNomeArquivo> erros;
-            List<Pdf> pdfs = Pdf.Interpretar(arquivos, out erros);
+            List<LeitorPdf> pdfs = LeitorPdf.Interpretar(arquivos, out erros);
 
             VerificarCódigoDuplicado(pdfs);
 
             NfePdf.LimparCache();
 
-            List<Pdf> pdfsFiltrados = FiltrarCadastrados(pdfs, NfePdf.ObterNfes());
+            List<LeitorPdf> pdfsFiltrados = FiltrarCadastrados(pdfs, NfePdf.ObterNfes());
             NfePdf.Cadastrar(pdfsFiltrados);
 
             CacheVendaPdf.Instância.Recarregar();
@@ -33,11 +34,11 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
             return saida.ToString();
         }
 
-        private List<Pdf> FiltrarCadastrados(List<Pdf> pdfs, List<long> pdfsCadastrados)
+        private List<LeitorPdf> FiltrarCadastrados(List<LeitorPdf> pdfs, List<long> pdfsCadastrados)
         {
-            List<Pdf> lstFiltrada = new List<Pdf>();
+            List<LeitorPdf> lstFiltrada = new List<LeitorPdf>();
 
-            foreach (Pdf pdf in pdfs)
+            foreach (LeitorPdf pdf in pdfs)
             {
                 pdf.AssegurarCódigoExistente();
 
@@ -50,11 +51,11 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
             return lstFiltrada;
         }
 
-        private static void VerificarCódigoDuplicado(List<Pdf> pdfs)
+        private static void VerificarCódigoDuplicado(List<LeitorPdf> pdfs)
         {
-            Dictionary<int, Pdf> hash = new Dictionary<int, Pdf>();
+            Dictionary<int, LeitorPdf> hash = new Dictionary<int, LeitorPdf>();
 
-            foreach (Pdf pdf in pdfs)
+            foreach (LeitorPdf pdf in pdfs)
             {
                 if (!pdf.Nfe.HasValue)
                     continue;

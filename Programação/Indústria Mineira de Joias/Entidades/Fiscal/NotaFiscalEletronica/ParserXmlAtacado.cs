@@ -3,7 +3,7 @@ using System.Xml;
 
 namespace Entidades.Fiscal.NotaFiscalEletronica
 {
-    public class ParserXml
+    public class ParserXmlAtacado
     {
         private XmlDocument documento;
         private static readonly string XML_CAMINHO_RAIZ = "/nfeProc/NFe/infNFe";
@@ -40,7 +40,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
             return int.Parse(TrocarSeparaçãoDecimalVirgula(ObterTexto(caminho)));
         }
 
-        public ParserXml(string arquivo)
+        public ParserXmlAtacado(string arquivo)
         {
             documento = Xml.LerXmlSemNamespaces(arquivo);
         }
@@ -96,9 +96,9 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
             return ObterTexto(ObterCaminhoAtributo(vendaItem, "xProd"));
         }
 
-        public static ParserXml LerArquivo(string arquivo)
+        public static ParserXmlAtacado LerArquivo(string arquivo)
         {
-            return new ParserXml(arquivo);
+            return new ParserXmlAtacado(arquivo);
         }
 
         private XmlNode ObterNó(string caminho)

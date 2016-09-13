@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Entidades.Fiscal.NotaFiscalEletronica
+namespace Entidades.Fiscal.NotaFiscalEletronica.Excessões
 {
     public class ExcessãoCódigoDuplicado : Exception
     {

@@ -1,7 +1,7 @@
 ﻿using Acesso.Comum;
 using System.Collections.Generic;
 
-namespace Entidades.Fiscal.NotaFiscalEletronica
+namespace Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf
 {
     public class NfePdf : DbManipulaçãoAutomática
     {
@@ -13,7 +13,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
         {
         }
 
-        public NfePdf(Pdf arquivo)
+        public NfePdf(LeitorPdf arquivo)
         {
             arquivo.AssegurarCódigoExistente();
 
@@ -40,14 +40,14 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
             códigos = null;
         }
 
-        public static NfePdf DeArquivo(Pdf arquivo)
+        public static NfePdf DeArquivo(LeitorPdf arquivo)
         {
             return new NfePdf(arquivo);
         }
 
-        internal static void Cadastrar(List<Pdf> pdfsFiltrados)
+        internal static void Cadastrar(List<LeitorPdf> pdfsFiltrados)
         {
-            foreach (Pdf pdf in pdfsFiltrados)
+            foreach (LeitorPdf pdf in pdfsFiltrados)
                 DeArquivo(pdf).Cadastrar();
         }
 

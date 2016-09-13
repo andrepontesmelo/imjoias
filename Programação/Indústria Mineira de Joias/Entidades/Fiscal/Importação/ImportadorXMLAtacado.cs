@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace Entidades.Fiscal
+namespace Entidades.Fiscal.Importação
 {
     public class ImportadorXMLAtacado : Importador
     {
@@ -29,7 +29,7 @@ namespace Entidades.Fiscal
                 x++;
                 try
                 {
-                    NotaFiscalEletronica.ParserXml xml = new NotaFiscalEletronica.ParserXml(arquivo);
+                    NotaFiscalEletronica.ParserXmlAtacado xml = new NotaFiscalEletronica.ParserXmlAtacado(arquivo);
                     Console.WriteLine("Lendo arquivo " + arquivo + " " + x.ToString() + " de " + arquivos.Count.ToString());
                     Console.WriteLine("Itens:  " + xml.QuantidadeVendaItem.ToString());
 

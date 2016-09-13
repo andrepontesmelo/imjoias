@@ -17,12 +17,12 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         private static string ARQUIVO_ENTRADA_UNIDADE = Directory.GetParent(Directory.GetParent(Path.GetDirectoryName(
             Assembly.GetExecutingAssembly().Location)).FullName).FullName + @"\Arquivos\nfe_unidade.xml";
 
-        ParserXml parser;
+        ParserXmlAtacado parser;
 
         [TestInitialize]
         public void PreparaTestes()
         {
-            parser = ParserXml.LerArquivo(ARQUIVO_ENTRADA);
+            parser = ParserXmlAtacado.LerArquivo(ARQUIVO_ENTRADA);
         }
 
         [TestMethod()]
@@ -76,33 +76,33 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         [TestMethod()]
         public void DeveLerUnidadeComercialGramas()
         {
-            parser = ParserXml.LerArquivo(ARQUIVO_ENTRADA_GRAMAS);
+            parser = ParserXmlAtacado.LerArquivo(ARQUIVO_ENTRADA_GRAMAS);
             Assert.AreEqual(TipoUnidade.Grs, parser.ObterTipoUnidade(1));
         }
 
         [TestMethod()]
         public void DeveLerUnidadeComercialUnidade()
         {
-            parser = ParserXml.LerArquivo(ARQUIVO_ENTRADA_UNIDADE);
+            parser = ParserXmlAtacado.LerArquivo(ARQUIVO_ENTRADA_UNIDADE);
             Assert.AreEqual(TipoUnidade.Un, parser.ObterTipoUnidade(1));
         }
 
         [TestMethod()]
         public void DeveLerUnidadeComercialPeça()
         {
-            Assert.AreEqual(TipoUnidade.Pca, ParserXml.ObterTipoUnidade("peca"));
+            Assert.AreEqual(TipoUnidade.Pca, ParserXmlAtacado.ObterTipoUnidade("peca"));
         }
 
         [TestMethod()]
         public void DeveLerUnidadeComercialGramasDoisDigitos()
         {
-            Assert.AreEqual(TipoUnidade.Grs, ParserXml.ObterTipoUnidade("gr"));
+            Assert.AreEqual(TipoUnidade.Grs, ParserXmlAtacado.ObterTipoUnidade("gr"));
         }
 
         [TestMethod()]
         public void DeveLerUnidadeComercialGramasCincoDigitos()
         {
-            Assert.AreEqual(TipoUnidade.Grs, ParserXml.ObterTipoUnidade("grama"));
+            Assert.AreEqual(TipoUnidade.Grs, ParserXmlAtacado.ObterTipoUnidade("grama"));
         }
 
         [TestMethod()]

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 
-namespace Entidades.Fiscal
+namespace Entidades.Fiscal.Importação
 {
     public abstract class Importador
     {

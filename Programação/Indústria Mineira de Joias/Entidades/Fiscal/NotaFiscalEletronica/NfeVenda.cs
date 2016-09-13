@@ -1,8 +1,6 @@
 ﻿using Acesso.Comum;
 using Entidades.Configuração;
 using System;
-using Entidades.Relacionamento.Venda;
-using System.Collections.Generic;
 
 namespace Entidades.Fiscal.NotaFiscalEletronica
 {
@@ -18,7 +16,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
         private uint fatura;
 
         [DbRelacionamento("codigo", "venda")]
-        private Venda venda;
+        private Relacionamento.Venda.Venda venda;
         private uint cfop;
         private uint nfe;
 
@@ -26,7 +24,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
         public double Alíquota => alíquota;
         public uint Fatura => fatura;
         public DateTime Data => data;
-        public Venda Venda => venda;
+        public Relacionamento.Venda.Venda Venda => venda;
         public uint Cfop => cfop;
         public uint Nfe => nfe;
 
@@ -34,7 +32,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
         {
         }
 
-        public NfeVenda(Venda venda, int nfe, int cfop, int fatura, double alíquota)
+        public NfeVenda(Relacionamento.Venda.Venda venda, int nfe, int cfop, int fatura, double alíquota)
         {
             data = DadosGlobais.Instância.HoraDataAtual;
             funcionário = Pessoa.Funcionário.FuncionárioAtual;
