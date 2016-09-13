@@ -1,6 +1,4 @@
-﻿using InterpretadorTDM;
-using System;
-using InterpretadorTDM.Registro;
+﻿using InterpretadorTDM.Registro;
 
 namespace Entidades.Fiscal.Cupom
 {
@@ -15,7 +13,7 @@ namespace Entidades.Fiscal.Cupom
 
         public VendaFiscal Transformar()
         {
-            VendaFiscal entidade = new VendaFiscal(cupom.DataInicioEmissao);
+            VendaFiscal entidade = new VendaFiscal(TipoVenda.Cupom, cupom.DataInicioEmissao);
 
             return entidade;
         }

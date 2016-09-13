@@ -13,7 +13,7 @@ namespace Entidades.Fiscal
 
         public VendaFiscal(TipoVenda tipoVenda, DateTime dataEmissão)
         {
-            this.tipoVenda = TipoVenda;
+            this.tipoVenda = tipoVenda;
             this.dataEmissão = dataEmissão;
         }
 

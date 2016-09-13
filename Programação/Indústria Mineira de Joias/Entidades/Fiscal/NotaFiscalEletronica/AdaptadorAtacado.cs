@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Entidades.Fiscal.NotaFiscalEletronica
+﻿namespace Entidades.Fiscal.NotaFiscalEletronica
 {
     public class AdaptadorAtacado : ITransformavelVendaFiscal
     {
@@ -13,7 +11,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
 
         public VendaFiscal Transformar()
         {
-            VendaFiscal entidade = new VendaFiscal(parser.LerDataEmissão());
+            VendaFiscal entidade = new VendaFiscal(TipoVenda.NFe, parser.LerDataEmissão());
 
             return entidade;
         }
