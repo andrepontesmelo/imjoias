@@ -24,5 +24,11 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         {
             Assert.AreEqual(DateTime.Parse("2016-05-10 13:54:00"), adaptador.Transformar().DataEmissão);
         }
+
+        [TestMethod()]
+        public void DeveAdaptarTipoVenda()
+        {
+            Assert.AreEqual(TipoVenda.NFe, adaptador.Transformar().TipoVenda);
+        }
     }
 }

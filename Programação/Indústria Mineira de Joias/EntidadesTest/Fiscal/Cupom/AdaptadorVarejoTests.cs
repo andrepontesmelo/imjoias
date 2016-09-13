@@ -29,5 +29,11 @@ namespace Entidades.Fiscal.Cupom.Tests
         {
             Assert.AreEqual(DateTime.Parse("2015-04-01"), adaptador.Transformar().DataEmissão);
         }
+
+        [TestMethod()]
+        public void DeveAdaptarTipoVenda()
+        {
+            Assert.AreEqual(TipoVenda.Cupom, adaptador.Transformar().TipoVenda);
+        }
     }
 }
