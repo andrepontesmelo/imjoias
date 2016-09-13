@@ -13,7 +13,9 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
 
         public VendaFiscal Transformar()
         {
-            throw new NotImplementedException();
+            VendaFiscal entidade = new VendaFiscal(parser.LerDataEmissão());
+
+            return entidade;
         }
     }
 }

@@ -6,16 +6,18 @@ namespace Entidades.Fiscal.Cupom
 {
     public class AdaptadorVarejo : ITransformavelVendaFiscal
     {
-        private CupomFiscal primeiroCupom;
+        private CupomFiscal cupom;
 
-        public AdaptadorVarejo(CupomFiscal primeiroCupom)
+        public AdaptadorVarejo(CupomFiscal cupom)
         {
-            this.primeiroCupom = primeiroCupom;
+            this.cupom = cupom;
         }
 
         public VendaFiscal Transformar()
         {
-            throw new NotImplementedException();
+            VendaFiscal entidade = new VendaFiscal(cupom.DataInicioEmissao);
+
+            return entidade;
         }
     }
 }

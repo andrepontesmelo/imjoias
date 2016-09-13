@@ -13,7 +13,7 @@ namespace Entidades.Fiscal.Cupom.Tests
         private static string ARQUIVO_ENTRADA = Directory.GetParent(Directory.GetParent(Path.GetDirectoryName(
             Assembly.GetExecutingAssembly().Location)).FullName).FullName + @"\Arquivos\arquivo.tdm";
 
-        AdaptadorVarejo adaptador;
+        ITransformavelVendaFiscal adaptador;
 
         [TestInitialize]
         public void PreparaTestes()

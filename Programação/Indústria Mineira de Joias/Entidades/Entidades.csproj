@@ -142,8 +142,8 @@
     <Optimize>true</Optimize>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="InterpretadorTDM, Version=1.0.6100.16459, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\InterpretadorTDM.1.0.2\lib\InterpretadorTDM.dll</HintPath>
+    <Reference Include="InterpretadorTDM, Version=1.0.6100.18250, Culture=neutral, PublicKeyToken=d5c84b9056b9f800, processorArchitecture=MSIL">
+      <HintPath>..\packages\InterpretadorTDM.1.0.3\lib\InterpretadorTDM.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System">
