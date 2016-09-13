@@ -1,5 +1,5 @@
 ﻿using Apresentação.Fiscal;
-using Entidades.Fiscal.NotaFiscalEletronica;
+using Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf;
 using Entidades.Relacionamento.Venda;
 using System;
 using System.Collections.Generic;

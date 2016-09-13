@@ -1,6 +1,5 @@
 ﻿using Apresentação.Formulários;
-using Entidades.Fiscal;
-using Entidades.Fiscal.NotaFiscalEletronica;
+using Entidades.Fiscal.Importação;
 using System;
 using System.Windows.Forms;
 
