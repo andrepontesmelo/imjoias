@@ -31,10 +31,11 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
             Assert.AreEqual(TipoVenda.NFe, adaptador.Transformar().TipoVenda);
         }
 
+
         [TestMethod()]
-        public void DeveAdaptarCancelamento()
+        public void DeveAdaptarId()
         {
-            Assert.IsFalse(adaptador.Transformar().Cancelamento);
+            Assert.AreEqual("NFe3112345678929000103550010000003481006016004", adaptador.Transformar().Id);
         }
     }
 }

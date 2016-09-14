@@ -35,11 +35,5 @@ namespace Entidades.Fiscal.Cupom.Tests
         {
             Assert.AreEqual(TipoVenda.Cupom, adaptador.Transformar().TipoVenda);
         }
-
-        [TestMethod()]
-        public void DeveAdaptarCancelamento()
-        {
-            Assert.IsFalse(adaptador.Transformar().Cancelamento);
-        }
     }
 }

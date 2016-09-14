@@ -6,21 +6,21 @@ namespace Entidades.Fiscal
     {
         private DateTime dataEmissão;
         private TipoVenda tipoVenda;
-        private bool cancelamento;
+        private string id;
 
         public VendaFiscal()
         {
         }
 
-        public VendaFiscal(TipoVenda tipoVenda, DateTime dataEmissão, bool cancelamento)
+        public VendaFiscal(TipoVenda tipoVenda, DateTime dataEmissão, string id)
         {
             this.tipoVenda = tipoVenda;
             this.dataEmissão = dataEmissão;
-            this.cancelamento = cancelamento;
+            this.id = id;
         }
 
         public TipoVenda TipoVenda => tipoVenda;
         public DateTime DataEmissão => dataEmissão;
-        public bool Cancelamento => cancelamento;
+        public string Id => id;
     }
 }

@@ -15,7 +15,7 @@ namespace Entidades.Fiscal.Cupom
         {
             VendaFiscal entidade = new VendaFiscal(TipoVenda.Cupom, 
                 cupom.DataInicioEmissao, 
-                cupom.IndicadorCancelamento);
+                "id");
             
             return entidade;
         }

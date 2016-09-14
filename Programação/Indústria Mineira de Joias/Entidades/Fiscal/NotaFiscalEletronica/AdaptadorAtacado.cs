@@ -13,7 +13,7 @@
         {
             VendaFiscal entidade = new VendaFiscal(TipoVenda.NFe, 
                 parser.LerDataEmissão(), 
-                parser.LerCancelamento());
+                "id");
 
             return entidade;
         }
