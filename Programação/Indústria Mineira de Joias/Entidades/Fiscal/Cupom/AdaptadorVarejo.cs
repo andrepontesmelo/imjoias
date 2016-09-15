@@ -34,7 +34,7 @@ namespace Entidades.Fiscal.Cupom
                     null,
                     TipoUnidadeInterpretação.Interpretar(detalhe.Unidade),
                     detalhe.Quantidade,
-                    0,
+                    detalhe.ValorUnitario,
                     0));
 
             return itens;
