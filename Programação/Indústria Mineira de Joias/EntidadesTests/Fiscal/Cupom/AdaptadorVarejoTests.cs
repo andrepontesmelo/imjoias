@@ -67,11 +67,11 @@ namespace Entidades.Fiscal.Cupom.Tests
             Assert.IsNull(adaptador.Transformar().Itens[0].CFOP);
         }
 
-        //[TestMethod()]
-        //public void DeveAdaptarTipoUnidade()
-        //{
-        //    Assert.AreEqual(TipoUnidade.Par, adaptador.Transformar().Itens[0].TipoUnidade);
-        //}
+        [TestMethod()]
+        public void DeveAdaptarTipoUnidade()
+        {
+            Assert.AreEqual(TipoUnidade.Pca, adaptador.Transformar().Itens[0].TipoUnidade);
+        }
 
         //[TestMethod()]
         //public void DeveAdaptarQuantidade()
