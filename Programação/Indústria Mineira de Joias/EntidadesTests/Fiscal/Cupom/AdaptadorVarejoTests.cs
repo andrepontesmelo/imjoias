@@ -73,6 +73,7 @@ namespace Entidades.Fiscal.Cupom.Tests
             Assert.AreEqual(TipoUnidade.Pca, adaptador.Transformar().Itens[0].TipoUnidade);
         }
 
+
         //[TestMethod()]
         //public void DeveAdaptarQuantidade()
         //{

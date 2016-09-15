@@ -32,13 +32,14 @@ namespace Entidades.Fiscal.Cupom
                 itens.Add(new VendaItemFiscal(AdaptarReferência(detalhe),
                     detalhe.Descricao.Trim(),
                     null,
-                    TipoUnidade.Par,
+                    TipoUnidadeInterpretação.Interpretar(detalhe.Unidade),
                     0,
                     0,
                     0));
 
             return itens;
         }
+
 
         private string AdaptarReferência(DetalheCupomFiscal detalhe)
         {

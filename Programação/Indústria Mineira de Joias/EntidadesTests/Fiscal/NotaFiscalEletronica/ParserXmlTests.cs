@@ -90,19 +90,19 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         [TestMethod()]
         public void DeveLerUnidadeComercialPeça()
         {
-            Assert.AreEqual(TipoUnidade.Pca, ParserXmlAtacado.ObterTipoUnidade("peca"));
+            Assert.AreEqual(TipoUnidade.Pca, TipoUnidadeInterpretação.Interpretar("peca"));
         }
 
         [TestMethod()]
         public void DeveLerUnidadeComercialGramasDoisDigitos()
         {
-            Assert.AreEqual(TipoUnidade.Grs, ParserXmlAtacado.ObterTipoUnidade("gr"));
+            Assert.AreEqual(TipoUnidade.Grs, TipoUnidadeInterpretação.Interpretar("gr"));
         }
 
         [TestMethod()]
         public void DeveLerUnidadeComercialGramasCincoDigitos()
         {
-            Assert.AreEqual(TipoUnidade.Grs, ParserXmlAtacado.ObterTipoUnidade("grama"));
+            Assert.AreEqual(TipoUnidade.Grs, TipoUnidadeInterpretação.Interpretar("grama"));
         }
 
         [TestMethod()]

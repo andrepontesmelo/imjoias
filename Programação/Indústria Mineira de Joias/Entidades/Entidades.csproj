@@ -265,6 +265,7 @@
     <Compile Include="Fiscal\NotaFiscalEletronica\ParserXmlAtacado.cs" />
     <Compile Include="Fiscal\NotaFiscalEletronica\ArquivoPdf\LeitorPdf.cs" />
     <Compile Include="Fiscal\TipoUnidade.cs" />
+    <Compile Include="Fiscal\TipoUnidadeInterpretação.cs" />
     <Compile Include="Fiscal\TipoVenda.cs" />
     <Compile Include="Fiscal\VendaFiscal.cs" />
     <Compile Include="Fiscal\VendaItemFiscal.cs" />

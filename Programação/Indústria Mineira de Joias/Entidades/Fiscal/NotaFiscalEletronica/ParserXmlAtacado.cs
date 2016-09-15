@@ -79,20 +79,9 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
             }
         }
 
-        public static TipoUnidade ObterTipoUnidade(string descrição)
-        {
-            if (descrição.ToLower().StartsWith("gr"))
-                return TipoUnidade.Grs;
-
-            if (descrição.ToLower().CompareTo("peca") == 0)
-                return TipoUnidade.Pca;
-
-            return (TipoUnidade) Enum.Parse(typeof(TipoUnidade), descrição, true);
-        }
-
         public TipoUnidade ObterTipoUnidade(int vendaItem)
         {
-            return ObterTipoUnidade(ObterTexto(ObterCaminhoAtributo(vendaItem, "uCom")));
+            return TipoUnidadeInterpretação.Interpretar(ObterTexto(ObterCaminhoAtributo(vendaItem, "uCom")));
         }
 
         public string ObterReferência(int vendaItem)
