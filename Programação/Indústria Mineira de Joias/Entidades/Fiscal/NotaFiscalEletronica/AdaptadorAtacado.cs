@@ -29,7 +29,8 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
                 itens.Add(new VendaItemFiscal(parser.ObterReferência(x), 
                     parser.ObterDescrição(x),
                     parser.ObterCFOP(x),
-                    parser.ObterTipoUnidade(x)
+                    parser.ObterTipoUnidade(x),
+                    parser.ObterQuantidadeItens(x)
                     ));
 
             return itens;

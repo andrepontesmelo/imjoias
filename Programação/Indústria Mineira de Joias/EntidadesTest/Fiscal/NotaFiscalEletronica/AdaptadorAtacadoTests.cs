@@ -65,7 +65,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         [TestMethod()]
         public void DeveAdaptarTipoUnidade()
         {
-            Assert.AreEqual(TipoUnidade.Par, adaptador.Transformar().Itens[0].Quantidade);
+            Assert.AreEqual(TipoUnidade.Par, adaptador.Transformar().Itens[0].TipoUnidade);
         }
 
         [TestMethod()]
