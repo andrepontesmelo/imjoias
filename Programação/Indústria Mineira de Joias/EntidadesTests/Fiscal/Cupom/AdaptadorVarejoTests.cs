@@ -92,10 +92,10 @@ namespace Entidades.Fiscal.Cupom.Tests
             Assert.AreEqual(2799.57M, adaptador.Transformar().Itens[0].Valor);
         }
 
-        //[TestMethod()]
-        //public void DeveAdaptarValorTotalVenda()
-        //{
-        //    Assert.AreEqual(5800.06M, adaptador.Transformar().ValorTotal);
-        //}
+        [TestMethod()]
+        public void DeveAdaptarValorTotalVenda()
+        {
+            Assert.AreEqual(2799.57M, adaptador.Transformar().ValorTotal);
+        }
     }
 }
