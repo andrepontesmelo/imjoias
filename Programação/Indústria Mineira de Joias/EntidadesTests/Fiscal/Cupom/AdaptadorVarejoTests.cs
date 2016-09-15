@@ -74,11 +74,11 @@ namespace Entidades.Fiscal.Cupom.Tests
         }
 
 
-        //[TestMethod()]
-        //public void DeveAdaptarQuantidade()
-        //{
-        //    Assert.AreEqual(1, adaptador.Transformar().Itens[0].Quantidade);
-        //}
+        [TestMethod()]
+        public void DeveAdaptarQuantidade()
+        {
+            Assert.AreEqual(1, adaptador.Transformar().Itens[0].Quantidade);
+        }
 
         //[TestMethod()]
         //public void DeveAdaptarValorUnitário()
