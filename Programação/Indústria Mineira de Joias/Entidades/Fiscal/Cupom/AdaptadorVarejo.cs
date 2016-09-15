@@ -29,7 +29,7 @@ namespace Entidades.Fiscal.Cupom
             List<VendaItemFiscal> itens = new List<VendaItemFiscal>();
 
             foreach (DetalheCupomFiscal detalhe in detalhes)
-                itens.Add(new VendaItemFiscal("referência",
+                itens.Add(new VendaItemFiscal(AdaptarReferência(detalhe),
                     "descrição",
                     0,
                     TipoUnidade.Par,
@@ -38,6 +38,11 @@ namespace Entidades.Fiscal.Cupom
                     0));
 
             return itens;
+        }
+
+        private string AdaptarReferência(DetalheCupomFiscal detalhe)
+        {
+            return detalhe.CodigoProdutoOuServico.Trim().Substring(1, 11);
         }
 
         private string AdaptarId(DateTime dataInicioEmissao, int numeroContadorDocumentoEmitido, int coo)

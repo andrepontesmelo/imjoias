@@ -49,11 +49,11 @@ namespace Entidades.Fiscal.Cupom.Tests
             Assert.AreEqual(1, adaptador.Transformar().Itens.Count);
         }
 
-        //[TestMethod()]
-        //public void DeveAdaptarReferência()
-        //{
-        //    Assert.AreEqual("102130001008", adaptador.Transformar().Itens[0].Referência);
-        //}
+        [TestMethod()]
+        public void DeveAdaptarReferência()
+        {
+            Assert.AreEqual("10800300100", adaptador.Transformar().Itens[0].Referência);
+        }
 
         //[TestMethod()]
         //public void DeveAdaptarDescrição()
