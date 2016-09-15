@@ -4,13 +4,13 @@
     {
         private string referência;
         private string descrição;
-        private int cfop;
+        private int? cfop;
         private TipoUnidade tipoUnidade;
         private decimal quantidade;
         private decimal valorUnitário;
         private decimal valor;
 
-        public VendaItemFiscal(string referência, string descrição, int cfop, 
+        public VendaItemFiscal(string referência, string descrição, int? cfop, 
             TipoUnidade tipoUnidade, decimal quantidade, decimal valorUnitário,
             decimal valor)
         {
@@ -25,7 +25,7 @@
 
         public string Referência => referência;
         public string Descrição => descrição;
-        public int CFOP => cfop;
+        public int? CFOP => cfop;
         public TipoUnidade TipoUnidade => tipoUnidade;
         public decimal Quantidade => quantidade;
         public decimal ValorUnitário => valorUnitário;

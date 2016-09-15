@@ -31,7 +31,7 @@ namespace Entidades.Fiscal.Cupom
             foreach (DetalheCupomFiscal detalhe in detalhes)
                 itens.Add(new VendaItemFiscal(AdaptarReferência(detalhe),
                     detalhe.Descricao.Trim(),
-                    0,
+                    null,
                     TipoUnidade.Par,
                     0,
                     0,
