@@ -1,4 +1,5 @@
 ﻿using InterpretadorTDM.Registro;
+using System.Collections.Generic;
 
 namespace Entidades.Fiscal.Cupom
 {
@@ -13,9 +14,12 @@ namespace Entidades.Fiscal.Cupom
 
         public VendaFiscal Transformar()
         {
+            List<VendaItemFiscal> itens = new List<VendaItemFiscal>();
+
             VendaFiscal entidade = new VendaFiscal(TipoVenda.Cupom, 
                 cupom.DataInicioEmissao, 
-                "id");
+                "id",
+                itens);
             
             return entidade;
         }

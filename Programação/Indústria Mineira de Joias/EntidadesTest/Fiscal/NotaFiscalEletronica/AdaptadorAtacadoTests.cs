@@ -37,5 +37,11 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         {
             Assert.AreEqual("NFe3112345678929000103550010000003481006016004", adaptador.Transformar().Id);
         }
+
+        [TestMethod()]
+        public void DeveAdaptarListaItens()
+        {
+            Assert.AreEqual(28, adaptador.Transformar().Itens.Count);
+        }
     }
 }
