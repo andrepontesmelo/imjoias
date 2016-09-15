@@ -30,7 +30,8 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
                     parser.ObterDescrição(x),
                     parser.ObterCFOP(x),
                     parser.ObterTipoUnidade(x),
-                    parser.ObterQuantidadeItens(x)
+                    parser.ObterQuantidadeItens(x),
+                    parser.ObterValorUnitario(x)
                     ));
 
             return itens;

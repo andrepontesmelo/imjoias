@@ -77,7 +77,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         [TestMethod()]
         public void DeveAdaptarValorUnitário()
         {
-            Assert.AreEqual(110.22, adaptador.Transformar().Itens[0].ValorUnitário);
+            Assert.AreEqual(110.22M, adaptador.Transformar().Itens[0].ValorUnitário);
         }
     }
 }
