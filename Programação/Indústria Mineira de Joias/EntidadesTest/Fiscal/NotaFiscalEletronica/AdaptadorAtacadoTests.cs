@@ -55,5 +55,11 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         {
             Assert.AreEqual("Anel de Ouro", adaptador.Transformar().Itens[0].Descrição);
         }
+
+        [TestMethod()]
+        public void DeveAdaptarCFOP()
+        {
+            Assert.AreEqual(5101, adaptador.Transformar().Itens[0].CFOP);
+        }
     }
 }
