@@ -86,5 +86,10 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
             Assert.AreEqual(110.22M, adaptador.Transformar().Itens[0].Valor);
         }
 
+        [TestMethod()]
+        public void DeveAdaptarValorTotalVenda()
+        {
+            Assert.AreEqual(5800.06M, adaptador.Transformar().ValorTotal);
+        }
     }
 }
