@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Arquivos\nfe.xml" />
+    <Content Include="Arquivos\nfev2.xml" />
     <Content Include="Arquivos\nfe_gramas.xml" />
     <Content Include="Arquivos\nfe_unidade.xml" />
   </ItemGroup>

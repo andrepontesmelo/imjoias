@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entidades.Fiscal.NotaFiscalEletronica;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -23,25 +24,21 @@ namespace Entidades.Fiscal.Importação
         {
             List<string> arquivos = ObterArquivos(pasta, PADRÂO_ARQUIVO, opções);
             List<string> arquivosErro = new List<string>();
+            List<VendaFiscal> vendas = new List<VendaFiscal>();
+
             int x = 0;
             foreach (string arquivo in arquivos)
             {
                 x++;
                 try
                 {
-                    NotaFiscalEletronica.ParserXmlAtacado xml = new NotaFiscalEletronica.ParserXmlAtacado(arquivo);
                     Console.WriteLine("Lendo arquivo " + arquivo + " " + x.ToString() + " de " + arquivos.Count.ToString());
-                    Console.WriteLine("Itens:  " + xml.QuantidadeVendaItem.ToString());
 
-                    for (int i = 1; i <= xml.QuantidadeVendaItem; i++)
-                    {
-                        Console.WriteLine(xml.ObterReferência(i).ToString());
-                        Console.WriteLine(xml.ObterDescrição(i).ToString());
-                        Console.WriteLine(xml.ObterQuantidadeItens(i).ToString());
-                        Console.WriteLine(xml.ObterTipoUnidade(i).ToString());
-                        Console.WriteLine(xml.ObterValor(i).ToString());
-                        Console.WriteLine(xml.ObterValorUnitario(i).ToString());
-                    }
+                    ParserXmlAtacado xml = new ParserXmlAtacado(arquivo);
+                    AdaptadorAtacado adaptador = new AdaptadorAtacado(xml);
+                    VendaFiscal venda = adaptador.Transformar();
+                    vendas.Add(venda);
+
                 } catch (System.Xml.XmlException erroXml)
                 {
                     arquivosErro.Add(arquivo);

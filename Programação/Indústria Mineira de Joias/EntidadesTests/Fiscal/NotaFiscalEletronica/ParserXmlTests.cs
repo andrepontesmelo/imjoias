@@ -11,6 +11,9 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         private static string ARQUIVO_ENTRADA = Directory.GetParent(Directory.GetParent(Path.GetDirectoryName(
             Assembly.GetExecutingAssembly().Location)).FullName).FullName + @"\Arquivos\nfe.xml";
 
+        private static string ARQUIVO_ENTRADA_VERSÂO_2 = Directory.GetParent(Directory.GetParent(Path.GetDirectoryName(
+           Assembly.GetExecutingAssembly().Location)).FullName).FullName + @"\Arquivos\nfev2.xml";
+
         private static string ARQUIVO_ENTRADA_GRAMAS = Directory.GetParent(Directory.GetParent(Path.GetDirectoryName(
             Assembly.GetExecutingAssembly().Location)).FullName).FullName + @"\Arquivos\nfe_gramas.xml";
 
@@ -122,6 +125,15 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         {
             DateTime emissão = DateTime.Parse("2016-05-10T13:54:00-03:00");
             Assert.AreEqual(emissão, parser.LerDataEmissão());
+        }
+
+        [TestMethod()]
+        public void DeveLerDataEmissãoXmlVersão2()
+        {
+            DateTime emissão = DateTime.Parse("2013-06-07");
+            ParserXmlAtacado parserVersão2 = ParserXmlAtacado.LerArquivo(ARQUIVO_ENTRADA_VERSÂO_2);
+
+            Assert.AreEqual(emissão, parserVersão2.LerDataEmissão());
         }
 
         [TestMethod()]

@@ -33,6 +33,11 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
             return ObterNó(caminho).InnerText;
         }
 
+        private bool Existe(string caminho)
+        {
+            return ObterNó(caminho) != null;
+        }
+
         internal int ObterCFOP(int vendaItem)
         {
             return ObterInteiro(ObterCaminhoAtributo(vendaItem, "CFOP"));
@@ -141,12 +146,21 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
 
         public DateTime LerDataEmissão()
         {
-            return DateTime.Parse(ObterTexto(ObterCaminhoAtributoVenda("/dhEmi")));
+            string caminho = ObterCaminhoAtributoVenda("dhEmi");
+            string caminhoVersão2 = ObterCaminhoAtributoVenda("dEmi");
+
+            if (Existe(caminho))
+                return DateTime.Parse(ObterTexto(caminho));
+
+            if (Existe(caminhoVersão2))
+                return DateTime.Parse(ObterTexto(caminhoVersão2));
+
+            throw new NotImplementedException("Não foi possível encontrar a data da emissão do xml.");
         }
 
         public int LerNNF()
         {
-            return ObterInteiro(ObterCaminhoAtributoVenda("/nNF"));
+            return ObterInteiro(ObterCaminhoAtributoVenda("nNF"));
         }
 
         public bool LerCancelamento()
