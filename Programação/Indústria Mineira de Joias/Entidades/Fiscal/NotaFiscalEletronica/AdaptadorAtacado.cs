@@ -26,7 +26,10 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
             List<VendaItemFiscal> itens = new List<VendaItemFiscal>(parser.QuantidadeVendaItem);
 
             for (int x = 1; x <= parser.QuantidadeVendaItem; x++)
-                itens.Add(new VendaItemFiscal(parser.ObterReferência(x), parser.ObterDescrição(x)));
+                itens.Add(new VendaItemFiscal(parser.ObterReferência(x), 
+                    parser.ObterDescrição(x),
+                    parser.ObterCFOP(x)
+                    ));
 
             return itens;
         }

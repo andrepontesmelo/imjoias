@@ -27,6 +27,11 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
             return ObterNó(caminho).InnerText;
         }
 
+        internal int ObterCFOP(int vendaItem)
+        {
+            return ObterInteiro(ObterCaminhoAtributo(vendaItem, "CFOP"));
+        }
+
         private decimal ObterDecimal(string caminho)
         {
             decimal valor = 0;
