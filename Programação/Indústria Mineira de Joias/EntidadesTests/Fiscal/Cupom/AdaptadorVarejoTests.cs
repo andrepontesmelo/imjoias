@@ -43,11 +43,11 @@ namespace Entidades.Fiscal.Cupom.Tests
             Assert.AreEqual("2015-04-01#17248#27735", adaptador.Transformar().Id);
         }
 
-        //[TestMethod()]
-        //public void DeveAdaptarListaItens()
-        //{
-        //    Assert.AreEqual(28, adaptador.Transformar().Itens.Count);
-        //}
+        [TestMethod()]
+        public void DeveAdaptarListaItens()
+        {
+            Assert.AreEqual(1, adaptador.Transformar().Itens.Count);
+        }
 
         //[TestMethod()]
         //public void DeveAdaptarReferência()
