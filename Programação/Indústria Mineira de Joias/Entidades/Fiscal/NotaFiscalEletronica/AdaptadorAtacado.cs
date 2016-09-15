@@ -16,6 +16,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
             VendaFiscal entidade = new VendaFiscal(TipoVenda.NFe,
                 parser.LerDataEmissão(),
                 parser.LerId(),
+                parser.LerValorTotal(),
                 TransformarItens());
 
             return entidade;

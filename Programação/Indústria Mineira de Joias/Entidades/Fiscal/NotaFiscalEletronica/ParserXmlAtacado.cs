@@ -10,7 +10,13 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
         private static readonly string XML_CAMINHO_RAIZ = "/nfeProc/NFe/infNFe";
         private static readonly string XML_CAMINHO_VENDA = XML_CAMINHO_RAIZ + "/ide";
         private static readonly string XML_CAMINHO_ITENS = XML_CAMINHO_RAIZ + "/det";
+        private static readonly string XML_CAMINHO_TOTAIS = XML_CAMINHO_RAIZ + "/total/ICMSTot";
         private static readonly CultureInfo CULTURA_AMERICANA = new CultureInfo("en-US");
+
+        internal decimal LerValorTotal()
+        {
+            return ObterDecimal(XML_CAMINHO_TOTAIS + "/vNF");
+        }
 
         private string ObterCaminhoRaiz(int vendaItem)
         {
