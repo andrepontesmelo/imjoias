@@ -15,15 +15,29 @@ namespace Entidades.Fiscal.Cupom
 
         public VendaFiscal Transformar()
         {
-            List<VendaItemFiscal> itens = new List<VendaItemFiscal>();
-
             VendaFiscal entidade = new VendaFiscal(TipoVenda.Cupom, 
                 cupom.DataInicioEmissao, 
                 AdaptarId(cupom.DataInicioEmissao, cupom.NumeroContadorDocumentoEmitido, cupom.COO),
                 0,
-                itens);
+                AdaptarItens(cupom.Detalhes));
             
             return entidade;
+        }
+
+        private List<VendaItemFiscal> AdaptarItens(List<DetalheCupomFiscal> detalhes)
+        {
+            List<VendaItemFiscal> itens = new List<VendaItemFiscal>();
+
+            foreach (DetalheCupomFiscal detalhe in detalhes)
+                itens.Add(new VendaItemFiscal("referência",
+                    "descrição",
+                    0,
+                    TipoUnidade.Par,
+                    0,
+                    0,
+                    0));
+
+            return itens;
         }
 
         private string AdaptarId(DateTime dataInicioEmissao, int numeroContadorDocumentoEmitido, int coo)
