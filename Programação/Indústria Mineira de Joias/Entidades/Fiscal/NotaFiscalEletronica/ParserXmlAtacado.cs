@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Xml;
 
 namespace Entidades.Fiscal.NotaFiscalEletronica
@@ -9,6 +10,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
         private static readonly string XML_CAMINHO_RAIZ = "/nfeProc/NFe/infNFe";
         private static readonly string XML_CAMINHO_VENDA = XML_CAMINHO_RAIZ + "/ide";
         private static readonly string XML_CAMINHO_ITENS = XML_CAMINHO_RAIZ + "/det";
+        private static readonly CultureInfo CULTURA_AMERICANA = new CultureInfo("en-US");
 
         private string ObterCaminhoRaiz(int vendaItem)
         {
@@ -27,17 +29,28 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
 
         private decimal ObterDecimal(string caminho)
         {
-            return decimal.Parse(TrocarSeparaçãoDecimalVirgula(ObterTexto(caminho)));
-        }
+            decimal valor = 0;
+            string texto = ObterTexto(caminho);
 
-        private string TrocarSeparaçãoDecimalVirgula(string decimalUsandoPonto)
-        {
-            return decimalUsandoPonto.Replace('.', ',');
+            bool ok = decimal.TryParse(texto, NumberStyles.Any, CULTURA_AMERICANA, out valor);
+
+            if (!ok)
+                throw new Exception(string.Format("{0} não pode ser transformado em decimal.", texto));
+            
+            return valor;
         }
 
         private int ObterInteiro(string caminho)
         {
-            return int.Parse(TrocarSeparaçãoDecimalVirgula(ObterTexto(caminho)));
+            int valor = 0;
+            string texto = ObterTexto(caminho);
+
+            bool ok = int.TryParse(texto, NumberStyles.Any, CULTURA_AMERICANA, out valor);
+
+            if (!ok)
+                throw new Exception(string.Format("{0} não pode ser transformado em inteiro.", texto));
+
+            return valor;
         }
 
         public ParserXmlAtacado(string arquivo)
