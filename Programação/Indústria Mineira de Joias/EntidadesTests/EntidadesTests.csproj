@@ -36,6 +36,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="InterpretadorTDM, Version=1.0.6100.18250, Culture=neutral, PublicKeyToken=d5c84b9056b9f800, processorArchitecture=MSIL">
+      <HintPath>..\packages\InterpretadorTDM.1.0.3\lib\InterpretadorTDM.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -51,7 +55,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Fiscal\Cupom\AdaptadorVarejoTests.cs" />
+    <Compile Include="Fiscal\NotaFiscalEletronica\AdaptadorAtacadoTests.cs" />
+    <Compile Include="Fiscal\NotaFiscalEletronica\ParserXmlTests.cs" />
     <Compile Include="Fiscal\NotaFiscalEletronica\PdfTests.cs" />
+    <Compile Include="Pessoa\AbreviadorTests.cs" />
+    <Compile Include="Preço.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -59,6 +68,15 @@
       <Project>{E1A76D2D-85F3-4202-B316-3C6BDD3220F9}</Project>
       <Name>Entidades</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Arquivos\arquivo.tdm" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Arquivos\nfe.xml" />
+    <Content Include="Arquivos\nfe_gramas.xml" />
+    <Content Include="Arquivos\nfe_unidade.xml" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
