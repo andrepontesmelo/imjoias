@@ -17,7 +17,9 @@ namespace Entidades.Fiscal.Cupom
         {
             VendaFiscal entidade = new VendaFiscal(TipoVenda.Cupom, 
                 cupom.DataInicioEmissao, 
-                AdaptarId(cupom.DataInicioEmissao, cupom.NumeroContadorDocumentoEmitido, cupom.COO),
+                AdaptarId(cupom.DataInicioEmissao, 
+                cupom.NumeroContadorDocumentoEmitido, 
+                cupom.COO),
                 cupom.ValorTotalLiquido,
                 AdaptarItens(cupom.Detalhes));
             
@@ -29,17 +31,21 @@ namespace Entidades.Fiscal.Cupom
             List<VendaItemFiscal> itens = new List<VendaItemFiscal>();
 
             foreach (DetalheCupomFiscal detalhe in detalhes)
-                itens.Add(new VendaItemFiscal(AdaptarReferência(detalhe),
-                    detalhe.Descricao.Trim(),
-                    null,
-                    TipoUnidadeInterpretação.Interpretar(detalhe.Unidade),
-                    detalhe.Quantidade,
-                    detalhe.ValorUnitario,
-                    detalhe.ValorTotalLiquido));
+                itens.Add(AdaptarItem(detalhe));
 
             return itens;
         }
 
+        private VendaItemFiscal AdaptarItem(DetalheCupomFiscal detalhe)
+        {
+            return new VendaItemFiscal(AdaptarReferência(detalhe),
+                                detalhe.Descricao.Trim(),
+                                null,
+                                TipoUnidadeInterpretação.Interpretar(detalhe.Unidade),
+                                detalhe.Quantidade,
+                                detalhe.ValorUnitario,
+                                detalhe.ValorTotalLiquido);
+        }
 
         private string AdaptarReferência(DetalheCupomFiscal detalhe)
         {
