@@ -13,17 +13,22 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
 
         public VendaFiscal Transformar()
         {
+            VendaFiscal entidade = new VendaFiscal(TipoVenda.NFe,
+                parser.LerDataEmissão(),
+                parser.LerId(),
+                TransformarItens());
+
+            return entidade;
+        }
+
+        private List<VendaItemFiscal> TransformarItens()
+        {
             List<VendaItemFiscal> itens = new List<VendaItemFiscal>(parser.QuantidadeVendaItem);
 
             for (int x = 1; x <= parser.QuantidadeVendaItem; x++)
                 itens.Add(new VendaItemFiscal(parser.ObterReferência(x), parser.ObterDescrição(x)));
 
-            VendaFiscal entidade = new VendaFiscal(TipoVenda.NFe, 
-                parser.LerDataEmissão(), 
-                parser.LerId(),
-                itens);
-
-            return entidade;
+            return itens;
         }
     }
 }
