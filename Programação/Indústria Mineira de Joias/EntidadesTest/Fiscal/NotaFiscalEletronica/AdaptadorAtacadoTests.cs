@@ -61,5 +61,11 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         {
             Assert.AreEqual(5101, adaptador.Transformar().Itens[0].CFOP);
         }
+
+        [TestMethod()]
+        public void DeveAdaptarTipoUnidade()
+        {
+            Assert.AreEqual(TipoUnidade.Par, adaptador.Transformar().Itens[0].TipoUnidade);
+        }
     }
 }

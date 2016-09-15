@@ -17,5 +17,7 @@
         public string Descrição => descrição;
 
         public int CFOP => cfop;
+
+        public TipoUnidade TipoUnidade { get; set; }
     }
 }
