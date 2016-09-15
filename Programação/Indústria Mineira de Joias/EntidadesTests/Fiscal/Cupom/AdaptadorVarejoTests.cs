@@ -40,7 +40,7 @@ namespace Entidades.Fiscal.Cupom.Tests
         [TestMethod()]
         public void DeveAdaptarId()
         {
-            Assert.AreEqual("NFe3112345678929000103550010000003481006016004", adaptador.Transformar().Id);
+            Assert.AreEqual("2015-04-01#17248#27735", adaptador.Transformar().Id);
         }
 
         //[TestMethod()]
