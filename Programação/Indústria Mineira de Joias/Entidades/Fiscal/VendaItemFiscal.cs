@@ -23,5 +23,7 @@
         public int CFOP => cfop;
         public TipoUnidade TipoUnidade => tipoUnidade;
         public decimal Quantidade => quantidade;
+
+        public double ValorUnitário { get; set; }
     }
 }
