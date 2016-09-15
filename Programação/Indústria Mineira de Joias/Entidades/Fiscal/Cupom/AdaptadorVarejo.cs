@@ -33,7 +33,7 @@ namespace Entidades.Fiscal.Cupom
                     detalhe.Descricao.Trim(),
                     null,
                     TipoUnidadeInterpretação.Interpretar(detalhe.Unidade),
-                    0,
+                    detalhe.Quantidade,
                     0,
                     0));
 
