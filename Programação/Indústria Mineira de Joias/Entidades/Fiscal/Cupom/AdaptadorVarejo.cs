@@ -18,7 +18,7 @@ namespace Entidades.Fiscal.Cupom
             VendaFiscal entidade = new VendaFiscal(TipoVenda.Cupom, 
                 cupom.DataInicioEmissao, 
                 AdaptarId(cupom.DataInicioEmissao, cupom.NumeroContadorDocumentoEmitido, cupom.COO),
-                0,
+                cupom.ValorTotalLiquido,
                 AdaptarItens(cupom.Detalhes));
             
             return entidade;
