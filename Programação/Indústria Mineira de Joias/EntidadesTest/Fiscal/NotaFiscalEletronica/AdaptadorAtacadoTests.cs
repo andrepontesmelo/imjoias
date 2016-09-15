@@ -49,5 +49,11 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         {
             Assert.AreEqual("102130001008", adaptador.Transformar().Itens[0].Referência);
         }
+
+        [TestMethod()]
+        public void DeveAdaptarDescrição()
+        {
+            Assert.AreEqual("Anel de Ouro", adaptador.Transformar().Itens[0].Descrição);
+        }
     }
 }
