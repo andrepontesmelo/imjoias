@@ -18,6 +18,6 @@
         public string Referência => referência;
         public string Descrição => descrição;
         public int CFOP => cfop;
-        public TipoUnidade TipoUnidade => tipoUnidade;
+        public TipoUnidade Quantidade => tipoUnidade;
     }
 }
