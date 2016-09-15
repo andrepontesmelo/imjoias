@@ -55,11 +55,11 @@ namespace Entidades.Fiscal.Cupom.Tests
             Assert.AreEqual("10800300100", adaptador.Transformar().Itens[0].Referência);
         }
 
-        //[TestMethod()]
-        //public void DeveAdaptarDescrição()
-        //{
-        //    Assert.AreEqual("Anel de Ouro", adaptador.Transformar().Itens[0].Descrição);
-        //}
+        [TestMethod()]
+        public void DeveAdaptarDescrição()
+        {
+            Assert.AreEqual("Medalha de Ouro", adaptador.Transformar().Itens[0].Descrição);
+        }
 
         //[TestMethod()]
         //public void DeveAdaptarCFOP()
