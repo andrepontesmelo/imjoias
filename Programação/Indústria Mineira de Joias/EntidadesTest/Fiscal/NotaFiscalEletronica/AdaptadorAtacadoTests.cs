@@ -43,5 +43,11 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         {
             Assert.AreEqual(28, adaptador.Transformar().Itens.Count);
         }
+
+        [TestMethod()]
+        public void DeveAdaptarReferência()
+        {
+            Assert.AreEqual("102130001008", adaptador.Transformar().Itens[0].Referência);
+        }
     }
 }
