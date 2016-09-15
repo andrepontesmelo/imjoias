@@ -35,7 +35,7 @@ namespace Entidades.Fiscal.Cupom
                     TipoUnidadeInterpretação.Interpretar(detalhe.Unidade),
                     detalhe.Quantidade,
                     detalhe.ValorUnitario,
-                    0));
+                    detalhe.ValorTotalLiquido));
 
             return itens;
         }
