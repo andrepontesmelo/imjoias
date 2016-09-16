@@ -16,12 +16,7 @@ namespace Entidades.Fiscal.Importação
         {
         }
 
-        public ResultadoImportação ImportarXmls(string pasta, BackgroundWorker thread)
-        {
-            return ImportarXmls(pasta, SearchOption.AllDirectories, thread);
-        }
-
-        public ResultadoImportação ImportarXmls(string pasta, SearchOption opções, BackgroundWorker thread)
+        public override ResultadoImportação ImportarArquivos(string pasta, SearchOption opções, BackgroundWorker thread)
         {
             ResultadoImportação resultado = new ResultadoImportação(DESCRIÇÃO);
 

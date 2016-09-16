@@ -99,12 +99,22 @@ namespace Apresentação.Fiscal
 
         private void Thread_ImportarXMLAtacado(object sender, DoWorkEventArgs e)
         {
-            e.Result = new ImportadorXMLAtacado().ImportarXmls(e.Argument as string, sender as BackgroundWorker);
+            e.Result = new ImportadorXMLAtacado().ImportarArquivos(e.Argument as string, sender as BackgroundWorker);
+        }
+
+        private void Thread_ImportarTDMVarejo(object sender, DoWorkEventArgs e)
+        {
+            e.Result = new ImportadorTDMVarejo().ImportarArquivos(e.Argument as string, sender as BackgroundWorker);
         }
 
         private void Thread_ImportarPDFAtacado(object sender, DoWorkEventArgs e)
         {
-            e.Result = new ImportadorPDFAtacado().ImportarPdfs(e.Argument as string, sender as BackgroundWorker);
+            e.Result = new ImportadorPDFAtacado().ImportarArquivos(e.Argument as string, sender as BackgroundWorker);
+        }
+
+        private void opçãoImportaçãoTDMVarejo_Click(object sender, EventArgs e)
+        {
+            IniciarImportação(ImportadorTDMVarejo.DESCRIÇÃO, "diretórioInicialTDMVarejo", Thread_ImportarTDMVarejo);
         }
     }
 }

@@ -20,5 +20,12 @@ namespace Entidades.Fiscal.Importação
             if (arquivos.Count < 100 || resultado.TotalArquivos % 10 == 0)
                 thread.ReportProgress(100 * resultado.TotalArquivos / arquivos.Count);
         }
+
+        public virtual ResultadoImportação ImportarArquivos(string pasta, BackgroundWorker thread)
+        {
+            return ImportarArquivos(pasta, SearchOption.AllDirectories, thread);
+        }
+
+        public abstract ResultadoImportação ImportarArquivos(string pasta, SearchOption opções, BackgroundWorker thread);
     }
 }

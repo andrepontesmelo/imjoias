@@ -253,6 +253,7 @@
     <Compile Include="Fiscal\Cupom\AdaptadorVarejo.cs" />
     <Compile Include="Fiscal\Importação\Importador.cs" />
     <Compile Include="Fiscal\Importação\ImportadorPDFAtacado.cs" />
+    <Compile Include="Fiscal\Importação\ImportadorTDMVarejo.cs" />
     <Compile Include="Fiscal\Importação\ImportadorXMLAtacado.cs" />
     <Compile Include="Fiscal\Importação\ResultadoImportação.cs" />
     <Compile Include="Fiscal\ITransformavelVendaFiscal.cs" />

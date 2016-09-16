@@ -1,8 +1,7 @@
 ﻿using Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf;
-using Entidades.Fiscal.NotaFiscalEletronica.Excessões;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
+using System.IO;
 
 namespace Entidades.Fiscal.Importação
 {
@@ -10,18 +9,17 @@ namespace Entidades.Fiscal.Importação
     {
         public static readonly string DESCRIÇÃO = "Importação de PDF's de atacado";
 
-        public ResultadoImportação ImportarPdfs(string caminho, BackgroundWorker thread)
+        public override ResultadoImportação ImportarArquivos(string caminho, SearchOption opções, BackgroundWorker thread)
         {
             ResultadoImportação resultado = new ResultadoImportação(DESCRIÇÃO);
 
-            List<string> arquivos = ObterArquivos(caminho, "*.pdf", System.IO.SearchOption.AllDirectories);
+            List<string> arquivos = ObterArquivos(caminho, "*.pdf", opções);
             List<LeitorPdf> pdfs = LeitorPdf.Interpretar(arquivos, resultado, thread);
 
             NfePdf.CadastrarLimpandoCache(pdfs, thread);
 
             return resultado;
         }
-
 
         private List<LeitorPdf> FiltrarCadastrados(List<LeitorPdf> pdfs, List<long> pdfsCadastrados)
         {

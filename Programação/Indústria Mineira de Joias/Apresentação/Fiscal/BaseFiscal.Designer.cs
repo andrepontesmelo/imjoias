@@ -30,10 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseFiscal));
             this.quadro1 = new Apresentação.Formulários.Quadro();
+            this.opçãoImportaçãoPDFAtacado = new Apresentação.Formulários.Opção();
             this.opçãoImportaçãoXMLAtacado = new Apresentação.Formulários.Opção();
             this.opçãoImportaçãoTDMVarejo = new Apresentação.Formulários.Opção();
             this.títuloBaseInferior1 = new Apresentação.Formulários.TítuloBaseInferior();
-            this.opçãoImportaçãoPDFAtacado = new Apresentação.Formulários.Opção();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.SuspendLayout();
@@ -64,6 +64,20 @@
             this.quadro1.Tamanho = 30;
             this.quadro1.Título = "Importação";
             // 
+            // opçãoImportaçãoPDFAtacado
+            // 
+            this.opçãoImportaçãoPDFAtacado.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoImportaçãoPDFAtacado.Descrição = "Atacado - PDF";
+            this.opçãoImportaçãoPDFAtacado.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoImportaçãoPDFAtacado.Imagem")));
+            this.opçãoImportaçãoPDFAtacado.Location = new System.Drawing.Point(7, 50);
+            this.opçãoImportaçãoPDFAtacado.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoImportaçãoPDFAtacado.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoImportaçãoPDFAtacado.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoImportaçãoPDFAtacado.Name = "opçãoImportaçãoPDFAtacado";
+            this.opçãoImportaçãoPDFAtacado.Size = new System.Drawing.Size(150, 16);
+            this.opçãoImportaçãoPDFAtacado.TabIndex = 4;
+            this.opçãoImportaçãoPDFAtacado.Click += new System.EventHandler(this.opçãoImportaçãoPDFAtacado_Click);
+            // 
             // opçãoImportaçãoXMLAtacado
             // 
             this.opçãoImportaçãoXMLAtacado.BackColor = System.Drawing.Color.Transparent;
@@ -90,6 +104,7 @@
             this.opçãoImportaçãoTDMVarejo.Name = "opçãoImportaçãoTDMVarejo";
             this.opçãoImportaçãoTDMVarejo.Size = new System.Drawing.Size(150, 16);
             this.opçãoImportaçãoTDMVarejo.TabIndex = 2;
+            this.opçãoImportaçãoTDMVarejo.Click += new System.EventHandler(this.opçãoImportaçãoTDMVarejo_Click);
             // 
             // títuloBaseInferior1
             // 
@@ -104,20 +119,6 @@
             this.títuloBaseInferior1.Size = new System.Drawing.Size(591, 70);
             this.títuloBaseInferior1.TabIndex = 6;
             this.títuloBaseInferior1.Título = "Fiscal";
-            // 
-            // opçãoImportaçãoPDFAtacado
-            // 
-            this.opçãoImportaçãoPDFAtacado.BackColor = System.Drawing.Color.Transparent;
-            this.opçãoImportaçãoPDFAtacado.Descrição = "Atacado - PDF";
-            this.opçãoImportaçãoPDFAtacado.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoImportaçãoPDFAtacado.Imagem")));
-            this.opçãoImportaçãoPDFAtacado.Location = new System.Drawing.Point(7, 50);
-            this.opçãoImportaçãoPDFAtacado.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.opçãoImportaçãoPDFAtacado.MaximumSize = new System.Drawing.Size(150, 100);
-            this.opçãoImportaçãoPDFAtacado.MinimumSize = new System.Drawing.Size(150, 16);
-            this.opçãoImportaçãoPDFAtacado.Name = "opçãoImportaçãoPDFAtacado";
-            this.opçãoImportaçãoPDFAtacado.Size = new System.Drawing.Size(150, 16);
-            this.opçãoImportaçãoPDFAtacado.TabIndex = 4;
-            this.opçãoImportaçãoPDFAtacado.Click += new System.EventHandler(this.opçãoImportaçãoPDFAtacado_Click);
             // 
             // BaseFiscal
             // 
