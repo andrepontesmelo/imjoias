@@ -28,6 +28,11 @@ namespace Entidades.Fiscal
             this.itens = itens;
         }
 
+        internal static List<string> ObterIdsCadastrados()
+        {
+            return MapearStrings("select id from vendafiscal");
+        }
+
         public TipoVenda TipoVenda => tipoVenda;
         public DateTime DataEmissão => dataEmissão;
         public string Id => id;

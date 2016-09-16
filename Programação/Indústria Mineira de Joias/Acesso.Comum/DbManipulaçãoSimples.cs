@@ -536,6 +536,28 @@ namespace Acesso.Comum
             return resultado;
         }
 
+        protected static List<string> MapearStrings(string sql)
+        {
+            List<string> resultado = new List<string>();
+
+            IDbConnection conexão = Conexão;
+
+            using (IDbCommand cmd = conexão.CreateCommand())
+            {
+                cmd.CommandText = sql;
+
+                using (IDataReader leitor = cmd.ExecuteReader())
+                {
+                    while (leitor.Read())
+                        resultado.Add(leitor.GetString(0));
+
+                    if (!leitor.IsClosed)
+                        leitor.Close();
+                }
+            }
+
+            return resultado;
+        }
 
         protected static List<DbTipo> Mapear<DbTipo>(IDbCommand cmd) where DbTipo : new()
         {

@@ -24,6 +24,9 @@ namespace Entidades.Fiscal.Importação
         {
             List<string> arquivos = ObterArquivos(pasta, PADRÂO_ARQUIVO, opções);
             List<string> arquivosErro = new List<string>();
+
+            SortedSet<string> idsCadastrados = new SortedSet<string>(VendaFiscal.ObterIdsCadastrados());
+
             List<VendaFiscal> vendas = new List<VendaFiscal>();
 
             int x = 0;
@@ -37,7 +40,12 @@ namespace Entidades.Fiscal.Importação
                     ParserXmlAtacado xml = new ParserXmlAtacado(arquivo);
                     AdaptadorAtacado adaptador = new AdaptadorAtacado(xml);
                     VendaFiscal venda = adaptador.Transformar();
+
+                    if (idsCadastrados.Contains(venda.Id))
+                        continue;
+
                     venda.Cadastrar();
+                    idsCadastrados.Add(venda.Id);
 
                 } catch (Exception erro)
                 {
