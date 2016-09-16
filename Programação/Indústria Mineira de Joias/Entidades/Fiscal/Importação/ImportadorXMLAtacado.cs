@@ -35,7 +35,11 @@ namespace Entidades.Fiscal.Importação
                 x++;
                 try
                 {
-                    Console.WriteLine("Lendo arquivo " + arquivo + " " + x.ToString() + " de " + arquivos.Count.ToString());
+                    if (x % 10 == 0)
+                    {
+                        int porcentagem = 100 * x / arquivos.Count;
+                        Console.WriteLine(string.Format("{0}% - Interpretando {1} arquivos de NF-e", porcentagem, arquivos.Count));
+                    }
 
                     ParserXmlAtacado xml = new ParserXmlAtacado(arquivo);
                     AdaptadorAtacado adaptador = new AdaptadorAtacado(xml);
