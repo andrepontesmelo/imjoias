@@ -64,11 +64,12 @@ namespace Entidades.Fiscal
             {
                 cmd.Transaction = transação;
 
-                cmd.CommandText = string.Format("INSERT INTO vendafiscal (dataemissao, tipovenda, id, valortotal) values ({0}, {1}, {2}, {3})",
+                cmd.CommandText = string.Format("INSERT INTO vendafiscal (dataemissao, tipovenda, id, valortotal, nnf) values ({0}, {1}, {2}, {3}, {4})",
                     DbTransformar(dataEmissão),
                     DbTransformar(((char) tipoVenda).ToString()),
                     DbTransformar(id),
-                    DbTransformar(ValorTotal));
+                    DbTransformar(ValorTotal),
+                    DbTransformar(NNF));
 
                 cmd.ExecuteNonQuery();
             }
