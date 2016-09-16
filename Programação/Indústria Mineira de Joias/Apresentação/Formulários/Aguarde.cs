@@ -1,40 +1,18 @@
 using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace Apresentação.Formulários
 {
-	/// <example>
-	/// <code>
-	/// using (Aguarde aguarde = new Aguarde("Preparando...", 2))
-	/// {
-	///		aguarde.Show();
-	///		
-	///		// (...)
-	///		
-	///		aguarde.Passo("Realizando primeiro passo...");
-	///		
-	///		// (...)
-	///		
-	///		aguarde.Passo("Realizando passo final...");
-	///		
-	///		// (...)
-	/// }
-	/// </code>
-	/// </example>
-	public sealed class Aguarde : JanelaExplicativa
+    public sealed class Aguarde : JanelaExplicativa
 	{
         private DateTime últimoEvento = DateTime.Now;
 
-		private System.Windows.Forms.ProgressBar progresso;
-		private System.Windows.Forms.Label lblAção;
+		private ProgressBar progresso;
+		private Label lblAção;
 		private System.ComponentModel.IContainer components = null;
 
 		public Aguarde(string ação, int ações)
 		{
-			// This call is required by the Windows Form Designer.
 			InitializeComponent();
 
 			lblAção.Text = ação;
@@ -52,14 +30,11 @@ namespace Apresentação.Formulários
 			lblDescrição.Text = descrição;
 		}
 
-        /// <summary>
-        /// Deve ser chamado para abrir a janela. Tira necessidade e .Show() e .Refresh()
-        /// </summary>
         public void Abrir()
         {
             Show();
-            //Refresh();
             Update();
+
             Application.DoEvents();
         }
 
@@ -67,16 +42,22 @@ namespace Apresentação.Formulários
 		{
 			lblAção.Text = ação;
 			progresso.PerformStep();
-            //this.Refresh();
+
             Application.DoEvents();
 		}
 
-		public void Passo()
+        public void Passos(int valor)
+        {
+            progresso.Value = valor;
+
+            Application.DoEvents();
+        }
+
+        public void Passo()
 		{
             TimeSpan dif = DateTime.Now - últimoEvento;
 
-			progresso.PerformStep();
-            //this.Refresh();
+            progresso.PerformStep();
 
             if (dif.TotalSeconds > 10)
             {
@@ -85,19 +66,17 @@ namespace Apresentação.Formulários
             }
 		}
 
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
 		protected override void Dispose( bool disposing )
 		{
-			if( disposing )
-			{
-				if (components != null) 
-				{
-					components.Dispose();
-				}
-			}
-			base.Dispose( disposing );
+            if (disposing)
+            {
+                if (components != null)
+                {
+                    components.Dispose();
+                }
+            }
+
+			base.Dispose(disposing);
 		}
 
 		#region Designer generated code

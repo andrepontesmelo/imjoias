@@ -1,6 +1,7 @@
 ﻿using Entidades.Fiscal.NotaFiscalEletronica;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 
 namespace Entidades.Fiscal.Importação
@@ -13,51 +14,50 @@ namespace Entidades.Fiscal.Importação
         {
         }
 
-
-        public void ImportarXmls(string pasta)
+        public ResultadoImportação ImportarXmls(string pasta, BackgroundWorker thread)
         {
-            ImportarXmls(pasta, SearchOption.AllDirectories);
+            return ImportarXmls(pasta, SearchOption.AllDirectories, thread);
         }
 
-
-        public void ImportarXmls(string pasta, SearchOption opções)
+        public ResultadoImportação ImportarXmls(string pasta, SearchOption opções, BackgroundWorker thread)
         {
-            List<string> arquivos = ObterArquivos(pasta, PADRÂO_ARQUIVO, opções);
-            List<string> arquivosErro = new List<string>();
+            ResultadoImportação resultado = new ResultadoImportação("Importação de XML's fiscais de atacado");
 
+            List<string> arquivos = ObterArquivos(pasta, PADRÂO_ARQUIVO, opções);
+            
             SortedSet<string> idsCadastrados = new SortedSet<string>(VendaFiscal.ObterIdsCadastrados());
 
-            List<VendaFiscal> vendas = new List<VendaFiscal>();
-
-            int x = 0;
             foreach (string arquivo in arquivos)
             {
-                x++;
                 try
                 {
-                    if (x % 10 == 0)
-                    {
-                        int porcentagem = 100 * x / arquivos.Count;
-                        Console.WriteLine(string.Format("{0}% - Interpretando {1} arquivos de NF-e", porcentagem, arquivos.Count));
-                    }
+                    AtualizarPorcentagem(thread, resultado, arquivos);
 
-                    ParserXmlAtacado xml = new ParserXmlAtacado(arquivo);
-                    AdaptadorAtacado adaptador = new AdaptadorAtacado(xml);
-                    VendaFiscal venda = adaptador.Transformar();
+                    VendaFiscal venda = new AdaptadorAtacado(new ParserXmlAtacado(arquivo)).Transformar();
 
                     if (idsCadastrados.Contains(venda.Id))
+                    {
+                        resultado.ArquivosIgnorados.Add(arquivo);
                         continue;
+                    }
 
                     venda.Cadastrar();
                     idsCadastrados.Add(venda.Id);
-
-                } catch (Exception erro)
+                    resultado.ArquivosSucesso.Add(arquivo);
+                }
+                catch (Exception erro)
                 {
-                    arquivosErro.Add(arquivo);
+                    resultado.ArquivosFalhados.Add(String.Format("{0} - {1}", arquivo, erro.Message));
                 }
             }
 
-            Console.WriteLine(arquivosErro.ToString());
+            return resultado;
+        }
+
+        private static void AtualizarPorcentagem(BackgroundWorker thread, ResultadoImportação resultado, List<string> arquivos)
+        {
+            if (arquivos.Count < 100 || resultado.TotalArquivos % 10 == 0)
+                thread.ReportProgress(100 * resultado.TotalArquivos / arquivos.Count);
         }
     }
 }

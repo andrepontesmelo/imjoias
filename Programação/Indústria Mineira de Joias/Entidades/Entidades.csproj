@@ -254,6 +254,7 @@
     <Compile Include="Fiscal\Importação\Importador.cs" />
     <Compile Include="Fiscal\Importação\ImportadorPDFAtacado.cs" />
     <Compile Include="Fiscal\Importação\ImportadorXMLAtacado.cs" />
+    <Compile Include="Fiscal\Importação\ResultadoImportação.cs" />
     <Compile Include="Fiscal\ITransformavelVendaFiscal.cs" />
     <Compile Include="Fiscal\NotaFiscalEletronica\AdaptadorAtacado.cs" />
     <Compile Include="Fiscal\NotaFiscalEletronica\ArquivoPdf\CacheVendaPdf.cs" />
