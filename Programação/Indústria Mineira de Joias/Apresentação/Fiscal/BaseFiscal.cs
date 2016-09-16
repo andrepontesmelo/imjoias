@@ -1,4 +1,5 @@
 ﻿using Apresentação.Formulários;
+using Entidades.Configuração;
 using Entidades.Fiscal.Importação;
 using System;
 using System.Windows.Forms;
@@ -12,9 +13,13 @@ namespace Apresentação.Fiscal
             InitializeComponent();
         }
 
-        private string ObterDiretório()
+        private string ObterDiretório(string diretórioInicial)
         {
             FolderBrowserDialog janela = new FolderBrowserDialog();
+
+            if (!String.IsNullOrEmpty(diretórioInicial))
+                janela.SelectedPath = diretórioInicial;
+
             if (janela.ShowDialog() != DialogResult.OK)
                 return null;
 
@@ -23,7 +28,9 @@ namespace Apresentação.Fiscal
 
         private void opçãoImportaçãoXMLAtacado_Click(object sender, EventArgs e)
         {
-            string caminho = ObterDiretório();
+            ConfiguraçãoUsuário<string> diretórioInicial = new ConfiguraçãoUsuário<string>("diretórioInicialXmlAtacado", "");
+            string caminho = ObterDiretório(diretórioInicial);
+            diretórioInicial.Valor = caminho;
 
             if (caminho != null)
                 new ImportadorXMLAtacado().ImportarXmls(caminho);
@@ -31,7 +38,9 @@ namespace Apresentação.Fiscal
 
         private void opçãoImportaçãoPDFAtacado_Click(object sender, EventArgs e)
         {
-            string caminho = ObterDiretório();
+            ConfiguraçãoUsuário<string> diretórioInicial = new ConfiguraçãoUsuário<string>("diretórioInicialPdfAtacado", "");
+            string caminho = ObterDiretório(diretórioInicial);
+            diretórioInicial.Valor = caminho;
 
             string erros = null;
 
