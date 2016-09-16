@@ -2,6 +2,7 @@
 using Entidades.Configuração;
 using Entidades.Fiscal.Importação;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows.Forms;
@@ -10,7 +11,7 @@ namespace Apresentação.Fiscal
 {
     public partial class BaseFiscal : BaseInferior
     {
-        private Aguarde janelaAguarde;
+        private Dictionary<BackgroundWorker, Aguarde> hashAguarde = new Dictionary<BackgroundWorker, Aguarde>();
 
         public BaseFiscal()
         {
@@ -47,7 +48,7 @@ namespace Apresentação.Fiscal
 
             diretórioInicial.Valor = caminho;
 
-            IniciarThread(caminho, título, métodoExecução);
+            IniciarThreadJanelaAguarde(caminho, título, métodoExecução);
         }
 
         private void opçãoImportaçãoXMLAtacado_Click(object sender, EventArgs e)
@@ -55,39 +56,45 @@ namespace Apresentação.Fiscal
             IniciarImportação(ImportadorXMLAtacado.DESCRIÇÃO, "diretórioInicialXmlAtacado", Thread_ImportarXMLAtacado);
         }
 
-        private void IniciarImportação(object dESCRIÇÃO, string v, Action<object, DoWorkEventArgs> thread_ImportarXMLAtacado)
+        private void IniciarThreadJanelaAguarde(string caminho, string ação, DoWorkEventHandler métodoExecução)
         {
-            throw new NotImplementedException();
-        }
+            Aguarde aguarde = CriarJanelaAguarde(ação);
 
-        private void IniciarThread(string caminho, string título, DoWorkEventHandler métodoExecução)
-        {
-            MostrarJanelaAguarde(título);
             BackgroundWorker thread = new BackgroundWorker();
             thread.WorkerReportsProgress = true;
             thread.ProgressChanged += Thread_ProgressChanged;
             thread.RunWorkerCompleted += Thread_RunWorkerCompleted;
             thread.DoWork += métodoExecução;
             thread.RunWorkerAsync(caminho);
+
+            hashAguarde[thread] = aguarde;
+        }
+
+        private Aguarde CriarJanelaAguarde(string ação)
+        {
+            Aguarde janelaAguarde = new Aguarde(ação, 100);
+            janelaAguarde.TopMost = false;
+            janelaAguarde.Show(this);
+            return janelaAguarde;
         }
 
         private void Thread_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            janelaAguarde.Close();
+            ObterJanelaAguarde((BackgroundWorker) sender).Close();
 
             ResultadoImportação resultado = (ResultadoImportação)e.Result;
             Process.Start("notepad", resultado.GravarArquivoTxt(Versão.NomeVersãoAplicação));
         }
 
-        private void MostrarJanelaAguarde(string ação)
+        private Aguarde ObterJanelaAguarde(BackgroundWorker thread)
         {
-            janelaAguarde = new Aguarde(ação, 100);
-            janelaAguarde.Show(this);
+            return hashAguarde[thread];
         }
 
         private void Thread_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            janelaAguarde.Passos(e.ProgressPercentage, e.UserState as string);
+            Aguarde aguarde = ObterJanelaAguarde((BackgroundWorker) sender);
+            aguarde.Passos(e.ProgressPercentage, e.UserState as string);
         }
 
         private void Thread_ImportarXMLAtacado(object sender, DoWorkEventArgs e)
