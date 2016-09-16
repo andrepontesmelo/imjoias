@@ -17,6 +17,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
                 parser.LerDataEmissão(),
                 parser.LerId(),
                 parser.LerValorTotal(),
+                0,
                 TransformarItens());
 
             return entidade;

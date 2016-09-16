@@ -91,5 +91,11 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         {
             Assert.AreEqual(5800.06M, adaptador.Transformar().ValorTotal);
         }
+
+        [TestMethod()]
+        public void DeveAdaptarNNF()
+        {
+            Assert.AreEqual(348, adaptador.Transformar().NNF);
+        }
     }
 }

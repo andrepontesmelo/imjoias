@@ -11,6 +11,7 @@ namespace Entidades.Fiscal
         private TipoVenda tipoVenda;
         private string id;
         private decimal valorTotal;
+        private int? nnf;
 
         private List<VendaItemFiscal> itens;
 
@@ -19,12 +20,13 @@ namespace Entidades.Fiscal
         }
 
         public VendaFiscal(TipoVenda tipoVenda, DateTime dataEmissão, string id, 
-            decimal valorTotal, List<VendaItemFiscal> itens)
+            decimal valorTotal, int? nnf, List<VendaItemFiscal> itens)
         {
             this.tipoVenda = tipoVenda;
             this.dataEmissão = dataEmissão;
             this.id = id;
             this.valorTotal = valorTotal;
+            this.nnf = nnf;
             this.itens = itens;
         }
 
@@ -38,6 +40,7 @@ namespace Entidades.Fiscal
         public string Id => id;
         public List<VendaItemFiscal> Itens => itens;
         public decimal ValorTotal => valorTotal;
+        public int? NNF => nnf;
 
         public void Cadastrar()
         {
