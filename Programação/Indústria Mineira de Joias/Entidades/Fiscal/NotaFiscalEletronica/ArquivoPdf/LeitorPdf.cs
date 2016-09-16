@@ -1,6 +1,8 @@
-﻿using Entidades.Fiscal.NotaFiscalEletronica.Excessões;
+﻿using Entidades.Fiscal.Importação;
+using Entidades.Fiscal.NotaFiscalEletronica.Excessões;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Text.RegularExpressions;
 
@@ -61,28 +63,51 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf
             this.nfe = nfe;
         }
 
-        internal static List<LeitorPdf> Interpretar(List<string> arquivos, out List<ExcessãoNãoPodeExtrairNfeNomeArquivo> erros)
+        internal static List<LeitorPdf> Interpretar(List<string> arquivos, ResultadoImportação resultado, BackgroundWorker thread)
         {
-            List<LeitorPdf> lista = new List<LeitorPdf>();
-            erros = new List<ExcessãoNãoPodeExtrairNfeNomeArquivo>();
+            SortedSet<long> cadastrados = new SortedSet<long>(NfePdf.ObterNfes());
+            List<LeitorPdf> lidos = new List<LeitorPdf>();
 
             foreach (string arquivo in arquivos)
             {
-                try
-                {
-                    lista.Add(new LeitorPdf(arquivo));
-                } catch (ExcessãoNãoPodeExtrairNfeNomeArquivo erro)
-                {
-                    erros.Add(erro);
-                }
+                Importador.AtualizarPorcentagem(thread, resultado, arquivos);
+        
+                LeitorPdf leitor = TentaLerArquivo(resultado, arquivo, cadastrados);
+
+                if (leitor != null)
+                    lidos.Add(leitor);
             }
 
-            return lista;
+            return lidos;
+        }
+
+        private static LeitorPdf TentaLerArquivo(ResultadoImportação resultado, string arquivo, SortedSet<long> cadastrados)
+        {
+            try
+            {
+                LeitorPdf leitor = new LeitorPdf(arquivo);
+
+                if (cadastrados.Contains(leitor.Nfe.Value))
+                {
+                    resultado.ArquivosIgnorados.Add(leitor.ToString());
+                    return null;
+                }
+
+                resultado.ArquivosSucesso.Add(leitor.ToString());
+                cadastrados.Add(leitor.Nfe.Value);
+
+                return leitor;
+            }
+            catch (Exception erro)
+            {
+                resultado.AdicionarFalha(arquivo, erro);
+                return null;
+            }
         }
 
         public override string ToString()
         {
-            return string.Format("Nfe #{0}", Nfe);
+            return string.Format("Nfe #{0} - {1}", Nfe, NomeArquivo);
         }
     }
 }

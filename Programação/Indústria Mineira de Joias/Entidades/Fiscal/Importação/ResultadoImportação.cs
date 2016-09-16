@@ -6,51 +6,81 @@ namespace Entidades.Fiscal.Importação
 {
     public class ResultadoImportação
     {
-        private readonly static int TOTAL_CARACTERES_LINHA = 80;
-
         private List<string> arquivosFalhados;
         private List<string> arquivosSucesso;
         private List<string> arquivosIgnorados;
 
         private DateTime início;
+        private DateTime fim;
+        public TimeSpan TempoDecorrido => fim - início;
+
         private string descriçãoProcesso;
-       
-        public TimeSpan TempoDecorrido => DateTime.Now - início;
         public int TotalArquivos => arquivosSucesso.Count + arquivosFalhados.Count + arquivosIgnorados.Count;
+        private string linhasTraços;
+
+        private int ObterMáximoTamanhoColuna()
+        {
+            int tamanhoMáximo = 0;
+
+            tamanhoMáximo = ObtemTamanhoMáximo(tamanhoMáximo, arquivosFalhados);
+            tamanhoMáximo = ObtemTamanhoMáximo(tamanhoMáximo, arquivosSucesso);
+            tamanhoMáximo = ObtemTamanhoMáximo(tamanhoMáximo, arquivosIgnorados);
+
+            return tamanhoMáximo;
+        }
+
+        private int ObtemTamanhoMáximo(int tamanhoMáximo, List<string> arquivos)
+        {
+            foreach (string x in arquivos)
+                if (x.Length > tamanhoMáximo)
+                    tamanhoMáximo = x.Length;
+
+            return tamanhoMáximo;
+        }
 
         public ResultadoImportação(string descriçãoProcesso)
         {
+            this.descriçãoProcesso = descriçãoProcesso;
+            início = DateTime.Now;
             arquivosFalhados = new List<string>();
             arquivosSucesso = new List<string>();
             arquivosIgnorados = new List<string>();
-            this.descriçãoProcesso = descriçãoProcesso;
-
-            início = DateTime.Now;
         }
 
-        public string GravarArquivoTxt()
+        public string GravarArquivoTxt(string versão)
         {
+            fim = DateTime.Now;
+
             string arquivoTmp = Path.GetTempPath() + Guid.NewGuid().ToString() + ".txt";
-            string linhaTraços = new string('=', TOTAL_CARACTERES_LINHA);
+            linhasTraços = new string('=', ObterMáximoTamanhoColuna()) + '\n';
 
             using (StreamWriter escritor = new StreamWriter(arquivoTmp))
             {
-                escritor.WriteLine(descriçãoProcesso.ToUpper());
-                escritor.WriteLine(linhaTraços);
-                escritor.WriteLine();
-                escritor.WriteLine(string.Format("Tempo decorrido: {0}", ObterTempoLegível(TempoDecorrido)));
-
+                EscreveCabeçalho(escritor);
                 EscreveTaxas(escritor);
-                EscreveArquivos("Falhas", arquivosFalhados, linhaTraços, escritor);
-                EscreveArquivos("Sucesso", arquivosSucesso, linhaTraços, escritor);
-                EscreveArquivos("Ignorados", arquivosIgnorados, linhaTraços, escritor);
-                escritor.WriteLine(linhaTraços);
+                EscreveTodosArquivos(escritor);
 
-                escritor.WriteLine(string.Format("{0} - Processo iniciado em {1} e terminado em {2}",
+                escritor.WriteLine(string.Format("{0} - {1} - Processo iniciado em {2} e terminado em {3}", versão,
                     início.ToLongDateString(), início.ToLongTimeString(), DateTime.Now.ToLongTimeString()));
             }
 
             return arquivoTmp;
+        }
+
+        private void EscreveCabeçalho(StreamWriter escritor)
+        {
+            escritor.WriteLine(descriçãoProcesso.ToUpper());
+            escritor.WriteLine(linhasTraços);
+            escritor.WriteLine(string.Format("Tempo decorrido: {0}", ObterTempoLegível(TempoDecorrido)));
+        }
+
+        private void EscreveTodosArquivos(StreamWriter escritor)
+        {
+            EscreveArquivos("Falhas", arquivosFalhados, escritor);
+            EscreveArquivos("Sucesso", arquivosSucesso, escritor);
+            EscreveArquivos("Ignorados", arquivosIgnorados, escritor);
+
+            escritor.WriteLine(linhasTraços);
         }
 
         private void EscreveTaxas(StreamWriter escritor)
@@ -66,21 +96,26 @@ namespace Entidades.Fiscal.Importação
             EscreveTaxa(escritor, "Ignorados", arquivosIgnorados);
         }
 
+        internal void AdicionarFalha(string arquivo, Exception erro)
+        {
+            arquivosFalhados.Add(string.Format("{0} - {1}", arquivo, erro.Message));
+        }
+
         private void EscreveTaxa(StreamWriter escritor, string nome, List<string> arquivos)
         {
             escritor.WriteLine(string.Format("{0}: {1} / {2} ({3}%)", nome, arquivos.Count, TotalArquivos,
                 Math.Round((double)100 * arquivos.Count / TotalArquivos)));
         }
 
-        private void EscreveArquivos(string título, List<string> arquivos, string linhaTraços, StreamWriter escritor)
+        private void EscreveArquivos(string título, List<string> arquivos, StreamWriter escritor)
         {
             if (arquivos.Count == 0)
                 return;
 
             escritor.WriteLine();
-            escritor.WriteLine(linhaTraços);
+            escritor.WriteLine(linhasTraços);
             escritor.WriteLine(título);
-            escritor.WriteLine(linhaTraços);
+            escritor.WriteLine(linhasTraços);
 
             Adiciona(escritor, arquivos);
         }

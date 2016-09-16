@@ -46,9 +46,12 @@ namespace Apresentação.Formulários
             Application.DoEvents();
 		}
 
-        public void Passos(int valor)
+        public void Passos(int valor, string ação)
         {
             progresso.Value = valor;
+
+            if (!String.IsNullOrWhiteSpace(ação))
+                lblAção.Text = ação;
 
             Application.DoEvents();
         }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 
 namespace Entidades.Fiscal.Importação
@@ -14,5 +15,10 @@ namespace Entidades.Fiscal.Importação
             return arquivos;
         }
 
+        public static void AtualizarPorcentagem(BackgroundWorker thread, ResultadoImportação resultado, List<string> arquivos)
+        {
+            if (arquivos.Count < 100 || resultado.TotalArquivos % 10 == 0)
+                thread.ReportProgress(100 * resultado.TotalArquivos / arquivos.Count);
+        }
     }
 }

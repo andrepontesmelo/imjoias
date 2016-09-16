@@ -10,6 +10,8 @@ namespace Entidades.Fiscal.Importação
     {
         public static readonly string PADRÂO_ARQUIVO = "*.xml";
 
+        public static readonly string DESCRIÇÃO = "Importação de XML's de atacado";
+
         public ImportadorXMLAtacado()
         {
         }
@@ -21,7 +23,7 @@ namespace Entidades.Fiscal.Importação
 
         public ResultadoImportação ImportarXmls(string pasta, SearchOption opções, BackgroundWorker thread)
         {
-            ResultadoImportação resultado = new ResultadoImportação("Importação de XML's fiscais de atacado");
+            ResultadoImportação resultado = new ResultadoImportação(DESCRIÇÃO);
 
             List<string> arquivos = ObterArquivos(pasta, PADRÂO_ARQUIVO, opções);
             
@@ -47,17 +49,11 @@ namespace Entidades.Fiscal.Importação
                 }
                 catch (Exception erro)
                 {
-                    resultado.ArquivosFalhados.Add(String.Format("{0} - {1}", arquivo, erro.Message));
+                    resultado.AdicionarFalha(arquivo, erro);
                 }
             }
 
             return resultado;
-        }
-
-        private static void AtualizarPorcentagem(BackgroundWorker thread, ResultadoImportação resultado, List<string> arquivos)
-        {
-            if (arquivos.Count < 100 || resultado.TotalArquivos % 10 == 0)
-                thread.ReportProgress(100 * resultado.TotalArquivos / arquivos.Count);
         }
     }
 }

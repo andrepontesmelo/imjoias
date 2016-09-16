@@ -2,11 +2,8 @@
 using Entidades.Configuração;
 using Entidades.Fiscal.Importação;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.IO;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Apresentação.Fiscal
@@ -35,23 +32,42 @@ namespace Apresentação.Fiscal
             return janela.SelectedPath;
         }
 
-        private void opçãoImportaçãoXMLAtacado_Click(object sender, EventArgs e)
+        private void opçãoImportaçãoPDFAtacado_Click(object sender, EventArgs e)
         {
-            ConfiguraçãoUsuário<string> diretórioInicial = new ConfiguraçãoUsuário<string>("diretórioInicialXmlAtacado", "");
-            string caminho = ObterDiretório(diretórioInicial, "Selecione a pasta para importação de XML's de NF-e de atacado");
+            IniciarImportação(ImportadorPDFAtacado.DESCRIÇÃO, "diretórioInicialPdfAtacado", Thread_ImportarPDFAtacado);
+        }
+
+        private void IniciarImportação(string título, string configuraçãoDiretórioInicial, DoWorkEventHandler métodoExecução)
+        {
+            ConfiguraçãoUsuário<string> diretórioInicial = new ConfiguraçãoUsuário<string>(configuraçãoDiretórioInicial, "");
+            string caminho = ObterDiretório(diretórioInicial, string.Format("Selecione a pasta para {0}", título));
 
             if (caminho == null)
                 return;
 
             diretórioInicial.Valor = caminho;
 
-            MostrarJanelaAguarde("Importação de XML's de atacado");
+            IniciarThread(caminho, título, métodoExecução);
+        }
 
+        private void opçãoImportaçãoXMLAtacado_Click(object sender, EventArgs e)
+        {
+            IniciarImportação(ImportadorXMLAtacado.DESCRIÇÃO, "diretórioInicialXmlAtacado", Thread_ImportarXMLAtacado);
+        }
+
+        private void IniciarImportação(object dESCRIÇÃO, string v, Action<object, DoWorkEventArgs> thread_ImportarXMLAtacado)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void IniciarThread(string caminho, string título, DoWorkEventHandler métodoExecução)
+        {
+            MostrarJanelaAguarde(título);
             BackgroundWorker thread = new BackgroundWorker();
             thread.WorkerReportsProgress = true;
             thread.ProgressChanged += Thread_ProgressChanged;
             thread.RunWorkerCompleted += Thread_RunWorkerCompleted;
-            thread.DoWork += Thread_ImportarXMLAtacado;
+            thread.DoWork += métodoExecução;
             thread.RunWorkerAsync(caminho);
         }
 
@@ -60,7 +76,7 @@ namespace Apresentação.Fiscal
             janelaAguarde.Close();
 
             ResultadoImportação resultado = (ResultadoImportação)e.Result;
-            Process.Start("notepad", resultado.GravarArquivoTxt());
+            Process.Start("notepad", resultado.GravarArquivoTxt(Versão.NomeVersãoAplicação));
         }
 
         private void MostrarJanelaAguarde(string ação)
@@ -71,7 +87,7 @@ namespace Apresentação.Fiscal
 
         private void Thread_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            janelaAguarde.Passos(e.ProgressPercentage);
+            janelaAguarde.Passos(e.ProgressPercentage, e.UserState as string);
         }
 
         private void Thread_ImportarXMLAtacado(object sender, DoWorkEventArgs e)
@@ -79,24 +95,9 @@ namespace Apresentação.Fiscal
             e.Result = new ImportadorXMLAtacado().ImportarXmls(e.Argument as string, sender as BackgroundWorker);
         }
 
-        private void opçãoImportaçãoPDFAtacado_Click(object sender, EventArgs e)
+        private void Thread_ImportarPDFAtacado(object sender, DoWorkEventArgs e)
         {
-            ConfiguraçãoUsuário<string> diretórioInicial = new ConfiguraçãoUsuário<string>("diretórioInicialPdfAtacado", "");
-            string caminho = ObterDiretório(diretórioInicial, "Selecione a pasta para importação de PDF's das notas fiscais de atacado");
-
-            if (caminho == null)
-                return;
-
-            diretórioInicial.Valor = caminho;
-
-            string erros = null;
-
-            AguardeDB.Mostrar();
-            erros = new ImportadorPDFAtacado().ImportarPdfs(caminho);
-            AguardeDB.Fechar();
-
-            if (!String.IsNullOrEmpty(erros))
-                MessageBox.Show(this, erros, "Resultado",  MessageBoxButtons.OK, MessageBoxIcon.Information);
+            e.Result = new ImportadorPDFAtacado().ImportarPdfs(e.Argument as string, sender as BackgroundWorker);
         }
     }
 }

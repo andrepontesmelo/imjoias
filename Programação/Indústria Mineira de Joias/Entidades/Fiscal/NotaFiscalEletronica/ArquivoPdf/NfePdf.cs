@@ -1,5 +1,7 @@
 ﻿using Acesso.Comum;
 using System.Collections.Generic;
+using System;
+using System.ComponentModel;
 
 namespace Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf
 {
@@ -35,6 +37,13 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf
             return códigos;
         }
 
+        internal static void CadastrarLimpandoCache(List<LeitorPdf> pdfs, BackgroundWorker thread)
+        {
+            LimparCache();
+            Cadastrar(pdfs, thread);
+            CacheVendaPdf.Instância.Recarregar();
+        }
+
         public static void LimparCache()
         {
             códigos = null;
@@ -45,10 +54,15 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf
             return new NfePdf(arquivo);
         }
 
-        internal static void Cadastrar(List<LeitorPdf> pdfsFiltrados)
+        internal static void Cadastrar(List<LeitorPdf> pdfs, BackgroundWorker thread)
         {
-            foreach (LeitorPdf pdf in pdfsFiltrados)
+            int x = 0;
+
+            foreach (LeitorPdf pdf in pdfs)
+            {
                 DeArquivo(pdf).Cadastrar();
+                thread.ReportProgress(100 * ++x / pdfs.Count, string.Format("Cadastrando {0} pdfs no banco de dados", pdfs.Count));
+            }
         }
 
         public static NfePdf Obter(long venda)

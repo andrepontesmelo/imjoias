@@ -354,12 +354,12 @@ namespace Apresentação.Formulários
             // Dispara o evento
 			AoCarregarCompletamente(splash);
 
-            this.Text = "Indústria Mineira de Joias " + Versão.Descrição;
+            this.Text = Versão.NomeVersãoAplicação;
 
 #if DEBUG
             this.Text += " @ " + Acesso.MySQL.MySQLUsuários.Host;
 #endif
-            new Entidades.Configuração.ConfiguraçãoUsuário<string>("VersãoTítular", Versão.Descrição).Valor = Versão.Descrição;
+            new Entidades.Configuração.ConfiguraçãoUsuário<string>("VersãoTítular", Versão.VersãoNumérica).Valor = Versão.VersãoNumérica;
 
             this.Refresh();
 			
