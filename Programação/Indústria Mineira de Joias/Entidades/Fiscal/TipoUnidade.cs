@@ -1,6 +1,6 @@
 ﻿namespace Entidades.Fiscal
 {
-    public enum TipoUnidade
+    public enum TipoUnidade : int
     {
         Pca,
         Par,

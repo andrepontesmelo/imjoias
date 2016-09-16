@@ -129,6 +129,7 @@ namespace Acesso.Comum
             if (obj is string) return DbTransformar((string)obj);
             if (obj is DateTime) return DbTransformar((DateTime)obj);
             if (obj is Double) return DbTransformar((Double)obj);
+            if (obj is Decimal) return DbTransformar((Decimal)obj);
             if (obj is Int32) return DbTransformar((Int32)obj);
             if (obj is Int16) return DbTransformar((Int16)obj);
             if (obj is Int64) return DbTransformar((Int64)obj);
@@ -205,6 +206,14 @@ namespace Acesso.Comum
 #endif
         }
 
+        protected internal static string DbTransformar(decimal d)
+        {
+#if PREFIXAR_NÚMERO
+            return "'" + d.ToString(NumberFormatInfo.InvariantInfo) + "'";
+#else
+            return d.ToString(NumberFormatInfo.InvariantInfo);
+#endif
+        }
         protected internal static string DbTransformar(long l)
         {
 #if PREFIXAR_NÚMERO

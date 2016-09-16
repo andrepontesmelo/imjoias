@@ -37,9 +37,9 @@ namespace Entidades.Fiscal.Importação
                     ParserXmlAtacado xml = new ParserXmlAtacado(arquivo);
                     AdaptadorAtacado adaptador = new AdaptadorAtacado(xml);
                     VendaFiscal venda = adaptador.Transformar();
-                    vendas.Add(venda);
+                    venda.Cadastrar();
 
-                } catch (System.Xml.XmlException erroXml)
+                } catch (Exception erro)
                 {
                     arquivosErro.Add(arquivo);
                 }
