@@ -12,6 +12,7 @@ namespace Entidades.Fiscal
         private string id;
         private decimal valorTotal;
         private int? nnf;
+        private string emitidoPorCNPJ;
 
         private List<VendaItemFiscal> itens;
 
@@ -20,7 +21,7 @@ namespace Entidades.Fiscal
         }
 
         public VendaFiscal(TipoVenda tipoVenda, DateTime dataEmissão, string id, 
-            decimal valorTotal, int? nnf, List<VendaItemFiscal> itens)
+            decimal valorTotal, int? nnf, string emitidoPorCNPJ, List<VendaItemFiscal> itens)
         {
             this.tipoVenda = tipoVenda;
             this.dataEmissão = dataEmissão;
@@ -28,6 +29,7 @@ namespace Entidades.Fiscal
             this.valorTotal = valorTotal;
             this.nnf = nnf;
             this.itens = itens;
+            this.emitidoPorCNPJ = emitidoPorCNPJ;
         }
 
         internal static List<string> ObterIdsCadastrados()
@@ -41,6 +43,11 @@ namespace Entidades.Fiscal
         public List<VendaItemFiscal> Itens => itens;
         public decimal ValorTotal => valorTotal;
         public int? NNF => nnf;
+
+        public bool EmitidoPorEstaEmpresa => emitidoPorCNPJ.Equals(Configuração.DadosGlobais.Instância.CNPJEmpresa);
+
+        public int ContadorDocumentoEmitido { get; set; }
+        public int COO { get; set; }
 
         public void Cadastrar()
         {

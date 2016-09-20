@@ -97,5 +97,17 @@ namespace Entidades.Fiscal.Cupom.Tests
         {
             Assert.AreEqual(2799.57M, adaptador.Transformar().ValorTotal);
         }
+
+        [TestMethod()]
+        public void DeveAdaptarContadorDocumentoEmitido()
+        {
+            Assert.AreEqual(17248, adaptador.Transformar().ContadorDocumentoEmitido);
+        }
+
+        [TestMethod()]
+        public void DeveAdaptarCOO()
+        {
+            Assert.AreEqual(27735, adaptador.Transformar().COO);
+        }
     }
 }

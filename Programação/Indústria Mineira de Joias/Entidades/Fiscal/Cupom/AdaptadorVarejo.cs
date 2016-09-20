@@ -22,6 +22,7 @@ namespace Entidades.Fiscal.Cupom
                 cupom.COO),
                 cupom.ValorTotalLiquido,
                 null,
+                null,
                 AdaptarItens(cupom.Detalhes));
             
             return entidade;

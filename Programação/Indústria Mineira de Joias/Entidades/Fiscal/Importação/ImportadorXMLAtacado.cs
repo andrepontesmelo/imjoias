@@ -32,7 +32,8 @@ namespace Entidades.Fiscal.Importação
 
                     VendaFiscal venda = new AdaptadorAtacado(new ParserXmlAtacado(arquivo)).Transformar();
 
-                    if (idsCadastrados.Contains(venda.Id))
+                    if (idsCadastrados.Contains(venda.Id)
+                        || !venda.EmitidoPorEstaEmpresa)
                     {
                         resultado.ArquivosIgnorados.Add(arquivo);
                         continue;

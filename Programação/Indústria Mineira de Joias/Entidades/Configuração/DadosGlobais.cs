@@ -279,6 +279,8 @@ namespace Entidades.Configuração
             }
         }
 
+        public string CNPJEmpresa => cnpjEmpresa.Valor;
+
         #endregion
 
         #region Manipulação não suportada
