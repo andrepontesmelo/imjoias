@@ -18,6 +18,8 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
                 parser.LerId(),
                 parser.LerValorTotal(),
                 parser.LerNNF(),
+                null,
+                null,
                 parser.LerCNPJEmitente(),
                 TransformarItens());
 

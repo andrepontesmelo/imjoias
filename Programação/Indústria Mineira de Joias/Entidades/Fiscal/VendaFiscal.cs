@@ -13,6 +13,8 @@ namespace Entidades.Fiscal
         private decimal valorTotal;
         private int? nnf;
         private string emitidoPorCNPJ;
+        private int? coo;
+        private int? contadorDocumentoEmitido;
 
         private List<VendaItemFiscal> itens;
 
@@ -21,13 +23,16 @@ namespace Entidades.Fiscal
         }
 
         public VendaFiscal(TipoVenda tipoVenda, DateTime dataEmissão, string id, 
-            decimal valorTotal, int? nnf, string emitidoPorCNPJ, List<VendaItemFiscal> itens)
+            decimal valorTotal, int? nnf, int? coo, int? contadorDocumentoEmitido, 
+            string emitidoPorCNPJ, List<VendaItemFiscal> itens)
         {
             this.tipoVenda = tipoVenda;
             this.dataEmissão = dataEmissão;
             this.id = id;
             this.valorTotal = valorTotal;
             this.nnf = nnf;
+            this.coo = coo;
+            this.contadorDocumentoEmitido = contadorDocumentoEmitido;
             this.itens = itens;
             this.emitidoPorCNPJ = emitidoPorCNPJ;
         }
@@ -43,11 +48,9 @@ namespace Entidades.Fiscal
         public List<VendaItemFiscal> Itens => itens;
         public decimal ValorTotal => valorTotal;
         public int? NNF => nnf;
-
         public bool EmitidoPorEstaEmpresa => emitidoPorCNPJ.Equals(Configuração.DadosGlobais.Instância.CNPJEmpresa);
-
-        public int ContadorDocumentoEmitido { get; set; }
-        public int COO { get; set; }
+        public int? ContadorDocumentoEmitido => contadorDocumentoEmitido;
+        public int? COO => coo;
 
         public void Cadastrar()
         {
@@ -71,12 +74,14 @@ namespace Entidades.Fiscal
             {
                 cmd.Transaction = transação;
 
-                cmd.CommandText = string.Format("INSERT INTO vendafiscal (dataemissao, tipovenda, id, valortotal, nnf) values ({0}, {1}, {2}, {3}, {4})",
+                cmd.CommandText = string.Format("INSERT INTO vendafiscal (dataemissao, tipovenda, id, valortotal, nnf, coo, contadordocumentoemitido) values ({0}, {1}, {2}, {3}, {4}, {5}, {6})",
                     DbTransformar(dataEmissão),
                     DbTransformar(((char) tipoVenda).ToString()),
                     DbTransformar(id),
                     DbTransformar(ValorTotal),
-                    DbTransformar(NNF));
+                    DbTransformar(NNF),
+                    DbTransformar(COO),
+                    DbTransformar(ContadorDocumentoEmitido));
 
                 cmd.ExecuteNonQuery();
             }
