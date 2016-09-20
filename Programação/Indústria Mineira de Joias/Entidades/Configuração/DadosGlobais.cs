@@ -63,6 +63,8 @@ namespace Entidades.Configuração
 
         private ConfiguraçãoGlobal<string> parcelamento;
 
+        private ConfiguraçãoGlobal<string> cnpjEmpresa;
+
         #region Singleton
         private static DadosGlobais instância = null;
 
@@ -102,6 +104,7 @@ namespace Entidades.Configuração
             prazoConsignadoPadrão = new ConfiguraçãoGlobal<uint>("Prazo consignado padrão", 7);
             prazoConsignadoMáximo = new ConfiguraçãoGlobal<uint>("Prazo consignado máximo", 25);
             parcelamento = new ConfiguraçãoGlobal<string>("Parcelamento", "0;30;30x60;30x60x90;30x60x90x120");
+            cnpjEmpresa = new ConfiguraçãoGlobal<string>("CNPJ", "18219329000103");
             try
             {
                 últimaVersão = new ConfiguraçãoGlobal<string>("Versão." + System.Reflection.Assembly.GetEntryAssembly().FullName.Split(',')[0], "0.0.0.0");

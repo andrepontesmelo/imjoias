@@ -158,6 +158,11 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
             throw new NotImplementedException("Não foi possível encontrar a data da emissão do xml.");
         }
 
+        public string LerCNPJEmitente()
+        {
+            return "";
+        }
+
         public int LerNNF()
         {
             return ObterInteiro(ObterCaminhoAtributoVenda("nNF"));
