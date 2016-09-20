@@ -1,5 +1,5 @@
-﻿using Entidades.ComissãoCálculo;
-using Entidades.ComissãoCálculo.Impressão;
+﻿using Entidades.Comissão;
+using Entidades.Comissão.Impressão;
 using System;
 using System.Collections.Generic;
 using System.Data;

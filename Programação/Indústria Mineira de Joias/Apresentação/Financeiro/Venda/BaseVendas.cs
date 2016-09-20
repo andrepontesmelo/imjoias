@@ -50,14 +50,12 @@ namespace Apresentação.Financeiro.Venda
                 quadroLista.Título = título.Título = "Histórico de compras";
                 opçãoProcurar.Descrição = "Procurar compra...";
                 opçãoRegistrarNovaVenda.Descrição = "Registrar nova compra...";
-                lista.ApenasNãoAcertado = false;
             }
             else
             {
                 quadroLista.Título = título.Título = "Histórico de vendas";
                 opçãoProcurar.Descrição = "Procurar por venda...";
                 opçãoRegistrarNovaVenda.Descrição = "Registrar nova venda...";
-                lista.ApenasNãoAcertado = true;
                 quadroComprasDesteFuncionário.Visible = true;
             }
         }
@@ -365,11 +363,6 @@ namespace Apresentação.Financeiro.Venda
                 MessageBox.Show("Vendas descadastradas: " + vendasDescadastradas + "\n\n\nVendas não descadastradas:" + vendasNãoDescadastradas + "\n\n" + ajuda, "Nem todas foram excluídas", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void lista_AoSalvarNfe(object sender, EventArgs e)
-        {
-            Recarregar();
-        }
-
         private void Recarregar()
         {
             últimoItemSelecionado = lista.ItemSelecionado;
@@ -378,6 +371,16 @@ namespace Apresentação.Financeiro.Venda
             lista.Carregar(pessoa, forçarHistóricoCompras);
             lista.ItemSelecionado = últimoItemSelecionado;
             lista.ItensSelecionados = últimosItensChecados;
+        }
+
+        private void SemaforoLegenda1_aoClicarLegenda(Entidades.Relacionamento.Venda.SemaforoEnum legenda)
+        {
+            lista.MostrarLegenda(legenda);
+        }
+
+        private void Lista_LegendasContabilizadas(int[] legendas)
+        {
+            semaforoLegenda1.AtualizarContagemLegendas(legendas);
         }
     }
 }

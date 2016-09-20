@@ -1,68 +1,46 @@
-﻿using System;
+﻿using Apresentação.Fiscal;
+using Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf;
+using Entidades.Relacionamento.Venda;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Text;
+using System.Linq;
 using System.Windows.Forms;
-using Apresentação.Formulários;
-using Entidades.Relacionamento.Venda;
 
 namespace Apresentação.Financeiro.Venda
 {
-    /// <summary>
-    /// Lista de exibição de vendas.
-    /// </summary>
     public partial class ListViewVendas : UserControl
     {
-        public event EventHandler AoSalvarNfe;
-
-        /// <summary>
-        /// Código das vendas na lista
-        /// </summary>
-        private Dictionary<ListViewItem, IDadosVenda> hashListViewItemVenda = null;
-        private Dictionary<long, ListViewItem> hashCódigoItem = null;
-
-        /// <summary>
-        /// Tipo de exibição de venda (para cliente ou de vendedor).
-        /// Controla exibição gráfica (colunas)
-        /// </summary>
-        private VínculoVendaPessoa tipoExibição = VínculoVendaPessoa.Cliente;
-
-        /// <summary>
-        /// Determina se serão exibidas somente vendas não acertadas.
-        /// </summary>
-        private bool apenasNãoAcertadas = true;
-
+        private bool apenasNãoAcertadas = false;
         private bool handleCriado = false;
 
-        #region Propriedades
+        private Dictionary<ListViewItem, IDadosVenda> hashListViewItemVenda = null;
+        private Dictionary<long, ListViewItem> hashCódigoItem = null;
+        private VínculoVendaPessoa tipoExibição = VínculoVendaPessoa.Cliente;
+        Entidades.Configuração.ConfiguraçãoUsuário<bool> configuraçãoUsuárioAgruparLegenda = 
+            new Entidades.Configuração.ConfiguraçãoUsuário<bool>("configuraçãoUsuárioAgruparLegenda", false);
 
-        /// <summary>
-        /// Determina se serão exibidas somente vendas não acertadas.
-        /// </summary>
-        [DefaultValue(true), Description("Determina se serão exibidas somente vendas não acertadas.")]
+        private Delegate recarregar;
+        private object[] recarregarParâmetros;
+
+        public delegate void DelegateLegendasContabilizadas(int[] legendas);
+        public event DelegateLegendasContabilizadas LegendasContabilizadas;
+
+        [DefaultValue(false), Description("Determina se serão exibidas somente vendas não acertadas.")]
         public bool ApenasNãoAcertado
         {
             get { return apenasNãoAcertadas; }
             set
             {
                 apenasNãoAcertadas = value;
-                btnAcertado.Checked = !value;
 
                 if (recarregar != null)
                     recarregar.DynamicInvoke(recarregarParâmetros);
             }
         }
 
-        private Delegate recarregar;
-        private object[] recarregarParâmetros;
 
-        /// <summary>
-        /// Tipo de exibição das vendas.
-        /// Cliente = Vendas para um cliente.
-        /// Vendedor = Vendas de um vendedor.
-        /// </summary>
         [DefaultValue(VínculoVendaPessoa.Cliente),
         Description("Tipo de exibição da venda.")]
         public VínculoVendaPessoa TipoExibição
@@ -97,7 +75,6 @@ namespace Apresentação.Financeiro.Venda
 
                         if (!lista.Columns.Contains(colVendedor))
                             lista.Columns.Insert(3, colVendedor);
-                        //                        colCliente.Text = "Vendedor";
                         break;
 
                     case VínculoVendaPessoa.Vendedor:
@@ -108,7 +85,6 @@ namespace Apresentação.Financeiro.Venda
                         if (!lista.Columns.Contains(colCliente))
                             lista.Columns.Insert(3, colCliente);
 
-                        //                        colCliente.Text = "Cliente";
                         break;
                     case VínculoVendaPessoa.Indefinido:
                         if (!lista.Columns.Contains(colCliente))
@@ -124,23 +100,27 @@ namespace Apresentação.Financeiro.Venda
             }
         }
 
-        /// <summary>
-        /// Código da venda selecionada.
-        /// </summary>
-        public long? ItemSelecionado
+        public IDadosVenda VendaSelecionada
         {
             get
             {
                 IDadosVenda venda;
 
-                if (lista.SelectedIndices.Count != 1)
+                if (lista.SelectedIndices.Count != 1
+                    || !hashListViewItemVenda.TryGetValue(lista.SelectedItems[0], out venda))
                     return null;
 
-                if (hashListViewItemVenda.TryGetValue(lista.SelectedItems[0], out venda))
-                    return venda.Código;
-                else
-                    return null;
-            } set
+                return venda;
+            }
+        }
+
+        public long? ItemSelecionado
+        {
+            get
+            {
+                return VendaSelecionada?.Código;
+            }
+            set
             {
                 lista.SelectedItems.Clear();
 
@@ -157,9 +137,6 @@ namespace Apresentação.Financeiro.Venda
             }
         }
 
-        /// <summary>
-        /// Código da venda selecionada.
-        /// </summary>
         public List<IDadosVenda> ItensSelecionados
         {
             get
@@ -176,7 +153,8 @@ namespace Apresentação.Financeiro.Venda
                 }
 
                 return vendasSelecionadas;
-            } set
+            }
+            set
             {
                 lista.SuspendLayout();
 
@@ -195,19 +173,15 @@ namespace Apresentação.Financeiro.Venda
             }
         }
 
-        public Dictionary<ListViewItem,IDadosVenda>.ValueCollection Itens
+        public Dictionary<ListViewItem, IDadosVenda>.ValueCollection Itens
         {
             get { return hashListViewItemVenda.Values; }
         }
-
-        #endregion
 
         public delegate void DelegaçãoVenda(long? códigoVenda);
 
         public event DelegaçãoVenda AoSelecionar;
         public event DelegaçãoVenda AoDuploClique;
-
-        // Janela de aguarde
 
         public ListViewVendas()
         {
@@ -217,9 +191,6 @@ namespace Apresentação.Financeiro.Venda
             hashCódigoItem = new Dictionary<long, ListViewItem>();
             lista.ListViewItemSorter = new ListViewVendasOrdenador(hashListViewItemVenda);
 
-            /* Por algum motivo obscuro, o VS não atribui
-             * a propriedade "Name" para as colunas.
-             */
             colData.Name = "colData";
             colCódigo.Name = "colCódigo";
             colControle.Name = "colControle";
@@ -231,20 +202,15 @@ namespace Apresentação.Financeiro.Venda
             ((ListViewVendasOrdenador)lista.ListViewItemSorter).DefinirColuna(colData);
             lista.Sorting = SortOrder.Descending;
             lista.Sort();
-
-            btnGerarNfe.Visible = Entidades.Privilégio.PermissãoFuncionário.ValidarPermissão(Entidades.Privilégio.Permissão.Técnico);
         }
 
         void ListViewVendas_HandleCreated(object sender, EventArgs e)
         {
             handleCriado = true;
-            ((ListViewVendasOrdenador) lista.ListViewItemSorter).Lista = lista;
+            ((ListViewVendasOrdenador)lista.ListViewItemSorter).Lista = lista;
             AtualizarStatus();
         }
 
-        /// <summary>
-        /// Ocorre ao mudar as dimensões da lista.
-        /// </summary>
         private void lista_Resize(object sender, EventArgs e)
         {
             AtualizarTamanhoColunas();
@@ -256,32 +222,31 @@ namespace Apresentação.Financeiro.Venda
             colCódigo.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
             colControle.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
 
-            if (lista.Columns.Contains(colCliente) && lista.Columns.Contains(colVendedor))
-            {
-                // As duas colunas estão presentes
-                colCliente.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
-                colVendedor.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
-            }
+            bool ambasColunasPresentes = lista.Columns.Contains(colCliente) && lista.Columns.Contains(colVendedor);
+
+            if (ambasColunasPresentes)
+                AtualizarTamanhoColunasClienteEVendedor();
             else
-            {
-                // Apenas uma coluna para pessoa
-                ColumnHeader únicaColunaAtiva =
-                    lista.Columns.Contains(colCliente) ? colCliente : colVendedor;
-
-                únicaColunaAtiva.Width = lista.ClientSize.Width - colData.Width -
-                    colCódigo.Width - colControle.Width - colValor.Width;
-
-                //únicaColunaAtiva.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
-            }
+                AtualizarTamanhoColunaClienteOuVendedor();
         }
 
-        private delegate void AbrirVendasCallBack(Entidades.Relacionamento.Venda.VendaSintetizada[] vendas);
-        /// <summary>
-        /// Abre vendas sintetizadas para exibição.
-        /// </summary>
-        /// <remarks>
-        /// ATENÇÃO: O valor da propriedade SomenteNãoAcertadas é ignorado.
-        /// </remarks>
+        private void AtualizarTamanhoColunaClienteOuVendedor()
+        {
+            ColumnHeader únicaColunaAtiva =
+                lista.Columns.Contains(colCliente) ? colCliente : colVendedor;
+
+            únicaColunaAtiva.Width = lista.ClientSize.Width - colData.Width -
+                colCódigo.Width - colControle.Width - colValor.Width;
+        }
+
+        private void AtualizarTamanhoColunasClienteEVendedor()
+        {
+            colCliente.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
+            colVendedor.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
+        }
+
+        private delegate void AbrirVendasCallBack(VendaSintetizada[] vendas);
+
         public void Carregar(IDadosVenda[] vendas)
         {
             SuspendLayout();
@@ -294,9 +259,9 @@ namespace Apresentação.Financeiro.Venda
 
             if (vendas == null)
                 return;
-            
-            double somatorioValor = AdicionarVendas(vendas);
 
+            double somatorioValor = AdicionarVendas(vendas);
+            ContabilizarLegendas(vendas);
 
             InformaçõesStatus.Instância.QtdVendas = lista.Items.Count;
             InformaçõesStatus.Instância.ValorTotal = somatorioValor;
@@ -304,10 +269,22 @@ namespace Apresentação.Financeiro.Venda
             AtualizarStatus();
             AtualizarTamanhoColunas();
             lista.Sort();
+            lista.ShowGroups = btnAgruparLegenda.Checked = configuraçãoUsuárioAgruparLegenda.Valor;
             lista.ResumeLayout();
 
             Visible = true;
             ResumeLayout();
+        }
+
+        private void ContabilizarLegendas(IDadosVenda[] vendas)
+        {
+            int totalLegendas = Enum.GetValues(typeof(SemaforoEnum)).Cast<int>().Max() + 1;
+            int[] legendas = new int[totalLegendas];
+
+            foreach (IDadosVenda v in vendas)
+                legendas[(int)v.Semáforo]++;
+
+            LegendasContabilizadas?.Invoke(legendas);
         }
 
         private double AdicionarVendas(IDadosVenda[] vendas)
@@ -339,7 +316,8 @@ namespace Apresentação.Financeiro.Venda
         private ListViewItem CriarItem(IDadosVenda venda, out double valorTotal)
         {
             ListViewItem item = new ListViewItem(venda.Data.ToString("dd/MM/yyyy", Entidades.Configuração.DadosGlobais.Instância.Cultura));
-            item.ImageIndex = (int) venda.Semáforo;
+            item.ImageIndex = (int)venda.Semáforo;
+            item.Group = lista.Groups[ObterIndiceSemáforo(venda.Semáforo)];
 
             item.SubItems.AddRange(new string[] { "", "", "", "", "", "", "", "" });
             item.SubItems[colCódigo.Index].Text = venda.CódigoFormatado;
@@ -359,6 +337,27 @@ namespace Apresentação.Financeiro.Venda
             return item;
         }
 
+        private int ObterIndiceSemáforo(SemaforoEnum semáforo)
+        {
+            switch (semáforo)
+            {
+                case SemaforoEnum.DoDia:
+                    return 0;
+                case SemaforoEnum.Nfe:
+                    return 1;
+                case SemaforoEnum.Cobrança:
+                    return 2;
+                case SemaforoEnum.NãoQuitado:
+                    return 3;
+                case SemaforoEnum.Quitado:
+                    return 4;
+                case SemaforoEnum.ComissãoFechada:
+                    return 5;
+            }
+
+            throw new NotImplementedException();
+        }
+
         private void AtualizarStatus()
         {
             if (handleCriado)
@@ -369,10 +368,6 @@ namespace Apresentação.Financeiro.Venda
             }
         }
 
-        /// <summary>
-        /// É aberto as vendas da pessoa OU as compras da pessoa,
-        /// determinado automaticamente dependendo se ela é cliente ou não.
-        /// </summary>
         public void Carregar(Entidades.Pessoa.Pessoa pessoa, bool forçarTrataloCliente)
         {
             if (forçarTrataloCliente)
@@ -385,23 +380,13 @@ namespace Apresentação.Financeiro.Venda
             bool éRepresentate = Entidades.Pessoa.Representante.ÉRepresentante(pessoa);
 
             if (éFuncionário || éRepresentate)
-            {
-                // Quero as vendas deste vendedor/representante
                 Carregar(true, pessoa);
-            }
             else
-            {
-                // Quero as compras deste cliente                
                 Carregar(false, pessoa);
-            }
         }
 
         private delegate void CarregarCompleto(bool éVendedor, Entidades.Pessoa.Pessoa Pessoa);
 
-        /// <summary>
-        /// Caso pessoaÉVendedor, são carregadas todas as vendas em que pessoa é vendedor.
-        /// Caso contrário, são carregadas todas as vendas em que pessoa é cliente.
-        /// </summary>
         public void Carregar(bool pessoaÉVendedor, Entidades.Pessoa.Pessoa pessoa)
         {
             DateTime início, fim;
@@ -409,7 +394,7 @@ namespace Apresentação.Financeiro.Venda
             recarregar = new CarregarCompleto(Carregar);
             recarregarParâmetros = new object[] { pessoaÉVendedor, pessoa };
 
-            Entidades.Relacionamento.Venda.VendaSintetizada[] vendasCarregadas = null;
+            VendaSintetizada[] vendasCarregadas = null;
 
             if (pessoaÉVendedor)
                 TipoExibição = VínculoVendaPessoa.Vendedor;
@@ -419,31 +404,21 @@ namespace Apresentação.Financeiro.Venda
             início = DateTime.MinValue;
             fim = DateTime.MaxValue;
 
-            vendasCarregadas = Entidades.Relacionamento.Venda.VendaSintetizada.ObterVendas(pessoaÉVendedor, pessoa, início, fim, apenasNãoAcertadas, null);
+            vendasCarregadas = VendaSintetizada.ObterVendas(pessoaÉVendedor, pessoa, início, fim, apenasNãoAcertadas, null);
 
             Carregar(vendasCarregadas);
         }
 
         private delegate void CarregarSimples(bool? sedex);
 
-        /// <summary>
-        /// Abre todas as vendas, de todas as pessoas.
-        /// </summary>
         public void Carregar(bool? sedex)
         {
             recarregar = new CarregarSimples(Carregar);
             recarregarParâmetros = new object[1] { sedex };
 
-            // Antes de tudo: atualiza a comissao
-            // Entidades.Relacionamento.Venda.Venda.CalcularComissão();
-
-            Entidades.Relacionamento.Venda.VendaSintetizada[] vendasCarregadas = null;
-
             TipoExibição = VínculoVendaPessoa.Indefinido;
 
-            vendasCarregadas = Entidades.Relacionamento.Venda.VendaSintetizada.ObterVendas(DateTime.MinValue, DateTime.MaxValue, apenasNãoAcertadas, sedex);
-
-            Carregar(vendasCarregadas);
+            Carregar(VendaSintetizada.ObterVendas(DateTime.MinValue, DateTime.MaxValue, apenasNãoAcertadas, sedex));
 
         }
 
@@ -457,6 +432,36 @@ namespace Apresentação.Financeiro.Venda
             return listaMarcadas;
         }
 
+        internal void MostrarLegenda(SemaforoEnum semáforo)
+        {
+            ListViewGroup grupo = lista.Groups[ObterIndiceSemáforo(semáforo)];
+
+            if (grupo.Items.Count == 0)
+                return;
+
+            AgruparPorLegenda(true);
+            MostrarPrimeiroItem(grupo);
+        }
+
+        private void MostrarPrimeiroItem(ListViewGroup grupo)
+        {
+            int menorIndice = int.MaxValue;
+            foreach (ListViewItem i in grupo.Items)
+            {
+                if (i.Index < menorIndice)
+                    menorIndice = i.Index;
+            }
+
+            lista.Items[menorIndice].EnsureVisible();
+        }
+
+        private void AgruparPorLegenda(bool agrupar)
+        {
+            btnAgruparLegenda.Checked = agrupar;
+            lista.ShowGroups = agrupar;
+            configuraçãoUsuárioAgruparLegenda.Valor = agrupar;
+        }
+
         public List<long> ObterCódigosSelecionados()
         {
             List<long> listaMarcadas = new List<long>(lista.SelectedItems.Count);
@@ -467,13 +472,14 @@ namespace Apresentação.Financeiro.Venda
             return listaMarcadas;
         }
 
-        public void Selecionar(List<IDadosVenda> vendas)
+        public void SelecionarApenas(List<IDadosVenda> itens)
         {
-            // Descheca os já marcados
-            foreach (ListViewItem item in lista.Items)
-                item.Selected = false;
+            DesselecionarItens();
+            SelecionarItens(itens);
+        }
 
-            // Checas os solicitados
+        private void SelecionarItens(List<IDadosVenda> vendas)
+        {
             foreach (IDadosVenda v in vendas)
             {
                 ListViewItem item = null;
@@ -485,13 +491,20 @@ namespace Apresentação.Financeiro.Venda
             }
         }
 
-        public void Selecionar(List<long> vendas)
+        private void DesselecionarItens()
         {
-            // Descheca os já marcados
             foreach (ListViewItem item in lista.Items)
                 item.Selected = false;
+        }
 
-            // Marca os solicitados
+        public void SelecionarApenas(List<long> itens)
+        {
+            DesselecionarItens();
+            SelecionarItens(itens);
+        }
+
+        private void SelecionarItens(List<long> vendas)
+        {
             foreach (long códigoVenda in vendas)
             {
                 ListViewItem item = null;
@@ -503,32 +516,28 @@ namespace Apresentação.Financeiro.Venda
             }
         }
 
-        /// <summary>
-        /// Ocorre ao selecionar algum item da lista.
-        /// </summary>
         private void lista_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (AoSelecionar != null)
-                AoSelecionar(ItemSelecionado);
+            AoSelecionar?.Invoke(ItemSelecionado);
+
+            if (VendaSelecionada == null)
+                return;
+
+            btnAbrirPdf.Enabled = CacheVendaPdf.Instância.ObterVendasPdfs().Contains(VendaSelecionada.Código);
         }
 
         private void lista_DoubleClick(object sender, EventArgs e)
         {
-            if (AoDuploClique != null)
-                AoDuploClique(ItemSelecionado);
+            AoDuploClique?.Invoke(ItemSelecionado);
         }
 
-        /// <summary>
-        /// Altera ordenação da lista, quando o usuário
-        /// clica na coluna.
-        /// </summary>
         private void lista_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             if (((ListViewVendasOrdenador)lista.ListViewItemSorter).DefinirColuna(lista.Columns[e.Column]))
                 lista.Sorting = SortOrder.Ascending;
             else
                 lista.Sorting = lista.Sorting == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
-                
+
             lista.Sort();
         }
 
@@ -558,12 +567,12 @@ namespace Apresentação.Financeiro.Venda
 
         private void localizador_EncontrarItem(object item, object itemAnterior)
         {
-            ListViewItem i = (ListViewItem) item;
+            ListViewItem i = (ListViewItem)item;
             ListViewItem iAnterior = item as ListViewItem;
 
             if (iAnterior != null)
                 iAnterior.Selected = false;
-            
+
             i.Selected = true;
             i.EnsureVisible();
         }
@@ -594,39 +603,27 @@ namespace Apresentação.Financeiro.Venda
                 item.Selected = true;
         }
 
-        private void btnAcertado_CheckedChanged(object sender, EventArgs e)
-        {
-            if (ApenasNãoAcertado != !btnAcertado.Checked)
-                ApenasNãoAcertado = !btnAcertado.Checked;
-        }
-
         private void ListViewVendas_Paint(object sender, PaintEventArgs e)
         {
             lista.Focus();
         }
 
-        private void btnGerarNfe_Click(object sender, EventArgs e)
+        private void btnAgruparLegenda_Click(object sender, EventArgs e)
         {
-            if (ItemSelecionado.HasValue)
-            {
-                Apresentação.Financeiro.Fiscal.JanelaNFe janela = new Fiscal.JanelaNFe();
-                janela.AoSalvarNfe += janela_AoSalvarNfe;
-                janela.CarregarVenda(ItemSelecionado.Value);
-                janela.ShowDialog(this);
-            }
+            AgruparPorLegenda(btnAgruparLegenda.Checked);
         }
 
-        void janela_AoSalvarNfe(object sender, EventArgs e)
+        private void btnAbrirPdf_Click(object sender, EventArgs e)
         {
-            if (AoSalvarNfe != null)
-                AoSalvarNfe(sender, e);
+            VisualizadorPDF visualizador = new VisualizadorPDF();
+            visualizador.Carregar(VendaSelecionada);
+            visualizador.ShowDialog(this);
         }
     }
 
     public class InformaçõesStatus
     {
         private int qtdVendas;
-        //private double comissão;
         private double valorTotal;
 
         private static InformaçõesStatus instância;

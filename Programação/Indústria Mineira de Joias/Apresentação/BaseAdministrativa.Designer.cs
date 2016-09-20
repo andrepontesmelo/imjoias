@@ -39,8 +39,7 @@ namespace Apresentação.Administrativo
             this.quadroOpçãoBalanço = new Apresentação.Formulários.QuadroOpção();
             this.quadroComissão = new Apresentação.Formulários.QuadroOpção();
             this.quadroControleEstoque = new Apresentação.Formulários.QuadroOpção();
-            this.quadroFiscalImportaçãoXmlVarejo = new Apresentação.Formulários.QuadroOpção();
-            this.quadroFiscalImportaçãoXmlAtacado = new Apresentação.Formulários.QuadroOpção();
+            this.quadroFiscal = new Apresentação.Formulários.QuadroOpção();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,8 +74,7 @@ namespace Apresentação.Administrativo
             this.flowLayoutPanel1.Controls.Add(this.quadroOpçãoBalanço);
             this.flowLayoutPanel1.Controls.Add(this.quadroComissão);
             this.flowLayoutPanel1.Controls.Add(this.quadroControleEstoque);
-            this.flowLayoutPanel1.Controls.Add(this.quadroFiscalImportaçãoXmlVarejo);
-            this.flowLayoutPanel1.Controls.Add(this.quadroFiscalImportaçãoXmlAtacado);
+            this.flowLayoutPanel1.Controls.Add(this.quadroFiscal);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(207, 103);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(10);
@@ -184,33 +182,19 @@ namespace Apresentação.Administrativo
             this.quadroControleEstoque.Título = "Estoque";
             this.quadroControleEstoque.Click += new System.EventHandler(this.quadroControleEstoque_Click);
             // 
-            // quadroFiscalImportaçãoXmlVarejo
+            // quadroFiscal
             // 
-            this.quadroFiscalImportaçãoXmlVarejo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.quadroFiscalImportaçãoXmlVarejo.Descrição = "Importador de XML das notas fiscais de atacado";
-            this.quadroFiscalImportaçãoXmlVarejo.Ícone = ((System.Drawing.Image)(resources.GetObject("quadroFiscalImportaçãoXmlVarejo.Ícone")));
-            this.quadroFiscalImportaçãoXmlVarejo.Location = new System.Drawing.Point(304, 79);
-            this.quadroFiscalImportaçãoXmlVarejo.MaximumSize = new System.Drawing.Size(600, 70);
-            this.quadroFiscalImportaçãoXmlVarejo.MinimumSize = new System.Drawing.Size(200, 70);
-            this.quadroFiscalImportaçãoXmlVarejo.Name = "quadroFiscalImportaçãoXmlVarejo";
-            this.quadroFiscalImportaçãoXmlVarejo.Size = new System.Drawing.Size(295, 70);
-            this.quadroFiscalImportaçãoXmlVarejo.TabIndex = 7;
-            this.quadroFiscalImportaçãoXmlVarejo.Título = "Importador XML - Varejo";
-            this.quadroFiscalImportaçãoXmlVarejo.Click += new System.EventHandler(this.quadroFiscalImportaçãoXmlVarejo_Click);
-            // 
-            // quadroFiscalImportaçãoXmlAtacado
-            // 
-            this.quadroFiscalImportaçãoXmlAtacado.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.quadroFiscalImportaçãoXmlAtacado.Descrição = "Importador de XML das notas fiscais de varejo.";
-            this.quadroFiscalImportaçãoXmlAtacado.Ícone = ((System.Drawing.Image)(resources.GetObject("quadroFiscalImportaçãoXmlAtacado.Ícone")));
-            this.quadroFiscalImportaçãoXmlAtacado.Location = new System.Drawing.Point(304, 155);
-            this.quadroFiscalImportaçãoXmlAtacado.MaximumSize = new System.Drawing.Size(600, 70);
-            this.quadroFiscalImportaçãoXmlAtacado.MinimumSize = new System.Drawing.Size(200, 70);
-            this.quadroFiscalImportaçãoXmlAtacado.Name = "quadroFiscalImportaçãoXmlAtacado";
-            this.quadroFiscalImportaçãoXmlAtacado.Size = new System.Drawing.Size(295, 70);
-            this.quadroFiscalImportaçãoXmlAtacado.TabIndex = 8;
-            this.quadroFiscalImportaçãoXmlAtacado.Título = "Importador XML - Atacado";
-            this.quadroFiscalImportaçãoXmlAtacado.Click += new System.EventHandler(this.quadroFiscalImportaçãoXmlAtacado_Click);
+            this.quadroFiscal.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.quadroFiscal.Descrição = "Acesso aos dados fiscais da empresa";
+            this.quadroFiscal.Ícone = ((System.Drawing.Image)(resources.GetObject("quadroFiscal.Ícone")));
+            this.quadroFiscal.Location = new System.Drawing.Point(304, 79);
+            this.quadroFiscal.MaximumSize = new System.Drawing.Size(600, 70);
+            this.quadroFiscal.MinimumSize = new System.Drawing.Size(200, 70);
+            this.quadroFiscal.Name = "quadroFiscal";
+            this.quadroFiscal.Size = new System.Drawing.Size(295, 70);
+            this.quadroFiscal.TabIndex = 7;
+            this.quadroFiscal.Título = "Fiscal";
+            this.quadroFiscal.Click += new System.EventHandler(this.quadroFiscal_Click);
             // 
             // BaseAdministrativa
             // 
@@ -238,7 +222,6 @@ namespace Apresentação.Administrativo
         private Formulários.QuadroOpção quadroFiscalExportacaoEconnectVarejo;
         private Formulários.QuadroOpção quadroExportaVenda;
         private Formulários.QuadroOpção quadroControleEstoque;
-        private Formulários.QuadroOpção quadroFiscalImportaçãoXmlVarejo;
-        private Formulários.QuadroOpção quadroFiscalImportaçãoXmlAtacado;
+        private Formulários.QuadroOpção quadroFiscal;
     }
 }

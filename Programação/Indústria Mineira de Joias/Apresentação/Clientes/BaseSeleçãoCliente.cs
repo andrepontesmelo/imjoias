@@ -2,7 +2,6 @@ using Apresentação.Atendimento.Comum;
 using Apresentação.Formulários;
 using Apresentação.Impressão.Relatórios.Pessoa;
 using Apresentação.Pessoa.Consultas;
-using Entidades;
 using Entidades.Pessoa;
 using Entidades.Pessoa.Impressão;
 using System;
@@ -49,7 +48,7 @@ namespace Apresentação.Atendimento.Clientes
 		/// <summary>
 		/// Delegação para carga assíncrona de dados.
 		/// </summary>
-		private delegate void DCarSetAssínc(Setor [] setores, DateTime início, DateTime final);
+		private delegate void CarregarAssíncronoDelegate();
 
 		/// <summary>
 		/// Delegação para carga assíncrona de dados, porém no contexto
@@ -356,18 +355,6 @@ namespace Apresentação.Atendimento.Clientes
 			set { título.Descrição = value; }
 		}
 
-        ///// <summary>
-        ///// Itens exibidos.
-        ///// </summary>
-        //public ColeçãoListaPessoasItem ItensExibidos
-        //{
-        //    get { return listaPessoas.Itens; }
-        //}
-
-		/// <summary>
-		/// Prazo em dias para que uma pessoa seja exibida
-		/// desde sua última visita.
-		/// </summary>
 		[DefaultValue(90), Description("Prazo em dias para que uma pessoa seja exibida desde sua última visita.")]
 		public int Prazo
 		{
@@ -397,7 +384,7 @@ namespace Apresentação.Atendimento.Clientes
 		/// Ocorre ao selecionar uma pessoa.
 		/// </summary>
 		/// <param name="item">Item selecionado.</param>
-		protected virtual void listaPessoas_PessoaSelecionada(Apresentação.Atendimento.Comum.ListaPessoasItem item)
+		protected virtual void listaPessoas_PessoaSelecionada(ListaPessoasItem item)
 		{
 			Entidades.Pessoa.Pessoa pessoa;
 
@@ -408,7 +395,7 @@ namespace Apresentação.Atendimento.Clientes
 
 		#endregion
 
-        public override void AoCarregarCompletamente(Apresentação.Formulários.Splash splash)
+        public override void AoCarregarCompletamente(Splash splash)
         {
             base.AoCarregarCompletamente(splash);
             HandleCreated += new EventHandler(BaseSeleçãoCliente_HandleCreated);
@@ -419,37 +406,22 @@ namespace Apresentação.Atendimento.Clientes
             coletor.Pesquisar("");
         }
 
-
-        /// <summary>
-        /// Carrega lista de pessoas provenientes de setores específicos.
-        /// </summary>
-        /// <param name="setores">Lista de setores.</param>
-        public void CarregarDeSetores(params Setor[] setores)
+        public void CarregarAssíncrono()
         {
-            if (setores == null)
-                throw new ArgumentNullException("setores");
+            CarregarAssíncronoDelegate método;
 
-            DCarSetAssínc método;
-
-            método = new DCarSetAssínc(CarregarDeSetores);
-            método.BeginInvoke(setores, PeríodoInicial, DateTime.MaxValue, new AsyncCallback(CargaCallback), método);
+            método = new CarregarAssíncronoDelegate(Carregar);
+            método.BeginInvoke(new AsyncCallback(CargaCallback), método);
         }
 
-		/// <summary>
-		/// Finaliza carga assíncrona.
-		/// </summary>
 		private void CargaCallback(IAsyncResult resultado)
 		{
-			DCarSetAssínc método = (DCarSetAssínc) resultado.AsyncState;
-
+			CarregarAssíncronoDelegate método = (CarregarAssíncronoDelegate) resultado.AsyncState;
 			método.EndInvoke(resultado);
 		}
 
 		private delegate void AlterarCursorCallback(Cursor cursor);
 
-		/// <summary>
-		/// Altera o cursor de forma segura em relação à thread.
-		/// </summary>
 		protected void AlterarCursor(Cursor cursor)
 		{
 			if (this.InvokeRequired)
@@ -461,15 +433,7 @@ namespace Apresentação.Atendimento.Clientes
 				this.Cursor = cursor;
 		}
 
-        /// <summary>
-        /// Carrega lista de pessoas provenientes de setores específicos
-        /// em um período específico.
-        /// </summary>
-        /// <param name="setores">Lista de setores.</param>
-        /// <param name="início">Período inicial.</param>
-        /// <param name="final">Períofo final.</param>
-        /// <exception>Quando setores é nulo</exception>
-        private void CarregarDeSetores(Setor[] setores, DateTime início, DateTime final)
+        private void Carregar()
         {
             try
             {
@@ -510,7 +474,7 @@ namespace Apresentação.Atendimento.Clientes
             for (int x = 0; x < datas.Length; x++)
                 lstPessoas.Add(datas[x].Pessoa);
 
-            Entidades.Pessoa.Telefone.PreencherTelefonesUsandoCache(lstPessoas);
+            Telefone.PreencherTelefonesUsandoCache(lstPessoas);
         }
 
 		/// <summary>
@@ -554,7 +518,6 @@ namespace Apresentação.Atendimento.Clientes
                     restantes[x] = datas[jaTinham + x];
                 }
 
-                // Carrega a lista toda
                 AdicionarDatasRelevantes(restantes, null);
 
                 AguardeDB.Fechar();
@@ -704,9 +667,6 @@ namespace Apresentação.Atendimento.Clientes
             coletor.Pesquisar(txtBusca.Text);
         }
 
-        /// Se a última tecla for enter,
-        /// assim que a lista for carregada, o primeiro item será entrado automaticamente.
-        /// </summary>
         private bool ultimaTeclaNaTxtBuscaÉEnter = false;
         
         private void txtBusca_KeyDown(object sender, KeyEventArgs e)

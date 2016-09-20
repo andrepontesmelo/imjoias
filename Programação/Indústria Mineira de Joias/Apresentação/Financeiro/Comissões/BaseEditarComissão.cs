@@ -1,8 +1,8 @@
 ﻿using Apresentação.Atendimento;
 using Apresentação.Financeiro.Venda;
 using Apresentação.Formulários;
-using Entidades.ComissãoCálculo;
-using Entidades.ComissãoCálculo.Impressão;
+using Entidades.Comissão;
+using Entidades.Comissão.Impressão;
 using System;
 using System.ComponentModel;
 using System.Windows.Forms;

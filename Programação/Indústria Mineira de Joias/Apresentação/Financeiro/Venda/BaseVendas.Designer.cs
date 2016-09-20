@@ -178,8 +178,8 @@ namespace Apresentação.Financeiro.Venda
             this.lista.Name = "lista";
             this.lista.Size = new System.Drawing.Size(588, 296);
             this.lista.TabIndex = 7;
-            this.lista.AoSalvarNfe += new System.EventHandler(this.lista_AoSalvarNfe);
             this.lista.AoDuploClique += new Apresentação.Financeiro.Venda.ListViewVendas.DelegaçãoVenda(this.lista_AoDuploClique);
+            this.lista.LegendasContabilizadas += Lista_LegendasContabilizadas;
             // 
             // quadroLista
             // 
@@ -255,6 +255,7 @@ namespace Apresentação.Financeiro.Venda
             this.semaforoLegenda1.TabIndex = 2;
             this.semaforoLegenda1.Tamanho = 30;
             this.semaforoLegenda1.Título = "Legenda";
+            this.semaforoLegenda1.ClicouNaLegenda += SemaforoLegenda1_aoClicarLegenda;
             // 
             // BaseVendas
             // 

@@ -1,14 +1,14 @@
 ﻿using Apresentação.Formulários;
-using Entidades.ComissãoCálculo.Impressão;
+using Entidades.Comissão.Impressão;
 
 namespace Apresentação.Financeiro.Comissões
 {
     public partial class JanelaImpressãoComissão : JanelaImpressão
     {
-        private Entidades.ComissãoCálculo.Comissão comissão;
+        private Entidades.Comissão.Comissão comissão;
         private Filtro filtro = null;
 
-        public JanelaImpressãoComissão(Entidades.ComissãoCálculo.Comissão comissão, Filtro filtro)
+        public JanelaImpressãoComissão(Entidades.Comissão.Comissão comissão, Filtro filtro)
         {
             this.comissão = comissão;
             this.filtro = filtro;

@@ -35,6 +35,8 @@ namespace Entidades.Configuração
         /// </summary>
         private ConfiguraçãoGlobal<int> agendamentoIntervalo;
 
+        private ConfiguraçãoGlobal<int> cacheExpiraçãoVendaPdfMs;
+
         /// <summary>
         /// Intervalo em milissegundos para verificação de dados
         /// por parte do temporizador do controle do usuário.
@@ -110,6 +112,7 @@ namespace Entidades.Configuração
             {
             }
             servidorNTP = new ConfiguraçãoGlobal<string>("Servidor NTP", "pool.ntp.org");
+            cacheExpiraçãoVendaPdfMs = new ConfiguraçãoGlobal<int>("Expiração de cache para reobtenção vínculo entre vendas e pdfs de NFes", (int) TimeSpan.FromSeconds(30).TotalMilliseconds);
         }
 
         #region Propriedades
@@ -214,6 +217,8 @@ namespace Entidades.Configuração
                 agendamentoIntervalo.Valor = value;
             }
         }
+
+        public int CacheExpiraçãoVendaPdfMs => cacheExpiraçãoVendaPdfMs;
 
         /// <summary>
         /// Intervalo em milissegundos para verificação de dados

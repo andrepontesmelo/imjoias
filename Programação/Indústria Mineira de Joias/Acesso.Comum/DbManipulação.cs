@@ -1,58 +1,24 @@
+using Acesso.Comum.Acompanhamento;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data;
-using System.Globalization;
-using System.Reflection;
-using Acesso;
-using Acesso.Comum.Acompanhamento;
 
 namespace Acesso.Comum
 {
-	/// <summary>
-	/// Classe abstrata para entidades que manipulam o
-	/// banco de dados.
-	/// </summary>
-	/// 
-	/// <remarks>
-	/// Para criar uma transação em uma classe hierárquica,
-	/// (exemplo: Pessoa, PessoaFísica e Representante),
-	/// utilize o atributo <see cref="DbTransação"/> no início da classe.
-	/// 
-	/// <seealso cref="DbTransação"/>
-	/// </remarks>
-	[Serializable]
+    [Serializable]
 	public abstract class DbManipulação : DbManipulaçãoSimples
 	{
-		/// <summary>
-		/// Determina se a entidade encontra-se cadastrada
-		/// no banco de dados.
-		/// </summary>
 		[DbAtributo(TipoAtributo.Ignorar)]
         internal bool cadastrado = false;
 
-		/// <summary>
-		/// Determina se a entidade encontra-se atualizada
-		/// no banco de dados.
-		/// </summary>
 		[DbAtributo(TipoAtributo.Ignorar)]
         internal bool atualizado = false;
 
-		/// <summary>
-		/// Marca se objeto está transacionando.
-		/// </summary>
 		[DbAtributo(TipoAtributo.Ignorar)]
 		private bool transacionando = false;
 
         private List<DbManipulação> referentes;
 
-        /// <summary>
-        /// Lista de entidades que referenciam esta.
-        /// </summary>
-        /// <remarks>
-        /// Esta lista é utilizada para remover da cache outras
-        /// entidades que podem ser afetadas por alteração nesta.
-        /// </remarks>
         internal List<DbManipulação> Referentes
         {
             get
@@ -63,71 +29,24 @@ namespace Acesso.Comum
             }
         }
 
-        /// <summary>
-        /// Determina se esta entidade possui outras que a referenciam.
-        /// </summary>
         internal bool PossuiReferentes { get { return referentes != null; } }
 
         public delegate void DbManipulaçãoHandler(DbManipulação entidade);
         public delegate void DbManipulaçãoCancelávelHandler(DbManipulação entidade, out bool cancelar);
 
-        /// <summary>
-        /// Disparado sempre que atualizado for atribuído
-        /// com o valor falso.
-        /// </summary>
         public event DbManipulaçãoHandler Alterado;
-
-        /// <summary>
-        /// Evento disparado antes de cadastrar entidade
-        /// no banco de dados.
-        /// </summary>
         public event DbManipulaçãoCancelávelHandler AntesDeCadastrar;
-
-        /// <summary>
-        /// Evento disparado antes de atualizar entidade
-        /// no banco de dados.
-        /// </summary>
         public event DbManipulaçãoCancelávelHandler AntesDeAtualizar;
-
-        /// <summary>
-        /// Evento disparado antes de remover entidade
-        /// do banco de dados.
-        /// </summary>
         public event DbManipulaçãoCancelávelHandler AntesDeDescadastrar;
-
-        /// <summary>
-        /// Evento disparado depois de cadastrar entidade
-        /// no banco de dados.
-        /// </summary>
         public event DbManipulaçãoHandler DepoisDeCadastrar;
-
-        /// <summary>
-        /// Evento disparado depois de atualizar entidade
-        /// no banco de dados.
-        /// </summary>
         public event DbManipulaçãoHandler DepoisDeAtualizar;
-
-        /// <summary>
-        /// Evento disparado depois de remover entidade
-        /// do banco de dados.
-        /// </summary>
         public event DbManipulaçãoHandler DepoisDeDescadastrar;
 
-		#region Propriedades
-
-        /// <summary>
-		/// Determina se a entidade encontra-se cadastrada
-		/// no banco de dados.
-		/// </summary>
 		public virtual bool Cadastrado
 		{
 			get { return cadastrado; }
 		}
 
-        /// <summary>
-        /// Determina se a entidade encontra-se atualizada
-        /// com o banco de dados.
-        /// </summary>
         public virtual bool Atualizado
         {
             get 
@@ -136,33 +55,21 @@ namespace Acesso.Comum
             }
         }
 
-        /// <summary>
-        /// Define verdadeira a propriedade cadastrado.
-        /// </summary>
         protected void DefinirCadastrado()
         {
             cadastrado = true;
         }
 
-        /// <summary>
-        /// Define o valor da propriedade cadastrado.
-        /// </summary>
         protected void DefinirCadastrado(bool cadastrado)
         {
             this.cadastrado = cadastrado;
         }
 
-        /// <summary>
-        /// Define verdadeira a propriedade atualizado.
-        /// </summary>
         protected void DefinirAtualizado()
         {
             this.atualizado = true;
         }
 
-        /// <summary>
-        /// Define o valor da propriedade atualizado.
-        /// </summary>
         protected void DefinirAtualizado(bool atualizado)
         {
             this.atualizado = atualizado;
@@ -171,9 +78,6 @@ namespace Acesso.Comum
                 Alterado(this);
         }
 
-        /// <summary>
-        /// Define falsa a propriedade atualizado.
-        /// </summary>
         protected void DefinirDesatualizado()
         {
             this.atualizado = false;
@@ -182,14 +86,6 @@ namespace Acesso.Comum
                 Alterado(this);
         }
 
-		#endregion
-
-#region Manipulação de dados (abstrato)
-
-		/// <summary>
-		/// Verifica se este objeto utiliza transação segura
-		/// para cadastrar, atualizar e descadastrar.
-		/// </summary>
 		public bool TransaçãoSegura
 		{
 			get
@@ -204,53 +100,18 @@ namespace Acesso.Comum
 			}
 		}
 
-		/// <summary>
-		/// Verifica se o objeto está transacionando.
-		/// </summary>
-		/// <remarks>
-		/// Considera que existe o atributo.
-		/// </remarks>
-		public bool Transacionando
-		{
-			get
-			{
-				return transacionando;
-			}
-		}
+        public bool Transacionando => transacionando;
 
-		/// <summary>
-		/// Marca início de transação.
-		/// </summary>
-		/// <remarks>
-		/// Considera que existe o atributo.
-		/// </remarks>
 		private void MarcarTransação()
 		{
 			transacionando = true;
 		}
 
-		/// <summary>
-		/// Retirar marca da transação.
-		/// </summary>
-		/// <remarks>
-		/// Considera que existe o atributo.
-		/// </remarks>
 		private void DesmarcarTransação()
 		{
 			transacionando = false;
 		}
 
-		/// <summary>
-		/// Cadastra a entidade no banco de dados.
-		/// </summary>
-		/// <remarks>
-		/// O implementador deverá atribuir o valor
-		/// verdadeiro para os atributos "cadastrado"
-		/// e "atualizado".
-        /// 
-        /// Se você precisar cadastrar uma outra entidade dentro de um
-        /// método de cadastro, utize o método CadastrarEntidade(entidade).
-        /// </remarks>
 		public virtual void Cadastrar()
 		{
 			try
@@ -265,7 +126,6 @@ namespace Acesso.Comum
 
                     DispararAntesDeCadastrar();
 
-                    // Efetuar cadastro.
                     conexão = Conexão;
 
                     lock (conexão)
@@ -298,7 +158,7 @@ namespace Acesso.Comum
 			{
 				Console.WriteLine("Ocorreu um erro cadastrando um objeto {0} no banco de dados.", this.GetType().FullName);
 				Console.WriteLine(e.ToString());
-				Acesso.Comum.Usuários.UsuárioAtual.RegistrarErro(e);
+				Usuários.UsuárioAtual.RegistrarErro(e);
 				
                 throw new Exception("Ocorreu um erro cadastrando um objeto do tipo " + GetType().FullName + ".", e);
 			}
@@ -312,7 +172,6 @@ namespace Acesso.Comum
 
         internal void DispararAntesDeCadastrar()
         {
-            // Verificar se operação será cancelada pelo sistema.
             if (AntesDeCadastrar != null)
             {
                 bool cancelar;
@@ -324,12 +183,6 @@ namespace Acesso.Comum
             }
         }
 
-		/// <summary>
-		/// Cadastra a entidade no banco de dados em uma
-		/// transação segura.
-		/// </summary>
-		/// <param name="conexão">Conexão do banco de dados.</param>
-		/// <param name="cmd">Comando da transação.</param>
 		protected void CadastrarTransação(IDbConnection conexão, IDbCommand cmd)
 		{
 			IDbTransaction transação;
@@ -358,72 +211,51 @@ namespace Acesso.Comum
 			}
 		}
 		
-		/// <summary>
-		/// Cadastra a entidade no banco de dados.
-		/// </summary>
 		protected internal abstract void Cadastrar(IDbCommand cmd);
 
-		/// <summary>
-		/// Atualiza a entidade no banco de dados.
-		/// </summary>
-		/// <remarks>
-		/// O implementador deverá atribuir o valor
-		/// verdadeiro para o atributo "atualizado".
-		/// </remarks>
-		public virtual void Atualizar()
-		{
-            //try
-            //{
-				lock (this)
-				{
-					IDbConnection conexão;
-					IDbCommand    cmd;
+        public virtual void Atualizar()
+        {
+            lock (this)
+            {
+                IDbConnection conexão;
+                IDbCommand cmd;
 
-					if (!Cadastrado)
-						throw new Exceções.EntidadeNãoCadastrada(this);
+                if (!Cadastrado)
+                    throw new Exceções.EntidadeNãoCadastrada(this);
 
-                    if (!Atualizado)
+                if (!Atualizado)
+                {
+                    DispararAntesDeAtualizar();
+
+                    conexão = Conexão;
+
+                    lock (conexão)
                     {
-                        DispararAntesDeAtualizar();
-
-                        // Efetuar atualização.
-                        conexão = Conexão;
-
-                        lock (conexão)
+                        try
                         {
-                            try
-                            {
 
-                                Usuários.UsuárioAtual.GerenciadorConexões.RemoverConexão(conexão);
-                                using (cmd = conexão.CreateCommand())
-                                {
-                                    if (TransaçãoSegura)
-                                        AtualizarTransação(conexão, cmd);
-                                    else
-                                        Atualizar(cmd);
-                                }
-                            }
-                            finally
+                            Usuários.UsuárioAtual.GerenciadorConexões.RemoverConexão(conexão);
+                            using (cmd = conexão.CreateCommand())
                             {
-                                Usuários.UsuárioAtual.GerenciadorConexões.AdicionarConexão(conexão);
+                                if (TransaçãoSegura)
+                                    AtualizarTransação(conexão, cmd);
+                                else
+                                    Atualizar(cmd);
                             }
                         }
-
-                        atualizado = true;
-
-                        Usuários.UsuárioAtual.NotificarDbAção(GetType(), new DbAçãoDados(this, DbAção.Atualizado));
-                        DispararDepoisDeAtualizar();
+                        finally
+                        {
+                            Usuários.UsuárioAtual.GerenciadorConexões.AdicionarConexão(conexão);
+                        }
                     }
-				}
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine("Ocorreu um erro atualizando um objeto {0} no banco de dados.", this.GetType().FullName);
-            //    Console.WriteLine(e.ToString());
-            //    Acesso.Comum.Usuários.UsuárioAtual.RegistrarErro(e);
-            //    throw new Exception("Ocorreu um erro atualizando o objeto do tipo " + GetType().FullName, e);
-            //}
-		}
+
+                    atualizado = true;
+
+                    Usuários.UsuárioAtual.NotificarDbAção(GetType(), new DbAçãoDados(this, DbAção.Atualizado));
+                    DispararDepoisDeAtualizar();
+                }
+            }
+        }
 
         protected void DispararDepoisDeAtualizar()
         {
@@ -443,7 +275,6 @@ namespace Acesso.Comum
 
         internal void DispararAntesDeAtualizar()
         {
-            // Verificar se operação será cancelada pelo sistema.
             if (AntesDeAtualizar != null)
             {
                 bool cancelar;
@@ -455,12 +286,6 @@ namespace Acesso.Comum
             }
         }
 
-		/// <summary>
-		/// Atualiza a entidade no banco de dados em uma
-		/// transação segura.
-		/// </summary>
-		/// <param name="conexão">Conexão do banco de dados.</param>
-		/// <param name="cmd">Comando da transação.</param>
 		protected void AtualizarTransação(IDbConnection conexão, IDbCommand cmd)
 		{
 			IDbTransaction transação;
@@ -493,19 +318,8 @@ namespace Acesso.Comum
             }
 		}
 
-		/// <summary>
-		/// Atualiza a entidade no banco de dados.
-		/// </summary>
 		protected internal abstract void Atualizar(IDbCommand cmd);
 
-		/// <summary>
-		/// Descadastra a entidade no banco de dados.
-		/// </summary>
-		/// <remarks>
-		/// O implementador deverá atribuir o valor
-		/// falso para os atributos "cadastrado" e
-		/// "atualizado".
-		/// </remarks>
 		public virtual void Descadastrar()
 		{
             IDbCommand cmd = null;
@@ -521,7 +335,6 @@ namespace Acesso.Comum
 
                     DispararAntesDeDescadastrar();
 
-                    // Efetuar descadastro.
                     conexão = Conexão;
 
                     lock (conexão)
@@ -554,7 +367,7 @@ namespace Acesso.Comum
 			{
 				Console.WriteLine("Ocorreu um erro descadastrando um objeto {0} no banco de dados.", this.GetType().FullName);
 				Console.WriteLine(e.ToString());
-				Acesso.Comum.Usuários.UsuárioAtual.RegistrarErro(e);
+				Usuários.UsuárioAtual.RegistrarErro(e);
 				throw new Exception("Ocorreu um erro descadastrando um objeto do tipo " + GetType().FullName + ".\n" + cmd == null ? "" : cmd.CommandText, e);
 			}
 		}
@@ -577,7 +390,6 @@ namespace Acesso.Comum
 
         internal void DispararAntesDeDescadastrar()
         {
-            // Verificar se operação será cancelada pelo sistema.
             if (AntesDeDescadastrar != null)
             {
                 bool cancelar;
@@ -589,12 +401,6 @@ namespace Acesso.Comum
             }
         }
 
-		/// <summary>
-		/// Descadastra a entidade no banco de dados em uma
-		/// transação segura.
-		/// </summary>
-		/// <param name="conexão">Conexão do banco de dados.</param>
-		/// <param name="cmd">Comando da transação.</param>
 		protected void DescadastrarTransação(IDbConnection conexão, IDbCommand cmd)
 		{
 			IDbTransaction transação;
@@ -626,36 +432,15 @@ namespace Acesso.Comum
             }
 		}
 
-		/// <summary>
-		/// Descadastra a entidade no banco de dados.
-		/// </summary>
 		protected internal abstract void Descadastrar(IDbCommand cmd);
 
-		#endregion
-
-        /// <summary>
-        /// Verifica se uma entidade possuia a mesma referência
-        /// (mesma chave primária) que outra.
-        /// </summary>
         public virtual bool Referente(DbManipulação entidade)
         {
             return Equals(entidade);
         }
 
-        /// <summary>
-        /// Atualiza uma entidade utilizando um comando já existente,
-        /// recomendado em relacionamentos para operações com transação.
-        /// </summary>
-        /// <remarks>
-        /// Só é possível utilizar este comando em conjunto com o atributo
-        /// Dbtransação.
-        /// </remarks>
         protected void AtualizarEntidade(IDbCommand cmd, DbManipulação entidade)
         {
-            /* Necessário o uso de transação, caso contrário
-             * objetos do tipo DbManipulaçãoAutomática não substituirão
-             * o comando.
-             */
             if (!Transacionando)
                 throw new NotSupportedException("Não é permitido o uso de compartilhamento de IDbCommand sem o uso do atributo \"DbTransação\".");
 
@@ -676,20 +461,8 @@ namespace Acesso.Comum
             }
         }
 
-        /// <summary>
-        /// Cadastra uma entidade utilizando um comando já existente,
-        /// recomendado em relacionamentos para operações com transação.
-        /// </summary>
-        /// <remarks>
-        /// Só é possível utilizar este comando em conjunto com o atributo
-        /// Dbtransação.
-        /// </remarks>
         protected void CadastrarEntidade(IDbCommand cmd, DbManipulação entidade)
         {
-            /* Necessário o uso de transação, caso contrário
-             * objetos do tipo DbManipulaçãoAutomática não substituirão
-             * o comando.
-             */
             if (!Transacionando)
                 throw new NotSupportedException("Não é permitido o uso de compartilhamento de IDbCommand sem o uso do atributo \"DbTransação\".");
 
@@ -711,20 +484,8 @@ namespace Acesso.Comum
             }
         }
 
-        /// <summary>
-        /// Descadastra uma entidade utilizando um comando já existente,
-        /// recomendado em relacionamentos para operações com transação.
-        /// </summary>
-        /// <remarks>
-        /// Só é possível utilizar este comando em conjunto com o atributo
-        /// Dbtransação.
-        /// </remarks>
         protected void DescadastrarEntidade(IDbCommand cmd, DbManipulação entidade)
         {
-            /* Necessário o uso de transação, caso contrário
-             * objetos do tipo DbManipulaçãoAutomática não substituirão
-             * o comando.
-             */
             if (!Transacionando)
                 throw new NotSupportedException("Não é permitido o uso de compartilhamento de IDbCommand sem o uso do atributo \"DbTransação\".");
 

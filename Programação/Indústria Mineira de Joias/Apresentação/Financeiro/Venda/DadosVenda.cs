@@ -376,7 +376,7 @@ namespace Apresentação.Financeiro.Venda
                     chkVendaQuitada.Text = "Venda quitada";
                 }
 
-                bool comissãoAberta = !Entidades.ComissãoCálculo.Comissão.ComissãoFechada(vendaEntidade.Código);
+                bool comissãoAberta = !Entidades.Comissão.Comissão.ComissãoFechada(vendaEntidade.Código);
                 chkVendaQuitada.Enabled = comissãoAberta && PermissãoFuncionário.ValidarPermissão(Permissão.ManipularComissão)
                     && vendaEntidade.Cadastrado;
             } else

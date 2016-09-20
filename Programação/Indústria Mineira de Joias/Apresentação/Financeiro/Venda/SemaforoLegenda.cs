@@ -1,30 +1,63 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using Apresentação.Formulários;
+using Entidades.Relacionamento.Venda;
 
 namespace Apresentação.Financeiro.Venda
 {
     public partial class SemaforoLegenda : Quadro
     {
+        public delegate void LegendaClicada(SemaforoEnum legenda);
+        public event LegendaClicada ClicouNaLegenda;
+        private Opção[] opções;
+        private string[] descriçãoLegendas;
+
         public SemaforoLegenda()
         {
             InitializeComponent();
+            opções = new Opção[6] { opçãoNãoQuitada, opçãoCobrança, opçãoQuitadaAberta, opçãoComissãoFechada, opçãoVendaDia, opçãoNFe };
+            descriçãoLegendas = new string[6] { "Não quitada", "Cobrança", "Quitada; c. aberta", "Comissão fechada", "Venda do dia", "Nota fiscal" };
         }
 
-        private void opção2_Click(object sender, EventArgs e)
+        private void opçãoVendaDia_Click(object sender, EventArgs e)
         {
-
+            ClicouNaLegenda?.Invoke(SemaforoEnum.DoDia);
         }
 
-        private void opção1_Click(object sender, EventArgs e)
+        private void opçãoNFe_Click(object sender, EventArgs e)
         {
+            ClicouNaLegenda?.Invoke(SemaforoEnum.Nfe);
+        }
 
+        private void opçãoCobrança_Click(object sender, EventArgs e)
+        {
+            ClicouNaLegenda?.Invoke(SemaforoEnum.Cobrança);
+        }
+
+        private void opçãoNãoQuitada_Click(object sender, EventArgs e)
+        {
+            ClicouNaLegenda?.Invoke(SemaforoEnum.NãoQuitado);
+        }
+
+        private void opçãoQuitadaAberta_Click(object sender, EventArgs e)
+        {
+            ClicouNaLegenda?.Invoke(SemaforoEnum.Quitado);
+        }
+
+        private void opçãoComissãoFechada_Click(object sender, EventArgs e)
+        {
+            ClicouNaLegenda?.Invoke(SemaforoEnum.ComissãoFechada);
+        }
+
+        internal void AtualizarContagemLegendas(int[] legendas)
+        {
+            for (int x = 0; x < opções.Length; x++)
+            {
+                bool possuiVenda = legendas[x] > 0;
+
+                opções[x].Enabled = possuiVenda;
+                opções[x].Descrição = descriçãoLegendas[x] + 
+                    (possuiVenda ?  string.Format(" ({0})", legendas[x], descriçãoLegendas[x]) : "");
+            }
         }
     }
 }

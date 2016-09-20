@@ -41,7 +41,7 @@ namespace Apresentação.Financeiro.Pagamento
 
         public void Marcar(List<IDadosVenda> vendas)
         {
-            lista.Selecionar(vendas);   
+            lista.SelecionarApenas(vendas);   
         }
     }
 }

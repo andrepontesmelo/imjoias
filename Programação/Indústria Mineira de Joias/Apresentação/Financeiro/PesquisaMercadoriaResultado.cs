@@ -27,6 +27,7 @@ namespace Apresentação.Financeiro
             }
 
             cmbTabela.Seleção = tabela;
+            txtCotação.Carregar();
             txtCotação.Cotação = cotação;
         }
 

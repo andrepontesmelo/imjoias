@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Venda do dia", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Nota fiscal", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Cobrança", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("Não quitada", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("Quitada com comissão aberta", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup6 = new System.Windows.Forms.ListViewGroup("Comissão fechada", System.Windows.Forms.HorizontalAlignment.Left);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListViewVendas));
             this.lista = new System.Windows.Forms.ListView();
             this.colData = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -47,9 +53,8 @@
             this.btnSelecionarTudo = new System.Windows.Forms.ToolStripButton();
             this.btnSelecionarNada = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnAcertado = new System.Windows.Forms.ToolStripButton();
-            this.lblDesde = new System.Windows.Forms.ToolStripLabel();
-            this.btnGerarNfe = new System.Windows.Forms.ToolStripButton();
+            this.btnAgruparLegenda = new System.Windows.Forms.ToolStripButton();
+            this.btnAbrirPdf = new System.Windows.Forms.ToolStripButton();
             this.panelInterno = new System.Windows.Forms.Panel();
             this.localizador = new Apresentação.Formulários.Localizador();
             ((System.ComponentModel.ISupportInitialize)(this.painelQuantidade)).BeginInit();
@@ -69,6 +74,25 @@
             this.colValor});
             this.lista.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lista.FullRowSelect = true;
+            listViewGroup1.Header = "Venda do dia";
+            listViewGroup1.Name = "grpVendaDia";
+            listViewGroup2.Header = "Nota fiscal";
+            listViewGroup2.Name = "grpNFe";
+            listViewGroup3.Header = "Cobrança";
+            listViewGroup3.Name = "grpCobrança";
+            listViewGroup4.Header = "Não quitada";
+            listViewGroup4.Name = "grpNaoQuitada";
+            listViewGroup5.Header = "Quitada com comissão aberta";
+            listViewGroup5.Name = "grpQuitadaComissãoAberta";
+            listViewGroup6.Header = "Comissão fechada";
+            listViewGroup6.Name = "grpComissãoFechada";
+            this.lista.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
+            listViewGroup1,
+            listViewGroup2,
+            listViewGroup3,
+            listViewGroup4,
+            listViewGroup5,
+            listViewGroup6});
             this.lista.HideSelection = false;
             this.lista.Location = new System.Drawing.Point(0, 0);
             this.lista.Name = "lista";
@@ -164,9 +188,8 @@
             this.btnSelecionarTudo,
             this.btnSelecionarNada,
             this.toolStripSeparator1,
-            this.btnAcertado,
-            this.lblDesde,
-            this.btnGerarNfe});
+            this.btnAgruparLegenda,
+            this.btnAbrirPdf});
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Size = new System.Drawing.Size(807, 25);
@@ -204,8 +227,8 @@
             this.btnSelecionarNada.Image = ((System.Drawing.Image)(resources.GetObject("btnSelecionarNada.Image")));
             this.btnSelecionarNada.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnSelecionarNada.Name = "btnSelecionarNada";
-            this.btnSelecionarNada.Size = new System.Drawing.Size(94, 22);
-            this.btnSelecionarNada.Text = "Selecionar nada";
+            this.btnSelecionarNada.Size = new System.Drawing.Size(90, 22);
+            this.btnSelecionarNada.Text = "Limpar seleção";
             this.btnSelecionarNada.Click += new System.EventHandler(this.btnSelecionarNada_Click);
             // 
             // toolStripSeparator1
@@ -213,31 +236,24 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
-            // btnAcertado
+            // btnAgruparLegenda
             // 
-            this.btnAcertado.CheckOnClick = true;
-            this.btnAcertado.Image = global::Apresentação.Resource.Acerto__Pequeno_;
-            this.btnAcertado.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAcertado.Name = "btnAcertado";
-            this.btnAcertado.Size = new System.Drawing.Size(161, 22);
-            this.btnAcertado.Text = "Mostrar vendas acertadas";
-            this.btnAcertado.CheckedChanged += new System.EventHandler(this.btnAcertado_CheckedChanged);
+            this.btnAgruparLegenda.CheckOnClick = true;
+            this.btnAgruparLegenda.Image = ((System.Drawing.Image)(resources.GetObject("btnAgruparLegenda.Image")));
+            this.btnAgruparLegenda.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAgruparLegenda.Name = "btnAgruparLegenda";
+            this.btnAgruparLegenda.Size = new System.Drawing.Size(136, 22);
+            this.btnAgruparLegenda.Text = "Agrupar por legenda";
+            this.btnAgruparLegenda.Click += new System.EventHandler(this.btnAgruparLegenda_Click);
             // 
-            // lblDesde
+            // btnAbrirPdf
             // 
-            this.lblDesde.Name = "lblDesde";
-            this.lblDesde.Size = new System.Drawing.Size(55, 22);
-            this.lblDesde.Text = "(desde...)";
-            this.lblDesde.Visible = false;
-            // 
-            // btnGerarNfe
-            // 
-            this.btnGerarNfe.Image = ((System.Drawing.Image)(resources.GetObject("btnGerarNfe.Image")));
-            this.btnGerarNfe.ImageTransparentColor = System.Drawing.Color.White;
-            this.btnGerarNfe.Name = "btnGerarNfe";
-            this.btnGerarNfe.Size = new System.Drawing.Size(84, 22);
-            this.btnGerarNfe.Text = "Gerar NF-e";
-            this.btnGerarNfe.Click += new System.EventHandler(this.btnGerarNfe_Click);
+            this.btnAbrirPdf.Image = ((System.Drawing.Image)(resources.GetObject("btnAbrirPdf.Image")));
+            this.btnAbrirPdf.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAbrirPdf.Name = "btnAbrirPdf";
+            this.btnAbrirPdf.Size = new System.Drawing.Size(48, 22);
+            this.btnAbrirPdf.Text = "NFe";
+            this.btnAbrirPdf.Click += new System.EventHandler(this.btnAbrirPdf_Click);
             // 
             // panelInterno
             // 
@@ -304,9 +320,8 @@
         private System.Windows.Forms.ColumnHeader colControle;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton btnAcertado;
-        private System.Windows.Forms.ToolStripLabel lblDesde;
-        private System.Windows.Forms.ToolStripButton btnGerarNfe;
         private System.Windows.Forms.ImageList imageListSemaforos;
+        private System.Windows.Forms.ToolStripButton btnAgruparLegenda;
+        private System.Windows.Forms.ToolStripButton btnAbrirPdf;
     }
 }

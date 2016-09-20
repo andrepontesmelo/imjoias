@@ -1,21 +1,13 @@
+using Entidades;
+using Entidades.Configuração;
 using System;
 using System.Collections;
 using System.ComponentModel;
-using System.Drawing;
 using System.Windows.Forms;
-using Entidades;
-using Entidades.Configuração;
 
 namespace Apresentação.Atendimento.Clientes
 {
-	/// <summary>
-	/// Base para seleção de clientes de setores.
-	/// 
-	/// Entende-se por carga a reobtenção dos dados no banco de dados,
-	/// que é feita somente assim que o AoAbrir() é chamado,
-	/// e mesmo assim, apenas de tempos em tempos.
-	/// </summary>
-	public class BaseSeleçãoClienteSetor : Apresentação.Atendimento.Clientes.BaseSeleçãoCliente
+    public class BaseSeleçãoClienteSetor : BaseSeleçãoCliente
 	{
 		// Atributos
 		protected DateTime próximaCarga = DateTime.MinValue;
@@ -23,11 +15,10 @@ namespace Apresentação.Atendimento.Clientes
         protected Setor[] setores;
 
 		// Componentes
-		private System.ComponentModel.IContainer components = null;
+		private IContainer components = null;
 
 		public BaseSeleçãoClienteSetor()
 		{
-			// This call is required by the Windows Form Designer.
 			InitializeComponent();
 
 			setores = null;
@@ -164,10 +155,6 @@ namespace Apresentação.Atendimento.Clientes
 			return Configurar(setores);
 		}
 
-		/// <summary>
-		/// Exibe janela de configuração.
-		/// </summary>
-		/// <returns>Se foram realizadas modificações.</returns>
 		private bool Configurar(Setor [] setores)
 		{
 			using (DlgConfigSeleçãoClienteSetor dlg =
@@ -177,35 +164,9 @@ namespace Apresentação.Atendimento.Clientes
 			}
 		}
 
-        /// <summary>
-        /// Carrega dados do banco de dados.
-        /// </summary>
         protected virtual void CarregarDados()
         {
-            CarregarDeSetores(setores);
-            //próximaCarga = DateTime.Now.Add(validadeCarga);
+            CarregarAssíncrono();
         }
-
-        ///// <summary>
-        ///// Ocorre ao clicar no botão recarregar.
-        ///// </summary>
-        //private void opçãoRecarregar_Click(object sender, System.EventArgs e)
-        //{
-        //    CarregarDados();
-        //}
-
-        ///// <summary>
-        ///// Ocorre ao clicar em reconfigurar.
-        ///// </summary>
-        //private void opçãoReconfigurar_Click(object sender, System.EventArgs e)
-        //{
-        //    if (Configurar())
-        //        CarregarDados();
-        //}
-
-        //private void timerRecarregarLista_Tick(object sender, EventArgs e)
-        //{
-        //    CarregarDados();
-        //}
 	}
 }

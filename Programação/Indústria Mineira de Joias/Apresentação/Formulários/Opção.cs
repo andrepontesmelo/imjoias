@@ -1,54 +1,41 @@
+using Entidades.Privilégio;
 using System;
-using System.Collections;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
 using System.Windows.Forms;
-
-using Entidades.Privilégio;
 
 namespace Apresentação.Formulários
 {
-	/// <summary>
-	/// Summary description for Opção.
-	/// </summary>
-	[DefaultEvent("Click"), DefaultProperty("Descrição")]
-	public class Opção : System.Windows.Forms.UserControl, IRequerPrivilégio
+    [DefaultEvent("Click"), DefaultProperty("Descrição")]
+	public class Opção : UserControl, IRequerPrivilégio
 	{
         private Permissão privilégio = Permissão.Nenhuma;
         private bool liberarRecurso = false;
         
-        private System.Windows.Forms.PictureBox picOpção;
-		private System.Windows.Forms.LinkLabel lblDescrição;
+        private PictureBox picOpção;
+		private LinkLabel lblDescrição;
 
-		/// <summary> 
-		/// Required designer variable.
-		/// </summary>
-		private System.ComponentModel.Container components = null;
+		private Container components = null;
 
 		public Opção()
 		{
-			// This call is required by the Windows.Forms Form Designer.
 			InitializeComponent();
 
-			this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
-			this.BackColor = Color.Transparent;
+			SetStyle(ControlStyles.SupportsTransparentBackColor, true);
+			BackColor = Color.Transparent;
 		}
 
-		/// <summary> 
-		/// Clean up any resources being used.
-		/// </summary>
-		protected override void Dispose( bool disposing )
-		{
-			if( disposing )
-			{
-				if(components != null)
-				{
-					components.Dispose();
-				}
-			}
-			base.Dispose( disposing );
-		}
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (components != null)
+                {
+                    components.Dispose();
+                }
+            }
+            base.Dispose(disposing);
+        }
 
 		#region Component Designer generated code
 		/// <summary> 
@@ -106,14 +93,14 @@ namespace Apresentação.Formulários
 		}
 		#endregion
 
-		private void lblDescrição_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		private void lblDescrição_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			this.OnClick(null);
+			OnClick(null);
 		}
 
 		private void picOpção_Click(object sender, System.EventArgs e)
 		{
-			this.OnClick(e);
+			OnClick(e);
 		}
 
         protected override void OnClick(EventArgs e)
@@ -135,7 +122,7 @@ namespace Apresentação.Formulários
 			set { lblDescrição.Text = value; }
 		}
 
-		public System.Drawing.Image Imagem
+		public Image Imagem
 		{
 			get { return picOpção.Image; }
 			set { picOpção.Image = value; }
@@ -145,8 +132,8 @@ namespace Apresentação.Formulários
 		{
 			base.OnEnabledChanged (e);
 
-			lblDescrição.Enabled = this.Enabled;
-			picOpção.Enabled = this.Enabled;
+			lblDescrição.Enabled = Enabled;
+			picOpção.Enabled = Enabled;
 		}
 
         private void Opção_Load(object sender, EventArgs e)
@@ -171,14 +158,11 @@ namespace Apresentação.Formulários
             }
         }
 
-        /// <summary>
-        /// Privilégios necessários para exibição do quadro.
-        /// </summary>
         [DefaultValue(Permissão.Nenhuma), Description("Privilégios necessários para exibição do quadro."), Browsable(true)]
         public Permissão Privilégio
         {
             get { return privilégio; }
-            set { this.privilégio = value; }
+            set { privilégio = value; }
         }
 
         [DefaultValue(false)]

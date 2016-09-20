@@ -1,4 +1,4 @@
-﻿using Entidades.ComissãoCálculo;
+﻿using Entidades.Comissão;
 using System;
 using System.Windows.Forms;
 

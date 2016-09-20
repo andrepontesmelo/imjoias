@@ -303,12 +303,6 @@ namespace Entidades.Financeiro
         {
             PermissãoFuncionário.AssegurarPermissão(Permissão.EditarCotação);
 
-            if (moeda.ComponenteDeCusto != null)
-            {
-                moeda.ComponenteDeCusto.Valor = valor;
-                AtualizarEntidade(cmd, moeda.ComponenteDeCusto);
-            }
-
             base.Cadastrar(cmd);
         }
 

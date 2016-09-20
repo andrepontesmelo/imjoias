@@ -1,3 +1,4 @@
+using Entidades.Mercadoria.Componente;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -22,12 +23,14 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
                 tabelaNova = dataSetNovo.Tables["vinculomercadoriacomponentecusto"];
                 cadmer = dataSetVelho.Tables["cadmer"];
                 tabelaMercadoriasNova = dataSetNovo.Tables["mercadoria"];
-			}
+            }
 
             public void Transpor(StringBuilder saída)
             {
                 string originalStringComponenteCusto;
                 string referência;
+
+                ComponenteCusto.LiberarCache();
 
                 // Apaga vinculos antigos
                 IDbConnection conexão = Acesso.Comum.Usuários.UsuárioAtual.Conexão;
@@ -104,6 +107,11 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 			/// <param name="componenteCusto"></param>
 			private void InserirVinculoComponenteCusto(string referência, double quantidade, string componenteCusto)
 			{
+                if (ComponenteCusto.Obter(componenteCusto) == null)
+                {
+                    throw new Exception("Componente não cadastrado: " + componenteCusto);
+                }
+
 				DataRow novoItem;
 
 				foreach (DataRow itemAtual in vinculosCadastrados)
