@@ -22,7 +22,7 @@ namespace Entidades.Fiscal.Importação
 
             List<string> arquivos = ObterArquivos(pasta, PADRÂO_ARQUIVO, opções);
             
-            SortedSet<string> idsCadastrados = new SortedSet<string>(VendaFiscal.ObterIdsCadastrados());
+            SortedSet<string> idsCadastrados = new SortedSet<string>(SaidaFiscal.ObterIdsCadastrados());
 
             foreach (string arquivo in arquivos)
             {
@@ -30,7 +30,7 @@ namespace Entidades.Fiscal.Importação
                 {
                     AtualizarPorcentagem(thread, resultado, arquivos);
 
-                    VendaFiscal venda = new AdaptadorAtacado(new ParserXmlAtacado(arquivo)).Transformar();
+                    SaidaFiscal venda = new AdaptadorAtacado(new ParserXmlAtacado(arquivo)).Transformar();
 
                     if (idsCadastrados.Contains(venda.Id)
                         || !venda.EmitidoPorEstaEmpresa)

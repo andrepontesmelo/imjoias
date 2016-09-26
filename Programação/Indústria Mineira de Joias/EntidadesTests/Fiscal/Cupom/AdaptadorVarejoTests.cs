@@ -33,7 +33,7 @@ namespace Entidades.Fiscal.Cupom.Tests
         [TestMethod()]
         public void DeveAdaptarTipoVenda()
         {
-            Assert.AreEqual(TipoVenda.Cupom, adaptador.Transformar().TipoVenda);
+            Assert.AreEqual(TipoSaída.Cupom, adaptador.Transformar().TipoSaída);
         }
 
 

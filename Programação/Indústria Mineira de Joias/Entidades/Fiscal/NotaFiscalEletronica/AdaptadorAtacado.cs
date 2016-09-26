@@ -11,9 +11,9 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
             this.parser = parser;
         }
 
-        public VendaFiscal Transformar()
+        public SaidaFiscal Transformar()
         {
-            VendaFiscal entidade = new VendaFiscal(TipoVenda.NFe,
+            SaidaFiscal entidade = new SaidaFiscal(TipoSaída.NFe,
                 parser.LerDataEmissão(),
                 parser.LerId(),
                 parser.LerValorTotal(),
@@ -26,12 +26,12 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
             return entidade;
         }
 
-        private List<VendaItemFiscal> TransformarItens()
+        private List<SaidaItemFiscal> TransformarItens()
         {
-            List<VendaItemFiscal> itens = new List<VendaItemFiscal>(parser.QuantidadeVendaItem);
+            List<SaidaItemFiscal> itens = new List<SaidaItemFiscal>(parser.QuantidadeVendaItem);
 
             for (int x = 1; x <= parser.QuantidadeVendaItem; x++)
-                itens.Add(new VendaItemFiscal(parser.ObterReferência(x), 
+                itens.Add(new SaidaItemFiscal(parser.ObterReferência(x), 
                     parser.ObterDescrição(x),
                     parser.ObterCFOP(x),
                     parser.ObterTipoUnidade(x),

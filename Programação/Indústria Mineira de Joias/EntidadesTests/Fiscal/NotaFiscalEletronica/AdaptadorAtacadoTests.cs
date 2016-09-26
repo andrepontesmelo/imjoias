@@ -28,7 +28,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         [TestMethod()]
         public void DeveAdaptarTipoVenda()
         {
-            Assert.AreEqual(TipoVenda.NFe, adaptador.Transformar().TipoVenda);
+            Assert.AreEqual(TipoSaída.NFe, adaptador.Transformar().TipoSaída);
         }
 
 

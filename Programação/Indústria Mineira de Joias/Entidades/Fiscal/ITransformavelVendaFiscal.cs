@@ -2,6 +2,6 @@
 {
     public interface ITransformavelVendaFiscal
     {
-        VendaFiscal Transformar();
+        SaidaFiscal Transformar();
     }
 }

@@ -24,7 +24,7 @@ namespace Entidades.Fiscal.Importação
 
             List<string> arquivos = ObterArquivos(pasta, PADRÂO_ARQUIVO, opções);
             
-            SortedSet<string> idsCadastrados = new SortedSet<string>(VendaFiscal.ObterIdsCadastrados());
+            SortedSet<string> idsCadastrados = new SortedSet<string>(SaidaFiscal.ObterIdsCadastrados());
 
             int arquivosProcessados = 0;
             foreach (string arquivo in arquivos)
@@ -36,7 +36,7 @@ namespace Entidades.Fiscal.Importação
                     List<CupomFiscal> cupons = Interpretador.InterpretaArquivo(arquivo).CuponsFiscais;
                     foreach (CupomFiscal cupom in cupons)
                     {
-                        VendaFiscal venda = new AdaptadorVarejo(cupom).Transformar();
+                        SaidaFiscal venda = new AdaptadorVarejo(cupom).Transformar();
 
                         if (idsCadastrados.Contains(venda.Id))
                         {
@@ -58,7 +58,7 @@ namespace Entidades.Fiscal.Importação
             return resultado;
         }
 
-        private static string ObterDescrição(string arquivo, VendaFiscal venda)
+        private static string ObterDescrição(string arquivo, SaidaFiscal venda)
         {
             return string.Format("Id {0} @ {1}", venda.Id, arquivo);
         }

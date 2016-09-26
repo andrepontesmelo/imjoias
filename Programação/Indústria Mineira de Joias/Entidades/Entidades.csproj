@@ -270,9 +270,9 @@
     <Compile Include="Fiscal\NotaFiscalEletronica\ArquivoPdf\LeitorPdf.cs" />
     <Compile Include="Fiscal\TipoUnidade.cs" />
     <Compile Include="Fiscal\TipoUnidadeInterpretação.cs" />
-    <Compile Include="Fiscal\TipoVenda.cs" />
-    <Compile Include="Fiscal\VendaFiscal.cs" />
-    <Compile Include="Fiscal\VendaItemFiscal.cs" />
+    <Compile Include="Fiscal\TipoSaída.cs" />
+    <Compile Include="Fiscal\SaidaFiscal.cs" />
+    <Compile Include="Fiscal\SaidaItemFiscal.cs" />
     <Compile Include="IAcessoMercadoria.cs">
       <SubType>Code</SubType>
     </Compile>

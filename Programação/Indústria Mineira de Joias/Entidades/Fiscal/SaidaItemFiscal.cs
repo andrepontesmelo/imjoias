@@ -1,11 +1,10 @@
-﻿using System;
+﻿using Acesso.Comum;
 using System.Collections.Generic;
 using System.Data;
-using Acesso.Comum;
 
 namespace Entidades.Fiscal
 {
-    public class VendaItemFiscal : DbManipulaçãoSimples
+    public class SaidaItemFiscal : DbManipulaçãoSimples
     {
         private string referência;
         private string descrição;
@@ -15,7 +14,7 @@ namespace Entidades.Fiscal
         private decimal valorUnitário;
         private decimal valor;
 
-        public VendaItemFiscal(string referência, string descrição, int? cfop,
+        public SaidaItemFiscal(string referência, string descrição, int? cfop,
             TipoUnidade tipoUnidade, decimal quantidade, decimal valorUnitário,
             decimal valor)
         {
@@ -36,21 +35,21 @@ namespace Entidades.Fiscal
         public decimal ValorUnitário => valorUnitário;
         public decimal Valor => valor;
 
-        internal static void CadastrarItens(string idVendaFiscal, List<VendaItemFiscal> itens, IDbTransaction transação, IDbConnection conexão)
+        internal static void CadastrarItens(string idSaídaFiscal, List<SaidaItemFiscal> itens, IDbTransaction transação, IDbConnection conexão)
         {
-            foreach (VendaItemFiscal item in itens)
-                item.Cadastrar(idVendaFiscal, transação, conexão);
+            foreach (SaidaItemFiscal item in itens)
+                item.Cadastrar(idSaídaFiscal, transação, conexão);
         }
 
-        private void Cadastrar(string idVendaFiscal, IDbTransaction transação, IDbConnection conexão)
+        private void Cadastrar(string idSaídaFiscal, IDbTransaction transação, IDbConnection conexão)
         {
             using (IDbCommand cmd = conexão.CreateCommand())
             {
                 cmd.Transaction = transação;
 
-                cmd.CommandText = string.Format("INSERT INTO vendaitemfiscal (vendafiscal, referencia, descricao, cfop, " +
+                cmd.CommandText = string.Format("INSERT INTO saidaitemfiscal (saidafiscal, referencia, descricao, cfop, " +
                     "tipounidade, quantidade, valorunitario, valor) values ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})",
-                    DbTransformar(idVendaFiscal),
+                    DbTransformar(idSaídaFiscal),
                     DbTransformar(referência),
                     DbTransformar(descrição),
                     DbTransformar(cfop),

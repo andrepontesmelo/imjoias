@@ -5,10 +5,10 @@ using System.Data;
 
 namespace Entidades.Fiscal
 {
-    public class VendaFiscal : DbManipulaçãoSimples
+    public class SaidaFiscal : DbManipulaçãoSimples
     {
         private DateTime dataEmissão;
-        private TipoVenda tipoVenda;
+        private TipoSaída tipoSaída;
         private string id;
         private decimal valorTotal;
         private int? nnf;
@@ -16,17 +16,17 @@ namespace Entidades.Fiscal
         private int? coo;
         private int? contadorDocumentoEmitido;
 
-        private List<VendaItemFiscal> itens;
+        private List<SaidaItemFiscal> itens;
 
-        public VendaFiscal()
+        public SaidaFiscal()
         {
         }
 
-        public VendaFiscal(TipoVenda tipoVenda, DateTime dataEmissão, string id, 
+        public SaidaFiscal(TipoSaída tipoSaída, DateTime dataEmissão, string id, 
             decimal valorTotal, int? nnf, int? coo, int? contadorDocumentoEmitido, 
-            string emitidoPorCNPJ, List<VendaItemFiscal> itens)
+            string emitidoPorCNPJ, List<SaidaItemFiscal> itens)
         {
-            this.tipoVenda = tipoVenda;
+            this.tipoSaída = tipoSaída;
             this.dataEmissão = dataEmissão;
             this.id = id;
             this.valorTotal = valorTotal;
@@ -39,13 +39,13 @@ namespace Entidades.Fiscal
 
         internal static List<string> ObterIdsCadastrados()
         {
-            return MapearStrings("select id from vendafiscal");
+            return MapearStrings("select id from saidafiscal");
         }
 
-        public TipoVenda TipoVenda => tipoVenda;
+        public TipoSaída TipoSaída => tipoSaída;
         public DateTime DataEmissão => dataEmissão;
         public string Id => id;
-        public List<VendaItemFiscal> Itens => itens;
+        public List<SaidaItemFiscal> Itens => itens;
         public decimal ValorTotal => valorTotal;
         public int? NNF => nnf;
         public bool EmitidoPorEstaEmpresa => emitidoPorCNPJ.Equals(Configuração.DadosGlobais.Instância.CNPJEmpresa);
@@ -61,7 +61,7 @@ namespace Entidades.Fiscal
                 using (IDbTransaction transação = conexão.BeginTransaction())
                 {
                     CadastrarEntidade(transação, conexão);
-                    VendaItemFiscal.CadastrarItens(id, itens, transação, conexão);
+                    SaidaItemFiscal.CadastrarItens(id, itens, transação, conexão);
 
                     transação.Commit();
                 }
@@ -74,9 +74,9 @@ namespace Entidades.Fiscal
             {
                 cmd.Transaction = transação;
 
-                cmd.CommandText = string.Format("INSERT INTO vendafiscal (dataemissao, tipovenda, id, valortotal, nnf, coo, contadordocumentoemitido) values ({0}, {1}, {2}, {3}, {4}, {5}, {6})",
+                cmd.CommandText = string.Format("INSERT INTO saidafiscal (dataemissao, tiposaida, id, valortotal, nnf, coo, contadordocumentoemitido) values ({0}, {1}, {2}, {3}, {4}, {5}, {6})",
                     DbTransformar(dataEmissão),
-                    DbTransformar(((char) tipoVenda).ToString()),
+                    DbTransformar(((char) tipoSaída).ToString()),
                     DbTransformar(id),
                     DbTransformar(ValorTotal),
                     DbTransformar(NNF),

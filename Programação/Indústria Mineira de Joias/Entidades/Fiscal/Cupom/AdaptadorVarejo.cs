@@ -13,9 +13,9 @@ namespace Entidades.Fiscal.Cupom
             this.cupom = cupom;
         }
 
-        public VendaFiscal Transformar()
+        public SaidaFiscal Transformar()
         {
-            VendaFiscal entidade = new VendaFiscal(TipoVenda.Cupom, 
+            SaidaFiscal entidade = new SaidaFiscal(TipoSaída.Cupom, 
                 cupom.DataInicioEmissao, 
                 AdaptarId(cupom.DataInicioEmissao, 
                 cupom.NumeroContadorDocumentoEmitido, 
@@ -30,9 +30,9 @@ namespace Entidades.Fiscal.Cupom
             return entidade;
         }
 
-        private List<VendaItemFiscal> AdaptarItens(List<DetalheCupomFiscal> detalhes)
+        private List<SaidaItemFiscal> AdaptarItens(List<DetalheCupomFiscal> detalhes)
         {
-            List<VendaItemFiscal> itens = new List<VendaItemFiscal>();
+            List<SaidaItemFiscal> itens = new List<SaidaItemFiscal>();
 
             foreach (DetalheCupomFiscal detalhe in detalhes)
                 itens.Add(AdaptarItem(detalhe));
@@ -40,9 +40,9 @@ namespace Entidades.Fiscal.Cupom
             return itens;
         }
 
-        private VendaItemFiscal AdaptarItem(DetalheCupomFiscal detalhe)
+        private SaidaItemFiscal AdaptarItem(DetalheCupomFiscal detalhe)
         {
-            return new VendaItemFiscal(AdaptarReferência(detalhe),
+            return new SaidaItemFiscal(AdaptarReferência(detalhe),
                                 detalhe.Descricao.Trim(),
                                 null,
                                 TipoUnidadeInterpretação.Interpretar(detalhe.Unidade),
