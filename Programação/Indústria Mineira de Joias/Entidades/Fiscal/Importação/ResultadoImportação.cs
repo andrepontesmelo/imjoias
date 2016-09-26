@@ -6,7 +6,7 @@ namespace Entidades.Fiscal.Importação
 {
     public class ResultadoImportação
     {
-        private List<string> arquivosFalhados;
+        private List<KeyValuePair<string, Exception>> arquivosFalhados;
         private List<string> arquivosSucesso;
         private List<string> arquivosIgnorados;
 
@@ -22,7 +22,6 @@ namespace Entidades.Fiscal.Importação
         {
             int tamanhoMáximo = 0;
 
-            tamanhoMáximo = ObtemTamanhoMáximo(tamanhoMáximo, arquivosFalhados);
             tamanhoMáximo = ObtemTamanhoMáximo(tamanhoMáximo, arquivosSucesso);
             tamanhoMáximo = ObtemTamanhoMáximo(tamanhoMáximo, arquivosIgnorados);
 
@@ -42,7 +41,7 @@ namespace Entidades.Fiscal.Importação
         {
             this.descriçãoProcesso = descriçãoProcesso;
             início = DateTime.Now;
-            arquivosFalhados = new List<string>();
+            arquivosFalhados = new List<KeyValuePair<string, Exception>>();
             arquivosSucesso = new List<string>();
             arquivosIgnorados = new List<string>();
         }
@@ -83,6 +82,87 @@ namespace Entidades.Fiscal.Importação
             escritor.WriteLine(linhasTraços);
         }
 
+        private void EscreveArquivos(string título, List<string> arquivos, StreamWriter escritor)
+        {
+            if (arquivos.Count == 0)
+                return;
+
+            EscreveTítulo(título, escritor);
+
+            Adiciona(escritor, arquivos);
+        }
+
+        private void EscreveTítulo(string título, StreamWriter escritor)
+        {
+            escritor.WriteLine();
+            escritor.WriteLine(linhasTraços);
+            escritor.WriteLine(título);
+            escritor.WriteLine(linhasTraços);
+        }
+
+        private void EscreveArquivos(string título, List<KeyValuePair<string, Exception>> arquivosFalhados, StreamWriter escritor)
+        {
+            if (arquivosFalhados.Count == 0)
+                return;
+
+            Dictionary<Type, List<KeyValuePair<string, Exception>>> grupos = AgruparTipoFalha(arquivosFalhados);
+
+            EscreveCabeçalhoGrupo(título, escritor, grupos);
+            DescreveGrupos(escritor, grupos);
+        }
+
+        private static void DescreveGrupos(StreamWriter escritor, Dictionary<Type, List<KeyValuePair<string, Exception>>> grupos)
+        {
+            foreach (KeyValuePair<Type, List<KeyValuePair<string, Exception>>> grupo in grupos)
+            {
+                escritor.WriteLine();
+                escritor.WriteLine(string.Format(" --  {0} -- ", grupo.Key.ToString()));
+
+                int x = 0;
+                foreach (KeyValuePair<string, Exception> par in grupo.Value)
+                    escritor.WriteLine(string.Format("{0} - {1}", ++x, par.Key));
+            }
+        }
+
+        private void EscreveCabeçalhoGrupo(string título, StreamWriter escritor, Dictionary<Type, List<KeyValuePair<string, Exception>>> grupos)
+        {
+            escritor.WriteLine(linhasTraços);
+            escritor.WriteLine(título);
+
+            foreach (KeyValuePair<Type, List<KeyValuePair<string, Exception>>> grupo in grupos)
+                escritor.WriteLine(string.Format("  >> {0} Falha(s) do tipo {1}", grupo.Value.Count, grupo.Key.ToString()));
+
+            escritor.WriteLine(linhasTraços);
+        }
+
+        private Dictionary<Type, List<KeyValuePair<string, Exception>>> AgruparTipoFalha(List<KeyValuePair<string, Exception>> arquivosFalhados)
+        {
+            Dictionary<Type, List<KeyValuePair<string, Exception>>> hashTipos = new Dictionary<Type, List<KeyValuePair<string, Exception>>>();
+
+            foreach (KeyValuePair<string, Exception> par in arquivosFalhados)
+            {
+                List<KeyValuePair<string, Exception>> lista;
+                Type tipo = par.Value.GetType();
+                if (!hashTipos.TryGetValue(tipo, out lista))
+                {
+                    lista = new List<KeyValuePair<string, Exception>>();
+                    hashTipos[tipo] = lista;
+                }
+
+                lista.Add(par);
+            }
+
+            return hashTipos;
+        }
+
+        private void Adiciona(StreamWriter escritor, List<string> arquivos)
+        {
+            int x = 0;
+
+            foreach (string arquivo in arquivos)
+                escritor.WriteLine(string.Format("{0} - {1}", ++x, arquivo));
+        }
+
         private void EscreveTaxas(StreamWriter escritor)
         {
             if (TotalArquivos == 0)
@@ -91,33 +171,20 @@ namespace Entidades.Fiscal.Importação
                 return;
             }
 
-            EscreveTaxa(escritor, "Falhas", arquivosFalhados);
-            EscreveTaxa(escritor, "Sucesso", arquivosSucesso);
-            EscreveTaxa(escritor, "Ignorados", arquivosIgnorados);
+            EscreveTaxa(escritor, "Falhas", arquivosFalhados.Count);
+            EscreveTaxa(escritor, "Sucesso", arquivosSucesso.Count);
+            EscreveTaxa(escritor, "Ignorados", arquivosIgnorados.Count);
         }
 
         internal void AdicionarFalha(string arquivo, Exception erro)
         {
-            arquivosFalhados.Add(string.Format("{0} - {1}", arquivo, erro.Message));
+            arquivosFalhados.Add(new KeyValuePair<string, Exception>(arquivo, erro));
         }
 
-        private void EscreveTaxa(StreamWriter escritor, string nome, List<string> arquivos)
+        private void EscreveTaxa(StreamWriter escritor, string nome, int qtdArquivos)
         {
-            escritor.WriteLine(string.Format("{0}: {1} / {2} ({3}%)", nome, arquivos.Count, TotalArquivos,
-                Math.Round((double)100 * arquivos.Count / TotalArquivos)));
-        }
-
-        private void EscreveArquivos(string título, List<string> arquivos, StreamWriter escritor)
-        {
-            if (arquivos.Count == 0)
-                return;
-
-            escritor.WriteLine();
-            escritor.WriteLine(linhasTraços);
-            escritor.WriteLine(título);
-            escritor.WriteLine(linhasTraços);
-
-            Adiciona(escritor, arquivos);
+            escritor.WriteLine(string.Format("{0}: {1} / {2} ({3}%)", nome, qtdArquivos, TotalArquivos,
+                Math.Round((double) 100 * qtdArquivos / TotalArquivos)));
         }
 
         private static string ObterTempoLegível(TimeSpan tempo)
@@ -135,15 +202,7 @@ namespace Entidades.Fiscal.Importação
             return formatado;
         }
 
-        private void Adiciona(StreamWriter escritor, List<string> arquivos)
-        {
-            int x = 0;
-
-            foreach (string arquivo in arquivos)
-                escritor.WriteLine(string.Format("{0} - {1}", ++x, arquivo));
-        }
-
-        public List<string> ArquivosFalhados => arquivosFalhados;
+        public List<KeyValuePair<string, Exception>> ArquivosFalhados => arquivosFalhados;
         public List<string> ArquivosSucesso => arquivosSucesso;
         public List<string> ArquivosIgnorados => arquivosIgnorados;
     }
