@@ -6,6 +6,8 @@ namespace Entidades.Fiscal.Importação
 {
     public class ResultadoImportação
     {
+        private static readonly int MAX_DESCRIÇÔES_ERRO_EXIBIR_CABEÇALHO_GRUPO = 5;
+
         private List<KeyValuePair<string, Exception>> arquivosFalhados;
         private List<string> arquivosSucesso;
         private List<string> arquivosIgnorados;
@@ -116,23 +118,56 @@ namespace Entidades.Fiscal.Importação
             foreach (KeyValuePair<Type, List<KeyValuePair<string, Exception>>> grupo in grupos)
             {
                 escritor.WriteLine();
-                escritor.WriteLine(string.Format(" --  {0} -- ", grupo.Key.ToString()));
+                escritor.WriteLine(grupo.Key.Name);
+                escritor.WriteLine();
 
                 int x = 0;
                 foreach (KeyValuePair<string, Exception> par in grupo.Value)
+                {
                     escritor.WriteLine(string.Format("{0} - {1}", ++x, par.Key));
+                    escritor.WriteLine(string.Format("      {0}", par.Value.Message));
+                }
             }
         }
 
         private void EscreveCabeçalhoGrupo(string título, StreamWriter escritor, Dictionary<Type, List<KeyValuePair<string, Exception>>> grupos)
         {
             escritor.WriteLine(linhasTraços);
+            escritor.WriteLine();
             escritor.WriteLine(título);
+            escritor.WriteLine();
 
             foreach (KeyValuePair<Type, List<KeyValuePair<string, Exception>>> grupo in grupos)
-                escritor.WriteLine(string.Format("  >> {0} Falha(s) do tipo {1}", grupo.Value.Count, grupo.Key.ToString()));
+            {
+                escritor.WriteLine(string.Format(" > {0} {1} do tipo {2}", grupo.Value.Count, 
+                    grupo.Value.Count == 1 ? "falha" : "falhas",
+                    grupo.Key.Name));
+
+                EscreverDescriçõesErros(escritor, grupo);
+                escritor.WriteLine();
+            }
 
             escritor.WriteLine(linhasTraços);
+        }
+
+        private void EscreverDescriçõesErros(StreamWriter escritor, KeyValuePair<Type, List<KeyValuePair<string, Exception>>> grupo)
+        {
+            SortedSet<string> descrições = new SortedSet<string>();
+
+            foreach (KeyValuePair<string, Exception> par in grupo.Value)
+            {
+                descrições.Add(par.Value.Message);
+                if (descrições.Count > MAX_DESCRIÇÔES_ERRO_EXIBIR_CABEÇALHO_GRUPO)
+                    break;
+            }
+
+            if (descrições.Count < MAX_DESCRIÇÔES_ERRO_EXIBIR_CABEÇALHO_GRUPO)
+            {
+                foreach (string descrição in descrições)
+                    escritor.WriteLine(string.Format("  .. {0}", descrição));
+            }
+            else
+                escritor.WriteLine("    [...]");
         }
 
         private Dictionary<Type, List<KeyValuePair<string, Exception>>> AgruparTipoFalha(List<KeyValuePair<string, Exception>> arquivosFalhados)

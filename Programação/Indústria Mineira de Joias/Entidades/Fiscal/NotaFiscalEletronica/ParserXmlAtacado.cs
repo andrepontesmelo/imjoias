@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entidades.Fiscal.Excessões;
+using System;
 using System.Globalization;
 using System.Xml;
 
@@ -52,7 +53,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
             bool ok = decimal.TryParse(texto, NumberStyles.Any, CULTURA_AMERICANA, out valor);
 
             if (!ok)
-                throw new Exception(string.Format("{0} não pode ser transformado em decimal.", texto));
+                throw new FormatException(string.Format("{0} não pode ser transformado em decimal.", texto));
             
             return valor;
         }
@@ -65,7 +66,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
             bool ok = int.TryParse(texto, NumberStyles.Any, CULTURA_AMERICANA, out valor);
 
             if (!ok)
-                throw new Exception(string.Format("{0} não pode ser transformado em inteiro.", texto));
+                throw new FormatException(string.Format("{0} não pode ser transformado em inteiro.", texto));
 
             return valor;
         }
@@ -156,7 +157,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
             if (Existe(caminhoVersão2))
                 return DateTime.Parse(ObterTexto(caminhoVersão2));
 
-            throw new NotImplementedException("Não foi possível encontrar a data da emissão do xml.");
+            throw new XmlIncompatível("Não foi possível encontrar a data da emissão do xml.");
         }
 
         public string LerCNPJEmitente()

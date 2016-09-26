@@ -1,5 +1,5 @@
-﻿using Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf;
-using Entidades.Fiscal.NotaFiscalEletronica.Excessões;
+﻿using Entidades.Fiscal.Excessões;
+using Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
@@ -32,21 +32,21 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         }
 
         [TestMethod()]
-        [ExpectedException(typeof(ExcessãoNãoPodeExtrairNfeNomeArquivo))]
+        [ExpectedException(typeof(NomeArquivoInválido))]
         public void NaoDeveExtrairNumeroQualquerNoFinal()
         {
             LeitorPdf.ExtrairNfe("S&I Comercio e Repres. Ltda 03022015292.pdf");
         }
 
         [TestMethod()]
-        [ExpectedException(typeof(ExcessãoNãoPodeExtrairNfeNomeArquivo))]
+        [ExpectedException(typeof(NomeArquivoInválido))]
         public void NaoDeveExtrairMaisUmCódigo()
         {
             LeitorPdf.ExtrairNfe("Bla 000001 000002 Ltda.pdf");
         }
 
         [TestMethod()]
-        [ExpectedException(typeof(ExcessãoNãoPodeExtrairNfeNomeArquivo))]
+        [ExpectedException(typeof(NomeArquivoInválido))]
         public void NãoDeveExtrairNfeInternoSemEspaço()
         {
             Assert.AreEqual(42, LeitorPdf.ExtrairNfe("danfe000042-20042010.pdf"));

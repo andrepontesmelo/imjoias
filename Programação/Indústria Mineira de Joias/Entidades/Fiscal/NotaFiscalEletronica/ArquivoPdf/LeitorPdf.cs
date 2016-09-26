@@ -1,5 +1,5 @@
-﻿using Entidades.Fiscal.Importação;
-using Entidades.Fiscal.NotaFiscalEletronica.Excessões;
+﻿using Entidades.Fiscal.Excessões;
+using Entidades.Fiscal.Importação;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -41,7 +41,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf
                 ok = int.TryParse(Regex.Match(nomeArquivo, @".*\D(\d{6}).pdf$").Groups[1].Value, out resultado);
 
             if (!ok)
-                throw new ExcessãoNãoPodeExtrairNfeNomeArquivo(nomeArquivo);
+                throw new NomeArquivoInválido(nomeArquivo);
 
             return resultado;
         }
