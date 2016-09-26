@@ -5,7 +5,7 @@ using System.IO;
 
 namespace Entidades.Fiscal.Importação
 {
-    public class ImportadorPDFAtacado : Importador
+    public class ImportadorSaídaPDFAtacado : Importador
     {
         public static readonly string DESCRIÇÃO = "Importação de PDF's de atacado";
 

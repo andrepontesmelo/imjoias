@@ -6,13 +6,13 @@ using System.IO;
 
 namespace Entidades.Fiscal.Importação
 {
-    public class ImportadorXMLAtacado : Importador
+    public class ImportadorSaídaXMLAtacado : Importador
     {
         public static readonly string PADRÂO_ARQUIVO = "*.xml";
 
-        public static readonly string DESCRIÇÃO = "Importação de XML's de atacado";
+        public static readonly string DESCRIÇÃO = "Importação de XMLs de saída de atacado";
 
-        public ImportadorXMLAtacado()
+        public ImportadorSaídaXMLAtacado()
         {
         }
 
@@ -22,7 +22,7 @@ namespace Entidades.Fiscal.Importação
 
             List<string> arquivos = ObterArquivos(pasta, PADRÂO_ARQUIVO, opções);
             
-            SortedSet<string> idsCadastrados = new SortedSet<string>(SaidaFiscal.ObterIdsCadastrados());
+            SortedSet<string> idsCadastrados = new SortedSet<string>(SaídaFiscal.ObterIdsCadastrados());
 
             foreach (string arquivo in arquivos)
             {
@@ -30,17 +30,17 @@ namespace Entidades.Fiscal.Importação
                 {
                     AtualizarPorcentagem(thread, resultado, arquivos);
 
-                    SaidaFiscal venda = new AdaptadorAtacado(new ParserXmlAtacado(arquivo)).Transformar();
+                    DocumentoFiscal saída = new AdaptadorAtacadoSaída(new ParserXmlAtacado(arquivo)).Transformar();
 
-                    if (idsCadastrados.Contains(venda.Id)
-                        || !venda.EmitidoPorEstaEmpresa)
+                    if (idsCadastrados.Contains(saída.Id)
+                        || !saída.EmitidoPorEstaEmpresa)
                     {
                         resultado.ArquivosIgnorados.Add(arquivo);
                         continue;
                     }
 
-                    venda.Cadastrar();
-                    idsCadastrados.Add(venda.Id);
+                    saída.Cadastrar();
+                    idsCadastrados.Add(saída.Id);
                     resultado.ArquivosSucesso.Add(arquivo);
                 }
                 catch (Exception erro)

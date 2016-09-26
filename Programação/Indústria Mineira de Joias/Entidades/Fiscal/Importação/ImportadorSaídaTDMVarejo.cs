@@ -9,12 +9,12 @@ using System.IO;
 
 namespace Entidades.Fiscal.Importação
 {
-    public class ImportadorTDMVarejo : Importador
+    public class ImportadorSaídaTDMVarejo : Importador
     {
         public static readonly string PADRÂO_ARQUIVO = "*.tdm";
         public static readonly string DESCRIÇÃO = "Importação de TDM's de varejo";
 
-        public ImportadorTDMVarejo()
+        public ImportadorSaídaTDMVarejo()
         {
         }
 
@@ -24,7 +24,7 @@ namespace Entidades.Fiscal.Importação
 
             List<string> arquivos = ObterArquivos(pasta, PADRÂO_ARQUIVO, opções);
             
-            SortedSet<string> idsCadastrados = new SortedSet<string>(SaidaFiscal.ObterIdsCadastrados());
+            SortedSet<string> idsCadastrados = new SortedSet<string>(SaídaFiscal.ObterIdsCadastrados());
 
             int arquivosProcessados = 0;
             foreach (string arquivo in arquivos)
@@ -36,17 +36,17 @@ namespace Entidades.Fiscal.Importação
                     List<CupomFiscal> cupons = Interpretador.InterpretaArquivo(arquivo).CuponsFiscais;
                     foreach (CupomFiscal cupom in cupons)
                     {
-                        SaidaFiscal venda = new AdaptadorVarejo(cupom).Transformar();
+                        DocumentoFiscal entrada = new AdaptadorVarejo(cupom).Transformar();
 
-                        if (idsCadastrados.Contains(venda.Id))
+                        if (idsCadastrados.Contains(entrada.Id))
                         {
-                            resultado.ArquivosIgnorados.Add(ObterDescrição(arquivo, venda));
+                            resultado.ArquivosIgnorados.Add(ObterDescrição(arquivo, entrada));
                             continue;
                         }
 
-                        venda.Cadastrar();
-                        idsCadastrados.Add(venda.Id);
-                        resultado.ArquivosSucesso.Add(ObterDescrição(arquivo, venda));
+                        entrada.Cadastrar();
+                        idsCadastrados.Add(entrada.Id);
+                        resultado.ArquivosSucesso.Add(ObterDescrição(arquivo, entrada));
                     }
                 }
                 catch (Exception erro)
@@ -58,7 +58,7 @@ namespace Entidades.Fiscal.Importação
             return resultado;
         }
 
-        private static string ObterDescrição(string arquivo, SaidaFiscal venda)
+        private static string ObterDescrição(string arquivo, DocumentoFiscal venda)
         {
             return string.Format("Id {0} @ {1}", venda.Id, arquivo);
         }

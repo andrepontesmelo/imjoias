@@ -4,7 +4,7 @@ using System;
 
 namespace Entidades.Fiscal.Cupom
 {
-    public class AdaptadorVarejo : ITransformavelVendaFiscal
+    public class AdaptadorVarejo : ITransformavelDocumentoFiscal
     {
         private CupomFiscal cupom;
 
@@ -13,9 +13,9 @@ namespace Entidades.Fiscal.Cupom
             this.cupom = cupom;
         }
 
-        public SaidaFiscal Transformar()
+        public DocumentoFiscal Transformar()
         {
-            SaidaFiscal entidade = new SaidaFiscal(TipoSaída.Cupom, 
+            DocumentoFiscal entidade = new SaídaFiscal(TipoSaída.Cupom, 
                 cupom.DataInicioEmissao, 
                 AdaptarId(cupom.DataInicioEmissao, 
                 cupom.NumeroContadorDocumentoEmitido, 
@@ -30,9 +30,9 @@ namespace Entidades.Fiscal.Cupom
             return entidade;
         }
 
-        private List<SaidaItemFiscal> AdaptarItens(List<DetalheCupomFiscal> detalhes)
+        private List<ItemFiscal> AdaptarItens(List<DetalheCupomFiscal> detalhes)
         {
-            List<SaidaItemFiscal> itens = new List<SaidaItemFiscal>();
+            List<ItemFiscal> itens = new List<ItemFiscal>();
 
             foreach (DetalheCupomFiscal detalhe in detalhes)
                 itens.Add(AdaptarItem(detalhe));
@@ -40,9 +40,9 @@ namespace Entidades.Fiscal.Cupom
             return itens;
         }
 
-        private SaidaItemFiscal AdaptarItem(DetalheCupomFiscal detalhe)
+        private ItemFiscal AdaptarItem(DetalheCupomFiscal detalhe)
         {
-            return new SaidaItemFiscal(AdaptarReferência(detalhe),
+            return new SaídaItemFiscal(AdaptarReferência(detalhe),
                                 detalhe.Descricao.Trim(),
                                 null,
                                 TipoUnidadeInterpretação.Interpretar(detalhe.Unidade),

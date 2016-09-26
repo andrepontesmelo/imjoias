@@ -35,7 +35,7 @@ namespace Apresentação.Fiscal
 
         private void opçãoImportaçãoPDFAtacado_Click(object sender, EventArgs e)
         {
-            IniciarImportação(ImportadorPDFAtacado.DESCRIÇÃO, "diretórioInicialPdfAtacado", Thread_ImportarPDFAtacado);
+            IniciarImportação(ImportadorSaídaPDFAtacado.DESCRIÇÃO, "diretórioInicialPdfAtacadoSaída", Thread_ImportarPDFAtacadoSaída);
         }
 
         private void IniciarImportação(string título, string configuraçãoDiretórioInicial, DoWorkEventHandler métodoExecução)
@@ -53,7 +53,7 @@ namespace Apresentação.Fiscal
 
         private void opçãoImportaçãoXMLAtacado_Click(object sender, EventArgs e)
         {
-            IniciarImportação(ImportadorXMLAtacado.DESCRIÇÃO, "diretórioInicialXmlAtacado", Thread_ImportarXMLAtacado);
+            IniciarImportação(ImportadorSaídaXMLAtacado.DESCRIÇÃO, "diretórioInicialXmlAtacadoSaída", Thread_ImportarXMLAtacadoSaída);
         }
 
         private void IniciarThreadJanelaAguarde(string caminho, string ação, DoWorkEventHandler métodoExecução)
@@ -97,24 +97,34 @@ namespace Apresentação.Fiscal
             aguarde.Passos(e.ProgressPercentage, e.UserState as string);
         }
 
-        private void Thread_ImportarXMLAtacado(object sender, DoWorkEventArgs e)
+        private void Thread_ImportarXMLAtacadoSaída(object sender, DoWorkEventArgs e)
         {
-            e.Result = new ImportadorXMLAtacado().ImportarArquivos(e.Argument as string, sender as BackgroundWorker);
+            e.Result = new ImportadorSaídaXMLAtacado().ImportarArquivos(e.Argument as string, sender as BackgroundWorker);
         }
 
-        private void Thread_ImportarTDMVarejo(object sender, DoWorkEventArgs e)
+        private void Thread_ImportarXMLAtacadoEntrada(object sender, DoWorkEventArgs e)
         {
-            e.Result = new ImportadorTDMVarejo().ImportarArquivos(e.Argument as string, sender as BackgroundWorker);
+            e.Result = new ImportadorEntradaXMLAtacado().ImportarArquivos(e.Argument as string, sender as BackgroundWorker);
         }
 
-        private void Thread_ImportarPDFAtacado(object sender, DoWorkEventArgs e)
+        private void Thread_ImportarTDMVarejoSaída(object sender, DoWorkEventArgs e)
         {
-            e.Result = new ImportadorPDFAtacado().ImportarArquivos(e.Argument as string, sender as BackgroundWorker);
+            e.Result = new ImportadorSaídaTDMVarejo().ImportarArquivos(e.Argument as string, sender as BackgroundWorker);
         }
 
-        private void opçãoImportaçãoTDMVarejo_Click(object sender, EventArgs e)
+        private void Thread_ImportarPDFAtacadoSaída(object sender, DoWorkEventArgs e)
         {
-            IniciarImportação(ImportadorTDMVarejo.DESCRIÇÃO, "diretórioInicialTDMVarejo", Thread_ImportarTDMVarejo);
+            e.Result = new ImportadorSaídaPDFAtacado().ImportarArquivos(e.Argument as string, sender as BackgroundWorker);
+        }
+
+        private void opçãoImportaçãoTDMVarejoSaída_Click(object sender, EventArgs e)
+        {
+            IniciarImportação(ImportadorSaídaTDMVarejo.DESCRIÇÃO, "diretórioInicialTDMVarejoSaída", Thread_ImportarTDMVarejoSaída);
+        }
+
+        private void opçãoImportaçãoXMLAtacadoEntrada_Click(object sender, EventArgs e)
+        {
+            IniciarImportação(ImportadorEntradaXMLAtacado.DESCRIÇÃO, "diretórioInicialXmlAtacadoEntrada", Thread_ImportarXMLAtacadoEntrada);
         }
     }
 }

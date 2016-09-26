@@ -11,12 +11,12 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         private static string ARQUIVO_ENTRADA = Directory.GetParent(Directory.GetParent(Path.GetDirectoryName(
             Assembly.GetExecutingAssembly().Location)).FullName).FullName + @"\Arquivos\nfe.xml";
 
-        ITransformavelVendaFiscal adaptador;
+        ITransformavelDocumentoFiscal adaptador;
 
         [TestInitialize]
         public void PreparaTestes()
         {
-            adaptador = new AdaptadorAtacado(new ParserXmlAtacado(ARQUIVO_ENTRADA));
+            adaptador = new AdaptadorAtacadoSaída(new ParserXmlAtacado(ARQUIVO_ENTRADA));
         }
 
         [TestMethod()]
@@ -28,7 +28,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         [TestMethod()]
         public void DeveAdaptarTipoVenda()
         {
-            Assert.AreEqual(TipoSaída.NFe, adaptador.Transformar().TipoSaída);
+            Assert.AreEqual(TipoSaída.NFe, ((SaídaFiscal) adaptador.Transformar()).TipoSaída);
         }
 
 
@@ -41,49 +41,49 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         [TestMethod()]
         public void DeveAdaptarListaItens()
         {
-            Assert.AreEqual(28, adaptador.Transformar().Itens.Count);
+            Assert.AreEqual(28, ((SaídaFiscal)adaptador.Transformar()).Itens.Count);
         }
 
         [TestMethod()]
         public void DeveAdaptarReferência()
         {
-            Assert.AreEqual("102130001008", adaptador.Transformar().Itens[0].Referência);
+            Assert.AreEqual("102130001008", ((SaídaFiscal)adaptador.Transformar()).Itens[0].Referência);
         }
 
         [TestMethod()]
         public void DeveAdaptarDescrição()
         {
-            Assert.AreEqual("Anel de Ouro", adaptador.Transformar().Itens[0].Descrição);
+            Assert.AreEqual("Anel de Ouro", ((SaídaFiscal)adaptador.Transformar()).Itens[0].Descrição);
         }
 
         [TestMethod()]
         public void DeveAdaptarCFOP()
         {
-            Assert.AreEqual(5101, adaptador.Transformar().Itens[0].CFOP);
+            Assert.AreEqual(5101, ((SaídaFiscal)adaptador.Transformar()).Itens[0].CFOP);
         }
 
         [TestMethod()]
         public void DeveAdaptarTipoUnidade()
         {
-            Assert.AreEqual(TipoUnidade.Par, adaptador.Transformar().Itens[0].TipoUnidade);
+            Assert.AreEqual(TipoUnidade.Par, ((SaídaFiscal)adaptador.Transformar()).Itens[0].TipoUnidade);
         }
 
         [TestMethod()]
         public void DeveAdaptarQuantidade()
         {
-            Assert.AreEqual(1, adaptador.Transformar().Itens[0].Quantidade);
+            Assert.AreEqual(1, ((SaídaFiscal) adaptador.Transformar()).Itens[0].Quantidade);
         }
 
         [TestMethod()]
         public void DeveAdaptarValorUnitário()
         {
-            Assert.AreEqual(110.22M, adaptador.Transformar().Itens[0].ValorUnitário);
+            Assert.AreEqual(110.22M, ((SaídaFiscal) adaptador.Transformar()).Itens[0].ValorUnitário);
         }
 
         [TestMethod()]
         public void DeveAdaptarValor()
         {
-            Assert.AreEqual(110.22M, adaptador.Transformar().Itens[0].Valor);
+            Assert.AreEqual(110.22M, ((SaídaFiscal) adaptador.Transformar()).Itens[0].Valor);
         }
 
         [TestMethod()]

@@ -251,14 +251,18 @@
     <Compile Include="Financeiro\VendaCredito.cs" />
     <Compile Include="Fiscal\Cfop.cs" />
     <Compile Include="Fiscal\Cupom\AdaptadorVarejo.cs" />
+    <Compile Include="Fiscal\EntradaFiscal.cs" />
     <Compile Include="Fiscal\Excessões\XmlIncompatível.cs" />
     <Compile Include="Fiscal\Importação\Importador.cs" />
-    <Compile Include="Fiscal\Importação\ImportadorPDFAtacado.cs" />
-    <Compile Include="Fiscal\Importação\ImportadorTDMVarejo.cs" />
-    <Compile Include="Fiscal\Importação\ImportadorXMLAtacado.cs" />
+    <Compile Include="Fiscal\Importação\ImportadorSaídaPDFAtacado.cs" />
+    <Compile Include="Fiscal\Importação\ImportadorSaídaTDMVarejo.cs" />
+    <Compile Include="Fiscal\Importação\ImportadorEntradaXMLAtacado.cs" />
+    <Compile Include="Fiscal\Importação\ImportadorSaídaXMLAtacado.cs" />
     <Compile Include="Fiscal\Importação\ResultadoImportação.cs" />
-    <Compile Include="Fiscal\ITransformavelVendaFiscal.cs" />
+    <Compile Include="Fiscal\ITransformavelDocumentoFiscal.cs" />
     <Compile Include="Fiscal\NotaFiscalEletronica\AdaptadorAtacado.cs" />
+    <Compile Include="Fiscal\NotaFiscalEletronica\AdaptadorAtacadoEntrada.cs" />
+    <Compile Include="Fiscal\NotaFiscalEletronica\AdaptadorAtacadoSaída.cs" />
     <Compile Include="Fiscal\NotaFiscalEletronica\ArquivoPdf\BackgoundWorker.cs" />
     <Compile Include="Fiscal\NotaFiscalEletronica\ArquivoPdf\CacheVendaPdf.cs" />
     <Compile Include="Fiscal\Excessões\CódigoDuplicado.cs" />
@@ -268,11 +272,14 @@
     <Compile Include="Fiscal\NotaFiscalEletronica\NfeVendaTxt.cs" />
     <Compile Include="Fiscal\NotaFiscalEletronica\ParserXmlAtacado.cs" />
     <Compile Include="Fiscal\NotaFiscalEletronica\ArquivoPdf\LeitorPdf.cs" />
+    <Compile Include="Fiscal\SaídaFiscal.cs" />
+    <Compile Include="Fiscal\EntradaItemFiscal.cs" />
+    <Compile Include="Fiscal\SaídaItemFiscal.cs" />
     <Compile Include="Fiscal\TipoUnidade.cs" />
     <Compile Include="Fiscal\TipoUnidadeInterpretação.cs" />
     <Compile Include="Fiscal\TipoSaída.cs" />
-    <Compile Include="Fiscal\SaidaFiscal.cs" />
-    <Compile Include="Fiscal\SaidaItemFiscal.cs" />
+    <Compile Include="Fiscal\DocumentoFiscal.cs" />
+    <Compile Include="Fiscal\ItemFiscal.cs" />
     <Compile Include="IAcessoMercadoria.cs">
       <SubType>Code</SubType>
     </Compile>

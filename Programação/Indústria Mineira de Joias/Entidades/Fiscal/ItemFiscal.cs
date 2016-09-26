@@ -4,7 +4,7 @@ using System.Data;
 
 namespace Entidades.Fiscal
 {
-    public class SaidaItemFiscal : DbManipulaçãoSimples
+    public abstract class ItemFiscal : DbManipulaçãoSimples
     {
         private string referência;
         private string descrição;
@@ -14,7 +14,7 @@ namespace Entidades.Fiscal
         private decimal valorUnitário;
         private decimal valor;
 
-        public SaidaItemFiscal(string referência, string descrição, int? cfop,
+        public ItemFiscal(string referência, string descrição, int? cfop,
             TipoUnidade tipoUnidade, decimal quantidade, decimal valorUnitário,
             decimal valor)
         {
@@ -35,11 +35,15 @@ namespace Entidades.Fiscal
         public decimal ValorUnitário => valorUnitário;
         public decimal Valor => valor;
 
-        internal static void CadastrarItens(string idSaídaFiscal, List<SaidaItemFiscal> itens, IDbTransaction transação, IDbConnection conexão)
+        internal static void CadastrarItens(string idSaídaFiscal, List<ItemFiscal> itens, IDbTransaction transação, IDbConnection conexão)
         {
-            foreach (SaidaItemFiscal item in itens)
+            foreach (ItemFiscal item in itens)
                 item.Cadastrar(idSaídaFiscal, transação, conexão);
         }
+
+        protected abstract string Relação { get; }
+
+        protected abstract string RelaçãoPai { get; }
 
         private void Cadastrar(string idSaídaFiscal, IDbTransaction transação, IDbConnection conexão)
         {
@@ -47,8 +51,10 @@ namespace Entidades.Fiscal
             {
                 cmd.Transaction = transação;
 
-                cmd.CommandText = string.Format("INSERT INTO saidaitemfiscal (saidafiscal, referencia, descricao, cfop, " +
-                    "tipounidade, quantidade, valorunitario, valor) values ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})",
+                cmd.CommandText = string.Format("INSERT INTO {0} ({1}, referencia, descricao, cfop, " +
+                    "tipounidade, quantidade, valorunitario, valor) values ({2}, {3}, {4}, {5}, {6}, {7}, {8}, {9})",
+                    Relação,
+                    RelaçãoPai,
                     DbTransformar(idSaídaFiscal),
                     DbTransformar(referência),
                     DbTransformar(descrição),
