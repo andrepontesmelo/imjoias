@@ -254,6 +254,7 @@
     <Compile Include="Fiscal\EntradaFiscal.cs" />
     <Compile Include="Fiscal\Excessões\XmlIncompatível.cs" />
     <Compile Include="Fiscal\Importação\Importador.cs" />
+    <Compile Include="Fiscal\Importação\ImportadorNotaFiscal.cs" />
     <Compile Include="Fiscal\Importação\ImportadorSaídaPDFAtacado.cs" />
     <Compile Include="Fiscal\Importação\ImportadorSaídaTDMVarejo.cs" />
     <Compile Include="Fiscal\Importação\ImportadorEntradaXMLAtacado.cs" />

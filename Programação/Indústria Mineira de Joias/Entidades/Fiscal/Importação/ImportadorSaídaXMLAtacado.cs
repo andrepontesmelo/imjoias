@@ -1,61 +1,39 @@
 ﻿using Entidades.Fiscal.Importação.Resultado;
 using Entidades.Fiscal.NotaFiscalEletronica;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
 
 namespace Entidades.Fiscal.Importação
 {
-    public class ImportadorSaídaXMLAtacado : Importador
+    public class ImportadorSaídaXMLAtacado : ImportadorNotaFiscal
     {
+        public static readonly string DESCRIÇÃO = "Importação de XMLs de saída de atacado";
         public static readonly string PADRÂO_ARQUIVO = "*.xml";
 
-        public static readonly string DESCRIÇÃO = "Importação de XMLs de saída de atacado";
-
-        public ImportadorSaídaXMLAtacado()
+        public ImportadorSaídaXMLAtacado() : base(DESCRIÇÃO, PADRÂO_ARQUIVO)
         {
         }
 
-        public override ResultadoImportação ImportarArquivos(string pasta, SearchOption opções, BackgroundWorker thread)
+        protected override bool IgnorarDocumentoCNPJEmissor(ResultadoImportação resultado, string arquivo, DocumentoFiscal documento)
         {
-            ResultadoImportação resultado = new ResultadoImportação(DESCRIÇÃO);
-
-            List<string> arquivos = ObterArquivos(pasta, PADRÂO_ARQUIVO, opções);
-            
-            SortedSet<string> idsCadastrados = new SortedSet<string>(SaídaFiscal.ObterIdsCadastrados());
-
-            foreach (string arquivo in arquivos)
+            if (!documento.EmitidoPorEstaEmpresa)
             {
-                try
-                {
-                    AtualizarPorcentagem(thread, resultado, arquivos);
+                ArquivoIgnorado ignorado = new ArquivoIgnorado(arquivo, Motivo.NotaEmitidaOutraEmpresa, documento.Id);
+                resultado.ArquivosIgnorados.Adicionar(ignorado);
 
-                    DocumentoFiscal saída = new AdaptadorAtacadoSaída(new ParserXmlAtacado(arquivo)).Transformar();
-
-                    if (idsCadastrados.Contains(saída.Id))
-                    {
-                        resultado.ArquivosIgnorados.Adicionar(new ArquivoIgnorado(arquivo, Motivo.ChaveJáImportada, saída.Id));
-                        continue;
-                    }
-
-                    if (!saída.EmitidoPorEstaEmpresa)
-                    {
-                        resultado.ArquivosIgnorados.Adicionar(new ArquivoIgnorado(arquivo, Motivo.NotaEmitidaOutraEmpresa, saída.Id));
-                        continue;
-                    }
-
-                    saída.Cadastrar();
-                    idsCadastrados.Add(saída.Id);
-                    resultado.ArquivosSucesso.Adicionar(new Resultado.Arquivo(arquivo, saída.Id));
-                }
-                catch (Exception erro)
-                {
-                    resultado.AdicionarFalha(arquivo, erro);
-                }
+                return true;
             }
 
-            return resultado;
+            return false;
+        }
+
+        protected override DocumentoFiscal Interpretar(string arquivo)
+        {
+            return new AdaptadorAtacadoSaída(new ParserXmlAtacado(arquivo)).Transformar();
+        }
+
+        protected override List<string> ObterIdsCadastrados()
+        {
+            return SaídaFiscal.ObterIdsCadastrados();
         }
     }
 }

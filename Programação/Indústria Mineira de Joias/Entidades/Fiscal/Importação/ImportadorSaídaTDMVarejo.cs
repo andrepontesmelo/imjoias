@@ -11,52 +11,67 @@ namespace Entidades.Fiscal.Importação
 {
     public class ImportadorSaídaTDMVarejo : Importador
     {
-        public static readonly string PADRÂO_ARQUIVO = "*.tdm";
         public static readonly string DESCRIÇÃO = "Importação de TDM's de varejo";
+        public static readonly string PADRÂO_ARQUIVO = "*.tdm";
+
+        private SortedSet<string> idsCadastrados;
 
         public ImportadorSaídaTDMVarejo()
         {
+            idsCadastrados = new SortedSet<string>(SaídaFiscal.ObterIdsCadastrados());
         }
 
-        public override ResultadoImportação ImportarArquivos(string pasta, SearchOption opções, BackgroundWorker thread)
+        protected override ResultadoImportação ImportarArquivos(string pasta, SearchOption opções, BackgroundWorker thread)
         {
             ResultadoImportação resultado = new ResultadoImportação(DESCRIÇÃO);
-
             List<string> arquivos = ObterArquivos(pasta, PADRÂO_ARQUIVO, opções);
-
-            SortedSet<string> idsCadastrados = new SortedSet<string>(SaídaFiscal.ObterIdsCadastrados());
 
             int arquivosProcessados = 0;
             foreach (string arquivo in arquivos)
             {
-                try
-                {
-                    thread.ReportProgress(100 * arquivosProcessados++ / arquivos.Count);
-
-                    List<CupomFiscal> cupons = Interpretador.InterpretaArquivo(arquivo).CuponsFiscais;
-                    foreach (CupomFiscal cupom in cupons)
-                    {
-                        DocumentoFiscal saída = new AdaptadorVarejo(cupom).Transformar();
-
-                        if (idsCadastrados.Contains(saída.Id))
-                        {
-                            resultado.ArquivosIgnorados.Adicionar(new ArquivoIgnorado(arquivo, Motivo.ChaveJáImportada, saída.Id));
-                            continue;
-                        }
-
-                        saída.Cadastrar();
-                        idsCadastrados.Add(saída.Id);
-
-                        resultado.ArquivosSucesso.Adicionar(new Arquivo(arquivo, saída.Id));
-                    }
-                }
-                catch (Exception erro)
-                {
-                    resultado.AdicionarFalha(arquivo, erro);
-                }
+                thread.ReportProgress(100 * arquivosProcessados++ / arquivos.Count);
+                ImportarArquivo(arquivo, resultado);
             }
 
             return resultado;
+        }
+
+        private void ImportarArquivo(string arquivo, ResultadoImportação resultado)
+        {
+            try
+            {
+                foreach (CupomFiscal cupom in Interpretador.InterpretaArquivo(arquivo).CuponsFiscais)
+                {
+                    DocumentoFiscal saída = new AdaptadorVarejo(cupom).Transformar();
+
+                    if (IgnorarArquivo(arquivo, resultado, saída))
+                        continue;
+
+                    Cadastrar(arquivo, resultado, saída);
+                }
+            }
+            catch (Exception erro)
+            {
+                resultado.AdicionarFalha(arquivo, erro);
+            }
+        }
+
+        private void Cadastrar(string arquivo, ResultadoImportação resultado, DocumentoFiscal saída)
+        {
+            saída.Cadastrar();
+            idsCadastrados.Add(saída.Id);
+            resultado.ArquivosSucesso.Adicionar(new Arquivo(arquivo, saída.Id));
+        }
+
+        private bool IgnorarArquivo(string arquivo, ResultadoImportação resultado, DocumentoFiscal saída)
+        {
+            if (idsCadastrados.Contains(saída.Id))
+            {
+                resultado.ArquivosIgnorados.Adicionar(new ArquivoIgnorado(arquivo, Motivo.ChaveJáImportada, saída.Id));
+                return true;
+            }
+
+            return false;
         }
     }
 }

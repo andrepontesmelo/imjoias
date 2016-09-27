@@ -3,20 +3,24 @@ using Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System;
 
 namespace Entidades.Fiscal.Importação
 {
     public class ImportadorSaídaPDFAtacado : Importador
     {
         public static readonly string DESCRIÇÃO = "Importação de PDF's de atacado";
+        public static readonly string PADRÂO_ARQUIVO = "*.pdf";
 
-        public override ResultadoImportação ImportarArquivos(string caminho, SearchOption opções, BackgroundWorker thread)
+        public ImportadorSaídaPDFAtacado()
+        {
+        }
+
+        protected override ResultadoImportação ImportarArquivos(string caminho, SearchOption opções, BackgroundWorker thread)
         {
             ResultadoImportação resultado = new ResultadoImportação(DESCRIÇÃO);
-
-            List<string> arquivos = ObterArquivos(caminho, "*.pdf", opções);
+            List<string> arquivos = ObterArquivos(caminho, PADRÂO_ARQUIVO, opções);
             List<LeitorPdf> pdfs = LeitorPdf.Interpretar(arquivos, resultado, thread);
-
             NfePdf.CadastrarLimpandoCache(pdfs, thread);
 
             return resultado;
