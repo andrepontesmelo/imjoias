@@ -1,4 +1,5 @@
-﻿using Entidades.Fiscal.NotaFiscalEletronica;
+﻿using Entidades.Fiscal.Importação.Resultado;
+using Entidades.Fiscal.NotaFiscalEletronica;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -34,19 +35,19 @@ namespace Entidades.Fiscal.Importação
 
                     if (idsCadastrados.Contains(saída.Id))
                     {
-                        resultado.ArquivosIgnorados.Add(new KeyValuePair<string, Motivo>(arquivo, Motivo.ChaveJáImportada));
+                        resultado.ArquivosIgnorados.Adicionar(new ArquivoIgnorado(arquivo, Motivo.ChaveJáImportada, saída.Id));
                         continue;
                     }
 
                     if (!saída.EmitidoPorEstaEmpresa)
                     {
-                        resultado.ArquivosIgnorados.Add(new KeyValuePair<string, Motivo>(arquivo, Motivo.NotaEmitidaOutraEmpresa));
+                        resultado.ArquivosIgnorados.Adicionar(new ArquivoIgnorado(arquivo, Motivo.NotaEmitidaOutraEmpresa, saída.Id));
                         continue;
                     }
 
                     saída.Cadastrar();
                     idsCadastrados.Add(saída.Id);
-                    resultado.ArquivosSucesso.Add(arquivo);
+                    resultado.ArquivosSucesso.Adicionar(new Resultado.Arquivo(arquivo, saída.Id));
                 }
                 catch (Exception erro)
                 {

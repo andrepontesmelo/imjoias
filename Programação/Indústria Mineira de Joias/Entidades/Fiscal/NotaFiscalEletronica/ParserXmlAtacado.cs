@@ -157,7 +157,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
             if (Existe(caminhoVersão2))
                 return DateTime.Parse(ObterTexto(caminhoVersão2));
 
-            throw new XmlIncompatível("Não foi possível encontrar a data da emissão do xml.");
+            throw new XmlIncompatível("Data de emissão da NF-e não foi encontrada");
         }
 
         public string LerCNPJEmitente()

@@ -1,5 +1,5 @@
 ﻿using Entidades.Fiscal.Cupom;
-using Entidades.Fiscal.NotaFiscalEletronica;
+using Entidades.Fiscal.Importação.Resultado;
 using InterpretadorTDM;
 using InterpretadorTDM.Registro;
 using System;
@@ -23,7 +23,7 @@ namespace Entidades.Fiscal.Importação
             ResultadoImportação resultado = new ResultadoImportação(DESCRIÇÃO);
 
             List<string> arquivos = ObterArquivos(pasta, PADRÂO_ARQUIVO, opções);
-            
+
             SortedSet<string> idsCadastrados = new SortedSet<string>(SaídaFiscal.ObterIdsCadastrados());
 
             int arquivosProcessados = 0;
@@ -36,17 +36,18 @@ namespace Entidades.Fiscal.Importação
                     List<CupomFiscal> cupons = Interpretador.InterpretaArquivo(arquivo).CuponsFiscais;
                     foreach (CupomFiscal cupom in cupons)
                     {
-                        DocumentoFiscal entrada = new AdaptadorVarejo(cupom).Transformar();
+                        DocumentoFiscal saída = new AdaptadorVarejo(cupom).Transformar();
 
-                        if (idsCadastrados.Contains(entrada.Id))
+                        if (idsCadastrados.Contains(saída.Id))
                         {
-                            resultado.ArquivosIgnorados.Add(new KeyValuePair<string, Motivo>(ObterDescrição(arquivo, entrada), Motivo.ChaveJáImportada));
+                            resultado.ArquivosIgnorados.Adicionar(new ArquivoIgnorado(arquivo, Motivo.ChaveJáImportada, saída.Id));
                             continue;
                         }
 
-                        entrada.Cadastrar();
-                        idsCadastrados.Add(entrada.Id);
-                        resultado.ArquivosSucesso.Add(ObterDescrição(arquivo, entrada));
+                        saída.Cadastrar();
+                        idsCadastrados.Add(saída.Id);
+
+                        resultado.ArquivosSucesso.Adicionar(new Arquivo(arquivo, saída.Id));
                     }
                 }
                 catch (Exception erro)
@@ -56,11 +57,6 @@ namespace Entidades.Fiscal.Importação
             }
 
             return resultado;
-        }
-
-        private static string ObterDescrição(string arquivo, DocumentoFiscal venda)
-        {
-            return string.Format("Id {0} @ {1}", venda.Id, arquivo);
         }
     }
 }

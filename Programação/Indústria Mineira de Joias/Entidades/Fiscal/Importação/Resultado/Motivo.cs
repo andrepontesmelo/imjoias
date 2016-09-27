@@ -1,4 +1,4 @@
-﻿namespace Entidades.Fiscal.Importação
+﻿namespace Entidades.Fiscal.Importação.Resultado
 {
     public enum Motivo
     {

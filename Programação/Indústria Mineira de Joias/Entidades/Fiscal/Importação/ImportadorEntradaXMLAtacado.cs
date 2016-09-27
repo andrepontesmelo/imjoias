@@ -1,4 +1,5 @@
-﻿using Entidades.Fiscal.NotaFiscalEletronica;
+﻿using Entidades.Fiscal.Importação.Resultado;
+using Entidades.Fiscal.NotaFiscalEletronica;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,9 +20,7 @@ namespace Entidades.Fiscal.Importação
         public override ResultadoImportação ImportarArquivos(string pasta, SearchOption opções, BackgroundWorker thread)
         {
             ResultadoImportação resultado = new ResultadoImportação(DESCRIÇÃO);
-
             List<string> arquivos = ObterArquivos(pasta, PADRÂO_ARQUIVO, opções);
-
             SortedSet<string> idsCadastrados = new SortedSet<string>(EntradaFiscal.ObterIdsCadastrados());
 
             foreach (string arquivo in arquivos)
@@ -34,19 +33,19 @@ namespace Entidades.Fiscal.Importação
 
                     if (idsCadastrados.Contains(venda.Id))
                     {
-                        resultado.ArquivosIgnorados.Add(new KeyValuePair<string, Motivo>(arquivo, Motivo.ChaveJáImportada));
+                        resultado.ArquivosIgnorados.Adicionar(new ArquivoIgnorado(arquivo, Motivo.ChaveJáImportada, venda.Id));
                         continue;
                     }
 
                     if (venda.EmitidoPorEstaEmpresa)
                     {
-                        resultado.ArquivosIgnorados.Add(new KeyValuePair<string, Motivo>(arquivo, Motivo.NotaEmitidaOutraEmpresa));
+                        resultado.ArquivosIgnorados.Adicionar(new ArquivoIgnorado(arquivo, Motivo.NotaEmitidaOutraEmpresa, venda.Id));
                         continue;
                     }
 
                     venda.Cadastrar();
                     idsCadastrados.Add(venda.Id);
-                    resultado.ArquivosSucesso.Add(arquivo);
+                    resultado.ArquivosSucesso.Adicionar(new Arquivo(arquivo, venda.Id));
                 }
                 catch (Exception erro)
                 {

@@ -1,4 +1,5 @@
-﻿using Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf;
+﻿using Entidades.Fiscal.Importação.Resultado;
+using Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;

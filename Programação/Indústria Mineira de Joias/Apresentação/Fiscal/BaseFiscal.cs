@@ -1,6 +1,7 @@
 ﻿using Apresentação.Formulários;
 using Entidades.Configuração;
 using Entidades.Fiscal.Importação;
+using Entidades.Fiscal.Importação.Resultado;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -82,7 +83,7 @@ namespace Apresentação.Fiscal
         {
             ObterJanelaAguarde((BackgroundWorker) sender).Close();
 
-            ResultadoImportação resultado = (ResultadoImportação)e.Result;
+            ResultadoImportação resultado = (ResultadoImportação) e.Result;
             Process.Start("notepad", resultado.GravarArquivoTxt(Versão.NomeVersãoAplicação));
         }
 

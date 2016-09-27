@@ -1,5 +1,6 @@
 ﻿using Entidades.Fiscal.Excessões;
 using Entidades.Fiscal.Importação;
+using Entidades.Fiscal.Importação.Resultado;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -89,11 +90,11 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf
 
                 if (cadastrados.Contains(leitor.Nfe.Value))
                 {
-                    resultado.ArquivosIgnorados.Add(new KeyValuePair<string, Motivo>(leitor.ToString(), Motivo.ChaveJáImportada));
+                    resultado.ArquivosIgnorados.Adicionar(new ArquivoIgnorado(arquivo, Motivo.ChaveJáImportada, leitor.Nfe.Value.ToString()));
                     return null;
                 }
 
-                resultado.ArquivosSucesso.Add(leitor.ToString());
+                resultado.ArquivosSucesso.Adicionar(new Arquivo(leitor.ToString(), leitor.Nfe.Value.ToString()));
                 cadastrados.Add(leitor.Nfe.Value);
 
                 return leitor;
