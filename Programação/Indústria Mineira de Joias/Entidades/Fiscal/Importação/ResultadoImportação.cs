@@ -6,11 +6,11 @@ namespace Entidades.Fiscal.Importação
 {
     public class ResultadoImportação
     {
-        private static readonly int MAX_DESCRIÇÔES_ERRO_EXIBIR_CABEÇALHO_GRUPO = 5;
+        private static readonly int MAX_DESCRIÇÕES_ERRO_EXIBIR_CABEÇALHO_GRUPO = 5;
 
         private List<KeyValuePair<string, Exception>> arquivosFalhados;
         private List<string> arquivosSucesso;
-        private List<string> arquivosIgnorados;
+        private List<KeyValuePair<string, Motivo>> arquivosIgnorados;
 
         private DateTime início;
         private DateTime fim;
@@ -22,12 +22,7 @@ namespace Entidades.Fiscal.Importação
 
         private int ObterMáximoTamanhoColuna()
         {
-            int tamanhoMáximo = 0;
-
-            tamanhoMáximo = ObtemTamanhoMáximo(tamanhoMáximo, arquivosSucesso);
-            tamanhoMáximo = ObtemTamanhoMáximo(tamanhoMáximo, arquivosIgnorados);
-
-            return tamanhoMáximo;
+            return ObtemTamanhoMáximo(0, arquivosSucesso);
         }
 
         private int ObtemTamanhoMáximo(int tamanhoMáximo, List<string> arquivos)
@@ -45,7 +40,7 @@ namespace Entidades.Fiscal.Importação
             início = DateTime.Now;
             arquivosFalhados = new List<KeyValuePair<string, Exception>>();
             arquivosSucesso = new List<string>();
-            arquivosIgnorados = new List<string>();
+            arquivosIgnorados = new List<KeyValuePair<string, Motivo>>();
         }
 
         public string GravarArquivoTxt(string versão)
@@ -82,6 +77,72 @@ namespace Entidades.Fiscal.Importação
             EscreveArquivos("Ignorados", arquivosIgnorados, escritor);
 
             escritor.WriteLine(linhasTraços);
+        }
+
+        private void EscreveArquivos(string título, List<KeyValuePair<string, Motivo>> arquivos, StreamWriter escritor)
+        {
+            if (arquivos.Count == 0)
+                return;
+
+            Dictionary<Motivo, List<string>> grupos = AgruparMotivo(arquivos);
+
+            EscreveCabeçalhoGrupo(título, escritor, grupos);
+            DescreveGrupos(escritor, grupos);
+        }
+
+        private void DescreveGrupos(StreamWriter escritor, Dictionary<Motivo, List<string>> grupos)
+        {
+            foreach (KeyValuePair<Motivo, List<string>> grupo in grupos)
+            {
+                escritor.WriteLine();
+                escritor.WriteLine(grupo.Key);
+                escritor.WriteLine();
+
+                int x = 0;
+                foreach (string arquivo in grupo.Value)
+                {
+                    escritor.WriteLine(string.Format("{0} - {1}", ++x, arquivo));
+                }
+            }
+        }
+
+        private void EscreveCabeçalhoGrupo(string título, StreamWriter escritor, Dictionary<Motivo, List<string>> grupos)
+        {
+            escritor.WriteLine(linhasTraços);
+            escritor.WriteLine();
+            escritor.WriteLine(título);
+            escritor.WriteLine();
+
+            foreach (KeyValuePair<Motivo, List<string>> grupo in grupos)
+            {
+                escritor.WriteLine(string.Format(" > {0} {1} do tipo {2}", grupo.Value.Count,
+                    grupo.Value.Count == 1 ? "arquivo" : "arquivos",
+                    grupo.Key));
+
+                escritor.WriteLine();
+            }
+
+            escritor.WriteLine(linhasTraços);
+        }
+
+        private Dictionary<Motivo, List<string>> AgruparMotivo(List<KeyValuePair<string, Motivo>> arquivos)
+        {
+            Dictionary<Motivo, List<string>> hashMotivos = new Dictionary<Motivo, List<string>>();
+
+            foreach (KeyValuePair<string, Motivo> par in arquivos)
+            {
+                List<string> lista;
+                
+                if (!hashMotivos.TryGetValue(par.Value, out lista))
+                {
+                    lista = new List<string>();
+                    hashMotivos[par.Value] = lista;
+                }
+
+                lista.Add(par.Key);
+            }
+
+            return hashMotivos;
         }
 
         private void EscreveArquivos(string título, List<string> arquivos, StreamWriter escritor)
@@ -157,11 +218,11 @@ namespace Entidades.Fiscal.Importação
             foreach (KeyValuePair<string, Exception> par in grupo.Value)
             {
                 descrições.Add(par.Value.Message);
-                if (descrições.Count > MAX_DESCRIÇÔES_ERRO_EXIBIR_CABEÇALHO_GRUPO)
+                if (descrições.Count > MAX_DESCRIÇÕES_ERRO_EXIBIR_CABEÇALHO_GRUPO)
                     break;
             }
 
-            if (descrições.Count < MAX_DESCRIÇÔES_ERRO_EXIBIR_CABEÇALHO_GRUPO)
+            if (descrições.Count < MAX_DESCRIÇÕES_ERRO_EXIBIR_CABEÇALHO_GRUPO)
             {
                 foreach (string descrição in descrições)
                     escritor.WriteLine(string.Format("  .. {0}", descrição));
@@ -239,6 +300,6 @@ namespace Entidades.Fiscal.Importação
 
         public List<KeyValuePair<string, Exception>> ArquivosFalhados => arquivosFalhados;
         public List<string> ArquivosSucesso => arquivosSucesso;
-        public List<string> ArquivosIgnorados => arquivosIgnorados;
+        public List<KeyValuePair<string, Motivo>> ArquivosIgnorados => arquivosIgnorados;
     }
 }

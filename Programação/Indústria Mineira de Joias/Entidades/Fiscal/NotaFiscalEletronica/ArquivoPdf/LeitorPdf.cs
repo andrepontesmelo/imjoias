@@ -89,7 +89,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf
 
                 if (cadastrados.Contains(leitor.Nfe.Value))
                 {
-                    resultado.ArquivosIgnorados.Add(leitor.ToString());
+                    resultado.ArquivosIgnorados.Add(new KeyValuePair<string, Motivo>(leitor.ToString(), Motivo.ChaveJáImportada));
                     return null;
                 }
 

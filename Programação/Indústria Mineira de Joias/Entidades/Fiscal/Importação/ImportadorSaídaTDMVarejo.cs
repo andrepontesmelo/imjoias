@@ -40,7 +40,7 @@ namespace Entidades.Fiscal.Importação
 
                         if (idsCadastrados.Contains(entrada.Id))
                         {
-                            resultado.ArquivosIgnorados.Add(ObterDescrição(arquivo, entrada));
+                            resultado.ArquivosIgnorados.Add(new KeyValuePair<string, Motivo>(ObterDescrição(arquivo, entrada), Motivo.ChaveJáImportada));
                             continue;
                         }
 

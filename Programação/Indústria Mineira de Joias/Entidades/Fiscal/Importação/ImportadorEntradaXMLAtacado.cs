@@ -32,11 +32,15 @@ namespace Entidades.Fiscal.Importação
 
                     DocumentoFiscal venda = new AdaptadorAtacadoEntrada(new ParserXmlAtacado(arquivo)).Transformar();
 
-                    if (idsCadastrados.Contains(venda.Id)
-                        || venda.EmitidoPorEstaEmpresa)
+                    if (idsCadastrados.Contains(venda.Id))
                     {
-                        // TODO Adicionar motivo de ser ignorado.
-                        resultado.ArquivosIgnorados.Add(arquivo);
+                        resultado.ArquivosIgnorados.Add(new KeyValuePair<string, Motivo>(arquivo, Motivo.ChaveJáImportada));
+                        continue;
+                    }
+
+                    if (venda.EmitidoPorEstaEmpresa)
+                    {
+                        resultado.ArquivosIgnorados.Add(new KeyValuePair<string, Motivo>(arquivo, Motivo.NotaEmitidaOutraEmpresa));
                         continue;
                     }
 
