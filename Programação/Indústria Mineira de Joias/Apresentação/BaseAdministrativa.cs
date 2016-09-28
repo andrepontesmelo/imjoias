@@ -1,5 +1,4 @@
 using Apresentação.Financeiro.Comissões;
-using Apresentação.Financeiro.Fiscal;
 using Apresentação.Fiscal;
 using Apresentação.Formulários;
 using Apresentação.IntegraçãoSistemaAntigo;

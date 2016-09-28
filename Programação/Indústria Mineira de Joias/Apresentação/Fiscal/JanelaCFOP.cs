@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Apresentação.Financeiro.Fiscal
+namespace Apresentação.Fiscal
 {
     public partial class JanelaCFOP : JanelaExplicativa
     {

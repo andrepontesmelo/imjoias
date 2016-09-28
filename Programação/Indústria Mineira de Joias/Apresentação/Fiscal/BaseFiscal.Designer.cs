@@ -30,13 +30,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseFiscal));
             this.quadro1 = new Apresentação.Formulários.Quadro();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.opçãoImportaçãoXMLAtacadoEntrada = new Apresentação.Formulários.Opção();
             this.opçãoImportaçãoPDFAtacadoSaída = new Apresentação.Formulários.Opção();
             this.opçãoImportaçãoXMLAtacadoSaída = new Apresentação.Formulários.Opção();
             this.opçãoImportaçãoTDMVarejoSaída = new Apresentação.Formulários.Opção();
             this.títuloBaseInferior1 = new Apresentação.Formulários.TítuloBaseInferior();
-            this.opçãoImportaçãoXMLAtacadoEntrada = new Apresentação.Formulários.Opção();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.SuspendLayout();
@@ -44,6 +44,7 @@
             // esquerda
             // 
             this.esquerda.Controls.Add(this.quadro1);
+            this.esquerda.Size = new System.Drawing.Size(187, 303);
             this.esquerda.Controls.SetChildIndex(this.quadro1, 0);
             // 
             // quadro1
@@ -69,6 +70,42 @@
             this.quadro1.TabIndex = 1;
             this.quadro1.Tamanho = 30;
             this.quadro1.Título = "Importação";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(4, 72);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(49, 16);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Saída";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(4, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(62, 16);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Entrada";
+            // 
+            // opçãoImportaçãoXMLAtacadoEntrada
+            // 
+            this.opçãoImportaçãoXMLAtacadoEntrada.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoImportaçãoXMLAtacadoEntrada.Descrição = "XML @ Atacado";
+            this.opçãoImportaçãoXMLAtacadoEntrada.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoImportaçãoXMLAtacadoEntrada.Imagem")));
+            this.opçãoImportaçãoXMLAtacadoEntrada.Location = new System.Drawing.Point(7, 50);
+            this.opçãoImportaçãoXMLAtacadoEntrada.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoImportaçãoXMLAtacadoEntrada.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoImportaçãoXMLAtacadoEntrada.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoImportaçãoXMLAtacadoEntrada.Name = "opçãoImportaçãoXMLAtacadoEntrada";
+            this.opçãoImportaçãoXMLAtacadoEntrada.Size = new System.Drawing.Size(150, 16);
+            this.opçãoImportaçãoXMLAtacadoEntrada.TabIndex = 5;
+            this.opçãoImportaçãoXMLAtacadoEntrada.Click += new System.EventHandler(this.opçãoImportaçãoXMLAtacadoEntrada_Click);
             // 
             // opçãoImportaçãoPDFAtacadoSaída
             // 
@@ -122,50 +159,15 @@
             this.títuloBaseInferior1.Imagem = ((System.Drawing.Image)(resources.GetObject("títuloBaseInferior1.Imagem")));
             this.títuloBaseInferior1.Location = new System.Drawing.Point(193, 14);
             this.títuloBaseInferior1.Name = "títuloBaseInferior1";
-            this.títuloBaseInferior1.Size = new System.Drawing.Size(591, 70);
+            this.títuloBaseInferior1.Size = new System.Drawing.Size(592, 70);
             this.títuloBaseInferior1.TabIndex = 6;
             this.títuloBaseInferior1.Título = "Fiscal";
-            // 
-            // opçãoImportaçãoXMLAtacadoEntrada
-            // 
-            this.opçãoImportaçãoXMLAtacadoEntrada.BackColor = System.Drawing.Color.Transparent;
-            this.opçãoImportaçãoXMLAtacadoEntrada.Descrição = "XML @ Atacado";
-            this.opçãoImportaçãoXMLAtacadoEntrada.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoImportaçãoXMLAtacadoEntrada.Imagem")));
-            this.opçãoImportaçãoXMLAtacadoEntrada.Location = new System.Drawing.Point(7, 50);
-            this.opçãoImportaçãoXMLAtacadoEntrada.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.opçãoImportaçãoXMLAtacadoEntrada.MaximumSize = new System.Drawing.Size(150, 100);
-            this.opçãoImportaçãoXMLAtacadoEntrada.MinimumSize = new System.Drawing.Size(150, 16);
-            this.opçãoImportaçãoXMLAtacadoEntrada.Name = "opçãoImportaçãoXMLAtacadoEntrada";
-            this.opçãoImportaçãoXMLAtacadoEntrada.Size = new System.Drawing.Size(150, 16);
-            this.opçãoImportaçãoXMLAtacadoEntrada.TabIndex = 5;
-            this.opçãoImportaçãoXMLAtacadoEntrada.Click += new System.EventHandler(this.opçãoImportaçãoXMLAtacadoEntrada_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(4, 30);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 16);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Entrada";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(4, 72);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 16);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Saída";
             // 
             // BaseFiscal
             // 
             this.Controls.Add(this.títuloBaseInferior1);
             this.Name = "BaseFiscal";
+            this.Size = new System.Drawing.Size(801, 303);
             this.Controls.SetChildIndex(this.esquerda, 0);
             this.Controls.SetChildIndex(this.títuloBaseInferior1, 0);
             this.esquerda.ResumeLayout(false);

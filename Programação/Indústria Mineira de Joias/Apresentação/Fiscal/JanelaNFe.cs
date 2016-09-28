@@ -1,20 +1,21 @@
-﻿using Apresentação.Formulários;
+﻿using Apresentação.Financeiro.Venda;
+using Apresentação.Formulários;
 using Entidades.Configuração;
 using Entidades.Fiscal;
 using Entidades.Fiscal.NotaFiscalEletronica;
+using Entidades.Relacionamento.Venda;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 
-namespace Apresentação.Financeiro.Fiscal
+namespace Apresentação.Fiscal
 {
     public partial class JanelaNFe : JanelaExplicativa
     {
         public event EventHandler AoSalvarNfe;
-
-        private Entidades.Relacionamento.Venda.Venda venda;
+        private Venda venda;
 
         private ConfiguraçãoGlobal<int> últimaNFe = null;
         private ConfiguraçãoGlobal<int> últimaFatura = null;
@@ -24,7 +25,6 @@ namespace Apresentação.Financeiro.Fiscal
         public JanelaNFe()
         {
             InitializeComponent();
-
             Carregar();
         }
 
@@ -45,22 +45,22 @@ namespace Apresentação.Financeiro.Fiscal
             txtUltimaVenda.Text = "Última venda exportada: " + últimaVendaExportada.Valor.ToString();
         }
 
-
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void Carregar(Entidades.Relacionamento.Venda.Venda v)
+        private void Carregar(Venda v)
         {
-            Venda.DadosVenda dv = new Venda.DadosVenda();
+            DadosVenda dv = new DadosVenda();
+
             dv.Abrir(v, null);
             flow.Controls.Add(dv);
             dv.Width = flow.ClientSize.Width;
             dv.Dock = DockStyle.Fill;
         }
 
-        private void Salvar(Entidades.Relacionamento.Venda.Venda v)
+        private void Salvar(Venda v)
         {
             int códigoNfe;
             if (!int.TryParse(txtNfe.Text, out códigoNfe))
@@ -92,55 +92,65 @@ namespace Apresentação.Financeiro.Fiscal
 
             NfeVenda nota = new NfeVenda(v, códigoNfe, códigoCFOP, códigoFatura, aliquota);
             NfeVendaTxt escritorTxt = new NfeVendaTxt(nota);
-
             FolderBrowserDialog janela = new FolderBrowserDialog();
             DialogResult resultado = janela.ShowDialog();
+
             if (resultado == DialogResult.OK)
+                SalvarVenda(v, códigoNfe, códigoFatura, nota, escritorTxt, janela);
+        }
+
+        private void SalvarVenda(Venda v, int códigoNfe, int códigoFatura, NfeVenda nota, NfeVendaTxt escritorTxt, FolderBrowserDialog janela)
+        {
+            string arquivo = Path.Combine(janela.SelectedPath, v.Código.ToString() + ".txt");
+            if (File.Exists(arquivo))
             {
-                string arquivo = Path.Combine(janela.SelectedPath, v.Código.ToString() + ".txt");
-                if (File.Exists(arquivo))
-                {
-                    DialogResult apagar = MessageBox.Show(this,
-                        "Sobrescrever ?",
-                        "Arquivo já existe",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Question);
+                DialogResult apagar = MessageBox.Show(this,
+                    "Sobrescrever ?",
+                    "Arquivo já existe",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
 
-                    if (apagar == DialogResult.No)
-                        return;
-
-                    File.Delete(arquivo);
-                }
-
-                try
-                {
-                    escritorTxt.Salvar(arquivo);
-                }
-                catch (Exception erro)
-                {
-                    if (File.Exists(arquivo))
-                        File.Delete(arquivo);
-
-                    MessageBox.Show(this, erro.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (apagar == DialogResult.No)
                     return;
-                }
 
-                nota.Cadastrar();
-
-                if (AoSalvarNfe != null)
-                    AoSalvarNfe(null, null);
-
-                Process.Start(janela.SelectedPath);
-
-                últimaNFe.Valor = códigoNfe;
-                últimaFatura.Valor = códigoFatura;
-                últimaVendaExportada.Valor = v.Código;
-                txtCódigoVenda.Text = "";
-
-                Carregar();
-                txtCódigoVenda.Focus();
+                File.Delete(arquivo);
             }
 
+            if (!TentaSalvarArquivo(escritorTxt, arquivo))
+                return;
+
+            nota.Cadastrar();
+
+            if (AoSalvarNfe != null)
+                AoSalvarNfe(null, null);
+
+            Process.Start(janela.SelectedPath);
+
+            últimaNFe.Valor = códigoNfe;
+            últimaFatura.Valor = códigoFatura;
+            últimaVendaExportada.Valor = v.Código;
+            txtCódigoVenda.Text = "";
+
+            Carregar();
+            txtCódigoVenda.Focus();
+        }
+
+        private bool TentaSalvarArquivo(NfeVendaTxt escritorTxt, string arquivo)
+        {
+            try
+            {
+                escritorTxt.Salvar(arquivo);
+            }
+            catch (Exception erro)
+            {
+                if (File.Exists(arquivo))
+                    File.Delete(arquivo);
+
+                MessageBox.Show(this, erro.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
         }
 
         private void txtCódigoVenda_Validating(object sender, CancelEventArgs e)
@@ -161,7 +171,7 @@ namespace Apresentação.Financeiro.Fiscal
                 return;
             }
 
-            venda = Entidades.Relacionamento.Venda.Venda.ObterVenda(código);
+            venda = Venda.ObterVenda(código);
 
             if (venda == null)
             {
@@ -233,7 +243,7 @@ namespace Apresentação.Financeiro.Fiscal
         internal void CarregarVenda(long códigoVenda)
         {
             txtCódigoVenda.Text = códigoVenda.ToString();
-            venda = Entidades.Relacionamento.Venda.Venda.ObterVenda(códigoVenda);
+            venda = Venda.ObterVenda(códigoVenda);
             Carregar(venda);
             btnSalvar.Enabled = true;
         }
