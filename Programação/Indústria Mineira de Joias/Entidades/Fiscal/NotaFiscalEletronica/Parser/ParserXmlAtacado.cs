@@ -3,17 +3,20 @@ using System;
 using System.Globalization;
 using System.Xml;
 
-namespace Entidades.Fiscal.NotaFiscalEletronica
+namespace Entidades.Fiscal.NotaFiscalEletronica.Parser
 {
-    public class ParserXmlAtacado
+    public class ParserXmlAtacado : ParserXml
     {
-        private XmlDocument documento;
         private static readonly string XML_CAMINHO_RAIZ = "/nfeProc/NFe/infNFe";
         private static readonly string XML_CAMINHO_VENDA = XML_CAMINHO_RAIZ + "/ide";
         private static readonly string XML_CAMINHO_EMITENTE = XML_CAMINHO_RAIZ + "/emit";
         private static readonly string XML_CAMINHO_ITENS = XML_CAMINHO_RAIZ + "/det";
         private static readonly string XML_CAMINHO_TOTAIS = XML_CAMINHO_RAIZ + "/total/ICMSTot";
         private static readonly CultureInfo CULTURA_AMERICANA = new CultureInfo("en-US");
+
+        public ParserXmlAtacado(string arquivo) : base(arquivo)
+        {
+        }
 
         internal decimal LerValorTotal()
         {
@@ -30,16 +33,6 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
             return ObterCaminhoRaiz(vendaItem) + "/" + atributo;
         }
 
-        private string ObterTexto(string caminho)
-        {
-            return ObterNó(caminho).InnerText;
-        }
-
-        private bool Existe(string caminho)
-        {
-            return ObterNó(caminho) != null;
-        }
-
         internal int ObterCFOP(int vendaItem)
         {
             return ObterInteiro(ObterCaminhoAtributo(vendaItem, "CFOP"));
@@ -54,7 +47,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
 
             if (!ok)
                 throw new FormatException(string.Format("{0} não pode ser transformado em decimal.", texto));
-            
+
             return valor;
         }
 
@@ -69,11 +62,6 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
                 throw new FormatException(string.Format("{0} não pode ser transformado em inteiro.", texto));
 
             return valor;
-        }
-
-        public ParserXmlAtacado(string arquivo)
-        {
-            documento = Xml.LerXmlSemNamespaces(arquivo);
         }
 
         public int QuantidadeVendaItem
@@ -121,16 +109,6 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
             return new ParserXmlAtacado(arquivo);
         }
 
-        private XmlNode ObterNó(string caminho)
-        {
-            return documento.DocumentElement.SelectSingleNode(caminho);
-        }
-
-        public string ObterAtributo(string caminho, string atributo)
-        {
-            return ObterNó(caminho).Attributes[atributo].Value;
-        }
-
         public string ObterAtributo(string atributo)
         {
             return ObterAtributo(XML_CAMINHO_RAIZ, atributo);
@@ -168,11 +146,6 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
         public int LerNNF()
         {
             return ObterInteiro(ObterCaminhoAtributoVenda("nNF"));
-        }
-
-        public bool LerCancelamento()
-        {
-            return ObterNó("/nfeProc/protNFe/infProt")["TRetCancNFe"] != null;
         }
     }
 }

@@ -27,6 +27,12 @@ namespace Entidades.Fiscal.Importação.Resultado
                 case Motivo.NotaEmitidaOutraEmpresa:
                     return "Nota emitida por outra empresa";
 
+                case Motivo.NãoÉCancelamento:
+                    return "Não ser cancelamento";
+
+                case Motivo.CancelamentoJáRegistrado:
+                    return "Cancelamento já registrado";
+
                 default:
                     throw new NotImplementedException();
             }

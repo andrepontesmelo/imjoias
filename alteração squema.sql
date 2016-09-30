@@ -48,6 +48,7 @@ alter table entradafiscal drop key nnf_UNIQUE;
 
 ALTER TABLE imjoias.saidafiscal ADD cancelada bool DEFAULT false NOT NULL;
 
+ALTER TABLE imjoias.saidafiscal DROP KEY nnf_UNIQUE;
 
 
 

@@ -47,6 +47,31 @@ namespace Entidades.Fiscal
             }
         }
 
+        internal static string ObterIdNfe(string idCancelamento)
+        {
+            if (!idCancelamento.StartsWith("ID"))
+                throw new Exception("ID de cancelamento deveria começar com **ID**, mas não começa: " + idCancelamento);
+
+            return "NFe" + idCancelamento.Substring(2);
+        }
+
+        internal static void Cancelar(string id)
+        {
+            using (IDbCommand cmd = Conexão.CreateCommand())
+            {
+                cmd.CommandText = string.Format("update saidafiscal set cancelada=1 WHERE id={0}", DbTransformar(id));
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public static List<string> ObterIds(TipoSaída tipo, bool? canceladas)
+        {
+            return MapearStrings(
+                string.Format("select id from saidafiscal where cancelada={0} and tiposaida='{1}'",
+                canceladas.HasValue ? (canceladas.Value ? "1" : "0") : "cancelada",
+                (char) tipo));
+        }
+
         public int? ContadorDocumentoEmitido => contadorDocumentoEmitido;
         public int? COO => coo;
         public TipoSaída TipoSaída => tipoSaída;

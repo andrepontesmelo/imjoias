@@ -252,6 +252,7 @@
     <Compile Include="Fiscal\Cfop.cs" />
     <Compile Include="Fiscal\Cupom\AdaptadorVarejo.cs" />
     <Compile Include="Fiscal\EntradaFiscal.cs" />
+    <Compile Include="Fiscal\Excessões\TentativaCancelamentoNotaInexistente.cs" />
     <Compile Include="Fiscal\Excessões\XmlIncompatível.cs" />
     <Compile Include="Fiscal\Importação\Importador.cs" />
     <Compile Include="Fiscal\Importação\ImportadorNotaFiscal.cs" />
@@ -269,6 +270,7 @@
     <Compile Include="Fiscal\Importação\Resultado\GrupoExcessão.cs" />
     <Compile Include="Fiscal\Importação\Resultado\GrupoMotivo.cs" />
     <Compile Include="Fiscal\Importação\Resultado\GrupoÚnico.cs" />
+    <Compile Include="Fiscal\Importação\Resultado\ImportadorCancelamentosAtacado.cs" />
     <Compile Include="Fiscal\Importação\Resultado\Motivo.cs" />
     <Compile Include="Fiscal\Importação\Resultado\ResultadoImportação.cs" />
     <Compile Include="Fiscal\ITransformavelDocumentoFiscal.cs" />
@@ -282,9 +284,10 @@
     <Compile Include="Fiscal\NotaFiscalEletronica\NfeVenda.cs" />
     <Compile Include="Fiscal\NotaFiscalEletronica\ArquivoPdf\NfePdf.cs" />
     <Compile Include="Fiscal\NotaFiscalEletronica\NfeVendaTxt.cs" />
-    <Compile Include="Fiscal\NotaFiscalEletronica\ParserXmlAtacado.cs" />
+    <Compile Include="Fiscal\NotaFiscalEletronica\Parser\ParserXml.cs" />
+    <Compile Include="Fiscal\NotaFiscalEletronica\Parser\ParserXmlAtacado.cs" />
     <Compile Include="Fiscal\NotaFiscalEletronica\ArquivoPdf\LeitorPdf.cs" />
-    <Compile Include="Fiscal\NotaFiscalEletronica\ParserXmlAtacadoCancelamento.cs" />
+    <Compile Include="Fiscal\NotaFiscalEletronica\Parser\ParserXmlAtacadoCancelamento.cs" />
     <Compile Include="Fiscal\SaídaFiscal.cs" />
     <Compile Include="Fiscal\EntradaItemFiscal.cs" />
     <Compile Include="Fiscal\SaídaItemFiscal.cs" />
@@ -464,7 +467,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Visita.cs" />
-    <Compile Include="Xml.cs" />
     <Compile Include="Álbum\Animação.cs">
       <SubType>Code</SubType>
     </Compile>

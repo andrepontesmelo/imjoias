@@ -4,6 +4,8 @@
     {
         ChaveJáImportada,
         NotaEmitidaEstaEmpresa,
-        NotaEmitidaOutraEmpresa
+        NotaEmitidaOutraEmpresa,
+        NãoÉCancelamento,
+        CancelamentoJáRegistrado
     }
 }

@@ -9,6 +9,10 @@
             this.motivo = motivo;
         }
 
+        public ArquivoIgnorado(string nome, Motivo motivo) : this(nome, motivo, null)
+        {
+        }
+
         public Motivo Motivo => motivo;
 
         public override int GetHashCode()

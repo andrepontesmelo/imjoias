@@ -103,6 +103,11 @@ namespace Apresentação.Fiscal
             e.Result = new ImportadorSaídaXMLAtacado().ImportarArquivos(e.Argument as string, sender as BackgroundWorker);
         }
 
+        private void Thread_ImportarCancelamentosAtacado(object sender, DoWorkEventArgs e)
+        {
+            e.Result = new ImportadorCancelamentosAtacado().ImportarArquivos(e.Argument as string, sender as BackgroundWorker);
+        }
+
         private void Thread_ImportarXMLAtacadoEntrada(object sender, DoWorkEventArgs e)
         {
             e.Result = new ImportadorEntradaXMLAtacado().ImportarArquivos(e.Argument as string, sender as BackgroundWorker);
@@ -126,6 +131,11 @@ namespace Apresentação.Fiscal
         private void opçãoImportaçãoXMLAtacadoEntrada_Click(object sender, EventArgs e)
         {
             IniciarImportação(ImportadorEntradaXMLAtacado.DESCRIÇÃO, "diretórioInicialXmlAtacadoEntrada", Thread_ImportarXMLAtacadoEntrada);
+        }
+
+        private void opçãoCancelamentoXMLAtacadoSaída_Click(object sender, EventArgs e)
+        {
+            IniciarImportação(ImportadorCancelamentosAtacado.DESCRIÇÃO, "diretórioInicialXmlAtacadoSaída", Thread_ImportarCancelamentosAtacado);
         }
     }
 }

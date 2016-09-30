@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Entidades.Fiscal.NotaFiscalEletronica.Parser;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
 using System.Reflection;
@@ -134,12 +135,6 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
             ParserXmlAtacado parserVersão2 = ParserXmlAtacado.LerArquivo(ARQUIVO_ENTRADA_VERSÂO_2);
 
             Assert.AreEqual(emissão, parserVersão2.LerDataEmissão());
-        }
-
-        [TestMethod()]
-        public void DeveLerCancelamento()
-        {
-            Assert.IsFalse(parser.LerCancelamento());
         }
 
         [TestMethod()]

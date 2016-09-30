@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Entidades.Fiscal.NotaFiscalEletronica.Parser;
+using System.Collections.Generic;
 
 namespace Entidades.Fiscal.NotaFiscalEletronica
 {

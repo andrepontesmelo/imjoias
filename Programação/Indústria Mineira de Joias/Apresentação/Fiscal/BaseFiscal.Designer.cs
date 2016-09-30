@@ -37,6 +37,7 @@
             this.opçãoImportaçãoXMLAtacadoSaída = new Apresentação.Formulários.Opção();
             this.opçãoImportaçãoTDMVarejoSaída = new Apresentação.Formulários.Opção();
             this.títuloBaseInferior1 = new Apresentação.Formulários.TítuloBaseInferior();
+            this.opçãoCancelamentoXMLAtacadoSaída = new Apresentação.Formulários.Opção();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.SuspendLayout();
@@ -54,6 +55,7 @@
             this.quadro1.bInfEsqArredondada = true;
             this.quadro1.bSupDirArredondada = true;
             this.quadro1.bSupEsqArredondada = true;
+            this.quadro1.Controls.Add(this.opçãoCancelamentoXMLAtacadoSaída);
             this.quadro1.Controls.Add(this.label2);
             this.quadro1.Controls.Add(this.label1);
             this.quadro1.Controls.Add(this.opçãoImportaçãoXMLAtacadoEntrada);
@@ -66,7 +68,7 @@
             this.quadro1.Location = new System.Drawing.Point(7, 14);
             this.quadro1.MostrarBotãoMinMax = false;
             this.quadro1.Name = "quadro1";
-            this.quadro1.Size = new System.Drawing.Size(160, 160);
+            this.quadro1.Size = new System.Drawing.Size(160, 197);
             this.quadro1.TabIndex = 1;
             this.quadro1.Tamanho = 30;
             this.quadro1.Título = "Importação";
@@ -112,7 +114,7 @@
             this.opçãoImportaçãoPDFAtacadoSaída.BackColor = System.Drawing.Color.Transparent;
             this.opçãoImportaçãoPDFAtacadoSaída.Descrição = "PDF @ Atacado";
             this.opçãoImportaçãoPDFAtacadoSaída.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoImportaçãoPDFAtacadoSaída.Imagem")));
-            this.opçãoImportaçãoPDFAtacadoSaída.Location = new System.Drawing.Point(7, 112);
+            this.opçãoImportaçãoPDFAtacadoSaída.Location = new System.Drawing.Point(7, 132);
             this.opçãoImportaçãoPDFAtacadoSaída.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoImportaçãoPDFAtacadoSaída.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoImportaçãoPDFAtacadoSaída.MinimumSize = new System.Drawing.Size(150, 16);
@@ -140,7 +142,7 @@
             this.opçãoImportaçãoTDMVarejoSaída.BackColor = System.Drawing.Color.Transparent;
             this.opçãoImportaçãoTDMVarejoSaída.Descrição = "TDM @ Varejo";
             this.opçãoImportaçãoTDMVarejoSaída.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoImportaçãoTDMVarejoSaída.Imagem")));
-            this.opçãoImportaçãoTDMVarejoSaída.Location = new System.Drawing.Point(7, 132);
+            this.opçãoImportaçãoTDMVarejoSaída.Location = new System.Drawing.Point(7, 152);
             this.opçãoImportaçãoTDMVarejoSaída.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoImportaçãoTDMVarejoSaída.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoImportaçãoTDMVarejoSaída.MinimumSize = new System.Drawing.Size(150, 16);
@@ -162,6 +164,20 @@
             this.títuloBaseInferior1.Size = new System.Drawing.Size(592, 70);
             this.títuloBaseInferior1.TabIndex = 6;
             this.títuloBaseInferior1.Título = "Fiscal";
+            // 
+            // opçãoCancelamentoXMLAtacadoSaída
+            // 
+            this.opçãoCancelamentoXMLAtacadoSaída.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoCancelamentoXMLAtacadoSaída.Descrição = "XMLs de Cancelamento";
+            this.opçãoCancelamentoXMLAtacadoSaída.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoCancelamentoXMLAtacadoSaída.Imagem")));
+            this.opçãoCancelamentoXMLAtacadoSaída.Location = new System.Drawing.Point(6, 111);
+            this.opçãoCancelamentoXMLAtacadoSaída.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoCancelamentoXMLAtacadoSaída.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoCancelamentoXMLAtacadoSaída.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoCancelamentoXMLAtacadoSaída.Name = "opçãoCancelamentoXMLAtacadoSaída";
+            this.opçãoCancelamentoXMLAtacadoSaída.Size = new System.Drawing.Size(150, 17);
+            this.opçãoCancelamentoXMLAtacadoSaída.TabIndex = 8;
+            this.opçãoCancelamentoXMLAtacadoSaída.Click += new System.EventHandler(this.opçãoCancelamentoXMLAtacadoSaída_Click);
             // 
             // BaseFiscal
             // 
@@ -187,5 +203,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private Formulários.Opção opçãoImportaçãoXMLAtacadoEntrada;
+        private Formulários.Opção opçãoCancelamentoXMLAtacadoSaída;
     }
 }

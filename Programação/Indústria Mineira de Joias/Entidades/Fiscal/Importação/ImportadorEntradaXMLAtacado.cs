@@ -1,5 +1,6 @@
 ﻿using Entidades.Fiscal.Importação.Resultado;
 using Entidades.Fiscal.NotaFiscalEletronica;
+using Entidades.Fiscal.NotaFiscalEletronica.Parser;
 using System.Collections.Generic;
 
 namespace Entidades.Fiscal.Importação
