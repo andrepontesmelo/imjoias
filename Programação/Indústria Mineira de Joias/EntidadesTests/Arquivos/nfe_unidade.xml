@@ -1,1 +1,174 @@
-<?xml version="1.0" encoding="utf-8"?><nfeProc versao="3.10" xmlns="http://www.portalfiscal.inf.br/nfe"><NFe xmlns="http://www.portalfiscal.inf.br/nfe"><infNFe versao="3.10" Id="NFe31150442916866000197550010000301921554191000"><ide><cUF>31</cUF><cNF>55419100</cNF><natOp>Venda de merc adqui receb terc origi encome entrega futura</natOp><indPag>2</indPag><mod>55</mod><serie>1</serie><nNF>30192</nNF><dhEmi>2015-04-17T16:58:00-03:00</dhEmi><dhSaiEnt>2015-04-17T17:14:00-03:00</dhSaiEnt><tpNF>1</tpNF><idDest>1</idDest><cMunFG>3106200</cMunFG><tpImp>1</tpImp><tpEmis>1</tpEmis><cDV>0</cDV><tpAmb>1</tpAmb><finNFe>1</finNFe><indFinal>0</indFinal><indPres>0</indPres><procEmi>0</procEmi><verProc>NFe AGL 8820128</verProc></ide><emit><CNPJ>42916866000197</CNPJ><xNome>SI Comercio e Representacoes Ltda</xNome><enderEmit><xLgr>RUA CONSELHEIRO LAFAIETE</xLgr><nro>1899</nro><xBairro>SAGRADA FAMILIA</xBairro><cMun>3106200</cMun><xMun>BELO HORIZONTE</xMun><UF>MG</UF><CEP>31035560</CEP><cPais>1058</cPais><xPais>BRASIL</xPais><fone>3134893300</fone></enderEmit><IE>0628126330014</IE><CRT>3</CRT></emit><dest><CNPJ>18219329000103</CNPJ><xNome>INDUSTRIA MINEIRA DE JOIAS LTDA</xNome><enderDest><xLgr>RUA POUSO ALEGRE</xLgr><nro>546</nro><xBairro>FLORESTA</xBairro><cMun>3106200</cMun><xMun>BELO HORIZONTE</xMun><UF>MG</UF><CEP>31110010</CEP><cPais>1058</cPais><xPais>Brasil</xPais><fone>3130577555</fone></enderDest><indIEDest>1</indIEDest><IE>0621400540037</IE><email>imjoias@imjoias.com.br</email></dest><det nItem="1"><prod><cProd>00000724</cProd><cEAN /><xProd>IMPRESSORA FISCAL BEMATECH MP-4000 TH FI</xProd><NCM>84433239</NCM><CFOP>5117</CFOP><uCom>UN</uCom><qCom>1.00</qCom><vUnCom>2100.0000</vUnCom><vProd>2100.00</vProd><cEANTrib /><uTrib>UN</uTrib><qTrib>1.00</qTrib><vUnTrib>2100.0000</vUnTrib><indTot>1</indTot></prod><imposto><ICMS><ICMS60><orig>0</orig><CST>60</CST></ICMS60></ICMS><IPI><cEnq>999</cEnq><IPINT><CST>53</CST></IPINT></IPI><PIS><PISAliq><CST>01</CST><vBC>2100.00</vBC><pPIS>0.65</pPIS><vPIS>13.65</vPIS></PISAliq></PIS><COFINS><COFINSAliq><CST>01</CST><vBC>2100.00</vBC><pCOFINS>3.00</pCOFINS><vCOFINS>63.00</vCOFINS></COFINSAliq></COFINS></imposto><infAdProd>Nº Série: BE091510100011253847</infAdProd></det><total><ICMSTot><vBC>0.00</vBC><vICMS>0.00</vICMS><vICMSDeson>0.00</vICMSDeson><vBCST>0.00</vBCST><vST>0.00</vST><vProd>2100.00</vProd><vFrete>0.00</vFrete><vSeg>0.00</vSeg><vDesc>0.00</vDesc><vII>0.00</vII><vIPI>0.00</vIPI><vPIS>13.65</vPIS><vCOFINS>63.00</vCOFINS><vOutro>0.00</vOutro><vNF>2100.00</vNF></ICMSTot></total><transp><modFrete>1</modFrete></transp><infAdic><infAdFisco>REF NF SIMP FATUR VENDA ENTR FUTURA 30041. P/ CST 060: ICMS COBRADO ANTERIORMENTE POR ST CONF ART 12 ANEXO XV DO RICMS/02. NF EMITIDA CONF ART 306 DO ANEXO IX DO RICMS/02.</infAdFisco><infCpl>REF NF SIMP FATUR VENDA ENTR FUTURA 30041. P/ CST 060: ICMS COBRADO ANTERIORMENTE POR ST CONF ART 12 ANEXO XV DO RICMS/02. NF EMITIDA CONF ART 306 DO ANEXO IX DO RICMS/02.</infCpl></infAdic></infNFe><Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI="#NFe31150442916866000197550010000301921554191000"><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>t4QkaKFbDkKYFAMxdCclG9CX6dg=</DigestValue></Reference></SignedInfo><SignatureValue>p0C6g6kCjK8wIidXPkjZPskrj01enFi6wqMEs0YE+Z/4Ps7ANoPVYsjknQhBzR6zieydYW0tSKXjFqVJe3B/Ic6rTJbvxCY/pW6z8c682D7ZZ/fnqgIMJrQ3KiN7Lj36SykOG3rWetyQXjO5h6Y5NAp4Hy68Eqt4v7zu9nqGn2MY7PpO+OGBc02FPl68ymzNiQ2btx1kFxlWIvDtdtsP0va1BCekscQOyUVkBEXZBHZtyHtqkMv8YmSzJsVAFN0hsy8C6QqRqx4bVn5hw6HAwvbjBiIpY8Q8TB7iyOvG/ddzusMiL+J2V85QHNSy7gsFIy+7gm9Y7dJQPZfbafuCGw==</SignatureValue><KeyInfo><X509Data><X509Certificate>MIIIUzCCBjugAwIBAgIQC8I1HFcuE82xus1hD6XkNzANBgkqhkiG9w0BAQsFADB4MQswCQYDVQQGEwJCUjETMBEGA1UEChMKSUNQLUJyYXNpbDE2MDQGA1UECxMtU2VjcmV0YXJpYSBkYSBSZWNlaXRhIEZlZGVyYWwgZG8gQnJhc2lsIC0gUkZCMRwwGgYDVQQDExNBQyBDZXJ0aXNpZ24gUkZCIEc0MB4XDTE0MDkyMjAwMDAwMFoXDTE1MDkyMTIzNTk1OVowgfoxCzAJBgNVBAYTAkJSMRMwEQYDVQQKFApJQ1AtQnJhc2lsMQswCQYDVQQIEwJNRzEXMBUGA1UEBxQOQkVMTyBIT1JJWk9OVEUxNjA0BgNVBAsULVNlY3JldGFyaWEgZGEgUmVjZWl0YSBGZWRlcmFsIGRvIEJyYXNpbCAtIFJGQjEWMBQGA1UECxQNUkZCIGUtQ05QSiBBMTEkMCIGA1UECxQbQXV0ZW50aWNhZG8gcG9yIEFSIEFSTUFDU0VHMTowOAYDVQQDEzFTRUkgQ09NRVJDSU8gRSBSRVBSRVNFTlRBQ09FUyBMVERBOjQyOTE2ODY2MDAwMTk3MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAu6WXOBKZauMA1RpoUytIthZGCkfdn0GTLw3K9yaaW5s8iO1oVnjoD2oy54HjRgaIXpMXcIfI/oxNfs0TfBWYrY+O5N81NqnS2aM1gjv2jVp8ut2d5TzI4jxmWDNPrHJMXtqC3vXbL0sdlgiwnL7RGZXwxb3GiPFvlZvcCYfWaJDAILUztN2ZyNM79eBqp7+8R1sI3UohPHPJGhcF/Hlx8M5fpYJMpJY3mx8W4X+dZS+utPQP4yNmJPuUgPeKCPEykdNY8Pe4/w5Pa2kBRUyc7GrYOwznfQnDOl5h0xR/FsGxQBBKfVKNsRqfq0yaXHwZkT4JGIXsS9kqRETW+htoyQIDAQABo4IDVDCCA1AwgbkGA1UdEQSBsTCBrqA4BgVgTAEDBKAvBC0xMzA0MTk2NjU3NDExODU5NjcyMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDCgJwYFYEwBAwKgHgQcQU5UT05JTyBMVUlaIERFIFNPVVpBIEpVTklPUqAZBgVgTAEDA6AQBA40MjkxNjg2NjAwMDE5N6AXBgVgTAEDB6AOBAwwMDAwMDAwMDAwMDCBFXRpQHNpYXV0b21hY2FvLmNvbS5icjAJBgNVHRMEAjAAMB8GA1UdIwQYMBaAFC6R6tZt5bJZgtw4hSl2NBZWPNA+MA4GA1UdDwEB/wQEAwIF4DB/BgNVHSAEeDB2MHQGBmBMAQIBDDBqMGgGCCsGAQUFBwIBFlxodHRwOi8vaWNwLWJyYXNpbC5jZXJ0aXNpZ24uY29tLmJyL3JlcG9zaXRvcmlvL2RwYy9BQ19DZXJ0aXNpZ25fUkZCL0RQQ19BQ19DZXJ0aXNpZ25fUkZCLnBkZjCCARYGA1UdHwSCAQ0wggEJMFegVaBThlFodHRwOi8vaWNwLWJyYXNpbC5jZXJ0aXNpZ24uY29tLmJyL3JlcG9zaXRvcmlvL2xjci9BQ0NlcnRpc2lnblJGQkc0L0xhdGVzdENSTC5jcmwwVqBUoFKGUGh0dHA6Ly9pY3AtYnJhc2lsLm91dHJhbGNyLmNvbS5ici9yZXBvc2l0b3Jpby9sY3IvQUNDZXJ0aXNpZ25SRkJHNC9MYXRlc3RDUkwuY3JsMFagVKBShlBodHRwOi8vcmVwb3NpdG9yaW8uaWNwYnJhc2lsLmdvdi5ici9sY3IvQ2VydGlzaWduL0FDQ2VydGlzaWduUkZCRzQvTGF0ZXN0Q1JMLmNybDAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwQwgZsGCCsGAQUFBwEBBIGOMIGLMF8GCCsGAQUFBzAChlNodHRwOi8vaWNwLWJyYXNpbC5jZXJ0aXNpZ24uY29tLmJyL3JlcG9zaXRvcmlvL2NlcnRpZmljYWRvcy9BQ19DZXJ0aXNpZ25fUkZCX0c0LnA3YzAoBggrBgEFBQcwAYYcaHR0cDovL29jc3AuY2VydGlzaWduLmNvbS5icjANBgkqhkiG9w0BAQsFAAOCAgEAiRj0E7s34zhVkuwgBKzXI9dFHDQIOg07NXxvl9FeGdULDqN1PaUt1M0jpXxkIgQnrMWjFZmRJ4Oj0M5AtS9SuKi7xLQXZlvwwD0zkTunP7GNGI0BhoS+LgYaiXDk98Zj3hNg7zt4UZzgCP9SedAgNJpniOPSm/go2eaJLXVJTufiUoPusFIhR1EifjvuwQgRXr7V14nREi6X7x8XZwvsOK4cLoITWAgbtcorLyp99FAlipKenVDeM2DsFl3xhJNETA/uZm+CXIz6gtogRC5lzHC6ryGWGWLWVmdOY8IyvQaMnpd86SmDMXyhkYLrA179yChhCs2OC6Ra1L1g4CNyUMOn4CX8va+CzuQkxP/iM+y70VSt8y0zGTIpAKg0WE9ybuUHAoszLQhdLDro9mj1ZJBS0vk+ABupKPcU/DT7asOWtMVXQX4dILLKmog9LMJL36ex93WLDKwB2NDd8pz+Q7zjxsAVGy5E2y5SslyXP1m2IDjRtvBaoXlLKcfcC190w3ggZx1EX5JtrNV+YG5+a/U+QcjvPdnbHacWBgc6SdJ1EAkjnBYzAn8KonwWFhPK3LnHkwvx9ANZ2ie2EEWCiciG3NZU6T3ahqtATSBP34YqOjp94kCBP2BvHHMsNO4qC9d6OapwXiBVMa24s5eygu5qN5mEfyC0puBjlcI/9/8=</X509Certificate></X509Data></KeyInfo></Signature></NFe><protNFe versao="3.10"><infProt Id="NFe131151720141391"><tpAmb>1</tpAmb><verAplic>13_2_60</verAplic><chNFe>31150442916866000197550010000301921554191000</chNFe><dhRecbto>2015-04-17T17:15:04-03:00</dhRecbto><nProt>131151720141391</nProt><digVal>t4QkaKFbDkKYFAMxdCclG9CX6dg=</digVal><cStat>100</cStat><xMotivo>Autorizado o uso da NF-e</xMotivo></infProt></protNFe></nfeProc>
+<?xml version="1.0" encoding="utf-8"?>
+<nfeProc versao="3.10" xmlns="http://www.portalfiscal.inf.br/nfe">
+  <NFe xmlns="http://www.portalfiscal.inf.br/nfe">
+    <infNFe versao="3.10" Id="NFe31150442916866000197550010000301921554191000">
+      <ide>
+        <cUF>31</cUF>
+        <cNF>55419100</cNF>
+        <natOp>Venda de merc adqui receb terc origi encome entrega futura</natOp>
+        <indPag>2</indPag>
+        <mod>55</mod>
+        <serie>1</serie>
+        <nNF>30192</nNF>
+        <dhEmi>2015-04-17T16:58:00-03:00</dhEmi>
+        <dhSaiEnt>2015-04-17T17:14:00-03:00</dhSaiEnt>
+        <tpNF>1</tpNF>
+        <idDest>1</idDest>
+        <cMunFG>3106200</cMunFG>
+        <tpImp>1</tpImp>
+        <tpEmis>1</tpEmis>
+        <cDV>0</cDV>
+        <tpAmb>1</tpAmb>
+        <finNFe>1</finNFe>
+        <indFinal>0</indFinal>
+        <indPres>0</indPres>
+        <procEmi>0</procEmi>
+        <verProc>NFe AGL 8820128</verProc>
+      </ide>
+      <emit>
+        <CNPJ>42916866000197</CNPJ>
+        <xNome>SI Comercio e Representacoes Ltda</xNome>
+        <enderEmit>
+          <xLgr>RUA CONSELHEIRO LAFAIETE</xLgr>
+          <nro>1899</nro>
+          <xBairro>SAGRADA FAMILIA</xBairro>
+          <cMun>3106200</cMun>
+          <xMun>BELO HORIZONTE</xMun>
+          <UF>MG</UF>
+          <CEP>31035560</CEP>
+          <cPais>1058</cPais>
+          <xPais>BRASIL</xPais>
+          <fone>3134893300</fone>
+        </enderEmit>
+        <IE>0628126330014</IE>
+        <CRT>3</CRT>
+      </emit>
+      <dest>
+        <CNPJ>18219329000103</CNPJ>
+        <xNome>INDUSTRIA MINEIRA DE JOIAS LTDA</xNome>
+        <enderDest>
+          <xLgr>RUA POUSO ALEGRE</xLgr>
+          <nro>546</nro>
+          <xBairro>FLORESTA</xBairro>
+          <cMun>3106200</cMun>
+          <xMun>BELO HORIZONTE</xMun>
+          <UF>MG</UF>
+          <CEP>31110010</CEP>
+          <cPais>1058</cPais>
+          <xPais>Brasil</xPais>
+          <fone>3130577555</fone>
+        </enderDest>
+        <indIEDest>1</indIEDest>
+        <IE>0621400540037</IE>
+        <email>imjoias@imjoias.com.br</email>
+      </dest>
+      <det nItem="1">
+        <prod>
+          <cProd>00000724</cProd>
+          <cEAN />
+          <xProd>IMPRESSORA FISCAL BEMATECH MP-4000 TH FI</xProd>
+          <NCM>84433239</NCM>
+          <CFOP>5117</CFOP>
+          <uCom>UN</uCom>
+          <qCom>1.00</qCom>
+          <vUnCom>2100.0000</vUnCom>
+          <vProd>2100.00</vProd>
+          <cEANTrib />
+          <uTrib>UN</uTrib>
+          <qTrib>1.00</qTrib>
+          <vUnTrib>2100.0000</vUnTrib>
+          <indTot>1</indTot>
+        </prod>
+        <imposto>
+          <ICMS>
+            <ICMS60>
+              <orig>0</orig>
+              <CST>60</CST>
+            </ICMS60>
+          </ICMS>
+          <IPI>
+            <cEnq>999</cEnq>
+            <IPINT>
+              <CST>53</CST>
+            </IPINT>
+          </IPI>
+          <PIS>
+            <PISAliq>
+              <CST>01</CST>
+              <vBC>2100.00</vBC>
+              <pPIS>0.65</pPIS>
+              <vPIS>13.65</vPIS>
+            </PISAliq>
+          </PIS>
+          <COFINS>
+            <COFINSAliq>
+              <CST>01</CST>
+              <vBC>2100.00</vBC>
+              <pCOFINS>3.00</pCOFINS>
+              <vCOFINS>63.00</vCOFINS>
+            </COFINSAliq>
+          </COFINS>
+        </imposto>
+        <infAdProd>Nº Série: BE091510100011253847</infAdProd>
+      </det>
+      <total>
+        <ICMSTot>
+          <vBC>0.00</vBC>
+          <vICMS>0.00</vICMS>
+          <vICMSDeson>0.00</vICMSDeson>
+          <vBCST>0.00</vBCST>
+          <vST>0.00</vST>
+          <vProd>2100.00</vProd>
+          <vFrete>0.00</vFrete>
+          <vSeg>0.00</vSeg>
+          <vDesc>0.00</vDesc>
+          <vII>0.00</vII>
+          <vIPI>0.00</vIPI>
+          <vPIS>13.65</vPIS>
+          <vCOFINS>63.00</vCOFINS>
+          <vOutro>0.00</vOutro>
+          <vNF>2100.00</vNF>
+        </ICMSTot>
+      </total>
+      <transp>
+        <modFrete>1</modFrete>
+      </transp>
+      <infAdic>
+        <infAdFisco>REF NF SIMP FATUR VENDA ENTR FUTURA 30041. P/ CST 060: ICMS COBRADO ANTERIORMENTE POR ST CONF ART 12 ANEXO XV DO RICMS/02. NF EMITIDA CONF ART 306 DO ANEXO IX DO RICMS/02.</infAdFisco>
+        <infCpl>REF NF SIMP FATUR VENDA ENTR FUTURA 30041. P/ CST 060: ICMS COBRADO ANTERIORMENTE POR ST CONF ART 12 ANEXO XV DO RICMS/02. NF EMITIDA CONF ART 306 DO ANEXO IX DO RICMS/02.</infCpl>
+      </infAdic>
+    </infNFe>
+    <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+      <SignedInfo>
+        <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" />
+        <SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" />
+        <Reference URI="#NFe31150442916866000197550010000301921554191000">
+          <Transforms>
+            <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" />
+            <Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" />
+          </Transforms>
+          <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+          <DigestValue>t4QkaKFbDkKYFAMxdCclG9CX6dg=</DigestValue>
+        </Reference>
+      </SignedInfo>
+      <SignatureValue></SignatureValue>
+      <KeyInfo>
+        <X509Data>
+          <X509Certificate></X509Certificate>
+        </X509Data>
+      </KeyInfo>
+    </Signature>
+  </NFe>
+  <protNFe versao="3.10">
+    <infProt Id="NFe131151720141391">
+      <tpAmb>1</tpAmb>
+      <verAplic>13_2_60</verAplic>
+      <chNFe>31150442916866000197550010000301921554191000</chNFe>
+      <dhRecbto>2015-04-17T17:15:04-03:00</dhRecbto>
+      <nProt>131151720141391</nProt>
+      <digVal>Alterado</digVal>
+      <cStat>100</cStat>
+      <xMotivo>Autorizado o uso da NF-e</xMotivo>
+    </infProt>
+  </protNFe>
+</nfeProc>
