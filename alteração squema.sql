@@ -46,6 +46,8 @@ ALTER TABLE imjoias.saidafiscal CHANGE emitidoporcnpj cnpjemitente varchar(18) N
 
 alter table entradafiscal drop key nnf_UNIQUE;
 
+ALTER TABLE imjoias.saidafiscal ADD cancelada bool DEFAULT false NOT NULL;
+
 
 
 

@@ -30,8 +30,9 @@ namespace Entidades.Fiscal
             {
                 cmd.Transaction = transação;
 
-                cmd.CommandText = string.Format("INSERT INTO saidafiscal (dataemissao, tiposaida, id, valortotal, nnf, coo, contadordocumentoemitido, cnpjemitente) " + 
-                    " values ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})",
+                cmd.CommandText = string.Format("INSERT INTO saidafiscal " + 
+                    "(dataemissao, tiposaida, id, valortotal, nnf, coo, contadordocumentoemitido, cnpjemitente, cancelada) " + 
+                    " values ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8})",
                     DbTransformar(dataEmissão),
                     DbTransformar(((char)tipoSaída).ToString()),
                     DbTransformar(id),
@@ -39,7 +40,8 @@ namespace Entidades.Fiscal
                     DbTransformar(NNF),
                     DbTransformar(COO),
                     DbTransformar(ContadorDocumentoEmitido),
-                    DbTransformar(cnpjEmitente));
+                    DbTransformar(cnpjEmitente),
+                    DbTransformar(Cancelada));
 
                 cmd.ExecuteNonQuery();
             }
