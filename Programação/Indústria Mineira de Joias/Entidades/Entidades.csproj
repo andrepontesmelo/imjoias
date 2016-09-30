@@ -284,6 +284,7 @@
     <Compile Include="Fiscal\NotaFiscalEletronica\NfeVendaTxt.cs" />
     <Compile Include="Fiscal\NotaFiscalEletronica\ParserXmlAtacado.cs" />
     <Compile Include="Fiscal\NotaFiscalEletronica\ArquivoPdf\LeitorPdf.cs" />
+    <Compile Include="Fiscal\NotaFiscalEletronica\ParserXmlAtacadoCancelamento.cs" />
     <Compile Include="Fiscal\SaídaFiscal.cs" />
     <Compile Include="Fiscal\EntradaItemFiscal.cs" />
     <Compile Include="Fiscal\SaídaItemFiscal.cs" />
