@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Entidades.Fiscal.NotaFiscalEletronica
 {
@@ -17,6 +16,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
                 parser.LerValorTotal(),
                 parser.LerNNF(),
                 parser.LerCNPJEmitente(),
+                false,
                 TransformarItens());
 
             return entidade;

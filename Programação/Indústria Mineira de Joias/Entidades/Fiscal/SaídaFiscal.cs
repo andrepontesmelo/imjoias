@@ -12,7 +12,7 @@ namespace Entidades.Fiscal
 
         public SaídaFiscal(TipoSaída tipoSaída, DateTime dataEmissão, string id,
             decimal valorTotal, int? nnf, int? coo, int? contadorDocumentoEmitido,
-            string emitidoPorCNPJ, List<ItemFiscal> itens) : base(dataEmissão, id, valorTotal, nnf, emitidoPorCNPJ, itens)
+            string emitidoPorCNPJ, bool cancelada, List<ItemFiscal> itens) : base(dataEmissão, id, valorTotal, nnf, emitidoPorCNPJ, cancelada, itens)
         {
             this.tipoSaída = tipoSaída;
             this.coo = coo;

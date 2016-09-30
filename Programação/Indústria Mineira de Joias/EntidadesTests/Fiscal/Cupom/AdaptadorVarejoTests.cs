@@ -109,5 +109,11 @@ namespace Entidades.Fiscal.Cupom.Tests
         {
             Assert.AreEqual(27735, ((SaídaFiscal)adaptador.Transformar()).COO);
         }
+
+        [TestMethod()]
+        public void DeveAdaptarCancalamento()
+        {
+            Assert.IsTrue(((SaídaFiscal)adaptador.Transformar()).Cancelada);
+        }
     }
 }

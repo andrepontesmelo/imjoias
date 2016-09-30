@@ -12,6 +12,7 @@ namespace Entidades.Fiscal
         protected decimal valorTotal;
         protected int? nnf;
         protected string cnpjEmitente;
+        protected bool cancelada;
         protected List<ItemFiscal> itens;
 
         public DocumentoFiscal()
@@ -20,13 +21,14 @@ namespace Entidades.Fiscal
 
         public DocumentoFiscal(DateTime dataEmissão, string id, 
             decimal valorTotal, int? nnf,  
-            string cnpjEmitente, List<ItemFiscal> itens)
+            string cnpjEmitente, bool cancelada, List<ItemFiscal> itens)
         {
             this.dataEmissão = dataEmissão;
             this.id = id;
             this.valorTotal = valorTotal;
             this.nnf = nnf;
             this.cnpjEmitente = cnpjEmitente;
+            this.cancelada = cancelada;
             this.itens = itens;
         }
 
@@ -36,6 +38,7 @@ namespace Entidades.Fiscal
         public int? NNF => nnf;
         public bool EmitidoPorEstaEmpresa => cnpjEmitente.Equals(Configuração.DadosGlobais.Instância.CNPJEmpresa);
         public List<ItemFiscal> Itens => itens;
+        public bool Cancelada => cancelada;
 
         protected abstract void CadastrarEntidade(IDbTransaction transação, IDbConnection conexão);
 

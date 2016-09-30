@@ -8,7 +8,7 @@ namespace Entidades.Fiscal
     {
         public EntradaFiscal(DateTime dataEmissão, string id,
         decimal valorTotal, int? nnf,
-        string emitidoPorCNPJ, List<ItemFiscal> itens) : base(dataEmissão, id, valorTotal, nnf, emitidoPorCNPJ, itens)
+        string emitidoPorCNPJ, bool cancelada, List<ItemFiscal> itens) : base(dataEmissão, id, valorTotal, nnf, emitidoPorCNPJ, cancelada, itens)
         {
         }
 

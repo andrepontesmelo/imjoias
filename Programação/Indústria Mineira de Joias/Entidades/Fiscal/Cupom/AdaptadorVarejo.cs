@@ -25,6 +25,7 @@ namespace Entidades.Fiscal.Cupom
                 cupom.COO,
                 cupom.NumeroContadorDocumentoEmitido,
                 null,
+                false,
                 AdaptarItens(cupom.Detalhes));
             
             return entidade;
