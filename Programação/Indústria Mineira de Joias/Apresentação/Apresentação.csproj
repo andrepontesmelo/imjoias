@@ -560,6 +560,12 @@
     <Compile Include="Fiscal\JanelaCFOP.Designer.cs">
       <DependentUpon>JanelaCFOP.cs</DependentUpon>
     </Compile>
+    <Compile Include="Fiscal\JanelaImportação.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fiscal\JanelaImportação.Designer.cs">
+      <DependentUpon>JanelaImportação.cs</DependentUpon>
+    </Compile>
     <Compile Include="Fiscal\JanelaNFe.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2579,6 +2585,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Fiscal\JanelaCFOP.resx">
       <DependentUpon>JanelaCFOP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fiscal\JanelaImportação.resx">
+      <DependentUpon>JanelaImportação.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Fiscal\JanelaNFe.resx">
       <DependentUpon>JanelaNFe.cs</DependentUpon>
@@ -5366,6 +5375,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="IntegraçãoSistemaAntigo\App.ico" />
+    <None Include="Resources\importar21.png" />
+    <None Include="Resources\importar.jpg" />
+    <None Include="Resources\importar2.png" />
     <None Include="Resources\logo fundo laranja.gif" />
     <None Include="Resources\logo fundo laranja2.gif" />
     <None Include="Resources\tabela-precos_90.png" />

@@ -137,5 +137,10 @@ namespace Apresentação.Fiscal
         {
             IniciarImportação(ImportadorCancelamentosAtacado.DESCRIÇÃO, "diretórioInicialXmlAtacadoSaída", Thread_ImportarCancelamentosAtacado);
         }
+
+        private void opçãoImportação_Click(object sender, EventArgs e)
+        {
+            new JanelaImportação().Show();
+        }
     }
 }
