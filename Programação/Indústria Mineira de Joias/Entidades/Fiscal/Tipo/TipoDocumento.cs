@@ -1,19 +1,47 @@
-﻿namespace Entidades.Fiscal.Tipo
+﻿using Acesso.Comum;
+using System.Collections.Generic;
+using System;
+
+namespace Entidades.Fiscal.Tipo
 {
-    public class TipoDocumento
+    public class TipoDocumento : DbManipulaçãoSimples
     {
-        private TipoDocumentoSistema cupom;
         private int id;
+        private string nome;
+        public static List<TipoDocumento> tipos = null;
+
+        public TipoDocumento(int id, string nome)
+        {
+            this.id = id;
+            this.nome = nome;
+        }
 
         public TipoDocumento()
         {
         }
 
-        public TipoDocumento(TipoDocumentoSistema cupom)
+        public int Id => id;
+        public string Nome => nome;
+
+        public static List<TipoDocumento> Tipos
         {
-            this.cupom = cupom;
+            get
+            {
+                if (tipos == null)
+                     Carregar();
+
+                return tipos;
+            }
         }
 
-        public int Id => id;
+        private static void Carregar()
+        {
+            tipos = Mapear<TipoDocumento>("select id, nome from tipodocumentofiscal");
+        }
+
+        public override string ToString()
+        {
+            return nome;
+        }
     }
 }
