@@ -52,3 +52,18 @@ ALTER TABLE imjoias.saidafiscal DROP KEY nnf_UNIQUE;
 
 
 
+CREATE TABLE imjoias.tipodocumentofiscal (
+	id int NOT NULL,
+	nome varchar(80) NULL
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=latin1
+COLLATE=latin1_swedish_ci;
+
+
+ALTER TABLE imjoias.tipodocumentofiscal MODIFY COLUMN id INT NOT NULL AUTO_INCREMENT primary key;
+
+insert into tipodocumentofiscal(id, nome) values (1, 'NF-e'), (2, 'Cupom');
+
+
+
