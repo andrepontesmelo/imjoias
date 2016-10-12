@@ -18,6 +18,7 @@ namespace Apresentação.Fiscal
         public void Carregar(int? tipoDocumento)
         {
             SuspendLayout();
+            lista.Items.Clear();
             lista.Items.AddRange(ConstruirItens(Obter(tipoDocumento)));
             colCancelada.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
             colId.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);

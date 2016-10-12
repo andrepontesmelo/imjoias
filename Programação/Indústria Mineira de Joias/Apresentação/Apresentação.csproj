@@ -984,6 +984,12 @@
     <Compile Include="Fiscal\ListaDocumentoFiscal.Designer.cs">
       <DependentUpon>ListaDocumentoFiscal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Fiscal\QuadroTipo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Fiscal\QuadroTipo.Designer.cs">
+      <DependentUpon>QuadroTipo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Fiscal\VisualizadorPDF.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2795,6 +2801,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Fiscal\ListaDocumentoFiscal.resx">
       <DependentUpon>ListaDocumentoFiscal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fiscal\QuadroTipo.resx">
+      <DependentUpon>QuadroTipo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Fiscal\VisualizadorPDF.resx">
       <DependentUpon>VisualizadorPDF.cs</DependentUpon>

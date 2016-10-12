@@ -1,4 +1,6 @@
-﻿namespace Apresentação.Fiscal
+﻿using System;
+
+namespace Apresentação.Fiscal
 {
     public partial class BaseEntradas : BaseDocumentos
     {
@@ -11,7 +13,17 @@
         {
             base.AoExibirDaPrimeiraVez();
 
-            lista.Carregar(null);
+            CarregarLista();
+        }
+
+        private void quadroTipo_SeleçãoAlterada(object sender, System.EventArgs e)
+        {
+            CarregarLista();
+        }
+
+        private void CarregarLista()
+        {
+            lista.Carregar(quadroTipo.Seleção?.Id);
         }
     }
 }

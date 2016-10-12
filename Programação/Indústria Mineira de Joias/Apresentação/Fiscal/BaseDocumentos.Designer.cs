@@ -34,23 +34,20 @@
             this.quadro2 = new Apresentação.Formulários.Quadro();
             this.opçãoExcluir = new Apresentação.Formulários.Opção();
             this.opçãoImprimir = new Apresentação.Formulários.Opção();
-            this.quadro3 = new Apresentação.Formulários.Quadro();
-            this.chkTipo = new System.Windows.Forms.CheckBox();
-            this.cmbTipo = new Apresentação.Fiscal.ComboTipoDocumento();
+            this.quadroTipo = new Apresentação.Fiscal.QuadroTipo();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.quadro2.SuspendLayout();
-            this.quadro3.SuspendLayout();
             this.SuspendLayout();
             // 
             // esquerda
             // 
-            this.esquerda.Controls.Add(this.quadro3);
+            this.esquerda.Controls.Add(this.quadroTipo);
             this.esquerda.Controls.Add(this.quadro2);
             this.esquerda.Controls.Add(this.quadro1);
             this.esquerda.Controls.SetChildIndex(this.quadro1, 0);
             this.esquerda.Controls.SetChildIndex(this.quadro2, 0);
-            this.esquerda.Controls.SetChildIndex(this.quadro3, 0);
+            this.esquerda.Controls.SetChildIndex(this.quadroTipo, 0);
             // 
             // títuloBaseInferior1
             // 
@@ -144,44 +141,13 @@
             this.opçãoImprimir.Size = new System.Drawing.Size(150, 16);
             this.opçãoImprimir.TabIndex = 3;
             // 
-            // quadro3
+            // quadroTipo
             // 
-            this.quadro3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(239)))), ((int)(((byte)(221)))));
-            this.quadro3.bInfDirArredondada = true;
-            this.quadro3.bInfEsqArredondada = true;
-            this.quadro3.bSupDirArredondada = true;
-            this.quadro3.bSupEsqArredondada = true;
-            this.quadro3.Controls.Add(this.cmbTipo);
-            this.quadro3.Controls.Add(this.chkTipo);
-            this.quadro3.Cor = System.Drawing.Color.Black;
-            this.quadro3.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
-            this.quadro3.LetraTítulo = System.Drawing.Color.White;
-            this.quadro3.Location = new System.Drawing.Point(7, 161);
-            this.quadro3.MostrarBotãoMinMax = false;
-            this.quadro3.Name = "quadro3";
-            this.quadro3.Size = new System.Drawing.Size(160, 84);
-            this.quadro3.TabIndex = 9;
-            this.quadro3.Tamanho = 30;
-            this.quadro3.Título = "Tipo";
-            // 
-            // chkTipo
-            // 
-            this.chkTipo.AutoSize = true;
-            this.chkTipo.Location = new System.Drawing.Point(7, 30);
-            this.chkTipo.Name = "chkTipo";
-            this.chkTipo.Size = new System.Drawing.Size(126, 17);
-            this.chkTipo.TabIndex = 2;
-            this.chkTipo.Text = "Exibir apenas um tipo";
-            this.chkTipo.UseVisualStyleBackColor = true;
-            this.chkTipo.CheckedChanged += new System.EventHandler(this.chkTipo_CheckedChanged);
-            // 
-            // cmbTipo
-            // 
-            this.cmbTipo.FormattingEnabled = true;
-            this.cmbTipo.Location = new System.Drawing.Point(29, 53);
-            this.cmbTipo.Name = "cmbTipo";
-            this.cmbTipo.Size = new System.Drawing.Size(104, 21);
-            this.cmbTipo.TabIndex = 3;
+            this.quadroTipo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(215)))));
+            this.quadroTipo.Location = new System.Drawing.Point(7, 161);
+            this.quadroTipo.Name = "quadroTipo";
+            this.quadroTipo.Size = new System.Drawing.Size(160, 81);
+            this.quadroTipo.TabIndex = 9;
             // 
             // BaseDocumentos
             // 
@@ -192,21 +158,17 @@
             this.esquerda.ResumeLayout(false);
             this.quadro1.ResumeLayout(false);
             this.quadro2.ResumeLayout(false);
-            this.quadro3.ResumeLayout(false);
-            this.quadro3.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private Formulários.Quadro quadro3;
-        private System.Windows.Forms.CheckBox chkTipo;
         private Formulários.Quadro quadro2;
         private Formulários.Opção opçãoExcluir;
         private Formulários.Opção opçãoImprimir;
         private Formulários.Quadro quadro1;
         protected Formulários.TítuloBaseInferior títuloBaseInferior1;
         protected Formulários.Opção opçãoNovo;
-        private ComboTipoDocumento cmbTipo;
+        protected QuadroTipo quadroTipo;
     }
 }

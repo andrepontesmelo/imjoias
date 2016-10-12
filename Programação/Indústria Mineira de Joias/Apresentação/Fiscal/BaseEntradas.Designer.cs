@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.lista = new Apresentação.Fiscal.ListaDocumentoEntrada();
+            this.esquerda.SuspendLayout();
             this.SuspendLayout();
             // 
             // títuloBaseInferior1
@@ -41,13 +42,17 @@
             // 
             this.opçãoNovo.Descrição = "Nova entrada";
             // 
-            // listaDocumentoEntrada1
+            // quadroTipo
+            // 
+            this.quadroTipo.SeleçãoAlterada += new System.EventHandler(this.quadroTipo_SeleçãoAlterada);
+            // 
+            // lista
             // 
             this.lista.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lista.Location = new System.Drawing.Point(193, 79);
-            this.lista.Name = "listaDocumentoEntrada1";
+            this.lista.Name = "lista";
             this.lista.Size = new System.Drawing.Size(592, 204);
             this.lista.TabIndex = 7;
             // 
@@ -58,6 +63,7 @@
             this.Controls.SetChildIndex(this.lista, 0);
             this.Controls.SetChildIndex(this.esquerda, 0);
             this.Controls.SetChildIndex(this.títuloBaseInferior1, 0);
+            this.esquerda.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
