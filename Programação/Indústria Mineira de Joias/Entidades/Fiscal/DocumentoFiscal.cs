@@ -7,13 +7,26 @@ namespace Entidades.Fiscal
 {
     public abstract class DocumentoFiscal : DbManipulaçãoSimples
     {
+        [DbColuna("tipo")]
         protected int tipoDocumento;
         protected string id;
+
+        [DbColuna("dataemissao")]
         protected DateTime dataEmissão;
+
+        [DbColuna("valortotal")]
         protected decimal valorTotal;
         protected int? nnf;
+
+
+        [DbColuna("cnpjemitente")]
         protected string cnpjEmitente;
         protected bool cancelada;
+        
+        [DbColuna("observacoes")]
+        protected string observações;
+
+        [DbAtributo(TipoAtributo.Ignorar)]
         protected List<ItemFiscal> itens;
 
         public DocumentoFiscal()
@@ -22,7 +35,7 @@ namespace Entidades.Fiscal
 
         public DocumentoFiscal(int tipoDocumento, DateTime dataEmissão, string id, 
             decimal valorTotal, int? nnf,  
-            string cnpjEmitente, bool cancelada, List<ItemFiscal> itens)
+            string cnpjEmitente, bool cancelada, string observações, List<ItemFiscal> itens)
         {
             this.tipoDocumento = tipoDocumento;
             this.dataEmissão = dataEmissão;
@@ -31,6 +44,7 @@ namespace Entidades.Fiscal
             this.nnf = nnf;
             this.cnpjEmitente = cnpjEmitente;
             this.cancelada = cancelada;
+            this.observações = observações;
             this.itens = itens;
         }
 
@@ -42,6 +56,7 @@ namespace Entidades.Fiscal
         public List<ItemFiscal> Itens => itens;
         public bool Cancelada => cancelada;
         public int TipoDocumento => tipoDocumento;
+        public string Observações => observações;
 
         protected abstract void CadastrarEntidade(IDbTransaction transação, IDbConnection conexão);
 

@@ -65,5 +65,14 @@ ALTER TABLE imjoias.tipodocumentofiscal MODIFY COLUMN id INT NOT NULL AUTO_INCRE
 
 insert into tipodocumentofiscal(id, nome) values (1, 'NF-e'), (2, 'Cupom');
 
+ALTER TABLE imjoias.entradafiscal ADD tipo int NOT NULL;
+
+update entradafiscal set tipo=1;
+
+ALTER TABLE imjoias.entradafiscal ADD CONSTRAINT entradafiscal_tipodocumentofiscal_FK FOREIGN KEY (tipo) REFERENCES imjoias.tipodocumentofiscal(id) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+ALTER TABLE imjoias.entradafiscal ADD observacoes mediumtext DEFAULT '' NOT NULL;
+
+ALTER TABLE imjoias.saidafiscal ADD observacoes mediumtext DEFAULT '' NOT NULL;
 
 

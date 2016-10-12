@@ -33,15 +33,22 @@
             this.label1 = new System.Windows.Forms.Label();
             this.opçãoImportação = new Apresentação.Formulários.Opção();
             this.títuloBaseInferior1 = new Apresentação.Formulários.TítuloBaseInferior();
+            this.quadro2 = new Apresentação.Formulários.Quadro();
+            this.opçãoEntradas = new Apresentação.Formulários.Opção();
+            this.opçãoProduções = new Apresentação.Formulários.Opção();
+            this.opçãoSaídas = new Apresentação.Formulários.Opção();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
+            this.quadro2.SuspendLayout();
             this.SuspendLayout();
             // 
             // esquerda
             // 
+            this.esquerda.Controls.Add(this.quadro2);
             this.esquerda.Controls.Add(this.quadro1);
             this.esquerda.Size = new System.Drawing.Size(187, 303);
             this.esquerda.Controls.SetChildIndex(this.quadro1, 0);
+            this.esquerda.Controls.SetChildIndex(this.quadro2, 0);
             // 
             // quadro1
             // 
@@ -102,6 +109,67 @@
             this.títuloBaseInferior1.TabIndex = 6;
             this.títuloBaseInferior1.Título = "Fiscal";
             // 
+            // quadro2
+            // 
+            this.quadro2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(239)))), ((int)(((byte)(221)))));
+            this.quadro2.bInfDirArredondada = true;
+            this.quadro2.bInfEsqArredondada = true;
+            this.quadro2.bSupDirArredondada = true;
+            this.quadro2.bSupEsqArredondada = true;
+            this.quadro2.Controls.Add(this.opçãoSaídas);
+            this.quadro2.Controls.Add(this.opçãoProduções);
+            this.quadro2.Controls.Add(this.opçãoEntradas);
+            this.quadro2.Cor = System.Drawing.Color.Black;
+            this.quadro2.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
+            this.quadro2.LetraTítulo = System.Drawing.Color.White;
+            this.quadro2.Location = new System.Drawing.Point(7, 116);
+            this.quadro2.MostrarBotãoMinMax = false;
+            this.quadro2.Name = "quadro2";
+            this.quadro2.Size = new System.Drawing.Size(160, 94);
+            this.quadro2.TabIndex = 7;
+            this.quadro2.Tamanho = 30;
+            this.quadro2.Título = "Processos";
+            // 
+            // opçãoEntradas
+            // 
+            this.opçãoEntradas.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoEntradas.Descrição = "Entradas";
+            this.opçãoEntradas.Imagem = global::Apresentação.Resource.ARW04RT;
+            this.opçãoEntradas.Location = new System.Drawing.Point(7, 30);
+            this.opçãoEntradas.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoEntradas.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoEntradas.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoEntradas.Name = "opçãoEntradas";
+            this.opçãoEntradas.Size = new System.Drawing.Size(150, 16);
+            this.opçãoEntradas.TabIndex = 2;
+            this.opçãoEntradas.Click += new System.EventHandler(this.opçãoEntradas_Click);
+            // 
+            // opçãoProduções
+            // 
+            this.opçãoProduções.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoProduções.Descrição = "Produções";
+            this.opçãoProduções.Imagem = global::Apresentação.Resource.Deep_Refresh;
+            this.opçãoProduções.Location = new System.Drawing.Point(7, 50);
+            this.opçãoProduções.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoProduções.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoProduções.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoProduções.Name = "opçãoProduções";
+            this.opçãoProduções.Size = new System.Drawing.Size(150, 16);
+            this.opçãoProduções.TabIndex = 3;
+            // 
+            // opçãoSaídas
+            // 
+            this.opçãoSaídas.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoSaídas.Descrição = "Saídas";
+            this.opçãoSaídas.Imagem = global::Apresentação.Resource.ARW04LT;
+            this.opçãoSaídas.Location = new System.Drawing.Point(7, 70);
+            this.opçãoSaídas.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoSaídas.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoSaídas.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoSaídas.Name = "opçãoSaídas";
+            this.opçãoSaídas.Size = new System.Drawing.Size(150, 16);
+            this.opçãoSaídas.TabIndex = 4;
+            // 
             // BaseFiscal
             // 
             this.Controls.Add(this.títuloBaseInferior1);
@@ -111,6 +179,7 @@
             this.Controls.SetChildIndex(this.títuloBaseInferior1, 0);
             this.esquerda.ResumeLayout(false);
             this.quadro1.ResumeLayout(false);
+            this.quadro2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -121,5 +190,9 @@
         private Formulários.TítuloBaseInferior títuloBaseInferior1;
         private System.Windows.Forms.Label label1;
         private Formulários.Opção opçãoImportação;
+        private Formulários.Quadro quadro2;
+        private Formulários.Opção opçãoSaídas;
+        private Formulários.Opção opçãoProduções;
+        private Formulários.Opção opçãoEntradas;
     }
 }

@@ -21,6 +21,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
                 null,
                 parser.LerCNPJEmitente(),
                 false,
+                "",
                 TransformarItens());
 
             return entidade;

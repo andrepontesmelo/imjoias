@@ -132,7 +132,6 @@
             this.Controls.Add(this.lista);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
             this.Name = "JanelaCFOP";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CFOP";
             this.Load += new System.EventHandler(this.JanelaCFOP_Load);
             this.Controls.SetChildIndex(this.lista, 0);

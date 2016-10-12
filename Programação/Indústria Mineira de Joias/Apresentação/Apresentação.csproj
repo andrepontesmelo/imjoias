@@ -554,6 +554,24 @@
     <Compile Include="Financeiro\Comissões\ListViewComissionados.Designer.cs">
       <DependentUpon>ListViewComissionados.cs</DependentUpon>
     </Compile>
+    <Compile Include="Fiscal\BaseDocumentos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Fiscal\BaseDocumentos.Designer.cs">
+      <DependentUpon>BaseDocumentos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fiscal\BaseEntradas.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Fiscal\BaseEntradas.Designer.cs">
+      <DependentUpon>BaseEntradas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fiscal\ComboTipoDocumento.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Fiscal\ComboTipoDocumento.Designer.cs">
+      <DependentUpon>ComboTipoDocumento.cs</DependentUpon>
+    </Compile>
     <Compile Include="Fiscal\JanelaCFOP.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -953,6 +971,18 @@
     </Compile>
     <Compile Include="Fiscal\BaseFiscal.Designer.cs">
       <DependentUpon>BaseFiscal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fiscal\ListaDocumentoEntrada.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Fiscal\ListaDocumentoEntrada.Designer.cs">
+      <DependentUpon>ListaDocumentoEntrada.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fiscal\ListaDocumentoFiscal.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Fiscal\ListaDocumentoFiscal.Designer.cs">
+      <DependentUpon>ListaDocumentoFiscal.cs</DependentUpon>
     </Compile>
     <Compile Include="Fiscal\VisualizadorPDF.cs">
       <SubType>Form</SubType>
@@ -2583,6 +2613,12 @@
       <DependentUpon>EscolherTabela.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Fiscal\BaseDocumentos.resx">
+      <DependentUpon>BaseDocumentos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fiscal\BaseEntradas.resx">
+      <DependentUpon>BaseEntradas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Fiscal\JanelaCFOP.resx">
       <DependentUpon>JanelaCFOP.cs</DependentUpon>
     </EmbeddedResource>
@@ -2756,6 +2792,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Fiscal\BaseFiscal.resx">
       <DependentUpon>BaseFiscal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fiscal\ListaDocumentoFiscal.resx">
+      <DependentUpon>ListaDocumentoFiscal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Fiscal\VisualizadorPDF.resx">
       <DependentUpon>VisualizadorPDF.cs</DependentUpon>
@@ -5375,6 +5414,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="IntegraçãoSistemaAntigo\App.ico" />
+    <None Include="Resources\fiscal1.png" />
     <None Include="Resources\importar21.png" />
     <None Include="Resources\importar.jpg" />
     <None Include="Resources\importar2.png" />

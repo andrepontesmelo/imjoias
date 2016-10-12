@@ -12,7 +12,8 @@ namespace Entidades.Fiscal
 
         public SaídaFiscal(int tipoDocumento, DateTime dataEmissão, string id,
             decimal valorTotal, int? nnf, int? coo, int? contadorDocumentoEmitido,
-            string emitidoPorCNPJ, bool cancelada, List<ItemFiscal> itens) : base(tipoDocumento, dataEmissão, id, valorTotal, nnf, emitidoPorCNPJ, cancelada, itens)
+            string emitidoPorCNPJ, bool cancelada, string observações, List<ItemFiscal> itens) : 
+            base(tipoDocumento, dataEmissão, id, valorTotal, nnf, emitidoPorCNPJ, cancelada, observações, itens)
         {
             this.coo = coo;
             this.contadorDocumentoEmitido = contadorDocumentoEmitido;
