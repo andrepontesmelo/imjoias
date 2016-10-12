@@ -7,21 +7,21 @@ namespace Entidades.Fiscal
 {
     public abstract class DocumentoFiscal : DbManipulaçãoSimples
     {
+        protected string id;
+        protected int? nnf;
+        protected bool cancelada;
+
         [DbColuna("tipo")]
         protected int tipoDocumento;
-        protected string id;
 
         [DbColuna("dataemissao")]
         protected DateTime dataEmissão;
 
         [DbColuna("valortotal")]
         protected decimal valorTotal;
-        protected int? nnf;
-
 
         [DbColuna("cnpjemitente")]
         protected string cnpjEmitente;
-        protected bool cancelada;
         
         [DbColuna("observacoes")]
         protected string observações;

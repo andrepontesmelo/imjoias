@@ -14,7 +14,12 @@ namespace Apresentação.Fiscal
 
         public void Carregar(int? tipoDocumento)
         {
+            SuspendLayout();
             lista.Items.AddRange(ConstruirItens(Obter(tipoDocumento)));
+            colCancelada.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
+            colId.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
+            colValor.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
+            ResumeLayout();
         }
 
         protected abstract List<DocumentoFiscal> Obter(int? tipoDocumento);

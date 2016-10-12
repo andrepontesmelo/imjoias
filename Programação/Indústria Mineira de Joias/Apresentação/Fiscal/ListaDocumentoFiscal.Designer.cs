@@ -30,9 +30,9 @@
         {
             this.lista = new System.Windows.Forms.ListView();
             this.colId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colValor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colCancelada = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colEmissão = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colCancelada = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colValor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colObservações = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
@@ -58,25 +58,26 @@
             this.colId.Text = "Id";
             this.colId.Width = 192;
             // 
-            // colValor
+            // colEmissão
             // 
-            this.colValor.DisplayIndex = 1;
-            this.colValor.Text = "Valor";
+            this.colEmissão.DisplayIndex = 3;
+            this.colEmissão.Text = "Emissão";
+            this.colEmissão.Width = 120;
             // 
             // colCancelada
             // 
             this.colCancelada.Text = "Cancelada";
             this.colCancelada.Width = 85;
             // 
-            // colEmissão
+            // colValor
             // 
-            this.colEmissão.DisplayIndex = 3;
-            this.colEmissão.Text = "Emissão";
-            this.colEmissão.Width = 105;
+            this.colValor.DisplayIndex = 1;
+            this.colValor.Text = "Valor";
             // 
             // colObservações
             // 
             this.colObservações.Text = "Observações";
+            this.colObservações.Width = 500;
             // 
             // ListaDocumentoFiscal
             // 
