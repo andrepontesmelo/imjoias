@@ -1,4 +1,6 @@
-﻿namespace Apresentação.Fiscal
+﻿using Apresentação.Fiscal.Lista;
+
+namespace Apresentação.Fiscal.BaseInferior
 {
     partial class BaseEntradas
     {
@@ -28,7 +30,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lista = new Apresentação.Fiscal.ListaDocumentoEntrada();
+            this.lista = new Lista.ListaDocumentoEntrada();
             this.esquerda.SuspendLayout();
             this.SuspendLayout();
             // 

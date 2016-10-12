@@ -1,5 +1,6 @@
 using Apresentação.Financeiro.Comissões;
-using Apresentação.Fiscal;
+using Apresentação.Fiscal.BaseInferior;
+using Apresentação.Fiscal.Janela;
 using Apresentação.Formulários;
 using Apresentação.IntegraçãoSistemaAntigo;
 using Entidades.Privilégio;

@@ -554,17 +554,23 @@
     <Compile Include="Financeiro\Comissões\ListViewComissionados.Designer.cs">
       <DependentUpon>ListViewComissionados.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fiscal\BaseDocumentos.cs">
+    <Compile Include="Fiscal\BaseInferior\BaseDocumentos.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Fiscal\BaseDocumentos.Designer.cs">
+    <Compile Include="Fiscal\BaseInferior\BaseDocumentos.Designer.cs">
       <DependentUpon>BaseDocumentos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fiscal\BaseEntradas.cs">
+    <Compile Include="Fiscal\BaseInferior\BaseEntradas.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Fiscal\BaseEntradas.Designer.cs">
+    <Compile Include="Fiscal\BaseInferior\BaseEntradas.Designer.cs">
       <DependentUpon>BaseEntradas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fiscal\BaseInferior\BaseSaídas.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Fiscal\BaseInferior\BaseSaídas.Designer.cs">
+      <DependentUpon>BaseSaídas.cs</DependentUpon>
     </Compile>
     <Compile Include="Fiscal\ComboTipoDocumento.cs">
       <SubType>Component</SubType>
@@ -572,22 +578,22 @@
     <Compile Include="Fiscal\ComboTipoDocumento.Designer.cs">
       <DependentUpon>ComboTipoDocumento.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fiscal\JanelaCFOP.cs">
+    <Compile Include="Fiscal\Janela\JanelaCFOP.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Fiscal\JanelaCFOP.Designer.cs">
+    <Compile Include="Fiscal\Janela\JanelaCFOP.Designer.cs">
       <DependentUpon>JanelaCFOP.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fiscal\JanelaImportação.cs">
+    <Compile Include="Fiscal\Janela\JanelaImportação.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Fiscal\JanelaImportação.Designer.cs">
+    <Compile Include="Fiscal\Janela\JanelaImportação.Designer.cs">
       <DependentUpon>JanelaImportação.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fiscal\JanelaNFe.cs">
+    <Compile Include="Fiscal\Janela\JanelaNFe.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Fiscal\JanelaNFe.Designer.cs">
+    <Compile Include="Fiscal\Janela\JanelaNFe.Designer.cs">
       <DependentUpon>JanelaNFe.cs</DependentUpon>
     </Compile>
     <Compile Include="Financeiro\Indicadores\JanelaCalculoJuros.cs">
@@ -966,23 +972,29 @@
     <Compile Include="Financeiro\VerificadorMercadoria.Designer.cs">
       <DependentUpon>VerificadorMercadoria.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fiscal\BaseFiscal.cs">
+    <Compile Include="Fiscal\BaseInferior\BaseFiscal.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Fiscal\BaseFiscal.Designer.cs">
+    <Compile Include="Fiscal\BaseInferior\BaseFiscal.Designer.cs">
       <DependentUpon>BaseFiscal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fiscal\ListaDocumentoEntrada.cs">
+    <Compile Include="Fiscal\Lista\ListaDocumentoEntrada.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Fiscal\ListaDocumentoEntrada.Designer.cs">
+    <Compile Include="Fiscal\Lista\ListaDocumentoEntrada.Designer.cs">
       <DependentUpon>ListaDocumentoEntrada.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fiscal\ListaDocumentoFiscal.cs">
+    <Compile Include="Fiscal\Lista\ListaDocumentoFiscal.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Fiscal\ListaDocumentoFiscal.Designer.cs">
+    <Compile Include="Fiscal\Lista\ListaDocumentoFiscal.Designer.cs">
       <DependentUpon>ListaDocumentoFiscal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fiscal\Lista\ListaDocumentoSaída.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Fiscal\Lista\ListaDocumentoSaída.Designer.cs">
+      <DependentUpon>ListaDocumentoSaída.cs</DependentUpon>
     </Compile>
     <Compile Include="Fiscal\QuadroTipo.cs">
       <SubType>UserControl</SubType>
@@ -2619,19 +2631,22 @@
       <DependentUpon>EscolherTabela.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fiscal\BaseDocumentos.resx">
+    <EmbeddedResource Include="Fiscal\BaseInferior\BaseDocumentos.resx">
       <DependentUpon>BaseDocumentos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fiscal\BaseEntradas.resx">
+    <EmbeddedResource Include="Fiscal\BaseInferior\BaseEntradas.resx">
       <DependentUpon>BaseEntradas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fiscal\JanelaCFOP.resx">
+    <EmbeddedResource Include="Fiscal\BaseInferior\BaseSaídas.resx">
+      <DependentUpon>BaseSaídas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fiscal\Janela\JanelaCFOP.resx">
       <DependentUpon>JanelaCFOP.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fiscal\JanelaImportação.resx">
+    <EmbeddedResource Include="Fiscal\Janela\JanelaImportação.resx">
       <DependentUpon>JanelaImportação.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fiscal\JanelaNFe.resx">
+    <EmbeddedResource Include="Fiscal\Janela\JanelaNFe.resx">
       <DependentUpon>JanelaNFe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Financeiro\Indicadores\GráficoCotação.resx">
@@ -2796,11 +2811,14 @@
       <DependentUpon>VerificadorMercadoria.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fiscal\BaseFiscal.resx">
+    <EmbeddedResource Include="Fiscal\BaseInferior\BaseFiscal.resx">
       <DependentUpon>BaseFiscal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fiscal\ListaDocumentoFiscal.resx">
+    <EmbeddedResource Include="Fiscal\Lista\ListaDocumentoFiscal.resx">
       <DependentUpon>ListaDocumentoFiscal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fiscal\Lista\ListaDocumentoSaída.resx">
+      <DependentUpon>ListaDocumentoSaída.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Fiscal\QuadroTipo.resx">
       <DependentUpon>QuadroTipo.cs</DependentUpon>

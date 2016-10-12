@@ -75,4 +75,12 @@ ALTER TABLE imjoias.entradafiscal ADD observacoes mediumtext DEFAULT '' NOT NULL
 
 ALTER TABLE imjoias.saidafiscal ADD observacoes mediumtext DEFAULT '' NOT NULL;
 
+alter table saidafisca drop column tiposaida;
+
+ALTER TABLE imjoias.saidafiscal ADD tipo int NOT NULL;
+
+update saidafiscal set tipo=1;
+
+ALTER TABLE imjoias.saidafiscal ADD CONSTRAINT saidafiscal_tipodocumentofiscal_FK FOREIGN KEY (tipo) REFERENCES imjoias.tipodocumentofiscal(id) ON DELETE RESTRICT ON UPDATE CASCADE;
+
 

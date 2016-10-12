@@ -1,8 +1,7 @@
-﻿using System;
+﻿using Entidades.Fiscal;
 using System.Collections.Generic;
-using Entidades.Fiscal;
 
-namespace Apresentação.Fiscal
+namespace Apresentação.Fiscal.Lista
 {
     public partial class ListaDocumentoEntrada : ListaDocumentoFiscal
     {

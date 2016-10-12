@@ -10,7 +10,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 
-namespace Apresentação.Fiscal
+namespace Apresentação.Fiscal.Janela
 {
     public partial class JanelaNFe : JanelaExplicativa
     {

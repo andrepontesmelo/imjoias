@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Apresentação.Fiscal
+﻿namespace Apresentação.Fiscal.BaseInferior
 {
     public partial class BaseEntradas : BaseDocumentos
     {

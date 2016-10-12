@@ -72,6 +72,17 @@ namespace Entidades.Fiscal
                 tipo));
         }
 
+        public static List<DocumentoFiscal> Obter(int? tipoDocumento)
+        {
+            return new List<DocumentoFiscal>(ObterListaEspecífica(tipoDocumento));
+        }
+
+        private static List<EntradaFiscal> ObterListaEspecífica(int? tipoDocumento)
+        {
+            return Mapear<EntradaFiscal>("select * from saidafiscal " +
+                (tipoDocumento.HasValue ? " WHERE tipo=" + tipoDocumento.Value : ""));
+        }
+
         public int? ContadorDocumentoEmitido => contadorDocumentoEmitido;
         public int? COO => coo;
     }

@@ -1,9 +1,9 @@
-﻿using Apresentação.Formulários;
+﻿using Apresentação.Fiscal.Janela;
 using System;
 
-namespace Apresentação.Fiscal
+namespace Apresentação.Fiscal.BaseInferior
 {
-    public partial class BaseFiscal : BaseInferior
+    public partial class BaseFiscal : Formulários.BaseInferior
     {
         public BaseFiscal()
         {

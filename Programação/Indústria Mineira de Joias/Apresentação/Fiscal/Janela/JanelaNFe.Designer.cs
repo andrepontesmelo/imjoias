@@ -1,4 +1,4 @@
-﻿namespace Apresentação.Fiscal
+﻿namespace Apresentação.Fiscal.Janela
 {
     partial class JanelaNFe
     {

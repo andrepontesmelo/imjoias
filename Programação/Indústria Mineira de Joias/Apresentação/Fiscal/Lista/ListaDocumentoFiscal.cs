@@ -5,9 +5,9 @@ using System.Windows.Forms;
 using Apresentação.Formulários;
 
 
-namespace Apresentação.Fiscal
+namespace Apresentação.Fiscal.Lista
 {
-    public abstract partial class ListaDocumentoFiscal : UserControl
+    public partial class ListaDocumentoFiscal : UserControl
     {
         public ListaDocumentoFiscal()
         {
@@ -26,7 +26,10 @@ namespace Apresentação.Fiscal
             ResumeLayout();
         }
 
-        protected abstract List<DocumentoFiscal> Obter(int? tipoDocumento);
+        protected virtual List<DocumentoFiscal> Obter(int? tipoDocumento)
+        {
+            throw new NotImplementedException();
+        }
 
         private ListViewItem[] ConstruirItens(List<DocumentoFiscal> documentos)
         {
