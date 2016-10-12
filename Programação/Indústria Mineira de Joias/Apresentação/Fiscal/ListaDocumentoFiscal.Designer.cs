@@ -48,10 +48,11 @@
             this.lista.FullRowSelect = true;
             this.lista.Location = new System.Drawing.Point(0, 0);
             this.lista.Name = "lista";
-            this.lista.Size = new System.Drawing.Size(315, 217);
+            this.lista.Size = new System.Drawing.Size(927, 399);
             this.lista.TabIndex = 1;
             this.lista.UseCompatibleStateImageBehavior = false;
             this.lista.View = System.Windows.Forms.View.Details;
+            this.lista.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lista_ColumnClick);
             // 
             // colId
             // 
@@ -85,7 +86,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lista);
             this.Name = "ListaDocumentoFiscal";
-            this.Size = new System.Drawing.Size(315, 217);
+            this.Size = new System.Drawing.Size(927, 399);
             this.ResumeLayout(false);
 
         }

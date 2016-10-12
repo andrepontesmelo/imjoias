@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using Apresentação.Formulários;
+
 
 namespace Apresentação.Fiscal
 {
@@ -10,6 +12,7 @@ namespace Apresentação.Fiscal
         public ListaDocumentoFiscal()
         {
             InitializeComponent();
+            lista.ListViewItemSorter = new ListViewColumnSorter();
         }
 
         public void Carregar(int? tipoDocumento)
@@ -47,6 +50,11 @@ namespace Apresentação.Fiscal
                 Entidades.Configuração.DadosGlobais.Instância.Cultura);
             
             return item;
+        }
+
+        private void lista_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            ((ListViewColumnSorter)lista.ListViewItemSorter).OnClick(lista, e);
         }
     }
 }
