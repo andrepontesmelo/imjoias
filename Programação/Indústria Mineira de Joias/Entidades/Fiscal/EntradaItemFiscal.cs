@@ -1,4 +1,6 @@
-﻿namespace Entidades.Fiscal
+﻿using Entidades.Fiscal.Tipo;
+
+namespace Entidades.Fiscal
 {
     public class EntradaItemFiscal : ItemFiscal
     {

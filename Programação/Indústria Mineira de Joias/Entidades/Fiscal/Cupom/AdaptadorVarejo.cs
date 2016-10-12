@@ -1,6 +1,7 @@
 ﻿using InterpretadorTDM.Registro;
 using System.Collections.Generic;
 using System;
+using Entidades.Fiscal.Tipo;
 
 namespace Entidades.Fiscal.Cupom
 {
@@ -15,7 +16,7 @@ namespace Entidades.Fiscal.Cupom
 
         public DocumentoFiscal Transformar()
         {
-            DocumentoFiscal entidade = new SaídaFiscal(TipoSaída.Cupom, 
+            DocumentoFiscal entidade = new SaídaFiscal((int) TipoDocumentoSistema.Cupom, 
                 cupom.DataInicioEmissao, 
                 AdaptarId(cupom.DataInicioEmissao, 
                 cupom.NumeroContadorDocumentoEmitido, 

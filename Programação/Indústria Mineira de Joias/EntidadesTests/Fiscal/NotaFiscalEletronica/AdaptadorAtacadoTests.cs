@@ -1,4 +1,5 @@
 ﻿using Entidades.Fiscal.NotaFiscalEletronica.Parser;
+using Entidades.Fiscal.Tipo;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
@@ -29,7 +30,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         [TestMethod()]
         public void DeveAdaptarTipoVenda()
         {
-            Assert.AreEqual(TipoSaída.NFe, ((SaídaFiscal) adaptador.Transformar()).TipoSaída);
+            Assert.AreEqual((int) TipoDocumentoSistema.NFe, ((SaídaFiscal) adaptador.Transformar()).TipoDocumento);
         }
 
 

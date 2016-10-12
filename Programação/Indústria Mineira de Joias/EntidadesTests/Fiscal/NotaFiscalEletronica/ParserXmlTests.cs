@@ -1,4 +1,5 @@
 ﻿using Entidades.Fiscal.NotaFiscalEletronica.Parser;
+using Entidades.Fiscal.Tipo;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;

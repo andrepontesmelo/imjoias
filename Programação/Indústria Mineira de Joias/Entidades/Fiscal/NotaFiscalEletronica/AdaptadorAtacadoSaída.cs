@@ -1,4 +1,5 @@
 ﻿using Entidades.Fiscal.NotaFiscalEletronica.Parser;
+using Entidades.Fiscal.Tipo;
 using System.Collections.Generic;
 
 namespace Entidades.Fiscal.NotaFiscalEletronica
@@ -11,7 +12,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
 
         public override DocumentoFiscal Transformar()
         {
-            DocumentoFiscal entidade = new SaídaFiscal(TipoSaída.NFe,
+            DocumentoFiscal entidade = new SaídaFiscal((int) TipoDocumentoSistema.NFe,
                 parser.LerDataEmissão(),
                 parser.LerId(),
                 parser.LerValorTotal(),

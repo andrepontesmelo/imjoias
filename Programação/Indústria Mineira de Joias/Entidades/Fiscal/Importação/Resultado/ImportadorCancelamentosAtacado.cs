@@ -1,5 +1,6 @@
 ﻿using Entidades.Fiscal.Excessões;
 using Entidades.Fiscal.NotaFiscalEletronica.Parser;
+using Entidades.Fiscal.Tipo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,8 +18,8 @@ namespace Entidades.Fiscal.Importação.Resultado
 
         public ImportadorCancelamentosAtacado()
         {
-            idsJáCancelados = new SortedSet<string>(SaídaFiscal.ObterIds(TipoSaída.NFe, true));
-            idsSaídas = new SortedSet<string>(SaídaFiscal.ObterIds(TipoSaída.NFe, null));
+            idsJáCancelados = new SortedSet<string>(SaídaFiscal.ObterIds((int) TipoDocumentoSistema.NFe, true));
+            idsSaídas = new SortedSet<string>(SaídaFiscal.ObterIds((int) TipoDocumentoSistema.NFe, null));
         }
 
         protected override ResultadoImportação ImportarArquivos(string pasta, SearchOption opções, BackgroundWorker thread)

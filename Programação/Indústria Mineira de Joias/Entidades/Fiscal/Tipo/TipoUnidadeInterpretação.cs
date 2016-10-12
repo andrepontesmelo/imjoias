@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Entidades.Fiscal
+namespace Entidades.Fiscal.Tipo
 {
     public class TipoUnidadeInterpretação
     {
@@ -13,7 +13,7 @@ namespace Entidades.Fiscal
                     descrição.ToLower().CompareTo("peca") == 0)
                 return TipoUnidade.Pca;
 
-            return (TipoUnidade)Enum.Parse(typeof(TipoUnidade), descrição, true);
+            return (TipoUnidade) Enum.Parse(typeof(TipoUnidade), descrição, true);
         }
     }
 }

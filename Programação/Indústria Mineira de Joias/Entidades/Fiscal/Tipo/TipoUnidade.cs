@@ -1,4 +1,4 @@
-﻿namespace Entidades.Fiscal
+﻿namespace Entidades.Fiscal.Tipo
 {
     public enum TipoUnidade : int
     {

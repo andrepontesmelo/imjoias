@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entidades.Fiscal.Tipo;
+using System;
 using System.Collections.Generic;
 using System.Data;
 
@@ -6,15 +7,20 @@ namespace Entidades.Fiscal
 {
     public class EntradaFiscal : DocumentoFiscal
     {
-        public EntradaFiscal(DateTime dataEmissão, string id,
-        decimal valorTotal, int? nnf,
-        string emitidoPorCNPJ, bool cancelada, List<ItemFiscal> itens) : base(dataEmissão, id, valorTotal, nnf, emitidoPorCNPJ, cancelada, itens)
+        public EntradaFiscal(int tipoDocumento, DateTime dataEmissão, string id,
+        decimal valorTotal, int? nnf, string emitidoPorCNPJ, bool cancelada, List<ItemFiscal> itens) : 
+            base(tipoDocumento, dataEmissão, id, valorTotal, nnf, emitidoPorCNPJ, cancelada, itens)
         {
         }
 
         internal static List<string> ObterIdsCadastrados()
         {
             return MapearStrings("select id from entradafiscal");
+        }
+
+        public static List<DocumentoFiscal> Obter(TipoDocumento tipo)
+        {
+            throw new NotImplementedException();
         }
 
         protected override void CadastrarEntidade(IDbTransaction transação, IDbConnection conexão)

@@ -1,4 +1,5 @@
 ﻿using Entidades.Fiscal.Excessões;
+using Entidades.Fiscal.Tipo;
 using System;
 using System.Globalization;
 using System.Xml;

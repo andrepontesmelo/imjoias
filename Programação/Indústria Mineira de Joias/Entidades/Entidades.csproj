@@ -291,9 +291,10 @@
     <Compile Include="Fiscal\SaídaFiscal.cs" />
     <Compile Include="Fiscal\EntradaItemFiscal.cs" />
     <Compile Include="Fiscal\SaídaItemFiscal.cs" />
-    <Compile Include="Fiscal\TipoUnidade.cs" />
-    <Compile Include="Fiscal\TipoUnidadeInterpretação.cs" />
-    <Compile Include="Fiscal\TipoSaída.cs" />
+    <Compile Include="Fiscal\Tipo\TipoDocumentoSistema.cs" />
+    <Compile Include="Fiscal\Tipo\TipoUnidade.cs" />
+    <Compile Include="Fiscal\Tipo\TipoUnidadeInterpretação.cs" />
+    <Compile Include="Fiscal\Tipo\TipoDocumento.cs" />
     <Compile Include="Fiscal\DocumentoFiscal.cs" />
     <Compile Include="Fiscal\ItemFiscal.cs" />
     <Compile Include="IAcessoMercadoria.cs">

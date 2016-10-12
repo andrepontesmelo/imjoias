@@ -4,6 +4,7 @@ using System.Reflection;
 using InterpretadorTDM;
 using InterpretadorTDM.Registro;
 using System;
+using Entidades.Fiscal.Tipo;
 
 namespace Entidades.Fiscal.Cupom.Tests
 {
@@ -33,7 +34,7 @@ namespace Entidades.Fiscal.Cupom.Tests
         [TestMethod()]
         public void DeveAdaptarTipoVenda()
         {
-            Assert.AreEqual(TipoSaída.Cupom, ((SaídaFiscal) adaptador.Transformar()).TipoSaída);
+            Assert.AreEqual((int) TipoDocumentoSistema.Cupom, ((SaídaFiscal) adaptador.Transformar()).TipoDocumento);
         }
 
 

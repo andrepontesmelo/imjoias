@@ -7,6 +7,7 @@ namespace Entidades.Fiscal
 {
     public abstract class DocumentoFiscal : DbManipulaçãoSimples
     {
+        protected int tipoDocumento;
         protected string id;
         protected DateTime dataEmissão;
         protected decimal valorTotal;
@@ -19,10 +20,11 @@ namespace Entidades.Fiscal
         {
         }
 
-        public DocumentoFiscal(DateTime dataEmissão, string id, 
+        public DocumentoFiscal(int tipoDocumento, DateTime dataEmissão, string id, 
             decimal valorTotal, int? nnf,  
             string cnpjEmitente, bool cancelada, List<ItemFiscal> itens)
         {
+            this.tipoDocumento = tipoDocumento;
             this.dataEmissão = dataEmissão;
             this.id = id;
             this.valorTotal = valorTotal;
@@ -39,6 +41,7 @@ namespace Entidades.Fiscal
         public bool EmitidoPorEstaEmpresa => cnpjEmitente.Equals(Configuração.DadosGlobais.Instância.CNPJEmpresa);
         public List<ItemFiscal> Itens => itens;
         public bool Cancelada => cancelada;
+        public int TipoDocumento => tipoDocumento;
 
         protected abstract void CadastrarEntidade(IDbTransaction transação, IDbConnection conexão);
 
