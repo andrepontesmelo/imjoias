@@ -36,7 +36,7 @@ namespace Entidades.Fiscal.Tipo
 
         private static void Carregar()
         {
-            tipos = Mapear<TipoDocumento>("select id, nome from tipodocumentofiscal");
+            tipos = Mapear<TipoDocumento>("select id, nome from tipodocumentofiscal order by nome");
         }
 
         public override string ToString()
