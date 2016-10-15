@@ -34,9 +34,9 @@
             this.opçãoImportação = new Apresentação.Formulários.Opção();
             this.títuloBaseInferior1 = new Apresentação.Formulários.TítuloBaseInferior();
             this.quadro2 = new Apresentação.Formulários.Quadro();
-            this.opçãoEntradas = new Apresentação.Formulários.Opção();
-            this.opçãoProduções = new Apresentação.Formulários.Opção();
             this.opçãoSaídas = new Apresentação.Formulários.Opção();
+            this.opçãoProduções = new Apresentação.Formulários.Opção();
+            this.opçãoEntradas = new Apresentação.Formulários.Opção();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.quadro2.SuspendLayout();
@@ -130,19 +130,19 @@
             this.quadro2.Tamanho = 30;
             this.quadro2.Título = "Processos";
             // 
-            // opçãoEntradas
+            // opçãoSaídas
             // 
-            this.opçãoEntradas.BackColor = System.Drawing.Color.Transparent;
-            this.opçãoEntradas.Descrição = "Entradas";
-            this.opçãoEntradas.Imagem = global::Apresentação.Resource.ARW04RT;
-            this.opçãoEntradas.Location = new System.Drawing.Point(7, 30);
-            this.opçãoEntradas.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.opçãoEntradas.MaximumSize = new System.Drawing.Size(150, 100);
-            this.opçãoEntradas.MinimumSize = new System.Drawing.Size(150, 16);
-            this.opçãoEntradas.Name = "opçãoEntradas";
-            this.opçãoEntradas.Size = new System.Drawing.Size(150, 16);
-            this.opçãoEntradas.TabIndex = 2;
-            this.opçãoEntradas.Click += new System.EventHandler(this.opçãoEntradas_Click);
+            this.opçãoSaídas.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoSaídas.Descrição = "Saídas";
+            this.opçãoSaídas.Imagem = global::Apresentação.Resource.ARW04LT;
+            this.opçãoSaídas.Location = new System.Drawing.Point(7, 70);
+            this.opçãoSaídas.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoSaídas.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoSaídas.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoSaídas.Name = "opçãoSaídas";
+            this.opçãoSaídas.Size = new System.Drawing.Size(150, 16);
+            this.opçãoSaídas.TabIndex = 4;
+            this.opçãoSaídas.Click += new System.EventHandler(this.opçãoSaídas_Click);
             // 
             // opçãoProduções
             // 
@@ -157,18 +157,19 @@
             this.opçãoProduções.Size = new System.Drawing.Size(150, 16);
             this.opçãoProduções.TabIndex = 3;
             // 
-            // opçãoSaídas
+            // opçãoEntradas
             // 
-            this.opçãoSaídas.BackColor = System.Drawing.Color.Transparent;
-            this.opçãoSaídas.Descrição = "Saídas";
-            this.opçãoSaídas.Imagem = global::Apresentação.Resource.ARW04LT;
-            this.opçãoSaídas.Location = new System.Drawing.Point(7, 70);
-            this.opçãoSaídas.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.opçãoSaídas.MaximumSize = new System.Drawing.Size(150, 100);
-            this.opçãoSaídas.MinimumSize = new System.Drawing.Size(150, 16);
-            this.opçãoSaídas.Name = "opçãoSaídas";
-            this.opçãoSaídas.Size = new System.Drawing.Size(150, 16);
-            this.opçãoSaídas.TabIndex = 4;
+            this.opçãoEntradas.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoEntradas.Descrição = "Entradas";
+            this.opçãoEntradas.Imagem = global::Apresentação.Resource.ARW04RT;
+            this.opçãoEntradas.Location = new System.Drawing.Point(7, 30);
+            this.opçãoEntradas.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoEntradas.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoEntradas.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoEntradas.Name = "opçãoEntradas";
+            this.opçãoEntradas.Size = new System.Drawing.Size(150, 16);
+            this.opçãoEntradas.TabIndex = 2;
+            this.opçãoEntradas.Click += new System.EventHandler(this.opçãoEntradas_Click);
             // 
             // BaseFiscal
             // 

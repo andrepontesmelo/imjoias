@@ -19,5 +19,10 @@ namespace Apresentação.Fiscal.BaseInferior
         {
             SubstituirBase(new BaseEntradas());
         }
+
+        private void opçãoSaídas_Click(object sender, EventArgs e)
+        {
+            SubstituirBase(new BaseSaídas());
+        }
     }
 }
