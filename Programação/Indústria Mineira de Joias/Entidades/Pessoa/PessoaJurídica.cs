@@ -238,6 +238,9 @@ namespace Entidades.Pessoa
 
         public static string FormatarCNPJ(string cnpf)
         {
+            if (String.IsNullOrWhiteSpace(cnpf))
+                return "";
+
             cnpf = cnpf.Replace(".", "").Replace("/", "").Replace("-", "");
 
             if (cnpf.Length < 14)

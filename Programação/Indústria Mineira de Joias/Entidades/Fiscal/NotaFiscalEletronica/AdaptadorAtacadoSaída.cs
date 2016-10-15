@@ -14,14 +14,14 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
         {
             DocumentoFiscal entidade = new SaídaFiscal((int) TipoDocumentoSistema.NFe,
                 parser.LerDataEmissão(),
+                parser.LerDataEntradaSaída(),
                 parser.LerId(),
                 parser.LerValorTotal(),
                 parser.LerNNF(),
-                null,
-                null,
                 parser.LerCNPJEmitente(),
                 false,
                 "",
+                (uint) Setor.SetorSistema.Atacado,
                 TransformarItens());
 
             return entidade;

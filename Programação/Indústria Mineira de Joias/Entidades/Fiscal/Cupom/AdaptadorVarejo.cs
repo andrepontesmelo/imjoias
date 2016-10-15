@@ -16,20 +16,18 @@ namespace Entidades.Fiscal.Cupom
 
         public DocumentoFiscal Transformar()
         {
-            DocumentoFiscal entidade = new SaídaFiscal((int) TipoDocumentoSistema.Cupom, 
-                cupom.DataInicioEmissao, 
-                AdaptarId(cupom.DataInicioEmissao, 
-                cupom.NumeroContadorDocumentoEmitido, 
-                cupom.COO),
+            DocumentoFiscal entidade = new SaídaFiscal((int)TipoDocumentoSistema.Cupom,
+                cupom.DataInicioEmissao,
+                cupom.DataInicioEmissao,
+                AdaptarId(cupom),
                 cupom.ValorTotalLiquido,
-                null,
-                cupom.COO,
-                cupom.NumeroContadorDocumentoEmitido,
+                cupom.ReducaoZ.CRZ,
                 null,
                 cupom.IndicadorCancelamento,
                 "",
+                (uint) Setor.SetorSistema.Varejo,
                 AdaptarItens(cupom.Detalhes));
-            
+
             return entidade;
         }
 
@@ -59,10 +57,10 @@ namespace Entidades.Fiscal.Cupom
             return detalhe.CodigoProdutoOuServico.Trim().Substring(1, 11);
         }
 
-        private string AdaptarId(DateTime dataInicioEmissao, int numeroContadorDocumentoEmitido, int coo)
+        private string AdaptarId(CupomFiscal cupom)
         {
-            return string.Format("{0}#{1}#{2}", dataInicioEmissao.ToString("yyyy-MM-dd"),
-                numeroContadorDocumentoEmitido, coo);
+            return string.Format("{0}@{1}", cupom.COO,
+                Máquina.ObterCódigoMáquina(cupom.ModeloECF, cupom.NumeroFabricacao));
         }
     }
 }

@@ -89,6 +89,23 @@ ALTER TABLE imjoias.entradafiscal CHANGE nnf numero int(11) NULL;
  update entradafiscal set dataentrada=dataemissao;
 
 
+ALTER TABLE imjoias.saidafiscal ADD datasaida datetime NOT NULL;
+ALTER TABLE imjoias.saidafiscal CHANGE nnf numero int(11) NULL;
+update entradafiscal set dataentrada=dataemissao;
+
+ALTER TABLE imjoias.saidafiscal DROP COLUMN coo;
+ALTER TABLE imjoias.saidafiscal DROP COLUMN contadordocumentoemitido;
+update saidafiscal set datasaida=dataemissao;
+
+
+delete from saidafiscal;
+
+ALTER TABLE imjoias.saidafiscal ADD setor int(10) unsigned NOT NULL;
+
+ALTER TABLE imjoias.saidafiscal ADD CONSTRAINT saidafiscal_setor_FK FOREIGN KEY (setor) REFERENCES imjoias.setor(codigo) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+
 
 
 

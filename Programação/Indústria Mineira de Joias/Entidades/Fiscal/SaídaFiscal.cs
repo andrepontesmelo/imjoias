@@ -1,4 +1,4 @@
-﻿using Entidades.Fiscal.Tipo;
+﻿using Acesso.Comum;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,16 +7,23 @@ namespace Entidades.Fiscal
 {
     public class SaídaFiscal : DocumentoFiscal
     {
-        protected int? coo;
-        protected int? contadorDocumentoEmitido;
+        [DbColuna("datasaida")]
+        private DateTime dataSaída;
+        private uint setor;
 
-        public SaídaFiscal(int tipoDocumento, DateTime dataEmissão, string id,
-            decimal valorTotal, int? nnf, int? coo, int? contadorDocumentoEmitido,
-            string emitidoPorCNPJ, bool cancelada, string observações, List<ItemFiscal> itens) : 
-            base(tipoDocumento, dataEmissão, id, valorTotal, nnf, emitidoPorCNPJ, cancelada, observações, itens)
+        public DateTime DataSaída => dataSaída;
+        public uint Setor => setor;
+               
+        public SaídaFiscal(int tipoDocumento, DateTime dataEmissão, DateTime dataSaída, string id,
+            decimal valorTotal, int? número, string cnpjEmitente, bool cancelada, string observações, uint setor, List<ItemFiscal> itens) : 
+            base(tipoDocumento, dataEmissão, id, valorTotal, número, cnpjEmitente, cancelada, observações, itens)
         {
-            this.coo = coo;
-            this.contadorDocumentoEmitido = contadorDocumentoEmitido;
+            this.dataSaída = dataSaída;
+            this.setor = setor;
+        }
+
+        public SaídaFiscal()
+        {
         }
 
         internal static List<string> ObterIdsCadastrados()
@@ -31,17 +38,17 @@ namespace Entidades.Fiscal
                 cmd.Transaction = transação;
 
                 cmd.CommandText = string.Format("INSERT INTO saidafiscal " + 
-                    "(dataemissao, tiposaida, id, valortotal, nnf, coo, contadordocumentoemitido, cnpjemitente, cancelada) " + 
+                    "(dataemissao, datasaida, tipo, id, valortotal, numero, cnpjemitente, cancelada, setor) " + 
                     " values ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8})",
                     DbTransformar(dataEmissão),
+                    DbTransformar(dataSaída),
                     DbTransformar(((int) tipoDocumento).ToString()),
                     DbTransformar(id),
                     DbTransformar(ValorTotal),
                     DbTransformar(Número),
-                    DbTransformar(COO),
-                    DbTransformar(ContadorDocumentoEmitido),
                     DbTransformar(cnpjEmitente),
-                    DbTransformar(Cancelada));
+                    DbTransformar(Cancelada),
+                    DbTransformar(Setor));
 
                 cmd.ExecuteNonQuery();
             }
@@ -72,18 +79,16 @@ namespace Entidades.Fiscal
                 tipo));
         }
 
-        public static List<DocumentoFiscal> Obter(int? tipoDocumento)
+        public static List<DocumentoFiscal> Obter(int? tipoDocumento, int? setor)
         {
-            return new List<DocumentoFiscal>(ObterListaEspecífica(tipoDocumento));
+            return new List<DocumentoFiscal>(ObterListaEspecífica(tipoDocumento, setor));
         }
 
-        private static List<EntradaFiscal> ObterListaEspecífica(int? tipoDocumento)
+        private static List<SaídaFiscal> ObterListaEspecífica(int? tipoDocumento, int? setor)
         {
-            return Mapear<EntradaFiscal>("select * from saidafiscal " +
-                (tipoDocumento.HasValue ? " WHERE tipo=" + tipoDocumento.Value : ""));
+            return Mapear<SaídaFiscal>("select * from saidafiscal WHERE 1=1 " +
+                (tipoDocumento.HasValue ? " AND tipo=" + tipoDocumento.Value : "") +
+                (setor.HasValue ? " AND setor=" + setor.Value : ""));
         }
-
-        public int? ContadorDocumentoEmitido => contadorDocumentoEmitido;
-        public int? COO => coo;
     }
 }

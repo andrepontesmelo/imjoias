@@ -34,14 +34,14 @@ namespace Entidades.Fiscal.Cupom.Tests
         [TestMethod()]
         public void DeveAdaptarTipoVenda()
         {
-            Assert.AreEqual((int) TipoDocumentoSistema.Cupom, ((SaídaFiscal) adaptador.Transformar()).TipoDocumento);
+            Assert.AreEqual((int) TipoDocumentoSistema.Cupom, adaptador.Transformar().TipoDocumento);
         }
 
 
         [TestMethod()]
         public void DeveAdaptarId()
         {
-            Assert.AreEqual("2015-04-01#17248#27735", adaptador.Transformar().Id);
+            Assert.AreEqual("27735@0", adaptador.Transformar().Id);
         }
 
         [TestMethod()]
@@ -53,44 +53,44 @@ namespace Entidades.Fiscal.Cupom.Tests
         [TestMethod()]
         public void DeveAdaptarReferência()
         {
-            Assert.AreEqual("10800300100", ((SaídaFiscal)adaptador.Transformar()).Itens[0].Referência);
+            Assert.AreEqual("10800300100", adaptador.Transformar().Itens[0].Referência);
         }
 
         [TestMethod()]
         public void DeveAdaptarDescrição()
         {
-            Assert.AreEqual("Medalha de Ouro", ((SaídaFiscal)adaptador.Transformar()).Itens[0].Descrição);
+            Assert.AreEqual("Medalha de Ouro", adaptador.Transformar().Itens[0].Descrição);
         }
 
         [TestMethod()]
         public void DeveAdaptarCFOP()
         {
-            Assert.IsNull(((SaídaFiscal)adaptador.Transformar()).Itens[0].CFOP);
+            Assert.IsNull(adaptador.Transformar().Itens[0].CFOP);
         }
 
         [TestMethod()]
         public void DeveAdaptarTipoUnidade()
         {
-            Assert.AreEqual(TipoUnidade.Pca, ((SaídaFiscal)adaptador.Transformar()).Itens[0].TipoUnidade);
+            Assert.AreEqual(TipoUnidade.Pca, adaptador.Transformar().Itens[0].TipoUnidade);
         }
 
 
         [TestMethod()]
         public void DeveAdaptarQuantidade()
         {
-            Assert.AreEqual(1, ((SaídaFiscal)adaptador.Transformar()).Itens[0].Quantidade);
+            Assert.AreEqual(1, adaptador.Transformar().Itens[0].Quantidade);
         }
 
         [TestMethod()]
         public void DeveAdaptarValorUnitário()
         {
-            Assert.AreEqual(2799.57M, ((SaídaFiscal)adaptador.Transformar()).Itens[0].ValorUnitário);
+            Assert.AreEqual(2799.57M, adaptador.Transformar().Itens[0].ValorUnitário);
         }
 
         [TestMethod()]
         public void DeveAdaptarValor()
         {
-            Assert.AreEqual(2799.57M, ((SaídaFiscal)adaptador.Transformar()).Itens[0].Valor);
+            Assert.AreEqual(2799.57M, adaptador.Transformar().Itens[0].Valor);
         }
 
         [TestMethod()]
@@ -100,21 +100,15 @@ namespace Entidades.Fiscal.Cupom.Tests
         }
 
         [TestMethod()]
-        public void DeveAdaptarContadorDocumentoEmitido()
+        public void DeveAdaptarNúmero()
         {
-            Assert.AreEqual(17248, ((SaídaFiscal)adaptador.Transformar()).ContadorDocumentoEmitido);
-        }
-
-        [TestMethod()]
-        public void DeveAdaptarCOO()
-        {
-            Assert.AreEqual(27735, ((SaídaFiscal)adaptador.Transformar()).COO);
+            Assert.AreEqual(2017, adaptador.Transformar().Número);
         }
 
         [TestMethod()]
         public void DeveAdaptarCancalamento()
         {
-            Assert.IsTrue(((SaídaFiscal)adaptador.Transformar()).Cancelada);
+            Assert.IsTrue(adaptador.Transformar().Cancelada);
         }
     }
 }

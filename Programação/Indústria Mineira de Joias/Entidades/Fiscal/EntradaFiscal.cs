@@ -45,14 +45,15 @@ namespace Entidades.Fiscal
             {
                 cmd.Transaction = transação;
 
-                cmd.CommandText = string.Format("INSERT INTO entradafiscal (dataemissao, dataentrada, id, valortotal, numero, cnpjemitente) " + 
-                    "values ({0}, {1}, {2}, {3}, {4}, {5})",
+                cmd.CommandText = string.Format("INSERT INTO entradafiscal (dataemissao, dataentrada, id, valortotal, numero, cnpjemitente, tipo) " + 
+                    "values ({0}, {1}, {2}, {3}, {4}, {5}, {6})",
                     DbTransformar(dataEmissão),
                     DbTransformar(dataEntrada),
                     DbTransformar(id),
                     DbTransformar(ValorTotal),
                     DbTransformar(Número),
-                    DbTransformar(cnpjEmitente));
+                    DbTransformar(cnpjEmitente), 
+                    DbTransformar(tipoDocumento));
 
                 cmd.ExecuteNonQuery();
             }

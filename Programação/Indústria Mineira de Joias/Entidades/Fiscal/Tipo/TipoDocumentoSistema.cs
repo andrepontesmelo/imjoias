@@ -2,7 +2,7 @@
 {
     public enum TipoDocumentoSistema : int
     {
-        NFe = 0,
-        Cupom = 1
+        NFe = 1,
+        Cupom = 2
     }
 }
