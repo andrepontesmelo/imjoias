@@ -139,6 +139,20 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Parser
             throw new XmlIncompatível("Data de emissão da NF-e não foi encontrada");
         }
 
+        public DateTime LerDataEntradaSaída()
+        {
+            string caminho = ObterCaminhoAtributoVenda("dhSaiEnt");
+            string caminhoVersão2 = ObterCaminhoAtributoVenda("dSaiEnt");
+
+            if (Existe(caminho))
+                return DateTime.Parse(ObterTexto(caminho));
+
+            if (Existe(caminhoVersão2))
+                return DateTime.Parse(ObterTexto(caminhoVersão2));
+
+            throw new XmlIncompatível("Data da entrada/saída da NF-e não foi encontrada");
+        }
+
         public string LerCNPJEmitente()
         {
             return ObterTexto(XML_CAMINHO_EMITENTE + "/CNPJ");

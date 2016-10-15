@@ -84,3 +84,11 @@ update saidafiscal set tipo=1;
 ALTER TABLE imjoias.saidafiscal ADD CONSTRAINT saidafiscal_tipodocumentofiscal_FK FOREIGN KEY (tipo) REFERENCES imjoias.tipodocumentofiscal(id) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 
+ALTER TABLE imjoias.entradafiscal ADD dataentrada datetime NOT NULL;
+ALTER TABLE imjoias.entradafiscal CHANGE nnf numero int(11) NULL;
+ update entradafiscal set dataentrada=dataemissao;
+
+
+
+
+

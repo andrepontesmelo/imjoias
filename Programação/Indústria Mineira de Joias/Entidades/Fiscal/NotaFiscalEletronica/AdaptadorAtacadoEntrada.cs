@@ -14,6 +14,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
         {
             DocumentoFiscal entidade = new EntradaFiscal((int) TipoDocumentoSistema.NFe,
                 parser.LerDataEmissão(),
+                parser.LerDataEntradaSaída(),
                 parser.LerId(),
                 parser.LerValorTotal(),
                 parser.LerNNF(),

@@ -20,7 +20,6 @@ namespace Apresentação.Fiscal.Lista
             SuspendLayout();
             lista.Items.Clear();
             lista.Items.AddRange(ConstruirItens(Obter(tipoDocumento)));
-            colCancelada.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
             colId.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
             colValor.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
             ResumeLayout();
@@ -45,14 +44,15 @@ namespace Apresentação.Fiscal.Lista
         {
             ListViewItem item = new ListViewItem(new string[lista.Columns.Count]);
 
-            item.SubItems[colCancelada.Index].Text = documentoFiscal.Cancelada ? "Cancelada" : "";
+            item.SubItems[colId.Index].Text = documentoFiscal.Id;
+            item.SubItems[colEmitente.Index].Text = documentoFiscal.CNPJEmitenteFormatado;
             item.SubItems[colEmissão.Index].Text = string.Format("{0} {1}", documentoFiscal.DataEmissão.ToShortDateString(),
                 documentoFiscal.DataEmissão.ToLongTimeString());
-            item.SubItems[colId.Index].Text = documentoFiscal.Id;
-            item.SubItems[colObservações.Index].Text = documentoFiscal.Observações;
             item.SubItems[colValor.Index].Text = documentoFiscal.ValorTotal.ToString("C",
                 Entidades.Configuração.DadosGlobais.Instância.Cultura);
-            
+            item.SubItems[colNúmero.Index].Text = documentoFiscal.Número.ToString();
+            item.SubItems[colObservações.Index].Text = documentoFiscal.Observações;
+
             return item;
         }
 

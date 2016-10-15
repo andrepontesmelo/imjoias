@@ -236,7 +236,7 @@ namespace Entidades.Pessoa
                 inscMunicipal = leitor.GetString(inicioAtributoPessoaJurídica + 4);
         }
 
-        private static string FormatarCNPJ(string cnpf)
+        public static string FormatarCNPJ(string cnpf)
         {
             cnpf = cnpf.Replace(".", "").Replace("/", "").Replace("-", "");
 

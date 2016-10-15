@@ -97,7 +97,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         [TestMethod()]
         public void DeveAdaptarNNF()
         {
-            Assert.AreEqual(348, adaptador.Transformar().NNF);
+            Assert.AreEqual(348, adaptador.Transformar().Número);
         }
     }
 }

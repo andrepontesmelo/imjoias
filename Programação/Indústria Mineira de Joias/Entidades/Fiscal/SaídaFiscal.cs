@@ -37,7 +37,7 @@ namespace Entidades.Fiscal
                     DbTransformar(((int) tipoDocumento).ToString()),
                     DbTransformar(id),
                     DbTransformar(ValorTotal),
-                    DbTransformar(NNF),
+                    DbTransformar(Número),
                     DbTransformar(COO),
                     DbTransformar(ContadorDocumentoEmitido),
                     DbTransformar(cnpjEmitente),

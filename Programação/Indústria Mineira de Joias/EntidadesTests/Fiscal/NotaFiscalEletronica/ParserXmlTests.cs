@@ -130,6 +130,13 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         }
 
         [TestMethod()]
+        public void DeveLerDataEntradaSaída()
+        {
+            DateTime dataEntradaSaída = DateTime.Parse("2016-05-10T14:09:00-03:00");
+            Assert.AreEqual(dataEntradaSaída, parser.LerDataEntradaSaída());
+        }
+
+        [TestMethod()]
         public void DeveLerDataEmissãoXmlVersão2()
         {
             DateTime emissão = DateTime.Parse("2013-06-07");

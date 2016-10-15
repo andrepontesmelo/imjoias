@@ -29,20 +29,26 @@
         private void InitializeComponent()
         {
             this.lista = new System.Windows.Forms.ListView();
+            this.colPDF = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colEmitente = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colEmissão = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colCancelada = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colEntradaSaída = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colValor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colNúmero = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colObservações = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lista
             // 
             this.lista.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colPDF,
             this.colId,
+            this.colEmitente,
             this.colEmissão,
-            this.colCancelada,
+            this.colEntradaSaída,
             this.colValor,
+            this.colNúmero,
             this.colObservações});
             this.lista.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lista.FullRowSelect = true;
@@ -54,26 +60,37 @@
             this.lista.View = System.Windows.Forms.View.Details;
             this.lista.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lista_ColumnClick);
             // 
+            // colPDF
+            // 
+            this.colPDF.Text = "PDF";
+            // 
             // colId
             // 
             this.colId.Text = "Id";
             this.colId.Width = 192;
             // 
+            // colEmitente
+            // 
+            this.colEmitente.Text = "Emitente";
+            this.colEmitente.Width = 192;
+            // 
             // colEmissão
             // 
-            this.colEmissão.DisplayIndex = 3;
             this.colEmissão.Text = "Emissão";
             this.colEmissão.Width = 120;
             // 
-            // colCancelada
+            // colEntradaSaída
             // 
-            this.colCancelada.Text = "Cancelada";
-            this.colCancelada.Width = 85;
+            this.colEntradaSaída.Text = "Entrada Ou Saída";
+            this.colEntradaSaída.Width = 172;
             // 
             // colValor
             // 
-            this.colValor.DisplayIndex = 1;
             this.colValor.Text = "Valor";
+            // 
+            // colNúmero
+            // 
+            this.colNúmero.Text = "Número";
             // 
             // colObservações
             // 
@@ -96,8 +113,11 @@
         private System.Windows.Forms.ListView lista;
         private System.Windows.Forms.ColumnHeader colId;
         private System.Windows.Forms.ColumnHeader colValor;
-        private System.Windows.Forms.ColumnHeader colCancelada;
         private System.Windows.Forms.ColumnHeader colEmissão;
         private System.Windows.Forms.ColumnHeader colObservações;
+        private System.Windows.Forms.ColumnHeader colPDF;
+        private System.Windows.Forms.ColumnHeader colEmitente;
+        private System.Windows.Forms.ColumnHeader colNúmero;
+        protected System.Windows.Forms.ColumnHeader colEntradaSaída;
     }
 }

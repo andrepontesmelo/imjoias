@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Acesso.Comum;
+using System;
 using System.Collections.Generic;
 using System.Data;
 
@@ -6,10 +7,16 @@ namespace Entidades.Fiscal
 {
     public class EntradaFiscal : DocumentoFiscal
     {
-        public EntradaFiscal(int tipoDocumento, DateTime dataEmissão, string id,
+        [DbColuna("dataentrada")]
+        private DateTime dataEntrada;
+
+        public DateTime DataEntrada => dataEntrada;
+
+        public EntradaFiscal(int tipoDocumento, DateTime dataEmissão, DateTime dataEntrada, string id,
         decimal valorTotal, int? nnf, string emitidoPorCNPJ, bool cancelada, string observações, List<ItemFiscal> itens) : 
             base(tipoDocumento, dataEmissão, id, valorTotal, nnf, emitidoPorCNPJ, cancelada, observações, itens)
         {
+            this.dataEntrada = dataEntrada;
         }
 
         public EntradaFiscal()
@@ -38,11 +45,13 @@ namespace Entidades.Fiscal
             {
                 cmd.Transaction = transação;
 
-                cmd.CommandText = string.Format("INSERT INTO entradafiscal (dataemissao, id, valortotal, nnf, cnpjemitente) values ({0}, {1}, {2}, {3}, {4})",
+                cmd.CommandText = string.Format("INSERT INTO entradafiscal (dataemissao, dataentrada, id, valortotal, numero, cnpjemitente) " + 
+                    "values ({0}, {1}, {2}, {3}, {4}, {5})",
                     DbTransformar(dataEmissão),
+                    DbTransformar(dataEntrada),
                     DbTransformar(id),
                     DbTransformar(ValorTotal),
-                    DbTransformar(NNF),
+                    DbTransformar(Número),
                     DbTransformar(cnpjEmitente));
 
                 cmd.ExecuteNonQuery();
