@@ -28,15 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.colCancelada = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
+            // 
+            // lista
+            // 
+            this.lista.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colCancelada});
+            // 
+            // colCancelada
+            // 
+            this.colCancelada.Text = "Cancelada";
             // 
             // ListaDocumentoSaída
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.Name = "ListaDocumentoSaída";
             this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.ColumnHeader colCancelada;
     }
 }

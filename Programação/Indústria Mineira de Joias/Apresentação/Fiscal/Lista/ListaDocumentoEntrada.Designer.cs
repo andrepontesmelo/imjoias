@@ -28,7 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // ListaDocumentoEntrada
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.Name = "ListaDocumentoEntrada";
+            this.ResumeLayout(false);
+
         }
 
         #endregion

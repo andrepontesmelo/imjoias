@@ -15,21 +15,12 @@ namespace Apresentação.Fiscal.Lista
             lista.ListViewItemSorter = new ListViewColumnSorter();
         }
 
-        public void Carregar(int? tipoDocumento)
+        protected virtual void AtualizarTamanhoColunas()
         {
-            SuspendLayout();
-            lista.Items.Clear();
-            lista.Items.AddRange(ConstruirItens(Obter(tipoDocumento)));
             colId.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
             colValor.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
-            ResumeLayout();
+            colEntradaSaída.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
-
-        protected virtual List<DocumentoFiscal> Obter(int? tipoDocumento)
-        {
-            throw new NotImplementedException();
-        }
-
         private ListViewItem[] ConstruirItens(List<DocumentoFiscal> documentos)
         {
             ListViewItem[] itens = new ListViewItem[documentos.Count];
@@ -45,7 +36,6 @@ namespace Apresentação.Fiscal.Lista
             ListViewItem item = new ListViewItem(new string[lista.Columns.Count]);
 
             item.SubItems[colId.Index].Text = documentoFiscal.Id;
-            item.SubItems[colEmitente.Index].Text = documentoFiscal.CNPJEmitenteFormatado;
             item.SubItems[colEmissão.Index].Text = string.Format("{0} {1}", documentoFiscal.DataEmissão.ToShortDateString(),
                 documentoFiscal.DataEmissão.ToLongTimeString());
             item.SubItems[colValor.Index].Text = documentoFiscal.ValorTotal.ToString("C",

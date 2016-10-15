@@ -2814,6 +2814,9 @@
     <EmbeddedResource Include="Fiscal\BaseInferior\BaseFiscal.resx">
       <DependentUpon>BaseFiscal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Fiscal\Lista\ListaDocumentoEntrada.resx">
+      <DependentUpon>ListaDocumentoEntrada.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Fiscal\Lista\ListaDocumentoFiscal.resx">
       <DependentUpon>ListaDocumentoFiscal.cs</DependentUpon>
     </EmbeddedResource>

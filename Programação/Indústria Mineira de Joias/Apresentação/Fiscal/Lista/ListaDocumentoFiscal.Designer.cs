@@ -31,7 +31,6 @@
             this.lista = new System.Windows.Forms.ListView();
             this.colPDF = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colEmitente = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colEmissão = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colEntradaSaída = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colValor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -44,7 +43,6 @@
             this.lista.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colPDF,
             this.colId,
-            this.colEmitente,
             this.colEmissão,
             this.colEntradaSaída,
             this.colValor,
@@ -68,11 +66,6 @@
             // 
             this.colId.Text = "Id";
             this.colId.Width = 192;
-            // 
-            // colEmitente
-            // 
-            this.colEmitente.Text = "Emitente";
-            this.colEmitente.Width = 192;
             // 
             // colEmissão
             // 
@@ -109,15 +102,13 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ListView lista;
-        private System.Windows.Forms.ColumnHeader colId;
-        private System.Windows.Forms.ColumnHeader colValor;
-        private System.Windows.Forms.ColumnHeader colEmissão;
-        private System.Windows.Forms.ColumnHeader colObservações;
-        private System.Windows.Forms.ColumnHeader colPDF;
-        private System.Windows.Forms.ColumnHeader colEmitente;
-        private System.Windows.Forms.ColumnHeader colNúmero;
         protected System.Windows.Forms.ColumnHeader colEntradaSaída;
+        protected System.Windows.Forms.ListView lista;
+        protected System.Windows.Forms.ColumnHeader colId;
+        protected System.Windows.Forms.ColumnHeader colValor;
+        protected System.Windows.Forms.ColumnHeader colEmissão;
+        protected System.Windows.Forms.ColumnHeader colObservações;
+        protected System.Windows.Forms.ColumnHeader colPDF;
+        protected System.Windows.Forms.ColumnHeader colNúmero;
     }
 }

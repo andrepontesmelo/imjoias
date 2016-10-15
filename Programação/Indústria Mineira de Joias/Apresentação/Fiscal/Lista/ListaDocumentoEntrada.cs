@@ -7,15 +7,53 @@ namespace Apresentação.Fiscal.Lista
 {
     public partial class ListaDocumentoEntrada : ListaDocumentoFiscal
     {
+        private ColumnHeader colEmitente;
+
         public ListaDocumentoEntrada()
         {
             InitializeComponent();
             colEntradaSaída.Text = "Entrada";
+
+            colEmitente = new ColumnHeader();
+            colEmitente.Text = "Emitente";
+
+            lista.Columns.Clear();
+            lista.Columns.AddRange(new ColumnHeader[] { this.colPDF,
+            colId,
+            colEmissão,
+            colEmitente,
+            colEntradaSaída,
+            colValor,
+            colNúmero,
+            colObservações});
         }
 
-        protected override List<DocumentoFiscal> Obter(int? tipoDocumento)
+        public void Carregar(int? tipoDocumento)
         {
-            return EntradaFiscal.Obter(tipoDocumento);
+            SuspendLayout();
+            lista.Items.Clear();
+            lista.Items.AddRange(ConstruirItens(tipoDocumento));
+            AtualizarTamanhoColunas();
+            ResumeLayout();
+        }
+
+        private ListViewItem[] ConstruirItens(int? tipoDocumento)
+        {
+            List<DocumentoFiscal> lista = EntradaFiscal.Obter(tipoDocumento);
+
+            ListViewItem[] itens = new ListViewItem[lista.Count];
+            int x = 0;
+
+            foreach (DocumentoFiscal entrada in lista)
+                itens[x++] = ConstruirItem(entrada);
+
+            return itens;
+        }
+
+        protected override void AtualizarTamanhoColunas()
+        {
+            base.AtualizarTamanhoColunas();
+            colEmitente.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
 
         protected override ListViewItem ConstruirItem(DocumentoFiscal documentoFiscal)
@@ -23,7 +61,7 @@ namespace Apresentação.Fiscal.Lista
             ListViewItem item = base.ConstruirItem(documentoFiscal);
 
             DateTime dataEntrada = ((EntradaFiscal) documentoFiscal).DataEntrada;
-
+            item.SubItems[colEmitente.Index].Text = documentoFiscal.CNPJEmitenteFormatado;
             item.SubItems[colEntradaSaída.Index].Text = string.Format("{0} {1}", dataEntrada.ToShortDateString(), dataEntrada.ToLongTimeString());
 
             return item;
