@@ -30,7 +30,7 @@ namespace Apresentação.Fiscal.BaseInferior
         /// </summary>
         private void InitializeComponent()
         {
-            this.lista = new Lista.ListaDocumentoEntrada();
+            this.lista = new Apresentação.Fiscal.Lista.ListaDocumentoEntrada();
             this.esquerda.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -43,6 +43,7 @@ namespace Apresentação.Fiscal.BaseInferior
             // opçãoNovo
             // 
             this.opçãoNovo.Descrição = "Nova entrada";
+            this.opçãoNovo.Click += new System.EventHandler(this.opçãoNovo_Click);
             // 
             // quadroTipo
             // 

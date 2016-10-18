@@ -36,8 +36,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="InterpretadorTDM, Version=1.0.6114.17202, Culture=neutral, PublicKeyToken=d5c84b9056b9f800, processorArchitecture=MSIL">
-      <HintPath>..\packages\InterpretadorTDM.1.0.6\lib\InterpretadorTDM.dll</HintPath>
+    <Reference Include="InterpretadorTDM, Version=1.0.6132.32699, Culture=neutral, PublicKeyToken=d5c84b9056b9f800, processorArchitecture=MSIL">
+      <HintPath>..\packages\InterpretadorTDM.1.0.7\lib\InterpretadorTDM.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

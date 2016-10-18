@@ -23,5 +23,10 @@
         {
             lista.Carregar(quadroTipo.Seleção?.Id);
         }
+
+        private void opçãoNovo_Click(object sender, System.EventArgs e)
+        {
+            SubstituirBase(new BaseEntrada());
+        }
     }
 }

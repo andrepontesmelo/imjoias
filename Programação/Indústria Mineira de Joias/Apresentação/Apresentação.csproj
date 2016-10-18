@@ -554,6 +554,12 @@
     <Compile Include="Financeiro\Comissões\ListViewComissionados.Designer.cs">
       <DependentUpon>ListViewComissionados.cs</DependentUpon>
     </Compile>
+    <Compile Include="Fiscal\BaseInferior\BaseDocumento.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Fiscal\BaseInferior\BaseDocumento.Designer.cs">
+      <DependentUpon>BaseDocumento.cs</DependentUpon>
+    </Compile>
     <Compile Include="Fiscal\BaseInferior\BaseDocumentos.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -565,6 +571,12 @@
     </Compile>
     <Compile Include="Fiscal\BaseInferior\BaseEntradas.Designer.cs">
       <DependentUpon>BaseEntradas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fiscal\BaseInferior\BaseEntrada.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Fiscal\BaseInferior\BaseEntrada.Designer.cs">
+      <DependentUpon>BaseEntrada.cs</DependentUpon>
     </Compile>
     <Compile Include="Fiscal\BaseInferior\BaseSaídas.cs">
       <SubType>UserControl</SubType>
@@ -2631,11 +2643,17 @@
       <DependentUpon>EscolherTabela.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Fiscal\BaseInferior\BaseDocumento.resx">
+      <DependentUpon>BaseDocumento.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Fiscal\BaseInferior\BaseDocumentos.resx">
       <DependentUpon>BaseDocumentos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Fiscal\BaseInferior\BaseEntradas.resx">
       <DependentUpon>BaseEntradas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fiscal\BaseInferior\BaseEntrada.resx">
+      <DependentUpon>BaseEntrada.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Fiscal\BaseInferior\BaseSaídas.resx">
       <DependentUpon>BaseSaídas.cs</DependentUpon>
@@ -5444,6 +5462,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="IntegraçãoSistemaAntigo\App.ico" />
+    <None Include="Resources\pdf_icon.png" />
     <None Include="Resources\fiscal1.png" />
     <None Include="Resources\importar21.png" />
     <None Include="Resources\importar.jpg" />
