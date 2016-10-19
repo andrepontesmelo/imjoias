@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-
-namespace Apresentação.Fiscal.BaseInferior
+﻿namespace Apresentação.Fiscal.BaseInferior
 {
     public partial class BaseDocumento : Apresentação.Formulários.BaseInferior
     {

@@ -45,5 +45,10 @@ namespace Apresentação.Fiscal.BaseInferior
         {
             CarregarListas();
         }
+
+        private void opçãoNovo_Click(object sender, EventArgs e)
+        {
+            SubstituirBase(new BaseSaída());
+        }
     }
 }

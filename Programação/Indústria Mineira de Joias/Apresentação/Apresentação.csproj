@@ -578,6 +578,12 @@
     <Compile Include="Fiscal\BaseInferior\BaseEntrada.Designer.cs">
       <DependentUpon>BaseEntrada.cs</DependentUpon>
     </Compile>
+    <Compile Include="Fiscal\BaseInferior\BaseSaída.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Fiscal\BaseInferior\BaseSaída.Designer.cs">
+      <DependentUpon>BaseSaída.cs</DependentUpon>
+    </Compile>
     <Compile Include="Fiscal\BaseInferior\BaseSaídas.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -2654,6 +2660,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Fiscal\BaseInferior\BaseEntrada.resx">
       <DependentUpon>BaseEntrada.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fiscal\BaseInferior\BaseSaída.resx">
+      <DependentUpon>BaseSaída.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Fiscal\BaseInferior\BaseSaídas.resx">
       <DependentUpon>BaseSaídas.cs</DependentUpon>
