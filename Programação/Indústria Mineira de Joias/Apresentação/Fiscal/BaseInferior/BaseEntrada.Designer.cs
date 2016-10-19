@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.grpDados.SuspendLayout();
             this.SuspendLayout();
             // 
             // título
@@ -35,9 +36,25 @@
             this.título.Descrição = "Edição de uma entrada fiscal";
             this.título.Título = "Editar entrada fiscal";
             // 
-            // BaseSaída
+            // grpDados
             // 
-            this.Name = "BaseSaída";
+            this.grpDados.Text = "Dados da entrada";
+            // 
+            // lblEntradaSaída
+            // 
+            this.lblEntradaSaída.Size = new System.Drawing.Size(47, 13);
+            this.lblEntradaSaída.Text = "Entrada:";
+            // 
+            // lblTipoDocumento
+            // 
+            this.lblTipoDocumento.Size = new System.Drawing.Size(85, 13);
+            this.lblTipoDocumento.Text = "Tipo de entrada:";
+            // 
+            // BaseEntrada
+            // 
+            this.Name = "BaseEntrada";
+            this.grpDados.ResumeLayout(false);
+            this.grpDados.PerformLayout();
             this.ResumeLayout(false);
 
         }

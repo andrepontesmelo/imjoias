@@ -245,33 +245,37 @@
             // 
             // cmbTipoDocumento
             // 
+            this.cmbTipoDocumento.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cmbTipoDocumento.FormattingEnabled = true;
-            this.cmbTipoDocumento.Location = new System.Drawing.Point(682, 63);
+            this.cmbTipoDocumento.Location = new System.Drawing.Point(678, 74);
             this.cmbTipoDocumento.Name = "cmbTipoDocumento";
             this.cmbTipoDocumento.Size = new System.Drawing.Size(125, 21);
             this.cmbTipoDocumento.TabIndex = 13;
             // 
             // txtEmitente
             // 
-            this.txtEmitente.Location = new System.Drawing.Point(245, 193);
+            this.txtEmitente.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtEmitente.Location = new System.Drawing.Point(241, 204);
             this.txtEmitente.Name = "txtEmitente";
             this.txtEmitente.Size = new System.Drawing.Size(293, 20);
             this.txtEmitente.TabIndex = 12;
             // 
             // dtEntradaSaída
             // 
+            this.dtEntradaSaída.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dtEntradaSaída.CustomFormat = "dd/MM/yyyy HH:mm:ss";
             this.dtEntradaSaída.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtEntradaSaída.Location = new System.Drawing.Point(245, 116);
+            this.dtEntradaSaída.Location = new System.Drawing.Point(241, 127);
             this.dtEntradaSaída.Name = "dtEntradaSaída";
             this.dtEntradaSaída.Size = new System.Drawing.Size(290, 20);
             this.dtEntradaSaída.TabIndex = 11;
             // 
             // dtEmissão
             // 
+            this.dtEmissão.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dtEmissão.CustomFormat = "dd/MM/yyyy HH:mm:ss";
             this.dtEmissão.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtEmissão.Location = new System.Drawing.Point(245, 90);
+            this.dtEmissão.Location = new System.Drawing.Point(241, 101);
             this.dtEmissão.Name = "dtEmissão";
             this.dtEmissão.Size = new System.Drawing.Size(290, 20);
             this.dtEmissão.TabIndex = 10;
@@ -279,9 +283,10 @@
             // txtNúmero
             // 
             this.txtNúmero.AllowNegative = true;
+            this.txtNúmero.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtNúmero.DigitsInGroup = 0;
             this.txtNúmero.Flags = 0;
-            this.txtNúmero.Location = new System.Drawing.Point(245, 167);
+            this.txtNúmero.Location = new System.Drawing.Point(241, 178);
             this.txtNúmero.MaxDecimalPlaces = 4;
             this.txtNúmero.MaxWholeDigits = 9;
             this.txtNúmero.Name = "txtNúmero";
@@ -295,8 +300,9 @@
             // txtValor
             // 
             this.txtValor.AllowNegative = true;
+            this.txtValor.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtValor.Flags = 7680;
-            this.txtValor.Location = new System.Drawing.Point(245, 141);
+            this.txtValor.Location = new System.Drawing.Point(241, 152);
             this.txtValor.MaxWholeDigits = 9;
             this.txtValor.Name = "txtValor";
             this.txtValor.RangeMax = 1.7976931348623157E+308D;
@@ -307,15 +313,17 @@
             // 
             // txtId
             // 
-            this.txtId.Location = new System.Drawing.Point(245, 64);
+            this.txtId.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtId.Location = new System.Drawing.Point(241, 75);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(290, 20);
             this.txtId.TabIndex = 7;
             // 
             // lblTipoDocumento
             // 
+            this.lblTipoDocumento.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblTipoDocumento.AutoSize = true;
-            this.lblTipoDocumento.Location = new System.Drawing.Point(574, 67);
+            this.lblTipoDocumento.Location = new System.Drawing.Point(570, 78);
             this.lblTipoDocumento.Name = "lblTipoDocumento";
             this.lblTipoDocumento.Size = new System.Drawing.Size(102, 13);
             this.lblTipoDocumento.TabIndex = 6;
@@ -323,8 +331,9 @@
             // 
             // label5
             // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(191, 197);
+            this.label5.Location = new System.Drawing.Point(187, 208);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(51, 13);
             this.label5.TabIndex = 5;
@@ -332,8 +341,9 @@
             // 
             // label6
             // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(191, 174);
+            this.label6.Location = new System.Drawing.Point(187, 185);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(47, 13);
             this.label6.TabIndex = 4;
@@ -341,8 +351,9 @@
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(191, 148);
+            this.label3.Location = new System.Drawing.Point(187, 159);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(34, 13);
             this.label3.TabIndex = 3;
@@ -350,8 +361,9 @@
             // 
             // lblEntradaSaída
             // 
+            this.lblEntradaSaída.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblEntradaSaída.AutoSize = true;
-            this.lblEntradaSaída.Location = new System.Drawing.Point(191, 122);
+            this.lblEntradaSaída.Location = new System.Drawing.Point(187, 133);
             this.lblEntradaSaída.Name = "lblEntradaSaída";
             this.lblEntradaSaída.Size = new System.Drawing.Size(48, 13);
             this.lblEntradaSaída.TabIndex = 2;
@@ -359,8 +371,9 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(190, 96);
+            this.label2.Location = new System.Drawing.Point(186, 107);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(49, 13);
             this.label2.TabIndex = 1;
@@ -368,8 +381,9 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(191, 67);
+            this.label1.Location = new System.Drawing.Point(187, 78);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(19, 13);
             this.label1.TabIndex = 0;

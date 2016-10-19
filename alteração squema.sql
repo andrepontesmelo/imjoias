@@ -104,8 +104,11 @@ ALTER TABLE imjoias.saidafiscal ADD setor int(10) unsigned NOT NULL;
 
 ALTER TABLE imjoias.saidafiscal ADD CONSTRAINT saidafiscal_setor_FK FOREIGN KEY (setor) REFERENCES imjoias.setor(codigo) ON DELETE CASCADE ON UPDATE CASCADE;
 
+ALTER TABLE imjoias.tipodocumentofiscal ADD entrada boolean NULL;
+ALTER TABLE imjoias.tipodocumentofiscal ADD saida boolean NULL;
 
 
 
+update tipodocumentofiscal set entrada='1', saida='1';
 
 
