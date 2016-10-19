@@ -452,11 +452,11 @@
         private AMS.TextBox.NumericTextBox txtNúmero;
         private AMS.TextBox.CurrencyTextBox txtValor;
         private System.Windows.Forms.TextBox txtId;
-        private ComboTipoDocumento cmbTipoDocumento;
         private Pessoa.TextBoxCNPJ txtEmitente;
         private System.Windows.Forms.DateTimePicker dtEntradaSaída;
         private System.Windows.Forms.DateTimePicker dtEmissão;
         protected System.Windows.Forms.Label lblEntradaSaída;
         protected System.Windows.Forms.Label lblTipoDocumento;
+        protected ComboTipoDocumento cmbTipoDocumento;
     }
 }

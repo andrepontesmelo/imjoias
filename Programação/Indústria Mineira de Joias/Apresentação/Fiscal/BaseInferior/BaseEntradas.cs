@@ -12,6 +12,7 @@
             base.AoExibirDaPrimeiraVez();
 
             CarregarLista();
+            quadroTipo.Carregar(true);
         }
 
         private void quadroTipo_SeleçãoAlterada(object sender, System.EventArgs e)

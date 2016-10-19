@@ -40,9 +40,9 @@ namespace Apresentação.Fiscal
             NotificarAlteraçãoSeleçãoSeNecessário();
         }
 
-        public void Carregar()
+        public void Carregar(bool entrada)
         {
-            cmbTipo.Carregar();
+            cmbTipo.Carregar(entrada);
         }
 
         public TipoDocumento Seleção => cmbTipo.SelectedItem as TipoDocumento;

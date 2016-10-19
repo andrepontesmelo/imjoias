@@ -1,5 +1,6 @@
 ﻿using Entidades.Fiscal.Tipo;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Apresentação.Fiscal
@@ -11,9 +12,16 @@ namespace Apresentação.Fiscal
             InitializeComponent();
         }
 
-        public void Carregar()
+        public void Carregar(bool entrada)
         {
-            Items.AddRange(TipoDocumento.Tipos.ToArray());
+            IEnumerable<TipoDocumento> itens;
+
+            if (entrada)
+                itens = TipoDocumento.TiposEntrada;
+            else
+                itens = TipoDocumento.TiposSaída;
+
+            Items.AddRange(itens.ToArray<TipoDocumento>());
         }
     }
 }

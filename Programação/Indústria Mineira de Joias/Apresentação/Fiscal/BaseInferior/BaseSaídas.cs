@@ -30,6 +30,7 @@ namespace Apresentação.Fiscal.BaseInferior
             base.AoExibirDaPrimeiraVez();
 
             CarregarListas();
+            quadroTipo.Carregar(false);
         }
 
         private void CarregarListas()

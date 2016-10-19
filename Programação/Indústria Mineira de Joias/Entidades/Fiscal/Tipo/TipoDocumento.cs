@@ -1,6 +1,7 @@
 ﻿using Acesso.Comum;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 namespace Entidades.Fiscal.Tipo
 {
@@ -9,6 +10,8 @@ namespace Entidades.Fiscal.Tipo
         private int id;
         private string nome;
         public static List<TipoDocumento> tipos = null;
+        private bool entrada;
+        private bool saida;
 
         public TipoDocumento(int id, string nome)
         {
@@ -22,6 +25,8 @@ namespace Entidades.Fiscal.Tipo
 
         public int Id => id;
         public string Nome => nome;
+        public bool Entrada => entrada;
+        public bool Saída => saida;
 
         public static List<TipoDocumento> Tipos
         {
@@ -34,9 +39,12 @@ namespace Entidades.Fiscal.Tipo
             }
         }
 
+        public static IEnumerable<TipoDocumento> TiposEntrada => from tipo in Tipos where tipo.Saída select tipo;
+        public static IEnumerable<TipoDocumento> TiposSaída => from tipo in Tipos where tipo.Entrada select tipo;
+
         private static void Carregar()
         {
-            tipos = Mapear<TipoDocumento>("select id, nome from tipodocumentofiscal order by nome");
+            tipos = Mapear<TipoDocumento>("select * from tipodocumentofiscal order by nome");
         }
 
         public override string ToString()

@@ -6,12 +6,5 @@
         {
             InitializeComponent();
         }
-
-        protected override void AoExibirDaPrimeiraVez()
-        {
-            quadroTipo.Carregar();
-
-            base.AoExibirDaPrimeiraVez();
-        }
     }
 }
