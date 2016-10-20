@@ -1,4 +1,6 @@
-﻿namespace Apresentação.Fiscal
+﻿using Apresentação.Fiscal.Combobox;
+
+namespace Apresentação.Fiscal
 {
     partial class QuadroTipo
     {
@@ -29,7 +31,7 @@
         private void InitializeComponent()
         {
             this.quadro3 = new Apresentação.Formulários.Quadro();
-            this.cmbTipo = new Apresentação.Fiscal.ComboTipoDocumento();
+            this.cmbTipo = new Apresentação.Fiscal.Combobox.ComboTipoDocumento();
             this.chkTipo = new System.Windows.Forms.CheckBox();
             this.quadro3.SuspendLayout();
             this.SuspendLayout();

@@ -2,7 +2,6 @@
 using Entidades;
 using System;
 using System.Windows.Forms;
-using static Entidades.Setor;
 
 namespace Apresentação.Fiscal.BaseInferior
 {

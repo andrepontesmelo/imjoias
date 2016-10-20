@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace Apresentação.Fiscal
+namespace Apresentação.Fiscal.Combobox
 {
     public partial class ComboTipoDocumento : ComboBox
     {

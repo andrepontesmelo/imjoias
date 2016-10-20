@@ -590,11 +590,17 @@
     <Compile Include="Fiscal\BaseInferior\BaseSaídas.Designer.cs">
       <DependentUpon>BaseSaídas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fiscal\ComboTipoDocumento.cs">
+    <Compile Include="Fiscal\Combobox\ComboTipoDocumento.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Fiscal\ComboTipoDocumento.Designer.cs">
+    <Compile Include="Fiscal\Combobox\ComboTipoDocumento.Designer.cs">
       <DependentUpon>ComboTipoDocumento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fiscal\Combobox\ComboTipoUnidade.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Fiscal\Combobox\ComboTipoUnidade.Designer.cs">
+      <DependentUpon>ComboTipoUnidade.cs</DependentUpon>
     </Compile>
     <Compile Include="Fiscal\Janela\JanelaCFOP.cs">
       <SubType>Form</SubType>
@@ -1013,6 +1019,12 @@
     </Compile>
     <Compile Include="Fiscal\Lista\ListaDocumentoSaída.Designer.cs">
       <DependentUpon>ListaDocumentoSaída.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fiscal\Lista\ListaItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Fiscal\Lista\ListaItem.Designer.cs">
+      <DependentUpon>ListaItem.cs</DependentUpon>
     </Compile>
     <Compile Include="Fiscal\QuadroTipo.cs">
       <SubType>UserControl</SubType>
@@ -2849,6 +2861,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Fiscal\Lista\ListaDocumentoSaída.resx">
       <DependentUpon>ListaDocumentoSaída.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fiscal\Lista\ListaItem.resx">
+      <DependentUpon>ListaItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Fiscal\QuadroTipo.resx">
       <DependentUpon>QuadroTipo.cs</DependentUpon>

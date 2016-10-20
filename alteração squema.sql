@@ -111,4 +111,6 @@ ALTER TABLE imjoias.tipodocumentofiscal ADD saida boolean NULL;
 
 update tipodocumentofiscal set entrada='1', saida='1';
 
+ALTER TABLE imjoias.saidafiscal ADD tipo int NOT NULL;
+update saidafiscal set tipo=1;
 
