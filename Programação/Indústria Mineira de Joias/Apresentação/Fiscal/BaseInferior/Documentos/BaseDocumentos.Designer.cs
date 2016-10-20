@@ -1,4 +1,4 @@
-﻿namespace Apresentação.Fiscal.BaseInferior
+﻿namespace Apresentação.Fiscal.BaseInferior.Documentos
 {
     partial class BaseDocumentos
     {

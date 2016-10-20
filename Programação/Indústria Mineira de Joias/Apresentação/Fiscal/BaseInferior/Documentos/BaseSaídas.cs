@@ -3,7 +3,7 @@ using Entidades;
 using System;
 using System.Windows.Forms;
 
-namespace Apresentação.Fiscal.BaseInferior
+namespace Apresentação.Fiscal.BaseInferior.Documentos
 {
     public partial class BaseSaídas : BaseDocumentos
     {
@@ -51,7 +51,7 @@ namespace Apresentação.Fiscal.BaseInferior
             SubstituirBase(new BaseSaída());
         }
 
-        protected override ListaDocumentoFiscal ObterListaAtiva()
+        public override ListaDocumentoFiscal ObterListaAtiva()
         {
             return tabControl.SelectedTab.Controls[0] as ListaDocumentoFiscal;
         }

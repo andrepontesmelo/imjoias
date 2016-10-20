@@ -560,16 +560,16 @@
     <Compile Include="Fiscal\BaseInferior\BaseDocumento.Designer.cs">
       <DependentUpon>BaseDocumento.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fiscal\BaseInferior\BaseDocumentos.cs">
+    <Compile Include="Fiscal\BaseInferior\Documentos\BaseDocumentos.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Fiscal\BaseInferior\BaseDocumentos.Designer.cs">
+    <Compile Include="Fiscal\BaseInferior\Documentos\BaseDocumentos.Designer.cs">
       <DependentUpon>BaseDocumentos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fiscal\BaseInferior\BaseEntradas.cs">
+    <Compile Include="Fiscal\BaseInferior\Documentos\BaseEntradas.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Fiscal\BaseInferior\BaseEntradas.Designer.cs">
+    <Compile Include="Fiscal\BaseInferior\Documentos\BaseEntradas.Designer.cs">
       <DependentUpon>BaseEntradas.cs</DependentUpon>
     </Compile>
     <Compile Include="Fiscal\BaseInferior\BaseEntrada.cs">
@@ -584,10 +584,10 @@
     <Compile Include="Fiscal\BaseInferior\BaseSaída.Designer.cs">
       <DependentUpon>BaseSaída.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fiscal\BaseInferior\BaseSaídas.cs">
+    <Compile Include="Fiscal\BaseInferior\Documentos\BaseSaídas.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Fiscal\BaseInferior\BaseSaídas.Designer.cs">
+    <Compile Include="Fiscal\BaseInferior\Documentos\BaseSaídas.Designer.cs">
       <DependentUpon>BaseSaídas.cs</DependentUpon>
     </Compile>
     <Compile Include="Fiscal\Combobox\ComboTipoDocumento.cs">
@@ -602,6 +602,7 @@
     <Compile Include="Fiscal\Combobox\ComboTipoUnidade.Designer.cs">
       <DependentUpon>ComboTipoUnidade.cs</DependentUpon>
     </Compile>
+    <Compile Include="Fiscal\BaseInferior\Documentos\ControladorExclusão.cs" />
     <Compile Include="Fiscal\Janela\JanelaCFOP.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2664,10 +2665,10 @@
     <EmbeddedResource Include="Fiscal\BaseInferior\BaseDocumento.resx">
       <DependentUpon>BaseDocumento.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fiscal\BaseInferior\BaseDocumentos.resx">
+    <EmbeddedResource Include="Fiscal\BaseInferior\Documentos\BaseDocumentos.resx">
       <DependentUpon>BaseDocumentos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fiscal\BaseInferior\BaseEntradas.resx">
+    <EmbeddedResource Include="Fiscal\BaseInferior\Documentos\BaseEntradas.resx">
       <DependentUpon>BaseEntradas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Fiscal\BaseInferior\BaseEntrada.resx">
@@ -2676,7 +2677,7 @@
     <EmbeddedResource Include="Fiscal\BaseInferior\BaseSaída.resx">
       <DependentUpon>BaseSaída.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fiscal\BaseInferior\BaseSaídas.resx">
+    <EmbeddedResource Include="Fiscal\BaseInferior\Documentos\BaseSaídas.resx">
       <DependentUpon>BaseSaídas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Fiscal\Janela\JanelaCFOP.resx">

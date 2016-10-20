@@ -1,6 +1,6 @@
 ﻿using Apresentação.Fiscal.Lista;
 
-namespace Apresentação.Fiscal.BaseInferior
+namespace Apresentação.Fiscal.BaseInferior.Documentos
 {
     partial class BaseEntradas
     {

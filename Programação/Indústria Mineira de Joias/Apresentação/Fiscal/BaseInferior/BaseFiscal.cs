@@ -1,4 +1,5 @@
-﻿using Apresentação.Fiscal.Janela;
+﻿using Apresentação.Fiscal.BaseInferior.Documentos;
+using Apresentação.Fiscal.Janela;
 using System;
 
 namespace Apresentação.Fiscal.BaseInferior

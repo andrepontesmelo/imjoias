@@ -1,6 +1,6 @@
 ﻿using Apresentação.Fiscal.Lista;
 
-namespace Apresentação.Fiscal.BaseInferior
+namespace Apresentação.Fiscal.BaseInferior.Documentos
 {
     public partial class BaseEntradas : BaseDocumentos
     {
@@ -32,7 +32,7 @@ namespace Apresentação.Fiscal.BaseInferior
             SubstituirBase(new BaseEntrada());
         }
 
-        protected override ListaDocumentoFiscal ObterListaAtiva()
+        public override ListaDocumentoFiscal ObterListaAtiva()
         {
             return lista;
         }
