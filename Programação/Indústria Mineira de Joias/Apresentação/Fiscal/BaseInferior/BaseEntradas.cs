@@ -1,4 +1,6 @@
-﻿namespace Apresentação.Fiscal.BaseInferior
+﻿using Apresentação.Fiscal.Lista;
+
+namespace Apresentação.Fiscal.BaseInferior
 {
     public partial class BaseEntradas : BaseDocumentos
     {
@@ -28,6 +30,11 @@
         private void opçãoNovo_Click(object sender, System.EventArgs e)
         {
             SubstituirBase(new BaseEntrada());
+        }
+
+        protected override ListaDocumentoFiscal ObterListaAtiva()
+        {
+            return lista;
         }
     }
 }

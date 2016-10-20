@@ -127,6 +127,7 @@
             this.opçãoExcluir.Name = "opçãoExcluir";
             this.opçãoExcluir.Size = new System.Drawing.Size(150, 16);
             this.opçãoExcluir.TabIndex = 4;
+            this.opçãoExcluir.Click += new System.EventHandler(this.opçãoExcluir_Click);
             // 
             // opçãoImprimir
             // 

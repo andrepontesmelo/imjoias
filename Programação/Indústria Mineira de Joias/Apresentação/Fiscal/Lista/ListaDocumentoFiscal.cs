@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Apresentação.Formulários;
+using System.Linq;
 
 
 namespace Apresentação.Fiscal.Lista
@@ -13,6 +14,15 @@ namespace Apresentação.Fiscal.Lista
         {
             InitializeComponent();
             lista.ListViewItemSorter = new ListViewColumnSorter();
+        }
+
+        internal IEnumerable<string> ObterCódigosSelecionados()
+        {
+            var idsSelecionados = from item in lista.SelectedItems.Cast<ListViewItem>()
+            where item.Selected
+            select item.SubItems[colId.Index].Text;
+
+            return idsSelecionados;
         }
 
         protected virtual void AtualizarTamanhoColunas()

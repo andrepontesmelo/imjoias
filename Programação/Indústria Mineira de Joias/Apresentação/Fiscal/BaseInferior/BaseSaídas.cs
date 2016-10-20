@@ -50,5 +50,10 @@ namespace Apresentação.Fiscal.BaseInferior
         {
             SubstituirBase(new BaseSaída());
         }
+
+        protected override ListaDocumentoFiscal ObterListaAtiva()
+        {
+            return tabControl.SelectedTab.Controls[0] as ListaDocumentoFiscal;
+        }
     }
 }
