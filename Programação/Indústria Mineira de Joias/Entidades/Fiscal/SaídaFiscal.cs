@@ -52,7 +52,7 @@ namespace Entidades.Fiscal
 
         public static List<string> ObterIds()
         {
-            return MapearStrings("select id from " + NOME_RELAÇÃO);
+            return MapearStrings("select id from " + NOME_RELAÇÃO, true);
         }
 
         protected override void CadastrarEntidade(IDbTransaction transação, IDbConnection conexão)

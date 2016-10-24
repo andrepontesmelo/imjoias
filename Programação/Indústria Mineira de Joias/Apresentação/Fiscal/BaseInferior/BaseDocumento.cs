@@ -70,7 +70,7 @@ namespace Apresentação.Fiscal.BaseInferior
 
         private void txtId_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            var idDesejado = txtId.Text.Trim();
+            var idDesejado = txtId.Text.Trim().ToLower();
             e.Cancel = !idDesejado.Equals(documento.Id) && ObterIds().Contains(idDesejado);
         }
 

@@ -6,7 +6,7 @@ using System.Data;
 namespace Entidades.Fiscal
 {
     public abstract class DocumentoFiscal : DbManipulaçãoSimples
-    {
+    { 
         protected string id;
 
         [DbAtributo(TipoAtributo.Ignorar)]
@@ -72,9 +72,17 @@ namespace Entidades.Fiscal
             using (IDbCommand cmd = conexão.CreateCommand())
             {
                 cmd.Transaction = transação;
-                cmd.CommandText = string.Format("update {0} set id={1} where id={2}",
+                cmd.CommandText = string.Format("update {0} set id={1}, " +
+                    " numero={2}, tipo={3}, dataemissao={4}, valortotal={5}, " +
+                    " cnpjemitente={6}, observacoes={7} where id={8}",
                     NomeRelação,
-                    DbTransformar(novoId),
+                    DbTransformar(novoId == null ? id : novoId),
+                    DbTransformar(número),
+                    DbTransformar(tipoDocumento),
+                    DbTransformar(dataEmissão),
+                    DbTransformar(valorTotal),
+                    DbTransformar(cnpjEmitente),
+                    DbTransformar(observações),
                     DbTransformar(id));
 
                 cmd.ExecuteNonQuery();

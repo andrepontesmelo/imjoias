@@ -29,7 +29,7 @@ namespace Entidades.Fiscal
 
         public static List<string> ObterIds()
         {
-            return MapearStrings("select id from " + NOME_RELAÇÃO);
+            return MapearStrings("select id from " + NOME_RELAÇÃO, true);
         }
 
         public static List<DocumentoFiscal> Obter(int? tipoDocumento)

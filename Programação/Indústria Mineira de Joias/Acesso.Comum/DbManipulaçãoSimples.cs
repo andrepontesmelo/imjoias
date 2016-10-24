@@ -538,6 +538,11 @@ namespace Acesso.Comum
 
         protected static List<string> MapearStrings(string sql)
         {
+            return MapearStrings(sql, false);
+        }
+
+        protected static List<string> MapearStrings(string sql, bool minúsculo)
+        {
             List<string> resultado = new List<string>();
 
             IDbConnection conexão = Conexão;
@@ -549,7 +554,14 @@ namespace Acesso.Comum
                 using (IDataReader leitor = cmd.ExecuteReader())
                 {
                     while (leitor.Read())
-                        resultado.Add(leitor.GetString(0));
+                    {
+                        string str = leitor.GetString(0);
+
+                        if (minúsculo)
+                            str = str.ToLower();
+
+                        resultado.Add(str);
+                    }
 
                     if (!leitor.IsClosed)
                         leitor.Close();
