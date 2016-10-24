@@ -108,7 +108,7 @@ namespace Entidades.Fiscal.Cupom.Tests
         [TestMethod()]
         public void DeveAdaptarCancalamento()
         {
-            Assert.IsTrue(adaptador.Transformar().Cancelada);
+            Assert.IsTrue(((SaídaFiscal) adaptador.Transformar()).Cancelada);
         }
     }
 }

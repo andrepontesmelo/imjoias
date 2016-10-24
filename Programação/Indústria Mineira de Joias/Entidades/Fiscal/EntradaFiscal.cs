@@ -29,7 +29,7 @@ namespace Entidades.Fiscal
 
         internal static List<string> ObterIdsCadastrados()
         {
-            return MapearStrings("select id from entradafiscal");
+            return MapearStrings("select id from " + NOME_RELAÇÃO);
         }
 
         public static List<DocumentoFiscal> Obter(int? tipoDocumento)
@@ -39,7 +39,7 @@ namespace Entidades.Fiscal
 
         private static List<EntradaFiscal> ObterListaEspecífica(int? tipoDocumento)
         {
-            return Mapear<EntradaFiscal>("select * from entradafiscal " +
+            return Mapear<EntradaFiscal>("select * from " + NOME_RELAÇÃO +
                 (tipoDocumento.HasValue ? " WHERE tipo=" + tipoDocumento.Value : ""));
         }
 
@@ -49,8 +49,9 @@ namespace Entidades.Fiscal
             {
                 cmd.Transaction = transação;
 
-                cmd.CommandText = string.Format("INSERT INTO entradafiscal (dataemissao, dataentrada, id, valortotal, numero, cnpjemitente, tipo) " + 
-                    "values ({0}, {1}, {2}, {3}, {4}, {5}, {6})",
+                cmd.CommandText = string.Format("INSERT INTO {0} (dataemissao, dataentrada, id, valortotal, numero, cnpjemitente, tipo) " + 
+                    "values ({1}, {2}, {3}, {4}, {5}, {6}, {7})",
+                    NOME_RELAÇÃO,
                     DbTransformar(DataEmissão),
                     DbTransformar(dataEntrada),
                     DbTransformar(Id),

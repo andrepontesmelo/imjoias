@@ -52,7 +52,7 @@ namespace Entidades.Fiscal
 
         internal static List<string> ObterIdsCadastrados()
         {
-            return MapearStrings("select id from saidafiscal");
+            return MapearStrings("select id from " + NOME_RELAÇÃO);
         }
 
         protected override void CadastrarEntidade(IDbTransaction transação, IDbConnection conexão)
@@ -61,9 +61,10 @@ namespace Entidades.Fiscal
             {
                 cmd.Transaction = transação;
 
-                cmd.CommandText = string.Format("INSERT INTO saidafiscal " + 
+                cmd.CommandText = string.Format("INSERT INTO {0} " + 
                     "(dataemissao, datasaida, tipo, id, valortotal, numero, cnpjemitente, cancelada, setor) " + 
-                    " values ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8})",
+                    " values ({1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9})",
+                    NOME_RELAÇÃO,
                     DbTransformar(DataEmissão),
                     DbTransformar(dataSaída),
                     DbTransformar(((int) TipoDocumento).ToString()),
@@ -98,7 +99,8 @@ namespace Entidades.Fiscal
         public static List<string> ObterIds(int tipo, bool? canceladas)
         {
             return MapearStrings(
-                string.Format("select id from saidafiscal where cancelada={0} and tiposaida='{1}'",
+                string.Format("select id from {0} where cancelada={1} and tiposaida='{2}'",
+                NOME_RELAÇÃO,
                 canceladas.HasValue ? (canceladas.Value ? "1" : "0") : "cancelada",
                 tipo));
         }
@@ -110,7 +112,7 @@ namespace Entidades.Fiscal
 
         private static List<SaídaFiscal> ObterListaEspecífica(int? tipoDocumento, int? setor)
         {
-            return Mapear<SaídaFiscal>("select * from saidafiscal WHERE 1=1 " +
+            return Mapear<SaídaFiscal>("select * from " + NOME_RELAÇÃO + " WHERE 1=1 " +
                 (tipoDocumento.HasValue ? " AND tipo=" + tipoDocumento.Value : "") +
                 (setor.HasValue ? " AND setor=" + setor.Value : ""));
         }
