@@ -1,18 +1,20 @@
-﻿using Entidades.Fiscal;
-using System;
+﻿using Apresentação.Formulários;
+using Entidades.Fiscal;
 using System.Collections.Generic;
-using System.Windows.Forms;
-using Apresentação.Formulários;
 using System.Linq;
-
+using System.Windows.Forms;
 
 namespace Apresentação.Fiscal.Lista
 {
     public partial class ListaDocumentoFiscal : UserControl
     {
+        public delegate void CliqueDuploDelegate(DocumentoFiscal documento);
+        public event CliqueDuploDelegate CliqueDuplo;
+
         public ListaDocumentoFiscal()
         {
             InitializeComponent();
+
             lista.ListViewItemSorter = new ListViewColumnSorter();
         }
 
@@ -23,6 +25,17 @@ namespace Apresentação.Fiscal.Lista
             select item.SubItems[colId.Index].Text;
 
             return idsSelecionados;
+        }
+
+        public DocumentoFiscal Seleção
+        {
+            get
+            {
+                if (lista.SelectedItems.Count != 1)
+                    return null;
+
+                return lista.SelectedItems[0].Tag as DocumentoFiscal;
+            }
         }
 
         protected virtual void AtualizarTamanhoColunas()
@@ -54,12 +67,19 @@ namespace Apresentação.Fiscal.Lista
             item.SubItems[colNúmero.Index].Text = documentoFiscal.Número.ToString();
             item.SubItems[colObservações.Index].Text = documentoFiscal.Observações;
 
+            item.Tag = documentoFiscal;
+
             return item;
         }
 
         private void lista_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             ((ListViewColumnSorter)lista.ListViewItemSorter).OnClick(lista, e);
+        }
+
+        private void lista_DoubleClick(object sender, System.EventArgs e)
+        {
+            CliqueDuplo?.Invoke(Seleção);
         }
     }
 }

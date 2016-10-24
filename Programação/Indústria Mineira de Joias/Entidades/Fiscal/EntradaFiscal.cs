@@ -59,5 +59,10 @@ namespace Entidades.Fiscal
             }
 
         }
+
+        public override string ToString()
+        {
+            return "Entrada " + base.ToString();
+        }
     }
 }

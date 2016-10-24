@@ -1,5 +1,6 @@
 ﻿using Apresentação.Fiscal.Lista;
 using Entidades;
+using Entidades.Fiscal;
 using System;
 using System.Windows.Forms;
 
@@ -20,8 +21,17 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
                 ListaDocumentoSaída lista = new ListaDocumentoSaída();
                 lista.Tag = (int) setor.Código;
                 lista.Dock = DockStyle.Fill;
+                lista.CliqueDuplo += Lista_CliqueDuplo;
                 aba.Controls.Add(lista);
             }
+        }
+
+        private void Lista_CliqueDuplo(DocumentoFiscal documento)
+        {
+            if (documento == null)
+                return;
+
+            AbrirDocumento(documento);
         }
 
         protected override void AoExibirDaPrimeiraVez()
@@ -54,6 +64,14 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
         public override ListaDocumentoFiscal ObterListaAtiva()
         {
             return tabControl.SelectedTab.Controls[0] as ListaDocumentoFiscal;
+        }
+
+        protected override void AbrirDocumento(DocumentoFiscal documento)
+        {
+            BaseSaída novaBase = new BaseSaída();
+            novaBase.Carregar(documento);
+
+            SubstituirBase(novaBase);
         }
     }
 }

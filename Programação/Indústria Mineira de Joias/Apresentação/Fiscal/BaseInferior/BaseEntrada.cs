@@ -1,6 +1,6 @@
 ﻿namespace Apresentação.Fiscal.BaseInferior
 {
-    public partial class BaseEntrada : Apresentação.Fiscal.BaseInferior.BaseDocumento
+    public partial class BaseEntrada : BaseDocumento
     {
         public BaseEntrada()
         {

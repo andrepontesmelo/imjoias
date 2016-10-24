@@ -57,6 +57,7 @@
             this.lista.UseCompatibleStateImageBehavior = false;
             this.lista.View = System.Windows.Forms.View.Details;
             this.lista.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lista_ColumnClick);
+            this.lista.DoubleClick += new System.EventHandler(this.lista_DoubleClick);
             // 
             // colPDF
             // 

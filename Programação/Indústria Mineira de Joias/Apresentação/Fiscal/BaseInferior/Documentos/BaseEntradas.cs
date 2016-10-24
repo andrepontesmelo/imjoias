@@ -1,4 +1,5 @@
 ﻿using Apresentação.Fiscal.Lista;
+using Entidades.Fiscal;
 
 namespace Apresentação.Fiscal.BaseInferior.Documentos
 {
@@ -35,6 +36,22 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
         public override ListaDocumentoFiscal ObterListaAtiva()
         {
             return lista;
+        }
+
+        protected override void AbrirDocumento(DocumentoFiscal documento)
+        {
+            BaseEntrada novaBase = new BaseEntrada();
+            novaBase.Carregar(documento);
+
+            SubstituirBase(novaBase);
+        }
+
+        private void lista_CliqueDuplo(DocumentoFiscal documento)
+        {
+            if (documento == null)
+                return;
+
+            AbrirDocumento(documento);
         }
     }
 }

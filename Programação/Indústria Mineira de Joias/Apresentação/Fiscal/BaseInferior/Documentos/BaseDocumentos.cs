@@ -1,5 +1,6 @@
 ﻿using Apresentação.Fiscal.BaseInferior.Documentos;
 using Apresentação.Fiscal.Lista;
+using Entidades.Fiscal;
 
 namespace Apresentação.Fiscal.BaseInferior.Documentos
 {
@@ -20,6 +21,11 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
         }
 
         public virtual ListaDocumentoFiscal ObterListaAtiva()
+        {
+            throw new System.Exception("abstrato");
+        }
+
+        protected virtual void AbrirDocumento(DocumentoFiscal documento)
         {
             throw new System.Exception("abstrato");
         }

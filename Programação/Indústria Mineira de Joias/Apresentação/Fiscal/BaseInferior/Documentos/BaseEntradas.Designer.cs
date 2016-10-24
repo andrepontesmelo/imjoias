@@ -58,6 +58,7 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
             this.lista.Name = "lista";
             this.lista.Size = new System.Drawing.Size(592, 204);
             this.lista.TabIndex = 7;
+            this.lista.CliqueDuplo += new Apresentação.Fiscal.Lista.ListaDocumentoFiscal.CliqueDuploDelegate(this.lista_CliqueDuplo);
             // 
             // BaseEntradas
             // 

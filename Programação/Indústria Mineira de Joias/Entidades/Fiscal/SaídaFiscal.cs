@@ -90,5 +90,10 @@ namespace Entidades.Fiscal
                 (tipoDocumento.HasValue ? " AND tipo=" + tipoDocumento.Value : "") +
                 (setor.HasValue ? " AND setor=" + setor.Value : ""));
         }
+
+        public override string ToString()
+        {
+            return "Saída " + base.ToString();
+        }
     }
 }
