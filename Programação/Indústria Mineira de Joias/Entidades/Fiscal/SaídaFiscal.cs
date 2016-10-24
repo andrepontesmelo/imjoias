@@ -15,6 +15,8 @@ namespace Entidades.Fiscal
         public DateTime DataSaída => dataSaída;
         public uint Setor => setor;
                
+        private static readonly string NOME_RELAÇÃO = "saidafiscal";
+
         public SaídaFiscal(int tipoDocumento, DateTime dataEmissão, DateTime dataSaída, string id,
             decimal valorTotal, int? número, string cnpjEmitente, bool cancelada, string observações, uint setor, List<ItemFiscal> itens) : 
             base(tipoDocumento, dataEmissão, id, valorTotal, número, cnpjEmitente, observações, itens)
@@ -37,6 +39,8 @@ namespace Entidades.Fiscal
             }
         }
 
+        public override string NomeRelação => NOME_RELAÇÃO;
+
         public SaídaFiscal()
         {
         }
@@ -44,16 +48,6 @@ namespace Entidades.Fiscal
         public override void GravarEntidade(IDbTransaction transação, IDbConnection conexão)
         {
             base.GravarEntidade(transação, conexão);
-
-            using (IDbCommand cmd = conexão.CreateCommand())
-            {
-                cmd.Transaction = transação;
-                cmd.CommandText = string.Format("update saidafiscal set id={0} where id={1}",
-                    DbTransformar(novoId), 
-                    DbTransformar(id));
-
-                cmd.ExecuteNonQuery();
-            }
         }
 
         internal static List<string> ObterIdsCadastrados()

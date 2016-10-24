@@ -70,6 +70,16 @@ namespace Entidades.Fiscal
 
         public virtual void GravarEntidade(IDbTransaction transação, IDbConnection conexão)
         {
+            using (IDbCommand cmd = conexão.CreateCommand())
+            {
+                cmd.Transaction = transação;
+                cmd.CommandText = string.Format("update {0} set id={1} where id={2}",
+                    NomeRelação,
+                    DbTransformar(novoId),
+                    DbTransformar(id));
+
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public bool EmitidoPorEstaEmpresa => cnpjEmitente.Equals(Configuração.DadosGlobais.Instância.CNPJEmpresa);
@@ -166,6 +176,8 @@ namespace Entidades.Fiscal
                 observações = value;
             }
         }
+
+        public virtual string NomeRelação => "abstrato";
 
         protected abstract void CadastrarEntidade(IDbTransaction transação, IDbConnection conexão);
 

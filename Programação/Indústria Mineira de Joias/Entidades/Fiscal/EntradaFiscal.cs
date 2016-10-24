@@ -12,12 +12,16 @@ namespace Entidades.Fiscal
 
         public DateTime DataEntrada => dataEntrada;
 
+        private static readonly string NOME_RELAÇÃO = "entradafiscal";
+
         public EntradaFiscal(int tipoDocumento, DateTime dataEmissão, DateTime dataEntrada, string id,
         decimal valorTotal, int? nnf, string emitidoPorCNPJ, string observações, List<ItemFiscal> itens) : 
             base(tipoDocumento, dataEmissão, id, valorTotal, nnf, emitidoPorCNPJ, observações, itens)
         {
             this.dataEntrada = dataEntrada;
         }
+
+        public override string NomeRelação => NOME_RELAÇÃO;
 
         public EntradaFiscal()
         {
