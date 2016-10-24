@@ -32,22 +32,9 @@ namespace Apresentação.Fiscal.Lista
         {
             SuspendLayout();
             lista.Items.Clear();
-            lista.Items.AddRange(ConstruirItens(tipoDocumento));
+            lista.Items.AddRange(ConstruirItens(EntradaFiscal.Obter(tipoDocumento)));
             AtualizarTamanhoColunas();
             ResumeLayout();
-        }
-
-        private ListViewItem[] ConstruirItens(int? tipoDocumento)
-        {
-            List<DocumentoFiscal> lista = EntradaFiscal.Obter(tipoDocumento);
-
-            ListViewItem[] itens = new ListViewItem[lista.Count];
-            int x = 0;
-
-            foreach (DocumentoFiscal entrada in lista)
-                itens[x++] = ConstruirItem(entrada);
-
-            return itens;
         }
 
         protected override void AtualizarTamanhoColunas()

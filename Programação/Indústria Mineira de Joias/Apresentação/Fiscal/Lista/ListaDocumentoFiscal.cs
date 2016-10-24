@@ -31,7 +31,8 @@ namespace Apresentação.Fiscal.Lista
             colValor.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
             colEntradaSaída.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
-        private ListViewItem[] ConstruirItens(List<DocumentoFiscal> documentos)
+
+        protected ListViewItem[] ConstruirItens(List<DocumentoFiscal> documentos)
         {
             ListViewItem[] itens = new ListViewItem[documentos.Count];
 
