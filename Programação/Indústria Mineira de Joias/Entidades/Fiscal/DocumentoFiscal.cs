@@ -1,4 +1,5 @@
 ﻿using Acesso.Comum;
+using Entidades.Fiscal.Tipo;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -60,6 +61,7 @@ namespace Entidades.Fiscal
         public List<ItemFiscal> Itens => itens;
         public bool Cancelada => cancelada;
         public int TipoDocumento => tipoDocumento;
+
         public string Observações => observações;
 
         protected abstract void CadastrarEntidade(IDbTransaction transação, IDbConnection conexão);

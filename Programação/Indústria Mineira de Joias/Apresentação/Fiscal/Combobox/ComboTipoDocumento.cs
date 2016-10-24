@@ -12,6 +12,15 @@ namespace Apresentação.Fiscal.Combobox
             InitializeComponent();
         }
 
+        public TipoDocumento Seleção
+        {
+            set
+            {
+                Text = value.ToString();
+            }
+        }
+
+
         public void Carregar(bool entrada)
         {
             IEnumerable<TipoDocumento> itens;

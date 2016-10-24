@@ -713,7 +713,7 @@ namespace Apresentação.Fiscal.BaseInferior
         private AMS.TextBox.CurrencyTextBox txtValor;
         private System.Windows.Forms.TextBox txtId;
         private Pessoa.TextBoxCNPJ txtEmitente;
-        private System.Windows.Forms.DateTimePicker dtEntradaSaída;
+        protected System.Windows.Forms.DateTimePicker dtEntradaSaída;
         private System.Windows.Forms.DateTimePicker dtEmissão;
         protected System.Windows.Forms.Label lblEntradaSaída;
         protected System.Windows.Forms.Label lblTipoDocumento;

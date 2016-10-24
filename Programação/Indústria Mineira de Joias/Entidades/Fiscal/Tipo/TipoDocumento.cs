@@ -42,6 +42,12 @@ namespace Entidades.Fiscal.Tipo
         public static IEnumerable<TipoDocumento> TiposEntrada => from tipo in Tipos where tipo.Saída select tipo;
         public static IEnumerable<TipoDocumento> TiposSaída => from tipo in Tipos where tipo.Entrada select tipo;
 
+        public static TipoDocumento Obter(int código)
+        {
+            var tipos = from tipo in Tipos where tipo.Id.Equals(código) select tipo;
+            return tipos.FirstOrDefault<TipoDocumento>();
+        }
+
         private static void Carregar()
         {
             tipos = Mapear<TipoDocumento>("select * from tipodocumentofiscal order by nome");

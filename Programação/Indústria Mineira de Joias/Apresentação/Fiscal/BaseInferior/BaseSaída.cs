@@ -1,4 +1,6 @@
-﻿namespace Apresentação.Fiscal.BaseInferior
+﻿using Entidades.Fiscal;
+
+namespace Apresentação.Fiscal.BaseInferior
 {
     public partial class BaseSaída : BaseDocumento
     {
@@ -7,6 +9,13 @@
             InitializeComponent();
 
             cmbTipoDocumento.Carregar(false);
+        }
+
+        public override void Carregar(DocumentoFiscal documento)
+        {
+            base.Carregar(documento);
+
+            dtEntradaSaída.Value = ((SaídaFiscal) documento).DataSaída;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Apresentação.Fiscal.Lista;
+using Apresentação.Formulários;
 using Entidades.Fiscal;
 
 namespace Apresentação.Fiscal.BaseInferior.Documentos
