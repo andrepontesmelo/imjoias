@@ -10,20 +10,50 @@ namespace Entidades.Fiscal
         [DbColuna("datasaida")]
         private DateTime dataSaída;
         private uint setor;
+        protected bool cancelada;
 
         public DateTime DataSaída => dataSaída;
         public uint Setor => setor;
                
         public SaídaFiscal(int tipoDocumento, DateTime dataEmissão, DateTime dataSaída, string id,
             decimal valorTotal, int? número, string cnpjEmitente, bool cancelada, string observações, uint setor, List<ItemFiscal> itens) : 
-            base(tipoDocumento, dataEmissão, id, valorTotal, número, cnpjEmitente, cancelada, observações, itens)
+            base(tipoDocumento, dataEmissão, id, valorTotal, número, cnpjEmitente, observações, itens)
         {
             this.dataSaída = dataSaída;
             this.setor = setor;
+            this.cancelada = cancelada;
+        }
+
+        public bool Cancelada
+        {
+            get
+            {
+                return cancelada;
+            }
+
+            set
+            {
+                cancelada = value;
+            }
         }
 
         public SaídaFiscal()
         {
+        }
+
+        public override void GravarEntidade(IDbTransaction transação, IDbConnection conexão)
+        {
+            base.GravarEntidade(transação, conexão);
+
+            using (IDbCommand cmd = conexão.CreateCommand())
+            {
+                cmd.Transaction = transação;
+                cmd.CommandText = string.Format("update saidafiscal set id={0} where id={1}",
+                    DbTransformar(novoId), 
+                    DbTransformar(id));
+
+                cmd.ExecuteNonQuery();
+            }
         }
 
         internal static List<string> ObterIdsCadastrados()
@@ -40,13 +70,13 @@ namespace Entidades.Fiscal
                 cmd.CommandText = string.Format("INSERT INTO saidafiscal " + 
                     "(dataemissao, datasaida, tipo, id, valortotal, numero, cnpjemitente, cancelada, setor) " + 
                     " values ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8})",
-                    DbTransformar(dataEmissão),
+                    DbTransformar(DataEmissão),
                     DbTransformar(dataSaída),
-                    DbTransformar(((int) tipoDocumento).ToString()),
-                    DbTransformar(id),
+                    DbTransformar(((int) TipoDocumento).ToString()),
+                    DbTransformar(Id),
                     DbTransformar(ValorTotal),
                     DbTransformar(Número),
-                    DbTransformar(cnpjEmitente),
+                    DbTransformar(CnpjEmitente),
                     DbTransformar(Cancelada),
                     DbTransformar(Setor));
 

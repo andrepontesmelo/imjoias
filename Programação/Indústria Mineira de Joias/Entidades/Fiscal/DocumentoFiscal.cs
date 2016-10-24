@@ -9,7 +9,9 @@ namespace Entidades.Fiscal
     public abstract class DocumentoFiscal : DbManipulaçãoSimples
     {
         protected string id;
-        protected bool cancelada;
+
+        [DbAtributo(TipoAtributo.Ignorar)]
+        protected string novoId;
 
         [DbColuna("numero")]
         protected int? número;
@@ -25,7 +27,7 @@ namespace Entidades.Fiscal
 
         [DbColuna("cnpjemitente")]
         protected string cnpjEmitente;
-        
+
         [DbColuna("observacoes")]
         protected string observações;
 
@@ -38,31 +40,132 @@ namespace Entidades.Fiscal
 
         public DocumentoFiscal(int tipoDocumento, DateTime dataEmissão, string id, 
             decimal valorTotal, int? número,  
-            string cnpjEmitente, bool cancelada, string observações, List<ItemFiscal> itens)
+            string cnpjEmitente, string observações, List<ItemFiscal> itens)
         {
             this.tipoDocumento = tipoDocumento;
             this.dataEmissão = dataEmissão;
             this.id = id;
+            this.novoId = id;
             this.valorTotal = valorTotal;
             this.número = número;
             this.cnpjEmitente = cnpjEmitente;
-            this.cancelada = cancelada;
             this.observações = observações;
             this.itens = itens;
         }
 
-        public DateTime DataEmissão => dataEmissão;
-        public string Id => id;
-        public decimal ValorTotal => valorTotal;
-        public int? Número => número;
+        public void Gravar()
+        {
+            IDbConnection conexão = Conexão;
+
+            lock (conexão)
+            {
+                using (IDbTransaction transação = conexão.BeginTransaction())
+                {
+                    GravarEntidade(transação, conexão);
+
+                    transação.Commit();
+                }
+            }
+        }
+
+        public virtual void GravarEntidade(IDbTransaction transação, IDbConnection conexão)
+        {
+        }
+
         public bool EmitidoPorEstaEmpresa => cnpjEmitente.Equals(Configuração.DadosGlobais.Instância.CNPJEmpresa);
-        public string CNPJEmitiente => cnpjEmitente;
         public string CNPJEmitenteFormatado => Pessoa.PessoaJurídica.FormatarCNPJ(cnpjEmitente);
         public List<ItemFiscal> Itens => itens;
-        public bool Cancelada => cancelada;
-        public int TipoDocumento => tipoDocumento;
 
-        public string Observações => observações;
+        public string Id
+        {
+            get
+            {
+                return id;
+            }
+
+            set
+            {
+                novoId = value;
+            }
+        }
+
+        public int? Número
+        {
+            get
+            {
+                return número;
+            }
+
+            set
+            {
+                número = value;
+            }
+        }
+
+        public int TipoDocumento
+        {
+            get
+            {
+                return tipoDocumento;
+            }
+
+            set
+            {
+                tipoDocumento = value;
+            }
+        }
+
+        public DateTime DataEmissão
+        {
+            get
+            {
+                return dataEmissão;
+            }
+
+            set
+            {
+                dataEmissão = value;
+            }
+        }
+
+        public decimal ValorTotal
+        {
+            get
+            {
+                return valorTotal;
+            }
+
+            set
+            {
+                valorTotal = value;
+            }
+        }
+
+        public string CnpjEmitente
+        {
+            get
+            {
+                return cnpjEmitente;
+            }
+
+            set
+            {
+                cnpjEmitente = value;
+            }
+        }
+
+        public string Observações
+        {
+            get
+            {
+                return observações;
+            }
+
+            set
+            {
+                observações = value;
+            }
+        }
 
         protected abstract void CadastrarEntidade(IDbTransaction transação, IDbConnection conexão);
 

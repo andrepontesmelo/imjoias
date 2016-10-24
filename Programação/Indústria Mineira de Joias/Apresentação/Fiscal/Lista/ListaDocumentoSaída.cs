@@ -33,7 +33,6 @@ namespace Apresentação.Fiscal.Lista
             ListViewItem item = base.ConstruirItem(documentoFiscal);
             DateTime dataSaída = ((SaídaFiscal)documentoFiscal).DataSaída;
             item.SubItems[colEntradaSaída.Index].Text = string.Format("{0} {1}", dataSaída.ToShortDateString(), dataSaída.ToLongTimeString());
-            item.SubItems[colCancelada.Index].Text = documentoFiscal.Cancelada ? "Cancelada" : "";
 
             return item;
         }

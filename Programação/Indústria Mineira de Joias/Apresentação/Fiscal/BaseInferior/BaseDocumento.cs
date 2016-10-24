@@ -3,8 +3,10 @@ using Entidades.Fiscal.Tipo;
 
 namespace Apresentação.Fiscal.BaseInferior
 {
-    public partial class BaseDocumento : Apresentação.Formulários.BaseInferior
+    public partial class BaseDocumento : Formulários.BaseInferior
     {
+        private DocumentoFiscal documento;
+
         public BaseDocumento()
         {
             InitializeComponent();
@@ -12,6 +14,8 @@ namespace Apresentação.Fiscal.BaseInferior
 
         public virtual void Carregar(DocumentoFiscal documento)
         {
+            this.documento = documento;
+
             título.Descrição = "Edição de " + documento.ToString();
 
             txtId.Text = documento.Id;
@@ -20,6 +24,47 @@ namespace Apresentação.Fiscal.BaseInferior
             txtNúmero.Text = documento.Número.ToString();
             txtEmitente.Text = documento.CNPJEmitenteFormatado;
             cmbTipoDocumento.Seleção = TipoDocumento.Obter(documento.TipoDocumento);
+        }
+
+        private void txtId_Validated(object sender, System.EventArgs e)
+        {
+            documento.Id = txtId.Text;
+            Gravar();
+        }
+
+        private void Gravar()
+        {
+            documento.Gravar();
+        }
+
+        private void dtEmissão_Validated(object sender, System.EventArgs e)
+        {
+            documento.DataEmissão = dtEmissão.Value;
+            Gravar();
+        }
+
+        private void txtValor_Validated(object sender, System.EventArgs e)
+        {
+            documento.ValorTotal = (decimal) txtValor.Double;
+            Gravar();
+        }
+
+        private void txtNúmero_Validated(object sender, System.EventArgs e)
+        {
+            documento.Número = txtNúmero.Int;
+            Gravar();
+        }
+
+        private void txtEmitente_Validated(object sender, System.EventArgs e)
+        {
+            documento.CnpjEmitente = txtEmitente.Text;
+            Gravar();
+        }
+
+        private void cmbTipoDocumento_Validated(object sender, System.EventArgs e)
+        {
+            documento.TipoDocumento = cmbTipoDocumento.Seleção.Id;
+            Gravar();
         }
     }
 }

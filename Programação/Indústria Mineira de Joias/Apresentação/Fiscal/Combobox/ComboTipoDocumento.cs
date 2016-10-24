@@ -18,6 +18,10 @@ namespace Apresentação.Fiscal.Combobox
             {
                 Text = value.ToString();
             }
+            get
+            {
+                return new TipoDocumento();
+            }
         }
 
 

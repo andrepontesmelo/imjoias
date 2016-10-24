@@ -13,8 +13,8 @@ namespace Entidades.Fiscal
         public DateTime DataEntrada => dataEntrada;
 
         public EntradaFiscal(int tipoDocumento, DateTime dataEmissão, DateTime dataEntrada, string id,
-        decimal valorTotal, int? nnf, string emitidoPorCNPJ, bool cancelada, string observações, List<ItemFiscal> itens) : 
-            base(tipoDocumento, dataEmissão, id, valorTotal, nnf, emitidoPorCNPJ, cancelada, observações, itens)
+        decimal valorTotal, int? nnf, string emitidoPorCNPJ, string observações, List<ItemFiscal> itens) : 
+            base(tipoDocumento, dataEmissão, id, valorTotal, nnf, emitidoPorCNPJ, observações, itens)
         {
             this.dataEntrada = dataEntrada;
         }
@@ -47,13 +47,13 @@ namespace Entidades.Fiscal
 
                 cmd.CommandText = string.Format("INSERT INTO entradafiscal (dataemissao, dataentrada, id, valortotal, numero, cnpjemitente, tipo) " + 
                     "values ({0}, {1}, {2}, {3}, {4}, {5}, {6})",
-                    DbTransformar(dataEmissão),
+                    DbTransformar(DataEmissão),
                     DbTransformar(dataEntrada),
-                    DbTransformar(id),
+                    DbTransformar(Id),
                     DbTransformar(ValorTotal),
                     DbTransformar(Número),
-                    DbTransformar(cnpjEmitente), 
-                    DbTransformar(tipoDocumento));
+                    DbTransformar(CnpjEmitente), 
+                    DbTransformar(TipoDocumento));
 
                 cmd.ExecuteNonQuery();
             }

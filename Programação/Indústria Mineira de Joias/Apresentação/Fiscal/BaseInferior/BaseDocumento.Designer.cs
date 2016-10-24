@@ -275,6 +275,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.cmbTipoDocumento.Name = "cmbTipoDocumento";
             this.cmbTipoDocumento.Size = new System.Drawing.Size(125, 21);
             this.cmbTipoDocumento.TabIndex = 13;
+            this.cmbTipoDocumento.Validated += new System.EventHandler(this.cmbTipoDocumento_Validated);
             // 
             // txtEmitente
             // 
@@ -283,6 +284,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.txtEmitente.Name = "txtEmitente";
             this.txtEmitente.Size = new System.Drawing.Size(293, 20);
             this.txtEmitente.TabIndex = 12;
+            this.txtEmitente.Validated += new System.EventHandler(this.txtEmitente_Validated);
             // 
             // dtEntradaSaída
             // 
@@ -303,6 +305,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.dtEmissão.Name = "dtEmissão";
             this.dtEmissão.Size = new System.Drawing.Size(290, 20);
             this.dtEmissão.TabIndex = 10;
+            this.dtEmissão.Validated += new System.EventHandler(this.dtEmissão_Validated);
             // 
             // txtNúmero
             // 
@@ -320,6 +323,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.txtNúmero.Size = new System.Drawing.Size(290, 20);
             this.txtNúmero.TabIndex = 9;
             this.txtNúmero.Text = "1";
+            this.txtNúmero.Validated += new System.EventHandler(this.txtNúmero_Validated);
             // 
             // txtValor
             // 
@@ -334,6 +338,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.txtValor.Size = new System.Drawing.Size(290, 20);
             this.txtValor.TabIndex = 8;
             this.txtValor.Text = "R$ 1,00";
+            this.txtValor.Validated += new System.EventHandler(this.txtValor_Validated);
             // 
             // txtId
             // 
@@ -342,6 +347,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(290, 20);
             this.txtId.TabIndex = 7;
+            this.txtId.Validated += new System.EventHandler(this.txtId_Validated);
             // 
             // lblTipoDocumento
             // 
@@ -420,7 +426,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.tabItens.Location = new System.Drawing.Point(4, 22);
             this.tabItens.Name = "tabItens";
             this.tabItens.Padding = new System.Windows.Forms.Padding(3);
-            this.tabItens.Size = new System.Drawing.Size(931, 407);
+            this.tabItens.Size = new System.Drawing.Size(931, 529);
             this.tabItens.TabIndex = 1;
             this.tabItens.Text = "Itens";
             this.tabItens.UseVisualStyleBackColor = true;
@@ -442,7 +448,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.quadroLista.Location = new System.Drawing.Point(6, 156);
             this.quadroLista.MostrarBotãoMinMax = false;
             this.quadroLista.Name = "quadroLista";
-            this.quadroLista.Size = new System.Drawing.Size(919, 248);
+            this.quadroLista.Size = new System.Drawing.Size(919, 370);
             this.quadroLista.TabIndex = 2;
             this.quadroLista.Tamanho = 30;
             this.quadroLista.Título = "Mercadorias";
@@ -454,7 +460,7 @@ namespace Apresentação.Fiscal.BaseInferior
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lstItens.Location = new System.Drawing.Point(0, 24);
             this.lstItens.Name = "lstItens";
-            this.lstItens.Size = new System.Drawing.Size(919, 224);
+            this.lstItens.Size = new System.Drawing.Size(919, 346);
             this.lstItens.TabIndex = 2;
             // 
             // quadroItem
@@ -523,6 +529,12 @@ namespace Apresentação.Fiscal.BaseInferior
             // 
             this.comboTipoUnidade1.FormattingEnabled = true;
             this.comboTipoUnidade1.Items.AddRange(new object[] {
+            "Peça",
+            "Gramas",
+            "Peça",
+            "Gramas",
+            "Peça",
+            "Gramas",
             "Peça",
             "Gramas",
             "Peça",
@@ -659,7 +671,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.tabObservações.Location = new System.Drawing.Point(4, 22);
             this.tabObservações.Name = "tabObservações";
             this.tabObservações.Padding = new System.Windows.Forms.Padding(3);
-            this.tabObservações.Size = new System.Drawing.Size(931, 407);
+            this.tabObservações.Size = new System.Drawing.Size(931, 529);
             this.tabObservações.TabIndex = 2;
             this.tabObservações.Text = "Observações";
             this.tabObservações.UseVisualStyleBackColor = true;
