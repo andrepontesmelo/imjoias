@@ -1,5 +1,6 @@
 ﻿using Entidades.Fiscal;
 using Entidades.Fiscal.Tipo;
+using System.Collections.Generic;
 
 namespace Apresentação.Fiscal.BaseInferior
 {
@@ -66,5 +67,17 @@ namespace Apresentação.Fiscal.BaseInferior
             documento.TipoDocumento = cmbTipoDocumento.Seleção.Id;
             Gravar();
         }
+
+        private void txtId_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var idDesejado = txtId.Text.Trim();
+            e.Cancel = !idDesejado.Equals(documento.Id) && ObterIds().Contains(idDesejado);
+        }
+
+        protected virtual List<string> ObterIds()
+        {
+            throw new System.Exception("abstrato");
+        }
     }
 }
+

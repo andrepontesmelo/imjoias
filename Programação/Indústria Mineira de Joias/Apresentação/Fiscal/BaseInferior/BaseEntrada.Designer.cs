@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Entidades.Fiscal.Tipo.TipoDocumento tipoDocumento1 = new Entidades.Fiscal.Tipo.TipoDocumento();
             this.grpDados.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,6 +50,10 @@
             // 
             this.lblTipoDocumento.Size = new System.Drawing.Size(85, 13);
             this.lblTipoDocumento.Text = "Tipo de entrada:";
+            // 
+            // cmbTipoDocumento
+            // 
+            this.cmbTipoDocumento.Seleção = tipoDocumento1;
             // 
             // BaseEntrada
             // 

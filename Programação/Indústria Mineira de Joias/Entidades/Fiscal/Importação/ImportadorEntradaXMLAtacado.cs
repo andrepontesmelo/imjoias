@@ -32,7 +32,7 @@ namespace Entidades.Fiscal.Importação
 
         protected override List<string> ObterIdsCadastrados()
         {
-            return EntradaFiscal.ObterIdsCadastrados();
+            return EntradaFiscal.ObterIds();
         }
     }
 }

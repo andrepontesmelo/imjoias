@@ -50,7 +50,7 @@ namespace Entidades.Fiscal
             base.GravarEntidade(transação, conexão);
         }
 
-        internal static List<string> ObterIdsCadastrados()
+        public static List<string> ObterIds()
         {
             return MapearStrings("select id from " + NOME_RELAÇÃO);
         }

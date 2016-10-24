@@ -1,5 +1,4 @@
 ﻿using Acesso.Comum;
-using Entidades.Fiscal.Tipo;
 using System;
 using System.Collections.Generic;
 using System.Data;

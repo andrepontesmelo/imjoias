@@ -31,6 +31,7 @@ namespace Apresentação.Fiscal.BaseInferior
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseDocumento));
+            Entidades.Fiscal.Tipo.TipoDocumento tipoDocumento1 = new Entidades.Fiscal.Tipo.TipoDocumento();
             this.quadroDocumento = new Apresentação.Formulários.Quadro();
             this.opçãoExcluirDocumento = new Apresentação.Formulários.Opção();
             this.opçãoImprimir = new Apresentação.Formulários.Opção();
@@ -273,6 +274,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.cmbTipoDocumento.FormattingEnabled = true;
             this.cmbTipoDocumento.Location = new System.Drawing.Point(643, 28);
             this.cmbTipoDocumento.Name = "cmbTipoDocumento";
+            this.cmbTipoDocumento.Seleção = tipoDocumento1;
             this.cmbTipoDocumento.Size = new System.Drawing.Size(125, 21);
             this.cmbTipoDocumento.TabIndex = 13;
             this.cmbTipoDocumento.Validated += new System.EventHandler(this.cmbTipoDocumento_Validated);
@@ -347,6 +349,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(290, 20);
             this.txtId.TabIndex = 7;
+            this.txtId.Validating += new System.ComponentModel.CancelEventHandler(this.txtId_Validating);
             this.txtId.Validated += new System.EventHandler(this.txtId_Validated);
             // 
             // lblTipoDocumento
@@ -529,6 +532,10 @@ namespace Apresentação.Fiscal.BaseInferior
             // 
             this.comboTipoUnidade1.FormattingEnabled = true;
             this.comboTipoUnidade1.Items.AddRange(new object[] {
+            "Peça",
+            "Gramas",
+            "Peça",
+            "Gramas",
             "Peça",
             "Gramas",
             "Peça",
@@ -723,7 +730,6 @@ namespace Apresentação.Fiscal.BaseInferior
         private System.Windows.Forms.Label label3;
         private AMS.TextBox.NumericTextBox txtNúmero;
         private AMS.TextBox.CurrencyTextBox txtValor;
-        private System.Windows.Forms.TextBox txtId;
         private Pessoa.TextBoxCNPJ txtEmitente;
         protected System.Windows.Forms.DateTimePicker dtEntradaSaída;
         private System.Windows.Forms.DateTimePicker dtEmissão;
@@ -749,5 +755,6 @@ namespace Apresentação.Fiscal.BaseInferior
         private AMS.TextBox.CurrencyTextBox currencyTextBox2;
         private AMS.TextBox.CurrencyTextBox currencyTextBox1;
         private ComboTipoUnidade comboTipoUnidade1;
+        protected System.Windows.Forms.TextBox txtId;
     }
 }

@@ -1,4 +1,5 @@
-﻿using Entidades.Fiscal;
+﻿using System.Collections.Generic;
+using Entidades.Fiscal;
 
 namespace Apresentação.Fiscal.BaseInferior
 {
@@ -16,6 +17,11 @@ namespace Apresentação.Fiscal.BaseInferior
             base.Carregar(documento);
 
             dtEntradaSaída.Value = ((EntradaFiscal)documento).DataEntrada;
+        }
+
+        protected override List<string> ObterIds()
+        {
+            return EntradaFiscal.ObterIds();
         }
     }
 }

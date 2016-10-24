@@ -18,7 +18,7 @@ namespace Entidades.Fiscal.Importação
 
         public ImportadorSaídaTDMVarejo()
         {
-            idsCadastrados = new SortedSet<string>(SaídaFiscal.ObterIdsCadastrados());
+            idsCadastrados = new SortedSet<string>(SaídaFiscal.ObterIds());
         }
 
         protected override ResultadoImportação ImportarArquivos(string pasta, SearchOption opções, BackgroundWorker thread)
