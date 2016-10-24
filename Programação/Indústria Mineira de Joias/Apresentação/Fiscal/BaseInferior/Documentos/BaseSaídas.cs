@@ -34,11 +34,15 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
             AbrirDocumento(documento);
         }
 
+        protected override void AoExibir()
+        {
+            base.AoExibir();
+            CarregarListas();
+        }
+
         protected override void AoExibirDaPrimeiraVez()
         {
             base.AoExibirDaPrimeiraVez();
-
-            CarregarListas();
             quadroTipo.Carregar(false);
         }
 

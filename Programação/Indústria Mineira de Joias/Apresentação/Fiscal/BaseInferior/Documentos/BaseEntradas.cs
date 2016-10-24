@@ -11,11 +11,15 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
             InitializeComponent();
         }
 
+        protected override void AoExibir()
+        {
+            base.AoExibir();
+            CarregarLista();
+        }
+
         protected override void AoExibirDaPrimeiraVez()
         {
             base.AoExibirDaPrimeiraVez();
-
-            CarregarLista();
             quadroTipo.Carregar(true);
         }
 
