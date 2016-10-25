@@ -43,7 +43,6 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
             // opçãoNovo
             // 
             this.opçãoNovo.Descrição = "Nova entrada";
-            this.opçãoNovo.Click += new System.EventHandler(this.opçãoNovo_Click);
             // 
             // quadroTipo
             // 

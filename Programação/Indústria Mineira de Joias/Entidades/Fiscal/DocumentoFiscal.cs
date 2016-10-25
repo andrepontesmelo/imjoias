@@ -1,4 +1,5 @@
 ﻿using Acesso.Comum;
+using Entidades.Configuração;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -50,6 +51,14 @@ namespace Entidades.Fiscal
             this.cnpjEmitente = cnpjEmitente;
             this.observações = observações;
             this.itens = itens;
+        }
+
+        public DocumentoFiscal(Guid guid)
+        {
+            id = guid.ToString();
+            dataEmissão = DadosGlobais.Instância.HoraDataAtual;
+            tipoDocumento = (int) Tipo.TipoDocumentoSistema.NFe;
+            itens = new List<ItemFiscal>();
         }
 
         public void Gravar()

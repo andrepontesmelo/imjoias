@@ -1,7 +1,9 @@
 ﻿using Acesso.Comum;
+using Entidades.Configuração;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using static Entidades.Setor;
 
 namespace Entidades.Fiscal
 {
@@ -45,6 +47,12 @@ namespace Entidades.Fiscal
         {
         }
 
+        public SaídaFiscal(Guid guid) : base(guid)
+        {
+            dataSaída = DadosGlobais.Instância.HoraDataAtual;
+            setor = (int) SetorSistema.Atacado;
+        }
+
         public override void GravarEntidade(IDbTransaction transação, IDbConnection conexão)
         {
             base.GravarEntidade(transação, conexão);
@@ -77,6 +85,14 @@ namespace Entidades.Fiscal
 
                 cmd.ExecuteNonQuery();
             }
+        }
+
+        public static DocumentoFiscal CriarDocumento()
+        {
+            DocumentoFiscal novo = new SaídaFiscal(Guid.NewGuid());
+            novo.Cadastrar();
+
+            return novo;
         }
 
         internal static string ObterIdNfe(string idCancelamento)

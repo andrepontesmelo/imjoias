@@ -36,10 +36,6 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
             this.tabControl.SuspendLayout();
             this.SuspendLayout();
             // 
-            // opçãoNovo
-            // 
-            this.opçãoNovo.Click += new System.EventHandler(this.opçãoNovo_Click);
-            // 
             // quadroTipo
             // 
             this.quadroTipo.SeleçãoAlterada += new System.EventHandler(this.quadroTipo_SeleçãoAlterada);

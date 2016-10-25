@@ -31,7 +31,7 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
             if (documento == null)
                 return;
 
-            AbrirDocumento(documento);
+            Abrir(documento);
         }
 
         protected override void AoExibir()
@@ -60,22 +60,22 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
             CarregarListas();
         }
 
-        private void opçãoNovo_Click(object sender, EventArgs e)
-        {
-            SubstituirBase(new BaseSaída());
-        }
-
         public override ListaDocumentoFiscal ObterListaAtiva()
         {
             return tabControl.SelectedTab.Controls[0] as ListaDocumentoFiscal;
         }
 
-        protected override void AbrirDocumento(DocumentoFiscal documento)
+        protected override void Abrir(DocumentoFiscal documento)
         {
             BaseSaída novaBase = new BaseSaída();
             novaBase.Carregar(documento);
 
             SubstituirBase(novaBase);
+        }
+
+        protected override DocumentoFiscal Criar()
+        {
+            return SaídaFiscal.CriarDocumento();
         }
     }
 }

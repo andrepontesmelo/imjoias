@@ -1,4 +1,5 @@
 ﻿using Acesso.Comum;
+using Entidades.Configuração;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -25,6 +26,11 @@ namespace Entidades.Fiscal
 
         public EntradaFiscal()
         {
+        }
+
+        public EntradaFiscal(Guid guid) : base(guid)
+        {
+            dataEntrada = DadosGlobais.Instância.HoraDataAtual;
         }
 
         public static List<string> ObterIds()
@@ -69,5 +75,15 @@ namespace Entidades.Fiscal
         {
             return "Entrada " + base.ToString();
         }
+
+        public static DocumentoFiscal CriarDocumento()
+        {
+            DocumentoFiscal novo = new EntradaFiscal(Guid.NewGuid());
+            novo.Cadastrar();
+
+            return novo;
+        }
+
+
     }
 }

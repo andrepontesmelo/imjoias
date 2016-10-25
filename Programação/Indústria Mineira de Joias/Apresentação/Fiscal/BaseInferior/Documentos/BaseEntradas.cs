@@ -1,5 +1,4 @@
 ﻿using Apresentação.Fiscal.Lista;
-using Apresentação.Formulários;
 using Entidades.Fiscal;
 
 namespace Apresentação.Fiscal.BaseInferior.Documentos
@@ -33,17 +32,12 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
             lista.Carregar(quadroTipo.Seleção?.Id);
         }
 
-        private void opçãoNovo_Click(object sender, System.EventArgs e)
-        {
-            SubstituirBase(new BaseEntrada());
-        }
-
         public override ListaDocumentoFiscal ObterListaAtiva()
         {
             return lista;
         }
 
-        protected override void AbrirDocumento(DocumentoFiscal documento)
+        protected override void Abrir(DocumentoFiscal documento)
         {
             BaseEntrada novaBase = new BaseEntrada();
             novaBase.Carregar(documento);
@@ -56,7 +50,12 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
             if (documento == null)
                 return;
 
-            AbrirDocumento(documento);
+            Abrir(documento);
+        }
+
+        protected override DocumentoFiscal Criar()
+        {
+            return EntradaFiscal.CriarDocumento();
         }
     }
 }

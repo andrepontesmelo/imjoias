@@ -94,6 +94,7 @@
             this.opçãoNovo.Name = "opçãoNovo";
             this.opçãoNovo.Size = new System.Drawing.Size(150, 16);
             this.opçãoNovo.TabIndex = 2;
+            this.opçãoNovo.Click += new System.EventHandler(this.opçãoNovo_Click);
             // 
             // quadro2
             // 
