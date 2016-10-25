@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lista = new System.Windows.Forms.ListView();
+            this.lista = new Formulários.ListViewUsabilidade();
             this.colPDF = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colEmissão = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -104,7 +104,7 @@
 
         #endregion
         protected System.Windows.Forms.ColumnHeader colEntradaSaída;
-        protected System.Windows.Forms.ListView lista;
+        protected Apresentação.Formulários.ListViewUsabilidade lista;
         protected System.Windows.Forms.ColumnHeader colId;
         protected System.Windows.Forms.ColumnHeader colValor;
         protected System.Windows.Forms.ColumnHeader colEmissão;

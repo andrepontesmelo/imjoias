@@ -1150,6 +1150,12 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Formulários\ListViewSorter.cs" />
+    <Compile Include="Formulários\ListViewUsabilidade.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Formulários\ListViewUsabilidade.Designer.cs">
+      <DependentUpon>ListViewUsabilidade.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formulários\Localizador.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -2953,6 +2959,9 @@
     <EmbeddedResource Include="Formulários\Linha.resx">
       <DependentUpon>Linha.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulários\ListViewUsabilidade.resx">
+      <DependentUpon>ListViewUsabilidade.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formulários\Localizador.resx">
       <DependentUpon>Localizador.cs</DependentUpon>
