@@ -3,6 +3,7 @@ using Entidades.Configuração;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Text;
 
 namespace Entidades.Fiscal
 {
@@ -216,6 +217,44 @@ namespace Entidades.Fiscal
                     transação.Commit();
                 }
             }
+        }
+
+        protected static void Excluir(string relação, IEnumerable<string> ids)
+        {
+            var sql = ObterSqlExclusão(relação, ids);
+            var conexão = Conexão;
+
+            lock (conexão)
+            {
+                using (IDbCommand cmd = conexão.CreateCommand())
+                {
+                    cmd.CommandText = sql;
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        private static string ObterSqlExclusão(string relação, IEnumerable<string> ids)
+        {
+            StringBuilder str = new StringBuilder("DELETE from ");
+            str.Append(relação);
+            str.Append(" WHERE id in ('");
+
+            bool primeiro = true;
+
+            foreach (string id in ids)
+            {
+                if (!primeiro)
+                    str.Append("','");
+
+                str.Append(id);
+
+                primeiro = false;
+            }
+
+            str.Append("')");
+
+            return str.ToString(); ;
         }
 
         public override string ToString()

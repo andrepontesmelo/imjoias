@@ -590,6 +590,8 @@
     <Compile Include="Fiscal\BaseInferior\Documentos\BaseSaídas.Designer.cs">
       <DependentUpon>BaseSaídas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Fiscal\BaseInferior\Documentos\Exclusão\ControladorExclusãoEntrada.cs" />
+    <Compile Include="Fiscal\BaseInferior\Documentos\Exclusão\ControladorExclusãoSaída.cs" />
     <Compile Include="Fiscal\Combobox\ComboTipoDocumento.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -602,7 +604,7 @@
     <Compile Include="Fiscal\Combobox\ComboTipoUnidade.Designer.cs">
       <DependentUpon>ComboTipoUnidade.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fiscal\BaseInferior\Documentos\ControladorExclusão.cs" />
+    <Compile Include="Fiscal\BaseInferior\Documentos\Exclusão\ControladorExclusão.cs" />
     <Compile Include="Fiscal\Janela\JanelaCFOP.cs">
       <SubType>Form</SubType>
     </Compile>

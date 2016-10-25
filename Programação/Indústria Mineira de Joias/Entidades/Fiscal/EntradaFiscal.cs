@@ -22,6 +22,11 @@ namespace Entidades.Fiscal
             this.dataEntrada = dataEntrada;
         }
 
+        public static void Excluir(IEnumerable<string> idsSelecionados)
+        {
+            Excluir(NOME_RELAÇÃO, idsSelecionados);
+        }
+
         public override string NomeRelação => NOME_RELAÇÃO;
 
         public EntradaFiscal()

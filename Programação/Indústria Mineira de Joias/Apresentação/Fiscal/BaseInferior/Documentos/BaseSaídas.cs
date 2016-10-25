@@ -3,6 +3,7 @@ using Entidades;
 using Entidades.Fiscal;
 using System;
 using System.Windows.Forms;
+using Apresentação.Fiscal.BaseInferior.Documentos.Exclusão;
 
 namespace Apresentação.Fiscal.BaseInferior.Documentos
 {
@@ -46,6 +47,11 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
             quadroTipo.Carregar(false);
         }
 
+        protected override void Recarregar()
+        {
+            CarregarListas();
+        }
+
         private void CarregarListas()
         {
             foreach (TabPage aba in tabControl.TabPages)
@@ -76,6 +82,11 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
         protected override DocumentoFiscal Criar()
         {
             return SaídaFiscal.CriarDocumento();
+        }
+
+        protected override ControladorExclusão ConstruirControlador()
+        {
+            return new ControladorExclusãoSaída(this);
         }
     }
 }

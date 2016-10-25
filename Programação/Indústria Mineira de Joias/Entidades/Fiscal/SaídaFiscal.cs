@@ -16,7 +16,12 @@ namespace Entidades.Fiscal
 
         public DateTime DataSaída => dataSaída;
         public uint Setor => setor;
-               
+
+        public static void Excluir(IEnumerable<string> idsSelecionados)
+        {
+            Excluir(NOME_RELAÇÃO, idsSelecionados);
+        }
+
         private static readonly string NOME_RELAÇÃO = "saidafiscal";
 
         public SaídaFiscal(int tipoDocumento, DateTime dataEmissão, DateTime dataSaída, string id,

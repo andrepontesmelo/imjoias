@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace Apresentação.Fiscal.BaseInferior.Documentos
+namespace Apresentação.Fiscal.BaseInferior.Documentos.Exclusão
 {
-    public class ControladorExclusão
+    public abstract class ControladorExclusão
     {
         private const string EXCLUSÃO_TÍTULO = "Exclusão";
 
@@ -17,16 +17,17 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
             this.baseDocumentos = baseDocumentos;
         }
 
-        internal void Excluir()
+        internal bool Excluir()
         {
             ListaDocumentoFiscal lista = baseDocumentos.ObterListaAtiva();
 
             var idsSelecionados = lista.ObterCódigosSelecionados();
 
             if (MostrarMensagemExclusãoSemSeleçãoSeNecessário(idsSelecionados))
-                return;
+                return false;
 
             ExcluirComComfirmação(idsSelecionados);
+            return true;
         }
 
         private bool MostrarMensagemExclusãoSemSeleçãoSeNecessário(IEnumerable<string> idsSelecionados)
@@ -53,6 +54,10 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
                 mensagem,
                 EXCLUSÃO_TÍTULO, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 return;
+
+            ExcluirSemConfirmação(idsSelecionados);
         }
+
+        protected abstract void ExcluirSemConfirmação(IEnumerable<string> idsSelecionados);
     }
 }

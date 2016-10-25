@@ -1,4 +1,5 @@
-﻿using Apresentação.Fiscal.Lista;
+﻿using Apresentação.Fiscal.BaseInferior.Documentos.Exclusão;
+using Apresentação.Fiscal.Lista;
 using Entidades.Fiscal;
 
 namespace Apresentação.Fiscal.BaseInferior.Documentos
@@ -23,6 +24,11 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
         }
 
         private void quadroTipo_SeleçãoAlterada(object sender, System.EventArgs e)
+        {
+            CarregarLista();
+        }
+
+        protected override void Recarregar()
         {
             CarregarLista();
         }
@@ -56,6 +62,11 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
         protected override DocumentoFiscal Criar()
         {
             return EntradaFiscal.CriarDocumento();
+        }
+
+        protected override ControladorExclusão ConstruirControlador()
+        {
+            return new ControladorExclusãoEntrada(this);
         }
     }
 }

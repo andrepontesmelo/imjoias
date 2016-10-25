@@ -1,4 +1,5 @@
-﻿using Apresentação.Fiscal.Lista;
+﻿using Apresentação.Fiscal.BaseInferior.Documentos.Exclusão;
+using Apresentação.Fiscal.Lista;
 using Entidades.Fiscal;
 using System;
 
@@ -11,13 +12,22 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
         public BaseDocumentos()
         {
             InitializeComponent();
+            controlador = ConstruirControlador();
+        }
 
-            controlador = new ControladorExclusão(this);
+        protected virtual ControladorExclusão ConstruirControlador()
+        {
+            throw new Exception("abstrato");
         }
 
         private void opçãoExcluir_Click(object sender, System.EventArgs e)
         {
-            controlador.Excluir();
+            if (controlador.Excluir())
+                Recarregar();
+        }
+
+        protected virtual void Recarregar()
+        {
         }
 
         public virtual ListaDocumentoFiscal ObterListaAtiva()
