@@ -39,8 +39,8 @@ namespace Entidades.Fiscal.Tipo
             }
         }
 
-        public static IEnumerable<TipoDocumento> TiposEntrada => from tipo in Tipos where tipo.Saída select tipo;
-        public static IEnumerable<TipoDocumento> TiposSaída => from tipo in Tipos where tipo.Entrada select tipo;
+        public static IEnumerable<TipoDocumento> TiposEntrada => from tipo in Tipos where tipo.Entrada select tipo;
+        public static IEnumerable<TipoDocumento> TiposSaída => from tipo in Tipos where tipo.Saída select tipo;
 
         public static TipoDocumento Obter(int código)
         {

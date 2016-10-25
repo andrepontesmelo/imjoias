@@ -16,11 +16,11 @@ namespace Apresentação.Fiscal.Combobox
         {
             set
             {
-                Text = value.ToString();
+                SelectedItem = value;
             }
             get
             {
-                return new TipoDocumento();
+                return SelectedItem as TipoDocumento;
             }
         }
 
