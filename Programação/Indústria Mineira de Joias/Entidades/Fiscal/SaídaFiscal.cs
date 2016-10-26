@@ -15,7 +15,7 @@ namespace Entidades.Fiscal
         protected bool cancelada;
 
         public DateTime DataSaída => dataSaída;
-        public uint Setor => setor;
+
 
         public static void Excluir(IEnumerable<string> idsSelecionados)
         {
@@ -47,6 +47,19 @@ namespace Entidades.Fiscal
         }
 
         public override string NomeRelação => NOME_RELAÇÃO;
+
+        public uint Setor
+        {
+            get
+            {
+                return setor;
+            }
+
+            set
+            {
+                setor = value;
+            }
+        }
 
         public SaídaFiscal()
         {

@@ -73,12 +73,13 @@ namespace Apresentação.Formulários
             // 
             this.esquerda.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(183)))), ((int)(((byte)(153)))));
             this.esquerda.BackgroundImage = global::Apresentação.Resource.esquerda_BackgroundImage;
+            this.esquerda.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.esquerda.Controls.Add(this.quadroNavegação);
             this.esquerda.Dock = System.Windows.Forms.DockStyle.Left;
             this.esquerda.Location = new System.Drawing.Point(0, 0);
             this.esquerda.Name = "esquerda";
             this.esquerda.Padding = new System.Windows.Forms.Padding(4, 10, 27, 0);
-            this.esquerda.Size = new System.Drawing.Size(187, 296);
+            this.esquerda.Size = new System.Drawing.Size(187, 853);
             this.esquerda.TabIndex = 5;
             this.esquerda.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.esquerda_ControlAdded);
             this.esquerda.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.esquerda_ControlRemoved);
@@ -99,7 +100,7 @@ namespace Apresentação.Formulários
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.esquerda);
             this.Name = "BaseInferior";
-            this.Size = new System.Drawing.Size(800, 296);
+            this.Size = new System.Drawing.Size(800, 853);
             this.Load += new System.EventHandler(this.BaseInferior_Load);
             this.esquerda.ResumeLayout(false);
             this.ResumeLayout(false);

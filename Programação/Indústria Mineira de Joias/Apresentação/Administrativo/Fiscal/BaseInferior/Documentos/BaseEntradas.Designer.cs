@@ -48,6 +48,10 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
             // 
             this.quadroTipo.SeleçãoAlterada += new System.EventHandler(this.quadroTipo_SeleçãoAlterada);
             // 
+            // esquerda
+            // 
+            this.esquerda.Size = new System.Drawing.Size(187, 444);
+            // 
             // lista
             // 
             this.lista.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -55,7 +59,7 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lista.Location = new System.Drawing.Point(193, 79);
             this.lista.Name = "lista";
-            this.lista.Size = new System.Drawing.Size(592, 204);
+            this.lista.Size = new System.Drawing.Size(592, 362);
             this.lista.TabIndex = 7;
             this.lista.CliqueDuplo += new Apresentação.Fiscal.Lista.ListaDocumentoFiscal.CliqueDuploDelegate(this.lista_CliqueDuplo);
             this.lista.AoSolicitarExclusão += new System.EventHandler(this.lista_AoSolicitarExclusão);
@@ -64,6 +68,7 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
             // 
             this.Controls.Add(this.lista);
             this.Name = "BaseEntradas";
+            this.Size = new System.Drawing.Size(800, 444);
             this.Controls.SetChildIndex(this.lista, 0);
             this.Controls.SetChildIndex(this.esquerda, 0);
             this.Controls.SetChildIndex(this.títuloBaseInferior1, 0);

@@ -78,7 +78,6 @@ namespace Apresentação.Fiscal.BaseInferior
             this.label4 = new System.Windows.Forms.Label();
             this.tabObservações = new System.Windows.Forms.TabPage();
             this.txtObservações = new System.Windows.Forms.TextBox();
-            this.chkCancelada = new System.Windows.Forms.CheckBox();
             this.esquerda.SuspendLayout();
             this.quadroDocumento.SuspendLayout();
             this.quadroPDF.SuspendLayout();
@@ -249,7 +248,6 @@ namespace Apresentação.Fiscal.BaseInferior
             this.grpDados.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.grpDados.Controls.Add(this.chkCancelada);
             this.grpDados.Controls.Add(this.cmbTipoDocumento);
             this.grpDados.Controls.Add(this.txtEmitente);
             this.grpDados.Controls.Add(this.dtEntradaSaída);
@@ -554,6 +552,8 @@ namespace Apresentação.Fiscal.BaseInferior
             "Peça",
             "Gramas",
             "Peça",
+            "Gramas",
+            "Peça",
             "Gramas"});
             this.comboTipoUnidade1.Location = new System.Drawing.Point(284, 102);
             this.comboTipoUnidade1.Name = "comboTipoUnidade1";
@@ -703,16 +703,6 @@ namespace Apresentação.Fiscal.BaseInferior
             this.txtObservações.TabIndex = 0;
             this.txtObservações.Validated += new System.EventHandler(this.txtObservações_Validated);
             // 
-            // chkCancelada
-            // 
-            this.chkCancelada.AutoSize = true;
-            this.chkCancelada.Location = new System.Drawing.Point(195, 193);
-            this.chkCancelada.Name = "chkCancelada";
-            this.chkCancelada.Size = new System.Drawing.Size(77, 17);
-            this.chkCancelada.TabIndex = 14;
-            this.chkCancelada.Text = "Cancelada";
-            this.chkCancelada.UseVisualStyleBackColor = true;
-            // 
             // BaseDocumento
             // 
             this.Controls.Add(this.tab);
@@ -789,6 +779,5 @@ namespace Apresentação.Fiscal.BaseInferior
         private ComboTipoUnidade comboTipoUnidade1;
         protected System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.TextBox txtObservações;
-        private System.Windows.Forms.CheckBox chkCancelada;
     }
 }

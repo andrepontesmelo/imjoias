@@ -10,18 +10,37 @@ namespace Apresentação.Fiscal.BaseInferior
             InitializeComponent();
 
             cmbTipoDocumento.Carregar(false);
+            cmbSetor.Carregar(true);
         }
+
+        private SaídaFiscal Documento => documento as SaídaFiscal;
 
         public override void Carregar(DocumentoFiscal documento)
         {
             base.Carregar(documento);
 
-            dtEntradaSaída.Value = ((SaídaFiscal) documento).DataSaída;
+            var saída = (SaídaFiscal) documento;
+
+            dtEntradaSaída.Value = saída.DataSaída;
+            cmbSetor.Seleção = Entidades.Setor.ObterSetor(saída.Setor);
+            chkCancelada.Checked = saída.Cancelada;
         }
 
         protected override List<string> ObterIds()
         {
             return SaídaFiscal.ObterIds();
+        }
+
+        private void chkCancelada_Validated(object sender, System.EventArgs e)
+        {
+            Documento.Cancelada = chkCancelada.Checked;
+            Gravar();
+        }
+
+        private void cmbSetor_Validated(object sender, System.EventArgs e)
+        {
+            Documento.Setor = cmbSetor.Seleção.Código;
+            Gravar();
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Apresentação.Fiscal.BaseInferior
 {
     public partial class BaseDocumento : Formulários.BaseInferior
     {
-        private DocumentoFiscal documento;
+        protected DocumentoFiscal documento;
 
         public BaseDocumento()
         {
@@ -35,7 +35,7 @@ namespace Apresentação.Fiscal.BaseInferior
             Gravar();
         }
 
-        private void Gravar()
+        protected void Gravar()
         {
             documento.Gravar();
         }
