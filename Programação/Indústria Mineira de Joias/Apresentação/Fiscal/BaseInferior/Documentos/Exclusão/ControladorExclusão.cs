@@ -8,7 +8,8 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos.Exclusão
 {
     public abstract class ControladorExclusão
     {
-        private const string EXCLUSÃO_TÍTULO = "Exclusão";
+        private readonly string EXCLUSÃO_TÍTULO = "Exclusão";
+        private readonly int MÁXIMO_ITENS_DETALHAR = 50;
 
         private BaseDocumentos baseDocumentos;
 
@@ -46,7 +47,11 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos.Exclusão
         private void ExcluirComComfirmação(IEnumerable<string> idsSelecionados)
         {
             int qtd = Enumerable.Count(idsSelecionados);
-            string idsAgrupados = string.Join(Environment.NewLine, idsSelecionados);
+            string idsAgrupados = "";
+
+            if (qtd <= MÁXIMO_ITENS_DETALHAR)
+                idsAgrupados = string.Join(Environment.NewLine, idsSelecionados);
+
             string mensagem = string.Format("Confirma exclusão de {0} nota{1} segunte{1} ? {2}",
                 qtd, qtd > 1 ? "s" : "", Environment.NewLine) + idsAgrupados;
 
