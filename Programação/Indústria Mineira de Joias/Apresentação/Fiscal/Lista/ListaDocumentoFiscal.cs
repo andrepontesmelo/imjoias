@@ -1,5 +1,6 @@
 ﻿using Apresentação.Formulários;
 using Entidades.Fiscal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -10,6 +11,7 @@ namespace Apresentação.Fiscal.Lista
     {
         public delegate void CliqueDuploDelegate(DocumentoFiscal documento);
         public event CliqueDuploDelegate CliqueDuplo;
+        public event EventHandler AoExcluir;
 
         public ListaDocumentoFiscal()
         {
@@ -80,6 +82,11 @@ namespace Apresentação.Fiscal.Lista
         private void lista_DoubleClick(object sender, System.EventArgs e)
         {
             CliqueDuplo?.Invoke(Seleção);
+        }
+
+        private void lista_AoExcluir(object sender, EventArgs e)
+        {
+            AoExcluir?.Invoke(sender, e);
         }
     }
 }

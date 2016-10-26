@@ -31,7 +31,6 @@ namespace Apresentação.Fiscal.BaseInferior
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseDocumento));
-            Entidades.Fiscal.Tipo.TipoDocumento tipoDocumento1 = new Entidades.Fiscal.Tipo.TipoDocumento();
             this.quadroDocumento = new Apresentação.Formulários.Quadro();
             this.opçãoExcluirDocumento = new Apresentação.Formulários.Opção();
             this.opçãoImprimir = new Apresentação.Formulários.Opção();
@@ -78,6 +77,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.tabObservações = new System.Windows.Forms.TabPage();
+            this.txtObservações = new System.Windows.Forms.TextBox();
             this.esquerda.SuspendLayout();
             this.quadroDocumento.SuspendLayout();
             this.quadroPDF.SuspendLayout();
@@ -87,6 +87,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.tabItens.SuspendLayout();
             this.quadroLista.SuspendLayout();
             this.quadroItem.SuspendLayout();
+            this.tabObservações.SuspendLayout();
             this.SuspendLayout();
             // 
             // esquerda
@@ -274,7 +275,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.cmbTipoDocumento.FormattingEnabled = true;
             this.cmbTipoDocumento.Location = new System.Drawing.Point(643, 28);
             this.cmbTipoDocumento.Name = "cmbTipoDocumento";
-            this.cmbTipoDocumento.Seleção = tipoDocumento1;
+            this.cmbTipoDocumento.Seleção = null;
             this.cmbTipoDocumento.Size = new System.Drawing.Size(125, 21);
             this.cmbTipoDocumento.TabIndex = 13;
             this.cmbTipoDocumento.Validated += new System.EventHandler(this.cmbTipoDocumento_Validated);
@@ -545,6 +546,8 @@ namespace Apresentação.Fiscal.BaseInferior
             "Peça",
             "Gramas",
             "Peça",
+            "Gramas",
+            "Peça",
             "Gramas"});
             this.comboTipoUnidade1.Location = new System.Drawing.Point(284, 102);
             this.comboTipoUnidade1.Name = "comboTipoUnidade1";
@@ -675,6 +678,7 @@ namespace Apresentação.Fiscal.BaseInferior
             // 
             // tabObservações
             // 
+            this.tabObservações.Controls.Add(this.txtObservações);
             this.tabObservações.Location = new System.Drawing.Point(4, 22);
             this.tabObservações.Name = "tabObservações";
             this.tabObservações.Padding = new System.Windows.Forms.Padding(3);
@@ -682,6 +686,16 @@ namespace Apresentação.Fiscal.BaseInferior
             this.tabObservações.TabIndex = 2;
             this.tabObservações.Text = "Observações";
             this.tabObservações.UseVisualStyleBackColor = true;
+            // 
+            // txtObservações
+            // 
+            this.txtObservações.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtObservações.Location = new System.Drawing.Point(3, 3);
+            this.txtObservações.Multiline = true;
+            this.txtObservações.Name = "txtObservações";
+            this.txtObservações.Size = new System.Drawing.Size(925, 523);
+            this.txtObservações.TabIndex = 0;
+            this.txtObservações.Validated += new System.EventHandler(this.txtObservações_Validated);
             // 
             // BaseDocumento
             // 
@@ -704,6 +718,8 @@ namespace Apresentação.Fiscal.BaseInferior
             this.quadroLista.ResumeLayout(false);
             this.quadroItem.ResumeLayout(false);
             this.quadroItem.PerformLayout();
+            this.tabObservações.ResumeLayout(false);
+            this.tabObservações.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -756,5 +772,6 @@ namespace Apresentação.Fiscal.BaseInferior
         private AMS.TextBox.CurrencyTextBox currencyTextBox1;
         private ComboTipoUnidade comboTipoUnidade1;
         protected System.Windows.Forms.TextBox txtId;
+        private System.Windows.Forms.TextBox txtObservações;
     }
 }

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lista = new Formulários.ListViewUsabilidade();
+            this.lista = new Apresentação.Formulários.ListViewUsabilidade();
             this.colPDF = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colEmissão = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -56,6 +56,7 @@
             this.lista.TabIndex = 1;
             this.lista.UseCompatibleStateImageBehavior = false;
             this.lista.View = System.Windows.Forms.View.Details;
+            this.lista.AoExcluir += new System.EventHandler(this.lista_AoExcluir);
             this.lista.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lista_ColumnClick);
             this.lista.DoubleClick += new System.EventHandler(this.lista_DoubleClick);
             // 

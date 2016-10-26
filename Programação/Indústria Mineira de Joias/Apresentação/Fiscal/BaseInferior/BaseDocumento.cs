@@ -24,6 +24,8 @@ namespace Apresentação.Fiscal.BaseInferior
             txtValor.Text = documento.ValorTotal.ToString("C");
             txtNúmero.Text = documento.Número.ToString();
             txtEmitente.Text = documento.CNPJEmitenteFormatado;
+            txtObservações.Text = documento.Observações;
+
             cmbTipoDocumento.Seleção = TipoDocumento.Obter(documento.TipoDocumento);
         }
 
@@ -77,6 +79,12 @@ namespace Apresentação.Fiscal.BaseInferior
         protected virtual List<string> ObterIds()
         {
             throw new System.Exception("abstrato");
+        }
+
+        private void txtObservações_Validated(object sender, System.EventArgs e)
+        {
+            documento.Observações = txtObservações.Text;
+            Gravar();
         }
     }
 }

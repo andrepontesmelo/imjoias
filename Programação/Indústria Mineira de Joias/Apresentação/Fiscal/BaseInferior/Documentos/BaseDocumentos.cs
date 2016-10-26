@@ -2,6 +2,7 @@
 using Apresentação.Fiscal.Lista;
 using Entidades.Fiscal;
 using System;
+using System.ComponentModel;
 
 namespace Apresentação.Fiscal.BaseInferior.Documentos
 {
@@ -12,6 +13,10 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
         public BaseDocumentos()
         {
             InitializeComponent();
+
+            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
+                return;
+
             controlador = ConstruirControlador();
         }
 
@@ -21,6 +26,11 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
         }
 
         private void opçãoExcluir_Click(object sender, System.EventArgs e)
+        {
+            Excluir();
+        }
+
+        protected void Excluir()
         {
             if (controlador.Excluir())
                 Recarregar();
