@@ -130,6 +130,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.opçãoExcluirDocumento.Name = "opçãoExcluirDocumento";
             this.opçãoExcluirDocumento.Size = new System.Drawing.Size(150, 16);
             this.opçãoExcluirDocumento.TabIndex = 3;
+            this.opçãoExcluirDocumento.Click += new System.EventHandler(this.opçãoExcluirDocumento_Click);
             // 
             // opçãoImprimir
             // 
@@ -533,6 +534,8 @@ namespace Apresentação.Fiscal.BaseInferior
             // 
             this.comboTipoUnidade1.FormattingEnabled = true;
             this.comboTipoUnidade1.Items.AddRange(new object[] {
+            "Peça",
+            "Gramas",
             "Peça",
             "Gramas",
             "Peça",

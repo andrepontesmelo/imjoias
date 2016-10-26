@@ -23,5 +23,10 @@ namespace Apresentação.Fiscal.BaseInferior
         {
             return EntradaFiscal.ObterIds();
         }
+
+        protected override void Excluir()
+        {
+            EntradaFiscal.Excluir(new string[] { documento.Id });
+        }
     }
 }

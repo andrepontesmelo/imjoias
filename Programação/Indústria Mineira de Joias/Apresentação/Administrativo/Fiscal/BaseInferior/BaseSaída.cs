@@ -42,5 +42,10 @@ namespace Apresentação.Fiscal.BaseInferior
             Documento.Setor = cmbSetor.Seleção.Código;
             Gravar();
         }
+
+        protected override void Excluir()
+        {
+            SaídaFiscal.Excluir(new string[] { documento.Id });
+        }
     }
 }

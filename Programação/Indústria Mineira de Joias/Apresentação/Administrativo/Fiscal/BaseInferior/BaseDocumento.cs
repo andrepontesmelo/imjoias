@@ -1,6 +1,8 @@
 ﻿using Entidades.Fiscal;
 using Entidades.Fiscal.Tipo;
 using System.Collections.Generic;
+using System.Windows.Forms;
+using System;
 
 namespace Apresentação.Fiscal.BaseInferior
 {
@@ -85,6 +87,23 @@ namespace Apresentação.Fiscal.BaseInferior
         {
             documento.Observações = txtObservações.Text;
             Gravar();
+        }
+
+        private void opçãoExcluirDocumento_Click(object sender, System.EventArgs e)
+        {
+            if (MessageBox.Show(this,
+                "Confirma exclusão deste documento ?",
+                "Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                return;
+
+            Excluir();
+
+            SubstituirBaseParaAnterior();
+        }
+
+        protected virtual void Excluir()
+        {
+            throw new System.Exception("abstrato");
         }
     }
 }
