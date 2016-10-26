@@ -67,7 +67,7 @@ namespace Apresentação.Fiscal.Lista
             item.SubItems[colValor.Index].Text = documentoFiscal.ValorTotal.ToString("C",
                 Entidades.Configuração.DadosGlobais.Instância.Cultura);
             item.SubItems[colNúmero.Index].Text = documentoFiscal.Número.ToString();
-            item.SubItems[colObservações.Index].Text = documentoFiscal.Observações;
+            item.SubItems[colObservações.Index].Text = documentoFiscal.Observações.Replace("\n", " ");
 
             item.Tag = documentoFiscal;
 
