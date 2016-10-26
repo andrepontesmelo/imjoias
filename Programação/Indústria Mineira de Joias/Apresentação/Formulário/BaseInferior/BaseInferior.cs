@@ -100,7 +100,7 @@ namespace Apresentação.Formulários
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.esquerda);
             this.Name = "BaseInferior";
-            this.Size = new System.Drawing.Size(800, 853);
+            this.Size = new System.Drawing.Size(800, 296);
             this.Load += new System.EventHandler(this.BaseInferior_Load);
             this.esquerda.ResumeLayout(false);
             this.ResumeLayout(false);
