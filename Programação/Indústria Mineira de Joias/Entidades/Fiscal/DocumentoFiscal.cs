@@ -81,12 +81,14 @@ namespace Entidades.Fiscal
         {
             using (IDbCommand cmd = conexão.CreateCommand())
             {
+                novoId = novoId == null ? id : novoId;
+
                 cmd.Transaction = transação;
                 cmd.CommandText = string.Format("update {0} set id={1}, " +
                     " numero={2}, tipo={3}, dataemissao={4}, valortotal={5}, " +
                     " cnpjemitente={6}, observacoes={7} where id={8}",
                     NomeRelação,
-                    DbTransformar(novoId == null ? id : novoId),
+                    DbTransformar(novoId),
                     DbTransformar(número),
                     DbTransformar(tipoDocumento),
                     DbTransformar(dataEmissão),
@@ -96,6 +98,8 @@ namespace Entidades.Fiscal
                     DbTransformar(id));
 
                 cmd.ExecuteNonQuery();
+
+                id = novoId;
             }
         }
 

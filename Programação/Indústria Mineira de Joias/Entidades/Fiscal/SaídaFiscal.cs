@@ -74,6 +74,18 @@ namespace Entidades.Fiscal
         public override void GravarEntidade(IDbTransaction transação, IDbConnection conexão)
         {
             base.GravarEntidade(transação, conexão);
+
+            using (IDbCommand cmd = conexão.CreateCommand())
+            {
+                cmd.Transaction = transação;
+                cmd.CommandText = string.Format("update {0} set cancelada={1}, setor={2} WHERE id={3}",
+                    NomeRelação,
+                    DbTransformar(cancelada),
+                    DbTransformar(setor),
+                    DbTransformar(id));
+
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public static List<string> ObterIds()
