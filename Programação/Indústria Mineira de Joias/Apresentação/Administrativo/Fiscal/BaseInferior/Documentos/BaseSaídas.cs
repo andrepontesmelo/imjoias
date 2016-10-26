@@ -14,18 +14,29 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
             InitializeComponent();
 
             tabControl.TabPages.Clear();
-            Setor[] setores = Setor.ObterSetoresAtendimento();
-            foreach (Setor setor in setores)
-            {
-                TabPage aba = new TabPage(setor.Nome);
-                tabControl.TabPages.Add(aba);
-                ListaDocumentoSaída lista = new ListaDocumentoSaída();
-                lista.Tag = (int) setor.Código;
-                lista.Dock = DockStyle.Fill;
-                lista.CliqueDuplo += Lista_CliqueDuplo;
-                lista.AoSolicitarExclusão += Lista_AoSolicitarExclusão;
-                aba.Controls.Add(lista);
-            }
+            foreach (Setor setor in Setor.ObterSetoresAtendimento())
+                tabControl.TabPages.Add(CriarAba(setor));
+        }
+
+        private TabPage CriarAba(Setor setor)
+        {
+            TabPage aba = new TabPage(setor.Nome);
+
+            aba.Controls.Add(CriarLista(setor));
+
+            return aba;
+        }
+
+        private ListaDocumentoSaída CriarLista(Setor setor)
+        {
+            var lista = new ListaDocumentoSaída();
+
+            lista.Tag = setor.Código;
+            lista.Dock = DockStyle.Fill;
+            lista.CliqueDuplo += Lista_CliqueDuplo;
+            lista.AoSolicitarExclusão += Lista_AoSolicitarExclusão;
+
+            return lista;
         }
 
         private void Lista_AoSolicitarExclusão(object sender, EventArgs e)
@@ -63,7 +74,7 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
             foreach (TabPage aba in tabControl.TabPages)
             {
                 ListaDocumentoSaída lista = (ListaDocumentoSaída) aba.Controls[0];
-                lista.Carregar(quadroTipo.Seleção?.Id, (int) lista.Tag);
+                lista.Carregar(quadroTipo.Seleção?.Id, (uint) lista.Tag);
             }
         }
 
@@ -87,7 +98,8 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
 
         protected override DocumentoFiscal Criar()
         {
-            return SaídaFiscal.CriarDocumento();
+            var lista = ObterListaAtiva() as ListaDocumentoSaída;
+            return SaídaFiscal.CriarDocumento(lista.Setor);
         }
 
         protected override ControladorExclusão ConstruirControlador()

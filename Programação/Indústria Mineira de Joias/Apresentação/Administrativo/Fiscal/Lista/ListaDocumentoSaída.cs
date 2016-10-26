@@ -7,14 +7,20 @@ namespace Apresentação.Fiscal.Lista
 {
     public partial class ListaDocumentoSaída : ListaDocumentoFiscal
     {
+        private uint setor;
+
         public ListaDocumentoSaída()
         {
             InitializeComponent();
             colEntradaSaída.Text = "Saída";
         }
 
-        public void Carregar(int? tipoDocumento, int setor)
+        public uint Setor => setor;
+
+        public void Carregar(int? tipoDocumento, uint setor)
         {
+            this.setor = setor;
+
             SuspendLayout();
             lista.Items.Clear();
             lista.Items.AddRange(ConstruirItens(SaídaFiscal.Obter(tipoDocumento, setor)));

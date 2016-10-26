@@ -117,9 +117,10 @@ namespace Entidades.Fiscal
             }
         }
 
-        public static DocumentoFiscal CriarDocumento()
+        public static DocumentoFiscal CriarDocumento(uint setor)
         {
-            DocumentoFiscal novo = new SaídaFiscal(Guid.NewGuid());
+            var novo = new SaídaFiscal(Guid.NewGuid());
+            novo.Setor = setor;
             novo.Cadastrar();
 
             return novo;
@@ -151,12 +152,12 @@ namespace Entidades.Fiscal
                 tipo));
         }
 
-        public static List<DocumentoFiscal> Obter(int? tipoDocumento, int? setor)
+        public static List<DocumentoFiscal> Obter(int? tipoDocumento, uint? setor)
         {
             return new List<DocumentoFiscal>(ObterListaEspecífica(tipoDocumento, setor));
         }
 
-        private static List<SaídaFiscal> ObterListaEspecífica(int? tipoDocumento, int? setor)
+        private static List<SaídaFiscal> ObterListaEspecífica(int? tipoDocumento, uint? setor)
         {
             return Mapear<SaídaFiscal>("select * from " + NOME_RELAÇÃO + " WHERE 1=1 " +
                 (tipoDocumento.HasValue ? " AND tipo=" + tipoDocumento.Value : "") +
