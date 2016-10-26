@@ -33,6 +33,9 @@ namespace Entidades.Fiscal.Importação.Resultado
                 case Motivo.CancelamentoJáRegistrado:
                     return "Cancelamento já registrado";
 
+                case Motivo.SaídaFiscalNãoCadastradaParaPdf:
+                    return "Não há saída fiscal cadastrada para este pdf";
+
                 default:
                     throw new NotImplementedException();
             }

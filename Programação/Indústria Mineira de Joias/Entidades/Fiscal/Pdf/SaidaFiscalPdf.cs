@@ -2,37 +2,36 @@
 using System.Collections.Generic;
 using System;
 using System.ComponentModel;
+using Entidades.Fiscal.NotaFiscalEletronica.Pdf;
+using Entidades.Fiscal.Importação.Resultado;
 
 namespace Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf
 {
-    public class NfePdf : DbManipulaçãoAutomática
+    public class SaidaFiscalPdf : DbManipulaçãoAutomática
     {
         [DbChavePrimária(false)]
-        private long nfe;
+        private string id;
         private byte[] pdf;
 
-        public NfePdf()
+        public SaidaFiscalPdf()
         {
         }
 
-        public NfePdf(LeitorPdf arquivo)
+        public SaidaFiscalPdf(string id, byte[] pdf)
         {
-            arquivo.AssegurarCódigoExistente();
-
-            nfe = arquivo.Nfe.Value;
-
-            pdf = arquivo.Ler();
+            this.id = id;
+            this.pdf = pdf;
         }
 
-        public long Nfe => nfe;
+        public string Id => id;
         public byte[] Pdf => pdf;
 
-        private static List<long> códigos = null;
+        private static List<string> códigos = null;
 
-        public static List<long> ObterNfes()
+        public static List<string> ObterIdsCadastrados()
         {
             if (códigos == null)
-                códigos = MapearCódigos("select nfe from nfepdf");
+                códigos = MapearStrings("select id from saidafiscalpdf");
 
             return códigos;
         }
@@ -49,26 +48,21 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf
             códigos = null;
         }
 
-        public static NfePdf DeArquivo(LeitorPdf arquivo)
-        {
-            return new NfePdf(arquivo);
-        }
-
         internal static void Cadastrar(List<LeitorPdf> pdfs, BackgroundWorker thread)
         {
             int x = 0;
 
             foreach (LeitorPdf pdf in pdfs)
             {
-                DeArquivo(pdf).Cadastrar();
+                new SaidaFiscalPdf(pdf.Id, pdf.Ler()).Cadastrar();
                 thread.ReportProgress(100 * ++x / pdfs.Count, string.Format("Cadastrando {0} pdfs no banco de dados", pdfs.Count));
             }
         }
-
-        public static NfePdf Obter(long venda)
+        
+        public static SaidaFiscalPdf Obter(long venda)
         {
-            string sql = string.Format("select * from nfepdf where nfe=(select nfe from nfe where venda={0})", DbTransformar(venda));
-            return MapearÚnicaLinha<NfePdf>(sql);
+            string sql = string.Format("select * from saidafiscalpdf where id=(select id from saidafiscal where numero =(select nfe from nfe where venda={0}))", DbTransformar(venda));
+            return MapearÚnicaLinha<SaidaFiscalPdf>(sql);
         }
     }
 }

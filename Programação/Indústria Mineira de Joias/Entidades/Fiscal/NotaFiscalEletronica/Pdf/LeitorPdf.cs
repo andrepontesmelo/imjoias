@@ -1,6 +1,7 @@
 ﻿using Entidades.Fiscal.Excessões;
 using Entidades.Fiscal.Importação;
 using Entidades.Fiscal.Importação.Resultado;
+using Entidades.Fiscal.NotaFiscalEletronica.Pdf;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,9 +14,11 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf
     {
         private string nomeArquivo;
         private int? nfe;
+        private string id;
 
         public string NomeArquivo => nomeArquivo;
         public int? Nfe => nfe;
+        public string Id => id;
 
         public byte[] Ler()
         {
@@ -32,8 +35,9 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf
 
             int resultado;
 
-            bool ok = int.TryParse(Regex.Match(nomeArquivo, @"^(.*)\D(\d{6})\D(.*)").Groups[2].Value, out resultado)
-                && Regex.Matches(nomeArquivo, @"(\d{6}) ").Count == 1;
+            bool ok = int.TryParse(Regex.Match(nomeArquivo, @"\D[0-9]{6}\D").Groups[0].Value, out resultado)
+                && Regex.Matches(nomeArquivo, @"\D[0-9]{6}\s[0-9]{6}\D").Count == 0
+                && Regex.Matches(nomeArquivo, @"\D[0-9]{6}\D").Count == 1;
 
             if (!ok) 
                 ok = int.TryParse(Regex.Match(nomeArquivo, @"^(\d{6})(.*)$").Groups[1].Value, out resultado);
@@ -66,7 +70,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf
 
         internal static List<LeitorPdf> Interpretar(List<string> arquivos, ResultadoImportação resultado, BackgroundWorker thread)
         {
-            SortedSet<long> cadastrados = new SortedSet<long>(NfePdf.ObterNfes());
+            SortedSet<string> cadastrados = new SortedSet<string>(SaidaFiscalPdf.ObterIdsCadastrados());
             List<LeitorPdf> lidos = new List<LeitorPdf>();
 
             foreach (string arquivo in arquivos)
@@ -82,20 +86,28 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf
             return lidos;
         }
 
-        private static LeitorPdf TentaLerArquivo(ResultadoImportação resultado, string arquivo, SortedSet<long> cadastrados)
+        private static LeitorPdf TentaLerArquivo(ResultadoImportação resultado, string arquivo, SortedSet<string> idsCadastrados)
         {
             try
             {
                 LeitorPdf leitor = new LeitorPdf(arquivo);
 
-                if (cadastrados.Contains(leitor.Nfe.Value))
+                leitor.id = CacheIds.Instância.ObterId(leitor.Nfe.Value);
+
+                if (leitor.id == null)
                 {
-                    resultado.ArquivosIgnorados.Adicionar(new ArquivoIgnorado(arquivo, Motivo.ChaveJáImportada, leitor.Nfe.Value.ToString()));
+                    resultado.ArquivosIgnorados.Adicionar(new ArquivoIgnorado(arquivo, Motivo.SaídaFiscalNãoCadastradaParaPdf));
                     return null;
                 }
 
-                resultado.ArquivosSucesso.Adicionar(new Arquivo(leitor.ToString(), leitor.Nfe.Value.ToString()));
-                cadastrados.Add(leitor.Nfe.Value);
+                if (idsCadastrados.Contains(leitor.id))
+                {
+                    resultado.ArquivosIgnorados.Adicionar(new ArquivoIgnorado(arquivo, Motivo.ChaveJáImportada, leitor.id));
+                    return null;
+                }
+
+                resultado.ArquivosSucesso.Adicionar(new Arquivo(leitor.ToString(), leitor.id));
+                idsCadastrados.Add(leitor.id);
 
                 return leitor;
             }

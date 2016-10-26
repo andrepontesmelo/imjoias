@@ -6,6 +6,7 @@
         NotaEmitidaEstaEmpresa,
         NotaEmitidaOutraEmpresa,
         NãoÉCancelamento,
-        CancelamentoJáRegistrado
+        CancelamentoJáRegistrado,
+        SaídaFiscalNãoCadastradaParaPdf
     }
 }

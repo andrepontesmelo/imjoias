@@ -15,7 +15,7 @@ namespace Apresentação.Fiscal
         public void Carregar(IDadosVenda venda)
         {
             Text = string.Format("Nota fiscal eletrônica da venda {0}", venda.CódigoFormatado);
-            NfePdf nfe = NfePdf.Obter(venda.Código);
+            SaidaFiscalPdf nfe = SaidaFiscalPdf.Obter(venda.Código);
             string arquivoTemporário = System.IO.Path.GetTempPath() + Guid.NewGuid().ToString() + ".pdf";
             System.IO.File.WriteAllBytes(arquivoTemporário, nfe.Pdf);
 

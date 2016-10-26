@@ -26,6 +26,13 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         }
 
         [TestMethod()]
+        public void DeveExtrairNfeInterno()
+        {
+            Assert.AreEqual(360, LeitorPdf.ExtrairNfe("fox moveis ltda 08082016 000360 23046-4.pdf"));
+        }
+               
+
+        [TestMethod()]
         public void DeveIgnorarArquivoMaiusculo()
         {
             Assert.AreEqual(292, LeitorPdf.ExtrairNfe("S&I Comercio e Repres. Ltda 03022015 000292.PDF"));
@@ -43,6 +50,13 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         public void NaoDeveExtrairMaisUmCódigo()
         {
             LeitorPdf.ExtrairNfe("Bla 000001 000002 Ltda.pdf");
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(NomeArquivoInválido))]
+        public void NaoDeveExtrairMaisUmCódigoSeparado()
+        {
+            LeitorPdf.ExtrairNfe("Bla 000001 Separação 000002 Ltda.pdf");
         }
 
         [TestMethod()]

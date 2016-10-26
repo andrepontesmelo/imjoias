@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System;
+using Entidades.Fiscal.NotaFiscalEletronica.Pdf;
 
 namespace Entidades.Fiscal.Importação
 {
@@ -18,10 +19,12 @@ namespace Entidades.Fiscal.Importação
 
         protected override ResultadoImportação ImportarArquivos(string caminho, SearchOption opções, BackgroundWorker thread)
         {
+            CacheIds.Instância.Recarregar();
+
             ResultadoImportação resultado = new ResultadoImportação(DESCRIÇÃO);
             List<string> arquivos = ObterArquivos(caminho, PADRÂO_ARQUIVO, opções);
             List<LeitorPdf> pdfs = LeitorPdf.Interpretar(arquivos, resultado, thread);
-            NfePdf.CadastrarLimpandoCache(pdfs, thread);
+            SaidaFiscalPdf.CadastrarLimpandoCache(pdfs, thread);
 
             return resultado;
         }

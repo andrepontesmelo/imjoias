@@ -114,3 +114,31 @@ update tipodocumentofiscal set entrada='1', saida='1';
 ALTER TABLE imjoias.saidafiscal ADD tipo int NOT NULL;
 update saidafiscal set tipo=1;
 
+
+RENAME TABLE `nfepdf` TO `saidafiscalpdf`;
+
+ALTER TABLE `saidafiscalpdf`
+	ALTER `nfe` DROP DEFAULT;
+ALTER TABLE `saidafiscalpdf`
+	CHANGE COLUMN `nfe` `nfe` VARCHAR(49) NOT NULL FIRST;
+
+
+ALTER TABLE `saidafiscalpdf`
+	ALTER `nfe` DROP DEFAULT;
+ALTER TABLE `saidafiscalpdf`
+	CHANGE COLUMN `nfe` `id` VARCHAR(49) NOT NULL FIRST;
+
+delete from saidafiscalpdf;
+
+
+ALTER TABLE `saidafiscalpdf`
+	ADD CONSTRAINT `FK_saidafiscalpdf_saidafiscal` FOREIGN KEY (`id`) REFERENCES `saidafiscal` (`id`) ON UPDATE CASCADE ON DELETE CASCADE;
+
+CREATE TABLE `entradafiscalpdf` (
+  `id` varchar(49) NOT NULL,
+  `pdf` mediumblob NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `FK_entradafiscalpdf_entradafiscal` FOREIGN KEY (`id`) REFERENCES `entradafiscal` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPRESSED;
+
+
