@@ -23,8 +23,14 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
                 lista.Tag = (int) setor.Código;
                 lista.Dock = DockStyle.Fill;
                 lista.CliqueDuplo += Lista_CliqueDuplo;
+                lista.AoSolicitarExclusão += Lista_AoSolicitarExclusão;
                 aba.Controls.Add(lista);
             }
+        }
+
+        private void Lista_AoSolicitarExclusão(object sender, EventArgs e)
+        {
+            Excluir();
         }
 
         private void Lista_CliqueDuplo(DocumentoFiscal documento)

@@ -11,7 +11,7 @@ namespace Apresentação.Fiscal.Lista
     {
         public delegate void CliqueDuploDelegate(DocumentoFiscal documento);
         public event CliqueDuploDelegate CliqueDuplo;
-        public event EventHandler AoExcluir;
+        public event EventHandler AoSolicitarExclusão;
 
         public ListaDocumentoFiscal()
         {
@@ -86,7 +86,7 @@ namespace Apresentação.Fiscal.Lista
 
         private void lista_AoExcluir(object sender, EventArgs e)
         {
-            AoExcluir?.Invoke(sender, e);
+            AoSolicitarExclusão?.Invoke(sender, e);
         }
     }
 }

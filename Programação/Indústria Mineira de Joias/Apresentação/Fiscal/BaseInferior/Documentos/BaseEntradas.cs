@@ -68,5 +68,10 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
         {
             return new ControladorExclusãoEntrada(this);
         }
+
+        private void lista_AoSolicitarExclusão(object sender, System.EventArgs e)
+        {
+            Excluir();
+        }
     }
 }
