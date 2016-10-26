@@ -1228,7 +1228,7 @@ namespace Apresentação.Atendimento
             else
                 pessoaUtilizar = pessoa;
 
-            AcertoConsignado acerto = EscolherAcerto.QuestionarUsuário(ParentForm, pessoaUtilizar, false);
+            AcertoConsignado acerto = JanelaEscolhaAcerto.QuestionarUsuário(ParentForm, pessoaUtilizar, false);
 
             if (acerto != null)
             {

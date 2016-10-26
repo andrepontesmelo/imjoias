@@ -46,7 +46,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
@@ -58,7 +59,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
@@ -72,7 +74,8 @@
     <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
     <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
     <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
     <CodeAnalysisRuleSetDirectories>;c:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
     <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
     <CodeAnalysisRuleDirectories>;c:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
@@ -91,7 +94,8 @@
     <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
     <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
     <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
     <CodeAnalysisRuleSetDirectories>;c:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
     <CodeAnalysisRuleDirectories>;c:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
     <Prefer32Bit>false</Prefer32Bit>
@@ -105,11 +109,15 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <PlatformTarget>x64</PlatformTarget>
     <OutputPath>bin\x64\Debug\</OutputPath>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <PlatformTarget>x64</PlatformTarget>
     <OutputPath>bin\x64\Release\</OutputPath>
     <Optimize>true</Optimize>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
   </PropertyGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -120,225 +128,225 @@
   </Target>
   -->
   <ItemGroup>
-    <Compile Include="Atendente\BaseInfoAtendimentos.cs">
+    <Compile Include="Pessoa\Atendente\BaseInfoAtendimentos.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Atendente\BaseInfoAtendimentos.Designer.cs">
+    <Compile Include="Pessoa\Atendente\BaseInfoAtendimentos.Designer.cs">
       <DependentUpon>BaseInfoAtendimentos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Atendente\BaseInfoAtendimentosCliente.cs">
+    <Compile Include="Pessoa\Atendente\BaseInfoAtendimentosCliente.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Atendente\BaseInfoAtendimentosCliente.Designer.cs">
+    <Compile Include="Pessoa\Atendente\BaseInfoAtendimentosCliente.Designer.cs">
       <DependentUpon>BaseInfoAtendimentosCliente.cs</DependentUpon>
     </Compile>
-    <Compile Include="Atendente\BaseListaAtendimentos.cs">
+    <Compile Include="Pessoa\Atendente\BaseListaAtendimentos.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Atendente\BaseListaAtendimentos.Designer.cs">
+    <Compile Include="Pessoa\Atendente\BaseListaAtendimentos.Designer.cs">
       <DependentUpon>BaseListaAtendimentos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Atendente\ControladorAtendimentoDinâmico.cs">
+    <Compile Include="Pessoa\Atendente\ControladorAtendimentoDinâmico.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Atendente\ControladorAtendimentoGenérico.cs">
+    <Compile Include="Pessoa\Atendente\ControladorAtendimentoGenérico.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Atendente\ListaFuncionárioItem.cs">
+    <Compile Include="Pessoa\Atendente\ListaFuncionárioItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Atendente\ListaPessoasVisitante.cs">
+    <Compile Include="Pessoa\Atendente\ListaPessoasVisitante.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Atendente\ListaPessoasVisitante.Designer.cs">
+    <Compile Include="Pessoa\Atendente\ListaPessoasVisitante.Designer.cs">
       <DependentUpon>ListaPessoasVisitante.cs</DependentUpon>
     </Compile>
-    <Compile Include="Atendente\QuestionarNomeVisitante.cs">
+    <Compile Include="Pessoa\Atendente\QuestionarNomeVisitante.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Atendente\QuestionarNomeVisitante.Designer.cs">
+    <Compile Include="Pessoa\Atendente\QuestionarNomeVisitante.Designer.cs">
       <DependentUpon>QuestionarNomeVisitante.cs</DependentUpon>
     </Compile>
-    <Compile Include="Atendente\ResolverVisitante.cs">
+    <Compile Include="Pessoa\Atendente\ResolverVisitante.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Atendente\ResolverVisitante.Designer.cs">
+    <Compile Include="Pessoa\Atendente\ResolverVisitante.Designer.cs">
       <DependentUpon>ResolverVisitante.cs</DependentUpon>
     </Compile>
-    <Compile Include="Balanço\BandejaBalanço.cs">
+    <Compile Include="Administrativo\Balanço\BandejaBalanço.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Balanço\BandejaBalanço.Designer.cs">
+    <Compile Include="Administrativo\Balanço\BandejaBalanço.Designer.cs">
       <DependentUpon>BandejaBalanço.cs</DependentUpon>
     </Compile>
-    <Compile Include="Balanço\BaseBalanço.cs">
+    <Compile Include="Administrativo\Balanço\BaseBalanço.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Balanço\BaseBalanço.Designer.cs">
+    <Compile Include="Administrativo\Balanço\BaseBalanço.Designer.cs">
       <DependentUpon>BaseBalanço.cs</DependentUpon>
     </Compile>
-    <Compile Include="Balanço\BaseResumo.cs">
+    <Compile Include="Administrativo\Balanço\BaseResumo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Balanço\BaseResumo.Designer.cs">
+    <Compile Include="Administrativo\Balanço\BaseResumo.Designer.cs">
       <DependentUpon>BaseResumo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Balanço\PersistênciaDocumentosBalanço.cs" />
+    <Compile Include="Administrativo\Balanço\PersistênciaDocumentosBalanço.cs" />
     <Compile Include="BaseAtendimento.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BaseAdministrativa.cs">
+    <Compile Include="Administrativo\BaseAdministrativa.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BaseAdministrativa.Designer.cs">
+    <Compile Include="Administrativo\BaseAdministrativa.Designer.cs">
       <DependentUpon>BaseAdministrativa.cs</DependentUpon>
     </Compile>
-    <Compile Include="Clientes\AssemblyInfo.cs" />
-    <Compile Include="Clientes\BaseSeleçãoCliente.cs">
+    <Compile Include="Pessoa\Clientes\AssemblyInfo.cs" />
+    <Compile Include="Pessoa\Clientes\BaseSeleçãoCliente.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Clientes\BaseSeleçãoClienteSetor.cs">
+    <Compile Include="Pessoa\Clientes\BaseSeleçãoClienteSetor.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Clientes\DlgConfigSeleçãoClienteSetor.cs">
+    <Compile Include="Pessoa\Clientes\DlgConfigSeleçãoClienteSetor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Clientes\Importação\CodNome.Designer.cs">
+    <Compile Include="Pessoa\Clientes\Importação\CodNome.Designer.cs">
       <DependentUpon>CodNome.xsd</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Clientes\Importação\EscolherClienteAntigo.cs">
+    <Compile Include="Pessoa\Clientes\Importação\EscolherClienteAntigo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Clientes\Importação\EscolherClienteAntigo.Designer.cs">
+    <Compile Include="Pessoa\Clientes\Importação\EscolherClienteAntigo.Designer.cs">
       <DependentUpon>EscolherClienteAntigo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Clientes\Impressão\JanelaOpçõesImpressão.cs">
+    <Compile Include="Pessoa\Clientes\Impressão\JanelaOpçõesImpressão.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Clientes\Impressão\JanelaOpçõesImpressão.Designer.cs">
+    <Compile Include="Pessoa\Clientes\Impressão\JanelaOpçõesImpressão.Designer.cs">
       <DependentUpon>JanelaOpçõesImpressão.cs</DependentUpon>
     </Compile>
-    <Compile Include="Clientes\JanelaEtiquetaSedex.cs">
+    <Compile Include="Pessoa\Clientes\JanelaEtiquetaSedex.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Clientes\JanelaEtiquetaSedex.Designer.cs">
+    <Compile Include="Pessoa\Clientes\JanelaEtiquetaSedex.Designer.cs">
       <DependentUpon>JanelaEtiquetaSedex.cs</DependentUpon>
     </Compile>
-    <Compile Include="Clientes\JanelaEtiquetaSedexEdicao.cs">
+    <Compile Include="Pessoa\Clientes\JanelaEtiquetaSedexEdicao.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Clientes\JanelaEtiquetaSedexEdicao.Designer.cs">
+    <Compile Include="Pessoa\Clientes\JanelaEtiquetaSedexEdicao.Designer.cs">
       <DependentUpon>JanelaEtiquetaSedexEdicao.cs</DependentUpon>
     </Compile>
-    <Compile Include="Clientes\ListaEntidadePessoaItem.cs">
+    <Compile Include="Pessoa\Clientes\ListaEntidadePessoaItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Clientes\ListaEntidadePessoaItemBusca.cs">
+    <Compile Include="Pessoa\Clientes\ListaEntidadePessoaItemBusca.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Clientes\ListaPessoaDataImportante.cs">
+    <Compile Include="Pessoa\Clientes\ListaPessoaDataImportante.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Clientes\ListaPessoaDataImportante.Designer.cs">
+    <Compile Include="Pessoa\Clientes\ListaPessoaDataImportante.Designer.cs">
       <DependentUpon>ListaPessoaDataImportante.cs</DependentUpon>
     </Compile>
-    <Compile Include="Clientes\ListViewVisitantes.cs">
+    <Compile Include="Pessoa\Clientes\ListViewVisitantes.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Clientes\ListViewVisitantes.Designer.cs">
+    <Compile Include="Pessoa\Clientes\ListViewVisitantes.Designer.cs">
       <DependentUpon>ListViewVisitantes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Clientes\Pedido\BaseEditarPedido.cs">
+    <Compile Include="Pedido\BaseEditarPedido.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Clientes\Pedido\BaseEditarPedido.Designer.cs">
+    <Compile Include="Pedido\BaseEditarPedido.Designer.cs">
       <DependentUpon>BaseEditarPedido.cs</DependentUpon>
     </Compile>
-    <Compile Include="Clientes\Pedido\BasePedidos.cs">
+    <Compile Include="Pedido\BasePedidos.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Clientes\Pedido\BasePedidos.Designer.cs">
+    <Compile Include="Pedido\BasePedidos.Designer.cs">
       <DependentUpon>BasePedidos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Clientes\Pedido\BasePedidosBusca.cs">
+    <Compile Include="Pedido\BasePedidosBusca.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Clientes\Pedido\BasePedidosBusca.Designer.cs">
+    <Compile Include="Pedido\BasePedidosBusca.Designer.cs">
       <DependentUpon>BasePedidosBusca.cs</DependentUpon>
     </Compile>
-    <Compile Include="Clientes\Pedido\ColetorPedidos.cs" />
-    <Compile Include="Clientes\Pedido\EncomendaItem.cs">
+    <Compile Include="Pedido\ColetorPedidos.cs" />
+    <Compile Include="Pedido\EncomendaItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Clientes\Pedido\EncomendaItem.Designer.cs">
+    <Compile Include="Pedido\EncomendaItem.Designer.cs">
       <DependentUpon>EncomendaItem.cs</DependentUpon>
     </Compile>
-    <Compile Include="Clientes\Pedido\ItemPedido.cs">
+    <Compile Include="Pedido\ItemPedido.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Clientes\Pedido\ItemPedido.Designer.cs">
+    <Compile Include="Pedido\ItemPedido.Designer.cs">
       <DependentUpon>ItemPedido.cs</DependentUpon>
     </Compile>
-    <Compile Include="Clientes\Pedido\JanelaImpressão.cs">
+    <Compile Include="Pedido\JanelaImpressão.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Clientes\Pedido\JanelaImpressão.Designer.cs">
+    <Compile Include="Pedido\JanelaImpressão.Designer.cs">
       <DependentUpon>JanelaImpressão.cs</DependentUpon>
     </Compile>
-    <Compile Include="Clientes\Pedido\ListaPedidos.cs">
+    <Compile Include="Pedido\ListaPedidos.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Clientes\Pedido\ListaPedidos.Designer.cs">
+    <Compile Include="Pedido\ListaPedidos.Designer.cs">
       <DependentUpon>ListaPedidos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Clientes\Pedido\ListaPedidosOrdenador.cs" />
-    <Compile Include="Clientes\Pedido\ListaPedidosSimples.cs">
+    <Compile Include="Pedido\ListaPedidosOrdenador.cs" />
+    <Compile Include="Pedido\ListaPedidosSimples.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Clientes\Pedido\ListaPedidosSimples.Designer.cs">
+    <Compile Include="Pedido\ListaPedidosSimples.Designer.cs">
       <DependentUpon>ListaPedidosSimples.cs</DependentUpon>
     </Compile>
-    <Compile Include="Clientes\Pedido\Parâmetros.cs" />
-    <Compile Include="Estoque\JanelaOpçõesEstoque.cs">
+    <Compile Include="Pedido\Parâmetros.cs" />
+    <Compile Include="Administrativo\Estoque\JanelaOpçõesEstoque.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Estoque\JanelaOpçõesEstoque.Designer.cs">
+    <Compile Include="Administrativo\Estoque\JanelaOpçõesEstoque.Designer.cs">
       <DependentUpon>JanelaOpçõesEstoque.cs</DependentUpon>
     </Compile>
-    <Compile Include="Estoque\ListaZeragemEstoque.cs">
+    <Compile Include="Administrativo\Estoque\ListaZeragemEstoque.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Estoque\ListaZeragemEstoque.Designer.cs">
+    <Compile Include="Administrativo\Estoque\ListaZeragemEstoque.Designer.cs">
       <DependentUpon>ListaZeragemEstoque.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Acerto\Sumário\SumárioAcerto.cs">
+    <Compile Include="Financeiro\Acerto\SumárioAcerto.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\Acerto\Sumário\SumárioAcerto.Designer.cs">
+    <Compile Include="Financeiro\Acerto\SumárioAcerto.Designer.cs">
       <DependentUpon>SumárioAcerto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Comissões\BaseEditarComissão.cs">
+    <Compile Include="Financeiro\Comissões\BaseInferior\BaseEditarComissão.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\Comissões\BaseEditarComissão.Designer.cs">
+    <Compile Include="Financeiro\Comissões\BaseInferior\BaseEditarComissão.Designer.cs">
       <DependentUpon>BaseEditarComissão.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Comissões\BaseVendaSemComissão.cs">
+    <Compile Include="Financeiro\Comissões\BaseInferior\BaseVendaSemComissão.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\Comissões\BaseVendaSemComissão.Designer.cs">
+    <Compile Include="Financeiro\Comissões\BaseInferior\BaseVendaSemComissão.Designer.cs">
       <DependentUpon>BaseVendaSemComissão.cs</DependentUpon>
     </Compile>
     <Compile Include="Financeiro\Comissões\ControleAberturaVenda.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Financeiro\Comissões\ControleAberturaVenda.Designer.cs" />
-    <Compile Include="Financeiro\Comissões\ListaVendaComissão.cs">
+    <Compile Include="Financeiro\Comissões\Lista\ListaVendaComissão.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\Comissões\ListaVendaComissão.Designer.cs" />
+    <Compile Include="Financeiro\Comissões\Lista\ListaVendaComissão.Designer.cs" />
     <Compile Include="Financeiro\Controle\Comum\ColeçãoListaPessoasItem.cs" />
     <Compile Include="Financeiro\Controle\Comum\ControladorÍconePessoa.cs" />
     <Compile Include="Financeiro\Controle\Comum\ListaPessoas.cs">
@@ -353,76 +361,76 @@
     <Compile Include="Financeiro\Controle\Comum\ListaPessoasItemBusca.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Estatística\Gráfico.cs">
+    <Compile Include="Administrativo\Estatística\Gráfico.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Estatística\GráficoBarras.cs">
+    <Compile Include="Administrativo\Estatística\GráficoBarras.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Estatística\GráficoBarras.Designer.cs">
+    <Compile Include="Administrativo\Estatística\GráficoBarras.Designer.cs">
       <DependentUpon>GráficoBarras.cs</DependentUpon>
     </Compile>
-    <Compile Include="Estatística\GráficoEmGrade.cs">
+    <Compile Include="Administrativo\Estatística\GráficoEmGrade.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Estatística\GráficoEmGrade.Designer.cs">
+    <Compile Include="Administrativo\Estatística\GráficoEmGrade.Designer.cs">
       <DependentUpon>GráficoEmGrade.cs</DependentUpon>
     </Compile>
-    <Compile Include="Estatística\GráficoLinhas.cs">
+    <Compile Include="Administrativo\Estatística\GráficoLinhas.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Estatística\GráficoLinhas.Designer.cs">
+    <Compile Include="Administrativo\Estatística\GráficoLinhas.Designer.cs">
       <DependentUpon>GráficoLinhas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Estatística\Legenda.cs">
+    <Compile Include="Administrativo\Estatística\Legenda.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Estoque\BaseEstoque.cs">
+    <Compile Include="Administrativo\Estoque\BaseEstoque.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Estoque\BaseEstoque.Designer.cs">
+    <Compile Include="Administrativo\Estoque\BaseEstoque.Designer.cs">
       <DependentUpon>BaseEstoque.cs</DependentUpon>
     </Compile>
-    <Compile Include="Estoque\Extrato\BaseExtrato.cs">
+    <Compile Include="Administrativo\Estoque\Extrato\BaseExtrato.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Estoque\Extrato\BaseExtrato.Designer.cs">
+    <Compile Include="Administrativo\Estoque\Extrato\BaseExtrato.Designer.cs">
       <DependentUpon>BaseExtrato.cs</DependentUpon>
     </Compile>
-    <Compile Include="Estoque\BaseZerarEstoque.cs">
+    <Compile Include="Administrativo\Estoque\BaseZerarEstoque.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Estoque\BaseZerarEstoque.Designer.cs">
+    <Compile Include="Administrativo\Estoque\BaseZerarEstoque.Designer.cs">
       <DependentUpon>BaseZerarEstoque.cs</DependentUpon>
     </Compile>
-    <Compile Include="Estoque\Entrada\BaseEditarEntrada.cs">
+    <Compile Include="Administrativo\Estoque\Entrada\BaseEditarEntrada.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Estoque\Entrada\BaseEditarEntrada.Designer.cs">
+    <Compile Include="Administrativo\Estoque\Entrada\BaseEditarEntrada.Designer.cs">
       <DependentUpon>BaseEditarEntrada.cs</DependentUpon>
     </Compile>
-    <Compile Include="Estoque\Entrada\BaseEntradas.cs">
+    <Compile Include="Administrativo\Estoque\Entrada\BaseEntradas.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Estoque\Entrada\BaseEntradas.Designer.cs">
+    <Compile Include="Administrativo\Estoque\Entrada\BaseEntradas.Designer.cs">
       <DependentUpon>BaseEntradas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Estoque\Entrada\ListaEntradas.cs">
+    <Compile Include="Administrativo\Estoque\Entrada\ListaEntradas.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Estoque\Entrada\ListaEntradas.Designer.cs">
+    <Compile Include="Administrativo\Estoque\Entrada\ListaEntradas.Designer.cs">
       <DependentUpon>ListaEntradas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Estoque\Extrato\ListaExtrato.cs">
+    <Compile Include="Administrativo\Estoque\Extrato\ListaExtrato.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Estoque\Extrato\ListaExtrato.Designer.cs">
+    <Compile Include="Administrativo\Estoque\Extrato\ListaExtrato.Designer.cs">
       <DependentUpon>ListaExtrato.cs</DependentUpon>
     </Compile>
-    <Compile Include="Estoque\ListaSaldo.cs">
+    <Compile Include="Administrativo\Estoque\ListaSaldo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Estoque\ListaSaldo.Designer.cs">
+    <Compile Include="Administrativo\Estoque\ListaSaldo.Designer.cs">
       <DependentUpon>ListaSaldo.cs</DependentUpon>
     </Compile>
     <Compile Include="Financeiro\Acerto\Alerta\AlertaQuadro.cs" />
@@ -435,26 +443,26 @@
     <Compile Include="Financeiro\Acerto\BandejaAcerto.Designer.cs">
       <DependentUpon>BandejaAcerto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Acerto\BaseAcertosPendentes.cs">
+    <Compile Include="Financeiro\Acerto\BaseInferior\BaseAcertosPendentes.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\Acerto\BaseAcertosPendentes.Designer.cs">
+    <Compile Include="Financeiro\Acerto\BaseInferior\BaseAcertosPendentes.Designer.cs">
       <DependentUpon>BaseAcertosPendentes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Acerto\BaseDadosAcerto.cs">
+    <Compile Include="Financeiro\Acerto\BaseInferior\BaseDadosAcerto.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\Acerto\BaseDadosAcerto.Designer.cs">
+    <Compile Include="Financeiro\Acerto\BaseInferior\BaseDadosAcerto.Designer.cs">
       <DependentUpon>BaseDadosAcerto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Acerto\BaseResumoAcerto.cs">
+    <Compile Include="Financeiro\Acerto\BaseInferior\BaseResumoAcerto.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\Acerto\CriarAcerto.cs">
+    <Compile Include="Financeiro\Acerto\Janela\JanelaCriaAcerto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Financeiro\Acerto\CriarAcerto.Designer.cs">
-      <DependentUpon>CriarAcerto.cs</DependentUpon>
+    <Compile Include="Financeiro\Acerto\Janela\JanelaCriaAcerto.Designer.cs">
+      <DependentUpon>JanelaCriaAcerto.cs</DependentUpon>
     </Compile>
     <Compile Include="Financeiro\Acerto\DadosAcerto.cs">
       <SubType>UserControl</SubType>
@@ -462,65 +470,65 @@
     <Compile Include="Financeiro\Acerto\DadosAcerto.Designer.cs">
       <DependentUpon>DadosAcerto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Acerto\EscolherAcerto.cs">
+    <Compile Include="Financeiro\Acerto\Janela\JanelaEscolhaAcerto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Financeiro\Acerto\EscolherAcerto.Designer.cs">
-      <DependentUpon>EscolherAcerto.cs</DependentUpon>
+    <Compile Include="Financeiro\Acerto\Janela\JanelaEscolhaAcerto.Designer.cs">
+      <DependentUpon>JanelaEscolhaAcerto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Acerto\JanelaDesconto.cs">
+    <Compile Include="Financeiro\Acerto\Janela\JanelaDesconto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Financeiro\Acerto\JanelaDesconto.Designer.cs">
+    <Compile Include="Financeiro\Acerto\Janela\JanelaDesconto.Designer.cs">
       <DependentUpon>JanelaDesconto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Acerto\JanelaEscolhaFórmula.cs">
+    <Compile Include="Financeiro\Acerto\Janela\JanelaEscolhaFórmula.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Financeiro\Acerto\JanelaEscolhaFórmula.Designer.cs">
+    <Compile Include="Financeiro\Acerto\Janela\JanelaEscolhaFórmula.Designer.cs">
       <DependentUpon>JanelaEscolhaFórmula.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Acerto\JanelaImpressão.cs">
+    <Compile Include="Financeiro\Acerto\Janela\JanelaImpressão.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Financeiro\Acerto\JanelaImpressão.Designer.cs">
+    <Compile Include="Financeiro\Acerto\Janela\JanelaImpressão.Designer.cs">
       <DependentUpon>JanelaImpressão.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Acerto\JanelaRastro.cs">
+    <Compile Include="Financeiro\Acerto\Janela\JanelaRastro.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Financeiro\Acerto\JanelaRastro.Designer.cs">
+    <Compile Include="Financeiro\Acerto\Janela\JanelaRastro.Designer.cs">
       <DependentUpon>JanelaRastro.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Acerto\ListaAcertoHorário.cs">
+    <Compile Include="Financeiro\Acerto\Lista\ListaAcertoHorário.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\Acerto\ListaAcertoHorário.Designer.cs">
+    <Compile Include="Financeiro\Acerto\Lista\ListaAcertoHorário.Designer.cs">
       <DependentUpon>ListaAcertoHorário.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Acerto\ListaAcertos.cs">
+    <Compile Include="Financeiro\Acerto\Lista\ListaAcertos.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\Acerto\ListaAcertos.Designer.cs">
+    <Compile Include="Financeiro\Acerto\Lista\ListaAcertos.Designer.cs">
       <DependentUpon>ListaAcertos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Acerto\ListaDocumentosAcerto.cs">
+    <Compile Include="Financeiro\Acerto\Lista\ListaDocumentosAcerto.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\Acerto\ListaDocumentosAcerto.Designer.cs">
+    <Compile Include="Financeiro\Acerto\Lista\ListaDocumentosAcerto.Designer.cs">
       <DependentUpon>ListaDocumentosAcerto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Acerto\ListaDocumentosAcertoItem.cs">
+    <Compile Include="Financeiro\Acerto\Lista\ListaDocumentosAcertoItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\Acerto\ListaDocumentosAcertoItem.Designer.cs">
+    <Compile Include="Financeiro\Acerto\Lista\ListaDocumentosAcertoItem.Designer.cs">
       <DependentUpon>ListaDocumentosAcertoItem.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Acerto\LstRastro.cs">
+    <Compile Include="Financeiro\Acerto\Lista\ListaRastro.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\Acerto\LstRastro.Designer.cs">
-      <DependentUpon>LstRastro.cs</DependentUpon>
+    <Compile Include="Financeiro\Acerto\Lista\ListaRastro.Designer.cs">
+      <DependentUpon>ListaRastro.cs</DependentUpon>
     </Compile>
     <Compile Include="Financeiro\Acerto\MostradorAcerto.cs">
       <SubType>UserControl</SubType>
@@ -536,91 +544,91 @@
     </Compile>
     <Compile Include="Financeiro\Comissões\Delegate\PessoaDelegate.cs" />
     <Compile Include="Financeiro\Comissões\Delegate\VendaDelegate.cs" />
-    <Compile Include="Financeiro\Comissões\JanelaImpressãoComissão.cs">
+    <Compile Include="Financeiro\Comissões\Janela\JanelaImpressãoComissão.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Financeiro\Comissões\JanelaImpressãoComissão.Designer.cs">
+    <Compile Include="Financeiro\Comissões\Janela\JanelaImpressãoComissão.Designer.cs">
       <DependentUpon>JanelaImpressãoComissão.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Comissões\ListaComissões.cs">
+    <Compile Include="Financeiro\Comissões\Lista\ListaComissões.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\Comissões\ListaComissões.Designer.cs">
+    <Compile Include="Financeiro\Comissões\Lista\ListaComissões.Designer.cs">
       <DependentUpon>ListaComissões.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Comissões\ListViewComissionados.cs">
+    <Compile Include="Financeiro\Comissões\Lista\ListaComissionados.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\Comissões\ListViewComissionados.Designer.cs">
-      <DependentUpon>ListViewComissionados.cs</DependentUpon>
+    <Compile Include="Financeiro\Comissões\Lista\ListaComissionados.Designer.cs">
+      <DependentUpon>ListaComissionados.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fiscal\BaseInferior\BaseDocumento.cs">
+    <Compile Include="Administrativo\Fiscal\BaseInferior\BaseDocumento.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Fiscal\BaseInferior\BaseDocumento.Designer.cs">
+    <Compile Include="Administrativo\Fiscal\BaseInferior\BaseDocumento.Designer.cs">
       <DependentUpon>BaseDocumento.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fiscal\BaseInferior\Documentos\BaseDocumentos.cs">
+    <Compile Include="Administrativo\Fiscal\BaseInferior\Documentos\BaseDocumentos.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Fiscal\BaseInferior\Documentos\BaseDocumentos.Designer.cs">
+    <Compile Include="Administrativo\Fiscal\BaseInferior\Documentos\BaseDocumentos.Designer.cs">
       <DependentUpon>BaseDocumentos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fiscal\BaseInferior\Documentos\BaseEntradas.cs">
+    <Compile Include="Administrativo\Fiscal\BaseInferior\Documentos\BaseEntradas.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Fiscal\BaseInferior\Documentos\BaseEntradas.Designer.cs">
+    <Compile Include="Administrativo\Fiscal\BaseInferior\Documentos\BaseEntradas.Designer.cs">
       <DependentUpon>BaseEntradas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fiscal\BaseInferior\BaseEntrada.cs">
+    <Compile Include="Administrativo\Fiscal\BaseInferior\BaseEntrada.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Fiscal\BaseInferior\BaseEntrada.Designer.cs">
+    <Compile Include="Administrativo\Fiscal\BaseInferior\BaseEntrada.Designer.cs">
       <DependentUpon>BaseEntrada.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fiscal\BaseInferior\BaseSaída.cs">
+    <Compile Include="Administrativo\Fiscal\BaseInferior\BaseSaída.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Fiscal\BaseInferior\BaseSaída.Designer.cs">
+    <Compile Include="Administrativo\Fiscal\BaseInferior\BaseSaída.Designer.cs">
       <DependentUpon>BaseSaída.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fiscal\BaseInferior\Documentos\BaseSaídas.cs">
+    <Compile Include="Administrativo\Fiscal\BaseInferior\Documentos\BaseSaídas.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Fiscal\BaseInferior\Documentos\BaseSaídas.Designer.cs">
+    <Compile Include="Administrativo\Fiscal\BaseInferior\Documentos\BaseSaídas.Designer.cs">
       <DependentUpon>BaseSaídas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fiscal\BaseInferior\Documentos\Exclusão\ControladorExclusãoEntrada.cs" />
-    <Compile Include="Fiscal\BaseInferior\Documentos\Exclusão\ControladorExclusãoSaída.cs" />
-    <Compile Include="Fiscal\Combobox\ComboTipoDocumento.cs">
+    <Compile Include="Administrativo\Fiscal\BaseInferior\Documentos\Exclusão\ControladorExclusãoEntrada.cs" />
+    <Compile Include="Administrativo\Fiscal\BaseInferior\Documentos\Exclusão\ControladorExclusãoSaída.cs" />
+    <Compile Include="Administrativo\Fiscal\Combo\ComboTipoDocumento.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Fiscal\Combobox\ComboTipoDocumento.Designer.cs">
+    <Compile Include="Administrativo\Fiscal\Combo\ComboTipoDocumento.Designer.cs">
       <DependentUpon>ComboTipoDocumento.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fiscal\Combobox\ComboTipoUnidade.cs">
+    <Compile Include="Administrativo\Fiscal\Combo\ComboTipoUnidade.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Fiscal\Combobox\ComboTipoUnidade.Designer.cs">
+    <Compile Include="Administrativo\Fiscal\Combo\ComboTipoUnidade.Designer.cs">
       <DependentUpon>ComboTipoUnidade.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fiscal\BaseInferior\Documentos\Exclusão\ControladorExclusão.cs" />
-    <Compile Include="Fiscal\Janela\JanelaCFOP.cs">
+    <Compile Include="Administrativo\Fiscal\BaseInferior\Documentos\Exclusão\ControladorExclusão.cs" />
+    <Compile Include="Administrativo\Fiscal\Janela\JanelaCFOP.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Fiscal\Janela\JanelaCFOP.Designer.cs">
+    <Compile Include="Administrativo\Fiscal\Janela\JanelaCFOP.Designer.cs">
       <DependentUpon>JanelaCFOP.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fiscal\Janela\JanelaImportação.cs">
+    <Compile Include="Administrativo\Fiscal\Janela\JanelaImportação.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Fiscal\Janela\JanelaImportação.Designer.cs">
+    <Compile Include="Administrativo\Fiscal\Janela\JanelaImportação.Designer.cs">
       <DependentUpon>JanelaImportação.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fiscal\Janela\JanelaNFe.cs">
+    <Compile Include="Administrativo\Fiscal\Janela\JanelaNFe.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Fiscal\Janela\JanelaNFe.Designer.cs">
+    <Compile Include="Administrativo\Fiscal\Janela\JanelaNFe.Designer.cs">
       <DependentUpon>JanelaNFe.cs</DependentUpon>
     </Compile>
     <Compile Include="Financeiro\Indicadores\JanelaCalculoJuros.cs">
@@ -629,47 +637,47 @@
     <Compile Include="Financeiro\Indicadores\JanelaCalculoJuros.Designer.cs">
       <DependentUpon>JanelaCalculoJuros.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Venda\SemaforoLegenda.cs">
+    <Compile Include="Financeiro\Relacionamento\Venda\SemaforoLegenda.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\Venda\SemaforoLegenda.Designer.cs">
+    <Compile Include="Financeiro\Relacionamento\Venda\SemaforoLegenda.Designer.cs">
       <DependentUpon>SemaforoLegenda.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\ÁreaDeTransferência.cs" />
-    <Compile Include="Financeiro\BalãoMercadoriaInconsistente.cs">
+    <Compile Include="Financeiro\Relacionamento\ÁreaDeTransferência.cs" />
+    <Compile Include="Financeiro\Relacionamento\BalãoMercadoriaInconsistente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Financeiro\BalãoMercadoriaInconsistente.Designer.cs">
+    <Compile Include="Financeiro\Relacionamento\BalãoMercadoriaInconsistente.Designer.cs">
       <DependentUpon>BalãoMercadoriaInconsistente.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\BandejaHistoricoRelacionamento.cs">
+    <Compile Include="Financeiro\Relacionamento\BandejaHistoricoRelacionamento.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\BandejaRelacionamento.cs">
+    <Compile Include="Financeiro\Relacionamento\BandejaRelacionamento.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\BaseConsignado.cs">
+    <Compile Include="Financeiro\Relacionamento\BaseConsignado.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\BaseEditarRelacionamento.cs">
+    <Compile Include="Financeiro\Relacionamento\BaseEditarRelacionamento.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\BaseEditarRelacionamento.Designer.cs">
+    <Compile Include="Financeiro\Relacionamento\BaseEditarRelacionamento.Designer.cs">
       <DependentUpon>BaseEditarRelacionamento.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\ComboTabela.cs">
+    <Compile Include="Financeiro\Tabela\ComboTabela.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Financeiro\Comissões\BaseComissão.cs">
+    <Compile Include="Financeiro\Comissões\BaseInferior\BaseComissão.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\Comissões\BaseComissão.Designer.cs">
+    <Compile Include="Financeiro\Comissões\BaseInferior\BaseComissão.Designer.cs">
       <DependentUpon>BaseComissão.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Comissões\JanelaNovaComissão.cs">
+    <Compile Include="Financeiro\Comissões\Janela\JanelaNovaComissão.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Financeiro\Comissões\JanelaNovaComissão.Designer.cs">
+    <Compile Include="Financeiro\Comissões\Janela\JanelaNovaComissão.Designer.cs">
       <DependentUpon>JanelaNovaComissão.cs</DependentUpon>
     </Compile>
     <Compile Include="Financeiro\ConsultaMercadoria.cs">
@@ -736,23 +744,23 @@
     <Compile Include="Financeiro\Crédito\JanelaCadastroCrédito.Designer.cs">
       <DependentUpon>JanelaCadastroCrédito.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\DigitaçãoComum.cs">
+    <Compile Include="Financeiro\Relacionamento\DigitaçãoComum.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\DigitaçãoComum.Designer.cs">
+    <Compile Include="Financeiro\Relacionamento\DigitaçãoComum.Designer.cs">
       <DependentUpon>DigitaçãoComum.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\EscolherTabela.cs">
+    <Compile Include="Financeiro\Tabela\EscolherTabela.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Financeiro\EscolherTabela.Designer.cs">
+    <Compile Include="Financeiro\Tabela\EscolherTabela.Designer.cs">
       <DependentUpon>EscolherTabela.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\ExceçãoTabelaVazia.cs" />
-    <Compile Include="Financeiro\Impressão.cs">
+    <Compile Include="Financeiro\Tabela\ExceçãoTabelaVazia.cs" />
+    <Compile Include="Financeiro\Relacionamento\Impressão.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Financeiro\Impressão.Designer.cs">
+    <Compile Include="Financeiro\Relacionamento\Impressão.Designer.cs">
       <DependentUpon>Impressão.cs</DependentUpon>
     </Compile>
     <Compile Include="Financeiro\Indicadores\GráficoCotação.cs">
@@ -779,16 +787,16 @@
     <Compile Include="Financeiro\Indicadores\ListaCotação.Designer.cs">
       <DependentUpon>ListaCotação.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\JanelaEscolhaÍndice.cs">
+    <Compile Include="Financeiro\Relacionamento\JanelaEscolhaÍndice.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Financeiro\JanelaEscolhaÍndice.Designer.cs">
+    <Compile Include="Financeiro\Relacionamento\JanelaEscolhaÍndice.Designer.cs">
       <DependentUpon>JanelaEscolhaÍndice.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\ListaConsignado.cs">
+    <Compile Include="Financeiro\Relacionamento\ListaConsignado.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\ListaConsignado.Designer.cs">
+    <Compile Include="Financeiro\Relacionamento\ListaConsignado.Designer.cs">
       <DependentUpon>ListaConsignado.cs</DependentUpon>
     </Compile>
     <Compile Include="Financeiro\Pagamento\BasePagamentos.cs">
@@ -797,46 +805,46 @@
     <Compile Include="Financeiro\Pagamento\BasePagamentos.Designer.cs">
       <DependentUpon>BasePagamentos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Pagamento\Cadastro.cs">
+    <Compile Include="Financeiro\Pagamento\Cadastro\Cadastro.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Financeiro\Pagamento\Cadastro.Designer.cs">
+    <Compile Include="Financeiro\Pagamento\Cadastro\Cadastro.Designer.cs">
       <DependentUpon>Cadastro.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Pagamento\CadastroCheque.cs">
+    <Compile Include="Financeiro\Pagamento\Cadastro\CadastroCheque.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Financeiro\Pagamento\CadastroCheque.Designer.cs">
+    <Compile Include="Financeiro\Pagamento\Cadastro\CadastroCheque.Designer.cs">
       <DependentUpon>CadastroCheque.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Pagamento\CadastroCrédito.cs">
+    <Compile Include="Financeiro\Pagamento\Cadastro\CadastroCrédito.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Financeiro\Pagamento\CadastroCrédito.Designer.cs">
+    <Compile Include="Financeiro\Pagamento\Cadastro\CadastroCrédito.Designer.cs">
       <DependentUpon>CadastroCrédito.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Pagamento\CadastroDinheiro.cs">
+    <Compile Include="Financeiro\Pagamento\Cadastro\CadastroDinheiro.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Financeiro\Pagamento\CadastroDinheiro.Designer.cs">
+    <Compile Include="Financeiro\Pagamento\Cadastro\CadastroDinheiro.Designer.cs">
       <DependentUpon>CadastroDinheiro.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Pagamento\CadastroDolar.cs">
+    <Compile Include="Financeiro\Pagamento\Cadastro\CadastroDolar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Financeiro\Pagamento\CadastroDolar.Designer.cs">
+    <Compile Include="Financeiro\Pagamento\Cadastro\CadastroDolar.Designer.cs">
       <DependentUpon>CadastroDolar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Pagamento\CadastroNotaPromissória.cs">
+    <Compile Include="Financeiro\Pagamento\Cadastro\CadastroNotaPromissória.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Financeiro\Pagamento\CadastroNotaPromissória.Designer.cs">
+    <Compile Include="Financeiro\Pagamento\Cadastro\CadastroNotaPromissória.Designer.cs">
       <DependentUpon>CadastroNotaPromissória.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Pagamento\CadastroOuro.cs">
+    <Compile Include="Financeiro\Pagamento\Cadastro\CadastroOuro.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Financeiro\Pagamento\CadastroOuro.Designer.cs">
+    <Compile Include="Financeiro\Pagamento\Cadastro\CadastroOuro.Designer.cs">
       <DependentUpon>CadastroOuro.cs</DependentUpon>
     </Compile>
     <Compile Include="Financeiro\Pagamento\EscolhaVendas.cs">
@@ -845,19 +853,19 @@
     <Compile Include="Financeiro\Pagamento\EscolhaVendas.Designer.cs">
       <DependentUpon>EscolhaVendas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Pagamento\ListaContaCorrente.cs">
+    <Compile Include="Financeiro\Pagamento\Lista\ListaContaCorrente.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\Pagamento\ListaContaCorrente.Designer.cs">
+    <Compile Include="Financeiro\Pagamento\Lista\ListaContaCorrente.Designer.cs">
       <DependentUpon>ListaContaCorrente.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Pagamento\ListaPagamento.cs">
+    <Compile Include="Financeiro\Pagamento\Lista\ListaPagamento.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\Pagamento\ListaPagamento.Designer.cs">
+    <Compile Include="Financeiro\Pagamento\Lista\ListaPagamento.Designer.cs">
       <DependentUpon>ListaPagamento.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Pagamento\ListaPagamentoItem.cs" />
+    <Compile Include="Financeiro\Pagamento\Lista\ListaPagamentoItem.cs" />
     <Compile Include="Financeiro\PesquisaMercadoria.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -870,418 +878,418 @@
     <Compile Include="Financeiro\PesquisaMercadoriaResultado.Designer.cs">
       <DependentUpon>PesquisaMercadoriaResultado.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Retorno\BaseRetornos.cs">
+    <Compile Include="Financeiro\Relacionamento\Retorno\BaseRetornos.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\Retorno\BaseRetornos.Designer.cs">
+    <Compile Include="Financeiro\Relacionamento\Retorno\BaseRetornos.Designer.cs">
       <DependentUpon>BaseRetornos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Retorno\ListaRetornos.cs">
+    <Compile Include="Financeiro\Relacionamento\Retorno\ListaRetornos.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\Retorno\ListaRetornos.Designer.cs">
+    <Compile Include="Financeiro\Relacionamento\Retorno\ListaRetornos.Designer.cs">
       <DependentUpon>ListaRetornos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Retorno\RetornoBaseInferior.cs">
+    <Compile Include="Financeiro\Relacionamento\Retorno\RetornoBaseInferior.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\Saída\BaseSaídas.cs">
+    <Compile Include="Financeiro\Relacionamento\Saída\BaseSaídas.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\Saída\BaseSaídas.Designer.cs">
+    <Compile Include="Financeiro\Relacionamento\Saída\BaseSaídas.Designer.cs">
       <DependentUpon>BaseSaídas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Saída\ListaSaídas.cs">
+    <Compile Include="Financeiro\Relacionamento\Saída\ListaSaídas.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\Saída\ListaSaídas.Designer.cs">
+    <Compile Include="Financeiro\Relacionamento\Saída\ListaSaídas.Designer.cs">
       <DependentUpon>ListaSaídas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Saída\SaídaBaseInferior.cs">
+    <Compile Include="Financeiro\Relacionamento\Saída\SaídaBaseInferior.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\Venda\BaseEditarVenda.cs">
+    <Compile Include="Financeiro\Relacionamento\Venda\BaseEditarVenda.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\Venda\BaseEditarVenda.Designer.cs">
+    <Compile Include="Financeiro\Relacionamento\Venda\BaseEditarVenda.Designer.cs">
       <DependentUpon>BaseEditarVenda.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Venda\BaseVendas.cs">
+    <Compile Include="Financeiro\Relacionamento\Venda\BaseVendas.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\Venda\BaseVendas.Designer.cs">
+    <Compile Include="Financeiro\Relacionamento\Venda\BaseVendas.Designer.cs">
       <DependentUpon>BaseVendas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Venda\DadosVenda.cs">
+    <Compile Include="Financeiro\Relacionamento\Venda\DadosVenda.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\Venda\DadosVenda.Designer.cs">
+    <Compile Include="Financeiro\Relacionamento\Venda\DadosVenda.Designer.cs">
       <DependentUpon>DadosVenda.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Venda\DigitaçãoVenda.cs">
+    <Compile Include="Financeiro\Relacionamento\Venda\DigitaçãoVenda.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\Venda\DigitaçãoVenda.Designer.cs">
+    <Compile Include="Financeiro\Relacionamento\Venda\DigitaçãoVenda.Designer.cs">
       <DependentUpon>DigitaçãoVenda.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Venda\EditarCrédito.cs">
+    <Compile Include="Financeiro\Relacionamento\Venda\Janela\JanelaEdiçãoCrédito.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Financeiro\Venda\EditarCrédito.Designer.cs">
-      <DependentUpon>EditarCrédito.cs</DependentUpon>
+    <Compile Include="Financeiro\Relacionamento\Venda\Janela\JanelaEdiçãoCrédito.Designer.cs">
+      <DependentUpon>JanelaEdiçãoCrédito.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Venda\EditarDébito.cs">
+    <Compile Include="Financeiro\Relacionamento\Venda\Janela\JanelaEdiçãoDébito.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Financeiro\Venda\EditarDébito.Designer.cs">
-      <DependentUpon>EditarDébito.cs</DependentUpon>
+    <Compile Include="Financeiro\Relacionamento\Venda\Janela\JanelaEdiçãoDébito.Designer.cs">
+      <DependentUpon>JanelaEdiçãoDébito.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Venda\JanelaCriarPagamentos.cs">
+    <Compile Include="Financeiro\Relacionamento\Venda\Janela\JanelaCriarPagamentos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Financeiro\Venda\JanelaCriarPagamentos.Designer.cs">
+    <Compile Include="Financeiro\Relacionamento\Venda\Janela\JanelaCriarPagamentos.Designer.cs">
       <DependentUpon>JanelaCriarPagamentos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Venda\JanelaEscolhaDatasPagamento.cs">
+    <Compile Include="Financeiro\Relacionamento\Venda\Janela\JanelaEscolhaDatasPagamento.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Financeiro\Venda\JanelaEscolhaDatasPagamento.Designer.cs">
+    <Compile Include="Financeiro\Relacionamento\Venda\Janela\JanelaEscolhaDatasPagamento.Designer.cs">
       <DependentUpon>JanelaEscolhaDatasPagamento.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Venda\JanelaPersonalizarPagamentos.cs">
+    <Compile Include="Financeiro\Relacionamento\Venda\Janela\JanelaPersonalizaPagamentos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Financeiro\Venda\JanelaPersonalizarPagamentos.Designer.cs">
-      <DependentUpon>JanelaPersonalizarPagamentos.cs</DependentUpon>
+    <Compile Include="Financeiro\Relacionamento\Venda\Janela\JanelaPersonalizaPagamentos.Designer.cs">
+      <DependentUpon>JanelaPersonalizaPagamentos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Venda\JanelaPeríodo.cs">
+    <Compile Include="Financeiro\Relacionamento\Venda\Janela\JanelaPeríodo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Financeiro\Venda\JanelaPeríodo.Designer.cs">
+    <Compile Include="Financeiro\Relacionamento\Venda\Janela\JanelaPeríodo.Designer.cs">
       <DependentUpon>JanelaPeríodo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Venda\ListaCréditos.cs">
+    <Compile Include="Financeiro\Relacionamento\Venda\Lista\ListaCréditos.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\Venda\ListaCréditos.Designer.cs">
+    <Compile Include="Financeiro\Relacionamento\Venda\Lista\ListaCréditos.Designer.cs">
       <DependentUpon>ListaCréditos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Venda\ListaDébitos.cs">
+    <Compile Include="Financeiro\Relacionamento\Venda\Lista\ListaDébitos.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\Venda\ListaDébitos.Designer.cs">
+    <Compile Include="Financeiro\Relacionamento\Venda\Lista\ListaDébitos.Designer.cs">
       <DependentUpon>ListaDébitos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Venda\ListarVendas.cs">
+    <Compile Include="Financeiro\Relacionamento\Venda\Janela\JanelaListaVendas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Financeiro\Venda\ListarVendas.Designer.cs">
-      <DependentUpon>ListarVendas.cs</DependentUpon>
+    <Compile Include="Financeiro\Relacionamento\Venda\Janela\JanelaListaVendas.Designer.cs">
+      <DependentUpon>JanelaListaVendas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Venda\ListViewVendas.cs">
+    <Compile Include="Financeiro\Relacionamento\Venda\Lista\ListViewVendas.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\Venda\ListViewVendas.Designer.cs">
+    <Compile Include="Financeiro\Relacionamento\Venda\Lista\ListViewVendas.Designer.cs">
       <DependentUpon>ListViewVendas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Venda\ListViewVendasOrdenador.cs" />
-    <Compile Include="Financeiro\Venda\ProcurarVendas.cs">
+    <Compile Include="Financeiro\Relacionamento\Venda\Lista\ListViewVendasOrdenador.cs" />
+    <Compile Include="Financeiro\Relacionamento\Venda\Janela\JanelaProcuraVendas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Financeiro\Venda\ProcurarVendas.Designer.cs">
-      <DependentUpon>ProcurarVendas.cs</DependentUpon>
+    <Compile Include="Financeiro\Relacionamento\Venda\Janela\JanelaProcuraVendas.Designer.cs">
+      <DependentUpon>JanelaProcuraVendas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Venda\VerificaçãoQuitação.cs" />
-    <Compile Include="Financeiro\Venda\VínculoVendaPessoa.cs" />
-    <Compile Include="Financeiro\VerificadorMercadoria.cs">
+    <Compile Include="Financeiro\Relacionamento\Venda\VerificaçãoQuitação.cs" />
+    <Compile Include="Financeiro\Relacionamento\Venda\VínculoVendaPessoa.cs" />
+    <Compile Include="Financeiro\Relacionamento\VerificadorMercadoria.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Financeiro\VerificadorMercadoria.Designer.cs">
+    <Compile Include="Financeiro\Relacionamento\VerificadorMercadoria.Designer.cs">
       <DependentUpon>VerificadorMercadoria.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fiscal\BaseInferior\BaseFiscal.cs">
+    <Compile Include="Administrativo\Fiscal\BaseInferior\BaseFiscal.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Fiscal\BaseInferior\BaseFiscal.Designer.cs">
+    <Compile Include="Administrativo\Fiscal\BaseInferior\BaseFiscal.Designer.cs">
       <DependentUpon>BaseFiscal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fiscal\Lista\ListaDocumentoEntrada.cs">
+    <Compile Include="Administrativo\Fiscal\Lista\ListaDocumentoEntrada.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Fiscal\Lista\ListaDocumentoEntrada.Designer.cs">
+    <Compile Include="Administrativo\Fiscal\Lista\ListaDocumentoEntrada.Designer.cs">
       <DependentUpon>ListaDocumentoEntrada.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fiscal\Lista\ListaDocumentoFiscal.cs">
+    <Compile Include="Administrativo\Fiscal\Lista\ListaDocumentoFiscal.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Fiscal\Lista\ListaDocumentoFiscal.Designer.cs">
+    <Compile Include="Administrativo\Fiscal\Lista\ListaDocumentoFiscal.Designer.cs">
       <DependentUpon>ListaDocumentoFiscal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fiscal\Lista\ListaDocumentoSaída.cs">
+    <Compile Include="Administrativo\Fiscal\Lista\ListaDocumentoSaída.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Fiscal\Lista\ListaDocumentoSaída.Designer.cs">
+    <Compile Include="Administrativo\Fiscal\Lista\ListaDocumentoSaída.Designer.cs">
       <DependentUpon>ListaDocumentoSaída.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fiscal\Lista\ListaItem.cs">
+    <Compile Include="Administrativo\Fiscal\Lista\ListaItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Fiscal\Lista\ListaItem.Designer.cs">
+    <Compile Include="Administrativo\Fiscal\Lista\ListaItem.Designer.cs">
       <DependentUpon>ListaItem.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fiscal\QuadroTipo.cs">
+    <Compile Include="Administrativo\Fiscal\QuadroTipo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Fiscal\QuadroTipo.Designer.cs">
+    <Compile Include="Administrativo\Fiscal\QuadroTipo.Designer.cs">
       <DependentUpon>QuadroTipo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fiscal\VisualizadorPDF.cs">
+    <Compile Include="Administrativo\Fiscal\VisualizadorPDF.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Fiscal\VisualizadorPDF.Designer.cs">
+    <Compile Include="Administrativo\Fiscal\VisualizadorPDF.Designer.cs">
       <DependentUpon>VisualizadorPDF.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formulários\Aguarde.cs">
+    <Compile Include="Formulário\Janela\Aguarde.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formulários\AguardeDB.cs">
+    <Compile Include="Formulário\Janela\AguardeDB.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formulários\AguardeDB.Designer.cs">
+    <Compile Include="Formulário\Janela\AguardeDB.Designer.cs">
       <DependentUpon>AguardeDB.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formulários\Aplicação.cs" />
-    <Compile Include="Formulários\Assistente\AssistenteControle.cs">
+    <Compile Include="Formulário\Aplicação.cs" />
+    <Compile Include="Formulário\Assistente\AssistenteControle.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Formulários\Assistente\ConjuntoPainéis.cs">
+    <Compile Include="Formulário\Assistente\ConjuntoPainéis.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Formulários\Assistente\PainelAssistente.cs">
+    <Compile Include="Formulário\Assistente\PainelAssistente.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Formulários\Avaliador.cs">
+    <Compile Include="Formulário\Componente\Avaliador.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Formulários\Avaliador.Designer.cs">
+    <Compile Include="Formulário\Componente\Avaliador.Designer.cs">
       <DependentUpon>Avaliador.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formulários\BarraBotões.cs">
+    <Compile Include="Formulário\BaseInferior\BarraBotões.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Formulários\BaseFormulário.cs">
+    <Compile Include="Formulário\BaseInferior\BaseFormulário.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formulários\BaseInferior.cs">
+    <Compile Include="Formulário\BaseInferior\BaseInferior.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Formulários\Botão.cs" />
-    <Compile Include="Formulários\BotãoLiberarRecurso.cs">
+    <Compile Include="Formulário\BaseInferior\Botão.cs" />
+    <Compile Include="Formulário\Componente\BotãoLiberarRecurso.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Formulários\BotãoLiberarRecurso.Designer.cs">
+    <Compile Include="Formulário\Componente\BotãoLiberarRecurso.Designer.cs">
       <DependentUpon>BotãoLiberarRecurso.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formulários\Consultas\Coletor.cs" />
-    <Compile Include="Formulários\Consultas\ControladorLimiteColetor.cs" />
-    <Compile Include="Formulários\Consultas\TaxaDigitação.cs" />
-    <Compile Include="Formulários\ControladorBaseInferior.cs">
+    <Compile Include="Formulário\Consultas\Coletor.cs" />
+    <Compile Include="Formulário\Consultas\ControladorLimiteColetor.cs" />
+    <Compile Include="Formulário\Consultas\TaxaDigitação.cs" />
+    <Compile Include="Formulário\BaseInferior\ControladorBaseInferior.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Formulários\ControlePermissão.cs">
+    <Compile Include="Formulário\ControlePermissão.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Formulários\EditorBase.cs">
+    <Compile Include="Formulário\EditorBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Formulários\EditorBase.Designer.cs">
+    <Compile Include="Formulário\EditorBase.Designer.cs">
       <DependentUpon>EditorBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formulários\ExceçãoBotãoNãoSuportado.cs" />
-    <Compile Include="Formulários\ExceçãoPósCarga.cs" />
-    <Compile Include="Formulários\ExporBotãoAttribute.cs" />
-    <Compile Include="Formulários\Histórico\Histórico.cs">
+    <Compile Include="Formulário\Exceção\ExceçãoBotãoNãoSuportado.cs" />
+    <Compile Include="Formulário\Exceção\ExceçãoPósCarga.cs" />
+    <Compile Include="Formulário\ExporBotãoAttribute.cs" />
+    <Compile Include="Formulário\Histórico\Histórico.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Formulários\Histórico\Histórico.Designer.cs">
+    <Compile Include="Formulário\Histórico\Histórico.Designer.cs">
       <DependentUpon>Histórico.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formulários\Histórico\HistóricoItem.cs" />
-    <Compile Include="Formulários\Histórico\HistóricoItemBase.cs" />
-    <Compile Include="Formulários\Histórico\IHistóricoItem.cs" />
-    <Compile Include="Formulários\IAoMostrarBaseInferior.cs" />
-    <Compile Include="Formulários\IEditorItem.cs" />
-    <Compile Include="Formulários\Impressão\BaseFormatarEtiqueta.cs">
+    <Compile Include="Formulário\Histórico\HistóricoItem.cs" />
+    <Compile Include="Formulário\Histórico\HistóricoItemBase.cs" />
+    <Compile Include="Formulário\Histórico\IHistóricoItem.cs" />
+    <Compile Include="Formulário\IAoMostrarBaseInferior.cs" />
+    <Compile Include="Formulário\IEditorItem.cs" />
+    <Compile Include="Formulário\Impressão\BaseFormatarEtiqueta.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Formulários\Impressão\BaseFormatarEtiqueta.Designer.cs">
+    <Compile Include="Formulário\Impressão\BaseFormatarEtiqueta.Designer.cs">
       <DependentUpon>BaseFormatarEtiqueta.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formulários\Informativo.cs">
+    <Compile Include="Formulário\Janela\Informativo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formulários\Informativo.Designer.cs">
+    <Compile Include="Formulário\Janela\Informativo.Designer.cs">
       <DependentUpon>Informativo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formulários\IPósCargaSistema.cs" />
-    <Compile Include="Formulários\IRequerPrivilégio.cs" />
-    <Compile Include="Formulários\ItemExpandível.cs">
+    <Compile Include="Formulário\IPósCargaSistema.cs" />
+    <Compile Include="Formulário\IRequerPrivilégio.cs" />
+    <Compile Include="Formulário\Componente\ItemExpandível.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Formulários\ItemExpandível.Designer.cs">
+    <Compile Include="Formulário\Componente\ItemExpandível.Designer.cs">
       <DependentUpon>ItemExpandível.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formulários\JanelaExplicativa.cs">
+    <Compile Include="Formulário\Janela\JanelaExplicativa.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formulários\JanelaImpressão.cs">
+    <Compile Include="Formulário\Janela\JanelaImpressão.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formulários\JanelaImpressão.Designer.cs">
+    <Compile Include="Formulário\Janela\JanelaImpressão.Designer.cs">
       <DependentUpon>JanelaImpressão.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formulários\JustificarLiberaçãoRecursos.cs">
+    <Compile Include="Formulário\Janela\JustificarLiberaçãoRecursos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formulários\JustificarLiberaçãoRecursos.Designer.cs">
+    <Compile Include="Formulário\Janela\JustificarLiberaçãoRecursos.Designer.cs">
       <DependentUpon>JustificarLiberaçãoRecursos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formulários\Linha.cs">
+    <Compile Include="Formulário\Componente\Linha.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Formulários\ListViewSorter.cs" />
-    <Compile Include="Formulários\ListViewUsabilidade.cs">
+    <Compile Include="Formulário\Lista\ListViewSorter.cs" />
+    <Compile Include="Formulário\Lista\ListViewUsabilidade.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Formulários\ListViewUsabilidade.Designer.cs">
+    <Compile Include="Formulário\Lista\ListViewUsabilidade.Designer.cs">
       <DependentUpon>ListViewUsabilidade.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formulários\Localizador.cs">
+    <Compile Include="Formulário\Localizador.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Formulários\Localizador.Designer.cs">
+    <Compile Include="Formulário\Localizador.Designer.cs">
       <DependentUpon>Localizador.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formulários\Login.cs">
+    <Compile Include="Formulário\Janela\Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formulários\LoginBalãoUsuárioInválido.cs">
+    <Compile Include="Formulário\Janela\LoginBalãoUsuárioInválido.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formulários\Notificação.cs">
+    <Compile Include="Formulário\Janela\Notificação.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formulários\NotificaçãoSimples.cs">
+    <Compile Include="Formulário\Janela\NotificaçãoSimples.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formulários\NotificaçãoSimples.Designer.cs">
+    <Compile Include="Formulário\Janela\NotificaçãoSimples.Designer.cs">
       <DependentUpon>NotificaçãoSimples.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formulários\Opção.cs">
+    <Compile Include="Formulário\Componente\Opção.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Formulários\Quadro.cs">
+    <Compile Include="Formulário\Componente\Quadro.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Formulários\QuadroNavegação.cs">
+    <Compile Include="Formulário\Componente\QuadroNavegação.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Formulários\QuadroNavegação.Designer.cs">
+    <Compile Include="Formulário\Componente\QuadroNavegação.Designer.cs">
       <DependentUpon>QuadroNavegação.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formulários\QuadroOpção.cs">
+    <Compile Include="Formulário\Componente\QuadroOpção.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Formulários\QuadroOpção.Designer.cs">
+    <Compile Include="Formulário\Componente\QuadroOpção.Designer.cs">
       <DependentUpon>QuadroOpção.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formulários\QuadroSimples.cs">
+    <Compile Include="Formulário\Componente\QuadroSimples.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Formulários\QuadroSimples.Designer.cs">
+    <Compile Include="Formulário\Componente\QuadroSimples.Designer.cs">
       <DependentUpon>QuadroSimples.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formulários\QuestionarSubstituiçãoBI.cs">
+    <Compile Include="Formulário\Janela\QuestionarSubstituiçãoBI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formulários\QuestionarSubstituiçãoBI.Designer.cs">
+    <Compile Include="Formulário\Janela\QuestionarSubstituiçãoBI.Designer.cs">
       <DependentUpon>QuestionarSubstituiçãoBI.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formulários\SeleçãoPeríodo.cs">
+    <Compile Include="Formulário\Janela\SeleçãoPeríodo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formulários\SinalizaçãoCarga.cs">
+    <Compile Include="Formulário\SinalizaçãoCarga.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Formulários\Splash.cs">
+    <Compile Include="Formulário\Janela\Splash.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formulários\TextBoxPesquisável.cs">
+    <Compile Include="Formulário\Consultas\TextBoxPesquisável.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Formulários\TextBoxPesquisável.Designer.cs">
+    <Compile Include="Formulário\Consultas\TextBoxPesquisável.Designer.cs">
       <DependentUpon>TextBoxPesquisável.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formulários\TrabalhoSegundoPlano.cs" />
-    <Compile Include="Formulários\TítuloBaseInferior.cs">
+    <Compile Include="Formulário\TrabalhoSegundoPlano.cs" />
+    <Compile Include="Formulário\BaseInferior\TítuloBaseInferior.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Formulários\VistaAPI.cs" />
-    <Compile Include="Fornecedor\ComboboxFornecedor.cs">
+    <Compile Include="Formulário\VistaAPI.cs" />
+    <Compile Include="Pessoa\Fornecedor\ComboboxFornecedor.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Fornecedor\ComboboxFornecedor.Designer.cs">
+    <Compile Include="Pessoa\Fornecedor\ComboboxFornecedor.Designer.cs">
       <DependentUpon>ComboboxFornecedor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fotos\BalãoInformarTratamento.cs">
+    <Compile Include="Foto\BalãoInformarTratamento.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Fotos\BalãoInformarTratamento.Designer.cs">
+    <Compile Include="Foto\BalãoInformarTratamento.Designer.cs">
       <DependentUpon>BalãoInformarTratamento.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fotos\BaseRemoverFundo.cs">
+    <Compile Include="Foto\BaseRemoverFundo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Fotos\BaseRemoverFundo.Designer.cs">
+    <Compile Include="Foto\BaseRemoverFundo.Designer.cs">
       <DependentUpon>BaseRemoverFundo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fotos\ConfirmarExclusãoFoto.cs">
+    <Compile Include="Foto\ConfirmarExclusãoFoto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Fotos\EditarMercadoria.cs">
+    <Compile Include="Foto\EditarMercadoria.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Fotos\EditarMercadoria.Designer.cs">
+    <Compile Include="Foto\EditarMercadoria.Designer.cs">
       <DependentUpon>EditarMercadoria.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fotos\Fotógrafo.cs">
+    <Compile Include="Foto\Fotógrafo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Fotos\FundoNaoRemovidoException.cs" />
-    <Compile Include="Fotos\IdentificaçãoMercadoria.cs">
+    <Compile Include="Foto\FundoNaoRemovidoException.cs" />
+    <Compile Include="Foto\IdentificaçãoMercadoria.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Fotos\IdentificaçãoMercadoria.Designer.cs">
+    <Compile Include="Foto\IdentificaçãoMercadoria.Designer.cs">
       <DependentUpon>IdentificaçãoMercadoria.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fotos\ListaFotos.cs">
+    <Compile Include="Foto\ListaFotos.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Fotos\ListaFotos.Designer.cs">
+    <Compile Include="Foto\ListaFotos.Designer.cs">
       <DependentUpon>ListaFotos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fotos\PainelFotos.cs">
+    <Compile Include="Foto\PainelFotos.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Fotos\TodasFotos.cs">
+    <Compile Include="Foto\TodasFotos.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Fotos\TodasFotos.Designer.cs">
+    <Compile Include="Foto\TodasFotos.Designer.cs">
       <DependentUpon>TodasFotos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fotos\Tratamento.cs" />
-    <Compile Include="Fotos\TratamentoBase.cs" />
-    <Compile Include="Fotos\TratamentoRemoverFundoComparando.cs" />
+    <Compile Include="Foto\Tratamento.cs" />
+    <Compile Include="Foto\TratamentoBase.cs" />
+    <Compile Include="Foto\TratamentoRemoverFundoComparando.cs" />
     <Compile Include="Impressão\Etiquetas\Leiaute\Endereço.cs" />
     <Compile Include="Impressão\Etiquetas\MalaDireta.cs" />
     <Compile Include="Impressão\Etiquetas\Sedex\ControleImpressãoSedex.cs" />
@@ -1513,10 +1521,10 @@
       <DesignTime>True</DesignTime>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Clientes\Pedido\BaseReferênciasEmFalta.cs">
+    <Compile Include="Pedido\BaseReferênciasEmFalta.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Clientes\Pedido\BaseReferênciasEmFalta.Designer.cs">
+    <Compile Include="Pedido\BaseReferênciasEmFalta.Designer.cs">
       <DependentUpon>BaseReferênciasEmFalta.cs</DependentUpon>
     </Compile>
     <Compile Include="Impressão\Relatórios\Pedido\ControleImpressãoPedido.cs" />
@@ -1717,48 +1725,48 @@
     <Compile Include="Impressão\VisualizarPáginaVirtual.Designer.cs">
       <DependentUpon>VisualizarPáginaVirtual.cs</DependentUpon>
     </Compile>
-    <Compile Include="IntegraçãoSistemaAntigo\BaseCodBarras.cs">
+    <Compile Include="Administrativo\IntegraçãoSistemaAntigo\BaseCodBarras.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="IntegraçãoSistemaAntigo\Controles\Mercadorias\Gramas.cs" />
-    <Compile Include="IntegraçãoSistemaAntigo\ProcessoIntegração.cs" />
-    <Compile Include="IntegraçãoSistemaAntigo\Cadcli\BaseCadCli.cs">
+    <Compile Include="Administrativo\IntegraçãoSistemaAntigo\Controles\Mercadorias\Gramas.cs" />
+    <Compile Include="Administrativo\IntegraçãoSistemaAntigo\ProcessoIntegração.cs" />
+    <Compile Include="Administrativo\IntegraçãoSistemaAntigo\Cadcli\BaseCadCli.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="IntegraçãoSistemaAntigo\Cadcli\BaseCadCli.Designer.cs">
+    <Compile Include="Administrativo\IntegraçãoSistemaAntigo\Cadcli\BaseCadCli.Designer.cs">
       <DependentUpon>BaseCadCli.cs</DependentUpon>
     </Compile>
-    <Compile Include="IntegraçãoSistemaAntigo\Consignado\BaseConsignado.cs">
+    <Compile Include="Administrativo\IntegraçãoSistemaAntigo\Consignado\BaseConsignado.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="IntegraçãoSistemaAntigo\Consignado\Retorno.cs" />
-    <Compile Include="IntegraçãoSistemaAntigo\Consignado\Saida.cs" />
-    <Compile Include="IntegraçãoSistemaAntigo\Controles\CodBarras.cs" />
-    <Compile Include="IntegraçãoSistemaAntigo\Controles\Mercadorias\Fornecedor.cs" />
-    <Compile Include="IntegraçãoSistemaAntigo\Controles\Mercadorias\Faixas.cs" />
-    <Compile Include="IntegraçãoSistemaAntigo\Controles\Mercadorias\Indices.cs" />
-    <Compile Include="IntegraçãoSistemaAntigo\Controles\Mercadorias\ItemMercadoria.cs" />
-    <Compile Include="IntegraçãoSistemaAntigo\Controles\Mercadorias\Mercadorias.cs" />
-    <Compile Include="IntegraçãoSistemaAntigo\Controles\Mercadorias\VinculoMercadoriaComponenteCusto.cs" />
-    <Compile Include="IntegraçãoSistemaAntigo\Dbf.cs" />
-    <Compile Include="IntegraçãoSistemaAntigo\Fiscal\BaseFiscal.cs">
+    <Compile Include="Administrativo\IntegraçãoSistemaAntigo\Consignado\Retorno.cs" />
+    <Compile Include="Administrativo\IntegraçãoSistemaAntigo\Consignado\Saida.cs" />
+    <Compile Include="Administrativo\IntegraçãoSistemaAntigo\Controles\CodBarras.cs" />
+    <Compile Include="Administrativo\IntegraçãoSistemaAntigo\Controles\Mercadorias\Fornecedor.cs" />
+    <Compile Include="Administrativo\IntegraçãoSistemaAntigo\Controles\Mercadorias\Faixas.cs" />
+    <Compile Include="Administrativo\IntegraçãoSistemaAntigo\Controles\Mercadorias\Indices.cs" />
+    <Compile Include="Administrativo\IntegraçãoSistemaAntigo\Controles\Mercadorias\ItemMercadoria.cs" />
+    <Compile Include="Administrativo\IntegraçãoSistemaAntigo\Controles\Mercadorias\Mercadorias.cs" />
+    <Compile Include="Administrativo\IntegraçãoSistemaAntigo\Controles\Mercadorias\VinculoMercadoriaComponenteCusto.cs" />
+    <Compile Include="Administrativo\IntegraçãoSistemaAntigo\Dbf.cs" />
+    <Compile Include="Administrativo\IntegraçãoSistemaAntigo\Fiscal\BaseFiscal.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="IntegraçãoSistemaAntigo\Fiscal\BaseFiscal.Designer.cs">
+    <Compile Include="Administrativo\IntegraçãoSistemaAntigo\Fiscal\BaseFiscal.Designer.cs">
       <DependentUpon>BaseFiscal.cs</DependentUpon>
     </Compile>
-    <Compile Include="IntegraçãoSistemaAntigo\MySql.cs" />
-    <Compile Include="IntegraçãoSistemaAntigo\Pagamentos\BasePagamentos.cs">
+    <Compile Include="Administrativo\IntegraçãoSistemaAntigo\MySql.cs" />
+    <Compile Include="Administrativo\IntegraçãoSistemaAntigo\Pagamentos\BasePagamentos.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="IntegraçãoSistemaAntigo\Pagamentos\Pagamento.cs" />
-    <Compile Include="IntegraçãoSistemaAntigo\Principal.cs">
+    <Compile Include="Administrativo\IntegraçãoSistemaAntigo\Pagamentos\Pagamento.cs" />
+    <Compile Include="Administrativo\IntegraçãoSistemaAntigo\Principal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="IntegraçãoSistemaAntigo\Vendas\BaseVendas.cs">
+    <Compile Include="Administrativo\IntegraçãoSistemaAntigo\Vendas\BaseVendas.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="IntegraçãoSistemaAntigo\Vendas\Venda.cs" />
+    <Compile Include="Administrativo\IntegraçãoSistemaAntigo\Vendas\Venda.cs" />
     <Compile Include="Mercadoria\BalãoReferênciaForaDeLinha.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2203,10 +2211,10 @@
     <Compile Include="Pessoa\TxtTelefoneBalão.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProcurarMercadoria.cs">
+    <Compile Include="Mercadoria\ProcurarMercadoria.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProcurarMercadoria.Designer.cs">
+    <Compile Include="Mercadoria\ProcurarMercadoria.Designer.cs">
       <DependentUpon>ProcurarMercadoria.cs</DependentUpon>
     </Compile>
     <Compile Include="Resource.Designer.cs">
@@ -2214,154 +2222,157 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
-    <Compile Include="SinalizaçãoPedido.cs">
+    <Compile Include="Pedido\SinalizaçãoPedido.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="SinalizaçãoPedido.Designer.cs">
+    <Compile Include="Pedido\SinalizaçãoPedido.Designer.cs">
       <DependentUpon>SinalizaçãoPedido.cs</DependentUpon>
     </Compile>
-    <Compile Include="Usuário\Agendamentos\BaseAgendamentos.cs">
+    <Compile Include="Pessoa\Usuário\Agendamentos\BaseAgendamentos.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Usuário\Agendamentos\ControleAgendamento.cs" />
-    <Compile Include="Usuário\Agendamentos\DespertadorBalão.cs">
+    <Compile Include="Pessoa\Usuário\Agendamentos\ControleAgendamento.cs" />
+    <Compile Include="Pessoa\Usuário\Agendamentos\DespertadorBalão.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Usuário\Agendamentos\InserirAgendamento.cs">
+    <Compile Include="Pessoa\Usuário\Agendamentos\InserirAgendamento.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Usuário\Agendamentos\ListaAgendamentos.cs">
+    <Compile Include="Pessoa\Usuário\Agendamentos\ListaAgendamentos.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Usuário\Agendamentos\ListaAgendamentosAtuais.cs">
+    <Compile Include="Pessoa\Usuário\Agendamentos\ListaAgendamentosAtuais.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Usuário\Controle.cs" />
-    <Compile Include="Usuário\Financeiro\NotificaçãoCotação.cs">
+    <Compile Include="Pessoa\Usuário\Controle.cs" />
+    <Compile Include="Pessoa\Usuário\Financeiro\NotificaçãoCotação.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Usuário\Financeiro\NotificaçãoCotação.Designer.cs">
+    <Compile Include="Pessoa\Usuário\Financeiro\NotificaçãoCotação.Designer.cs">
       <DependentUpon>NotificaçãoCotação.cs</DependentUpon>
     </Compile>
-    <Compile Include="Usuário\Funcionários\AlterarSenha.cs">
+    <Compile Include="Pessoa\Usuário\Funcionários\AlterarSenha.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Usuário\Funcionários\AlterarSenha.Designer.cs">
+    <Compile Include="Pessoa\Usuário\Funcionários\AlterarSenha.Designer.cs">
       <DependentUpon>AlterarSenha.cs</DependentUpon>
     </Compile>
-    <Compile Include="Usuário\Funcionários\ControladorInútil.cs">
+    <Compile Include="Pessoa\Usuário\Funcionários\ControladorInútil.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Usuário\Funcionários\GuiaNovato.cs">
+    <Compile Include="Pessoa\Usuário\Funcionários\GuiaNovato.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Usuário\Funcionários\GuiaNovato.Designer.cs">
+    <Compile Include="Pessoa\Usuário\Funcionários\GuiaNovato.Designer.cs">
       <DependentUpon>GuiaNovato.cs</DependentUpon>
     </Compile>
-    <Compile Include="Usuário\Funcionários\Ramais.cs">
+    <Compile Include="Pessoa\Usuário\Funcionários\Ramais.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Usuário\Funcionários\Ramais.Designer.cs">
+    <Compile Include="Pessoa\Usuário\Funcionários\Ramais.Designer.cs">
       <DependentUpon>Ramais.cs</DependentUpon>
     </Compile>
-    <Compile Include="Usuário\InterForm\BaseUsuário.cs">
+    <Compile Include="Pessoa\Usuário\InterForm\BaseUsuário.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Usuário\InterForm\BotãoUsuário.cs" />
-    <Compile Include="Usuário\InterForm\ControladorUsuário.cs">
+    <Compile Include="Pessoa\Usuário\InterForm\BotãoUsuário.cs" />
+    <Compile Include="Pessoa\Usuário\InterForm\ControladorUsuário.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Usuário\Visitantes\ControleVisitantes.cs" />
-    <Compile Include="Usuário\Visitantes\NotificaçãoEntradaSaída.cs">
+    <Compile Include="Pessoa\Usuário\Visitantes\ControleVisitantes.cs" />
+    <Compile Include="Pessoa\Usuário\Visitantes\NotificaçãoEntradaSaída.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Versão.cs" />
-    <Compile Include="Álbuns\BaseEditarÁlbum.cs">
+    <Compile Include="Foto\Álbum\BaseEditarÁlbum.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Álbuns\BaseEditarÁlbum.Designer.cs">
+    <Compile Include="Foto\Álbum\BaseEditarÁlbum.Designer.cs">
       <DependentUpon>BaseEditarÁlbum.cs</DependentUpon>
     </Compile>
-    <Compile Include="Álbuns\BaseSeleçãoÁlbum.cs">
+    <Compile Include="Foto\Álbum\BaseSeleçãoÁlbum.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Álbuns\BaseSeleçãoÁlbum.Designer.cs">
+    <Compile Include="Foto\Álbum\BaseSeleçãoÁlbum.Designer.cs">
       <DependentUpon>BaseSeleçãoÁlbum.cs</DependentUpon>
     </Compile>
-    <Compile Include="Álbuns\BaseTodasFotos.cs">
+    <Compile Include="Foto\Álbum\BaseTodasFotos.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Álbuns\BaseTodasFotos.Designer.cs">
+    <Compile Include="Foto\Álbum\BaseTodasFotos.Designer.cs">
       <DependentUpon>BaseTodasFotos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Álbuns\CadastroÁlbum.cs">
+    <Compile Include="Foto\Álbum\CadastroÁlbum.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Álbuns\CadastroÁlbum.Designer.cs">
+    <Compile Include="Foto\Álbum\CadastroÁlbum.Designer.cs">
       <DependentUpon>CadastroÁlbum.cs</DependentUpon>
     </Compile>
-    <Compile Include="Álbuns\Desenhista\ControleImpressão.cs" />
-    <Compile Include="Álbuns\Desenhista\ItensImpressão.cs" />
-    <Compile Include="Álbuns\Desenhista\Página.cs" />
-    <Compile Include="Álbuns\Desenhista\PáginaInfinita.cs" />
-    <Compile Include="Álbuns\ListaÁlbuns.cs">
+    <Compile Include="Foto\Álbum\Desenhista\ControleImpressão.cs" />
+    <Compile Include="Foto\Álbum\Desenhista\ItensImpressão.cs" />
+    <Compile Include="Foto\Álbum\Desenhista\Página.cs" />
+    <Compile Include="Foto\Álbum\Desenhista\PáginaInfinita.cs" />
+    <Compile Include="Foto\Álbum\ListaÁlbuns.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Álbuns\ListaÁlbuns.Designer.cs">
+    <Compile Include="Foto\Álbum\ListaÁlbuns.Designer.cs">
       <DependentUpon>ListaÁlbuns.cs</DependentUpon>
     </Compile>
-    <Compile Include="Álbuns\ListViewEdiçãoFotos.cs">
+    <Compile Include="Foto\Álbum\ListViewEdiçãoFotos.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Álbuns\ListViewEdiçãoFotos.Designer.cs">
+    <Compile Include="Foto\Álbum\ListViewEdiçãoFotos.Designer.cs">
       <DependentUpon>ListViewEdiçãoFotos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Álbuns\ListViewÁlbuns.cs">
+    <Compile Include="Foto\Álbum\ListViewÁlbuns.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Álbuns\ListViewÁlbuns.Designer.cs">
+    <Compile Include="Foto\Álbum\ListViewÁlbuns.Designer.cs">
       <DependentUpon>ListViewÁlbuns.cs</DependentUpon>
     </Compile>
-    <Compile Include="Álbuns\PáginaVirtual.cs">
+    <Compile Include="Foto\Álbum\PáginaVirtual.cs">
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Atendente\BaseInfoAtendimentos.resx">
+    <EmbeddedResource Include="Financeiro\Relacionamento\Impressão.resx">
+      <DependentUpon>Impressão.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pessoa\Atendente\BaseInfoAtendimentos.resx">
       <DependentUpon>BaseInfoAtendimentos.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Atendente\BaseInfoAtendimentosCliente.resx">
+    <EmbeddedResource Include="Pessoa\Atendente\BaseInfoAtendimentosCliente.resx">
       <DependentUpon>BaseInfoAtendimentosCliente.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Atendente\BaseListaAtendimentos.resx">
+    <EmbeddedResource Include="Pessoa\Atendente\BaseListaAtendimentos.resx">
       <DependentUpon>BaseListaAtendimentos.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Atendente\ControladorAtendimentoGenérico.resx">
+    <EmbeddedResource Include="Pessoa\Atendente\ControladorAtendimentoGenérico.resx">
       <DependentUpon>ControladorAtendimentoGenérico.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Atendente\ListaPessoasVisitante.resx">
+    <EmbeddedResource Include="Pessoa\Atendente\ListaPessoasVisitante.resx">
       <DependentUpon>ListaPessoasVisitante.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Atendente\QuestionarNomeVisitante.resx">
+    <EmbeddedResource Include="Pessoa\Atendente\QuestionarNomeVisitante.resx">
       <DependentUpon>QuestionarNomeVisitante.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Atendente\ResolverVisitante.resx">
+    <EmbeddedResource Include="Pessoa\Atendente\ResolverVisitante.resx">
       <DependentUpon>ResolverVisitante.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Balanço\BandejaBalanço.resx">
+    <EmbeddedResource Include="Administrativo\Balanço\BandejaBalanço.resx">
       <DependentUpon>BandejaBalanço.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Balanço\BaseBalanço.resx">
+    <EmbeddedResource Include="Administrativo\Balanço\BaseBalanço.resx">
       <DependentUpon>BaseBalanço.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Balanço\BaseResumo.resx">
+    <EmbeddedResource Include="Administrativo\Balanço\BaseResumo.resx">
       <DependentUpon>BaseResumo.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -2369,101 +2380,101 @@
       <DependentUpon>BaseAtendimento.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="BaseAdministrativa.resx">
+    <EmbeddedResource Include="Administrativo\BaseAdministrativa.resx">
       <DependentUpon>BaseAdministrativa.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Clientes\BaseSeleçãoCliente.resx">
+    <EmbeddedResource Include="Pessoa\Clientes\BaseSeleçãoCliente.resx">
       <DependentUpon>BaseSeleçãoCliente.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Clientes\BaseSeleçãoClienteSetor.resx">
+    <EmbeddedResource Include="Pessoa\Clientes\BaseSeleçãoClienteSetor.resx">
       <DependentUpon>BaseSeleçãoClienteSetor.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Clientes\DlgConfigSeleçãoClienteSetor.resx">
+    <EmbeddedResource Include="Pessoa\Clientes\DlgConfigSeleçãoClienteSetor.resx">
       <DependentUpon>DlgConfigSeleçãoClienteSetor.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Clientes\Importação\EscolherClienteAntigo.resx">
+    <EmbeddedResource Include="Pessoa\Clientes\Importação\EscolherClienteAntigo.resx">
       <DependentUpon>EscolherClienteAntigo.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Clientes\Impressão\JanelaOpçõesImpressão.resx">
+    <EmbeddedResource Include="Pessoa\Clientes\Impressão\JanelaOpçõesImpressão.resx">
       <DependentUpon>JanelaOpçõesImpressão.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Clientes\JanelaEtiquetaSedex.resx">
+    <EmbeddedResource Include="Pessoa\Clientes\JanelaEtiquetaSedex.resx">
       <DependentUpon>JanelaEtiquetaSedex.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Clientes\JanelaEtiquetaSedexEdicao.resx">
+    <EmbeddedResource Include="Pessoa\Clientes\JanelaEtiquetaSedexEdicao.resx">
       <DependentUpon>JanelaEtiquetaSedexEdicao.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Clientes\ListaEntidadePessoaItem.resx">
+    <EmbeddedResource Include="Pessoa\Clientes\ListaEntidadePessoaItem.resx">
       <DependentUpon>ListaEntidadePessoaItem.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Clientes\ListaEntidadePessoaItemBusca.resx">
+    <EmbeddedResource Include="Pessoa\Clientes\ListaEntidadePessoaItemBusca.resx">
       <DependentUpon>ListaEntidadePessoaItemBusca.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Clientes\ListaPessoaDataImportante.resx">
+    <EmbeddedResource Include="Pessoa\Clientes\ListaPessoaDataImportante.resx">
       <DependentUpon>ListaPessoaDataImportante.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Clientes\ListViewVisitantes.resx">
+    <EmbeddedResource Include="Pessoa\Clientes\ListViewVisitantes.resx">
       <DependentUpon>ListViewVisitantes.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Clientes\Pedido\BaseEditarPedido.resx">
+    <EmbeddedResource Include="Pedido\BaseEditarPedido.resx">
       <DependentUpon>BaseEditarPedido.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Clientes\Pedido\BasePedidos.resx">
+    <EmbeddedResource Include="Pedido\BasePedidos.resx">
       <DependentUpon>BasePedidos.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Clientes\Pedido\BasePedidosBusca.resx">
+    <EmbeddedResource Include="Pedido\BasePedidosBusca.resx">
       <DependentUpon>BasePedidosBusca.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Clientes\Pedido\EncomendaItem.resx">
+    <EmbeddedResource Include="Pedido\EncomendaItem.resx">
       <DependentUpon>EncomendaItem.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Clientes\Pedido\ItemPedido.resx">
+    <EmbeddedResource Include="Pedido\ItemPedido.resx">
       <DependentUpon>ItemPedido.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Clientes\Pedido\JanelaImpressão.resx">
+    <EmbeddedResource Include="Pedido\JanelaImpressão.resx">
       <DependentUpon>JanelaImpressão.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Clientes\Pedido\ListaPedidos.resx">
+    <EmbeddedResource Include="Pedido\ListaPedidos.resx">
       <DependentUpon>ListaPedidos.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Clientes\Pedido\ListaPedidosSimples.resx">
+    <EmbeddedResource Include="Pedido\ListaPedidosSimples.resx">
       <DependentUpon>ListaPedidosSimples.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Estoque\JanelaOpçõesEstoque.resx">
+    <EmbeddedResource Include="Administrativo\Estoque\JanelaOpçõesEstoque.resx">
       <DependentUpon>JanelaOpçõesEstoque.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Estoque\ListaZeragemEstoque.resx">
+    <EmbeddedResource Include="Administrativo\Estoque\ListaZeragemEstoque.resx">
       <DependentUpon>ListaZeragemEstoque.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Acerto\Sumário\SumárioAcerto.resx">
+    <EmbeddedResource Include="Financeiro\Acerto\SumárioAcerto.resx">
       <DependentUpon>SumárioAcerto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Comissões\BaseEditarComissão.resx" />
-    <EmbeddedResource Include="Financeiro\Comissões\BaseVendaSemComissão.resx">
+    <EmbeddedResource Include="Financeiro\Comissões\BaseInferior\BaseEditarComissão.resx" />
+    <EmbeddedResource Include="Financeiro\Comissões\BaseInferior\BaseVendaSemComissão.resx">
       <DependentUpon>BaseVendaSemComissão.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Financeiro\Comissões\ControleAberturaVenda.resx" />
-    <EmbeddedResource Include="Financeiro\Comissões\ListaVendaComissão.resx" />
+    <EmbeddedResource Include="Financeiro\Comissões\Lista\ListaVendaComissão.resx" />
     <EmbeddedResource Include="Financeiro\Controle\Comum\ListaPessoas.resx">
       <DependentUpon>ListaPessoas.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -2480,36 +2491,36 @@
       <DependentUpon>ListaPessoasItemBusca.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Estatística\Gráfico.resx">
+    <EmbeddedResource Include="Administrativo\Estatística\Gráfico.resx">
       <DependentUpon>Gráfico.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Estatística\Legenda.resx">
+    <EmbeddedResource Include="Administrativo\Estatística\Legenda.resx">
       <DependentUpon>Legenda.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Estoque\BaseEstoque.resx">
+    <EmbeddedResource Include="Administrativo\Estoque\BaseEstoque.resx">
       <DependentUpon>BaseEstoque.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Estoque\Extrato\BaseExtrato.resx">
+    <EmbeddedResource Include="Administrativo\Estoque\Extrato\BaseExtrato.resx">
       <DependentUpon>BaseExtrato.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Estoque\BaseZerarEstoque.resx">
+    <EmbeddedResource Include="Administrativo\Estoque\BaseZerarEstoque.resx">
       <DependentUpon>BaseZerarEstoque.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Estoque\Entrada\BaseEditarEntrada.resx">
+    <EmbeddedResource Include="Administrativo\Estoque\Entrada\BaseEditarEntrada.resx">
       <DependentUpon>BaseEditarEntrada.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Estoque\Entrada\BaseEntradas.resx">
+    <EmbeddedResource Include="Administrativo\Estoque\Entrada\BaseEntradas.resx">
       <DependentUpon>BaseEntradas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Estoque\Entrada\ListaEntradas.resx">
+    <EmbeddedResource Include="Administrativo\Estoque\Entrada\ListaEntradas.resx">
       <DependentUpon>ListaEntradas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Estoque\Extrato\ListaExtrato.resx">
+    <EmbeddedResource Include="Administrativo\Estoque\Extrato\ListaExtrato.resx">
       <DependentUpon>ListaExtrato.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Estoque\ListaSaldo.resx">
+    <EmbeddedResource Include="Administrativo\Estoque\ListaSaldo.resx">
       <DependentUpon>ListaSaldo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Financeiro\Acerto\Alerta\AlertaQuadro.resx">
@@ -2520,64 +2531,64 @@
       <DependentUpon>BandejaAcerto.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Acerto\BaseAcertosPendentes.resx">
+    <EmbeddedResource Include="Financeiro\Acerto\BaseInferior\BaseAcertosPendentes.resx">
       <DependentUpon>BaseAcertosPendentes.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Acerto\BaseDadosAcerto.resx">
+    <EmbeddedResource Include="Financeiro\Acerto\BaseInferior\BaseDadosAcerto.resx">
       <DependentUpon>BaseDadosAcerto.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Acerto\BaseResumoAcerto.resx">
+    <EmbeddedResource Include="Financeiro\Acerto\BaseInferior\BaseResumoAcerto.resx">
       <DependentUpon>BaseResumoAcerto.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Acerto\CriarAcerto.resx">
-      <DependentUpon>CriarAcerto.cs</DependentUpon>
+    <EmbeddedResource Include="Financeiro\Acerto\Janela\JanelaCriaAcerto.resx">
+      <DependentUpon>JanelaCriaAcerto.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Financeiro\Acerto\DadosAcerto.resx">
       <DependentUpon>DadosAcerto.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Acerto\EscolherAcerto.resx">
-      <DependentUpon>EscolherAcerto.cs</DependentUpon>
+    <EmbeddedResource Include="Financeiro\Acerto\Janela\JanelaEscolhaAcerto.resx">
+      <DependentUpon>JanelaEscolhaAcerto.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Acerto\JanelaDesconto.resx">
+    <EmbeddedResource Include="Financeiro\Acerto\Janela\JanelaDesconto.resx">
       <DependentUpon>JanelaDesconto.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Acerto\JanelaEscolhaFórmula.resx">
+    <EmbeddedResource Include="Financeiro\Acerto\Janela\JanelaEscolhaFórmula.resx">
       <DependentUpon>JanelaEscolhaFórmula.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Acerto\JanelaImpressão.resx">
+    <EmbeddedResource Include="Financeiro\Acerto\Janela\JanelaImpressão.resx">
       <DependentUpon>JanelaImpressão.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Acerto\JanelaRastro.resx">
+    <EmbeddedResource Include="Financeiro\Acerto\Janela\JanelaRastro.resx">
       <DependentUpon>JanelaRastro.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Acerto\ListaAcertoHorário.resx">
+    <EmbeddedResource Include="Financeiro\Acerto\Lista\ListaAcertoHorário.resx">
       <DependentUpon>ListaAcertoHorário.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Acerto\ListaAcertos.resx">
+    <EmbeddedResource Include="Financeiro\Acerto\Lista\ListaAcertos.resx">
       <DependentUpon>ListaAcertos.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Acerto\ListaDocumentosAcerto.resx">
+    <EmbeddedResource Include="Financeiro\Acerto\Lista\ListaDocumentosAcerto.resx">
       <DependentUpon>ListaDocumentosAcerto.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Acerto\ListaDocumentosAcertoItem.resx">
+    <EmbeddedResource Include="Financeiro\Acerto\Lista\ListaDocumentosAcertoItem.resx">
       <DependentUpon>ListaDocumentosAcertoItem.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Acerto\LstRastro.resx">
-      <DependentUpon>LstRastro.cs</DependentUpon>
+    <EmbeddedResource Include="Financeiro\Acerto\Lista\ListaRastro.resx">
+      <DependentUpon>ListaRastro.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Financeiro\Acerto\MostradorAcerto.resx">
@@ -2588,39 +2599,39 @@
       <DependentUpon>SinalizaçãoAcertado.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\BalãoMercadoriaInconsistente.resx">
+    <EmbeddedResource Include="Financeiro\Relacionamento\BalãoMercadoriaInconsistente.resx">
       <DependentUpon>BalãoMercadoriaInconsistente.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\BandejaHistoricoRelacionamento.resx">
+    <EmbeddedResource Include="Financeiro\Relacionamento\BandejaHistoricoRelacionamento.resx">
       <DependentUpon>BandejaHistoricoRelacionamento.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\BandejaRelacionamento.resx">
+    <EmbeddedResource Include="Financeiro\Relacionamento\BandejaRelacionamento.resx">
       <DependentUpon>BandejaRelacionamento.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\BaseConsignado.resx">
+    <EmbeddedResource Include="Financeiro\Relacionamento\BaseConsignado.resx">
       <DependentUpon>BaseConsignado.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\BaseEditarRelacionamento.resx">
+    <EmbeddedResource Include="Financeiro\Relacionamento\BaseEditarRelacionamento.resx">
       <DependentUpon>BaseEditarRelacionamento.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Comissões\BaseComissão.resx">
+    <EmbeddedResource Include="Financeiro\Comissões\BaseInferior\BaseComissão.resx">
       <DependentUpon>BaseComissão.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Comissões\JanelaNovaComissão.resx">
+    <EmbeddedResource Include="Financeiro\Comissões\Janela\JanelaNovaComissão.resx">
       <DependentUpon>JanelaNovaComissão.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Comissões\ListaComissões.resx">
+    <EmbeddedResource Include="Financeiro\Comissões\Lista\ListaComissões.resx">
       <DependentUpon>ListaComissões.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Comissões\ListViewComissionados.resx">
-      <DependentUpon>ListViewComissionados.cs</DependentUpon>
+    <EmbeddedResource Include="Financeiro\Comissões\Lista\ListaComissionados.resx">
+      <DependentUpon>ListaComissionados.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Financeiro\ConsultaMercadoria.resx">
       <DependentUpon>ConsultaMercadoria.cs</DependentUpon>
@@ -2662,39 +2673,39 @@
       <DependentUpon>JanelaCadastroCrédito.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\DigitaçãoComum.resx">
+    <EmbeddedResource Include="Financeiro\Relacionamento\DigitaçãoComum.resx">
       <DependentUpon>DigitaçãoComum.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\EscolherTabela.resx">
+    <EmbeddedResource Include="Financeiro\Tabela\EscolherTabela.resx">
       <DependentUpon>EscolherTabela.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fiscal\BaseInferior\BaseDocumento.resx">
+    <EmbeddedResource Include="Administrativo\Fiscal\BaseInferior\BaseDocumento.resx">
       <DependentUpon>BaseDocumento.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fiscal\BaseInferior\Documentos\BaseDocumentos.resx">
+    <EmbeddedResource Include="Administrativo\Fiscal\BaseInferior\Documentos\BaseDocumentos.resx">
       <DependentUpon>BaseDocumentos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fiscal\BaseInferior\Documentos\BaseEntradas.resx">
+    <EmbeddedResource Include="Administrativo\Fiscal\BaseInferior\Documentos\BaseEntradas.resx">
       <DependentUpon>BaseEntradas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fiscal\BaseInferior\BaseEntrada.resx">
+    <EmbeddedResource Include="Administrativo\Fiscal\BaseInferior\BaseEntrada.resx">
       <DependentUpon>BaseEntrada.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fiscal\BaseInferior\BaseSaída.resx">
+    <EmbeddedResource Include="Administrativo\Fiscal\BaseInferior\BaseSaída.resx">
       <DependentUpon>BaseSaída.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fiscal\BaseInferior\Documentos\BaseSaídas.resx">
+    <EmbeddedResource Include="Administrativo\Fiscal\BaseInferior\Documentos\BaseSaídas.resx">
       <DependentUpon>BaseSaídas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fiscal\Janela\JanelaCFOP.resx">
+    <EmbeddedResource Include="Administrativo\Fiscal\Janela\JanelaCFOP.resx">
       <DependentUpon>JanelaCFOP.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fiscal\Janela\JanelaImportação.resx">
+    <EmbeddedResource Include="Administrativo\Fiscal\Janela\JanelaImportação.resx">
       <DependentUpon>JanelaImportação.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fiscal\Janela\JanelaNFe.resx">
+    <EmbeddedResource Include="Administrativo\Fiscal\Janela\JanelaNFe.resx">
       <DependentUpon>JanelaNFe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Financeiro\Indicadores\GráficoCotação.resx">
@@ -2716,11 +2727,11 @@
       <DependentUpon>ListaCotação.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\JanelaEscolhaÍndice.resx">
+    <EmbeddedResource Include="Financeiro\Relacionamento\JanelaEscolhaÍndice.resx">
       <DependentUpon>JanelaEscolhaÍndice.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\ListaConsignado.resx">
+    <EmbeddedResource Include="Financeiro\Relacionamento\ListaConsignado.resx">
       <DependentUpon>ListaConsignado.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -2728,31 +2739,31 @@
       <DependentUpon>BasePagamentos.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Pagamento\Cadastro.resx">
+    <EmbeddedResource Include="Financeiro\Pagamento\Cadastro\Cadastro.resx">
       <DependentUpon>Cadastro.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Pagamento\CadastroCheque.resx">
+    <EmbeddedResource Include="Financeiro\Pagamento\Cadastro\CadastroCheque.resx">
       <DependentUpon>CadastroCheque.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Pagamento\CadastroCrédito.resx">
+    <EmbeddedResource Include="Financeiro\Pagamento\Cadastro\CadastroCrédito.resx">
       <DependentUpon>CadastroCrédito.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Pagamento\CadastroDinheiro.resx">
+    <EmbeddedResource Include="Financeiro\Pagamento\Cadastro\CadastroDinheiro.resx">
       <DependentUpon>CadastroDinheiro.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Pagamento\CadastroDolar.resx">
+    <EmbeddedResource Include="Financeiro\Pagamento\Cadastro\CadastroDolar.resx">
       <DependentUpon>CadastroDolar.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Pagamento\CadastroNotaPromissória.resx">
+    <EmbeddedResource Include="Financeiro\Pagamento\Cadastro\CadastroNotaPromissória.resx">
       <DependentUpon>CadastroNotaPromissória.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Pagamento\CadastroOuro.resx">
+    <EmbeddedResource Include="Financeiro\Pagamento\Cadastro\CadastroOuro.resx">
       <DependentUpon>CadastroOuro.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -2760,7 +2771,7 @@
       <DependentUpon>EscolhaVendas.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Pagamento\ListaPagamento.resx">
+    <EmbeddedResource Include="Financeiro\Pagamento\Lista\ListaPagamento.resx">
       <DependentUpon>ListaPagamento.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -2772,293 +2783,293 @@
       <DependentUpon>PesquisaMercadoriaResultado.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Retorno\BaseRetornos.resx">
+    <EmbeddedResource Include="Financeiro\Relacionamento\Retorno\BaseRetornos.resx">
       <DependentUpon>BaseRetornos.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Retorno\RetornoBaseInferior.resx">
+    <EmbeddedResource Include="Financeiro\Relacionamento\Retorno\RetornoBaseInferior.resx">
       <DependentUpon>RetornoBaseInferior.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Saída\BaseSaídas.resx">
+    <EmbeddedResource Include="Financeiro\Relacionamento\Saída\BaseSaídas.resx">
       <DependentUpon>BaseSaídas.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Saída\ListaSaídas.resx">
+    <EmbeddedResource Include="Financeiro\Relacionamento\Saída\ListaSaídas.resx">
       <DependentUpon>ListaSaídas.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Saída\SaídaBaseInferior.resx">
+    <EmbeddedResource Include="Financeiro\Relacionamento\Saída\SaídaBaseInferior.resx">
       <DependentUpon>SaídaBaseInferior.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Venda\BaseEditarVenda.resx">
+    <EmbeddedResource Include="Financeiro\Relacionamento\Venda\BaseEditarVenda.resx">
       <DependentUpon>BaseEditarVenda.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Venda\BaseVendas.resx">
+    <EmbeddedResource Include="Financeiro\Relacionamento\Venda\BaseVendas.resx">
       <DependentUpon>BaseVendas.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Venda\DadosVenda.resx">
+    <EmbeddedResource Include="Financeiro\Relacionamento\Venda\DadosVenda.resx">
       <DependentUpon>DadosVenda.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Venda\DigitaçãoVenda.resx">
+    <EmbeddedResource Include="Financeiro\Relacionamento\Venda\DigitaçãoVenda.resx">
       <DependentUpon>DigitaçãoVenda.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Venda\EditarCrédito.resx">
-      <DependentUpon>EditarCrédito.cs</DependentUpon>
+    <EmbeddedResource Include="Financeiro\Relacionamento\Venda\Janela\JanelaEdiçãoCrédito.resx">
+      <DependentUpon>JanelaEdiçãoCrédito.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Venda\EditarDébito.resx">
-      <DependentUpon>EditarDébito.cs</DependentUpon>
+    <EmbeddedResource Include="Financeiro\Relacionamento\Venda\Janela\JanelaEdiçãoDébito.resx">
+      <DependentUpon>JanelaEdiçãoDébito.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Venda\JanelaCriarPagamentos.resx">
+    <EmbeddedResource Include="Financeiro\Relacionamento\Venda\Janela\JanelaCriarPagamentos.resx">
       <DependentUpon>JanelaCriarPagamentos.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Venda\JanelaEscolhaDatasPagamento.resx">
+    <EmbeddedResource Include="Financeiro\Relacionamento\Venda\Janela\JanelaEscolhaDatasPagamento.resx">
       <DependentUpon>JanelaEscolhaDatasPagamento.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Venda\JanelaPersonalizarPagamentos.resx">
-      <DependentUpon>JanelaPersonalizarPagamentos.cs</DependentUpon>
+    <EmbeddedResource Include="Financeiro\Relacionamento\Venda\Janela\JanelaPersonalizaPagamentos.resx">
+      <DependentUpon>JanelaPersonalizaPagamentos.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Venda\JanelaPeríodo.resx">
+    <EmbeddedResource Include="Financeiro\Relacionamento\Venda\Janela\JanelaPeríodo.resx">
       <DependentUpon>JanelaPeríodo.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Venda\ListaCréditos.resx">
+    <EmbeddedResource Include="Financeiro\Relacionamento\Venda\Lista\ListaCréditos.resx">
       <DependentUpon>ListaCréditos.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Venda\ListaDébitos.resx">
+    <EmbeddedResource Include="Financeiro\Relacionamento\Venda\Lista\ListaDébitos.resx">
       <DependentUpon>ListaDébitos.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Venda\ListarVendas.resx">
-      <DependentUpon>ListarVendas.cs</DependentUpon>
+    <EmbeddedResource Include="Financeiro\Relacionamento\Venda\Janela\JanelaListaVendas.resx">
+      <DependentUpon>JanelaListaVendas.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Venda\ListViewVendas.resx">
+    <EmbeddedResource Include="Financeiro\Relacionamento\Venda\Lista\ListViewVendas.resx">
       <DependentUpon>ListViewVendas.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Venda\ProcurarVendas.resx">
-      <DependentUpon>ProcurarVendas.cs</DependentUpon>
+    <EmbeddedResource Include="Financeiro\Relacionamento\Venda\Janela\JanelaProcuraVendas.resx">
+      <DependentUpon>JanelaProcuraVendas.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Venda\SemaforoLegenda.resx">
+    <EmbeddedResource Include="Financeiro\Relacionamento\Venda\SemaforoLegenda.resx">
       <DependentUpon>SemaforoLegenda.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\VerificadorMercadoria.resx">
+    <EmbeddedResource Include="Financeiro\Relacionamento\VerificadorMercadoria.resx">
       <DependentUpon>VerificadorMercadoria.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fiscal\BaseInferior\BaseFiscal.resx">
+    <EmbeddedResource Include="Administrativo\Fiscal\BaseInferior\BaseFiscal.resx">
       <DependentUpon>BaseFiscal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fiscal\Lista\ListaDocumentoEntrada.resx">
+    <EmbeddedResource Include="Administrativo\Fiscal\Lista\ListaDocumentoEntrada.resx">
       <DependentUpon>ListaDocumentoEntrada.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fiscal\Lista\ListaDocumentoFiscal.resx">
+    <EmbeddedResource Include="Administrativo\Fiscal\Lista\ListaDocumentoFiscal.resx">
       <DependentUpon>ListaDocumentoFiscal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fiscal\Lista\ListaDocumentoSaída.resx">
+    <EmbeddedResource Include="Administrativo\Fiscal\Lista\ListaDocumentoSaída.resx">
       <DependentUpon>ListaDocumentoSaída.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fiscal\Lista\ListaItem.resx">
+    <EmbeddedResource Include="Administrativo\Fiscal\Lista\ListaItem.resx">
       <DependentUpon>ListaItem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fiscal\QuadroTipo.resx">
+    <EmbeddedResource Include="Administrativo\Fiscal\QuadroTipo.resx">
       <DependentUpon>QuadroTipo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fiscal\VisualizadorPDF.resx">
+    <EmbeddedResource Include="Administrativo\Fiscal\VisualizadorPDF.resx">
       <DependentUpon>VisualizadorPDF.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\Aguarde.resx">
+    <EmbeddedResource Include="Formulário\Janela\Aguarde.resx">
       <DependentUpon>Aguarde.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\AguardeDB.resx">
+    <EmbeddedResource Include="Formulário\Janela\AguardeDB.resx">
       <DependentUpon>AguardeDB.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\Assistente\AssistenteControle.resx">
+    <EmbeddedResource Include="Formulário\Assistente\AssistenteControle.resx">
       <DependentUpon>AssistenteControle.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\Assistente\ConjuntoPainéis.resx">
+    <EmbeddedResource Include="Formulário\Assistente\ConjuntoPainéis.resx">
       <DependentUpon>ConjuntoPainéis.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\Avaliador.resx">
+    <EmbeddedResource Include="Formulário\Componente\Avaliador.resx">
       <DependentUpon>Avaliador.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\BarraBotões.resx">
+    <EmbeddedResource Include="Formulário\BaseInferior\BarraBotões.resx">
       <DependentUpon>BarraBotões.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\BaseFormulário.resx">
+    <EmbeddedResource Include="Formulário\BaseInferior\BaseFormulário.resx">
       <DependentUpon>BaseFormulário.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\BaseInferior.resx">
+    <EmbeddedResource Include="Formulário\BaseInferior\BaseInferior.resx">
       <DependentUpon>BaseInferior.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\Botão.resx">
+    <EmbeddedResource Include="Formulário\BaseInferior\Botão.resx">
       <DependentUpon>Botão.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\BotãoLiberarRecurso.resx">
+    <EmbeddedResource Include="Formulário\Componente\BotãoLiberarRecurso.resx">
       <DependentUpon>BotãoLiberarRecurso.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\ControladorBaseInferior.resx">
+    <EmbeddedResource Include="Formulário\BaseInferior\ControladorBaseInferior.resx">
       <DependentUpon>ControladorBaseInferior.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\EditorBase.resx">
+    <EmbeddedResource Include="Formulário\EditorBase.resx">
       <DependentUpon>EditorBase.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\Histórico\Histórico.resx">
+    <EmbeddedResource Include="Formulário\Histórico\Histórico.resx">
       <DependentUpon>Histórico.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\Impressão\BaseFormatarEtiqueta.resx">
+    <EmbeddedResource Include="Formulário\Impressão\BaseFormatarEtiqueta.resx">
       <DependentUpon>BaseFormatarEtiqueta.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\Informativo.resx">
+    <EmbeddedResource Include="Formulário\Janela\Informativo.resx">
       <DependentUpon>Informativo.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\ItemExpandível.resx">
+    <EmbeddedResource Include="Formulário\Componente\ItemExpandível.resx">
       <DependentUpon>ItemExpandível.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\JanelaExplicativa.resx">
+    <EmbeddedResource Include="Formulário\Janela\JanelaExplicativa.resx">
       <DependentUpon>JanelaExplicativa.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\JanelaImpressão.resx">
+    <EmbeddedResource Include="Formulário\Janela\JanelaImpressão.resx">
       <DependentUpon>JanelaImpressão.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\JustificarLiberaçãoRecursos.resx">
+    <EmbeddedResource Include="Formulário\Janela\JustificarLiberaçãoRecursos.resx">
       <DependentUpon>JustificarLiberaçãoRecursos.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\Linha.resx">
+    <EmbeddedResource Include="Formulário\Componente\Linha.resx">
       <DependentUpon>Linha.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\ListViewUsabilidade.resx">
+    <EmbeddedResource Include="Formulário\Lista\ListViewUsabilidade.resx">
       <DependentUpon>ListViewUsabilidade.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\Localizador.resx">
+    <EmbeddedResource Include="Formulário\Localizador.resx">
       <DependentUpon>Localizador.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\Login.resx">
+    <EmbeddedResource Include="Formulário\Janela\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\LoginBalãoUsuárioInválido.resx">
+    <EmbeddedResource Include="Formulário\Janela\LoginBalãoUsuárioInválido.resx">
       <DependentUpon>LoginBalãoUsuárioInválido.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\Notificação.resx">
+    <EmbeddedResource Include="Formulário\Janela\Notificação.resx">
       <DependentUpon>Notificação.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\NotificaçãoSimples.resx">
+    <EmbeddedResource Include="Formulário\Janela\NotificaçãoSimples.resx">
       <DependentUpon>NotificaçãoSimples.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\Opção.resx">
+    <EmbeddedResource Include="Formulário\Componente\Opção.resx">
       <DependentUpon>Opção.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\Quadro.resx">
+    <EmbeddedResource Include="Formulário\Componente\Quadro.resx">
       <DependentUpon>Quadro.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\QuadroNavegação.resx">
+    <EmbeddedResource Include="Formulário\Componente\QuadroNavegação.resx">
       <DependentUpon>QuadroNavegação.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\QuadroOpção.resx">
+    <EmbeddedResource Include="Formulário\Componente\QuadroOpção.resx">
       <DependentUpon>QuadroOpção.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\QuestionarSubstituiçãoBI.resx">
+    <EmbeddedResource Include="Formulário\Janela\QuestionarSubstituiçãoBI.resx">
       <DependentUpon>QuestionarSubstituiçãoBI.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\SeleçãoPeríodo.resx">
+    <EmbeddedResource Include="Formulário\Janela\SeleçãoPeríodo.resx">
       <DependentUpon>SeleçãoPeríodo.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\SinalizaçãoCarga.resx">
+    <EmbeddedResource Include="Formulário\SinalizaçãoCarga.resx">
       <DependentUpon>SinalizaçãoCarga.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\Splash.resx">
+    <EmbeddedResource Include="Formulário\Janela\Splash.resx">
       <DependentUpon>Splash.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\TextBoxPesquisável.resx">
+    <EmbeddedResource Include="Formulário\Consultas\TextBoxPesquisável.resx">
       <DependentUpon>TextBoxPesquisável.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\TítuloBaseInferior.resx">
+    <EmbeddedResource Include="Formulário\BaseInferior\TítuloBaseInferior.resx">
       <DependentUpon>TítuloBaseInferior.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fornecedor\ComboboxFornecedor.resx">
+    <EmbeddedResource Include="Pessoa\Fornecedor\ComboboxFornecedor.resx">
       <DependentUpon>ComboboxFornecedor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fotos\BalãoInformarTratamento.resx">
+    <EmbeddedResource Include="Foto\BalãoInformarTratamento.resx">
       <DependentUpon>BalãoInformarTratamento.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fotos\BaseRemoverFundo.resx">
+    <EmbeddedResource Include="Foto\BaseRemoverFundo.resx">
       <DependentUpon>BaseRemoverFundo.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fotos\ConfirmarExclusãoFoto.resx">
+    <EmbeddedResource Include="Foto\ConfirmarExclusãoFoto.resx">
       <DependentUpon>ConfirmarExclusãoFoto.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fotos\EditarMercadoria.resx">
+    <EmbeddedResource Include="Foto\EditarMercadoria.resx">
       <DependentUpon>EditarMercadoria.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fotos\Fotógrafo.resx">
+    <EmbeddedResource Include="Foto\Fotógrafo.resx">
       <DependentUpon>Fotógrafo.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fotos\IdentificaçãoMercadoria.resx">
+    <EmbeddedResource Include="Foto\IdentificaçãoMercadoria.resx">
       <DependentUpon>IdentificaçãoMercadoria.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fotos\ListaFotos.resx">
+    <EmbeddedResource Include="Foto\ListaFotos.resx">
       <DependentUpon>ListaFotos.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fotos\PainelFotos.resx">
+    <EmbeddedResource Include="Foto\PainelFotos.resx">
       <DependentUpon>PainelFotos.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fotos\TodasFotos.resx">
+    <EmbeddedResource Include="Foto\TodasFotos.resx">
       <DependentUpon>TodasFotos.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -3126,7 +3137,7 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>PagamentosCliente.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Clientes\Pedido\BaseReferênciasEmFalta.resx">
+    <EmbeddedResource Include="Pedido\BaseReferênciasEmFalta.resx">
       <DependentUpon>BaseReferênciasEmFalta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Impressão\Relatórios\Pedido\MercadoriaEmFaltaCliente\Relatório.rpt">
@@ -3321,7 +3332,7 @@
     <EmbeddedResource Include="Pessoa\Endereço\JanelaRemanejarRegião.resx">
       <DependentUpon>JanelaRemanejarRegião.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProcurarMercadoria.resx">
+    <EmbeddedResource Include="Mercadoria\ProcurarMercadoria.resx">
       <DependentUpon>ProcurarMercadoria.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -3330,46 +3341,44 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="SinalizaçãoPedido.resx">
+    <EmbeddedResource Include="Pedido\SinalizaçãoPedido.resx">
       <DependentUpon>SinalizaçãoPedido.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Álbuns\BaseEditarÁlbum.resx">
+    <EmbeddedResource Include="Foto\Álbum\BaseEditarÁlbum.resx">
       <DependentUpon>BaseEditarÁlbum.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Álbuns\BaseSeleçãoÁlbum.resx">
+    <EmbeddedResource Include="Foto\Álbum\BaseSeleçãoÁlbum.resx">
       <DependentUpon>BaseSeleçãoÁlbum.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Álbuns\BaseTodasFotos.resx">
+    <EmbeddedResource Include="Foto\Álbum\BaseTodasFotos.resx">
       <DependentUpon>BaseTodasFotos.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Álbuns\CadastroÁlbum.resx">
+    <EmbeddedResource Include="Foto\Álbum\CadastroÁlbum.resx">
       <DependentUpon>CadastroÁlbum.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Álbuns\ListaÁlbuns.resx">
+    <EmbeddedResource Include="Foto\Álbum\ListaÁlbuns.resx">
       <DependentUpon>ListaÁlbuns.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Álbuns\ListViewEdiçãoFotos.resx">
+    <EmbeddedResource Include="Foto\Álbum\ListViewEdiçãoFotos.resx">
       <DependentUpon>ListViewEdiçãoFotos.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Álbuns\ListViewÁlbuns.resx">
+    <EmbeddedResource Include="Foto\Álbum\ListViewÁlbuns.resx">
       <DependentUpon>ListViewÁlbuns.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Álbuns\PáginaVirtual.resx">
+    <EmbeddedResource Include="Foto\Álbum\PáginaVirtual.resx">
       <DependentUpon>PáginaVirtual.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="chave.snk" />
     <None Include="chave2.snk" />
     <None Include="Impressão\Relatórios\Comissao\DataSetComissaoVenda.xsc">
       <DependentUpon>DataSetComissaoVenda.xsd</DependentUpon>
@@ -3587,12 +3596,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Modelos\Risco.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Modelos\Simples.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\3228_icon1.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -3650,7 +3653,6 @@
     <None Include="Resources\repair.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="IMJ.Apresentação.Álbum.Edição.snk" />
     <None Include="Resources\saveHS.png" />
   </ItemGroup>
   <ItemGroup>
@@ -3717,15 +3719,15 @@
     <None Include="Resources\repair1.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Clientes\Importação\CodNome.xsc">
+    <None Include="Pessoa\Clientes\Importação\CodNome.xsc">
       <DependentUpon>CodNome.xsd</DependentUpon>
     </None>
-    <None Include="Clientes\Importação\CodNome.xsd">
+    <None Include="Pessoa\Clientes\Importação\CodNome.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>CodNome.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="Clientes\Importação\CodNome.xss">
+    <None Include="Pessoa\Clientes\Importação\CodNome.xss">
       <DependentUpon>CodNome.xsd</DependentUpon>
     </None>
     <None Include="Resources\saveHS1.png" />
@@ -3887,7 +3889,6 @@
     <None Include="Resources\turnkey.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="IMJ.Apresentação.Atendimento.key.snk" />
     <None Include="Resources\warning.bmp" />
   </ItemGroup>
   <ItemGroup>
@@ -4032,241 +4033,10 @@
     <None Include="Resources\turnkey1.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Financeiro\Resources\3DLRSIGN.WMF" />
     <None Include="Resources\warning1.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Financeiro\Resources\Acerto %28Pequeno%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\Acerto.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\AddTableHS.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\adicionar_pagamento.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\arrow-down_16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\arrow-up_16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\arrow_switch.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\arrow_switch1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\arrow_switch2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\atendimento.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\balança pequena.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\balança.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\botão - ouro.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\cadeado aberto %28pequeno%29.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\cadeado aberto.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\cadeado fechado.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\CalculatorHS.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\calendário - inclinado.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\cash_stack_share.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\chave.GIF" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\cheque.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\cheque1.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\Collapse_large.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\Consultar Mercadoria.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\Cotação.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\crédito.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\credito.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\Dardo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\desatualizada.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\diamente_sem_fundo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\diamond.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\dinheiro.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\dinheiro1.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\dívida.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\elegant.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\estrela.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\Excluir.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\Expand_large.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\fechar-busca.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\Filter2HS.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\fundo dinheiro.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\giveMoney.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\GRAPH03.ICO" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\impressora - 16.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\Impressora 3D.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\logo fundo laranja.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\lupa papéis.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\m.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\mao sem fundo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\moeda.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\moedaunica.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\money_bag.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\none.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\novo.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\np.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\ok.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\openfolderHS1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\pagamento.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\pagar em dólares %28pequeno%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\Porcento.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\promissoria.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\propriedades.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\RefreshDocViewHS.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\relatório.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\Reminder1.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\remover_pagamento.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\Retorno %28Ícone%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\Retorno.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\rodízio.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\Saída.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\Saída1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\search.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\Shaking Hands.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\share.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\sunglasses.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Financeiro\Resources\textdoc.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Financeiro\IMJ.Apresentação.Financeiro.snk" />
-    <None Include="Financeiro\Migrated rules for Apresentação.Financeiro.ruleset" />
-    <None Include="Financeiro\Resources\warning.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Balloon.NET\Balloon.NET.csproj">
@@ -4526,72 +4296,72 @@
     <None Include="Resources\warning.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Formulários\Resources\AddTableHS.png" />
+    <None Include="Formulário\Resources\AddTableHS.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Formulários\Resources\cadeado aberto %28pequeno%29.gif" />
+    <None Include="Formulário\Resources\cadeado aberto %28pequeno%29.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Formulários\Resources\cadeado aberto.gif" />
+    <None Include="Formulário\Resources\cadeado aberto.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Formulários\Resources\chamando atenção.gif" />
+    <None Include="Formulário\Resources\chamando atenção.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Formulários\Resources\Collapse_large.bmp" />
+    <None Include="Formulário\Resources\Collapse_large.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Formulários\Resources\Edit_UndoHS.png" />
+    <None Include="Formulário\Resources\Edit_UndoHS.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Formulários\Resources\esquerda.jpg" />
+    <None Include="Formulário\Resources\esquerda.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Formulários\Resources\estrela-2.png" />
+    <None Include="Formulário\Resources\estrela-2.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Formulários\Resources\estrela-3.png" />
+    <None Include="Formulário\Resources\estrela-3.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Formulários\Resources\eventlogInfo.ico" />
+    <None Include="Formulário\Resources\eventlogInfo.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Formulários\Resources\Excluir.ico" />
+    <None Include="Formulário\Resources\Excluir.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Formulários\Resources\Expand_large.bmp" />
+    <None Include="Formulário\Resources\Expand_large.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Formulários\Resources\fechar-busca.bmp" />
+    <None Include="Formulário\Resources\fechar-busca.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Formulários\Resources\FINDFILE16.gif" />
+    <None Include="Formulário\Resources\FINDFILE16.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Formulários\Resources\impressora %28altura 58%29.png" />
+    <None Include="Formulário\Resources\impressora %28altura 58%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Formulários\Resources\ooops.gif" />
+    <None Include="Formulário\Resources\ooops.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Formulários\Resources\printer.ico" />
+    <None Include="Formulário\Resources\printer.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Formulários\Resources\QUESTION.ICO" />
+    <None Include="Formulário\Resources\QUESTION.ICO" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Formulários\Resources\search.ico" />
+    <None Include="Formulário\Resources\search.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Formulários\Resources\SORTASC.BMP" />
+    <None Include="Formulário\Resources\SORTASC.BMP" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Formulários\Resources\topo.BackgroundImage.tif" />
+    <None Include="Formulário\Resources\topo.BackgroundImage.tif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Formulários\IMJ.Apresentação.Formulários.key.snk" />
-    <None Include="Formulários\Migrated rules for Apresentação.Formulários.ruleset" />
-    <None Include="Formulários\Resources\topo.tif" />
+    <None Include="Formulário\IMJ.Apresentação.Formulários.key.snk" />
+    <None Include="Formulário\Migrated rules for Apresentação.Formulários.ruleset" />
+    <None Include="Formulário\Resources\topo.tif" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AddTableHS2.png" />
@@ -5222,35 +4992,35 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Relatório.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="IntegraçãoSistemaAntigo\BaseCodBarras.resx">
+    <EmbeddedResource Include="Administrativo\IntegraçãoSistemaAntigo\BaseCodBarras.resx">
       <DependentUpon>BaseCodBarras.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="IntegraçãoSistemaAntigo\ProcessoIntegração.resx">
+    <EmbeddedResource Include="Administrativo\IntegraçãoSistemaAntigo\ProcessoIntegração.resx">
       <DependentUpon>ProcessoIntegração.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="IntegraçãoSistemaAntigo\Cadcli\BaseCadCli.resx">
+    <EmbeddedResource Include="Administrativo\IntegraçãoSistemaAntigo\Cadcli\BaseCadCli.resx">
       <DependentUpon>BaseCadCli.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="IntegraçãoSistemaAntigo\Consignado\BaseConsignado.resx">
+    <EmbeddedResource Include="Administrativo\IntegraçãoSistemaAntigo\Consignado\BaseConsignado.resx">
       <DependentUpon>BaseConsignado.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="IntegraçãoSistemaAntigo\Fiscal\BaseFiscal.resx">
+    <EmbeddedResource Include="Administrativo\IntegraçãoSistemaAntigo\Fiscal\BaseFiscal.resx">
       <DependentUpon>BaseFiscal.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="IntegraçãoSistemaAntigo\Pagamentos\BasePagamentos.resx">
+    <EmbeddedResource Include="Administrativo\IntegraçãoSistemaAntigo\Pagamentos\BasePagamentos.resx">
       <DependentUpon>BasePagamentos.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="IntegraçãoSistemaAntigo\Principal.resx">
+    <EmbeddedResource Include="Administrativo\IntegraçãoSistemaAntigo\Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="IntegraçãoSistemaAntigo\Vendas\BaseVendas.resx">
+    <EmbeddedResource Include="Administrativo\IntegraçãoSistemaAntigo\Vendas\BaseVendas.resx">
       <DependentUpon>BaseVendas.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -5287,55 +5057,55 @@
       <DependentUpon>TxtTelefoneBalão.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Usuário\Agendamentos\BaseAgendamentos.resx">
+    <EmbeddedResource Include="Pessoa\Usuário\Agendamentos\BaseAgendamentos.resx">
       <DependentUpon>BaseAgendamentos.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Usuário\Agendamentos\DespertadorBalão.resx">
+    <EmbeddedResource Include="Pessoa\Usuário\Agendamentos\DespertadorBalão.resx">
       <DependentUpon>DespertadorBalão.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Usuário\Agendamentos\InserirAgendamento.pt-BR.resx">
+    <EmbeddedResource Include="Pessoa\Usuário\Agendamentos\InserirAgendamento.pt-BR.resx">
       <DependentUpon>InserirAgendamento.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Usuário\Agendamentos\InserirAgendamento.pt.resx">
+    <EmbeddedResource Include="Pessoa\Usuário\Agendamentos\InserirAgendamento.pt.resx">
       <DependentUpon>InserirAgendamento.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Usuário\Agendamentos\InserirAgendamento.resx">
+    <EmbeddedResource Include="Pessoa\Usuário\Agendamentos\InserirAgendamento.resx">
       <DependentUpon>InserirAgendamento.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Usuário\Agendamentos\ListaAgendamentos.resx">
+    <EmbeddedResource Include="Pessoa\Usuário\Agendamentos\ListaAgendamentos.resx">
       <DependentUpon>ListaAgendamentos.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Usuário\Financeiro\NotificaçãoCotação.resx">
+    <EmbeddedResource Include="Pessoa\Usuário\Financeiro\NotificaçãoCotação.resx">
       <DependentUpon>NotificaçãoCotação.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Usuário\Funcionários\AlterarSenha.resx">
+    <EmbeddedResource Include="Pessoa\Usuário\Funcionários\AlterarSenha.resx">
       <DependentUpon>AlterarSenha.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Usuário\Funcionários\GuiaNovato.resx">
+    <EmbeddedResource Include="Pessoa\Usuário\Funcionários\GuiaNovato.resx">
       <DependentUpon>GuiaNovato.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Usuário\Funcionários\Ramais.resx">
+    <EmbeddedResource Include="Pessoa\Usuário\Funcionários\Ramais.resx">
       <DependentUpon>Ramais.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Usuário\InterForm\BaseUsuário.resx">
+    <EmbeddedResource Include="Pessoa\Usuário\InterForm\BaseUsuário.resx">
       <DependentUpon>BaseUsuário.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Usuário\InterForm\BotãoUsuário.resx">
+    <EmbeddedResource Include="Pessoa\Usuário\InterForm\BotãoUsuário.resx">
       <DependentUpon>BotãoUsuário.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Usuário\Visitantes\NotificaçãoEntradaSaída.resx">
+    <EmbeddedResource Include="Pessoa\Usuário\Visitantes\NotificaçãoEntradaSaída.resx">
       <DependentUpon>NotificaçãoEntradaSaída.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -5461,43 +5231,44 @@
     <None Include="Resources\ZoomHS1.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Usuário\Resources\botão - agenda - sobre.png" />
+    <None Include="Pessoa\Usuário\Resources\botão - agenda - sobre.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Usuário\Resources\botão - ouro.png" />
+    <None Include="Pessoa\Usuário\Resources\botão - ouro.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Usuário\Resources\botão - pessoas.png" />
+    <None Include="Pessoa\Usuário\Resources\botão - pessoas.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Usuário\Resources\botão - telefone.png" />
+    <None Include="Pessoa\Usuário\Resources\botão - telefone.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Usuário\Resources\DedoMenor.gif" />
+    <None Include="Pessoa\Usuário\Resources\DedoMenor.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Usuário\Resources\Edit_RedoHS.png" />
+    <None Include="Pessoa\Usuário\Resources\Edit_RedoHS.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Usuário\Resources\empregado.gif" />
+    <None Include="Pessoa\Usuário\Resources\empregado.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Usuário\Resources\keys.ico" />
+    <None Include="Pessoa\Usuário\Resources\keys.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Usuário\Resources\ScrJanela.jpg" />
+    <None Include="Pessoa\Usuário\Resources\ScrJanela.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Usuário\Resources\WarningHS.png" />
+    <None Include="Pessoa\Usuário\Resources\WarningHS.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Usuário\Resources\ZoomHS.png" />
+    <None Include="Pessoa\Usuário\Resources\ZoomHS.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="IntegraçãoSistemaAntigo\Resources\rodízio.gif" />
+    <None Include="Administrativo\IntegraçãoSistemaAntigo\Resources\rodízio.gif" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="IntegraçãoSistemaAntigo\App.ico" />
+    <Content Include="Administrativo\IntegraçãoSistemaAntigo\App.ico" />
+    <None Include="Resources\esquerda.BackgroundImage.jpg" />
     <None Include="Resources\pdf_icon.png" />
     <None Include="Resources\fiscal1.png" />
     <None Include="Resources\importar21.png" />
@@ -5511,7 +5282,6 @@
     <None Include="Resources\visualizacao_impressao4.png" />
     <None Include="Resources\comissao.png" />
     <None Include="Resources\fiscal.png" />
-    <None Include="Resources\nfe.png" />
     <None Include="Resources\ARW04LT.ICO" />
     <None Include="Resources\ARW04RT.ICO" />
     <None Include="Resources\Deep_Refresh.png" />
@@ -5552,9 +5322,7 @@
       <Isolated>False</Isolated>
     </COMReference>
   </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="..\packages\StrongNamer.0.0.2\build\StrongNamer.targets" Condition="Exists('..\packages\StrongNamer.0.0.2\build\StrongNamer.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
