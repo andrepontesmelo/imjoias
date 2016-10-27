@@ -19,7 +19,7 @@ namespace Apresentação.Fiscal.Lista
             colEmitente.Text = "Emitente";
 
             lista.Columns.Clear();
-            lista.Columns.AddRange(new ColumnHeader[] { this.colPDF,
+            lista.Columns.AddRange(new ColumnHeader[] { 
             colId,
             colEmissão,
             colEmitente,

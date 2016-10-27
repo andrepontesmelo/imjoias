@@ -72,7 +72,6 @@ namespace Apresentação.Fiscal.Lista
                 Entidades.Configuração.DadosGlobais.Instância.Cultura);
             item.SubItems[colNúmero.Index].Text = documentoFiscal.Número.ToString();
             item.SubItems[colObservações.Index].Text = documentoFiscal.Observações.Replace("\n", " ");
-            item.SubItems[colPDF.Index].Text = cacheIdsPdfs.Contém(documentoFiscal.Id) ? "PDF" : "";
 
             if (cacheIdsPdfs.Contém(documentoFiscal.Id))
                 item.ImageIndex = 0;

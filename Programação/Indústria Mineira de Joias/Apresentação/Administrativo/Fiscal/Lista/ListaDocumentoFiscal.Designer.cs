@@ -30,21 +30,25 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListaDocumentoFiscal));
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.lista = new Apresentação.Formulários.ListViewUsabilidade();
-            this.colPDF = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colEmissão = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colEntradaSaída = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colValor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colNúmero = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colObservações = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.SuspendLayout();
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "pdf-file-icon-15.png");
             // 
             // lista
             // 
             this.lista.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.colPDF,
             this.colId,
             this.colEmissão,
             this.colEntradaSaída,
@@ -62,10 +66,6 @@
             this.lista.AoExcluir += new System.EventHandler(this.lista_AoExcluir);
             this.lista.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lista_ColumnClick);
             this.lista.DoubleClick += new System.EventHandler(this.lista_DoubleClick);
-            // 
-            // colPDF
-            // 
-            this.colPDF.Text = "PDF";
             // 
             // colId
             // 
@@ -95,12 +95,6 @@
             this.colObservações.Text = "Observações";
             this.colObservações.Width = 500;
             // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "pdf-file-icon-15.png");
-            // 
             // ListaDocumentoFiscal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -119,7 +113,6 @@
         protected System.Windows.Forms.ColumnHeader colValor;
         protected System.Windows.Forms.ColumnHeader colEmissão;
         protected System.Windows.Forms.ColumnHeader colObservações;
-        protected System.Windows.Forms.ColumnHeader colPDF;
         protected System.Windows.Forms.ColumnHeader colNúmero;
         private System.Windows.Forms.ImageList imageList1;
     }
