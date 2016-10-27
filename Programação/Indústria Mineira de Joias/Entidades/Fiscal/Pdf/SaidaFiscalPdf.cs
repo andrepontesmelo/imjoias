@@ -1,9 +1,6 @@
 ﻿using Acesso.Comum;
 using System.Collections.Generic;
-using System;
 using System.ComponentModel;
-using Entidades.Fiscal.NotaFiscalEletronica.Pdf;
-using Entidades.Fiscal.Importação.Resultado;
 
 namespace Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf
 {
