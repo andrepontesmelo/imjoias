@@ -24,7 +24,6 @@ namespace Apresentação.Mercadoria.Cotação
 		private ColumnHeader colCotação;
 		private ColumnHeader colFuncionário;
 		private DateTimePicker data;
-        private IContainer components;
 
         public event EventHandler SelectedIndexChanged;
 		public event EventHandler ListaDoubleClick;
@@ -59,21 +58,6 @@ namespace Apresentação.Mercadoria.Cotação
         {
             CarregarItens(data.Value);
         }
-
-		/// <summary> 
-		/// Clean up any resources being used.
-		/// </summary>
-		protected override void Dispose( bool disposing )
-		{
-			if( disposing )
-			{
-				if(components != null)
-				{
-					components.Dispose();
-				}
-			}
-			base.Dispose( disposing );
-		}
 
 		#region Component Designer generated code
 		/// <summary> 

@@ -3560,7 +3560,7 @@
     <None Include="Resources\money_bag1.png" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Aga.Controls, Version=1.7.6.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Aga.Controls">
       <HintPath>..\packages\AdamsLair.TreeViewAdv.1.7.6.0\lib\net20\Aga.Controls.dll</HintPath>
       <Private>True</Private>
     </Reference>
@@ -3596,10 +3596,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Tamir.SharpSSH, Version=1.1.1.13, Culture=neutral">
-      <HintPath>..\packages\Tamir.SharpSSH.1.1.1.13\lib\Tamir.SharpSSH.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\3228_icon1.jpg" />

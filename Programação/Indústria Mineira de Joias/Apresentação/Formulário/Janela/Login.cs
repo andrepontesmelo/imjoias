@@ -171,10 +171,13 @@ namespace Apresentação.Formulários
         /// <returns>Falso se usuário cancelou</returns>
         public static bool EfetuarLogin(Usuários usuários, Splash splash)
         {
+#pragma warning disable 0162            
 #if DEBUG
+
             Usuários.UsuárioAtual = usuários.EfetuarLogin("andrep", "andrep");
             return true;
 #endif
+
 
             bool conectado = false;
             // Constrói janela de login
@@ -239,6 +242,8 @@ namespace Apresentação.Formulários
 #endif
                 return true;
             }
+
+#pragma warning restore 0162
         }
 
 #if DEBUG

@@ -7,11 +7,15 @@ namespace Entidades.Fiscal.Tipo
 {
     public class TipoDocumento : DbManipulaçãoSimples
     {
+#pragma warning disable 0649            // Field 'field' is never assigned to, and will always have its default value 'value'
+
         private int id;
         private string nome;
         public static List<TipoDocumento> tipos = null;
         private bool entrada;
         private bool saida;
+
+#pragma warning restore 0649            // Field 'field' is never assigned to, and will always have its default value 'value'
 
         public TipoDocumento(int id, string nome)
         {

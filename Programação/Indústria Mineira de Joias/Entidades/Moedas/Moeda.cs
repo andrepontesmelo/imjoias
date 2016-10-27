@@ -8,6 +8,8 @@ namespace Entidades.Moedas
     [DbTransação, Cacheável("ObterMoeda"), DbTabela("moeda"), Validade(6, 0, 0), NãoCopiarCache]
     public class Moeda : DbManipulaçãoAutomática
     {
+#pragma warning disable 0649            // Field 'field' is never assigned to, and will always have its default value 'value'
+
         [DbColuna("codigo"), DbChavePrimária(true)]
         private uint código;
         private bool sistema;
@@ -20,6 +22,8 @@ namespace Entidades.Moedas
         private DbFoto ícone;
 
         private byte casasDecimais = 2;
+
+#pragma warning restore 0649            // Field 'field' is never assigned to, and will always have its default value 'value'
 
         public uint Código => código;
 
