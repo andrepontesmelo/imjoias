@@ -142,3 +142,10 @@ CREATE TABLE `entradafiscalpdf` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPRESSED;
 
 
+ALTER TABLE `saidaitemfiscal`
+	CHANGE COLUMN `descricao` `descricao` TINYTEXT NOT NULL AFTER `referencia`;
+
+ALTER TABLE `entradaitemfiscal`
+	CHANGE COLUMN `descricao` `descricao` TINYTEXT NOT NULL AFTER `referencia`;
+
+
