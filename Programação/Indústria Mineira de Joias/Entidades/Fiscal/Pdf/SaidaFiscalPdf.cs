@@ -1,48 +1,19 @@
-﻿using Acesso.Comum;
+﻿using Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf;
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf
+namespace Entidades.Fiscal.Pdf
 {
-    public class SaidaFiscalPdf : DbManipulaçãoAutomática
+    public class SaidaFiscalPdf : FiscalPdf
     {
-        [DbChavePrimária(false)]
-        private string id;
-        private byte[] pdf;
+        private static CacheIds cacheIds = new CacheIds("saidafiscalpdf");
+
+        public SaidaFiscalPdf(string id, byte[] pdf) : base(id, pdf)
+        {
+        }
 
         public SaidaFiscalPdf()
         {
-        }
-
-        public SaidaFiscalPdf(string id, byte[] pdf)
-        {
-            this.id = id;
-            this.pdf = pdf;
-        }
-
-        public string Id => id;
-        public byte[] Pdf => pdf;
-
-        private static List<string> códigos = null;
-
-        public static List<string> ObterIdsCadastrados()
-        {
-            if (códigos == null)
-                códigos = MapearStrings("select id from saidafiscalpdf");
-
-            return códigos;
-        }
-
-        internal static void CadastrarLimpandoCache(List<LeitorPdf> pdfs, BackgroundWorker thread)
-        {
-            LimparCache();
-            Cadastrar(pdfs, thread);
-            CacheVendaPdf.Instância.Recarregar();
-        }
-
-        public static void LimparCache()
-        {
-            códigos = null;
         }
 
         internal static void Cadastrar(List<LeitorPdf> pdfs, BackgroundWorker thread)
@@ -55,11 +26,24 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf
                 thread.ReportProgress(100 * ++x / pdfs.Count, string.Format("Cadastrando {0} pdfs no banco de dados", pdfs.Count));
             }
         }
-        
+
+        internal static void CadastrarLimpandoCache(List<LeitorPdf> pdfs, BackgroundWorker thread)
+        {
+            cacheIds.LimparCache();
+            Cadastrar(pdfs, thread);
+            CacheVendaPdf.Instância.Recarregar();
+        }
+
+
         public static SaidaFiscalPdf Obter(long venda)
         {
             string sql = string.Format("select * from saidafiscalpdf where id=(select id from saidafiscal where numero =(select nfe from nfe where venda={0}))", DbTransformar(venda));
             return MapearÚnicaLinha<SaidaFiscalPdf>(sql);
+        }
+
+        internal static List<string> ObterIdsCadastrados()
+        {
+            return cacheIds.ObterIdsCadastrados();
         }
     }
 }

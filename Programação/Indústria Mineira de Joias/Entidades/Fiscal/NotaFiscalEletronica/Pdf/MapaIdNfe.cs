@@ -3,16 +3,16 @@ using System.Collections.Generic;
 
 namespace Entidades.Fiscal.NotaFiscalEletronica.Pdf
 {
-    public class CacheIds : DbManipulaçãoSimples
+    public class MapaIdNfe : DbManipulaçãoSimples
     {
-        private static CacheIds instância;
+        private static MapaIdNfe instância;
 
-        public static CacheIds Instância
+        public static MapaIdNfe Instância
         {
             get
             {
                 if (instância == null)
-                    instância = new CacheIds();
+                    instância = new MapaIdNfe();
 
                 return instância;
             }
@@ -33,7 +33,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Pdf
             instância = null;
         }
 
-        private CacheIds()
+        private MapaIdNfe()
         {
             hashNfeId = new Dictionary<int, string>();
 

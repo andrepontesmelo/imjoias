@@ -1,4 +1,4 @@
-﻿using Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf;
+﻿using Entidades.Fiscal.Pdf;
 using Entidades.Relacionamento.Venda;
 using System;
 using System.Windows.Forms;

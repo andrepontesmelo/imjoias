@@ -2,6 +2,7 @@
 using Entidades.Fiscal.Importação;
 using Entidades.Fiscal.Importação.Resultado;
 using Entidades.Fiscal.NotaFiscalEletronica.Pdf;
+using Entidades.Fiscal.Pdf;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -92,7 +93,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf
             {
                 LeitorPdf leitor = new LeitorPdf(arquivo);
 
-                leitor.id = CacheIds.Instância.ObterId(leitor.Nfe.Value);
+                leitor.id = MapaIdNfe.Instância.ObterId(leitor.Nfe.Value);
 
                 if (leitor.id == null)
                 {

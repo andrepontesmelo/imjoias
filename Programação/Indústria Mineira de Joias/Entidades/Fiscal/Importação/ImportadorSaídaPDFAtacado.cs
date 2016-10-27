@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.IO;
 using System;
 using Entidades.Fiscal.NotaFiscalEletronica.Pdf;
+using Entidades.Fiscal.Pdf;
 
 namespace Entidades.Fiscal.Importação
 {
@@ -19,7 +20,7 @@ namespace Entidades.Fiscal.Importação
 
         protected override ResultadoImportação ImportarArquivos(string caminho, SearchOption opções, BackgroundWorker thread)
         {
-            CacheIds.Instância.Recarregar();
+            MapaIdNfe.Instância.Recarregar();
 
             ResultadoImportação resultado = new ResultadoImportação(DESCRIÇÃO);
             List<string> arquivos = ObterArquivos(caminho, PADRÂO_ARQUIVO, opções);
