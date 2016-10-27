@@ -71,14 +71,13 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf
 
         internal static List<LeitorPdf> Interpretar(List<string> arquivos, ResultadoImportação resultado, BackgroundWorker thread)
         {
-            SortedSet<string> cadastrados = new SortedSet<string>(SaidaFiscalPdf.ObterIdsCadastrados());
             List<LeitorPdf> lidos = new List<LeitorPdf>();
 
             foreach (string arquivo in arquivos)
             {
                 Importador.AtualizarPorcentagem(thread, resultado, arquivos);
         
-                LeitorPdf leitor = TentaLerArquivo(resultado, arquivo, cadastrados);
+                LeitorPdf leitor = TentaLerArquivo(resultado, arquivo);
 
                 if (leitor != null)
                     lidos.Add(leitor);
@@ -87,7 +86,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf
             return lidos;
         }
 
-        private static LeitorPdf TentaLerArquivo(ResultadoImportação resultado, string arquivo, SortedSet<string> idsCadastrados)
+        private static LeitorPdf TentaLerArquivo(ResultadoImportação resultado, string arquivo)
         {
             try
             {
@@ -101,14 +100,14 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf
                     return null;
                 }
 
-                if (idsCadastrados.Contains(leitor.id))
+                if (SaidaFiscalPdf.Cache.Contém((leitor.id)))
                 {
                     resultado.ArquivosIgnorados.Adicionar(new ArquivoIgnorado(arquivo, Motivo.ChaveJáImportada, leitor.id));
                     return null;
                 }
 
                 resultado.ArquivosSucesso.Adicionar(new Arquivo(leitor.ToString(), leitor.id));
-                idsCadastrados.Add(leitor.id);
+                SaidaFiscalPdf.Cache.Adicionar(leitor.id);
 
                 return leitor;
             }

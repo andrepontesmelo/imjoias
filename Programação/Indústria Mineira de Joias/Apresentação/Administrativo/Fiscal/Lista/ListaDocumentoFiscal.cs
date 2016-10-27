@@ -1,5 +1,6 @@
 ﻿using Apresentação.Formulários;
 using Entidades.Fiscal;
+using Entidades.Fiscal.Pdf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +13,13 @@ namespace Apresentação.Fiscal.Lista
         public delegate void CliqueDuploDelegate(DocumentoFiscal documento);
         public event CliqueDuploDelegate CliqueDuplo;
         public event EventHandler AoSolicitarExclusão;
+        private CacheIds cacheIdsPdfs;
 
-        public ListaDocumentoFiscal()
+        public ListaDocumentoFiscal(CacheIds cachePdfs)
         {
             InitializeComponent();
 
+            this.cacheIdsPdfs = cachePdfs;
             lista.ListViewItemSorter = new ListViewColumnSorter();
         }
 
@@ -68,6 +71,7 @@ namespace Apresentação.Fiscal.Lista
                 Entidades.Configuração.DadosGlobais.Instância.Cultura);
             item.SubItems[colNúmero.Index].Text = documentoFiscal.Número.ToString();
             item.SubItems[colObservações.Index].Text = documentoFiscal.Observações.Replace("\n", " ");
+            item.SubItems[colPDF.Index].Text = cacheIdsPdfs.Contém(documentoFiscal.Id) ? "Sim" : "";
 
             item.Tag = documentoFiscal;
 

@@ -11,5 +11,7 @@
         public EntradaFiscalPdf()
         {
         }
+
+        public static CacheIds Cache => cacheIds;
     }
 }

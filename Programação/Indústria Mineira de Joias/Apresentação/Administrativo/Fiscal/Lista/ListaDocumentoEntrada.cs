@@ -1,4 +1,5 @@
 ﻿using Entidades.Fiscal;
+using Entidades.Fiscal.Pdf;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -9,7 +10,7 @@ namespace Apresentação.Fiscal.Lista
     {
         private ColumnHeader colEmitente;
 
-        public ListaDocumentoEntrada()
+        public ListaDocumentoEntrada() : base(EntradaFiscalPdf.Cache)
         {
             InitializeComponent();
             colEntradaSaída.Text = "Entrada";

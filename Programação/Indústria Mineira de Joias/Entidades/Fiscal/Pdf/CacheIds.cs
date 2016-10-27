@@ -5,25 +5,38 @@ namespace Entidades.Fiscal.Pdf
 {
     public class CacheIds : DbManipulaçãoSimples
     {
-        private List<string> códigos = null;
         private string relação;
+        private HashSet<string> hash;
 
         public CacheIds(string relação)
         {
             this.relação = relação;
         }
 
-        public List<string> ObterIdsCadastrados()
+        public HashSet<string> Hash
         {
-            if (códigos == null)
-                códigos = MapearStrings("select id from " + relação);
+            get
+            {
+                if (hash == null)
+                    hash = new HashSet<string>(MapearStrings("select id from " + relação));
 
-            return códigos;
+                return hash;
+            }
         }
 
         public void LimparCache()
         {
-            códigos = null;
+            hash = null;
+        }
+
+        public bool Contém(string id)
+        {
+            return Hash.Contains(id);
+        }
+
+        internal void Adicionar(string id)
+        {
+            Hash.Add(id);
         }
     }
 }

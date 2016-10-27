@@ -8,6 +8,8 @@ namespace Entidades.Fiscal.Pdf
     {
         private static CacheIds cacheIds = new CacheIds("saidafiscalpdf");
 
+        public static CacheIds Cache => cacheIds;
+
         public SaidaFiscalPdf(string id, byte[] pdf) : base(id, pdf)
         {
         }
@@ -34,16 +36,10 @@ namespace Entidades.Fiscal.Pdf
             CacheVendaPdf.Instância.Recarregar();
         }
 
-
         public static SaidaFiscalPdf Obter(long venda)
         {
             string sql = string.Format("select * from saidafiscalpdf where id=(select id from saidafiscal where numero =(select nfe from nfe where venda={0}))", DbTransformar(venda));
             return MapearÚnicaLinha<SaidaFiscalPdf>(sql);
-        }
-
-        internal static List<string> ObterIdsCadastrados()
-        {
-            return cacheIds.ObterIdsCadastrados();
         }
     }
 }
