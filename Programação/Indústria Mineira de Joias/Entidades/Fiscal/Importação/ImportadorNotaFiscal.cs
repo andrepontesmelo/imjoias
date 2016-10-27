@@ -48,8 +48,7 @@ namespace Entidades.Fiscal.Importação
                     return;
 
                 CadastrarDocumento(documento, resultado, arquivo);
-            }
-            catch (Exception erro)
+            } catch (Exception erro)
             {
                 resultado.AdicionarFalha(arquivo, erro);
             }
@@ -58,13 +57,13 @@ namespace Entidades.Fiscal.Importação
         private void CadastrarDocumento(DocumentoFiscal documento, ResultadoImportação resultado, string arquivo)
         {
             documento.Cadastrar();
-            idsCadastrados.Add(documento.Id);
+            idsCadastrados.Add(documento.Id.ToLower());
             resultado.ArquivosSucesso.Adicionar(new Arquivo(arquivo, documento.Id));
         }
 
         private bool IgnorarDocumento(ResultadoImportação resultado, string arquivo, DocumentoFiscal documento)
         {
-            if (idsCadastrados.Contains(documento.Id))
+            if (idsCadastrados.Contains(documento.Id.ToLower()))
             {
                 resultado.ArquivosIgnorados.Adicionar(new ArquivoIgnorado(arquivo, Motivo.ChaveJáImportada, documento.Id));
                 return true;

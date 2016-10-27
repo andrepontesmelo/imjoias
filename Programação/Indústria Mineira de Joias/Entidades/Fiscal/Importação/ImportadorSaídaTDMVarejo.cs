@@ -65,7 +65,7 @@ namespace Entidades.Fiscal.Importação
 
         private bool IgnorarArquivo(string arquivo, ResultadoImportação resultado, DocumentoFiscal saída)
         {
-            if (idsCadastrados.Contains(saída.Id))
+            if (idsCadastrados.Contains(saída.Id.ToLower()))
             {
                 resultado.ArquivosIgnorados.Adicionar(new ArquivoIgnorado(arquivo, Motivo.ChaveJáImportada, saída.Id));
                 return true;
