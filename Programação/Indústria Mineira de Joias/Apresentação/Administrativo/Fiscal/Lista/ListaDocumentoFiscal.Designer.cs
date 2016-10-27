@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListaDocumentoFiscal));
             this.lista = new Apresentação.Formulários.ListViewUsabilidade();
             this.colPDF = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -36,6 +38,7 @@
             this.colValor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colNúmero = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colObservações = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.SuspendLayout();
             // 
             // lista
@@ -92,6 +95,12 @@
             this.colObservações.Text = "Observações";
             this.colObservações.Width = 500;
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "pdf-file-icon-15.png");
+            // 
             // ListaDocumentoFiscal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -112,5 +121,6 @@
         protected System.Windows.Forms.ColumnHeader colObservações;
         protected System.Windows.Forms.ColumnHeader colPDF;
         protected System.Windows.Forms.ColumnHeader colNúmero;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }
