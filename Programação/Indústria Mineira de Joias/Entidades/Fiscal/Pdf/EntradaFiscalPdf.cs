@@ -1,4 +1,6 @@
-﻿namespace Entidades.Fiscal.Pdf
+﻿using Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf;
+
+namespace Entidades.Fiscal.Pdf
 {
     public class EntradaFiscalPdf : FiscalPdf
     {
@@ -24,6 +26,13 @@
         {
             base.Descadastrar();
             Cache.Remover(Id);
+            CacheVendaPdf.Instância.Recarregar();
+        }
+
+        public override void Cadastrar()
+        {
+            base.Cadastrar();
+            Cache.Adicionar(Id);
         }
     }
 }

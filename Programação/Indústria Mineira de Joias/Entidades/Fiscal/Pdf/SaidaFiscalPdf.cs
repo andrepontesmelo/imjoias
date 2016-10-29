@@ -54,5 +54,13 @@ namespace Entidades.Fiscal.Pdf
             base.Descadastrar();
             Cache.Remover(Id);
         }
+
+
+        public override void Cadastrar()
+        {
+            base.Cadastrar();
+            Cache.Adicionar(Id);
+            CacheVendaPdf.Instância.Recarregar();
+        }
     }
 }

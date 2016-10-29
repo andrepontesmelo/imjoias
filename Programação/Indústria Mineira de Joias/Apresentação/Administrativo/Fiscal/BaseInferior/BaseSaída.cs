@@ -58,8 +58,6 @@ namespace Apresentação.Fiscal.BaseInferior
         {
             var pdf = new SaidaFiscalPdf(documento.Id, System.IO.File.ReadAllBytes(arquivo));
             pdf.Cadastrar();
-
-            SaidaFiscalPdf.Cache.Adicionar(pdf.Id);
         }
     }
 }

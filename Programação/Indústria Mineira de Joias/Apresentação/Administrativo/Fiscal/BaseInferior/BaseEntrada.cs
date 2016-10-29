@@ -39,8 +39,6 @@ namespace Apresentação.Fiscal.BaseInferior
         {
             var pdf = new EntradaFiscalPdf(documento.Id, System.IO.File.ReadAllBytes(arquivo));
             pdf.Cadastrar();
-
-            EntradaFiscalPdf.Cache.Adicionar(pdf.Id);
         }
     }
 }
