@@ -53,5 +53,13 @@ namespace Apresentação.Fiscal.BaseInferior
         {
             return SaidaFiscalPdf.Obter(documento.Id);
         }
+
+        protected override void CadastrarPdf(string arquivo)
+        {
+            var pdf = new SaidaFiscalPdf(documento.Id, System.IO.File.ReadAllBytes(arquivo));
+            pdf.Cadastrar();
+
+            SaidaFiscalPdf.Cache.Adicionar(pdf.Id);
+        }
     }
 }

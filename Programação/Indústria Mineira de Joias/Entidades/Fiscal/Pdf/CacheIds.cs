@@ -35,7 +35,7 @@ namespace Entidades.Fiscal.Pdf
             return Hash.Contains(id);
         }
 
-        internal void Adicionar(string id)
+        public void Adicionar(string id)
         {
             Hash.Add(id);
         }

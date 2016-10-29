@@ -145,6 +145,27 @@ namespace Apresentação.Fiscal.BaseInferior
 
             CarregarControlesPDF(documento);
         }
+
+        private void opçãoCarregarPDF_Click(object sender, EventArgs e)
+        {
+            FileDialog janela = new OpenFileDialog();
+            janela.Title = "Seleção de PDF";
+            janela.FileName = "*.pdf";
+
+            if (janela.ShowDialog() != DialogResult.OK)
+                return;
+
+            if (!System.IO.File.Exists(janela.FileName))
+                return;
+
+            CadastrarPdf(janela.FileName);
+            CarregarControlesPDF(documento);
+        }
+
+        protected virtual void CadastrarPdf(string arquivo)
+        {
+            throw new Exception("abstrato");
+        }
     }
 }
 
