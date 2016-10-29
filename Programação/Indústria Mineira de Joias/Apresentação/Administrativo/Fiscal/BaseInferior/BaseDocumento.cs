@@ -22,8 +22,21 @@ namespace Apresentação.Fiscal.BaseInferior
         {
             this.documento = documento;
 
-            título.Descrição = "Edição de " + documento.ToString();
+            CarregarControlesEdição(documento);
+            CarregarControlesDF(documento);
+        }
 
+        private void CarregarControlesDF(DocumentoFiscal documento)
+        {
+            var pdfExistente = cacheIdsPDFS.Contém(documento.Id);
+            opçãoCarregarPDF.Enabled = !pdfExistente;
+            opçãoExcluirPDF.Enabled = pdfExistente;
+            opçãoAbrirPDF.Enabled = pdfExistente;
+        }
+
+        private void CarregarControlesEdição(DocumentoFiscal documento)
+        {
+            título.Descrição = "Edição de " + documento.ToString();
             txtId.Text = documento.Id;
             dtEmissão.Value = documento.DataEmissão;
             txtValor.Text = documento.ValorTotal.ToString("C");
@@ -31,11 +44,6 @@ namespace Apresentação.Fiscal.BaseInferior
             txtEmitente.Text = documento.CNPJEmitenteFormatado;
             txtObservações.Text = documento.Observações;
             cmbTipoDocumento.Seleção = TipoDocumento.Obter(documento.TipoDocumento);
-
-            var pdfExistente = cacheIdsPDFS.Contém(documento.Id);
-            opçãoCarregarPDF.Enabled = !pdfExistente;
-            opçãoExcluirPDF.Enabled = pdfExistente;
-            opçãoAbrirPDF.Enabled = pdfExistente;
         }
 
         private void txtId_Validated(object sender, System.EventArgs e)
@@ -87,7 +95,7 @@ namespace Apresentação.Fiscal.BaseInferior
 
         protected virtual List<string> ObterIds()
         {
-            throw new System.Exception("abstrato");
+            throw new Exception("abstrato");
         }
 
         private void txtObservações_Validated(object sender, System.EventArgs e)
@@ -110,7 +118,7 @@ namespace Apresentação.Fiscal.BaseInferior
 
         protected virtual void Excluir()
         {
-            throw new System.Exception("abstrato");
+            throw new Exception("abstrato");
         }
     }
 }
