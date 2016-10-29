@@ -1,10 +1,9 @@
 ﻿using Entidades.Fiscal;
+using Entidades.Fiscal.Pdf;
 using Entidades.Fiscal.Tipo;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using System;
-using Entidades.Fiscal.Pdf;
-using Entidades.Relacionamento.Venda;
 
 namespace Apresentação.Fiscal.BaseInferior
 {
@@ -12,6 +11,11 @@ namespace Apresentação.Fiscal.BaseInferior
     {
         protected DocumentoFiscal documento;
         private CacheIds cacheIdsPDFS;
+
+        public BaseDocumento()
+        {
+            InitializeComponent();
+        }
 
         public BaseDocumento(CacheIds cacheIdsPDFS)
         {
