@@ -11,7 +11,7 @@ namespace Apresentação.Fiscal.BaseInferior
         {
             InitializeComponent();
 
-            if (DadosGlobais.ModoDesenho)
+            if (ModoDesenho)
                 return;
 
             cmbTipoDocumento.Carregar(false);

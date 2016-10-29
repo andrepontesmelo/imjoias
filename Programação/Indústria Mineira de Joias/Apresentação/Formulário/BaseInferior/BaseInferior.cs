@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Data;
 using System.Windows.Forms;
 using Entidades.Privilégio;
+using Entidades.Configuração;
 
 namespace Apresentação.Formulários
 {
@@ -539,5 +540,7 @@ namespace Apresentação.Formulários
         {
             quadroNavegação.Visible = false;
         }
+
+        protected bool ModoDesenho => DadosGlobais.ModoDesenho;
 	}
 }
