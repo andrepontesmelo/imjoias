@@ -3,16 +3,19 @@ using Entidades.Fiscal.Tipo;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System;
+using Entidades.Fiscal.Pdf;
 
 namespace Apresentação.Fiscal.BaseInferior
 {
     public partial class BaseDocumento : Formulários.BaseInferior
     {
         protected DocumentoFiscal documento;
+        private CacheIds cacheIdsPDFS;
 
-        public BaseDocumento()
+        public BaseDocumento(CacheIds cacheIdsPDFS)
         {
             InitializeComponent();
+            this.cacheIdsPDFS = cacheIdsPDFS;
         }
 
         public virtual void Carregar(DocumentoFiscal documento)
@@ -27,8 +30,12 @@ namespace Apresentação.Fiscal.BaseInferior
             txtNúmero.Text = documento.Número.ToString();
             txtEmitente.Text = documento.CNPJEmitenteFormatado;
             txtObservações.Text = documento.Observações;
-
             cmbTipoDocumento.Seleção = TipoDocumento.Obter(documento.TipoDocumento);
+
+            var pdfExistente = cacheIdsPDFS.Contém(documento.Id);
+            opçãoCarregarPDF.Enabled = !pdfExistente;
+            opçãoExcluirPDF.Enabled = pdfExistente;
+            opçãoAbrirPDF.Enabled = pdfExistente;
         }
 
         private void txtId_Validated(object sender, System.EventArgs e)

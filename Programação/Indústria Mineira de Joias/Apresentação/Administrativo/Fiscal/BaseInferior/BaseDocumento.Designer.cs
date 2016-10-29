@@ -36,8 +36,8 @@ namespace Apresentação.Fiscal.BaseInferior
             this.opçãoImprimir = new Apresentação.Formulários.Opção();
             this.quadroPDF = new Apresentação.Formulários.Quadro();
             this.opçãoExcluirPDF = new Apresentação.Formulários.Opção();
-            this.opçãoCarregar = new Apresentação.Formulários.Opção();
-            this.opçãoAbrir = new Apresentação.Formulários.Opção();
+            this.opçãoCarregarPDF = new Apresentação.Formulários.Opção();
+            this.opçãoAbrirPDF = new Apresentação.Formulários.Opção();
             this.título = new Apresentação.Formulários.TítuloBaseInferior();
             this.tab = new System.Windows.Forms.TabControl();
             this.tabDados = new System.Windows.Forms.TabPage();
@@ -153,8 +153,8 @@ namespace Apresentação.Fiscal.BaseInferior
             this.quadroPDF.bSupDirArredondada = true;
             this.quadroPDF.bSupEsqArredondada = true;
             this.quadroPDF.Controls.Add(this.opçãoExcluirPDF);
-            this.quadroPDF.Controls.Add(this.opçãoCarregar);
-            this.quadroPDF.Controls.Add(this.opçãoAbrir);
+            this.quadroPDF.Controls.Add(this.opçãoCarregarPDF);
+            this.quadroPDF.Controls.Add(this.opçãoAbrirPDF);
             this.quadroPDF.Cor = System.Drawing.Color.Black;
             this.quadroPDF.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadroPDF.LetraTítulo = System.Drawing.Color.White;
@@ -179,31 +179,31 @@ namespace Apresentação.Fiscal.BaseInferior
             this.opçãoExcluirPDF.Size = new System.Drawing.Size(150, 16);
             this.opçãoExcluirPDF.TabIndex = 6;
             // 
-            // opçãoCarregar
+            // opçãoCarregarPDF
             // 
-            this.opçãoCarregar.BackColor = System.Drawing.Color.Transparent;
-            this.opçãoCarregar.Descrição = "Carregar";
-            this.opçãoCarregar.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoCarregar.Imagem")));
-            this.opçãoCarregar.Location = new System.Drawing.Point(7, 50);
-            this.opçãoCarregar.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.opçãoCarregar.MaximumSize = new System.Drawing.Size(150, 100);
-            this.opçãoCarregar.MinimumSize = new System.Drawing.Size(150, 16);
-            this.opçãoCarregar.Name = "opçãoCarregar";
-            this.opçãoCarregar.Size = new System.Drawing.Size(150, 16);
-            this.opçãoCarregar.TabIndex = 5;
+            this.opçãoCarregarPDF.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoCarregarPDF.Descrição = "Carregar";
+            this.opçãoCarregarPDF.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoCarregarPDF.Imagem")));
+            this.opçãoCarregarPDF.Location = new System.Drawing.Point(7, 50);
+            this.opçãoCarregarPDF.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoCarregarPDF.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoCarregarPDF.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoCarregarPDF.Name = "opçãoCarregarPDF";
+            this.opçãoCarregarPDF.Size = new System.Drawing.Size(150, 16);
+            this.opçãoCarregarPDF.TabIndex = 5;
             // 
-            // opçãoAbrir
+            // opçãoAbrirPDF
             // 
-            this.opçãoAbrir.BackColor = System.Drawing.Color.Transparent;
-            this.opçãoAbrir.Descrição = "Abrir";
-            this.opçãoAbrir.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoAbrir.Imagem")));
-            this.opçãoAbrir.Location = new System.Drawing.Point(7, 30);
-            this.opçãoAbrir.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.opçãoAbrir.MaximumSize = new System.Drawing.Size(150, 100);
-            this.opçãoAbrir.MinimumSize = new System.Drawing.Size(150, 16);
-            this.opçãoAbrir.Name = "opçãoAbrir";
-            this.opçãoAbrir.Size = new System.Drawing.Size(150, 18);
-            this.opçãoAbrir.TabIndex = 4;
+            this.opçãoAbrirPDF.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoAbrirPDF.Descrição = "Abrir";
+            this.opçãoAbrirPDF.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoAbrirPDF.Imagem")));
+            this.opçãoAbrirPDF.Location = new System.Drawing.Point(7, 30);
+            this.opçãoAbrirPDF.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoAbrirPDF.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoAbrirPDF.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoAbrirPDF.Name = "opçãoAbrirPDF";
+            this.opçãoAbrirPDF.Size = new System.Drawing.Size(150, 18);
+            this.opçãoAbrirPDF.TabIndex = 4;
             // 
             // título
             // 
@@ -557,6 +557,8 @@ namespace Apresentação.Fiscal.BaseInferior
             "Peça",
             "Gramas",
             "Peça",
+            "Gramas",
+            "Peça",
             "Gramas"});
             this.comboTipoUnidade1.Location = new System.Drawing.Point(284, 102);
             this.comboTipoUnidade1.Name = "comboTipoUnidade1";
@@ -739,8 +741,8 @@ namespace Apresentação.Fiscal.BaseInferior
         private Formulários.Quadro quadroPDF;
         private Formulários.Opção opçãoImprimir;
         private Formulários.Opção opçãoExcluirPDF;
-        private Formulários.Opção opçãoCarregar;
-        private Formulários.Opção opçãoAbrir;
+        private Formulários.Opção opçãoCarregarPDF;
+        private Formulários.Opção opçãoAbrirPDF;
         private Formulários.Opção opçãoExcluirDocumento;
         private System.Windows.Forms.TabControl tab;
         private System.Windows.Forms.TabPage tabDados;

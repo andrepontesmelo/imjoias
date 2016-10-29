@@ -5,7 +5,7 @@ namespace Apresentação.Fiscal.BaseInferior
 {
     public partial class BaseSaída : BaseDocumento
     {
-        public BaseSaída()
+        public BaseSaída() : base(Entidades.Fiscal.Pdf.SaidaFiscalPdf.Cache)
         {
             InitializeComponent();
 
