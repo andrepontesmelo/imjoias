@@ -20,10 +20,10 @@
             return MapearÚnicaLinha<EntradaFiscalPdf>(sql);
         }
 
-        public static void Excluir(string idEntradaFiscal)
+        public override void Descadastrar()
         {
-            ExecutarComando(string.Format("delete from entradafiscalpdf where id={0}", DbTransformar(idEntradaFiscal)));
-            Cache.Remover(idEntradaFiscal);
+            base.Descadastrar();
+            Cache.Remover(Id);
         }
     }
 }

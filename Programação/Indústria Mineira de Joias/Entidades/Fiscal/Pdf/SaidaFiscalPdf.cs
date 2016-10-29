@@ -49,10 +49,10 @@ namespace Entidades.Fiscal.Pdf
             return MapearÚnicaLinha<SaidaFiscalPdf>(sql);
         }
 
-        public static void Excluir(string idSaidaFiscal)
+        public override void Descadastrar()
         {
-            ExecutarComando(string.Format("delete from saidafiscalpdf where id={0}", DbTransformar(idSaidaFiscal)));
-            Cache.Remover(idSaidaFiscal);
+            base.Descadastrar();
+            Cache.Remover(Id);
         }
     }
 }

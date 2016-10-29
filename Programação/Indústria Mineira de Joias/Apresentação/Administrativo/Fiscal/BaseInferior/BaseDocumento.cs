@@ -24,10 +24,10 @@ namespace Apresentação.Fiscal.BaseInferior
             this.documento = documento;
 
             CarregarControlesEdição(documento);
-            CarregarControlesDF(documento);
+            CarregarControlesPDF(documento);
         }
 
-        private void CarregarControlesDF(DocumentoFiscal documento)
+        private void CarregarControlesPDF(DocumentoFiscal documento)
         {
             var pdfExistente = cacheIdsPDFS.Contém(documento.Id);
             opçãoCarregarPDF.Enabled = !pdfExistente;
@@ -132,6 +132,18 @@ namespace Apresentação.Fiscal.BaseInferior
         protected virtual FiscalPdf ObterPdf()
         {
             throw new Exception("abstrato");
+        }
+
+        private void opçãoExcluirPDF_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(this,
+                "Confirma exclusão do PDF armazenado?",
+                "Exclusão de PDF", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                return;
+
+            ObterPdf().Descadastrar();
+
+            CarregarControlesPDF(documento);
         }
     }
 }

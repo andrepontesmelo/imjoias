@@ -178,6 +178,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.opçãoExcluirPDF.Name = "opçãoExcluirPDF";
             this.opçãoExcluirPDF.Size = new System.Drawing.Size(150, 16);
             this.opçãoExcluirPDF.TabIndex = 6;
+            this.opçãoExcluirPDF.Click += new System.EventHandler(this.opçãoExcluirPDF_Click);
             // 
             // opçãoCarregarPDF
             // 
@@ -535,6 +536,8 @@ namespace Apresentação.Fiscal.BaseInferior
             // 
             this.comboTipoUnidade1.FormattingEnabled = true;
             this.comboTipoUnidade1.Items.AddRange(new object[] {
+            "Peça",
+            "Gramas",
             "Peça",
             "Gramas",
             "Peça",
