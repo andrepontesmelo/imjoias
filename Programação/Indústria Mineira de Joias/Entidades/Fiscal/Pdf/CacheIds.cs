@@ -1,5 +1,6 @@
 ﻿using Acesso.Comum;
 using System.Collections.Generic;
+using System;
 
 namespace Entidades.Fiscal.Pdf
 {
@@ -37,6 +38,11 @@ namespace Entidades.Fiscal.Pdf
         internal void Adicionar(string id)
         {
             Hash.Add(id);
+        }
+
+        internal void Remover(string idSaidaFiscal)
+        {
+            Hash.Remove(idSaidaFiscal);
         }
     }
 }

@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using Entidades.Fiscal;
+using Entidades.Fiscal.Pdf;
 
 namespace Apresentação.Fiscal.BaseInferior
 {
     public partial class BaseSaída : BaseDocumento
     {
-        public BaseSaída() : base(Entidades.Fiscal.Pdf.SaidaFiscalPdf.Cache)
+        public BaseSaída() : base(SaidaFiscalPdf.Cache)
         {
             InitializeComponent();
 
@@ -46,6 +47,11 @@ namespace Apresentação.Fiscal.BaseInferior
         protected override void Excluir()
         {
             SaídaFiscal.Excluir(new string[] { documento.Id });
+        }
+
+        protected override FiscalPdf ObterPdf()
+        {
+            return SaidaFiscalPdf.Obter(documento.Id);
         }
     }
 }

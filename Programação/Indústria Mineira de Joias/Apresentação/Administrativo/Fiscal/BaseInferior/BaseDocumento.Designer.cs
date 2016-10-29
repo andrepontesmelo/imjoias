@@ -204,6 +204,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.opçãoAbrirPDF.Name = "opçãoAbrirPDF";
             this.opçãoAbrirPDF.Size = new System.Drawing.Size(150, 18);
             this.opçãoAbrirPDF.TabIndex = 4;
+            this.opçãoAbrirPDF.Click += new System.EventHandler(this.opçãoAbrirPDF_Click);
             // 
             // título
             // 
@@ -534,6 +535,8 @@ namespace Apresentação.Fiscal.BaseInferior
             // 
             this.comboTipoUnidade1.FormattingEnabled = true;
             this.comboTipoUnidade1.Items.AddRange(new object[] {
+            "Peça",
+            "Gramas",
             "Peça",
             "Gramas",
             "Peça",

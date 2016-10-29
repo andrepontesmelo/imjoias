@@ -13,5 +13,17 @@
         }
 
         public static CacheIds Cache => cacheIds;
+
+        public static EntradaFiscalPdf Obter(string idEntradaFiscal)
+        {
+            string sql = string.Format("select * from entradafiscalpdf where id={0}", DbTransformar(idEntradaFiscal));
+            return MapearÚnicaLinha<EntradaFiscalPdf>(sql);
+        }
+
+        public static void Excluir(string idEntradaFiscal)
+        {
+            ExecutarComando(string.Format("delete from entradafiscalpdf where id={0}", DbTransformar(idEntradaFiscal)));
+            Cache.Remover(idEntradaFiscal);
+        }
     }
 }

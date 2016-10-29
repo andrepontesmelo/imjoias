@@ -1,6 +1,7 @@
 ﻿using Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System;
 
 namespace Entidades.Fiscal.Pdf
 {
@@ -40,6 +41,18 @@ namespace Entidades.Fiscal.Pdf
         {
             string sql = string.Format("select * from saidafiscalpdf where id=(select id from saidafiscal where numero =(select nfe from nfe where venda={0}))", DbTransformar(venda));
             return MapearÚnicaLinha<SaidaFiscalPdf>(sql);
+        }
+
+        public static SaidaFiscalPdf Obter(string idSaidaFiscal)
+        {
+            string sql = string.Format("select * from saidafiscalpdf where id={0}", DbTransformar(idSaidaFiscal));
+            return MapearÚnicaLinha<SaidaFiscalPdf>(sql);
+        }
+
+        public static void Excluir(string idSaidaFiscal)
+        {
+            ExecutarComando(string.Format("delete from saidafiscalpdf where id={0}", DbTransformar(idSaidaFiscal)));
+            Cache.Remover(idSaidaFiscal);
         }
     }
 }

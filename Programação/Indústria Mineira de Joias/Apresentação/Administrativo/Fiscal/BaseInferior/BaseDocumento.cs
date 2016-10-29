@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System;
 using Entidades.Fiscal.Pdf;
+using Entidades.Relacionamento.Venda;
 
 namespace Apresentação.Fiscal.BaseInferior
 {
@@ -117,6 +118,18 @@ namespace Apresentação.Fiscal.BaseInferior
         }
 
         protected virtual void Excluir()
+        {
+            throw new Exception("abstrato");
+        }
+
+        private void opçãoAbrirPDF_Click(object sender, EventArgs e)
+        {
+            var visualizador = new VisualizadorPDF();
+            visualizador.Carregar(ObterPdf());
+            visualizador.ShowDialog(this);
+        }
+
+        protected virtual FiscalPdf ObterPdf()
         {
             throw new Exception("abstrato");
         }
