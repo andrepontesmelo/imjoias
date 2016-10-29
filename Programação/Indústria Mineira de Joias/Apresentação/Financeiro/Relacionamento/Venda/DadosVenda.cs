@@ -2,7 +2,7 @@
 using Apresentação.Formulários;
 using Entidades;
 using Entidades.Acerto;
-using Entidades.Moedas;
+using Entidades.Configuração;
 using Entidades.Pagamentos;
 using Entidades.Pessoa;
 using Entidades.Privilégio;
@@ -47,9 +47,7 @@ namespace Apresentação.Financeiro.Venda
 
         public DadosVenda()
         {
-            bool designMode = (LicenseManager.UsageMode == LicenseUsageMode.Designtime);
-            
-            if (!designMode)
+            if (!DadosGlobais.ModoDesenho)
                 InitializeComponent();
         }
 

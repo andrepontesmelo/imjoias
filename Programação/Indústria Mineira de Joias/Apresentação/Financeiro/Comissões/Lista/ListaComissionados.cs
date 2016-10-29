@@ -1,6 +1,7 @@
 ﻿using Apresentação.Formulários;
 using Entidades;
 using Entidades.Comissão;
+using Entidades.Configuração;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,8 +23,7 @@ namespace Apresentação.Financeiro.Comissões
         {
             InitializeComponent();
 
-            bool designMode = (LicenseManager.UsageMode == LicenseUsageMode.Designtime);
-            if (!designMode)
+            if (!DadosGlobais.ModoDesenho)
             {
                 hashSetorGrupo = new Dictionary<Setor, ListViewGroup>();
                 lst.Groups.Clear();

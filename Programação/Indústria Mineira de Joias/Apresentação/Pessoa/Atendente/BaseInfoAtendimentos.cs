@@ -17,9 +17,7 @@ namespace Apresentação.Atendimento.Atendente
         {
             InitializeComponent();
 
-            bool design = LicenseManager.UsageMode == LicenseUsageMode.Designtime;
-
-            if (design)
+            if (DadosGlobais.ModoDesenho)
                 return;
 
             períodoFinal = DadosGlobais.Instância.HoraDataAtual;

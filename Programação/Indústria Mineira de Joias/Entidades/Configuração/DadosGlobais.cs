@@ -80,12 +80,9 @@ namespace Entidades.Configuração
         }
         #endregion
 
-        /// <summary>
-        /// Util quando o DesignMode não funciona.
-        /// </summary>
-        public static bool ModoDesign
+        public static bool ModoDesenho
         {
-            get { return System.Diagnostics.Process.GetCurrentProcess().ProcessName == "devenv";  }
+            get { return LicenseManager.UsageMode == LicenseUsageMode.Designtime; }
         }
         /// <summary>
         /// Constrói o objeto de configuração, introduzindo
@@ -93,7 +90,7 @@ namespace Entidades.Configuração
         /// </summary>
         private DadosGlobais()
         {
-            if (ModoDesign)
+            if (ModoDesenho)
                 return;
 
             cultura = System.Globalization.CultureInfo.CreateSpecificCulture("pt-BR");
@@ -177,7 +174,7 @@ namespace Entidades.Configuração
         {
             get
             {
-                if (ModoDesign)
+                if (ModoDesenho)
                     return DateTime.Now;
 
                 DateTime hora;

@@ -8,6 +8,7 @@ using System.Runtime.Remoting.Lifetime;
 using System.Windows.Forms;
 using Entidades;
 using Entidades.Pessoa;
+using Entidades.Configuração;
 
 namespace Apresentação.Pessoa.Consultas
 {
@@ -32,12 +33,9 @@ namespace Apresentação.Pessoa.Consultas
 
         public ListViewVendedores()
         {
-            // This call is required by the Windows.Forms Form Designer.
             InitializeComponent();
 
-            bool designMode = (LicenseManager.UsageMode == LicenseUsageMode.Designtime);
-
-            if (designMode)
+            if (DadosGlobais.ModoDesenho)
                 return;
 
             hashPessoas = new Dictionary<ListViewItem, Entidades.Pessoa.Pessoa>();

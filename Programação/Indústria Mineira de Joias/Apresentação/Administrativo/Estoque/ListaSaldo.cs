@@ -1,4 +1,5 @@
 ﻿using Apresentação.Formulários;
+using Entidades.Configuração;
 using Entidades.Estoque;
 using System;
 using System.Collections.Generic;
@@ -37,9 +38,7 @@ namespace Apresentação.Estoque
         {
             InitializeComponent();
 
-            bool designMode = (LicenseManager.UsageMode == LicenseUsageMode.Designtime);
-
-            if (!designMode)
+            if (!DadosGlobais.ModoDesenho)
             {
                 lvwColumnSorter = new ListViewColumnSorter();
 

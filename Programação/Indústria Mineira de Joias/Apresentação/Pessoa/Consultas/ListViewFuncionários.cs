@@ -1,20 +1,18 @@
+using Entidades;
+using Entidades.Configuração;
+using Entidades.Pessoa;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Runtime.Remoting.Lifetime;
 using System.Windows.Forms;
-using Entidades;
-using Entidades.Pessoa;
 
 namespace Apresentação.Pessoa.Consultas
 {
-	/// <summary>
-	/// Summary description for ListViewFuncionários.
-	/// </summary>
-	public class ListViewFuncionários : System.Windows.Forms.UserControl, IComparer
+    /// <summary>
+    /// Summary description for ListViewFuncionários.
+    /// </summary>
+    public class ListViewFuncionários : System.Windows.Forms.UserControl, IComparer
 	{
 		// Atributos
 		private List<Funcionário>   funcionários = null;
@@ -41,9 +39,7 @@ namespace Apresentação.Pessoa.Consultas
 			// This call is required by the Windows.Forms Form Designer.
 			InitializeComponent();
 
-            bool designMode = (LicenseManager.UsageMode == LicenseUsageMode.Designtime);
-
-            if (designMode)
+            if (DadosGlobais.ModoDesenho)
 				return;
 
 			linhas = new Hashtable();

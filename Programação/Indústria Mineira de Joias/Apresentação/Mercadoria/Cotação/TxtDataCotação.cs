@@ -22,8 +22,7 @@ namespace Apresentação.Mercadoria.Cotação
 
         public TxtDataCotação()
         {
-            bool designMode = (LicenseManager.UsageMode == LicenseUsageMode.Designtime);
-            if (!designMode)
+            if (!DadosGlobais.ModoDesenho)
             {
                 InitializeComponent();
 

@@ -427,9 +427,7 @@ namespace Apresentação.Mercadoria.Bandeja
         {
             base.OnLoad(e);
 
-            bool designMode = (LicenseManager.UsageMode == LicenseUsageMode.Designtime);
-
-            if (designMode)
+            if (DadosGlobais.ModoDesenho)
                 return;
 
             if (PermitirSeleçãoTabela && Tabelas == null)
