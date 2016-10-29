@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Entidades.Fiscal;
 using Entidades.Fiscal.Pdf;
+using Entidades.Configuração;
 
 namespace Apresentação.Fiscal.BaseInferior
 {
@@ -9,6 +10,9 @@ namespace Apresentação.Fiscal.BaseInferior
         public BaseSaída() : base(SaidaFiscalPdf.Cache)
         {
             InitializeComponent();
+
+            if (DadosGlobais.ModoDesenho)
+                return;
 
             cmbTipoDocumento.Carregar(false);
             cmbSetor.Carregar(true);
