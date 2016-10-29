@@ -115,7 +115,7 @@ namespace Entidades.Configuração
             {
             }
             servidorNTP = new ConfiguraçãoGlobal<string>("Servidor NTP", "pool.ntp.org");
-            cacheExpiraçãoVendaPdfMs = new ConfiguraçãoGlobal<int>("Expiração de cache para reobtenção vínculo entre vendas e pdfs de NFes", (int) TimeSpan.FromSeconds(30).TotalMilliseconds);
+            cacheExpiraçãoVendaPdfMs = new ConfiguraçãoGlobal<int>("Expiração de cache para reobtenção vínculo entre vendas e pdfs de NFes", (int) TimeSpan.FromMinutes(5).TotalMilliseconds);
         }
 
         #region Propriedades
