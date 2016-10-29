@@ -128,16 +128,12 @@
   </Target>
   -->
   <ItemGroup>
-    <Compile Include="Administrativo\Fiscal\BaseInferior\BaseConcretaModoDesenho.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="ComboSetor.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ComboSetor.Designer.cs">
       <DependentUpon>ComboSetor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formulário\ProvedorDescriçãoControleAbstrato.cs" />
     <Compile Include="Pessoa\Atendente\BaseInfoAtendimentos.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -1,6 +1,5 @@
 ﻿using Apresentação.Fiscal.BaseInferior.Documentos.Exclusão;
 using Apresentação.Fiscal.Lista;
-using Entidades.Configuração;
 using Entidades.Fiscal;
 using System;
 using System.ComponentModel;
@@ -15,7 +14,7 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
         {
             InitializeComponent();
 
-            if (DadosGlobais.ModoDesenho)
+            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
                 return;
 
             controlador = ConstruirControlador();

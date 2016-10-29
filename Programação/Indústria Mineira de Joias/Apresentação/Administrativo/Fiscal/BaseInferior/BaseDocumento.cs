@@ -1,25 +1,17 @@
-﻿using Apresentação.Administrativo.Fiscal.BaseInferior;
-using Apresentação.Formulário;
-using Entidades.Fiscal;
-using Entidades.Fiscal.Pdf;
+﻿using Entidades.Fiscal;
 using Entidades.Fiscal.Tipo;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Windows.Forms;
+using System;
+using Entidades.Fiscal.Pdf;
+using Entidades.Relacionamento.Venda;
 
 namespace Apresentação.Fiscal.BaseInferior
 {
-    [TypeDescriptionProvider(typeof(ProvedorDescriçãoControleAbstrato<BaseDocumento, BaseConcretaModoDesenho>))]
-    public abstract partial class BaseDocumento : Formulários.BaseInferior
+    public partial class BaseDocumento : Formulários.BaseInferior
     {
         protected DocumentoFiscal documento;
         private CacheIds cacheIdsPDFS;
-
-        public BaseDocumento()
-        {
-            InitializeComponent();
-        }
 
         public BaseDocumento(CacheIds cacheIdsPDFS)
         {
@@ -102,7 +94,10 @@ namespace Apresentação.Fiscal.BaseInferior
             e.Cancel = !idDesejado.Equals(documento.Id) && ObterIds().Contains(idDesejado);
         }
 
-        protected abstract List<string> ObterIds();
+        protected virtual List<string> ObterIds()
+        {
+            throw new Exception("abstrato");
+        }
 
         private void txtObservações_Validated(object sender, System.EventArgs e)
         {
@@ -122,11 +117,21 @@ namespace Apresentação.Fiscal.BaseInferior
             SubstituirBaseParaAnterior();
         }
 
+        protected virtual void Excluir()
+        {
+            throw new Exception("abstrato");
+        }
+
         private void opçãoAbrirPDF_Click(object sender, EventArgs e)
         {
             var visualizador = new VisualizadorPDF();
             visualizador.Carregar(ObterPdf());
             visualizador.ShowDialog(this);
+        }
+
+        protected virtual FiscalPdf ObterPdf()
+        {
+            throw new Exception("abstrato");
         }
 
         private void opçãoExcluirPDF_Click(object sender, EventArgs e)
@@ -157,9 +162,10 @@ namespace Apresentação.Fiscal.BaseInferior
             CarregarControlesPDF(documento);
         }
 
-        protected abstract void CadastrarPdf(string arquivo);
-        protected abstract FiscalPdf ObterPdf();
-        protected abstract void Excluir();
+        protected virtual void CadastrarPdf(string arquivo)
+        {
+            throw new Exception("abstrato");
+        }
     }
 }
 

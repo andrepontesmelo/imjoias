@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Entidades.Fiscal;
 using Entidades.Fiscal.Pdf;
-using Entidades.Configuração;
 
 namespace Apresentação.Fiscal.BaseInferior
 {
