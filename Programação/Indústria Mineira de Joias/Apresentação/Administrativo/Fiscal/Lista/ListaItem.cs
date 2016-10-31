@@ -2,6 +2,8 @@
 using Entidades.Fiscal;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using Entidades.Fiscal.Tipo;
+using System;
 
 namespace Apresentação.Fiscal.Lista
 {
@@ -38,11 +40,28 @@ namespace Apresentação.Fiscal.Lista
             item.SubItems[colDescrição.Index].Text = entidade.Descrição;
             item.SubItems[colQuantidade.Index].Text = entidade.Quantidade.ToString();
             item.SubItems[colReferência.Index].Text = entidade.Referência;
-            item.SubItems[colTipoUnidade.Index].Text = entidade.TipoUnidade.ToString();
+            item.SubItems[colTipoUnidade.Index].Text = ObterDescrição(entidade.TipoUnidade);
             item.SubItems[colValorTotal.Index].Text = entidade.Valor.ToString("C");
             item.SubItems[colValorUnitário.Index].Text = entidade.ValorUnitário.ToString("C");
 
             return item;
+        }
+
+        private string ObterDescrição(TipoUnidade tipoUnidade)
+        {
+            switch (tipoUnidade)
+            {
+                case TipoUnidade.Grs:
+                    return "Gramas";
+                case TipoUnidade.Par:
+                    return "Par";
+                case TipoUnidade.Pca:
+                    return "Peça";
+                case TipoUnidade.Un:
+                    return "Unidade";
+                default:
+                    throw new NotImplementedException();
+            }
         }
 
         private void lista_ColumnClick(object sender, ColumnClickEventArgs e)
