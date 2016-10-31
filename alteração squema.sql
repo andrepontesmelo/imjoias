@@ -209,6 +209,27 @@ ADD CONSTRAINT `fk_saidaitemfiscal_1`
   ON UPDATE CASCADE;
 
 
+ALTER TABLE `imjoias`.`saidaitemfiscal` 
+DROP FOREIGN KEY `fk_vendaitemfiscal_1`;
+ALTER TABLE `imjoias`.`saidaitemfiscal` 
+CHANGE COLUMN `tipounidade` `tipounidade` INT(11) NULL ;
+ALTER TABLE `imjoias`.`saidaitemfiscal` 
+ADD CONSTRAINT `fk_vendaitemfiscal_1`
+  FOREIGN KEY (`tipounidade`)
+  REFERENCES `imjoias`.`tipounidadefiscal` (`id`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE;
+
+
+ALTER TABLE `imjoias`.`entradaitemfiscal` 
+DROP FOREIGN KEY `fk_entradaitemfiscal_2`;
+ALTER TABLE `imjoias`.`entradaitemfiscal` 
+CHANGE COLUMN `tipounidade` `tipounidade` INT(11) NULL ;
+ALTER TABLE `imjoias`.`entradaitemfiscal` 
+ADD CONSTRAINT `fk_entradaitemfiscal_2`
+  FOREIGN KEY (`tipounidade`)
+  REFERENCES `imjoias`.`tipounidadefiscal` (`id`)
+  ON UPDATE CASCADE;
 
 
 
