@@ -11,7 +11,7 @@ namespace Apresentação.Fiscal.BaseInferior
     {
         protected DocumentoFiscal documento;
         private CacheIds cacheIdsPDFS;
-        private int? códigoItemSendoAlterado;
+        private ItemFiscal itemSendoAlterado;
 
         public BaseDocumento()
         {
@@ -175,7 +175,7 @@ namespace Apresentação.Fiscal.BaseInferior
 
         private void lstItens_AoSelecionar(ItemFiscal entidade)
         {
-            códigoItemSendoAlterado = entidade?.Código;
+            itemSendoAlterado = entidade;
 
             txtReferência.Text = entidade?.Referência;
             txtCFOP.Text = entidade?.Cfop?.ToString();
@@ -188,23 +188,22 @@ namespace Apresentação.Fiscal.BaseInferior
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            ItemFiscal item = ConstruirItem(documento.Id);
-            item.Referência = txtReferência.Text;
-            item.Descrição = txtDescrição.Text;
-            item.Quantidade = decimal.Parse(txtQuantidade.Text);
-            item.TipoUnidade = cmbTipoUnidade.Seleção.Value;
+            itemSendoAlterado.Referência = txtReferência.Text;
+            itemSendoAlterado.Descrição = txtDescrição.Text;
+            itemSendoAlterado.Quantidade = decimal.Parse(txtQuantidade.Text);
+            itemSendoAlterado.TipoUnidade = cmbTipoUnidade.Seleção.Value;
 
+            itemSendoAlterado.Cfop = null;
             int cfop;
             if (int.TryParse(txtCFOP.Text, out cfop))
-                item.Cfop = cfop;
+                itemSendoAlterado.Cfop = cfop;
 
-            item.Valor = (decimal) txtValorTotal.Double;
-            item.ValorUnitário = (decimal) txtValorUnitário.Double;
-            item.Código = códigoItemSendoAlterado.Value;
-            item.DefinirCadastrado();
-            item.Atualizar();
+            itemSendoAlterado.Valor = (decimal) txtValorTotal.Double;
+            itemSendoAlterado.ValorUnitário = (decimal) txtValorUnitário.Double;
+            itemSendoAlterado.DefinirDesatualizado();
+            itemSendoAlterado.Atualizar();
 
-            lstItens.Recarregar(item);
+            lstItens.Recarregar(itemSendoAlterado);
         }
 
         protected virtual ItemFiscal ConstruirItem(string códigoDocumento)

@@ -187,9 +187,9 @@ namespace Entidades.Fiscal
             }
         }
 
-        public new void DefinirCadastrado()
+        public new void DefinirDesatualizado()
         {
-            base.DefinirCadastrado();
+            base.DefinirDesatualizado();
         }
     }
 }
