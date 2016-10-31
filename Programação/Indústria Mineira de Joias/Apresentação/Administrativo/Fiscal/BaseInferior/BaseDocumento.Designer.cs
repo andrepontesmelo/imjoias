@@ -33,7 +33,6 @@ namespace Apresentação.Fiscal.BaseInferior
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseDocumento));
             this.quadroDocumento = new Apresentação.Formulários.Quadro();
             this.opçãoExcluirDocumento = new Apresentação.Formulários.Opção();
-            this.opçãoImprimir = new Apresentação.Formulários.Opção();
             this.quadroPDF = new Apresentação.Formulários.Quadro();
             this.opçãoExcluirPDF = new Apresentação.Formulários.Opção();
             this.opçãoCarregarPDF = new Apresentação.Formulários.Opção();
@@ -94,14 +93,13 @@ namespace Apresentação.Fiscal.BaseInferior
             this.quadroDocumento.bSupDirArredondada = true;
             this.quadroDocumento.bSupEsqArredondada = true;
             this.quadroDocumento.Controls.Add(this.opçãoExcluirDocumento);
-            this.quadroDocumento.Controls.Add(this.opçãoImprimir);
             this.quadroDocumento.Cor = System.Drawing.Color.Black;
             this.quadroDocumento.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadroDocumento.LetraTítulo = System.Drawing.Color.White;
             this.quadroDocumento.Location = new System.Drawing.Point(7, 13);
             this.quadroDocumento.MostrarBotãoMinMax = false;
             this.quadroDocumento.Name = "quadroDocumento";
-            this.quadroDocumento.Size = new System.Drawing.Size(160, 80);
+            this.quadroDocumento.Size = new System.Drawing.Size(160, 56);
             this.quadroDocumento.TabIndex = 1;
             this.quadroDocumento.Tamanho = 30;
             this.quadroDocumento.Título = "Documento";
@@ -111,7 +109,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.opçãoExcluirDocumento.BackColor = System.Drawing.Color.Transparent;
             this.opçãoExcluirDocumento.Descrição = "Excluir";
             this.opçãoExcluirDocumento.Imagem = global::Apresentação.Resource.none;
-            this.opçãoExcluirDocumento.Location = new System.Drawing.Point(7, 50);
+            this.opçãoExcluirDocumento.Location = new System.Drawing.Point(7, 30);
             this.opçãoExcluirDocumento.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoExcluirDocumento.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoExcluirDocumento.MinimumSize = new System.Drawing.Size(150, 16);
@@ -119,19 +117,6 @@ namespace Apresentação.Fiscal.BaseInferior
             this.opçãoExcluirDocumento.Size = new System.Drawing.Size(150, 16);
             this.opçãoExcluirDocumento.TabIndex = 3;
             this.opçãoExcluirDocumento.Click += new System.EventHandler(this.opçãoExcluirDocumento_Click);
-            // 
-            // opçãoImprimir
-            // 
-            this.opçãoImprimir.BackColor = System.Drawing.Color.Transparent;
-            this.opçãoImprimir.Descrição = "Imprimir";
-            this.opçãoImprimir.Imagem = global::Apresentação.Resource.impressora___163;
-            this.opçãoImprimir.Location = new System.Drawing.Point(7, 30);
-            this.opçãoImprimir.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.opçãoImprimir.MaximumSize = new System.Drawing.Size(150, 100);
-            this.opçãoImprimir.MinimumSize = new System.Drawing.Size(150, 16);
-            this.opçãoImprimir.Name = "opçãoImprimir";
-            this.opçãoImprimir.Size = new System.Drawing.Size(150, 16);
-            this.opçãoImprimir.TabIndex = 2;
             // 
             // quadroPDF
             // 
@@ -146,7 +131,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.quadroPDF.Cor = System.Drawing.Color.Black;
             this.quadroPDF.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadroPDF.LetraTítulo = System.Drawing.Color.White;
-            this.quadroPDF.Location = new System.Drawing.Point(7, 99);
+            this.quadroPDF.Location = new System.Drawing.Point(7, 75);
             this.quadroPDF.MostrarBotãoMinMax = false;
             this.quadroPDF.Name = "quadroPDF";
             this.quadroPDF.Size = new System.Drawing.Size(160, 94);
@@ -559,7 +544,6 @@ namespace Apresentação.Fiscal.BaseInferior
 
         private Formulários.Quadro quadroDocumento;
         private Formulários.Quadro quadroPDF;
-        private Formulários.Opção opçãoImprimir;
         private Formulários.Opção opçãoExcluirPDF;
         private Formulários.Opção opçãoCarregarPDF;
         private Formulários.Opção opçãoAbrirPDF;
