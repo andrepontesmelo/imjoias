@@ -42,24 +42,12 @@ namespace Apresentação.Fiscal.BaseInferior
             this.tab = new System.Windows.Forms.TabControl();
             this.tabDados = new System.Windows.Forms.TabPage();
             this.grpDados = new System.Windows.Forms.GroupBox();
-            this.cmbTipoDocumento = new Apresentação.Fiscal.Combobox.ComboTipoDocumento();
-            this.txtEmitente = new Apresentação.Pessoa.TextBoxCNPJ();
-            this.dtEntradaSaída = new System.Windows.Forms.DateTimePicker();
-            this.dtEmissão = new System.Windows.Forms.DateTimePicker();
-            this.txtNúmero = new AMS.TextBox.NumericTextBox();
-            this.txtValor = new AMS.TextBox.CurrencyTextBox();
-            this.txtId = new System.Windows.Forms.TextBox();
-            this.lblTipoDocumento = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lblEntradaSaída = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.dados = new Apresentação.Administrativo.Fiscal.BaseInferior.DadosDocumento();
             this.tabItens = new System.Windows.Forms.TabPage();
             this.quadroLista = new Apresentação.Formulários.Quadro();
             this.lstItens = new Apresentação.Fiscal.Lista.ListaItem();
             this.quadroItem = new Apresentação.Formulários.Quadro();
+            this.btnCadastrar = new System.Windows.Forms.Button();
             this.txtValorTotal = new AMS.TextBox.CurrencyTextBox();
             this.txtValorUnitário = new AMS.TextBox.CurrencyTextBox();
             this.cmbTipoUnidade = new Apresentação.Fiscal.Combobox.ComboTipoUnidade();
@@ -78,7 +66,6 @@ namespace Apresentação.Fiscal.BaseInferior
             this.label4 = new System.Windows.Forms.Label();
             this.tabObservações = new System.Windows.Forms.TabPage();
             this.txtObservações = new System.Windows.Forms.TextBox();
-            this.btnCadastrar = new System.Windows.Forms.Button();
             this.esquerda.SuspendLayout();
             this.quadroDocumento.SuspendLayout();
             this.quadroPDF.SuspendLayout();
@@ -253,20 +240,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.grpDados.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.grpDados.Controls.Add(this.cmbTipoDocumento);
-            this.grpDados.Controls.Add(this.txtEmitente);
-            this.grpDados.Controls.Add(this.dtEntradaSaída);
-            this.grpDados.Controls.Add(this.dtEmissão);
-            this.grpDados.Controls.Add(this.txtNúmero);
-            this.grpDados.Controls.Add(this.txtValor);
-            this.grpDados.Controls.Add(this.txtId);
-            this.grpDados.Controls.Add(this.lblTipoDocumento);
-            this.grpDados.Controls.Add(this.label5);
-            this.grpDados.Controls.Add(this.label6);
-            this.grpDados.Controls.Add(this.label3);
-            this.grpDados.Controls.Add(this.lblEntradaSaída);
-            this.grpDados.Controls.Add(this.label2);
-            this.grpDados.Controls.Add(this.label1);
+            this.grpDados.Controls.Add(this.dados);
             this.grpDados.Location = new System.Drawing.Point(6, 6);
             this.grpDados.Name = "grpDados";
             this.grpDados.Size = new System.Drawing.Size(919, 517);
@@ -274,159 +248,13 @@ namespace Apresentação.Fiscal.BaseInferior
             this.grpDados.TabStop = false;
             this.grpDados.Text = "Dados do documento";
             // 
-            // cmbTipoDocumento
+            // dados
             // 
-            this.cmbTipoDocumento.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.cmbTipoDocumento.FormattingEnabled = true;
-            this.cmbTipoDocumento.Location = new System.Drawing.Point(643, 28);
-            this.cmbTipoDocumento.Name = "cmbTipoDocumento";
-            this.cmbTipoDocumento.Seleção = null;
-            this.cmbTipoDocumento.Size = new System.Drawing.Size(125, 21);
-            this.cmbTipoDocumento.TabIndex = 13;
-            this.cmbTipoDocumento.Validated += new System.EventHandler(this.cmbTipoDocumento_Validated);
-            // 
-            // txtEmitente
-            // 
-            this.txtEmitente.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtEmitente.Location = new System.Drawing.Point(195, 158);
-            this.txtEmitente.Name = "txtEmitente";
-            this.txtEmitente.Size = new System.Drawing.Size(326, 20);
-            this.txtEmitente.TabIndex = 12;
-            this.txtEmitente.Validated += new System.EventHandler(this.txtEmitente_Validated);
-            // 
-            // dtEntradaSaída
-            // 
-            this.dtEntradaSaída.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dtEntradaSaída.CustomFormat = "dd/MM/yyyy HH:mm:ss";
-            this.dtEntradaSaída.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtEntradaSaída.Location = new System.Drawing.Point(195, 81);
-            this.dtEntradaSaída.Name = "dtEntradaSaída";
-            this.dtEntradaSaída.Size = new System.Drawing.Size(323, 20);
-            this.dtEntradaSaída.TabIndex = 11;
-            // 
-            // dtEmissão
-            // 
-            this.dtEmissão.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dtEmissão.CustomFormat = "dd/MM/yyyy HH:mm:ss";
-            this.dtEmissão.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtEmissão.Location = new System.Drawing.Point(195, 55);
-            this.dtEmissão.Name = "dtEmissão";
-            this.dtEmissão.Size = new System.Drawing.Size(323, 20);
-            this.dtEmissão.TabIndex = 10;
-            this.dtEmissão.Validated += new System.EventHandler(this.dtEmissão_Validated);
-            // 
-            // txtNúmero
-            // 
-            this.txtNúmero.AllowNegative = true;
-            this.txtNúmero.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtNúmero.DigitsInGroup = 0;
-            this.txtNúmero.Flags = 0;
-            this.txtNúmero.Location = new System.Drawing.Point(195, 132);
-            this.txtNúmero.MaxDecimalPlaces = 4;
-            this.txtNúmero.MaxWholeDigits = 9;
-            this.txtNúmero.Name = "txtNúmero";
-            this.txtNúmero.Prefix = "";
-            this.txtNúmero.RangeMax = 1.7976931348623157E+308D;
-            this.txtNúmero.RangeMin = -1.7976931348623157E+308D;
-            this.txtNúmero.Size = new System.Drawing.Size(323, 20);
-            this.txtNúmero.TabIndex = 9;
-            this.txtNúmero.Text = "1";
-            this.txtNúmero.Validated += new System.EventHandler(this.txtNúmero_Validated);
-            // 
-            // txtValor
-            // 
-            this.txtValor.AllowNegative = true;
-            this.txtValor.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtValor.Flags = 7680;
-            this.txtValor.Location = new System.Drawing.Point(195, 106);
-            this.txtValor.MaxWholeDigits = 9;
-            this.txtValor.Name = "txtValor";
-            this.txtValor.RangeMax = 1.7976931348623157E+308D;
-            this.txtValor.RangeMin = -1.7976931348623157E+308D;
-            this.txtValor.Size = new System.Drawing.Size(323, 20);
-            this.txtValor.TabIndex = 8;
-            this.txtValor.Text = "R$ 1,00";
-            this.txtValor.Validated += new System.EventHandler(this.txtValor_Validated);
-            // 
-            // txtId
-            // 
-            this.txtId.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtId.Location = new System.Drawing.Point(195, 29);
-            this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(323, 20);
-            this.txtId.TabIndex = 7;
-            this.txtId.Validating += new System.ComponentModel.CancelEventHandler(this.txtId_Validating);
-            this.txtId.Validated += new System.EventHandler(this.txtId_Validated);
-            // 
-            // lblTipoDocumento
-            // 
-            this.lblTipoDocumento.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.lblTipoDocumento.AutoSize = true;
-            this.lblTipoDocumento.Location = new System.Drawing.Point(535, 32);
-            this.lblTipoDocumento.Name = "lblTipoDocumento";
-            this.lblTipoDocumento.Size = new System.Drawing.Size(102, 13);
-            this.lblTipoDocumento.TabIndex = 6;
-            this.lblTipoDocumento.Text = "Tipo de documento:";
-            // 
-            // label5
-            // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(141, 162);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(51, 13);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Emitente:";
-            // 
-            // label6
-            // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(141, 139);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(47, 13);
-            this.label6.TabIndex = 4;
-            this.label6.Text = "Número:";
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(141, 113);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(34, 13);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Valor:";
-            // 
-            // lblEntradaSaída
-            // 
-            this.lblEntradaSaída.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.lblEntradaSaída.AutoSize = true;
-            this.lblEntradaSaída.Location = new System.Drawing.Point(141, 87);
-            this.lblEntradaSaída.Name = "lblEntradaSaída";
-            this.lblEntradaSaída.Size = new System.Drawing.Size(48, 13);
-            this.lblEntradaSaída.TabIndex = 2;
-            this.lblEntradaSaída.Text = "Ent/Saí:";
-            // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(140, 61);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Emissão:";
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(141, 32);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(19, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Id:";
+            this.dados.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.dados.Location = new System.Drawing.Point(126, 19);
+            this.dados.Name = "dados";
+            this.dados.Size = new System.Drawing.Size(654, 498);
+            this.dados.TabIndex = 0;
             // 
             // tabItens
             // 
@@ -509,6 +337,17 @@ namespace Apresentação.Fiscal.BaseInferior
             this.quadroItem.TabIndex = 1;
             this.quadroItem.Tamanho = 30;
             this.quadroItem.Título = "Detalhe do item";
+            // 
+            // btnCadastrar
+            // 
+            this.btnCadastrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCadastrar.Location = new System.Drawing.Point(828, 99);
+            this.btnCadastrar.Name = "btnCadastrar";
+            this.btnCadastrar.Size = new System.Drawing.Size(75, 23);
+            this.btnCadastrar.TabIndex = 18;
+            this.btnCadastrar.Text = "Cadastrar";
+            this.btnCadastrar.UseVisualStyleBackColor = true;
+            this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
             // 
             // txtValorTotal
             // 
@@ -690,17 +529,6 @@ namespace Apresentação.Fiscal.BaseInferior
             this.txtObservações.TabIndex = 0;
             this.txtObservações.Validated += new System.EventHandler(this.txtObservações_Validated);
             // 
-            // btnCadastrar
-            // 
-            this.btnCadastrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCadastrar.Location = new System.Drawing.Point(828, 99);
-            this.btnCadastrar.Name = "btnCadastrar";
-            this.btnCadastrar.Size = new System.Drawing.Size(75, 23);
-            this.btnCadastrar.TabIndex = 18;
-            this.btnCadastrar.Text = "Cadastrar";
-            this.btnCadastrar.UseVisualStyleBackColor = true;
-            this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
-            // 
             // BaseDocumento
             // 
             this.Controls.Add(this.tab);
@@ -717,7 +545,6 @@ namespace Apresentação.Fiscal.BaseInferior
             this.tab.ResumeLayout(false);
             this.tabDados.ResumeLayout(false);
             this.grpDados.ResumeLayout(false);
-            this.grpDados.PerformLayout();
             this.tabItens.ResumeLayout(false);
             this.quadroLista.ResumeLayout(false);
             this.quadroItem.ResumeLayout(false);
@@ -743,19 +570,6 @@ namespace Apresentação.Fiscal.BaseInferior
         private System.Windows.Forms.TabPage tabObservações;
         protected Formulários.TítuloBaseInferior título;
         protected System.Windows.Forms.GroupBox grpDados;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label3;
-        private AMS.TextBox.NumericTextBox txtNúmero;
-        private AMS.TextBox.CurrencyTextBox txtValor;
-        private Pessoa.TextBoxCNPJ txtEmitente;
-        protected System.Windows.Forms.DateTimePicker dtEntradaSaída;
-        private System.Windows.Forms.DateTimePicker dtEmissão;
-        protected System.Windows.Forms.Label lblEntradaSaída;
-        protected System.Windows.Forms.Label lblTipoDocumento;
-        protected ComboTipoDocumento cmbTipoDocumento;
         private Formulários.Quadro quadroLista;
         private Formulários.Quadro quadroItem;
         private Lista.ListaItem lstItens;
@@ -775,8 +589,8 @@ namespace Apresentação.Fiscal.BaseInferior
         private AMS.TextBox.CurrencyTextBox txtValorTotal;
         private AMS.TextBox.CurrencyTextBox txtValorUnitário;
         private ComboTipoUnidade cmbTipoUnidade;
-        protected System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.TextBox txtObservações;
         private System.Windows.Forms.Button btnCadastrar;
+        protected Administrativo.Fiscal.BaseInferior.DadosDocumento dados;
     }
 }

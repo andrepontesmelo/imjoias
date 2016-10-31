@@ -1,8 +1,8 @@
-﻿using Entidades.Fiscal;
+﻿using Apresentação.Administrativo.Fiscal.BaseInferior;
+using Entidades.Fiscal;
 using Entidades.Fiscal.Pdf;
 using Entidades.Fiscal.Tipo;
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Apresentação.Fiscal.BaseInferior
@@ -27,10 +27,17 @@ namespace Apresentação.Fiscal.BaseInferior
         public virtual void Carregar(DocumentoFiscal documento)
         {
             this.documento = documento;
-
             CarregarControlesEdição(documento);
             CarregarControlesPDF(documento);
             lstItens.Carregar(documento);
+        }
+
+        private void CarregarControlesEdição(DocumentoFiscal documento)
+        {
+            título.Descrição = "Edição de " + documento.ToString();
+            txtObservações.Text = documento.Observações;
+
+            dados.CarregarControlesEdição(documento);
         }
 
         private void CarregarControlesPDF(DocumentoFiscal documento)
@@ -41,74 +48,10 @@ namespace Apresentação.Fiscal.BaseInferior
             opçãoAbrirPDF.Enabled = pdfExistente;
         }
 
-        private void CarregarControlesEdição(DocumentoFiscal documento)
-        {
-            título.Descrição = "Edição de " + documento.ToString();
-            txtId.Text = documento.Id;
-            dtEmissão.Value = documento.DataEmissão;
-            txtValor.Text = documento.ValorTotal.ToString("C");
-            txtNúmero.Text = documento.Número.ToString();
-            txtEmitente.Text = documento.CNPJEmitenteFormatado;
-            txtObservações.Text = documento.Observações;
-            cmbTipoDocumento.Seleção = TipoDocumento.Obter(documento.TipoDocumento);
-        }
-
-        private void txtId_Validated(object sender, System.EventArgs e)
-        {
-            documento.Id = txtId.Text;
-            Gravar();
-        }
-
-        protected void Gravar()
-        {
-            documento.Gravar();
-        }
-
-        private void dtEmissão_Validated(object sender, System.EventArgs e)
-        {
-            documento.DataEmissão = dtEmissão.Value;
-            Gravar();
-        }
-
-        private void txtValor_Validated(object sender, System.EventArgs e)
-        {
-            documento.ValorTotal = (decimal) txtValor.Double;
-            Gravar();
-        }
-
-        private void txtNúmero_Validated(object sender, System.EventArgs e)
-        {
-            documento.Número = txtNúmero.Int;
-            Gravar();
-        }
-
-        private void txtEmitente_Validated(object sender, System.EventArgs e)
-        {
-            documento.CnpjEmitente = txtEmitente.Text;
-            Gravar();
-        }
-
-        private void cmbTipoDocumento_Validated(object sender, System.EventArgs e)
-        {
-            documento.TipoDocumento = cmbTipoDocumento.Seleção.Id;
-            Gravar();
-        }
-
-        private void txtId_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            var idDesejado = txtId.Text.Trim().ToLower();
-            e.Cancel = !idDesejado.Equals(documento.Id) && ObterIds().Contains(idDesejado);
-        }
-
-        protected virtual List<string> ObterIds()
-        {
-            throw new Exception("abstrato");
-        }
-
         private void txtObservações_Validated(object sender, System.EventArgs e)
         {
             documento.Observações = txtObservações.Text;
-            Gravar();
+            documento.Gravar();
         }
 
         private void opçãoExcluirDocumento_Click(object sender, System.EventArgs e)
@@ -253,6 +196,17 @@ namespace Apresentação.Fiscal.BaseInferior
         {
             btnCadastrar.Visible = true;
             btnAlterar.Visible = false;
+        }
+
+        protected void SubstituirControleDados(DadosDocumento novoControle)
+        {
+            grpDados.Controls.Remove(dados);
+            novoControle.Anchor = dados.Anchor;
+            novoControle.Location = dados.Location;
+            novoControle.Size = dados.Size;
+            grpDados.Controls.Add(novoControle);
+
+            dados = novoControle;
         }
     }
 }

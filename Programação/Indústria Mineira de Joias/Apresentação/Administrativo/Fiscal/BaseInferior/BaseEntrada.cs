@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using Apresentação.Administrativo.Fiscal.BaseInferior;
 using Entidades.Fiscal;
 using Entidades.Fiscal.Pdf;
 
@@ -12,20 +12,8 @@ namespace Apresentação.Fiscal.BaseInferior
 
             if (ModoDesenho)
                 return;
-
-            cmbTipoDocumento.Carregar(true);
-        }
-
-        public override void Carregar(DocumentoFiscal documento)
-        {
-            base.Carregar(documento);
-
-            dtEntradaSaída.Value = ((EntradaFiscal)documento).DataEntrada;
-        }
-
-        protected override List<string> ObterIds()
-        {
-            return EntradaFiscal.ObterIds();
+            
+            SubstituirControleDados(new DadosDocumentoEntrada());
         }
 
         protected override void Excluir()

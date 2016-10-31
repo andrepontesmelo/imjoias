@@ -1,6 +1,6 @@
-﻿namespace Apresentação.Fiscal.BaseInferior
+﻿namespace Apresentação.Administrativo.Fiscal.BaseInferior
 {
-    partial class BaseEntrada
+    partial class DadosDocumentoEntrada
     {
         /// <summary>
         /// Required designer variable.
@@ -28,26 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Entidades.Fiscal.Tipo.TipoDocumento tipoDocumento1 = new Entidades.Fiscal.Tipo.TipoDocumento();
-            this.grpDados.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // título
-            // 
-            this.título.Descrição = "Edição de uma entrada fiscal";
-            this.título.Título = "Editar entrada fiscal";
-            // 
-            // grpDados
-            // 
-            this.grpDados.Text = "Dados da entrada";
-            // 
-            // BaseEntrada
-            // 
-            this.Name = "BaseEntrada";
-            this.grpDados.ResumeLayout(false);
-            this.grpDados.PerformLayout();
-            this.ResumeLayout(false);
-
+            this.components = new System.ComponentModel.Container();
         }
 
         #endregion

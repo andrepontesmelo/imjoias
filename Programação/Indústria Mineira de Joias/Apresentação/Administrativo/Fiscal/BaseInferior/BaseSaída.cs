@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using Apresentação.Administrativo.Fiscal.BaseInferior;
 using Entidades.Fiscal;
 using Entidades.Fiscal.Pdf;
 
@@ -13,39 +13,10 @@ namespace Apresentação.Fiscal.BaseInferior
             if (ModoDesenho)
                 return;
 
-            cmbTipoDocumento.Carregar(false);
-            cmbSetor.Carregar(true);
+            SubstituirControleDados(new DadosDocumentoSaída());
         }
 
         private SaídaFiscal Documento => documento as SaídaFiscal;
-
-        public override void Carregar(DocumentoFiscal documento)
-        {
-            base.Carregar(documento);
-
-            var saída = (SaídaFiscal) documento;
-
-            dtEntradaSaída.Value = saída.DataSaída;
-            cmbSetor.Seleção = Entidades.Setor.ObterSetor(saída.Setor);
-            chkCancelada.Checked = saída.Cancelada;
-        }
-
-        protected override List<string> ObterIds()
-        {
-            return SaídaFiscal.ObterIds();
-        }
-
-        private void chkCancelada_Validated(object sender, System.EventArgs e)
-        {
-            Documento.Cancelada = chkCancelada.Checked;
-            Gravar();
-        }
-
-        private void cmbSetor_Validated(object sender, System.EventArgs e)
-        {
-            Documento.Setor = cmbSetor.Seleção.Código;
-            Gravar();
-        }
 
         protected override void Excluir()
         {
