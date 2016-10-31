@@ -30,6 +30,7 @@ namespace Apresentação.Fiscal.BaseInferior
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseDocumento));
             this.quadroDocumento = new Apresentação.Formulários.Quadro();
             this.opçãoExcluirDocumento = new Apresentação.Formulários.Opção();
@@ -65,6 +66,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.label4 = new System.Windows.Forms.Label();
             this.tabObservações = new System.Windows.Forms.TabPage();
             this.txtObservações = new System.Windows.Forms.TextBox();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.esquerda.SuspendLayout();
             this.quadroDocumento.SuspendLayout();
             this.quadroPDF.SuspendLayout();
@@ -203,6 +205,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.tab.Controls.Add(this.tabDados);
             this.tab.Controls.Add(this.tabItens);
             this.tab.Controls.Add(this.tabObservações);
+            this.tab.ImageList = this.imageList1;
             this.tab.Location = new System.Drawing.Point(193, 85);
             this.tab.Name = "tab";
             this.tab.SelectedIndex = 0;
@@ -212,10 +215,11 @@ namespace Apresentação.Fiscal.BaseInferior
             // tabDados
             // 
             this.tabDados.Controls.Add(this.grpDados);
-            this.tabDados.Location = new System.Drawing.Point(4, 22);
+            this.tabDados.ImageIndex = 2;
+            this.tabDados.Location = new System.Drawing.Point(4, 23);
             this.tabDados.Name = "tabDados";
             this.tabDados.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDados.Size = new System.Drawing.Size(931, 529);
+            this.tabDados.Size = new System.Drawing.Size(931, 528);
             this.tabDados.TabIndex = 0;
             this.tabDados.Text = "Dados";
             this.tabDados.UseVisualStyleBackColor = true;
@@ -228,7 +232,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.grpDados.Controls.Add(this.dados);
             this.grpDados.Location = new System.Drawing.Point(6, 6);
             this.grpDados.Name = "grpDados";
-            this.grpDados.Size = new System.Drawing.Size(919, 517);
+            this.grpDados.Size = new System.Drawing.Size(919, 516);
             this.grpDados.TabIndex = 0;
             this.grpDados.TabStop = false;
             this.grpDados.Text = "Dados do documento";
@@ -238,17 +242,18 @@ namespace Apresentação.Fiscal.BaseInferior
             this.dados.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.dados.Location = new System.Drawing.Point(126, 19);
             this.dados.Name = "dados";
-            this.dados.Size = new System.Drawing.Size(654, 498);
+            this.dados.Size = new System.Drawing.Size(654, 497);
             this.dados.TabIndex = 0;
             // 
             // tabItens
             // 
             this.tabItens.Controls.Add(this.quadroLista);
             this.tabItens.Controls.Add(this.quadroItem);
-            this.tabItens.Location = new System.Drawing.Point(4, 22);
+            this.tabItens.ImageKey = "bandeira.png";
+            this.tabItens.Location = new System.Drawing.Point(4, 23);
             this.tabItens.Name = "tabItens";
             this.tabItens.Padding = new System.Windows.Forms.Padding(3);
-            this.tabItens.Size = new System.Drawing.Size(931, 529);
+            this.tabItens.Size = new System.Drawing.Size(931, 528);
             this.tabItens.TabIndex = 1;
             this.tabItens.Text = "Itens";
             this.tabItens.UseVisualStyleBackColor = true;
@@ -270,7 +275,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.quadroLista.Location = new System.Drawing.Point(6, 156);
             this.quadroLista.MostrarBotãoMinMax = false;
             this.quadroLista.Name = "quadroLista";
-            this.quadroLista.Size = new System.Drawing.Size(919, 370);
+            this.quadroLista.Size = new System.Drawing.Size(919, 369);
             this.quadroLista.TabIndex = 2;
             this.quadroLista.Tamanho = 30;
             this.quadroLista.Título = "Mercadorias";
@@ -282,7 +287,7 @@ namespace Apresentação.Fiscal.BaseInferior
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lstItens.Location = new System.Drawing.Point(0, 24);
             this.lstItens.Name = "lstItens";
-            this.lstItens.Size = new System.Drawing.Size(919, 346);
+            this.lstItens.Size = new System.Drawing.Size(919, 345);
             this.lstItens.TabIndex = 2;
             this.lstItens.AoSelecionar += new Apresentação.Fiscal.Lista.ListaItem.AoSelecionarDelegate(this.lstItens_AoSelecionar);
             // 
@@ -496,10 +501,11 @@ namespace Apresentação.Fiscal.BaseInferior
             // tabObservações
             // 
             this.tabObservações.Controls.Add(this.txtObservações);
-            this.tabObservações.Location = new System.Drawing.Point(4, 22);
+            this.tabObservações.ImageIndex = 1;
+            this.tabObservações.Location = new System.Drawing.Point(4, 23);
             this.tabObservações.Name = "tabObservações";
             this.tabObservações.Padding = new System.Windows.Forms.Padding(3);
-            this.tabObservações.Size = new System.Drawing.Size(931, 529);
+            this.tabObservações.Size = new System.Drawing.Size(931, 528);
             this.tabObservações.TabIndex = 2;
             this.tabObservações.Text = "Observações";
             this.tabObservações.UseVisualStyleBackColor = true;
@@ -510,9 +516,17 @@ namespace Apresentação.Fiscal.BaseInferior
             this.txtObservações.Location = new System.Drawing.Point(3, 3);
             this.txtObservações.Multiline = true;
             this.txtObservações.Name = "txtObservações";
-            this.txtObservações.Size = new System.Drawing.Size(925, 523);
+            this.txtObservações.Size = new System.Drawing.Size(925, 522);
             this.txtObservações.TabIndex = 0;
             this.txtObservações.Validated += new System.EventHandler(this.txtObservações_Validated);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "bandeira.png");
+            this.imageList1.Images.SetKeyName(1, "caderno.png");
+            this.imageList1.Images.SetKeyName(2, "info.png");
             // 
             // BaseDocumento
             // 
@@ -576,5 +590,6 @@ namespace Apresentação.Fiscal.BaseInferior
         private System.Windows.Forms.TextBox txtObservações;
         private System.Windows.Forms.Button btnCadastrar;
         protected Administrativo.Fiscal.BaseInferior.DadosDocumento dados;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }
