@@ -89,6 +89,9 @@ namespace Entidades.Fiscal
             return novo;
         }
 
-
+        protected override void CarregarItens()
+        {
+            itens = new List<ItemFiscal>(EntradaItemFiscal.CarregarItens(id));
+        }
     }
 }

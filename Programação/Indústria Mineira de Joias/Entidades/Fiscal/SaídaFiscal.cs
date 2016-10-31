@@ -16,7 +16,6 @@ namespace Entidades.Fiscal
 
         public DateTime DataSaída => dataSaída;
 
-
         public static void Excluir(IEnumerable<string> idsSelecionados)
         {
             Excluir(NOME_RELAÇÃO, idsSelecionados);
@@ -167,6 +166,11 @@ namespace Entidades.Fiscal
         public override string ToString()
         {
             return "Saída " + base.ToString();
+        }
+
+        protected override void CarregarItens()
+        {
+            itens = new List<ItemFiscal>(SaídaItemFiscal.CarregarItens(id));
         }
     }
 }

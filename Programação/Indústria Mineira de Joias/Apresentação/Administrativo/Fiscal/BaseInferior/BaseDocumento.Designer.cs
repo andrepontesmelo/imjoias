@@ -60,19 +60,19 @@ namespace Apresentação.Fiscal.BaseInferior
             this.quadroLista = new Apresentação.Formulários.Quadro();
             this.lstItens = new Apresentação.Fiscal.Lista.ListaItem();
             this.quadroItem = new Apresentação.Formulários.Quadro();
-            this.currencyTextBox2 = new AMS.TextBox.CurrencyTextBox();
-            this.currencyTextBox1 = new AMS.TextBox.CurrencyTextBox();
-            this.comboTipoUnidade1 = new Apresentação.Fiscal.Combobox.ComboTipoUnidade();
-            this.numericTextBox1 = new AMS.TextBox.NumericTextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtValorTotal = new AMS.TextBox.CurrencyTextBox();
+            this.txtValorUnitário = new AMS.TextBox.CurrencyTextBox();
+            this.cmbTipoUnidade = new Apresentação.Fiscal.Combobox.ComboTipoUnidade();
+            this.txtQuantidade = new AMS.TextBox.NumericTextBox();
+            this.txtCFOP = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnAlterar = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtDescrição = new System.Windows.Forms.TextBox();
+            this.txtReferência = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -480,19 +480,19 @@ namespace Apresentação.Fiscal.BaseInferior
             this.quadroItem.bInfEsqArredondada = true;
             this.quadroItem.bSupDirArredondada = true;
             this.quadroItem.bSupEsqArredondada = true;
-            this.quadroItem.Controls.Add(this.currencyTextBox2);
-            this.quadroItem.Controls.Add(this.currencyTextBox1);
-            this.quadroItem.Controls.Add(this.comboTipoUnidade1);
-            this.quadroItem.Controls.Add(this.numericTextBox1);
-            this.quadroItem.Controls.Add(this.textBox3);
+            this.quadroItem.Controls.Add(this.txtValorTotal);
+            this.quadroItem.Controls.Add(this.txtValorUnitário);
+            this.quadroItem.Controls.Add(this.cmbTipoUnidade);
+            this.quadroItem.Controls.Add(this.txtQuantidade);
+            this.quadroItem.Controls.Add(this.txtCFOP);
             this.quadroItem.Controls.Add(this.label12);
             this.quadroItem.Controls.Add(this.label11);
             this.quadroItem.Controls.Add(this.label10);
             this.quadroItem.Controls.Add(this.label9);
             this.quadroItem.Controls.Add(this.btnExcluir);
             this.quadroItem.Controls.Add(this.btnAlterar);
-            this.quadroItem.Controls.Add(this.textBox2);
-            this.quadroItem.Controls.Add(this.textBox1);
+            this.quadroItem.Controls.Add(this.txtDescrição);
+            this.quadroItem.Controls.Add(this.txtReferência);
             this.quadroItem.Controls.Add(this.label8);
             this.quadroItem.Controls.Add(this.label7);
             this.quadroItem.Controls.Add(this.label4);
@@ -507,36 +507,38 @@ namespace Apresentação.Fiscal.BaseInferior
             this.quadroItem.Tamanho = 30;
             this.quadroItem.Título = "Detalhe do item";
             // 
-            // currencyTextBox2
+            // txtValorTotal
             // 
-            this.currencyTextBox2.AllowNegative = true;
-            this.currencyTextBox2.Flags = 7680;
-            this.currencyTextBox2.Location = new System.Drawing.Point(501, 102);
-            this.currencyTextBox2.MaxWholeDigits = 9;
-            this.currencyTextBox2.Name = "currencyTextBox2";
-            this.currencyTextBox2.RangeMax = 1.7976931348623157E+308D;
-            this.currencyTextBox2.RangeMin = -1.7976931348623157E+308D;
-            this.currencyTextBox2.Size = new System.Drawing.Size(94, 20);
-            this.currencyTextBox2.TabIndex = 17;
-            this.currencyTextBox2.Text = "R$ 2,00";
+            this.txtValorTotal.AllowNegative = true;
+            this.txtValorTotal.Flags = 7680;
+            this.txtValorTotal.Location = new System.Drawing.Point(501, 102);
+            this.txtValorTotal.MaxWholeDigits = 9;
+            this.txtValorTotal.Name = "txtValorTotal";
+            this.txtValorTotal.RangeMax = 1.7976931348623157E+308D;
+            this.txtValorTotal.RangeMin = -1.7976931348623157E+308D;
+            this.txtValorTotal.Size = new System.Drawing.Size(94, 20);
+            this.txtValorTotal.TabIndex = 17;
+            this.txtValorTotal.Text = "R$ 2,00";
             // 
-            // currencyTextBox1
+            // txtValorUnitário
             // 
-            this.currencyTextBox1.AllowNegative = true;
-            this.currencyTextBox1.Flags = 7680;
-            this.currencyTextBox1.Location = new System.Drawing.Point(396, 102);
-            this.currencyTextBox1.MaxWholeDigits = 9;
-            this.currencyTextBox1.Name = "currencyTextBox1";
-            this.currencyTextBox1.RangeMax = 1.7976931348623157E+308D;
-            this.currencyTextBox1.RangeMin = -1.7976931348623157E+308D;
-            this.currencyTextBox1.Size = new System.Drawing.Size(96, 20);
-            this.currencyTextBox1.TabIndex = 16;
-            this.currencyTextBox1.Text = "R$ 1,00";
+            this.txtValorUnitário.AllowNegative = true;
+            this.txtValorUnitário.Flags = 7680;
+            this.txtValorUnitário.Location = new System.Drawing.Point(396, 102);
+            this.txtValorUnitário.MaxWholeDigits = 9;
+            this.txtValorUnitário.Name = "txtValorUnitário";
+            this.txtValorUnitário.RangeMax = 1.7976931348623157E+308D;
+            this.txtValorUnitário.RangeMin = -1.7976931348623157E+308D;
+            this.txtValorUnitário.Size = new System.Drawing.Size(96, 20);
+            this.txtValorUnitário.TabIndex = 16;
+            this.txtValorUnitário.Text = "R$ 1,00";
             // 
-            // comboTipoUnidade1
+            // cmbTipoUnidade
             // 
-            this.comboTipoUnidade1.FormattingEnabled = true;
-            this.comboTipoUnidade1.Items.AddRange(new object[] {
+            this.cmbTipoUnidade.FormattingEnabled = true;
+            this.cmbTipoUnidade.Items.AddRange(new object[] {
+            "Peça",
+            "Gramas",
             "Peça",
             "Gramas",
             "Peça",
@@ -569,33 +571,33 @@ namespace Apresentação.Fiscal.BaseInferior
             "Gramas",
             "Peça",
             "Gramas"});
-            this.comboTipoUnidade1.Location = new System.Drawing.Point(284, 102);
-            this.comboTipoUnidade1.Name = "comboTipoUnidade1";
-            this.comboTipoUnidade1.Size = new System.Drawing.Size(100, 21);
-            this.comboTipoUnidade1.TabIndex = 15;
+            this.cmbTipoUnidade.Location = new System.Drawing.Point(284, 102);
+            this.cmbTipoUnidade.Name = "cmbTipoUnidade";
+            this.cmbTipoUnidade.Size = new System.Drawing.Size(100, 21);
+            this.cmbTipoUnidade.TabIndex = 15;
             // 
-            // numericTextBox1
+            // txtQuantidade
             // 
-            this.numericTextBox1.AllowNegative = true;
-            this.numericTextBox1.DigitsInGroup = 0;
-            this.numericTextBox1.Flags = 0;
-            this.numericTextBox1.Location = new System.Drawing.Point(207, 102);
-            this.numericTextBox1.MaxDecimalPlaces = 4;
-            this.numericTextBox1.MaxWholeDigits = 9;
-            this.numericTextBox1.Name = "numericTextBox1";
-            this.numericTextBox1.Prefix = "";
-            this.numericTextBox1.RangeMax = 1.7976931348623157E+308D;
-            this.numericTextBox1.RangeMin = -1.7976931348623157E+308D;
-            this.numericTextBox1.Size = new System.Drawing.Size(59, 20);
-            this.numericTextBox1.TabIndex = 14;
-            this.numericTextBox1.Text = "1";
+            this.txtQuantidade.AllowNegative = true;
+            this.txtQuantidade.DigitsInGroup = 0;
+            this.txtQuantidade.Flags = 0;
+            this.txtQuantidade.Location = new System.Drawing.Point(207, 102);
+            this.txtQuantidade.MaxDecimalPlaces = 4;
+            this.txtQuantidade.MaxWholeDigits = 9;
+            this.txtQuantidade.Name = "txtQuantidade";
+            this.txtQuantidade.Prefix = "";
+            this.txtQuantidade.RangeMax = 1.7976931348623157E+308D;
+            this.txtQuantidade.RangeMin = -1.7976931348623157E+308D;
+            this.txtQuantidade.Size = new System.Drawing.Size(59, 20);
+            this.txtQuantidade.TabIndex = 14;
+            this.txtQuantidade.Text = "1";
             // 
-            // textBox3
+            // txtCFOP
             // 
-            this.textBox3.Location = new System.Drawing.Point(19, 102);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(155, 20);
-            this.textBox3.TabIndex = 13;
+            this.txtCFOP.Location = new System.Drawing.Point(19, 102);
+            this.txtCFOP.Name = "txtCFOP";
+            this.txtCFOP.Size = new System.Drawing.Size(155, 20);
+            this.txtCFOP.TabIndex = 13;
             // 
             // label12
             // 
@@ -653,21 +655,21 @@ namespace Apresentação.Fiscal.BaseInferior
             this.btnAlterar.Text = "Alterar";
             this.btnAlterar.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // txtDescrição
             // 
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtDescrição.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.Location = new System.Drawing.Point(207, 47);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(700, 20);
-            this.textBox2.TabIndex = 6;
+            this.txtDescrição.Location = new System.Drawing.Point(207, 47);
+            this.txtDescrição.Name = "txtDescrição";
+            this.txtDescrição.Size = new System.Drawing.Size(700, 20);
+            this.txtDescrição.TabIndex = 6;
             // 
-            // textBox1
+            // txtReferência
             // 
-            this.textBox1.Location = new System.Drawing.Point(19, 47);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(155, 20);
-            this.textBox1.TabIndex = 5;
+            this.txtReferência.Location = new System.Drawing.Point(19, 47);
+            this.txtReferência.Name = "txtReferência";
+            this.txtReferência.Size = new System.Drawing.Size(155, 20);
+            this.txtReferência.TabIndex = 5;
             // 
             // label8
             // 
@@ -775,22 +777,22 @@ namespace Apresentação.Fiscal.BaseInferior
         private Formulários.Quadro quadroLista;
         private Formulários.Quadro quadroItem;
         private Lista.ListaItem lstItens;
-        private AMS.TextBox.NumericTextBox numericTextBox1;
-        private System.Windows.Forms.TextBox textBox3;
+        private AMS.TextBox.NumericTextBox txtQuantidade;
+        private System.Windows.Forms.TextBox txtCFOP;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.Button btnAlterar;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtDescrição;
+        private System.Windows.Forms.TextBox txtReferência;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label4;
-        private AMS.TextBox.CurrencyTextBox currencyTextBox2;
-        private AMS.TextBox.CurrencyTextBox currencyTextBox1;
-        private ComboTipoUnidade comboTipoUnidade1;
+        private AMS.TextBox.CurrencyTextBox txtValorTotal;
+        private AMS.TextBox.CurrencyTextBox txtValorUnitário;
+        private ComboTipoUnidade cmbTipoUnidade;
         protected System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.TextBox txtObservações;
     }

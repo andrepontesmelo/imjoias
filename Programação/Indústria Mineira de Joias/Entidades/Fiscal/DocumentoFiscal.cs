@@ -105,7 +105,21 @@ namespace Entidades.Fiscal
 
         public bool EmitidoPorEstaEmpresa => cnpjEmitente.Equals(Configuração.DadosGlobais.Instância.CNPJEmpresa);
         public string CNPJEmitenteFormatado => Pessoa.PessoaJurídica.FormatarCNPJ(cnpjEmitente);
-        public List<ItemFiscal> Itens => itens;
+
+        public List<ItemFiscal> Itens
+        {
+            get
+            {
+                if (itens == null)
+                    CarregarItens();
+
+                return itens;
+            }
+
+            set { itens = value; }
+        }
+
+        protected abstract void CarregarItens();
 
         public string Id
         {

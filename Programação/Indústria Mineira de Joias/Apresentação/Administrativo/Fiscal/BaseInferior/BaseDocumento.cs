@@ -29,6 +29,7 @@ namespace Apresentação.Fiscal.BaseInferior
 
             CarregarControlesEdição(documento);
             CarregarControlesPDF(documento);
+            lstItens.Carregar(documento);
         }
 
         private void CarregarControlesPDF(DocumentoFiscal documento)

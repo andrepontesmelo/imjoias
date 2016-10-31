@@ -6,15 +6,23 @@ using System.Text;
 
 namespace Entidades.Fiscal
 {
-    public abstract class ItemFiscal : DbManipulaçãoSimples
+    public abstract class ItemFiscal : DbManipulaçãoAutomática
     {
-        private string referência;
-        private string descrição;
-        private int? cfop;
-        private TipoUnidade tipoUnidade;
-        private decimal quantidade;
-        private decimal valorUnitário;
-        private decimal valor;
+        [DbColuna("referencia")]
+        protected string referência;
+
+        [DbColuna("descricao")]
+        protected string descrição;
+        protected int? cfop;
+
+        [DbColuna("tipounidade")]
+        protected TipoUnidade tipoUnidade;
+
+        protected decimal quantidade;
+
+        [DbColuna("valorunitario")]
+        protected decimal valorUnitário;
+        protected decimal valor;
 
         public ItemFiscal(string referência, string descrição, int? cfop,
             TipoUnidade tipoUnidade, decimal quantidade, decimal valorUnitário,
@@ -29,10 +37,14 @@ namespace Entidades.Fiscal
             this.valor = valor;
         }
 
+        public ItemFiscal()
+        {
+        }
+
         public string Referência => referência;
         public string Descrição => descrição;
         public int? CFOP => cfop;
-        public TipoUnidade TipoUnidade => tipoUnidade;
+        public TipoUnidade TipoUnidade => (TipoUnidade) tipoUnidade;
         public decimal Quantidade => quantidade;
         public decimal ValorUnitário => valorUnitário;
         public decimal Valor => valor;
