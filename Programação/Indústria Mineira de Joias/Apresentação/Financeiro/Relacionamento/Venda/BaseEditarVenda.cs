@@ -303,7 +303,7 @@ namespace Apresentação.Financeiro.Venda
             }
 
             // Todas as vendas de varejo tem acerto
-            if (venda.AcertoConsignado == null && pessoa.Setor == Entidades.Setor.ObterSetor(Entidades.Setor.SetorSistema.Varejo))
+            if (venda.AcertoConsignado == null && pessoa.Setor == Entidades.Setor.ObterSetor(Entidades.SetorSistema.Varejo))
             {
                 AcertoConsignado acerto = 
                     Acerto.JanelaEscolhaAcerto.QuestionarUsuário(ParentForm, Entidades.Pessoa.Pessoa.Varejo, false);

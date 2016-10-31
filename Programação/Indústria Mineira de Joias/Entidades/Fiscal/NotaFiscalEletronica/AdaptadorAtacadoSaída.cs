@@ -21,7 +21,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
                 parser.LerCNPJEmitente(),
                 false,
                 "",
-                (uint) Setor.SetorSistema.Atacado,
+                (uint) SetorSistema.Atacado,
                 TransformarItens());
 
             return entidade;

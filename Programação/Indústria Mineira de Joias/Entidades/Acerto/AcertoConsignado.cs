@@ -476,7 +476,7 @@ namespace Entidades.Acerto
                 }
 
                 // Atribuir cotação caso cliente não seja do alto-atacado
-                if (!cotação.HasValue && ((Saída)entidade).Pessoa.Setor == null || ((Saída)entidade).Pessoa.Setor.Código != Setor.ObterSetor(Setor.SetorSistema.AltoAtacado).Código)
+                if (!cotação.HasValue && ((Saída)entidade).Pessoa.Setor == null || ((Saída)entidade).Pessoa.Setor.Código != Setor.ObterSetor(SetorSistema.AltoAtacado).Código)
                 {
                     double valor = ((Saída)entidade).Cotação;
 
@@ -782,7 +782,7 @@ namespace Entidades.Acerto
                  */
 
             else if (!entidade.TabelaPreço.Equals(TabelaPreço)
-                && (cliente.Setor == null || Setor.ObterSetor(Setor.SetorSistema.AltoAtacado).Código != cliente.Setor.Código))
+                && (cliente.Setor == null || Setor.ObterSetor(SetorSistema.AltoAtacado).Código != cliente.Setor.Código))
             {
                 throw new DocumentoInconsistente("A tabela de preço não é a mesma utilizada no acerto.");
             }
@@ -796,7 +796,7 @@ namespace Entidades.Acerto
              * solicitado por toninho., André.
              */
             if (cotação.HasValue && !Representante.ÉRepresentante(cliente)
-                && (cliente.Setor == null || Setor.ObterSetor(Setor.SetorSistema.AltoAtacado).Código != cliente.Setor.Código))
+                && (cliente.Setor == null || Setor.ObterSetor(SetorSistema.AltoAtacado).Código != cliente.Setor.Código))
             {
                 if (entidade is Saída && ((Saída)entidade).Cotação != cotação.Value)
                 {
@@ -859,7 +859,7 @@ namespace Entidades.Acerto
                     string.Format(
                     "O documento foi relacionado para {0} enquanto o acerto está relacionado para {1}." + "\nO código " + entidade.Pessoa.Código.ToString() + " é diferente de " + this.cliente.Código.ToString(),
                     entidade.Pessoa.Nome, cliente.Nome));
-            else if ((this.Cliente.Código == Entidades.Pessoa.Pessoa.Varejo.Código) && (cliente.Setor != Setor.ObterSetor(Setor.SetorSistema.Varejo)))
+            else if ((this.Cliente.Código == Entidades.Pessoa.Pessoa.Varejo.Código) && (cliente.Setor != Setor.ObterSetor(SetorSistema.Varejo)))
                 throw new DocumentoInconsistente("Apenas clientes de varejo podem entrar no acerto de varejo");
 
         }

@@ -554,12 +554,12 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Fiscal
                     if (Entidades.Mercadoria.Mercadoria.ConferirSeÉDePeso(referencia))
                     {
                         mercadoria = Entidades.Mercadoria.Mercadoria.ObterMercadoria(referencia, 1,
-                        Tabela.ObterPrimeiraTabela(Setor.ObterSetor(Setor.SetorSistema.Varejo)));
+                        Tabela.ObterPrimeiraTabela(Setor.ObterSetor(SetorSistema.Varejo)));
                     }
                     else
                     {
                         mercadoria = Entidades.Mercadoria.Mercadoria.ObterMercadoria(referencia,
-                        Tabela.ObterPrimeiraTabela(Setor.ObterSetor(Setor.SetorSistema.Varejo)));
+                        Tabela.ObterPrimeiraTabela(Setor.ObterSetor(SetorSistema.Varejo)));
                     }
 
 

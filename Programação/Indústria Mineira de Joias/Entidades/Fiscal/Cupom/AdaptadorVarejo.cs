@@ -25,7 +25,7 @@ namespace Entidades.Fiscal.Cupom
                 null,
                 cupom.IndicadorCancelamento,
                 "",
-                (uint) Setor.SetorSistema.Varejo,
+                (uint) SetorSistema.Varejo,
                 AdaptarItens(cupom.Detalhes));
 
             return entidade;

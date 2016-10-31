@@ -33,7 +33,7 @@ namespace Apresentação.Atendimento.Atendente
                     listaDatasRelevantes.BeginInvoke(métodoAdicionarDataRelevante, new object[] { datas });
                 }
 
-                datas = DataRelevante.ObterPróximasDatasRelevantes(Setor.ObterSetor(Setor.SetorSistema.NãoEspecificado), 0);
+                datas = DataRelevante.ObterPróximasDatasRelevantes(Setor.ObterSetor(SetorSistema.NãoEspecificado), 0);
                 listaDatasRelevantes.BeginInvoke(métodoAdicionarDataRelevante, new object[] { datas });
             }
 

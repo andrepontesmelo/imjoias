@@ -546,7 +546,7 @@ namespace Apresentação.Financeiro.Venda
         private void PrepararTabelas()
         {
             if (vendaEntidade.Vendedor != null && Representante.ÉRepresentante(vendaEntidade.Vendedor))
-                cmbTabela.Setor = Setor.ObterSetor(Setor.SetorSistema.Representante);
+                cmbTabela.Setor = Setor.ObterSetor(SetorSistema.Representante);
             else if (vendaEntidade.Cliente != null && vendaEntidade.Cliente.Setor != null)
                 cmbTabela.Setor = vendaEntidade.Cliente.Setor;
             else if (vendaEntidade.Vendedor != null)

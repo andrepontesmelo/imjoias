@@ -114,7 +114,7 @@ namespace Apresentação.Atendimento.Clientes
 			ConfiguraçãoUsuário<bool> registro;
             ConfiguraçãoUsuário<int> prazo;
             ConfiguraçãoUsuário<bool> bSetor;
-            Setor setorNE = Setor.ObterSetor(Setor.SetorSistema.NãoEspecificado);
+            Setor setorNE = Setor.ObterSetor(SetorSistema.NãoEspecificado);
 
 			atendimento = Setor.ObterSetoresAtendimento();
 			setores     = new ArrayList(atendimento.Length + 1);

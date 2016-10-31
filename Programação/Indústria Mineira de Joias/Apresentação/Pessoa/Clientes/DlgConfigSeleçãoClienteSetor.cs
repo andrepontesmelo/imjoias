@@ -31,7 +31,7 @@ namespace Apresentação.Atendimento.Clientes
 		/// </summary>
 		private Setor [] setores;
 
-        private Setor setorNE = Setor.ObterSetor(Setor.SetorSistema.NãoEspecificado);
+        private Setor setorNE = Setor.ObterSetor(SetorSistema.NãoEspecificado);
 
 		// Controles
 		private System.Windows.Forms.CheckedListBox chkSetores;

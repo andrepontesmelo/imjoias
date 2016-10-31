@@ -469,6 +469,7 @@
     <Compile Include="Setor.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="SetorSistema.cs" />
     <Compile Include="Tabela.cs" />
     <Compile Include="Telefonema.cs">
       <SubType>Code</SubType>

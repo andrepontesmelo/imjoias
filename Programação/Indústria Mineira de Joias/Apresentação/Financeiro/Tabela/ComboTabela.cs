@@ -170,7 +170,7 @@ namespace Apresentação.Financeiro
                 {
                     List<Tabela> tabelas;
 
-                    if (PermissãoFuncionário.ValidarPermissão(Permissão.EscolherQualquerTabela) || setor == null || setor == Setor.ObterSetor(Setor.SetorSistema.Representante))
+                    if (PermissãoFuncionário.ValidarPermissão(Permissão.EscolherQualquerTabela) || setor == null || setor == Setor.ObterSetor(SetorSistema.Representante))
                         tabelas = Tabela.ObterTabelas();
                     else
                         tabelas = Tabela.ObterTabelas(setor);

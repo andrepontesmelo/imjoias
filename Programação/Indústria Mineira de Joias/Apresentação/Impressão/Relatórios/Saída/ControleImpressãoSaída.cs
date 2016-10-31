@@ -33,7 +33,7 @@ namespace Apresentação.Impressão.Relatórios.Saída
             bool imprimirPreço = !Representante.ÉRepresentante(saída.Pessoa);
 
             imprimirPreço &= (saída.Pessoa.Setor != null) && (saída.Pessoa.Setor.Código != 
-                Setor.ObterSetor(Setor.SetorSistema.AltoAtacado).Código);
+                Setor.ObterSetor(SetorSistema.AltoAtacado).Código);
             
 
             linha["imprimirPreço"] = imprimirPreço;
