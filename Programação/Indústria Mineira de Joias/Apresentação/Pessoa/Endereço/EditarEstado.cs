@@ -81,7 +81,7 @@ namespace Apresentação.Pessoa.Endereço
 
             try
             {
-                País[] países = País.ObterPaíses();
+                País[] países = País.ObterPaíses().ToArray();
                 Região[] regiões = Região.ObterRegiões();
 
                 cmbPaís.Items.AddRange(países);
