@@ -29,10 +29,6 @@
         private void InitializeComponent()
         {
             this.lista = new System.Windows.Forms.ListView();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.statusReferências = new System.Windows.Forms.ToolStripStatusLabel();
-            this.statusItens = new System.Windows.Forms.ToolStripStatusLabel();
-            this.statusPeso = new System.Windows.Forms.ToolStripStatusLabel();
             this.colReferência = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colDescrição = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colCFOP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -40,6 +36,10 @@
             this.colQuantidade = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colValorUnitário = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colValorTotal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.statusReferências = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusItens = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusPeso = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,36 +61,7 @@
             this.lista.TabIndex = 0;
             this.lista.UseCompatibleStateImageBehavior = false;
             this.lista.View = System.Windows.Forms.View.Details;
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.statusReferências,
-            this.statusItens,
-            this.statusPeso});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 298);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(929, 22);
-            this.statusStrip1.TabIndex = 1;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // statusReferências
-            // 
-            this.statusReferências.Name = "statusReferências";
-            this.statusReferências.Size = new System.Drawing.Size(88, 17);
-            this.statusReferências.Text = "150 Referências";
-            // 
-            // statusItens
-            // 
-            this.statusItens.Name = "statusItens";
-            this.statusItens.Size = new System.Drawing.Size(59, 17);
-            this.statusItens.Text = "1421 itens";
-            // 
-            // statusPeso
-            // 
-            this.statusPeso.Name = "statusPeso";
-            this.statusPeso.Size = new System.Drawing.Size(41, 17);
-            this.statusPeso.Text = "26,31g";
+            this.lista.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lista_ColumnClick);
             // 
             // colReferência
             // 
@@ -125,6 +96,36 @@
             // 
             this.colValorTotal.Text = "Valor Total";
             this.colValorTotal.Width = 99;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusReferências,
+            this.statusItens,
+            this.statusPeso});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 298);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(929, 22);
+            this.statusStrip1.TabIndex = 1;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // statusReferências
+            // 
+            this.statusReferências.Name = "statusReferências";
+            this.statusReferências.Size = new System.Drawing.Size(88, 17);
+            this.statusReferências.Text = "150 Referências";
+            // 
+            // statusItens
+            // 
+            this.statusItens.Name = "statusItens";
+            this.statusItens.Size = new System.Drawing.Size(59, 17);
+            this.statusItens.Text = "1421 itens";
+            // 
+            // statusPeso
+            // 
+            this.statusPeso.Name = "statusPeso";
+            this.statusPeso.Size = new System.Drawing.Size(41, 17);
+            this.statusPeso.Text = "26,31g";
             // 
             // ListaItem
             // 

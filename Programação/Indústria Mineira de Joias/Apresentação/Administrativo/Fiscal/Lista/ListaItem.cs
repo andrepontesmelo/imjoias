@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using Apresentação.Formulários;
 using Entidades.Fiscal;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Apresentação.Fiscal.Lista
 {
@@ -15,6 +10,7 @@ namespace Apresentação.Fiscal.Lista
         public ListaItem()
         {
             InitializeComponent();
+            lista.ListViewItemSorter = new ListViewColumnSorter();
         }
 
         internal void Carregar(DocumentoFiscal documento)
@@ -47,6 +43,11 @@ namespace Apresentação.Fiscal.Lista
             item.SubItems[colValorUnitário.Index].Text = entidade.ValorUnitário.ToString("C");
 
             return item;
+        }
+
+        private void lista_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            ((ListViewColumnSorter)lista.ListViewItemSorter).OnClick(lista, e);
         }
     }
 }
