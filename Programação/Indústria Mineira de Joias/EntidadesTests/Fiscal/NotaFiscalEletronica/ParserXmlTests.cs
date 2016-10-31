@@ -39,13 +39,13 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         [TestMethod()]
         public void DeveLerTipoUnidadePar()
         {
-            Assert.AreEqual(TipoUnidade.Par, parser.ObterTipoUnidade(1));
+            Assert.AreEqual(TipoUnidadeSistema.Par, parser.ObterTipoUnidade(1));
         }
 
         [TestMethod()]
         public void DeveLerTipoUnidadeParPeça()
         {
-            Assert.AreEqual(TipoUnidade.Pca, parser.ObterTipoUnidade(2));
+            Assert.AreEqual(TipoUnidadeSistema.Pca, parser.ObterTipoUnidade(2));
         }
 
         [TestMethod()]
@@ -82,32 +82,32 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         public void DeveLerUnidadeComercialGramas()
         {
             parser = ParserXmlAtacado.LerArquivo(ARQUIVO_ENTRADA_GRAMAS);
-            Assert.AreEqual(TipoUnidade.Grs, parser.ObterTipoUnidade(1));
+            Assert.AreEqual(TipoUnidadeSistema.Grs, parser.ObterTipoUnidade(1));
         }
 
         [TestMethod()]
         public void DeveLerUnidadeComercialUnidade()
         {
             parser = ParserXmlAtacado.LerArquivo(ARQUIVO_ENTRADA_UNIDADE);
-            Assert.AreEqual(TipoUnidade.Un, parser.ObterTipoUnidade(1));
+            Assert.AreEqual(TipoUnidadeSistema.Un, parser.ObterTipoUnidade(1));
         }
 
         [TestMethod()]
         public void DeveLerUnidadeComercialPeça()
         {
-            Assert.AreEqual(TipoUnidade.Pca, TipoUnidadeInterpretação.Interpretar("peca"));
+            Assert.AreEqual(TipoUnidadeSistema.Pca, TipoUnidadeInterpretação.Interpretar("peca"));
         }
 
         [TestMethod()]
         public void DeveLerUnidadeComercialGramasDoisDigitos()
         {
-            Assert.AreEqual(TipoUnidade.Grs, TipoUnidadeInterpretação.Interpretar("gr"));
+            Assert.AreEqual(TipoUnidadeSistema.Grs, TipoUnidadeInterpretação.Interpretar("gr"));
         }
 
         [TestMethod()]
         public void DeveLerUnidadeComercialGramasCincoDigitos()
         {
-            Assert.AreEqual(TipoUnidade.Grs, TipoUnidadeInterpretação.Interpretar("grama"));
+            Assert.AreEqual(TipoUnidadeSistema.Grs, TipoUnidadeInterpretação.Interpretar("grama"));
         }
 
         [TestMethod()]

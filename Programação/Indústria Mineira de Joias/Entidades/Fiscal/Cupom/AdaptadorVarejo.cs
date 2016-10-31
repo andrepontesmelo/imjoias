@@ -46,7 +46,7 @@ namespace Entidades.Fiscal.Cupom
             return new SaídaItemFiscal(AdaptarReferência(detalhe),
                                 detalhe.Descricao.Trim(),
                                 null,
-                                TipoUnidadeInterpretação.Interpretar(detalhe.Unidade),
+                                (int) TipoUnidadeInterpretação.Interpretar(detalhe.Unidade),
                                 detalhe.Quantidade,
                                 detalhe.ValorUnitario,
                                 detalhe.ValorTotalLiquido);

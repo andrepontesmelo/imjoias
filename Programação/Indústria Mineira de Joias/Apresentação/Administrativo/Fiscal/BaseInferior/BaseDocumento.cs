@@ -183,7 +183,9 @@ namespace Apresentação.Fiscal.BaseInferior
             txtValor.Text = entidade?.Valor.ToString("C");
             txtValorUnitário.Text = entidade?.ValorUnitário.ToString("C");
             txtQuantidade.Text = entidade?.Quantidade.ToString();
-            cmbTipoUnidade.Seleção = entidade?.TipoUnidade;
+
+            var tipoUnidade = entidade?.TipoUnidade;
+            cmbTipoUnidade.Seleção = tipoUnidade == null ? null : TipoUnidade.Obter((int) tipoUnidade);
         }
 
         private void btnAlterar_Click(object sender, EventArgs e)
@@ -191,7 +193,7 @@ namespace Apresentação.Fiscal.BaseInferior
             itemSendoAlterado.Referência = txtReferência.Text;
             itemSendoAlterado.Descrição = txtDescrição.Text;
             itemSendoAlterado.Quantidade = decimal.Parse(txtQuantidade.Text);
-            itemSendoAlterado.TipoUnidade = cmbTipoUnidade.Seleção.Value;
+            itemSendoAlterado.TipoUnidade = cmbTipoUnidade.Seleção.Id;
 
             itemSendoAlterado.Cfop = null;
             int cfop;

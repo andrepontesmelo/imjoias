@@ -62,29 +62,12 @@ namespace Apresentação.Fiscal.Lista
             item.SubItems[colDescrição.Index].Text = entidade.Descrição;
             item.SubItems[colQuantidade.Index].Text = entidade.Quantidade.ToString();
             item.SubItems[colReferência.Index].Text = entidade.Referência;
-            item.SubItems[colTipoUnidade.Index].Text = ObterDescrição(entidade.TipoUnidade);
+            item.SubItems[colTipoUnidade.Index].Text = TipoUnidade.Obter(entidade.TipoUnidade).Nome;
             item.SubItems[colValorTotal.Index].Text = entidade.Valor.ToString("C");
             item.SubItems[colValorUnitário.Index].Text = entidade.ValorUnitário.ToString("C");
             item.Tag = entidade;
 
             return item;
-        }
-
-        private string ObterDescrição(TipoUnidade tipoUnidade)
-        {
-            switch (tipoUnidade)
-            {
-                case TipoUnidade.Grs:
-                    return "Gramas";
-                case TipoUnidade.Par:
-                    return "Par";
-                case TipoUnidade.Pca:
-                    return "Peça";
-                case TipoUnidade.Un:
-                    return "Unidade";
-                default:
-                    throw new NotImplementedException();
-            }
         }
 
         private void lista_ColumnClick(object sender, ColumnClickEventArgs e)

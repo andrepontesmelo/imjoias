@@ -537,45 +537,6 @@ namespace Apresentação.Fiscal.BaseInferior
             // cmbTipoUnidade
             // 
             this.cmbTipoUnidade.FormattingEnabled = true;
-            this.cmbTipoUnidade.Items.AddRange(new object[] {
-            "Peça",
-            "Gramas",
-            "Peça",
-            "Gramas",
-            "Peça",
-            "Gramas",
-            "Peça",
-            "Gramas",
-            "Peça",
-            "Gramas",
-            "Peça",
-            "Gramas",
-            "Peça",
-            "Gramas",
-            "Peça",
-            "Gramas",
-            "Peça",
-            "Gramas",
-            "Peça",
-            "Gramas",
-            "Peça",
-            "Gramas",
-            "Peça",
-            "Gramas",
-            "Peça",
-            "Gramas",
-            "Peça",
-            "Gramas",
-            "Peça",
-            "Gramas",
-            "Peça",
-            "Gramas",
-            "Peça",
-            "Gramas",
-            "Peça",
-            "Gramas",
-            "Peça",
-            "Gramas"});
             this.cmbTipoUnidade.Location = new System.Drawing.Point(284, 102);
             this.cmbTipoUnidade.Name = "cmbTipoUnidade";
             this.cmbTipoUnidade.Seleção = null;

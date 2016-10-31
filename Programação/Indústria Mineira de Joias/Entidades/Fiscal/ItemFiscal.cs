@@ -17,7 +17,7 @@ namespace Entidades.Fiscal
         protected int? cfop;
 
         [DbColuna("tipounidade")]
-        protected TipoUnidade tipoUnidade;
+        protected int tipoUnidade;
 
         protected decimal quantidade;
 
@@ -29,7 +29,7 @@ namespace Entidades.Fiscal
         protected int codigo;
 
         public ItemFiscal(string referência, string descrição, int? cfop,
-            TipoUnidade tipoUnidade, decimal quantidade, decimal valorUnitário,
+            int tipoUnidade, decimal quantidade, decimal valorUnitário,
             decimal valor)
         {
             this.referência = referência;
@@ -80,7 +80,7 @@ namespace Entidades.Fiscal
                 sql.Append(DbTransformar(item.referência) + ",");
                 sql.Append(DbTransformar(item.descrição) + ",");
                 sql.Append(DbTransformar(item.cfop) + ",");
-                sql.Append(DbTransformar((byte)item.tipoUnidade) + ",");
+                sql.Append(DbTransformar(item.tipoUnidade) + ",");
                 sql.Append(DbTransformar(item.quantidade) + ",");
                 sql.Append(DbTransformar(item.valorUnitário) + ",");
                 sql.Append(DbTransformar(item.valor));
@@ -135,7 +135,7 @@ namespace Entidades.Fiscal
             }
         }
 
-        public TipoUnidade TipoUnidade
+        public int TipoUnidade
         {
             get
             {

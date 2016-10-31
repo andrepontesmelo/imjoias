@@ -305,6 +305,7 @@
     <Compile Include="Fiscal\SaídaItemFiscal.cs" />
     <Compile Include="Fiscal\Tipo\TipoDocumentoSistema.cs" />
     <Compile Include="Fiscal\Tipo\TipoUnidade.cs" />
+    <Compile Include="Fiscal\Tipo\TipoUnidadeSistema.cs" />
     <Compile Include="Fiscal\Tipo\TipoUnidadeInterpretação.cs" />
     <Compile Include="Fiscal\Tipo\TipoDocumento.cs" />
     <Compile Include="Fiscal\DocumentoFiscal.cs" />

@@ -35,7 +35,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
                 itens.Add(new SaídaItemFiscal(parser.ObterReferência(x),
                     parser.ObterDescrição(x),
                     parser.ObterCFOP(x),
-                    parser.ObterTipoUnidade(x),
+                    (int) parser.ObterTipoUnidade(x),
                     parser.ObterQuantidadeItens(x),
                     parser.ObterValorUnitario(x),
                     parser.ObterValor(x)

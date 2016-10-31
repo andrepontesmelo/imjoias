@@ -15,7 +15,7 @@ namespace Entidades.Fiscal
         private string saidaFiscal;
 
         public SaídaItemFiscal(string referência, string descrição, int? cfop,
-        TipoUnidade tipoUnidade, decimal quantidade, decimal valorUnitário,
+        int tipoUnidade, decimal quantidade, decimal valorUnitário,
         decimal valor) : base(referência, descrição, cfop, tipoUnidade, quantidade, valorUnitário, valor)
         {
         }

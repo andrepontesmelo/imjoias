@@ -7,9 +7,20 @@ namespace Apresentação.Fiscal.Combobox
         public ComboTipoUnidade()
         {
             InitializeComponent();
-            Items.AddRange(new string[] { "Peça", "Gramas" });
+            Items.Clear();
+            Items.AddRange(TipoUnidade.Tipos.ToArray());
         }
 
-        public TipoUnidade? Seleção { get; set; }
+        public TipoUnidade Seleção
+        {
+            get
+            {
+                return SelectedItem as TipoUnidade;
+            }
+            set
+            {
+                SelectedItem = value;
+            }
+        }
     }
 }

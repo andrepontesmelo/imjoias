@@ -75,7 +75,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Parser
             }
         }
 
-        public TipoUnidade ObterTipoUnidade(int vendaItem)
+        public TipoUnidadeSistema ObterTipoUnidade(int vendaItem)
         {
             return TipoUnidadeInterpretação.Interpretar(ObterTexto(ObterCaminhoAtributo(vendaItem, "uCom")));
         }
