@@ -164,5 +164,52 @@ ALTER TABLE `imjoias`.`entradaitemfiscal`
 ADD COLUMN `codigo` INT NOT NULL AUTO_INCREMENT AFTER `entradafiscal`,
 ADD PRIMARY KEY (`codigo`);
 
+CREATE TABLE `tipounidadefiscal` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(80) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+insert into tipounidadefiscal (id, nome) values
+(1, 'Peça'), (2, 'Par'), (3, 'Gramas'), (4, 'Unidade');
+
+ update saidaitemfiscal set tipounidade=1;
+ update entradaitemfiscal set tipounidade=1;
+
+
+ALTER TABLE `imjoias`.`saidaitemfiscal` 
+DROP FOREIGN KEY `fk_vendaitemfiscal_1`;
+ALTER TABLE `imjoias`.`saidaitemfiscal` 
+ADD INDEX `fk_vendaitemfiscal_1_idx` (`tipounidade` ASC),
+DROP INDEX `fk_vendaitemfiscal_1_idx` ;
+ALTER TABLE `imjoias`.`saidaitemfiscal` 
+ADD CONSTRAINT `fk_vendaitemfiscal_1`
+  FOREIGN KEY (`tipounidade`)
+  REFERENCES `imjoias`.`tipounidadefiscal` (`id`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE;
+
+
+ALTER TABLE `imjoias`.`entradaitemfiscal` 
+ADD INDEX `fk_entradaitemfiscal_2_idx` (`tipounidade` ASC);
+ALTER TABLE `imjoias`.`entradaitemfiscal` 
+ADD CONSTRAINT `fk_entradaitemfiscal_2`
+  FOREIGN KEY (`tipounidade`)
+  REFERENCES `imjoias`.`tipounidadefiscal` (`id`)
+  ON DELETE RESTRICT
+  ON UPDATE CASCADE;
+
+ALTER TABLE `imjoias`.`saidaitemfiscal` 
+ADD INDEX `fk_saidaitemfiscal_1_idx` (`saidafiscal` ASC);
+ALTER TABLE `imjoias`.`saidaitemfiscal` 
+ADD CONSTRAINT `fk_saidaitemfiscal_1`
+  FOREIGN KEY (`saidafiscal`)
+  REFERENCES `imjoias`.`saidafiscal` (`id`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE;
+
+
+
+
 
 
