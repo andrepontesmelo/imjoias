@@ -29,8 +29,8 @@ namespace Apresentação.Usuário.Funcionários
 
         public void AoExibirDaPrimeiraVez(Apresentação.Formulários.BaseInferior baseInferior)
         {
-            Setor[] setores = Setor.ObterSetores();
-            hashSetorGrupo = new Dictionary<Setor, ListViewGroup>(setores.Length);
+            var setores = Setor.ObterSetores();
+            hashSetorGrupo = new Dictionary<Setor, ListViewGroup>(setores.Count);
             foreach (Setor s in setores)
             {
                 ListViewGroup grupo = new ListViewGroup(s.Nome);

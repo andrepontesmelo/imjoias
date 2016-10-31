@@ -27,8 +27,8 @@ namespace Apresentação.Financeiro.Comissões
             {
                 hashSetorGrupo = new Dictionary<Setor, ListViewGroup>();
                 lst.Groups.Clear();
-                Setor[] setores = Setor.ObterSetores();
-                foreach (Setor s in setores)
+                
+                foreach (Setor s in Setor.ObterSetores())
                 {
                     ListViewGroup grupo = new ListViewGroup(s.Nome);
                     hashSetorGrupo.Add(s, grupo);

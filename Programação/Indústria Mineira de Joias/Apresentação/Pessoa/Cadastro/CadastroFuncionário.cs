@@ -291,12 +291,11 @@ namespace Apresentação.Pessoa.Cadastro
 		/// <param name="setores">Lista de setores.</param>
 		private void CarregarSetores()
 		{
-            Setor[] setores = Setor.ObterSetores();
 			List<ulong> empresas = new List<ulong>();
 
 			InitializeComponent();
 
-			foreach (Setor setor in setores)
+			foreach (Setor setor in Setor.ObterSetores())
 			{
 				funcionário.AdicionarSetor(setor.Nome, setor.Código);
 

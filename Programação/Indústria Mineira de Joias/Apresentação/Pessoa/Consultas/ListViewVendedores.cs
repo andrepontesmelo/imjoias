@@ -42,8 +42,8 @@ namespace Apresentação.Pessoa.Consultas
 
             lstVendedores.ListViewItemSorter = this;
             
-            Setor[] setores = Setor.ObterSetores();
-            hashSetorGrupo = new Dictionary<Setor, ListViewGroup>(setores.Length);
+            var setores = Setor.ObterSetores();
+            hashSetorGrupo = new Dictionary<Setor, ListViewGroup>(setores.Count);
             foreach (Setor s in setores)
             {
                 ListViewGroup grupo = new ListViewGroup(s.Nome);

@@ -662,8 +662,7 @@ namespace Apresentação.Pessoa.Cadastro
 
 		public void AdicionarSetor(string nome, long código)
 		{
-            hashNomeSetor[nome] = (Entidades.Setor) código;
-
+            hashNomeSetor[nome] = Entidades.Setor.ObterSetor((uint) código);
 			txtSetor.Items.Add(nome);
 		}
 
