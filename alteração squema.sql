@@ -149,3 +149,11 @@ ALTER TABLE `entradaitemfiscal`
 	CHANGE COLUMN `descricao` `descricao` TINYTEXT NOT NULL AFTER `referencia`;
 
 
+ALTER TABLE `imjoias`.`saidaitemfiscal` 
+CHANGE COLUMN `tipounidade` `tipounidade` INT NOT NULL ;
+
+ALTER TABLE `imjoias`.`entradaitemfiscal` 
+CHANGE COLUMN `tipounidade` `tipounidade` INT NOT NULL ;
+
+
+
