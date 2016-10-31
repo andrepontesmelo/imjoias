@@ -58,20 +58,25 @@ namespace Apresentação.Fiscal.Lista
         private ListViewItem CriarItem(ItemFiscal entidade)
         {
             var item = new ListViewItem(new string[lista.Columns.Count]);
-
-            item.SubItems[colCFOP.Index].Text = entidade.Cfop?.ToString();
-            item.SubItems[colDescrição.Index].Text = entidade.Descrição;
-            item.SubItems[colQuantidade.Index].Text = entidade.Quantidade.ToString();
-            item.SubItems[colReferência.Index].Text = entidade.Referência;
-
-            if (entidade.TipoUnidade.HasValue)
-                item.SubItems[colTipoUnidade.Index].Text = TipoUnidade.Obter(entidade.TipoUnidade.Value).Nome;
-
-            item.SubItems[colValorTotal.Index].Text = entidade.Valor.ToString("C");
-            item.SubItems[colValorUnitário.Index].Text = entidade.ValorUnitário.ToString("C");
+            item.Name = entidade.Código.ToString();
+            CarregarItemGráfico(item, entidade);
             item.Tag = entidade;
 
             return item;
+        }
+
+        private void CarregarItemGráfico(ListViewItem itemGráfico, ItemFiscal item)
+        {
+            itemGráfico.SubItems[colCFOP.Index].Text = item.Cfop?.ToString();
+            itemGráfico.SubItems[colDescrição.Index].Text = item.Descrição;
+            itemGráfico.SubItems[colQuantidade.Index].Text = item.Quantidade.ToString();
+            itemGráfico.SubItems[colReferência.Index].Text = item.Referência;
+
+            if (item.TipoUnidade.HasValue)
+                itemGráfico.SubItems[colTipoUnidade.Index].Text = TipoUnidade.Obter(item.TipoUnidade.Value).Nome;
+
+            itemGráfico.SubItems[colValorTotal.Index].Text = item.Valor.ToString("C");
+            itemGráfico.SubItems[colValorUnitário.Index].Text = item.ValorUnitário.ToString("C");
         }
 
         private void lista_ColumnClick(object sender, ColumnClickEventArgs e)
@@ -86,6 +91,8 @@ namespace Apresentação.Fiscal.Lista
 
         internal void Recarregar(ItemFiscal item)
         {
+            ListViewItem itemGráfico = lista.Items[lista.Items.IndexOfKey(item.Código.ToString())];
+            CarregarItemGráfico(itemGráfico, item);
         }
 
         internal void Adicionar(ItemFiscal item)

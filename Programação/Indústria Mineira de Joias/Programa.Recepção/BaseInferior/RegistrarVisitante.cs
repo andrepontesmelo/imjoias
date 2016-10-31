@@ -68,9 +68,7 @@ namespace Programa.Recepção.BaseInferior
 				cmbAPessoa.Items.Add(funcionário);
 
 			// Setores
-            Setor[] setores = Entidades.Setor.ObterSetores();
-
-			foreach (Setor setor in setores)
+			foreach (Setor setor in Setor.ObterSetores())
 				cmbAOutro.Items.Add(setor.Nome);
 
             varejo = Setor.ObterSetor("Varejo");
