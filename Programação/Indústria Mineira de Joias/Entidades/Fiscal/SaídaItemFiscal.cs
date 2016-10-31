@@ -1,9 +1,11 @@
 ﻿using Acesso.Comum;
 using Entidades.Fiscal.Tipo;
 using System.Collections.Generic;
+using System;
 
 namespace Entidades.Fiscal
 {
+    [DbTabela("saidaitemfiscal")]
     public class SaídaItemFiscal : ItemFiscal
     {
         private const string RELAÇÃO = "saidaitemfiscal";
@@ -16,6 +18,11 @@ namespace Entidades.Fiscal
         TipoUnidade tipoUnidade, decimal quantidade, decimal valorUnitário,
         decimal valor) : base(referência, descrição, cfop, tipoUnidade, quantidade, valorUnitário, valor)
         {
+        }
+
+        public SaídaItemFiscal(string saidaFiscal)
+        {
+            this.saidaFiscal = saidaFiscal;
         }
 
         public SaídaItemFiscal()

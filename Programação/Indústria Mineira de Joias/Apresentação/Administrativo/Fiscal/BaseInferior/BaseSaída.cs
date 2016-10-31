@@ -62,5 +62,10 @@ namespace Apresentação.Fiscal.BaseInferior
             var pdf = new SaidaFiscalPdf(documento.Id, System.IO.File.ReadAllBytes(arquivo));
             pdf.Cadastrar();
         }
+
+        protected override ItemFiscal ConstruirItem(string códigoDocumento)
+        {
+            return new SaídaItemFiscal(códigoDocumento);
+        }
     }
 }

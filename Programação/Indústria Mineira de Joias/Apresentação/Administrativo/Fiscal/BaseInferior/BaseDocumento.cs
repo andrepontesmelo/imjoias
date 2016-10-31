@@ -11,6 +11,7 @@ namespace Apresentação.Fiscal.BaseInferior
     {
         protected DocumentoFiscal documento;
         private CacheIds cacheIdsPDFS;
+        private int? códigoItemSendoAlterado;
 
         public BaseDocumento()
         {
@@ -174,13 +175,41 @@ namespace Apresentação.Fiscal.BaseInferior
 
         private void lstItens_AoSelecionar(ItemFiscal entidade)
         {
+            códigoItemSendoAlterado = entidade?.Código;
+
             txtReferência.Text = entidade?.Referência;
-            txtCFOP.Text = entidade?.CFOP?.ToString();
+            txtCFOP.Text = entidade?.Cfop?.ToString();
             txtDescrição.Text = entidade?.Descrição;
             txtValor.Text = entidade?.Valor.ToString("C");
             txtValorUnitário.Text = entidade?.ValorUnitário.ToString("C");
             txtQuantidade.Text = entidade?.Quantidade.ToString();
             cmbTipoUnidade.Seleção = entidade?.TipoUnidade;
+        }
+
+        private void btnAlterar_Click(object sender, EventArgs e)
+        {
+            ItemFiscal item = ConstruirItem(documento.Id);
+            item.Referência = txtReferência.Text;
+            item.Descrição = txtDescrição.Text;
+            item.Quantidade = decimal.Parse(txtQuantidade.Text);
+            item.TipoUnidade = cmbTipoUnidade.Seleção.Value;
+
+            int cfop;
+            if (int.TryParse(txtCFOP.Text, out cfop))
+                item.Cfop = cfop;
+
+            item.Valor = (decimal) txtValorTotal.Double;
+            item.ValorUnitário = (decimal) txtValorUnitário.Double;
+            item.Código = códigoItemSendoAlterado.Value;
+            item.DefinirCadastrado();
+            item.Atualizar();
+
+            lstItens.Recarregar(item);
+        }
+
+        protected virtual ItemFiscal ConstruirItem(string códigoDocumento)
+        {
+            throw new Exception("abstrato");
         }
     }
 }

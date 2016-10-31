@@ -22,6 +22,11 @@ namespace Entidades.Fiscal
         {
         }
 
+        public EntradaItemFiscal(string entradaFiscal)
+        {
+            this.entradaFiscal = entradaFiscal;
+        }
+
         protected override string Relação => RELAÇÃO;
         protected override string RelaçãoPai => RELAÇÃO_PAI;
 

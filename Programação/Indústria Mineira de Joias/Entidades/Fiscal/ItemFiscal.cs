@@ -1,5 +1,6 @@
 ﻿using Acesso.Comum;
 using Entidades.Fiscal.Tipo;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
@@ -44,14 +45,11 @@ namespace Entidades.Fiscal
         {
         }
 
-        public string Referência => referência;
-        public string Descrição => descrição;
-        public int? CFOP => cfop;
-        public TipoUnidade TipoUnidade => (TipoUnidade) tipoUnidade;
-        public decimal Quantidade => quantidade;
-        public decimal ValorUnitário => valorUnitário;
-        public decimal Valor => valor;
-        public int Código => codigo;
+        public int Código
+        {
+            set { codigo = value; }
+            get { return codigo; }
+        }
 
         internal static void CadastrarItens(string idSaídaFiscal, List<ItemFiscal> itens, IDbTransaction transação, IDbConnection conexão)
         {
@@ -97,5 +95,101 @@ namespace Entidades.Fiscal
         protected abstract string Relação { get; }
 
         protected abstract string RelaçãoPai { get; }
+
+        public string Referência
+        {
+            get
+            {
+                return referência;
+            }
+
+            set
+            {
+                referência = value;
+            }
+        }
+
+        public string Descrição
+        {
+            get
+            {
+                return descrição;
+            }
+
+            set
+            {
+                descrição = value;
+            }
+        }
+
+        public int? Cfop
+        {
+            get
+            {
+                return cfop;
+            }
+
+            set
+            {
+                cfop = value;
+            }
+        }
+
+        public TipoUnidade TipoUnidade
+        {
+            get
+            {
+                return tipoUnidade;
+            }
+
+            set
+            {
+                tipoUnidade = value;
+            }
+        }
+
+        public decimal Quantidade
+        {
+            get
+            {
+                return quantidade;
+            }
+
+            set
+            {
+                quantidade = value;
+            }
+        }
+
+        public decimal ValorUnitário
+        {
+            get
+            {
+                return valorUnitário;
+            }
+
+            set
+            {
+                valorUnitário = value;
+            }
+        }
+
+        public decimal Valor
+        {
+            get
+            {
+                return valor;
+            }
+
+            set
+            {
+                valor = value;
+            }
+        }
+
+        public new void DefinirCadastrado()
+        {
+            base.DefinirCadastrado();
+        }
     }
 }

@@ -573,9 +573,12 @@ namespace Apresentação.Fiscal.BaseInferior
             "Peça",
             "Gramas",
             "Peça",
+            "Gramas",
+            "Peça",
             "Gramas"});
             this.cmbTipoUnidade.Location = new System.Drawing.Point(284, 102);
             this.cmbTipoUnidade.Name = "cmbTipoUnidade";
+            this.cmbTipoUnidade.Seleção = null;
             this.cmbTipoUnidade.Size = new System.Drawing.Size(100, 21);
             this.cmbTipoUnidade.TabIndex = 15;
             // 
@@ -657,6 +660,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.btnAlterar.TabIndex = 7;
             this.btnAlterar.Text = "Alterar";
             this.btnAlterar.UseVisualStyleBackColor = true;
+            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
             // 
             // txtDescrição
             // 

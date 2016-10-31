@@ -58,7 +58,7 @@ namespace Apresentação.Fiscal.Lista
         {
             var item = new ListViewItem(new string[lista.Columns.Count]);
 
-            item.SubItems[colCFOP.Index].Text = entidade.CFOP?.ToString();
+            item.SubItems[colCFOP.Index].Text = entidade.Cfop?.ToString();
             item.SubItems[colDescrição.Index].Text = entidade.Descrição;
             item.SubItems[colQuantidade.Index].Text = entidade.Quantidade.ToString();
             item.SubItems[colReferência.Index].Text = entidade.Referência;
@@ -95,6 +95,10 @@ namespace Apresentação.Fiscal.Lista
         private void lista_SelectedIndexChanged(object sender, EventArgs e)
         {
             AoSelecionar?.Invoke(Seleção);
+        }
+
+        internal void Recarregar(ItemFiscal item)
+        {
         }
     }
 }
