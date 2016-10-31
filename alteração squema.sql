@@ -155,5 +155,14 @@ CHANGE COLUMN `tipounidade` `tipounidade` INT NOT NULL ;
 ALTER TABLE `imjoias`.`entradaitemfiscal` 
 CHANGE COLUMN `tipounidade` `tipounidade` INT NOT NULL ;
 
+ALTER TABLE `imjoias`.`saidaitemfiscal` 
+ADD COLUMN `codigo` INT NOT NULL AUTO_INCREMENT AFTER `saidafiscal`,
+ADD PRIMARY KEY (`codigo`);
+
+
+ALTER TABLE `imjoias`.`entradaitemfiscal` 
+ADD COLUMN `codigo` INT NOT NULL AUTO_INCREMENT AFTER `entradafiscal`,
+ADD PRIMARY KEY (`codigo`);
+
 
 
