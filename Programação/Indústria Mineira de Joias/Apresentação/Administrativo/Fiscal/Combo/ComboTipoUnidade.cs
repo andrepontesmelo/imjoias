@@ -1,4 +1,5 @@
-﻿using Entidades.Fiscal.Tipo;
+﻿using Entidades.Configuração;
+using Entidades.Fiscal.Tipo;
 
 namespace Apresentação.Fiscal.Combobox
 {
@@ -7,6 +8,10 @@ namespace Apresentação.Fiscal.Combobox
         public ComboTipoUnidade()
         {
             InitializeComponent();
+
+            if (DadosGlobais.ModoDesenho)
+                return;
+
             Items.Clear();
             Items.AddRange(TipoUnidade.Tipos.ToArray());
         }

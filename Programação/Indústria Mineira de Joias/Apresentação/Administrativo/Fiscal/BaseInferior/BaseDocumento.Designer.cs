@@ -78,6 +78,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.label4 = new System.Windows.Forms.Label();
             this.tabObservações = new System.Windows.Forms.TabPage();
             this.txtObservações = new System.Windows.Forms.TextBox();
+            this.btnCadastrar = new System.Windows.Forms.Button();
             this.esquerda.SuspendLayout();
             this.quadroDocumento.SuspendLayout();
             this.quadroPDF.SuspendLayout();
@@ -481,6 +482,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.quadroItem.bInfEsqArredondada = true;
             this.quadroItem.bSupDirArredondada = true;
             this.quadroItem.bSupEsqArredondada = true;
+            this.quadroItem.Controls.Add(this.btnCadastrar);
             this.quadroItem.Controls.Add(this.txtValorTotal);
             this.quadroItem.Controls.Add(this.txtValorUnitário);
             this.quadroItem.Controls.Add(this.cmbTipoUnidade);
@@ -621,6 +623,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.btnAlterar.TabIndex = 7;
             this.btnAlterar.Text = "Alterar";
             this.btnAlterar.UseVisualStyleBackColor = true;
+            this.btnAlterar.Visible = false;
             this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
             // 
             // txtDescrição
@@ -686,6 +689,17 @@ namespace Apresentação.Fiscal.BaseInferior
             this.txtObservações.Size = new System.Drawing.Size(925, 523);
             this.txtObservações.TabIndex = 0;
             this.txtObservações.Validated += new System.EventHandler(this.txtObservações_Validated);
+            // 
+            // btnCadastrar
+            // 
+            this.btnCadastrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCadastrar.Location = new System.Drawing.Point(828, 99);
+            this.btnCadastrar.Name = "btnCadastrar";
+            this.btnCadastrar.Size = new System.Drawing.Size(75, 23);
+            this.btnCadastrar.TabIndex = 18;
+            this.btnCadastrar.Text = "Cadastrar";
+            this.btnCadastrar.UseVisualStyleBackColor = true;
+            this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
             // 
             // BaseDocumento
             // 
@@ -763,5 +777,6 @@ namespace Apresentação.Fiscal.BaseInferior
         private ComboTipoUnidade cmbTipoUnidade;
         protected System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.TextBox txtObservações;
+        private System.Windows.Forms.Button btnCadastrar;
     }
 }

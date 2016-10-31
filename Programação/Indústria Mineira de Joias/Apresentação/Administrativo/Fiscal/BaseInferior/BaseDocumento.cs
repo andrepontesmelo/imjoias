@@ -175,42 +175,84 @@ namespace Apresentação.Fiscal.BaseInferior
 
         private void lstItens_AoSelecionar(ItemFiscal entidade)
         {
-            itemSendoAlterado = entidade;
+            CarregarItem(entidade);
+        }
 
+        private void CarregarItem(ItemFiscal entidade)
+        {
+            itemSendoAlterado = entidade;
+            CarregarAtributos(entidade);
+
+            if (entidade == null)
+                MostrarBotãoCadastrar();
+            else
+                MostrarBotãoAlterar();
+        }
+
+        private void MostrarBotãoAlterar()
+        {
+            btnCadastrar.Visible = false;
+            btnAlterar.Visible = true;
+        }
+
+        private void CarregarAtributos(ItemFiscal entidade)
+        {
             txtReferência.Text = entidade?.Referência;
             txtCFOP.Text = entidade?.Cfop?.ToString();
             txtDescrição.Text = entidade?.Descrição;
-            txtValor.Text = entidade?.Valor.ToString("C");
+            txtValorTotal.Text = entidade?.Valor.ToString("C");
             txtValorUnitário.Text = entidade?.ValorUnitário.ToString("C");
             txtQuantidade.Text = entidade?.Quantidade.ToString();
 
             var tipoUnidade = entidade?.TipoUnidade;
-            cmbTipoUnidade.Seleção = tipoUnidade == null ? null : TipoUnidade.Obter((int) tipoUnidade);
+            cmbTipoUnidade.Seleção = tipoUnidade == null ? null : TipoUnidade.Obter((int)tipoUnidade);
         }
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            itemSendoAlterado.Referência = txtReferência.Text;
-            itemSendoAlterado.Descrição = txtDescrição.Text;
-            itemSendoAlterado.Quantidade = decimal.Parse(txtQuantidade.Text);
-            itemSendoAlterado.TipoUnidade = cmbTipoUnidade.Seleção.Id;
-
-            itemSendoAlterado.Cfop = null;
-            int cfop;
-            if (int.TryParse(txtCFOP.Text, out cfop))
-                itemSendoAlterado.Cfop = cfop;
-
-            itemSendoAlterado.Valor = (decimal) txtValorTotal.Double;
-            itemSendoAlterado.ValorUnitário = (decimal) txtValorUnitário.Double;
+            Atribuir(itemSendoAlterado);
             itemSendoAlterado.DefinirDesatualizado();
             itemSendoAlterado.Atualizar();
 
             lstItens.Recarregar(itemSendoAlterado);
         }
 
+        private void Atribuir(ItemFiscal entidade)
+        {
+            entidade.Referência = txtReferência.Text;
+            entidade.Descrição = txtDescrição.Text;
+            entidade.Quantidade = (decimal) txtQuantidade.Double;
+            entidade.TipoUnidade = cmbTipoUnidade.Seleção?.Id;
+
+            entidade.Cfop = null;
+            int cfop;
+            if (int.TryParse(txtCFOP.Text, out cfop))
+                entidade.Cfop = cfop;
+
+            entidade.Valor = (decimal)txtValorTotal.Double;
+            entidade.ValorUnitário = (decimal)txtValorUnitário.Double;
+        }
+
         protected virtual ItemFiscal ConstruirItem(string códigoDocumento)
         {
             throw new Exception("abstrato");
+        }
+
+        private void btnCadastrar_Click(object sender, EventArgs e)
+        {
+            var item = ConstruirItem(documento.Id);
+            Atribuir(item);
+            item.Cadastrar();
+
+            lstItens.Adicionar(item);
+            CarregarItem(null);
+        }
+        
+
+        private void MostrarBotãoCadastrar()
+        {
+            btnCadastrar.Visible = true;
+            btnAlterar.Visible = false;
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Entidades.Fiscal
         protected int? cfop;
 
         [DbColuna("tipounidade")]
-        protected int tipoUnidade;
+        protected int? tipoUnidade;
 
         protected decimal quantidade;
 
@@ -135,7 +135,7 @@ namespace Entidades.Fiscal
             }
         }
 
-        public int TipoUnidade
+        public int? TipoUnidade
         {
             get
             {

@@ -25,21 +25,22 @@ namespace Apresentação.Fiscal.Lista
             ListViewItem[] itens = CriarItens(documento.Itens);
             lista.Items.Clear();
             lista.Items.AddRange(itens);
-            AtualizarStatus(documento.Itens);
+            AtualizarStatus();
         }
 
-        private void AtualizarStatus(List<ItemFiscal> itens)
+        private void AtualizarStatus()
         {
             decimal somaQuantidade = 0;
             decimal somaValor = 0;
 
-            foreach (ItemFiscal item in itens)
+            foreach (ListViewItem itemGráfico in lista.Items)
             {
+                var item = itemGráfico.Tag as ItemFiscal;
                 somaQuantidade += item.Quantidade;
                 somaValor += item.Valor;
             }
 
-            statusLinhas.Text = string.Format("Linhas: {0}", itens.Count);
+            statusLinhas.Text = string.Format("Linhas: {0}", lista.Items.Count);
             statusQtd.Text = string.Format("Qtd: {0}", somaQuantidade);
             statusValorTotal.Text = string.Format("{0}", somaValor.ToString("C"));
         }
@@ -62,7 +63,10 @@ namespace Apresentação.Fiscal.Lista
             item.SubItems[colDescrição.Index].Text = entidade.Descrição;
             item.SubItems[colQuantidade.Index].Text = entidade.Quantidade.ToString();
             item.SubItems[colReferência.Index].Text = entidade.Referência;
-            item.SubItems[colTipoUnidade.Index].Text = TipoUnidade.Obter(entidade.TipoUnidade).Nome;
+
+            if (entidade.TipoUnidade.HasValue)
+                item.SubItems[colTipoUnidade.Index].Text = TipoUnidade.Obter(entidade.TipoUnidade.Value).Nome;
+
             item.SubItems[colValorTotal.Index].Text = entidade.Valor.ToString("C");
             item.SubItems[colValorUnitário.Index].Text = entidade.ValorUnitário.ToString("C");
             item.Tag = entidade;
@@ -82,6 +86,12 @@ namespace Apresentação.Fiscal.Lista
 
         internal void Recarregar(ItemFiscal item)
         {
+        }
+
+        internal void Adicionar(ItemFiscal item)
+        {
+            lista.Items.Add(CriarItem(item));
+            AtualizarStatus();
         }
     }
 }

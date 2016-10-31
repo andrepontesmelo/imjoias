@@ -46,7 +46,7 @@ namespace Apresentação.Fiscal.BaseInferior
 
         protected override ItemFiscal ConstruirItem(string códigoDocumento)
         {
-            return new SaídaItemFiscal(códigoDocumento);
+            return new EntradaItemFiscal(códigoDocumento);
         }
     }
 }
