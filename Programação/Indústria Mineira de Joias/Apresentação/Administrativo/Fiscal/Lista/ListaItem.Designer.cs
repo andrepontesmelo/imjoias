@@ -37,9 +37,9 @@
             this.colValorUnitário = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colValorTotal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.statusReferências = new System.Windows.Forms.ToolStripStatusLabel();
-            this.statusItens = new System.Windows.Forms.ToolStripStatusLabel();
-            this.statusPeso = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusLinhas = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusQtd = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusValorTotal = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,6 +62,7 @@
             this.lista.UseCompatibleStateImageBehavior = false;
             this.lista.View = System.Windows.Forms.View.Details;
             this.lista.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lista_ColumnClick);
+            this.lista.SelectedIndexChanged += new System.EventHandler(this.lista_SelectedIndexChanged);
             // 
             // colReferência
             // 
@@ -100,32 +101,32 @@
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.statusReferências,
-            this.statusItens,
-            this.statusPeso});
+            this.statusLinhas,
+            this.statusQtd,
+            this.statusValorTotal});
             this.statusStrip1.Location = new System.Drawing.Point(0, 298);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(929, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // statusReferências
+            // statusLinhas
             // 
-            this.statusReferências.Name = "statusReferências";
-            this.statusReferências.Size = new System.Drawing.Size(88, 17);
-            this.statusReferências.Text = "150 Referências";
+            this.statusLinhas.Name = "statusLinhas";
+            this.statusLinhas.Size = new System.Drawing.Size(59, 17);
+            this.statusLinhas.Text = "Linhas: 12";
             // 
-            // statusItens
+            // statusQtd
             // 
-            this.statusItens.Name = "statusItens";
-            this.statusItens.Size = new System.Drawing.Size(59, 17);
-            this.statusItens.Text = "1421 itens";
+            this.statusQtd.Name = "statusQtd";
+            this.statusQtd.Size = new System.Drawing.Size(72, 17);
+            this.statusQtd.Text = "Quantidade:";
             // 
-            // statusPeso
+            // statusValorTotal
             // 
-            this.statusPeso.Name = "statusPeso";
-            this.statusPeso.Size = new System.Drawing.Size(41, 17);
-            this.statusPeso.Text = "26,31g";
+            this.statusValorTotal.Name = "statusValorTotal";
+            this.statusValorTotal.Size = new System.Drawing.Size(56, 17);
+            this.statusValorTotal.Text = "R$ 100,00";
             // 
             // ListaItem
             // 
@@ -146,9 +147,8 @@
 
         private System.Windows.Forms.ListView lista;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel statusReferências;
-        private System.Windows.Forms.ToolStripStatusLabel statusItens;
-        private System.Windows.Forms.ToolStripStatusLabel statusPeso;
+        private System.Windows.Forms.ToolStripStatusLabel statusLinhas;
+        private System.Windows.Forms.ToolStripStatusLabel statusQtd;
         private System.Windows.Forms.ColumnHeader colReferência;
         private System.Windows.Forms.ColumnHeader colDescrição;
         private System.Windows.Forms.ColumnHeader colCFOP;
@@ -156,5 +156,6 @@
         private System.Windows.Forms.ColumnHeader colQuantidade;
         private System.Windows.Forms.ColumnHeader colValorUnitário;
         private System.Windows.Forms.ColumnHeader colValorTotal;
+        private System.Windows.Forms.ToolStripStatusLabel statusValorTotal;
     }
 }

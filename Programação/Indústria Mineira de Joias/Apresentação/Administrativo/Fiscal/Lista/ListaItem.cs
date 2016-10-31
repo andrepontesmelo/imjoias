@@ -9,17 +9,39 @@ namespace Apresentação.Fiscal.Lista
 {
     public partial class ListaItem : UserControl
     {
+        public delegate EventHandler AoSelecionarDelegate(ItemFiscal entidade);
+        public event AoSelecionarDelegate AoSelecionar;
+
         public ListaItem()
         {
             InitializeComponent();
             lista.ListViewItemSorter = new ListViewColumnSorter();
         }
 
+        public ItemFiscal Seleção => lista.SelectedItems.Count == 0 ? null : lista.SelectedItems[0].Tag as ItemFiscal;
+
         internal void Carregar(DocumentoFiscal documento)
         {
             ListViewItem[] itens = CriarItens(documento.Itens);
             lista.Items.Clear();
             lista.Items.AddRange(itens);
+            AtualizarStatus(documento.Itens);
+        }
+
+        private void AtualizarStatus(List<ItemFiscal> itens)
+        {
+            decimal somaQuantidade = 0;
+            decimal somaValor = 0;
+
+            foreach (ItemFiscal item in itens)
+            {
+                somaQuantidade += item.Quantidade;
+                somaValor += item.Valor;
+            }
+
+            statusLinhas.Text = string.Format("Linhas: {0}", itens.Count);
+            statusQtd.Text = string.Format("Qtd: {0}", somaQuantidade);
+            statusValorTotal.Text = string.Format("{0}", somaValor.ToString("C"));
         }
 
         private ListViewItem[] CriarItens(List<ItemFiscal> lstItens)
@@ -43,6 +65,7 @@ namespace Apresentação.Fiscal.Lista
             item.SubItems[colTipoUnidade.Index].Text = ObterDescrição(entidade.TipoUnidade);
             item.SubItems[colValorTotal.Index].Text = entidade.Valor.ToString("C");
             item.SubItems[colValorUnitário.Index].Text = entidade.ValorUnitário.ToString("C");
+            item.Tag = entidade;
 
             return item;
         }
@@ -67,6 +90,11 @@ namespace Apresentação.Fiscal.Lista
         private void lista_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             ((ListViewColumnSorter)lista.ListViewItemSorter).OnClick(lista, e);
+        }
+
+        private void lista_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AoSelecionar?.Invoke(Seleção);
         }
     }
 }
