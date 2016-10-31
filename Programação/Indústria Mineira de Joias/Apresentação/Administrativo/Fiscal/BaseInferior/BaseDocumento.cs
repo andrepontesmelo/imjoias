@@ -171,6 +171,17 @@ namespace Apresentação.Fiscal.BaseInferior
         {
             throw new Exception("abstrato");
         }
+
+        private void lstItens_AoSelecionar(ItemFiscal entidade)
+        {
+            txtReferência.Text = entidade?.Referência;
+            txtCFOP.Text = entidade?.CFOP?.ToString();
+            txtDescrição.Text = entidade?.Descrição;
+            txtValor.Text = entidade?.Valor.ToString("C");
+            txtValorUnitário.Text = entidade?.ValorUnitário.ToString("C");
+            txtQuantidade.Text = entidade?.Quantidade.ToString();
+            cmbTipoUnidade.Seleção = entidade?.TipoUnidade;
+        }
     }
 }
 

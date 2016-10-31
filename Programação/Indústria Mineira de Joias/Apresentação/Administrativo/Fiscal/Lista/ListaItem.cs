@@ -9,7 +9,7 @@ namespace Apresentação.Fiscal.Lista
 {
     public partial class ListaItem : UserControl
     {
-        public delegate EventHandler AoSelecionarDelegate(ItemFiscal entidade);
+        public delegate void AoSelecionarDelegate(ItemFiscal entidade);
         public event AoSelecionarDelegate AoSelecionar;
 
         public ListaItem()

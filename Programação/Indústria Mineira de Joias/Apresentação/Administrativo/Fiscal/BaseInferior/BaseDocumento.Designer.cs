@@ -470,6 +470,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.lstItens.Name = "lstItens";
             this.lstItens.Size = new System.Drawing.Size(919, 346);
             this.lstItens.TabIndex = 2;
+            this.lstItens.AoSelecionar += new Apresentação.Fiscal.Lista.ListaItem.AoSelecionarDelegate(this.lstItens_AoSelecionar);
             // 
             // quadroItem
             // 
@@ -537,6 +538,8 @@ namespace Apresentação.Fiscal.BaseInferior
             // 
             this.cmbTipoUnidade.FormattingEnabled = true;
             this.cmbTipoUnidade.Items.AddRange(new object[] {
+            "Peça",
+            "Gramas",
             "Peça",
             "Gramas",
             "Peça",
