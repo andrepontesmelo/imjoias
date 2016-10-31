@@ -1163,7 +1163,7 @@
     <Compile Include="Formulário\Componente\Linha.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Formulário\Lista\ListViewSorter.cs" />
+    <Compile Include="Formulário\Lista\ListViewColumnSorter.cs" />
     <Compile Include="Formulário\Lista\ListViewUsabilidade.cs">
       <SubType>Component</SubType>
     </Compile>
