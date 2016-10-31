@@ -24,6 +24,9 @@ namespace Entidades.Fiscal
         protected decimal valorUnitário;
         protected decimal valor;
 
+        [DbChavePrimária(true)]
+        protected int codigo;
+
         public ItemFiscal(string referência, string descrição, int? cfop,
             TipoUnidade tipoUnidade, decimal quantidade, decimal valorUnitário,
             decimal valor)
@@ -48,6 +51,7 @@ namespace Entidades.Fiscal
         public decimal Quantidade => quantidade;
         public decimal ValorUnitário => valorUnitário;
         public decimal Valor => valor;
+        public int Código => codigo;
 
         internal static void CadastrarItens(string idSaídaFiscal, List<ItemFiscal> itens, IDbTransaction transação, IDbConnection conexão)
         {
