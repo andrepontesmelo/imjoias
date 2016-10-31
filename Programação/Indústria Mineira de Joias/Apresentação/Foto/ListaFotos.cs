@@ -481,7 +481,7 @@ namespace Apresentação.Álbum.Edição.Fotos
                 Entidades.Mercadoria.Mercadoria.ObterMercadoria(Seleção.ReferênciaFormatada, Entidades.Tabela.TabelaPadrão);
 
             InformaçõesMercadoriaResumo janela = new InformaçõesMercadoriaResumo(m,
-                Entidades.Financeiro.Cotação.ObterCotaçãoVigente(MoedaObtenção.Instância.ObterMoeda(MoedaSistema.Ouro)));
+                Entidades.Financeiro.Cotação.ObterCotaçãoVigente(Moeda.ObterMoeda(MoedaSistema.Ouro)));
 
             janela.Show();
         }

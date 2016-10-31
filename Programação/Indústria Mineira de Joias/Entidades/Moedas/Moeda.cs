@@ -42,17 +42,20 @@ namespace Entidades.Moedas
 
         public static Moeda ObterMoeda(uint código)
         {
-            return MoedaObtenção.Instância.ObterMoeda(código);
+            return MapearÚnicaLinha<Moeda>(
+                "SELECT * FROM moeda WHERE codigo = " + DbTransformar(código));
+
         }
 
         public static Moeda[] ObterMoedas()
         {
-            return MoedaObtenção.Instância.ObterMoedas();
+            return Mapear<Moeda>(
+                "SELECT * FROM moeda ORDER BY nome").ToArray();
         }
 
         public static Moeda ObterMoeda(MoedaSistema moeda)
         {
-            return MoedaObtenção.Instância.ObterMoeda(moeda);
+            return ObterMoeda((uint)moeda);
         }
     }
 }

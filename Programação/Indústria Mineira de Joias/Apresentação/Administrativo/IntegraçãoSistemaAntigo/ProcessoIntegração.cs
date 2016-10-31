@@ -82,7 +82,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo
 
             dsNovo = ObterDataSetMercadoria(conexõesRemovidas);
             new Controles.Mercadorias.VinculoMercadoriaComponenteCusto(dsVelho, dsNovo).Transpor(strSaída);
-            double cotaçãoVarejo = Entidades.Financeiro.Cotação.ObterCotaçãoVigente(MoedaObtenção.Instância.ObterMoeda(4)).Valor;
+            double cotaçãoVarejo = Entidades.Financeiro.Cotação.ObterCotaçãoVigente(Moeda.ObterMoeda(4)).Valor;
             MySQL.GravarDataSetTodasTabelas(dsNovo);
 
             new Controles.Mercadorias.Indices(dsVelho, dsNovo).Transpor(cotaçãoVarejo, strSaída);

@@ -41,7 +41,7 @@ namespace Apresentação.Financeiro.Cotação
             {
                 flowLayoutPanel.Controls.Clear();
 
-                Moeda[] moedas = MoedaObtenção.Instância.ObterMoedas();
+                Moeda[] moedas = Moeda.ObterMoedas();
 
                 foreach (Moeda moeda in moedas)
                     AdicionarMoeda(moeda);

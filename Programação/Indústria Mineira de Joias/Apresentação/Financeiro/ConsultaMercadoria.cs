@@ -170,7 +170,7 @@ namespace Apresentação.Financeiro
         private void lnkHistóricoCotações_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Indicadores.JanelaHistóricoCotação histórico = new Indicadores.JanelaHistóricoCotação(
-                cmbTabela.Seleção != null ? cmbTabela.Seleção.Moeda : MoedaObtenção.Instância.ObterMoeda(MoedaSistema.Ouro));
+                cmbTabela.Seleção != null ? cmbTabela.Seleção.Moeda : Moeda.ObterMoeda(MoedaSistema.Ouro));
 
             histórico.Show(Owner);
         }

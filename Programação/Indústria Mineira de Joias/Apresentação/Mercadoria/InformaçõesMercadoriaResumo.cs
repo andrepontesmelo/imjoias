@@ -874,7 +874,7 @@ namespace Apresentação.Mercadoria
             {
                 // Atacado
                 mercadoria.TabelaPreço = Tabela.ObterTabela(3);
-                cotação = Entidades.Financeiro.Cotação.ObterCotaçãoVigente(MoedaObtenção.Instância.ObterMoeda(MoedaSistema.Ouro));
+                cotação = Entidades.Financeiro.Cotação.ObterCotaçãoVigente(Moeda.ObterMoeda(MoedaSistema.Ouro));
 
                 lblPreçoÁVistaAtacado.Text = CalcularPreço(dias[0]);
                 lblPreço30Atacado.Text = CalcularPreço(dias[1]);
@@ -888,7 +888,7 @@ namespace Apresentação.Mercadoria
 
                 // Consignado
                 mercadoria.TabelaPreço = Tabela.ObterTabela(2);
-                cotação = Entidades.Financeiro.Cotação.ObterCotaçãoVigente(MoedaObtenção.Instância.ObterMoeda(5));
+                cotação = Entidades.Financeiro.Cotação.ObterCotaçãoVigente(Moeda.ObterMoeda(5));
                 lblPreçoÁVistaConsignado.Text = CalcularPreço(dias[0]);
                 lblPreço30Consignado.Text = CalcularPreço(dias[1]);
                 lblPreço30x60Consignado.Text = CalcularPreço(dias[2]);

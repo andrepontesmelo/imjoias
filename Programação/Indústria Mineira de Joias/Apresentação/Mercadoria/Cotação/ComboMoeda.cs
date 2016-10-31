@@ -46,7 +46,7 @@ namespace Apresentação.Mercadoria.Cotação
             if (!DesignMode)
                 if (!carregado && Acesso.Comum.Usuários.UsuárioAtual != null)
                 {
-                    Moeda[] moedas = MoedaObtenção.Instância.ObterMoedas();
+                    Moeda[] moedas = Moeda.ObterMoedas();
 
                     base.Items.AddRange(moedas);
 

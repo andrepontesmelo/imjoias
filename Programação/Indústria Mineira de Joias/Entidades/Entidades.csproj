@@ -343,7 +343,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Moedas\Moeda.cs" />
-    <Compile Include="Moedas\MoedaObtenção.cs" />
     <Compile Include="Moedas\MoedaSistema.cs" />
     <Compile Include="MotivoContato.cs">
       <SubType>Code</SubType>

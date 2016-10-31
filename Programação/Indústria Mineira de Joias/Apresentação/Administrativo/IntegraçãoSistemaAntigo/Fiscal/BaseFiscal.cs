@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace Apresentação.IntegraçãoSistemaAntigo.Fiscal
 {
-    public partial class BaseFiscal : Apresentação.Formulários.BaseInferior
+    public partial class BaseFiscal : BaseInferior
     {
         private static double cotação;
         private static string nomeArquivoPrincipal;
@@ -28,7 +28,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Fiscal
             string datayyyymmdd = DateTime.Now.Date.ToString("yyyyMMdd");
 
             // Solicita nome do arquivo
-            using (System.Windows.Forms.SaveFileDialog dlgGrava = new SaveFileDialog())
+            using (SaveFileDialog dlgGrava = new SaveFileDialog())
             {
                 dlgGrava.Title = "Escolha onde gravar o arquivo principal (CAD1A025.TXT)";
 
@@ -65,7 +65,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Fiscal
 
 
             // Obtem a cotação de varejo
-            cotação = Cotação.ObterCotaçãoVigente(MoedaObtenção.Instância.ObterMoeda(4)).Valor;
+            cotação = Cotação.ObterCotaçãoVigente(Moeda.ObterMoeda(4)).Valor;
 
             List<IDbConnection> conexõesRemovidas = new List<IDbConnection>();
             // Abre banco de dados
@@ -563,7 +563,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Fiscal
                     }
 
 
-                    Preço preçoMercadoria = mercadoria.CalcularPreço(Cotação.ObterCotaçãoVigente(MoedaObtenção.Instância.ObterMoeda(MoedaSistema.OuroVarejo)));
+                    Preço preçoMercadoria = mercadoria.CalcularPreço(Cotação.ObterCotaçãoVigente(Moeda.ObterMoeda(MoedaSistema.OuroVarejo)));
                     string preçoStr = Math.Round(preçoMercadoria.Valor, 2).ToString().Replace(',', '.').Trim();
 
                     //string preçoStr = "99.99";

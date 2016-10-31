@@ -68,7 +68,7 @@ namespace Apresentação.Mercadoria.Cotação
 
                 if (!DadosGlobais.ModoDesenho)
                 {
-                    moeda = value.HasValue ? MoedaObtenção.Instância.ObterMoeda(value.Value) : null;
+                    moeda = value.HasValue ? Moeda.ObterMoeda(value.Value) : null;
 
                     if (painelFlutuante != null)
                         painelFlutuante.Moeda = moeda;
@@ -415,7 +415,7 @@ namespace Apresentação.Mercadoria.Cotação
             try
             {
                 if (moeda == null && moedaSistema.HasValue)
-                    moeda = MoedaObtenção.Instância.ObterMoeda(moedaSistema.Value);
+                    moeda = Moeda.ObterMoeda(moedaSistema.Value);
                 else if (moeda == null)
                     throw new Exception("Moeda é nula!");
             }

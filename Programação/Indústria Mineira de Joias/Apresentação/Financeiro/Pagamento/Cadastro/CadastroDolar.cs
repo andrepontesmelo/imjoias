@@ -36,7 +36,7 @@ namespace Apresentação.Financeiro.Pagamento
             base.PrepararParaCadastro(venda, pessoa);
 
                 ((Entidades.Pagamentos.Dolar)Pagamento).Cotação = Entidades.Financeiro.Cotação.ObterCotaçãoVigente(
-                    MoedaObtenção.Instância.ObterMoeda(
+                    Moeda.ObterMoeda(
                     MoedaSistema.DólarParalelo));
 
             AtualizarInterface();
