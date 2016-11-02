@@ -2368,6 +2368,9 @@
     <EmbeddedResource Include="Administrativo\Fiscal\Combo\ComboTipoDocumento.resx">
       <DependentUpon>ComboTipoDocumento.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Administrativo\Fiscal\Combo\ComboTipoUnidade.resx">
+      <DependentUpon>ComboTipoUnidade.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ComboSetor.resx">
       <DependentUpon>ComboSetor.cs</DependentUpon>
     </EmbeddedResource>

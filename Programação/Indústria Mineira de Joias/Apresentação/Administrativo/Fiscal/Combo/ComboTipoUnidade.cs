@@ -27,5 +27,10 @@ namespace Apresentação.Fiscal.Combobox
                 SelectedItem = value;
             }
         }
+
+        private void ComboTipoUnidade_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = Seleção == null;
+        }
     }
 }
