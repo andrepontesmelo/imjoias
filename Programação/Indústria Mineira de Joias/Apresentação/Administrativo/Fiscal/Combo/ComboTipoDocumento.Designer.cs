@@ -29,11 +29,6 @@
         private void InitializeComponent()
         {
             this.SuspendLayout();
-            // 
-            // ComboTipoDocumento
-            // 
-            this.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.Validating += new System.ComponentModel.CancelEventHandler(this.ComboTipoDocumento_Validating);
             this.ResumeLayout(false);
 
         }

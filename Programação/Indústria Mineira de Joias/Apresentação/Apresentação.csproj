@@ -152,6 +152,12 @@
     <Compile Include="ComboSetor.Designer.cs">
       <DependentUpon>ComboSetor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formulário\ComboRígido.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Formulário\ComboRígido.Designer.cs">
+      <DependentUpon>ComboRígido.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pessoa\Atendente\BaseInfoAtendimentos.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -2376,6 +2382,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Financeiro\Relacionamento\Impressão.resx">
       <DependentUpon>Impressão.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulário\ComboRígido.resx">
+      <DependentUpon>ComboRígido.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pessoa\Atendente\BaseInfoAtendimentos.resx">
       <DependentUpon>BaseInfoAtendimentos.cs</DependentUpon>

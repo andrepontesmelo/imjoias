@@ -1,9 +1,10 @@
-﻿using Entidades.Configuração;
+﻿using Apresentação.Formulário;
+using Entidades.Configuração;
 using Entidades.Fiscal.Tipo;
 
 namespace Apresentação.Fiscal.Combobox
 {
-    public partial class ComboTipoUnidade : System.Windows.Forms.ComboBox
+    public partial class ComboTipoUnidade : ComboRígido
     {
         public ComboTipoUnidade()
         {
@@ -28,9 +29,6 @@ namespace Apresentação.Fiscal.Combobox
             }
         }
 
-        private void ComboTipoUnidade_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            e.Cancel = Seleção == null;
-        }
+        protected override bool SeleçãoNula => Seleção == null;
     }
 }

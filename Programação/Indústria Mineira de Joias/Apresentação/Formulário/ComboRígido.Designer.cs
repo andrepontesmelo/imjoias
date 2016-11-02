@@ -1,6 +1,6 @@
-﻿namespace Apresentação.Fiscal.Combobox
+﻿namespace Apresentação.Formulário
 {
-    partial class ComboTipoUnidade
+    partial class ComboRígido
     {
         private System.ComponentModel.IContainer components = null;
 
@@ -19,9 +19,10 @@
         {
             this.SuspendLayout();
             // 
-            // ComboTipoUnidade
+            // ComboRígido
             // 
             this.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Validating += new System.ComponentModel.CancelEventHandler(this.ComboRígido_Validating);
             this.ResumeLayout(false);
 
         }

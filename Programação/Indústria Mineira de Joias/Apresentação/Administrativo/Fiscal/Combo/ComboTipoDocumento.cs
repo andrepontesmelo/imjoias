@@ -1,11 +1,12 @@
-﻿using Entidades.Fiscal.Tipo;
+﻿using Apresentação.Formulário;
+using Entidades.Fiscal.Tipo;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
 namespace Apresentação.Fiscal.Combobox
 {
-    public partial class ComboTipoDocumento : ComboBox
+    public partial class ComboTipoDocumento : ComboRígido
     {
         public ComboTipoDocumento()
         {
@@ -37,9 +38,6 @@ namespace Apresentação.Fiscal.Combobox
             Items.AddRange(itens.ToArray<TipoDocumento>());
         }
 
-        private void ComboTipoDocumento_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            e.Cancel = Seleção == null;
-        }
+        protected override bool SeleçãoNula => Seleção == null;
     }
 }

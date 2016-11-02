@@ -1,10 +1,10 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using Apresentação.Formulário;
 using Entidades;
+using System;
 
 namespace Apresentação
 {
-    public partial class ComboSetor : ComboBox
+    public partial class ComboSetor : ComboRígido
     {
         public ComboSetor()
         {
@@ -25,9 +25,6 @@ namespace Apresentação
             Items.AddRange(Entidades.Setor.ObterSetoresAtendimento());
         }
 
-        private void ComboSetor_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            e.Cancel = Seleção == null;
-        }
+        protected override bool SeleçãoNula => Seleção == null;
     }
 }
