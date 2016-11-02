@@ -1,4 +1,6 @@
-﻿namespace Apresentação.Fiscal.Lista
+﻿using Apresentação.Formulários;
+
+namespace Apresentação.Fiscal.Lista
 {
     partial class ListaItem
     {
@@ -28,7 +30,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lista = new System.Windows.Forms.ListView();
+            this.lista = new ListViewUsabilidade();
             this.colReferência = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colDescrição = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colCFOP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -145,7 +147,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView lista;
+        private ListViewUsabilidade lista;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel statusLinhas;
         private System.Windows.Forms.ToolStripStatusLabel statusQtd;
