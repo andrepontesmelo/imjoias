@@ -47,12 +47,13 @@
             // cmbTipoDocumento
             // 
             this.cmbTipoDocumento.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.cmbTipoDocumento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTipoDocumento.FormattingEnabled = true;
             this.cmbTipoDocumento.Location = new System.Drawing.Point(515, 2);
             this.cmbTipoDocumento.Name = "cmbTipoDocumento";
             this.cmbTipoDocumento.Seleção = null;
             this.cmbTipoDocumento.Size = new System.Drawing.Size(125, 21);
-            this.cmbTipoDocumento.TabIndex = 27;
+            this.cmbTipoDocumento.TabIndex = 6;
             this.cmbTipoDocumento.Validated += new System.EventHandler(this.cmbTipoDocumento_Validated);
             // 
             // txtEmitente
@@ -61,7 +62,7 @@
             this.txtEmitente.Location = new System.Drawing.Point(67, 132);
             this.txtEmitente.Name = "txtEmitente";
             this.txtEmitente.Size = new System.Drawing.Size(326, 20);
-            this.txtEmitente.TabIndex = 26;
+            this.txtEmitente.TabIndex = 5;
             this.txtEmitente.Validated += new System.EventHandler(this.txtEmitente_Validated);
             // 
             // dtEntradaSaída
@@ -72,7 +73,7 @@
             this.dtEntradaSaída.Location = new System.Drawing.Point(67, 55);
             this.dtEntradaSaída.Name = "dtEntradaSaída";
             this.dtEntradaSaída.Size = new System.Drawing.Size(323, 20);
-            this.dtEntradaSaída.TabIndex = 25;
+            this.dtEntradaSaída.TabIndex = 2;
             this.dtEntradaSaída.Validated += new System.EventHandler(this.dtEntradaSaída_Validated);
             // 
             // dtEmissão
@@ -83,7 +84,7 @@
             this.dtEmissão.Location = new System.Drawing.Point(67, 29);
             this.dtEmissão.Name = "dtEmissão";
             this.dtEmissão.Size = new System.Drawing.Size(323, 20);
-            this.dtEmissão.TabIndex = 24;
+            this.dtEmissão.TabIndex = 1;
             this.dtEmissão.Validated += new System.EventHandler(this.dtEmissão_Validated);
             // 
             // txtNúmero
@@ -100,7 +101,7 @@
             this.txtNúmero.RangeMax = 1.7976931348623157E+308D;
             this.txtNúmero.RangeMin = -1.7976931348623157E+308D;
             this.txtNúmero.Size = new System.Drawing.Size(323, 20);
-            this.txtNúmero.TabIndex = 23;
+            this.txtNúmero.TabIndex = 4;
             this.txtNúmero.Text = "1";
             this.txtNúmero.Validated += new System.EventHandler(this.txtNúmero_Validated);
             // 
@@ -115,7 +116,7 @@
             this.txtValor.RangeMax = 1.7976931348623157E+308D;
             this.txtValor.RangeMin = -1.7976931348623157E+308D;
             this.txtValor.Size = new System.Drawing.Size(323, 20);
-            this.txtValor.TabIndex = 22;
+            this.txtValor.TabIndex = 3;
             this.txtValor.Text = "R$ 1,00";
             this.txtValor.Validated += new System.EventHandler(this.txtValor_Validated);
             // 
@@ -125,7 +126,7 @@
             this.txtId.Location = new System.Drawing.Point(67, 3);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(323, 20);
-            this.txtId.TabIndex = 21;
+            this.txtId.TabIndex = 0;
             this.txtId.Validating += new System.ComponentModel.CancelEventHandler(this.txtId_Validating);
             this.txtId.Validated += new System.EventHandler(this.txtId_Validated);
             // 

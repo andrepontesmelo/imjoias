@@ -33,6 +33,10 @@
             this.label13 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
+            // cmbTipoDocumento
+            // 
+            this.cmbTipoDocumento.TabIndex = 7;
+            // 
             // chkCancelada
             // 
             this.chkCancelada.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -40,7 +44,7 @@
             this.chkCancelada.Location = new System.Drawing.Point(67, 158);
             this.chkCancelada.Name = "chkCancelada";
             this.chkCancelada.Size = new System.Drawing.Size(77, 17);
-            this.chkCancelada.TabIndex = 30;
+            this.chkCancelada.TabIndex = 6;
             this.chkCancelada.Text = "Cancelada";
             this.chkCancelada.UseVisualStyleBackColor = true;
             this.chkCancelada.Validated += new System.EventHandler(this.chkCancelada_Validated);
@@ -48,12 +52,13 @@
             // cmbSetor
             // 
             this.cmbSetor.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.cmbSetor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSetor.FormattingEnabled = true;
             this.cmbSetor.Location = new System.Drawing.Point(515, 27);
             this.cmbSetor.Name = "cmbSetor";
             this.cmbSetor.Seleção = null;
             this.cmbSetor.Size = new System.Drawing.Size(125, 21);
-            this.cmbSetor.TabIndex = 29;
+            this.cmbSetor.TabIndex = 8;
             this.cmbSetor.Validated += new System.EventHandler(this.cmbSetor_Validated);
             // 
             // label13
