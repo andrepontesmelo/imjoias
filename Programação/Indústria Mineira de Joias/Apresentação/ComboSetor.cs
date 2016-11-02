@@ -24,5 +24,10 @@ namespace Apresentação
 
             Items.AddRange(Entidades.Setor.ObterSetoresAtendimento());
         }
+
+        private void ComboSetor_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = Seleção == null;
+        }
     }
 }

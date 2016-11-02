@@ -28,7 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // ComboSetor
+            // 
+            this.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Validating += new System.ComponentModel.CancelEventHandler(this.ComboSetor_Validating);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
