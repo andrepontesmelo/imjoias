@@ -36,5 +36,10 @@ namespace Apresentação.Fiscal.Combobox
 
             Items.AddRange(itens.ToArray<TipoDocumento>());
         }
+
+        private void ComboTipoDocumento_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = Seleção == null;
+        }
     }
 }
