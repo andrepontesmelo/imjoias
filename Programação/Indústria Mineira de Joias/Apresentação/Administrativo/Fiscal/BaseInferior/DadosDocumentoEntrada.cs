@@ -25,5 +25,11 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior
 
             dtEntradaSaída.Value = ((EntradaFiscal)documento).DataEntrada;
         }
+
+        private void dtEntradaSaída_Validated(object sender, System.EventArgs e)
+        {
+            ((EntradaFiscal)documento).DataEntrada = dtEntradaSaída.Value;
+            documento.Gravar();
+        }
     }
 }

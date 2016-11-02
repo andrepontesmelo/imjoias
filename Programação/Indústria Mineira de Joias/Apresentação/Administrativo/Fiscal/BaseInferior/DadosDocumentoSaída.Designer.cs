@@ -37,6 +37,15 @@
             // 
             this.cmbTipoDocumento.TabIndex = 7;
             // 
+            // dtEntradaSaída
+            // 
+            this.dtEntradaSaída.Validated += new System.EventHandler(this.dtEntradaSaída_Validated);
+            // 
+            // lblEntradaSaída
+            // 
+            this.lblEntradaSaída.Size = new System.Drawing.Size(39, 13);
+            this.lblEntradaSaída.Text = "Saída:";
+            // 
             // chkCancelada
             // 
             this.chkCancelada.Anchor = System.Windows.Forms.AnchorStyles.Top;

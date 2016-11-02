@@ -11,7 +11,11 @@ namespace Entidades.Fiscal
         [DbColuna("dataentrada")]
         private DateTime dataEntrada;
 
-        public DateTime DataEntrada => dataEntrada;
+        public DateTime DataEntrada
+        {
+            get { return dataEntrada; }
+            set { dataEntrada = value; }
+        }
 
         private static readonly string NOME_RELAÇÃO = "entradafiscal";
 

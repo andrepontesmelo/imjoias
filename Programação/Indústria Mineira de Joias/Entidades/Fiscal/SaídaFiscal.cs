@@ -3,7 +3,6 @@ using Entidades.Configuração;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using static Entidades.Setor;
 
 namespace Entidades.Fiscal
 {
@@ -14,7 +13,11 @@ namespace Entidades.Fiscal
         private uint setor;
         protected bool cancelada;
 
-        public DateTime DataSaída => dataSaída;
+        public DateTime DataSaída
+        {
+            get { return dataSaída; }
+            set { dataSaída = value; }
+        }
 
         public static void Excluir(IEnumerable<string> idsSelecionados)
         {

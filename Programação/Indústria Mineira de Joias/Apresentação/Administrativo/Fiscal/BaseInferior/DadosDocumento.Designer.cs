@@ -74,7 +74,6 @@
             this.dtEntradaSaída.Name = "dtEntradaSaída";
             this.dtEntradaSaída.Size = new System.Drawing.Size(323, 20);
             this.dtEntradaSaída.TabIndex = 2;
-            this.dtEntradaSaída.Validated += new System.EventHandler(this.dtEntradaSaída_Validated);
             // 
             // dtEmissão
             // 

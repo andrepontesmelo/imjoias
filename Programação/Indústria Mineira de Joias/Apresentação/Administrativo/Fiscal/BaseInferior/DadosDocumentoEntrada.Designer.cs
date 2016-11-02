@@ -28,7 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // dtEntradaSaída
+            // 
+            this.dtEntradaSaída.Validated += new System.EventHandler(this.dtEntradaSaída_Validated);
+            // 
+            // lblEntradaSaída
+            // 
+            this.lblEntradaSaída.Size = new System.Drawing.Size(47, 13);
+            this.lblEntradaSaída.Text = "Entrada:";
+            // 
+            // DadosDocumentoEntrada
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.Name = "DadosDocumentoEntrada";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion

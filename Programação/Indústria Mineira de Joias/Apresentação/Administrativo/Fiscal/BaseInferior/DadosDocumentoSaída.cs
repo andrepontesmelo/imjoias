@@ -27,7 +27,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior
         {
             base.CarregarControlesEdição(documento);
 
-            var saída = (SaídaFiscal )documento;
+            var saída = (SaídaFiscal) documento;
 
             cmbSetor.Seleção = Setor.ObterSetor(saída.Setor);
             chkCancelada.Checked = saída.Cancelada;
@@ -45,6 +45,12 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior
         private void chkCancelada_Validated(object sender, System.EventArgs e)
         {
             Documento.Cancelada = chkCancelada.Checked;
+            Documento.Gravar();
+        }
+
+        private void dtEntradaSaída_Validated(object sender, System.EventArgs e)
+        {
+            Documento.DataSaída = dtEntradaSaída.Value;
             Documento.Gravar();
         }
     }

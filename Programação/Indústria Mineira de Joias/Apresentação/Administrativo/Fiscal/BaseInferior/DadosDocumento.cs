@@ -44,11 +44,6 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior
             documento.Gravar();
         }
 
-        private void dtEntradaSaída_Validated(object sender, System.EventArgs e)
-        {
-
-        }
-
         private void txtValor_Validated(object sender, System.EventArgs e)
         {
             documento.ValorTotal = (decimal)txtValor.Double;
@@ -80,4 +75,3 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior
         }
     }
 }
-

@@ -2369,6 +2369,9 @@
     <EmbeddedResource Include="Administrativo\Fiscal\BaseInferior\DadosDocumento.resx">
       <DependentUpon>DadosDocumento.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Administrativo\Fiscal\BaseInferior\DadosDocumentoEntrada.resx">
+      <DependentUpon>DadosDocumentoEntrada.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Administrativo\Fiscal\BaseInferior\DadosDocumentoSaída.resx">
       <DependentUpon>DadosDocumentoSaída.cs</DependentUpon>
     </EmbeddedResource>
