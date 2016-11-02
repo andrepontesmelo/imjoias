@@ -287,5 +287,15 @@ namespace Entidades.Fiscal
         {
             return string.Format("Id {0}", id);
         }
+
+        public void Excluir(List<ItemFiscal> itens)
+        {
+            if (itens.Count == 0)
+                return;
+
+            itens[0].Excluir(itens);
+
+            CarregarItens();
+        }
     }
 }

@@ -16,7 +16,7 @@ namespace Apresentação.Fiscal.BaseInferior
             SubstituirControleDados(new DadosDocumentoEntrada());
         }
 
-        protected override void Excluir()
+        protected override void ExcluirDocumento()
         {
             EntradaFiscal.Excluir(new string[] { documento.Id });
         }

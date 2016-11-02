@@ -18,7 +18,7 @@ namespace Apresentação.Fiscal.BaseInferior
 
         private SaídaFiscal Documento => documento as SaídaFiscal;
 
-        protected override void Excluir()
+        protected override void ExcluirDocumento()
         {
             SaídaFiscal.Excluir(new string[] { documento.Id });
         }

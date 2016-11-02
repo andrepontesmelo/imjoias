@@ -62,12 +62,12 @@ namespace Apresentação.Fiscal.BaseInferior
                 "Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 return;
 
-            Excluir();
+            ExcluirDocumento();
 
             SubstituirBaseParaAnterior();
         }
 
-        protected virtual void Excluir()
+        protected virtual void ExcluirDocumento()
         {
             throw new ExceçãoChamadaMétodoAbstrato();
         }
@@ -209,6 +209,42 @@ namespace Apresentação.Fiscal.BaseInferior
 
             dados = novoControle;
         }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            ExcluirItens();
+        }
+
+        private void ExcluirItens()
+        {
+            var itensSelecionados = lstItens.ItensSelecionados;
+
+            if (itensSelecionados.Count == 0)
+                return;
+
+            if (MessageBox.Show(this, string.Format("Deseja excluir {0} ite{1}?",
+                itensSelecionados.Count,
+                (itensSelecionados.Count == 1 ? "m" : "ns")),
+                "Confirmação de exclusão",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
+
+            documento.Excluir(itensSelecionados);
+
+            lstItens.Carregar(documento);
+
+            CancelarAlteração();
+        }
+
+        private void CancelarAlteração()
+        {
+            CarregarItem(null);
+        }
+
+        private void lstItens_AoExcluir(object sender, EventArgs e)
+        {
+            ExcluirItens();
+        }
     }
 }
-

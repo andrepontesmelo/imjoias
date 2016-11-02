@@ -1,9 +1,9 @@
 ﻿using Apresentação.Formulários;
 using Entidades.Fiscal;
-using System.Collections.Generic;
-using System.Windows.Forms;
 using Entidades.Fiscal.Tipo;
 using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Apresentação.Fiscal.Lista
 {
@@ -11,14 +11,19 @@ namespace Apresentação.Fiscal.Lista
     {
         public delegate void AoSelecionarDelegate(ItemFiscal entidade);
         public event AoSelecionarDelegate AoSelecionar;
+        public event EventHandler AoExcluir;
 
         public ListaItem()
         {
             InitializeComponent();
             lista.ListViewItemSorter = new ListViewColumnSorter();
+            lista.AoExcluir += Lista_AoExcluir;
         }
 
-        public ItemFiscal Seleção => lista.SelectedItems.Count == 0 ? null : lista.SelectedItems[0].Tag as ItemFiscal;
+        private void Lista_AoExcluir(object sender, EventArgs e)
+        {
+            AoExcluir?.Invoke(sender, e);
+        }
 
         internal void Carregar(DocumentoFiscal documento)
         {
@@ -99,6 +104,21 @@ namespace Apresentação.Fiscal.Lista
         {
             lista.Items.Add(CriarItem(item));
             AtualizarStatus();
+        }
+
+        public ItemFiscal Seleção => lista.SelectedItems.Count == 0 ? null : lista.SelectedItems[0].Tag as ItemFiscal;
+
+        public List<ItemFiscal> ItensSelecionados
+        {
+            get
+            {
+                List<ItemFiscal> itens = new List<ItemFiscal>();
+
+                foreach (ListViewItem item in lista.SelectedItems)
+                    itens.Add(item.Tag as ItemFiscal);
+
+                return itens;
+            }
         }
     }
 }

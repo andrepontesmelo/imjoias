@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
+using System;
 
 namespace Entidades.Fiscal
 {
@@ -190,6 +191,29 @@ namespace Entidades.Fiscal
         public new void DefinirDesatualizado()
         {
             base.DefinirDesatualizado();
+        }
+
+        public void Excluir(List<ItemFiscal> itens)
+        {
+            ExecutarComando(string.Format("delete from {0} where codigo in ({1})", Relação, ObterCódigosSeparados(itens, ",")));
+        }
+
+        private string ObterCódigosSeparados(List<ItemFiscal> itens, string separação)
+        {
+            StringBuilder str = new StringBuilder();
+            bool primeiro = true;
+
+            foreach (ItemFiscal i in itens)
+            {
+                if (!primeiro)
+                    str.Append(separação);
+
+                str.Append(i.Código);
+
+                primeiro = false;
+            }
+
+            return str.ToString();
         }
     }
 }

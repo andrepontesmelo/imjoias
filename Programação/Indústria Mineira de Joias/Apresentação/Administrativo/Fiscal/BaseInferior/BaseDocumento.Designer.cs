@@ -290,6 +290,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.lstItens.Size = new System.Drawing.Size(919, 345);
             this.lstItens.TabIndex = 2;
             this.lstItens.AoSelecionar += new Apresentação.Fiscal.Lista.ListaItem.AoSelecionarDelegate(this.lstItens_AoSelecionar);
+            this.lstItens.AoExcluir += new System.EventHandler(this.lstItens_AoExcluir);
             // 
             // quadroItem
             // 
@@ -367,6 +368,7 @@ namespace Apresentação.Fiscal.BaseInferior
             // 
             // cmbTipoUnidade
             // 
+            this.cmbTipoUnidade.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTipoUnidade.FormattingEnabled = true;
             this.cmbTipoUnidade.Location = new System.Drawing.Point(284, 102);
             this.cmbTipoUnidade.Name = "cmbTipoUnidade";
@@ -442,6 +444,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.btnExcluir.TabIndex = 8;
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // btnAlterar
             // 
