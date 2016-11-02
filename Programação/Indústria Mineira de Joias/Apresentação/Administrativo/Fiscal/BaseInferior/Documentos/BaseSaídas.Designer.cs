@@ -36,6 +36,15 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
             this.tabControl.SuspendLayout();
             this.SuspendLayout();
             // 
+            // títuloBaseInferior1
+            // 
+            this.títuloBaseInferior1.Descrição = "Notas fiscais de saída de itens de inventário.";
+            this.títuloBaseInferior1.Título = "Saídas";
+            // 
+            // opçãoNovo
+            // 
+            this.opçãoNovo.Descrição = "Nova saída";
+            // 
             // quadroTipo
             // 
             this.quadroTipo.SeleçãoAlterada += new System.EventHandler(this.quadroTipo_SeleçãoAlterada);

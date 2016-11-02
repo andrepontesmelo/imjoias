@@ -36,8 +36,7 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
             // 
             // títuloBaseInferior1
             // 
-            this.títuloBaseInferior1.Descrição = "Notas fiscais de entrada de itens de inventário, podem ser importados ou editados" +
-    ", e marcados como cancelados.";
+            this.títuloBaseInferior1.Descrição = "Notas fiscais de entrada de itens de inventário.";
             this.títuloBaseInferior1.Título = "Entradas";
             // 
             // opçãoNovo
