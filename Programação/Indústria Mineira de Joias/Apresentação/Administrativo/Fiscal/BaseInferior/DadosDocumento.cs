@@ -76,7 +76,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior
         private void txtId_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             var idDesejado = txtId.Text.Trim().ToLower();
-            e.Cancel = !idDesejado.Equals(documento.Id) && ObterIdsEmUso().Contains(idDesejado);
+            e.Cancel = !idDesejado.ToLower().Equals(documento.Id.ToLower()) && ObterIdsEmUso().Contains(idDesejado);
         }
     }
 }
