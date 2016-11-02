@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using Apresentação.Formulário.Exceção;
+using System.Windows.Forms;
 
 namespace Apresentação.Formulário
 {
@@ -18,7 +19,7 @@ namespace Apresentação.Formulário
         {
             get
             {
-                throw new System.Exception("abstrato");
+                throw new ExceçãoChamadaMétodoAbstrato();
             }
         }
     }

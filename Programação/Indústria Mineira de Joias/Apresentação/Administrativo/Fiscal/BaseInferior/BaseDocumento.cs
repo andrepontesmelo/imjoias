@@ -1,4 +1,5 @@
 ﻿using Apresentação.Administrativo.Fiscal.BaseInferior;
+using Apresentação.Formulário.Exceção;
 using Entidades.Fiscal;
 using Entidades.Fiscal.Pdf;
 using Entidades.Fiscal.Tipo;
@@ -68,7 +69,7 @@ namespace Apresentação.Fiscal.BaseInferior
 
         protected virtual void Excluir()
         {
-            throw new Exception("abstrato");
+            throw new ExceçãoChamadaMétodoAbstrato();
         }
 
         private void opçãoAbrirPDF_Click(object sender, EventArgs e)
@@ -80,7 +81,7 @@ namespace Apresentação.Fiscal.BaseInferior
 
         protected virtual FiscalPdf ObterPdf()
         {
-            throw new Exception("abstrato");
+            throw new ExceçãoChamadaMétodoAbstrato();
         }
 
         private void opçãoExcluirPDF_Click(object sender, EventArgs e)
@@ -113,7 +114,7 @@ namespace Apresentação.Fiscal.BaseInferior
 
         protected virtual void CadastrarPdf(string arquivo)
         {
-            throw new Exception("abstrato");
+            throw new ExceçãoChamadaMétodoAbstrato();
         }
 
         private void lstItens_AoSelecionar(ItemFiscal entidade)
@@ -178,7 +179,7 @@ namespace Apresentação.Fiscal.BaseInferior
 
         protected virtual ItemFiscal ConstruirItem(string códigoDocumento)
         {
-            throw new Exception("abstrato");
+            throw new ExceçãoChamadaMétodoAbstrato();
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)

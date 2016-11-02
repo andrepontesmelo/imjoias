@@ -1,5 +1,6 @@
 ﻿using Apresentação.Fiscal.BaseInferior.Documentos.Exclusão;
 using Apresentação.Fiscal.Lista;
+using Apresentação.Formulário.Exceção;
 using Entidades.Fiscal;
 using System;
 using System.ComponentModel;
@@ -22,7 +23,7 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
 
         protected virtual ControladorExclusão ConstruirControlador()
         {
-            throw new Exception("abstrato");
+            throw new ExceçãoChamadaMétodoAbstrato();
         }
 
         private void opçãoExcluir_Click(object sender, System.EventArgs e)
@@ -42,12 +43,12 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
 
         public virtual ListaDocumentoFiscal ObterListaAtiva()
         {
-            throw new System.Exception("abstrato");
+            throw new ExceçãoChamadaMétodoAbstrato();
         }
 
         protected virtual void Abrir(DocumentoFiscal documento)
         {
-            throw new System.Exception("abstrato");
+            throw new ExceçãoChamadaMétodoAbstrato();
         }
 
         private void opçãoNovo_Click(object sender, System.EventArgs e)
@@ -57,7 +58,7 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
 
         protected virtual DocumentoFiscal Criar()
         {
-            throw new Exception("abstrato");
+            throw new ExceçãoChamadaMétodoAbstrato();
         }
     }
 }

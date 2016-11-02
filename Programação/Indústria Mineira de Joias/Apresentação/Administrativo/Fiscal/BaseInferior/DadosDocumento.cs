@@ -1,7 +1,6 @@
-﻿using Entidades.Configuração;
+﻿using Apresentação.Formulário.Exceção;
 using Entidades.Fiscal;
 using Entidades.Fiscal.Tipo;
-using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -30,7 +29,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior
 
         public virtual List<string> ObterIdsEmUso()
         {
-            throw new Exception("abstrato");
+            throw new ExceçãoChamadaMétodoAbstrato();
         }
 
         private void txtId_Validated(object sender, System.EventArgs e)

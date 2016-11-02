@@ -158,6 +158,7 @@
     <Compile Include="Formulário\ComboRígido.Designer.cs">
       <DependentUpon>ComboRígido.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formulário\Exceção\ExceçãoChamadaMétodoAbstrato.cs" />
     <Compile Include="Pessoa\Atendente\BaseInfoAtendimentos.cs">
       <SubType>UserControl</SubType>
     </Compile>

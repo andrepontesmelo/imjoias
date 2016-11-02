@@ -212,7 +212,7 @@ namespace Entidades.Fiscal
             }
         }
 
-        public virtual string NomeRelação => "abstrato";
+        public abstract string NomeRelação { get; }
 
         protected abstract void CadastrarEntidade(IDbTransaction transação, IDbConnection conexão);
 
