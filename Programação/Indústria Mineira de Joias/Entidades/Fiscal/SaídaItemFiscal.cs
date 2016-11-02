@@ -38,5 +38,10 @@ namespace Entidades.Fiscal
                 RELAÇÃO, RELAÇÃO_PAI,
                 DbTransformar(id)));
         }
+
+        internal override void AtualizarIdDocumento(string novoId)
+        {
+            saidaFiscal = novoId;
+        }
     }
 }

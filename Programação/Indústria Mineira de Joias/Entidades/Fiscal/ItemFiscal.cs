@@ -1,6 +1,4 @@
 ﻿using Acesso.Comum;
-using Entidades.Fiscal.Tipo;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
@@ -96,6 +94,8 @@ namespace Entidades.Fiscal
 
         protected abstract string RelaçãoPai { get; }
 
+        internal abstract void AtualizarIdDocumento(string novoId);
+        
         public string Referência
         {
             get

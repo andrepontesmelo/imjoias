@@ -1,6 +1,7 @@
 ﻿using Acesso.Comum;
 using Entidades.Fiscal.Tipo;
 using System.Collections.Generic;
+using System;
 
 namespace Entidades.Fiscal
 {
@@ -35,6 +36,11 @@ namespace Entidades.Fiscal
             return Mapear<EntradaItemFiscal>(string.Format("select * from {0} where {1}={2} ",
                 RELAÇÃO, RELAÇÃO_PAI,
                 DbTransformar(id)));
+        }
+
+        internal override void AtualizarIdDocumento(string novoId)
+        {
+            entradaFiscal = novoId;
         }
     }
 }

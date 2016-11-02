@@ -101,6 +101,14 @@ namespace Entidades.Fiscal
 
                 id = novoId;
             }
+
+            AtualizarIdItens(novoId);
+        }
+
+        private void AtualizarIdItens(string novoId)
+        {
+            foreach (ItemFiscal d in Itens)
+                d.AtualizarIdDocumento(novoId);
         }
 
         public bool EmitidoPorEstaEmpresa => cnpjEmitente.Equals(Configuração.DadosGlobais.Instância.CNPJEmpresa);
