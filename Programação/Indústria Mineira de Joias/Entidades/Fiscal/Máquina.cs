@@ -25,7 +25,6 @@ namespace Entidades.Fiscal
 
         public Máquina(string modelo, string fabricacao)
         {
-
             this.modelo = modelo;
             this.fabricacao = fabricacao;
         }
@@ -35,28 +34,31 @@ namespace Entidades.Fiscal
             modelo = modelo.Trim().ToUpper();
             númeroFabricação = númeroFabricação.Trim().ToUpper();
 
+            Máquina máquina = ObterMáquina(modelo, númeroFabricação);
+
+            if (máquina == null)
+                máquina = CadastrarMáquina(modelo, númeroFabricação);
+
+            return máquina.Código;
+        }
+
+        private static Máquina CadastrarMáquina(string modelo, string númeroFabricação)
+        {
+            var novaMáquina = new Máquina(modelo, númeroFabricação);
+            novaMáquina.Cadastrar();
+            lstMáquinas.Add(novaMáquina);
+
+            return novaMáquina;
+        }
+
+        private static Máquina ObterMáquina(string modelo, string númeroFabricação)
+        {
             var máquinas = from m
-                           in Máquinas
+                                       in Máquinas
                            where m.Modelo.Equals(modelo) && m.Fabricação.Equals(númeroFabricação)
                            select m;
 
             var máquina = máquinas.FirstOrDefault();
-
-            if (máquina == null)
-            {
-                Máquina novaMáquina = Cadastrar(modelo, númeroFabricação);
-                lstMáquinas.Add(novaMáquina);
-                return novaMáquina.Código;
-            }
-                
-            return máquina.Código;
-        }
-
-        private static Máquina Cadastrar(string modelo, string númeroFabricação)
-        {
-            var máquina = new Máquina(modelo, númeroFabricação);
-            máquina.Cadastrar();
-
             return máquina;
         }
 
