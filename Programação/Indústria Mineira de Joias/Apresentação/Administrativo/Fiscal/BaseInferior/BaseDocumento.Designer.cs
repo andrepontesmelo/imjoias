@@ -47,7 +47,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.quadroLista = new Apresentação.Formulários.Quadro();
             this.lstItens = new Apresentação.Fiscal.Lista.ListaItem();
             this.quadroItem = new Apresentação.Formulários.Quadro();
-            this.btnCadastrar = new System.Windows.Forms.Button();
+            this.btnIncluir = new System.Windows.Forms.Button();
             this.txtValorTotal = new AMS.TextBox.CurrencyTextBox();
             this.txtValorUnitário = new AMS.TextBox.CurrencyTextBox();
             this.cmbTipoUnidade = new Apresentação.Fiscal.Combobox.ComboTipoUnidade();
@@ -301,7 +301,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.quadroItem.bInfEsqArredondada = true;
             this.quadroItem.bSupDirArredondada = true;
             this.quadroItem.bSupEsqArredondada = true;
-            this.quadroItem.Controls.Add(this.btnCadastrar);
+            this.quadroItem.Controls.Add(this.btnIncluir);
             this.quadroItem.Controls.Add(this.txtValorTotal);
             this.quadroItem.Controls.Add(this.txtValorUnitário);
             this.quadroItem.Controls.Add(this.cmbTipoUnidade);
@@ -329,16 +329,16 @@ namespace Apresentação.Fiscal.BaseInferior
             this.quadroItem.Tamanho = 30;
             this.quadroItem.Título = "Detalhe do item";
             // 
-            // btnCadastrar
+            // btnIncluir
             // 
-            this.btnCadastrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCadastrar.Location = new System.Drawing.Point(828, 99);
-            this.btnCadastrar.Name = "btnCadastrar";
-            this.btnCadastrar.Size = new System.Drawing.Size(75, 23);
-            this.btnCadastrar.TabIndex = 18;
-            this.btnCadastrar.Text = "Cadastrar";
-            this.btnCadastrar.UseVisualStyleBackColor = true;
-            this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
+            this.btnIncluir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnIncluir.Location = new System.Drawing.Point(828, 99);
+            this.btnIncluir.Name = "btnIncluir";
+            this.btnIncluir.Size = new System.Drawing.Size(75, 23);
+            this.btnIncluir.TabIndex = 18;
+            this.btnIncluir.Text = "Incluir";
+            this.btnIncluir.UseVisualStyleBackColor = true;
+            this.btnIncluir.Click += new System.EventHandler(this.btnIncluir_Click);
             // 
             // txtValorTotal
             // 
@@ -591,7 +591,7 @@ namespace Apresentação.Fiscal.BaseInferior
         private AMS.TextBox.CurrencyTextBox txtValorUnitário;
         private ComboTipoUnidade cmbTipoUnidade;
         private System.Windows.Forms.TextBox txtObservações;
-        private System.Windows.Forms.Button btnCadastrar;
+        private System.Windows.Forms.Button btnIncluir;
         protected Administrativo.Fiscal.BaseInferior.DadosDocumento dados;
         private System.Windows.Forms.ImageList imageList1;
     }

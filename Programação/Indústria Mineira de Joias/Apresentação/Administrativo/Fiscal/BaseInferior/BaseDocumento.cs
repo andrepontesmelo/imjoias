@@ -135,7 +135,7 @@ namespace Apresentação.Fiscal.BaseInferior
 
         private void MostrarBotãoAlterar()
         {
-            btnCadastrar.Visible = false;
+            btnIncluir.Visible = false;
             btnAlterar.Visible = true;
         }
 
@@ -182,7 +182,7 @@ namespace Apresentação.Fiscal.BaseInferior
             throw new ExceçãoChamadaMétodoAbstrato();
         }
 
-        private void btnCadastrar_Click(object sender, EventArgs e)
+        private void btnIncluir_Click(object sender, EventArgs e)
         {
             var item = ConstruirItem(documento.Id);
             Atribuir(item);
@@ -195,7 +195,7 @@ namespace Apresentação.Fiscal.BaseInferior
 
         private void MostrarBotãoCadastrar()
         {
-            btnCadastrar.Visible = true;
+            btnIncluir.Visible = true;
             btnAlterar.Visible = false;
         }
 
