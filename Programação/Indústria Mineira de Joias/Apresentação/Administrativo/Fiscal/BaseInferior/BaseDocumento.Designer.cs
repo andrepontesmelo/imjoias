@@ -288,7 +288,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.lstItens.Location = new System.Drawing.Point(0, 24);
             this.lstItens.Name = "lstItens";
             this.lstItens.Size = new System.Drawing.Size(919, 345);
-            this.lstItens.TabIndex = 2;
+            this.lstItens.TabIndex = 9;
             this.lstItens.AoSelecionar += new Apresentação.Fiscal.Lista.ListaItem.AoSelecionarDelegate(this.lstItens_AoSelecionar);
             this.lstItens.AoExcluir += new System.EventHandler(this.lstItens_AoExcluir);
             // 
@@ -335,7 +335,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.btnIncluir.Location = new System.Drawing.Point(828, 99);
             this.btnIncluir.Name = "btnIncluir";
             this.btnIncluir.Size = new System.Drawing.Size(75, 23);
-            this.btnIncluir.TabIndex = 18;
+            this.btnIncluir.TabIndex = 8;
             this.btnIncluir.Text = "Incluir";
             this.btnIncluir.UseVisualStyleBackColor = true;
             this.btnIncluir.Click += new System.EventHandler(this.btnIncluir_Click);
@@ -350,8 +350,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.txtValorTotal.RangeMax = 1.7976931348623157E+308D;
             this.txtValorTotal.RangeMin = -1.7976931348623157E+308D;
             this.txtValorTotal.Size = new System.Drawing.Size(94, 20);
-            this.txtValorTotal.TabIndex = 17;
-            this.txtValorTotal.Text = "R$ 2,00";
+            this.txtValorTotal.TabIndex = 6;
             // 
             // txtValorUnitário
             // 
@@ -363,8 +362,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.txtValorUnitário.RangeMax = 1.7976931348623157E+308D;
             this.txtValorUnitário.RangeMin = -1.7976931348623157E+308D;
             this.txtValorUnitário.Size = new System.Drawing.Size(96, 20);
-            this.txtValorUnitário.TabIndex = 16;
-            this.txtValorUnitário.Text = "R$ 1,00";
+            this.txtValorUnitário.TabIndex = 5;
             // 
             // cmbTipoUnidade
             // 
@@ -374,7 +372,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.cmbTipoUnidade.Name = "cmbTipoUnidade";
             this.cmbTipoUnidade.Seleção = null;
             this.cmbTipoUnidade.Size = new System.Drawing.Size(100, 21);
-            this.cmbTipoUnidade.TabIndex = 15;
+            this.cmbTipoUnidade.TabIndex = 4;
             // 
             // txtQuantidade
             // 
@@ -389,15 +387,14 @@ namespace Apresentação.Fiscal.BaseInferior
             this.txtQuantidade.RangeMax = 1.7976931348623157E+308D;
             this.txtQuantidade.RangeMin = -1.7976931348623157E+308D;
             this.txtQuantidade.Size = new System.Drawing.Size(59, 20);
-            this.txtQuantidade.TabIndex = 14;
-            this.txtQuantidade.Text = "1";
+            this.txtQuantidade.TabIndex = 3;
             // 
             // txtCFOP
             // 
             this.txtCFOP.Location = new System.Drawing.Point(19, 102);
             this.txtCFOP.Name = "txtCFOP";
             this.txtCFOP.Size = new System.Drawing.Size(155, 20);
-            this.txtCFOP.TabIndex = 13;
+            this.txtCFOP.TabIndex = 2;
             // 
             // label12
             // 
@@ -441,7 +438,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.btnExcluir.Location = new System.Drawing.Point(747, 99);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(75, 23);
-            this.btnExcluir.TabIndex = 8;
+            this.btnExcluir.TabIndex = 7;
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
             this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
@@ -465,14 +462,14 @@ namespace Apresentação.Fiscal.BaseInferior
             this.txtDescrição.Location = new System.Drawing.Point(207, 47);
             this.txtDescrição.Name = "txtDescrição";
             this.txtDescrição.Size = new System.Drawing.Size(700, 20);
-            this.txtDescrição.TabIndex = 6;
+            this.txtDescrição.TabIndex = 1;
             // 
             // txtReferência
             // 
             this.txtReferência.Location = new System.Drawing.Point(19, 47);
             this.txtReferência.Name = "txtReferência";
             this.txtReferência.Size = new System.Drawing.Size(155, 20);
-            this.txtReferência.TabIndex = 5;
+            this.txtReferência.TabIndex = 0;
             // 
             // label8
             // 
