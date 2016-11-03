@@ -76,7 +76,7 @@ namespace Apresentação.Estoque
 
             DialogResult resultado = MessageBox.Show(this,
                 msg.ToString(), "Confirmação",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
 
             if (resultado == DialogResult.Yes)
             {

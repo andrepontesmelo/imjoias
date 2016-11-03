@@ -57,7 +57,7 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos.Exclusão
 
             if (MessageBox.Show(baseDocumentos,
                 mensagem,
-                EXCLUSÃO_TÍTULO, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                EXCLUSÃO_TÍTULO, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
                 return;
 
             ExcluirSemConfirmação(idsSelecionados);

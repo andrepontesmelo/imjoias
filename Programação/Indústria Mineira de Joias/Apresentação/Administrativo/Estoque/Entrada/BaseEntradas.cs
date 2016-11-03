@@ -67,7 +67,7 @@ namespace Apresentação.Estoque.Entrada
                 msg.ToString(),
                 "Confirmação",
                 MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
+                MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
 
             if (resultado == DialogResult.No)
                 return;

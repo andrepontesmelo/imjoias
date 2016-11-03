@@ -108,7 +108,8 @@ namespace Apresentação.Fiscal.Janela
                     "Sobrescrever ?",
                     "Arquivo já existe",
                     MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question);
+                    MessageBoxIcon.Question, 
+                    MessageBoxDefaultButton.Button2);
 
                 if (apagar == DialogResult.No)
                     return;

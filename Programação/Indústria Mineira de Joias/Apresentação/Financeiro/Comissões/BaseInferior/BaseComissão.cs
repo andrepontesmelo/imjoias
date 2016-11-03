@@ -80,7 +80,8 @@ namespace Apresentação.Financeiro.Comissões
                 "A informação de que alguma venda está vinculada a esta comissão será excluída, bem como estornos de comissão neste documento.\nDeseja prosseguir?",
                 "Confirmação de exclusão",
                 MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
+                MessageBoxIcon.Question, 
+                MessageBoxDefaultButton.Button2);
 
             if (resposta != DialogResult.Yes)
                 return;

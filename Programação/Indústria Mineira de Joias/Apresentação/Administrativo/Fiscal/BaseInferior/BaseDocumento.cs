@@ -59,7 +59,7 @@ namespace Apresentação.Fiscal.BaseInferior
         {
             if (MessageBox.Show(this,
                 "Confirma exclusão deste documento ?",
-                "Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                "Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
                 return;
 
             ExcluirDocumento();
@@ -88,7 +88,7 @@ namespace Apresentação.Fiscal.BaseInferior
         {
             if (MessageBox.Show(this,
                 "Confirma exclusão do PDF armazenado?",
-                "Exclusão de PDF", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                "Exclusão de PDF", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
                 return;
 
             ObterPdf().Descadastrar();
@@ -227,7 +227,7 @@ namespace Apresentação.Fiscal.BaseInferior
                 itensSelecionados.Count,
                 (itensSelecionados.Count == 1 ? "m" : "ns")),
                 "Confirmação de exclusão",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != DialogResult.Yes)
                 return;
 
 

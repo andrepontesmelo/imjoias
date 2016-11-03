@@ -1385,7 +1385,7 @@ namespace Apresentação.Mercadoria.Bandeja
 					break;
 			}
 
-			if (MessageBox.Show(this.ParentForm, mensagem, "Exclusão", MessageBoxButtons.YesNo,  MessageBoxIcon.Question) == DialogResult.No)
+			if (MessageBox.Show(this.ParentForm, mensagem, "Exclusão", MessageBoxButtons.YesNo,  MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
 				return;
 			else
 				ExcluirSelecionados();

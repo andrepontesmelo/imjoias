@@ -143,7 +143,7 @@ namespace Apresentação.Atendimento.Clientes.Pedido
         private void opçãoExcluir_Click(object sender, EventArgs e)
         {
             if ((SolicitouExclusão != null) &&
-                MessageBox.Show("Deseja realmente excluir?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                MessageBox.Show("Deseja realmente excluir?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
                 == DialogResult.Yes)
             {
                 SolicitouExclusão(this, null);

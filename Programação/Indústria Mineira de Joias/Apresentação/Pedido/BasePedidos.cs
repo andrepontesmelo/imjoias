@@ -233,7 +233,7 @@ namespace Apresentação.Atendimento.Clientes.Pedido
 
             if (pedidos.Count > 0)
             {
-                if (MessageBox.Show("Deseja excluir " + pedidos.Count.ToString() + " itens ?", "Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                if (MessageBox.Show("Deseja excluir " + pedidos.Count.ToString() + " itens ?", "Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
                     != DialogResult.Yes)
                     return;
             }
