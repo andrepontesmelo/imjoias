@@ -1,7 +1,6 @@
 ﻿using Acesso.Comum;
 using System.Collections.Generic;
 using System.Linq;
-using System;
 
 namespace Entidades.Fiscal
 {
@@ -53,13 +52,23 @@ namespace Entidades.Fiscal
 
         private static Máquina ObterMáquina(string modelo, string númeroFabricação)
         {
-            var máquinas = from m
-                                       in Máquinas
+            var máquinas = from m in Máquinas
                            where m.Modelo.Equals(modelo) && m.Fabricação.Equals(númeroFabricação)
                            select m;
 
             var máquina = máquinas.FirstOrDefault();
             return máquina;
+        }
+
+        public static Máquina ObterMáquina(int? código)
+        {
+            if (!código.HasValue)
+                return null;
+
+            return (from máquina 
+                    in Máquinas
+                    where máquina.Código.Equals(código.Value)
+                    select máquina).FirstOrDefault();
         }
 
         public static List<Máquina> Máquinas
@@ -75,7 +84,12 @@ namespace Entidades.Fiscal
 
         private static void Carregar()
         {
-            lstMáquinas = Mapear<Máquina>("select * from maquinafiscal");
+            lstMáquinas = Mapear<Máquina>("select * from maquinafiscal order by codigo");
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0} {1} {2}", Código, Modelo, Fabricação);
         }
     }
 }

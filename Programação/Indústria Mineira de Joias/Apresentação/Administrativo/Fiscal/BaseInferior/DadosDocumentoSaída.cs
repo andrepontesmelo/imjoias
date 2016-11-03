@@ -32,6 +32,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior
             cmbSetor.Seleção = Setor.ObterSetor(saída.Setor);
             chkCancelada.Checked = saída.Cancelada;
             dtEntradaSaída.Value = saída.DataSaída;
+            cmbMáquina.Seleção = Máquina.ObterMáquina(saída.Máquina);
         }
 
         private void cmbSetor_Validated(object sender, System.EventArgs e)
@@ -51,6 +52,12 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior
         private void dtEntradaSaída_Validated(object sender, System.EventArgs e)
         {
             Documento.DataSaída = dtEntradaSaída.Value;
+            Documento.Gravar();
+        }
+
+        private void cmbMáquina_Validated(object sender, System.EventArgs e)
+        {
+            Documento.Máquina = cmbMáquina.Seleção?.Código;
             Documento.Gravar();
         }
     }

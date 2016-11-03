@@ -21,7 +21,6 @@
             // 
             // ComboTipoUnidade
             // 
-            this.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ResumeLayout(false);
 
         }

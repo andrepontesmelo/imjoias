@@ -239,10 +239,11 @@ namespace Apresentação.Fiscal.BaseInferior
             // 
             // dados
             // 
-            this.dados.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.dados.Location = new System.Drawing.Point(126, 19);
+            this.dados.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dados.Location = new System.Drawing.Point(3, 16);
             this.dados.Name = "dados";
-            this.dados.Size = new System.Drawing.Size(654, 497);
+            this.dados.Size = new System.Drawing.Size(913, 497);
             this.dados.TabIndex = 0;
             // 
             // tabItens

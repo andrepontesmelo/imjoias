@@ -15,7 +15,11 @@ namespace Entidades.Fiscal
 
         private int? maquina;
 
-        public int? Maquina => maquina;
+        public int? Máquina
+        {
+            get { return maquina; }
+            set { maquina = value; }
+        }
 
         public DateTime DataSaída
         {
@@ -120,7 +124,7 @@ namespace Entidades.Fiscal
                     DbTransformar(CnpjEmitente),
                     DbTransformar(Cancelada),
                     DbTransformar(Setor),
-                    DbTransformar(Maquina));
+                    DbTransformar(Máquina));
 
                 cmd.ExecuteNonQuery();
             }

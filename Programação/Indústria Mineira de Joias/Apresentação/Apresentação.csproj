@@ -146,6 +146,12 @@
     <Compile Include="Administrativo\Fiscal\BaseInferior\DadosDocumentoSaída.Designer.cs">
       <DependentUpon>DadosDocumentoSaída.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrativo\Fiscal\Combo\ComboMáquina.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Administrativo\Fiscal\Combo\ComboMáquina.Designer.cs">
+      <DependentUpon>ComboMáquina.cs</DependentUpon>
+    </Compile>
     <Compile Include="ComboSetor.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -2374,6 +2380,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administrativo\Fiscal\BaseInferior\DadosDocumentoSaída.resx">
       <DependentUpon>DadosDocumentoSaída.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrativo\Fiscal\Combo\ComboMáquina.resx">
+      <DependentUpon>ComboMáquina.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administrativo\Fiscal\Combo\ComboTipoDocumento.resx">
       <DependentUpon>ComboTipoDocumento.cs</DependentUpon>

@@ -227,18 +227,18 @@
         #endregion
 
         protected Apresentação.Fiscal.Combobox.ComboTipoDocumento cmbTipoDocumento;
-        private Pessoa.TextBoxCNPJ txtEmitente;
         protected System.Windows.Forms.DateTimePicker dtEntradaSaída;
-        private System.Windows.Forms.DateTimePicker dtEmissão;
-        private AMS.TextBox.NumericTextBox txtNúmero;
-        private AMS.TextBox.CurrencyTextBox txtValor;
         protected System.Windows.Forms.TextBox txtId;
         protected System.Windows.Forms.Label lblTipoDocumento;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label3;
         protected System.Windows.Forms.Label lblEntradaSaída;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        protected Pessoa.TextBoxCNPJ txtEmitente;
+        protected System.Windows.Forms.DateTimePicker dtEmissão;
+        protected AMS.TextBox.NumericTextBox txtNúmero;
+        protected AMS.TextBox.CurrencyTextBox txtValor;
+        protected System.Windows.Forms.Label label5;
+        protected System.Windows.Forms.Label label6;
+        protected System.Windows.Forms.Label label3;
+        protected System.Windows.Forms.Label label2;
+        protected System.Windows.Forms.Label label1;
     }
 }
