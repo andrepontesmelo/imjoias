@@ -254,5 +254,6 @@ ADD CONSTRAINT `fk_saidafiscal_1`
 
 
 
+ alter table saidafiscal drop column tiposaida;
 
 
