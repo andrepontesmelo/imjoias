@@ -120,6 +120,7 @@ namespace Apresentação.Fiscal.BaseInferior
         private void lstItens_AoSelecionar(ItemFiscal entidade)
         {
             CarregarItem(entidade);
+            btnExcluir.Enabled = entidade != null;
         }
 
         private void CarregarItem(ItemFiscal entidade)
