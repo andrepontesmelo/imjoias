@@ -26,9 +26,15 @@ namespace Entidades.Fiscal.Cupom
                 cupom.IndicadorCancelamento,
                 "",
                 (uint) SetorSistema.Varejo,
+                ObterCódigoMáquina(cupom),
                 AdaptarItens(cupom.Detalhes));
 
             return entidade;
+        }
+
+        private int? ObterCódigoMáquina(CupomFiscal cupom)
+        {
+            return Máquina.ObterCódigoMáquinaInserindo(cupom.ModeloECF, cupom.NumeroFabricacao);
         }
 
         private List<ItemFiscal> AdaptarItens(List<DetalheCupomFiscal> detalhes)
@@ -59,8 +65,7 @@ namespace Entidades.Fiscal.Cupom
 
         private string AdaptarId(CupomFiscal cupom)
         {
-            return string.Format("{0}@{1}", cupom.COO,
-                Máquina.ObterCódigoMáquina(cupom.ModeloECF, cupom.NumeroFabricacao));
+            return string.Format("{0}@{1}", cupom.COO, ObterCódigoMáquina(cupom));
         }
     }
 }
