@@ -29,16 +29,22 @@
         private void InitializeComponent()
         {
             this.colCancelada = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colMáquina = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lista
             // 
             this.lista.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colMáquina,
             this.colCancelada});
             // 
             // colCancelada
             // 
             this.colCancelada.Text = "Cancelada";
+            // 
+            // colMáquina
+            // 
+            this.colMáquina.Text = "Máquina";
             // 
             // ListaDocumentoSaída
             // 
@@ -51,5 +57,6 @@
         #endregion
 
         private System.Windows.Forms.ColumnHeader colCancelada;
+        private System.Windows.Forms.ColumnHeader colMáquina;
     }
 }

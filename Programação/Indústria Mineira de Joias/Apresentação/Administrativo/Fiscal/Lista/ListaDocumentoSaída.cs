@@ -1,7 +1,5 @@
 ﻿using Entidades.Fiscal;
 using Entidades.Fiscal.Pdf;
-using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Apresentação.Fiscal.Lista
@@ -14,6 +12,27 @@ namespace Apresentação.Fiscal.Lista
         {
             InitializeComponent();
             colEntradaSaída.Text = "Saída";
+
+            OrganizarColunas();
+        }
+
+        private void OrganizarColunas()
+        {
+            lista.SuspendLayout();
+
+            lista.Columns.Clear();
+
+            lista.Columns.AddRange(new ColumnHeader[] {
+            colId,
+            colEmissão,
+            colEntradaSaída,
+            colValor,
+            colNúmero,
+            colMáquina});
+
+            lista.Columns.Add(colObservações);
+
+            lista.ResumeLayout();
         }
 
         public uint Setor => setor;
@@ -37,9 +56,12 @@ namespace Apresentação.Fiscal.Lista
 
         protected override ListViewItem ConstruirItem(DocumentoFiscal documentoFiscal)
         {
-            ListViewItem item = base.ConstruirItem(documentoFiscal);
-            DateTime dataSaída = ((SaídaFiscal)documentoFiscal).DataSaída;
+            var item = base.ConstruirItem(documentoFiscal);
+            var saída = (SaídaFiscal) documentoFiscal;
+            var dataSaída = saída.DataSaída;
+
             item.SubItems[colEntradaSaída.Index].Text = string.Format("{0} {1}", dataSaída.ToShortDateString(), dataSaída.ToLongTimeString());
+            item.SubItems[colMáquina.Index].Text = saída.Máquina?.ToString();
 
             return item;
         }
