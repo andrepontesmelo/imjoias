@@ -15,6 +15,11 @@ namespace Apresentação.Fiscal.Lista
         public event EventHandler AoSolicitarExclusão;
         private CacheIds cacheIdsPdfs;
 
+        public ListaDocumentoFiscal()
+        {
+            InitializeComponent();
+        }
+
         public ListaDocumentoFiscal(CacheIds cachePdfs)
         {
             InitializeComponent();
