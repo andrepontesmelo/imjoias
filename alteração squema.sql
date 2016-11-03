@@ -1,4 +1,4 @@
-Alterações de SQL's
+
 
 
 RENAME TABLE imjoias.vendafiscal TO imjoias.saidafiscal;
@@ -230,6 +230,28 @@ ADD CONSTRAINT `fk_entradaitemfiscal_2`
   FOREIGN KEY (`tipounidade`)
   REFERENCES `imjoias`.`tipounidadefiscal` (`id`)
   ON UPDATE CASCADE;
+
+
+CREATE TABLE `imjoias`.`maquinafiscal` (
+  `codigo` INT NOT NULL AUTO_INCREMENT,
+  `modelo` VARCHAR(45) NULL,
+  `fabricacao` VARCHAR(45) NULL,
+  PRIMARY KEY (`codigo`),
+  UNIQUE INDEX `index2` (`modelo` ASC, `fabricacao` ASC));
+
+
+ALTER TABLE `imjoias`.`saidafiscal` 
+ADD COLUMN `maquina` INT NULL AFTER `setor`;
+
+ALTER TABLE `imjoias`.`saidafiscal` 
+ADD INDEX `fk_saidafiscal_1_idx` (`maquina` ASC);
+ALTER TABLE `imjoias`.`saidafiscal` 
+ADD CONSTRAINT `fk_saidafiscal_1`
+  FOREIGN KEY (`maquina`)
+  REFERENCES `imjoias`.`maquinafiscal` (`codigo`)
+  ON DELETE RESTRICT
+  ON UPDATE CASCADE;
+
 
 
 
