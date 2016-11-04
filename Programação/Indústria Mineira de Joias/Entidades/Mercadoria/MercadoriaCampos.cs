@@ -45,6 +45,7 @@ namespace Entidades.Mercadoria
 		protected bool foradelinha;
         protected string classificacaofiscal;
         protected int tipounidade;
+        protected int cfop;
 
         [NonSerialized]
 		private DbFoto icone = null;
