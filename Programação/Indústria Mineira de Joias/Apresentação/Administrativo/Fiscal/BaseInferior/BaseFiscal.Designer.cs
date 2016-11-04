@@ -37,18 +37,24 @@
             this.opçãoSaídas = new Apresentação.Formulários.Opção();
             this.opçãoProduções = new Apresentação.Formulários.Opção();
             this.opçãoEntradas = new Apresentação.Formulários.Opção();
+            this.quadro3 = new Apresentação.Formulários.Quadro();
+            this.opçãoMáquinasECF = new Apresentação.Formulários.Opção();
+            this.opçãoEsquemas = new Apresentação.Formulários.Opção();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.quadro2.SuspendLayout();
+            this.quadro3.SuspendLayout();
             this.SuspendLayout();
             // 
             // esquerda
             // 
+            this.esquerda.Controls.Add(this.quadro3);
             this.esquerda.Controls.Add(this.quadro2);
             this.esquerda.Controls.Add(this.quadro1);
-            this.esquerda.Size = new System.Drawing.Size(187, 303);
+            this.esquerda.Size = new System.Drawing.Size(187, 408);
             this.esquerda.Controls.SetChildIndex(this.quadro1, 0);
             this.esquerda.Controls.SetChildIndex(this.quadro2, 0);
+            this.esquerda.Controls.SetChildIndex(this.quadro3, 0);
             // 
             // quadro1
             // 
@@ -171,16 +177,64 @@
             this.opçãoEntradas.TabIndex = 2;
             this.opçãoEntradas.Click += new System.EventHandler(this.opçãoEntradas_Click);
             // 
+            // quadro3
+            // 
+            this.quadro3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(239)))), ((int)(((byte)(221)))));
+            this.quadro3.bInfDirArredondada = true;
+            this.quadro3.bInfEsqArredondada = true;
+            this.quadro3.bSupDirArredondada = true;
+            this.quadro3.bSupEsqArredondada = true;
+            this.quadro3.Controls.Add(this.opçãoMáquinasECF);
+            this.quadro3.Controls.Add(this.opçãoEsquemas);
+            this.quadro3.Cor = System.Drawing.Color.Black;
+            this.quadro3.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
+            this.quadro3.LetraTítulo = System.Drawing.Color.White;
+            this.quadro3.Location = new System.Drawing.Point(7, 216);
+            this.quadro3.MostrarBotãoMinMax = false;
+            this.quadro3.Name = "quadro3";
+            this.quadro3.Size = new System.Drawing.Size(160, 94);
+            this.quadro3.TabIndex = 8;
+            this.quadro3.Tamanho = 30;
+            this.quadro3.Título = "Manutenção";
+            // 
+            // opçãoMáquinasECF
+            // 
+            this.opçãoMáquinasECF.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoMáquinasECF.Descrição = "Máquinas ECF";
+            this.opçãoMáquinasECF.Imagem = global::Apresentação.Resource.fiscal;
+            this.opçãoMáquinasECF.Location = new System.Drawing.Point(7, 70);
+            this.opçãoMáquinasECF.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoMáquinasECF.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoMáquinasECF.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoMáquinasECF.Name = "opçãoMáquinasECF";
+            this.opçãoMáquinasECF.Size = new System.Drawing.Size(150, 16);
+            this.opçãoMáquinasECF.TabIndex = 4;
+            this.opçãoMáquinasECF.Click += new System.EventHandler(this.opçãoMáquinasECF_Click);
+            // 
+            // opçãoEsquemas
+            // 
+            this.opçãoEsquemas.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoEsquemas.Descrição = "Esquemas";
+            this.opçãoEsquemas.Imagem = global::Apresentação.Resource.repair;
+            this.opçãoEsquemas.Location = new System.Drawing.Point(7, 30);
+            this.opçãoEsquemas.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoEsquemas.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoEsquemas.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoEsquemas.Name = "opçãoEsquemas";
+            this.opçãoEsquemas.Size = new System.Drawing.Size(150, 16);
+            this.opçãoEsquemas.TabIndex = 2;
+            // 
             // BaseFiscal
             // 
             this.Controls.Add(this.títuloBaseInferior1);
             this.Name = "BaseFiscal";
-            this.Size = new System.Drawing.Size(801, 303);
+            this.Size = new System.Drawing.Size(801, 408);
             this.Controls.SetChildIndex(this.esquerda, 0);
             this.Controls.SetChildIndex(this.títuloBaseInferior1, 0);
             this.esquerda.ResumeLayout(false);
             this.quadro1.ResumeLayout(false);
             this.quadro2.ResumeLayout(false);
+            this.quadro3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -195,5 +249,8 @@
         private Formulários.Opção opçãoSaídas;
         private Formulários.Opção opçãoProduções;
         private Formulários.Opção opçãoEntradas;
+        private Formulários.Quadro quadro3;
+        private Formulários.Opção opçãoMáquinasECF;
+        private Formulários.Opção opçãoEsquemas;
     }
 }

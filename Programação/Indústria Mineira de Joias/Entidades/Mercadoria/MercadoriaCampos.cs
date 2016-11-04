@@ -43,8 +43,10 @@ namespace Entidades.Mercadoria
 		protected int? grupo;
 		protected bool depeso;
 		protected bool foradelinha;
+        protected string classificacaofiscal;
+        protected int tipounidade;
 
-		[NonSerialized]
+        [NonSerialized]
 		private DbFoto icone = null;
         private Coeficientes coeficientes = null;
 

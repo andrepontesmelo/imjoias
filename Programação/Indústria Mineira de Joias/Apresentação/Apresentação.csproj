@@ -128,6 +128,12 @@
   </Target>
   -->
   <ItemGroup>
+    <Compile Include="Administrativo\Fiscal\BaseInferior\BaseMaquinasFiscais.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Administrativo\Fiscal\BaseInferior\BaseMaquinasFiscais.Designer.cs">
+      <DependentUpon>BaseMaquinasFiscais.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administrativo\Fiscal\BaseInferior\DadosDocumento.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -151,6 +157,12 @@
     </Compile>
     <Compile Include="Administrativo\Fiscal\Combo\ComboMáquina.Designer.cs">
       <DependentUpon>ComboMáquina.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administrativo\Fiscal\Lista\ListaMáquinasECF.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Administrativo\Fiscal\Lista\ListaMáquinasECF.Designer.cs">
+      <DependentUpon>ListaMáquinasECF.cs</DependentUpon>
     </Compile>
     <Compile Include="ComboSetor.cs">
       <SubType>Component</SubType>
@@ -2372,6 +2384,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Administrativo\Fiscal\BaseInferior\BaseMaquinasFiscais.resx">
+      <DependentUpon>BaseMaquinasFiscais.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Administrativo\Fiscal\BaseInferior\DadosDocumento.resx">
       <DependentUpon>DadosDocumento.cs</DependentUpon>
     </EmbeddedResource>
@@ -2389,6 +2404,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administrativo\Fiscal\Combo\ComboTipoUnidade.resx">
       <DependentUpon>ComboTipoUnidade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrativo\Fiscal\Lista\ListaMáquinasECF.resx">
+      <DependentUpon>ListaMáquinasECF.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ComboSetor.resx">
       <DependentUpon>ComboSetor.cs</DependentUpon>
