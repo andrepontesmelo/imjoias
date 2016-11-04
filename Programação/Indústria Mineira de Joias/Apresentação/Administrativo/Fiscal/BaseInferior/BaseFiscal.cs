@@ -1,5 +1,6 @@
 ﻿using Apresentação.Administrativo.Fiscal.BaseInferior;
 using Apresentação.Administrativo.Fiscal.BaseInferior.Esquema;
+using Apresentação.Administrativo.Fiscal.BaseInferior.Inventário;
 using Apresentação.Fiscal.BaseInferior.Documentos;
 using Apresentação.Fiscal.Janela;
 using System;
@@ -36,6 +37,11 @@ namespace Apresentação.Fiscal.BaseInferior
         private void opçãoEsquemas_Click(object sender, EventArgs e)
         {
             SubstituirBase(new BaseEsquemas());
+        }
+
+        private void opçãoInventário_Click(object sender, EventArgs e)
+        {
+            SubstituirBase(new BaseInventário());
         }
     }
 }

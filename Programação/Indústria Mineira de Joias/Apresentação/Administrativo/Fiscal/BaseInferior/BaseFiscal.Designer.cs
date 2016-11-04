@@ -40,14 +40,18 @@
             this.quadro3 = new Apresentação.Formulários.Quadro();
             this.opçãoMáquinasECF = new Apresentação.Formulários.Opção();
             this.opçãoEsquemas = new Apresentação.Formulários.Opção();
+            this.quadro4 = new Apresentação.Formulários.Quadro();
+            this.opçãoInventário = new Apresentação.Formulários.Opção();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.quadro2.SuspendLayout();
             this.quadro3.SuspendLayout();
+            this.quadro4.SuspendLayout();
             this.SuspendLayout();
             // 
             // esquerda
             // 
+            this.esquerda.Controls.Add(this.quadro4);
             this.esquerda.Controls.Add(this.quadro3);
             this.esquerda.Controls.Add(this.quadro2);
             this.esquerda.Controls.Add(this.quadro1);
@@ -55,6 +59,7 @@
             this.esquerda.Controls.SetChildIndex(this.quadro1, 0);
             this.esquerda.Controls.SetChildIndex(this.quadro2, 0);
             this.esquerda.Controls.SetChildIndex(this.quadro3, 0);
+            this.esquerda.Controls.SetChildIndex(this.quadro4, 0);
             // 
             // quadro1
             // 
@@ -189,7 +194,7 @@
             this.quadro3.Cor = System.Drawing.Color.Black;
             this.quadro3.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadro3.LetraTítulo = System.Drawing.Color.White;
-            this.quadro3.Location = new System.Drawing.Point(7, 216);
+            this.quadro3.Location = new System.Drawing.Point(7, 277);
             this.quadro3.MostrarBotãoMinMax = false;
             this.quadro3.Name = "quadro3";
             this.quadro3.Size = new System.Drawing.Size(160, 94);
@@ -225,6 +230,39 @@
             this.opçãoEsquemas.TabIndex = 2;
             this.opçãoEsquemas.Click += new System.EventHandler(this.opçãoEsquemas_Click);
             // 
+            // quadro4
+            // 
+            this.quadro4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(239)))), ((int)(((byte)(221)))));
+            this.quadro4.bInfDirArredondada = true;
+            this.quadro4.bInfEsqArredondada = true;
+            this.quadro4.bSupDirArredondada = true;
+            this.quadro4.bSupEsqArredondada = true;
+            this.quadro4.Controls.Add(this.opçãoInventário);
+            this.quadro4.Cor = System.Drawing.Color.Black;
+            this.quadro4.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
+            this.quadro4.LetraTítulo = System.Drawing.Color.White;
+            this.quadro4.Location = new System.Drawing.Point(7, 214);
+            this.quadro4.MostrarBotãoMinMax = false;
+            this.quadro4.Name = "quadro4";
+            this.quadro4.Size = new System.Drawing.Size(160, 57);
+            this.quadro4.TabIndex = 9;
+            this.quadro4.Tamanho = 30;
+            this.quadro4.Título = "Inventário";
+            // 
+            // opçãoInventário
+            // 
+            this.opçãoInventário.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoInventário.Descrição = "Inventário";
+            this.opçãoInventário.Imagem = global::Apresentação.Resource.fiscal1;
+            this.opçãoInventário.Location = new System.Drawing.Point(7, 30);
+            this.opçãoInventário.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoInventário.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoInventário.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoInventário.Name = "opçãoInventário";
+            this.opçãoInventário.Size = new System.Drawing.Size(150, 16);
+            this.opçãoInventário.TabIndex = 2;
+            this.opçãoInventário.Click += new System.EventHandler(this.opçãoInventário_Click);
+            // 
             // BaseFiscal
             // 
             this.Controls.Add(this.títuloBaseInferior1);
@@ -236,6 +274,7 @@
             this.quadro1.ResumeLayout(false);
             this.quadro2.ResumeLayout(false);
             this.quadro3.ResumeLayout(false);
+            this.quadro4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -253,5 +292,7 @@
         private Formulários.Quadro quadro3;
         private Formulários.Opção opçãoMáquinasECF;
         private Formulários.Opção opçãoEsquemas;
+        private Formulários.Quadro quadro4;
+        private Formulários.Opção opçãoInventário;
     }
 }
