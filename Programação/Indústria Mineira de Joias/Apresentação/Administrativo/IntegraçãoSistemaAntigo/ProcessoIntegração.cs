@@ -1,4 +1,5 @@
 using Apresentação.Formulários;
+using Entidades.Financeiro;
 using Entidades.Moedas;
 using Negócio.Integração;
 using System;
@@ -82,7 +83,8 @@ namespace Apresentação.IntegraçãoSistemaAntigo
 
             dsNovo = ObterDataSetMercadoria(conexõesRemovidas);
             new Controles.Mercadorias.VinculoMercadoriaComponenteCusto(dsVelho, dsNovo).Transpor(strSaída);
-            double cotaçãoVarejo = Entidades.Financeiro.Cotação.ObterCotaçãoVigente(Moeda.ObterMoeda(4)).Valor;
+            new EstoqueLegado(dsVelho).Transpor();
+            double cotaçãoVarejo = Cotação.ObterCotaçãoVigente(Moeda.ObterMoeda(4)).Valor;
             MySQL.GravarDataSetTodasTabelas(dsNovo);
 
             new Controles.Mercadorias.Indices(dsVelho, dsNovo).Transpor(cotaçãoVarejo, strSaída);
