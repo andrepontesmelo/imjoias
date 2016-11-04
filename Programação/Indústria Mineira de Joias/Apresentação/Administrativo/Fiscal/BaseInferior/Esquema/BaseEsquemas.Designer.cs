@@ -31,10 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseEsquemas));
             this.títuloBaseInferior1 = new Apresentação.Formulários.TítuloBaseInferior();
             this.quadroEsquemas = new Apresentação.Formulários.Quadro();
+            this.lista = new Apresentação.Administrativo.Fiscal.Lista.ListaEsquemaProdução();
             this.quadro2 = new Apresentação.Formulários.Quadro();
             this.opçãoExcluir = new Apresentação.Formulários.Opção();
             this.opçãoNovo = new Apresentação.Formulários.Opção();
-            this.lista = new Apresentação.Administrativo.Fiscal.Lista.ListaEsquemaProdução();
             this.esquerda.SuspendLayout();
             this.quadroEsquemas.SuspendLayout();
             this.quadro2.SuspendLayout();
@@ -82,6 +82,17 @@
             this.quadroEsquemas.Tamanho = 30;
             this.quadroEsquemas.Título = "Esquemas";
             // 
+            // lista
+            // 
+            this.lista.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lista.Location = new System.Drawing.Point(0, 24);
+            this.lista.Name = "lista";
+            this.lista.Size = new System.Drawing.Size(588, 177);
+            this.lista.TabIndex = 2;
+            this.lista.AoExcluir += new System.EventHandler(this.lista_AoExcluir);
+            // 
             // quadro2
             // 
             this.quadro2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(239)))), ((int)(((byte)(221)))));
@@ -114,6 +125,7 @@
             this.opçãoExcluir.Name = "opçãoExcluir";
             this.opçãoExcluir.Size = new System.Drawing.Size(150, 16);
             this.opçãoExcluir.TabIndex = 3;
+            this.opçãoExcluir.Click += new System.EventHandler(this.opçãoExcluir_Click);
             // 
             // opçãoNovo
             // 
@@ -127,16 +139,6 @@
             this.opçãoNovo.Name = "opçãoNovo";
             this.opçãoNovo.Size = new System.Drawing.Size(150, 16);
             this.opçãoNovo.TabIndex = 2;
-            // 
-            // lista
-            // 
-            this.lista.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lista.Location = new System.Drawing.Point(0, 24);
-            this.lista.Name = "lista";
-            this.lista.Size = new System.Drawing.Size(588, 177);
-            this.lista.TabIndex = 2;
             // 
             // BaseEsquemas
             // 

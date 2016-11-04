@@ -1,6 +1,8 @@
 ﻿using Acesso.Comum;
 using Entidades.Fiscal.Tipo;
 using System.Collections.Generic;
+using System;
+using System.Text;
 
 namespace Entidades.Fiscal
 {
@@ -29,15 +31,39 @@ namespace Entidades.Fiscal
             get
             {
                 if (lstEsquemas == null)
-                    lstEsquemas = CarregarEsquemas();
+                    CarregarCache();
 
                 return lstEsquemas;
             }
         }
 
-        private static List<EsquemaProdução> CarregarEsquemas()
+        private static void CarregarCache()
         {
-            return Mapear<EsquemaProdução>("select e.*, m.nome as descricao, m.tipounidade from esquemaproducaofiscal e join mercadoria m on e.referencia=m.referencia");
+            lstEsquemas = Mapear<EsquemaProdução>("select e.*, m.nome as descricao, m.tipounidade from esquemaproducaofiscal e join mercadoria m on e.referencia=m.referencia");
+        }
+
+        public static void ExcluirRecarregandoCache(List<EsquemaProdução> seleção)
+        {
+            Excluir(seleção);
+            CarregarCache();
+        }
+
+        private static void Excluir(List<EsquemaProdução> seleção)
+        {
+            StringBuilder sql = new StringBuilder("delete from esquemaproducaofiscal where referencia in (");
+
+            bool primeiro = true;
+            foreach (EsquemaProdução e in seleção)
+            {
+                if (!primeiro)
+                    sql.Append(",");
+
+                sql.Append(DbTransformar(e.Referência));
+                primeiro = false;
+            }
+            sql.Append(")");
+
+            ExecutarComando(sql.ToString());
         }
     }
 }
