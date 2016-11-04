@@ -1,5 +1,6 @@
 ﻿using System;
 using Entidades.Fiscal.Esquema;
+using System.Windows.Forms;
 
 namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
 {
@@ -82,7 +83,25 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
 
         private void Excluir()
         {
-            throw new NotImplementedException();
+            var seleção = listaIngredientes.Seleção;
+
+            if (seleção.Count == 0)
+                return;
+
+            if (MessageBox.Show(this,
+                string.Format("Deseja excluir {0} ingrediente{1} ?",
+                seleção.Count, (seleção.Count == 1 ? "" : "s")),
+                "Confirmação de exclusão",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != DialogResult.Yes)
+                return;
+
+            Ingrediente.Excluir(seleção);
+            Carregar(esquema);
+        }
+
+        private void listaIngredientes_AoExcluir(object sender, EventArgs e)
+        {
+            Excluir();
         }
     }
 }

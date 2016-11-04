@@ -411,6 +411,7 @@
             this.listaIngredientes.Size = new System.Drawing.Size(1189, 333);
             this.listaIngredientes.TabIndex = 2;
             this.listaIngredientes.AoSelecionar += new System.EventHandler(this.listaIngredientes_AoSelecionar);
+            this.listaIngredientes.AoExcluir += new System.EventHandler(this.listaIngredientes_AoExcluir);
             // 
             // BaseEsquema
             // 

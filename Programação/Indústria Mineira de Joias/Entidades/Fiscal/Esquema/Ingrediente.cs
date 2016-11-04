@@ -1,6 +1,7 @@
 ﻿using Acesso.Comum;
 using Entidades.Fiscal.Tipo;
 using System.Collections.Generic;
+using System;
 
 namespace Entidades.Fiscal.Esquema
 {
@@ -52,6 +53,26 @@ namespace Entidades.Fiscal.Esquema
                 "quantidade=" + DbTransformar(Quantidade) +
                 " WHERE referencia=" + DbTransformar(referencia) +
                 " AND esquema=" + DbTransformar(Esquema);
+
+            ExecutarComando(sql);
+        }
+
+        public static void Excluir(List<Ingrediente> ingredientes)
+        {
+            var sql = "DELETE FROM ingredienteesquemaproducaofiscal where ";
+            bool primeiro = true;
+
+            foreach (Ingrediente i in ingredientes)
+            {
+                if (!primeiro)
+                    sql += " OR ";
+
+                sql += " (esquema= " + DbTransformar(i.esquema);
+                sql += " AND referencia=" + DbTransformar(i.referencia);
+                sql += " ) ";
+
+                primeiro = false;
+            }
 
             ExecutarComando(sql);
         }

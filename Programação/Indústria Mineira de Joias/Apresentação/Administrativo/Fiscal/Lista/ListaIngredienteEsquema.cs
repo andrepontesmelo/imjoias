@@ -14,6 +14,7 @@ namespace Apresentação.Administrativo.Fiscal.Lista
         public ListaIngredienteEsquema()
         {
             InitializeComponent();
+
             lista.SelectedIndexChanged += Lista_SelectedIndexChanged;
             lista.AoExcluir += Lista_AoExcluir;
             lista.ListViewItemSorter = new ListViewColumnSorter();
