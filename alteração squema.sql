@@ -256,4 +256,56 @@ ADD CONSTRAINT `fk_saidafiscal_1`
 
  alter table saidafiscal drop column tiposaida;
 
+ALTER TABLE `imjoias`.`mercadoria` 
+ADD COLUMN `classificacaofiscal` VARCHAR(45) NULL AFTER `depeso`;
+
+
+ALTER TABLE `imjoias`.`mercadoria` 
+ADD COLUMN `tipounidade` INT(11) NOT NULL DEFAULT 1 AFTER `classificacaofiscal`;
+
+
+
+ALTER TABLE `imjoias`.`mercadoria` 
+ADD INDEX `fk_mercadoria_1_idx` (`tipounidade` ASC);
+ALTER TABLE `imjoias`.`mercadoria` 
+ADD CONSTRAINT `fk_mercadoria_1`
+  FOREIGN KEY (`tipounidade`)
+  REFERENCES `imjoias`.`tipounidadefiscal` (`id`)
+  ON DELETE RESTRICT
+  ON UPDATE CASCADE;
+
+
+CREATE TABLE `imjoias`.`esquemaproducaofiscal` (
+  `referencia` VARCHAR(11) NOT NULL,
+  `quantidade` DECIMAL NOT NULL,
+  PRIMARY KEY (`referencia`));
+
+
+
+
+ALTER TABLE `imjoias`.`esquemaproducaofiscal` 
+ADD CONSTRAINT `fk_esquemaproducaofiscal_1`
+  FOREIGN KEY (`referencia`)
+  REFERENCES `imjoias`.`mercadoria` (`referencia`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE;
+
+CREATE TABLE `imjoias`.`ingredienteesquemaproducaofiscal` (
+  `esquema` VARCHAR(11) NOT NULL,
+  `referencia` VARCHAR(11) NOT NULL,
+  `quantidade` DECIMAL NOT NULL);
+
+ALTER TABLE `imjoias`.`ingredienteesquemaproducaofiscal` 
+ADD UNIQUE INDEX `index1` (`esquema` ASC, `referencia` ASC);
+
+
+CREATE TABLE `imjoias`.`estoquelegado` (
+  `estoque1` DECIMAL NOT NULL,
+  `estoque2` DECIMAL NOT NULL,
+  `estoque3` DECIMAL NOT NULL,
+  `estoqueanterior` DECIMAL NOT NULL,
+  `referencia` VARCHAR(11) NOT NULL,
+  PRIMARY KEY (`referencia`));
+
+
 
