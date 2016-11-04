@@ -1,4 +1,5 @@
-﻿using Entidades.Fiscal.Esquema;
+﻿using Apresentação.Formulários;
+using Entidades.Fiscal.Esquema;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -8,11 +9,25 @@ namespace Apresentação.Administrativo.Fiscal.Lista
     public partial class ListaIngredienteEsquema : UserControl
     {
         public event EventHandler AoSelecionar;
+        public event EventHandler AoExcluir;
 
         public ListaIngredienteEsquema()
         {
             InitializeComponent();
             lista.SelectedIndexChanged += Lista_SelectedIndexChanged;
+            lista.AoExcluir += Lista_AoExcluir;
+            lista.ListViewItemSorter = new ListViewColumnSorter();
+            lista.ColumnClick += Lista_ColumnClick;
+        }
+
+        private void Lista_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            ((ListViewColumnSorter)lista.ListViewItemSorter).OnClick(lista, e);
+        }
+
+        private void Lista_AoExcluir(object sender, EventArgs e)
+        {
+            AoExcluir?.Invoke(sender, e);
         }
 
         private void Lista_SelectedIndexChanged(object sender, EventArgs e)

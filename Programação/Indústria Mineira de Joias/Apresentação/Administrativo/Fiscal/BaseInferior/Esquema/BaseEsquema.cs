@@ -74,5 +74,15 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
             cmbTipoUnidadeSelecionada.Seleção = mercadoria == null ? null :
                 Entidades.Fiscal.Tipo.TipoUnidade.Obter(mercadoria.TipoUnidadeComercial);
         }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            Excluir();
+        }
+
+        private void Excluir()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

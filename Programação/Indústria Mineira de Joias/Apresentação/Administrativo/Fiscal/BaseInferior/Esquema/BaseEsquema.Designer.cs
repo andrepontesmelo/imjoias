@@ -160,8 +160,8 @@
             this.txtReferênciaProduzida.Name = "txtReferênciaProduzida";
             this.txtReferênciaProduzida.Referência = "";
             this.txtReferênciaProduzida.Size = new System.Drawing.Size(244, 20);
-            this.txtReferênciaProduzida.TabIndex = 0;
             this.txtReferênciaProduzida.SomenteDeLinha = false;
+            this.txtReferênciaProduzida.TabIndex = 0;
             // 
             // label5
             // 
@@ -272,6 +272,7 @@
             this.btnExcluir.TabIndex = 17;
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // cmbTipoUnidadeSelecionada
             // 
@@ -395,7 +396,7 @@
             this.quadro3.Location = new System.Drawing.Point(193, 345);
             this.quadro3.MostrarBotãoMinMax = false;
             this.quadro3.Name = "quadro3";
-            this.quadro3.Size = new System.Drawing.Size(1189, 293);
+            this.quadro3.Size = new System.Drawing.Size(1189, 357);
             this.quadro3.TabIndex = 9;
             this.quadro3.Tamanho = 30;
             this.quadro3.Título = "Ingredientes";
@@ -407,7 +408,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listaIngredientes.Location = new System.Drawing.Point(0, 24);
             this.listaIngredientes.Name = "listaIngredientes";
-            this.listaIngredientes.Size = new System.Drawing.Size(1189, 269);
+            this.listaIngredientes.Size = new System.Drawing.Size(1189, 333);
             this.listaIngredientes.TabIndex = 2;
             this.listaIngredientes.AoSelecionar += new System.EventHandler(this.listaIngredientes_AoSelecionar);
             // 
