@@ -34,7 +34,12 @@ namespace Entidades.Fiscal.Cupom
 
         private int? ObterCódigoMáquina(CupomFiscal cupom)
         {
-            return Máquina.ObterCódigoMáquinaInserindo(cupom.ModeloECF, cupom.NumeroFabricacao);
+            bool modoTeste = Acesso.Comum.Usuários.UsuárioAtual == null;
+
+            if (modoTeste)
+                return 0;
+            else
+                return Máquina.ObterCódigoMáquinaInserindo(cupom.ModeloECF, cupom.NumeroFabricacao);
         }
 
         private List<ItemFiscal> AdaptarItens(List<DetalheCupomFiscal> detalhes)
