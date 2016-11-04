@@ -7,17 +7,33 @@ using System.Text;
 namespace Entidades.Fiscal.Esquema
 {
     [DbTabela("esquemaproducaofiscal")]
-    public class EsquemaProdução : DbManipulaçãoAutomática
+    public class EsquemaProdução : DbManipulaçãoSimples
     {
-        [DbChavePrimária(false)]
         private string referencia;
+        private string referenciaAlterada;
         private decimal quantidade;
         private string descricao;
         private int tipounidade;
         private int cfop;
 
-        public string Referência => referencia;
-        public decimal Quantidade => quantidade;
+        public string Referência
+        {
+            get
+            {
+                return referenciaAlterada == null ? referencia : referenciaAlterada;
+            }
+            set
+            {
+                referenciaAlterada = value;
+            }
+        }
+
+        public decimal Quantidade
+        {
+            get { return quantidade; }
+            set { quantidade = value; }
+        }
+
         public string Descrição => descricao;
         public TipoUnidade TipoUnidadeFiscal => TipoUnidade.Obter(tipounidade);
         public int CFOP => cfop;
@@ -39,19 +55,24 @@ namespace Entidades.Fiscal.Esquema
             }
         }
 
+        private static void EsquecerCache()
+        {
+            lstEsquemas = null;
+        }
+
         private static void CarregarCache()
         {
             lstEsquemas = Mapear<EsquemaProdução>("select e.*, m.nome as descricao, m.tipounidade, m.cfop from " + 
                 " esquemaproducaofiscal e join mercadoria m on e.referencia=m.referencia");
         }
 
-        public static void ExcluirRecarregandoCache(List<EsquemaProdução> seleção)
+        public static void Excluir(List<EsquemaProdução> seleção)
         {
-            Excluir(seleção);
-            CarregarCache();
+            ExcluirEntidades(seleção);
+            EsquecerCache();
         }
 
-        private static void Excluir(List<EsquemaProdução> seleção)
+        private static void ExcluirEntidades(List<EsquemaProdução> seleção)
         {
             StringBuilder sql = new StringBuilder("delete from esquemaproducaofiscal where referencia in (");
 
@@ -67,6 +88,20 @@ namespace Entidades.Fiscal.Esquema
             sql.Append(")");
 
             ExecutarComando(sql.ToString());
+        }
+
+        public void Atualizar()
+        {
+            AtualizarEntidade();
+            EsquecerCache();
+        }
+
+        private void AtualizarEntidade()
+        {
+            ExecutarComando(string.Format("UPDATE esquemaproducaofiscal set quantidade={0}, referencia={1} WHERE referencia={2}",
+                DbTransformar(quantidade),
+                (DbTransformar(referenciaAlterada == null ? referencia : referenciaAlterada)),
+                DbTransformar(referencia)));
         }
     }
 }

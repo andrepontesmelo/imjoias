@@ -135,6 +135,7 @@
             this.txtQuantidadeProduzida.Size = new System.Drawing.Size(79, 20);
             this.txtQuantidadeProduzida.TabIndex = 3;
             this.txtQuantidadeProduzida.Text = "1";
+            this.txtQuantidadeProduzida.Validating += new System.ComponentModel.CancelEventHandler(this.txtQuantidadeProduzida_Validating);
             // 
             // txtDescriçãoProduzida
             // 
@@ -162,6 +163,7 @@
             this.txtReferênciaProduzida.Size = new System.Drawing.Size(244, 20);
             this.txtReferênciaProduzida.SomenteDeLinha = false;
             this.txtReferênciaProduzida.TabIndex = 0;
+            this.txtReferênciaProduzida.ReferênciaConfirmada += new System.EventHandler(this.txtReferênciaProduzida_ReferênciaConfirmada);
             // 
             // label5
             // 

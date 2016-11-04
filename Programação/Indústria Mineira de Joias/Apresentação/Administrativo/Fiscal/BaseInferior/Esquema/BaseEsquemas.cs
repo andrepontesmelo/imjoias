@@ -37,7 +37,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != DialogResult.Yes)
                 return;
 
-            EsquemaProdução.ExcluirRecarregandoCache(seleção);
+            EsquemaProdução.Excluir(seleção);
             lista.Carregar();
         }
 

@@ -21,7 +21,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
             listaIngredientes.Carregar(esquema);
 
             txtCFOPProduzido.Text = esquema.CFOP.ToString();
-            txtReferênciaProduzida.Referência = esquema.Referência;
+            txtReferênciaProduzida.Referência = Entidades.Mercadoria.Mercadoria.MascararReferência(esquema.Referência, true);
             txtQuantidadeProduzida.Text = esquema.Quantidade.ToString();
             txtDescriçãoProduzida.Text = esquema.Descrição;
             cmbTipoUnidadeProduzido.Seleção = esquema.TipoUnidadeFiscal;
@@ -122,6 +122,45 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
 
             listaIngredientes.Carregar(esquema);
             CarregarIngrediente(null);
+        }
+
+        private void txtQuantidadeProduzida_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            decimal quantidadeAnterior = esquema.Quantidade;
+
+            try
+            {
+                esquema.Quantidade = (decimal)txtQuantidadeProduzida.Double;
+                esquema.Atualizar();
+            } catch(Exception)
+            {
+                esquema.Quantidade = quantidadeAnterior;
+                e.Cancel = true;
+            }
+
+            e.Cancel = false;
+        }
+
+        private void txtReferênciaProduzida_ReferênciaConfirmada(object sender, EventArgs e)
+        {
+            string referênciaAnterior = esquema.Referência;
+
+            try
+            {
+                esquema.Referência = txtReferênciaProduzida.ReferênciaNumérica;
+                esquema.Atualizar();
+            }
+            catch (Exception)
+            {
+                esquema.Referência = referênciaAnterior;
+                txtReferênciaProduzida.Referência = referênciaAnterior;
+
+                MessageBox.Show(this,
+                    "Verifique se esta referência já possui esquema de produção",
+                    "Erro ao alterar referência",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
     }
 }
