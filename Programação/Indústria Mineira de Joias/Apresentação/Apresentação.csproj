@@ -2384,6 +2384,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Administrativo\Fiscal\BaseInferior\BaseMaquinasFiscais.resx">
+      <DependentUpon>BaseMaquinasFiscais.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Administrativo\Fiscal\BaseInferior\DadosDocumento.resx">
       <DependentUpon>DadosDocumento.cs</DependentUpon>
     </EmbeddedResource>
