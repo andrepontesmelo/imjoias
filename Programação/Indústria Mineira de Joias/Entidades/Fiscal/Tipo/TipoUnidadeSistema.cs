@@ -2,10 +2,10 @@
 {
     public enum TipoUnidadeSistema : int
     {
-        Pca = 1,
-        Par = 2,
-        Grs = 3,
-        Un = 4,
-        Cxa = 5
+        Pca = 0,
+        Par = 1,
+        Grs = 2,
+        Un = 3,
+        Cxa = 4
     }
 }

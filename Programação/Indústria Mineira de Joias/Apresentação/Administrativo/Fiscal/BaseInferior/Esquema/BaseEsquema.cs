@@ -21,7 +21,11 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
             listaIngredientes.Carregar(esquema);
 
             txtCFOPProduzido.Text = esquema.CFOP.ToString();
-            txtReferênciaProduzida.Referência = Entidades.Mercadoria.Mercadoria.MascararReferência(esquema.Referência, true);
+            if (esquema.Referência != null)
+                txtReferênciaProduzida.Referência = Entidades.Mercadoria.Mercadoria.MascararReferência(esquema.Referência, true);
+            else
+                txtReferênciaProduzida.Referência = "";
+
             txtQuantidadeProduzida.Text = esquema.Quantidade.ToString();
             txtDescriçãoProduzida.Text = esquema.Descrição;
             cmbTipoUnidadeProduzido.Seleção = esquema.TipoUnidadeFiscal;
@@ -131,7 +135,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
             try
             {
                 esquema.Quantidade = (decimal)txtQuantidadeProduzida.Double;
-                esquema.Atualizar();
+                esquema.Persistir();
             } catch(Exception)
             {
                 esquema.Quantidade = quantidadeAnterior;
@@ -148,7 +152,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
             try
             {
                 esquema.Referência = txtReferênciaProduzida.ReferênciaNumérica;
-                esquema.Atualizar();
+                esquema.Persistir();
             }
             catch (Exception)
             {

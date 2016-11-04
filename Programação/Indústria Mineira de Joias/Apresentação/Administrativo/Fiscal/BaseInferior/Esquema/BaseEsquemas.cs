@@ -48,7 +48,10 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
 
         private void opçãoNovo_Click(object sender, EventArgs e)
         {
-            SubstituirBase(new BaseEsquema());
+            var baseEsquema = new BaseEsquema();
+            baseEsquema.Carregar(new EsquemaProdução());
+
+            SubstituirBase(baseEsquema);
         }
 
         private void lista_AoDuploClique(object sender, EventArgs e)

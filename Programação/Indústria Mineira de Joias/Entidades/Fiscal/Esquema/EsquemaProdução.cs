@@ -7,7 +7,7 @@ using System.Text;
 namespace Entidades.Fiscal.Esquema
 {
     [DbTabela("esquemaproducaofiscal")]
-    public class EsquemaProdução : DbManipulaçãoSimples
+    public class EsquemaProdução : DbManipulaçãoAutomática
     {
         private string referencia;
         private string referenciaAlterada;
@@ -90,9 +90,13 @@ namespace Entidades.Fiscal.Esquema
             ExecutarComando(sql.ToString());
         }
 
-        public void Atualizar()
+        public void Persistir()
         {
-            AtualizarEntidade();
+            if (!Cadastrado)
+                CadastrarEntidade();
+            else
+                AtualizarEntidade();
+
             EsquecerCache();
         }
 
@@ -102,6 +106,17 @@ namespace Entidades.Fiscal.Esquema
                 DbTransformar(quantidade),
                 (DbTransformar(referenciaAlterada == null ? referencia : referenciaAlterada)),
                 DbTransformar(referencia)));
+
+            DefinirAtualizado();
+        }
+
+        private void CadastrarEntidade()
+        {
+            ExecutarComando(string.Format("INSERT INTO esquemaproducaofiscal (quantidade, referencia) values ({0}, {1})",
+                DbTransformar(quantidade),
+                (DbTransformar(referenciaAlterada == null ? referencia : referenciaAlterada))));
+
+            DefinirCadastrado();
         }
     }
 }
