@@ -307,5 +307,8 @@ CREATE TABLE `imjoias`.`estoquelegado` (
   `referencia` VARCHAR(11) NOT NULL,
   PRIMARY KEY (`referencia`));
 
+ insert into tipounidadefiscal( id, nome) values (5, 'Caixa');
+
+
 
 
