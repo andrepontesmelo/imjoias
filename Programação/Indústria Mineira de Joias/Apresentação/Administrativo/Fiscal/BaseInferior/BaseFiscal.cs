@@ -1,4 +1,5 @@
 ﻿using Apresentação.Administrativo.Fiscal.BaseInferior;
+using Apresentação.Administrativo.Fiscal.BaseInferior.Esquema;
 using Apresentação.Fiscal.BaseInferior.Documentos;
 using Apresentação.Fiscal.Janela;
 using System;
@@ -30,6 +31,11 @@ namespace Apresentação.Fiscal.BaseInferior
         private void opçãoMáquinasECF_Click(object sender, EventArgs e)
         {
             SubstituirBase(new BaseMaquinasFiscais());
+        }
+
+        private void opçãoEsquemas_Click(object sender, EventArgs e)
+        {
+            SubstituirBase(new BaseEsquemas());
         }
     }
 }

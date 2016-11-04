@@ -223,6 +223,7 @@
             this.opçãoEsquemas.Name = "opçãoEsquemas";
             this.opçãoEsquemas.Size = new System.Drawing.Size(150, 16);
             this.opçãoEsquemas.TabIndex = 2;
+            this.opçãoEsquemas.Click += new System.EventHandler(this.opçãoEsquemas_Click);
             // 
             // BaseFiscal
             // 
