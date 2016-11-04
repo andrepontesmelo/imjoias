@@ -266,7 +266,7 @@ namespace Entidades.Mercadoria
 
         public static IMercadoriaCampos[] ObterMercadorias(string prefixo, int limite)
         {
-            return ObterMercadorias(prefixo, limite, false, true);
+            return ObterMercadorias(prefixo, limite, false);
         }
 
         public static IEnumerator ObterEnumeradorMercadoriaCampos()
@@ -283,7 +283,7 @@ namespace Entidades.Mercadoria
         /// <remarks>
         /// Não são recuperadas mercadorias fora de linha.
         /// </remarks>
-        public static IMercadoriaCampos[] ObterMercadorias(string prefixo, int limite, bool somenteComFotos, bool somenteEmLinha)
+        public static IMercadoriaCampos[] ObterMercadorias(string prefixo, int limite, bool somenteComFotos)
         {
             string procura;
             int dígito;
@@ -294,22 +294,16 @@ namespace Entidades.Mercadoria
             if (árvore != null)
             {
                 PatriciaPrefixoEnumerator<MercadoriaCampos> enumerador;
-                List<MercadoriaCampos> campos = new List<MercadoriaCampos>();
+                MercadoriaCampos[] campos;
                 int i = 0;
 
                 enumerador = árvore.GetPrefixo(procura);
+                campos = new MercadoriaCampos[Math.Min(enumerador.Count, limite)];
 
                 while (i < limite && enumerador.MoveNext())
-                {
-                    var atual = enumerador.Current;
+                    campos[i++] = enumerador.Current;
 
-                    if (somenteEmLinha && atual.ForaDeLinha)
-                        continue;
-
-                    campos.Add(atual);
-                }
-
-                return campos.ToArray();
+                return campos;
             }
             else
             {
@@ -329,16 +323,13 @@ namespace Entidades.Mercadoria
                         {
                             // Recuperar mercadorias
                             cmd.CommandText = "SELECT distinct mercadoria.referencia, mercadoria.digito, mercadoria.dePeso, mercadoria.peso "
-                                + "FROM mercadoria, foto  WHERE foto.mercadoria=referencia AND referencia LIKE '" + procura + "%' "
-                                + (somenteEmLinha ? " AND foradelinha = 0 "  : "")
-                                + " LIMIT " + limite.ToString();
+                                + "FROM mercadoria, foto  WHERE foto.mercadoria=referencia AND referencia LIKE '" + procura + "%' AND foradelinha = 0 LIMIT " + limite.ToString();
                         }
                         else
                         {
                             cmd.CommandText = "SELECT referencia, digito, dePeso, peso "
-                                + "FROM mercadoria WHERE referencia LIKE '" + procura + "%' " 
-                                + (somenteEmLinha ? " AND foradelinha = 0 " : "") 
-                                + " LIMIT " + limite.ToString();
+                                + "FROM mercadoria WHERE referencia LIKE '" + procura + "%' AND foradelinha = 0 LIMIT " + limite.ToString();
+
                         }
 
                         try
@@ -661,7 +652,7 @@ namespace Entidades.Mercadoria
                 {
                     using (IDbCommand cmd = conexão.CreateCommand())
                     {
-                        cmd.CommandText = "SELECT * FROM mercadoria ";
+                        cmd.CommandText = "SELECT * FROM mercadoria WHERE foradelinha = 0";
 
                         List<MercadoriaCampos> lista = Mapear<MercadoriaCampos>(cmd);
                         Patricia<MercadoriaCampos> árvore;
