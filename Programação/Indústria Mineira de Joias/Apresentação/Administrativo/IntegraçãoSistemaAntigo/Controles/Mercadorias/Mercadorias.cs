@@ -72,6 +72,8 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             novoItem["peso"] = itemAtual["CM_PESO"];
             novoItem["faixa"] = itemAtual["CM_FAIXA"];
             novoItem["digito"] = itemAtual["CM_DIGMER"];
+            novoItem["classificacaofiscal"] = itemAtual["CM_CLASFIS"];
+            novoItem["tipounidade"] = ObterTipoUnidadeFiscal(itemAtual["CM_UNID"].ToString());
 
             if (!Faixas.ExiteFaixa(novoItem["faixa"].ToString()))
             {
@@ -115,6 +117,10 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 
 		}
 
+        private int ObterTipoUnidadeFiscal(string nome)
+        {
+            return (int) Entidades.Fiscal.Tipo.TipoUnidadeInterpretação.Interpretar(nome);
+        }
 
         private static Dictionary<string, string> hashCorreção;
         private static Dictionary<string, bool> stopWord;

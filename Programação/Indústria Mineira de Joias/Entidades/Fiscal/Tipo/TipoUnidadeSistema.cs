@@ -5,6 +5,7 @@
         Pca = 1,
         Par = 2,
         Grs = 3,
-        Un = 4
+        Un = 4,
+        Cxa = 5
     }
 }

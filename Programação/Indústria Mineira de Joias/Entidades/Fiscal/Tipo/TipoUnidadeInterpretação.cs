@@ -13,6 +13,13 @@ namespace Entidades.Fiscal.Tipo
                     descrição.ToLower().CompareTo("peca") == 0)
                 return TipoUnidadeSistema.Pca;
 
+            if (descrição.ToLower().StartsWith("bob"))
+                return TipoUnidadeSistema.Un;
+
+            if (descrição.ToLower().StartsWith("ca7"))
+                return TipoUnidadeSistema.Pca;
+
+
             return (TipoUnidadeSistema) Enum.Parse(typeof(TipoUnidadeSistema), descrição, true);
         }
     }
