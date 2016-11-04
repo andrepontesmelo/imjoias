@@ -310,5 +310,7 @@ CREATE TABLE `imjoias`.`estoquelegado` (
  insert into tipounidadefiscal( id, nome) values (5, 'Caixa');
 
 
+ALTER TABLE `imjoias`.`mercadoria` 
+ADD COLUMN `cfop` INT(11) NOT NULL DEFAULT 5101 AFTER `tipounidade`;
 
 
