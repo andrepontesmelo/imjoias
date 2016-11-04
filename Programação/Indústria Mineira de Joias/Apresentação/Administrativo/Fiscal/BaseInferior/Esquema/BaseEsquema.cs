@@ -6,6 +6,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
     public partial class BaseEsquema : Apresentação.Formulários.BaseInferior
     {
         private EsquemaProdução esquema;
+        private Ingrediente ingrediente;
 
         public BaseEsquema()
         {
@@ -30,7 +31,10 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
             var seleção = listaIngredientes.Seleção;
 
             if (seleção.Count == 0)
+            {
+                btnAlterar.Enabled = false;
                 return;
+            }
 
             CarregarIngrediente(seleção[0]);
         }
@@ -42,6 +46,33 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
             txtQuantidadeSelecionada.Text = ingrediente.Quantidade.ToString();
             txtDescriçãoSelecionado.Text = ingrediente.Descrição;
             cmbTipoUnidadeSelecionada.Seleção = ingrediente.TipoUnidadeComercial;
+
+            this.ingrediente = ingrediente;
+            btnAlterar.Enabled = true;
+        }
+
+        private void btnAlterar_Click(object sender, EventArgs e)
+        {
+            btnAlterar.Enabled = false;
+
+            ingrediente.Referência = txtReferênciaSelecionada.ReferênciaNumérica;
+            ingrediente.Quantidade = (decimal)txtQuantidadeSelecionada.Double;
+            ingrediente.Persistir();
+            ingrediente = null;
+
+            listaIngredientes.Carregar(esquema);
+        }
+
+        private void txtReferênciaSelecionada_ReferênciaAlterada(object sender, EventArgs e)
+        {
+            var mercadoria = Entidades.Mercadoria.Mercadoria.ObterMercadoria(txtReferênciaSelecionada.ReferênciaNumérica);
+
+            btnAlterar.Enabled = mercadoria != null && ingrediente != null;
+
+            txtDescriçãoSelecionado.Text = mercadoria?.Descrição;
+            txtCFOPSelecionado.Text = mercadoria?.CFOP.ToString();
+            cmbTipoUnidadeSelecionada.Seleção = mercadoria == null ? null :
+                Entidades.Fiscal.Tipo.TipoUnidade.Obter(mercadoria.TipoUnidadeComercial);
         }
     }
 }

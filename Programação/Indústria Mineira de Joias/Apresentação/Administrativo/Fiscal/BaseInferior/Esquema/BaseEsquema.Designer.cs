@@ -161,6 +161,7 @@
             this.txtReferênciaProduzida.Referência = "";
             this.txtReferênciaProduzida.Size = new System.Drawing.Size(244, 20);
             this.txtReferênciaProduzida.TabIndex = 0;
+            this.txtReferênciaProduzida.SomenteDeLinha = false;
             // 
             // label5
             // 
@@ -254,12 +255,14 @@
             // 
             // btnAlterar
             // 
+            this.btnAlterar.Enabled = false;
             this.btnAlterar.Location = new System.Drawing.Point(623, 93);
             this.btnAlterar.Name = "btnAlterar";
             this.btnAlterar.Size = new System.Drawing.Size(75, 23);
             this.btnAlterar.TabIndex = 18;
             this.btnAlterar.Text = "Alterar";
             this.btnAlterar.UseVisualStyleBackColor = true;
+            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
             // 
             // btnExcluir
             // 
@@ -318,10 +321,14 @@
             // txtReferênciaSelecionada
             // 
             this.txtReferênciaSelecionada.Location = new System.Drawing.Point(11, 47);
+            this.txtReferênciaSelecionada.MostrarBalãoRefNãoEncontrada = false;
             this.txtReferênciaSelecionada.Name = "txtReferênciaSelecionada";
             this.txtReferênciaSelecionada.Referência = "";
             this.txtReferênciaSelecionada.Size = new System.Drawing.Size(244, 20);
+            this.txtReferênciaSelecionada.SomenteCadastrado = true;
+            this.txtReferênciaSelecionada.SomenteDeLinha = false;
             this.txtReferênciaSelecionada.TabIndex = 7;
+            this.txtReferênciaSelecionada.ReferênciaAlterada += new System.EventHandler(this.txtReferênciaSelecionada_ReferênciaAlterada);
             // 
             // label6
             // 
