@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System;
 using System.Text;
 
-namespace Entidades.Fiscal
+namespace Entidades.Fiscal.Esquema
 {
     [DbTabela("esquemaproducaofiscal")]
     public class EsquemaProdução : DbManipulaçãoAutomática

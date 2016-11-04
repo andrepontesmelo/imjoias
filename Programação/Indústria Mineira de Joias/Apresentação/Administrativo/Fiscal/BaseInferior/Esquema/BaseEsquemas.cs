@@ -1,4 +1,4 @@
-﻿using Entidades.Fiscal;
+﻿using Entidades.Fiscal.Esquema;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -44,6 +44,22 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
         private void opçãoExcluir_Click(object sender, EventArgs e)
         {
             Excluir();
+        }
+
+        private void opçãoNovo_Click(object sender, EventArgs e)
+        {
+            SubstituirBase(new BaseEsquema());
+        }
+
+        private void lista_AoDuploClique(object sender, EventArgs e)
+        {
+            if (lista.Seleção == null || lista.Seleção.Count == 0)
+                return;
+
+            var baseEsquema = new BaseEsquema();
+            baseEsquema.Carregar(lista.Seleção[0]);
+
+            SubstituirBase(baseEsquema);
         }
     }
 }

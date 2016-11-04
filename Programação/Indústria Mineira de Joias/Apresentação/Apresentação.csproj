@@ -152,6 +152,12 @@
     <Compile Include="Administrativo\Fiscal\BaseInferior\DadosDocumentoSaída.Designer.cs">
       <DependentUpon>DadosDocumentoSaída.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrativo\Fiscal\BaseInferior\Esquema\BaseEsquema.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Administrativo\Fiscal\BaseInferior\Esquema\BaseEsquema.Designer.cs">
+      <DependentUpon>BaseEsquema.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administrativo\Fiscal\BaseInferior\Esquema\BaseEsquemas.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -169,6 +175,12 @@
     </Compile>
     <Compile Include="Administrativo\Fiscal\Lista\ListaEsquemaProdução.Designer.cs">
       <DependentUpon>ListaEsquemaProdução.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administrativo\Fiscal\Lista\ListaIngredienteEsquema.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Administrativo\Fiscal\Lista\ListaIngredienteEsquema.Designer.cs">
+      <DependentUpon>ListaIngredienteEsquema.cs</DependentUpon>
     </Compile>
     <Compile Include="Administrativo\Fiscal\Lista\ListaMáquinasECF.cs">
       <SubType>UserControl</SubType>
@@ -2408,6 +2420,9 @@
     <EmbeddedResource Include="Administrativo\Fiscal\BaseInferior\DadosDocumentoSaída.resx">
       <DependentUpon>DadosDocumentoSaída.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Administrativo\Fiscal\BaseInferior\Esquema\BaseEsquema.resx">
+      <DependentUpon>BaseEsquema.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Administrativo\Fiscal\BaseInferior\Esquema\BaseEsquemas.resx">
       <DependentUpon>BaseEsquemas.cs</DependentUpon>
     </EmbeddedResource>
@@ -2422,6 +2437,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administrativo\Fiscal\Lista\ListaEsquemaProdução.resx">
       <DependentUpon>ListaEsquemaProdução.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrativo\Fiscal\Lista\ListaIngredienteEsquema.resx">
+      <DependentUpon>ListaIngredienteEsquema.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administrativo\Fiscal\Lista\ListaMáquinasECF.resx">
       <DependentUpon>ListaMáquinasECF.cs</DependentUpon>

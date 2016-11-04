@@ -92,6 +92,7 @@
             this.lista.Size = new System.Drawing.Size(588, 177);
             this.lista.TabIndex = 2;
             this.lista.AoExcluir += new System.EventHandler(this.lista_AoExcluir);
+            this.lista.AoDuploClique += new System.EventHandler(this.lista_AoDuploClique);
             // 
             // quadro2
             // 
@@ -139,6 +140,7 @@
             this.opçãoNovo.Name = "opçãoNovo";
             this.opçãoNovo.Size = new System.Drawing.Size(150, 16);
             this.opçãoNovo.TabIndex = 2;
+            this.opçãoNovo.Click += new System.EventHandler(this.opçãoNovo_Click);
             // 
             // BaseEsquemas
             // 

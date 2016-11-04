@@ -1,20 +1,28 @@
 ﻿using Apresentação.Formulários;
-using Entidades.Fiscal;
+using Entidades.Fiscal.Esquema;
 using System;
-using System.Windows.Forms;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Apresentação.Administrativo.Fiscal.Lista
 {
     public partial class ListaEsquemaProdução : UserControl
     {
         public event EventHandler AoExcluir;
+        public event EventHandler AoDuploClique;
 
         public ListaEsquemaProdução()
         {
             InitializeComponent();
+
             lista.ListViewItemSorter = new ListViewColumnSorter();
             lista.AoExcluir += Lista_AoExcluir;
+            lista.DoubleClick += Lista_DoubleClick;
+        }
+
+        private void Lista_DoubleClick(object sender, EventArgs e)
+        {
+            AoDuploClique?.Invoke(sender, e);
         }
 
         private void Lista_AoExcluir(object sender, EventArgs e)
