@@ -100,5 +100,20 @@
             get;
             set;
         }
+
+        int CFOP
+        {
+            get;
+        }
+
+        int TipoUnidadeComercial
+        {
+            get;
+        }
+
+        string ClassificaçãoFiscal
+        {
+            get;
+        }
     }
 }

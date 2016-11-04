@@ -250,6 +250,9 @@ namespace Entidades.Mercadoria
             set { foradelinha = value; DefinirDesatualizado(); }
 		}
 
+        public int CFOP => cfop;
+        public int TipoUnidadeComercial => tipounidade;
+        public string ClassificaçãoFiscal => classificacaofiscal;
 
 		public void Dispose()
 		{

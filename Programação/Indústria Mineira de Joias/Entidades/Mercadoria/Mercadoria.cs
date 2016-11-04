@@ -209,6 +209,9 @@ namespace Entidades.Mercadoria
 		public string ReferênciaNumérica => campos.ReferênciaNumérica;
 		public string Descrição => campos.Descrição;
 		public int Teor => campos.Teor;
+        public int CFOP => campos.CFOP;
+        public int TipoUnidadeComercial => campos.TipoUnidadeComercial;
+        public string ClassificaçãoFiscal => campos.ClassificaçãoFiscal;
 
 		/// <summary>
 		/// Peso da mercadoria
