@@ -513,16 +513,16 @@ namespace Entidades.Mercadoria
         /// <remarks>
         /// Não são retornadas mercadorias fora de linha.
         /// </remarks>
-        public static Mercadoria[] ObterMercadorias(string prefixo, int limite, Tabela tabela)
+        public static Mercadoria[] ObterMercadorias(string prefixo, int limite, Tabela tabela, bool somenteEmLinha)
         {
-            return ObterMercadorias(prefixo, limite, tabela, false);
+            return ObterMercadorias(prefixo, limite, tabela, false, somenteEmLinha);
         }
 
-        public static Mercadoria[] ObterMercadorias(string prefixo, int limite, Tabela tabela, bool somenteComFotos)
+        public static Mercadoria[] ObterMercadorias(string prefixo, int limite, Tabela tabela, bool somenteComFotos, bool somenteEmLinha)
 		{
             IMercadoriaCampos[] campos;
 
-            campos = MercadoriaCampos.ObterMercadorias(prefixo, limite, somenteComFotos);
+            campos = MercadoriaCampos.ObterMercadorias(prefixo, limite, somenteComFotos, somenteEmLinha);
 
             return Encapsular(campos, tabela);
 		}
