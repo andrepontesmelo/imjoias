@@ -41,9 +41,23 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.quadro2 = new Apresentação.Formulários.Quadro();
+            this.btnAdicionar = new System.Windows.Forms.Button();
+            this.btnAlterar = new System.Windows.Forms.Button();
+            this.btnExcluir = new System.Windows.Forms.Button();
+            this.cmbTipoUnidadeSelecionada = new Apresentação.Fiscal.Combobox.ComboTipoUnidade();
+            this.txtQuantidadeSelecionada = new AMS.TextBox.NumericTextBox();
+            this.txtDescriçãoSelecionado = new System.Windows.Forms.TextBox();
+            this.txtCFOPSelecionado = new System.Windows.Forms.TextBox();
+            this.txtReferênciaSelecionada = new Apresentação.Mercadoria.TxtMercadoria();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.quadro3 = new Apresentação.Formulários.Quadro();
             this.listaIngredientes = new Apresentação.Administrativo.Fiscal.Lista.ListaIngredienteEsquema();
             this.quadro1.SuspendLayout();
+            this.quadro2.SuspendLayout();
             this.quadro3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -205,16 +219,157 @@
             this.quadro2.bInfEsqArredondada = true;
             this.quadro2.bSupDirArredondada = true;
             this.quadro2.bSupEsqArredondada = true;
+            this.quadro2.Controls.Add(this.btnAdicionar);
+            this.quadro2.Controls.Add(this.btnAlterar);
+            this.quadro2.Controls.Add(this.btnExcluir);
+            this.quadro2.Controls.Add(this.cmbTipoUnidadeSelecionada);
+            this.quadro2.Controls.Add(this.txtQuantidadeSelecionada);
+            this.quadro2.Controls.Add(this.txtDescriçãoSelecionado);
+            this.quadro2.Controls.Add(this.txtCFOPSelecionado);
+            this.quadro2.Controls.Add(this.txtReferênciaSelecionada);
+            this.quadro2.Controls.Add(this.label6);
+            this.quadro2.Controls.Add(this.label7);
+            this.quadro2.Controls.Add(this.label8);
+            this.quadro2.Controls.Add(this.label9);
+            this.quadro2.Controls.Add(this.label10);
             this.quadro2.Cor = System.Drawing.Color.Black;
             this.quadro2.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadro2.LetraTítulo = System.Drawing.Color.White;
-            this.quadro2.Location = new System.Drawing.Point(193, 278);
+            this.quadro2.Location = new System.Drawing.Point(193, 217);
             this.quadro2.MostrarBotãoMinMax = false;
             this.quadro2.Name = "quadro2";
-            this.quadro2.Size = new System.Drawing.Size(1189, 186);
+            this.quadro2.Size = new System.Drawing.Size(1189, 122);
             this.quadro2.TabIndex = 9;
             this.quadro2.Tamanho = 30;
             this.quadro2.Título = "Ingrediente Selecionado";
+            // 
+            // btnAdicionar
+            // 
+            this.btnAdicionar.Location = new System.Drawing.Point(704, 93);
+            this.btnAdicionar.Name = "btnAdicionar";
+            this.btnAdicionar.Size = new System.Drawing.Size(75, 23);
+            this.btnAdicionar.TabIndex = 19;
+            this.btnAdicionar.Text = "Adicionar";
+            this.btnAdicionar.UseVisualStyleBackColor = true;
+            // 
+            // btnAlterar
+            // 
+            this.btnAlterar.Location = new System.Drawing.Point(623, 93);
+            this.btnAlterar.Name = "btnAlterar";
+            this.btnAlterar.Size = new System.Drawing.Size(75, 23);
+            this.btnAlterar.TabIndex = 18;
+            this.btnAlterar.Text = "Alterar";
+            this.btnAlterar.UseVisualStyleBackColor = true;
+            // 
+            // btnExcluir
+            // 
+            this.btnExcluir.Location = new System.Drawing.Point(542, 93);
+            this.btnExcluir.Name = "btnExcluir";
+            this.btnExcluir.Size = new System.Drawing.Size(75, 23);
+            this.btnExcluir.TabIndex = 17;
+            this.btnExcluir.Text = "Excluir";
+            this.btnExcluir.UseVisualStyleBackColor = true;
+            // 
+            // cmbTipoUnidadeSelecionada
+            // 
+            this.cmbTipoUnidadeSelecionada.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTipoUnidadeSelecionada.Enabled = false;
+            this.cmbTipoUnidadeSelecionada.FormattingEnabled = true;
+            this.cmbTipoUnidadeSelecionada.Location = new System.Drawing.Point(358, 90);
+            this.cmbTipoUnidadeSelecionada.Name = "cmbTipoUnidadeSelecionada";
+            this.cmbTipoUnidadeSelecionada.Seleção = null;
+            this.cmbTipoUnidadeSelecionada.Size = new System.Drawing.Size(121, 21);
+            this.cmbTipoUnidadeSelecionada.TabIndex = 14;
+            // 
+            // txtQuantidadeSelecionada
+            // 
+            this.txtQuantidadeSelecionada.AllowNegative = true;
+            this.txtQuantidadeSelecionada.DigitsInGroup = 0;
+            this.txtQuantidadeSelecionada.Flags = 0;
+            this.txtQuantidadeSelecionada.Location = new System.Drawing.Point(268, 90);
+            this.txtQuantidadeSelecionada.MaxDecimalPlaces = 4;
+            this.txtQuantidadeSelecionada.MaxWholeDigits = 9;
+            this.txtQuantidadeSelecionada.Name = "txtQuantidadeSelecionada";
+            this.txtQuantidadeSelecionada.Prefix = "";
+            this.txtQuantidadeSelecionada.RangeMax = 1.7976931348623157E+308D;
+            this.txtQuantidadeSelecionada.RangeMin = -1.7976931348623157E+308D;
+            this.txtQuantidadeSelecionada.Size = new System.Drawing.Size(79, 20);
+            this.txtQuantidadeSelecionada.TabIndex = 11;
+            this.txtQuantidadeSelecionada.Text = "1";
+            // 
+            // txtDescriçãoSelecionado
+            // 
+            this.txtDescriçãoSelecionado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDescriçãoSelecionado.Enabled = false;
+            this.txtDescriçãoSelecionado.Location = new System.Drawing.Point(268, 47);
+            this.txtDescriçãoSelecionado.Name = "txtDescriçãoSelecionado";
+            this.txtDescriçãoSelecionado.Size = new System.Drawing.Size(895, 20);
+            this.txtDescriçãoSelecionado.TabIndex = 8;
+            // 
+            // txtCFOPSelecionado
+            // 
+            this.txtCFOPSelecionado.Enabled = false;
+            this.txtCFOPSelecionado.Location = new System.Drawing.Point(11, 90);
+            this.txtCFOPSelecionado.Name = "txtCFOPSelecionado";
+            this.txtCFOPSelecionado.Size = new System.Drawing.Size(244, 20);
+            this.txtCFOPSelecionado.TabIndex = 9;
+            // 
+            // txtReferênciaSelecionada
+            // 
+            this.txtReferênciaSelecionada.Location = new System.Drawing.Point(11, 47);
+            this.txtReferênciaSelecionada.Name = "txtReferênciaSelecionada";
+            this.txtReferênciaSelecionada.Referência = "";
+            this.txtReferênciaSelecionada.Size = new System.Drawing.Size(244, 20);
+            this.txtReferênciaSelecionada.TabIndex = 7;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Enabled = false;
+            this.label6.Location = new System.Drawing.Point(355, 74);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(87, 13);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "Tipo de unidade:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(265, 74);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(65, 13);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Quantidade:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Enabled = false;
+            this.label8.Location = new System.Drawing.Point(265, 31);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(58, 13);
+            this.label8.TabIndex = 13;
+            this.label8.Text = "Descrição:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Enabled = false;
+            this.label9.Location = new System.Drawing.Point(8, 74);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(38, 13);
+            this.label9.TabIndex = 12;
+            this.label9.Text = "CFOP:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(8, 31);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(62, 13);
+            this.label10.TabIndex = 10;
+            this.label10.Text = "Referência:";
             // 
             // quadro3
             // 
@@ -230,10 +385,10 @@
             this.quadro3.Cor = System.Drawing.Color.Black;
             this.quadro3.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadro3.LetraTítulo = System.Drawing.Color.White;
-            this.quadro3.Location = new System.Drawing.Point(193, 470);
+            this.quadro3.Location = new System.Drawing.Point(193, 345);
             this.quadro3.MostrarBotãoMinMax = false;
             this.quadro3.Name = "quadro3";
-            this.quadro3.Size = new System.Drawing.Size(1189, 229);
+            this.quadro3.Size = new System.Drawing.Size(1189, 293);
             this.quadro3.TabIndex = 9;
             this.quadro3.Tamanho = 30;
             this.quadro3.Título = "Ingredientes";
@@ -245,8 +400,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listaIngredientes.Location = new System.Drawing.Point(0, 24);
             this.listaIngredientes.Name = "listaIngredientes";
-            this.listaIngredientes.Size = new System.Drawing.Size(1189, 205);
+            this.listaIngredientes.Size = new System.Drawing.Size(1189, 269);
             this.listaIngredientes.TabIndex = 2;
+            this.listaIngredientes.AoSelecionar += new System.EventHandler(this.listaIngredientes_AoSelecionar);
             // 
             // BaseEsquema
             // 
@@ -265,6 +421,8 @@
             this.Controls.SetChildIndex(this.quadro3, 0);
             this.quadro1.ResumeLayout(false);
             this.quadro1.PerformLayout();
+            this.quadro2.ResumeLayout(false);
+            this.quadro2.PerformLayout();
             this.quadro3.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -287,5 +445,18 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private Lista.ListaIngredienteEsquema listaIngredientes;
+        private System.Windows.Forms.Button btnAdicionar;
+        private System.Windows.Forms.Button btnAlterar;
+        private System.Windows.Forms.Button btnExcluir;
+        private Apresentação.Fiscal.Combobox.ComboTipoUnidade cmbTipoUnidadeSelecionada;
+        private AMS.TextBox.NumericTextBox txtQuantidadeSelecionada;
+        private System.Windows.Forms.TextBox txtDescriçãoSelecionado;
+        private System.Windows.Forms.TextBox txtCFOPSelecionado;
+        private Mercadoria.TxtMercadoria txtReferênciaSelecionada;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
     }
 }

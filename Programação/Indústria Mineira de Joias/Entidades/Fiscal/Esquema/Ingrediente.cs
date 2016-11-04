@@ -16,17 +16,19 @@ namespace Entidades.Fiscal.Esquema
         private decimal quantidade;
         private string descricao;
         private int tipounidade;
+        private int cfop;
 
         public string Esquema => esquema;
         public string Referência => referencia;
         public decimal Quantidade => quantidade;
         public string Descrição => descricao;
+        public int CFOP => cfop;
         public TipoUnidade TipoUnidadeComercial => TipoUnidade.Obter(tipounidade);
 
         public static List<Ingrediente> Obter(string esquema)
         {
             return Mapear<Ingrediente>(
-                string.Format("select i.*, m.nome as descricao, m.tipounidade from ingredienteesquemaproducaofiscal i join mercadoria m on " + 
+                string.Format("select i.*, m.nome as descricao, m.tipounidade, m.cfop from ingredienteesquemaproducaofiscal i join mercadoria m on " + 
                 " i.referencia=m.referencia where esquema={0}", DbTransformar(esquema)));
         }
     }

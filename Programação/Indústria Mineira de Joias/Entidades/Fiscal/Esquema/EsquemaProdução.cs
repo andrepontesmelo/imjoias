@@ -14,11 +14,13 @@ namespace Entidades.Fiscal.Esquema
         private decimal quantidade;
         private string descricao;
         private int tipounidade;
+        private int cfop;
 
         public string Referência => referencia;
         public decimal Quantidade => quantidade;
         public string Descrição => descricao;
         public TipoUnidade TipoUnidadeFiscal => TipoUnidade.Obter(tipounidade);
+        public int CFOP => cfop;
 
         public EsquemaProdução()
         {
@@ -39,7 +41,8 @@ namespace Entidades.Fiscal.Esquema
 
         private static void CarregarCache()
         {
-            lstEsquemas = Mapear<EsquemaProdução>("select e.*, m.nome as descricao, m.tipounidade from esquemaproducaofiscal e join mercadoria m on e.referencia=m.referencia");
+            lstEsquemas = Mapear<EsquemaProdução>("select e.*, m.nome as descricao, m.tipounidade, m.cfop from " + 
+                " esquemaproducaofiscal e join mercadoria m on e.referencia=m.referencia");
         }
 
         public static void ExcluirRecarregandoCache(List<EsquemaProdução> seleção)
