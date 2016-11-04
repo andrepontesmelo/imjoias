@@ -12,6 +12,13 @@ namespace Entidades.Fiscal.Esquema
         {
         }
 
+        public Ingrediente(string esquema, string referencia, decimal quantidade)
+        {
+            this.esquema = esquema;
+            this.referencia = referencia;
+            this.quantidade = quantidade;
+        }
+
         private string esquema;
         private string referencia;
         private decimal quantidade;
@@ -19,7 +26,6 @@ namespace Entidades.Fiscal.Esquema
         private int tipounidade;
         private int cfop;
 
-        [DbAtributo(TipoAtributo.Ignorar)]
         private string referenciaAlterada;
 
         public string Esquema => esquema;
@@ -46,7 +52,7 @@ namespace Entidades.Fiscal.Esquema
                 " i.referencia=m.referencia where esquema={0}", DbTransformar(esquema)));
         }
 
-        public void Persistir()
+        public void Atualizar()
         {
             var sql = "UPDATE ingredienteesquemaproducaofiscal set " +
                 "referencia=" + DbTransformar(Referência) + ", " +
@@ -55,6 +61,12 @@ namespace Entidades.Fiscal.Esquema
                 " AND esquema=" + DbTransformar(Esquema);
 
             ExecutarComando(sql);
+        }
+
+        public void Cadastrar()
+        {
+            ExecutarComando(string.Format("INSERT INTO ingredienteesquemaproducaofiscal (referencia, quantidade, esquema) values ({0},{1},{2})",
+                DbTransformar(Referência), DbTransformar(Quantidade), DbTransformar(Esquema)));
         }
 
         public static void Excluir(List<Ingrediente> ingredientes)

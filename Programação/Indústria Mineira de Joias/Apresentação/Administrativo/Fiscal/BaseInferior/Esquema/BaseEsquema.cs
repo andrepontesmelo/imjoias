@@ -42,14 +42,14 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
 
         private void CarregarIngrediente(Ingrediente ingrediente)
         {
-            txtReferênciaSelecionada.Referência = ingrediente.Referência;
-            txtCFOPSelecionado.Text = ingrediente.CFOP.ToString();
-            txtQuantidadeSelecionada.Text = ingrediente.Quantidade.ToString();
-            txtDescriçãoSelecionado.Text = ingrediente.Descrição;
-            cmbTipoUnidadeSelecionada.Seleção = ingrediente.TipoUnidadeComercial;
+            txtReferênciaSelecionada.Referência = ingrediente?.Referência;
+            txtCFOPSelecionado.Text = ingrediente?.CFOP.ToString();
+            txtQuantidadeSelecionada.Text = ingrediente?.Quantidade.ToString();
+            txtDescriçãoSelecionado.Text = ingrediente?.Descrição;
+            cmbTipoUnidadeSelecionada.Seleção = ingrediente?.TipoUnidadeComercial;
 
             this.ingrediente = ingrediente;
-            btnAlterar.Enabled = true;
+            btnAlterar.Enabled = ingrediente != null;
         }
 
         private void btnAlterar_Click(object sender, EventArgs e)
@@ -58,7 +58,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
 
             ingrediente.Referência = txtReferênciaSelecionada.ReferênciaNumérica;
             ingrediente.Quantidade = (decimal)txtQuantidadeSelecionada.Double;
-            ingrediente.Persistir();
+            ingrediente.Atualizar();
             ingrediente = null;
 
             listaIngredientes.Carregar(esquema);
@@ -102,6 +102,26 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
         private void listaIngredientes_AoExcluir(object sender, EventArgs e)
         {
             Excluir();
+        }
+
+        private void btnAdicionar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                new Ingrediente(esquema.Referência,
+                    txtReferênciaSelecionada.ReferênciaNumérica,
+                    (decimal)txtQuantidadeSelecionada.Double).Cadastrar();
+            } catch (Exception erro)
+            {
+                MessageBox.Show(this,
+                    erro.Message,
+                    "Não foi possível adicionar ingrediente");
+
+                return;
+            }
+
+            listaIngredientes.Carregar(esquema);
+            CarregarIngrediente(null);
         }
     }
 }
