@@ -1,4 +1,5 @@
-﻿using Entidades.Fiscal;
+﻿using Apresentação.Formulários;
+using Entidades.Fiscal;
 using System.Windows.Forms;
 
 namespace Apresentação.Administrativo.Fiscal.Lista
@@ -8,6 +9,7 @@ namespace Apresentação.Administrativo.Fiscal.Lista
         public ListaEsquemaProdução()
         {
             InitializeComponent();
+            lista.ListViewItemSorter = new ListViewColumnSorter();
         }
 
         public void Carregar()
@@ -44,6 +46,11 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             item.SubItems[colQuantidade.Index].Text = esquema.Quantidade.ToString();
             item.SubItems[colTipoUnidadeFiscal.Index].Text = esquema.TipoUnidadeFiscal.Nome;
             return item;
+        }
+
+        private void lista_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            ((ListViewColumnSorter)lista.ListViewItemSorter).OnClick(lista, e);
         }
     }
 }

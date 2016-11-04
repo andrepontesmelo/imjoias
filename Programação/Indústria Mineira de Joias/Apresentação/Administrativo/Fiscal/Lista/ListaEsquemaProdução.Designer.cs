@@ -1,4 +1,6 @@
-﻿namespace Apresentação.Administrativo.Fiscal.Lista
+﻿using Apresentação.Formulários;
+
+namespace Apresentação.Administrativo.Fiscal.Lista
 {
     partial class ListaEsquemaProdução
     {
@@ -28,7 +30,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lista = new System.Windows.Forms.ListView();
+            this.lista = new Apresentação.Formulários.ListViewUsabilidade();
             this.colReferência = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colDescrição = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colQuantidade = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -50,6 +52,7 @@
             this.lista.TabIndex = 0;
             this.lista.UseCompatibleStateImageBehavior = false;
             this.lista.View = System.Windows.Forms.View.Details;
+            this.lista.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lista_ColumnClick);
             // 
             // colReferência
             // 
@@ -84,7 +87,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView lista;
+        private Apresentação.Formulários.ListViewUsabilidade lista;
         private System.Windows.Forms.ColumnHeader colReferência;
         private System.Windows.Forms.ColumnHeader colDescrição;
         private System.Windows.Forms.ColumnHeader colQuantidade;
