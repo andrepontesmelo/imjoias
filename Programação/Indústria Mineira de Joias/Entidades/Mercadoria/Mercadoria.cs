@@ -54,6 +54,7 @@ namespace Entidades.Mercadoria
         ///// </summary>
         private DbFoto icone;
 
+      
 		[NonSerialized]
 		private Álbum.Animação		animação;
 
