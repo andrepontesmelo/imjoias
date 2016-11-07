@@ -1,5 +1,5 @@
-﻿using Entidades.Fiscal;
-using Entidades.Fiscal.Tipo;
+﻿using Apresentação.Formulários;
+using Entidades.Fiscal;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -11,6 +11,13 @@ namespace Apresentação.Administrativo.Fiscal.Lista
         public ListaInventário()
         {
             InitializeComponent();
+            lista.ListViewItemSorter = new ListViewColumnSorter();
+            lista.ColumnClick += Lista_ColumnClick;
+        }
+
+        private void Lista_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            ((ListViewColumnSorter)lista.ListViewItemSorter).OnClick(lista, e);
         }
 
         public void Carregar(DateTime? dataMáxima)
