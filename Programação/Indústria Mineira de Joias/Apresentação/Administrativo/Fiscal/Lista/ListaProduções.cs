@@ -1,4 +1,5 @@
 ﻿using Entidades.Fiscal.Produção;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -6,10 +7,18 @@ namespace Apresentação.Administrativo.Fiscal.Lista
 {
     public partial class ListaProduções : UserControl
     {
+        public event EventHandler AoDuploClique;
+
         public ListaProduções()
         {
             InitializeComponent();
             lista.AoExcluir += Lista_AoExcluir;
+            lista.DoubleClick += Lista_DoubleClick;
+        }
+
+        private void Lista_DoubleClick(object sender, System.EventArgs e)
+        {
+            AoDuploClique?.Invoke(sender, e);
         }
 
         private void Lista_AoExcluir(object sender, System.EventArgs e)
@@ -30,7 +39,7 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             Carregar();
         }
 
-        private List<ProduçãoFiscal> ObterSeleção()
+        public List<ProduçãoFiscal> ObterSeleção()
         {
             List<ProduçãoFiscal> lstProduções = new List<ProduçãoFiscal>();
             foreach (ListViewItem itemSelecionado in lista.SelectedItems)

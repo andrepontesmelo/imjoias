@@ -12,9 +12,13 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Produção
 
         private void opçãoNovaProdução_Click(object sender, EventArgs e)
         {
-            var baseProdução = new BaseProdução();
-            baseProdução.Carregar(ProduçãoFiscal.Criar());
+            SubstituirBaseEdição(ProduçãoFiscal.Criar());
+        }
 
+        private void SubstituirBaseEdição(ProduçãoFiscal produção)
+        {
+            var baseProdução = new BaseProdução();
+            baseProdução.Carregar(produção);
             SubstituirBase(baseProdução);
         }
 
@@ -22,7 +26,17 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Produção
         {
             base.AoExibir();
 
-            listaProduções1.Carregar();
+            listaProduções.Carregar();
+        }
+
+        private void listaProduções1_AoDuploClique(object sender, EventArgs e)
+        {
+            var seleção = listaProduções.ObterSeleção();
+
+            if (seleção.Count == 0)
+                return;
+
+            SubstituirBaseEdição(seleção[0]);
         }
     }
 }

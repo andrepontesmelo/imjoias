@@ -31,7 +31,7 @@
             this.quadro1 = new Apresentação.Formulários.Quadro();
             this.opçãoNovaProdução = new Apresentação.Formulários.Opção();
             this.títuloBaseInferior1 = new Apresentação.Formulários.TítuloBaseInferior();
-            this.listaProduções1 = new Apresentação.Administrativo.Fiscal.Lista.ListaProduções();
+            this.listaProduções = new Apresentação.Administrativo.Fiscal.Lista.ListaProduções();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.SuspendLayout();
@@ -92,24 +92,25 @@
             // 
             // listaProduções1
             // 
-            this.listaProduções1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.listaProduções.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listaProduções1.Location = new System.Drawing.Point(193, 89);
-            this.listaProduções1.Name = "listaProduções1";
-            this.listaProduções1.Size = new System.Drawing.Size(604, 204);
-            this.listaProduções1.TabIndex = 8;
+            this.listaProduções.Location = new System.Drawing.Point(193, 89);
+            this.listaProduções.Name = "listaProduções1";
+            this.listaProduções.Size = new System.Drawing.Size(604, 204);
+            this.listaProduções.TabIndex = 8;
+            this.listaProduções.AoDuploClique += new System.EventHandler(this.listaProduções1_AoDuploClique);
             // 
             // BaseProduções
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.listaProduções1);
+            this.Controls.Add(this.listaProduções);
             this.Controls.Add(this.títuloBaseInferior1);
             this.Name = "BaseProduções";
             this.Controls.SetChildIndex(this.esquerda, 0);
             this.Controls.SetChildIndex(this.títuloBaseInferior1, 0);
-            this.Controls.SetChildIndex(this.listaProduções1, 0);
+            this.Controls.SetChildIndex(this.listaProduções, 0);
             this.esquerda.ResumeLayout(false);
             this.quadro1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -121,6 +122,6 @@
         private Formulários.Quadro quadro1;
         private Formulários.TítuloBaseInferior títuloBaseInferior1;
         private Formulários.Opção opçãoNovaProdução;
-        private Lista.ListaProduções listaProduções1;
+        private Lista.ListaProduções listaProduções;
     }
 }
