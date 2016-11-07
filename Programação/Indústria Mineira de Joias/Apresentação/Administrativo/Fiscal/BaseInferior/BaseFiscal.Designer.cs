@@ -167,6 +167,7 @@
             this.opçãoProduções.Name = "opçãoProduções";
             this.opçãoProduções.Size = new System.Drawing.Size(150, 16);
             this.opçãoProduções.TabIndex = 3;
+            this.opçãoProduções.Click += new System.EventHandler(this.opçãoProduções_Click);
             // 
             // opçãoEntradas
             // 

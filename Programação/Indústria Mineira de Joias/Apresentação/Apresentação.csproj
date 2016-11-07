@@ -170,6 +170,18 @@
     <Compile Include="Administrativo\Fiscal\BaseInferior\Inventário\BaseInventário.Designer.cs">
       <DependentUpon>BaseInventário.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrativo\Fiscal\BaseInferior\Produção\BaseProdução.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Administrativo\Fiscal\BaseInferior\Produção\BaseProdução.Designer.cs">
+      <DependentUpon>BaseProdução.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administrativo\Fiscal\BaseInferior\Produção\BaseProduções.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Administrativo\Fiscal\BaseInferior\Produção\BaseProduções.Designer.cs">
+      <DependentUpon>BaseProduções.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administrativo\Fiscal\Combo\ComboMáquina.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -194,11 +206,23 @@
     <Compile Include="Administrativo\Fiscal\Lista\ListaInventário.Designer.cs">
       <DependentUpon>ListaInventário.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrativo\Fiscal\Lista\ListaItemProduçãoFiscal.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Administrativo\Fiscal\Lista\ListaItemProduçãoFiscal.Designer.cs">
+      <DependentUpon>ListaItemProduçãoFiscal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administrativo\Fiscal\Lista\ListaMáquinasECF.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Administrativo\Fiscal\Lista\ListaMáquinasECF.Designer.cs">
       <DependentUpon>ListaMáquinasECF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administrativo\Fiscal\Lista\ListaProduções.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Administrativo\Fiscal\Lista\ListaProduções.Designer.cs">
+      <DependentUpon>ListaProduções.cs</DependentUpon>
     </Compile>
     <Compile Include="ComboSetor.cs">
       <SubType>Component</SubType>
@@ -2441,6 +2465,12 @@
     <EmbeddedResource Include="Administrativo\Fiscal\BaseInferior\Inventário\BaseInventário.resx">
       <DependentUpon>BaseInventário.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Administrativo\Fiscal\BaseInferior\Produção\BaseProdução.resx">
+      <DependentUpon>BaseProdução.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrativo\Fiscal\BaseInferior\Produção\BaseProduções.resx">
+      <DependentUpon>BaseProduções.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Administrativo\Fiscal\Combo\ComboMáquina.resx">
       <DependentUpon>ComboMáquina.cs</DependentUpon>
     </EmbeddedResource>
@@ -2459,8 +2489,14 @@
     <EmbeddedResource Include="Administrativo\Fiscal\Lista\ListaInventário.resx">
       <DependentUpon>ListaInventário.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Administrativo\Fiscal\Lista\ListaItemProduçãoFiscal.resx">
+      <DependentUpon>ListaItemProduçãoFiscal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Administrativo\Fiscal\Lista\ListaMáquinasECF.resx">
       <DependentUpon>ListaMáquinasECF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrativo\Fiscal\Lista\ListaProduções.resx">
+      <DependentUpon>ListaProduções.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ComboSetor.resx">
       <DependentUpon>ComboSetor.cs</DependentUpon>
