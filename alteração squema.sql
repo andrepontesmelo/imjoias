@@ -313,4 +313,85 @@ CREATE TABLE `imjoias`.`estoquelegado` (
 ALTER TABLE `imjoias`.`mercadoria` 
 ADD COLUMN `cfop` INT(11) NOT NULL DEFAULT 5101 AFTER `tipounidade`;
 
+ALTER TABLE `imjoias`.`ingredienteesquemaproducaofiscal` 
+ADD CONSTRAINT `fk_ingredienteesquemaproducaofiscal_1`
+  FOREIGN KEY (`esquema`)
+  REFERENCES `imjoias`.`esquemaproducaofiscal` (`referencia`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE;
+
+
+update tipounidadefiscal set id=id-1;
+
+
+
+CREATE TABLE `imjoias`.`producaofiscal` (
+  `codigo` INT NOT NULL AUTO_INCREMENT,
+  `data` DATETIME NOT NULL,
+  PRIMARY KEY (`codigo`));
+
+
+
+CREATE TABLE `imjoias`.`entradaproducaofiscal` (
+  `producaofiscal` INT NOT NULL,
+  `quantidade` DECIMAL NOT NULL,
+  `referencia` VARCHAR(11) NOT NULL,
+  PRIMARY KEY (`producaofiscal`));
+
+ALTER TABLE `imjoias`.`entradaproducaofiscal` 
+ADD CONSTRAINT `fk_entradaproducaofiscal_1`
+  FOREIGN KEY (`producaofiscal`)
+  REFERENCES `imjoias`.`producaofiscal` (`codigo`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE;
+
+ALTER TABLE `imjoias`.`entradaproducaofiscal` 
+ADD INDEX `fk_entradaproducaofiscal_2_idx` (`referencia` ASC);
+ALTER TABLE `imjoias`.`entradaproducaofiscal` 
+ADD CONSTRAINT `fk_entradaproducaofiscal_2`
+  FOREIGN KEY (`referencia`)
+  REFERENCES `imjoias`.`mercadoria` (`referencia`)
+  ON DELETE RESTRICT
+  ON UPDATE CASCADE;
+
+
+CREATE TABLE `imjoias`.`saidaproducaofiscal` (
+  `producaofiscal` INT NOT NULL,
+  `quantidade` DECIMAL NOT NULL,
+  `referencia` VARCHAR(11) NOT NULL,
+  PRIMARY KEY (`producaofiscal`));
+
+ALTER TABLE `imjoias`.`saidaproducaofiscal` 
+ADD CONSTRAINT `fk_saidaproducaofiscal_1`
+  FOREIGN KEY (`producaofiscal`)
+  REFERENCES `imjoias`.`producaofiscal` (`codigo`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE;
+
+ALTER TABLE `imjoias`.`saidaproducaofiscal` 
+ADD INDEX `fk_saidaproducaofiscal_2_idx` (`referencia` ASC);
+ALTER TABLE `imjoias`.`saidaproducaofiscal` 
+ADD CONSTRAINT `fk_saidaproducaofiscal_2`
+  FOREIGN KEY (`referencia`)
+  REFERENCES `imjoias`.`mercadoria` (`referencia`)
+  ON DELETE RESTRICT
+  ON UPDATE CASCADE;
+
+
+ALTER TABLE `imjoias`.`entradaitemfiscal` 
+ADD INDEX `index4` (`referencia` ASC);
+
+ALTER TABLE `imjoias`.`entradafiscal` 
+ADD INDEX `index3` (`dataentrada` ASC);
+
+
+ALTER TABLE `imjoias`.`saidaitemfiscal` 
+ADD INDEX `index4` (`referencia` ASC);
+
+ALTER TABLE `imjoias`.`saidafiscal` 
+ADD INDEX `index5` (`cancelada` ASC);
+
+ALTER TABLE `imjoias`.`saidafiscal` 
+ADD INDEX `index6` (`datasaida` ASC);
+
 
