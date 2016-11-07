@@ -73,10 +73,22 @@ namespace Entidades.Fiscal.Produção
             {
                 using (var transação = conexão.BeginTransaction())
                 {
-                    SaídaProduçãoFiscal.InserirProduçãoSaída(this, qtdReceitas, referência, quantidade, transação);
+                    using (var cmd = conexão.CreateCommand())
+                    {
+                        cmd.CommandText = SaídaProduçãoFiscal.ObterSqlInserçãoSaída(this, qtdReceitas, referência, quantidade);
+                        cmd.Transaction = transação;
+                        cmd.ExecuteNonQuery();
+                    }
 
                     foreach (var ingrediente in ingredientes)
-                        EntradaProduçãoFiscal.InserirProduçãoEntrada(this, ingrediente, qtdReceitas, transação);
+                    {
+                        using (var cmd = conexão.CreateCommand())
+                        {
+                            cmd.CommandText = EntradaProduçãoFiscal.ObterSqlInserçãoEntrada(this, ingrediente, qtdReceitas);
+                            cmd.Transaction = transação;
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
 
                     transação.Commit();
                 }
