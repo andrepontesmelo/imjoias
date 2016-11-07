@@ -13,12 +13,9 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             InitializeComponent();
         }
 
-        public void Carregar()
+        public void Carregar(DateTime? dataMáxima)
         {
-            var inicio = DateTime.Now;
-            CarregarItens(CriarItens(Inventário.Obter(null)));
-            var tempo = DateTime.Now - inicio;
-            Console.WriteLine(tempo.TotalSeconds);
+            CarregarItens(CriarItens(Inventário.Obter(dataMáxima)));
         }
 
         private ListViewItem[] CriarItens(List<Inventário> entidades)

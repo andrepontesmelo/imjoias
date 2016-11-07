@@ -35,8 +35,8 @@
             this.opçãoImprimir = new Apresentação.Formulários.Opção();
             this.listaInventário = new Apresentação.Administrativo.Fiscal.Lista.ListaInventário();
             this.optAtual = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.dateTextBox1 = new AMS.TextBox.DateTextBox();
+            this.optPassado = new System.Windows.Forms.RadioButton();
+            this.dataMáxima = new AMS.TextBox.DateTextBox();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.SuspendLayout();
@@ -143,36 +143,38 @@
             this.optAtual.TabStop = true;
             this.optAtual.Text = "Atual";
             this.optAtual.UseVisualStyleBackColor = true;
+            this.optAtual.CheckedChanged += new System.EventHandler(this.optAtual_CheckedChanged);
             // 
-            // radioButton2
+            // optPassado
             // 
-            this.radioButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(872, 77);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(66, 17);
-            this.radioButton2.TabIndex = 9;
-            this.radioButton2.Text = "Passado";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.optPassado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.optPassado.AutoSize = true;
+            this.optPassado.Location = new System.Drawing.Point(872, 77);
+            this.optPassado.Name = "optPassado";
+            this.optPassado.Size = new System.Drawing.Size(66, 17);
+            this.optPassado.TabIndex = 9;
+            this.optPassado.Text = "Passado";
+            this.optPassado.UseVisualStyleBackColor = true;
             // 
-            // dateTextBox1
+            // dataMáxima
             // 
-            this.dateTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTextBox1.Flags = 65536;
-            this.dateTextBox1.Location = new System.Drawing.Point(944, 74);
-            this.dateTextBox1.Name = "dateTextBox1";
-            this.dateTextBox1.RangeMax = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dateTextBox1.RangeMin = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.dateTextBox1.Size = new System.Drawing.Size(100, 20);
-            this.dateTextBox1.TabIndex = 10;
-            this.dateTextBox1.Text = "04/11/2016";
+            this.dataMáxima.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataMáxima.Flags = 65536;
+            this.dataMáxima.Location = new System.Drawing.Point(944, 74);
+            this.dataMáxima.Name = "dataMáxima";
+            this.dataMáxima.RangeMax = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dataMáxima.RangeMin = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dataMáxima.Size = new System.Drawing.Size(100, 20);
+            this.dataMáxima.TabIndex = 10;
+            this.dataMáxima.Text = "04/11/2016";
+            this.dataMáxima.Validated += new System.EventHandler(this.dataMáxima_Validated);
             // 
             // BaseInventário
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.dateTextBox1);
-            this.Controls.Add(this.radioButton2);
+            this.Controls.Add(this.dataMáxima);
+            this.Controls.Add(this.optPassado);
             this.Controls.Add(this.optAtual);
             this.Controls.Add(this.listaInventário);
             this.Controls.Add(this.títuloBaseInferior1);
@@ -182,8 +184,8 @@
             this.Controls.SetChildIndex(this.títuloBaseInferior1, 0);
             this.Controls.SetChildIndex(this.listaInventário, 0);
             this.Controls.SetChildIndex(this.optAtual, 0);
-            this.Controls.SetChildIndex(this.radioButton2, 0);
-            this.Controls.SetChildIndex(this.dateTextBox1, 0);
+            this.Controls.SetChildIndex(this.optPassado, 0);
+            this.Controls.SetChildIndex(this.dataMáxima, 0);
             this.esquerda.ResumeLayout(false);
             this.quadro1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -200,7 +202,7 @@
         private Formulários.Opção opçãoImprimir;
         private Lista.ListaInventário listaInventário;
         private System.Windows.Forms.RadioButton optAtual;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private AMS.TextBox.DateTextBox dateTextBox1;
+        private System.Windows.Forms.RadioButton optPassado;
+        private AMS.TextBox.DateTextBox dataMáxima;
     }
 }
