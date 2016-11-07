@@ -5,12 +5,12 @@ namespace Entidades.Fiscal.Produção
 {
     public class SaídaProduçãoFiscal : ItemProduçãoFiscal
     {
-        internal static string ObterSqlInserçãoSaída(ProduçãoFiscal produção, decimal qtdReceitas, string referência, decimal quantidade)
+        internal static void InserirProduçãoSaída(ProduçãoFiscal produção, decimal qtdReceitas, string referência, decimal quantidade, IDbTransaction transação)
         {
-            return string.Format("INSERT INTO saidaproducaofiscal (producaofiscal, referencia, quantidade) values ({0}, {1}, {2})",
+            ExecutarComandoTransação(string.Format("INSERT INTO saidaproducaofiscal (producaofiscal, referencia, quantidade) values ({0}, {1}, {2})",
                 DbTransformar(produção.Código),
                 DbTransformar(referência),
-                DbTransformar(qtdReceitas * quantidade));
+                DbTransformar(qtdReceitas * quantidade)), transação);
         }
 
         public static List<ItemProduçãoFiscal> Obter(int produção)
