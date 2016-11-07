@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.títuloBaseInferior1 = new Apresentação.Formulários.TítuloBaseInferior();
+            this.títuloBaseInferior = new Apresentação.Formulários.TítuloBaseInferior();
             this.quadro1 = new Apresentação.Formulários.Quadro();
             this.opçãoImprimir = new Apresentação.Formulários.Opção();
             this.btnIncluir = new System.Windows.Forms.Button();
@@ -38,7 +38,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.txtDescrição = new System.Windows.Forms.TextBox();
-            this.txtReferência = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.quadroItem = new Apresentação.Formulários.Quadro();
@@ -48,6 +47,7 @@
             this.listaItemProduçãoFiscal1 = new Apresentação.Administrativo.Fiscal.Lista.ListaItemProduçãoFiscal();
             this.listaItemProduçãoFiscal2 = new Apresentação.Administrativo.Fiscal.Lista.ListaItemProduçãoFiscal();
             this.label2 = new System.Windows.Forms.Label();
+            this.txtMercadoria = new Apresentação.Mercadoria.TxtMercadoria();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.quadroItem.SuspendLayout();
@@ -59,20 +59,20 @@
             this.esquerda.Size = new System.Drawing.Size(187, 483);
             this.esquerda.Controls.SetChildIndex(this.quadro1, 0);
             // 
-            // títuloBaseInferior1
+            // títuloBaseInferior
             // 
-            this.títuloBaseInferior1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.títuloBaseInferior.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.títuloBaseInferior1.BackColor = System.Drawing.Color.White;
-            this.títuloBaseInferior1.Descrição = "Produção é um documento que infica a fabricação ou produção de um item de inventá" +
+            this.títuloBaseInferior.BackColor = System.Drawing.Color.White;
+            this.títuloBaseInferior.Descrição = "Produção é um documento que infica a fabricação ou produção de um item de inventá" +
     "rio.";
-            this.títuloBaseInferior1.ÍconeArredondado = false;
-            this.títuloBaseInferior1.Imagem = global::Apresentação.Resource.fiscal1;
-            this.títuloBaseInferior1.Location = new System.Drawing.Point(193, 3);
-            this.títuloBaseInferior1.Name = "títuloBaseInferior1";
-            this.títuloBaseInferior1.Size = new System.Drawing.Size(952, 70);
-            this.títuloBaseInferior1.TabIndex = 6;
-            this.títuloBaseInferior1.Título = "Editar produção fiscal";
+            this.títuloBaseInferior.ÍconeArredondado = false;
+            this.títuloBaseInferior.Imagem = global::Apresentação.Resource.fiscal1;
+            this.títuloBaseInferior.Location = new System.Drawing.Point(193, 3);
+            this.títuloBaseInferior.Name = "títuloBaseInferior";
+            this.títuloBaseInferior.Size = new System.Drawing.Size(952, 70);
+            this.títuloBaseInferior.TabIndex = 6;
+            this.títuloBaseInferior.Título = "Editar produção fiscal";
             // 
             // quadro1
             // 
@@ -112,13 +112,14 @@
             this.btnIncluir.Location = new System.Drawing.Point(848, 99);
             this.btnIncluir.Name = "btnIncluir";
             this.btnIncluir.Size = new System.Drawing.Size(75, 23);
-            this.btnIncluir.TabIndex = 8;
+            this.btnIncluir.TabIndex = 5;
             this.btnIncluir.Text = "Incluir TO";
             this.btnIncluir.UseVisualStyleBackColor = true;
             // 
             // cmbTipoUnidade
             // 
             this.cmbTipoUnidade.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTipoUnidade.Enabled = false;
             this.cmbTipoUnidade.FormattingEnabled = true;
             this.cmbTipoUnidade.Location = new System.Drawing.Point(284, 102);
             this.cmbTipoUnidade.Name = "cmbTipoUnidade";
@@ -143,10 +144,11 @@
             // 
             // txtCFOP
             // 
+            this.txtCFOP.Enabled = false;
             this.txtCFOP.Location = new System.Drawing.Point(19, 102);
             this.txtCFOP.Name = "txtCFOP";
             this.txtCFOP.Size = new System.Drawing.Size(155, 20);
-            this.txtCFOP.TabIndex = 2;
+            this.txtCFOP.TabIndex = 1;
             // 
             // label10
             // 
@@ -170,17 +172,11 @@
             // 
             this.txtDescrição.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDescrição.Enabled = false;
             this.txtDescrição.Location = new System.Drawing.Point(207, 47);
             this.txtDescrição.Name = "txtDescrição";
             this.txtDescrição.Size = new System.Drawing.Size(720, 20);
-            this.txtDescrição.TabIndex = 1;
-            // 
-            // txtReferência
-            // 
-            this.txtReferência.Location = new System.Drawing.Point(19, 47);
-            this.txtReferência.Name = "txtReferência";
-            this.txtReferência.Size = new System.Drawing.Size(155, 20);
-            this.txtReferência.TabIndex = 0;
+            this.txtDescrição.TabIndex = 2;
             // 
             // label7
             // 
@@ -209,6 +205,7 @@
             this.quadroItem.bInfEsqArredondada = true;
             this.quadroItem.bSupDirArredondada = true;
             this.quadroItem.bSupEsqArredondada = true;
+            this.quadroItem.Controls.Add(this.txtMercadoria);
             this.quadroItem.Controls.Add(this.btnIncluir);
             this.quadroItem.Controls.Add(this.cmbTipoUnidade);
             this.quadroItem.Controls.Add(this.txtQuantidade);
@@ -217,7 +214,6 @@
             this.quadroItem.Controls.Add(this.label9);
             this.quadroItem.Controls.Add(this.btnAlterar);
             this.quadroItem.Controls.Add(this.txtDescrição);
-            this.quadroItem.Controls.Add(this.txtReferência);
             this.quadroItem.Controls.Add(this.label8);
             this.quadroItem.Controls.Add(this.label7);
             this.quadroItem.Controls.Add(this.label4);
@@ -292,6 +288,16 @@
             this.label2.TabIndex = 10;
             this.label2.Text = "OT: Transferência do inventário para a produção";
             // 
+            // txtMercadoria
+            // 
+            this.txtMercadoria.Location = new System.Drawing.Point(19, 47);
+            this.txtMercadoria.Name = "txtMercadoria";
+            this.txtMercadoria.Referência = "";
+            this.txtMercadoria.Size = new System.Drawing.Size(154, 20);
+            this.txtMercadoria.SomenteCadastrado = true;
+            this.txtMercadoria.SomenteDeLinha = false;
+            this.txtMercadoria.TabIndex = 11;
+            // 
             // BaseProdução
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -301,11 +307,11 @@
             this.Controls.Add(this.listaItemProduçãoFiscal1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.quadroItem);
-            this.Controls.Add(this.títuloBaseInferior1);
+            this.Controls.Add(this.títuloBaseInferior);
             this.Name = "BaseProdução";
             this.Size = new System.Drawing.Size(1148, 483);
             this.Controls.SetChildIndex(this.esquerda, 0);
-            this.Controls.SetChildIndex(this.títuloBaseInferior1, 0);
+            this.Controls.SetChildIndex(this.títuloBaseInferior, 0);
             this.Controls.SetChildIndex(this.quadroItem, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.listaItemProduçãoFiscal1, 0);
@@ -322,7 +328,7 @@
 
         #endregion
 
-        private Formulários.TítuloBaseInferior títuloBaseInferior1;
+        private Formulários.TítuloBaseInferior títuloBaseInferior;
         private Formulários.Quadro quadro1;
         private Formulários.Opção opçãoImprimir;
         private System.Windows.Forms.Button btnIncluir;
@@ -332,7 +338,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtDescrição;
-        private System.Windows.Forms.TextBox txtReferência;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label4;
         private Formulários.Quadro quadroItem;
@@ -342,5 +347,6 @@
         private Lista.ListaItemProduçãoFiscal listaItemProduçãoFiscal1;
         private Lista.ListaItemProduçãoFiscal listaItemProduçãoFiscal2;
         private System.Windows.Forms.Label label2;
+        private Mercadoria.TxtMercadoria txtMercadoria;
     }
 }

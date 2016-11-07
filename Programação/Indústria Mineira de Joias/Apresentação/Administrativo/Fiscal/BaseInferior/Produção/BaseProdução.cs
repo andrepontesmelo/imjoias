@@ -14,6 +14,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Produção
         internal void Carregar(ProduçãoFiscal produção)
         {
             this.produção = produção;
+            títuloBaseInferior.Título = string.Format("Produção fiscal #{0} de {1}", produção.Código, produção.DataFormatada);
         }
     }
 }
