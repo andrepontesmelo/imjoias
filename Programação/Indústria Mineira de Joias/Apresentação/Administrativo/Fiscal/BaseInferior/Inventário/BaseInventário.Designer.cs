@@ -135,10 +135,12 @@
             // 
             this.optAtual.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.optAtual.AutoSize = true;
+            this.optAtual.Checked = true;
             this.optAtual.Location = new System.Drawing.Point(807, 77);
             this.optAtual.Name = "optAtual";
             this.optAtual.Size = new System.Drawing.Size(49, 17);
             this.optAtual.TabIndex = 8;
+            this.optAtual.TabStop = true;
             this.optAtual.Text = "Atual";
             this.optAtual.UseVisualStyleBackColor = true;
             // 
@@ -146,12 +148,10 @@
             // 
             this.radioButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Checked = true;
             this.radioButton2.Location = new System.Drawing.Point(872, 77);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(66, 17);
             this.radioButton2.TabIndex = 9;
-            this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Passado";
             this.radioButton2.UseVisualStyleBackColor = true;
             // 

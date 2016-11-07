@@ -53,7 +53,7 @@
             this.lista.FullRowSelect = true;
             this.lista.Location = new System.Drawing.Point(0, 0);
             this.lista.Name = "lista";
-            this.lista.Size = new System.Drawing.Size(974, 510);
+            this.lista.Size = new System.Drawing.Size(1084, 510);
             this.lista.TabIndex = 0;
             this.lista.UseCompatibleStateImageBehavior = false;
             this.lista.View = System.Windows.Forms.View.Details;
@@ -99,7 +99,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lista);
             this.Name = "ListaInventário";
-            this.Size = new System.Drawing.Size(974, 510);
+            this.Size = new System.Drawing.Size(1084, 510);
             this.ResumeLayout(false);
 
         }

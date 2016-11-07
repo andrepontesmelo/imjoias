@@ -6,5 +6,12 @@
         {
             InitializeComponent();
         }
+
+        protected override void AoExibir()
+        {
+            base.AoExibir();
+
+            listaInventário.Carregar();
+        }
     }
 }

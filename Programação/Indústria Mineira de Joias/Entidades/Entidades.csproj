@@ -284,6 +284,7 @@
     <Compile Include="Fiscal\Importação\Resultado\ImportadorCancelamentosAtacado.cs" />
     <Compile Include="Fiscal\Importação\Resultado\Motivo.cs" />
     <Compile Include="Fiscal\Importação\Resultado\ResultadoImportação.cs" />
+    <Compile Include="Fiscal\Inventário.cs" />
     <Compile Include="Fiscal\ITransformavelDocumentoFiscal.cs" />
     <Compile Include="Fiscal\Máquina.cs" />
     <Compile Include="Fiscal\NotaFiscalEletronica\AdaptadorAtacado.cs" />
