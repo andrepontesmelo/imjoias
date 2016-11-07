@@ -1,8 +1,9 @@
 ﻿using Acesso.Comum;
 using Entidades.Fiscal.Tipo;
 using System.Collections.Generic;
-using System;
 using System.Text;
+using System.Linq;
+
 
 namespace Entidades.Fiscal.Esquema
 {
@@ -64,6 +65,11 @@ namespace Entidades.Fiscal.Esquema
         {
             lstEsquemas = Mapear<EsquemaProdução>("select e.*, m.nome as descricao, m.tipounidade, m.cfop from " + 
                 " esquemaproducaofiscal e join mercadoria m on e.referencia=m.referencia");
+        }
+
+        internal static EsquemaProdução Obter(string referência)
+        {
+            return (from esquema in Esquemas where esquema.Referência.Equals(referência) select esquema).First();
         }
 
         public static void Excluir(List<EsquemaProdução> seleção)

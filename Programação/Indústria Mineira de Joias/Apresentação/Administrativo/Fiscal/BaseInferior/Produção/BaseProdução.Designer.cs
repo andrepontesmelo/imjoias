@@ -41,13 +41,13 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.quadroItem = new Apresentação.Formulários.Quadro();
+            this.txtMercadoria = new Apresentação.Mercadoria.TxtMercadoria();
             this.btnAlterar = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.listaItemProduçãoFiscal1 = new Apresentação.Administrativo.Fiscal.Lista.ListaItemProduçãoFiscal();
-            this.listaItemProduçãoFiscal2 = new Apresentação.Administrativo.Fiscal.Lista.ListaItemProduçãoFiscal();
+            this.listaSaídas = new Lista.Produção.ListaSaídaProduçãoFiscal();
+            this.listaEntradas = new Lista.Produção.ListaEntradaProduçãoFiscal();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtMercadoria = new Apresentação.Mercadoria.TxtMercadoria();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.quadroItem.SuspendLayout();
@@ -115,6 +115,7 @@
             this.btnIncluir.TabIndex = 5;
             this.btnIncluir.Text = "Incluir TO";
             this.btnIncluir.UseVisualStyleBackColor = true;
+            this.btnIncluir.Click += new System.EventHandler(this.btnIncluir_Click);
             // 
             // cmbTipoUnidade
             // 
@@ -228,6 +229,17 @@
             this.quadroItem.Tamanho = 30;
             this.quadroItem.Título = "Detalhe do item";
             // 
+            // txtMercadoria
+            // 
+            this.txtMercadoria.Location = new System.Drawing.Point(19, 47);
+            this.txtMercadoria.Name = "txtMercadoria";
+            this.txtMercadoria.Referência = "";
+            this.txtMercadoria.Size = new System.Drawing.Size(154, 20);
+            this.txtMercadoria.SomenteCadastrado = true;
+            this.txtMercadoria.SomenteDeLinha = false;
+            this.txtMercadoria.TabIndex = 11;
+            this.txtMercadoria.ReferênciaConfirmada += new System.EventHandler(this.txtMercadoria_ReferênciaConfirmada);
+            // 
             // btnAlterar
             // 
             this.btnAlterar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -258,24 +270,24 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "TO: Transferência da produção para o inventário";
             // 
-            // listaItemProduçãoFiscal1
+            // listaSaídas
             // 
-            this.listaItemProduçãoFiscal1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.listaSaídas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listaItemProduçãoFiscal1.Location = new System.Drawing.Point(196, 248);
-            this.listaItemProduçãoFiscal1.Name = "listaItemProduçãoFiscal1";
-            this.listaItemProduçãoFiscal1.Size = new System.Drawing.Size(934, 86);
-            this.listaItemProduçãoFiscal1.TabIndex = 9;
+            this.listaSaídas.Location = new System.Drawing.Point(196, 248);
+            this.listaSaídas.Name = "listaSaídas";
+            this.listaSaídas.Size = new System.Drawing.Size(934, 86);
+            this.listaSaídas.TabIndex = 9;
             // 
-            // listaItemProduçãoFiscal2
+            // listaEntradas
             // 
-            this.listaItemProduçãoFiscal2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.listaEntradas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listaItemProduçãoFiscal2.Location = new System.Drawing.Point(196, 363);
-            this.listaItemProduçãoFiscal2.Name = "listaItemProduçãoFiscal2";
-            this.listaItemProduçãoFiscal2.Size = new System.Drawing.Size(934, 106);
-            this.listaItemProduçãoFiscal2.TabIndex = 11;
+            this.listaEntradas.Location = new System.Drawing.Point(196, 363);
+            this.listaEntradas.Name = "listaEntradas";
+            this.listaEntradas.Size = new System.Drawing.Size(934, 106);
+            this.listaEntradas.TabIndex = 11;
             // 
             // label2
             // 
@@ -288,23 +300,13 @@
             this.label2.TabIndex = 10;
             this.label2.Text = "OT: Transferência do inventário para a produção";
             // 
-            // txtMercadoria
-            // 
-            this.txtMercadoria.Location = new System.Drawing.Point(19, 47);
-            this.txtMercadoria.Name = "txtMercadoria";
-            this.txtMercadoria.Referência = "";
-            this.txtMercadoria.Size = new System.Drawing.Size(154, 20);
-            this.txtMercadoria.SomenteCadastrado = true;
-            this.txtMercadoria.SomenteDeLinha = false;
-            this.txtMercadoria.TabIndex = 11;
-            // 
             // BaseProdução
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.listaItemProduçãoFiscal2);
+            this.Controls.Add(this.listaEntradas);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.listaItemProduçãoFiscal1);
+            this.Controls.Add(this.listaSaídas);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.quadroItem);
             this.Controls.Add(this.títuloBaseInferior);
@@ -314,9 +316,9 @@
             this.Controls.SetChildIndex(this.títuloBaseInferior, 0);
             this.Controls.SetChildIndex(this.quadroItem, 0);
             this.Controls.SetChildIndex(this.label1, 0);
-            this.Controls.SetChildIndex(this.listaItemProduçãoFiscal1, 0);
+            this.Controls.SetChildIndex(this.listaSaídas, 0);
             this.Controls.SetChildIndex(this.label2, 0);
-            this.Controls.SetChildIndex(this.listaItemProduçãoFiscal2, 0);
+            this.Controls.SetChildIndex(this.listaEntradas, 0);
             this.esquerda.ResumeLayout(false);
             this.quadro1.ResumeLayout(false);
             this.quadroItem.ResumeLayout(false);
@@ -344,8 +346,8 @@
         private System.Windows.Forms.Button btnAlterar;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label1;
-        private Lista.ListaItemProduçãoFiscal listaItemProduçãoFiscal1;
-        private Lista.ListaItemProduçãoFiscal listaItemProduçãoFiscal2;
+        private Lista.Produção.ListaSaídaProduçãoFiscal listaSaídas;
+        private Lista.Produção.ListaEntradaProduçãoFiscal listaEntradas;
         private System.Windows.Forms.Label label2;
         private Mercadoria.TxtMercadoria txtMercadoria;
     }

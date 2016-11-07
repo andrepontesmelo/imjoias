@@ -206,10 +206,16 @@
     <Compile Include="Administrativo\Fiscal\Lista\ListaInventário.Designer.cs">
       <DependentUpon>ListaInventário.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrativo\Fiscal\Lista\ListaItemProduçãoFiscal.cs">
+    <Compile Include="Administrativo\Fiscal\Lista\Produção\ListaEntradaProduçãoFiscal.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Administrativo\Fiscal\Lista\ListaItemProduçãoFiscal.Designer.cs">
+    <Compile Include="Administrativo\Fiscal\Lista\Produção\ListaEntradaProduçãoFiscal.Designer.cs">
+      <DependentUpon>ListaEntradaProduçãoFiscal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administrativo\Fiscal\Lista\Produção\ListaItemProduçãoFiscal.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Administrativo\Fiscal\Lista\Produção\ListaItemProduçãoFiscal.Designer.cs">
       <DependentUpon>ListaItemProduçãoFiscal.cs</DependentUpon>
     </Compile>
     <Compile Include="Administrativo\Fiscal\Lista\ListaMáquinasECF.cs">
@@ -223,6 +229,12 @@
     </Compile>
     <Compile Include="Administrativo\Fiscal\Lista\ListaProduções.Designer.cs">
       <DependentUpon>ListaProduções.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administrativo\Fiscal\Lista\Produção\ListaSaídaProduçãoFiscal.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Administrativo\Fiscal\Lista\Produção\ListaSaídaProduçãoFiscal.Designer.cs">
+      <DependentUpon>ListaSaídaProduçãoFiscal.cs</DependentUpon>
     </Compile>
     <Compile Include="ComboSetor.cs">
       <SubType>Component</SubType>
@@ -2489,7 +2501,7 @@
     <EmbeddedResource Include="Administrativo\Fiscal\Lista\ListaInventário.resx">
       <DependentUpon>ListaInventário.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administrativo\Fiscal\Lista\ListaItemProduçãoFiscal.resx">
+    <EmbeddedResource Include="Administrativo\Fiscal\Lista\Produção\ListaItemProduçãoFiscal.resx">
       <DependentUpon>ListaItemProduçãoFiscal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administrativo\Fiscal\Lista\ListaMáquinasECF.resx">

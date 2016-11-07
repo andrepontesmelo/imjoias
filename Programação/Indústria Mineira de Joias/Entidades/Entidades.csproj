@@ -303,7 +303,10 @@
     <Compile Include="Fiscal\NotaFiscalEletronica\Parser\ParserXmlAtacado.cs" />
     <Compile Include="Fiscal\NotaFiscalEletronica\Pdf\LeitorPdf.cs" />
     <Compile Include="Fiscal\NotaFiscalEletronica\Parser\ParserXmlAtacadoCancelamento.cs" />
+    <Compile Include="Fiscal\Produção\EntradaProduçãoFiscal.cs" />
+    <Compile Include="Fiscal\Produção\ItemProduçãoFiscal.cs" />
     <Compile Include="Fiscal\Produção\ProduçãoFiscal.cs" />
+    <Compile Include="Fiscal\Produção\SaídaProduçãoFiscal.cs" />
     <Compile Include="Fiscal\SaídaFiscal.cs" />
     <Compile Include="Fiscal\EntradaItemFiscal.cs" />
     <Compile Include="Fiscal\SaídaItemFiscal.cs" />

@@ -1,5 +1,6 @@
 ﻿using Acesso.Comum;
 using Entidades.Configuração;
+using Entidades.Fiscal.Esquema;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -58,6 +59,40 @@ namespace Entidades.Fiscal.Produção
             sql.Append(")");
 
             ExecutarComando(sql.ToString());
+        }
+
+        public void AdicionarProdução(string referência, decimal quantidade)
+        {
+            EsquemaProdução esquema = EsquemaProdução.Obter(referência);
+            var ingredientes = Ingrediente.Obter(esquema.Referência);
+            decimal qtdReceitas = quantidade / esquema.Quantidade;
+
+            var conexão = Conexão;
+
+            lock (conexão)
+            {
+                using (var transação = conexão.BeginTransaction())
+                {
+                    using (var cmd = conexão.CreateCommand())
+                    {
+                        cmd.CommandText = SaídaProduçãoFiscal.ObterSqlInserçãoSaída(this, qtdReceitas, referência, quantidade);
+                        cmd.Transaction = transação;
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    foreach (var ingrediente in ingredientes)
+                    {
+                        using (var cmd = conexão.CreateCommand())
+                        {
+                            cmd.CommandText = EntradaProduçãoFiscal.ObterSqlInserçãoEntrada(this, ingrediente, qtdReceitas);
+                            cmd.Transaction = transação;
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    transação.Commit();
+                }
+            }
         }
     }
 }
