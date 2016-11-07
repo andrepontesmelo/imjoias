@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entidades.Fiscal.Produção;
+using System;
 
 namespace Apresentação.Administrativo.Fiscal.BaseInferior.Produção
 {
@@ -11,7 +12,17 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Produção
 
         private void opçãoNovaProdução_Click(object sender, EventArgs e)
         {
-            SubstituirBase(new BaseProdução());
+            var baseProdução = new BaseProdução();
+            baseProdução.Carregar(ProduçãoFiscal.Criar());
+
+            SubstituirBase(baseProdução);
+        }
+
+        protected override void AoExibir()
+        {
+            base.AoExibir();
+
+            listaProduções1.Carregar();
         }
     }
 }
