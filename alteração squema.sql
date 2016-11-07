@@ -395,3 +395,53 @@ ALTER TABLE `imjoias`.`saidafiscal`
 ADD INDEX `index6` (`datasaida` ASC);
 
 
+drop table saidaproducaofiscal;
+
+CREATE TABLE `saidaproducaofiscal` (
+  `producaofiscal` int(11) NOT NULL,
+  `quantidade` decimal(10,0) NOT NULL,
+  `referencia` varchar(11) NOT NULL,
+  KEY `fk_saidaproducaofiscal_2_idx` (`referencia`),
+  CONSTRAINT `fk_saidaproducaofiscal_1` FOREIGN KEY (`producaofiscal`) REFERENCES `producaofiscal` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_saidaproducaofiscal_2` FOREIGN KEY (`referencia`) REFERENCES `mercadoria` (`referencia`) ON UPDATE CASCADE
+) ENGINE=InnoDB;
+
+
+drop table entradaproducaofiscal;
+
+ CREATE TABLE `entradaproducaofiscal` (
+  `producaofiscal` int(11) NOT NULL,
+  `quantidade` decimal(10,0) NOT NULL,
+  `referencia` varchar(11) NOT NULL,
+  KEY `fk_entradaproducaofiscal_2_idx` (`referencia`),
+  CONSTRAINT `fk_entradaproducaofiscal_1` FOREIGN KEY (`producaofiscal`) REFERENCES `producaofiscal` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_entradaproducaofiscal_2` FOREIGN KEY (`referencia`) REFERENCES `mercadoria` (`referencia`) ON UPDATE CASCADE
+) ENGINE=InnoDB;
+
+
+USE `imjoias`;
+DROP procedure IF EXISTS `inventario`;
+
+DELIMITER $$
+USE `imjoias`$$
+CREATE PROCEDURE `inventario` (IN dataMaxima DATE)
+BEGIN
+select i.referencia, sum(quantidade) as quantidade, nome, classificacaofiscal, tipounidade, p.novoPrecoCusto as valor, sum(quantidade)*p.novoPrecoCusto as valortotal from (
+select ei.referencia, e.dataentrada as data,  ei.quantidade from entradaitemfiscal ei join entradafiscal e on ei.entradafiscal=e.id where dataentrada < dataMaxima
+UNION
+select ei.referencia, e.datasaida as data, -1*ei.quantidade from saidaitemfiscal ei join saidafiscal e on ei.saidafiscal=e.id where datasaida < dataMaxima
+UNION
+select ei.referencia, e.data, -1*ei.quantidade from entradaproducaofiscal ei join producaofiscal e on ei.producaofiscal=e.codigo where data < dataMaxima
+UNION
+select ei.referencia, e.data, ei.quantidade from saidaproducaofiscal ei join producaofiscal e on ei.producaofiscal=e.codigo where data < dataMaxima) i left join 
+mercadoria m on i.referencia=m.referencia left join novosPrecos p on i.referencia=p.mercadoria
+group by referencia;
+ 
+END$$
+
+DELIMITER ;
+
+
+
+
+
