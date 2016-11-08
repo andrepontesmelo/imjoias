@@ -18,6 +18,12 @@ namespace Entidades.Fiscal.Produção
         {
         }
 
+        public ItemProduçãoFiscal(string referencia, decimal quantidade)
+        {
+            this.referencia = referencia;
+            this.quantidade = quantidade;
+        }
+
         public bool Equals(ItemProduçãoFiscal outro)
         {
             return this.referencia.Equals(outro.referencia) && this.quantidade.Equals(outro.quantidade);

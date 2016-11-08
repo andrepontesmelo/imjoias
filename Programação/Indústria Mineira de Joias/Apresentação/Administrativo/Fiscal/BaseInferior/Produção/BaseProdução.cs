@@ -34,7 +34,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Produção
             if (txtQuantidade.Double == 0)
                 return;
 
-            produção.AdicionarProdução(txtMercadoria.ReferênciaNumérica, (decimal)txtQuantidade.Double);
+            produção.AdicionarProdução(new ItemProduçãoFiscal(txtMercadoria.ReferênciaNumérica, (decimal)txtQuantidade.Double));
             Carregar(produção);
         }
 
@@ -62,7 +62,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Produção
                 MessageBoxDefaultButton.Button2) != DialogResult.Yes)
                 return;
 
-            produção.Excluir(seleção);
+            produção.Remover(seleção);
             Carregar(produção);
         }
     }

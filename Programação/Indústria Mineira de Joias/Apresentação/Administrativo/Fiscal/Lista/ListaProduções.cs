@@ -35,7 +35,7 @@ namespace Apresentação.Administrativo.Fiscal.Lista
                 MessageBoxDefaultButton.Button2) != DialogResult.Yes)
                 return;
 
-            ProduçãoFiscal.Excluir(ObterSeleção());
+            ProduçãoFiscal.Remover(ObterSeleção());
             Carregar();
         }
 
