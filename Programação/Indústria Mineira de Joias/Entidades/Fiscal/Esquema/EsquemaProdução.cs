@@ -69,7 +69,7 @@ namespace Entidades.Fiscal.Esquema
 
         internal static EsquemaProdução Obter(string referência)
         {
-            return (from esquema in Esquemas where esquema.Referência.Equals(referência) select esquema).First();
+            return (from esquema in Esquemas where esquema.Referência.Equals(referência) select esquema).FirstOrDefault();
         }
 
         public static void Excluir(List<EsquemaProdução> seleção)

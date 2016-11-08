@@ -263,6 +263,7 @@
     <Compile Include="Fiscal\EntradaFiscal.cs" />
     <Compile Include="Fiscal\Esquema\EsquemaProdução.cs" />
     <Compile Include="Fiscal\Esquema\Ingrediente.cs" />
+    <Compile Include="Fiscal\Excessões\EsquemaInexistente.cs" />
     <Compile Include="Fiscal\Excessões\TentativaCancelamentoNotaInexistente.cs" />
     <Compile Include="Fiscal\Excessões\XmlIncompatível.cs" />
     <Compile Include="Fiscal\Importação\Importador.cs" />

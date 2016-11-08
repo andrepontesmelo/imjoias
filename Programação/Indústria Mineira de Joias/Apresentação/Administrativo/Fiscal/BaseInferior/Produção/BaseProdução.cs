@@ -1,4 +1,5 @@
 ﻿using Apresentação.Formulários;
+using Entidades.Fiscal.Excessões;
 using Entidades.Fiscal.Produção;
 using Entidades.Fiscal.Tipo;
 using System.Windows.Forms;
@@ -35,8 +36,25 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Produção
             if (txtQuantidade.Double == 0)
                 return;
 
-            produção.AdicionarProdução(new ItemProduçãoFiscal(txtMercadoria.ReferênciaNumérica, (decimal)txtQuantidade.Double));
-            Carregar(produção);
+            try
+            {
+                AguardeDB.Mostrar();
+                produção.AdicionarProdução(new ItemProduçãoFiscal(txtMercadoria.ReferênciaNumérica, (decimal)txtQuantidade.Double));
+            }
+            catch (EsquemaInexistente erro)
+            {
+                AguardeDB.Fechar();
+                MessageBox.Show(this,
+                erro.Message,
+                "Erro ao incluir TO",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Carregar(produção);
+                AguardeDB.Fechar();
+            }
         }
 
         private void listaEntradas_AoExcluir(object sender, System.EventArgs e)
@@ -64,9 +82,24 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Produção
                 return;
 
             AguardeDB.Mostrar();
-            produção.Remover(seleção);
-            Carregar(produção);
-            AguardeDB.Fechar();
+            try
+            {
+                produção.Remover(seleção);
+            }
+            catch (EsquemaInexistente erro)
+            {
+                AguardeDB.Fechar();
+                MessageBox.Show(this,
+                erro.Message,
+                "Erro ao remover seleção",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Carregar(produção);
+                AguardeDB.Fechar();
+            }
         }
     }
 }

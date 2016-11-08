@@ -1,6 +1,7 @@
 ﻿using Acesso.Comum;
 using Entidades.Configuração;
 using Entidades.Fiscal.Esquema;
+using Entidades.Fiscal.Excessões;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -58,6 +59,10 @@ namespace Entidades.Fiscal.Produção
         private void AdicionarProdução(System.Data.IDbConnection conexão, System.Data.IDbTransaction transação, ItemProduçãoFiscal novoItem)
         {
             EsquemaProdução esquema = EsquemaProdução.Obter(novoItem.Referência);
+
+            if (esquema == null)
+                throw new EsquemaInexistente(novoItem.Referência);
+
             var ingredientes = Ingrediente.Obter(esquema.Referência);
             decimal qtdReceitas = novoItem.Quantidade / esquema.Quantidade;
 
