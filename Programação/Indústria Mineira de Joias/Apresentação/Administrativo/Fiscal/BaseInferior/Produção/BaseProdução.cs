@@ -1,4 +1,5 @@
-﻿using Entidades.Fiscal.Produção;
+﻿using Apresentação.Formulários;
+using Entidades.Fiscal.Produção;
 using Entidades.Fiscal.Tipo;
 using System.Windows.Forms;
 
@@ -62,8 +63,10 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Produção
                 MessageBoxDefaultButton.Button2) != DialogResult.Yes)
                 return;
 
+            AguardeDB.Mostrar();
             produção.Remover(seleção);
             Carregar(produção);
+            AguardeDB.Fechar();
         }
     }
 }
