@@ -94,5 +94,72 @@ namespace Entidades.Fiscal.Produção
                 }
             }
         }
+
+        public void Excluir(List<ItemProduçãoFiscal> itensExcluir)
+        {
+            List<ItemProduçãoFiscal> novaListaSaída = ExcluirItens(SaídaProduçãoFiscal.Obter(Código), itensExcluir);
+
+            var conexão = Conexão;
+
+            lock (conexão)
+            {
+                using (var transação = conexão.BeginTransaction())
+                {
+                    using (var cmd = conexão.CreateCommand())
+                    {
+                        cmd.CommandText = "delete from saidaproducaofiscal where producaofiscal = " + DbTransformar(Código);
+                        cmd.Transaction = transação;
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    using (var cmd = conexão.CreateCommand())
+                    {
+                        cmd.CommandText = "delete from entradaproducaofiscal where producaofiscal = " + DbTransformar(Código);
+                        cmd.Transaction = transação;
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    foreach (ItemProduçãoFiscal novoItem in novaListaSaída)
+                    {
+                        EsquemaProdução esquema = EsquemaProdução.Obter(novoItem.Referência);
+                        var ingredientes = Ingrediente.Obter(esquema.Referência);
+                        decimal qtdReceitas = novoItem.Quantidade / esquema.Quantidade;
+
+                        using (var cmd = conexão.CreateCommand())
+                        {
+                            cmd.CommandText = SaídaProduçãoFiscal.ObterSqlInserçãoSaída(this, qtdReceitas, novoItem.Referência, novoItem.Quantidade);
+                            cmd.Transaction = transação;
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        foreach (var ingrediente in ingredientes)
+                        {
+                            using (var cmd = conexão.CreateCommand())
+                            {
+                                cmd.CommandText = EntradaProduçãoFiscal.ObterSqlInserçãoEntrada(this, ingrediente, qtdReceitas);
+                                cmd.Transaction = transação;
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
+
+                    }
+
+                    transação.Commit();
+                }
+            }
+        }
+
+        private List<ItemProduçãoFiscal> ExcluirItens(List<ItemProduçãoFiscal> itens, List<ItemProduçãoFiscal> itensExcluir)
+        {
+            List<ItemProduçãoFiscal> novaLista = new List<Produção.ItemProduçãoFiscal>();
+
+            foreach (ItemProduçãoFiscal i in itens)
+            {
+                if (!itensExcluir.Contains(i))
+                    novaLista.Add(i);
+            }
+
+            return novaLista;
+        }
     }
 }

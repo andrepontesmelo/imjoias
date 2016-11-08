@@ -1,5 +1,6 @@
 ﻿using Entidades.Fiscal.Produção;
 using Entidades.Fiscal.Tipo;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -7,9 +8,17 @@ namespace Apresentação.Administrativo.Fiscal.Lista
 {
     public partial class ListaItemProduçãoFiscal : UserControl
     {
+        public event EventHandler AoExcluir;
+
         public ListaItemProduçãoFiscal()
         {
             InitializeComponent();
+            lista.AoExcluir += Lista_AoExcluir;
+        }
+
+        private void Lista_AoExcluir(object sender, EventArgs e)
+        {
+            AoExcluir?.Invoke(sender, e);
         }
 
         protected void Carregar(List<ItemProduçãoFiscal> entidades)
@@ -43,8 +52,19 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             item.SubItems[colQuantidade.Index].Text = entidade.Quantidade.ToString();
             item.SubItems[colDescrição.Index].Text = entidade.Mercadoria.Descrição;
             item.SubItems[colTipo.Index].Text = TipoUnidade.Obter(entidade.Mercadoria.TipoUnidadeComercial).Nome;
+            item.Tag = entidade;
 
             return item;
+        }
+
+        public List<ItemProduçãoFiscal> ObterSeleção()
+        {
+            List<ItemProduçãoFiscal> resultado = new List<ItemProduçãoFiscal>();
+
+            foreach (ListViewItem item in lista.SelectedItems)
+                resultado.Add(item.Tag as ItemProduçãoFiscal);
+
+            return resultado;
         }
     }
 }

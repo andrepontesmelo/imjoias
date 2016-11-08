@@ -45,8 +45,8 @@
             this.btnAlterar = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.listaSaídas = new Lista.Produção.ListaSaídaProduçãoFiscal();
-            this.listaEntradas = new Lista.Produção.ListaEntradaProduçãoFiscal();
+            this.listaSaídas = new Apresentação.Administrativo.Fiscal.Lista.Produção.ListaSaídaProduçãoFiscal();
+            this.listaEntradas = new Apresentação.Administrativo.Fiscal.Lista.Produção.ListaEntradaProduçãoFiscal();
             this.label2 = new System.Windows.Forms.Label();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
@@ -279,6 +279,7 @@
             this.listaSaídas.Name = "listaSaídas";
             this.listaSaídas.Size = new System.Drawing.Size(934, 86);
             this.listaSaídas.TabIndex = 9;
+            this.listaSaídas.AoExcluir += new System.EventHandler(this.listaSaídas_AoExcluir);
             // 
             // listaEntradas
             // 
@@ -288,6 +289,7 @@
             this.listaEntradas.Name = "listaEntradas";
             this.listaEntradas.Size = new System.Drawing.Size(934, 106);
             this.listaEntradas.TabIndex = 11;
+            this.listaEntradas.AoExcluir += new System.EventHandler(this.listaEntradas_AoExcluir);
             // 
             // label2
             // 

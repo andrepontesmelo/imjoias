@@ -1,5 +1,6 @@
 ﻿using Entidades.Fiscal.Produção;
 using Entidades.Fiscal.Tipo;
+using System.Windows.Forms;
 
 namespace Apresentação.Administrativo.Fiscal.BaseInferior.Produção
 {
@@ -34,6 +35,34 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Produção
                 return;
 
             produção.AdicionarProdução(txtMercadoria.ReferênciaNumérica, (decimal)txtQuantidade.Double);
+            Carregar(produção);
+        }
+
+        private void listaEntradas_AoExcluir(object sender, System.EventArgs e)
+        {
+            MessageBox.Show(this,
+                "Favor manipular apenas as saídas.",
+                "Manipulação de entrada",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+        }
+
+        private void listaSaídas_AoExcluir(object sender, System.EventArgs e)
+        {
+            var seleção = listaSaídas.ObterSeleção();
+
+            if (seleção.Count == 0)
+                return;
+
+            if (MessageBox.Show(this,
+                string.Format("Confirma exclusão de {0} iten(s) ?", seleção.Count),
+                "Confirmação de exclusão",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2) != DialogResult.Yes)
+                return;
+
+            produção.Excluir(seleção);
             Carregar(produção);
         }
     }
