@@ -2,6 +2,7 @@
 using Entidades.Fiscal.Tipo;
 using System;
 using System.Collections.Generic;
+using Entidades.Fiscal.Produção;
 
 namespace Entidades.Fiscal
 {
@@ -31,6 +32,11 @@ namespace Entidades.Fiscal
         {
             return Mapear<Inventário>(string.Format("call inventario({0})", 
                 dataLimite == null ? "NOW()" : DbTransformar(dataLimite.Value)));
+        }
+
+        public ItemProduçãoFiscal ObterItemProdução()
+        {
+            return new ItemProduçãoFiscal(Referência, Math.Abs(Quantidade));
         }
     }
 }

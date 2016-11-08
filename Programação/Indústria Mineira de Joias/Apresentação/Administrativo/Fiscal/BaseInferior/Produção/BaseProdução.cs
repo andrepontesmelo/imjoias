@@ -1,4 +1,5 @@
-﻿using Apresentação.Formulários;
+﻿using Apresentação.Administrativo.Fiscal.BaseInferior.Esquema;
+using Apresentação.Formulários;
 using Entidades.Fiscal.Excessões;
 using Entidades.Fiscal.Produção;
 using Entidades.Fiscal.Tipo;
@@ -13,6 +14,11 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Produção
         public BaseProdução()
         {
             InitializeComponent();
+        }
+
+        public BaseProdução(ProduçãoFiscal produção) : this()
+        {
+            Carregar(produção);
         }
 
         internal void Carregar(ProduçãoFiscal produção)
@@ -89,11 +95,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Produção
             catch (EsquemaInexistente erro)
             {
                 AguardeDB.Fechar();
-                MessageBox.Show(this,
-                erro.Message,
-                "Erro ao remover seleção",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Error);
+                MensagemErro.MostrarMensagem(this, erro, "Erro ao remover seleção");
             }
             finally
             {

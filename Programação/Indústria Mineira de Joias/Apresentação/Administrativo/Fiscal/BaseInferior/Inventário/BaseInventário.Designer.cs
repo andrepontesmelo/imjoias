@@ -94,6 +94,7 @@
             this.opçãoProduzir.Name = "opçãoProduzir";
             this.opçãoProduzir.Size = new System.Drawing.Size(150, 16);
             this.opçãoProduzir.TabIndex = 4;
+            this.opçãoProduzir.Click += new System.EventHandler(this.opçãoProduzir_Click);
             // 
             // opçãoExtrato
             // 

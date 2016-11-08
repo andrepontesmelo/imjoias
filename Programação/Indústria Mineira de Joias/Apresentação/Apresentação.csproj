@@ -164,6 +164,7 @@
     <Compile Include="Administrativo\Fiscal\BaseInferior\Esquema\BaseEsquemas.Designer.cs">
       <DependentUpon>BaseEsquemas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrativo\Fiscal\BaseInferior\Esquema\MensagemErro.cs" />
     <Compile Include="Administrativo\Fiscal\BaseInferior\Inventário\BaseInventário.cs">
       <SubType>UserControl</SubType>
     </Compile>

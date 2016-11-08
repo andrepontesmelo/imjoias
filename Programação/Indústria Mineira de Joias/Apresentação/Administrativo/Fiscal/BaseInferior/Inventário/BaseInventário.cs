@@ -1,5 +1,10 @@
-﻿using Apresentação.Formulários;
+﻿using Apresentação.Administrativo.Fiscal.BaseInferior.Esquema;
+using Apresentação.Administrativo.Fiscal.BaseInferior.Produção;
+using Apresentação.Formulários;
+using Entidades.Fiscal.Excessões;
+using Entidades.Fiscal.Produção;
 using System;
+using System.Collections.Generic;
 
 namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
 {
@@ -46,6 +51,26 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
         private void optAtual_CheckedChanged(object sender, EventArgs e)
         {
             Carregar();
+        }
+
+        private void opçãoProduzir_Click(object sender, EventArgs e)
+        {
+            List<ItemProduçãoFiscal> itens = listaInventário.ObterItensChecados();
+            ProduçãoFiscal novaProdução;
+
+            if (itens.Count == 0)
+                return;
+
+            try
+            {
+                novaProdução = ProduçãoFiscal.Criar(itens);
+            } catch (EsquemaInexistente erro)
+            {
+                MensagemErro.MostrarMensagem(this, erro, "Erro ao criar produção");
+                return;
+            }
+
+            SubstituirBase(new BaseProdução(novaProdução));
         }
     }
 }

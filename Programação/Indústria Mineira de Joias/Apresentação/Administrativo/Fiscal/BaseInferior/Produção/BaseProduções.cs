@@ -17,9 +17,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Produção
 
         private void SubstituirBaseEdição(ProduçãoFiscal produção)
         {
-            var baseProdução = new BaseProdução();
-            baseProdução.Carregar(produção);
-            SubstituirBase(baseProdução);
+            SubstituirBase(new BaseProdução(produção));
         }
 
         protected override void AoExibir()

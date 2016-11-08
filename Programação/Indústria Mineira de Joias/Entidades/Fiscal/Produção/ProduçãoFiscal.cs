@@ -37,6 +37,30 @@ namespace Entidades.Fiscal.Produção
             return produção;
         }
 
+        public static ProduçãoFiscal Criar(List<ItemProduçãoFiscal> itens)
+        {
+            foreach (ItemProduçãoFiscal item in itens)
+                ObterEsquemaLevantandoErroCasoNãoExista(item);
+
+            var produção = Criar();
+
+            var conexão = Conexão;
+
+            lock (conexão)
+            {
+                using (var transação = conexão.BeginTransaction())
+                {
+                    foreach (ItemProduçãoFiscal item in itens)
+                        produção.AdicionarProdução(conexão, transação, item, 
+                            ObterEsquemaLevantandoErroCasoNãoExista(item));
+
+                    transação.Commit();
+                }
+            }
+
+            return produção;
+        }
+
         public static List<ProduçãoFiscal> Obter()
         {
             return Mapear<ProduçãoFiscal>("select * from producaofiscal");
