@@ -263,9 +263,11 @@
     <Compile Include="Fiscal\EntradaFiscal.cs" />
     <Compile Include="Fiscal\Esquema\EsquemaProdução.cs" />
     <Compile Include="Fiscal\Esquema\Ingrediente.cs" />
-    <Compile Include="Fiscal\Excessões\EsquemaInexistente.cs" />
-    <Compile Include="Fiscal\Excessões\TentativaCancelamentoNotaInexistente.cs" />
-    <Compile Include="Fiscal\Excessões\XmlIncompatível.cs" />
+    <Compile Include="Fiscal\Exceções\ExceçãoFiscal.cs" />
+    <Compile Include="Fiscal\Exceções\EsquemaInexistente.cs" />
+    <Compile Include="Fiscal\Exceções\ProduçãoVazia.cs" />
+    <Compile Include="Fiscal\Exceções\NotaInexistente.cs" />
+    <Compile Include="Fiscal\Exceções\XmlIncompatível.cs" />
     <Compile Include="Fiscal\Importação\Importador.cs" />
     <Compile Include="Fiscal\Importação\ImportadorNotaFiscal.cs" />
     <Compile Include="Fiscal\Importação\ImportadorSaídaPDFAtacado.cs" />
@@ -293,8 +295,8 @@
     <Compile Include="Fiscal\NotaFiscalEletronica\AdaptadorAtacadoSaída.cs" />
     <Compile Include="Fiscal\NotaFiscalEletronica\Pdf\MapaIdNfe.cs" />
     <Compile Include="Fiscal\NotaFiscalEletronica\Pdf\CacheVendaPdf.cs" />
-    <Compile Include="Fiscal\Excessões\CódigoDuplicado.cs" />
-    <Compile Include="Fiscal\Excessões\NomeArquivoInválido.cs" />
+    <Compile Include="Fiscal\Exceções\CódigoDuplicado.cs" />
+    <Compile Include="Fiscal\Exceções\NomeArquivoInválido.cs" />
     <Compile Include="Fiscal\NotaFiscalEletronica\NfeVenda.cs" />
     <Compile Include="Fiscal\Pdf\CacheIds.cs" />
     <Compile Include="Fiscal\Pdf\EntradaFiscalPdf.cs" />

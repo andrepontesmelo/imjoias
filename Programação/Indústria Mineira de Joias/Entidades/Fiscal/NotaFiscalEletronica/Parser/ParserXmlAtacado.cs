@@ -1,4 +1,4 @@
-﻿using Entidades.Fiscal.Excessões;
+﻿using Entidades.Fiscal.Exceções;
 using Entidades.Fiscal.Tipo;
 using System;
 using System.Globalization;

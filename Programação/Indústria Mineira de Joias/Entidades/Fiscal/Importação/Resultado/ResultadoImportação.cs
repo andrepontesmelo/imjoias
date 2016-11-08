@@ -40,7 +40,7 @@ namespace Entidades.Fiscal.Importação.Resultado
 
             arquivosSucesso = new ConjuntoAgrupado(escritor);
             arquivosIgnorados = new ConjuntoAgrupadoMotivo(escritor);
-            arquivosFalhados = new ConjuntoAgrupadoExcessão(escritor);
+            arquivosFalhados = new ConjuntoAgrupadoExceção(escritor);
         }
 
         public string GravarArquivoTxt(string versão)
@@ -102,7 +102,7 @@ namespace Entidades.Fiscal.Importação.Resultado
 
         internal void AdicionarFalha(string arquivo, Exception erro)
         {
-            arquivosFalhados.Adicionar(new ArquivoExcessão(arquivo, erro));
+            arquivosFalhados.Adicionar(new ArquivoExceção(arquivo, erro));
         }
 
         private void EscreveTaxa(string nome, int qtdArquivos)

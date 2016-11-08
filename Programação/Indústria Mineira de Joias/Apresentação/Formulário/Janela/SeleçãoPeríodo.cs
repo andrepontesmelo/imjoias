@@ -255,7 +255,7 @@ namespace Apresentação.Formulários
         
         public void AtribuirPeríodo(DateTime início, DateTime fim)
         {
-            // Relaxa o controla para não dar excessão nas atribuições de início e fim.
+            // Relaxa o controla para não dar Exceção nas atribuições de início e fim.
             dtInício.MinDate = DateTimePicker.MinimumDateTime;
             dtInício.MaxDate = DateTimePicker.MaximumDateTime;
 

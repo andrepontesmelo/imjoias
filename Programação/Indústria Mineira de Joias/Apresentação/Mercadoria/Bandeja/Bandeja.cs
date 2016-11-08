@@ -956,7 +956,7 @@ namespace Apresentação.Mercadoria.Bandeja
 
         /// <summary>
         /// Coloca o foco em um item específico.
-        /// Dispara excessão se não acha o item.
+        /// Dispara Exceção se não acha o item.
         /// </summary>
         /// <param name="s">Pode ser outro saquinho, desde que bandeja tenha outro com mesma referencia e peso.</param>
         public void Selecionar(Entidades.Mercadoria.Mercadoria m)

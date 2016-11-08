@@ -3,15 +3,15 @@ using System.IO;
 
 namespace Entidades.Fiscal.Importação.Resultado
 {
-    public class ConjuntoAgrupadoExcessão : ConjuntoAgrupado
+    public class ConjuntoAgrupadoExceção : ConjuntoAgrupado
     {
-        public ConjuntoAgrupadoExcessão(StreamWriter escritor) : base(escritor)
+        public ConjuntoAgrupadoExceção(StreamWriter escritor) : base(escritor)
         {
         }
 
         protected override Grupo CriarGrupo(string chave)
         {
-            return new GrupoExcessão(chave, escritor);
+            return new GrupoExceção(chave, escritor);
         }
     }
 }

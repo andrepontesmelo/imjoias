@@ -1,4 +1,4 @@
-﻿using Entidades.Fiscal.Excessões;
+﻿using Entidades.Fiscal.Exceções;
 using Entidades.Fiscal.NotaFiscalEletronica.Parser;
 using Entidades.Fiscal.Tipo;
 using System;
@@ -59,7 +59,7 @@ namespace Entidades.Fiscal.Importação.Resultado
 
                 if (!idsSaídas.Contains(id))
                 { 
-                    throw new TentativaCancelamentoNotaInexistente(id);
+                    throw new NotaInexistente(id);
                 }
 
                 SaídaFiscal.Cancelar(id);

@@ -1,4 +1,4 @@
-﻿using Entidades.Fiscal.Excessões;
+﻿using Entidades.Fiscal.Exceções;
 using Entidades.Fiscal.Importação;
 using Entidades.Fiscal.Importação.Resultado;
 using Entidades.Fiscal.NotaFiscalEletronica.Pdf;

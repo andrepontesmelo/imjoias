@@ -295,7 +295,7 @@ namespace Apresentação.Formulários.Consultas
 				throw new ApplicationException("Chave não pode ser nula!");
 			}
 #else
-			// Este método causou uma estranha excessão dizendo que chave é nula.
+			// Este método causou uma estranha Exceção dizendo que chave é nula.
 			// A verificação contorna o problema:
 			if (chave == null)
 				return;

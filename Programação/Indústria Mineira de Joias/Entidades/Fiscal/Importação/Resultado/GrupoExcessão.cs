@@ -3,18 +3,18 @@ using System.IO;
 
 namespace Entidades.Fiscal.Importação.Resultado
 {
-    public class GrupoExcessão : Grupo
+    public class GrupoExceção : Grupo
     {
         private static readonly int MAX_DESCRIÇÕES_ERRO_EXIBIR_CABEÇALHO_GRUPO = 5;
 
-        string tipoExcessão;
+        string tipoExceção;
         
-        public GrupoExcessão(string tipoExcessão, StreamWriter escritor) : base(escritor)
+        public GrupoExceção(string tipoExceção, StreamWriter escritor) : base(escritor)
         {
-            this.tipoExcessão = tipoExcessão;
+            this.tipoExceção = tipoExceção;
         }
 
-        internal override string Título => tipoExcessão;
+        internal override string Título => tipoExceção;
 
         internal override void EscreverResumo()
         {
@@ -26,9 +26,9 @@ namespace Entidades.Fiscal.Importação.Resultado
         {
             SortedSet<string> mensagens = new SortedSet<string>();
 
-            foreach (ArquivoExcessão arquivo in arquivos)
+            foreach (ArquivoExceção arquivo in arquivos)
             {
-                mensagens.Add(arquivo.Excessão.Message);
+                mensagens.Add(arquivo.Exceção.Message);
                 if (mensagens.Count > MAX_DESCRIÇÕES_ERRO_EXIBIR_CABEÇALHO_GRUPO)
                     break;
             }

@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace Entidades.Fiscal.Excessões
+﻿namespace Entidades.Fiscal.Exceções
 {
-    public class XmlIncompatível : Exception
+    public class XmlIncompatível : ExceçãoFiscal
     {
         public XmlIncompatível(string mensagem) : base(mensagem)
         {

@@ -225,7 +225,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Exceções\EntidadeNãoEncontrada.cs" />
-    <Compile Include="Exceções\ExcessãoMapeamentoTipo.cs" />
+    <Compile Include="Exceções\ExceçãoMapeamentoTipo.cs" />
     <Compile Include="Exceções\AlteraçãoChavePrimária.cs">
       <SubType>Code</SubType>
     </Compile>

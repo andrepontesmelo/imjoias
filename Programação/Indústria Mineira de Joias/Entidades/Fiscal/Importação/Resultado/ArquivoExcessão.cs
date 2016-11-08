@@ -3,16 +3,16 @@ using System.IO;
 
 namespace Entidades.Fiscal.Importação.Resultado
 {
-    public class ArquivoExcessão : Arquivo
+    public class ArquivoExceção : Arquivo
     {
         private Exception erro;
 
-        public ArquivoExcessão(string nome, Exception excessão) : base(nome)
+        public ArquivoExceção(string nome, Exception Exceção) : base(nome)
         {
-            this.erro = excessão;
+            this.erro = Exceção;
         }
 
-        public Exception Excessão => erro;
+        public Exception Exceção => erro;
 
         public override string ObterChaveGrupo()
         {

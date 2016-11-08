@@ -1,10 +1,11 @@
 ﻿using Acesso.Comum;
 using Entidades.Configuração;
 using Entidades.Fiscal.Esquema;
-using Entidades.Fiscal.Excessões;
+using Entidades.Fiscal.Exceções;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace Entidades.Fiscal.Produção
 {
@@ -39,11 +40,9 @@ namespace Entidades.Fiscal.Produção
 
         public static ProduçãoFiscal Criar(List<ItemProduçãoFiscal> itens)
         {
-            foreach (ItemProduçãoFiscal item in itens)
-                ObterEsquemaLevantandoErroCasoNãoExista(item);
+            LevantarErrosCriação(itens);
 
             var produção = Criar();
-
             var conexão = Conexão;
 
             lock (conexão)
@@ -51,7 +50,7 @@ namespace Entidades.Fiscal.Produção
                 using (var transação = conexão.BeginTransaction())
                 {
                     foreach (ItemProduçãoFiscal item in itens)
-                        produção.AdicionarProdução(conexão, transação, item, 
+                        produção.AdicionarProdução(conexão, transação, item,
                             ObterEsquemaLevantandoErroCasoNãoExista(item));
 
                     transação.Commit();
@@ -59,6 +58,20 @@ namespace Entidades.Fiscal.Produção
             }
 
             return produção;
+        }
+
+        private static void LevantarErrosCriação(List<ItemProduçãoFiscal> itens)
+        {
+            foreach (ItemProduçãoFiscal item in itens)
+                ObterEsquemaLevantandoErroCasoNãoExista(item);
+
+            if (!ExisteItemNãoVazio(itens))
+                throw new ProduçãoVazia();
+        }
+
+        private static bool ExisteItemNãoVazio(List<ItemProduçãoFiscal> itens)
+        {
+            return (from i in itens where i.Quantidade != 0 select i).FirstOrDefault() != null;
         }
 
         public static List<ProduçãoFiscal> Obter()
@@ -84,6 +97,9 @@ namespace Entidades.Fiscal.Produção
 
         private void AdicionarProdução(System.Data.IDbConnection conexão, System.Data.IDbTransaction transação, ItemProduçãoFiscal novoItem, EsquemaProdução esquema)
         {
+            if (novoItem.Quantidade == 0)
+                return;
+
             var ingredientes = Ingrediente.Obter(esquema.Referência);
             decimal qtdReceitas = novoItem.Quantidade / esquema.Quantidade;
 

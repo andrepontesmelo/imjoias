@@ -4,14 +4,14 @@ using System.Text;
 
 namespace Acesso.Comum.Exceções
 {
-    class ExcessãoMapeamentoTipo : Exception
+    class ExceçãoMapeamentoTipo : Exception
     {
         private Type tipoNãoEncontrado;
 
-        public ExcessãoMapeamentoTipo(string msg, Type tipoNãoEncontrado): base(msg)
+        public ExceçãoMapeamentoTipo(string msg, Type tipoNãoEncontrado): base(msg)
         {
             this.tipoNãoEncontrado = tipoNãoEncontrado;
-            Console.WriteLine("Nova ExcessãoMapeamentoTipo, tipo=" + tipoNãoEncontrado.ToString());
+            Console.WriteLine("Nova ExceçãoMapeamentoTipo, tipo=" + tipoNãoEncontrado.ToString());
         }
 
         public Type TipoNãoEncontrado

@@ -1,7 +1,7 @@
 ﻿using Apresentação.Administrativo.Fiscal.BaseInferior.Esquema;
 using Apresentação.Administrativo.Fiscal.BaseInferior.Produção;
 using Apresentação.Formulários;
-using Entidades.Fiscal.Excessões;
+using Entidades.Fiscal.Exceções;
 using Entidades.Fiscal.Produção;
 using System;
 using System.Collections.Generic;
@@ -64,7 +64,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
             try
             {
                 novaProdução = ProduçãoFiscal.Criar(itens);
-            } catch (EsquemaInexistente erro)
+            } catch (ExceçãoFiscal erro)
             {
                 MensagemErro.MostrarMensagem(this, erro, "Erro ao criar produção");
                 return;

@@ -1,4 +1,4 @@
-﻿using Entidades.Fiscal.Excessões;
+﻿using Entidades.Fiscal.Exceções;
 using Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

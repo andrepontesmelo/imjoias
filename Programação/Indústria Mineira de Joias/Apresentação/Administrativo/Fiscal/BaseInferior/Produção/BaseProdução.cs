@@ -1,6 +1,6 @@
 ﻿using Apresentação.Administrativo.Fiscal.BaseInferior.Esquema;
 using Apresentação.Formulários;
-using Entidades.Fiscal.Excessões;
+using Entidades.Fiscal.Exceções;
 using Entidades.Fiscal.Produção;
 using Entidades.Fiscal.Tipo;
 using System.Windows.Forms;
@@ -47,14 +47,9 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Produção
                 AguardeDB.Mostrar();
                 produção.AdicionarProdução(new ItemProduçãoFiscal(txtMercadoria.ReferênciaNumérica, (decimal)txtQuantidade.Double));
             }
-            catch (EsquemaInexistente erro)
+            catch (ExceçãoFiscal erro)
             {
-                AguardeDB.Fechar();
-                MessageBox.Show(this,
-                erro.Message,
-                "Erro ao incluir TO",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Error);
+                MensagemErro.MostrarMensagem(this, erro, "Erro ao incluir TO");
             }
             finally
             {
@@ -92,7 +87,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Produção
             {
                 produção.Remover(seleção);
             }
-            catch (EsquemaInexistente erro)
+            catch (ExceçãoFiscal erro)
             {
                 AguardeDB.Fechar();
                 MensagemErro.MostrarMensagem(this, erro, "Erro ao remover seleção");
