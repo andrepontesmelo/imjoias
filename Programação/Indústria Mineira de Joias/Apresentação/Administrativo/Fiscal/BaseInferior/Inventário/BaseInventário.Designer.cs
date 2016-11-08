@@ -108,6 +108,7 @@
             this.opçãoExtrato.Name = "opçãoExtrato";
             this.opçãoExtrato.Size = new System.Drawing.Size(150, 16);
             this.opçãoExtrato.TabIndex = 3;
+            this.opçãoExtrato.Click += new System.EventHandler(this.opçãoExtrato_Click);
             // 
             // opçãoImprimir
             // 
@@ -131,6 +132,7 @@
             this.listaInventário.Name = "listaInventário";
             this.listaInventário.Size = new System.Drawing.Size(851, 481);
             this.listaInventário.TabIndex = 7;
+            this.listaInventário.AoDuploClique += new System.EventHandler(this.listaInventário_AoDuploClique);
             // 
             // optAtual
             // 

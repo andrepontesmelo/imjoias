@@ -72,5 +72,20 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
 
             SubstituirBase(new BaseProdução(novaProdução));
         }
+
+        private void listaInventário_AoDuploClique(object sender, EventArgs e)
+        {
+            AbrirExtrato();
+        }
+
+        private void AbrirExtrato()
+        {
+            SubstituirBase(new BaseExtrato(listaInventário.ObterItemSelecionado()?.Referência));
+        }
+
+        private void opçãoExtrato_Click(object sender, EventArgs e)
+        {
+            AbrirExtrato();
+        }
     }
 }

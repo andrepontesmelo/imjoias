@@ -9,11 +9,19 @@ namespace Apresentação.Administrativo.Fiscal.Lista
 {
     public partial class ListaInventário : UserControl
     {
+        public event EventHandler AoDuploClique;
+
         public ListaInventário()
         {
             InitializeComponent();
             lista.ListViewItemSorter = new ListViewColumnSorter();
             lista.ColumnClick += Lista_ColumnClick;
+            lista.DoubleClick += Lista_DoubleClick;
+        }
+
+        private void Lista_DoubleClick(object sender, EventArgs e)
+        {
+            AoDuploClique?.Invoke(sender, e);
         }
 
         private void Lista_ColumnClick(object sender, ColumnClickEventArgs e)
@@ -64,6 +72,17 @@ namespace Apresentação.Administrativo.Fiscal.Lista
 
             return listaEntidades;
         }
+
+        public Inventário ObterItemSelecionado()
+        {
+            var seleção = lista.SelectedItems;
+
+            if (seleção.Count == 0)
+                return null;
+
+            return lista.SelectedItems[0].Tag as Inventário;
+        }
+
 
         private void CarregarItens(ListViewItem[] itens)
         {
