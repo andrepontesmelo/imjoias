@@ -399,7 +399,7 @@ drop table saidaproducaofiscal;
 
 CREATE TABLE `saidaproducaofiscal` (
   `producaofiscal` int(11) NOT NULL,
-  `quantidade` decimal(10,0) NOT NULL,
+  `quantidade` decimal(10,2) NOT NULL,
   `referencia` varchar(11) NOT NULL,
   KEY `fk_saidaproducaofiscal_2_idx` (`referencia`),
   CONSTRAINT `fk_saidaproducaofiscal_1` FOREIGN KEY (`producaofiscal`) REFERENCES `producaofiscal` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -411,7 +411,7 @@ drop table entradaproducaofiscal;
 
  CREATE TABLE `entradaproducaofiscal` (
   `producaofiscal` int(11) NOT NULL,
-  `quantidade` decimal(10,0) NOT NULL,
+  `quantidade` decimal(10,2) NOT NULL,
   `referencia` varchar(11) NOT NULL,
   KEY `fk_entradaproducaofiscal_2_idx` (`referencia`),
   CONSTRAINT `fk_entradaproducaofiscal_1` FOREIGN KEY (`producaofiscal`) REFERENCES `producaofiscal` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -424,7 +424,7 @@ DROP procedure IF EXISTS `inventario`;
 
 DELIMITER $$
 USE `imjoias`$$
-CREATE PROCEDURE `inventario` (IN dataMaxima DATE)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `inventario`(IN dataMaxima DATETIME)
 BEGIN
 select i.referencia, sum(quantidade) as quantidade, nome, classificacaofiscal, tipounidade, p.novoPrecoCusto as valor, sum(quantidade)*p.novoPrecoCusto as valortotal from (
 select ei.referencia, e.dataentrada as data,  ei.quantidade from entradaitemfiscal ei join entradafiscal e on ei.entradafiscal=e.id where dataentrada < dataMaxima
@@ -436,12 +436,58 @@ UNION
 select ei.referencia, e.data, ei.quantidade from saidaproducaofiscal ei join producaofiscal e on ei.producaofiscal=e.codigo where data < dataMaxima) i left join 
 mercadoria m on i.referencia=m.referencia left join novosPrecos p on i.referencia=p.mercadoria
 group by referencia;
- 
 END$$
 
 DELIMITER ;
 
+ALTER TABLE `imjoias`.`esquemaproducaofiscal` 
+CHANGE COLUMN `quantidade` `quantidade` DECIMAL(10, 2) NOT NULL ;
 
 
+ALTER TABLE `imjoias`.`ingredienteesquemaproducaofiscal` 
+CHANGE COLUMN `quantidade` `quantidade` DECIMAL(10,2) NOT NULL ;
 
+
+USE `imjoias`;
+CREATE  OR REPLACE VIEW `extratoinventario` AS
+select e.tipo as TipoDocumento, 'E' as Tipo, ei.referencia, e.dataentrada as data,  ei.quantidade, ei.valor from entradaitemfiscal ei join entradafiscal e on ei.entradafiscal=e.id where dataentrada < now()
+UNION
+select e.tipo as TipoDocumento, 'S' as Tipo, ei.referencia, e.datasaida as data, -1*ei.quantidade, ei.valor from saidaitemfiscal ei join saidafiscal e on ei.saidafiscal=e.id where datasaida < now()
+UNION
+select null as TipoDocumento, 'OT' as Tipo, ei.referencia, e.data, -1*ei.quantidade, 0 as valor from entradaproducaofiscal ei join producaofiscal e on ei.producaofiscal=e.codigo where data < now()
+UNION
+select null as TipoDocumento, 'TO' as Tipo, ei.referencia, e.data, ei.quantidade, 0 as valor from saidaproducaofiscal ei join producaofiscal e on ei.producaofiscal=e.codigo where data < now();
+
+
+ALTER TABLE `imjoias`.`entradafiscal` 
+DROP INDEX `index3` ,
+ADD INDEX `idx_data_entrada` (`dataentrada` ASC);
+
+
+ALTER TABLE `imjoias`.`entradafiscal` 
+DROP INDEX `idx_data_entrada_desc`
+
+ALTER TABLE `imjoias`.`entradafiscal` ADD INDEX `idx_data_entrada` (`dataentrada`);
+
+
+USE `imjoias`;
+DROP procedure IF EXISTS `inventario`;
+
+# force index(idx_data_entrada) 
+
+DELIMITER $$
+USE `imjoias`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `inventario`(IN dataMaxima DATETIME)
+BEGIN
+select i.referencia, sum(quantidade) as quantidade, nome, classificacaofiscal, tipounidade, p.novoPrecoCusto as valor, sum(quantidade)*p.novoPrecoCusto as valortotal from (
+select ei.referencia, e.dataentrada as data,  ei.quantidade from entradaitemfiscal ei join entradafiscal e on ei.entradafiscal=e.id where dataentrada < dataMaxima
+UNION
+select ei.referencia, e.datasaida as data, -1*ei.quantidade from saidaitemfiscal ei join saidafiscal e on ei.saidafiscal=e.id where datasaida < dataMaxima
+UNION
+select ei.referencia, e.data, -1*ei.quantidade from entradaproducaofiscal ei join producaofiscal e on ei.producaofiscal=e.codigo where data < dataMaxima
+UNION
+select ei.referencia, e.data, ei.quantidade from saidaproducaofiscal ei join producaofiscal e on ei.producaofiscal=e.codigo where data < dataMaxima) i left join 
+mercadoria m on i.referencia=m.referencia left join novosPrecos p on i.referencia=p.mercadoria
+group by referencia;
+END$$
 
