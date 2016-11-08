@@ -44,25 +44,22 @@ namespace Entidades.Fiscal.Produção
 
         public void AdicionarProdução(ItemProduçãoFiscal novoItem)
         {
+            var esquema = ObterEsquemaLevantandoErroCasoNãoExista(novoItem);
+
             var conexão = Conexão;
 
             lock (conexão)
             {
                 using (var transação = conexão.BeginTransaction())
                 {
-                    AdicionarProdução(conexão, transação, novoItem);
+                    AdicionarProdução(conexão, transação, novoItem, esquema);
                     transação.Commit();
                 }
             }
         }
 
-        private void AdicionarProdução(System.Data.IDbConnection conexão, System.Data.IDbTransaction transação, ItemProduçãoFiscal novoItem)
+        private void AdicionarProdução(System.Data.IDbConnection conexão, System.Data.IDbTransaction transação, ItemProduçãoFiscal novoItem, EsquemaProdução esquema)
         {
-            EsquemaProdução esquema = EsquemaProdução.Obter(novoItem.Referência);
-
-            if (esquema == null)
-                throw new EsquemaInexistente(novoItem.Referência);
-
             var ingredientes = Ingrediente.Obter(esquema.Referência);
             decimal qtdReceitas = novoItem.Quantidade / esquema.Quantidade;
 
@@ -70,6 +67,16 @@ namespace Entidades.Fiscal.Produção
 
             foreach (var ingrediente in ingredientes)
                 AdicionarEntrada(conexão, transação, qtdReceitas, ingrediente);
+        }
+
+        private static EsquemaProdução ObterEsquemaLevantandoErroCasoNãoExista(ItemProduçãoFiscal novoItem)
+        {
+            EsquemaProdução esquema = EsquemaProdução.Obter(novoItem.Referência);
+
+            if (esquema == null)
+                throw new EsquemaInexistente(novoItem.Referência);
+
+            return esquema;
         }
 
         private void AdicionarEntrada(System.Data.IDbConnection conexão, System.Data.IDbTransaction transação, decimal qtdReceitas, Ingrediente ingrediente)
@@ -96,6 +103,9 @@ namespace Entidades.Fiscal.Produção
         {
             List<ItemProduçãoFiscal> novaListaSaída = FiltrarItens(SaídaProduçãoFiscal.Obter(Código), itensRemover);
 
+            foreach (ItemProduçãoFiscal novoItem in novaListaSaída)
+                ObterEsquemaLevantandoErroCasoNãoExista(novoItem);
+
             var conexão = Conexão;
 
             lock (conexão)
@@ -106,7 +116,7 @@ namespace Entidades.Fiscal.Produção
                     RemoverEntradas(conexão, transação);
 
                     foreach (ItemProduçãoFiscal novoItem in novaListaSaída)
-                        AdicionarProdução(conexão, transação, novoItem);
+                        AdicionarProdução(conexão, transação, novoItem, ObterEsquemaLevantandoErroCasoNãoExista(novoItem));
 
                     transação.Commit();
                 }
