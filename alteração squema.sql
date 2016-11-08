@@ -450,13 +450,13 @@ CHANGE COLUMN `quantidade` `quantidade` DECIMAL(10,2) NOT NULL ;
 
 USE `imjoias`;
 CREATE  OR REPLACE VIEW `extratoinventario` AS
-select e.tipo as TipoDocumento, 'E' as Tipo, ei.referencia, e.dataentrada as data,  ei.quantidade, ei.valor from entradaitemfiscal ei join entradafiscal e on ei.entradafiscal=e.id where dataentrada < now()
+select e.tipo as tipodocumento, 'E' as tipoextrato, ei.referencia, e.dataentrada as data,  ei.quantidade, ei.valor from entradaitemfiscal ei join entradafiscal e on ei.entradafiscal=e.id where dataentrada < now()
 UNION
-select e.tipo as TipoDocumento, 'S' as Tipo, ei.referencia, e.datasaida as data, -1*ei.quantidade, ei.valor from saidaitemfiscal ei join saidafiscal e on ei.saidafiscal=e.id where datasaida < now()
+select e.tipo as tipodocumento, 'S' as tipoextrato, ei.referencia, e.datasaida as data, -1*ei.quantidade, ei.valor from saidaitemfiscal ei join saidafiscal e on ei.saidafiscal=e.id where datasaida < now()
 UNION
-select null as TipoDocumento, 'OT' as Tipo, ei.referencia, e.data, -1*ei.quantidade, 0 as valor from entradaproducaofiscal ei join producaofiscal e on ei.producaofiscal=e.codigo where data < now()
+select null as tipodocumento, 'OT' as tipoextrato, ei.referencia, e.data, -1*ei.quantidade, 0 as valor from entradaproducaofiscal ei join producaofiscal e on ei.producaofiscal=e.codigo where data < now()
 UNION
-select null as TipoDocumento, 'TO' as Tipo, ei.referencia, e.data, ei.quantidade, 0 as valor from saidaproducaofiscal ei join producaofiscal e on ei.producaofiscal=e.codigo where data < now();
+select null as tipodocumento, 'TO' as tipoextrato, ei.referencia, e.data, ei.quantidade, 0 as valor from saidaproducaofiscal ei join producaofiscal e on ei.producaofiscal=e.codigo where data < now();
 
 
 ALTER TABLE `imjoias`.`entradafiscal` 
@@ -472,8 +472,6 @@ ALTER TABLE `imjoias`.`entradafiscal` ADD INDEX `idx_data_entrada` (`dataentrada
 
 USE `imjoias`;
 DROP procedure IF EXISTS `inventario`;
-
-# force index(idx_data_entrada) 
 
 DELIMITER $$
 USE `imjoias`$$
