@@ -23,10 +23,18 @@ namespace Entidades.Fiscal
         public string Referência => referencia;
         public decimal Quantidade => quantidade;
         public string Descrição => nome;
-        public string ClassificaçãoFiscal => classificacaofiscal;
         public TipoUnidade TipoUnidadeComercial => TipoUnidade.Obter(tipounidade);
         public string ValorFormatado => valor.ToString("C");
+        public double ValorUnitário => valor;
+        public double ValorTotal => valortotal;
         public string ValorTotalFormatado => valortotal.ToString("C");
+
+        public string ClassificaçãoFiscal
+        {
+            get { return classificacaofiscal; }
+            set { classificacaofiscal = value; }
+        }
+
 
         public static List<Inventário> Obter(DateTime? dataLimite)
         {
@@ -37,6 +45,24 @@ namespace Entidades.Fiscal
         public ItemProduçãoFiscal ObterItemProdução()
         {
             return new ItemProduçãoFiscal(Referência, Math.Abs(Quantidade));
+        }
+
+        public string ClassificaçãoFiscalFormatada
+        {
+            get
+            {
+                var classificação = classificacaofiscal == null ? "" : ClassificaçãoFiscal;
+
+                if (classificação.Length < 10)
+                    classificação = classificação.PadLeft(10, '0');
+                    
+                return string.Format("{0}.{1}.{2}.{3}.{4}",
+                    classificação.Substring(0, 3),
+                    classificação.Substring(3, 2),
+                    classificação.Substring(5, 1),
+                    classificação.Substring(6, 2),
+                    classificação.Substring(8, 2));
+            }
         }
     }
 }

@@ -195,6 +195,12 @@
     <Compile Include="Administrativo\Fiscal\Combo\ComboMáquina.Designer.cs">
       <DependentUpon>ComboMáquina.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrativo\Fiscal\Janela\JanelaImpressãoFiscal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrativo\Fiscal\Janela\JanelaImpressãoFiscal.Designer.cs">
+      <DependentUpon>JanelaImpressãoFiscal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administrativo\Fiscal\Lista\ListaEsquemaProdução.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -262,6 +268,21 @@
       <DependentUpon>ComboRígido.cs</DependentUpon>
     </Compile>
     <Compile Include="Formulário\Exceção\ExceçãoChamadaMétodoAbstrato.cs" />
+    <Compile Include="Impressão\Relatórios\Fiscal\Inventário\ControladorImpressãoInventário.cs" />
+    <Compile Include="Impressão\Relatórios\Fiscal\Inventário\DataSetInventário.cs">
+      <DependentUpon>DataSetInventário.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Impressão\Relatórios\Fiscal\Inventário\DataSetInventário.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetInventário.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Impressão\Relatórios\Fiscal\Inventário\RelatórioInventário.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RelatórioInventário.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Pessoa\Atendente\BaseInfoAtendimentos.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -2508,6 +2529,9 @@
     <EmbeddedResource Include="Administrativo\Fiscal\Combo\ComboTipoUnidade.resx">
       <DependentUpon>ComboTipoUnidade.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Administrativo\Fiscal\Janela\JanelaImpressãoFiscal.resx">
+      <DependentUpon>JanelaImpressãoFiscal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Administrativo\Fiscal\Lista\ListaEsquemaProdução.resx">
       <DependentUpon>ListaEsquemaProdução.cs</DependentUpon>
     </EmbeddedResource>
@@ -2537,6 +2561,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formulário\ComboRígido.resx">
       <DependentUpon>ComboRígido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Impressão\Relatórios\Fiscal\Inventário\RelatórioInventário.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RelatórioInventário.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Pessoa\Atendente\BaseInfoAtendimentos.resx">
       <DependentUpon>BaseInfoAtendimentos.cs</DependentUpon>
@@ -3689,6 +3717,17 @@
     </None>
     <None Include="Impressão\Relatórios\Estoque\Resumo\DataSetResumo.xss">
       <DependentUpon>DataSetResumo.xsd</DependentUpon>
+    </None>
+    <None Include="Impressão\Relatórios\Fiscal\Inventário\DataSetInventário.xsc">
+      <DependentUpon>DataSetInventário.xsd</DependentUpon>
+    </None>
+    <None Include="Impressão\Relatórios\Fiscal\Inventário\DataSetInventário.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetInventário.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Impressão\Relatórios\Fiscal\Inventário\DataSetInventário.xss">
+      <DependentUpon>DataSetInventário.xsd</DependentUpon>
     </None>
     <None Include="Impressão\Relatórios\Pedido\MercadoriaEmFaltaCliente\DataSetMercadoriaEmFaltaCliente.xsc">
       <DependentUpon>DataSetMercadoriaEmFaltaCliente.xsd</DependentUpon>

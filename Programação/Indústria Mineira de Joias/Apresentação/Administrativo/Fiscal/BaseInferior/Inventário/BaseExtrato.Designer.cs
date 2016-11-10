@@ -124,8 +124,7 @@
             // 
             // chkDataInicial
             // 
-            this.chkDataInicial.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkDataInicial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkDataInicial.AutoSize = true;
             this.chkDataInicial.Location = new System.Drawing.Point(639, 80);
             this.chkDataInicial.Name = "chkDataInicial";
