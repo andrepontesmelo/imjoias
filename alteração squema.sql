@@ -489,3 +489,13 @@ mercadoria m on i.referencia=m.referencia left join novosPrecos p on i.referenci
 group by referencia;
 END$$
 
+
+ALTER TABLE `imjoias`.`tipodocumentofiscal` 
+ADD COLUMN `nomeresumido` VARCHAR(3) NOT NULL DEFAULT '' AFTER `saida`;
+
+UPDATE `imjoias`.`tipodocumentofiscal` SET `nomeresumido`='NF' WHERE `id`='1';
+UPDATE `imjoias`.`tipodocumentofiscal` SET `nomeresumido`='CP' WHERE `id`='2';
+
+
+
+
