@@ -1,6 +1,8 @@
 ﻿using Apresentação.Administrativo.Fiscal.BaseInferior.Esquema;
 using Apresentação.Administrativo.Fiscal.BaseInferior.Produção;
+using Apresentação.Administrativo.Fiscal.Janela;
 using Apresentação.Formulários;
+using Entidades.Configuração;
 using Entidades.Fiscal.Exceções;
 using Entidades.Fiscal.Produção;
 using System;
@@ -86,6 +88,16 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
         private void opçãoExtrato_Click(object sender, EventArgs e)
         {
             AbrirExtrato();
+        }
+
+        private void opçãoImprimir_Click(object sender, EventArgs e)
+        {
+            var janela = new JanelaImpressãoFiscal();
+
+            DateTime data = Data.HasValue ? Data.Value : DadosGlobais.Instância.HoraDataAtual;
+
+            janela.InserirDocumento(data);
+            janela.ShowDialog(this);
         }
     }
 }

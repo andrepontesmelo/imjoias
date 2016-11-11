@@ -2,6 +2,7 @@ using System;
 using System.Data;
 using Acesso.Comum.Cache;
 using System.Collections.Generic;
+using Entidades.Configuração;
 
 namespace Entidades.Pessoa
 {
@@ -54,7 +55,17 @@ namespace Entidades.Pessoa
             set { inscMunicipal = value; DefinirDesatualizado(); }
         }
 
-		public static PessoaJurídica ObterPessoaPorCNPJ(string cnpj)
+
+        private static PessoaJurídica empresa = null;
+        public static PessoaJurídica ObterEmpresa()
+        {
+            if (empresa == null)
+                empresa = ObterPessoaPorCNPJ(DadosGlobais.Instância.CNPJEmpresa);
+
+            return empresa;
+        }
+
+        public static PessoaJurídica ObterPessoaPorCNPJ(string cnpj)
         {
             return (PessoaJurídica) CacheDb.Instância.ObterEntidade(typeof(PessoaJurídica), cnpj);
         }

@@ -60,6 +60,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Fiscal\Cupom\AdaptadorVarejoTests.cs" />
+    <Compile Include="Fiscal\InventárioTests.cs" />
     <Compile Include="Fiscal\NotaFiscalEletronica\ParserXmlAtacadoCancelamentoTests.cs" />
     <Compile Include="Fiscal\NotaFiscalEletronica\AdaptadorAtacadoTests.cs" />
     <Compile Include="Fiscal\NotaFiscalEletronica\ParserXmlTests.cs" />

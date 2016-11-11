@@ -15,6 +15,7 @@ namespace Entidades.Fiscal
         private decimal valor;
 
         public TipoDocumento TipoDocumento => TipoDocumento.Obter(tipodocumento);
+
         public string TipoExtrato => tipoextrato;
         public string Referência => referencia;
         public DateTime Data => data;
@@ -28,10 +29,22 @@ namespace Entidades.Fiscal
         {
         }
 
-        public static List<Extrato> Obter(string referência)
+        public static List<Extrato> Obter(string referência, DateTime início, DateTime fim)
         {
-            return Mapear<Extrato>("select * from extratoinventario where referencia=" + 
-                DbTransformar(referência));
+            início = RetirarTempo(início);
+            fim = RetirarTempo(fim).AddDays(1);
+
+            return Mapear<Extrato>(
+                string.Format("select * from extratoinventario where referencia={0} and data >= {1} and data < {2}",
+                DbTransformar(referência),
+                DbTransformar(início),
+                DbTransformar(fim)));
+        }
+
+        private static DateTime RetirarTempo(DateTime fim)
+        {
+            fim = new DateTime(fim.Year, fim.Month, fim.Day);
+            return fim;
         }
     }
 }

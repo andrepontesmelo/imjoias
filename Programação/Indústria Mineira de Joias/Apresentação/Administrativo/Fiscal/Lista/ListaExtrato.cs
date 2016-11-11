@@ -1,4 +1,5 @@
 ﻿using Entidades.Fiscal;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -11,14 +12,14 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             InitializeComponent();
         }
         
-        public void Carregar(string referência)
+        public void Carregar(string referência, DateTime início, DateTime fim)
         {
-            CarregarItens(CriarItens(Extrato.Obter(referência)));
+            CarregarItens(CriarItens(Extrato.Obter(referência, início, fim)));
         }
 
         private void CarregarItens(ListViewItem[] itens)
         {
-            //lista.SuspendLayout();
+            lista.SuspendLayout();
             lista.Items.Clear();
             lista.Items.AddRange(itens);
             lista.ResumeLayout();
