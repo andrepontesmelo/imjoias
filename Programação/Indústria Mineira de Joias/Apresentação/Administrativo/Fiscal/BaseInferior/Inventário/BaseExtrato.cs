@@ -1,4 +1,6 @@
-﻿using Apresentação.Formulários;
+﻿using Apresentação.Administrativo.Fiscal.Janela;
+using Apresentação.Formulários;
+using Apresentação.Impressão.Relatórios.Fiscal.Extrato;
 using Entidades.Configuração;
 using System;
 
@@ -81,6 +83,20 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
         {
             referência = txtMercadoria.ReferênciaNumérica;
             Carregar();
+        }
+
+        private void opçãoImprimir_Click(object sender, EventArgs e)
+        {
+            var janela = new JanelaImpressãoFiscal();
+
+            DateTime dataInicial = DataInicial.HasValue ? DataInicial.Value : DadosGlobais.Instância.HoraDataAtual;
+            DateTime dataFinal = DataFinal.HasValue ? DataFinal.Value : DadosGlobais.Instância.HoraDataAtual;
+
+            janela.InserirDocumento("Extrato Geral",
+                string.Format("Relatório de extrato de {0} até {1}", dataInicial.ToShortDateString(), dataFinal.ToShortDateString()),
+                new ControladorImpressãoExtrato().CriarRelatório(null, dataInicial, dataFinal));
+
+            janela.ShowDialog(this);
         }
     }
 }

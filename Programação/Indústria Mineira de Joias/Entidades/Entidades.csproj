@@ -268,7 +268,7 @@
     <Compile Include="Fiscal\Exceções\ProduçãoVazia.cs" />
     <Compile Include="Fiscal\Exceções\NotaInexistente.cs" />
     <Compile Include="Fiscal\Exceções\XmlIncompatível.cs" />
-    <Compile Include="Fiscal\Extrato.cs" />
+    <Compile Include="Fiscal\Registro\Extrato.cs" />
     <Compile Include="Fiscal\Importação\Importador.cs" />
     <Compile Include="Fiscal\Importação\ImportadorNotaFiscal.cs" />
     <Compile Include="Fiscal\Importação\ImportadorSaídaPDFAtacado.cs" />
@@ -288,7 +288,7 @@
     <Compile Include="Fiscal\Importação\Resultado\ImportadorCancelamentosAtacado.cs" />
     <Compile Include="Fiscal\Importação\Resultado\Motivo.cs" />
     <Compile Include="Fiscal\Importação\Resultado\ResultadoImportação.cs" />
-    <Compile Include="Fiscal\Inventário.cs" />
+    <Compile Include="Fiscal\Registro\Inventário.cs" />
     <Compile Include="Fiscal\ITransformavelDocumentoFiscal.cs" />
     <Compile Include="Fiscal\Máquina.cs" />
     <Compile Include="Fiscal\NotaFiscalEletronica\AdaptadorAtacado.cs" />
@@ -312,6 +312,7 @@
     <Compile Include="Fiscal\Produção\ItemProduçãoFiscal.cs" />
     <Compile Include="Fiscal\Produção\ProduçãoFiscal.cs" />
     <Compile Include="Fiscal\Produção\SaídaProduçãoFiscal.cs" />
+    <Compile Include="Fiscal\Registro\RegistroAbstrato.cs" />
     <Compile Include="Fiscal\SaídaFiscal.cs" />
     <Compile Include="Fiscal\EntradaItemFiscal.cs" />
     <Compile Include="Fiscal\SaídaItemFiscal.cs" />

@@ -268,6 +268,22 @@
       <DependentUpon>ComboRígido.cs</DependentUpon>
     </Compile>
     <Compile Include="Formulário\Exceção\ExceçãoChamadaMétodoAbstrato.cs" />
+    <Compile Include="Impressão\Relatórios\Fiscal\ControladorImpressãoFiscal.cs" />
+    <Compile Include="Impressão\Relatórios\Fiscal\Extrato\ControladorImpressãoExtrato.cs" />
+    <Compile Include="Impressão\Relatórios\Fiscal\Extrato\DataSetExtrato.cs">
+      <DependentUpon>DataSetExtrato.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Impressão\Relatórios\Fiscal\Extrato\DataSetExtrato.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetExtrato.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Impressão\Relatórios\Fiscal\Extrato\RelatórioExtrato.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RelatórioExtrato.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Impressão\Relatórios\Fiscal\Inventário\ControladorImpressãoInventário.cs" />
     <Compile Include="Impressão\Relatórios\Fiscal\Inventário\DataSetInventário.cs">
       <DependentUpon>DataSetInventário.xsd</DependentUpon>
@@ -2562,6 +2578,10 @@
     <EmbeddedResource Include="Formulário\ComboRígido.resx">
       <DependentUpon>ComboRígido.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Impressão\Relatórios\Fiscal\Extrato\RelatórioExtrato.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RelatórioExtrato.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Impressão\Relatórios\Fiscal\Inventário\RelatórioInventário.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RelatórioInventário.cs</LastGenOutput>
@@ -3717,6 +3737,17 @@
     </None>
     <None Include="Impressão\Relatórios\Estoque\Resumo\DataSetResumo.xss">
       <DependentUpon>DataSetResumo.xsd</DependentUpon>
+    </None>
+    <None Include="Impressão\Relatórios\Fiscal\Extrato\DataSetExtrato.xsc">
+      <DependentUpon>DataSetExtrato.xsd</DependentUpon>
+    </None>
+    <None Include="Impressão\Relatórios\Fiscal\Extrato\DataSetExtrato.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetExtrato.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Impressão\Relatórios\Fiscal\Extrato\DataSetExtrato.xss">
+      <DependentUpon>DataSetExtrato.xsd</DependentUpon>
     </None>
     <None Include="Impressão\Relatórios\Fiscal\Inventário\DataSetInventário.xsc">
       <DependentUpon>DataSetInventário.xsd</DependentUpon>
