@@ -11,6 +11,7 @@ namespace Entidades.Fiscal.Tipo
 
         private int id;
         private string nome;
+        private string nomeresumido;
         public static List<TipoDocumento> tipos = null;
         private bool entrada;
         private bool saida;
@@ -31,6 +32,7 @@ namespace Entidades.Fiscal.Tipo
         public string Nome => nome;
         public bool Entrada => entrada;
         public bool Saída => saida;
+        public string NomeResumido => nomeresumido;
 
         public static List<TipoDocumento> Tipos
         {

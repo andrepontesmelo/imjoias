@@ -65,6 +65,7 @@
     <Compile Include="Fiscal\NotaFiscalEletronica\AdaptadorAtacadoTests.cs" />
     <Compile Include="Fiscal\NotaFiscalEletronica\ParserXmlTests.cs" />
     <Compile Include="Fiscal\NotaFiscalEletronica\PdfTests.cs" />
+    <Compile Include="Fiscal\Registro\ExtratoTests.cs" />
     <Compile Include="Fiscal\Tipo\TipoUnidadeInterpretaçãoTests.cs" />
     <Compile Include="Pessoa\AbreviadorTests.cs" />
     <Compile Include="Preço.cs" />

@@ -2,6 +2,7 @@
 using Apresentação.Administrativo.Fiscal.BaseInferior.Produção;
 using Apresentação.Administrativo.Fiscal.Janela;
 using Apresentação.Formulários;
+using Apresentação.Impressão.Relatórios.Fiscal.Inventário;
 using Entidades.Configuração;
 using Entidades.Fiscal.Exceções;
 using Entidades.Fiscal.Produção;
@@ -96,7 +97,9 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
 
             DateTime data = Data.HasValue ? Data.Value : DadosGlobais.Instância.HoraDataAtual;
 
-            janela.InserirDocumento(data);
+            janela.InserirDocumento("Inventário", "Relatório de inventário", 
+                new ControladorImpressãoInventário().CriarRelatório(data));
+
             janela.ShowDialog(this);
         }
     }

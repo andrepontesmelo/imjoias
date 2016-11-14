@@ -1,5 +1,4 @@
-﻿using Apresentação.Impressão.Relatórios.Fiscal.Inventário;
-using System;
+﻿using CrystalDecisions.CrystalReports.Engine;
 
 namespace Apresentação.Administrativo.Fiscal.Janela
 {
@@ -10,11 +9,11 @@ namespace Apresentação.Administrativo.Fiscal.Janela
             InitializeComponent();
         }
 
-        public void InserirDocumento(DateTime data)
+        public void InserirDocumento(string título, string descrição, ReportClass relatório)
         {
-            Título = "Inventário";
-            Descrição = "Relatório de inventário";
-            InserirDocumento(new ControladorImpressãoInventário().CriarRelatório(data), "Inventário");
+            Título = título;
+            Descrição = descrição;
+            InserirDocumento(relatório, título);
         }
     }
 }

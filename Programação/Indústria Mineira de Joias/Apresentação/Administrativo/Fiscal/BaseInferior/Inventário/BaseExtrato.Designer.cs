@@ -95,6 +95,7 @@
             this.opçãoImprimir.Name = "opçãoImprimir";
             this.opçãoImprimir.Size = new System.Drawing.Size(150, 16);
             this.opçãoImprimir.TabIndex = 2;
+            this.opçãoImprimir.Click += new System.EventHandler(this.opçãoImprimir_Click);
             // 
             // txtMercadoria
             // 
