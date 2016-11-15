@@ -14,7 +14,7 @@ namespace Apresentação.Administrativo.Fiscal.Lista
         
         public void Carregar(string referência, DateTime início, DateTime fim)
         {
-            CarregarItens(CriarItens(Extrato.Obter(referência, início, fim)));
+            CarregarItens(CriarItens(Extrato.ObterEstoqueAcumulado(referência, início, fim)));
         }
 
         private void CarregarItens(ListViewItem[] itens)
@@ -41,7 +41,7 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             var item = new ListViewItem(new string[lista.Columns.Count]);
             item.Tag = entidade;
             item.SubItems[colData.Index].Text = entidade.DataFormatada;
-            item.SubItems[colEstoque.Index].Text = "estoque";
+            item.SubItems[colEstoque.Index].Text = entidade.Estoque.ToString();
             item.SubItems[colQuantidade.Index].Text = entidade.Quantidade.ToString();
             item.SubItems[colTipoDocumento.Index].Text = entidade.TipoDocumento?.Nome;
             item.SubItems[colTipoExtrato.Index].Text = entidade.TipoExtrato;

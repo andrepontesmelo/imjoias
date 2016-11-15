@@ -21,6 +21,9 @@ namespace Entidades.Fiscal
         private decimal quantidade;
         private decimal valor;
 
+        [DbAtributo(TipoAtributo.Ignorar)]
+        private decimal estoque;
+
         public Extrato(string tipoextrato)
         {
             this.tipoextrato = tipoextrato;
@@ -31,11 +34,27 @@ namespace Entidades.Fiscal
             this.tipodocumento = tipodocumento;
         }
 
+        public Extrato(string referencia, DateTime data, int quantidade)
+        {
+            this.referencia = referencia;
+            this.data = data;
+            this.quantidade = quantidade;
+        }
+
+        public Extrato()
+        {
+        }
+
         public TipoDocumento TipoDocumento => TipoDocumento.Obter(tipodocumento);
         public string TipoExtrato => tipoextrato;
         public DateTime Data => data;
         public decimal Valor => valor;
         public decimal Quantidade => quantidade;
+        public decimal Estoque
+        {
+            get { return estoque; }
+            set { estoque = value; }
+        }
 
         public string EntradaSaída
         {
@@ -83,11 +102,17 @@ namespace Entidades.Fiscal
 
         public string ValorFormatado => FormatarMoeda((double) valor);
 
-        public Extrato()
+        public static List<Extrato> ObterEstoqueAcumulado(string referência, DateTime início, DateTime fim)
         {
+            var hashReferênciaEstoqueAnterior = InventárioAnterior.ObterHashReferênciaQuantidade(início);
+
+            var resultado = Obter(referência, início, fim);
+            CalcularEstoqueAcumulado(resultado, hashReferênciaEstoqueAnterior);
+
+            return resultado;
         }
 
-        public static List<Extrato> Obter(string referência, DateTime início, DateTime fim)
+        private static List<Extrato> Obter(string referência, DateTime início, DateTime fim)
         {
             início = RetirarTempo(início);
             fim = RetirarTempo(fim).AddDays(1);
@@ -99,6 +124,28 @@ namespace Entidades.Fiscal
                 referência != null ? DbTransformar(referência) : "e.referencia",
                 DbTransformar(início),
                 DbTransformar(fim)));
+        }
+
+        public static List<Extrato> CalcularEstoqueAcumulado(List<Extrato> lista, 
+            Dictionary<string, decimal> hashReferênciaEstoqueAnterior)
+        {
+            string últimaReferência = "";
+            decimal acumulado = 0;
+
+            foreach (Extrato e in lista)
+            {
+                if (e.Referência != últimaReferência)
+                {
+                    últimaReferência = e.Referência;
+                    acumulado = 0;
+                    hashReferênciaEstoqueAnterior.TryGetValue(e.Referência, out acumulado);
+                }
+
+                acumulado += e.Quantidade;
+                e.Estoque = acumulado;
+            }
+
+            return lista;
         }
 
         private static DateTime RetirarTempo(DateTime fim)

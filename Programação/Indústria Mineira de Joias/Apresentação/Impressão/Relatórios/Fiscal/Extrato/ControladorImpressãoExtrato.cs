@@ -17,7 +17,7 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Extrato
             hashReferênciaInventárioAnterior = InventárioAnterior.ObterHashReferênciaQuantidade(dataInicial);
 
             CriarAdicionarDocumento(dataset, dataInicial, dataFinal);
-            CriarItens(Entidades.Fiscal.Extrato.Obter(referência, dataInicial, dataFinal), dataset.Tables["Item"]);
+            CriarItens(Entidades.Fiscal.Extrato.ObterEstoqueAcumulado(referência, dataInicial, dataFinal), dataset.Tables["Item"]);
 
             return relatório;
         }
@@ -58,6 +58,7 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Extrato
             item["tipoResumido"] = entidade.TipoResumido;
             item["entradaSaída"] = entidade.EntradaSaída;
             item["quantidade"] = entidade.Quantidade.ToString();
+            item["estoque"] = entidade.Estoque.ToString();
 
             decimal estoqueAnterior = 0;
             hashReferênciaInventárioAnterior.TryGetValue(entidadeGenérica.Referência, out estoqueAnterior);
