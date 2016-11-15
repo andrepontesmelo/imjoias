@@ -20,13 +20,40 @@ namespace Entidades.Financeiro
 
         public void Transpor()
         {
-            ExecutarComando("delete from estoquelegado");
-            sql = new StringBuilder("insert into estoquelegado (referencia, estoque1, estoque2, estoque3, estoqueanterior) values ");
+            Console.WriteLine("EstoqueLegado - início");
 
-            foreach (DataRow item in tabelaCadmer.Rows)
-                TransporItem(item);
+            var conexão = Conexão;
+            var inícioSql = "insert into estoquelegado (referencia, estoque1, estoque2, estoque3, estoqueanterior) values ";
+            lock (conexão)
+            {
+                using (IDbTransaction transação = conexão.BeginTransaction())
+                {
+                    ExecutarComandoTransação("delete from estoquelegado", transação);
 
-            ExecutarComando(sql.ToString());
+                    int x = 0;
+                    sql = new StringBuilder(inícioSql);
+
+                    foreach (DataRow item in tabelaCadmer.Rows)
+                    {
+                        x++;
+
+                        if (x >= 100)
+                        {
+                            x = 0;
+                            primeiro = true;
+                            ExecutarComandoTransação(sql.ToString(), transação);
+                            sql.Clear();
+                            sql.AppendLine(inícioSql);
+                        }
+
+                        TransporItem(item);
+                    }
+
+                    ExecutarComandoTransação(sql.ToString(), transação);
+                    transação.Commit();
+                    Console.WriteLine("EstoqueLegado - commit");
+                }
+            }
         }
 
         private void TransporItem(DataRow item)
@@ -46,7 +73,15 @@ namespace Entidades.Financeiro
 
         private static string ObterAtributo(DataRow item, string atributo)
         {
-            return DbTransformar(item["CM_" + atributo].ToString().Trim());
+            var valor = item["CM_" + atributo];
+
+            if (valor is string)
+                valor = ((string) valor).Trim();
+
+            if (valor is DBNull)
+                return DbTransformar("0");
+
+            return DbTransformar(valor);
         }
     }
 }
