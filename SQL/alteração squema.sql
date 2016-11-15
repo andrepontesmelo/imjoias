@@ -497,6 +497,8 @@ ADD COLUMN `nomeresumido` VARCHAR(3) NOT NULL DEFAULT '' AFTER `saida`;
 UPDATE `imjoias`.`tipodocumentofiscal` SET `nomeresumido`='NF' WHERE `id`='1';
 UPDATE `imjoias`.`tipodocumentofiscal` SET `nomeresumido`='CP' WHERE `id`='2';
 
+DROP procedure IF EXISTS `inventario`;
+
 
 DELIMITER $$
 USE `imjoias`$$
@@ -517,3 +519,51 @@ group by m.referencia;
 END$$
 
 DELIMITER ;
+
+CREATE VIEW `inventario_interno` AS
+	select ei.referencia, e.dataentrada as data,  ei.quantidade from entradaitemfiscal ei join entradafiscal e on ei.entradafiscal=e.id
+	UNION
+	select ei.referencia, e.datasaida as data, -1*ei.quantidade from saidaitemfiscal ei join saidafiscal e on ei.saidafiscal=e.id
+	UNION
+	select ei.referencia, e.data, -1*ei.quantidade from entradaproducaofiscal ei join producaofiscal e on ei.producaofiscal=e.codigo
+	UNION
+	select ei.referencia, e.data, ei.quantidade from saidaproducaofiscal ei join producaofiscal e on ei.producaofiscal=e.codigo;
+
+
+  USE `imjoias`;
+  CREATE  OR REPLACE VIEW `inventario_total` AS
+  select m.referencia, sum(ifnull(quantidade,0)) as quantidade, m.nome, m.classificacaofiscal, m.tipounidade, p.novoPrecoCusto as valor, sum(ifnull(quantidade,0))*p.novoPrecoCusto as valortotal from
+  mercadoria m left join inventario_interno i on i.referencia=m.referencia left join novosPrecos p on m.referencia=p.mercadoria
+  group by m.referencia;
+
+
+update mercadoria set classificacaofiscal='7113190100' where classificacaofiscal is null;
+
+  create function d1() returns DATETIME DETERMINISTIC NO SQL return @d1;
+
+  CREATE VIEW `inventario_interno_parcial` AS
+  	select ei.referencia, e.dataentrada as data,  ei.quantidade from entradaitemfiscal ei join entradafiscal e on ei.entradafiscal=e.id where dataentrada < d1()
+  	UNION
+  	select ei.referencia, e.datasaida as data, -1*ei.quantidade from saidaitemfiscal ei join saidafiscal e on ei.saidafiscal=e.id where datasaida < d1()
+  	UNION
+  	select ei.referencia, e.data, -1*ei.quantidade from entradaproducaofiscal ei join producaofiscal e on ei.producaofiscal=e.codigo where data < d1()
+  	UNION
+  	select ei.referencia, e.data, ei.quantidade from saidaproducaofiscal ei join producaofiscal e on ei.producaofiscal=e.codigo where data < d1();
+
+
+    USE `imjoias`;
+    CREATE  OR REPLACE VIEW `inventario_parcial` AS
+    select m.referencia, sum(ifnull(quantidade,0)) as quantidade, m.nome, m.classificacaofiscal, m.tipounidade, p.novoPrecoCusto as valor, sum(ifnull(quantidade,0))*p.novoPrecoCusto as valortotal from
+    mercadoria m left join inventario_interno_parcial i on i.referencia=m.referencia left join novosPrecos p on m.referencia=p.mercadoria
+    group by m.referencia;
+
+DROP procedure IF EXISTS `inventario`;
+
+    DELIMITER $$
+    USE `imjoias`$$
+    CREATE DEFINER=`root`@`localhost` PROCEDURE `inventario`(IN dataMaxima DATETIME)
+    BEGIN
+      select i.* from (select @d1:=dataMaxima p) parm, inventario_parcial i;
+    END$$
+
+    DELIMITER ;
