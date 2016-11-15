@@ -42,6 +42,7 @@
             this.opçãoEsquemas = new Apresentação.Formulários.Opção();
             this.quadro4 = new Apresentação.Formulários.Quadro();
             this.opçãoInventário = new Apresentação.Formulários.Opção();
+            this.opçãoImportar = new Apresentação.Formulários.Opção();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.quadro2.SuspendLayout();
@@ -190,6 +191,7 @@
             this.quadro3.bInfEsqArredondada = true;
             this.quadro3.bSupDirArredondada = true;
             this.quadro3.bSupEsqArredondada = true;
+            this.quadro3.Controls.Add(this.opçãoImportar);
             this.quadro3.Controls.Add(this.opçãoMáquinasECF);
             this.quadro3.Controls.Add(this.opçãoEsquemas);
             this.quadro3.Cor = System.Drawing.Color.Black;
@@ -264,6 +266,20 @@
             this.opçãoInventário.TabIndex = 2;
             this.opçãoInventário.Click += new System.EventHandler(this.opçãoInventário_Click);
             // 
+            // opçãoImportar
+            // 
+            this.opçãoImportar.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoImportar.Descrição = "Importar";
+            this.opçãoImportar.Imagem = global::Apresentação.Resource.repair;
+            this.opçãoImportar.Location = new System.Drawing.Point(7, 50);
+            this.opçãoImportar.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoImportar.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoImportar.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoImportar.Name = "opçãoImportar";
+            this.opçãoImportar.Size = new System.Drawing.Size(150, 16);
+            this.opçãoImportar.TabIndex = 5;
+            this.opçãoImportar.Click += new System.EventHandler(this.opçãoImportar_Click);
+            // 
             // BaseFiscal
             // 
             this.Controls.Add(this.títuloBaseInferior1);
@@ -295,5 +311,6 @@
         private Formulários.Opção opçãoEsquemas;
         private Formulários.Quadro quadro4;
         private Formulários.Opção opçãoInventário;
+        private Formulários.Opção opçãoImportar;
     }
 }
