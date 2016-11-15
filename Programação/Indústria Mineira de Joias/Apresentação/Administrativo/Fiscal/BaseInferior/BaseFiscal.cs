@@ -5,6 +5,7 @@ using Apresentação.Administrativo.Fiscal.BaseInferior.Produção;
 using Apresentação.Fiscal.BaseInferior.Documentos;
 using Apresentação.Fiscal.Janela;
 using Apresentação.Formulários;
+using Apresentação.IntegraçãoSistemaAntigo;
 using Entidades.Fiscal.Importação.Legado;
 using System;
 using System.Windows.Forms;
@@ -58,14 +59,20 @@ namespace Apresentação.Fiscal.BaseInferior
             AguardeDB.Mostrar();
             try
             {
-                new ImportaçãoSistemaLegado().Importar();
+                new ImportaçãoSistemaLegado().CriarEntradaTransição();
                 AguardeDB.Fechar();
-                MessageBox.Show("Pronto!");
+                MessageBox.Show("Entrada de transição preenchida.\nInventário atual idêntico ao 'estoque anterior' do sistema legado.");
 
-            } finally
+            } catch (Exception erro)
             {
                 AguardeDB.Fechar();
+                MessageBox.Show("Erro ao preencher entrada de transição.\nA transição já deve existir no banco de dados.");
             }
+        }
+
+        private void opçãoImportarEstoqueAnteriorSistemaLegado_Click(object sender, EventArgs e)
+        {
+            new ProcessoIntegração().TransporEstoqueAnterior();
         }
     }
 }

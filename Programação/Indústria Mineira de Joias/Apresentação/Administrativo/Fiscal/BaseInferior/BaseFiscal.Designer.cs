@@ -38,29 +38,34 @@
             this.opçãoProduções = new Apresentação.Formulários.Opção();
             this.opçãoEntradas = new Apresentação.Formulários.Opção();
             this.quadro3 = new Apresentação.Formulários.Quadro();
+            this.opçãoImportarTransição = new Apresentação.Formulários.Opção();
             this.opçãoMáquinasECF = new Apresentação.Formulários.Opção();
             this.opçãoEsquemas = new Apresentação.Formulários.Opção();
             this.quadro4 = new Apresentação.Formulários.Quadro();
             this.opçãoInventário = new Apresentação.Formulários.Opção();
-            this.opçãoImportar = new Apresentação.Formulários.Opção();
+            this.quadro5 = new Apresentação.Formulários.Quadro();
+            this.opçãoImportarEstoqueAnteriorSistemaLegado = new Apresentação.Formulários.Opção();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.quadro2.SuspendLayout();
             this.quadro3.SuspendLayout();
             this.quadro4.SuspendLayout();
+            this.quadro5.SuspendLayout();
             this.SuspendLayout();
             // 
             // esquerda
             // 
+            this.esquerda.Controls.Add(this.quadro5);
             this.esquerda.Controls.Add(this.quadro4);
             this.esquerda.Controls.Add(this.quadro3);
             this.esquerda.Controls.Add(this.quadro2);
             this.esquerda.Controls.Add(this.quadro1);
-            this.esquerda.Size = new System.Drawing.Size(187, 408);
+            this.esquerda.Size = new System.Drawing.Size(187, 520);
             this.esquerda.Controls.SetChildIndex(this.quadro1, 0);
             this.esquerda.Controls.SetChildIndex(this.quadro2, 0);
             this.esquerda.Controls.SetChildIndex(this.quadro3, 0);
             this.esquerda.Controls.SetChildIndex(this.quadro4, 0);
+            this.esquerda.Controls.SetChildIndex(this.quadro5, 0);
             // 
             // quadro1
             // 
@@ -191,7 +196,6 @@
             this.quadro3.bInfEsqArredondada = true;
             this.quadro3.bSupDirArredondada = true;
             this.quadro3.bSupEsqArredondada = true;
-            this.quadro3.Controls.Add(this.opçãoImportar);
             this.quadro3.Controls.Add(this.opçãoMáquinasECF);
             this.quadro3.Controls.Add(this.opçãoEsquemas);
             this.quadro3.Cor = System.Drawing.Color.Black;
@@ -204,6 +208,20 @@
             this.quadro3.TabIndex = 8;
             this.quadro3.Tamanho = 30;
             this.quadro3.Título = "Manutenção";
+            // 
+            // opçãoImportarTransição
+            // 
+            this.opçãoImportarTransição.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoImportarTransição.Descrição = "Preencher entrada de transição";
+            this.opçãoImportarTransição.Imagem = global::Apresentação.Resource.repair;
+            this.opçãoImportarTransição.Location = new System.Drawing.Point(7, 50);
+            this.opçãoImportarTransição.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoImportarTransição.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoImportarTransição.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoImportarTransição.Name = "opçãoImportarTransição";
+            this.opçãoImportarTransição.Size = new System.Drawing.Size(150, 26);
+            this.opçãoImportarTransição.TabIndex = 5;
+            this.opçãoImportarTransição.Click += new System.EventHandler(this.opçãoImportar_Click);
             // 
             // opçãoMáquinasECF
             // 
@@ -266,25 +284,45 @@
             this.opçãoInventário.TabIndex = 2;
             this.opçãoInventário.Click += new System.EventHandler(this.opçãoInventário_Click);
             // 
-            // opçãoImportar
+            // quadro5
             // 
-            this.opçãoImportar.BackColor = System.Drawing.Color.Transparent;
-            this.opçãoImportar.Descrição = "Importar";
-            this.opçãoImportar.Imagem = global::Apresentação.Resource.repair;
-            this.opçãoImportar.Location = new System.Drawing.Point(7, 50);
-            this.opçãoImportar.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.opçãoImportar.MaximumSize = new System.Drawing.Size(150, 100);
-            this.opçãoImportar.MinimumSize = new System.Drawing.Size(150, 16);
-            this.opçãoImportar.Name = "opçãoImportar";
-            this.opçãoImportar.Size = new System.Drawing.Size(150, 16);
-            this.opçãoImportar.TabIndex = 5;
-            this.opçãoImportar.Click += new System.EventHandler(this.opçãoImportar_Click);
+            this.quadro5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(239)))), ((int)(((byte)(221)))));
+            this.quadro5.bInfDirArredondada = true;
+            this.quadro5.bInfEsqArredondada = true;
+            this.quadro5.bSupDirArredondada = true;
+            this.quadro5.bSupEsqArredondada = true;
+            this.quadro5.Controls.Add(this.opçãoImportarTransição);
+            this.quadro5.Controls.Add(this.opçãoImportarEstoqueAnteriorSistemaLegado);
+            this.quadro5.Cor = System.Drawing.Color.Black;
+            this.quadro5.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
+            this.quadro5.LetraTítulo = System.Drawing.Color.White;
+            this.quadro5.Location = new System.Drawing.Point(7, 377);
+            this.quadro5.MostrarBotãoMinMax = false;
+            this.quadro5.Name = "quadro5";
+            this.quadro5.Size = new System.Drawing.Size(160, 94);
+            this.quadro5.TabIndex = 10;
+            this.quadro5.Tamanho = 30;
+            this.quadro5.Título = "Sistema Legado";
+            // 
+            // opçãoImportarEstoqueAnteriorSistemaLegado
+            // 
+            this.opçãoImportarEstoqueAnteriorSistemaLegado.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoImportarEstoqueAnteriorSistemaLegado.Descrição = "Importar Est. Ant. Cadmer";
+            this.opçãoImportarEstoqueAnteriorSistemaLegado.Imagem = global::Apresentação.Resource.repair;
+            this.opçãoImportarEstoqueAnteriorSistemaLegado.Location = new System.Drawing.Point(7, 30);
+            this.opçãoImportarEstoqueAnteriorSistemaLegado.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoImportarEstoqueAnteriorSistemaLegado.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoImportarEstoqueAnteriorSistemaLegado.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoImportarEstoqueAnteriorSistemaLegado.Name = "opçãoImportarEstoqueAnteriorSistemaLegado";
+            this.opçãoImportarEstoqueAnteriorSistemaLegado.Size = new System.Drawing.Size(150, 16);
+            this.opçãoImportarEstoqueAnteriorSistemaLegado.TabIndex = 2;
+            this.opçãoImportarEstoqueAnteriorSistemaLegado.Click += new System.EventHandler(this.opçãoImportarEstoqueAnteriorSistemaLegado_Click);
             // 
             // BaseFiscal
             // 
             this.Controls.Add(this.títuloBaseInferior1);
             this.Name = "BaseFiscal";
-            this.Size = new System.Drawing.Size(801, 408);
+            this.Size = new System.Drawing.Size(801, 520);
             this.Controls.SetChildIndex(this.esquerda, 0);
             this.Controls.SetChildIndex(this.títuloBaseInferior1, 0);
             this.esquerda.ResumeLayout(false);
@@ -292,6 +330,7 @@
             this.quadro2.ResumeLayout(false);
             this.quadro3.ResumeLayout(false);
             this.quadro4.ResumeLayout(false);
+            this.quadro5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -311,6 +350,8 @@
         private Formulários.Opção opçãoEsquemas;
         private Formulários.Quadro quadro4;
         private Formulários.Opção opçãoInventário;
-        private Formulários.Opção opçãoImportar;
+        private Formulários.Opção opçãoImportarTransição;
+        private Formulários.Quadro quadro5;
+        private Formulários.Opção opçãoImportarEstoqueAnteriorSistemaLegado;
     }
 }

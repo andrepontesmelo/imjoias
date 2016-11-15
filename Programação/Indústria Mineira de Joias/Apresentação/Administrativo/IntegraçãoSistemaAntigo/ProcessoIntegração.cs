@@ -32,12 +32,25 @@ namespace Apresentação.IntegraçãoSistemaAntigo
             return ds;
         }
 
+        public void TransporEstoqueAnterior()
+        {
+            string diretório = ObterPastaSelecionada();
+
+            if (diretório == null)
+                return;
+
+            AguardeDB.Mostrar();
+            new EstoqueLegado(new Dbf(diretório).ObterDataSetMercadoria()).Transpor();
+            AguardeDB.Fechar();
+
+            MessageBox.Show("Fim. Estoque fiscal anterior foi importado !");
+        }
+
         public void ImportarDadosDoSistemaLegado()
         {
-            FolderBrowserDialog pasta = new FolderBrowserDialog();
-            pasta.ShowNewFolderButton = false;
+            string pastaSelecionada = ObterPastaSelecionada();
 
-            if (pasta.ShowDialog() != DialogResult.OK)
+            if (pastaSelecionada == null)
                 return;
 
             DataSet dsNovo;
@@ -47,7 +60,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo
             
             DateTime inicio = DateTime.Now;
 
-            Transpor(ref dsVelho, pasta.SelectedPath, ref dbf, out dsNovo, out strSaída);
+            Transpor(ref dsVelho, pastaSelecionada, ref dbf, out dsNovo, out strSaída);
 
             TimeSpan decorrido = DateTime.Now - inicio;
 
@@ -60,6 +73,18 @@ namespace Apresentação.IntegraçãoSistemaAntigo
             File.WriteAllText(nomeArquivo, strSaída.ToString());
             Process.Start("notepad.exe", nomeArquivo);
             Environment.Exit(0);
+        }
+
+        private string ObterPastaSelecionada()
+        {
+            FolderBrowserDialog pasta = new FolderBrowserDialog();
+            pasta.ShowNewFolderButton = false;
+            pasta.Description = "Selecione a pasta com DBF's.";
+
+            if (pasta.ShowDialog() != DialogResult.OK)
+                return null;
+
+            return pasta.SelectedPath;
         }
 
         private void Transpor(ref DataSet dsVelho, string diretório, ref Dbf dbf, out DataSet dsNovo, out StringBuilder strSaída)
@@ -83,7 +108,6 @@ namespace Apresentação.IntegraçãoSistemaAntigo
 
             dsNovo = ObterDataSetMercadoria(conexõesRemovidas);
             new Controles.Mercadorias.VinculoMercadoriaComponenteCusto(dsVelho, dsNovo).Transpor(strSaída);
-            new EstoqueLegado(dsVelho).Transpor();
             double cotaçãoVarejo = Cotação.ObterCotaçãoVigente(Moeda.ObterMoeda(4)).Valor;
             MySQL.GravarDataSetTodasTabelas(dsNovo);
 

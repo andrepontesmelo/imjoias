@@ -11,7 +11,7 @@ namespace Entidades.Fiscal.Importação.Legado
         {
         }
 
-        public void Importar()
+        public void CriarEntradaTransição()
         {
             var hashInventário = ObterHashInventário();
             StringBuilder sql = new StringBuilder();
