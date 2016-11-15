@@ -7,11 +7,14 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Extrato
 {
     public class ControladorImpressãoExtrato : ControladorImpressãoFiscal
     {
+        private Dictionary<string, decimal> hashReferênciaInventárioAnterior;
+
         public RelatórioExtrato CriarRelatório(string referência, DateTime dataInicial, DateTime dataFinal)
         {
             var relatório = new RelatórioExtrato();
             var dataset = new DataSetExtrato();
             relatório.SetDataSource(dataset);
+            hashReferênciaInventárioAnterior = InventárioAnterior.ObterHashReferênciaQuantidade(dataInicial);
 
             CriarAdicionarDocumento(dataset, dataInicial, dataFinal);
             CriarItens(Entidades.Fiscal.Extrato.Obter(referência, dataInicial, dataFinal), dataset.Tables["Item"]);
@@ -53,9 +56,12 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Extrato
             item["data"] = entidade.DataFormatada;
             item["valor"] = entidade.ValorFormatado;
             item["tipoResumido"] = entidade.TipoResumido;
-            item["estoqueAnterior"] = "est. ant.";
             item["entradaSaída"] = entidade.EntradaSaída;
             item["quantidade"] = entidade.Quantidade.ToString();
+
+            decimal estoqueAnterior = 0;
+            hashReferênciaInventárioAnterior.TryGetValue(entidadeGenérica.Referência, out estoqueAnterior);
+            item["estoqueAnterior"] = estoqueAnterior;
 
             return item;
         }

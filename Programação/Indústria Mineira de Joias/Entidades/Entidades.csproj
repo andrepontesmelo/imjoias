@@ -314,6 +314,7 @@
     <Compile Include="Fiscal\Produção\ItemProduçãoFiscal.cs" />
     <Compile Include="Fiscal\Produção\ProduçãoFiscal.cs" />
     <Compile Include="Fiscal\Produção\SaídaProduçãoFiscal.cs" />
+    <Compile Include="Fiscal\Registro\InventárioAnterior.cs" />
     <Compile Include="Fiscal\Registro\RegistroAbstrato.cs" />
     <Compile Include="Fiscal\SaídaFiscal.cs" />
     <Compile Include="Fiscal\EntradaItemFiscal.cs" />
