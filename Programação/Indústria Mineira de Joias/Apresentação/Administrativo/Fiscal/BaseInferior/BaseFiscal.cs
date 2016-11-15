@@ -4,6 +4,7 @@ using Apresentação.Administrativo.Fiscal.BaseInferior.Inventário;
 using Apresentação.Administrativo.Fiscal.BaseInferior.Produção;
 using Apresentação.Fiscal.BaseInferior.Documentos;
 using Apresentação.Fiscal.Janela;
+using Entidades.Fiscal.Importação.Legado;
 using System;
 
 namespace Apresentação.Fiscal.BaseInferior
@@ -48,6 +49,11 @@ namespace Apresentação.Fiscal.BaseInferior
         private void opçãoProduções_Click(object sender, EventArgs e)
         {
             SubstituirBase(new BaseProduções());
+        }
+
+        private void opçãoImportar_Click(object sender, EventArgs e)
+        {
+            new ImportaçãoSistemaLegado().Importar();
         }
     }
 }
