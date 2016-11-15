@@ -2,6 +2,7 @@
 using Apresentação.Formulários;
 using Apresentação.Impressão.Relatórios.Fiscal.Extrato;
 using Entidades.Configuração;
+using Entidades.Fiscal.Registro;
 using System;
 
 namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
@@ -52,11 +53,20 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
             if (!DatasVálidas)
                 AtribuirIntervaloDatasPadrão();
 
+            CarregarEstoqueAnterior();
+
             listaExtrato.Carregar(referência, DataInicial.Value, DataFinal.Value);
             título.Descrição = string.Format("Extrato de {0} de {1} até {2} ",
                 ReferênciaFormatada, DataInicial.Value.ToShortDateString(), DataFinal.Value.ToShortDateString());
 
             AguardeDB.Fechar();
+        }
+
+        private void CarregarEstoqueAnterior()
+        {
+            decimal estoqueAnterior = 0;
+            InventárioAnterior.ObterHashReferênciaQuantidade(DataInicial.Value).TryGetValue(referência, out estoqueAnterior);
+            txtEstoqueAnterior.Text = estoqueAnterior.ToString();
         }
 
         private void dataInicial_Validated(object sender, EventArgs e)
