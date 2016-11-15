@@ -563,7 +563,13 @@ DROP procedure IF EXISTS `inventario`;
     USE `imjoias`$$
     CREATE DEFINER=`root`@`localhost` PROCEDURE `inventario`(IN dataMaxima DATETIME)
     BEGIN
-      select i.* from (select @d1:=dataMaxima p) parm, inventario_parcial i;
     END$$
 
+    select i.* from (select @d1:=dataMaxima p) parm, inventario_parcial i;
     DELIMITER ;
+
+    ALTER TABLE `imjoias`.`estoquelegado`
+    CHANGE COLUMN `estoque1` `estoque1` DECIMAL(10,2) NOT NULL ,
+    CHANGE COLUMN `estoque2` `estoque2` DECIMAL(10,2) NOT NULL ,
+    CHANGE COLUMN `estoque3` `estoque3` DECIMAL(10,2) NOT NULL ,
+    CHANGE COLUMN `estoqueanterior` `estoqueanterior` DECIMAL(10,2) NOT NULL ;
