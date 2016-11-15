@@ -1,4 +1,4 @@
-
+use imjoias;
 
 
 RENAME TABLE imjoias.vendafiscal TO imjoias.saidafiscal;
@@ -149,18 +149,18 @@ ALTER TABLE `entradaitemfiscal`
 	CHANGE COLUMN `descricao` `descricao` TINYTEXT NOT NULL AFTER `referencia`;
 
 
-ALTER TABLE `imjoias`.`saidaitemfiscal` 
+ALTER TABLE `imjoias`.`saidaitemfiscal`
 CHANGE COLUMN `tipounidade` `tipounidade` INT NOT NULL ;
 
-ALTER TABLE `imjoias`.`entradaitemfiscal` 
+ALTER TABLE `imjoias`.`entradaitemfiscal`
 CHANGE COLUMN `tipounidade` `tipounidade` INT NOT NULL ;
 
-ALTER TABLE `imjoias`.`saidaitemfiscal` 
+ALTER TABLE `imjoias`.`saidaitemfiscal`
 ADD COLUMN `codigo` INT NOT NULL AUTO_INCREMENT AFTER `saidafiscal`,
 ADD PRIMARY KEY (`codigo`);
 
 
-ALTER TABLE `imjoias`.`entradaitemfiscal` 
+ALTER TABLE `imjoias`.`entradaitemfiscal`
 ADD COLUMN `codigo` INT NOT NULL AUTO_INCREMENT AFTER `entradafiscal`,
 ADD PRIMARY KEY (`codigo`);
 
@@ -177,12 +177,12 @@ insert into tipounidadefiscal (id, nome) values
  update entradaitemfiscal set tipounidade=1;
 
 
-ALTER TABLE `imjoias`.`saidaitemfiscal` 
+ALTER TABLE `imjoias`.`saidaitemfiscal`
 DROP FOREIGN KEY `fk_vendaitemfiscal_1`;
-ALTER TABLE `imjoias`.`saidaitemfiscal` 
+ALTER TABLE `imjoias`.`saidaitemfiscal`
 ADD INDEX `fk_vendaitemfiscal_1_idx` (`tipounidade` ASC),
 DROP INDEX `fk_vendaitemfiscal_1_idx` ;
-ALTER TABLE `imjoias`.`saidaitemfiscal` 
+ALTER TABLE `imjoias`.`saidaitemfiscal`
 ADD CONSTRAINT `fk_vendaitemfiscal_1`
   FOREIGN KEY (`tipounidade`)
   REFERENCES `imjoias`.`tipounidadefiscal` (`id`)
@@ -190,18 +190,18 @@ ADD CONSTRAINT `fk_vendaitemfiscal_1`
   ON UPDATE CASCADE;
 
 
-ALTER TABLE `imjoias`.`entradaitemfiscal` 
+ALTER TABLE `imjoias`.`entradaitemfiscal`
 ADD INDEX `fk_entradaitemfiscal_2_idx` (`tipounidade` ASC);
-ALTER TABLE `imjoias`.`entradaitemfiscal` 
+ALTER TABLE `imjoias`.`entradaitemfiscal`
 ADD CONSTRAINT `fk_entradaitemfiscal_2`
   FOREIGN KEY (`tipounidade`)
   REFERENCES `imjoias`.`tipounidadefiscal` (`id`)
   ON DELETE RESTRICT
   ON UPDATE CASCADE;
 
-ALTER TABLE `imjoias`.`saidaitemfiscal` 
+ALTER TABLE `imjoias`.`saidaitemfiscal`
 ADD INDEX `fk_saidaitemfiscal_1_idx` (`saidafiscal` ASC);
-ALTER TABLE `imjoias`.`saidaitemfiscal` 
+ALTER TABLE `imjoias`.`saidaitemfiscal`
 ADD CONSTRAINT `fk_saidaitemfiscal_1`
   FOREIGN KEY (`saidafiscal`)
   REFERENCES `imjoias`.`saidafiscal` (`id`)
@@ -209,11 +209,11 @@ ADD CONSTRAINT `fk_saidaitemfiscal_1`
   ON UPDATE CASCADE;
 
 
-ALTER TABLE `imjoias`.`saidaitemfiscal` 
+ALTER TABLE `imjoias`.`saidaitemfiscal`
 DROP FOREIGN KEY `fk_vendaitemfiscal_1`;
-ALTER TABLE `imjoias`.`saidaitemfiscal` 
+ALTER TABLE `imjoias`.`saidaitemfiscal`
 CHANGE COLUMN `tipounidade` `tipounidade` INT(11) NULL ;
-ALTER TABLE `imjoias`.`saidaitemfiscal` 
+ALTER TABLE `imjoias`.`saidaitemfiscal`
 ADD CONSTRAINT `fk_vendaitemfiscal_1`
   FOREIGN KEY (`tipounidade`)
   REFERENCES `imjoias`.`tipounidadefiscal` (`id`)
@@ -221,11 +221,11 @@ ADD CONSTRAINT `fk_vendaitemfiscal_1`
   ON UPDATE CASCADE;
 
 
-ALTER TABLE `imjoias`.`entradaitemfiscal` 
+ALTER TABLE `imjoias`.`entradaitemfiscal`
 DROP FOREIGN KEY `fk_entradaitemfiscal_2`;
-ALTER TABLE `imjoias`.`entradaitemfiscal` 
+ALTER TABLE `imjoias`.`entradaitemfiscal`
 CHANGE COLUMN `tipounidade` `tipounidade` INT(11) NULL ;
-ALTER TABLE `imjoias`.`entradaitemfiscal` 
+ALTER TABLE `imjoias`.`entradaitemfiscal`
 ADD CONSTRAINT `fk_entradaitemfiscal_2`
   FOREIGN KEY (`tipounidade`)
   REFERENCES `imjoias`.`tipounidadefiscal` (`id`)
@@ -240,12 +240,12 @@ CREATE TABLE `imjoias`.`maquinafiscal` (
   UNIQUE INDEX `index2` (`modelo` ASC, `fabricacao` ASC));
 
 
-ALTER TABLE `imjoias`.`saidafiscal` 
+ALTER TABLE `imjoias`.`saidafiscal`
 ADD COLUMN `maquina` INT NULL AFTER `setor`;
 
-ALTER TABLE `imjoias`.`saidafiscal` 
+ALTER TABLE `imjoias`.`saidafiscal`
 ADD INDEX `fk_saidafiscal_1_idx` (`maquina` ASC);
-ALTER TABLE `imjoias`.`saidafiscal` 
+ALTER TABLE `imjoias`.`saidafiscal`
 ADD CONSTRAINT `fk_saidafiscal_1`
   FOREIGN KEY (`maquina`)
   REFERENCES `imjoias`.`maquinafiscal` (`codigo`)
@@ -256,18 +256,18 @@ ADD CONSTRAINT `fk_saidafiscal_1`
 
  alter table saidafiscal drop column tiposaida;
 
-ALTER TABLE `imjoias`.`mercadoria` 
+ALTER TABLE `imjoias`.`mercadoria`
 ADD COLUMN `classificacaofiscal` VARCHAR(45) NULL AFTER `depeso`;
 
 
-ALTER TABLE `imjoias`.`mercadoria` 
+ALTER TABLE `imjoias`.`mercadoria`
 ADD COLUMN `tipounidade` INT(11) NOT NULL DEFAULT 1 AFTER `classificacaofiscal`;
 
 
 
-ALTER TABLE `imjoias`.`mercadoria` 
+ALTER TABLE `imjoias`.`mercadoria`
 ADD INDEX `fk_mercadoria_1_idx` (`tipounidade` ASC);
-ALTER TABLE `imjoias`.`mercadoria` 
+ALTER TABLE `imjoias`.`mercadoria`
 ADD CONSTRAINT `fk_mercadoria_1`
   FOREIGN KEY (`tipounidade`)
   REFERENCES `imjoias`.`tipounidadefiscal` (`id`)
@@ -283,7 +283,7 @@ CREATE TABLE `imjoias`.`esquemaproducaofiscal` (
 
 
 
-ALTER TABLE `imjoias`.`esquemaproducaofiscal` 
+ALTER TABLE `imjoias`.`esquemaproducaofiscal`
 ADD CONSTRAINT `fk_esquemaproducaofiscal_1`
   FOREIGN KEY (`referencia`)
   REFERENCES `imjoias`.`mercadoria` (`referencia`)
@@ -295,7 +295,7 @@ CREATE TABLE `imjoias`.`ingredienteesquemaproducaofiscal` (
   `referencia` VARCHAR(11) NOT NULL,
   `quantidade` DECIMAL NOT NULL);
 
-ALTER TABLE `imjoias`.`ingredienteesquemaproducaofiscal` 
+ALTER TABLE `imjoias`.`ingredienteesquemaproducaofiscal`
 ADD UNIQUE INDEX `index1` (`esquema` ASC, `referencia` ASC);
 
 
@@ -310,10 +310,10 @@ CREATE TABLE `imjoias`.`estoquelegado` (
  insert into tipounidadefiscal( id, nome) values (5, 'Caixa');
 
 
-ALTER TABLE `imjoias`.`mercadoria` 
+ALTER TABLE `imjoias`.`mercadoria`
 ADD COLUMN `cfop` INT(11) NOT NULL DEFAULT 5101 AFTER `tipounidade`;
 
-ALTER TABLE `imjoias`.`ingredienteesquemaproducaofiscal` 
+ALTER TABLE `imjoias`.`ingredienteesquemaproducaofiscal`
 ADD CONSTRAINT `fk_ingredienteesquemaproducaofiscal_1`
   FOREIGN KEY (`esquema`)
   REFERENCES `imjoias`.`esquemaproducaofiscal` (`referencia`)
@@ -338,16 +338,16 @@ CREATE TABLE `imjoias`.`entradaproducaofiscal` (
   `referencia` VARCHAR(11) NOT NULL,
   PRIMARY KEY (`producaofiscal`));
 
-ALTER TABLE `imjoias`.`entradaproducaofiscal` 
+ALTER TABLE `imjoias`.`entradaproducaofiscal`
 ADD CONSTRAINT `fk_entradaproducaofiscal_1`
   FOREIGN KEY (`producaofiscal`)
   REFERENCES `imjoias`.`producaofiscal` (`codigo`)
   ON DELETE CASCADE
   ON UPDATE CASCADE;
 
-ALTER TABLE `imjoias`.`entradaproducaofiscal` 
+ALTER TABLE `imjoias`.`entradaproducaofiscal`
 ADD INDEX `fk_entradaproducaofiscal_2_idx` (`referencia` ASC);
-ALTER TABLE `imjoias`.`entradaproducaofiscal` 
+ALTER TABLE `imjoias`.`entradaproducaofiscal`
 ADD CONSTRAINT `fk_entradaproducaofiscal_2`
   FOREIGN KEY (`referencia`)
   REFERENCES `imjoias`.`mercadoria` (`referencia`)
@@ -361,16 +361,16 @@ CREATE TABLE `imjoias`.`saidaproducaofiscal` (
   `referencia` VARCHAR(11) NOT NULL,
   PRIMARY KEY (`producaofiscal`));
 
-ALTER TABLE `imjoias`.`saidaproducaofiscal` 
+ALTER TABLE `imjoias`.`saidaproducaofiscal`
 ADD CONSTRAINT `fk_saidaproducaofiscal_1`
   FOREIGN KEY (`producaofiscal`)
   REFERENCES `imjoias`.`producaofiscal` (`codigo`)
   ON DELETE CASCADE
   ON UPDATE CASCADE;
 
-ALTER TABLE `imjoias`.`saidaproducaofiscal` 
+ALTER TABLE `imjoias`.`saidaproducaofiscal`
 ADD INDEX `fk_saidaproducaofiscal_2_idx` (`referencia` ASC);
-ALTER TABLE `imjoias`.`saidaproducaofiscal` 
+ALTER TABLE `imjoias`.`saidaproducaofiscal`
 ADD CONSTRAINT `fk_saidaproducaofiscal_2`
   FOREIGN KEY (`referencia`)
   REFERENCES `imjoias`.`mercadoria` (`referencia`)
@@ -378,20 +378,20 @@ ADD CONSTRAINT `fk_saidaproducaofiscal_2`
   ON UPDATE CASCADE;
 
 
-ALTER TABLE `imjoias`.`entradaitemfiscal` 
+ALTER TABLE `imjoias`.`entradaitemfiscal`
 ADD INDEX `index4` (`referencia` ASC);
 
-ALTER TABLE `imjoias`.`entradafiscal` 
+ALTER TABLE `imjoias`.`entradafiscal`
 ADD INDEX `index3` (`dataentrada` ASC);
 
 
-ALTER TABLE `imjoias`.`saidaitemfiscal` 
+ALTER TABLE `imjoias`.`saidaitemfiscal`
 ADD INDEX `index4` (`referencia` ASC);
 
-ALTER TABLE `imjoias`.`saidafiscal` 
+ALTER TABLE `imjoias`.`saidafiscal`
 ADD INDEX `index5` (`cancelada` ASC);
 
-ALTER TABLE `imjoias`.`saidafiscal` 
+ALTER TABLE `imjoias`.`saidafiscal`
 ADD INDEX `index6` (`datasaida` ASC);
 
 
@@ -433,18 +433,18 @@ select ei.referencia, e.datasaida as data, -1*ei.quantidade from saidaitemfiscal
 UNION
 select ei.referencia, e.data, -1*ei.quantidade from entradaproducaofiscal ei join producaofiscal e on ei.producaofiscal=e.codigo where data < dataMaxima
 UNION
-select ei.referencia, e.data, ei.quantidade from saidaproducaofiscal ei join producaofiscal e on ei.producaofiscal=e.codigo where data < dataMaxima) i left join 
+select ei.referencia, e.data, ei.quantidade from saidaproducaofiscal ei join producaofiscal e on ei.producaofiscal=e.codigo where data < dataMaxima) i left join
 mercadoria m on i.referencia=m.referencia left join novosPrecos p on i.referencia=p.mercadoria
 group by referencia;
 END$$
 
 DELIMITER ;
 
-ALTER TABLE `imjoias`.`esquemaproducaofiscal` 
+ALTER TABLE `imjoias`.`esquemaproducaofiscal`
 CHANGE COLUMN `quantidade` `quantidade` DECIMAL(10, 2) NOT NULL ;
 
 
-ALTER TABLE `imjoias`.`ingredienteesquemaproducaofiscal` 
+ALTER TABLE `imjoias`.`ingredienteesquemaproducaofiscal`
 CHANGE COLUMN `quantidade` `quantidade` DECIMAL(10,2) NOT NULL ;
 
 
@@ -459,12 +459,12 @@ UNION
 select null as tipodocumento, 'TO' as tipoextrato, ei.referencia, e.data, ei.quantidade, 0 as valor from saidaproducaofiscal ei join producaofiscal e on ei.producaofiscal=e.codigo where data < now();
 
 
-ALTER TABLE `imjoias`.`entradafiscal` 
+ALTER TABLE `imjoias`.`entradafiscal`
 DROP INDEX `index3` ,
 ADD INDEX `idx_data_entrada` (`dataentrada` ASC);
 
 
-ALTER TABLE `imjoias`.`entradafiscal` 
+ALTER TABLE `imjoias`.`entradafiscal`
 DROP INDEX `idx_data_entrada_desc`
 
 ALTER TABLE `imjoias`.`entradafiscal` ADD INDEX `idx_data_entrada` (`dataentrada`);
@@ -484,18 +484,36 @@ select ei.referencia, e.datasaida as data, -1*ei.quantidade from saidaitemfiscal
 UNION
 select ei.referencia, e.data, -1*ei.quantidade from entradaproducaofiscal ei join producaofiscal e on ei.producaofiscal=e.codigo where data < dataMaxima
 UNION
-select ei.referencia, e.data, ei.quantidade from saidaproducaofiscal ei join producaofiscal e on ei.producaofiscal=e.codigo where data < dataMaxima) i left join 
+select ei.referencia, e.data, ei.quantidade from saidaproducaofiscal ei join producaofiscal e on ei.producaofiscal=e.codigo where data < dataMaxima) i left join
 mercadoria m on i.referencia=m.referencia left join novosPrecos p on i.referencia=p.mercadoria
 group by referencia;
 END$$
 
+DELIMITER ;
 
-ALTER TABLE `imjoias`.`tipodocumentofiscal` 
+ALTER TABLE `imjoias`.`tipodocumentofiscal`
 ADD COLUMN `nomeresumido` VARCHAR(3) NOT NULL DEFAULT '' AFTER `saida`;
 
 UPDATE `imjoias`.`tipodocumentofiscal` SET `nomeresumido`='NF' WHERE `id`='1';
 UPDATE `imjoias`.`tipodocumentofiscal` SET `nomeresumido`='CP' WHERE `id`='2';
 
 
+DELIMITER $$
+USE `imjoias`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `inventario`(IN dataMaxima DATETIME)
+BEGIN
+select m.referencia, sum(ifnull(quantidade,0)) as quantidade, m.nome, m.classificacaofiscal, m.tipounidade, p.novoPrecoCusto as valor, sum(ifnull(quantidade,0))*p.novoPrecoCusto as valortotal from
+mercadoria m left join
+(
+	select ei.referencia, e.dataentrada as data,  ei.quantidade from entradaitemfiscal ei join entradafiscal e on ei.entradafiscal=e.id where dataentrada < dataMaxima
+	UNION
+	select ei.referencia, e.datasaida as data, -1*ei.quantidade from saidaitemfiscal ei join saidafiscal e on ei.saidafiscal=e.id where datasaida < dataMaxima
+	UNION
+	select ei.referencia, e.data, -1*ei.quantidade from entradaproducaofiscal ei join producaofiscal e on ei.producaofiscal=e.codigo where data < dataMaxima
+	UNION
+	select ei.referencia, e.data, ei.quantidade from saidaproducaofiscal ei join producaofiscal e on ei.producaofiscal=e.codigo where data < dataMaxima
+) i on i.referencia=m.referencia left join novosPrecos p on m.referencia=p.mercadoria
+group by m.referencia;
+END$$
 
-
+DELIMITER ;
