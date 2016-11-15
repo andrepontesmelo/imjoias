@@ -94,8 +94,8 @@ namespace Entidades.Fiscal
 
             return Mapear<Extrato>(
                 string.Format("select e.*, nome, classificacaofiscal, tipounidade, CAST(p.novoPrecoCusto as DECIMAL(8,2)) as valor from extratoinventario e " +
-                " left join mercadoria m on e.referencia=m.referencia left join novosPrecos p on e.referencia=p.mercadoria " + 
-                " where e.referencia={0} and data >= {1} and data < {2}",
+                " left join mercadoria m on e.referencia=m.referencia left join novosPrecos p on e.referencia=p.mercadoria " +
+                " where e.referencia={0} and data >= {1} and data < {2} order by e.referencia, data",
                 referência != null ? DbTransformar(referência) : "e.referencia",
                 DbTransformar(início),
                 DbTransformar(fim)));
