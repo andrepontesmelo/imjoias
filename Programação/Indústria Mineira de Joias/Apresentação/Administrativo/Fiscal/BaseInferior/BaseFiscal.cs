@@ -4,8 +4,10 @@ using Apresentação.Administrativo.Fiscal.BaseInferior.Inventário;
 using Apresentação.Administrativo.Fiscal.BaseInferior.Produção;
 using Apresentação.Fiscal.BaseInferior.Documentos;
 using Apresentação.Fiscal.Janela;
+using Apresentação.Formulários;
 using Entidades.Fiscal.Importação.Legado;
 using System;
+using System.Windows.Forms;
 
 namespace Apresentação.Fiscal.BaseInferior
 {
@@ -53,7 +55,17 @@ namespace Apresentação.Fiscal.BaseInferior
 
         private void opçãoImportar_Click(object sender, EventArgs e)
         {
-            new ImportaçãoSistemaLegado().Importar();
+            AguardeDB.Mostrar();
+            try
+            {
+                new ImportaçãoSistemaLegado().Importar();
+                AguardeDB.Fechar();
+                MessageBox.Show("Pronto!");
+
+            } finally
+            {
+                AguardeDB.Fechar();
+            }
         }
     }
 }
