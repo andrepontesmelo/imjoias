@@ -49,6 +49,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Produção
             }
             catch (ExceçãoFiscal erro)
             {
+                AguardeDB.Fechar();
                 MensagemErro.MostrarMensagem(this, erro, "Erro ao incluir TO");
             }
             finally
