@@ -1,33 +1,8 @@
 use imjoias;
 
-DROP TABLE IF EXISTS `foto`;
- SET @saved_cs_client     = @@character_set_client ;
- SET character_set_client = utf8 ;
-CREATE TABLE `foto` (
-  `codigo` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `mercadoria` varchar(100) NOT NULL DEFAULT '',
-  `descricao` varchar(45) DEFAULT NULL,
-  `foto` mediumblob NOT NULL,
-  `icone` blob,
-  `data` datetime DEFAULT NULL,
-  `peso` double DEFAULT NULL,
-  PRIMARY KEY (`codigo`),
-  KEY `idx_foto_mercadoria` (`mercadoria`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 DATA DIRECTORY='/var/lib/mysql_hd/' INDEX DIRECTORY='/var/lib/mysql_hd/';
- SET character_set_client = @saved_cs_client ;
-
-
-SET PASSWORD FOR 'andrep'@'%' = PASSWORD('andrep');
-flush privileges;
-
-=============================================
-use imjoias;
-
 DROP TABLE saidafiscalpdf;
 drop table saidaitemfiscal;
 DROP TABLE saidafiscal;
-
-
 
 
  CREATE TABLE `saidafiscal` (
@@ -103,3 +78,17 @@ CREATE TABLE `saidaitemfiscal` (
  END$$
 
  DELIMITER ;
+
+
+ ALTER TABLE `imjoias`.`saidafiscal`
+ ADD COLUMN `cliente` INT(10) UNSIGNED NULL DEFAULT NULL AFTER `maquina`;
+
+
+ ALTER TABLE `imjoias`.`saidafiscal`
+ ADD INDEX `fk_saidafiscal_cliente_idx` (`cliente` ASC);
+ ALTER TABLE `imjoias`.`saidafiscal`
+ ADD CONSTRAINT `fk_saidafiscal_cliente`
+   FOREIGN KEY (`cliente`)
+   REFERENCES `imjoias`.`pessoa` (`codigo`)
+   ON DELETE NO ACTION
+   ON UPDATE NO ACTION;
