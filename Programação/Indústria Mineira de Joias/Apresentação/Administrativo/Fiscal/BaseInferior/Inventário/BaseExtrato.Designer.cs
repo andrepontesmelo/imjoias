@@ -33,13 +33,10 @@
             this.opçãoImprimir = new Apresentação.Formulários.Opção();
             this.txtMercadoria = new Apresentação.Mercadoria.TxtMercadoria();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataInicial = new AMS.TextBox.DateTextBox();
             this.listaExtrato = new Apresentação.Administrativo.Fiscal.Lista.ListaExtrato();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.dataFinal = new AMS.TextBox.DateTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtEstoqueAnterior = new System.Windows.Forms.TextBox();
+            this.seleçãoPeríodo = new Apresentação.Administrativo.Fiscal.SeleçãoPeríodo();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.SuspendLayout();
@@ -115,20 +112,6 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "Referência:";
             // 
-            // dataInicial
-            // 
-            this.dataInicial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataInicial.Flags = 65536;
-            this.dataInicial.Location = new System.Drawing.Point(582, 79);
-            this.dataInicial.Name = "dataInicial";
-            this.dataInicial.RangeMax = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dataInicial.RangeMin = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.dataInicial.Size = new System.Drawing.Size(72, 20);
-            this.dataInicial.TabIndex = 11;
-            this.dataInicial.Text = "04/11/2016";
-            this.dataInicial.Validating += new System.ComponentModel.CancelEventHandler(this.dataInicial_Validating);
-            this.dataInicial.Validated += new System.EventHandler(this.dataInicial_Validated);
-            // 
             // listaExtrato
             // 
             this.listaExtrato.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -138,40 +121,6 @@
             this.listaExtrato.Name = "listaExtrato";
             this.listaExtrato.Size = new System.Drawing.Size(604, 157);
             this.listaExtrato.TabIndex = 13;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(539, 81);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(37, 13);
-            this.label2.TabIndex = 14;
-            this.label2.Text = "Início:";
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(681, 81);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(26, 13);
-            this.label3.TabIndex = 16;
-            this.label3.Text = "Fim:";
-            // 
-            // dataFinal
-            // 
-            this.dataFinal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataFinal.Flags = 65536;
-            this.dataFinal.Location = new System.Drawing.Point(710, 79);
-            this.dataFinal.Name = "dataFinal";
-            this.dataFinal.RangeMax = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dataFinal.RangeMin = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.dataFinal.Size = new System.Drawing.Size(72, 20);
-            this.dataFinal.TabIndex = 15;
-            this.dataFinal.Text = "04/11/2016";
-            this.dataFinal.Validating += new System.ComponentModel.CancelEventHandler(this.dataFinal_Validating);
-            this.dataFinal.Validated += new System.EventHandler(this.dataFinal_Validated);
             // 
             // label4
             // 
@@ -190,17 +139,23 @@
             this.txtEstoqueAnterior.Size = new System.Drawing.Size(192, 20);
             this.txtEstoqueAnterior.TabIndex = 18;
             // 
+            // seleçãoPeríodo
+            // 
+            this.seleçãoPeríodo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.seleçãoPeríodo.Location = new System.Drawing.Point(551, 97);
+            this.seleçãoPeríodo.Name = "seleçãoPeríodo";
+            this.seleçãoPeríodo.Size = new System.Drawing.Size(246, 21);
+            this.seleçãoPeríodo.TabIndex = 19;
+            this.seleçãoPeríodo.AoAlterar += new System.EventHandler(this.seleçãoPeríodo_AoAlterar);
+            // 
             // BaseExtrato
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.seleçãoPeríodo);
             this.Controls.Add(this.txtEstoqueAnterior);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.dataFinal);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.listaExtrato);
-            this.Controls.Add(this.dataInicial);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtMercadoria);
             this.Controls.Add(this.título);
@@ -209,13 +164,10 @@
             this.Controls.SetChildIndex(this.título, 0);
             this.Controls.SetChildIndex(this.txtMercadoria, 0);
             this.Controls.SetChildIndex(this.label1, 0);
-            this.Controls.SetChildIndex(this.dataInicial, 0);
             this.Controls.SetChildIndex(this.listaExtrato, 0);
-            this.Controls.SetChildIndex(this.label2, 0);
-            this.Controls.SetChildIndex(this.dataFinal, 0);
-            this.Controls.SetChildIndex(this.label3, 0);
             this.Controls.SetChildIndex(this.label4, 0);
             this.Controls.SetChildIndex(this.txtEstoqueAnterior, 0);
+            this.Controls.SetChildIndex(this.seleçãoPeríodo, 0);
             this.esquerda.ResumeLayout(false);
             this.quadro1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -230,12 +182,9 @@
         private Formulários.Opção opçãoImprimir;
         private Mercadoria.TxtMercadoria txtMercadoria;
         private System.Windows.Forms.Label label1;
-        private AMS.TextBox.DateTextBox dataInicial;
         private Lista.ListaExtrato listaExtrato;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private AMS.TextBox.DateTextBox dataFinal;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtEstoqueAnterior;
+        private SeleçãoPeríodo seleçãoPeríodo;
     }
 }

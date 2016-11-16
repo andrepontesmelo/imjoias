@@ -255,6 +255,12 @@
     <Compile Include="Administrativo\Fiscal\Lista\Produção\ListaSaídaProduçãoFiscal.Designer.cs">
       <DependentUpon>ListaSaídaProduçãoFiscal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrativo\Fiscal\SeleçãoPeríodo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Administrativo\Fiscal\SeleçãoPeríodo.Designer.cs">
+      <DependentUpon>SeleçãoPeríodo.cs</DependentUpon>
+    </Compile>
     <Compile Include="ComboSetor.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -2568,6 +2574,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administrativo\Fiscal\Lista\ListaProduções.resx">
       <DependentUpon>ListaProduções.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrativo\Fiscal\SeleçãoPeríodo.resx">
+      <DependentUpon>SeleçãoPeríodo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ComboSetor.resx">
       <DependentUpon>ComboSetor.cs</DependentUpon>

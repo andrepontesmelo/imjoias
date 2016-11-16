@@ -9,6 +9,11 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
 {
     public partial class BaseExtrato : Apresentação.Formulários.BaseInferior
     {
+
+        private DateTime? DataInicial => seleçãoPeríodo.DataInicial;
+        private DateTime? DataFinal => seleçãoPeríodo.DataFinal;
+        private bool DatasVálidas => seleçãoPeríodo.DatasVálidas;
+
         private string referência;
 
         private string ReferênciaFormatada => Entidades.Mercadoria.Mercadoria.MascararReferência(referência, true);
@@ -18,25 +23,13 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
             InitializeComponent();
         }
 
-        private DateTime? DataInicial => dataInicial.Value as DateTime?;
-        private DateTime? DataFinal => dataFinal.Value as DateTime?;
-        private bool DatasVálidas => DataInicial.HasValue && DataFinal.HasValue &&
-            DataInicial.Value <= DataFinal.Value;
 
         public BaseExtrato(string referência) : this()
         {
             this.referência = referência;
 
-            AtribuirIntervaloDatasPadrão();
+            seleçãoPeríodo.AtribuirIntervaloDatasPadrão();
             Carregar();
-        }
-
-        private void AtribuirIntervaloDatasPadrão()
-        {
-            var agora = DadosGlobais.Instância.HoraDataAtual;
-            
-            this.dataInicial.Value = new DateTime(agora.Year, agora.Month, 1);
-            this.dataFinal.Value = new DateTime(agora.Year, agora.Month, 1).AddMonths(1).AddDays(-1);
         }
 
         private void Carregar()
@@ -51,7 +44,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
             título.Título = "Extrato de " + ReferênciaFormatada;
 
             if (!DatasVálidas)
-                AtribuirIntervaloDatasPadrão();
+                seleçãoPeríodo.AtribuirIntervaloDatasPadrão();
 
             CarregarEstoqueAnterior();
 
@@ -67,26 +60,6 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
             decimal estoqueAnterior = 0;
             InventárioAnterior.ObterHashReferênciaQuantidade(DataInicial.Value).TryGetValue(referência, out estoqueAnterior);
             txtEstoqueAnterior.Text = estoqueAnterior.ToString();
-        }
-
-        private void dataInicial_Validated(object sender, EventArgs e)
-        {
-            Carregar();
-        }
-
-        private void dataFinal_Validated(object sender, EventArgs e)
-        {
-            Carregar();
-        }
-
-        private void dataInicial_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            e.Cancel = !DatasVálidas;
-        }
-
-        private void dataFinal_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            e.Cancel = !DatasVálidas;
         }
 
         private void txtMercadoria_ReferênciaConfirmada(object sender, EventArgs e)
@@ -107,6 +80,11 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
                 new ControladorImpressãoExtrato().CriarRelatório(null, dataInicial, dataFinal));
 
             janela.ShowDialog(this);
+        }
+
+        private void seleçãoPeríodo_AoAlterar(object sender, EventArgs e)
+        {
+            Carregar();
         }
     }
 }
