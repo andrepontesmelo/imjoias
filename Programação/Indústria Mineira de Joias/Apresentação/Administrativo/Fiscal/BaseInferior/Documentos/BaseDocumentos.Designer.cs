@@ -35,6 +35,7 @@
             this.opçãoExcluir = new Apresentação.Formulários.Opção();
             this.opçãoImprimir = new Apresentação.Formulários.Opção();
             this.quadroTipo = new Apresentação.Fiscal.QuadroTipo();
+            this.seleçãoPeríodo = new Apresentação.Administrativo.Fiscal.SeleçãoPeríodo();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.quadro2.SuspendLayout();
@@ -45,6 +46,7 @@
             this.esquerda.Controls.Add(this.quadroTipo);
             this.esquerda.Controls.Add(this.quadro2);
             this.esquerda.Controls.Add(this.quadro1);
+            this.esquerda.Size = new System.Drawing.Size(187, 296);
             this.esquerda.Controls.SetChildIndex(this.quadro1, 0);
             this.esquerda.Controls.SetChildIndex(this.quadro2, 0);
             this.esquerda.Controls.SetChildIndex(this.quadroTipo, 0);
@@ -151,12 +153,23 @@
             this.quadroTipo.Size = new System.Drawing.Size(160, 81);
             this.quadroTipo.TabIndex = 9;
             // 
+            // seleçãoPeríodo
+            // 
+            this.seleçãoPeríodo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.seleçãoPeríodo.Location = new System.Drawing.Point(554, 52);
+            this.seleçãoPeríodo.Name = "seleçãoPeríodo";
+            this.seleçãoPeríodo.Size = new System.Drawing.Size(246, 21);
+            this.seleçãoPeríodo.TabIndex = 7;
+            this.seleçãoPeríodo.AoAlterar += new System.EventHandler(this.seleçãoPeríodo_AoAlterar);
+            // 
             // BaseDocumentos
             // 
+            this.Controls.Add(this.seleçãoPeríodo);
             this.Controls.Add(this.títuloBaseInferior1);
             this.Name = "BaseDocumentos";
             this.Controls.SetChildIndex(this.esquerda, 0);
             this.Controls.SetChildIndex(this.títuloBaseInferior1, 0);
+            this.Controls.SetChildIndex(this.seleçãoPeríodo, 0);
             this.esquerda.ResumeLayout(false);
             this.quadro1.ResumeLayout(false);
             this.quadro2.ResumeLayout(false);
@@ -172,5 +185,6 @@
         protected Formulários.TítuloBaseInferior títuloBaseInferior1;
         protected Formulários.Opção opçãoNovo;
         protected QuadroTipo quadroTipo;
+        protected Administrativo.Fiscal.SeleçãoPeríodo seleçãoPeríodo;
     }
 }

@@ -60,5 +60,10 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
         {
             throw new ExceçãoChamadaMétodoAbstrato();
         }
+
+        private void seleçãoPeríodo_AoAlterar(object sender, EventArgs e)
+        {
+            Recarregar();
+        }
     }
 }

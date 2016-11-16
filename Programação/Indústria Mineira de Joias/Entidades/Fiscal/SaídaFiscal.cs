@@ -12,6 +12,7 @@ namespace Entidades.Fiscal
         private DateTime dataSaída;
         private uint setor;
         protected bool cancelada;
+        protected int? cliente;
 
         private int? maquina;
 
@@ -19,6 +20,12 @@ namespace Entidades.Fiscal
         {
             get { return maquina; }
             set { maquina = value; }
+        }
+
+        public int? Cliente
+        {
+            get { return cliente;  }
+            set { cliente = value; }
         }
 
         public DateTime DataSaída
@@ -89,11 +96,12 @@ namespace Entidades.Fiscal
             using (IDbCommand cmd = conexão.CreateCommand())
             {
                 cmd.Transaction = transação;
-                cmd.CommandText = string.Format("update {0} set cancelada={1}, setor={2}, maquina={3} WHERE id={4}",
+                cmd.CommandText = string.Format("update {0} set cancelada={1}, setor={2}, maquina={3}, cliente={4} WHERE id={5}",
                     NomeRelação,
                     DbTransformar(cancelada),
                     DbTransformar(setor),
                     DbTransformar(maquina),
+                    DbTransformar(cliente),
                     DbTransformar(id));
 
                 cmd.ExecuteNonQuery();
@@ -112,8 +120,8 @@ namespace Entidades.Fiscal
                 cmd.Transaction = transação;
 
                 cmd.CommandText = string.Format("INSERT INTO {0} " + 
-                    "(dataemissao, datasaida, tipo, id, valortotal, numero, cnpjemitente, cancelada, setor, maquina) " + 
-                    " values ({1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10})",
+                    "(dataemissao, datasaida, tipo, id, valortotal, numero, cnpjemitente, cancelada, setor, maquina, cliente) " + 
+                    " values ({1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11})",
                     NOME_RELAÇÃO,
                     DbTransformar(DataEmissão),
                     DbTransformar(dataSaída),
@@ -124,7 +132,8 @@ namespace Entidades.Fiscal
                     DbTransformar(CnpjEmitente),
                     DbTransformar(Cancelada),
                     DbTransformar(Setor),
-                    DbTransformar(Máquina));
+                    DbTransformar(Máquina),
+                    DbTransformar(Cliente));
 
                 cmd.ExecuteNonQuery();
             }
@@ -165,16 +174,17 @@ namespace Entidades.Fiscal
                 tipo));
         }
 
-        public static List<DocumentoFiscal> Obter(int? tipoDocumento, uint? setor)
+        public static List<DocumentoFiscal> Obter(int? tipoDocumento, uint? setor, DateTime dataInicial, DateTime dataFinal)
         {
-            return new List<DocumentoFiscal>(ObterListaEspecífica(tipoDocumento, setor));
+            return new List<DocumentoFiscal>(ObterListaEspecífica(tipoDocumento, setor, dataInicial, dataFinal));
         }
 
-        private static List<SaídaFiscal> ObterListaEspecífica(int? tipoDocumento, uint? setor)
+        private static List<SaídaFiscal> ObterListaEspecífica(int? tipoDocumento, uint? setor, DateTime dataInicial, DateTime dataFinal)
         {
             return Mapear<SaídaFiscal>("select * from " + NOME_RELAÇÃO + " WHERE 1=1 " +
                 (tipoDocumento.HasValue ? " AND tipo=" + tipoDocumento.Value : "") +
-                (setor.HasValue ? " AND setor=" + setor.Value : ""));
+                (setor.HasValue ? " AND setor=" + setor.Value : "")
+                + " AND  " + DbDataEntre("datasaida", dataInicial, dataFinal));
         }
 
         public override string ToString()

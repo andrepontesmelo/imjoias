@@ -35,7 +35,10 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
 
         private void CarregarLista()
         {
-            lista.Carregar(quadroTipo.Seleção?.Id);
+            if (!seleçãoPeríodo.DatasVálidas)
+                seleçãoPeríodo.AtribuirIntervaloDatasPadrão();
+
+            lista.Carregar(quadroTipo.Seleção?.Id, seleçãoPeríodo.DataInicial.Value, seleçãoPeríodo.DataFinal.Value);
         }
 
         public override ListaDocumentoFiscal ObterListaAtiva()

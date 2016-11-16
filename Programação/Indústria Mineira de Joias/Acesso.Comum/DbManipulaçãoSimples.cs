@@ -339,6 +339,14 @@ namespace Acesso.Comum
             }
         }
 
+        protected static string DbDataEntre(string nomeAtributo, DateTime dataInicial, DateTime dataFinal)
+        {
+            return string.Format("{0} >= {1} and {0} < {2}",
+                nomeAtributo,
+                DbTransformar(dataInicial),
+                DbTransformar(dataFinal));
+        }
+
         private static CacheMapeamento cacheMapeamento = new CacheMapeamento();
 
         protected struct ObjCampoValor
