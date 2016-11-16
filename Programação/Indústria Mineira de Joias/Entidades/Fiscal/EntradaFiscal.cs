@@ -47,15 +47,17 @@ namespace Entidades.Fiscal
             return MapearStrings("select id from " + NOME_RELAÇÃO, true);
         }
 
-        public static List<DocumentoFiscal> Obter(int? tipoDocumento)
+        public static List<DocumentoFiscal> Obter(int? tipoDocumento, DateTime dataInicial, DateTime dataFinal)
         {
-            return new List<DocumentoFiscal>(ObterListaEspecífica(tipoDocumento));
+            return new List<DocumentoFiscal>(ObterListaEspecífica(tipoDocumento, dataInicial, dataFinal));
         }
 
-        private static List<EntradaFiscal> ObterListaEspecífica(int? tipoDocumento)
+        private static List<EntradaFiscal> ObterListaEspecífica(int? tipoDocumento, DateTime dataInicial, DateTime dataFinal)
         {
             return Mapear<EntradaFiscal>("select * from " + NOME_RELAÇÃO +
-                (tipoDocumento.HasValue ? " WHERE tipo=" + tipoDocumento.Value : ""));
+                " WHERE 1=1 " +
+                (tipoDocumento.HasValue ? " AND tipo=" + tipoDocumento.Value : "") + 
+                " AND " + DbDataEntre("dataentrada", dataInicial, dataFinal));
         }
 
         protected override void CadastrarEntidade(IDbTransaction transação, IDbConnection conexão)

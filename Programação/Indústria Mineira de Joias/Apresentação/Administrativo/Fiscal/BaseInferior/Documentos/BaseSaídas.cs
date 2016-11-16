@@ -71,10 +71,13 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
 
         private void CarregarListas()
         {
+            if (!seleçãoPeríodo.DatasVálidas)
+                seleçãoPeríodo.AtribuirIntervaloDatasPadrão();
+
             foreach (TabPage aba in tabControl.TabPages)
             {
                 ListaDocumentoSaída lista = (ListaDocumentoSaída) aba.Controls[0];
-                lista.Carregar(quadroTipo.Seleção?.Id, (uint) lista.Tag);
+                lista.Carregar(quadroTipo.Seleção?.Id, (uint) lista.Tag, seleçãoPeríodo.DataInicial.Value, seleçãoPeríodo.DataFinal.Value);
             }
         }
 

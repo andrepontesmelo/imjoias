@@ -1,5 +1,6 @@
 ﻿using Entidades.Fiscal;
 using Entidades.Fiscal.Pdf;
+using System;
 using System.Windows.Forms;
 
 namespace Apresentação.Fiscal.Lista
@@ -37,13 +38,13 @@ namespace Apresentação.Fiscal.Lista
 
         public uint Setor => setor;
 
-        public void Carregar(int? tipoDocumento, uint setor)
+        public void Carregar(int? tipoDocumento, uint setor, DateTime dataInicial, DateTime dataFinal)
         {
             this.setor = setor;
 
             SuspendLayout();
             lista.Items.Clear();
-            lista.Items.AddRange(ConstruirItens(SaídaFiscal.Obter(tipoDocumento, setor)));
+            lista.Items.AddRange(ConstruirItens(SaídaFiscal.Obter(tipoDocumento, setor, dataInicial, dataFinal)));
             AtualizarTamanhoColunas();
             ResumeLayout();
         }

@@ -165,16 +165,17 @@ namespace Entidades.Fiscal
                 tipo));
         }
 
-        public static List<DocumentoFiscal> Obter(int? tipoDocumento, uint? setor)
+        public static List<DocumentoFiscal> Obter(int? tipoDocumento, uint? setor, DateTime dataInicial, DateTime dataFinal)
         {
-            return new List<DocumentoFiscal>(ObterListaEspecífica(tipoDocumento, setor));
+            return new List<DocumentoFiscal>(ObterListaEspecífica(tipoDocumento, setor, dataInicial, dataFinal));
         }
 
-        private static List<SaídaFiscal> ObterListaEspecífica(int? tipoDocumento, uint? setor)
+        private static List<SaídaFiscal> ObterListaEspecífica(int? tipoDocumento, uint? setor, DateTime dataInicial, DateTime dataFinal)
         {
             return Mapear<SaídaFiscal>("select * from " + NOME_RELAÇÃO + " WHERE 1=1 " +
                 (tipoDocumento.HasValue ? " AND tipo=" + tipoDocumento.Value : "") +
-                (setor.HasValue ? " AND setor=" + setor.Value : ""));
+                (setor.HasValue ? " AND setor=" + setor.Value : "")
+                + " AND  " + DbDataEntre("datasaida", dataInicial, dataFinal));
         }
 
         public override string ToString()

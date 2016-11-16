@@ -49,6 +49,10 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
             // 
             this.quadroTipo.SeleçãoAlterada += new System.EventHandler(this.quadroTipo_SeleçãoAlterada);
             // 
+            // seleçãoPeríodo1
+            // 
+            this.seleçãoPeríodo.Location = new System.Drawing.Point(534, 52);
+            // 
             // esquerda
             // 
             this.esquerda.Size = new System.Drawing.Size(187, 392);
@@ -80,8 +84,9 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
             this.Controls.Add(this.tabControl);
             this.Name = "BaseSaídas";
             this.Size = new System.Drawing.Size(800, 392);
-            this.Controls.SetChildIndex(this.esquerda, 0);
             this.Controls.SetChildIndex(this.títuloBaseInferior1, 0);
+            this.Controls.SetChildIndex(this.seleçãoPeríodo, 0);
+            this.Controls.SetChildIndex(this.esquerda, 0);
             this.Controls.SetChildIndex(this.tabControl, 0);
             this.esquerda.ResumeLayout(false);
             this.tabControl.ResumeLayout(false);

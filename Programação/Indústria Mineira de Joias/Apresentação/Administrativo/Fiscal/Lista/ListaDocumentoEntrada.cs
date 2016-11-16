@@ -29,11 +29,11 @@ namespace Apresentação.Fiscal.Lista
             colObservações});
         }
 
-        public void Carregar(int? tipoDocumento)
+        public void Carregar(int? tipoDocumento, DateTime dataInicial, DateTime dataFinal)
         {
             SuspendLayout();
             lista.Items.Clear();
-            lista.Items.AddRange(ConstruirItens(EntradaFiscal.Obter(tipoDocumento)));
+            lista.Items.AddRange(ConstruirItens(EntradaFiscal.Obter(tipoDocumento, dataInicial, dataFinal)));
             AtualizarTamanhoColunas();
             ResumeLayout();
         }
