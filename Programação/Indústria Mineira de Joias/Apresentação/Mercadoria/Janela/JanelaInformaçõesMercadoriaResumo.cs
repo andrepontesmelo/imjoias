@@ -11,7 +11,7 @@ namespace Apresentação.Mercadoria
     /// <summary>
     /// Use apenas Show() para abrir.
     /// </summary>
-    public class InformaçõesMercadoriaResumo : System.Windows.Forms.Form
+    public class JanelaInformaçõesMercadoriaResumo : System.Windows.Forms.Form
     {
         /* Português: pagamento à vista (com crase)
          *            pagamento a prazo (sem crase)
@@ -84,7 +84,7 @@ namespace Apresentação.Mercadoria
         private IContainer components;
 
         /// <param name="mercadoria">Mercadoria para exibição</param>
-        public InformaçõesMercadoriaResumo(Entidades.Mercadoria.Mercadoria mercadoria, Entidades.Financeiro.Cotação cotação)
+        public JanelaInformaçõesMercadoriaResumo(Entidades.Mercadoria.Mercadoria mercadoria, Entidades.Financeiro.Cotação cotação)
         {
             InitializeComponent();
 
@@ -118,7 +118,7 @@ namespace Apresentação.Mercadoria
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InformaçõesMercadoriaResumo));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(JanelaInformaçõesMercadoriaResumo));
             this.lblReferência = new System.Windows.Forms.Label();
             this.mnuPreço = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuVista = new System.Windows.Forms.ToolStripMenuItem();

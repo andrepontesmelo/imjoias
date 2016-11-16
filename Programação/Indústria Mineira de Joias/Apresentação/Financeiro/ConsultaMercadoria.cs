@@ -85,8 +85,8 @@ namespace Apresentação.Financeiro
 
                 if (cmbTabela.Text == "Atacado")
                 {
-                    InformaçõesMercadoriaResumo janelaInformações
-                        = new InformaçõesMercadoriaResumo(txtMercadoria.Mercadoria, txtCotação.Cotação);
+                    JanelaInformaçõesMercadoriaResumo janelaInformações
+                        = new JanelaInformaçõesMercadoriaResumo(txtMercadoria.Mercadoria, txtCotação.Cotação);
 
                     Hide();
 
@@ -96,8 +96,8 @@ namespace Apresentação.Financeiro
                 }
                 else
                 {
-                    InformaçõesMercadoria janelaInformações
-                        = new InformaçõesMercadoria(txtMercadoria.Mercadoria, txtCotação.Cotação);
+                    JanelaInformaçõesMercadoria janelaInformações
+                        = new JanelaInformaçõesMercadoria(txtMercadoria.Mercadoria, txtCotação.Cotação);
 
                     Hide();
 

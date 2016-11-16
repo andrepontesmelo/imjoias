@@ -3,6 +3,7 @@ using Acesso.Comum.Cache;
 using Acesso.Comum.Exceções;
 using Entidades.Árvores;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 
@@ -32,7 +33,7 @@ namespace Entidades.Mercadoria
     [Serializable]
     [Cacheável("ObterMercadoriaSemCache"), Validade(0, 5, 0)]
     [DbTabela("mercadoria")]
-	class MercadoriaCampos : DbManipulação, IDisposable, ICloneable, IMercadoriaCampos
+	public class MercadoriaCampos : DbManipulação, IDisposable, ICloneable, IMercadoriaCampos
 	{
 		protected string referencia;
 		protected int digito = -1;
@@ -268,12 +269,17 @@ namespace Entidades.Mercadoria
             return ObterMercadorias(prefixo, limite, false, true);
         }
 
-		/// <summary>
-		/// Obtém vetor de mercadorias
-		/// </summary>
-		/// <param name="prefixo">Prefixo da referência</param>
-		/// <param name="limite">Limite de referências</param>
-		/// <returns>Vetor de mercadorias do tipo Entidade.Mercadoria</returns>
+        public static IEnumerator ObterEnumeradorMercadoriaCampos()
+        {
+            return árvore.GetEnumerator();
+        }
+            
+        /// <summary>
+        /// Obtém vetor de mercadorias
+        /// </summary>
+        /// <param name="prefixo">Prefixo da referência</param>
+        /// <param name="limite">Limite de referências</param>
+        /// <returns>Vetor de mercadorias do tipo Entidade.Mercadoria</returns>
         /// <remarks>
         /// Não são recuperadas mercadorias fora de linha.
         /// </remarks>

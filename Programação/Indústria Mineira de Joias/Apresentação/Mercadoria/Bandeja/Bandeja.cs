@@ -501,12 +501,12 @@ namespace Apresentação.Mercadoria.Bandeja
 
 			foreach (ListViewItem item in lista.SelectedItems)
 			{
-				InformaçõesMercadoriaResumo dlg;
+				JanelaInformaçõesMercadoriaResumo dlg;
 				ISaquinho              ISaquinho;
 
                 ISaquinho = hashListViewItemSaquinho[item];
 
-				dlg = new InformaçõesMercadoriaResumo(ISaquinho.Mercadoria, this.Cotação);
+				dlg = new JanelaInformaçõesMercadoriaResumo(ISaquinho.Mercadoria, this.Cotação);
 	
 				dlg.Owner = this.ParentForm;
 

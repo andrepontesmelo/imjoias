@@ -305,6 +305,12 @@
       <DependentUpon>RelatórioInventário.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Mercadoria\Janela\JanelaPesquisaReferência.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mercadoria\Janela\JanelaPesquisaReferência.Designer.cs">
+      <DependentUpon>JanelaPesquisaReferência.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pessoa\Atendente\BaseInfoAtendimentos.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1944,16 +1950,16 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Administrativo\IntegraçãoSistemaAntigo\Vendas\Venda.cs" />
-    <Compile Include="Mercadoria\BalãoReferênciaForaDeLinha.cs">
+    <Compile Include="Mercadoria\Balão\BalãoReferênciaForaDeLinha.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Mercadoria\BalãoReferênciaNãoEncontrada.cs">
+    <Compile Include="Mercadoria\Balão\BalãoReferênciaNãoEncontrada.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Mercadoria\BalãoReferênciaRedigitada.cs">
+    <Compile Include="Mercadoria\Balão\BalãoReferênciaRedigitada.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Mercadoria\BalãoReferênciaRedigitada.Designer.cs">
+    <Compile Include="Mercadoria\Balão\BalãoReferênciaRedigitada.Designer.cs">
       <DependentUpon>BalãoReferênciaRedigitada.cs</DependentUpon>
     </Compile>
     <Compile Include="Mercadoria\Bandeja\BalãoSugestãoNovoOuro.cs">
@@ -2028,16 +2034,16 @@
     <Compile Include="Mercadoria\Etiqueta\Impressão\SalvarConfiguração.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Mercadoria\InformaçõesMercadoria.cs">
+    <Compile Include="Mercadoria\Janela\JanelaInformaçõesMercadoria.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Mercadoria\InformaçõesMercadoriaResumo.cs">
+    <Compile Include="Mercadoria\Janela\JanelaInformaçõesMercadoriaResumo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Mercadoria\JanelaMercadoriaEmFalta.cs">
+    <Compile Include="Mercadoria\Janela\JanelaMercadoriaEmFalta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Mercadoria\JanelaMercadoriaEmFalta.Designer.cs">
+    <Compile Include="Mercadoria\Janela\JanelaMercadoriaEmFalta.Designer.cs">
       <DependentUpon>JanelaMercadoriaEmFalta.cs</DependentUpon>
     </Compile>
     <Compile Include="Mercadoria\ListViewMercadoria.cs">
@@ -2049,10 +2055,10 @@
     <Compile Include="Mercadoria\MostradorAnimação.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Mercadoria\QuadroFoto.cs">
+    <Compile Include="Mercadoria\Quadro\QuadroFoto.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Mercadoria\QuadroMercadoria.cs">
+    <Compile Include="Mercadoria\Quadro\QuadroMercadoria.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Mercadoria\RastrearMercadoria.cs">
@@ -2388,11 +2394,11 @@
     <Compile Include="Pessoa\TxtTelefoneBalão.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Mercadoria\ProcurarMercadoria.cs">
+    <Compile Include="Mercadoria\Janela\JanelaProcuraFotosReferência.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Mercadoria\ProcurarMercadoria.Designer.cs">
-      <DependentUpon>ProcurarMercadoria.cs</DependentUpon>
+    <Compile Include="Mercadoria\Janela\JanelaProcuraFotosReferência.Designer.cs">
+      <DependentUpon>JanelaProcuraFotosReferência.cs</DependentUpon>
     </Compile>
     <Compile Include="Resource.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -2594,6 +2600,9 @@
     <EmbeddedResource Include="Impressão\Relatórios\Fiscal\Inventário\RelatórioInventário.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RelatórioInventário.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mercadoria\Janela\JanelaPesquisaReferência.resx">
+      <DependentUpon>JanelaPesquisaReferência.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pessoa\Atendente\BaseInfoAtendimentos.resx">
       <DependentUpon>BaseInfoAtendimentos.cs</DependentUpon>
@@ -3469,15 +3478,15 @@
       <DependentUpon>VisualizarPáginaVirtual.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mercadoria\BalãoReferênciaForaDeLinha.resx">
+    <EmbeddedResource Include="Mercadoria\Balão\BalãoReferênciaForaDeLinha.resx">
       <DependentUpon>BalãoReferênciaForaDeLinha.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mercadoria\BalãoReferênciaNãoEncontrada.resx">
+    <EmbeddedResource Include="Mercadoria\Balão\BalãoReferênciaNãoEncontrada.resx">
       <DependentUpon>BalãoReferênciaNãoEncontrada.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mercadoria\BalãoReferênciaRedigitada.resx">
+    <EmbeddedResource Include="Mercadoria\Balão\BalãoReferênciaRedigitada.resx">
       <DependentUpon>BalãoReferênciaRedigitada.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -3537,15 +3546,15 @@
       <DependentUpon>ImprimirEscolha.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mercadoria\InformaçõesMercadoria.resx">
-      <DependentUpon>InformaçõesMercadoria.cs</DependentUpon>
+    <EmbeddedResource Include="Mercadoria\Janela\JanelaInformaçõesMercadoria.resx">
+      <DependentUpon>JanelaInformaçõesMercadoria.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mercadoria\InformaçõesMercadoriaResumo.resx">
-      <DependentUpon>InformaçõesMercadoriaResumo.cs</DependentUpon>
+    <EmbeddedResource Include="Mercadoria\Janela\JanelaInformaçõesMercadoriaResumo.resx">
+      <DependentUpon>JanelaInformaçõesMercadoriaResumo.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mercadoria\JanelaMercadoriaEmFalta.resx">
+    <EmbeddedResource Include="Mercadoria\Janela\JanelaMercadoriaEmFalta.resx">
       <DependentUpon>JanelaMercadoriaEmFalta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mercadoria\ListViewMercadoria.resx">
@@ -3556,11 +3565,11 @@
       <DependentUpon>MostradorAnimação.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mercadoria\QuadroFoto.resx">
+    <EmbeddedResource Include="Mercadoria\Quadro\QuadroFoto.resx">
       <DependentUpon>QuadroFoto.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mercadoria\QuadroMercadoria.resx">
+    <EmbeddedResource Include="Mercadoria\Quadro\QuadroMercadoria.resx">
       <DependentUpon>QuadroMercadoria.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -3589,8 +3598,8 @@
     <EmbeddedResource Include="Pessoa\Endereço\JanelaRemanejarRegião.resx">
       <DependentUpon>JanelaRemanejarRegião.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mercadoria\ProcurarMercadoria.resx">
-      <DependentUpon>ProcurarMercadoria.cs</DependentUpon>
+    <EmbeddedResource Include="Mercadoria\Janela\JanelaProcuraFotosReferência.resx">
+      <DependentUpon>JanelaProcuraFotosReferência.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resource.resx">

@@ -247,5 +247,21 @@ namespace Apresentação.Fiscal.BaseInferior
         {
             ExcluirItens();
         }
+
+        private void panel1_Click(object sender, EventArgs e)
+        {
+            var janela = new Apresentação.Mercadoria.Janela.JanelaPesquisaReferência();
+            janela.AoSelecionar += Janela_AoSelecionar;
+            janela.ShowDialog(this);
+        }
+
+        private void Janela_AoSelecionar(string referência)
+        {
+            string referênciaNumérica;
+            int dígito;
+
+            Entidades.Mercadoria.Mercadoria.DesmascararReferência(referência, out referênciaNumérica, out dígito);
+            txtReferência.Text = referênciaNumérica + dígito;
+        }
     }
 }

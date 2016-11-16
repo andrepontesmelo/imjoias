@@ -6,6 +6,7 @@ using Entidades.Configuração;
 using Entidades.Financeiro;
 using Entidades.Moedas;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
@@ -540,6 +541,11 @@ namespace Entidades.Mercadoria
         public static Mercadoria ObterMercadoria(string referência)
         {
             return ObterMercadoria(referência, Tabela.TabelaPadrão);
+        }
+
+        public static IEnumerator ObterMercadoriasCampos()
+        {
+            return MercadoriaCampos.ObterEnumeradorMercadoriaCampos();
         }
 
         /// <summary>

@@ -1,6 +1,6 @@
 ﻿namespace Entidades.Mercadoria
 {
-    interface IMercadoriaCampos
+    public interface IMercadoriaCampos
     {
         /// <summary>
         /// Referência formatada

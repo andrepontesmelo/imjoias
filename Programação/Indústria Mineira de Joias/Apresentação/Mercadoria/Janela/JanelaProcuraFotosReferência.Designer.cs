@@ -60,7 +60,6 @@ namespace Apresentação.Álbum.Edição
             // 
             // txtMercadoria
             // 
-            this.txtMercadoria.ControlePeso = null;
             this.txtMercadoria.Location = new System.Drawing.Point(107, 109);
             this.txtMercadoria.Name = "txtMercadoria";
             this.txtMercadoria.Referência = "";

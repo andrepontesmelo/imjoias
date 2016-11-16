@@ -47,6 +47,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.quadroLista = new Apresentação.Formulários.Quadro();
             this.lstItens = new Apresentação.Fiscal.Lista.ListaItem();
             this.quadroItem = new Apresentação.Formulários.Quadro();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.btnIncluir = new System.Windows.Forms.Button();
             this.txtValorTotal = new AMS.TextBox.CurrencyTextBox();
             this.txtValorUnitário = new AMS.TextBox.CurrencyTextBox();
@@ -302,6 +303,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.quadroItem.bInfEsqArredondada = true;
             this.quadroItem.bSupDirArredondada = true;
             this.quadroItem.bSupEsqArredondada = true;
+            this.quadroItem.Controls.Add(this.panel1);
             this.quadroItem.Controls.Add(this.btnIncluir);
             this.quadroItem.Controls.Add(this.txtValorTotal);
             this.quadroItem.Controls.Add(this.txtValorUnitário);
@@ -329,6 +331,17 @@ namespace Apresentação.Fiscal.BaseInferior
             this.quadroItem.TabIndex = 1;
             this.quadroItem.Tamanho = 30;
             this.quadroItem.Título = "Detalhe do item";
+            // 
+            // panel1
+            // 
+            this.panel1.BackgroundImage = global::Apresentação.Resource.ZoomHS1;
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panel1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.panel1.Location = new System.Drawing.Point(173, 47);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(21, 18);
+            this.panel1.TabIndex = 13;
+            this.panel1.Click += new System.EventHandler(this.panel1_Click);
             // 
             // btnIncluir
             // 
@@ -592,5 +605,6 @@ namespace Apresentação.Fiscal.BaseInferior
         private System.Windows.Forms.Button btnIncluir;
         protected Administrativo.Fiscal.BaseInferior.DadosDocumento dados;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.Panel panel1;
     }
 }

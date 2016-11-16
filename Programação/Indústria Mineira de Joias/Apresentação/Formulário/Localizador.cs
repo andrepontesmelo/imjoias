@@ -17,11 +17,16 @@ namespace Apresentação.Formulários
         private ArrayList listaBusca;
         private int listaBuscaPosição;
         private ToolStripButton botãoPesquisar;
-        
+
         /// <summary>
         /// último objeto encontrado pelo usuário
         /// </summary>
         private object últimoEncontrado;
+
+        internal void Realçar()
+        {
+            chkRealçar.Checked = true; 
+        }
 
         // Eventos
         public delegate void RealçarDelegate(ArrayList itens);
@@ -29,6 +34,7 @@ namespace Apresentação.Formulários
         public event RealçarDelegate RealçarItens;
         public event EventHandler DesrealçarTudo;
         public event EncontrarDelegate EncontrarItem;
+        public event EncontrarDelegate EncontrarItemÚnico;
         public event EventHandler AoFechar;
 
         public ToolStripButton BotãoPesquisar
@@ -88,22 +94,38 @@ namespace Apresentação.Formulários
             }
         }
 
+        private void ProcuraPróximoResultado()
+        {
+            if (listaBusca.Count == 0)
+                return;
+
+            object item = listaBusca[Math.Abs(listaBuscaPosição % listaBusca.Count)];
+
+            if (EncontrarItem != null)
+                EncontrarItem(item, últimoEncontrado);
+
+            últimoEncontrado = item;
+        }
+
         private void txtBusca_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter && listaBusca.Count > 0)
-            {
-                if (e.Shift)
-                    listaBuscaPosição--;
-                else
-                    listaBuscaPosição++;
+            if (e.KeyCode != Keys.Enter)
+                return;
 
-                object item = listaBusca[Math.Abs(listaBuscaPosição % listaBusca.Count)];
+            if (e.Shift)
+                listaBuscaPosição--;
+            else
+                listaBuscaPosição++;
 
-                if (EncontrarItem != null)
-                    EncontrarItem(item, últimoEncontrado);
+            ProcuraPróximoResultado();
 
-                últimoEncontrado = item;
-            }
+            if (listaBusca.Count == 1)
+                DispararItemÚnico();
+        }
+
+        private void DispararItemÚnico()
+        {
+            EncontrarItemÚnico?.Invoke(listaBusca[0], null);
         }
 
         private void chkRealçar_CheckedChanged(object sender, EventArgs e)
@@ -158,11 +180,10 @@ namespace Apresentação.Formulários
                             listaBusca.Add(item);
                     }
 
-                    // Procura o proximo resultado
-                    txtBusca_KeyDown(sender, new KeyEventArgs(Keys.Enter));
+                    ProcuraPróximoResultado();
                 }
                 else
-                    txtBusca.BackColor = Color.Red;
+                    txtBusca.BackColor = Color.FromArgb(255, 151, 151);
             }
             else
                 txtBusca.BackColor = Color.White;
