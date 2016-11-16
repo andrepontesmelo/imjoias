@@ -26,6 +26,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -34,10 +36,12 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="InterpretadorTDM, Version=1.0.6102.27894, Culture=neutral, PublicKeyToken=d5c84b9056b9f800, processorArchitecture=MSIL">
-      <HintPath>..\packages\InterpretadorTDM.1.0.4\lib\InterpretadorTDM.dll</HintPath>
+    <Reference Include="InterpretadorTDM, Version=1.0.6132.32699, Culture=neutral, PublicKeyToken=d5c84b9056b9f800, processorArchitecture=MSIL">
+      <HintPath>..\packages\InterpretadorTDM.1.0.7\lib\InterpretadorTDM.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -56,14 +60,22 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Fiscal\Cupom\AdaptadorVarejoTests.cs" />
+    <Compile Include="Fiscal\InventárioTests.cs" />
+    <Compile Include="Fiscal\NotaFiscalEletronica\ParserXmlAtacadoCancelamentoTests.cs" />
     <Compile Include="Fiscal\NotaFiscalEletronica\AdaptadorAtacadoTests.cs" />
     <Compile Include="Fiscal\NotaFiscalEletronica\ParserXmlTests.cs" />
     <Compile Include="Fiscal\NotaFiscalEletronica\PdfTests.cs" />
+    <Compile Include="Fiscal\Registro\ExtratoTests.cs" />
+    <Compile Include="Fiscal\Tipo\TipoUnidadeInterpretaçãoTests.cs" />
     <Compile Include="Pessoa\AbreviadorTests.cs" />
     <Compile Include="Preço.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Acesso.Comum\Acesso.Comum.csproj">
+      <Project>{48da2925-cf1f-4875-8a00-6851c7abeeb8}</Project>
+      <Name>Acesso.Comum</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Entidades\Entidades.csproj">
       <Project>{E1A76D2D-85F3-4202-B316-3C6BDD3220F9}</Project>
       <Name>Entidades</Name>
@@ -74,6 +86,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Arquivos\cancelamento_nfe_saida.xml" />
     <Content Include="Arquivos\nfe.xml" />
     <Content Include="Arquivos\nfev2.xml" />
     <Content Include="Arquivos\nfe_gramas.xml" />

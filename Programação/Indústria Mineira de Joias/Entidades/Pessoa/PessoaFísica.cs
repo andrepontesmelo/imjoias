@@ -256,7 +256,7 @@ namespace Entidades.Pessoa
 		/// </summary>
 		/// <param name="nome">Nome da pessoa.</param>
 		/// <returns>Vetor de pessoas-física e jurídicas.</returns>
-		public new static PessoaFísica [] ObterPessoas(string nome)
+		public static PessoaFísica[] ObterPessoas(string nome)
 		{
             StringBuilder sql = new StringBuilder();
 

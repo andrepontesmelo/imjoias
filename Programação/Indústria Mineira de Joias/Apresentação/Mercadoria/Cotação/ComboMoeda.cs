@@ -5,9 +5,6 @@ using System.Windows.Forms;
 
 namespace Apresentação.Mercadoria.Cotação
 {
-    /// <summary>
-    /// ComboBox para seleção de moeda.
-    /// </summary>
     public class ComboMoeda : ComboBox
     {
         private bool carregado = false;
@@ -46,10 +43,7 @@ namespace Apresentação.Mercadoria.Cotação
             if (!DesignMode)
                 if (!carregado && Acesso.Comum.Usuários.UsuárioAtual != null)
                 {
-                    Moeda[] moedas = MoedaObtenção.Instância.ObterMoedas();
-
-                    base.Items.AddRange(moedas);
-
+                    Items.AddRange(Moeda.ObterMoedas().ToArray());
                     carregado = true;
                 }
 

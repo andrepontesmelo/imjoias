@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<procCancNFe versao="1.07" xmlns="http://www.portalfiscal.inf.br/nfe">
+  <cancNFe xmlns="http://www.portalfiscal.inf.br/nfe" versao="1.07">
+    <infCanc Id="ID31101218219329000103550010000000988538006600">
+      <tpAmb>1</tpAmb>
+      <xServ>CANCELAR</xServ>
+      <chNFe>31101218219329000103550010000000988538006600</chNFe>
+      <nProt>131100259873406</nProt>
+      <xJust>dados de vencimentos de fatura  incorretos</xJust>
+    </infCanc>
+    <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+      <SignedInfo>
+        <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+        <SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+        <Reference URI="#ID31101218219329000103550010000000988538006600">
+          <Transforms>
+            <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+            <Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+          </Transforms>
+          <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+          <DigestValue></DigestValue>
+        </Reference>
+      </SignedInfo>
+      <SignatureValue>Alterado</SignatureValue>
+      <KeyInfo>
+        <X509Data>
+          <X509Certificate>Alterado</X509Certificate>
+        </X509Data>
+      </KeyInfo>
+    </Signature>
+  </cancNFe>
+  <retCancNFe xmlns="http://www.portalfiscal.inf.br/nfe" versao="1.07" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <infCanc>
+      <tpAmb>1</tpAmb>
+      <verAplic>0674</verAplic>
+      <cStat>101</cStat>
+      <xMotivo>Cancelamento de NF-e homologado</xMotivo>
+      <cUF>31</cUF>
+      <chNFe>31101218219329000103550010000000988538006600</chNFe>
+      <dhRecbto>2010-12-15T14:37:08</dhRecbto>
+      <nProt>131100259999721</nProt>
+    </infCanc>
+  </retCancNFe>
+</procCancNFe>

@@ -1,10 +1,11 @@
 ﻿using InterpretadorTDM.Registro;
 using System.Collections.Generic;
 using System;
+using Entidades.Fiscal.Tipo;
 
 namespace Entidades.Fiscal.Cupom
 {
-    public class AdaptadorVarejo : ITransformavelVendaFiscal
+    public class AdaptadorVarejo : ITransformavelDocumentoFiscal
     {
         private CupomFiscal cupom;
 
@@ -13,26 +14,37 @@ namespace Entidades.Fiscal.Cupom
             this.cupom = cupom;
         }
 
-        public VendaFiscal Transformar()
+        public DocumentoFiscal Transformar()
         {
-            VendaFiscal entidade = new VendaFiscal(TipoVenda.Cupom, 
-                cupom.DataInicioEmissao, 
-                AdaptarId(cupom.DataInicioEmissao, 
-                cupom.NumeroContadorDocumentoEmitido, 
-                cupom.COO),
+            DocumentoFiscal entidade = new SaídaFiscal((int)TipoDocumentoSistema.Cupom,
+                cupom.DataInicioEmissao,
+                cupom.DataInicioEmissao,
+                AdaptarId(cupom),
                 cupom.ValorTotalLiquido,
+                cupom.ReducaoZ.CRZ,
                 null,
-                cupom.COO,
-                cupom.NumeroContadorDocumentoEmitido,
-                null,
+                cupom.IndicadorCancelamento,
+                "",
+                (uint) SetorSistema.Varejo,
+                ObterCódigoMáquina(cupom),
                 AdaptarItens(cupom.Detalhes));
-            
+
             return entidade;
         }
 
-        private List<VendaItemFiscal> AdaptarItens(List<DetalheCupomFiscal> detalhes)
+        private int? ObterCódigoMáquina(CupomFiscal cupom)
         {
-            List<VendaItemFiscal> itens = new List<VendaItemFiscal>();
+            bool modoTeste = Acesso.Comum.Usuários.UsuárioAtual == null;
+
+            if (modoTeste)
+                return 0;
+            else
+                return Máquina.ObterCódigoMáquinaInserindo(cupom.ModeloECF, cupom.NumeroFabricacao);
+        }
+
+        private List<ItemFiscal> AdaptarItens(List<DetalheCupomFiscal> detalhes)
+        {
+            List<ItemFiscal> itens = new List<ItemFiscal>();
 
             foreach (DetalheCupomFiscal detalhe in detalhes)
                 itens.Add(AdaptarItem(detalhe));
@@ -40,12 +52,12 @@ namespace Entidades.Fiscal.Cupom
             return itens;
         }
 
-        private VendaItemFiscal AdaptarItem(DetalheCupomFiscal detalhe)
+        private ItemFiscal AdaptarItem(DetalheCupomFiscal detalhe)
         {
-            return new VendaItemFiscal(AdaptarReferência(detalhe),
+            return new SaídaItemFiscal(AdaptarReferência(detalhe),
                                 detalhe.Descricao.Trim(),
                                 null,
-                                TipoUnidadeInterpretação.Interpretar(detalhe.Unidade),
+                                (int) TipoUnidadeInterpretação.Interpretar(detalhe.Unidade),
                                 detalhe.Quantidade,
                                 detalhe.ValorUnitario,
                                 detalhe.ValorTotalLiquido);
@@ -56,10 +68,9 @@ namespace Entidades.Fiscal.Cupom
             return detalhe.CodigoProdutoOuServico.Trim().Substring(1, 11);
         }
 
-        private string AdaptarId(DateTime dataInicioEmissao, int numeroContadorDocumentoEmitido, int coo)
+        private string AdaptarId(CupomFiscal cupom)
         {
-            return string.Format("{0}#{1}#{2}", dataInicioEmissao.ToString("yyyy-MM-dd"),
-                numeroContadorDocumentoEmitido, coo);
+            return string.Format("{0}@{1}", cupom.COO, ObterCódigoMáquina(cupom));
         }
     }
 }

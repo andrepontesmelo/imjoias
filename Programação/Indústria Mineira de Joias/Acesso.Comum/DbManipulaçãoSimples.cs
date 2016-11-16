@@ -98,7 +98,7 @@ namespace Acesso.Comum
                 Type tipoInterface = tipo.GetInterface("IDbDataAdapter");
 
                 if (tipoInterface != null)
-                    return (IDbDataAdapter) assembly.CreateInstance(tipoInterface.FullName);
+                    return (IDbDataAdapter)assembly.CreateInstance(tipoInterface.FullName);
             }
 
             throw new NotSupportedException("Não é possível encontrar a interface para IDbDataAdapter no assembly da conexão fornecida.");
@@ -538,6 +538,11 @@ namespace Acesso.Comum
 
         protected static List<string> MapearStrings(string sql)
         {
+            return MapearStrings(sql, false);
+        }
+
+        protected static List<string> MapearStrings(string sql, bool minúsculo)
+        {
             List<string> resultado = new List<string>();
 
             IDbConnection conexão = Conexão;
@@ -549,7 +554,14 @@ namespace Acesso.Comum
                 using (IDataReader leitor = cmd.ExecuteReader())
                 {
                     while (leitor.Read())
-                        resultado.Add(leitor.GetString(0));
+                    {
+                        string str = leitor.GetString(0);
+
+                        if (minúsculo)
+                            str = str.ToLower();
+
+                        resultado.Add(str);
+                    }
 
                     if (!leitor.IsClosed)
                         leitor.Close();
@@ -648,34 +660,34 @@ namespace Acesso.Comum
         {
             for (int i = 0; i < atributos.Length; i++)
             {
-                    if (!dao.IsDBNull(i))
+                if (!dao.IsDBNull(i))
+                {
+                    if (atributos[i].GetCustomAttributes(typeof(DbRelacionamento), true).Length > 0)
                     {
-                        if (atributos[i].GetCustomAttributes(typeof(DbRelacionamento), true).Length > 0)
+                        object valor = dao[i];
+
+                        MapearPosteriormente(obj, atributos[i], valor, mapeamentoPendente);
+                    }
+                    else
+                    {
+                        MapearCampoCallback método;
+                        Type atTipo = atributos[i].FieldType;
+
+                        método = mapeamentoCampo[atTipo];
+
+                        if (método == null)
                         {
                             object valor = dao[i];
- 
-                            MapearPosteriormente(obj, atributos[i], valor, mapeamentoPendente);
+
+                            atributos[i].SetValue(obj, valor);
                         }
                         else
-                        {
-                            MapearCampoCallback método;
-                            Type atTipo = atributos[i].FieldType;
-
-                            método = mapeamentoCampo[atTipo];
-
-                            if (método == null)
-                            {
-                                object valor = dao[i];
-
-                                atributos[i].SetValue(obj, valor);
-                            }
-                            else
-                                método(obj, atributos[i], dao, i);
-                        } 
-                    } 
-                    else if (atributos[i].FieldType.IsSubclassOf(typeof(Nullable)))
-                        atributos[i].SetValue(obj, null);
-            } 
+                            método(obj, atributos[i], dao, i);
+                    }
+                }
+                else if (atributos[i].FieldType.IsSubclassOf(typeof(Nullable)))
+                    atributos[i].SetValue(obj, null);
+            }
 
             if (tipo.IsSubclassOf(typeof(DbManipulação)))
             {
@@ -716,7 +728,7 @@ namespace Acesso.Comum
                     {
                         object pEntidade = Cache.CacheDb.Instância.ObterEntidade(pendência.campo.FieldType, pendência.valor);
                         DbManipulação pManipulável = pEntidade as DbManipulação;
-                        
+
                         pendência.campo.SetValue(
                             pendência.objeto,
                             pEntidade);
@@ -724,7 +736,7 @@ namespace Acesso.Comum
                         if (pManipulável != null && pendência.objeto is DbManipulação)
                             pManipulável.Referentes.Add((DbManipulação)pendência.objeto);
                     }
-                }     
+                }
                 finally
                 {
                     if (conexão != null)
@@ -808,7 +820,7 @@ namespace Acesso.Comum
                         return MapearÚnicaLinha<DbTipo>(cmd);
                     }
                 }
-                finally 
+                finally
                 {
                     Usuários.UsuárioAtual.GerenciadorConexões.AdicionarConexão(conexão);
                 }
@@ -859,6 +871,23 @@ namespace Acesso.Comum
 
             comando.CommandText = comandoSql;
             comando.ExecuteNonQuery();
+        }
+
+        protected static void ExecutarComando(string comandoSql)
+        {
+            if (String.IsNullOrEmpty(comandoSql))
+                return;
+
+            var conexão = Conexão;
+
+            lock (conexão)
+            {
+                using (IDbCommand cmd = conexão.CreateCommand())
+                {
+                    cmd.CommandText = comandoSql;
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
     }
 }

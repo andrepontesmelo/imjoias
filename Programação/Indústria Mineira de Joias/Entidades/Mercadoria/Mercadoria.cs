@@ -54,6 +54,7 @@ namespace Entidades.Mercadoria
         ///// </summary>
         private DbFoto icone;
 
+      
 		[NonSerialized]
 		private Álbum.Animação		animação;
 
@@ -208,6 +209,9 @@ namespace Entidades.Mercadoria
 		public string ReferênciaNumérica => campos.ReferênciaNumérica;
 		public string Descrição => campos.Descrição;
 		public int Teor => campos.Teor;
+        public int CFOP => campos.CFOP;
+        public int TipoUnidadeComercial => campos.TipoUnidadeComercial;
+        public string ClassificaçãoFiscal => campos.ClassificaçãoFiscal;
 
 		/// <summary>
 		/// Peso da mercadoria
@@ -509,16 +513,16 @@ namespace Entidades.Mercadoria
         /// <remarks>
         /// Não são retornadas mercadorias fora de linha.
         /// </remarks>
-        public static Mercadoria[] ObterMercadorias(string prefixo, int limite, Tabela tabela)
+        public static Mercadoria[] ObterMercadorias(string prefixo, int limite, Tabela tabela, bool somenteEmLinha)
         {
-            return ObterMercadorias(prefixo, limite, tabela, false);
+            return ObterMercadorias(prefixo, limite, tabela, false, somenteEmLinha);
         }
 
-        public static Mercadoria[] ObterMercadorias(string prefixo, int limite, Tabela tabela, bool somenteComFotos)
+        public static Mercadoria[] ObterMercadorias(string prefixo, int limite, Tabela tabela, bool somenteComFotos, bool somenteEmLinha)
 		{
             IMercadoriaCampos[] campos;
 
-            campos = MercadoriaCampos.ObterMercadorias(prefixo, limite, somenteComFotos);
+            campos = MercadoriaCampos.ObterMercadorias(prefixo, limite, somenteComFotos, somenteEmLinha);
 
             return Encapsular(campos, tabela);
 		}

@@ -69,7 +69,9 @@ namespace Acesso.Comum
         public event AtualizarContextoCallback AtualizarContexto;
 
         public delegate void ConexãoPresaCallback(string comando, TimeSpan tempoPassado, System.Diagnostics.StackTrace pilha);
+#pragma warning disable 0067
         public event ConexãoPresaCallback ConexãoPresa;
+#pragma warning restore 0067
         private DateTime debugÚltimaSinalização = DateTime.Now;
 
 

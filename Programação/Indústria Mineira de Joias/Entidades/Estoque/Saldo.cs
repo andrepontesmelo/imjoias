@@ -15,11 +15,14 @@ namespace Entidades.Estoque
             set { inicio = value; }
         }
 
+#pragma warning disable 0649            // Field 'field' is never assigned to, and will always have its default value 'value'
         private ulong fornecedor;
+        private string referenciafornecedor;
+#pragma warning restore 0649            // Field 'field' is never assigned to, and will always have its default value 'value'
 
         public ulong Fornecedor => fornecedor;
 
-        private string referenciafornecedor;
+
 
         public string FornecedorReferência
         {

@@ -49,7 +49,7 @@ namespace Apresentação.Atendimento.Comum
             Color corFundo;
 
             if (pessoa.Setor != null &&
-                pessoa.Setor.Código == Setor.ObterSetor(Setor.SetorSistema.Varejo).Código)
+                pessoa.Setor.Código == Setor.ObterSetor(SetorSistema.Varejo).Código)
                 corFundo = Color.White;
             else
                 corFundo = Color.DarkGreen;

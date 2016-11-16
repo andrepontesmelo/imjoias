@@ -64,7 +64,7 @@ namespace Acesso.Comum.Mapeamento
 				}
 
 				if (tipo == null)
-					throw new ExcessãoMapeamentoTipo("Tipo " + tipoFinal.FullName + " desconhecido no MapeamentoTipo!", tipoFinal);
+					throw new ExceçãoMapeamentoTipo("Tipo " + tipoFinal.FullName + " desconhecido no MapeamentoTipo!", tipoFinal);
 
 				return hashTipos[tipo];
 			}

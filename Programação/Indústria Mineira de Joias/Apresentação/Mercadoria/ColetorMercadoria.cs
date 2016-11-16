@@ -1,41 +1,23 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Apresentação.Formulários.Consultas;
-using System.Windows.Forms;
 using Entidades;
+using System;
+using System.Windows.Forms;
 
 namespace Apresentação.Mercadoria
 {
-	/// <summary>
-	/// Coletor de mercadorias.
-	/// </summary>
-	/// <remarks>
-	/// Esta classe é utilizada por TxtMercadoria.
-	/// </remarks>
-	internal class ColetorMercadoria : Apresentação.Formulários.Consultas.Coletor
+    internal class ColetorMercadoria : Coletor
 	{
-		// Constantes
-		
-		/// <summary>
-		/// Limite de itens a buscar.
-		/// Ter em mente que a apresentação deverá processar, para cada 
-		/// item obtido, a sua imagem, redimensionando, o que gasta processamento.
-		/// </summary>
         private const int padrãoLimiteMínimo = 7;
         private const int padrãoLimiteMáximo = 50;
         private const int padrãoDemoraMáximaMs = 100;
 
-		// Atributos
-		private ListViewMercadoria          lst;
-        private ControladorLimiteColetor    controladorLimite;      // Controla o limite de entidades
+		private ListViewMercadoria lst;
+        private ControladorLimiteColetor controladorLimite;
         private Tabela tabela;
+        public bool SomenteDeLinha { get; set; }
 
         public Tabela Tabela { get { return tabela; } set { tabela = value; } }
 			
-		/// <summary>
-		/// Constrói o coletor de mercadorias
-		/// </summary>
 		public ColetorMercadoria(ListViewMercadoria lst, Tabela tabela)
 		{
             controladorLimite = new ControladorLimiteColetor(padrãoLimiteMínimo, padrãoLimiteMáximo, padrãoDemoraMáximaMs);
@@ -50,16 +32,9 @@ namespace Apresentação.Mercadoria
             this.tabela = tabela;
 		}
 
-        //private static Dictionary<string, Entidades.Mercadoria.Mercadoria[]> cache = new Dictionary<string, Entidades.Mercadoria.Mercadoria[]>();
-		
-		/// <summary>
-		/// Recupera dados do banco de dados
-		/// </summary>
-		/// <param name="chave">Chave a ser procurada</param>
 		protected override void Recuperar(string chave)
 		{
 			Entidades.Mercadoria.Mercadoria[] mercadorias;
-            //ReaproveitarDadosCallback reaproveitar;
 
 			if (chave.Length == 0)
 				return;
@@ -70,26 +45,8 @@ namespace Apresentação.Mercadoria
             Console.WriteLine("{0} mercadorias na lista anterior", lst.Items.Count);
 #endif
 
-            // Desnecessário após uso da árvore patrícia.
-//            reaproveitar = new ReaproveitarDadosCallback(ReaproveitarDados);
-
-//            if (lst.BeginInvoke(reaproveitar, new object[] { chave }).Equals(true))
-//            {
-//#if DEBUG
-//                Console.WriteLine("ColetorMercadoria: Reaproveitando dados!");
-//                Console.WriteLine("{0} mercadorias", lst.Items.Count);
-//                Console.WriteLine("==========================");
-//#endif
-//                return;
-//            }
-		
-            //if (!cache.TryGetValue(chave, out mercadorias))
-            //{
-                controladorLimite.CronometrarInicioObter();
-                mercadorias = Entidades.Mercadoria.Mercadoria.ObterMercadorias(chave, controladorLimite.LimiteDinâmico, tabela);
-
-            //    cache[chave] = mercadorias;
-            //}
+            controladorLimite.CronometrarInicioObter();
+            mercadorias = Entidades.Mercadoria.Mercadoria.ObterMercadorias(chave, controladorLimite.LimiteDinâmico, tabela, SomenteDeLinha);
 
 			lst.Mostrar(mercadorias);
 
@@ -107,29 +64,18 @@ namespace Apresentação.Mercadoria
 
 		private delegate bool ReaproveitarDadosCallback(string chave);
 
-		/// <summary>
-		/// Reaproveita os dados já existentes na lista.
-		/// </summary>
-		/// <returns>Se foi possível reaproveitar os dados.</returns>
 		private bool ReaproveitarDados(string chave)
 		{
-			// Não recuperar caso todos os itens tenham o mesmo prefixo.
 			if (lst.Items.Count > 0 && chave.Length > ÚltimaChave.Length && ÚltimaChave.Length > 0)
 			{
 				if (lst.Items[0].Text.StartsWith(chave) && lst.Items[lst.Items.Count - 1].Text.StartsWith(chave))
 					return true;
 			}
 
-			// Caso seja continuação do prefixo, verificar se já está na lista.
 			if (lst.Items.Count > 0 && chave.StartsWith(ÚltimaChave) && ÚltimaChave.Length > 0)
 			{
                 ListViewItem[] remoção = new ListViewItem[lst.Items.Count];
 
-                /* O reaproveitamento só é considerado OK quando
-                 * o último item não é removido, indicando que
-                 * certamente não há mais elementos com este prefixo
-                 * depois do último já exibido.
-                 */
                 bool ok = false;
 				int removidos = 0;
 
@@ -144,10 +90,6 @@ namespace Apresentação.Mercadoria
 						ok = false;
 				}
 
-				/* Se nenhum item foi removido depois de ter encontrado o prefixo,
-				 * então mais itens podem existir que não foram recuperados na
-				 * pesquisa passada.
-				 */
 				if (lst.Items.Count > removidos && ok)
 				{
 					for (int i = 0; i < removidos; i++)
@@ -160,11 +102,6 @@ namespace Apresentação.Mercadoria
 			return false;
 		}
 
-		/// <summary>
-		/// Recupera primeira referência somente
-		/// </summary>
-		/// <param name="chave">Chave de procura</param>
-		/// <returns>Referência</returns>
 		public string RecuperarPrimeiroSomente(string chave)
 		{
 #if DEBUG
@@ -177,7 +114,6 @@ namespace Apresentação.Mercadoria
 				return Entidades.Mercadoria.Mercadoria.ObterReferênciaPróxima(chave);
 			}
 
-			// Se a pesquisa já tiver sido feita, recuperar da ListView
 			return lst.Items[0].Text;
 		}
 

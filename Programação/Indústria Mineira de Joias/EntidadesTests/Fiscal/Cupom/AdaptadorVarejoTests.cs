@@ -4,6 +4,7 @@ using System.Reflection;
 using InterpretadorTDM;
 using InterpretadorTDM.Registro;
 using System;
+using Entidades.Fiscal.Tipo;
 
 namespace Entidades.Fiscal.Cupom.Tests
 {
@@ -13,7 +14,7 @@ namespace Entidades.Fiscal.Cupom.Tests
         private static string ARQUIVO_ENTRADA = Directory.GetParent(Directory.GetParent(Path.GetDirectoryName(
             Assembly.GetExecutingAssembly().Location)).FullName).FullName + @"\Arquivos\arquivo.tdm";
 
-        ITransformavelVendaFiscal adaptador;
+        ITransformavelDocumentoFiscal adaptador;
 
         [TestInitialize]
         public void PreparaTestes()
@@ -33,20 +34,20 @@ namespace Entidades.Fiscal.Cupom.Tests
         [TestMethod()]
         public void DeveAdaptarTipoVenda()
         {
-            Assert.AreEqual(TipoVenda.Cupom, adaptador.Transformar().TipoVenda);
+            Assert.AreEqual((int) TipoDocumentoSistema.Cupom, adaptador.Transformar().TipoDocumento);
         }
 
 
         [TestMethod()]
         public void DeveAdaptarId()
         {
-            Assert.AreEqual("2015-04-01#17248#27735", adaptador.Transformar().Id);
+            Assert.AreEqual("27735@0", adaptador.Transformar().Id);
         }
 
         [TestMethod()]
         public void DeveAdaptarListaItens()
         {
-            Assert.AreEqual(1, adaptador.Transformar().Itens.Count);
+            Assert.AreEqual(1, ((SaídaFiscal)adaptador.Transformar()).Itens.Count);
         }
 
         [TestMethod()]
@@ -64,13 +65,13 @@ namespace Entidades.Fiscal.Cupom.Tests
         [TestMethod()]
         public void DeveAdaptarCFOP()
         {
-            Assert.IsNull(adaptador.Transformar().Itens[0].CFOP);
+            Assert.IsNull(adaptador.Transformar().Itens[0].Cfop);
         }
 
         [TestMethod()]
         public void DeveAdaptarTipoUnidade()
         {
-            Assert.AreEqual(TipoUnidade.Pca, adaptador.Transformar().Itens[0].TipoUnidade);
+            Assert.AreEqual((int) TipoUnidadeSistema.Pca, adaptador.Transformar().Itens[0].TipoUnidade);
         }
 
 
@@ -99,15 +100,15 @@ namespace Entidades.Fiscal.Cupom.Tests
         }
 
         [TestMethod()]
-        public void DeveAdaptarContadorDocumentoEmitido()
+        public void DeveAdaptarNúmero()
         {
-            Assert.AreEqual(17248, adaptador.Transformar().ContadorDocumentoEmitido);
+            Assert.AreEqual(2017, adaptador.Transformar().Número);
         }
 
         [TestMethod()]
-        public void DeveAdaptarCOO()
+        public void DeveAdaptarCancalamento()
         {
-            Assert.AreEqual(27735, adaptador.Transformar().COO);
+            Assert.IsTrue(((SaídaFiscal) adaptador.Transformar()).Cancelada);
         }
     }
 }

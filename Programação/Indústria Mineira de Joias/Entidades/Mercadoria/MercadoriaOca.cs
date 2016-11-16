@@ -225,6 +225,30 @@ namespace Entidades.Mercadoria
             }
         }
 
+        public int CFOP
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public int TipoUnidadeComercial
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public string ClassificaçãoFiscal
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         #endregion
     }
 }

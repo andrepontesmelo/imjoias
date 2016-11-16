@@ -593,6 +593,16 @@ namespace Apresentação {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap esquerda_BackgroundImage {
+            get {
+                object obj = ResourceManager.GetObject("esquerda.BackgroundImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap estrela {
             get {
                 object obj = ResourceManager.GetObject("estrela", resourceCulture);
@@ -753,6 +763,16 @@ namespace Apresentação {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap fiscal1 {
+            get {
+                object obj = ResourceManager.GetObject("fiscal1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Flag_greenHS {
             get {
                 object obj = ResourceManager.GetObject("Flag_greenHS", resourceCulture);
@@ -906,6 +926,36 @@ namespace Apresentação {
         internal static System.Drawing.Bitmap iconeNovo {
             get {
                 object obj = ResourceManager.GetObject("iconeNovo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap importar {
+            get {
+                object obj = ResourceManager.GetObject("importar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap importar2 {
+            get {
+                object obj = ResourceManager.GetObject("importar2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap importar21 {
+            get {
+                object obj = ResourceManager.GetObject("importar21", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1416,6 +1466,16 @@ namespace Apresentação {
         internal static System.Drawing.Bitmap pagar_em_dólares__pequeno_2 {
             get {
                 object obj = ResourceManager.GetObject("pagar em dólares (pequeno)2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pdf_icon {
+            get {
+                object obj = ResourceManager.GetObject("pdf_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -393,7 +393,7 @@ namespace Entidades.Acerto
 
         private void LançarDescontoAA(Venda venda)
         {
-            if (venda.Cliente.Setor.Referente(Setor.ObterSetor(Setor.SetorSistema.AltoAtacado)))
+            if (venda.Cliente.Setor.Referente(Setor.ObterSetor(SetorSistema.AltoAtacado)))
             {
                 /* Antes de 2013:
                  * Se o alto-atacadista vender 20% ou mais do valor

@@ -35,7 +35,7 @@ namespace Apresentação.Pessoa
             else if (((PessoaFísica)pessoa).Sexo == Sexo.Feminino)
             {
                 //if (pessoa.Setor != null
-                //    && pessoa.Setor.Código == Setor.ObterSetor(Setor.SetorSistema.Varejo).Código)
+                //    && pessoa.Setor.Código == Setor.ObterSetor(SetorSistema.Varejo).Código)
                 //    return Resources.mulherrosa;
                 //else
                 //    return Resources.mulherpreto;
@@ -45,7 +45,7 @@ namespace Apresentação.Pessoa
             else
             {
                 //if (pessoa.Setor != null &&
-                //    pessoa.Setor.Código == Setor.ObterSetor(Setor.SetorSistema.Varejo).Código)
+                //    pessoa.Setor.Código == Setor.ObterSetor(SetorSistema.Varejo).Código)
                 //    return Resources.homemrosa;
                 //else
                 //    return Resources.homempreto;
@@ -73,7 +73,7 @@ namespace Apresentação.Pessoa
             Color corFundo;
 
             if (pessoa.Setor != null &&
-                pessoa.Setor.Código == Setor.ObterSetor(Setor.SetorSistema.Varejo).Código)
+                pessoa.Setor.Código == Setor.ObterSetor(SetorSistema.Varejo).Código)
                 corFundo = Color.Gray;
             else
                 corFundo = Color.DarkGreen;

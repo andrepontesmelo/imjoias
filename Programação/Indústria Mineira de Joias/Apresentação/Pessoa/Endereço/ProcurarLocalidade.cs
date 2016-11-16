@@ -24,7 +24,7 @@ namespace Apresentação.Pessoa.Endereço
             {
                 InitializeComponent();
 
-                cmbPaís.Items.AddRange(País.ObterPaíses());
+                cmbPaís.Items.AddRange(País.ObterPaíses().ToArray());
                 cmbRegião.Items.AddRange(Região.ObterRegiões());
             }
             finally

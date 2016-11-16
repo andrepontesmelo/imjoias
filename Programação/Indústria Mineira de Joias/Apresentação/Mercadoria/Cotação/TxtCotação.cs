@@ -1,4 +1,5 @@
 using Entidades;
+using Entidades.Configuração;
 using Entidades.Moedas;
 using System;
 using System.ComponentModel;
@@ -36,8 +37,6 @@ namespace Apresentação.Mercadoria.Cotação
 
         private MoedaSistema? moedaSistema = Entidades.Moedas.MoedaSistema.Ouro;
 
-        bool modoDesenho = (LicenseManager.UsageMode == LicenseUsageMode.Designtime);
-
         public delegate void Escolha(Entidades.Financeiro.Cotação escolha);
         public event Escolha EscolheuCotação;
 
@@ -67,9 +66,9 @@ namespace Apresentação.Mercadoria.Cotação
             {
                 moedaSistema = value;
 
-                if (!modoDesenho)
+                if (!DadosGlobais.ModoDesenho)
                 {
-                    moeda = value.HasValue ? MoedaObtenção.Instância.ObterMoeda(value.Value) : null;
+                    moeda = value.HasValue ? Moeda.ObterMoeda(value.Value) : null;
 
                     if (painelFlutuante != null)
                         painelFlutuante.Moeda = moeda;
@@ -106,7 +105,7 @@ namespace Apresentação.Mercadoria.Cotação
         {
             get
             {
-                if (modoDesenho)
+                if (DadosGlobais.ModoDesenho)
                     return null;
                 else
                     return painelFlutuante.Data;
@@ -338,7 +337,7 @@ namespace Apresentação.Mercadoria.Cotação
         {
             base.OnLoad(e);
 
-            if (!modoDesenho && TopLevelControl != null)
+            if (!DadosGlobais.ModoDesenho && TopLevelControl != null)
             {
                 Carregar();
 
@@ -352,13 +351,13 @@ namespace Apresentação.Mercadoria.Cotação
 
         public void Carregar()
         {
-            if (modoDesenho || carregado)
+            if (DadosGlobais.ModoDesenho || carregado)
                 return;
 
             DefinirMoeda();
             ConstruirPainelComCotação();
 
-            if (!modoDesenho && TopLevelControl != null)
+            if (!DadosGlobais.ModoDesenho && TopLevelControl != null)
             {
                 this.TopLevelControl.SuspendLayout();
                 this.TopLevelControl.Controls.Add(painelFlutuante);
@@ -416,7 +415,7 @@ namespace Apresentação.Mercadoria.Cotação
             try
             {
                 if (moeda == null && moedaSistema.HasValue)
-                    moeda = MoedaObtenção.Instância.ObterMoeda(moedaSistema.Value);
+                    moeda = Moeda.ObterMoeda(moedaSistema.Value);
                 else if (moeda == null)
                     throw new Exception("Moeda é nula!");
             }
@@ -810,7 +809,7 @@ namespace Apresentação.Mercadoria.Cotação
 
         private void TxtCotação_Load(object sender, EventArgs e)
         {
-            if (modoDesenho)
+            if (DadosGlobais.ModoDesenho)
                 return;
         }
 

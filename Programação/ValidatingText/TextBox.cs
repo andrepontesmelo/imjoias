@@ -195,6 +195,7 @@ namespace AMS.TextBox
 			/// <summary>
 			///   This typically sets the control's Text property.  
 			///   Here it does nothing so the Text is left blank. </summary>
+            [Obsolete]
 			public override void OnSetComponentDefaults()
 			{
 			}

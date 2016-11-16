@@ -1,16 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using Entidades.Pessoa.Endereço;
 using Apresentação.Formulários;
+using Entidades.Pessoa.Endereço;
+using System;
 
 namespace Apresentação.Pessoa.Endereço
 {
-    public partial class EscolherEstado : Apresentação.Formulários.JanelaExplicativa
+    public partial class EscolherEstado : JanelaExplicativa
     {
         public EscolherEstado()
         {
@@ -20,7 +14,7 @@ namespace Apresentação.Pessoa.Endereço
             {
                 InitializeComponent();
 
-                cmbPaís.Items.AddRange(País.ObterPaíses());
+                cmbPaís.Items.AddRange(País.ObterPaíses().ToArray());
             }
             finally
             {

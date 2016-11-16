@@ -58,7 +58,7 @@ namespace Acesso.Comum.Mapeamento
                     ConstruirAtualizar(conexão, tabela, vetorChavePrimária, vetorAtributos);
                     ConstruirDescadastrar(conexão, tabela, vetorChavePrimária);
                 }
-                catch (ExcessãoMapeamentoTipo e)
+                catch (ExceçãoMapeamentoTipo e)
                 {
                     string novaMsgErro = e.Message + "\nIsto ocorreu porque na classe que define a tabela " + tabela +
                         " existe o tipo não reconhecido " + e.TipoNãoEncontrado.ToString()
@@ -66,7 +66,7 @@ namespace Acesso.Comum.Mapeamento
 
                     System.Diagnostics.Debug.Fail(novaMsgErro);
 
-                    throw new ExcessãoMapeamentoTipo(novaMsgErro, e.TipoNãoEncontrado);
+                    throw new ExceçãoMapeamentoTipo(novaMsgErro, e.TipoNãoEncontrado);
                 }
 #if DEBUG
                 finally

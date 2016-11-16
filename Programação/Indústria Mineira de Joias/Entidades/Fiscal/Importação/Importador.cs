@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Entidades.Fiscal.Importação.Resultado;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 
@@ -6,6 +8,10 @@ namespace Entidades.Fiscal.Importação
 {
     public abstract class Importador
     {
+        public Importador()
+        {
+        }
+
         protected List<string> ObterArquivos(string pasta, string padrão, SearchOption opções)
         {
             List<string> arquivos = new List<string>();
@@ -26,6 +32,6 @@ namespace Entidades.Fiscal.Importação
             return ImportarArquivos(pasta, SearchOption.AllDirectories, thread);
         }
 
-        public abstract ResultadoImportação ImportarArquivos(string pasta, SearchOption opções, BackgroundWorker thread);
+        protected abstract ResultadoImportação ImportarArquivos(string pasta, SearchOption opções, BackgroundWorker thread);
     }
 }

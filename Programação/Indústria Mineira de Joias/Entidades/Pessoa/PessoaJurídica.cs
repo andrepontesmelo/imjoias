@@ -2,6 +2,7 @@ using System;
 using System.Data;
 using Acesso.Comum.Cache;
 using System.Collections.Generic;
+using Entidades.Configuração;
 
 namespace Entidades.Pessoa
 {
@@ -54,7 +55,17 @@ namespace Entidades.Pessoa
             set { inscMunicipal = value; DefinirDesatualizado(); }
         }
 
-		public static PessoaJurídica ObterPessoaPorCNPJ(string cnpj)
+
+        private static PessoaJurídica empresa = null;
+        public static PessoaJurídica ObterEmpresa()
+        {
+            if (empresa == null)
+                empresa = ObterPessoaPorCNPJ(DadosGlobais.Instância.CNPJEmpresa);
+
+            return empresa;
+        }
+
+        public static PessoaJurídica ObterPessoaPorCNPJ(string cnpj)
         {
             return (PessoaJurídica) CacheDb.Instância.ObterEntidade(typeof(PessoaJurídica), cnpj);
         }
@@ -236,8 +247,11 @@ namespace Entidades.Pessoa
                 inscMunicipal = leitor.GetString(inicioAtributoPessoaJurídica + 4);
         }
 
-        private static string FormatarCNPJ(string cnpf)
+        public static string FormatarCNPJ(string cnpf)
         {
+            if (String.IsNullOrWhiteSpace(cnpf))
+                return "";
+
             cnpf = cnpf.Replace(".", "").Replace("/", "").Replace("-", "");
 
             if (cnpf.Length < 14)

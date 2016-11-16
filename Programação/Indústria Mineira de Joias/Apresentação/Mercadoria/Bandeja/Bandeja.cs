@@ -427,9 +427,7 @@ namespace Apresentação.Mercadoria.Bandeja
         {
             base.OnLoad(e);
 
-            bool designMode = (LicenseManager.UsageMode == LicenseUsageMode.Designtime);
-
-            if (designMode)
+            if (DadosGlobais.ModoDesenho)
                 return;
 
             if (PermitirSeleçãoTabela && Tabelas == null)
@@ -958,7 +956,7 @@ namespace Apresentação.Mercadoria.Bandeja
 
         /// <summary>
         /// Coloca o foco em um item específico.
-        /// Dispara excessão se não acha o item.
+        /// Dispara Exceção se não acha o item.
         /// </summary>
         /// <param name="s">Pode ser outro saquinho, desde que bandeja tenha outro com mesma referencia e peso.</param>
         public void Selecionar(Entidades.Mercadoria.Mercadoria m)
@@ -1387,7 +1385,7 @@ namespace Apresentação.Mercadoria.Bandeja
 					break;
 			}
 
-			if (MessageBox.Show(this.ParentForm, mensagem, "Exclusão", MessageBoxButtons.YesNo,  MessageBoxIcon.Question) == DialogResult.No)
+			if (MessageBox.Show(this.ParentForm, mensagem, "Exclusão", MessageBoxButtons.YesNo,  MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
 				return;
 			else
 				ExcluirSelecionados();

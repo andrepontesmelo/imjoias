@@ -1,5 +1,5 @@
-﻿using Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf;
-using Entidades.Fiscal.NotaFiscalEletronica.Excessões;
+﻿using Entidades.Fiscal.Exceções;
+using Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
@@ -26,27 +26,41 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         }
 
         [TestMethod()]
+        public void DeveExtrairNfeInterno()
+        {
+            Assert.AreEqual(360, LeitorPdf.ExtrairNfe("fox moveis ltda 08082016 000360 23046-4.pdf"));
+        }
+               
+
+        [TestMethod()]
         public void DeveIgnorarArquivoMaiusculo()
         {
             Assert.AreEqual(292, LeitorPdf.ExtrairNfe("S&I Comercio e Repres. Ltda 03022015 000292.PDF"));
         }
 
         [TestMethod()]
-        [ExpectedException(typeof(ExcessãoNãoPodeExtrairNfeNomeArquivo))]
+        [ExpectedException(typeof(NomeArquivoInválido))]
         public void NaoDeveExtrairNumeroQualquerNoFinal()
         {
             LeitorPdf.ExtrairNfe("S&I Comercio e Repres. Ltda 03022015292.pdf");
         }
 
         [TestMethod()]
-        [ExpectedException(typeof(ExcessãoNãoPodeExtrairNfeNomeArquivo))]
+        [ExpectedException(typeof(NomeArquivoInválido))]
         public void NaoDeveExtrairMaisUmCódigo()
         {
             LeitorPdf.ExtrairNfe("Bla 000001 000002 Ltda.pdf");
         }
 
         [TestMethod()]
-        [ExpectedException(typeof(ExcessãoNãoPodeExtrairNfeNomeArquivo))]
+        [ExpectedException(typeof(NomeArquivoInválido))]
+        public void NaoDeveExtrairMaisUmCódigoSeparado()
+        {
+            LeitorPdf.ExtrairNfe("Bla 000001 Separação 000002 Ltda.pdf");
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(NomeArquivoInválido))]
         public void NãoDeveExtrairNfeInternoSemEspaço()
         {
             Assert.AreEqual(42, LeitorPdf.ExtrairNfe("danfe000042-20042010.pdf"));

@@ -1221,14 +1221,14 @@ namespace Apresentação.Atendimento
         {
             Entidades.Pessoa.Pessoa pessoaUtilizar;
 
-            if (pessoa.Setor == Setor.ObterSetor(Setor.SetorSistema.Varejo))
+            if (pessoa.Setor == Setor.ObterSetor(SetorSistema.Varejo))
             {
                 pessoaUtilizar = Entidades.Pessoa.Pessoa.Varejo;
             }
             else
                 pessoaUtilizar = pessoa;
 
-            AcertoConsignado acerto = EscolherAcerto.QuestionarUsuário(ParentForm, pessoaUtilizar, false);
+            AcertoConsignado acerto = JanelaEscolhaAcerto.QuestionarUsuário(ParentForm, pessoaUtilizar, false);
 
             if (acerto != null)
             {

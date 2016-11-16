@@ -18,7 +18,7 @@ namespace Apresentação.Mercadoria
 		private bool mostrarBalãoRefNãoEncontrada = true; 
 		private bool mostrarLista                 = false;
 		private bool permitirSomenteCadastrado    = false;
-        private bool permitirSomenteDelinha       = false;
+        private bool permitirSomenteDelinha       = true;
         private bool confirmada = false;
         private ColetorMercadoria coletor;
         private ListViewMercadoria lst;
@@ -304,6 +304,7 @@ namespace Apresentação.Mercadoria
 		private void ConstruirColetor()
 		{
 			coletor = new ColetorMercadoria(lst, tabela);
+            coletor.SomenteDeLinha = permitirSomenteDelinha;
 			coletor.InícioDeBusca += new Apresentação.Formulários.Consultas.Coletor.InícioDeBuscaDelegate(coletor_InícioDeBusca);
 			coletor.FinalDeBusca  += new Apresentação.Formulários.Consultas.Coletor.FinalDeBuscaDelegate(coletor_FinalDeBusca);
 		}
@@ -782,11 +783,16 @@ namespace Apresentação.Mercadoria
 			set { permitirSomenteCadastrado = value; }
 		}
 
-        [DefaultValue(false)]
+        [DefaultValue(true)]
         public bool SomenteDeLinha
         {
             get { return permitirSomenteDelinha; }
-            set {  permitirSomenteDelinha = value; }
+            set {
+                permitirSomenteDelinha = value;
+
+                if (coletor != null)
+                    coletor.SomenteDeLinha = value;
+            }
         }
 
 		public new event KeyEventHandler KeyDown

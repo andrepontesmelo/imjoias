@@ -342,7 +342,7 @@ namespace Apresentação.Mercadoria.Etiqueta.Impressão
 		/// </summary>
 		private void opçãoExcluir_Click(object sender, System.EventArgs e)
 		{
-            if (MessageBox.Show("A exclusão de um formato é um processo irreversível. \nTem certeza que deseja excluir o formato " + FormatoSelecionado.Formato + "?", "Excluír formato", MessageBoxButtons.YesNo, MessageBoxIcon.Stop)
+            if (MessageBox.Show("A exclusão de um formato é um processo irreversível. \nTem certeza que deseja excluir o formato " + FormatoSelecionado.Formato + "?", "Excluír formato", MessageBoxButtons.YesNo, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button2)
                 == DialogResult.Yes)
             {
                 UseWaitCursor = true;
