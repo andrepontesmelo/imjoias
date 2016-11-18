@@ -142,7 +142,7 @@ namespace Apresentação.Fiscal.BaseInferior
 
         private void CarregarAtributos(ItemFiscal entidade)
         {
-            txtReferência.Text = entidade?.Referência;
+            txtMercadoria.Text = entidade?.Referência;
             txtCFOP.Text = entidade?.Cfop?.ToString();
             txtDescrição.Text = entidade?.Descrição;
             txtValorTotal.Text = entidade?.Valor.ToString("C");
@@ -164,7 +164,7 @@ namespace Apresentação.Fiscal.BaseInferior
 
         private void Atribuir(ItemFiscal entidade)
         {
-            entidade.Referência = txtReferência.Text;
+            entidade.Referência = txtMercadoria.Referência;
             entidade.Descrição = txtDescrição.Text;
             entidade.Quantidade = (decimal) txtQuantidade.Double;
             entidade.TipoUnidade = cmbTipoUnidade.Seleção?.Id;
@@ -248,20 +248,16 @@ namespace Apresentação.Fiscal.BaseInferior
             ExcluirItens();
         }
 
-        private void panel1_Click(object sender, EventArgs e)
+        private void txtMercadoria_ReferênciaAlterada(object sender, EventArgs e)
         {
-            var janela = new Apresentação.Mercadoria.Janela.JanelaPesquisaReferência();
-            janela.AoSelecionar += Janela_AoSelecionar;
-            janela.ShowDialog(this);
-        }
+            Entidades.Mercadoria.Mercadoria m = txtMercadoria.Mercadoria;
 
-        private void Janela_AoSelecionar(string referência)
-        {
-            string referênciaNumérica;
-            int dígito;
+            if (m == null)
+                return;
 
-            Entidades.Mercadoria.Mercadoria.DesmascararReferência(referência, out referênciaNumérica, out dígito);
-            txtReferência.Text = referênciaNumérica + dígito;
+            txtDescrição.Text = m.Descrição;
+            txtCFOP.Text = m.CFOP.ToString();
+            cmbTipoUnidade.Seleção = m.TipoUnidadeComercial;
         }
     }
 }

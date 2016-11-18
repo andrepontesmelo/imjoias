@@ -4,6 +4,7 @@ using Acesso.Comum.Exceções;
 using Entidades.Álbum;
 using Entidades.Configuração;
 using Entidades.Financeiro;
+using Entidades.Fiscal.Tipo;
 using Entidades.Moedas;
 using System;
 using System.Collections;
@@ -31,6 +32,8 @@ namespace Entidades.Mercadoria
     [Cacheável("ObterMercadoriaComCache"), Validade(6, 0, 0)]
 	public class Mercadoria : DbManipulação, IDisposable, ICloneable
 	{
+        private static readonly int TAMANHO_REFERÊNCIA = 11;
+
         /// <summary>
         /// Campos compartilhados.
         /// </summary>
@@ -141,7 +144,7 @@ namespace Entidades.Mercadoria
 
         public static bool ValidarReferênciaNumérica(string referênciaNumérica)
         {
-            return referênciaNumérica.Length == 11;
+            return referênciaNumérica.Length == TAMANHO_REFERÊNCIA;
         }
 		
 		/// <summary>
@@ -211,7 +214,8 @@ namespace Entidades.Mercadoria
 		public string Descrição => campos.Descrição;
 		public int Teor => campos.Teor;
         public int CFOP => campos.CFOP;
-        public int TipoUnidadeComercial => campos.TipoUnidadeComercial;
+        public int TipoUnidadeComercialCódigo => campos.TipoUnidadeComercial;
+        public TipoUnidade TipoUnidadeComercial => TipoUnidade.Obter(TipoUnidadeComercialCódigo);
         public string ClassificaçãoFiscal => campos.ClassificaçãoFiscal;
 
 		/// <summary>
@@ -387,7 +391,7 @@ namespace Entidades.Mercadoria
 		{
 			string referência;
 
-            if (referênciaNumérica.Length < 11)
+            if (referênciaNumérica.Length < TAMANHO_REFERÊNCIA)
                 return referênciaNumérica;
 
 			referência = referênciaNumérica.Substring(0, 3) + '.' +
@@ -419,12 +423,8 @@ namespace Entidades.Mercadoria
         {
             string referência;
 
-            if (referênciaNumérica.Length < 11)
+            if (referênciaNumérica.Length < TAMANHO_REFERÊNCIA)
                 return referênciaNumérica;
-                //throw new ArgumentException("Não foi possível mascarar a referência '" + referênciaNumérica + "' porque tem menos de 8 digitos.");
-
-            //if (referênciaNumérica.Length < 11)
-            //    throw new ArgumentException("Não foi possível mascarar a referência '" + referênciaNumérica + "' porque tem menos de 8 digitos.");
 
             referência = referênciaNumérica.Substring(0, 3) + '.' +
                 referênciaNumérica.Substring(3, 3) + '.' +
@@ -540,6 +540,15 @@ namespace Entidades.Mercadoria
 
         public static Mercadoria ObterMercadoria(string referência)
         {
+            if (referência.Length > TAMANHO_REFERÊNCIA)
+            {
+                var referênciaSemDígito = referência.Substring(0, TAMANHO_REFERÊNCIA);
+                string dígito = referência.Substring(TAMANHO_REFERÊNCIA, 1);
+
+                var mercadoria = ObterMercadoria(referênciaSemDígito, Tabela.TabelaPadrão);
+                return (mercadoria.Dígito.ToString().Equals(dígito) ? mercadoria : null);
+            }
+
             return ObterMercadoria(referência, Tabela.TabelaPadrão);
         }
 
@@ -1429,8 +1438,8 @@ namespace Entidades.Mercadoria
         public static int ObterDígito(string referênciaNumérica)
         {
             // Concatena zeros à direita até ter 11 dígitos
-            if (referênciaNumérica.Length < 11)
-                referênciaNumérica += new String('0', 11 - referênciaNumérica.Length);
+            if (referênciaNumérica.Length < TAMANHO_REFERÊNCIA)
+                referênciaNumérica += new String('0', TAMANHO_REFERÊNCIA - referênciaNumérica.Length);
 
             // 48 é o ascii do zero '0'
             // Soma dos numeros de posição impar (1,3,5,9,11)

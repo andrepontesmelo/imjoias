@@ -76,8 +76,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
 
             txtDescriçãoSelecionado.Text = mercadoria?.Descrição;
             txtCFOPSelecionado.Text = mercadoria?.CFOP.ToString();
-            cmbTipoUnidadeSelecionada.Seleção = mercadoria == null ? null :
-                Entidades.Fiscal.Tipo.TipoUnidade.Obter(mercadoria.TipoUnidadeComercial);
+            cmbTipoUnidadeSelecionada.Seleção = mercadoria == null ? null : mercadoria.TipoUnidadeComercial;
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)

@@ -47,7 +47,6 @@ namespace Apresentação.Fiscal.BaseInferior
             this.quadroLista = new Apresentação.Formulários.Quadro();
             this.lstItens = new Apresentação.Fiscal.Lista.ListaItem();
             this.quadroItem = new Apresentação.Formulários.Quadro();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.btnIncluir = new System.Windows.Forms.Button();
             this.txtValorTotal = new AMS.TextBox.CurrencyTextBox();
             this.txtValorUnitário = new AMS.TextBox.CurrencyTextBox();
@@ -61,13 +60,13 @@ namespace Apresentação.Fiscal.BaseInferior
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnAlterar = new System.Windows.Forms.Button();
             this.txtDescrição = new System.Windows.Forms.TextBox();
-            this.txtReferência = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.tabObservações = new System.Windows.Forms.TabPage();
             this.txtObservações = new System.Windows.Forms.TextBox();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.txtMercadoria = new Apresentação.Mercadoria.TxtMercadoriaLivre();
             this.esquerda.SuspendLayout();
             this.quadroDocumento.SuspendLayout();
             this.quadroPDF.SuspendLayout();
@@ -303,7 +302,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.quadroItem.bInfEsqArredondada = true;
             this.quadroItem.bSupDirArredondada = true;
             this.quadroItem.bSupEsqArredondada = true;
-            this.quadroItem.Controls.Add(this.panel1);
+            this.quadroItem.Controls.Add(this.txtMercadoria);
             this.quadroItem.Controls.Add(this.btnIncluir);
             this.quadroItem.Controls.Add(this.txtValorTotal);
             this.quadroItem.Controls.Add(this.txtValorUnitário);
@@ -317,7 +316,6 @@ namespace Apresentação.Fiscal.BaseInferior
             this.quadroItem.Controls.Add(this.btnExcluir);
             this.quadroItem.Controls.Add(this.btnAlterar);
             this.quadroItem.Controls.Add(this.txtDescrição);
-            this.quadroItem.Controls.Add(this.txtReferência);
             this.quadroItem.Controls.Add(this.label8);
             this.quadroItem.Controls.Add(this.label7);
             this.quadroItem.Controls.Add(this.label4);
@@ -331,17 +329,6 @@ namespace Apresentação.Fiscal.BaseInferior
             this.quadroItem.TabIndex = 1;
             this.quadroItem.Tamanho = 30;
             this.quadroItem.Título = "Detalhe do item";
-            // 
-            // panel1
-            // 
-            this.panel1.BackgroundImage = global::Apresentação.Resource.ZoomHS1;
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.panel1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.panel1.Location = new System.Drawing.Point(173, 47);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(21, 18);
-            this.panel1.TabIndex = 13;
-            this.panel1.Click += new System.EventHandler(this.panel1_Click);
             // 
             // btnIncluir
             // 
@@ -407,7 +394,7 @@ namespace Apresentação.Fiscal.BaseInferior
             // 
             this.txtCFOP.Location = new System.Drawing.Point(19, 102);
             this.txtCFOP.Name = "txtCFOP";
-            this.txtCFOP.Size = new System.Drawing.Size(155, 20);
+            this.txtCFOP.Size = new System.Drawing.Size(160, 20);
             this.txtCFOP.TabIndex = 2;
             // 
             // label12
@@ -478,13 +465,6 @@ namespace Apresentação.Fiscal.BaseInferior
             this.txtDescrição.Size = new System.Drawing.Size(700, 20);
             this.txtDescrição.TabIndex = 1;
             // 
-            // txtReferência
-            // 
-            this.txtReferência.Location = new System.Drawing.Point(19, 47);
-            this.txtReferência.Name = "txtReferência";
-            this.txtReferência.Size = new System.Drawing.Size(155, 20);
-            this.txtReferência.TabIndex = 0;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -542,6 +522,15 @@ namespace Apresentação.Fiscal.BaseInferior
             this.imageList1.Images.SetKeyName(1, "caderno.png");
             this.imageList1.Images.SetKeyName(2, "info.png");
             // 
+            // txtMercadoria
+            // 
+            this.txtMercadoria.Location = new System.Drawing.Point(19, 44);
+            this.txtMercadoria.Name = "txtMercadoria";
+            this.txtMercadoria.Referência = "";
+            this.txtMercadoria.Size = new System.Drawing.Size(180, 23);
+            this.txtMercadoria.TabIndex = 13;
+            this.txtMercadoria.ReferênciaAlterada += new System.EventHandler(this.txtMercadoria_ReferênciaAlterada);
+            // 
             // BaseDocumento
             // 
             this.Controls.Add(this.tab);
@@ -594,7 +583,6 @@ namespace Apresentação.Fiscal.BaseInferior
         private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.Button btnAlterar;
         private System.Windows.Forms.TextBox txtDescrição;
-        private System.Windows.Forms.TextBox txtReferência;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label4;
@@ -605,6 +593,6 @@ namespace Apresentação.Fiscal.BaseInferior
         private System.Windows.Forms.Button btnIncluir;
         protected Administrativo.Fiscal.BaseInferior.DadosDocumento dados;
         private System.Windows.Forms.ImageList imageList1;
-        private System.Windows.Forms.Panel panel1;
+        private Mercadoria.TxtMercadoriaLivre txtMercadoria;
     }
 }

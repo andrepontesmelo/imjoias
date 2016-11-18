@@ -311,6 +311,12 @@
     <Compile Include="Mercadoria\Janela\JanelaPesquisaReferência.Designer.cs">
       <DependentUpon>JanelaPesquisaReferência.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mercadoria\TxtMercadoriaLivre.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Mercadoria\TxtMercadoriaLivre.Designer.cs">
+      <DependentUpon>TxtMercadoriaLivre.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pessoa\Atendente\BaseInfoAtendimentos.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -2603,6 +2609,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mercadoria\Janela\JanelaPesquisaReferência.resx">
       <DependentUpon>JanelaPesquisaReferência.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mercadoria\TxtMercadoriaLivre.resx">
+      <DependentUpon>TxtMercadoriaLivre.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pessoa\Atendente\BaseInfoAtendimentos.resx">
       <DependentUpon>BaseInfoAtendimentos.cs</DependentUpon>

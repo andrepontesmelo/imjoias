@@ -34,7 +34,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Produção
             var mercadoria = txtMercadoria.Mercadoria;
             txtCFOP.Text = mercadoria?.CFOP.ToString();
             txtDescrição.Text = mercadoria?.Descrição;
-            cmbTipoUnidade.Seleção = mercadoria == null ? null : TipoUnidade.Obter(mercadoria.TipoUnidadeComercial);
+            cmbTipoUnidade.Seleção = mercadoria == null ? null : mercadoria.TipoUnidadeComercial;
         }
 
         private void btnIncluir_Click(object sender, System.EventArgs e)
