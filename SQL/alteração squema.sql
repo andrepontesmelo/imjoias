@@ -92,3 +92,17 @@ CREATE TABLE `saidaitemfiscal` (
    REFERENCES `imjoias`.`pessoa` (`codigo`)
    ON DELETE NO ACTION
    ON UPDATE NO ACTION;
+
+
+ALTER TABLE `imjoias`.`mercadoria` 
+ADD COLUMN `classificacaofiscal` VARCHAR(45) NOT NULL DEFAULT '0' AFTER `depeso`,
+ADD COLUMN `tipounidade` INT(11) NOT NULL DEFAULT '1' AFTER `classificacaofiscal`,
+ADD COLUMN `cfop` INT(11) NOT NULL DEFAULT '5101' AFTER `tipounidade`,
+ADD INDEX `fk_mercadoria_tipounidade_idx` (`tipounidade` ASC);
+ALTER TABLE `imjoias`.`mercadoria` 
+ADD CONSTRAINT `fk_mercadoria_tipounidade`
+  FOREIGN KEY (`tipounidade`)
+  REFERENCES `imjoias`.`tipounidadefiscal` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
