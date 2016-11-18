@@ -2,7 +2,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace Apresentação.Financeiro.Comissões
+namespace Apresentação.Financeiro.Comissões.BaseInferior
 {
     public partial class BaseComissão : Formulários.BaseInferior
     {

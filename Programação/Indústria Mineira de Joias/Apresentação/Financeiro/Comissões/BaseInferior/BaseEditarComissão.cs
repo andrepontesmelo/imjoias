@@ -7,9 +7,9 @@ using System;
 using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace Apresentação.Financeiro.Comissões
+namespace Apresentação.Financeiro.Comissões.BaseInferior
 {
-    public partial class BaseEditarComissão : BaseInferior
+    public partial class BaseEditarComissão : Apresentação.Formulários.BaseInferior
     {
         Comissão comissão;
 

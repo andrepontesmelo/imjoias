@@ -10,9 +10,9 @@ using Apresentação.Formulários;
 using Apresentação.Financeiro.Venda;
 using Entidades.Relacionamento.Venda;
 
-namespace Apresentação.Financeiro.Comissões
+namespace Apresentação.Financeiro.Comissões.BaseInferior
 {
-    public partial class BaseVendaSemComissão : BaseInferior
+    public partial class BaseVendaSemComissão : Apresentação.Formulários.BaseInferior
     {
         private long? últimoItemSelecionado;
         private List<IDadosVenda> últimosItensChecados;

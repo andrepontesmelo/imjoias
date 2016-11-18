@@ -1,4 +1,4 @@
-﻿namespace Apresentação.Financeiro.Comissões
+﻿namespace Apresentação.Financeiro.Comissões.BaseInferior
 {
     partial class BaseVendaSemComissão
     {

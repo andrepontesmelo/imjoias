@@ -2735,7 +2735,10 @@
     <EmbeddedResource Include="Financeiro\Acerto\SumárioAcerto.resx">
       <DependentUpon>SumárioAcerto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Comissões\BaseInferior\BaseEditarComissão.resx" />
+    <EmbeddedResource Include="Financeiro\Comissões\BaseInferior\BaseEditarComissão.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>BaseEditarComissão1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Financeiro\Comissões\BaseInferior\BaseVendaSemComissão.resx">
       <DependentUpon>BaseVendaSemComissão.cs</DependentUpon>
     </EmbeddedResource>

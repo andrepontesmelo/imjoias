@@ -1,4 +1,5 @@
 using Apresentação.Financeiro.Comissões;
+using Apresentação.Financeiro.Comissões.BaseInferior;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
