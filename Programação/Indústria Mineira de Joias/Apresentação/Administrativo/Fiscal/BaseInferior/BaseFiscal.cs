@@ -63,7 +63,7 @@ namespace Apresentação.Fiscal.BaseInferior
                 AguardeDB.Fechar();
                 MessageBox.Show("Entrada de transição preenchida.\nInventário atual idêntico ao 'estoque anterior' do sistema legado.");
 
-            } catch (Exception erro)
+            } catch (Exception)
             {
                 AguardeDB.Fechar();
                 MessageBox.Show("Erro ao preencher entrada de transição.\nA transição já deve existir no banco de dados.");
@@ -73,6 +73,11 @@ namespace Apresentação.Fiscal.BaseInferior
         private void opçãoImportarEstoqueAnteriorSistemaLegado_Click(object sender, EventArgs e)
         {
             new ProcessoIntegração().TransporEstoqueAnterior();
+        }
+
+        private void opçãoImportarPreçosMatériasPrimas_Click(object sender, EventArgs e)
+        {
+            new ProcessoIntegração().TransporPreçosMatériasPrimas();
         }
     }
 }

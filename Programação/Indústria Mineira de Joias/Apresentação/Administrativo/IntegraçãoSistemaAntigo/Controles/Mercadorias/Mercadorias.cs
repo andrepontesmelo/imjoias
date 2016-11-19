@@ -1,3 +1,4 @@
+using Entidades.Mercadoria;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -45,7 +46,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
                 linha["foradelinha"] = true;
 		}
 		
-		private void TransporItem(DataRow itemAtual, StringBuilder saida)
+		private void TransporItem(DataRow itemAtual, DataSet dsNovo, StringBuilder saida)
 		{
 			ItemMercadoria item;
 			DataRow novoItem;
@@ -75,7 +76,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             novoItem["classificacaofiscal"] = itemAtual["CM_CLASFIS"];
             novoItem["tipounidade"] = ObterTipoUnidadeFiscal(itemAtual["CM_UNID"].ToString());
 
-            if (!Faixas.ExiteFaixa(novoItem["faixa"].ToString()))
+            if (!Faixas.ExiteFaixa(novoItem["faixa"].ToString(), dsNovo))
             {
                 saida.Append("Mercadoria ");
                 saida.Append(referênciaAntiga);
@@ -209,12 +210,15 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             return textoArrumado;
         }
 		
-		public void Transpor(StringBuilder saída)
+		public void Transpor(StringBuilder saída, bool matériasPrimas, DataSet dsNovo)
 		{
             CriarHash();
 
             foreach (DataRow itemAtual in tabelaVelha.Rows)
-                TransporItem(itemAtual, saída);
+            {
+                if (matériasPrimas == MatériaPrima.ÉMatériaPrima(itemAtual["cm_codmer"].ToString()))
+                    TransporItem(itemAtual, dsNovo, saída);
+            }
 		}
 
 		public static bool ConferirÉDePeso(DataRow cadmerItem)

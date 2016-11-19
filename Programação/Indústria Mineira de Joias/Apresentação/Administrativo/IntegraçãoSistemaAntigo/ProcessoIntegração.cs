@@ -1,5 +1,6 @@
 using Apresentação.Formulários;
 using Entidades.Financeiro;
+using Entidades.Mercadoria;
 using Entidades.Moedas;
 using Negócio.Integração;
 using System;
@@ -44,6 +45,33 @@ namespace Apresentação.IntegraçãoSistemaAntigo
             AguardeDB.Fechar();
 
             MessageBox.Show("Fim. Estoque fiscal anterior foi importado !");
+        }
+
+
+        public void TransporPreçosMatériasPrimas()
+        {
+            string diretório = ObterPastaSelecionada();
+
+            if (diretório == null)
+                return;
+
+            AguardeDB.Mostrar();
+
+            DataSet dsVelho = TransporMercadoriasMatériasPrimas(diretório);
+            MatériaPrima.Importar(dsVelho.Tables["cadmer"]);
+            AguardeDB.Fechar();
+
+            MessageBox.Show("Fim. Preços de matérias primas importado !");
+        }
+
+        private DataSet TransporMercadoriasMatériasPrimas(string diretório)
+        {
+            var dbf = new Dbf(diretório);
+            var dsVelho = dbf.ObterDataSetMercadoria();
+            var dsNovo = ObterDataSetMercadoria(new List<IDbConnection>());
+            new Controles.Mercadorias.Mercadorias(dsVelho, dsNovo, dbf).Transpor(new StringBuilder(), true, dsNovo);
+            MySQL.GravarDataSetTodasTabelas(dsNovo);
+            return dsVelho;
         }
 
         public void ImportarDadosDoSistemaLegado()
@@ -97,12 +125,10 @@ namespace Apresentação.IntegraçãoSistemaAntigo
             List<IDbConnection> conexõesRemovidas = new List<IDbConnection>();
             dsNovo = ObterDataSetMercadoria(conexõesRemovidas);
 
-            Controles.Mercadorias.Faixas.dsNovo = dsNovo;
-
             dbf = new Dbf(diretório);
             dsVelho = dbf.ObterDataSetMercadoria();
 
-            new Controles.Mercadorias.Mercadorias(dsVelho, dsNovo, dbf).Transpor(strSaída);
+            new Controles.Mercadorias.Mercadorias(dsVelho, dsNovo, dbf).Transpor(strSaída, false, dsNovo);
             new IntegraçãoComponenteCusto().Transpor(dsVelho);
             MySQL.GravarDataSetTodasTabelas(dsNovo);
 

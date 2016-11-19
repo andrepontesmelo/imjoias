@@ -9,12 +9,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 	/// </summary>
 	public class Faixas
 	{
-		public static DataSet dsNovo;
-
-		public Faixas()
-		{}
-
-		public static bool ExiteFaixa(string faixa)
+		public static bool ExiteFaixa(string faixa, DataSet dsNovo)
 		{
 			foreach(DataRow itemMySql in dsNovo.Tables["faixa"].Rows)
 			{

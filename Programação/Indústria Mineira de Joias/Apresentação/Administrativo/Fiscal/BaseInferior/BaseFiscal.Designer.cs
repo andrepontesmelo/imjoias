@@ -38,13 +38,14 @@
             this.opçãoProduções = new Apresentação.Formulários.Opção();
             this.opçãoEntradas = new Apresentação.Formulários.Opção();
             this.quadro3 = new Apresentação.Formulários.Quadro();
-            this.opçãoImportarTransição = new Apresentação.Formulários.Opção();
             this.opçãoMáquinasECF = new Apresentação.Formulários.Opção();
             this.opçãoEsquemas = new Apresentação.Formulários.Opção();
+            this.opçãoImportarTransição = new Apresentação.Formulários.Opção();
             this.quadro4 = new Apresentação.Formulários.Quadro();
             this.opçãoInventário = new Apresentação.Formulários.Opção();
             this.quadro5 = new Apresentação.Formulários.Quadro();
             this.opçãoImportarEstoqueAnteriorSistemaLegado = new Apresentação.Formulários.Opção();
+            this.opçãoImportarPreçosMatériasPrimas = new Apresentação.Formulários.Opção();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.quadro2.SuspendLayout();
@@ -209,20 +210,6 @@
             this.quadro3.Tamanho = 30;
             this.quadro3.Título = "Manutenção";
             // 
-            // opçãoImportarTransição
-            // 
-            this.opçãoImportarTransição.BackColor = System.Drawing.Color.Transparent;
-            this.opçãoImportarTransição.Descrição = "Preencher entrada de transição";
-            this.opçãoImportarTransição.Imagem = global::Apresentação.Resource.repair;
-            this.opçãoImportarTransição.Location = new System.Drawing.Point(7, 50);
-            this.opçãoImportarTransição.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.opçãoImportarTransição.MaximumSize = new System.Drawing.Size(150, 100);
-            this.opçãoImportarTransição.MinimumSize = new System.Drawing.Size(150, 16);
-            this.opçãoImportarTransição.Name = "opçãoImportarTransição";
-            this.opçãoImportarTransição.Size = new System.Drawing.Size(150, 26);
-            this.opçãoImportarTransição.TabIndex = 5;
-            this.opçãoImportarTransição.Click += new System.EventHandler(this.opçãoImportar_Click);
-            // 
             // opçãoMáquinasECF
             // 
             this.opçãoMáquinasECF.BackColor = System.Drawing.Color.Transparent;
@@ -250,6 +237,20 @@
             this.opçãoEsquemas.Size = new System.Drawing.Size(150, 16);
             this.opçãoEsquemas.TabIndex = 2;
             this.opçãoEsquemas.Click += new System.EventHandler(this.opçãoEsquemas_Click);
+            // 
+            // opçãoImportarTransição
+            // 
+            this.opçãoImportarTransição.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoImportarTransição.Descrição = "Preencher entrada de transição";
+            this.opçãoImportarTransição.Imagem = global::Apresentação.Resource.repair;
+            this.opçãoImportarTransição.Location = new System.Drawing.Point(7, 80);
+            this.opçãoImportarTransição.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoImportarTransição.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoImportarTransição.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoImportarTransição.Name = "opçãoImportarTransição";
+            this.opçãoImportarTransição.Size = new System.Drawing.Size(150, 26);
+            this.opçãoImportarTransição.TabIndex = 5;
+            this.opçãoImportarTransição.Click += new System.EventHandler(this.opçãoImportar_Click);
             // 
             // quadro4
             // 
@@ -291,6 +292,7 @@
             this.quadro5.bInfEsqArredondada = true;
             this.quadro5.bSupDirArredondada = true;
             this.quadro5.bSupEsqArredondada = true;
+            this.quadro5.Controls.Add(this.opçãoImportarPreçosMatériasPrimas);
             this.quadro5.Controls.Add(this.opçãoImportarTransição);
             this.quadro5.Controls.Add(this.opçãoImportarEstoqueAnteriorSistemaLegado);
             this.quadro5.Cor = System.Drawing.Color.Black;
@@ -299,7 +301,7 @@
             this.quadro5.Location = new System.Drawing.Point(7, 377);
             this.quadro5.MostrarBotãoMinMax = false;
             this.quadro5.Name = "quadro5";
-            this.quadro5.Size = new System.Drawing.Size(160, 94);
+            this.quadro5.Size = new System.Drawing.Size(160, 117);
             this.quadro5.TabIndex = 10;
             this.quadro5.Tamanho = 30;
             this.quadro5.Título = "Sistema Legado";
@@ -309,7 +311,7 @@
             this.opçãoImportarEstoqueAnteriorSistemaLegado.BackColor = System.Drawing.Color.Transparent;
             this.opçãoImportarEstoqueAnteriorSistemaLegado.Descrição = "Importar Est. Ant. Cadmer";
             this.opçãoImportarEstoqueAnteriorSistemaLegado.Imagem = global::Apresentação.Resource.repair;
-            this.opçãoImportarEstoqueAnteriorSistemaLegado.Location = new System.Drawing.Point(7, 30);
+            this.opçãoImportarEstoqueAnteriorSistemaLegado.Location = new System.Drawing.Point(7, 60);
             this.opçãoImportarEstoqueAnteriorSistemaLegado.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoImportarEstoqueAnteriorSistemaLegado.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoImportarEstoqueAnteriorSistemaLegado.MinimumSize = new System.Drawing.Size(150, 16);
@@ -317,6 +319,20 @@
             this.opçãoImportarEstoqueAnteriorSistemaLegado.Size = new System.Drawing.Size(150, 16);
             this.opçãoImportarEstoqueAnteriorSistemaLegado.TabIndex = 2;
             this.opçãoImportarEstoqueAnteriorSistemaLegado.Click += new System.EventHandler(this.opçãoImportarEstoqueAnteriorSistemaLegado_Click);
+            // 
+            // opçãoImportarPreçosMatériasPrimas
+            // 
+            this.opçãoImportarPreçosMatériasPrimas.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoImportarPreçosMatériasPrimas.Descrição = "Importar Preços Matérias Primas";
+            this.opçãoImportarPreçosMatériasPrimas.Imagem = global::Apresentação.Resource.repair;
+            this.opçãoImportarPreçosMatériasPrimas.Location = new System.Drawing.Point(7, 30);
+            this.opçãoImportarPreçosMatériasPrimas.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoImportarPreçosMatériasPrimas.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoImportarPreçosMatériasPrimas.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoImportarPreçosMatériasPrimas.Name = "opçãoImportarPreçosMatériasPrimas";
+            this.opçãoImportarPreçosMatériasPrimas.Size = new System.Drawing.Size(150, 31);
+            this.opçãoImportarPreçosMatériasPrimas.TabIndex = 6;
+            this.opçãoImportarPreçosMatériasPrimas.Click += new System.EventHandler(this.opçãoImportarPreçosMatériasPrimas_Click);
             // 
             // BaseFiscal
             // 
@@ -353,5 +369,6 @@
         private Formulários.Opção opçãoImportarTransição;
         private Formulários.Quadro quadro5;
         private Formulários.Opção opçãoImportarEstoqueAnteriorSistemaLegado;
+        private Formulários.Opção opçãoImportarPreçosMatériasPrimas;
     }
 }

@@ -342,6 +342,7 @@
     <Compile Include="Mercadoria\ControleCargaImagens.cs" />
     <Compile Include="Mercadoria\Faixa.cs" />
     <Compile Include="Mercadoria\IMercadoriaCampos.cs" />
+    <Compile Include="Mercadoria\MatériaPrima.cs" />
     <Compile Include="Mercadoria\MercadoriaCampos.cs" />
     <Compile Include="Mercadoria\MercadoriaEmFaltaCliente.cs" />
     <Compile Include="Mercadoria\MercadoriaFornecedor.cs" />
