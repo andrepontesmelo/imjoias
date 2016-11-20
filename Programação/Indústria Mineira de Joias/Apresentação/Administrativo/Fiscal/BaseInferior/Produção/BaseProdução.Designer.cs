@@ -41,13 +41,13 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.quadroItem = new Apresentação.Formulários.Quadro();
-            this.txtMercadoria = new Apresentação.Mercadoria.TxtMercadoria();
             this.btnAlterar = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.listaSaídas = new Apresentação.Administrativo.Fiscal.Lista.Produção.ListaSaídaProduçãoFiscal();
             this.listaEntradas = new Apresentação.Administrativo.Fiscal.Lista.Produção.ListaEntradaProduçãoFiscal();
             this.label2 = new System.Windows.Forms.Label();
+            this.txtMercadoria = new Apresentação.Mercadoria.TxtMercadoriaLivre();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.quadroItem.SuspendLayout();
@@ -229,17 +229,6 @@
             this.quadroItem.Tamanho = 30;
             this.quadroItem.Título = "Detalhe do item";
             // 
-            // txtMercadoria
-            // 
-            this.txtMercadoria.Location = new System.Drawing.Point(19, 47);
-            this.txtMercadoria.Name = "txtMercadoria";
-            this.txtMercadoria.Referência = "";
-            this.txtMercadoria.Size = new System.Drawing.Size(154, 20);
-            this.txtMercadoria.SomenteCadastrado = true;
-            this.txtMercadoria.SomenteDeLinha = false;
-            this.txtMercadoria.TabIndex = 11;
-            this.txtMercadoria.ReferênciaConfirmada += new System.EventHandler(this.txtMercadoria_ReferênciaConfirmada);
-            // 
             // btnAlterar
             // 
             this.btnAlterar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -302,6 +291,15 @@
             this.label2.TabIndex = 10;
             this.label2.Text = "OT: Transferência do inventário para a produção";
             // 
+            // txtMercadoria
+            // 
+            this.txtMercadoria.Location = new System.Drawing.Point(19, 44);
+            this.txtMercadoria.Name = "txtMercadoria";
+            this.txtMercadoria.Referência = "";
+            this.txtMercadoria.Size = new System.Drawing.Size(177, 23);
+            this.txtMercadoria.TabIndex = 11;
+            this.txtMercadoria.ReferênciaAlterada += new System.EventHandler(this.txtMercadoria_ReferênciaAlterada);
+            // 
             // BaseProdução
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -351,6 +349,6 @@
         private Lista.Produção.ListaSaídaProduçãoFiscal listaSaídas;
         private Lista.Produção.ListaEntradaProduçãoFiscal listaEntradas;
         private System.Windows.Forms.Label label2;
-        private Mercadoria.TxtMercadoria txtMercadoria;
+        private Mercadoria.TxtMercadoriaLivre txtMercadoria;
     }
 }

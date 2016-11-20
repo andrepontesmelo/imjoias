@@ -2,12 +2,11 @@
 using Apresentação.Formulários;
 using Entidades.Fiscal.Exceções;
 using Entidades.Fiscal.Produção;
-using Entidades.Fiscal.Tipo;
 using System.Windows.Forms;
 
 namespace Apresentação.Administrativo.Fiscal.BaseInferior.Produção
 {
-    public partial class BaseProdução : Apresentação.Formulários.BaseInferior
+    public partial class BaseProdução : Formulários.BaseInferior
     {
         ProduçãoFiscal produção;
 
@@ -29,14 +28,6 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Produção
             listaSaídas.Carregar(produção.Código);
         }
 
-        private void txtMercadoria_ReferênciaConfirmada(object sender, System.EventArgs e)
-        {
-            var mercadoria = txtMercadoria.Mercadoria;
-            txtCFOP.Text = mercadoria?.CFOP.ToString();
-            txtDescrição.Text = mercadoria?.Descrição;
-            cmbTipoUnidade.Seleção = mercadoria == null ? null : mercadoria.TipoUnidadeComercial;
-        }
-
         private void btnIncluir_Click(object sender, System.EventArgs e)
         {
             if (txtQuantidade.Double == 0)
@@ -45,7 +36,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Produção
             try
             {
                 AguardeDB.Mostrar();
-                produção.AdicionarProdução(new ItemProduçãoFiscal(txtMercadoria.ReferênciaNumérica, (decimal)txtQuantidade.Double));
+                produção.AdicionarProdução(new ItemProduçãoFiscal(txtMercadoria.Referência, (decimal)txtQuantidade.Double));
             }
             catch (ExceçãoFiscal erro)
             {
@@ -98,6 +89,15 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Produção
                 Carregar(produção);
                 AguardeDB.Fechar();
             }
+        }
+
+        private void txtMercadoria_ReferênciaAlterada(object sender, System.EventArgs e)
+        {
+            var mercadoria = txtMercadoria.Mercadoria;
+
+            txtCFOP.Text = mercadoria?.CFOP.ToString();
+            txtDescrição.Text = mercadoria?.Descrição;
+            cmbTipoUnidade.Seleção = mercadoria == null ? null : mercadoria.TipoUnidadeComercial;
         }
     }
 }
