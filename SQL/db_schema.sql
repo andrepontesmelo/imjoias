@@ -2816,6 +2816,8 @@ BEGIN
       select i.* from (select @d1:=dataMaxima p) parm, inventario_parcial i;
     END ;;
 DELIMITER ;
+
+
  SET sql_mode              = @saved_sql_mode  ;
  SET character_set_client  = @saved_cs_client  ;
  SET character_set_results = @saved_cs_results  ;

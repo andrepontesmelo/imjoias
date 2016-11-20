@@ -46,3 +46,15 @@ insert into materiaprima(referencia,valor) select referencia, 0 as valor from me
           LEFT JOIN `inventario_interno_parcial` `i` ON ((`i`.`referencia` = `m`.`referencia`)))
           LEFT JOIN `novosPrecos` `p` ON ((`m`.`referencia` = `p`.`mercadoria`)))
       GROUP BY `m`.`referencia`;
+
+delete from ingredienteesquemaproducaofiscal;
+drop table ingredienteesquemaproducaofiscal
+
+CREATE TABLE `materiaprimaesquemaproducaofiscal` (
+`esquema` varchar(11) NOT NULL,
+`materiaprima` varchar(11) NOT NULL,
+`quantidade` decimal(10,2) NOT NULL,
+UNIQUE KEY `idx_esquema_materiaprima` (`esquema`,`materiaprima`),
+KEY `fk_materiaprimaesquemaproducaofiscal_materiaprima_idx` (`materiaprima`),
+CONSTRAINT `fk_materiaprimaesquemaproducaofiscal_esquema` FOREIGN KEY (`esquema`) REFERENCES `esquemaproducaofiscal` (`referencia`) ON DELETE CASCADE ON UPDATE CASCADE,
+CONSTRAINT `fk_materiaprimaesquemaproducaofiscal_materiaprima` FOREIGN KEY (`materiaprima`) REFERENCES `materiaprima` (`referencia`) ON UPDATE CASCADE);
