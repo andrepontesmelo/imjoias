@@ -34,7 +34,6 @@
             this.txtQuantidadeProduzida = new AMS.TextBox.NumericTextBox();
             this.txtDescriçãoProduzida = new System.Windows.Forms.TextBox();
             this.txtCFOPProduzido = new System.Windows.Forms.TextBox();
-            this.txtReferênciaProduzida = new Apresentação.Mercadoria.TxtMercadoria();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -48,7 +47,6 @@
             this.txtQuantidadeSelecionada = new AMS.TextBox.NumericTextBox();
             this.txtDescriçãoSelecionado = new System.Windows.Forms.TextBox();
             this.txtCFOPSelecionado = new System.Windows.Forms.TextBox();
-            this.txtReferênciaSelecionada = new Apresentação.Mercadoria.TxtMercadoria();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -56,6 +54,8 @@
             this.label10 = new System.Windows.Forms.Label();
             this.quadro3 = new Apresentação.Formulários.Quadro();
             this.listaIngredientes = new Apresentação.Administrativo.Fiscal.Lista.ListaIngredienteEsquema();
+            this.txtMercadoriaProduzida = new Apresentação.Mercadoria.TxtMercadoriaLivre();
+            this.txtMercadoriaSelecionada = new Apresentação.Mercadoria.TxtMercadoriaLivre();
             this.quadro1.SuspendLayout();
             this.quadro2.SuspendLayout();
             this.quadro3.SuspendLayout();
@@ -88,11 +88,11 @@
             this.quadro1.bInfEsqArredondada = true;
             this.quadro1.bSupDirArredondada = true;
             this.quadro1.bSupEsqArredondada = true;
+            this.quadro1.Controls.Add(this.txtMercadoriaProduzida);
             this.quadro1.Controls.Add(this.cmbTipoUnidadeProduzido);
             this.quadro1.Controls.Add(this.txtQuantidadeProduzida);
             this.quadro1.Controls.Add(this.txtDescriçãoProduzida);
             this.quadro1.Controls.Add(this.txtCFOPProduzido);
-            this.quadro1.Controls.Add(this.txtReferênciaProduzida);
             this.quadro1.Controls.Add(this.label5);
             this.quadro1.Controls.Add(this.label4);
             this.quadro1.Controls.Add(this.label3);
@@ -152,18 +152,8 @@
             this.txtCFOPProduzido.Enabled = false;
             this.txtCFOPProduzido.Location = new System.Drawing.Point(11, 90);
             this.txtCFOPProduzido.Name = "txtCFOPProduzido";
-            this.txtCFOPProduzido.Size = new System.Drawing.Size(244, 20);
+            this.txtCFOPProduzido.Size = new System.Drawing.Size(231, 20);
             this.txtCFOPProduzido.TabIndex = 2;
-            // 
-            // txtReferênciaProduzida
-            // 
-            this.txtReferênciaProduzida.Location = new System.Drawing.Point(11, 47);
-            this.txtReferênciaProduzida.Name = "txtReferênciaProduzida";
-            this.txtReferênciaProduzida.Referência = "";
-            this.txtReferênciaProduzida.Size = new System.Drawing.Size(244, 20);
-            this.txtReferênciaProduzida.SomenteDeLinha = false;
-            this.txtReferênciaProduzida.TabIndex = 0;
-            this.txtReferênciaProduzida.ReferênciaConfirmada += new System.EventHandler(this.txtReferênciaProduzida_ReferênciaConfirmada);
             // 
             // label5
             // 
@@ -222,6 +212,7 @@
             this.quadro2.bInfEsqArredondada = true;
             this.quadro2.bSupDirArredondada = true;
             this.quadro2.bSupEsqArredondada = true;
+            this.quadro2.Controls.Add(this.txtMercadoriaSelecionada);
             this.quadro2.Controls.Add(this.btnAdicionar);
             this.quadro2.Controls.Add(this.btnAlterar);
             this.quadro2.Controls.Add(this.btnExcluir);
@@ -229,7 +220,6 @@
             this.quadro2.Controls.Add(this.txtQuantidadeSelecionada);
             this.quadro2.Controls.Add(this.txtDescriçãoSelecionado);
             this.quadro2.Controls.Add(this.txtCFOPSelecionado);
-            this.quadro2.Controls.Add(this.txtReferênciaSelecionada);
             this.quadro2.Controls.Add(this.label6);
             this.quadro2.Controls.Add(this.label7);
             this.quadro2.Controls.Add(this.label8);
@@ -319,20 +309,8 @@
             this.txtCFOPSelecionado.Enabled = false;
             this.txtCFOPSelecionado.Location = new System.Drawing.Point(11, 90);
             this.txtCFOPSelecionado.Name = "txtCFOPSelecionado";
-            this.txtCFOPSelecionado.Size = new System.Drawing.Size(244, 20);
+            this.txtCFOPSelecionado.Size = new System.Drawing.Size(231, 20);
             this.txtCFOPSelecionado.TabIndex = 9;
-            // 
-            // txtReferênciaSelecionada
-            // 
-            this.txtReferênciaSelecionada.Location = new System.Drawing.Point(11, 47);
-            this.txtReferênciaSelecionada.MostrarBalãoRefNãoEncontrada = false;
-            this.txtReferênciaSelecionada.Name = "txtReferênciaSelecionada";
-            this.txtReferênciaSelecionada.Referência = "";
-            this.txtReferênciaSelecionada.Size = new System.Drawing.Size(244, 20);
-            this.txtReferênciaSelecionada.SomenteCadastrado = true;
-            this.txtReferênciaSelecionada.SomenteDeLinha = false;
-            this.txtReferênciaSelecionada.TabIndex = 7;
-            this.txtReferênciaSelecionada.ReferênciaAlterada += new System.EventHandler(this.txtReferênciaSelecionada_ReferênciaAlterada);
             // 
             // label6
             // 
@@ -416,6 +394,24 @@
             this.listaIngredientes.AoSelecionar += new System.EventHandler(this.listaIngredientes_AoSelecionar);
             this.listaIngredientes.AoExcluir += new System.EventHandler(this.listaIngredientes_AoExcluir);
             // 
+            // txtMercadoriaProduzida
+            // 
+            this.txtMercadoriaProduzida.Location = new System.Drawing.Point(11, 48);
+            this.txtMercadoriaProduzida.Name = "txtMercadoriaProduzida";
+            this.txtMercadoriaProduzida.Referência = "";
+            this.txtMercadoriaProduzida.Size = new System.Drawing.Size(251, 23);
+            this.txtMercadoriaProduzida.TabIndex = 7;
+            this.txtMercadoriaProduzida.ReferênciaAlterada += new System.EventHandler(this.txtMercadoriaProduzida_ReferênciaAlterada);
+            // 
+            // txtMercadoriaSelecionada
+            // 
+            this.txtMercadoriaSelecionada.Location = new System.Drawing.Point(11, 48);
+            this.txtMercadoriaSelecionada.Name = "txtMercadoriaSelecionada";
+            this.txtMercadoriaSelecionada.Referência = "";
+            this.txtMercadoriaSelecionada.Size = new System.Drawing.Size(251, 23);
+            this.txtMercadoriaSelecionada.TabIndex = 20;
+            this.txtMercadoriaSelecionada.ReferênciaAlterada += new System.EventHandler(this.txtMercadoriaSelecionada_ReferênciaAlterada);
+            // 
             // BaseEsquema
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -450,7 +446,6 @@
         private AMS.TextBox.NumericTextBox txtQuantidadeProduzida;
         private System.Windows.Forms.TextBox txtDescriçãoProduzida;
         private System.Windows.Forms.TextBox txtCFOPProduzido;
-        private Mercadoria.TxtMercadoria txtReferênciaProduzida;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -464,11 +459,12 @@
         private AMS.TextBox.NumericTextBox txtQuantidadeSelecionada;
         private System.Windows.Forms.TextBox txtDescriçãoSelecionado;
         private System.Windows.Forms.TextBox txtCFOPSelecionado;
-        private Mercadoria.TxtMercadoria txtReferênciaSelecionada;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
+        private Mercadoria.TxtMercadoriaLivre txtMercadoriaProduzida;
+        private Mercadoria.TxtMercadoriaLivre txtMercadoriaSelecionada;
     }
 }

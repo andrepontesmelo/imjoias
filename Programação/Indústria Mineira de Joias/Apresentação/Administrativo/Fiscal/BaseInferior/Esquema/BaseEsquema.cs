@@ -22,9 +22,9 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
 
             txtCFOPProduzido.Text = esquema.CFOP.ToString();
             if (esquema.Referência != null)
-                txtReferênciaProduzida.Referência = Entidades.Mercadoria.Mercadoria.MascararReferência(esquema.Referência, true);
+                txtMercadoriaProduzida.Referência = Entidades.Mercadoria.Mercadoria.MascararReferência(esquema.Referência, true);
             else
-                txtReferênciaProduzida.Referência = "";
+                txtMercadoriaProduzida.Referência = "";
 
             txtQuantidadeProduzida.Text = esquema.Quantidade.ToString();
             txtDescriçãoProduzida.Text = esquema.Descrição;
@@ -46,7 +46,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
 
         private void CarregarIngrediente(Ingrediente ingrediente)
         {
-            txtReferênciaSelecionada.Referência = ingrediente?.Referência;
+            txtMercadoriaSelecionada.Referência = ingrediente?.Referência;
             txtCFOPSelecionado.Text = ingrediente?.CFOP.ToString();
             txtQuantidadeSelecionada.Text = ingrediente?.Quantidade.ToString();
             txtDescriçãoSelecionado.Text = ingrediente?.Descrição;
@@ -60,23 +60,12 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
         {
             btnAlterar.Enabled = false;
 
-            ingrediente.Referência = txtReferênciaSelecionada.ReferênciaNumérica;
+            ingrediente.Referência = txtMercadoriaSelecionada.Referência;
             ingrediente.Quantidade = (decimal)txtQuantidadeSelecionada.Double;
             ingrediente.Atualizar();
             ingrediente = null;
 
             listaIngredientes.Carregar(esquema);
-        }
-
-        private void txtReferênciaSelecionada_ReferênciaAlterada(object sender, EventArgs e)
-        {
-            var mercadoria = Entidades.Mercadoria.Mercadoria.ObterMercadoria(txtReferênciaSelecionada.ReferênciaNumérica);
-
-            btnAlterar.Enabled = mercadoria != null && ingrediente != null;
-
-            txtDescriçãoSelecionado.Text = mercadoria?.Descrição;
-            txtCFOPSelecionado.Text = mercadoria?.CFOP.ToString();
-            cmbTipoUnidadeSelecionada.Seleção = mercadoria == null ? null : mercadoria.TipoUnidadeComercial;
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
@@ -112,7 +101,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
             try
             {
                 new Ingrediente(esquema.Referência,
-                    txtReferênciaSelecionada.ReferênciaNumérica,
+                    txtMercadoriaSelecionada.Referência,
                     (decimal)txtQuantidadeSelecionada.Double).Cadastrar();
             } catch (Exception erro)
             {
@@ -150,13 +139,13 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
 
             try
             {
-                esquema.Referência = txtReferênciaProduzida.ReferênciaNumérica;
+                esquema.Referência = txtMercadoriaProduzida.Referência;
                 esquema.Persistir();
             }
             catch (Exception)
             {
                 esquema.Referência = referênciaAnterior;
-                txtReferênciaProduzida.Referência = referênciaAnterior;
+                txtMercadoriaProduzida.Referência = referênciaAnterior;
 
                 MessageBox.Show(this,
                     "Verifique se esta referência já possui esquema de produção",
@@ -164,6 +153,29 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
+        }
+
+        private void txtMercadoriaProduzida_ReferênciaAlterada(object sender, EventArgs e)
+        {
+            var mercadoria = txtMercadoriaProduzida.Mercadoria;
+
+            if (mercadoria == null)
+                return;
+
+            txtDescriçãoProduzida.Text = mercadoria.Descrição;
+            txtCFOPProduzido.Text = mercadoria.CFOP.ToString();
+            cmbTipoUnidadeProduzido.Seleção = mercadoria.TipoUnidadeComercial;
+        }
+
+        private void txtMercadoriaSelecionada_ReferênciaAlterada(object sender, EventArgs e)
+        {
+            var mercadoria = txtMercadoriaSelecionada.Mercadoria;
+
+            btnAlterar.Enabled = mercadoria != null && ingrediente != null;
+
+            txtDescriçãoSelecionado.Text = mercadoria?.Descrição;
+            txtCFOPSelecionado.Text = mercadoria?.CFOP.ToString();
+            cmbTipoUnidadeSelecionada.Seleção = mercadoria == null ? null : mercadoria.TipoUnidadeComercial;
         }
     }
 }
