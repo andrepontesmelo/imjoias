@@ -546,6 +546,10 @@ namespace Entidades.Mercadoria
                 string dígito = referência.Substring(TAMANHO_REFERÊNCIA, 1);
 
                 var mercadoria = ObterMercadoria(referênciaSemDígito, Tabela.TabelaPadrão);
+
+                if (mercadoria == null)
+                    return null;
+
                 return (mercadoria.Dígito.ToString().Equals(dígito) ? mercadoria : null);
             }
 
