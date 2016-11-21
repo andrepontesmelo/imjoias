@@ -36,7 +36,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Produção
             try
             {
                 AguardeDB.Mostrar();
-                produção.AdicionarProdução(new ItemProduçãoFiscal(txtMercadoria.Referência, (decimal)txtQuantidade.Double));
+                produção.AdicionarProdução(new ItemProduçãoFiscal(txtMercadoria.Mercadoria.ReferênciaNumérica, (decimal)txtQuantidade.Double));
             }
             catch (ExceçãoFiscal erro)
             {
