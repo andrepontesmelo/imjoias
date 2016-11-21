@@ -102,5 +102,15 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
 
             janela.ShowDialog(this);
         }
+
+        private void opçãoLimparSeleção_Click(object sender, EventArgs e)
+        {
+            listaInventário.LimparSeleção();
+        }
+
+        private void opçãoSelecionarNegativos_Click(object sender, EventArgs e)
+        {
+            listaInventário.SelecionarNegativos();
+        }
     }
 }

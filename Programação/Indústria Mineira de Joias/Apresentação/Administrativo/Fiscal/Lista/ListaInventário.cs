@@ -91,5 +91,22 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             lista.Items.AddRange(itens);
             lista.ResumeLayout();
         }
+
+        internal void LimparSeleção()
+        {
+            foreach (ListViewItem item in lista.CheckedItems)
+                item.Checked = false;
+        }
+
+        public void SelecionarNegativos()
+        {
+            foreach (ListViewItem item in lista.Items)
+            {
+                Inventário inventário = item.Tag as Inventário;
+
+                if (inventário.Quantidade < 0)
+                    item.Checked = true;
+            }
+        }
     }
 }

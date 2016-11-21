@@ -37,15 +37,21 @@
             this.optAtual = new System.Windows.Forms.RadioButton();
             this.optPassado = new System.Windows.Forms.RadioButton();
             this.dataMáxima = new AMS.TextBox.DateTextBox();
+            this.quadro2 = new Apresentação.Formulários.Quadro();
+            this.opçãoLimparSeleção = new Apresentação.Formulários.Opção();
+            this.opçãoSelecionarNegativos = new Apresentação.Formulários.Opção();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
+            this.quadro2.SuspendLayout();
             this.SuspendLayout();
             // 
             // esquerda
             // 
+            this.esquerda.Controls.Add(this.quadro2);
             this.esquerda.Controls.Add(this.quadro1);
             this.esquerda.Size = new System.Drawing.Size(187, 597);
             this.esquerda.Controls.SetChildIndex(this.quadro1, 0);
+            this.esquerda.Controls.SetChildIndex(this.quadro2, 0);
             // 
             // títuloBaseInferior1
             // 
@@ -173,6 +179,54 @@
             this.dataMáxima.Text = "04/11/2016";
             this.dataMáxima.Validated += new System.EventHandler(this.dataMáxima_Validated);
             // 
+            // quadro2
+            // 
+            this.quadro2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.quadro2.bInfDirArredondada = true;
+            this.quadro2.bInfEsqArredondada = true;
+            this.quadro2.bSupDirArredondada = true;
+            this.quadro2.bSupEsqArredondada = true;
+            this.quadro2.Controls.Add(this.opçãoSelecionarNegativos);
+            this.quadro2.Controls.Add(this.opçãoLimparSeleção);
+            this.quadro2.Cor = System.Drawing.Color.Black;
+            this.quadro2.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
+            this.quadro2.LetraTítulo = System.Drawing.Color.White;
+            this.quadro2.Location = new System.Drawing.Point(7, 120);
+            this.quadro2.MostrarBotãoMinMax = false;
+            this.quadro2.Name = "quadro2";
+            this.quadro2.Size = new System.Drawing.Size(160, 73);
+            this.quadro2.TabIndex = 2;
+            this.quadro2.Tamanho = 30;
+            this.quadro2.Título = "Seleção";
+            // 
+            // opçãoLimparSeleção
+            // 
+            this.opçãoLimparSeleção.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoLimparSeleção.Descrição = "Limpar";
+            this.opçãoLimparSeleção.Imagem = global::Apresentação.Resource.Filter2HS;
+            this.opçãoLimparSeleção.Location = new System.Drawing.Point(7, 30);
+            this.opçãoLimparSeleção.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoLimparSeleção.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoLimparSeleção.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoLimparSeleção.Name = "opçãoLimparSeleção";
+            this.opçãoLimparSeleção.Size = new System.Drawing.Size(150, 16);
+            this.opçãoLimparSeleção.TabIndex = 3;
+            this.opçãoLimparSeleção.Click += new System.EventHandler(this.opçãoLimparSeleção_Click);
+            // 
+            // opçãoSelecionarNegativos
+            // 
+            this.opçãoSelecionarNegativos.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoSelecionarNegativos.Descrição = "Negativos";
+            this.opçãoSelecionarNegativos.Imagem = global::Apresentação.Resource.Filter2HS;
+            this.opçãoSelecionarNegativos.Location = new System.Drawing.Point(7, 50);
+            this.opçãoSelecionarNegativos.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoSelecionarNegativos.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoSelecionarNegativos.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoSelecionarNegativos.Name = "opçãoSelecionarNegativos";
+            this.opçãoSelecionarNegativos.Size = new System.Drawing.Size(150, 16);
+            this.opçãoSelecionarNegativos.TabIndex = 4;
+            this.opçãoSelecionarNegativos.Click += new System.EventHandler(this.opçãoSelecionarNegativos_Click);
+            // 
             // BaseInventário
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -192,6 +246,7 @@
             this.Controls.SetChildIndex(this.dataMáxima, 0);
             this.esquerda.ResumeLayout(false);
             this.quadro1.ResumeLayout(false);
+            this.quadro2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -208,5 +263,8 @@
         private System.Windows.Forms.RadioButton optAtual;
         private System.Windows.Forms.RadioButton optPassado;
         private AMS.TextBox.DateTextBox dataMáxima;
+        private Formulários.Quadro quadro2;
+        private Formulários.Opção opçãoSelecionarNegativos;
+        private Formulários.Opção opçãoLimparSeleção;
     }
 }
