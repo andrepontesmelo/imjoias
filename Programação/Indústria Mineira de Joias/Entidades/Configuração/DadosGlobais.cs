@@ -20,9 +20,7 @@ namespace Entidades.Configuração
 
         private ConfiguraçãoGlobal<string> servidorNTP;
         private ConfiguraçãoGlobal<string> últimaVersão;
-        private ConfiguraçãoGlobal<string> últimaVersãoUsuário;
         private ConfiguraçãoGlobal<DateTime> últimoLogInUsuário;
-
 
         /// <summary>
         /// Juros cobrado ao dia nas vendas da empresa.
@@ -105,7 +103,6 @@ namespace Entidades.Configuração
             try
             {
                 últimaVersão = new ConfiguraçãoGlobal<string>("Versão." + System.Reflection.Assembly.GetEntryAssembly().FullName.Split(',')[0], "0.0.0.0");
-                últimaVersãoUsuário = new ConfiguraçãoGlobal<string>("Versão." + System.Reflection.Assembly.GetEntryAssembly().FullName.Split(',')[0] + "." + Usuários.UsuárioAtual.Nome, "0.0.0.0");
                 últimoLogInUsuário = new ConfiguraçãoGlobal<DateTime>("Último login." + System.Reflection.Assembly.GetEntryAssembly().FullName.Split(',')[0] + "." + Usuários.UsuárioAtual.Nome, DateTime.Now);
             }
             finally
@@ -116,16 +113,6 @@ namespace Entidades.Configuração
         }
 
         #region Propriedades
-
-        public string ÚltimaVersão 
-        {
-            get { return últimaVersão.Valor; }
-            set 
-            { 
-                últimaVersão.Valor = value;
-                últimaVersãoUsuário.Valor = value;
-            }
-        }
 
         public DateTime ÚltimoLogInUsuário
         {

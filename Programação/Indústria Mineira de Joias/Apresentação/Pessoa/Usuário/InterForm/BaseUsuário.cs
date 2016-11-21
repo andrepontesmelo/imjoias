@@ -316,7 +316,7 @@ namespace Apresentação.Usuário.InterForm
 
         private void opçãoNovidades_Click(object sender, EventArgs e)
         {
-            Process.Start("https://github.com/andrepontesmelo/imjoias/commits/" + Versão.VersãoNumérica);
+            Process.Start("https://github.com/andrepontesmelo/imjoias/commits/" + Versão.GithubBranch);
         }
 
         private void opçãoComissão_Click(object sender, EventArgs e)

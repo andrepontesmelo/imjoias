@@ -130,7 +130,7 @@ namespace Apresentação.Fiscal.Janela
             }
 
             ResultadoImportação resultado = (ResultadoImportação)e.Result;
-            Process.Start("notepad", resultado.GravarArquivoTxt(Versão.NomeVersãoAplicação));
+            Process.Start("notepad", resultado.GravarArquivoTxt(Versão.Descrição));
         }
 
         private Aguarde ObterJanelaAguarde(BackgroundWorker thread)

@@ -1,4 +1,5 @@
 ﻿using Acesso.Comum;
+using Entidades.Configuração;
 using System;
 using System.Windows.Forms;
 
@@ -292,8 +293,7 @@ namespace Apresentação.Formulários
                 Console.WriteLine("========================================================");
 #endif
 
-
-
+                InformarVersãoUsuário();
 
                 Application.Run(aplicação);
 
@@ -319,6 +319,12 @@ namespace Apresentação.Formulários
 				}
 			}
 #endif
+        }
+
+        private static void InformarVersãoUsuário()
+        {
+            new ConfiguraçãoGlobal<string>("Versão." + System.Reflection.Assembly.GetEntryAssembly().FullName.Split(',')[0] + "." + Usuários.UsuárioAtual.Nome, "0.0.0.0").Valor =
+                        Versão.Descrição;
         }
 
         static void ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)

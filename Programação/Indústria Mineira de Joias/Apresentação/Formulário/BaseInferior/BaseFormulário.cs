@@ -354,12 +354,12 @@ namespace Apresentação.Formulários
             // Dispara o evento
 			AoCarregarCompletamente(splash);
 
-            this.Text = Versão.NomeVersãoAplicação;
+            this.Text = Versão.Descrição;
 
 #if DEBUG
             this.Text += " @ " + Acesso.MySQL.MySQLUsuários.Host;
 #endif
-            new Entidades.Configuração.ConfiguraçãoUsuário<string>("VersãoTítular", Versão.VersãoNumérica).Valor = Versão.VersãoNumérica;
+            new Entidades.Configuração.ConfiguraçãoUsuário<string>("VersãoTítular", Versão.GithubBranch).Valor = Versão.GithubBranch;
 
             this.Refresh();
 			
