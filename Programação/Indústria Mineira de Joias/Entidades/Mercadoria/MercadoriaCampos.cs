@@ -269,10 +269,26 @@ namespace Entidades.Mercadoria
             return ObterMercadorias(prefixo, limite, false);
         }
 
-        public static List<MercadoriaCampos> Obter(bool apenasMatériasPrimas)
+        public static List<MercadoriaCampos> Obter(TipoMercadoria? filtro)
         {
-            return Mapear<MercadoriaCampos>("select * from mercadoria "
-                + (apenasMatériasPrimas ? " WHERE referencia in (select referencia from materiaprima) " : ""));
+            var sql = "select * from mercadoria";
+
+            if (filtro != null)
+            {
+                switch (filtro)
+                {
+                    case TipoMercadoria.MatériaPrima:
+                        sql += " WHERE referencia in (select referencia from materiaprima)";
+                        break;
+                    case TipoMercadoria.NãoMatériaPrima:
+                        sql += " WHERE referencia not in (select referencia from materiaprima)";
+                        break;
+                    default:
+                        throw new NotImplementedException();
+                }
+            }
+
+            return Mapear<MercadoriaCampos>(sql);
         }
             
         /// <summary>

@@ -1,6 +1,7 @@
 ﻿using System;
 using Entidades.Fiscal.Esquema;
 using System.Windows.Forms;
+using Entidades.Mercadoria;
 
 namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
 {
@@ -12,7 +13,8 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
         public BaseEsquema()
         {
             InitializeComponent();
-            txtMercadoriaSelecionada.ListarApenasMatériasPrimas = true;
+            txtMercadoriaSelecionada.ListarApenas = TipoMercadoria.MatériaPrima;
+            txtMercadoriaProduzida.ListarApenas = TipoMercadoria.NãoMatériaPrima;
         }
 
         internal void Carregar(EsquemaProdução esquema)

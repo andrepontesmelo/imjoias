@@ -19,7 +19,7 @@ namespace Apresentação.Mercadoria
             InitializeComponent();
         }
 
-        public bool ListarApenasMatériasPrimas = false;
+        public TipoMercadoria? ListarApenas = null;
 
         public string Referência
         {
@@ -32,7 +32,7 @@ namespace Apresentação.Mercadoria
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
             var janela = new Janela.JanelaPesquisaReferência();
-            janela.ListarApenasMatériasPrimas = ListarApenasMatériasPrimas;
+            janela.ListarApenas = ListarApenas;
             janela.AoSelecionar += Janela_AoSelecionar; ;
             janela.ShowDialog(this);
         }

@@ -359,6 +359,7 @@
     <Compile Include="Mercadoria\MercadoriaOca.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Mercadoria\TipoMercadoria.cs" />
     <Compile Include="Moedas\Moeda.cs" />
     <Compile Include="Moedas\MoedaSistema.cs" />
     <Compile Include="MotivoContato.cs">
