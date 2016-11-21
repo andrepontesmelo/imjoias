@@ -98,6 +98,10 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
+            if (esquema.Referência == null)
+                return;
+
+
             try
             {
                 new MateriaPrima(esquema.Referência,
@@ -133,13 +137,24 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
             e.Cancel = false;
         }
 
-        private void txtReferênciaProduzida_ReferênciaConfirmada(object sender, EventArgs e)
+        private void txtMercadoriaProduzida_ReferênciaAlterada(object sender, EventArgs e)
         {
-            string referênciaAnterior = esquema.Referência;
+            var referênciaAnterior = esquema.Referência;
+            var mercadoria = txtMercadoriaProduzida.Mercadoria;
+
+            if (mercadoria == null)
+            {
+                txtMercadoriaProduzida.Referência = referênciaAnterior;
+                return;
+            }
+
+            txtDescriçãoProduzida.Text = mercadoria.Descrição;
+            txtCFOPProduzido.Text = mercadoria.CFOP.ToString();
+            cmbTipoUnidadeProduzido.Seleção = mercadoria.TipoUnidadeComercial;
 
             try
             {
-                esquema.Referência = txtMercadoriaProduzida.Referência;
+                esquema.Referência = mercadoria.ReferênciaNumérica;
                 esquema.Persistir();
             }
             catch (Exception)
@@ -153,18 +168,6 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
-        }
-
-        private void txtMercadoriaProduzida_ReferênciaAlterada(object sender, EventArgs e)
-        {
-            var mercadoria = txtMercadoriaProduzida.Mercadoria;
-
-            if (mercadoria == null)
-                return;
-
-            txtDescriçãoProduzida.Text = mercadoria.Descrição;
-            txtCFOPProduzido.Text = mercadoria.CFOP.ToString();
-            cmbTipoUnidadeProduzido.Seleção = mercadoria.TipoUnidadeComercial;
         }
 
         private void txtMercadoriaSelecionada_ReferênciaAlterada(object sender, EventArgs e)
