@@ -1,32 +1,32 @@
 ﻿using Apresentação.Administrativo.Fiscal.BaseInferior.Esquema;
 using Apresentação.Formulários;
 using Entidades.Fiscal.Exceções;
-using Entidades.Fiscal.Produção;
+using Entidades.Fiscal.Fabricação;
 using System.Windows.Forms;
 using System;
 
-namespace Apresentação.Administrativo.Fiscal.BaseInferior.Produção
+namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
 {
-    public partial class BaseProdução : Formulários.BaseInferior
+    public partial class BaseFabricação : Formulários.BaseInferior
     {
-        ProduçãoFiscal produção;
+        FabricaçãoFiscal fabricação;
 
-        public BaseProdução()
+        public BaseFabricação()
         {
             InitializeComponent();
         }
 
-        public BaseProdução(ProduçãoFiscal produção) : this()
+        public BaseFabricação(FabricaçãoFiscal fabricação) : this()
         {
-            Carregar(produção);
+            Carregar(fabricação);
         }
 
-        internal void Carregar(ProduçãoFiscal produção)
+        internal void Carregar(FabricaçãoFiscal fabricação)
         {
-            this.produção = produção;
-            títuloBaseInferior.Título = string.Format("Produção fiscal #{0} de {1}", produção.Código, produção.DataFormatada);
-            listaEntradas.Carregar(produção.Código);
-            listaSaídas.Carregar(produção.Código);
+            this.fabricação = fabricação;
+            títuloBaseInferior.Título = string.Format("Fabricação fiscal #{0} de {1}", fabricação.Código, fabricação.DataFormatada);
+            listaEntradas.Carregar(fabricação.Código);
+            listaSaídas.Carregar(fabricação.Código);
         }
 
         private void btnIncluir_Click(object sender, System.EventArgs e)
@@ -37,7 +37,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Produção
             try
             {
                 AguardeDB.Mostrar();
-                produção.AdicionarProdução(new ItemProduçãoFiscal(txtMercadoria.Mercadoria.ReferênciaNumérica, (decimal)txtQuantidade.Double));
+                fabricação.AdicionarFabricação(new ItemFabricaçãoFiscal(txtMercadoria.Mercadoria.ReferênciaNumérica, (decimal)txtQuantidade.Double));
                 LimparCampos();
             }
             catch (ExceçãoFiscal erro)
@@ -47,7 +47,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Produção
             }
             finally
             {
-                Carregar(produção);
+                Carregar(fabricação);
                 AguardeDB.Fechar();
             }
         }
@@ -88,7 +88,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Produção
             AguardeDB.Mostrar();
             try
             {
-                produção.Remover(seleção);
+                fabricação.Remover(seleção);
             }
             catch (ExceçãoFiscal erro)
             {
@@ -97,7 +97,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Produção
             }
             finally
             {
-                Carregar(produção);
+                Carregar(fabricação);
                 AguardeDB.Fechar();
             }
         }

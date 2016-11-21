@@ -1,11 +1,11 @@
 ﻿using Apresentação.Administrativo.Fiscal.BaseInferior.Esquema;
-using Apresentação.Administrativo.Fiscal.BaseInferior.Produção;
+using Apresentação.Administrativo.Fiscal.BaseInferior.fabricação;
 using Apresentação.Administrativo.Fiscal.Janela;
 using Apresentação.Formulários;
 using Apresentação.Impressão.Relatórios.Fiscal.Inventário;
 using Entidades.Configuração;
 using Entidades.Fiscal.Exceções;
-using Entidades.Fiscal.Produção;
+using Entidades.Fiscal.Fabricação;
 using System;
 using System.Collections.Generic;
 
@@ -58,22 +58,22 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
 
         private void opçãoProduzir_Click(object sender, EventArgs e)
         {
-            List<ItemProduçãoFiscal> itens = listaInventário.ObterItensChecados();
-            ProduçãoFiscal novaProdução;
+            List<ItemFabricaçãoFiscal> itens = listaInventário.ObterItensChecados();
+            FabricaçãoFiscal novafabricação;
 
             if (itens.Count == 0)
                 return;
 
             try
             {
-                novaProdução = ProduçãoFiscal.Criar(itens);
+                novafabricação = FabricaçãoFiscal.Criar(itens);
             } catch (ExceçãoFiscal erro)
             {
-                MensagemErro.MostrarMensagem(this, erro, "Erro ao criar produção");
+                MensagemErro.MostrarMensagem(this, erro, "Erro ao criar fabricação");
                 return;
             }
 
-            SubstituirBase(new BaseProdução(novaProdução));
+            SubstituirBase(new BaseFabricação(novafabricação));
         }
 
         private void listaInventário_AoDuploClique(object sender, EventArgs e)

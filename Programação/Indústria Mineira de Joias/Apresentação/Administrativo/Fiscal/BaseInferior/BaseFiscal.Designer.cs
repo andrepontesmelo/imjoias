@@ -35,7 +35,7 @@
             this.títuloBaseInferior1 = new Apresentação.Formulários.TítuloBaseInferior();
             this.quadro2 = new Apresentação.Formulários.Quadro();
             this.opçãoSaídas = new Apresentação.Formulários.Opção();
-            this.opçãoProduções = new Apresentação.Formulários.Opção();
+            this.opçãoFabricações = new Apresentação.Formulários.Opção();
             this.opçãoEntradas = new Apresentação.Formulários.Opção();
             this.quadro3 = new Apresentação.Formulários.Quadro();
             this.opçãoMáquinasECF = new Apresentação.Formulários.Opção();
@@ -135,7 +135,7 @@
             this.quadro2.bSupDirArredondada = true;
             this.quadro2.bSupEsqArredondada = true;
             this.quadro2.Controls.Add(this.opçãoSaídas);
-            this.quadro2.Controls.Add(this.opçãoProduções);
+            this.quadro2.Controls.Add(this.opçãoFabricações);
             this.quadro2.Controls.Add(this.opçãoEntradas);
             this.quadro2.Cor = System.Drawing.Color.Black;
             this.quadro2.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
@@ -162,19 +162,19 @@
             this.opçãoSaídas.TabIndex = 4;
             this.opçãoSaídas.Click += new System.EventHandler(this.opçãoSaídas_Click);
             // 
-            // opçãoProduções
+            // opçãoFabricações
             // 
-            this.opçãoProduções.BackColor = System.Drawing.Color.Transparent;
-            this.opçãoProduções.Descrição = "Produções";
-            this.opçãoProduções.Imagem = global::Apresentação.Resource.Deep_Refresh;
-            this.opçãoProduções.Location = new System.Drawing.Point(7, 50);
-            this.opçãoProduções.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.opçãoProduções.MaximumSize = new System.Drawing.Size(150, 100);
-            this.opçãoProduções.MinimumSize = new System.Drawing.Size(150, 16);
-            this.opçãoProduções.Name = "opçãoProduções";
-            this.opçãoProduções.Size = new System.Drawing.Size(150, 16);
-            this.opçãoProduções.TabIndex = 3;
-            this.opçãoProduções.Click += new System.EventHandler(this.opçãoProduções_Click);
+            this.opçãoFabricações.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoFabricações.Descrição = "Fabricações";
+            this.opçãoFabricações.Imagem = global::Apresentação.Resource.Deep_Refresh;
+            this.opçãoFabricações.Location = new System.Drawing.Point(7, 50);
+            this.opçãoFabricações.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoFabricações.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoFabricações.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoFabricações.Name = "opçãoFabricações";
+            this.opçãoFabricações.Size = new System.Drawing.Size(150, 16);
+            this.opçãoFabricações.TabIndex = 3;
+            this.opçãoFabricações.Click += new System.EventHandler(this.opçãoFabricações_Click);
             // 
             // opçãoEntradas
             // 
@@ -359,7 +359,7 @@
         private Formulários.Opção opçãoImportação;
         private Formulários.Quadro quadro2;
         private Formulários.Opção opçãoSaídas;
-        private Formulários.Opção opçãoProduções;
+        private Formulários.Opção opçãoFabricações;
         private Formulários.Opção opçãoEntradas;
         private Formulários.Quadro quadro3;
         private Formulários.Opção opçãoMáquinasECF;

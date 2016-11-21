@@ -1,9 +1,9 @@
 ﻿using Acesso.Comum;
 using System;
 
-namespace Entidades.Fiscal.Produção
+namespace Entidades.Fiscal.Fabricação
 {
-    public class ItemProduçãoFiscal : DbManipulaçãoSimples, IEquatable<ItemProduçãoFiscal>
+    public class ItemFabricaçãoFiscal : DbManipulaçãoSimples, IEquatable<ItemFabricaçãoFiscal>
     {
         protected string referencia;
         protected decimal quantidade;
@@ -14,17 +14,17 @@ namespace Entidades.Fiscal.Produção
         public Mercadoria.Mercadoria Mercadoria => 
             Entidades.Mercadoria.Mercadoria.ObterMercadoria(referencia);
 
-        public ItemProduçãoFiscal()
+        public ItemFabricaçãoFiscal()
         {
         }
 
-        public ItemProduçãoFiscal(string referencia, decimal quantidade)
+        public ItemFabricaçãoFiscal(string referencia, decimal quantidade)
         {
             this.referencia = referencia;
             this.quantidade = quantidade;
         }
 
-        public bool Equals(ItemProduçãoFiscal outro)
+        public bool Equals(ItemFabricaçãoFiscal outro)
         {
             return this.referencia.Equals(outro.referencia) && this.quantidade.Equals(outro.quantidade);
         }

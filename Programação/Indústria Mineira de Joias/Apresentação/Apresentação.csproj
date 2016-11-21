@@ -177,17 +177,17 @@
     <Compile Include="Administrativo\Fiscal\BaseInferior\Inventário\BaseInventário.Designer.cs">
       <DependentUpon>BaseInventário.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrativo\Fiscal\BaseInferior\Produção\BaseProdução.cs">
+    <Compile Include="Administrativo\Fiscal\BaseInferior\Fabricação\BaseFabricação.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Administrativo\Fiscal\BaseInferior\Produção\BaseProdução.Designer.cs">
-      <DependentUpon>BaseProdução.cs</DependentUpon>
+    <Compile Include="Administrativo\Fiscal\BaseInferior\Fabricação\BaseFabricação.Designer.cs">
+      <DependentUpon>BaseFabricação.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrativo\Fiscal\BaseInferior\Produção\BaseProduções.cs">
+    <Compile Include="Administrativo\Fiscal\BaseInferior\Fabricação\BaseFabricações.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Administrativo\Fiscal\BaseInferior\Produção\BaseProduções.Designer.cs">
-      <DependentUpon>BaseProduções.cs</DependentUpon>
+    <Compile Include="Administrativo\Fiscal\BaseInferior\Fabricação\BaseFabricações.Designer.cs">
+      <DependentUpon>BaseFabricações.cs</DependentUpon>
     </Compile>
     <Compile Include="Administrativo\Fiscal\Combo\ComboMáquina.cs">
       <SubType>Component</SubType>
@@ -225,17 +225,17 @@
     <Compile Include="Administrativo\Fiscal\Lista\ListaInventário.Designer.cs">
       <DependentUpon>ListaInventário.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrativo\Fiscal\Lista\Produção\ListaEntradaProduçãoFiscal.cs">
+    <Compile Include="Administrativo\Fiscal\Lista\Fabricação\ListaEntradaFabricaçãoFiscal.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Administrativo\Fiscal\Lista\Produção\ListaEntradaProduçãoFiscal.Designer.cs">
-      <DependentUpon>ListaEntradaProduçãoFiscal.cs</DependentUpon>
+    <Compile Include="Administrativo\Fiscal\Lista\Fabricação\ListaEntradaFabricaçãoFiscal.Designer.cs">
+      <DependentUpon>ListaEntradaFabricaçãoFiscal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrativo\Fiscal\Lista\Produção\ListaItemProduçãoFiscal.cs">
+    <Compile Include="Administrativo\Fiscal\Lista\Fabricação\ListaItemFabricaçãoFiscal.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Administrativo\Fiscal\Lista\Produção\ListaItemProduçãoFiscal.Designer.cs">
-      <DependentUpon>ListaItemProduçãoFiscal.cs</DependentUpon>
+    <Compile Include="Administrativo\Fiscal\Lista\Fabricação\ListaItemFabricaçãoFiscal.Designer.cs">
+      <DependentUpon>ListaItemFabricaçãoFiscal.cs</DependentUpon>
     </Compile>
     <Compile Include="Administrativo\Fiscal\Lista\ListaMáquinasECF.cs">
       <SubType>UserControl</SubType>
@@ -249,11 +249,11 @@
     <Compile Include="Administrativo\Fiscal\Lista\ListaProduções.Designer.cs">
       <DependentUpon>ListaProduções.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrativo\Fiscal\Lista\Produção\ListaSaídaProduçãoFiscal.cs">
+    <Compile Include="Administrativo\Fiscal\Lista\Fabricação\ListaSaídaFabricaçãoFiscal.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Administrativo\Fiscal\Lista\Produção\ListaSaídaProduçãoFiscal.Designer.cs">
-      <DependentUpon>ListaSaídaProduçãoFiscal.cs</DependentUpon>
+    <Compile Include="Administrativo\Fiscal\Lista\Fabricação\ListaSaídaFabricaçãoFiscal.Designer.cs">
+      <DependentUpon>ListaSaídaFabricaçãoFiscal.cs</DependentUpon>
     </Compile>
     <Compile Include="Administrativo\Fiscal\SeleçãoPeríodo.cs">
       <SubType>UserControl</SubType>
@@ -2548,11 +2548,11 @@
     <EmbeddedResource Include="Administrativo\Fiscal\BaseInferior\Inventário\BaseInventário.resx">
       <DependentUpon>BaseInventário.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administrativo\Fiscal\BaseInferior\Produção\BaseProdução.resx">
-      <DependentUpon>BaseProdução.cs</DependentUpon>
+    <EmbeddedResource Include="Administrativo\Fiscal\BaseInferior\Fabricação\BaseFabricação.resx">
+      <DependentUpon>BaseFabricação.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administrativo\Fiscal\BaseInferior\Produção\BaseProduções.resx">
-      <DependentUpon>BaseProduções.cs</DependentUpon>
+    <EmbeddedResource Include="Administrativo\Fiscal\BaseInferior\Fabricação\BaseFabricações.resx">
+      <DependentUpon>BaseFabricações.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administrativo\Fiscal\Combo\ComboMáquina.resx">
       <DependentUpon>ComboMáquina.cs</DependentUpon>
@@ -2578,8 +2578,8 @@
     <EmbeddedResource Include="Administrativo\Fiscal\Lista\ListaInventário.resx">
       <DependentUpon>ListaInventário.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administrativo\Fiscal\Lista\Produção\ListaItemProduçãoFiscal.resx">
-      <DependentUpon>ListaItemProduçãoFiscal.cs</DependentUpon>
+    <EmbeddedResource Include="Administrativo\Fiscal\Lista\Fabricação\ListaItemFabricaçãoFiscal.resx">
+      <DependentUpon>ListaItemFabricaçãoFiscal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administrativo\Fiscal\Lista\ListaMáquinasECF.resx">
       <DependentUpon>ListaMáquinasECF.cs</DependentUpon>

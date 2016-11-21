@@ -26,18 +26,18 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
 
         private void Excluir()
         {
-            List<EsquemaProdução> seleção = lista.Seleção;
+            List<EsquemaFabricação> seleção = lista.Seleção;
 
             if (seleção == null || seleção.Count == 0)
                 return;
 
             if (MessageBox.Show(this,
-                string.Format("Deseja excluir {0} esquema{1} de produção ?", seleção.Count, (seleção.Count == 1 ? "" : "s")),
+                string.Format("Deseja excluir {0} esquema{1} de fabricação ?", seleção.Count, (seleção.Count == 1 ? "" : "s")),
                 "Confirmação de exclusão",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != DialogResult.Yes)
                 return;
 
-            EsquemaProdução.Excluir(seleção);
+            EsquemaFabricação.Excluir(seleção);
             lista.Carregar();
         }
 
@@ -49,7 +49,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
         private void opçãoNovo_Click(object sender, EventArgs e)
         {
             var baseEsquema = new BaseEsquema();
-            baseEsquema.Carregar(new EsquemaProdução());
+            baseEsquema.Carregar(new EsquemaFabricação());
 
             SubstituirBase(baseEsquema);
         }

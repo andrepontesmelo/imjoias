@@ -7,8 +7,8 @@ using System.Linq;
 
 namespace Entidades.Fiscal.Esquema
 {
-    [DbTabela("esquemaproducaofiscal")]
-    public class EsquemaProdução : DbManipulaçãoAutomática
+    [DbTabela("esquemafabricacaofiscal")]
+    public class EsquemaFabricação : DbManipulaçãoAutomática
     {
         private string referencia;
         private string referenciaAlterada;
@@ -39,14 +39,14 @@ namespace Entidades.Fiscal.Esquema
         public TipoUnidade TipoUnidadeFiscal => TipoUnidade.Obter(tipounidade);
         public int CFOP => cfop;
 
-        public EsquemaProdução()
+        public EsquemaFabricação()
         {
             quantidade = 1;
         }
 
-        private static List<EsquemaProdução> lstEsquemas;
+        private static List<EsquemaFabricação> lstEsquemas;
 
-        public static List<EsquemaProdução> Esquemas
+        public static List<EsquemaFabricação> Esquemas
         {
             get
             {
@@ -64,27 +64,27 @@ namespace Entidades.Fiscal.Esquema
 
         private static void CarregarCache()
         {
-            lstEsquemas = Mapear<EsquemaProdução>("select e.*, m.nome as descricao, m.tipounidade, m.cfop from " + 
-                " esquemaproducaofiscal e join mercadoria m on e.referencia=m.referencia");
+            lstEsquemas = Mapear<EsquemaFabricação>("select e.*, m.nome as descricao, m.tipounidade, m.cfop from " + 
+                " esquemafabricacaofiscal e join mercadoria m on e.referencia=m.referencia");
         }
 
-        internal static EsquemaProdução Obter(string referência)
+        internal static EsquemaFabricação Obter(string referência)
         {
             return (from esquema in Esquemas where esquema.Referência.Equals(referência) select esquema).FirstOrDefault();
         }
 
-        public static void Excluir(List<EsquemaProdução> seleção)
+        public static void Excluir(List<EsquemaFabricação> seleção)
         {
             ExcluirEntidades(seleção);
             EsquecerCache();
         }
 
-        private static void ExcluirEntidades(List<EsquemaProdução> seleção)
+        private static void ExcluirEntidades(List<EsquemaFabricação> seleção)
         {
-            StringBuilder sql = new StringBuilder("delete from esquemaproducaofiscal where referencia in (");
+            StringBuilder sql = new StringBuilder("delete from esquemafabricacaofiscal where referencia in (");
 
             bool primeiro = true;
-            foreach (EsquemaProdução e in seleção)
+            foreach (EsquemaFabricação e in seleção)
             {
                 if (!primeiro)
                     sql.Append(",");
@@ -109,7 +109,7 @@ namespace Entidades.Fiscal.Esquema
 
         private void AtualizarEntidade()
         {
-            ExecutarComando(string.Format("UPDATE esquemaproducaofiscal set quantidade={0}, referencia={1} WHERE referencia={2}",
+            ExecutarComando(string.Format("UPDATE esquemafabricacaofiscal set quantidade={0}, referencia={1} WHERE referencia={2}",
                 DbTransformar(quantidade),
                 (DbTransformar(referenciaAlterada == null ? referencia : referenciaAlterada)),
                 DbTransformar(referencia)));
@@ -119,7 +119,7 @@ namespace Entidades.Fiscal.Esquema
 
         private void CadastrarEntidade()
         {
-            ExecutarComando(string.Format("INSERT INTO esquemaproducaofiscal (quantidade, referencia) values ({0}, {1})",
+            ExecutarComando(string.Format("INSERT INTO esquemafabricacaofiscal (quantidade, referencia) values ({0}, {1})",
                 DbTransformar(quantidade),
                 (DbTransformar(referenciaAlterada == null ? referencia : referenciaAlterada))));
 

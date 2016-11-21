@@ -7,7 +7,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
 {
     public partial class BaseEsquema : Apresentação.Formulários.BaseInferior
     {
-        private EsquemaProdução esquema;
+        private EsquemaFabricação esquema;
         private MateriaPrima ingrediente;
 
         public BaseEsquema()
@@ -17,7 +17,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
             txtMercadoriaProduzida.ListarApenas = TipoMercadoria.NãoMatériaPrima;
         }
 
-        internal void Carregar(EsquemaProdução esquema)
+        internal void Carregar(EsquemaFabricação esquema)
         {
             this.esquema = esquema;
 
@@ -166,7 +166,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
                 txtMercadoriaProduzida.Referência = referênciaAnterior;
 
                 MessageBox.Show(this,
-                    "Verifique se esta referência já possui esquema de produção",
+                    "Verifique se esta referência já possui esquema de fabricação",
                     "Erro ao alterar referência",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);

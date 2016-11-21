@@ -1,4 +1,4 @@
-﻿using Entidades.Fiscal.Produção;
+﻿using Entidades.Fiscal.Fabricação;
 using Entidades.Fiscal.Tipo;
 using System;
 using System.Collections.Generic;
@@ -6,11 +6,11 @@ using System.Windows.Forms;
 
 namespace Apresentação.Administrativo.Fiscal.Lista
 {
-    public partial class ListaItemProduçãoFiscal : UserControl
+    public partial class ListaItemFabricaçãoFiscal : UserControl
     {
         public event EventHandler AoExcluir;
 
-        public ListaItemProduçãoFiscal()
+        public ListaItemFabricaçãoFiscal()
         {
             InitializeComponent();
             lista.AoExcluir += Lista_AoExcluir;
@@ -21,12 +21,12 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             AoExcluir?.Invoke(sender, e);
         }
 
-        protected void Carregar(List<ItemProduçãoFiscal> entidades)
+        protected void Carregar(List<ItemFabricaçãoFiscal> entidades)
         {
             AdicionarItens(CriarItens(entidades));
         }
 
-        private ListViewItem[] CriarItens(List<ItemProduçãoFiscal> entidades)
+        private ListViewItem[] CriarItens(List<ItemFabricaçãoFiscal> entidades)
         {
             ListViewItem[] itens = new ListViewItem[entidades.Count];
             int x = 0;
@@ -45,7 +45,7 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             lista.ResumeLayout();
         }
 
-        private ListViewItem CriarItem(ItemProduçãoFiscal entidade)
+        private ListViewItem CriarItem(ItemFabricaçãoFiscal entidade)
         {
             var item = new ListViewItem(new string[lista.Columns.Count]);
             item.SubItems[colReferência.Index].Text = entidade.Mercadoria.Referência;
@@ -57,12 +57,12 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             return item;
         }
 
-        public List<ItemProduçãoFiscal> ObterSeleção()
+        public List<ItemFabricaçãoFiscal> ObterSeleção()
         {
-            List<ItemProduçãoFiscal> resultado = new List<ItemProduçãoFiscal>();
+            List<ItemFabricaçãoFiscal> resultado = new List<ItemFabricaçãoFiscal>();
 
             foreach (ListViewItem item in lista.SelectedItems)
-                resultado.Add(item.Tag as ItemProduçãoFiscal);
+                resultado.Add(item.Tag as ItemFabricaçãoFiscal);
 
             return resultado;
         }

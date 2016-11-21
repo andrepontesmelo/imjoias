@@ -3,7 +3,7 @@ using Entidades.Fiscal;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using Entidades.Fiscal.Produção;
+using Entidades.Fiscal.Fabricação;
 
 namespace Apresentação.Administrativo.Fiscal.Lista
 {
@@ -60,14 +60,14 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             return item;
         }
 
-        internal List<ItemProduçãoFiscal> ObterItensChecados()
+        internal List<ItemFabricaçãoFiscal> ObterItensChecados()
         {
-            var listaEntidades = new List<ItemProduçãoFiscal>();
+            var listaEntidades = new List<ItemFabricaçãoFiscal>();
 
             foreach (ListViewItem item in lista.CheckedItems)
             {
                 Inventário i = item.Tag as Inventário;
-                listaEntidades.Add(i.ObterItemProdução());
+                listaEntidades.Add(i.ObterItemfabricação());
             }
 
             return listaEntidades;

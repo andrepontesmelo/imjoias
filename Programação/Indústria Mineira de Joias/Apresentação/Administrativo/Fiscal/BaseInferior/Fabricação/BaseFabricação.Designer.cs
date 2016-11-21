@@ -1,6 +1,6 @@
-﻿namespace Apresentação.Administrativo.Fiscal.BaseInferior.Produção
+﻿namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
 {
-    partial class BaseProdução
+    partial class BaseFabricação
     {
         /// <summary> 
         /// Required designer variable.
@@ -44,8 +44,8 @@
             this.btnAlterar = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.listaSaídas = new Apresentação.Administrativo.Fiscal.Lista.Produção.ListaSaídaProduçãoFiscal();
-            this.listaEntradas = new Apresentação.Administrativo.Fiscal.Lista.Produção.ListaEntradaProduçãoFiscal();
+            this.listaSaídas = new Apresentação.Administrativo.Fiscal.Lista.Fabricação.ListaSaídaFabricaçãoFiscal();
+            this.listaEntradas = new Apresentação.Administrativo.Fiscal.Lista.Fabricação.ListaEntradaFabricaçãoFiscal();
             this.label2 = new System.Windows.Forms.Label();
             this.txtMercadoria = new Apresentação.Mercadoria.TxtMercadoriaLivre();
             this.esquerda.SuspendLayout();
@@ -64,7 +64,7 @@
             this.títuloBaseInferior.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.títuloBaseInferior.BackColor = System.Drawing.Color.White;
-            this.títuloBaseInferior.Descrição = "Produção é um documento que infica a fabricação ou produção de um item de inventá" +
+            this.títuloBaseInferior.Descrição = "fabricação é um documento que infica a fabricação ou fabricação de um item de inventá" +
     "rio.";
             this.títuloBaseInferior.ÍconeArredondado = false;
             this.títuloBaseInferior.Imagem = global::Apresentação.Resource.fiscal1;
@@ -72,7 +72,7 @@
             this.títuloBaseInferior.Name = "títuloBaseInferior";
             this.títuloBaseInferior.Size = new System.Drawing.Size(952, 70);
             this.títuloBaseInferior.TabIndex = 6;
-            this.títuloBaseInferior.Título = "Editar produção fiscal";
+            this.títuloBaseInferior.Título = "Editar fabricação fiscal";
             // 
             // quadro1
             // 
@@ -257,7 +257,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(285, 13);
             this.label1.TabIndex = 8;
-            this.label1.Text = "TO: Transferência da produção para o inventário";
+            this.label1.Text = "TO: Transferência da fabricação para o inventário";
             // 
             // listaSaídas
             // 
@@ -289,7 +289,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(285, 13);
             this.label2.TabIndex = 10;
-            this.label2.Text = "OT: Transferência do inventário para a produção";
+            this.label2.Text = "OT: Transferência do inventário para a fabricação";
             // 
             // txtMercadoria
             // 
@@ -300,7 +300,7 @@
             this.txtMercadoria.TabIndex = 11;
             this.txtMercadoria.ReferênciaAlterada += new System.EventHandler(this.txtMercadoria_ReferênciaAlterada);
             // 
-            // BaseProdução
+            // Basefabricação
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -310,7 +310,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.quadroItem);
             this.Controls.Add(this.títuloBaseInferior);
-            this.Name = "BaseProdução";
+            this.Name = "Basefabricação";
             this.Size = new System.Drawing.Size(1148, 483);
             this.Controls.SetChildIndex(this.esquerda, 0);
             this.Controls.SetChildIndex(this.títuloBaseInferior, 0);
@@ -346,8 +346,8 @@
         private System.Windows.Forms.Button btnAlterar;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label1;
-        private Lista.Produção.ListaSaídaProduçãoFiscal listaSaídas;
-        private Lista.Produção.ListaEntradaProduçãoFiscal listaEntradas;
+        private Lista.Fabricação.ListaSaídaFabricaçãoFiscal listaSaídas;
+        private Lista.Fabricação.ListaEntradaFabricaçãoFiscal listaEntradas;
         private System.Windows.Forms.Label label2;
         private Mercadoria.TxtMercadoriaLivre txtMercadoria;
     }

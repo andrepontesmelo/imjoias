@@ -36,7 +36,7 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             AoSelecionar?.Invoke(sender, e);
         }
 
-        internal void Carregar(EsquemaProdução esquema)
+        internal void Carregar(EsquemaFabricação esquema)
         {
             List<ListViewItem> itens = CriarItens(esquema);
 
@@ -44,7 +44,7 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             lista.Items.AddRange(itens.ToArray());
         }
 
-        private List<ListViewItem> CriarItens(EsquemaProdução esquema)
+        private List<ListViewItem> CriarItens(EsquemaFabricação esquema)
         {
             List<ListViewItem> itens = new List<ListViewItem>();
             var ingredientes = MateriaPrima.Obter(esquema.Referência);

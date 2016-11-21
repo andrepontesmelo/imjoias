@@ -2,7 +2,7 @@
 
 namespace Apresentação.Administrativo.Fiscal.Lista
 {
-    partial class ListaEsquemaProdução
+    partial class ListaEsquemafabricação
     {
         /// <summary> 
         /// Required designer variable.
@@ -74,12 +74,12 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             this.colTipoUnidadeFiscal.Text = "Tipo de unidade";
             this.colTipoUnidadeFiscal.Width = 248;
             // 
-            // ListaEsquemaProdução
+            // ListaEsquemafabricação
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lista);
-            this.Name = "ListaEsquemaProdução";
+            this.Name = "ListaEsquemafabricação";
             this.Size = new System.Drawing.Size(944, 420);
             this.ResumeLayout(false);
 

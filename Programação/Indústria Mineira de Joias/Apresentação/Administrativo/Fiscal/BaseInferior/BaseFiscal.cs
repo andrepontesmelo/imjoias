@@ -1,7 +1,7 @@
 ﻿using Apresentação.Administrativo.Fiscal.BaseInferior;
 using Apresentação.Administrativo.Fiscal.BaseInferior.Esquema;
 using Apresentação.Administrativo.Fiscal.BaseInferior.Inventário;
-using Apresentação.Administrativo.Fiscal.BaseInferior.Produção;
+using Apresentação.Administrativo.Fiscal.BaseInferior.fabricação;
 using Apresentação.Fiscal.BaseInferior.Documentos;
 using Apresentação.Fiscal.Janela;
 using Apresentação.Formulários;
@@ -49,9 +49,9 @@ namespace Apresentação.Fiscal.BaseInferior
             SubstituirBase(new BaseInventário());
         }
 
-        private void opçãoProduções_Click(object sender, EventArgs e)
+        private void opçãoFabricações_Click(object sender, EventArgs e)
         {
-            SubstituirBase(new BaseProduções());
+            SubstituirBase(new BaseFabricações());
         }
 
         private void opçãoImportar_Click(object sender, EventArgs e)

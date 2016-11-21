@@ -1,6 +1,6 @@
-﻿namespace Apresentação.Administrativo.Fiscal.Lista.Produção
+﻿namespace Apresentação.Administrativo.Fiscal.Lista.Fabricação
 {
-    partial class ListaEntradaProduçãoFiscal
+    partial class ListaEntradaFabricaçãoFiscal
     {
         /// <summary>
         /// Required designer variable.

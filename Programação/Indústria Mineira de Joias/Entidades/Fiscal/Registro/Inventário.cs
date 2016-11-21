@@ -1,4 +1,4 @@
-﻿using Entidades.Fiscal.Produção;
+﻿using Entidades.Fiscal.Fabricação;
 using Entidades.Fiscal.Registro;
 using System;
 using System.Collections.Generic;
@@ -28,9 +28,9 @@ namespace Entidades.Fiscal
                 dataLimite == null ? "NOW()" : DbTransformar(dataLimite.Value)));
         }
 
-        public ItemProduçãoFiscal ObterItemProdução()
+        public ItemFabricaçãoFiscal ObterItemfabricação()
         {
-            return new ItemProduçãoFiscal(Referência, Math.Abs(Quantidade));
+            return new ItemFabricaçãoFiscal(Referência, Math.Abs(Quantidade));
         }
     }
 }

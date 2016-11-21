@@ -2,7 +2,7 @@
 
 namespace Apresentação.Administrativo.Fiscal.Lista
 {
-    partial class ListaProduções
+    partial class ListaFabricações
     {
         /// <summary> 
         /// Required designer variable.
@@ -59,12 +59,12 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             this.colData.Text = "Data";
             this.colData.Width = 375;
             // 
-            // ListaProduções
+            // ListaFabricações
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lista);
-            this.Name = "ListaProduções";
+            this.Name = "ListaFabricações";
             this.Size = new System.Drawing.Size(732, 392);
             this.ResumeLayout(false);
 

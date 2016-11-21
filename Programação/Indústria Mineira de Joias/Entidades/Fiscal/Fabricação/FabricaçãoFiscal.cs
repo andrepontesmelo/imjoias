@@ -7,10 +7,10 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 
-namespace Entidades.Fiscal.Produção
+namespace Entidades.Fiscal.Fabricação
 {
-    [DbTabela("producaofiscal")]
-    public class ProduçãoFiscal : DbManipulaçãoAutomática
+    [DbTabela("fabricacaofiscal")]
+    public class FabricaçãoFiscal : DbManipulaçãoAutomática
     {
         [DbChavePrimária(true)]
         private int codigo;
@@ -21,65 +21,65 @@ namespace Entidades.Fiscal.Produção
 
         public string DataFormatada => string.Format("{0} {1}", data.ToShortDateString(), data.ToShortTimeString());
 
-        public ProduçãoFiscal()
+        public FabricaçãoFiscal()
         {
         }
 
-        public ProduçãoFiscal(DateTime data)
+        public FabricaçãoFiscal(DateTime data)
         {
             this.data = data;
         }
 
-        public static ProduçãoFiscal Criar()
+        public static FabricaçãoFiscal Criar()
         {
-            var produção = new ProduçãoFiscal(DadosGlobais.Instância.HoraDataAtual);
-            produção.Cadastrar();
+            var fabricação = new FabricaçãoFiscal(DadosGlobais.Instância.HoraDataAtual);
+            fabricação.Cadastrar();
 
-            return produção;
+            return fabricação;
         }
 
-        public static ProduçãoFiscal Criar(List<ItemProduçãoFiscal> itens)
+        public static FabricaçãoFiscal Criar(List<ItemFabricaçãoFiscal> itens)
         {
             LevantarErrosCriação(itens);
 
-            var produção = Criar();
+            var fabricação = Criar();
             var conexão = Conexão;
 
             lock (conexão)
             {
                 using (var transação = conexão.BeginTransaction())
                 {
-                    foreach (ItemProduçãoFiscal item in itens)
-                        produção.AdicionarProdução(conexão, transação, item,
+                    foreach (ItemFabricaçãoFiscal item in itens)
+                        fabricação.AdicionarFabricação(conexão, transação, item,
                             ObterEsquemaLevantandoErroCasoNãoExista(item));
 
                     transação.Commit();
                 }
             }
 
-            return produção;
+            return fabricação;
         }
 
-        private static void LevantarErrosCriação(List<ItemProduçãoFiscal> itens)
+        private static void LevantarErrosCriação(List<ItemFabricaçãoFiscal> itens)
         {
-            foreach (ItemProduçãoFiscal item in itens)
+            foreach (ItemFabricaçãoFiscal item in itens)
                 ObterEsquemaLevantandoErroCasoNãoExista(item);
 
             if (!ExisteItemNãoVazio(itens))
-                throw new ProduçãoVazia();
+                throw new FabricaçãoVazia();
         }
 
-        private static bool ExisteItemNãoVazio(List<ItemProduçãoFiscal> itens)
+        private static bool ExisteItemNãoVazio(List<ItemFabricaçãoFiscal> itens)
         {
             return (from i in itens where i.Quantidade != 0 select i).FirstOrDefault() != null;
         }
 
-        public static List<ProduçãoFiscal> Obter()
+        public static List<FabricaçãoFiscal> Obter()
         {
-            return Mapear<ProduçãoFiscal>("select * from producaofiscal");
+            return Mapear<FabricaçãoFiscal>("select * from fabricacaofiscal");
         }
 
-        public void AdicionarProdução(ItemProduçãoFiscal novoItem)
+        public void AdicionarFabricação(ItemFabricaçãoFiscal novoItem)
         {
             var esquema = ObterEsquemaLevantandoErroCasoNãoExista(novoItem);
 
@@ -89,13 +89,13 @@ namespace Entidades.Fiscal.Produção
             {
                 using (var transação = conexão.BeginTransaction())
                 {
-                    AdicionarProdução(conexão, transação, novoItem, esquema);
+                    AdicionarFabricação(conexão, transação, novoItem, esquema);
                     transação.Commit();
                 }
             }
         }
 
-        private void AdicionarProdução(System.Data.IDbConnection conexão, System.Data.IDbTransaction transação, ItemProduçãoFiscal novoItem, EsquemaProdução esquema)
+        private void AdicionarFabricação(System.Data.IDbConnection conexão, System.Data.IDbTransaction transação, ItemFabricaçãoFiscal novoItem, EsquemaFabricação esquema)
         {
             if (novoItem.Quantidade == 0)
                 return;
@@ -109,9 +109,9 @@ namespace Entidades.Fiscal.Produção
                 AdicionarEntrada(conexão, transação, qtdReceitas, ingrediente);
         }
 
-        private static EsquemaProdução ObterEsquemaLevantandoErroCasoNãoExista(ItemProduçãoFiscal novoItem)
+        private static EsquemaFabricação ObterEsquemaLevantandoErroCasoNãoExista(ItemFabricaçãoFiscal novoItem)
         {
-            EsquemaProdução esquema = EsquemaProdução.Obter(novoItem.Referência);
+            EsquemaFabricação esquema = EsquemaFabricação.Obter(novoItem.Referência);
 
             if (esquema == null)
                 throw new EsquemaInexistente(novoItem.Referência);
@@ -123,27 +123,27 @@ namespace Entidades.Fiscal.Produção
         {
             using (var cmd = conexão.CreateCommand())
             {
-                cmd.CommandText = EntradaProduçãoFiscal.ObterSqlInserçãoEntrada(this, ingrediente, qtdReceitas);
+                cmd.CommandText = EntradaFabricaçãoFiscal.ObterSqlInserçãoEntrada(this, ingrediente, qtdReceitas);
                 cmd.Transaction = transação;
                 cmd.ExecuteNonQuery();
             }
         }
 
-        private void AdicionarSaída(System.Data.IDbConnection conexão, System.Data.IDbTransaction transação, ItemProduçãoFiscal novoItem, decimal qtdReceitas)
+        private void AdicionarSaída(System.Data.IDbConnection conexão, System.Data.IDbTransaction transação, ItemFabricaçãoFiscal novoItem, decimal qtdReceitas)
         {
             using (var cmd = conexão.CreateCommand())
             {
-                cmd.CommandText = SaídaProduçãoFiscal.ObterSqlInserçãoSaída(this, qtdReceitas, novoItem.Referência, novoItem.Quantidade);
+                cmd.CommandText = SaídaFabricaçãoFiscal.ObterSqlInserçãoSaída(this, qtdReceitas, novoItem.Referência, novoItem.Quantidade);
                 cmd.Transaction = transação;
                 cmd.ExecuteNonQuery();
             }
         }
 
-        public void Remover(List<ItemProduçãoFiscal> itensRemover)
+        public void Remover(List<ItemFabricaçãoFiscal> itensRemover)
         {
-            List<ItemProduçãoFiscal> novaListaSaída = FiltrarItens(SaídaProduçãoFiscal.Obter(Código), itensRemover);
+            List<ItemFabricaçãoFiscal> novaListaSaída = FiltrarItens(SaídaFabricaçãoFiscal.Obter(Código), itensRemover);
 
-            foreach (ItemProduçãoFiscal novoItem in novaListaSaída)
+            foreach (ItemFabricaçãoFiscal novoItem in novaListaSaída)
                 ObterEsquemaLevantandoErroCasoNãoExista(novoItem);
 
             var conexão = Conexão;
@@ -155,8 +155,8 @@ namespace Entidades.Fiscal.Produção
                     RemoverSaídas(conexão, transação);
                     RemoverEntradas(conexão, transação);
 
-                    foreach (ItemProduçãoFiscal novoItem in novaListaSaída)
-                        AdicionarProdução(conexão, transação, novoItem, ObterEsquemaLevantandoErroCasoNãoExista(novoItem));
+                    foreach (ItemFabricaçãoFiscal novoItem in novaListaSaída)
+                        AdicionarFabricação(conexão, transação, novoItem, ObterEsquemaLevantandoErroCasoNãoExista(novoItem));
 
                     transação.Commit();
                 }
@@ -167,7 +167,7 @@ namespace Entidades.Fiscal.Produção
         {
             using (var cmd = conexão.CreateCommand())
             {
-                cmd.CommandText = string.Format("delete from {0} where producaofiscal = {1}", relação, DbTransformar(Código));
+                cmd.CommandText = string.Format("delete from {0} where fabricacaofiscal = {1}", relação, DbTransformar(Código));
                 cmd.Transaction = transação;
                 cmd.ExecuteNonQuery();
             }
@@ -175,19 +175,19 @@ namespace Entidades.Fiscal.Produção
 
         private void RemoverEntradas(System.Data.IDbConnection conexão, System.Data.IDbTransaction transação)
         {
-            RemoverItens(conexão, EntradaProduçãoFiscal.RELAÇÃO, transação);
+            RemoverItens(conexão, EntradaFabricaçãoFiscal.RELAÇÃO, transação);
         }
 
         private void RemoverSaídas(System.Data.IDbConnection conexão, System.Data.IDbTransaction transação)
         {
-            RemoverItens(conexão, SaídaProduçãoFiscal.RELAÇÃO, transação);
+            RemoverItens(conexão, SaídaFabricaçãoFiscal.RELAÇÃO, transação);
         }
 
-        private List<ItemProduçãoFiscal> FiltrarItens(List<ItemProduçãoFiscal> itens, List<ItemProduçãoFiscal> itensExcluir)
+        private List<ItemFabricaçãoFiscal> FiltrarItens(List<ItemFabricaçãoFiscal> itens, List<ItemFabricaçãoFiscal> itensExcluir)
         {
-            List<ItemProduçãoFiscal> novaLista = new List<Produção.ItemProduçãoFiscal>();
+            List<ItemFabricaçãoFiscal> novaLista = new List<ItemFabricaçãoFiscal>();
 
-            foreach (ItemProduçãoFiscal i in itens)
+            foreach (ItemFabricaçãoFiscal i in itens)
             {
                 if (!itensExcluir.Contains(i))
                     novaLista.Add(i);
@@ -196,12 +196,12 @@ namespace Entidades.Fiscal.Produção
             return novaLista;
         }
 
-        public static void Remover(List<ProduçãoFiscal> lstProduções)
+        public static void Remover(List<FabricaçãoFiscal> lstFabricações)
         {
-            StringBuilder sql = new StringBuilder("delete from producaofiscal where codigo in (");
+            StringBuilder sql = new StringBuilder("delete from fabricacaofiscal where codigo in (");
 
             bool primeiro = true;
-            foreach (ProduçãoFiscal f in lstProduções)
+            foreach (FabricaçãoFiscal f in lstFabricações)
             {
                 if (!primeiro)
                     sql.Append(", ");

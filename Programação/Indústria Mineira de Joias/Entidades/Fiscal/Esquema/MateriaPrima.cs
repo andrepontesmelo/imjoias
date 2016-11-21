@@ -5,7 +5,7 @@ using System;
 
 namespace Entidades.Fiscal.Esquema
 {
-    [DbTabela("materiaprimaesquemaproducaofiscal")]
+    [DbTabela("materiaprimaesquemafabricacaofiscal")]
     public class MateriaPrima : DbManipulaçãoSimples
     {
         public MateriaPrima()
@@ -48,13 +48,13 @@ namespace Entidades.Fiscal.Esquema
         public static List<MateriaPrima> Obter(string esquema)
         {
             return Mapear<MateriaPrima>(
-                string.Format("select i.*, m.nome as descricao, m.tipounidade, m.cfop from materiaprimaesquemaproducaofiscal i join mercadoria m on " + 
+                string.Format("select i.*, m.nome as descricao, m.tipounidade, m.cfop from materiaprimaesquemafabricacaofiscal i join mercadoria m on " + 
                 " i.materiaprima=m.referencia where esquema={0}", DbTransformar(esquema)));
         }
 
         public void Atualizar()
         {
-            var sql = "UPDATE materiaprimaesquemaproducaofiscal set " +
+            var sql = "UPDATE materiaprimaesquemafabricacaofiscal set " +
                 "materiaprima=" + DbTransformar(Referência) + ", " +
                 "quantidade=" + DbTransformar(Quantidade) +
                 " WHERE materiaprima=" + DbTransformar(materiaprima) +
@@ -65,13 +65,13 @@ namespace Entidades.Fiscal.Esquema
 
         public void Cadastrar()
         {
-            ExecutarComando(string.Format("INSERT INTO materiaprimaesquemaproducaofiscal (materiaprima, quantidade, esquema) values ({0},{1},{2})",
+            ExecutarComando(string.Format("INSERT INTO materiaprimaesquemafabricacaofiscal (materiaprima, quantidade, esquema) values ({0},{1},{2})",
                 DbTransformar(Referência), DbTransformar(Quantidade), DbTransformar(Esquema)));
         }
 
         public static void Excluir(List<MateriaPrima> materiasPrimas)
         {
-            var sql = "DELETE FROM materiaprimaesquemaproducaofiscal where ";
+            var sql = "DELETE FROM materiaprimaesquemafabricacaofiscal where ";
             bool primeiro = true;
 
             foreach (MateriaPrima i in materiasPrimas)

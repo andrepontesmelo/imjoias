@@ -121,6 +121,6 @@
     <value>True</value>
   </metadata>
   <data name="títuloBaseInferior1.Descrição" xml:space="preserve">
-    <value>São as receitas de como se obter um determinado item de inventário. Cada referência de mercadoria deve ter seu próprio esquema de produção, vinculando seus componentes fiscais (ouro liga, pedras, etc) à referência. </value>
+    <value>São as receitas de como se obter um determinado item de inventário. Cada referência de mercadoria deve ter seu próprio esquema de fabricação, vinculando seus componentes fiscais (ouro liga, pedras, etc) à referência. </value>
   </data>
 </root>

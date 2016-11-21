@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseEsquemas));
             this.títuloBaseInferior1 = new Apresentação.Formulários.TítuloBaseInferior();
             this.quadroEsquemas = new Apresentação.Formulários.Quadro();
-            this.lista = new Apresentação.Administrativo.Fiscal.Lista.ListaEsquemaProdução();
+            this.lista = new Apresentação.Administrativo.Fiscal.Lista.ListaEsquemafabricação();
             this.quadro2 = new Apresentação.Formulários.Quadro();
             this.opçãoExcluir = new Apresentação.Formulários.Opção();
             this.opçãoNovo = new Apresentação.Formulários.Opção();
@@ -58,7 +58,7 @@
             this.títuloBaseInferior1.Name = "títuloBaseInferior1";
             this.títuloBaseInferior1.Size = new System.Drawing.Size(588, 70);
             this.títuloBaseInferior1.TabIndex = 6;
-            this.títuloBaseInferior1.Título = "Esquemas de produção";
+            this.títuloBaseInferior1.Título = "Esquemas de fabricação";
             // 
             // quadroEsquemas
             // 
@@ -166,6 +166,6 @@
         private Formulários.Opção opçãoExcluir;
         private Formulários.Opção opçãoNovo;
         private Formulários.Quadro quadroEsquemas;
-        private Lista.ListaEsquemaProdução lista;
+        private Lista.ListaEsquemafabricação lista;
     }
 }

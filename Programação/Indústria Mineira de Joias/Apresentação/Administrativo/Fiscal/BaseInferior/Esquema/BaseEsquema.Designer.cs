@@ -70,14 +70,14 @@
             this.títuloBaseInferior1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.títuloBaseInferior1.BackColor = System.Drawing.Color.White;
-            this.títuloBaseInferior1.Descrição = "Edição de esquema de produção";
+            this.títuloBaseInferior1.Descrição = "Edição de esquema de fabricação";
             this.títuloBaseInferior1.ÍconeArredondado = false;
             this.títuloBaseInferior1.Imagem = global::Apresentação.Resource.fiscal1;
             this.títuloBaseInferior1.Location = new System.Drawing.Point(193, 15);
             this.títuloBaseInferior1.Name = "títuloBaseInferior1";
             this.títuloBaseInferior1.Size = new System.Drawing.Size(1189, 70);
             this.títuloBaseInferior1.TabIndex = 6;
-            this.títuloBaseInferior1.Título = "Esquema de produção";
+            this.títuloBaseInferior1.Título = "Esquema de fabricação";
             // 
             // quadro1
             // 
@@ -107,7 +107,7 @@
             this.quadro1.Size = new System.Drawing.Size(1189, 120);
             this.quadro1.TabIndex = 8;
             this.quadro1.Tamanho = 30;
-            this.quadro1.Título = "Produção de";
+            this.quadro1.Título = "fabricação de";
             // 
             // cmbTipoUnidadeProduzido
             // 

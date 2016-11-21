@@ -6,12 +6,12 @@ using System.Windows.Forms;
 
 namespace Apresentação.Administrativo.Fiscal.Lista
 {
-    public partial class ListaEsquemaProdução : UserControl
+    public partial class ListaEsquemafabricação : UserControl
     {
         public event EventHandler AoExcluir;
         public event EventHandler AoDuploClique;
 
-        public ListaEsquemaProdução()
+        public ListaEsquemafabricação()
         {
             InitializeComponent();
 
@@ -42,11 +42,11 @@ namespace Apresentação.Administrativo.Fiscal.Lista
 
         private ListViewItem[] CriarItens()
         {
-            var esquemas = EsquemaProdução.Esquemas;
+            var esquemas = EsquemaFabricação.Esquemas;
 
             ListViewItem[] itens = new ListViewItem[esquemas.Count];
             int x = 0;
-            foreach (var esquema in EsquemaProdução.Esquemas)
+            foreach (var esquema in EsquemaFabricação.Esquemas)
             {
                 ListViewItem item = CriarItem(esquema);
                 itens[x++] = item;
@@ -55,7 +55,7 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             return itens;
         }
 
-        private ListViewItem CriarItem(EsquemaProdução esquema)
+        private ListViewItem CriarItem(EsquemaFabricação esquema)
         {
             var item = new ListViewItem(new string[lista.Columns.Count]);
 
@@ -73,7 +73,7 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             ((ListViewColumnSorter)lista.ListViewItemSorter).OnClick(lista, e);
         }
 
-        public List<EsquemaProdução> Seleção
+        public List<EsquemaFabricação> Seleção
         {
             get
             {
@@ -81,9 +81,9 @@ namespace Apresentação.Administrativo.Fiscal.Lista
                 if (seleção.Count == 0)
                     return null;
 
-                List<EsquemaProdução> resultado = new List<EsquemaProdução>();
+                List<EsquemaFabricação> resultado = new List<EsquemaFabricação>();
                 foreach (ListViewItem item in seleção)
-                    resultado.Add(item.Tag as EsquemaProdução);
+                    resultado.Add(item.Tag as EsquemaFabricação);
 
                 return resultado;
             }

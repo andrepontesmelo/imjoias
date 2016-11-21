@@ -1,15 +1,15 @@
-﻿using Entidades.Fiscal.Produção;
+﻿using Entidades.Fiscal.Fabricação;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Apresentação.Administrativo.Fiscal.Lista
 {
-    public partial class ListaProduções : UserControl
+    public partial class ListaFabricações : UserControl
     {
         public event EventHandler AoDuploClique;
 
-        public ListaProduções()
+        public ListaFabricações()
         {
             InitializeComponent();
             lista.AoExcluir += Lista_AoExcluir;
@@ -27,7 +27,7 @@ namespace Apresentação.Administrativo.Fiscal.Lista
                 return;
 
             if (MessageBox.Show(this,
-                string.Format("Confirma exclusão de {0} produções ? ",
+                string.Format("Confirma exclusão de {0} fabricações ? ",
                 lista.SelectedItems.Count),
                 "Confirmação de exclusão",
                 MessageBoxButtons.YesNo,
@@ -35,16 +35,16 @@ namespace Apresentação.Administrativo.Fiscal.Lista
                 MessageBoxDefaultButton.Button2) != DialogResult.Yes)
                 return;
 
-            ProduçãoFiscal.Remover(ObterSeleção());
+            FabricaçãoFiscal.Remover(ObterSeleção());
             Carregar();
         }
 
-        public List<ProduçãoFiscal> ObterSeleção()
+        public List<FabricaçãoFiscal> ObterSeleção()
         {
-            List<ProduçãoFiscal> lstProduções = new List<ProduçãoFiscal>();
+            List<FabricaçãoFiscal> lstFabricações = new List<FabricaçãoFiscal>();
             foreach (ListViewItem itemSelecionado in lista.SelectedItems)
-                lstProduções.Add(itemSelecionado.Tag as ProduçãoFiscal);
-            return lstProduções;
+                lstFabricações.Add(itemSelecionado.Tag as FabricaçãoFiscal);
+            return lstFabricações;
         }
 
         public void Carregar()
@@ -54,11 +54,11 @@ namespace Apresentação.Administrativo.Fiscal.Lista
 
         private ListViewItem[] CriarItens()
         {
-            var produções = ProduçãoFiscal.Obter();
-            ListViewItem[] itens = new ListViewItem[produções.Count];
+            var fabricações = FabricaçãoFiscal.Obter();
+            ListViewItem[] itens = new ListViewItem[fabricações.Count];
 
             int x = 0;
-            foreach (ProduçãoFiscal p in produções)
+            foreach (FabricaçãoFiscal p in fabricações)
                 itens[x++] = CriarItem(p);
 
             return itens;
@@ -72,7 +72,7 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             lista.ResumeLayout();
         }
 
-        private ListViewItem CriarItem(ProduçãoFiscal p)
+        private ListViewItem CriarItem(FabricaçãoFiscal p)
         {
             var item = new ListViewItem(new string[lista.Columns.Count]);
             item.Tag = p;
