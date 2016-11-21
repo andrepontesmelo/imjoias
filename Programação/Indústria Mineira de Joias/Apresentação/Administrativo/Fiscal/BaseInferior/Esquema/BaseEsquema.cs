@@ -12,6 +12,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
         public BaseEsquema()
         {
             InitializeComponent();
+            txtMercadoriaSelecionada.ListarApenasMatériasPrimas = true;
         }
 
         internal void Carregar(EsquemaProdução esquema)

@@ -19,7 +19,7 @@ namespace Apresentação.Mercadoria.Janela
 
         public void Carregar()
         {
-            var mercadorias = MercadoriaCampos.Obter();
+            var mercadorias = MercadoriaCampos.Obter(ListarApenasMatériasPrimas);
 
             localizador.Realçar();
             localizador.Abrir();
@@ -79,6 +79,8 @@ namespace Apresentação.Mercadoria.Janela
                 return lista.SelectedItems[0].Text;
             }
         }
+
+        public bool ListarApenasMatériasPrimas = false;
 
         private bool DispararEventoItemSelecionado()
         {

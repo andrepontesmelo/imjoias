@@ -269,9 +269,10 @@ namespace Entidades.Mercadoria
             return ObterMercadorias(prefixo, limite, false);
         }
 
-        public static List<MercadoriaCampos> Obter()
+        public static List<MercadoriaCampos> Obter(bool apenasMatériasPrimas)
         {
-            return Mapear<MercadoriaCampos>("select * from mercadoria");
+            return Mapear<MercadoriaCampos>("select * from mercadoria "
+                + (apenasMatériasPrimas ? " WHERE referencia in (select referencia from materiaprima) " : ""));
         }
             
         /// <summary>
