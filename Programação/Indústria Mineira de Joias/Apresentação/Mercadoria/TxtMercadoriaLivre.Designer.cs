@@ -38,7 +38,7 @@
             this.btnPesquisar.BackgroundImage = global::Apresentação.Resource.ZoomHS1;
             this.btnPesquisar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnPesquisar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPesquisar.Location = new System.Drawing.Point(154, 4);
+            this.btnPesquisar.Location = new System.Drawing.Point(158, 4);
             this.btnPesquisar.Name = "btnPesquisar";
             this.btnPesquisar.Size = new System.Drawing.Size(21, 18);
             this.btnPesquisar.TabIndex = 15;
