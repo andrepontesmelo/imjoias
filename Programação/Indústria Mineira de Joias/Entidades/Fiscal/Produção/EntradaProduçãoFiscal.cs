@@ -8,7 +8,7 @@ namespace Entidades.Fiscal.Produção
     {
         internal static readonly string RELAÇÃO = "entradaproducaofiscal";
 
-        internal static string ObterSqlInserçãoEntrada(ProduçãoFiscal produção, Ingrediente ingrediente, decimal qtdReceitas)
+        internal static string ObterSqlInserçãoEntrada(ProduçãoFiscal produção, MateriaPrima ingrediente, decimal qtdReceitas)
         {
             return string.Format("INSERT INTO entradaproducaofiscal (producaofiscal, referencia, quantidade) values ({0}, {1}, {2})",
                     DbTransformar(produção.Código),

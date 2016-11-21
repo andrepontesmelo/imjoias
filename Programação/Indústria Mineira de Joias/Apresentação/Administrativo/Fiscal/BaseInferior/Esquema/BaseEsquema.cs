@@ -7,7 +7,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
     public partial class BaseEsquema : Apresentação.Formulários.BaseInferior
     {
         private EsquemaProdução esquema;
-        private Ingrediente ingrediente;
+        private MateriaPrima ingrediente;
 
         public BaseEsquema()
         {
@@ -44,7 +44,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
             CarregarIngrediente(seleção[0]);
         }
 
-        private void CarregarIngrediente(Ingrediente ingrediente)
+        private void CarregarIngrediente(MateriaPrima ingrediente)
         {
             txtMercadoriaSelecionada.Referência = ingrediente?.Referência;
             txtCFOPSelecionado.Text = ingrediente?.CFOP.ToString();
@@ -87,7 +87,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != DialogResult.Yes)
                 return;
 
-            Ingrediente.Excluir(seleção);
+            MateriaPrima.Excluir(seleção);
             Carregar(esquema);
         }
 
@@ -100,7 +100,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
         {
             try
             {
-                new Ingrediente(esquema.Referência,
+                new MateriaPrima(esquema.Referência,
                     txtMercadoriaSelecionada.Referência,
                     (decimal)txtQuantidadeSelecionada.Double).Cadastrar();
             } catch (Exception erro)

@@ -262,7 +262,7 @@
     <Compile Include="Fiscal\Cupom\AdaptadorVarejo.cs" />
     <Compile Include="Fiscal\EntradaFiscal.cs" />
     <Compile Include="Fiscal\Esquema\EsquemaProdução.cs" />
-    <Compile Include="Fiscal\Esquema\Ingrediente.cs" />
+    <Compile Include="Fiscal\Esquema\MateriaPrima.cs" />
     <Compile Include="Fiscal\Exceções\ExceçãoFiscal.cs" />
     <Compile Include="Fiscal\Exceções\EsquemaInexistente.cs" />
     <Compile Include="Fiscal\Exceções\ProduçãoVazia.cs" />

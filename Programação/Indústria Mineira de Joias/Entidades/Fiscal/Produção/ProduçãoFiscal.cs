@@ -100,7 +100,7 @@ namespace Entidades.Fiscal.Produção
             if (novoItem.Quantidade == 0)
                 return;
 
-            var ingredientes = Ingrediente.Obter(esquema.Referência);
+            var ingredientes = MateriaPrima.Obter(esquema.Referência);
             decimal qtdReceitas = novoItem.Quantidade / esquema.Quantidade;
 
             AdicionarSaída(conexão, transação, novoItem, qtdReceitas);
@@ -119,7 +119,7 @@ namespace Entidades.Fiscal.Produção
             return esquema;
         }
 
-        private void AdicionarEntrada(System.Data.IDbConnection conexão, System.Data.IDbTransaction transação, decimal qtdReceitas, Ingrediente ingrediente)
+        private void AdicionarEntrada(System.Data.IDbConnection conexão, System.Data.IDbTransaction transação, decimal qtdReceitas, MateriaPrima ingrediente)
         {
             using (var cmd = conexão.CreateCommand())
             {

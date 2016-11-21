@@ -47,15 +47,15 @@ namespace Apresentação.Administrativo.Fiscal.Lista
         private List<ListViewItem> CriarItens(EsquemaProdução esquema)
         {
             List<ListViewItem> itens = new List<ListViewItem>();
-            var ingredientes = Ingrediente.Obter(esquema.Referência);
+            var ingredientes = MateriaPrima.Obter(esquema.Referência);
 
-            foreach (Ingrediente i in ingredientes)
+            foreach (MateriaPrima i in ingredientes)
                 itens.Add(CriarItem(i));
 
             return itens;
         }
 
-        private ListViewItem CriarItem(Ingrediente i)
+        private ListViewItem CriarItem(MateriaPrima i)
         {
             ListViewItem item = new ListViewItem(new string[lista.Columns.Count]);
             item.SubItems[colReferência.Index].Text = Entidades.Mercadoria.Mercadoria.MascararReferência(i.Referência);
@@ -67,16 +67,16 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             return item;
         }
 
-        public List<Ingrediente> Seleção
+        public List<MateriaPrima> Seleção
         {
             get
             {
-                List<Ingrediente> lst = new List<Ingrediente>();
+                List<MateriaPrima> lst = new List<MateriaPrima>();
 
                 var seleção = lista.SelectedItems;
 
                 foreach (ListViewItem i in seleção)
-                    lst.Add(i.Tag as Ingrediente);
+                    lst.Add(i.Tag as MateriaPrima);
 
                 return lst;
             }
