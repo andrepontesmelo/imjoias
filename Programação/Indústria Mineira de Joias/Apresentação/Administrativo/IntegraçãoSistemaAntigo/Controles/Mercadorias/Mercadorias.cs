@@ -41,10 +41,13 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             tabelaNova = dataSetNovo.Tables["mercadoria"];
 			tabelaVelha = dataSetVelho.Tables["cadmer"];
 			dbf = dbfOrigem;
+		}
 
+        public void MarcarMercadoriasForaDeLinha()
+        {
             foreach (DataRow linha in tabelaNova.Rows)
                 linha["foradelinha"] = true;
-		}
+        }
 		
 		private void TransporItem(DataRow itemAtual, DataSet dsNovo, StringBuilder saida)
 		{

@@ -45,8 +45,8 @@ namespace Apresentação.IntegraçãoSistemaAntigo
             AguardeDB.Fechar();
 
             MessageBox.Show("Fim. Estoque fiscal anterior foi importado !");
+            Environment.Exit(0);
         }
-
 
         public void TransporPreçosMatériasPrimas()
         {
@@ -62,6 +62,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo
             AguardeDB.Fechar();
 
             MessageBox.Show("Fim. Preços de matérias primas importado !");
+            Environment.Exit(0);
         }
 
         private DataSet TransporMercadoriasMatériasPrimas(string diretório)
@@ -128,7 +129,10 @@ namespace Apresentação.IntegraçãoSistemaAntigo
             dbf = new Dbf(diretório);
             dsVelho = dbf.ObterDataSetMercadoria();
 
-            new Controles.Mercadorias.Mercadorias(dsVelho, dsNovo, dbf).Transpor(strSaída, false, dsNovo);
+            var mercadorias = new Controles.Mercadorias.Mercadorias(dsVelho, dsNovo, dbf);
+            mercadorias.MarcarMercadoriasForaDeLinha();
+            mercadorias.Transpor(strSaída, false, dsNovo);
+
             new IntegraçãoComponenteCusto().Transpor(dsVelho);
             MySQL.GravarDataSetTodasTabelas(dsNovo);
 
