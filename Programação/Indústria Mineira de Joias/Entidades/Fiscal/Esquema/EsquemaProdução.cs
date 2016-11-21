@@ -41,6 +41,7 @@ namespace Entidades.Fiscal.Esquema
 
         public EsquemaProdução()
         {
+            quantidade = 1;
         }
 
         private static List<EsquemaProdução> lstEsquemas;
