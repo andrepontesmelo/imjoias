@@ -269,9 +269,9 @@ namespace Entidades.Mercadoria
             return ObterMercadorias(prefixo, limite, false);
         }
 
-        public static IEnumerator ObterEnumeradorMercadoriaCampos()
+        public static List<MercadoriaCampos> Obter()
         {
-            return árvore.GetEnumerator();
+            return Mapear<MercadoriaCampos>("select * from mercadoria");
         }
             
         /// <summary>

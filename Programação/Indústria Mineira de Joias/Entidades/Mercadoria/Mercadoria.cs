@@ -556,11 +556,6 @@ namespace Entidades.Mercadoria
             return ObterMercadoria(referência, Tabela.TabelaPadrão);
         }
 
-        public static IEnumerator ObterMercadoriasCampos()
-        {
-            return MercadoriaCampos.ObterEnumeradorMercadoriaCampos();
-        }
-
         /// <summary>
         /// Carrega uma mercadoria do banco de dados com o peso especificado.
         /// </summary>

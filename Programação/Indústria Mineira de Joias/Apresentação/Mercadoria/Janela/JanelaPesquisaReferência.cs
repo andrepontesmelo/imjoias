@@ -19,7 +19,7 @@ namespace Apresentação.Mercadoria.Janela
 
         public void Carregar()
         {
-            var mercadorias = Entidades.Mercadoria.Mercadoria.ObterMercadoriasCampos();
+            var mercadorias = MercadoriaCampos.Obter();
 
             localizador.Realçar();
             localizador.Abrir();
@@ -30,12 +30,12 @@ namespace Apresentação.Mercadoria.Janela
             lista.ResumeLayout();
         }
 
-        private ListViewItem[] CriarItens(IEnumerator mercadorias)
+        private ListViewItem[] CriarItens(List<MercadoriaCampos> mercadorias)
         {
             List<ListViewItem> itens = new List<ListViewItem>();
-            mercadorias.Reset();
-            while (mercadorias.MoveNext())
-                itens.Add(CriarItem(mercadorias.Current as MercadoriaCampos));
+
+            foreach (MercadoriaCampos m in mercadorias)
+                itens.Add(CriarItem(m));
 
             return itens.ToArray();
         }
@@ -57,11 +57,6 @@ namespace Apresentação.Mercadoria.Janela
             base.OnShown(e);
 
             Carregar();
-        }
-
-        private void textBox_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
