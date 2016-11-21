@@ -3,6 +3,7 @@ using Apresentação.Formulários;
 using Entidades.Fiscal.Exceções;
 using Entidades.Fiscal.Produção;
 using System.Windows.Forms;
+using System;
 
 namespace Apresentação.Administrativo.Fiscal.BaseInferior.Produção
 {
@@ -37,6 +38,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Produção
             {
                 AguardeDB.Mostrar();
                 produção.AdicionarProdução(new ItemProduçãoFiscal(txtMercadoria.Mercadoria.ReferênciaNumérica, (decimal)txtQuantidade.Double));
+                LimparCampos();
             }
             catch (ExceçãoFiscal erro)
             {
@@ -48,6 +50,15 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Produção
                 Carregar(produção);
                 AguardeDB.Fechar();
             }
+        }
+
+        private void LimparCampos()
+        {
+            txtMercadoria.Referência = "";
+            txtCFOP.Text = "";
+            txtDescrição.Text = "";
+            txtQuantidade.Text = "";
+            cmbTipoUnidade = null;
         }
 
         private void listaEntradas_AoExcluir(object sender, System.EventArgs e)
