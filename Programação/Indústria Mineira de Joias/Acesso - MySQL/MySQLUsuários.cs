@@ -193,6 +193,7 @@ namespace Acesso.MySQL
             strConexão.Append(";Port=");
             strConexão.Append(porta.ToString());
             strConexão.Append(";Connection Timeout=600");
+            strConexão.Append(";Allow User Variables=True");
 
             últimaStrConexão = strConexão.ToString();
 
