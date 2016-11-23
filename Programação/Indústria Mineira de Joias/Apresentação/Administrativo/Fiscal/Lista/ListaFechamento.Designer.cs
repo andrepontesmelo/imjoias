@@ -32,6 +32,7 @@
             this.btnExcluir = new System.Windows.Forms.ToolStripButton();
             this.btnNovo = new System.Windows.Forms.ToolStripButton();
             this.btnEditar = new System.Windows.Forms.ToolStripButton();
+            this.btnAtualizar = new System.Windows.Forms.ToolStripButton();
             this.lista = new Apresentação.Formulários.ListViewUsabilidade();
             this.colId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colInício = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -45,12 +46,13 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnExcluir,
             this.btnNovo,
-            this.btnEditar});
+            this.btnEditar,
+            this.btnAtualizar});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(519, 25);
             this.toolStrip1.TabIndex = 1;
-            this.toolStrip1.Text = "toolStrip1";
+            this.toolStrip1.Text = "Atualizar Mercadorias";
             // 
             // btnExcluir
             // 
@@ -81,6 +83,16 @@
             this.btnEditar.Size = new System.Drawing.Size(23, 22);
             this.btnEditar.Text = "Editar";
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            // 
+            // btnAtualizar
+            // 
+            this.btnAtualizar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnAtualizar.Image = global::Apresentação.Resource.Deep_Refresh;
+            this.btnAtualizar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAtualizar.Name = "btnAtualizar";
+            this.btnAtualizar.Size = new System.Drawing.Size(23, 22);
+            this.btnAtualizar.Text = "toolStripButton1";
+            this.btnAtualizar.Click += new System.EventHandler(this.btnAtualizar_Click);
             // 
             // lista
             // 
@@ -147,5 +159,6 @@
         private System.Windows.Forms.ToolStripButton btnExcluir;
         private System.Windows.Forms.ToolStripButton btnNovo;
         private System.Windows.Forms.ToolStripButton btnEditar;
+        private System.Windows.Forms.ToolStripButton btnAtualizar;
     }
 }

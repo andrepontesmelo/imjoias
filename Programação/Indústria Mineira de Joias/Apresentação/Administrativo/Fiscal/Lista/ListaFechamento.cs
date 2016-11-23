@@ -114,5 +114,15 @@ namespace Apresentação.Administrativo.Fiscal.Lista
         {
             Editar();
         }
+
+        private void btnAtualizar_Click(object sender, EventArgs e)
+        {
+            var seleção = Seleção;
+
+            if (seleção == null)
+                return;
+
+            seleção.AtualizarMercadorias();
+        }
     }
 }

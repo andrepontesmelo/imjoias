@@ -77,7 +77,6 @@ namespace Entidades.Fiscal
         {
             base.Cadastrar();
             cache = null;
-
         }
 
         public override void Descadastrar()
@@ -100,6 +99,37 @@ namespace Entidades.Fiscal
         private bool Dentro(DateTime data)
         {
             return data >= Início && data < Fim.AddDays(1);  
+        }
+
+        public void AtualizarMercadorias()
+        {
+            if (Fechado)
+                throw new Exception("Não é possível atualizar um fechamento fechado");
+
+            var conexão = Conexão;
+
+            lock (conexão)
+            {
+                using (var transação = conexão.BeginTransaction())
+                {
+                    using (var cmd = conexão.CreateCommand())
+                    {
+                        cmd.Transaction = transação;
+                        cmd.CommandText = "delete from mercadoriafechamento where fechamento=" + DbTransformar(Código);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    using (var cmd = conexão.CreateCommand())
+                    {
+                        cmd.Transaction = transação;
+                        cmd.CommandText = string.Format("insert into mercadoriafechamento(referencia, descricao, valor, fechamento) " +
+                        " select m.*, {0} as fechamento from mercadoria_fiscal m", DbTransformar(Código));
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    transação.Commit();
+                }
+            }
         }
     }
 }
