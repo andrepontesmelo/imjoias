@@ -37,6 +37,7 @@
             this.quadro2 = new Apresentação.Formulários.Quadro();
             this.opçãoSelecionarNegativos = new Apresentação.Formulários.Opção();
             this.opçãoLimparSeleção = new Apresentação.Formulários.Opção();
+            this.cmbFechamento = new Apresentação.Administrativo.Fiscal.Combo.ComboFechamento();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.quadro2.SuspendLayout();
@@ -186,10 +187,21 @@
             this.opçãoLimparSeleção.TabIndex = 3;
             this.opçãoLimparSeleção.Click += new System.EventHandler(this.opçãoLimparSeleção_Click);
             // 
+            // cmbFechamento
+            // 
+            this.cmbFechamento.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbFechamento.Location = new System.Drawing.Point(792, 71);
+            this.cmbFechamento.Name = "cmbFechamento";
+            this.cmbFechamento.Size = new System.Drawing.Size(252, 23);
+            this.cmbFechamento.TabIndex = 8;
+            this.cmbFechamento.SelectedIndexChanged += new System.EventHandler(this.cmbFechamento_SelectedIndexChanged);
+            // 
             // BaseInventário
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cmbFechamento);
             this.Controls.Add(this.listaInventário);
             this.Controls.Add(this.títuloBaseInferior1);
             this.Name = "BaseInventário";
@@ -197,6 +209,7 @@
             this.Controls.SetChildIndex(this.esquerda, 0);
             this.Controls.SetChildIndex(this.títuloBaseInferior1, 0);
             this.Controls.SetChildIndex(this.listaInventário, 0);
+            this.Controls.SetChildIndex(this.cmbFechamento, 0);
             this.esquerda.ResumeLayout(false);
             this.quadro1.ResumeLayout(false);
             this.quadro2.ResumeLayout(false);
@@ -215,5 +228,6 @@
         private Formulários.Quadro quadro2;
         private Formulários.Opção opçãoSelecionarNegativos;
         private Formulários.Opção opçãoLimparSeleção;
+        private Combo.ComboFechamento cmbFechamento;
     }
 }

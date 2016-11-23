@@ -1,6 +1,7 @@
 ﻿using Acesso.Comum;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Entidades.Fiscal
 {
@@ -71,6 +72,19 @@ namespace Entidades.Fiscal
                 codigo,
                 inicio.ToShortDateString(),
                 fim.ToShortDateString());
+        }
+
+        public static Fechamento Obter(int código)
+        {
+            if (cache == null)
+                cache = Obter();
+
+            var item =
+                (from i in cache
+                where i.Código.Equals(código)
+                select i).FirstOrDefault();
+
+            return item;
         }
 
         public override void Cadastrar()

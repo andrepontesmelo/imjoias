@@ -4,6 +4,7 @@ using Apresentação.Administrativo.Fiscal.Janela;
 using Apresentação.Formulários;
 using Apresentação.Impressão.Relatórios.Fiscal.Inventário;
 using Entidades.Configuração;
+using Entidades.Fiscal;
 using Entidades.Fiscal.Exceções;
 using Entidades.Fiscal.Fabricação;
 using System;
@@ -11,7 +12,7 @@ using System.Collections.Generic;
 
 namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
 {
-    public partial class BaseInventário : Apresentação.Formulários.BaseInferior
+    public partial class BaseInventário : Formulários.BaseInferior
     {
         public BaseInventário()
         {
@@ -25,32 +26,30 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
             Carregar();
         }
 
+        public DateTime? Data
+        {
+            get
+            {
+                Fechamento fechamento = cmbFechamento.Seleção as Fechamento;
+                if (fechamento == null)
+                    return null;
+
+                return fechamento.Fim;
+            }
+        }
+
         private void Carregar()
         {
+            cmbFechamento.Carregar();
+
             títuloBaseInferior1.Título = string.Format("Inventário {0}",
-                !Data.HasValue ? "atual" : "em " + Data.Value.ToShortDateString() + " " + Data.Value.ToShortTimeString());
+                !Data.HasValue ? "atual" : "em " + Data.Value.ToShortDateString());
 
             AguardeDB.Mostrar();
             listaInventário.Carregar(Data);
             AguardeDB.Fechar();
         }
         
-        public DateTime? Data
-        {
-            get
-            {
-                if (optPassado.Checked)
-                    return dataMáxima.Value as DateTime?;
-
-                return null;
-            }
-        }
-        private void dataMáxima_Validated(object sender, System.EventArgs e)
-        {
-            if (optPassado.Checked)
-                Carregar();
-        }
-
         private void optAtual_CheckedChanged(object sender, EventArgs e)
         {
             Carregar();
@@ -111,6 +110,11 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
         private void opçãoSelecionarNegativos_Click(object sender, EventArgs e)
         {
             listaInventário.SelecionarNegativos();
+        }
+
+        private void cmbFechamento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Carregar();
         }
     }
 }

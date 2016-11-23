@@ -10,7 +10,8 @@ namespace Apresentação.Administrativo.Fiscal.Combo
     {
         public event EventHandler SelectedIndexChanged;
 
-        ConfiguraçãoUsuário<int?> fechamentoEmUso;
+        ConfiguraçãoUsuário<int> fechamentoEmUso;
+        private bool carregando = false;
 
         public ComboFechamento()
         {
@@ -20,13 +21,16 @@ namespace Apresentação.Administrativo.Fiscal.Combo
             if (DadosGlobais.ModoDesenho)
                 return;
 
-            fechamentoEmUso = new ConfiguraçãoUsuário<int?>("fechamentoEmUso", null);
+            fechamentoEmUso = new ConfiguraçãoUsuário<int>("fechamentoEmUso", 0);
         }
 
         private void Cmb_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (carregando)
+                return;
+
             Fechamento seleção = Seleção as Fechamento;
-            fechamentoEmUso.Valor = seleção?.Código;
+            fechamentoEmUso.Valor = seleção.Código;
 
             SelectedIndexChanged?.Invoke(sender, e);
         }
@@ -35,14 +39,12 @@ namespace Apresentação.Administrativo.Fiscal.Combo
 
         public void Carregar()
         {
+            carregando = true;
             CarregarItens(Fechamento.Obter());
 
-            foreach (Fechamento f in cmb.Items)
-                if (f.Código.Equals(fechamentoEmUso.Valor))
-                {
-                    cmb.SelectedValue = f;
-                    return;
-                }
+            cmb.SelectedItem = Fechamento.Obter(fechamentoEmUso.Valor);
+
+            carregando = false;
         }
 
         private void CarregarItens(List<Fechamento> entidades)

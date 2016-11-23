@@ -24,8 +24,10 @@ namespace Entidades.Fiscal
 
         public static List<Inventário> Obter(DateTime? dataLimite)
         {
-            return Mapear<Inventário>(string.Format("select i.* from (select @d1 := {0} p) parm, inventario_parcial i ", 
-                dataLimite == null ? "NOW()" : DbTransformar(dataLimite.Value)));
+            var sql = string.Format("select i.* from (select @d1 := {0} p) parm, inventario_parcial i ",
+                dataLimite == null ? "NOW()" : DbTransformar(dataLimite.Value.AddDays(1)));
+
+            return Mapear<Inventário>(sql);
         }
 
         public ItemFabricaçãoFiscal ObterItemfabricação()
