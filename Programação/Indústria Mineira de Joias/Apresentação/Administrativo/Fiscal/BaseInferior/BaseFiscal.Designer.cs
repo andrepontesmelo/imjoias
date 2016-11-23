@@ -44,8 +44,9 @@
             this.quadro4 = new Apresentação.Formulários.Quadro();
             this.opçãoInventário = new Apresentação.Formulários.Opção();
             this.quadro5 = new Apresentação.Formulários.Quadro();
-            this.opçãoImportarEstoqueAnteriorSistemaLegado = new Apresentação.Formulários.Opção();
             this.opçãoImportarPreçosMatériasPrimas = new Apresentação.Formulários.Opção();
+            this.opçãoImportarEstoqueAnteriorSistemaLegado = new Apresentação.Formulários.Opção();
+            this.listaFechamento = new Apresentação.Administrativo.Fiscal.Lista.ListaFechamento();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.quadro2.SuspendLayout();
@@ -306,20 +307,6 @@
             this.quadro5.Tamanho = 30;
             this.quadro5.Título = "Sistema Legado";
             // 
-            // opçãoImportarEstoqueAnteriorSistemaLegado
-            // 
-            this.opçãoImportarEstoqueAnteriorSistemaLegado.BackColor = System.Drawing.Color.Transparent;
-            this.opçãoImportarEstoqueAnteriorSistemaLegado.Descrição = "Importar Est. Ant. Cadmer";
-            this.opçãoImportarEstoqueAnteriorSistemaLegado.Imagem = global::Apresentação.Resource.repair;
-            this.opçãoImportarEstoqueAnteriorSistemaLegado.Location = new System.Drawing.Point(7, 60);
-            this.opçãoImportarEstoqueAnteriorSistemaLegado.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.opçãoImportarEstoqueAnteriorSistemaLegado.MaximumSize = new System.Drawing.Size(150, 100);
-            this.opçãoImportarEstoqueAnteriorSistemaLegado.MinimumSize = new System.Drawing.Size(150, 16);
-            this.opçãoImportarEstoqueAnteriorSistemaLegado.Name = "opçãoImportarEstoqueAnteriorSistemaLegado";
-            this.opçãoImportarEstoqueAnteriorSistemaLegado.Size = new System.Drawing.Size(150, 16);
-            this.opçãoImportarEstoqueAnteriorSistemaLegado.TabIndex = 2;
-            this.opçãoImportarEstoqueAnteriorSistemaLegado.Click += new System.EventHandler(this.opçãoImportarEstoqueAnteriorSistemaLegado_Click);
-            // 
             // opçãoImportarPreçosMatériasPrimas
             // 
             this.opçãoImportarPreçosMatériasPrimas.BackColor = System.Drawing.Color.Transparent;
@@ -334,13 +321,39 @@
             this.opçãoImportarPreçosMatériasPrimas.TabIndex = 6;
             this.opçãoImportarPreçosMatériasPrimas.Click += new System.EventHandler(this.opçãoImportarPreçosMatériasPrimas_Click);
             // 
+            // opçãoImportarEstoqueAnteriorSistemaLegado
+            // 
+            this.opçãoImportarEstoqueAnteriorSistemaLegado.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoImportarEstoqueAnteriorSistemaLegado.Descrição = "Importar Est. Ant. Cadmer";
+            this.opçãoImportarEstoqueAnteriorSistemaLegado.Imagem = global::Apresentação.Resource.repair;
+            this.opçãoImportarEstoqueAnteriorSistemaLegado.Location = new System.Drawing.Point(7, 60);
+            this.opçãoImportarEstoqueAnteriorSistemaLegado.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoImportarEstoqueAnteriorSistemaLegado.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoImportarEstoqueAnteriorSistemaLegado.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoImportarEstoqueAnteriorSistemaLegado.Name = "opçãoImportarEstoqueAnteriorSistemaLegado";
+            this.opçãoImportarEstoqueAnteriorSistemaLegado.Size = new System.Drawing.Size(150, 16);
+            this.opçãoImportarEstoqueAnteriorSistemaLegado.TabIndex = 2;
+            this.opçãoImportarEstoqueAnteriorSistemaLegado.Click += new System.EventHandler(this.opçãoImportarEstoqueAnteriorSistemaLegado_Click);
+            // 
+            // listaFechamento
+            // 
+            this.listaFechamento.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listaFechamento.Location = new System.Drawing.Point(193, 104);
+            this.listaFechamento.Name = "listaFechamento";
+            this.listaFechamento.Size = new System.Drawing.Size(592, 413);
+            this.listaFechamento.TabIndex = 7;
+            // 
             // BaseFiscal
             // 
+            this.Controls.Add(this.listaFechamento);
             this.Controls.Add(this.títuloBaseInferior1);
             this.Name = "BaseFiscal";
             this.Size = new System.Drawing.Size(801, 520);
             this.Controls.SetChildIndex(this.esquerda, 0);
             this.Controls.SetChildIndex(this.títuloBaseInferior1, 0);
+            this.Controls.SetChildIndex(this.listaFechamento, 0);
             this.esquerda.ResumeLayout(false);
             this.quadro1.ResumeLayout(false);
             this.quadro2.ResumeLayout(false);
@@ -370,5 +383,6 @@
         private Formulários.Quadro quadro5;
         private Formulários.Opção opçãoImportarEstoqueAnteriorSistemaLegado;
         private Formulários.Opção opçãoImportarPreçosMatériasPrimas;
+        private Administrativo.Fiscal.Lista.ListaFechamento listaFechamento;
     }
 }

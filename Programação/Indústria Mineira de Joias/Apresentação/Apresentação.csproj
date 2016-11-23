@@ -213,6 +213,12 @@
     <Compile Include="Administrativo\Fiscal\Lista\ListaExtrato.Designer.cs">
       <DependentUpon>ListaExtrato.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrativo\Fiscal\Lista\ListaFechamento.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Administrativo\Fiscal\Lista\ListaFechamento.Designer.cs">
+      <DependentUpon>ListaFechamento.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administrativo\Fiscal\Lista\ListaIngredienteEsquema.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -2571,6 +2577,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administrativo\Fiscal\Lista\ListaExtrato.resx">
       <DependentUpon>ListaExtrato.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrativo\Fiscal\Lista\ListaFechamento.resx">
+      <DependentUpon>ListaFechamento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administrativo\Fiscal\Lista\ListaIngredienteEsquema.resx">
       <DependentUpon>ListaIngredienteEsquema.cs</DependentUpon>

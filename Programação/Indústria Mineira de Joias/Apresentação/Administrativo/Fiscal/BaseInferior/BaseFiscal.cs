@@ -19,6 +19,12 @@ namespace Apresentação.Fiscal.BaseInferior
             InitializeComponent();
         }
 
+        protected override void AoExibir()
+        {
+            base.AoExibir();
+            listaFechamento.Carregar();
+        }
+
         private void opçãoImportação_Click(object sender, EventArgs e)
         {
             new JanelaImportação().Show();
