@@ -29,13 +29,13 @@ namespace Apresentação.Administrativo.Fiscal.Combo
             if (carregando)
                 return;
 
-            Fechamento seleção = Seleção as Fechamento;
+            var seleção = Seleção;
             fechamentoEmUso.Valor = seleção.Código;
 
             SelectedIndexChanged?.Invoke(sender, e);
         }
 
-        public object Seleção => cmb.SelectedItem;
+        public Fechamento Seleção => cmb.SelectedItem as Fechamento;
 
         public void Carregar()
         {

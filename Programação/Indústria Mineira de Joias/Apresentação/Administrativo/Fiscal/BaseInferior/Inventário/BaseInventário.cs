@@ -30,7 +30,8 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
         {
             get
             {
-                Fechamento fechamento = cmbFechamento.Seleção as Fechamento;
+                var fechamento = cmbFechamento.Seleção;
+
                 if (fechamento == null)
                     return null;
 
