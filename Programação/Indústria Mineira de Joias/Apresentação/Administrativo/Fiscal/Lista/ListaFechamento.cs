@@ -12,6 +12,8 @@ namespace Apresentação.Administrativo.Fiscal.Lista
 {
     public partial class ListaFechamento : UserControl
     {
+        public Fechamento Seleção => lista.SelectedItems.Count > 0 ? lista.SelectedItems[0].Tag as Fechamento : null; 
+
         public ListaFechamento()
         {
             InitializeComponent();
@@ -53,6 +55,35 @@ namespace Apresentação.Administrativo.Fiscal.Lista
         private string FormatarData(DateTime início)
         {
             return início.ToShortDateString();
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            SolicitarExclusão();
+        }
+
+        private void lista_AoExcluir(object sender, EventArgs e)
+        {
+            SolicitarExclusão();
+        }
+
+        private void SolicitarExclusão()
+        {
+            Fechamento seleção = Seleção;
+
+            if (seleção == null)
+                return;
+
+            if (MessageBox.Show(this,
+                "Confirma exclusão?",
+                "Confirmação de exclusão",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2) != DialogResult.Yes)
+                return;
+
+            seleção.Excluir();
+            Carregar();
         }
     }
 }

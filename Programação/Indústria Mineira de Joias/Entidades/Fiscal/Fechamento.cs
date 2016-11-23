@@ -39,5 +39,11 @@ namespace Entidades.Fiscal
         {
             return Mapear<Fechamento>("select * from fechamento");
         }
+
+        public void Excluir()
+        {
+            ExecutarComando(string.Format("delete from fechamento where codigo = {0}",
+                Código));
+        }
     }
 }
