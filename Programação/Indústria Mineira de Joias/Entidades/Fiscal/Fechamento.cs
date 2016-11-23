@@ -115,10 +115,10 @@ namespace Entidades.Fiscal
             return data >= Início && data < Fim.AddDays(1);  
         }
 
-        public void AtualizarMercadorias()
+        public void AtualizarMercadoriasSeAberto()
         {
             if (Fechado)
-                throw new Exception("Não é possível atualizar um fechamento fechado");
+                return;
 
             var conexão = Conexão;
 

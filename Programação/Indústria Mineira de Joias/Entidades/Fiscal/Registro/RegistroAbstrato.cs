@@ -6,7 +6,7 @@ namespace Entidades.Fiscal.Registro
     public abstract class RegistroAbstrato : DbManipulaçãoSimples
     {
         protected string referencia;
-        protected string nome;
+        protected string descricao;
         protected int tipounidade;
         protected string classificacaofiscal;
 
@@ -16,7 +16,7 @@ namespace Entidades.Fiscal.Registro
             set { classificacaofiscal = value; }
         }
 
-        protected string FormatarMoeda(double valor)
+        protected string FormatarMoeda(decimal valor)
         {
             return valor.ToString("C");
         }
@@ -41,7 +41,7 @@ namespace Entidades.Fiscal.Registro
 
 
         public string Referência => referencia;
-        public string Descrição => nome;
+        public string Descrição => descricao;
         public TipoUnidade TipoUnidadeComercial => TipoUnidade.Obter(tipounidade);
     }
 }

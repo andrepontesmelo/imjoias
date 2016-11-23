@@ -39,6 +39,8 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
             }
         }
 
+        public Fechamento Fechamento => cmbFechamento.Seleção;
+
         private void Carregar()
         {
             cmbFechamento.Carregar();
@@ -47,7 +49,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
                 !Data.HasValue ? "atual" : "em " + Data.Value.ToShortDateString());
 
             AguardeDB.Mostrar();
-            listaInventário.Carregar(Data);
+            listaInventário.Carregar(Fechamento);
             AguardeDB.Fechar();
         }
         
@@ -98,7 +100,8 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
             DateTime data = Data.HasValue ? Data.Value : DadosGlobais.Instância.HoraDataAtual;
 
             janela.InserirDocumento("Inventário", "Relatório de inventário", 
-                new ControladorImpressãoInventário().CriarRelatório(data));
+                
+                new ControladorImpressãoInventário().CriarRelatório(Fechamento));
 
             janela.ShowDialog(this);
         }

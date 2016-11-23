@@ -100,7 +100,7 @@ namespace Entidades.Fiscal
         public string DataFormatada => string.Format("{0} {1}",
             data.ToShortDateString(), data.ToShortTimeString());
 
-        public string ValorFormatado => FormatarMoeda((double) valor);
+        public string ValorFormatado => FormatarMoeda(valor);
 
         public static List<Extrato> ObterEstoqueAcumulado(string referência, DateTime início, DateTime fim)
         {
