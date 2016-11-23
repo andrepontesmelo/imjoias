@@ -55,15 +55,51 @@ namespace Entidades.Fiscal
             }
         }
 
+
+        private static List<Fechamento> cache = null;
         public static List<Fechamento> Obter()
         {
-            return Mapear<Fechamento>("select * from fechamento");
+            if (cache == null)
+                cache = Mapear<Fechamento>("select * from fechamento");
+
+            return cache;
         }
 
-        public void Excluir()
+        public override string ToString()
         {
-            ExecutarComando(string.Format("delete from fechamento where codigo = {0}",
-                Código));
+            return string.Format("{0}: {1} a {2}",
+                codigo,
+                inicio.ToShortDateString(),
+                fim.ToShortDateString());
+        }
+
+        public override void Cadastrar()
+        {
+            base.Cadastrar();
+            cache = null;
+
+        }
+
+        public override void Descadastrar()
+        {
+            base.Descadastrar();
+            cache = null;
+        }
+
+        public override void Atualizar()
+        {
+            base.Atualizar();
+            cache = null;
+        }
+
+        internal bool Fora(DateTime data)
+        {
+            return !Dentro(data);
+        }
+
+        private bool Dentro(DateTime data)
+        {
+            return data >= Início && data < Fim.AddDays(1);  
         }
     }
 }

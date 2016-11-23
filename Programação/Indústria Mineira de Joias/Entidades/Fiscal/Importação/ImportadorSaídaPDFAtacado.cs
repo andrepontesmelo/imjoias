@@ -14,7 +14,7 @@ namespace Entidades.Fiscal.Importação
         public static readonly string DESCRIÇÃO = "Importação de PDF's de atacado";
         public static readonly string PADRÂO_ARQUIVO = "*.pdf";
 
-        public ImportadorSaídaPDFAtacado()
+        public ImportadorSaídaPDFAtacado(Fechamento fechamento) : base(fechamento)
         {
         }
 

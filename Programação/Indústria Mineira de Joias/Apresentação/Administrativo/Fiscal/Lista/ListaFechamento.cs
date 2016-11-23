@@ -78,9 +78,9 @@ namespace Apresentação.Administrativo.Fiscal.Lista
                 MessageBoxDefaultButton.Button2) != DialogResult.Yes)
                 return;
 
-            seleção.Excluir();
+            seleção.Descadastrar();
             Carregar();
-        }
+        } 
 
         private void btnNovo_Click(object sender, EventArgs e)
         {

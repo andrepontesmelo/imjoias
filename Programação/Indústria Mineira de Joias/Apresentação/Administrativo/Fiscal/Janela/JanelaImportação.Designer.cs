@@ -38,6 +38,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnPasta = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboFechamento = new Apresentação.Administrativo.Fiscal.Combo.ComboFechamento();
             ((System.ComponentModel.ISupportInitialize)(this.picÍcone)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,7 +61,7 @@
             // 
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(303, 303);
+            this.btnCancelar.Location = new System.Drawing.Point(303, 344);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 3;
@@ -71,7 +73,7 @@
             // 
             this.btnIniciar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnIniciar.Enabled = false;
-            this.btnIniciar.Location = new System.Drawing.Point(222, 303);
+            this.btnIniciar.Location = new System.Drawing.Point(222, 344);
             this.btnIniciar.Name = "btnIniciar";
             this.btnIniciar.Size = new System.Drawing.Size(75, 23);
             this.btnIniciar.TabIndex = 4;
@@ -168,13 +170,33 @@
             this.btnPasta.TabIndex = 13;
             this.btnPasta.Click += new System.EventHandler(this.btnPasta_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(23, 292);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(76, 13);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Fechamento";
+            // 
+            // comboFechamento
+            // 
+            this.comboFechamento.Location = new System.Drawing.Point(26, 314);
+            this.comboFechamento.Name = "comboFechamento";
+            this.comboFechamento.Size = new System.Drawing.Size(352, 22);
+            this.comboFechamento.TabIndex = 15;
+            this.comboFechamento.SelectedIndexChanged += new System.EventHandler(this.comboFechamento_SelectedIndexChanged);
+            // 
             // JanelaImportação
             // 
             this.AcceptButton = this.btnIniciar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(392, 338);
+            this.ClientSize = new System.Drawing.Size(392, 379);
+            this.Controls.Add(this.comboFechamento);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnPasta);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -197,6 +219,8 @@
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.label2, 0);
             this.Controls.SetChildIndex(this.btnPasta, 0);
+            this.Controls.SetChildIndex(this.label3, 0);
+            this.Controls.SetChildIndex(this.comboFechamento, 0);
             ((System.ComponentModel.ISupportInitialize)(this.picÍcone)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -215,5 +239,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel btnPasta;
+        private System.Windows.Forms.Label label3;
+        private Administrativo.Fiscal.Combo.ComboFechamento comboFechamento;
     }
 }

@@ -16,7 +16,7 @@ namespace Entidades.Fiscal.Importação
 
         private SortedSet<string> idsCadastrados;
 
-        public ImportadorSaídaTDMVarejo()
+        public ImportadorSaídaTDMVarejo(Fechamento fechamento) : base(fechamento)
         {
             idsCadastrados = new SortedSet<string>(SaídaFiscal.ObterIds());
         }
@@ -65,6 +65,14 @@ namespace Entidades.Fiscal.Importação
 
         private bool IgnorarArquivo(string arquivo, ResultadoImportação resultado, DocumentoFiscal saída)
         {
+            var saídaFiscal = saída as SaídaFiscal;
+
+            if (saída != null && fechamento.Fora(saídaFiscal.DataSaída))
+            {
+                resultado.ArquivosIgnorados.Adicionar(new ArquivoIgnorado(arquivo, Motivo.ForaFechamento, saída.Id));
+                return true;
+            }
+
             if (idsCadastrados.Contains(saída.Id.ToLower()))
             {
                 resultado.ArquivosIgnorados.Adicionar(new ArquivoIgnorado(arquivo, Motivo.ChaveJáImportada, saída.Id));

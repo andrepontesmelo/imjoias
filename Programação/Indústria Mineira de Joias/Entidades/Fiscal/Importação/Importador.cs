@@ -8,8 +8,11 @@ namespace Entidades.Fiscal.Importação
 {
     public abstract class Importador
     {
-        public Importador()
+        protected Fechamento fechamento;
+
+        public Importador(Fechamento fechamento)
         {
+            this.fechamento = fechamento;
         }
 
         protected List<string> ObterArquivos(string pasta, string padrão, SearchOption opções)

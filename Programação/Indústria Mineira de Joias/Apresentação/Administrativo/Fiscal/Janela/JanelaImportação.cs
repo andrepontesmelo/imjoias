@@ -1,5 +1,6 @@
 ﻿using Apresentação.Formulários;
 using Entidades.Configuração;
+using Entidades.Fiscal;
 using Entidades.Fiscal.Importação;
 using Entidades.Fiscal.Importação.Resultado;
 using System;
@@ -37,6 +38,8 @@ namespace Apresentação.Fiscal.Janela
             chkSaídaPDFAtacado.Checked = importarPDFAtacadoSaída.Valor;
 
             txtDiretório.Text = diretórioInicial.Valor;
+
+            comboFechamento.Carregar();
         }
 
         private void btnCancelar_Click(object sender, System.EventArgs e)
@@ -104,7 +107,7 @@ namespace Apresentação.Fiscal.Janela
             thread.ProgressChanged += Thread_ProgressChanged;
             thread.RunWorkerCompleted += Thread_RunWorkerCompleted;
             thread.DoWork += métodoExecução;
-            thread.RunWorkerAsync(caminho);
+            thread.RunWorkerAsync(new ArgumentoImportação(caminho, Fechamento));
 
             hashAguarde[thread] = aguarde;
         }
@@ -144,29 +147,37 @@ namespace Apresentação.Fiscal.Janela
             aguarde.Passos(e.ProgressPercentage, e.UserState as string);
         }
 
+        private Fechamento Fechamento => comboFechamento.Seleção as Fechamento;
+
         private void Thread_ImportarXMLAtacadoSaída(object sender, DoWorkEventArgs e)
         {
-            e.Result = new ImportadorSaídaXMLAtacado().ImportarArquivos(e.Argument as string, sender as BackgroundWorker);
+            var arg = e.Argument as ArgumentoImportação;
+
+            e.Result = new ImportadorSaídaXMLAtacado(arg.Fechamento).ImportarArquivos(arg.Caminho, sender as BackgroundWorker);
         }
 
         private void Thread_ImportarCancelamentosAtacado(object sender, DoWorkEventArgs e)
         {
-            e.Result = new ImportadorCancelamentosAtacado().ImportarArquivos(e.Argument as string, sender as BackgroundWorker);
+            var arg = e.Argument as ArgumentoImportação;
+            e.Result = new ImportadorCancelamentosAtacado(arg.Fechamento).ImportarArquivos(arg.Caminho, sender as BackgroundWorker);
         }
 
         private void Thread_ImportarXMLAtacadoEntrada(object sender, DoWorkEventArgs e)
         {
-            e.Result = new ImportadorEntradaXMLAtacado().ImportarArquivos(e.Argument as string, sender as BackgroundWorker);
+            var arg = e.Argument as ArgumentoImportação;
+            e.Result = new ImportadorEntradaXMLAtacado(arg.Fechamento).ImportarArquivos(arg.Caminho, sender as BackgroundWorker);
         }
 
         private void Thread_ImportarTDMVarejoSaída(object sender, DoWorkEventArgs e)
         {
-            e.Result = new ImportadorSaídaTDMVarejo().ImportarArquivos(e.Argument as string, sender as BackgroundWorker);
+            var arg = e.Argument as ArgumentoImportação;
+            e.Result = new ImportadorSaídaTDMVarejo(arg.Fechamento).ImportarArquivos(arg.Caminho, sender as BackgroundWorker);
         }
 
         private void Thread_ImportarPDFAtacadoSaída(object sender, DoWorkEventArgs e)
         {
-            e.Result = new ImportadorSaídaPDFAtacado().ImportarArquivos(e.Argument as string, sender as BackgroundWorker);
+            var arg = e.Argument as ArgumentoImportação;
+            e.Result = new ImportadorSaídaPDFAtacado(arg.Fechamento).ImportarArquivos(arg.Caminho, sender as BackgroundWorker);
         }
 
         private void btnPasta_Click(object sender, EventArgs e)
@@ -199,6 +210,8 @@ namespace Apresentação.Fiscal.Janela
             }
         }
 
+        public bool FechamentoSelecionado => Fechamento != null;
+
         private void controlesOpções_Validação(object sender, EventArgs e)
         {
             AtualizarBotãoIniciar();
@@ -206,12 +219,29 @@ namespace Apresentação.Fiscal.Janela
 
         private void AtualizarBotãoIniciar()
         {
-            btnIniciar.Enabled = DiretórioVálido && AlgumaOpçãoSelecionada;
+            btnIniciar.Enabled = DiretórioVálido && AlgumaOpçãoSelecionada && FechamentoSelecionado;
         }
 
         private void txtDiretório_TextChanged(object sender, EventArgs e)
         {
             AtualizarBotãoIniciar();
+        }
+
+        private void comboFechamento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AtualizarBotãoIniciar();
+        }
+
+        private class ArgumentoImportação
+        {
+            public string Caminho;
+            public Fechamento Fechamento;
+
+            public ArgumentoImportação(string caminho, Fechamento fechamento)
+            {
+                this.Caminho = caminho;
+                this.Fechamento = fechamento;
+            }
         }
     }
 }

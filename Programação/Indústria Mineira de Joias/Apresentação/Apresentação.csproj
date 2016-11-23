@@ -189,6 +189,12 @@
     <Compile Include="Administrativo\Fiscal\BaseInferior\Fabricação\BaseFabricações.Designer.cs">
       <DependentUpon>BaseFabricações.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrativo\Fiscal\Combo\ComboFechamento.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Administrativo\Fiscal\Combo\ComboFechamento.Designer.cs">
+      <DependentUpon>ComboFechamento.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administrativo\Fiscal\Combo\ComboMáquina.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -2565,6 +2571,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administrativo\Fiscal\BaseInferior\Fabricação\BaseFabricações.resx">
       <DependentUpon>BaseFabricações.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrativo\Fiscal\Combo\ComboFechamento.resx">
+      <DependentUpon>ComboFechamento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administrativo\Fiscal\Combo\ComboMáquina.resx">
       <DependentUpon>ComboMáquina.cs</DependentUpon>

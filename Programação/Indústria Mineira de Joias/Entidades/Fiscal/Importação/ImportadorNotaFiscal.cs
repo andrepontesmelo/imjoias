@@ -12,7 +12,7 @@ namespace Entidades.Fiscal.Importação
         private string padrãoArquivo;
         private SortedSet<string> idsCadastrados;
 
-        public ImportadorNotaFiscal(string descrição, string padrãoArquivo)
+        public ImportadorNotaFiscal(string descrição, string padrãoArquivo, Fechamento fechamento) : base(fechamento)
         {
             this.descrição = descrição;
             this.padrãoArquivo = padrãoArquivo;
@@ -63,6 +63,16 @@ namespace Entidades.Fiscal.Importação
 
         private bool IgnorarDocumento(ResultadoImportação resultado, string arquivo, DocumentoFiscal documento)
         {
+            var saída = documento as SaídaFiscal;
+            var entrada = documento as EntradaFiscal;
+
+            if (saída != null && fechamento.Fora(saída.DataSaída) ||
+                entrada != null && fechamento.Fora(entrada.DataEntrada))
+            {
+                resultado.ArquivosIgnorados.Adicionar(new ArquivoIgnorado(arquivo, Motivo.ForaFechamento, documento.Id));
+                return true;
+            }
+
             if (idsCadastrados.Contains(documento.Id.ToLower()))
             {
                 resultado.ArquivosIgnorados.Adicionar(new ArquivoIgnorado(arquivo, Motivo.ChaveJáImportada, documento.Id));

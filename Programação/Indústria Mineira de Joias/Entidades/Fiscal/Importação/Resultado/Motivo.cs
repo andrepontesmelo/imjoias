@@ -7,6 +7,7 @@
         NotaEmitidaOutraEmpresa,
         NãoÉCancelamento,
         CancelamentoJáRegistrado,
-        SaídaFiscalNãoCadastradaParaPdf
+        SaídaFiscalNãoCadastradaParaPdf,
+        ForaFechamento
     }
 }

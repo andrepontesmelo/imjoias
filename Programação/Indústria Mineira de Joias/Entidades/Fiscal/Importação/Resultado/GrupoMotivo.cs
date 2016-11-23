@@ -36,6 +36,9 @@ namespace Entidades.Fiscal.Importação.Resultado
                 case Motivo.SaídaFiscalNãoCadastradaParaPdf:
                     return "Não há saída fiscal cadastrada para este pdf";
 
+                case Motivo.ForaFechamento:
+                    return "Nota fora do intervalo de fechamento";
+
                 default:
                     throw new NotImplementedException();
             }

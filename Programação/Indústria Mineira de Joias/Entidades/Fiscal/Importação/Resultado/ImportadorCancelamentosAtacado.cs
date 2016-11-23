@@ -16,7 +16,7 @@ namespace Entidades.Fiscal.Importação.Resultado
         SortedSet<string> idsJáCancelados;
         SortedSet<string> idsSaídas;
 
-        public ImportadorCancelamentosAtacado()
+        public ImportadorCancelamentosAtacado(Fechamento fechamento) : base(fechamento)
         {
             idsJáCancelados = new SortedSet<string>(SaídaFiscal.ObterIds((int) TipoDocumentoSistema.NFe, true));
             idsSaídas = new SortedSet<string>(SaídaFiscal.ObterIds((int) TipoDocumentoSistema.NFe, null));

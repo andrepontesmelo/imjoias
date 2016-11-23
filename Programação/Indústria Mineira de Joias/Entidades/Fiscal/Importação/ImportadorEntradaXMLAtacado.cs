@@ -10,7 +10,7 @@ namespace Entidades.Fiscal.Importação
         public static readonly string DESCRIÇÃO = "Importação de XMLs de entrada de atacado";
         public static readonly string PADRÂO_ARQUIVO = "*.xml";
 
-        public ImportadorEntradaXMLAtacado() : base(DESCRIÇÃO, PADRÂO_ARQUIVO)
+        public ImportadorEntradaXMLAtacado(Fechamento fechamento) : base(DESCRIÇÃO, PADRÂO_ARQUIVO, fechamento)
         {
         }
 
