@@ -39,7 +39,6 @@
             this.opçãoEntradas = new Apresentação.Formulários.Opção();
             this.quadro3 = new Apresentação.Formulários.Quadro();
             this.opçãoMáquinasECF = new Apresentação.Formulários.Opção();
-            this.opçãoEsquemas = new Apresentação.Formulários.Opção();
             this.opçãoImportarTransição = new Apresentação.Formulários.Opção();
             this.quadro4 = new Apresentação.Formulários.Quadro();
             this.opçãoInventário = new Apresentação.Formulários.Opção();
@@ -199,14 +198,13 @@
             this.quadro3.bSupDirArredondada = true;
             this.quadro3.bSupEsqArredondada = true;
             this.quadro3.Controls.Add(this.opçãoMáquinasECF);
-            this.quadro3.Controls.Add(this.opçãoEsquemas);
             this.quadro3.Cor = System.Drawing.Color.Black;
             this.quadro3.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadro3.LetraTítulo = System.Drawing.Color.White;
             this.quadro3.Location = new System.Drawing.Point(7, 277);
             this.quadro3.MostrarBotãoMinMax = false;
             this.quadro3.Name = "quadro3";
-            this.quadro3.Size = new System.Drawing.Size(160, 94);
+            this.quadro3.Size = new System.Drawing.Size(160, 55);
             this.quadro3.TabIndex = 8;
             this.quadro3.Tamanho = 30;
             this.quadro3.Título = "Manutenção";
@@ -216,7 +214,7 @@
             this.opçãoMáquinasECF.BackColor = System.Drawing.Color.Transparent;
             this.opçãoMáquinasECF.Descrição = "Máquinas ECF";
             this.opçãoMáquinasECF.Imagem = global::Apresentação.Resource.fiscal;
-            this.opçãoMáquinasECF.Location = new System.Drawing.Point(7, 70);
+            this.opçãoMáquinasECF.Location = new System.Drawing.Point(7, 30);
             this.opçãoMáquinasECF.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoMáquinasECF.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoMáquinasECF.MinimumSize = new System.Drawing.Size(150, 16);
@@ -224,20 +222,6 @@
             this.opçãoMáquinasECF.Size = new System.Drawing.Size(150, 16);
             this.opçãoMáquinasECF.TabIndex = 4;
             this.opçãoMáquinasECF.Click += new System.EventHandler(this.opçãoMáquinasECF_Click);
-            // 
-            // opçãoEsquemas
-            // 
-            this.opçãoEsquemas.BackColor = System.Drawing.Color.Transparent;
-            this.opçãoEsquemas.Descrição = "Esquemas";
-            this.opçãoEsquemas.Imagem = global::Apresentação.Resource.repair;
-            this.opçãoEsquemas.Location = new System.Drawing.Point(7, 30);
-            this.opçãoEsquemas.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.opçãoEsquemas.MaximumSize = new System.Drawing.Size(150, 100);
-            this.opçãoEsquemas.MinimumSize = new System.Drawing.Size(150, 16);
-            this.opçãoEsquemas.Name = "opçãoEsquemas";
-            this.opçãoEsquemas.Size = new System.Drawing.Size(150, 16);
-            this.opçãoEsquemas.TabIndex = 2;
-            this.opçãoEsquemas.Click += new System.EventHandler(this.opçãoEsquemas_Click);
             // 
             // opçãoImportarTransição
             // 
@@ -297,9 +281,9 @@
             this.quadro5.Controls.Add(this.opçãoImportarTransição);
             this.quadro5.Controls.Add(this.opçãoImportarEstoqueAnteriorSistemaLegado);
             this.quadro5.Cor = System.Drawing.Color.Black;
-            this.quadro5.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
+            this.quadro5.FundoTítulo = System.Drawing.Color.RoyalBlue;
             this.quadro5.LetraTítulo = System.Drawing.Color.White;
-            this.quadro5.Location = new System.Drawing.Point(7, 377);
+            this.quadro5.Location = new System.Drawing.Point(7, 338);
             this.quadro5.MostrarBotãoMinMax = false;
             this.quadro5.Name = "quadro5";
             this.quadro5.Size = new System.Drawing.Size(160, 117);
@@ -344,6 +328,8 @@
             this.listaFechamento.Name = "listaFechamento";
             this.listaFechamento.Size = new System.Drawing.Size(592, 413);
             this.listaFechamento.TabIndex = 7;
+            this.listaFechamento.AoAbrirEsquema += new System.EventHandler(this.listaFechamento_AoAbrirEsquema);
+            this.listaFechamento.AoDuploClique += new System.EventHandler(this.listaFechamento_AoDuploClique);
             // 
             // BaseFiscal
             // 
@@ -376,7 +362,6 @@
         private Formulários.Opção opçãoEntradas;
         private Formulários.Quadro quadro3;
         private Formulários.Opção opçãoMáquinasECF;
-        private Formulários.Opção opçãoEsquemas;
         private Formulários.Quadro quadro4;
         private Formulários.Opção opçãoInventário;
         private Formulários.Opção opçãoImportarTransição;

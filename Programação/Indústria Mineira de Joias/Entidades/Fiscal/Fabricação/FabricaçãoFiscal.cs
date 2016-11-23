@@ -112,12 +112,14 @@ namespace Entidades.Fiscal.Fabricação
 
         private static EsquemaFabricação ObterEsquemaLevantandoErroCasoNãoExista(ItemFabricaçãoFiscal novoItem)
         {
-            EsquemaFabricação esquema = EsquemaFabricação.Obter(novoItem.Referência);
+            // TODO: Refatorar
+            //EsquemaFabricação esquema = EsquemaFabricação.Obter(novoItem.Referência);
 
-            if (esquema == null)
-                throw new EsquemaInexistente(novoItem.Referência);
+            //if (esquema == null)
+            //    throw new EsquemaInexistente(novoItem.Referência);
 
-            return esquema;
+            //return esquema;
+            throw new NotImplementedException();
         }
 
         private void AdicionarEntrada(System.Data.IDbConnection conexão, System.Data.IDbTransaction transação, decimal qtdReceitas, MateriaPrima ingrediente)

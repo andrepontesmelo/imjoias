@@ -1,7 +1,7 @@
 ﻿using Apresentação.Administrativo.Fiscal.BaseInferior;
 using Apresentação.Administrativo.Fiscal.BaseInferior.Esquema;
-using Apresentação.Administrativo.Fiscal.BaseInferior.Inventário;
 using Apresentação.Administrativo.Fiscal.BaseInferior.fabricação;
+using Apresentação.Administrativo.Fiscal.BaseInferior.Inventário;
 using Apresentação.Fiscal.BaseInferior.Documentos;
 using Apresentação.Fiscal.Janela;
 using Apresentação.Formulários;
@@ -45,11 +45,6 @@ namespace Apresentação.Fiscal.BaseInferior
             SubstituirBase(new BaseMaquinasFiscais());
         }
 
-        private void opçãoEsquemas_Click(object sender, EventArgs e)
-        {
-            SubstituirBase(new BaseEsquemas());
-        }
-
         private void opçãoInventário_Click(object sender, EventArgs e)
         {
             SubstituirBase(new BaseInventário());
@@ -84,6 +79,29 @@ namespace Apresentação.Fiscal.BaseInferior
         private void opçãoImportarPreçosMatériasPrimas_Click(object sender, EventArgs e)
         {
             new ProcessoIntegração().TransporPreçosMatériasPrimas();
+        }
+
+        private void listaFechamento_AoAbrirEsquema(object sender, EventArgs e)
+        {
+            AbrirEsquemaFechamento();
+        }
+
+        private void AbrirEsquemaFechamento()
+        {
+            var seleção = listaFechamento.Seleção;
+
+            if (seleção == null)
+                return;
+
+            BaseEsquemas novaBase = new BaseEsquemas();
+            novaBase.Carregar(seleção);
+
+            SubstituirBase(novaBase);
+        }
+
+        private void listaFechamento_AoDuploClique(object sender, EventArgs e)
+        {
+            AbrirEsquemaFechamento();
         }
     }
 }

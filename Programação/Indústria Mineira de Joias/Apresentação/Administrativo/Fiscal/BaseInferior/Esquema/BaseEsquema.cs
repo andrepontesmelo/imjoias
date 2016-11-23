@@ -160,13 +160,13 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
                 esquema.Referência = mercadoria.ReferênciaNumérica;
                 esquema.Persistir();
             }
-            catch (Exception)
+            catch (Exception erro)
             {
                 esquema.Referência = referênciaAnterior;
                 txtMercadoriaProduzida.Referência = referênciaAnterior;
 
                 MessageBox.Show(this,
-                    "Verifique se esta referência já possui esquema de fabricação",
+                    "Verifique se esta referência já possui esquema de fabricação\n" + erro.Message,
                     "Erro ao alterar referência",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);

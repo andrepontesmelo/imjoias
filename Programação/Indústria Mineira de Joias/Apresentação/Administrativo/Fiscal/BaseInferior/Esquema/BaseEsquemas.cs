@@ -2,11 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using Entidades.Fiscal;
 
 namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
 {
-    public partial class BaseEsquemas : Apresentação.Formulários.BaseInferior
+    public partial class BaseEsquemas : Formulários.BaseInferior
     {
+        private Fechamento fechamento;
+
         public BaseEsquemas()
         {
             InitializeComponent();
@@ -16,7 +19,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
         {
             base.AoExibir();
 
-            lista.Carregar();
+            lista.Carregar(fechamento);
         }
 
         private void lista_AoExcluir(object sender, System.EventArgs e)
@@ -38,7 +41,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
                 return;
 
             EsquemaFabricação.Excluir(seleção);
-            lista.Carregar();
+            lista.Carregar(fechamento);
         }
 
         private void opçãoExcluir_Click(object sender, EventArgs e)
@@ -49,7 +52,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
         private void opçãoNovo_Click(object sender, EventArgs e)
         {
             var baseEsquema = new BaseEsquema();
-            baseEsquema.Carregar(new EsquemaFabricação());
+            baseEsquema.Carregar(new EsquemaFabricação(fechamento));
 
             SubstituirBase(baseEsquema);
         }
@@ -63,6 +66,11 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
             baseEsquema.Carregar(lista.Seleção[0]);
 
             SubstituirBase(baseEsquema);
+        }
+
+        internal void Carregar(Fechamento fechamento)
+        {
+            this.fechamento = fechamento;
         }
     }
 }

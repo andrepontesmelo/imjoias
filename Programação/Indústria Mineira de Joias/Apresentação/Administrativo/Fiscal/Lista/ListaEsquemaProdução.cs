@@ -1,4 +1,5 @@
 ﻿using Apresentação.Formulários;
+using Entidades.Fiscal;
 using Entidades.Fiscal.Esquema;
 using System;
 using System.Collections.Generic;
@@ -30,9 +31,9 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             AoExcluir?.Invoke(sender, e);
         }
 
-        public void Carregar()
+        public void Carregar(Fechamento fechamento)
         {
-            ListViewItem[] itens = CriarItens();
+            ListViewItem[] itens = CriarItens(fechamento);
 
             lista.SuspendLayout();
             lista.Items.Clear();
@@ -40,13 +41,13 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             lista.ResumeLayout();
         }
 
-        private ListViewItem[] CriarItens()
+        private ListViewItem[] CriarItens(Fechamento fechamento)
         {
-            var esquemas = EsquemaFabricação.Esquemas;
+            var esquemas = EsquemaFabricação.Obter(fechamento);
 
             ListViewItem[] itens = new ListViewItem[esquemas.Count];
             int x = 0;
-            foreach (var esquema in EsquemaFabricação.Esquemas)
+            foreach (var esquema in esquemas)
             {
                 ListViewItem item = CriarItem(esquema);
                 itens[x++] = item;

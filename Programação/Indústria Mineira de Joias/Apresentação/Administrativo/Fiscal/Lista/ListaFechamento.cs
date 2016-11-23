@@ -8,6 +8,9 @@ namespace Apresentação.Administrativo.Fiscal.Lista
 {
     public partial class ListaFechamento : UserControl
     {
+        public event EventHandler AoAbrirEsquema;
+        public event EventHandler AoDuploClique;
+
         public ListaFechamento()
         {
             InitializeComponent();
@@ -93,7 +96,7 @@ namespace Apresentação.Administrativo.Fiscal.Lista
 
         private void lista_DoubleClick(object sender, EventArgs e)
         {
-            Editar();
+            AoDuploClique?.Invoke(sender, e);
         }
 
         private void Editar()
@@ -123,6 +126,11 @@ namespace Apresentação.Administrativo.Fiscal.Lista
                 return;
 
             seleção.AtualizarMercadoriasSeAberto();
+        }
+
+        private void btnEsquemas_Click(object sender, EventArgs e)
+        {
+            AoAbrirEsquema?.Invoke(sender, e);
         }
     }
 }

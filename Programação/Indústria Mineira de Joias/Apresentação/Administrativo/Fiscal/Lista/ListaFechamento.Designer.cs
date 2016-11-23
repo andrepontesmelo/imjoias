@@ -33,6 +33,7 @@
             this.btnNovo = new System.Windows.Forms.ToolStripButton();
             this.btnEditar = new System.Windows.Forms.ToolStripButton();
             this.btnAtualizar = new System.Windows.Forms.ToolStripButton();
+            this.btnEsquemas = new System.Windows.Forms.ToolStripButton();
             this.lista = new Apresentação.Formulários.ListViewUsabilidade();
             this.colId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colInício = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -44,10 +45,11 @@
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnExcluir,
             this.btnNovo,
             this.btnEditar,
-            this.btnAtualizar});
+            this.btnExcluir,
+            this.btnAtualizar,
+            this.btnEsquemas});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(519, 25);
@@ -56,43 +58,54 @@
             // 
             // btnExcluir
             // 
-            this.btnExcluir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnExcluir.Image = global::Apresentação.Resource.delete;
             this.btnExcluir.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnExcluir.Name = "btnExcluir";
-            this.btnExcluir.Size = new System.Drawing.Size(23, 22);
+            this.btnExcluir.Size = new System.Drawing.Size(61, 22);
             this.btnExcluir.Text = "Excluir";
+            this.btnExcluir.ToolTipText = "Excluir fechamento";
             this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // btnNovo
             // 
-            this.btnNovo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnNovo.Image = global::Apresentação.Resource._3228_icon;
             this.btnNovo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnNovo.Name = "btnNovo";
-            this.btnNovo.Size = new System.Drawing.Size(23, 22);
+            this.btnNovo.Size = new System.Drawing.Size(56, 22);
             this.btnNovo.Text = "Novo";
+            this.btnNovo.ToolTipText = "Novo fechamento";
             this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
             // 
             // btnEditar
             // 
-            this.btnEditar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnEditar.Image = global::Apresentação.Resource.EditTableHS;
             this.btnEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(23, 22);
+            this.btnEditar.Size = new System.Drawing.Size(57, 22);
             this.btnEditar.Text = "Editar";
+            this.btnEditar.ToolTipText = "Editar fechamento";
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnAtualizar
             // 
-            this.btnAtualizar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnAtualizar.Image = global::Apresentação.Resource.Deep_Refresh;
             this.btnAtualizar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnAtualizar.Name = "btnAtualizar";
-            this.btnAtualizar.Size = new System.Drawing.Size(23, 22);
-            this.btnAtualizar.Text = "toolStripButton1";
+            this.btnAtualizar.Size = new System.Drawing.Size(73, 22);
+            this.btnAtualizar.Text = "Atualizar";
+            this.btnAtualizar.ToolTipText = "Atualizar mercadorias do fechamento";
+            this.btnAtualizar.Visible = false;
             this.btnAtualizar.Click += new System.EventHandler(this.btnAtualizar_Click);
+            // 
+            // btnEsquemas
+            // 
+            this.btnEsquemas.Image = global::Apresentação.Resource.repair;
+            this.btnEsquemas.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnEsquemas.Name = "btnEsquemas";
+            this.btnEsquemas.Size = new System.Drawing.Size(80, 22);
+            this.btnEsquemas.Text = "Esquemas";
+            this.btnEsquemas.ToolTipText = "Esquemas de produção do fechamento";
+            this.btnEsquemas.Click += new System.EventHandler(this.btnEsquemas_Click);
             // 
             // lista
             // 
@@ -160,5 +173,6 @@
         private System.Windows.Forms.ToolStripButton btnNovo;
         private System.Windows.Forms.ToolStripButton btnEditar;
         private System.Windows.Forms.ToolStripButton btnAtualizar;
+        private System.Windows.Forms.ToolStripButton btnEsquemas;
     }
 }

@@ -2,8 +2,6 @@
 using Entidades.Fiscal.Tipo;
 using System.Collections.Generic;
 using System.Text;
-using System.Linq;
-
 
 namespace Entidades.Fiscal.Esquema
 {
@@ -16,6 +14,7 @@ namespace Entidades.Fiscal.Esquema
         private string descricao;
         private int tipounidade;
         private int cfop;
+        private int fechamento;
 
         public string Referência
         {
@@ -41,42 +40,33 @@ namespace Entidades.Fiscal.Esquema
 
         public EsquemaFabricação()
         {
+        }
+
+        public EsquemaFabricação(Fechamento fechamento)
+        {
             quantidade = 1;
+            this.fechamento = fechamento.Código;
         }
 
-        private static List<EsquemaFabricação> lstEsquemas;
-
-        public static List<EsquemaFabricação> Esquemas
+        public static List<EsquemaFabricação> Obter(Fechamento fechamento)
         {
-            get
-            {
-                if (lstEsquemas == null)
-                    CarregarCache();
-
-                return lstEsquemas;
-            }
+            return Mapear<EsquemaFabricação>("select e.*, m.nome as descricao, m.tipounidade, m.cfop from " + 
+                " esquemafabricacaofiscal e join mercadoria m on e.referencia=m.referencia where fechamento=" + fechamento.Código);
         }
 
-        private static void EsquecerCache()
+        public static Dictionary<string, EsquemaFabricação> ObterHash(Fechamento fechamento)
         {
-            lstEsquemas = null;
-        }
+            var esquemas = Obter(fechamento);
+            Dictionary<string, EsquemaFabricação> hash = new Dictionary<string, Esquema.EsquemaFabricação>();
+            foreach (var esquema in esquemas)
+                hash[esquema.referencia] = esquema;
 
-        private static void CarregarCache()
-        {
-            lstEsquemas = Mapear<EsquemaFabricação>("select e.*, m.nome as descricao, m.tipounidade, m.cfop from " + 
-                " esquemafabricacaofiscal e join mercadoria m on e.referencia=m.referencia");
-        }
-
-        internal static EsquemaFabricação Obter(string referência)
-        {
-            return (from esquema in Esquemas where esquema.Referência.Equals(referência) select esquema).FirstOrDefault();
+            return hash;
         }
 
         public static void Excluir(List<EsquemaFabricação> seleção)
         {
             ExcluirEntidades(seleção);
-            EsquecerCache();
         }
 
         private static void ExcluirEntidades(List<EsquemaFabricação> seleção)
@@ -103,25 +93,25 @@ namespace Entidades.Fiscal.Esquema
                 CadastrarEntidade();
             else
                 AtualizarEntidade();
-
-            EsquecerCache();
         }
 
         private void AtualizarEntidade()
         {
-            ExecutarComando(string.Format("UPDATE esquemafabricacaofiscal set quantidade={0}, referencia={1} WHERE referencia={2}",
+            ExecutarComando(string.Format("UPDATE esquemafabricacaofiscal set quantidade={0}, referencia={1} WHERE referencia={2} and fechamento={3}",
                 DbTransformar(quantidade),
                 (DbTransformar(referenciaAlterada == null ? referencia : referenciaAlterada)),
-                DbTransformar(referencia)));
+                DbTransformar(referencia),
+                DbTransformar(fechamento)));
 
             DefinirAtualizado();
         }
 
         private void CadastrarEntidade()
         {
-            ExecutarComando(string.Format("INSERT INTO esquemafabricacaofiscal (quantidade, referencia) values ({0}, {1})",
+            ExecutarComando(string.Format("INSERT INTO esquemafabricacaofiscal (quantidade, referencia, fechamento) values ({0}, {1}, {2})",
                 DbTransformar(quantidade),
-                (DbTransformar(referenciaAlterada == null ? referencia : referenciaAlterada))));
+                (DbTransformar(referenciaAlterada == null ? referencia : referenciaAlterada)),
+                DbTransformar(fechamento)));
 
             DefinirCadastrado();
         }
