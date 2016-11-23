@@ -61,19 +61,33 @@ VIEW `mercadoria_fiscal` AS
         LEFT JOIN `materiaprima` `a` ON ((`a`.`referencia` = `m`.`referencia`)))
         LEFT JOIN `novosPrecos` `p` ON ((`m`.`referencia` = `p`.`mercadoria`)));
 
-USE `imjoias`;
-DROP procedure IF EXISTS `atualizarfechamento`;
 
-DELIMITER $$
-USE `imjoias`$$
-CREATE PROCEDURE `atualizarfechamento` (codigoFechamento INTEGER UNSIGNED)
-BEGIN
-	start transaction;
-	delete from mercadoriafechamento where fechamento=codigoFechamento;
-	insert into mercadoriafechamento(referencia, descricao, valor, fechamento) select m.*, codigoFechamento as fechamento from mercadoria_fiscal m;
-	commit;
-END$$
+start transaction;
+delete from mercadoriafechamento where fechamento=5;
+insert into mercadoriafechamento(referencia, descricao, valor, fechamento) select m.*, 5 as fechamento from mercadoria_fiscal m;
+commit;
 
-DELIMITER ;
+drop table inventario_total;
+
+ALTER TABLE `imjoias`.`esquemafabricacaofiscal` 
+ADD COLUMN `fechamento` INT NOT NULL AFTER `quantidade`;
+
+delete from esquemafabricacaofiscal;
+
+ALTER TABLE esquemafabricacaofiscal DROP PRIMARY KEY, add primary key (referencia, fechamento);
+
+ALTER TABLE `imjoias`.`esquemafabricacaofiscal` 
+DROP FOREIGN KEY `fk_esquemaproducaofiscal_1`;
+
+
+ALTER TABLE `imjoias`.`esquemafabricacaofiscal` 
+ADD INDEX `fk_esquemafabricacaofiscal_fechamento_idx` (`fechamento` ASC);
+ALTER TABLE `imjoias`.`esquemafabricacaofiscal` 
+ADD CONSTRAINT `fk_esquemafabricacaofiscal_fechamento`
+  FOREIGN KEY (`fechamento`)
+  REFERENCES `imjoias`.`fechamento` (`codigo`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE;
+
 
 
