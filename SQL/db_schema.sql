@@ -1,14 +1,15 @@
 -- mysqldump --routines --no-data -u root -p  --opt imjoias -d --single-transaction | sed 's/ AUTO_INCREMENT=[0-9]*\b//'  | sed 's/![0-9]*\b//' | sed 's/\/\*//'  | sed 's/*\///' > db_schema.sql
--- MySQL dump 10.15  Distrib 10.0.27-MariaDB, for debian-linux-gnu (x86_64)
+
+-- MySQL dump 10.16  Distrib 10.1.19-MariaDB, for Linux (x86_64)
 --
--- Host: localhost    Database: imjoias
+-- Host: localhost    Database: localhost
 -- ------------------------------------------------------
--- Server version	10.0.27-MariaDB-0ubuntu0.16.04.1
+-- Server version	10.1.19-MariaDB
 
  SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT ;
  SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS ;
  SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION ;
- SET NAMES utf8mb4 ;
+ SET NAMES utf8 ;
  SET @OLD_TIME_ZONE=@@TIME_ZONE ;
  SET TIME_ZONE='+00:00' ;
  SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 ;
@@ -621,6 +622,23 @@ CREATE TABLE `entrada` (
  SET character_set_client = @saved_cs_client ;
 
 --
+-- Table structure for table `entradafabricacaofiscal`
+--
+
+DROP TABLE IF EXISTS `entradafabricacaofiscal`;
+ SET @saved_cs_client     = @@character_set_client ;
+ SET character_set_client = utf8 ;
+CREATE TABLE `entradafabricacaofiscal` (
+  `fabricacaofiscal` int(11) NOT NULL,
+  `quantidade` decimal(10,2) NOT NULL,
+  `referencia` varchar(11) NOT NULL,
+  KEY `fk_entradafabricacaofiscal_fabricacaofiscal` (`fabricacaofiscal`),
+  KEY `fk_entradafabricacaofiscal_referencia` (`referencia`),
+  CONSTRAINT `fk_entradaproducaofiscal_2` FOREIGN KEY (`referencia`) REFERENCES `mercadoria` (`referencia`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ SET character_set_client = @saved_cs_client ;
+
+--
 -- Table structure for table `entradafiscal`
 --
 
@@ -710,31 +728,13 @@ CREATE TABLE `entradaitemfiscal` (
  SET character_set_client = @saved_cs_client ;
 
 --
--- Table structure for table `entradaproducaofiscal`
+-- Table structure for table `esquemafabricacaofiscal`
 --
 
-DROP TABLE IF EXISTS `entradaproducaofiscal`;
+DROP TABLE IF EXISTS `esquemafabricacaofiscal`;
  SET @saved_cs_client     = @@character_set_client ;
  SET character_set_client = utf8 ;
-CREATE TABLE `entradaproducaofiscal` (
-  `producaofiscal` int(11) NOT NULL,
-  `quantidade` decimal(10,2) NOT NULL,
-  `referencia` varchar(11) NOT NULL,
-  KEY `fk_entradaproducaofiscal_2_idx` (`referencia`),
-  KEY `fk_entradaproducaofiscal_1` (`producaofiscal`),
-  CONSTRAINT `fk_entradaproducaofiscal_1` FOREIGN KEY (`producaofiscal`) REFERENCES `producaofiscal` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_entradaproducaofiscal_2` FOREIGN KEY (`referencia`) REFERENCES `mercadoria` (`referencia`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
- SET character_set_client = @saved_cs_client ;
-
---
--- Table structure for table `esquemaproducaofiscal`
---
-
-DROP TABLE IF EXISTS `esquemaproducaofiscal`;
- SET @saved_cs_client     = @@character_set_client ;
- SET character_set_client = utf8 ;
-CREATE TABLE `esquemaproducaofiscal` (
+CREATE TABLE `esquemafabricacaofiscal` (
   `referencia` varchar(11) NOT NULL,
   `quantidade` decimal(10,2) NOT NULL,
   PRIMARY KEY (`referencia`),
@@ -869,6 +869,20 @@ SET character_set_client = utf8;
 SET character_set_client = @saved_cs_client;
 
 --
+-- Table structure for table `fabricacaofiscal`
+--
+
+DROP TABLE IF EXISTS `fabricacaofiscal`;
+ SET @saved_cs_client     = @@character_set_client ;
+ SET character_set_client = utf8 ;
+CREATE TABLE `fabricacaofiscal` (
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
+  `data` datetime NOT NULL,
+  PRIMARY KEY (`codigo`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ SET character_set_client = @saved_cs_client ;
+
+--
 -- Table structure for table `faixa`
 --
 
@@ -925,26 +939,6 @@ CREATE TABLE `fornecedor` (
   `codigo` int(10) unsigned NOT NULL,
   PRIMARY KEY (`codigo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
- SET character_set_client = @saved_cs_client ;
-
---
--- Table structure for table `foto`
---
-
-DROP TABLE IF EXISTS `foto`;
- SET @saved_cs_client     = @@character_set_client ;
- SET character_set_client = utf8 ;
-CREATE TABLE `foto` (
-  `codigo` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `mercadoria` varchar(100) NOT NULL DEFAULT '',
-  `descricao` varchar(45) DEFAULT NULL,
-  `foto` mediumblob NOT NULL,
-  `icone` blob,
-  `data` datetime DEFAULT NULL,
-  `peso` double DEFAULT NULL,
-  PRIMARY KEY (`codigo`),
-  KEY `idx_foto_mercadoria` (`mercadoria`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 DATA DIRECTORY='/var/lib/mysql_hd/' INDEX DIRECTORY='/var/lib/mysql_hd/';
  SET character_set_client = @saved_cs_client ;
 
 --
@@ -1079,22 +1073,6 @@ CREATE TABLE `horariofuncionario` (
  SET character_set_client = @saved_cs_client ;
 
 --
--- Table structure for table `ingredienteesquemaproducaofiscal`
---
-
-DROP TABLE IF EXISTS `ingredienteesquemaproducaofiscal`;
- SET @saved_cs_client     = @@character_set_client ;
- SET character_set_client = utf8 ;
-CREATE TABLE `ingredienteesquemaproducaofiscal` (
-  `esquema` varchar(11) NOT NULL,
-  `referencia` varchar(11) NOT NULL,
-  `quantidade` decimal(10,2) NOT NULL,
-  UNIQUE KEY `index1` (`esquema`,`referencia`),
-  CONSTRAINT `fk_ingredienteesquemaproducaofiscal_1` FOREIGN KEY (`esquema`) REFERENCES `esquemaproducaofiscal` (`referencia`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
- SET character_set_client = @saved_cs_client ;
-
---
 -- Temporary table structure for view `inventario_interno`
 --
 
@@ -1144,23 +1122,22 @@ SET character_set_client = utf8;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `inventario_total`
+-- Table structure for table `inventario_total`
 --
 
 DROP TABLE IF EXISTS `inventario_total`;
- DROP VIEW IF EXISTS `inventario_total`;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
- CREATE TABLE `inventario_total` (
-  `referencia` tinyint NOT NULL,
-  `quantidade` tinyint NOT NULL,
-  `nome` tinyint NOT NULL,
-  `classificacaofiscal` tinyint NOT NULL,
-  `tipounidade` tinyint NOT NULL,
-  `valor` tinyint NOT NULL,
-  `valortotal` tinyint NOT NULL
-) ENGINE=MyISAM ;
-SET character_set_client = @saved_cs_client;
+ SET @saved_cs_client     = @@character_set_client ;
+ SET character_set_client = utf8 ;
+CREATE TABLE `inventario_total` (
+  `referencia` tinyint(4) NOT NULL,
+  `quantidade` tinyint(4) NOT NULL,
+  `nome` tinyint(4) NOT NULL,
+  `classificacaofiscal` tinyint(4) NOT NULL,
+  `tipounidade` tinyint(4) NOT NULL,
+  `valor` tinyint(4) NOT NULL,
+  `valortotal` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+ SET character_set_client = @saved_cs_client ;
 
 --
 -- Table structure for table `localidade`
@@ -1202,6 +1179,38 @@ CREATE TABLE `maquinafiscal` (
  SET character_set_client = @saved_cs_client ;
 
 --
+-- Table structure for table `materiaprima`
+--
+
+DROP TABLE IF EXISTS `materiaprima`;
+ SET @saved_cs_client     = @@character_set_client ;
+ SET character_set_client = utf8 ;
+CREATE TABLE `materiaprima` (
+  `referencia` varchar(11) NOT NULL,
+  `valor` decimal(8,2) NOT NULL,
+  PRIMARY KEY (`referencia`),
+  CONSTRAINT `fk_materiaprima_referencia` FOREIGN KEY (`referencia`) REFERENCES `mercadoria` (`referencia`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ SET character_set_client = @saved_cs_client ;
+
+--
+-- Table structure for table `materiaprimaesquemafabricacaofiscal`
+--
+
+DROP TABLE IF EXISTS `materiaprimaesquemafabricacaofiscal`;
+ SET @saved_cs_client     = @@character_set_client ;
+ SET character_set_client = utf8 ;
+CREATE TABLE `materiaprimaesquemafabricacaofiscal` (
+  `esquema` varchar(11) NOT NULL,
+  `materiaprima` varchar(11) NOT NULL,
+  `quantidade` decimal(10,2) NOT NULL,
+  UNIQUE KEY `idx_esquema_materiaprima` (`esquema`,`materiaprima`),
+  KEY `fk_materiaprimaesquemafabricacaofiscal_materiaprima_idx` (`materiaprima`),
+  CONSTRAINT `fk_materiaprimaesquemaproducaofiscal_esquema` FOREIGN KEY (`esquema`) REFERENCES `esquemafabricacaofiscal` (`referencia`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ SET character_set_client = @saved_cs_client ;
+
+--
 -- Table structure for table `mercadoria`
 --
 
@@ -1218,7 +1227,7 @@ CREATE TABLE `mercadoria` (
   `digito` tinyint(1) unsigned DEFAULT NULL,
   `foradelinha` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `depeso` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `classificacaofiscal` varchar(45) DEFAULT NULL,
+  `classificacaofiscal` varchar(45) NOT NULL DEFAULT '0',
   `tipounidade` int(11) NOT NULL DEFAULT '1',
   `cfop` int(11) NOT NULL DEFAULT '5101',
   PRIMARY KEY (`referencia`),
@@ -1227,8 +1236,8 @@ CREATE TABLE `mercadoria` (
   KEY `idx_mercadoria_digito` (`digito`),
   KEY `idx_mercadoria_foradelinha` (`foradelinha`),
   KEY `idx_mercadoria_depeso` (`depeso`),
-  KEY `fk_mercadoria_1_idx` (`tipounidade`),
-  CONSTRAINT `fk_mercadoria_1` FOREIGN KEY (`tipounidade`) REFERENCES `tipounidadefiscal` (`id`) ON UPDATE CASCADE
+  KEY `fk_mercadoria_tipounidade_idx` (`tipounidade`),
+  CONSTRAINT `fk_mercadoria_tipounidade` FOREIGN KEY (`tipounidade`) REFERENCES `tipounidadefiscal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
  SET character_set_client = @saved_cs_client ;
 
@@ -1697,20 +1706,6 @@ CREATE TABLE `pessoajuridica` (
  SET character_set_client = @saved_cs_client ;
 
 --
--- Table structure for table `producaofiscal`
---
-
-DROP TABLE IF EXISTS `producaofiscal`;
- SET @saved_cs_client     = @@character_set_client ;
- SET character_set_client = utf8 ;
-CREATE TABLE `producaofiscal` (
-  `codigo` int(11) NOT NULL AUTO_INCREMENT,
-  `data` datetime NOT NULL,
-  PRIMARY KEY (`codigo`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
- SET character_set_client = @saved_cs_client ;
-
---
 -- Table structure for table `regiao`
 --
 
@@ -1831,6 +1826,24 @@ CREATE TABLE `saida` (
  SET character_set_client = @saved_cs_client ;
 
 --
+-- Table structure for table `saidafabricacaofiscal`
+--
+
+DROP TABLE IF EXISTS `saidafabricacaofiscal`;
+ SET @saved_cs_client     = @@character_set_client ;
+ SET character_set_client = utf8 ;
+CREATE TABLE `saidafabricacaofiscal` (
+  `fabricacaofiscal` int(11) NOT NULL,
+  `quantidade` decimal(10,2) NOT NULL,
+  `referencia` varchar(11) NOT NULL,
+  KEY `fk_saidafabricacaofiscal_referencia` (`referencia`),
+  KEY `fk_saidaproducaofiscal_fabricacaofiscal` (`fabricacaofiscal`),
+  CONSTRAINT `fk_saidaproducaofiscal_1` FOREIGN KEY (`fabricacaofiscal`) REFERENCES `fabricacaofiscal` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_saidaproducaofiscal_2` FOREIGN KEY (`referencia`) REFERENCES `mercadoria` (`referencia`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ SET character_set_client = @saved_cs_client ;
+
+--
 -- Table structure for table `saidafiscal`
 --
 
@@ -1849,13 +1862,16 @@ CREATE TABLE `saidafiscal` (
   `datasaida` datetime NOT NULL,
   `setor` int(10) unsigned NOT NULL,
   `maquina` int(11) DEFAULT NULL,
+  `cliente` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `saidafiscal_tipodocumentofiscal_FK` (`tipo`),
   KEY `saidafiscal_setor_FK` (`setor`),
   KEY `fk_saidafiscal_1_idx` (`maquina`),
   KEY `index5` (`cancelada`),
   KEY `index6` (`datasaida`),
+  KEY `fk_saidafiscal_cliente_idx` (`cliente`),
   CONSTRAINT `fk_saidafiscal_1` FOREIGN KEY (`maquina`) REFERENCES `maquinafiscal` (`codigo`) ON UPDATE CASCADE,
+  CONSTRAINT `fk_saidafiscal_cliente` FOREIGN KEY (`cliente`) REFERENCES `pessoa` (`codigo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `saidafiscal_setor_FK` FOREIGN KEY (`setor`) REFERENCES `setor` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `saidafiscal_tipodocumentofiscal_FK` FOREIGN KEY (`tipo`) REFERENCES `tipodocumentofiscal` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -1924,26 +1940,8 @@ CREATE TABLE `saidaitemfiscal` (
   KEY `fk_vendaitemfiscal_1_idx` (`tipounidade`),
   KEY `fk_saidaitemfiscal_1_idx` (`saidafiscal`),
   KEY `index4` (`referencia`),
-  CONSTRAINT `fk_saidaitemfiscal_1` FOREIGN KEY (`saidafiscal`) REFERENCES `saidafiscal` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_vendaitemfiscal_1` FOREIGN KEY (`tipounidade`) REFERENCES `tipounidadefiscal` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
- SET character_set_client = @saved_cs_client ;
-
---
--- Table structure for table `saidaproducaofiscal`
---
-
-DROP TABLE IF EXISTS `saidaproducaofiscal`;
- SET @saved_cs_client     = @@character_set_client ;
- SET character_set_client = utf8 ;
-CREATE TABLE `saidaproducaofiscal` (
-  `producaofiscal` int(11) NOT NULL,
-  `quantidade` decimal(10,2) NOT NULL,
-  `referencia` varchar(11) NOT NULL,
-  KEY `fk_saidaproducaofiscal_2_idx` (`referencia`),
-  KEY `fk_saidaproducaofiscal_1` (`producaofiscal`),
-  CONSTRAINT `fk_saidaproducaofiscal_1` FOREIGN KEY (`producaofiscal`) REFERENCES `producaofiscal` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_saidaproducaofiscal_2` FOREIGN KEY (`referencia`) REFERENCES `mercadoria` (`referencia`) ON UPDATE CASCADE
+  CONSTRAINT `fk_saidaitemfiscal_saidafiscal` FOREIGN KEY (`saidafiscal`) REFERENCES `saidafiscal` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_saidaitemfiscal_tipounidade` FOREIGN KEY (`tipounidade`) REFERENCES `tipounidadefiscal` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
  SET character_set_client = @saved_cs_client ;
 
@@ -2249,6 +2247,24 @@ CREATE TABLE `vendadevolucao` (
  SET character_set_client = @saved_cs_client ;
 
 --
+-- Table structure for table `vendafiscal`
+--
+
+DROP TABLE IF EXISTS `vendafiscal`;
+ SET @saved_cs_client     = @@character_set_client ;
+ SET character_set_client = utf8 ;
+CREATE TABLE `vendafiscal` (
+  `id` varchar(49) NOT NULL,
+  `dataemissao` datetime NOT NULL,
+  `tipovenda` varchar(1) NOT NULL,
+  `valortotal` decimal(8,2) NOT NULL,
+  `nnf` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `nnf_UNIQUE` (`nnf`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ SET character_set_client = @saved_cs_client ;
+
+--
 -- Table structure for table `vendaitem`
 --
 
@@ -2276,6 +2292,27 @@ CREATE TABLE `vendaitem` (
   CONSTRAINT `fk_vendaitem_2` FOREIGN KEY (`referencia`) REFERENCES `mercadoria` (`referencia`) ON UPDATE CASCADE,
   CONSTRAINT `fk_vendaitem_3` FOREIGN KEY (`funcionario`) REFERENCES `funcionario` (`codigo`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+ SET character_set_client = @saved_cs_client ;
+
+--
+-- Table structure for table `vendaitemfiscal`
+--
+
+DROP TABLE IF EXISTS `vendaitemfiscal`;
+ SET @saved_cs_client     = @@character_set_client ;
+ SET character_set_client = utf8 ;
+CREATE TABLE `vendaitemfiscal` (
+  `referencia` varchar(11) NOT NULL,
+  `descricao` varchar(100) NOT NULL,
+  `cfop` int(11) DEFAULT NULL,
+  `tipounidade` varchar(1) NOT NULL,
+  `quantidade` decimal(8,2) NOT NULL,
+  `valorunitario` decimal(8,2) NOT NULL,
+  `valor` decimal(8,2) NOT NULL,
+  `vendafiscal` varchar(49) DEFAULT NULL,
+  KEY `fk_vendaitemfiscal_1_idx` (`vendafiscal`),
+  CONSTRAINT `fk_vendaitemfiscal_1` FOREIGN KEY (`vendafiscal`) REFERENCES `vendafiscal` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
  SET character_set_client = @saved_cs_client ;
 
 --
@@ -2510,13 +2547,13 @@ CREATE TABLE `zeragemestoque` (
  SET @saved_cs_client      = @@character_set_client  ;
  SET @saved_cs_results     = @@character_set_results  ;
  SET @saved_col_connection = @@collation_connection  ;
- SET character_set_client  = utf8mb4  ;
- SET character_set_results = utf8mb4  ;
- SET collation_connection  = utf8mb4_general_ci  ;
+ SET character_set_client  = utf8  ;
+ SET character_set_results = utf8  ;
+ SET collation_connection  = utf8_general_ci  ;
  SET @saved_sql_mode       = @@sql_mode  ;
- SET sql_mode              = ''  ;
+ SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'  ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `d1`() RETURNS datetime
+CREATE DEFINER=`root`@`localhost` FUNCTION `D1`() RETURNS datetime
     NO SQL
     DETERMINISTIC
 return @d1 ;;
@@ -2659,7 +2696,7 @@ BEGIN
   SET total=(select max(codigo) from venda);
   SET atual = 0;
   WHILE atual < total DO
-    call calcularvendavalortotal(atual);
+    call calcularvendavalortotal(atual);  
     SET atual = atual + 1;
   end while;
 END ;;
@@ -2787,13 +2824,13 @@ START TRANSACTION;
 
     set @p1 := p_ouro;
     set @p2 := p_juros;
-
+    
     insert into geracaotabela (data, funcionario, ouro, juros) VALUES (NOW(), p_funcionario, p_ouro, p_juros);
-
+    
     delete from tabelamercadoria;
     insert into tabelamercadoria select * from novos_coeficientes;
     insert into tabelamercadoria select * from novos_coeficientes_varejo;
-
+    
     COMMIT;
  END ;;
 DELIMITER ;
@@ -2805,19 +2842,17 @@ DELIMITER ;
  SET @saved_cs_client      = @@character_set_client  ;
  SET @saved_cs_results     = @@character_set_results  ;
  SET @saved_col_connection = @@collation_connection  ;
- SET character_set_client  = utf8mb4  ;
- SET character_set_results = utf8mb4  ;
- SET collation_connection  = utf8mb4_general_ci  ;
+ SET character_set_client  = utf8  ;
+ SET character_set_results = utf8  ;
+ SET collation_connection  = utf8_general_ci  ;
  SET @saved_sql_mode       = @@sql_mode  ;
- SET sql_mode              = ''  ;
+ SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'  ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `inventario`(IN dataMaxima DATETIME)
 BEGIN
-      select i.* from (select @d1:=dataMaxima p) parm, inventario_parcial i;
-    END ;;
+ select i.* from (select @d1:=dataMaxima p) parm, inventario_parcial i;
+ END ;;
 DELIMITER ;
-
-
  SET sql_mode              = @saved_sql_mode  ;
  SET character_set_client  = @saved_cs_client  ;
  SET character_set_results = @saved_cs_results  ;
@@ -2855,8 +2890,8 @@ DELIMITER ;
  SET character_set_client      = utf8 ;
  SET character_set_results     = utf8 ;
  SET collation_connection      = utf8_general_ci ;
- CREATE ALGORITHM=UNDEFINED
- DEFINER=`root`@`%` SQL SECURITY DEFINER
+ CREATE ALGORITHM=UNDEFINED 
+ DEFINER=`root`@`%` SQL SECURITY DEFINER 
  VIEW `bugs_pendentes` AS (select `b`.`codigo` AS `codigo`,`b`.`primeiraData` AS `primeiraData`,`b`.`ultimaData` AS `ultimaData`,`b`.`ocorrencias` AS `ocorrencias`,`b`.`message` AS `message`,`b`.`targetsite` AS `targetsite`,`b`.`source` AS `source`,`b`.`stacktrace` AS `stacktrace`,`b`.`corrigido` AS `corrigido`,`b`.`correcaoAutor` AS `correcaoAutor`,`b`.`correcaoData` AS `correcaoData`,`b`.`correcaoComentarios` AS `correcaoComentarios`,`b`.`ignorar` AS `ignorar`,`b`.`innerException` AS `innerException` from `bug` `b` where ((`b`.`corrigido` = 0) and (`b`.`ignorar` = 0)) order by `b`.`ocorrencias` desc,`b`.`ultimaData` desc) ;
  SET character_set_client      = @saved_cs_client ;
  SET character_set_results     = @saved_cs_results ;
@@ -2874,8 +2909,8 @@ DELIMITER ;
  SET character_set_client      = utf8 ;
  SET character_set_results     = utf8 ;
  SET collation_connection      = utf8_general_ci ;
- CREATE ALGORITHM=UNDEFINED
- DEFINER=`root`@`localhost` SQL SECURITY DEFINER
+ CREATE ALGORITHM=UNDEFINED 
+ DEFINER=`root`@`localhost` SQL SECURITY DEFINER 
  VIEW `comissao_qtdestorno` AS select `comissaoestornovenda`.`venda` AS `venda`,`comissaoestornovenda`.`pessoa` AS `pessoa`,count(0) AS `qtdEstorno` from `comissaoestornovenda` group by `comissaoestornovenda`.`venda`,`comissaoestornovenda`.`pessoa` ;
  SET character_set_client      = @saved_cs_client ;
  SET character_set_results     = @saved_cs_results ;
@@ -2893,8 +2928,8 @@ DELIMITER ;
  SET character_set_client      = utf8 ;
  SET character_set_results     = utf8 ;
  SET collation_connection      = utf8_general_ci ;
- CREATE ALGORITHM=UNDEFINED
- DEFINER=`root`@`localhost` SQL SECURITY DEFINER
+ CREATE ALGORITHM=UNDEFINED 
+ DEFINER=`root`@`localhost` SQL SECURITY DEFINER 
  VIEW `comissao_qtdvenda` AS select `comissaovenda`.`venda` AS `venda`,`comissaovenda`.`pessoa` AS `pessoa`,count(0) AS `qtdVenda` from `comissaovenda` group by `comissaovenda`.`venda`,`comissaovenda`.`pessoa` ;
  SET character_set_client      = @saved_cs_client ;
  SET character_set_results     = @saved_cs_results ;
@@ -2912,8 +2947,8 @@ DELIMITER ;
  SET character_set_client      = utf8 ;
  SET character_set_results     = utf8 ;
  SET collation_connection      = utf8_general_ci ;
- CREATE ALGORITHM=UNDEFINED
- DEFINER=`root`@`localhost` SQL SECURITY DEFINER
+ CREATE ALGORITHM=UNDEFINED 
+ DEFINER=`root`@`localhost` SQL SECURITY DEFINER 
  VIEW `comissao_saldo` AS select `a`.`venda` AS `venda`,`a`.`pessoa` AS `pessoa`,(ifnull(`a`.`qtdVenda`,0) - ifnull(`b`.`qtdEstorno`,0)) AS `saldo` from (`comissao_qtdvenda` `a` left join `comissao_qtdestorno` `b` on(((`a`.`venda` = `b`.`venda`) and (`a`.`pessoa` = `b`.`pessoa`)))) ;
  SET character_set_client      = @saved_cs_client ;
  SET character_set_results     = @saved_cs_results ;
@@ -2931,8 +2966,8 @@ DELIMITER ;
  SET character_set_client      = utf8 ;
  SET character_set_results     = utf8 ;
  SET collation_connection      = utf8_general_ci ;
- CREATE ALGORITHM=UNDEFINED
- DEFINER=`root`@`localhost` SQL SECURITY DEFINER
+ CREATE ALGORITHM=UNDEFINED 
+ DEFINER=`root`@`localhost` SQL SECURITY DEFINER 
  VIEW `comissao_semaforo` AS select `comissao_semaforo_multiplo`.`venda` AS `venda`,max(`comissao_semaforo_multiplo`.`semaforo`) AS `semaforo` from `comissao_semaforo_multiplo` group by `comissao_semaforo_multiplo`.`venda` ;
  SET character_set_client      = @saved_cs_client ;
  SET character_set_results     = @saved_cs_results ;
@@ -2950,8 +2985,8 @@ DELIMITER ;
  SET character_set_client      = utf8 ;
  SET character_set_results     = utf8 ;
  SET collation_connection      = utf8_general_ci ;
- CREATE ALGORITHM=UNDEFINED
- DEFINER=`root`@`localhost` SQL SECURITY DEFINER
+ CREATE ALGORITHM=UNDEFINED 
+ DEFINER=`root`@`localhost` SQL SECURITY DEFINER 
  VIEW `comissao_semaforo_multiplo` AS select `v`.`codigo` AS `venda`,5 AS `semaforo`,'nfe' AS `descricao` from (`venda` `v` join `nfe` `n` on((`v`.`codigo` = `n`.`venda`))) union select `v`.`codigo` AS `venda`,3 AS `semaforo`,'comissao_fechada' AS `descricao` from (`venda` `v` join `comissao_saldo` `c` on(((`v`.`codigo` = `c`.`venda`) and (`c`.`saldo` = 1)))) union select `v`.`codigo` AS `venda`,2 AS `semaforo`,'quitado' AS `descricao` from `venda` `v` where (`v`.`quitacao` is not null) union select `v`.`codigo` AS `venda`,0 AS `semaforo`,'nao_quitado' AS `descricao` from `venda` `v` where isnull(`v`.`quitacao`) union select `v`.`codigo` AS `venda`,1 AS `semaforo`,'cobranca' AS `descricao` from `venda` `v` where (isnull(`v`.`quitacao`) and (abs(`v`.`valortotal`) < 0.01)) union select `v`.`codigo` AS `venda`,4 AS `semaforo`,'do_dia' AS `descricao` from `venda` `v` where ((to_days(now()) - to_days(`v`.`data`)) < 1) ;
  SET character_set_client      = @saved_cs_client ;
  SET character_set_results     = @saved_cs_results ;
@@ -2969,8 +3004,8 @@ DELIMITER ;
  SET character_set_client      = utf8 ;
  SET character_set_results     = utf8 ;
  SET collation_connection      = utf8_general_ci ;
- CREATE ALGORITHM=UNDEFINED
- DEFINER=`root`@`localhost` SQL SECURITY DEFINER
+ CREATE ALGORITHM=UNDEFINED 
+ DEFINER=`root`@`localhost` SQL SECURITY DEFINER 
  VIEW `comissao_valor` AS select `cli`.`codigo` AS `cliente`,`v`.`vendedor` AS `vendedor`,`v`.`vendedor` AS `comissaopara`,`v`.`codigo` AS `venda`,`vi`.`codigo` AS `vendaitem`,NULL AS `vendadevolucao`,`vi`.`referencia` AS `referencia`,`m`.`faixa` AS `faixa`,1 AS `setor`,'C0+' AS `tipo`,0 AS `regra`,((((`v`.`cotacao` * `vi`.`quantidade`) * `vi`.`indice`) * `csf`.`valor`) / 100) AS `valorc`,round((round((round(`vi`.`indice`,2) * `v`.`cotacao`),2) * `vi`.`quantidade`),2) AS `valorv` from (((((`vendaitem` `vi` join `mercadoria` `m` on((`vi`.`referencia` = `m`.`referencia`))) join `venda` `v` on((`vi`.`venda` = `v`.`codigo`))) join `pessoa` `cli` on((`v`.`cliente` = `cli`.`codigo`))) join `comissaosetorfaixa` `csf` on(((`csf`.`setor` = `cli`.`setor`) and (`csf`.`faixa` = `m`.`faixa`)))) left join `regiao` `r` on((`cli`.`regiao` = `r`.`codigo`))) where ((`v`.`quitacao` is not null) and (`cli`.`setor` = 1) and (not(`v`.`vendedor` in (select `representante`.`codigo` from `representante`))) and (not(`v`.`cliente` in (select `funcionario`.`codigo` from `funcionario`)))) union select `cli`.`codigo` AS `cliente`,`v`.`vendedor` AS `vendedor`,`v`.`vendedor` AS `comissaopara`,`v`.`codigo` AS `venda`,NULL AS `vendaitem`,`vi`.`codigo` AS `vendadevolucao`,`vi`.`referencia` AS `referencia`,`m`.`faixa` AS `faixa`,1 AS `setor`,'C0-' AS `tipo`,0 AS `regra`,(((((-(1) * `v`.`cotacao`) * `vi`.`quantidade`) * `vi`.`indice`) * `csf`.`valor`) / 100) AS `valorc`,round((((-(1) * `v`.`cotacao`) * `vi`.`quantidade`) * `vi`.`indice`),2) AS `valorv` from (((((`vendadevolucao` `vi` join `mercadoria` `m` on((`vi`.`referencia` = `m`.`referencia`))) join `venda` `v` on((`vi`.`venda` = `v`.`codigo`))) join `pessoa` `cli` on((`v`.`cliente` = `cli`.`codigo`))) join `comissaosetorfaixa` `csf` on(((`csf`.`setor` = `cli`.`setor`) and (`csf`.`faixa` = `m`.`faixa`)))) left join `regiao` `r` on((`cli`.`regiao` = `r`.`codigo`))) where ((`v`.`quitacao` is not null) and (`cli`.`setor` = 1) and (not(`v`.`vendedor` in (select `representante`.`codigo` from `representante`))) and (not(`v`.`cliente` in (select `funcionario`.`codigo` from `funcionario`)))) union select `cli`.`codigo` AS `cliente`,`v`.`vendedor` AS `vendedor`,`v`.`vendedor` AS `comissaopara`,`v`.`codigo` AS `venda`,`vi`.`codigo` AS `vendaitem`,NULL AS `vendadevolucao`,`vi`.`referencia` AS `referencia`,`m`.`faixa` AS `faixa`,`cli`.`setor` AS `setor`,'C1+' AS `tipo`,1 AS `regra`,((((`v`.`cotacao` * `vi`.`quantidade`) * `vi`.`indice`) * `csf`.`valor`) / 100) AS `valorc`,round((round((round(`vi`.`indice`,2) * `v`.`cotacao`),2) * `vi`.`quantidade`),2) AS `valorv` from ((((((`vendaitem` `vi` join `mercadoria` `m` on((`vi`.`referencia` = `m`.`referencia`))) join `venda` `v` on((`vi`.`venda` = `v`.`codigo`))) join `pessoa` `cli` on((`v`.`cliente` = `cli`.`codigo`))) left join `representante` `rte` on((`v`.`vendedor` = `rte`.`codigo`))) join `comissaosetorfaixa` `csf` on(((`csf`.`setor` = `cli`.`setor`) and (`csf`.`faixa` = `m`.`faixa`)))) left join `regiao` `r` on((`cli`.`regiao` = `r`.`codigo`))) where ((`v`.`quitacao` is not null) and isnull(`rte`.`codigo`) and (`cli`.`setor` = 2) and isnull(`v`.`acerto`) and (`v`.`tabela` <> 2) and (isnull(`cli`.`regiao`) or (not(`cli`.`regiao` in (select `regiao`.`codigo` from `regiao` where (`regiao`.`representante` is not null))))) and (not(`v`.`cliente` in (select `funcionario`.`codigo` from `funcionario`)))) union select `cli`.`codigo` AS `cliente`,`v`.`vendedor` AS `vendedor`,`v`.`vendedor` AS `comissaopara`,`v`.`codigo` AS `venda`,NULL AS `vendaitem`,`vi`.`codigo` AS `vendadevolucao`,`vi`.`referencia` AS `referencia`,`m`.`faixa` AS `faixa`,`cli`.`setor` AS `setor`,'C1-' AS `tipo`,1 AS `regra`,(((((-(1) * `v`.`cotacao`) * `vi`.`quantidade`) * `vi`.`indice`) * `csf`.`valor`) / 100) AS `valorc`,round((((-(1) * `v`.`cotacao`) * `vi`.`quantidade`) * `vi`.`indice`),2) AS `valorv` from ((((((`vendadevolucao` `vi` join `mercadoria` `m` on((`vi`.`referencia` = `m`.`referencia`))) join `venda` `v` on((`vi`.`venda` = `v`.`codigo`))) join `pessoa` `cli` on((`v`.`cliente` = `cli`.`codigo`))) left join `representante` `rte` on((`v`.`vendedor` = `rte`.`codigo`))) join `comissaosetorfaixa` `csf` on(((`csf`.`setor` = `cli`.`setor`) and (`csf`.`faixa` = `m`.`faixa`)))) left join `regiao` `r` on((`cli`.`regiao` = `r`.`codigo`))) where ((`v`.`quitacao` is not null) and isnull(`rte`.`codigo`) and (`cli`.`setor` = 2) and isnull(`v`.`acerto`) and (`v`.`tabela` <> 2) and (isnull(`cli`.`regiao`) or (not(`cli`.`regiao` in (select `regiao`.`codigo` from `regiao` where (`regiao`.`representante` is not null))))) and (not(`v`.`cliente` in (select `funcionario`.`codigo` from `funcionario`)))) union select `cli`.`codigo` AS `cliente`,`v`.`vendedor` AS `vendedor`,`v`.`vendedor` AS `comissaopara`,`v`.`codigo` AS `venda`,`vi`.`codigo` AS `vendaitem`,NULL AS `vendadevolucao`,`vi`.`referencia` AS `referencia`,`m`.`faixa` AS `faixa`,`cli`.`setor` AS `setor`,'C2+' AS `tipo`,2 AS `regra`,((((`v`.`cotacao` * `vi`.`quantidade`) * `vi`.`indice`) * `csf`.`valor`) / 100) AS `valorc`,round((round((round(`vi`.`indice`,2) * `v`.`cotacao`),2) * `vi`.`quantidade`),2) AS `valorv` from ((((((`vendaitem` `vi` join `mercadoria` `m` on((`vi`.`referencia` = `m`.`referencia`))) join `venda` `v` on((`vi`.`venda` = `v`.`codigo`))) join `pessoa` `cli` on((`v`.`cliente` = `cli`.`codigo`))) join `comissaosetorfaixa` `csf` on(((`csf`.`setor` = `cli`.`setor`) and (`csf`.`faixa` = `m`.`faixa`)))) left join `regiao` `r` on((`cli`.`regiao` = `r`.`codigo`))) left join `representante` `rr` on((`v`.`vendedor` = `rr`.`codigo`))) where ((`v`.`quitacao` is not null) and isnull(`rr`.`codigo`) and (`cli`.`setor` = 2) and ((`v`.`acerto` is not null) or (`v`.`tabela` = 2)) and (isnull(`cli`.`regiao`) or (not(`cli`.`regiao` in (select `regiao`.`codigo` from `regiao` where (`regiao`.`representante` is not null))))) and (not(`v`.`cliente` in (select `funcionario`.`codigo` from `funcionario`)))) union select `cli`.`codigo` AS `cliente`,`v`.`vendedor` AS `vendedor`,`v`.`vendedor` AS `comissaopara`,`v`.`codigo` AS `venda`,NULL AS `vendaitem`,`vi`.`codigo` AS `vendadevolucao`,`vi`.`referencia` AS `referencia`,`m`.`faixa` AS `faixa`,`cli`.`setor` AS `setor`,'C2-' AS `tipo`,2 AS `regra`,(((((-(1) * `v`.`cotacao`) * `vi`.`quantidade`) * `vi`.`indice`) * `csf`.`valor`) / 100) AS `valorc`,round((((-(1) * `v`.`cotacao`) * `vi`.`quantidade`) * `vi`.`indice`),2) AS `valorv` from ((((((`vendadevolucao` `vi` join `mercadoria` `m` on((`vi`.`referencia` = `m`.`referencia`))) join `venda` `v` on((`vi`.`venda` = `v`.`codigo`))) join `pessoa` `cli` on((`v`.`cliente` = `cli`.`codigo`))) join `comissaosetorfaixa` `csf` on(((`csf`.`setor` = `cli`.`setor`) and (`csf`.`faixa` = `m`.`faixa`)))) left join `regiao` `r` on((`cli`.`regiao` = `r`.`codigo`))) left join `representante` `rr` on((`v`.`vendedor` = `rr`.`codigo`))) where ((`v`.`quitacao` is not null) and isnull(`rr`.`codigo`) and (`cli`.`setor` = 2) and ((`v`.`acerto` is not null) or (`v`.`tabela` = 2)) and (isnull(`cli`.`regiao`) or (not(`cli`.`regiao` in (select `regiao`.`codigo` from `regiao` where (`regiao`.`representante` is not null))))) and (not(`v`.`cliente` in (select `funcionario`.`codigo` from `funcionario`)))) union select `cli`.`codigo` AS `cliente`,`v`.`vendedor` AS `vendedor`,`v`.`vendedor` AS `comissaopara`,`v`.`codigo` AS `venda`,`vi`.`codigo` AS `vendaitem`,NULL AS `vendadevolucao`,`vi`.`referencia` AS `referencia`,`m`.`faixa` AS `faixa`,3 AS `setor`,'C3+' AS `tipo`,3 AS `regra`,((((`v`.`cotacao` * `vi`.`quantidade`) * `vi`.`indice`) * `csf`.`valor`) / 100) AS `valorc`,round((round((round(`vi`.`indice`,2) * `v`.`cotacao`),2) * `vi`.`quantidade`),2) AS `valorv` from (((((`vendaitem` `vi` join `mercadoria` `m` on((`vi`.`referencia` = `m`.`referencia`))) join `venda` `v` on((`vi`.`venda` = `v`.`codigo`))) join `pessoa` `cli` on((`v`.`cliente` = `cli`.`codigo`))) join `comissaosetorfaixa` `csf` on(((`csf`.`setor` = `cli`.`setor`) and (`csf`.`faixa` = `m`.`faixa`)))) left join `regiao` `r` on((`cli`.`regiao` = `r`.`codigo`))) where ((`v`.`quitacao` is not null) and (`cli`.`setor` = 3) and (not(`v`.`cliente` in (select `funcionario`.`codigo` from `funcionario`)))) union select `cli`.`codigo` AS `cliente`,`v`.`vendedor` AS `vendedor`,`v`.`vendedor` AS `comissaopara`,`v`.`codigo` AS `venda`,NULL AS `vendaitem`,`vi`.`codigo` AS `vendadevolucao`,`vi`.`referencia` AS `referencia`,`m`.`faixa` AS `faixa`,3 AS `setor`,'C3-' AS `tipo`,3 AS `regra`,(((((-(1) * `v`.`cotacao`) * `vi`.`quantidade`) * `vi`.`indice`) * `csf`.`valor`) / 100) AS `valorc`,round((((-(1) * `v`.`cotacao`) * `vi`.`quantidade`) * `vi`.`indice`),2) AS `valorv` from (((((`vendadevolucao` `vi` join `mercadoria` `m` on((`vi`.`referencia` = `m`.`referencia`))) join `venda` `v` on((`vi`.`venda` = `v`.`codigo`))) join `pessoa` `cli` on((`v`.`cliente` = `cli`.`codigo`))) join `comissaosetorfaixa` `csf` on(((`csf`.`setor` = `cli`.`setor`) and (`csf`.`faixa` = `m`.`faixa`)))) left join `regiao` `r` on((`cli`.`regiao` = `r`.`codigo`))) where ((`v`.`quitacao` is not null) and (`cli`.`setor` = 3) and (not(`v`.`cliente` in (select `funcionario`.`codigo` from `funcionario`)))) union select `cli`.`codigo` AS `cliente`,`v`.`vendedor` AS `vendedor`,`v`.`vendedor` AS `comissaopara`,`v`.`codigo` AS `venda`,`vi`.`codigo` AS `vendaitem`,NULL AS `vendadevolucao`,`vi`.`referencia` AS `referencia`,`m`.`faixa` AS `faixa`,100 AS `setor`,'C4+' AS `tipo`,4 AS `regra`,((((`v`.`cotacao` * `vi`.`quantidade`) * `vi`.`indice`) * `csf`.`valor`) / 100) AS `valorc`,round((round((round(`vi`.`indice`,2) * `v`.`cotacao`),2) * `vi`.`quantidade`),2) AS `valorv` from (((((`vendaitem` `vi` join `mercadoria` `m` on((`vi`.`referencia` = `m`.`referencia`))) join `venda` `v` on((`vi`.`venda` = `v`.`codigo`))) join `pessoa` `cli` on((`v`.`cliente` = `cli`.`codigo`))) join `comissaosetorfaixa` `csf` on(((`csf`.`setor` = 100) and (`csf`.`faixa` = `m`.`faixa`)))) join `regiao` `r` on((`cli`.`regiao` = `r`.`codigo`))) where ((`v`.`quitacao` is not null) and (`r`.`representante` = `v`.`vendedor`)) union select `cli`.`codigo` AS `cliente`,`v`.`vendedor` AS `vendedor`,`v`.`vendedor` AS `comissaopara`,`v`.`codigo` AS `venda`,NULL AS `vendaitem`,`vi`.`codigo` AS `vendadevolucao`,`vi`.`referencia` AS `referencia`,`m`.`faixa` AS `faixa`,100 AS `setor`,'C4-' AS `tipo`,4 AS `regra`,(((((-(1) * `v`.`cotacao`) * `vi`.`quantidade`) * `vi`.`indice`) * `csf`.`valor`) / 100) AS `valorc`,round((((-(1) * `v`.`cotacao`) * `vi`.`quantidade`) * `vi`.`indice`),2) AS `valorv` from (((((`vendadevolucao` `vi` join `mercadoria` `m` on((`vi`.`referencia` = `m`.`referencia`))) join `venda` `v` on((`vi`.`venda` = `v`.`codigo`))) join `pessoa` `cli` on((`v`.`cliente` = `cli`.`codigo`))) join `comissaosetorfaixa` `csf` on(((`csf`.`setor` = 100) and (`csf`.`faixa` = `m`.`faixa`)))) join `regiao` `r` on((`cli`.`regiao` = `r`.`codigo`))) where ((`v`.`quitacao` is not null) and (`r`.`representante` = `v`.`vendedor`)) union select `cli`.`codigo` AS `cliente`,`v`.`vendedor` AS `vendedor`,`v`.`vendedor` AS `comissaopara`,`v`.`codigo` AS `venda`,`vi`.`codigo` AS `vendaitem`,NULL AS `vendadevolucao`,`vi`.`referencia` AS `referencia`,`m`.`faixa` AS `faixa`,100 AS `setor`,'C5+' AS `tipo`,5 AS `regra`,((((`v`.`cotacao` * `vi`.`quantidade`) * `vi`.`indice`) * `csf`.`valor`) / 100) AS `valorc`,round((round((round(`vi`.`indice`,2) * `v`.`cotacao`),2) * `vi`.`quantidade`),2) AS `valorv` from (((((`vendaitem` `vi` join `mercadoria` `m` on((`vi`.`referencia` = `m`.`referencia`))) join `venda` `v` on((`vi`.`venda` = `v`.`codigo`))) join `pessoa` `cli` on((`v`.`cliente` = `cli`.`codigo`))) join `comissaosetorfaixa` `csf` on(((`csf`.`setor` = 100) and (`csf`.`faixa` = `m`.`faixa`)))) join `regiao` `r` on((`cli`.`regiao` = `r`.`codigo`))) where ((`v`.`quitacao` is not null) and (`r`.`representante` is not null) and (`r`.`representante` <> `v`.`vendedor`) and `v`.`vendedor` in (select `representante`.`codigo` from `representante`) and (not(`v`.`cliente` in (select `funcionario`.`codigo` from `funcionario`)))) union select `cli`.`codigo` AS `cliente`,`v`.`vendedor` AS `vendedor`,`v`.`vendedor` AS `comissaopara`,`v`.`codigo` AS `venda`,NULL AS `vendaitem`,`vi`.`codigo` AS `vendadevolucao`,`vi`.`referencia` AS `referencia`,`m`.`faixa` AS `faixa`,100 AS `setor`,'C5-' AS `tipo`,5 AS `regra`,(((((-(1) * `v`.`cotacao`) * `vi`.`quantidade`) * `vi`.`indice`) * `csf`.`valor`) / 100) AS `valorc`,round((((-(1) * `v`.`cotacao`) * `vi`.`quantidade`) * `vi`.`indice`),2) AS `valorv` from (((((`vendadevolucao` `vi` join `mercadoria` `m` on((`vi`.`referencia` = `m`.`referencia`))) join `venda` `v` on((`vi`.`venda` = `v`.`codigo`))) join `pessoa` `cli` on((`v`.`cliente` = `cli`.`codigo`))) join `comissaosetorfaixa` `csf` on(((`csf`.`setor` = 100) and (`csf`.`faixa` = `m`.`faixa`)))) join `regiao` `r` on((`cli`.`regiao` = `r`.`codigo`))) where ((`v`.`quitacao` is not null) and (`r`.`representante` is not null) and (`r`.`representante` <> `v`.`vendedor`) and `v`.`vendedor` in (select `representante`.`codigo` from `representante`) and (not(`v`.`cliente` in (select `funcionario`.`codigo` from `funcionario`)))) union select `cli`.`codigo` AS `cliente`,`v`.`vendedor` AS `vendedor`,`v`.`vendedor` AS `comissaopara`,`v`.`codigo` AS `venda`,`vi`.`codigo` AS `vendaitem`,NULL AS `vendadevolucao`,`vi`.`referencia` AS `referencia`,`m`.`faixa` AS `faixa`,100 AS `setor`,'C6+' AS `tipo`,6 AS `regra`,((((`v`.`cotacao` * `vi`.`quantidade`) * `vi`.`indice`) * `csf`.`valor`) / 100) AS `valorc`,round((round((round(`vi`.`indice`,2) * `v`.`cotacao`),2) * `vi`.`quantidade`),2) AS `valorv` from ((((((`vendaitem` `vi` join `mercadoria` `m` on((`vi`.`referencia` = `m`.`referencia`))) join `venda` `v` on((`vi`.`venda` = `v`.`codigo`))) join `representante` `rte` on((`v`.`vendedor` = `rte`.`codigo`))) join `pessoa` `cli` on((`v`.`cliente` = `cli`.`codigo`))) join `comissaosetorfaixa` `csf` on(((`csf`.`setor` = 100) and (`csf`.`faixa` = `m`.`faixa`)))) left join `regiao` `r` on((`cli`.`regiao` = `r`.`codigo`))) where ((`v`.`quitacao` is not null) and (`cli`.`setor` > 1) and (`v`.`vendedor` <> `v`.`cliente`) and isnull(`r`.`representante`) and (not(`v`.`cliente` in (select `funcionario`.`codigo` from `funcionario`)))) union select `cli`.`codigo` AS `cliente`,`v`.`vendedor` AS `vendedor`,`v`.`vendedor` AS `comissaopara`,`v`.`codigo` AS `venda`,NULL AS `vendaitem`,`vi`.`codigo` AS `vendadevolucao`,`vi`.`referencia` AS `referencia`,`m`.`faixa` AS `faixa`,100 AS `setor`,'C6-' AS `tipo`,6 AS `regra`,(((((-(1) * `v`.`cotacao`) * `vi`.`quantidade`) * `vi`.`indice`) * `csf`.`valor`) / 100) AS `valorc`,round((((-(1) * `v`.`cotacao`) * `vi`.`quantidade`) * `vi`.`indice`),2) AS `valorv` from ((((((`vendadevolucao` `vi` join `mercadoria` `m` on((`vi`.`referencia` = `m`.`referencia`))) join `venda` `v` on((`vi`.`venda` = `v`.`codigo`))) join `representante` `rte` on((`v`.`vendedor` = `rte`.`codigo`))) join `pessoa` `cli` on((`v`.`cliente` = `cli`.`codigo`))) join `comissaosetorfaixa` `csf` on(((`csf`.`setor` = 100) and (`csf`.`faixa` = `m`.`faixa`)))) left join `regiao` `r` on((`cli`.`regiao` = `r`.`codigo`))) where ((`v`.`quitacao` is not null) and (`cli`.`setor` > 1) and (`v`.`vendedor` <> `v`.`cliente`) and isnull(`r`.`representante`) and (not(`v`.`cliente` in (select `funcionario`.`codigo` from `funcionario`)))) union select `cli`.`codigo` AS `cliente`,`v`.`vendedor` AS `vendedor`,`v`.`vendedor` AS `comissaopara`,`v`.`codigo` AS `venda`,`vi`.`codigo` AS `vendaitem`,NULL AS `vendadevolucao`,`vi`.`referencia` AS `referencia`,`m`.`faixa` AS `faixa`,2 AS `setor`,'C7v+' AS `tipo`,7 AS `regra`,((((`v`.`cotacao` * `vi`.`quantidade`) * `vi`.`indice`) * `csf`.`valor`) / 100) AS `valorc`,round((round((round(`vi`.`indice`,2) * `v`.`cotacao`),2) * `vi`.`quantidade`),2) AS `valorv` from (((((`vendaitem` `vi` join `mercadoria` `m` on((`vi`.`referencia` = `m`.`referencia`))) join `venda` `v` on((`vi`.`venda` = `v`.`codigo`))) join `pessoa` `cli` on((`v`.`cliente` = `cli`.`codigo`))) join `comissaosetorfaixa` `csf` on(((`csf`.`setor` = 2) and (`csf`.`faixa` = `m`.`faixa`)))) join `regiao` `r` on((`cli`.`regiao` = `r`.`codigo`))) where ((`v`.`quitacao` is not null) and (`r`.`representante` is not null) and (`r`.`representante` <> `v`.`vendedor`) and (not(`v`.`vendedor` in (select `representante`.`codigo` from `representante`))) and (not(`v`.`cliente` in (select `funcionario`.`codigo` from `funcionario`)))) union select `cli`.`codigo` AS `cliente`,`v`.`vendedor` AS `vendedor`,`v`.`vendedor` AS `comissaopara`,`v`.`codigo` AS `venda`,NULL AS `vendaitem`,`vi`.`codigo` AS `vendadevolucao`,`vi`.`referencia` AS `referencia`,`m`.`faixa` AS `faixa`,2 AS `setor`,'C7v-' AS `tipo`,7 AS `regra`,(((((-(1) * `v`.`cotacao`) * `vi`.`quantidade`) * `vi`.`indice`) * `csf`.`valor`) / 100) AS `valorc`,round((((-(1) * `v`.`cotacao`) * `vi`.`quantidade`) * `vi`.`indice`),2) AS `valorv` from (((((`vendadevolucao` `vi` join `mercadoria` `m` on((`vi`.`referencia` = `m`.`referencia`))) join `venda` `v` on((`vi`.`venda` = `v`.`codigo`))) join `pessoa` `cli` on((`v`.`cliente` = `cli`.`codigo`))) join `comissaosetorfaixa` `csf` on(((`csf`.`setor` = 2) and (`csf`.`faixa` = `m`.`faixa`)))) join `regiao` `r` on((`cli`.`regiao` = `r`.`codigo`))) where ((`v`.`quitacao` is not null) and (`r`.`representante` is not null) and (`r`.`representante` <> `v`.`vendedor`) and (not(`v`.`vendedor` in (select `representante`.`codigo` from `representante`))) and (not(`v`.`cliente` in (select `funcionario`.`codigo` from `funcionario`)))) union select `cli`.`codigo` AS `cliente`,`v`.`vendedor` AS `vendedor`,`r`.`representante` AS `comissaopara`,`v`.`codigo` AS `venda`,`vi`.`codigo` AS `vendaitem`,NULL AS `vendadevolucao`,`vi`.`referencia` AS `referencia`,`m`.`faixa` AS `faixa`,100 AS `setor`,'C7r+' AS `tipo`,7 AS `regra`,((((`v`.`cotacao` * `vi`.`quantidade`) * `vi`.`indice`) * (`csf_r`.`valor` - `csf_a`.`valor`)) / 100) AS `valorc`,round((round((round(`vi`.`indice`,2) * `v`.`cotacao`),2) * `vi`.`quantidade`),2) AS `valorv` from ((((((`vendaitem` `vi` join `mercadoria` `m` on((`vi`.`referencia` = `m`.`referencia`))) join `venda` `v` on((`vi`.`venda` = `v`.`codigo`))) join `pessoa` `cli` on((`v`.`cliente` = `cli`.`codigo`))) join `comissaosetorfaixa` `csf_r` on(((`csf_r`.`setor` = 100) and (`csf_r`.`faixa` = `m`.`faixa`)))) join `comissaosetorfaixa` `csf_a` on(((`csf_a`.`setor` = 2) and (`csf_a`.`faixa` = `m`.`faixa`)))) join `regiao` `r` on((`cli`.`regiao` = `r`.`codigo`))) where ((`v`.`quitacao` is not null) and (`r`.`representante` is not null) and (`r`.`representante` <> `v`.`vendedor`) and (not(`v`.`vendedor` in (select `representante`.`codigo` from `representante`))) and (not(`v`.`cliente` in (select `funcionario`.`codigo` from `funcionario`)))) union select `cli`.`codigo` AS `cliente`,`v`.`vendedor` AS `vendedor`,`r`.`representante` AS `comissaopara`,`v`.`codigo` AS `venda`,NULL AS `vendaitem`,`vi`.`codigo` AS `vendadevolucao`,`vi`.`referencia` AS `referencia`,`m`.`faixa` AS `faixa`,100 AS `setor`,'C7r-' AS `tipo`,7 AS `regra`,(((((-(1) * `v`.`cotacao`) * `vi`.`quantidade`) * `vi`.`indice`) * (`csf_r`.`valor` - `csf_a`.`valor`)) / 100) AS `valorc`,round((((-(1) * `v`.`cotacao`) * `vi`.`quantidade`) * `vi`.`indice`),2) AS `valorv` from ((((((`vendadevolucao` `vi` join `mercadoria` `m` on((`vi`.`referencia` = `m`.`referencia`))) join `venda` `v` on((`vi`.`venda` = `v`.`codigo`))) join `pessoa` `cli` on((`v`.`cliente` = `cli`.`codigo`))) join `comissaosetorfaixa` `csf_r` on(((`csf_r`.`setor` = 100) and (`csf_r`.`faixa` = `m`.`faixa`)))) join `comissaosetorfaixa` `csf_a` on(((`csf_a`.`setor` = 2) and (`csf_a`.`faixa` = `m`.`faixa`)))) join `regiao` `r` on((`cli`.`regiao` = `r`.`codigo`))) where ((`v`.`quitacao` is not null) and (`r`.`representante` is not null) and (`r`.`representante` <> `v`.`vendedor`) and (not(`v`.`vendedor` in (select `representante`.`codigo` from `representante`))) and (not(`v`.`cliente` in (select `funcionario`.`codigo` from `funcionario`)))) union select `cli`.`codigo` AS `cliente`,`v`.`vendedor` AS `vendedor`,`v`.`vendedor` AS `comissaopara`,`v`.`codigo` AS `venda`,`vi`.`codigo` AS `vendaitem`,NULL AS `vendadevolucao`,`vi`.`referencia` AS `referencia`,`m`.`faixa` AS `faixa`,100 AS `setor`,'C8+' AS `tipo`,8 AS `regra`,((((`v`.`cotacao` * `vi`.`quantidade`) * `vi`.`indice`) * `csf`.`valor`) / 100) AS `valorc`,round((round((round(`vi`.`indice`,2) * `v`.`cotacao`),2) * `vi`.`quantidade`),2) AS `valorv` from (((((`vendaitem` `vi` join `mercadoria` `m` on((`vi`.`referencia` = `m`.`referencia`))) join `venda` `v` on((`vi`.`venda` = `v`.`codigo`))) join `pessoa` `cli` on((`v`.`cliente` = `cli`.`codigo`))) join `comissaosetorfaixa` `csf` on(((`csf`.`setor` = 100) and (`csf`.`faixa` = `m`.`faixa`)))) join `representante` `r` on((`cli`.`codigo` = `r`.`codigo`))) where (`v`.`quitacao` is not null) union select `cli`.`codigo` AS `cliente`,`v`.`vendedor` AS `vendedor`,`v`.`vendedor` AS `comissaopara`,`v`.`codigo` AS `venda`,NULL AS `vendaitem`,`vi`.`codigo` AS `vendadevolucao`,`vi`.`referencia` AS `referencia`,`m`.`faixa` AS `faixa`,100 AS `setor`,'C8-' AS `tipo`,8 AS `regra`,(((((-(1) * `v`.`cotacao`) * `vi`.`quantidade`) * `vi`.`indice`) * `csf`.`valor`) / 100) AS `valorc`,round((((-(1) * `v`.`cotacao`) * `vi`.`quantidade`) * `vi`.`indice`),2) AS `valorv` from (((((`vendadevolucao` `vi` join `mercadoria` `m` on((`vi`.`referencia` = `m`.`referencia`))) join `venda` `v` on((`vi`.`venda` = `v`.`codigo`))) join `pessoa` `cli` on((`v`.`cliente` = `cli`.`codigo`))) join `comissaosetorfaixa` `csf` on(((`csf`.`setor` = 100) and (`csf`.`faixa` = `m`.`faixa`)))) join `representante` `r` on((`cli`.`codigo` = `r`.`codigo`))) where (`v`.`quitacao` is not null) union select `v`.`cliente` AS `cliente`,`v`.`vendedor` AS `vendedor`,`v`.`corretor` AS `comissaopara`,`v`.`codigo` AS `venda`,`vi`.`codigo` AS `vendaitem`,NULL AS `vendadevolucao`,`vi`.`referencia` AS `referencia`,`m`.`faixa` AS `faixa`,15 AS `setor`,'corretor+' AS `tipo`,9 AS `regra`,((((`v`.`cotacao` * `vi`.`quantidade`) * `vi`.`indice`) * `csf`.`valor`) / 100) AS `valorc`,round((round((round(`vi`.`indice`,2) * `v`.`cotacao`),2) * `vi`.`quantidade`),2) AS `valorv` from ((((`vendaitem` `vi` join `mercadoria` `m` on((`vi`.`referencia` = `m`.`referencia`))) join `venda` `v` on((`vi`.`venda` = `v`.`codigo`))) join `comissaosetorfaixa` `csf` on(((`csf`.`setor` = 15) and (`csf`.`faixa` = `m`.`faixa`)))) join `pessoa` `corretor` on((`v`.`corretor` = `corretor`.`codigo`))) where (`v`.`quitacao` is not null) union select `v`.`cliente` AS `cliente`,`v`.`vendedor` AS `vendedor`,`v`.`corretor` AS `comissaopara`,`v`.`codigo` AS `venda`,NULL AS `vendaitem`,`vi`.`codigo` AS `vendadevolucao`,`vi`.`referencia` AS `referencia`,`m`.`faixa` AS `faixa`,15 AS `setor`,'corretor-' AS `tipo`,9 AS `regra`,(((((-(1) * `v`.`cotacao`) * `vi`.`quantidade`) * `vi`.`indice`) * `csf`.`valor`) / 100) AS `valorc`,round((((-(1) * `v`.`cotacao`) * `vi`.`quantidade`) * `vi`.`indice`),2) AS `valorv` from ((((`vendadevolucao` `vi` join `mercadoria` `m` on((`vi`.`referencia` = `m`.`referencia`))) join `venda` `v` on((`vi`.`venda` = `v`.`codigo`))) join `comissaosetorfaixa` `csf` on(((`csf`.`setor` = 15) and (`csf`.`faixa` = `m`.`faixa`)))) join `pessoa` `corretor` on((`v`.`corretor` = `corretor`.`codigo`))) where (`v`.`quitacao` is not null) union select `cli`.`codigo` AS `cliente`,`v`.`vendedor` AS `vendedor`,`v`.`vendedor` AS `comissaopara`,`v`.`codigo` AS `venda`,`vi`.`codigo` AS `vendaitem`,NULL AS `vendadevolucao`,`vi`.`referencia` AS `referencia`,`m`.`faixa` AS `faixa`,`s`.`codigo` AS `setor`,'C10+' AS `tipo`,10 AS `regra`,((((`v`.`cotacao` * `vi`.`quantidade`) * `vi`.`indice`) * `csf`.`valor`) / 100) AS `valorc`,round((round((round(`vi`.`indice`,2) * `v`.`cotacao`),2) * `vi`.`quantidade`),2) AS `valorv` from ((((((((`vendaitem` `vi` join `mercadoria` `m` on((`vi`.`referencia` = `m`.`referencia`))) join `venda` `v` on((`vi`.`venda` = `v`.`codigo`))) join `tabela` `t` on((`v`.`tabela` = `t`.`codigo`))) join `setor` `s` on((`s`.`codigo` = `t`.`setor`))) join `pessoa` `cli` on((`v`.`cliente` = `cli`.`codigo`))) left join `representante` `rte` on((`v`.`vendedor` = `rte`.`codigo`))) join `comissaosetorfaixa` `csf` on(((`csf`.`setor` = `s`.`codigo`) and (`csf`.`faixa` = `m`.`faixa`)))) left join `regiao` `r` on((`cli`.`regiao` = `r`.`codigo`))) where ((`v`.`quitacao` is not null) and isnull(`rte`.`codigo`) and (`cli`.`setor` not in (3,1,2,100,15)) and (isnull(`cli`.`regiao`) or (not(`cli`.`regiao` in (select `regiao`.`codigo` from `regiao` where (`regiao`.`representante` is not null))))) and (not(`v`.`cliente` in (select `funcionario`.`codigo` from `funcionario`)))) union select `cli`.`codigo` AS `cliente`,`v`.`vendedor` AS `vendedor`,`v`.`vendedor` AS `comissaopara`,`v`.`codigo` AS `venda`,NULL AS `vendaitem`,`vi`.`codigo` AS `vendadevolucao`,`vi`.`referencia` AS `referencia`,`m`.`faixa` AS `faixa`,`cli`.`setor` AS `setor`,'C10-' AS `tipo`,10 AS `regra`,(((((-(1) * `v`.`cotacao`) * `vi`.`quantidade`) * `vi`.`indice`) * `csf`.`valor`) / 100) AS `valorc`,round((((-(1) * `v`.`cotacao`) * `vi`.`quantidade`) * `vi`.`indice`),2) AS `valorv` from ((((((((`vendadevolucao` `vi` join `mercadoria` `m` on((`vi`.`referencia` = `m`.`referencia`))) join `venda` `v` on((`vi`.`venda` = `v`.`codigo`))) join `tabela` `t` on((`v`.`tabela` = `t`.`codigo`))) join `setor` on((`setor`.`codigo` = `t`.`setor`))) join `pessoa` `cli` on((`v`.`cliente` = `cli`.`codigo`))) left join `representante` `rte` on((`v`.`vendedor` = `rte`.`codigo`))) join `comissaosetorfaixa` `csf` on(((`csf`.`setor` = `setor`.`codigo`) and (`csf`.`faixa` = `m`.`faixa`)))) left join `regiao` `r` on((`cli`.`regiao` = `r`.`codigo`))) where ((`v`.`quitacao` is not null) and isnull(`rte`.`codigo`) and (`cli`.`setor` not in (3,1,2,100,15)) and (isnull(`cli`.`regiao`) or (not(`cli`.`regiao` in (select `regiao`.`codigo` from `regiao` where (`regiao`.`representante` is not null))))) and (not(`v`.`cliente` in (select `funcionario`.`codigo` from `funcionario`)))) union select `cli`.`codigo` AS `cliente`,`v`.`vendedor` AS `vendedor`,`v`.`vendedor` AS `comissaopara`,`v`.`codigo` AS `venda`,`vi`.`codigo` AS `vendaitem`,NULL AS `vendadevolucao`,`vi`.`referencia` AS `referencia`,`m`.`faixa` AS `faixa`,`s`.`codigo` AS `setor`,'C11+' AS `tipo`,11 AS `regra`,((((`v`.`cotacao` * `vi`.`quantidade`) * `vi`.`indice`) * `csf`.`valor`) / 100) AS `valorc`,round((round((round(`vi`.`indice`,2) * `v`.`cotacao`),2) * `vi`.`quantidade`),2) AS `valorv` from (((((((`vendaitem` `vi` join `mercadoria` `m` on((`vi`.`referencia` = `m`.`referencia`))) join `venda` `v` on((`vi`.`venda` = `v`.`codigo`))) join `tabela` `t` on((`v`.`tabela` = `t`.`codigo`))) join `setor` `s` on((`s`.`codigo` = `t`.`setor`))) join `pessoa` `cli` on((`v`.`cliente` = `cli`.`codigo`))) join `comissaosetorfaixa` `csf` on(((`csf`.`setor` = `s`.`codigo`) and (`csf`.`faixa` = `m`.`faixa`)))) left join `regiao` `r` on((`cli`.`regiao` = `r`.`codigo`))) where ((`v`.`quitacao` is not null) and `v`.`cliente` in (select `funcionario`.`codigo` from `funcionario`) and (not(`v`.`cliente` in (select `representante`.`codigo` from `representante`)))) union select `cli`.`codigo` AS `cliente`,`v`.`vendedor` AS `vendedor`,`v`.`vendedor` AS `comissaopara`,`v`.`codigo` AS `venda`,NULL AS `vendaitem`,`vi`.`codigo` AS `vendadevolucao`,`vi`.`referencia` AS `referencia`,`m`.`faixa` AS `faixa`,`s`.`codigo` AS `setor`,'C11-' AS `tipo`,11 AS `regra`,(((((-(1) * `v`.`cotacao`) * `vi`.`quantidade`) * `vi`.`indice`) * `csf`.`valor`) / 100) AS `valorc`,round((((-(1) * `v`.`cotacao`) * `vi`.`quantidade`) * `vi`.`indice`),2) AS `valorv` from (((((((`vendadevolucao` `vi` join `mercadoria` `m` on((`vi`.`referencia` = `m`.`referencia`))) join `venda` `v` on((`vi`.`venda` = `v`.`codigo`))) join `tabela` `t` on((`v`.`tabela` = `t`.`codigo`))) join `setor` `s` on((`s`.`codigo` = `t`.`setor`))) join `pessoa` `cli` on((`v`.`cliente` = `cli`.`codigo`))) join `comissaosetorfaixa` `csf` on(((`csf`.`setor` = `s`.`codigo`) and (`csf`.`faixa` = `m`.`faixa`)))) left join `regiao` `r` on((`cli`.`regiao` = `r`.`codigo`))) where ((`v`.`quitacao` is not null) and `v`.`cliente` in (select `funcionario`.`codigo` from `funcionario`) and (not(`v`.`cliente` in (select `representante`.`codigo` from `representante`)))) ;
  SET character_set_client      = @saved_cs_client ;
  SET character_set_results     = @saved_cs_results ;
@@ -2988,8 +3023,8 @@ DELIMITER ;
  SET character_set_client      = utf8 ;
  SET character_set_results     = utf8 ;
  SET collation_connection      = utf8_general_ci ;
- CREATE ALGORITHM=UNDEFINED
- DEFINER=`root`@`localhost` SQL SECURITY DEFINER
+ CREATE ALGORITHM=UNDEFINED 
+ DEFINER=`root`@`localhost` SQL SECURITY DEFINER 
  VIEW `comissao_venda` AS select `cv`.`cliente` AS `cliente`,`cv`.`vendedor` AS `vendedor`,`cv`.`comissaopara` AS `comissaopara`,`cv`.`venda` AS `venda`,`cv`.`setor` AS `setor`,`cv`.`tipo` AS `tipo`,`cv`.`regra` AS `regra`,(sum(`cv`.`valorc`) - ((`csf`.`valor` * `v`.`desconto`) / 100)) AS `valorc`,round((sum(`cv`.`valorv`) - `v`.`desconto`),2) AS `valorv` from ((`comissao_valor` `cv` join `venda` `v` on((`cv`.`venda` = `v`.`codigo`))) join `comissaosetorfaixa` `csf` on(((`csf`.`setor` = `cv`.`setor`) and (`csf`.`faixa` = 'A')))) group by `cv`.`comissaopara`,`cv`.`venda` ;
  SET character_set_client      = @saved_cs_client ;
  SET character_set_results     = @saved_cs_results ;
@@ -3007,8 +3042,8 @@ DELIMITER ;
  SET character_set_client      = utf8 ;
  SET character_set_results     = utf8 ;
  SET collation_connection      = utf8_general_ci ;
- CREATE ALGORITHM=UNDEFINED
- DEFINER=`root`@`localhost` SQL SECURITY DEFINER
+ CREATE ALGORITHM=UNDEFINED 
+ DEFINER=`root`@`localhost` SQL SECURITY DEFINER 
  VIEW `componentecusto_valorfinal` AS select `componentecusto`.`codigo` AS `codigo`,`componentecusto`.`valor` AS `valorfinal` from `componentecusto` where isnull(`componentecusto`.`multiplicarcomponentecusto`) union select `c`.`codigo` AS `codigo`,(`c`.`valor` * `v2`.`valor`) AS `valorfinal` from (`componentecusto` `c` join `componentecusto` `v2`) where (`c`.`multiplicarcomponentecusto` = `v2`.`codigo`) ;
  SET character_set_client      = @saved_cs_client ;
  SET character_set_results     = @saved_cs_results ;
@@ -3026,8 +3061,8 @@ DELIMITER ;
  SET character_set_client      = utf8 ;
  SET character_set_results     = utf8 ;
  SET collation_connection      = utf8_general_ci ;
- CREATE ALGORITHM=UNDEFINED
- DEFINER=`root`@`localhost` SQL SECURITY DEFINER
+ CREATE ALGORITHM=UNDEFINED 
+ DEFINER=`root`@`localhost` SQL SECURITY DEFINER 
  VIEW `devedores` AS select `pessoa`.`codigo` AS `codigo`,`pessoa`.`nome` AS `nome`,sum(`pagamento`.`valor`) AS `sum(valor)` from (`pessoa` join `pagamento`) where ((`pagamento`.`pendente` = 1) and (`pessoa`.`codigo` = `pagamento`.`cliente`)) group by `pessoa`.`codigo` order by sum(`pagamento`.`valor`) ;
  SET character_set_client      = @saved_cs_client ;
  SET character_set_results     = @saved_cs_results ;
@@ -3045,8 +3080,8 @@ DELIMITER ;
  SET character_set_client      = utf8 ;
  SET character_set_results     = utf8 ;
  SET collation_connection      = utf8_general_ci ;
- CREATE ALGORITHM=UNDEFINED
- DEFINER=`root`@`localhost` SQL SECURITY DEFINER
+ CREATE ALGORITHM=UNDEFINED 
+ DEFINER=`root`@`localhost` SQL SECURITY DEFINER 
  VIEW `estoque_extrato` AS select `ei`.`data` AS `data`,`p`.`nome` AS `nome`,`ei`.`referencia` AS `referencia`,`ei`.`peso` AS `peso`,`ei`.`quantidade` AS `entrada`,0 AS `venda`,0 AS `devolucao`,concat('Entrada ',`e`.`codigo`) AS `operacao` from ((`entrada` `e` join `entradaitem` `ei` on((`e`.`codigo` = `ei`.`entrada`))) join `pessoa` `p` on((`p`.`codigo` = `ei`.`funcionario`))) where (`e`.`data` > (select max(`zeragemestoque`.`data`) from `zeragemestoque`)) union select `vi`.`data` AS `data`,`p`.`nome` AS `nome`,`vi`.`referencia` AS `referencia`,`vi`.`peso` AS `peso`,0 AS `entrada`,`vi`.`quantidade` AS `venda`,0 AS `devolucao`,concat('Venda ',`v`.`codigo`) AS `operacao` from (((`venda` `v` join `vendaitem` `vi` on((`v`.`codigo` = `vi`.`venda`))) join `pessoa` `p` on((`p`.`codigo` = `vi`.`funcionario`))) join `comissao_saldo` `s` on((`v`.`codigo` = `s`.`venda`))) where ((`s`.`saldo` > 0) and `v`.`codigo` in (select `comissaovenda`.`venda` from `comissaovenda` where (`comissaovenda`.`comissao` > (select max(`zeragemestoque`.`comissaoVigente`) from `zeragemestoque`)))) union select `d`.`data` AS `data`,`p`.`nome` AS `nome`,`d`.`referencia` AS `referencia`,`d`.`peso` AS `peso`,0 AS `entrada`,0 AS `venda`,`d`.`quantidade` AS `devolucao`,concat('Devoluo ',`v`.`codigo`) AS `operacao` from (((`venda` `v` join `vendadevolucao` `d` on((`v`.`codigo` = `d`.`venda`))) join `pessoa` `p` on((`p`.`codigo` = `d`.`funcionario`))) join `comissao_saldo` `s` on((`v`.`codigo` = `s`.`venda`))) where ((`s`.`saldo` > 0) and `v`.`codigo` in (select `comissaovenda`.`venda` from `comissaovenda` where (`comissaovenda`.`comissao` > (select max(`zeragemestoque`.`comissaoVigente`) from `zeragemestoque`)))) ;
  SET character_set_client      = @saved_cs_client ;
  SET character_set_results     = @saved_cs_results ;
@@ -3064,8 +3099,8 @@ DELIMITER ;
  SET character_set_client      = utf8 ;
  SET character_set_results     = utf8 ;
  SET collation_connection      = utf8_general_ci ;
- CREATE ALGORITHM=UNDEFINED
- DEFINER=`root`@`localhost` SQL SECURITY DEFINER
+ CREATE ALGORITHM=UNDEFINED 
+ DEFINER=`root`@`localhost` SQL SECURITY DEFINER 
  VIEW `estoque_saldo` AS select `e`.`referencia` AS `referencia`,`e`.`peso` AS `peso`,sum(`e`.`entrada`) AS `entrada`,sum(`e`.`venda`) AS `venda`,sum(`e`.`devolucao`) AS `devolucao`,((sum(`e`.`entrada`) - sum(`e`.`venda`)) + sum(`e`.`devolucao`)) AS `saldo` from (`estoque_extrato` `e` join `mercadoria` `m` on((`e`.`referencia` = `m`.`referencia`))) where (`m`.`foradelinha` = 0) group by `e`.`referencia`,`e`.`peso` having ((`venda` <> 0) or (`devolucao` <> 0) or (`saldo` <> 0) or (`entrada` <> 0)) order by `e`.`referencia`,`e`.`peso` ;
  SET character_set_client      = @saved_cs_client ;
  SET character_set_results     = @saved_cs_results ;
@@ -3080,12 +3115,12 @@ DELIMITER ;
  SET @saved_cs_client          = @@character_set_client ;
  SET @saved_cs_results         = @@character_set_results ;
  SET @saved_col_connection     = @@collation_connection ;
- SET character_set_client      = utf8mb4 ;
- SET character_set_results     = utf8mb4 ;
- SET collation_connection      = utf8mb4_general_ci ;
- CREATE ALGORITHM=UNDEFINED
- DEFINER=`root`@`localhost` SQL SECURITY DEFINER
- VIEW `extratoinventario` AS select `e`.`tipo` AS `tipodocumento`,'E' AS `tipoextrato`,`ei`.`referencia` AS `referencia`,`e`.`dataentrada` AS `data`,`ei`.`quantidade` AS `quantidade`,`ei`.`valor` AS `valor` from (`entradaitemfiscal` `ei` join `entradafiscal` `e` on((`ei`.`entradafiscal` = `e`.`id`))) where (`e`.`dataentrada` < now()) union select `e`.`tipo` AS `tipodocumento`,'S' AS `tipoextrato`,`ei`.`referencia` AS `referencia`,`e`.`datasaida` AS `data`,(-(1) * `ei`.`quantidade`) AS `-1*ei.quantidade`,`ei`.`valor` AS `valor` from (`saidaitemfiscal` `ei` join `saidafiscal` `e` on((`ei`.`saidafiscal` = `e`.`id`))) where (`e`.`datasaida` < now()) union select NULL AS `tipodocumento`,'OT' AS `tipoextrato`,`ei`.`referencia` AS `referencia`,`e`.`data` AS `data`,(-(1) * `ei`.`quantidade`) AS `-1*ei.quantidade`,0 AS `valor` from (`entradaproducaofiscal` `ei` join `producaofiscal` `e` on((`ei`.`producaofiscal` = `e`.`codigo`))) where (`e`.`data` < now()) union select NULL AS `tipodocumento`,'TO' AS `tipoextrato`,`ei`.`referencia` AS `referencia`,`e`.`data` AS `data`,`ei`.`quantidade` AS `quantidade`,0 AS `valor` from (`saidaproducaofiscal` `ei` join `producaofiscal` `e` on((`ei`.`producaofiscal` = `e`.`codigo`))) where (`e`.`data` < now()) ;
+ SET character_set_client      = utf8 ;
+ SET character_set_results     = utf8 ;
+ SET collation_connection      = utf8_general_ci ;
+ CREATE ALGORITHM=UNDEFINED 
+ DEFINER=`root`@`localhost` SQL SECURITY DEFINER 
+ VIEW `extratoinventario` AS select `e`.`tipo` AS `tipodocumento`,'E' AS `tipoextrato`,`ei`.`referencia` AS `referencia`,`e`.`dataentrada` AS `data`,`ei`.`quantidade` AS `quantidade`,`ei`.`valor` AS `valor` from (`entradaitemfiscal` `ei` join `entradafiscal` `e` on((`ei`.`entradafiscal` = `e`.`id`))) where (`e`.`dataentrada` < now()) union select `e`.`tipo` AS `tipodocumento`,'S' AS `tipoextrato`,`ei`.`referencia` AS `referencia`,`e`.`datasaida` AS `data`,(-(1) * `ei`.`quantidade`) AS `-1*ei.quantidade`,`ei`.`valor` AS `valor` from (`saidaitemfiscal` `ei` join `saidafiscal` `e` on((`ei`.`saidafiscal` = `e`.`id`))) where (`e`.`datasaida` < now()) union select NULL AS `tipodocumento`,'OT' AS `tipoextrato`,`ei`.`referencia` AS `referencia`,`e`.`data` AS `data`,(-(1) * `ei`.`quantidade`) AS `-1*ei.quantidade`,0 AS `valor` from (`entradafabricacaofiscal` `ei` join `fabricacaofiscal` `e` on((`ei`.`fabricacaofiscal` = `e`.`codigo`))) where (`e`.`data` < now()) union select NULL AS `tipodocumento`,'TO' AS `tipoextrato`,`ei`.`referencia` AS `referencia`,`e`.`data` AS `data`,`ei`.`quantidade` AS `quantidade`,0 AS `valor` from (`saidafabricacaofiscal` `ei` join `fabricacaofiscal` `e` on((`ei`.`fabricacaofiscal` = `e`.`codigo`))) where (`e`.`data` < now()) ;
  SET character_set_client      = @saved_cs_client ;
  SET character_set_results     = @saved_cs_results ;
  SET collation_connection      = @saved_col_connection ;
@@ -3099,12 +3134,12 @@ DELIMITER ;
  SET @saved_cs_client          = @@character_set_client ;
  SET @saved_cs_results         = @@character_set_results ;
  SET @saved_col_connection     = @@collation_connection ;
- SET character_set_client      = utf8mb4 ;
- SET character_set_results     = utf8mb4 ;
- SET collation_connection      = utf8mb4_general_ci ;
- CREATE ALGORITHM=UNDEFINED
- DEFINER=`root`@`localhost` SQL SECURITY DEFINER
- VIEW `inventario_interno` AS select `ei`.`referencia` AS `referencia`,`e`.`dataentrada` AS `data`,`ei`.`quantidade` AS `quantidade` from (`entradaitemfiscal` `ei` join `entradafiscal` `e` on((`ei`.`entradafiscal` = `e`.`id`))) union select `ei`.`referencia` AS `referencia`,`e`.`datasaida` AS `data`,(-(1) * `ei`.`quantidade`) AS `-1*ei.quantidade` from (`saidaitemfiscal` `ei` join `saidafiscal` `e` on((`ei`.`saidafiscal` = `e`.`id`))) union select `ei`.`referencia` AS `referencia`,`e`.`data` AS `data`,(-(1) * `ei`.`quantidade`) AS `-1*ei.quantidade` from (`entradaproducaofiscal` `ei` join `producaofiscal` `e` on((`ei`.`producaofiscal` = `e`.`codigo`))) union select `ei`.`referencia` AS `referencia`,`e`.`data` AS `data`,`ei`.`quantidade` AS `quantidade` from (`saidaproducaofiscal` `ei` join `producaofiscal` `e` on((`ei`.`producaofiscal` = `e`.`codigo`))) ;
+ SET character_set_client      = utf8 ;
+ SET character_set_results     = utf8 ;
+ SET collation_connection      = utf8_general_ci ;
+ CREATE ALGORITHM=UNDEFINED 
+ DEFINER=`root`@`localhost` SQL SECURITY DEFINER 
+ VIEW `inventario_interno` AS select `ei`.`referencia` AS `referencia`,`e`.`dataentrada` AS `data`,`ei`.`quantidade` AS `quantidade` from (`entradaitemfiscal` `ei` join `entradafiscal` `e` on((`ei`.`entradafiscal` = `e`.`id`))) union select `ei`.`referencia` AS `referencia`,`e`.`datasaida` AS `data`,(-(1) * `ei`.`quantidade`) AS `-1*ei.quantidade` from (`saidaitemfiscal` `ei` join `saidafiscal` `e` on((`ei`.`saidafiscal` = `e`.`id`))) union select `ei`.`referencia` AS `referencia`,`e`.`data` AS `data`,(-(1) * `ei`.`quantidade`) AS `-1*ei.quantidade` from (`entradafabricacaofiscal` `ei` join `fabricacaofiscal` `e` on((`ei`.`fabricacaofiscal` = `e`.`codigo`))) union select `ei`.`referencia` AS `referencia`,`e`.`data` AS `data`,`ei`.`quantidade` AS `quantidade` from (`saidafabricacaofiscal` `ei` join `fabricacaofiscal` `e` on((`ei`.`fabricacaofiscal` = `e`.`codigo`))) ;
  SET character_set_client      = @saved_cs_client ;
  SET character_set_results     = @saved_cs_results ;
  SET collation_connection      = @saved_col_connection ;
@@ -3118,12 +3153,12 @@ DELIMITER ;
  SET @saved_cs_client          = @@character_set_client ;
  SET @saved_cs_results         = @@character_set_results ;
  SET @saved_col_connection     = @@collation_connection ;
- SET character_set_client      = utf8mb4 ;
- SET character_set_results     = utf8mb4 ;
- SET collation_connection      = utf8mb4_general_ci ;
- CREATE ALGORITHM=UNDEFINED
- DEFINER=`root`@`localhost` SQL SECURITY DEFINER
- VIEW `inventario_interno_parcial` AS select `ei`.`referencia` AS `referencia`,`e`.`dataentrada` AS `data`,`ei`.`quantidade` AS `quantidade` from (`entradaitemfiscal` `ei` join `entradafiscal` `e` on((`ei`.`entradafiscal` = `e`.`id`))) where (`e`.`dataentrada` < `d1`()) union select `ei`.`referencia` AS `referencia`,`e`.`datasaida` AS `data`,(-(1) * `ei`.`quantidade`) AS `-1*ei.quantidade` from (`saidaitemfiscal` `ei` join `saidafiscal` `e` on((`ei`.`saidafiscal` = `e`.`id`))) where (`e`.`datasaida` < `d1`()) union select `ei`.`referencia` AS `referencia`,`e`.`data` AS `data`,(-(1) * `ei`.`quantidade`) AS `-1*ei.quantidade` from (`entradaproducaofiscal` `ei` join `producaofiscal` `e` on((`ei`.`producaofiscal` = `e`.`codigo`))) where (`e`.`data` < `d1`()) union select `ei`.`referencia` AS `referencia`,`e`.`data` AS `data`,`ei`.`quantidade` AS `quantidade` from (`saidaproducaofiscal` `ei` join `producaofiscal` `e` on((`ei`.`producaofiscal` = `e`.`codigo`))) where (`e`.`data` < `d1`()) ;
+ SET character_set_client      = utf8 ;
+ SET character_set_results     = utf8 ;
+ SET collation_connection      = utf8_general_ci ;
+ CREATE ALGORITHM=UNDEFINED 
+ DEFINER=`root`@`localhost` SQL SECURITY DEFINER 
+ VIEW `inventario_interno_parcial` AS select `ei`.`referencia` AS `referencia`,`e`.`dataentrada` AS `data`,`ei`.`quantidade` AS `quantidade` from (`entradaitemfiscal` `ei` join `entradafiscal` `e` on((`ei`.`entradafiscal` = `e`.`id`))) where (`e`.`dataentrada` < `D1`()) union select `ei`.`referencia` AS `referencia`,`e`.`datasaida` AS `data`,(-(1) * `ei`.`quantidade`) AS `-1*ei.quantidade` from (`saidaitemfiscal` `ei` join `saidafiscal` `e` on((`ei`.`saidafiscal` = `e`.`id`))) where (`e`.`datasaida` < `D1`()) union select `ei`.`referencia` AS `referencia`,`e`.`data` AS `data`,(-(1) * `ei`.`quantidade`) AS `-1*ei.quantidade` from (`entradafabricacaofiscal` `ei` join `fabricacaofiscal` `e` on((`ei`.`fabricacaofiscal` = `e`.`codigo`))) where (`e`.`data` < `D1`()) union select `ei`.`referencia` AS `referencia`,`e`.`data` AS `data`,`ei`.`quantidade` AS `quantidade` from (`saidafabricacaofiscal` `ei` join `fabricacaofiscal` `e` on((`ei`.`fabricacaofiscal` = `e`.`codigo`))) where (`e`.`data` < `D1`()) ;
  SET character_set_client      = @saved_cs_client ;
  SET character_set_results     = @saved_cs_results ;
  SET collation_connection      = @saved_col_connection ;
@@ -3137,31 +3172,12 @@ DELIMITER ;
  SET @saved_cs_client          = @@character_set_client ;
  SET @saved_cs_results         = @@character_set_results ;
  SET @saved_col_connection     = @@collation_connection ;
- SET character_set_client      = utf8mb4 ;
- SET character_set_results     = utf8mb4 ;
- SET collation_connection      = utf8mb4_general_ci ;
- CREATE ALGORITHM=UNDEFINED
- DEFINER=`root`@`localhost` SQL SECURITY DEFINER
- VIEW `inventario_parcial` AS select `m`.`referencia` AS `referencia`,sum(ifnull(`i`.`quantidade`,0)) AS `quantidade`,`m`.`nome` AS `nome`,`m`.`classificacaofiscal` AS `classificacaofiscal`,`m`.`tipounidade` AS `tipounidade`,`p`.`novoPrecoCusto` AS `valor`,(sum(ifnull(`i`.`quantidade`,0)) * `p`.`novoPrecoCusto`) AS `valortotal` from ((`mercadoria` `m` left join `inventario_interno_parcial` `i` on((`i`.`referencia` = `m`.`referencia`))) left join `novosPrecos` `p` on((`m`.`referencia` = `p`.`mercadoria`))) group by `m`.`referencia` ;
- SET character_set_client      = @saved_cs_client ;
- SET character_set_results     = @saved_cs_results ;
- SET collation_connection      = @saved_col_connection ;
-
---
--- Final view structure for view `inventario_total`
---
-
- DROP TABLE IF EXISTS `inventario_total`;
- DROP VIEW IF EXISTS `inventario_total`;
- SET @saved_cs_client          = @@character_set_client ;
- SET @saved_cs_results         = @@character_set_results ;
- SET @saved_col_connection     = @@collation_connection ;
- SET character_set_client      = utf8mb4 ;
- SET character_set_results     = utf8mb4 ;
- SET collation_connection      = utf8mb4_general_ci ;
- CREATE ALGORITHM=UNDEFINED
- DEFINER=`root`@`localhost` SQL SECURITY DEFINER
- VIEW `inventario_total` AS select `m`.`referencia` AS `referencia`,sum(ifnull(`i`.`quantidade`,0)) AS `quantidade`,`m`.`nome` AS `nome`,`m`.`classificacaofiscal` AS `classificacaofiscal`,`m`.`tipounidade` AS `tipounidade`,`p`.`novoPrecoCusto` AS `valor`,(sum(ifnull(`i`.`quantidade`,0)) * `p`.`novoPrecoCusto`) AS `valortotal` from ((`mercadoria` `m` left join `inventario_interno` `i` on((`i`.`referencia` = `m`.`referencia`))) left join `novosPrecos` `p` on((`m`.`referencia` = `p`.`mercadoria`))) group by `m`.`referencia` ;
+ SET character_set_client      = utf8 ;
+ SET character_set_results     = utf8 ;
+ SET collation_connection      = utf8_general_ci ;
+ CREATE ALGORITHM=UNDEFINED 
+ DEFINER=`root`@`localhost` SQL SECURITY DEFINER 
+ VIEW `inventario_parcial` AS select `m`.`referencia` AS `referencia`,sum(ifnull(`i`.`quantidade`,0)) AS `quantidade`,`m`.`nome` AS `nome`,`m`.`classificacaofiscal` AS `classificacaofiscal`,`m`.`tipounidade` AS `tipounidade`,ifnull(`a`.`valor`,`p`.`novoPrecoCusto`) AS `valor`,(sum(ifnull(`i`.`quantidade`,0)) * ifnull(`a`.`valor`,`p`.`novoPrecoCusto`)) AS `valortotal` from (((`mercadoria` `m` left join `materiaprima` `a` on((`a`.`referencia` = `m`.`referencia`))) left join `inventario_interno_parcial` `i` on((`i`.`referencia` = `m`.`referencia`))) left join `novosPrecos` `p` on((`m`.`referencia` = `p`.`mercadoria`))) group by `m`.`referencia` ;
  SET character_set_client      = @saved_cs_client ;
  SET character_set_results     = @saved_cs_results ;
  SET collation_connection      = @saved_col_connection ;
@@ -3178,8 +3194,8 @@ DELIMITER ;
  SET character_set_client      = utf8 ;
  SET character_set_results     = utf8 ;
  SET collation_connection      = utf8_general_ci ;
- CREATE ALGORITHM=UNDEFINED
- DEFINER=`root`@`localhost` SQL SECURITY DEFINER
+ CREATE ALGORITHM=UNDEFINED 
+ DEFINER=`root`@`localhost` SQL SECURITY DEFINER 
  VIEW `novosPrecos` AS select `mc`.`mercadoria` AS `mercadoria`,round((round(sum((round((`t1`.`valorfinal` * `mc`.`quantidade`),2) * (1 + `f`.`valor`))),2) / `obtemouro`()),2) AS `novoIndiceAtacado`,round(sum((`t1`.`valorfinal` * `mc`.`quantidade`)),2) AS `novoPrecoCusto` from (((`vinculomercadoriacomponentecusto` `mc` join `componentecusto_valorfinal` `t1`) join `faixa` `f`) join `mercadoria` `m`) where ((`mc`.`componentecusto` = `t1`.`codigo`) and (`m`.`referencia` = `mc`.`mercadoria`) and (`m`.`faixa` = `f`.`faixa`) and (`f`.`setor` = 2)) group by `mc`.`mercadoria` order by `m`.`referencia` ;
  SET character_set_client      = @saved_cs_client ;
  SET character_set_results     = @saved_cs_results ;
@@ -3197,8 +3213,8 @@ DELIMITER ;
  SET character_set_client      = utf8 ;
  SET character_set_results     = utf8 ;
  SET collation_connection      = utf8_general_ci ;
- CREATE ALGORITHM=UNDEFINED
- DEFINER=`root`@`localhost` SQL SECURITY DEFINER
+ CREATE ALGORITHM=UNDEFINED 
+ DEFINER=`root`@`localhost` SQL SECURITY DEFINER 
  VIEW `novosPrecosVarejo` AS select `mc`.`mercadoria` AS `mercadoria`,round(round(sum((round((`t1`.`valorfinal` * `mc`.`quantidade`),2) * (1 + `f`.`valor`))),2),2) AS `novoValorVarejoConsulta`,round((round(sum((round((`t1`.`valorfinal` * `mc`.`quantidade`),2) * (1 + `f`.`valor`))),2) * `obtemjuros`()),2) AS `novoValorVarejo` from (((`vinculomercadoriacomponentecusto` `mc` join `componentecusto_valorfinal` `t1`) join `faixa` `f`) join `mercadoria` `m`) where ((`mc`.`componentecusto` = `t1`.`codigo`) and (`m`.`referencia` = `mc`.`mercadoria`) and (`m`.`faixa` = `f`.`faixa`) and (`f`.`setor` = 1)) group by `mc`.`mercadoria` order by `m`.`referencia` ;
  SET character_set_client      = @saved_cs_client ;
  SET character_set_results     = @saved_cs_results ;
@@ -3216,8 +3232,8 @@ DELIMITER ;
  SET character_set_client      = utf8 ;
  SET character_set_results     = utf8 ;
  SET collation_connection      = utf8_general_ci ;
- CREATE ALGORITHM=UNDEFINED
- DEFINER=`root`@`localhost` SQL SECURITY DEFINER
+ CREATE ALGORITHM=UNDEFINED 
+ DEFINER=`root`@`localhost` SQL SECURITY DEFINER 
  VIEW `novos_coeficientes` AS select `t`.`codigo` AS `tabela`,`n`.`mercadoria` AS `mercadoria`,`n`.`novoIndiceAtacado` AS `coeficiente` from ((`novosPrecos` `n` join `mercadoria` `m` on((`n`.`mercadoria` = `m`.`referencia`))) join `tabela` `t`) where ((`m`.`depeso` = 0) and (`t`.`codigo` not in (1,5))) union select `g`.`tabela` AS `tabela`,`m`.`referencia` AS `referencia`,`g`.`valor` AS `coeficiente` from (`mercadoria` `m` join `grama` `g` on(((`m`.`faixa` = `g`.`faixa`) and (`m`.`grupo` = `g`.`grupo`)))) where ((`m`.`depeso` = 1) and (`g`.`tabela` not in (1,5))) ;
  SET character_set_client      = @saved_cs_client ;
  SET character_set_results     = @saved_cs_results ;
@@ -3235,8 +3251,8 @@ DELIMITER ;
  SET character_set_client      = utf8 ;
  SET character_set_results     = utf8 ;
  SET collation_connection      = utf8_general_ci ;
- CREATE ALGORITHM=UNDEFINED
- DEFINER=`root`@`localhost` SQL SECURITY DEFINER
+ CREATE ALGORITHM=UNDEFINED 
+ DEFINER=`root`@`localhost` SQL SECURITY DEFINER 
  VIEW `novos_coeficientes_varejo` AS select 1 AS `tabela`,`novosPrecosVarejo`.`mercadoria` AS `mercadoria`,`novosPrecosVarejo`.`novoValorVarejo` AS `coeficiente` from `novosPrecosVarejo` union select 5 AS `tabela`,`novosPrecosVarejo`.`mercadoria` AS `mercadoria`,`novosPrecosVarejo`.`novoValorVarejoConsulta` AS `coeficiente` from `novosPrecosVarejo` ;
  SET character_set_client      = @saved_cs_client ;
  SET character_set_results     = @saved_cs_results ;
@@ -3254,8 +3270,8 @@ DELIMITER ;
  SET character_set_client      = utf8 ;
  SET character_set_results     = utf8 ;
  SET collation_connection      = utf8_general_ci ;
- CREATE ALGORITHM=UNDEFINED
- DEFINER=`root`@`%` SQL SECURITY DEFINER
+ CREATE ALGORITHM=UNDEFINED 
+ DEFINER=`root`@`%` SQL SECURITY DEFINER 
  VIEW `vendasintetizada` AS (select `v`.`codigo` AS `codigo`,`v`.`controle` AS `controle`,`v`.`valortotal` AS `valortotal`,`vendedor`.`nome` AS `nome`,`cliente`.`nome` AS `cliente`,`v`.`data` AS `data`,`vendedor`.`codigo` AS `vendedorcod`,`cliente`.`codigo` AS `clientecod`,`v`.`taxajuros` AS `taxajuros`,`v`.`cotacao` AS `cotacao` from ((`venda` `v` left join `pessoa` `cliente` on((`v`.`cliente` = `cliente`.`codigo`))) left join `pessoa` `vendedor` on((`v`.`vendedor` = `vendedor`.`codigo`))) where (`v`.`valortotal` is not null)) union (select `v`.`codigo` AS `codigo`,`v`.`controle` AS `controle`,sum(((`i`.`quantidade` * `i`.`indice`) * `v`.`cotacao`)) AS `valorTotal`,`vendedor`.`nome` AS `nome`,`cliente`.`nome` AS `cliente`,`v`.`data` AS `data`,`vendedor`.`codigo` AS `vendedorcod`,`cliente`.`codigo` AS `clientecod`,`v`.`taxajuros` AS `taxajuros`,`v`.`cotacao` AS `cotacao` from (((`venda` `v` left join `vendaitem` `i` on((`v`.`codigo` = `i`.`venda`))) left join `pessoa` `cliente` on((`v`.`cliente` = `cliente`.`codigo`))) left join `pessoa` `vendedor` on((`v`.`vendedor` = `vendedor`.`codigo`))) where isnull(`v`.`valortotal`) group by `v`.`codigo`) order by `data` ;
  SET character_set_client      = @saved_cs_client ;
  SET character_set_results     = @saved_cs_results ;
@@ -3270,4 +3286,4 @@ DELIMITER ;
  SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION ;
  SET SQL_NOTES=@OLD_SQL_NOTES ;
 
--- Dump completed on 2016-11-16 13:45:10
+-- Dump completed on 2016-11-22 13:36:07
