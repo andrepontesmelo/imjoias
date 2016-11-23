@@ -17,7 +17,7 @@ namespace Acesso.MySQL
         private const string bdPadrão = "imjoias";
 
 #if DEBUG
-        private const string hostPadrão = "192.168.162.1";
+        private const string hostPadrão = "192.168.127.1";
         private const int portPadrão = 3306;
 #else
         private const string hostPadrão = "192.168.1.25";

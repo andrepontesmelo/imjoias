@@ -1,24 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using Apresentação.Administrativo.Fiscal.Janela;
 using Entidades.Fiscal;
-using Apresentação.Administrativo.Fiscal.Janela;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Apresentação.Administrativo.Fiscal.Lista
 {
     public partial class ListaFechamento : UserControl
     {
-        public Fechamento Seleção => lista.SelectedItems.Count > 0 ? lista.SelectedItems[0].Tag as Fechamento : null; 
-
         public ListaFechamento()
         {
             InitializeComponent();
         }
+
+        public Fechamento Seleção => lista.SelectedItems.Count > 0 ? lista.SelectedItems[0].Tag as Fechamento : null;
 
         public void Carregar()
         {
@@ -94,6 +89,30 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             janela.ShowDialog(this);
 
             Carregar();
+        }
+
+        private void lista_DoubleClick(object sender, EventArgs e)
+        {
+            Editar();
+        }
+
+        private void Editar()
+        {
+            var seleção = Seleção;
+
+            if (seleção == null)
+                return;
+
+            var janela = new JanelaFechamento();
+            janela.Carregar(seleção);
+            janela.ShowDialog(this);
+
+            Carregar();
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            Editar();
         }
     }
 }
