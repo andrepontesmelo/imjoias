@@ -1,6 +1,7 @@
 ﻿using Acesso.Comum;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Entidades.Fiscal
 {
@@ -73,6 +74,19 @@ namespace Entidades.Fiscal
                 fim.ToShortDateString());
         }
 
+        public static Fechamento Obter(int código)
+        {
+            if (cache == null)
+                cache = Obter();
+
+            var item =
+                (from i in cache
+                where i.Código.Equals(código)
+                select i).FirstOrDefault();
+
+            return item;
+        }
+
         public override void Cadastrar()
         {
             base.Cadastrar();
@@ -101,10 +115,10 @@ namespace Entidades.Fiscal
             return data >= Início && data < Fim.AddDays(1);  
         }
 
-        public void AtualizarMercadorias()
+        public void AtualizarMercadoriasSeAberto()
         {
             if (Fechado)
-                throw new Exception("Não é possível atualizar um fechamento fechado");
+                return;
 
             var conexão = Conexão;
 

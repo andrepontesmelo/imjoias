@@ -1,4 +1,5 @@
-﻿using Entidades.Fiscal.Registro;
+﻿using Entidades.Fiscal;
+using Entidades.Fiscal.Registro;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,14 +8,14 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Inventário
 {
     public class ControladorImpressãoInventário : ControladorImpressãoFiscal
     {
-        public RelatórioInventário CriarRelatório(DateTime data)
+        public RelatórioInventário CriarRelatório(Fechamento fechamento)
         {
             var relatório = new RelatórioInventário();
             var dataset = new DataSetInventário();
             relatório.SetDataSource(dataset);
 
-            CriarAdicionarDocumento(dataset, data);
-            CriarItens(Entidades.Fiscal.Inventário.Obter(data), dataset.Tables["Item"]);
+            CriarAdicionarDocumento(dataset, fechamento.Fim);
+            CriarItens(Entidades.Fiscal.Inventário.Obter(fechamento), dataset.Tables["Item"]);
 
             return relatório;
         }

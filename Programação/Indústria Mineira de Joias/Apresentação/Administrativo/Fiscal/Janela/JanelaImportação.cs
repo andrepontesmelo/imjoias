@@ -147,7 +147,7 @@ namespace Apresentação.Fiscal.Janela
             aguarde.Passos(e.ProgressPercentage, e.UserState as string);
         }
 
-        private Fechamento Fechamento => comboFechamento.Seleção as Fechamento;
+        private Fechamento Fechamento => comboFechamento.Seleção;
 
         private void Thread_ImportarXMLAtacadoSaída(object sender, DoWorkEventArgs e)
         {

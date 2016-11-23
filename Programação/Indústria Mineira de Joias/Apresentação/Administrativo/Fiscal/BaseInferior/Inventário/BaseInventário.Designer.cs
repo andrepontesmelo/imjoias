@@ -34,12 +34,10 @@
             this.opçãoExtrato = new Apresentação.Formulários.Opção();
             this.opçãoImprimir = new Apresentação.Formulários.Opção();
             this.listaInventário = new Apresentação.Administrativo.Fiscal.Lista.ListaInventário();
-            this.optAtual = new System.Windows.Forms.RadioButton();
-            this.optPassado = new System.Windows.Forms.RadioButton();
-            this.dataMáxima = new AMS.TextBox.DateTextBox();
             this.quadro2 = new Apresentação.Formulários.Quadro();
-            this.opçãoLimparSeleção = new Apresentação.Formulários.Opção();
             this.opçãoSelecionarNegativos = new Apresentação.Formulários.Opção();
+            this.opçãoLimparSeleção = new Apresentação.Formulários.Opção();
+            this.cmbFechamento = new Apresentação.Administrativo.Fiscal.Combo.ComboFechamento();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.quadro2.SuspendLayout();
@@ -141,44 +139,6 @@
             this.listaInventário.TabIndex = 7;
             this.listaInventário.AoDuploClique += new System.EventHandler(this.listaInventário_AoDuploClique);
             // 
-            // optAtual
-            // 
-            this.optAtual.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.optAtual.AutoSize = true;
-            this.optAtual.Checked = true;
-            this.optAtual.Location = new System.Drawing.Point(807, 77);
-            this.optAtual.Name = "optAtual";
-            this.optAtual.Size = new System.Drawing.Size(49, 17);
-            this.optAtual.TabIndex = 8;
-            this.optAtual.TabStop = true;
-            this.optAtual.Text = "Atual";
-            this.optAtual.UseVisualStyleBackColor = true;
-            this.optAtual.CheckedChanged += new System.EventHandler(this.optAtual_CheckedChanged);
-            // 
-            // optPassado
-            // 
-            this.optPassado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.optPassado.AutoSize = true;
-            this.optPassado.Location = new System.Drawing.Point(872, 77);
-            this.optPassado.Name = "optPassado";
-            this.optPassado.Size = new System.Drawing.Size(66, 17);
-            this.optPassado.TabIndex = 9;
-            this.optPassado.Text = "Passado";
-            this.optPassado.UseVisualStyleBackColor = true;
-            // 
-            // dataMáxima
-            // 
-            this.dataMáxima.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataMáxima.Flags = 65536;
-            this.dataMáxima.Location = new System.Drawing.Point(944, 74);
-            this.dataMáxima.Name = "dataMáxima";
-            this.dataMáxima.RangeMax = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dataMáxima.RangeMin = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.dataMáxima.Size = new System.Drawing.Size(100, 20);
-            this.dataMáxima.TabIndex = 10;
-            this.dataMáxima.Text = "04/11/2016";
-            this.dataMáxima.Validated += new System.EventHandler(this.dataMáxima_Validated);
-            // 
             // quadro2
             // 
             this.quadro2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -199,20 +159,6 @@
             this.quadro2.Tamanho = 30;
             this.quadro2.Título = "Seleção";
             // 
-            // opçãoLimparSeleção
-            // 
-            this.opçãoLimparSeleção.BackColor = System.Drawing.Color.Transparent;
-            this.opçãoLimparSeleção.Descrição = "Limpar";
-            this.opçãoLimparSeleção.Imagem = global::Apresentação.Resource.Filter2HS;
-            this.opçãoLimparSeleção.Location = new System.Drawing.Point(7, 30);
-            this.opçãoLimparSeleção.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.opçãoLimparSeleção.MaximumSize = new System.Drawing.Size(150, 100);
-            this.opçãoLimparSeleção.MinimumSize = new System.Drawing.Size(150, 16);
-            this.opçãoLimparSeleção.Name = "opçãoLimparSeleção";
-            this.opçãoLimparSeleção.Size = new System.Drawing.Size(150, 16);
-            this.opçãoLimparSeleção.TabIndex = 3;
-            this.opçãoLimparSeleção.Click += new System.EventHandler(this.opçãoLimparSeleção_Click);
-            // 
             // opçãoSelecionarNegativos
             // 
             this.opçãoSelecionarNegativos.BackColor = System.Drawing.Color.Transparent;
@@ -227,13 +173,35 @@
             this.opçãoSelecionarNegativos.TabIndex = 4;
             this.opçãoSelecionarNegativos.Click += new System.EventHandler(this.opçãoSelecionarNegativos_Click);
             // 
+            // opçãoLimparSeleção
+            // 
+            this.opçãoLimparSeleção.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoLimparSeleção.Descrição = "Limpar";
+            this.opçãoLimparSeleção.Imagem = global::Apresentação.Resource.Filter2HS;
+            this.opçãoLimparSeleção.Location = new System.Drawing.Point(7, 30);
+            this.opçãoLimparSeleção.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoLimparSeleção.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoLimparSeleção.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoLimparSeleção.Name = "opçãoLimparSeleção";
+            this.opçãoLimparSeleção.Size = new System.Drawing.Size(150, 16);
+            this.opçãoLimparSeleção.TabIndex = 3;
+            this.opçãoLimparSeleção.Click += new System.EventHandler(this.opçãoLimparSeleção_Click);
+            // 
+            // cmbFechamento
+            // 
+            this.cmbFechamento.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbFechamento.Location = new System.Drawing.Point(792, 71);
+            this.cmbFechamento.Name = "cmbFechamento";
+            this.cmbFechamento.Size = new System.Drawing.Size(252, 23);
+            this.cmbFechamento.TabIndex = 8;
+            this.cmbFechamento.SelectedIndexChanged += new System.EventHandler(this.cmbFechamento_SelectedIndexChanged);
+            // 
             // BaseInventário
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.dataMáxima);
-            this.Controls.Add(this.optPassado);
-            this.Controls.Add(this.optAtual);
+            this.Controls.Add(this.cmbFechamento);
             this.Controls.Add(this.listaInventário);
             this.Controls.Add(this.títuloBaseInferior1);
             this.Name = "BaseInventário";
@@ -241,14 +209,11 @@
             this.Controls.SetChildIndex(this.esquerda, 0);
             this.Controls.SetChildIndex(this.títuloBaseInferior1, 0);
             this.Controls.SetChildIndex(this.listaInventário, 0);
-            this.Controls.SetChildIndex(this.optAtual, 0);
-            this.Controls.SetChildIndex(this.optPassado, 0);
-            this.Controls.SetChildIndex(this.dataMáxima, 0);
+            this.Controls.SetChildIndex(this.cmbFechamento, 0);
             this.esquerda.ResumeLayout(false);
             this.quadro1.ResumeLayout(false);
             this.quadro2.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -260,11 +225,9 @@
         private Formulários.Opção opçãoExtrato;
         private Formulários.Opção opçãoImprimir;
         private Lista.ListaInventário listaInventário;
-        private System.Windows.Forms.RadioButton optAtual;
-        private System.Windows.Forms.RadioButton optPassado;
-        private AMS.TextBox.DateTextBox dataMáxima;
         private Formulários.Quadro quadro2;
         private Formulários.Opção opçãoSelecionarNegativos;
         private Formulários.Opção opçãoLimparSeleção;
+        private Combo.ComboFechamento cmbFechamento;
     }
 }

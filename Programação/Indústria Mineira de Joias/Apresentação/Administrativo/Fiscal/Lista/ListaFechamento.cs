@@ -122,7 +122,7 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             if (seleção == null)
                 return;
 
-            seleção.AtualizarMercadorias();
+            seleção.AtualizarMercadoriasSeAberto();
         }
     }
 }

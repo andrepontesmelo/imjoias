@@ -1,4 +1,5 @@
-﻿using Entidades.Fiscal.Fabricação;
+﻿using Entidades.Fiscal;
+using Entidades.Fiscal.Fabricação;
 using System;
 
 namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
@@ -24,7 +25,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
         {
             base.AoExibir();
 
-            listaFabricações.Carregar();
+            Carregar();
         }
 
         private void listaFabricações1_AoDuploClique(object sender, EventArgs e)
@@ -35,6 +36,23 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
                 return;
 
             SubstituirBaseEdição(seleção[0]);
+        }
+
+        private void comboFechamento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CarregarLista();
+        }
+
+        private void Carregar()
+        {
+            comboFechamento.Carregar();
+            CarregarLista();
+        }
+
+        private void CarregarLista()
+        {
+            Fechamento fechamento = comboFechamento.Seleção;
+            listaFabricações.Carregar(fechamento.Início, fechamento.Fim);
         }
     }
 }

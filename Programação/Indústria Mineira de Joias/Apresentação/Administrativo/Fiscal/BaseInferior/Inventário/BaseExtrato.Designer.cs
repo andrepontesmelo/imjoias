@@ -36,7 +36,7 @@
             this.listaExtrato = new Apresentação.Administrativo.Fiscal.Lista.ListaExtrato();
             this.label4 = new System.Windows.Forms.Label();
             this.txtEstoqueAnterior = new System.Windows.Forms.TextBox();
-            this.seleçãoPeríodo = new Apresentação.Administrativo.Fiscal.SeleçãoPeríodo();
+            this.comboFechamento = new Apresentação.Administrativo.Fiscal.Combo.ComboFechamento();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.SuspendLayout();
@@ -139,20 +139,20 @@
             this.txtEstoqueAnterior.Size = new System.Drawing.Size(192, 20);
             this.txtEstoqueAnterior.TabIndex = 18;
             // 
-            // seleçãoPeríodo
+            // comboFechamento
             // 
-            this.seleçãoPeríodo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.seleçãoPeríodo.Location = new System.Drawing.Point(551, 97);
-            this.seleçãoPeríodo.Name = "seleçãoPeríodo";
-            this.seleçãoPeríodo.Size = new System.Drawing.Size(246, 21);
-            this.seleçãoPeríodo.TabIndex = 19;
-            this.seleçãoPeríodo.AoAlterar += new System.EventHandler(this.seleçãoPeríodo_AoAlterar);
+            this.comboFechamento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboFechamento.Location = new System.Drawing.Point(458, 101);
+            this.comboFechamento.Name = "comboFechamento";
+            this.comboFechamento.Size = new System.Drawing.Size(339, 22);
+            this.comboFechamento.TabIndex = 19;
+            this.comboFechamento.SelectedIndexChanged += new System.EventHandler(this.comboFechamento_SelectedIndexChanged);
             // 
             // BaseExtrato
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.seleçãoPeríodo);
+            this.Controls.Add(this.comboFechamento);
             this.Controls.Add(this.txtEstoqueAnterior);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.listaExtrato);
@@ -167,7 +167,7 @@
             this.Controls.SetChildIndex(this.listaExtrato, 0);
             this.Controls.SetChildIndex(this.label4, 0);
             this.Controls.SetChildIndex(this.txtEstoqueAnterior, 0);
-            this.Controls.SetChildIndex(this.seleçãoPeríodo, 0);
+            this.Controls.SetChildIndex(this.comboFechamento, 0);
             this.esquerda.ResumeLayout(false);
             this.quadro1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -185,6 +185,6 @@
         private Lista.ListaExtrato listaExtrato;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtEstoqueAnterior;
-        private SeleçãoPeríodo seleçãoPeríodo;
+        private Combo.ComboFechamento comboFechamento;
     }
 }

@@ -29,9 +29,9 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             ((ListViewColumnSorter)lista.ListViewItemSorter).OnClick(lista, e);
         }
 
-        public void Carregar(DateTime? dataMáxima)
+        public void Carregar(Fechamento fechamento)
         {
-            CarregarItens(CriarItens(Inventário.Obter(dataMáxima)));
+            CarregarItens(CriarItens(Inventário.Obter(fechamento)));
         }
 
         private ListViewItem[] CriarItens(List<Inventário> entidades)

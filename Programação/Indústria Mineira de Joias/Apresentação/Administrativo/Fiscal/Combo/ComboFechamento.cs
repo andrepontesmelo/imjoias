@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System;
+using Entidades.Configuração;
 
 namespace Apresentação.Administrativo.Fiscal.Combo
 {
@@ -9,22 +10,41 @@ namespace Apresentação.Administrativo.Fiscal.Combo
     {
         public event EventHandler SelectedIndexChanged;
 
+        private static ConfiguraçãoUsuário<int> fechamentoEmUso;
+        private bool carregando = false;
+
         public ComboFechamento()
         {
             InitializeComponent();
             cmb.SelectedIndexChanged += Cmb_SelectedIndexChanged;
+
+            if (DadosGlobais.ModoDesenho)
+                return;
+
+            fechamentoEmUso = new ConfiguraçãoUsuário<int>("fechamentoEmUso", 0);
         }
 
         private void Cmb_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (carregando)
+                return;
+
+            var seleção = Seleção;
+            fechamentoEmUso.Valor = seleção.Código;
+
             SelectedIndexChanged?.Invoke(sender, e);
         }
 
-        public object Seleção => cmb.SelectedItem;
+        public Fechamento Seleção => cmb.SelectedItem as Fechamento;
 
         public void Carregar()
         {
+            carregando = true;
             CarregarItens(Fechamento.Obter());
+
+            cmb.SelectedItem = Fechamento.Obter(fechamentoEmUso.Valor);
+
+            carregando = false;
         }
 
         private void CarregarItens(List<Fechamento> entidades)

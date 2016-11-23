@@ -32,6 +32,7 @@
             this.opçãoNovaFabricação = new Apresentação.Formulários.Opção();
             this.títuloBaseInferior1 = new Apresentação.Formulários.TítuloBaseInferior();
             this.listaFabricações = new Apresentação.Administrativo.Fiscal.Lista.ListaFabricações();
+            this.comboFechamento = new Apresentação.Administrativo.Fiscal.Combo.ComboFechamento();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.SuspendLayout();
@@ -61,7 +62,7 @@
             this.quadro1.Tamanho = 30;
             this.quadro1.Título = "Criar";
             // 
-            // opçãoNovafabricação
+            // opçãoNovaFabricação
             // 
             this.opçãoNovaFabricação.BackColor = System.Drawing.Color.Transparent;
             this.opçãoNovaFabricação.Descrição = "Nova fabricação";
@@ -80,8 +81,7 @@
             this.títuloBaseInferior1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.títuloBaseInferior1.BackColor = System.Drawing.Color.White;
-            this.títuloBaseInferior1.Descrição = "fabricação é um documento indica a fabricação ou fabricação de um item de inventário." +
-    "";
+            this.títuloBaseInferior1.Descrição = "Fabricações de inventário";
             this.títuloBaseInferior1.ÍconeArredondado = false;
             this.títuloBaseInferior1.Imagem = global::Apresentação.Resource.fiscal1;
             this.títuloBaseInferior1.Location = new System.Drawing.Point(193, 13);
@@ -90,27 +90,38 @@
             this.títuloBaseInferior1.TabIndex = 7;
             this.títuloBaseInferior1.Título = "Fabricações";
             // 
-            // listaFabricações1
+            // listaFabricações
             // 
             this.listaFabricações.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listaFabricações.Location = new System.Drawing.Point(193, 89);
-            this.listaFabricações.Name = "listaFabricações1";
-            this.listaFabricações.Size = new System.Drawing.Size(604, 204);
+            this.listaFabricações.Location = new System.Drawing.Point(193, 109);
+            this.listaFabricações.Name = "listaFabricações";
+            this.listaFabricações.Size = new System.Drawing.Size(604, 184);
             this.listaFabricações.TabIndex = 8;
             this.listaFabricações.AoDuploClique += new System.EventHandler(this.listaFabricações1_AoDuploClique);
+            // 
+            // comboFechamento
+            // 
+            this.comboFechamento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboFechamento.Location = new System.Drawing.Point(510, 81);
+            this.comboFechamento.Name = "comboFechamento";
+            this.comboFechamento.Size = new System.Drawing.Size(287, 22);
+            this.comboFechamento.TabIndex = 9;
+            this.comboFechamento.SelectedIndexChanged += new System.EventHandler(this.comboFechamento_SelectedIndexChanged);
             // 
             // BaseFabricações
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.comboFechamento);
             this.Controls.Add(this.listaFabricações);
             this.Controls.Add(this.títuloBaseInferior1);
             this.Name = "BaseFabricações";
             this.Controls.SetChildIndex(this.esquerda, 0);
             this.Controls.SetChildIndex(this.títuloBaseInferior1, 0);
             this.Controls.SetChildIndex(this.listaFabricações, 0);
+            this.Controls.SetChildIndex(this.comboFechamento, 0);
             this.esquerda.ResumeLayout(false);
             this.quadro1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -123,5 +134,6 @@
         private Formulários.TítuloBaseInferior títuloBaseInferior1;
         private Formulários.Opção opçãoNovaFabricação;
         private Lista.ListaFabricações listaFabricações;
+        private Combo.ComboFechamento comboFechamento;
     }
 }

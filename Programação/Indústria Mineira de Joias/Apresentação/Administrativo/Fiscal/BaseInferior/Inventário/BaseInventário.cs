@@ -4,6 +4,7 @@ using Apresentação.Administrativo.Fiscal.Janela;
 using Apresentação.Formulários;
 using Apresentação.Impressão.Relatórios.Fiscal.Inventário;
 using Entidades.Configuração;
+using Entidades.Fiscal;
 using Entidades.Fiscal.Exceções;
 using Entidades.Fiscal.Fabricação;
 using System;
@@ -11,7 +12,7 @@ using System.Collections.Generic;
 
 namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
 {
-    public partial class BaseInventário : Apresentação.Formulários.BaseInferior
+    public partial class BaseInventário : Formulários.BaseInferior
     {
         public BaseInventário()
         {
@@ -25,32 +26,33 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
             Carregar();
         }
 
-        private void Carregar()
-        {
-            títuloBaseInferior1.Título = string.Format("Inventário {0}",
-                !Data.HasValue ? "atual" : "em " + Data.Value.ToShortDateString() + " " + Data.Value.ToShortTimeString());
-
-            AguardeDB.Mostrar();
-            listaInventário.Carregar(Data);
-            AguardeDB.Fechar();
-        }
-        
         public DateTime? Data
         {
             get
             {
-                if (optPassado.Checked)
-                    return dataMáxima.Value as DateTime?;
+                var fechamento = cmbFechamento.Seleção;
 
-                return null;
+                if (fechamento == null)
+                    return null;
+
+                return fechamento.Fim;
             }
         }
-        private void dataMáxima_Validated(object sender, System.EventArgs e)
-        {
-            if (optPassado.Checked)
-                Carregar();
-        }
 
+        public Fechamento Fechamento => cmbFechamento.Seleção;
+
+        private void Carregar()
+        {
+            cmbFechamento.Carregar();
+
+            títuloBaseInferior1.Título = string.Format("Inventário {0}",
+                !Data.HasValue ? "atual" : "em " + Data.Value.ToShortDateString());
+
+            AguardeDB.Mostrar();
+            listaInventário.Carregar(Fechamento);
+            AguardeDB.Fechar();
+        }
+        
         private void optAtual_CheckedChanged(object sender, EventArgs e)
         {
             Carregar();
@@ -98,7 +100,8 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
             DateTime data = Data.HasValue ? Data.Value : DadosGlobais.Instância.HoraDataAtual;
 
             janela.InserirDocumento("Inventário", "Relatório de inventário", 
-                new ControladorImpressãoInventário().CriarRelatório(data));
+                
+                new ControladorImpressãoInventário().CriarRelatório(Fechamento));
 
             janela.ShowDialog(this);
         }
@@ -111,6 +114,11 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
         private void opçãoSelecionarNegativos_Click(object sender, EventArgs e)
         {
             listaInventário.SelecionarNegativos();
+        }
+
+        private void cmbFechamento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Carregar();
         }
     }
 }

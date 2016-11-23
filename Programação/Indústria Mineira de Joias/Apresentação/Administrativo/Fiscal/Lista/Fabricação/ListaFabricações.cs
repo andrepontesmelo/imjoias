@@ -9,6 +9,9 @@ namespace Apresentação.Administrativo.Fiscal.Lista
     {
         public event EventHandler AoDuploClique;
 
+        private DateTime inicio;
+        private DateTime fim;
+
         public ListaFabricações()
         {
             InitializeComponent();
@@ -47,6 +50,14 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             return lstFabricações;
         }
 
+        public void Carregar(DateTime inicio, DateTime fim)
+        {
+            this.inicio = inicio;
+            this.fim = fim;
+
+            Carregar();
+        }
+
         public void Carregar()
         {
             TrocarItens(CriarItens());
@@ -54,7 +65,7 @@ namespace Apresentação.Administrativo.Fiscal.Lista
 
         private ListViewItem[] CriarItens()
         {
-            var fabricações = FabricaçãoFiscal.Obter();
+            var fabricações = FabricaçãoFiscal.Obter(inicio, fim);
             ListViewItem[] itens = new ListViewItem[fabricações.Count];
 
             int x = 0;
