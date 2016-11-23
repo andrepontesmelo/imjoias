@@ -10,7 +10,7 @@ namespace Apresentação.Administrativo.Fiscal.Combo
     {
         public event EventHandler SelectedIndexChanged;
 
-        ConfiguraçãoUsuário<int> fechamentoEmUso;
+        private static ConfiguraçãoUsuário<int> fechamentoEmUso;
         private bool carregando = false;
 
         public ComboFechamento()
