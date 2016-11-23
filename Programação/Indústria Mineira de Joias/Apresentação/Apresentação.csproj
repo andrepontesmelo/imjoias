@@ -195,6 +195,12 @@
     <Compile Include="Administrativo\Fiscal\Combo\ComboMáquina.Designer.cs">
       <DependentUpon>ComboMáquina.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrativo\Fiscal\Janela\JanelaFechamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrativo\Fiscal\Janela\JanelaFechamento.Designer.cs">
+      <DependentUpon>JanelaFechamento.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administrativo\Fiscal\Janela\JanelaImpressãoFiscal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2568,6 +2574,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administrativo\Fiscal\Combo\ComboTipoUnidade.resx">
       <DependentUpon>ComboTipoUnidade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrativo\Fiscal\Janela\JanelaFechamento.resx">
+      <DependentUpon>JanelaFechamento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administrativo\Fiscal\Janela\JanelaImpressãoFiscal.resx">
       <DependentUpon>JanelaImpressãoFiscal.cs</DependentUpon>

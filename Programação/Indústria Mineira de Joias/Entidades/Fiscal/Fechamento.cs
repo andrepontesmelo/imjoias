@@ -4,8 +4,9 @@ using System.Collections.Generic;
 
 namespace Entidades.Fiscal
 {
-    public class Fechamento : DbManipulaçãoSimples
+    public class Fechamento : DbManipulaçãoAutomática
     {
+        [DbChavePrimária(true)]
         private int codigo;
         private DateTime inicio;
         private DateTime fim;
@@ -13,6 +14,13 @@ namespace Entidades.Fiscal
 
         public Fechamento()
         {
+            inicio = new DateTime(DateTime.Now.Year,
+                DateTime.Now.Month,
+                1);
+
+            fim = inicio.AddMonths(1).AddDays(-1);
+
+            fechado = false;
         }
 
         public int Código => codigo;
@@ -20,19 +28,31 @@ namespace Entidades.Fiscal
         public DateTime Início
         {
             get { return inicio; }
-            set { inicio = value; }
+            set
+            {
+                inicio = value;
+                DefinirDesatualizado();
+            }
         }
 
         public DateTime Fim
         {
             get { return fim; }
-            set { fim = value; }
+            set
+            {
+                fim = value;
+                DefinirDesatualizado();
+            }
         }
 
         public bool Fechado
         {
             get { return fechado; }
-            set { fechado = value; }
+            set
+            {
+                fechado = value;
+                DefinirDesatualizado();
+            }
         }
 
         public static List<Fechamento> Obter()

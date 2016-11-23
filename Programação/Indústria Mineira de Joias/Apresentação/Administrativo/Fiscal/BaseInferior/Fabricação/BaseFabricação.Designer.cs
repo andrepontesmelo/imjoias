@@ -64,7 +64,7 @@
             this.títuloBaseInferior.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.títuloBaseInferior.BackColor = System.Drawing.Color.White;
-            this.títuloBaseInferior.Descrição = "fabricação é um documento que infica a fabricação ou fabricação de um item de inventá" +
+            this.títuloBaseInferior.Descrição = "Fabricação de um item de inventá" +
     "rio.";
             this.títuloBaseInferior.ÍconeArredondado = false;
             this.títuloBaseInferior.Imagem = global::Apresentação.Resource.fiscal1;

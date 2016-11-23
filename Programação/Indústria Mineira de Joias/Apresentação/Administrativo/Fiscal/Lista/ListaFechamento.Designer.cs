@@ -35,6 +35,7 @@
             this.colFechado = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnExcluir = new System.Windows.Forms.ToolStripButton();
+            this.btnNovo = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -78,7 +79,8 @@
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnExcluir});
+            this.btnExcluir,
+            this.btnNovo});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(519, 25);
@@ -94,6 +96,16 @@
             this.btnExcluir.Size = new System.Drawing.Size(23, 22);
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
+            // 
+            // btnNovo
+            // 
+            this.btnNovo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnNovo.Image = global::Apresentação.Resource._3228_icon;
+            this.btnNovo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnNovo.Name = "btnNovo";
+            this.btnNovo.Size = new System.Drawing.Size(23, 22);
+            this.btnNovo.Text = "Novo";
+            this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
             // 
             // ListaFechamento
             // 
@@ -119,5 +131,6 @@
         private System.Windows.Forms.ColumnHeader colFechado;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton btnExcluir;
+        private System.Windows.Forms.ToolStripButton btnNovo;
     }
 }

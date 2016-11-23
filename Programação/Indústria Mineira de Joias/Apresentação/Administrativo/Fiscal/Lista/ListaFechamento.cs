@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Entidades.Fiscal;
+using Apresentação.Administrativo.Fiscal.Janela;
 
 namespace Apresentação.Administrativo.Fiscal.Lista
 {
@@ -83,6 +84,15 @@ namespace Apresentação.Administrativo.Fiscal.Lista
                 return;
 
             seleção.Excluir();
+            Carregar();
+        }
+
+        private void btnNovo_Click(object sender, EventArgs e)
+        {
+            var janela = new JanelaFechamento();
+            janela.Carregar();
+            janela.ShowDialog(this);
+
             Carregar();
         }
     }
