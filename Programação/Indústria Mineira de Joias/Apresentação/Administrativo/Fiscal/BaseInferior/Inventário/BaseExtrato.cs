@@ -10,9 +10,8 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
     public partial class BaseExtrato : Apresentação.Formulários.BaseInferior
     {
 
-        private DateTime? DataInicial => seleçãoPeríodo.DataInicial;
-        private DateTime? DataFinal => seleçãoPeríodo.DataFinal;
-        private bool DatasVálidas => seleçãoPeríodo.DatasVálidas;
+        private DateTime? DataInicial => comboFechamento.Seleção?.Início;
+        private DateTime? DataFinal => comboFechamento.Seleção?.Fim;
 
         private string referência;
 
@@ -28,7 +27,6 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
         {
             this.referência = referência;
 
-            seleçãoPeríodo.AtribuirIntervaloDatasPadrão();
             Carregar();
         }
 
@@ -37,14 +35,13 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
             if (referência == null)
                 return;
 
+            comboFechamento.Carregar();
+
             txtMercadoria.Referência = ReferênciaFormatada;
 
             AguardeDB.Mostrar();
 
             título.Título = "Extrato de " + ReferênciaFormatada;
-
-            if (!DatasVálidas)
-                seleçãoPeríodo.AtribuirIntervaloDatasPadrão();
 
             CarregarEstoqueAnterior();
 
@@ -82,7 +79,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
             janela.ShowDialog(this);
         }
 
-        private void seleçãoPeríodo_AoAlterar(object sender, EventArgs e)
+        private void comboFechamento_SelectedIndexChanged(object sender, EventArgs e)
         {
             Carregar();
         }
