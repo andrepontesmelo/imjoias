@@ -261,11 +261,11 @@
     <Compile Include="Administrativo\Fiscal\Lista\ListaMáquinasECF.Designer.cs">
       <DependentUpon>ListaMáquinasECF.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrativo\Fiscal\Lista\ListaProduções.cs">
+    <Compile Include="Administrativo\Fiscal\Lista\Fabricação\ListaFabricações.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Administrativo\Fiscal\Lista\ListaProduções.Designer.cs">
-      <DependentUpon>ListaProduções.cs</DependentUpon>
+    <Compile Include="Administrativo\Fiscal\Lista\Fabricação\ListaFabricações.Designer.cs">
+      <DependentUpon>ListaFabricações.cs</DependentUpon>
     </Compile>
     <Compile Include="Administrativo\Fiscal\Lista\Fabricação\ListaSaídaFabricaçãoFiscal.cs">
       <SubType>UserControl</SubType>
@@ -2611,8 +2611,8 @@
     <EmbeddedResource Include="Administrativo\Fiscal\Lista\ListaMáquinasECF.resx">
       <DependentUpon>ListaMáquinasECF.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Administrativo\Fiscal\Lista\ListaProduções.resx">
-      <DependentUpon>ListaProduções.cs</DependentUpon>
+    <EmbeddedResource Include="Administrativo\Fiscal\Lista\Fabricação\ListaFabricações.resx">
+      <DependentUpon>ListaFabricações.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administrativo\Fiscal\SeleçãoPeríodo.resx">
       <DependentUpon>SeleçãoPeríodo.cs</DependentUpon>
