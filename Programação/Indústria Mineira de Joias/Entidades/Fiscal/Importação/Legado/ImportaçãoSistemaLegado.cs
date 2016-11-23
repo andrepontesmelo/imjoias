@@ -13,7 +13,9 @@ namespace Entidades.Fiscal.Importação.Legado
 
         public void CriarEntradaTransição()
         {
-            var hashInventário = ObterHashInventário();
+            var fechamento = CriarFechamento();
+
+            var hashInventário = ObterHashInventário(fechamento);
             StringBuilder sql = new StringBuilder();
             int qtdSqls = 0;
 
@@ -52,6 +54,16 @@ namespace Entidades.Fiscal.Importação.Legado
             }
         }
 
+        private static Fechamento CriarFechamento()
+        {
+            Fechamento fechamento = new Fechamento();
+            fechamento.Início = new DateTime(1980, 1, 1);
+            fechamento.Fim = DateTime.Today;
+            fechamento.Cadastrar();
+
+            return fechamento;
+        }
+
         private void Inserir(string referência, decimal qtd, StringBuilder sql)
         {
             sql.Append(string.Format(" INSERT INTO entradaitemfiscal(referencia, descricao, cfop, tipounidade, quantidade, valorunitario, valor, entradafiscal) " +
@@ -59,10 +71,10 @@ namespace Entidades.Fiscal.Importação.Legado
                 DbTransformar(referência), DbTransformar(qtd)));
         }
 
-        private Dictionary<string, Inventário> ObterHashInventário()
+        private Dictionary<string, Inventário> ObterHashInventário(Fechamento fechamento)
         {
             Dictionary<string, Inventário> hashInventário = new Dictionary<string, Inventário>();
-            foreach (var inventário in Inventário.Obter(null))
+            foreach (var inventário in Inventário.Obter(fechamento))
                 hashInventário.Add(inventário.Referência, inventário);
 
             return hashInventário;
