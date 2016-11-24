@@ -78,6 +78,10 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
         {
             this.fechamento = fechamento;
 
+            títuloBaseInferior1.Título = string.Format("Esquemas do fechamento {0}", fechamento.Código);
+            títuloBaseInferior1.Descrição = string.Format("Esquemas vigentes entre {0} e {1}", 
+                fechamento.Início.ToShortDateString(), fechamento.Fim.ToShortDateString());
+
             if (lista != null)
                 CarregarLista();
         }
