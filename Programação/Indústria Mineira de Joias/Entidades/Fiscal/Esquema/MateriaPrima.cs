@@ -12,13 +12,15 @@ namespace Entidades.Fiscal.Esquema
         {
         }
 
-        public MateriaPrima(string esquema, string materiaprima, decimal quantidade)
+        public MateriaPrima(int fechamento, string esquema, string materiaprima, decimal quantidade)
         {
+            this.fechamento = fechamento;
             this.esquema = esquema;
             this.materiaprima = materiaprima;
             this.quantidade = quantidade;
         }
 
+        private int fechamento;
         private string esquema;
         private string materiaprima;
         private decimal quantidade;
@@ -27,7 +29,7 @@ namespace Entidades.Fiscal.Esquema
         private int cfop;
 
         private string referenciaAlterada;
-
+        public int Fechamento => fechamento;
         public string Esquema => esquema;
         public string Descrição => descricao;
         public int CFOP => cfop;
@@ -45,11 +47,11 @@ namespace Entidades.Fiscal.Esquema
             set { referenciaAlterada = value;  }
         }
 
-        public static List<MateriaPrima> Obter(string esquema)
+        public static List<MateriaPrima> Obter(string esquema, int fechamento)
         {
             return Mapear<MateriaPrima>(
                 string.Format("select i.*, m.nome as descricao, m.tipounidade, m.cfop from materiaprimaesquemafabricacaofiscal i join mercadoria m on " + 
-                " i.materiaprima=m.referencia where esquema={0}", DbTransformar(esquema)));
+                " i.materiaprima=m.referencia where esquema={0} and fechamento={1}", DbTransformar(esquema), DbTransformar(fechamento)));
         }
 
         public void Atualizar()
@@ -58,15 +60,16 @@ namespace Entidades.Fiscal.Esquema
                 "materiaprima=" + DbTransformar(Referência) + ", " +
                 "quantidade=" + DbTransformar(Quantidade) +
                 " WHERE materiaprima=" + DbTransformar(materiaprima) +
-                " AND esquema=" + DbTransformar(Esquema);
+                " AND esquema=" + DbTransformar(Esquema) +
+                " AND fechamento=" + DbTransformar(Fechamento);
 
             ExecutarComando(sql);
         }
 
         public void Cadastrar()
         {
-            ExecutarComando(string.Format("INSERT INTO materiaprimaesquemafabricacaofiscal (materiaprima, quantidade, esquema) values ({0},{1},{2})",
-                DbTransformar(Referência), DbTransformar(Quantidade), DbTransformar(Esquema)));
+            ExecutarComando(string.Format("INSERT INTO materiaprimaesquemafabricacaofiscal (materiaprima, quantidade, esquema, fechamento) values ({0},{1},{2},{3})",
+                DbTransformar(Referência), DbTransformar(Quantidade), DbTransformar(Esquema), DbTransformar(Fechamento)));
         }
 
         public static void Excluir(List<MateriaPrima> materiasPrimas)
@@ -81,6 +84,7 @@ namespace Entidades.Fiscal.Esquema
 
                 sql += " (esquema= " + DbTransformar(i.esquema);
                 sql += " AND materiaprima=" + DbTransformar(i.materiaprima);
+                sql += " AND fechamento=" + DbTransformar(i.fechamento);
                 sql += " ) ";
 
                 primeiro = false;

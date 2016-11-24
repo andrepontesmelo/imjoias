@@ -56,14 +56,34 @@ namespace Entidades.Fiscal
                 {
                     using (var cmd = conexão.CreateCommand())
                     {
+                        cmd.Transaction = transação;
                         cmd.CommandText = "delete from esquemafabricacaofiscal where fechamento=" + DbTransformar(Código);
                         cmd.ExecuteNonQuery();
                     }
 
                     using (var cmd = conexão.CreateCommand())
                     {
+                        cmd.Transaction = transação;
+                        cmd.CommandText = "delete from materiaprimaesquemafabricacaofiscal where fechamento=" + DbTransformar(Código);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    using (var cmd = conexão.CreateCommand())
+                    {
+                        cmd.Transaction = transação;
                         cmd.CommandText = string.Format("insert into esquemafabricacaofiscal select referencia, quantidade, {0} as fechamento " +
                             " from esquemafabricacaofiscal where fechamento={1}",
+                            DbTransformar(Código),
+                            DbTransformar(origem.Código));
+
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    using (var cmd = conexão.CreateCommand())
+                    {
+                        cmd.Transaction = transação;
+                        cmd.CommandText = string.Format("insert into materiaprimaesquemafabricacaofiscal select " + 
+                            " esquema, materiaprima, quantidade, {0} as fechamento from materiaprimaesquemafabricacaofiscal where fechamento={1}",
                             DbTransformar(Código),
                             DbTransformar(origem.Código));
 
@@ -73,6 +93,14 @@ namespace Entidades.Fiscal
                     transação.Commit();
                 }
             }
+        }
+
+        public static Fechamento Obter(DateTime data)
+        {
+            data = new DateTime(data.Year, data.Month, data.Day);
+
+            return MapearÚnicaLinha<Fechamento>(string.Format("select * from fechamento where inicio <= {0} and fim > {0} limit 1",
+                DbTransformar(data)));
         }
 
         public bool Fechado

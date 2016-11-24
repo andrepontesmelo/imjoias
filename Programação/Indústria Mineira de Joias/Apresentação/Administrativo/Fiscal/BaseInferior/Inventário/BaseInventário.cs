@@ -68,7 +68,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
 
             try
             {
-                novafabricação = FabricaçãoFiscal.Criar(itens);
+                novafabricação = FabricaçãoFiscal.Criar(itens, Fechamento);
             } catch (ExceçãoFiscal erro)
             {
                 MensagemErro.MostrarMensagem(this, erro, "Erro ao criar fabricação");

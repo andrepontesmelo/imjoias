@@ -47,7 +47,7 @@ namespace Apresentação.Administrativo.Fiscal.Lista
         private List<ListViewItem> CriarItens(EsquemaFabricação esquema)
         {
             List<ListViewItem> itens = new List<ListViewItem>();
-            var ingredientes = MateriaPrima.Obter(esquema.Referência);
+            var ingredientes = MateriaPrima.Obter(esquema.Referência, esquema.Fechamento);
 
             foreach (MateriaPrima i in ingredientes)
                 itens.Add(CriarItem(i));

@@ -4,12 +4,14 @@ using Entidades.Fiscal.Exceções;
 using Entidades.Fiscal.Fabricação;
 using System.Windows.Forms;
 using System;
+using Entidades.Fiscal;
 
 namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
 {
     public partial class BaseFabricação : Formulários.BaseInferior
     {
-        FabricaçãoFiscal fabricação;
+        private FabricaçãoFiscal fabricação;
+        private Fechamento fechamento;
 
         public BaseFabricação()
         {
@@ -27,6 +29,11 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
             títuloBaseInferior.Título = string.Format("Fabricação fiscal #{0} de {1}", fabricação.Código, fabricação.DataFormatada);
             listaEntradas.Carregar(fabricação.Código);
             listaSaídas.Carregar(fabricação.Código);
+
+            fechamento = Fechamento.Obter(fabricação.Data);
+            if (fechamento != null)
+                títuloBaseInferior.Descrição = string.Format("Serão usados os esquemas do fechamento {0}, vigentes de {1} até {2}.",
+                    fechamento.Código, fechamento.Início.ToShortDateString(), fechamento.Fim.ToShortDateString());
         }
 
         private void btnIncluir_Click(object sender, System.EventArgs e)
@@ -37,7 +44,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
             try
             {
                 AguardeDB.Mostrar();
-                fabricação.AdicionarFabricação(new ItemFabricaçãoFiscal(txtMercadoria.Mercadoria.ReferênciaNumérica, (decimal)txtQuantidade.Double));
+                fabricação.AdicionarFabricação(new ItemFabricaçãoFiscal(txtMercadoria.Mercadoria.ReferênciaNumérica, (decimal)txtQuantidade.Double), fechamento);
                 LimparCampos();
             }
             catch (ExceçãoFiscal erro)
@@ -88,7 +95,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
             AguardeDB.Mostrar();
             try
             {
-                fabricação.Remover(seleção);
+                fabricação.Remover(seleção, fechamento);
             }
             catch (ExceçãoFiscal erro)
             {

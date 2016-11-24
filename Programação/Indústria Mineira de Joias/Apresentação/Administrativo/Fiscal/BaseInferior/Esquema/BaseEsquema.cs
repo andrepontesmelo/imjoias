@@ -107,7 +107,8 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
 
             try
             {
-                new MateriaPrima(esquema.Referência,
+                new MateriaPrima(esquema.Fechamento, 
+                    esquema.Referência,
                     txtMercadoriaSelecionada.Referência,
                     (decimal)txtQuantidadeSelecionada.Double).Cadastrar();
             } catch (Exception erro)

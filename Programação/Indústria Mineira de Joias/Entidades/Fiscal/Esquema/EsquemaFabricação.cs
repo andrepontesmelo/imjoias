@@ -2,6 +2,7 @@
 using Entidades.Fiscal.Tipo;
 using System.Collections.Generic;
 using System.Text;
+using System;
 
 namespace Entidades.Fiscal.Esquema
 {
@@ -34,6 +35,7 @@ namespace Entidades.Fiscal.Esquema
             set { quantidade = value; }
         }
 
+        public int Fechamento => fechamento;
         public string Descrição => descricao;
         public TipoUnidade TipoUnidadeFiscal => TipoUnidade.Obter(tipounidade);
         public int CFOP => cfop;
@@ -48,10 +50,26 @@ namespace Entidades.Fiscal.Esquema
             this.fechamento = fechamento.Código;
         }
 
+        internal static EsquemaFabricação ObterÚnico(Fechamento fechamento, string referência)
+        {
+            var lista = Obter(fechamento, referência);
+
+            if (lista.Count == 0)
+                return null;
+
+            return lista[0];
+        }
+
         public static List<EsquemaFabricação> Obter(Fechamento fechamento)
         {
+            return Obter(fechamento, null);
+        }
+
+        public static List<EsquemaFabricação> Obter(Fechamento fechamento, string referência)
+        {
             return Mapear<EsquemaFabricação>("select e.*, m.nome as descricao, m.tipounidade, m.cfop from " + 
-                " esquemafabricacaofiscal e join mercadoria m on e.referencia=m.referencia where fechamento=" + fechamento.Código);
+                " esquemafabricacaofiscal e join mercadoria m on e.referencia=m.referencia where fechamento=" + fechamento.Código
+                + " AND e.referencia=" + (referência == null ? "e.referencia" : DbTransformar(referência)));
         }
 
         public static Dictionary<string, EsquemaFabricação> ObterHash(Fechamento fechamento)
