@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Entidades.Fiscal;
+using Apresentação.Administrativo.Fiscal.Janela;
 
 namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
 {
@@ -15,10 +16,15 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
             InitializeComponent();
         }
 
-        protected override void AoExibir()
+        protected override void AoExibirDaPrimeiraVez()
         {
-            base.AoExibir();
+            base.AoExibirDaPrimeiraVez();
 
+            CarregarLista();
+        }
+
+        private void CarregarLista()
+        {
             lista.Carregar(fechamento);
         }
 
@@ -71,6 +77,18 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
         internal void Carregar(Fechamento fechamento)
         {
             this.fechamento = fechamento;
+
+            if (lista != null)
+                CarregarLista();
+        }
+
+        private void opçãoImportarEsquemas_Click(object sender, EventArgs e)
+        {
+            var janela = new JanelaImportaçãoEsquema();
+            janela.Carregar(fechamento);
+            janela.ShowDialog(this);
+
+            Carregar(fechamento);
         }
     }
 }

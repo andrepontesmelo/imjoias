@@ -207,6 +207,12 @@
     <Compile Include="Administrativo\Fiscal\Janela\JanelaFechamento.Designer.cs">
       <DependentUpon>JanelaFechamento.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrativo\Fiscal\Janela\JanelaImportaçãoEsquema.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrativo\Fiscal\Janela\JanelaImportaçãoEsquema.Designer.cs">
+      <DependentUpon>JanelaImportaçãoEsquema.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administrativo\Fiscal\Janela\JanelaImpressãoFiscal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2586,6 +2592,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administrativo\Fiscal\Janela\JanelaFechamento.resx">
       <DependentUpon>JanelaFechamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrativo\Fiscal\Janela\JanelaImportaçãoEsquema.resx">
+      <DependentUpon>JanelaImportaçãoEsquema.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administrativo\Fiscal\Janela\JanelaImpressãoFiscal.resx">
       <DependentUpon>JanelaImpressãoFiscal.cs</DependentUpon>

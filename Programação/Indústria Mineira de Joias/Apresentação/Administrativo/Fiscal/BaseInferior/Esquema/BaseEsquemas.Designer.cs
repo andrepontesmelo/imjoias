@@ -35,16 +35,21 @@
             this.quadro2 = new Apresentação.Formulários.Quadro();
             this.opçãoExcluir = new Apresentação.Formulários.Opção();
             this.opçãoNovo = new Apresentação.Formulários.Opção();
+            this.quadro1 = new Apresentação.Formulários.Quadro();
+            this.opçãoImportarEsquemas = new Apresentação.Formulários.Opção();
             this.esquerda.SuspendLayout();
             this.quadroEsquemas.SuspendLayout();
             this.quadro2.SuspendLayout();
+            this.quadro1.SuspendLayout();
             this.SuspendLayout();
             // 
             // esquerda
             // 
+            this.esquerda.Controls.Add(this.quadro1);
             this.esquerda.Controls.Add(this.quadro2);
             this.esquerda.Size = new System.Drawing.Size(187, 296);
             this.esquerda.Controls.SetChildIndex(this.quadro2, 0);
+            this.esquerda.Controls.SetChildIndex(this.quadro1, 0);
             // 
             // títuloBaseInferior1
             // 
@@ -142,6 +147,39 @@
             this.opçãoNovo.TabIndex = 2;
             this.opçãoNovo.Click += new System.EventHandler(this.opçãoNovo_Click);
             // 
+            // quadro1
+            // 
+            this.quadro1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(239)))), ((int)(((byte)(221)))));
+            this.quadro1.bInfDirArredondada = true;
+            this.quadro1.bInfEsqArredondada = true;
+            this.quadro1.bSupDirArredondada = true;
+            this.quadro1.bSupEsqArredondada = true;
+            this.quadro1.Controls.Add(this.opçãoImportarEsquemas);
+            this.quadro1.Cor = System.Drawing.Color.Black;
+            this.quadro1.FundoTítulo = System.Drawing.Color.Blue;
+            this.quadro1.LetraTítulo = System.Drawing.Color.White;
+            this.quadro1.Location = new System.Drawing.Point(7, 92);
+            this.quadro1.MostrarBotãoMinMax = false;
+            this.quadro1.Name = "quadro1";
+            this.quadro1.Size = new System.Drawing.Size(160, 54);
+            this.quadro1.TabIndex = 9;
+            this.quadro1.Tamanho = 30;
+            this.quadro1.Título = "Importação";
+            // 
+            // opçãoImportarEsquemas
+            // 
+            this.opçãoImportarEsquemas.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoImportarEsquemas.Descrição = "Importar esquemas";
+            this.opçãoImportarEsquemas.Imagem = global::Apresentação.Resource.Edit_RedoHS;
+            this.opçãoImportarEsquemas.Location = new System.Drawing.Point(7, 30);
+            this.opçãoImportarEsquemas.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoImportarEsquemas.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoImportarEsquemas.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoImportarEsquemas.Name = "opçãoImportarEsquemas";
+            this.opçãoImportarEsquemas.Size = new System.Drawing.Size(150, 16);
+            this.opçãoImportarEsquemas.TabIndex = 2;
+            this.opçãoImportarEsquemas.Click += new System.EventHandler(this.opçãoImportarEsquemas_Click);
+            // 
             // BaseEsquemas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -155,6 +193,7 @@
             this.esquerda.ResumeLayout(false);
             this.quadroEsquemas.ResumeLayout(false);
             this.quadro2.ResumeLayout(false);
+            this.quadro1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -167,5 +206,7 @@
         private Formulários.Opção opçãoNovo;
         private Formulários.Quadro quadroEsquemas;
         private Lista.ListaEsquemafabricação lista;
+        private Formulários.Quadro quadro1;
+        private Formulários.Opção opçãoImportarEsquemas;
     }
 }
