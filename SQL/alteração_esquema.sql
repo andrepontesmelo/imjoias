@@ -91,3 +91,32 @@ ADD CONSTRAINT `fk_esquemafabricacaofiscal_fechamento`
 
 
 
+delete from materiaprimaesquemafabricacaofiscal;
+
+
+ALTER TABLE `imjoias`.`materiaprimaesquemafabricacaofiscal` 
+ADD COLUMN `fechamento` INT NOT NULL AFTER `quantidade`;
+
+ALTER TABLE `imjoias`.`materiaprimaesquemafabricacaofiscal` 
+ADD INDEX `fk_materiaprimaesquemafabricacaofiscal_fechamento_idx` (`fechamento` ASC);
+ALTER TABLE `imjoias`.`materiaprimaesquemafabricacaofiscal` 
+ADD CONSTRAINT `fk_materiaprimaesquemafabricacaofiscal_fechamento`
+  FOREIGN KEY (`fechamento`)
+  REFERENCES `imjoias`.`fechamento` (`codigo`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE;
+
+ALTER TABLE `imjoias`.`materiaprimaesquemafabricacaofiscal` 
+DROP FOREIGN KEY `fk_materiaprimaesquemaproducaofiscal_esquema`;
+ALTER TABLE `imjoias`.`materiaprimaesquemafabricacaofiscal` 
+DROP INDEX `idx_esquema_materiaprima` ;
+
+ALTER TABLE `imjoias`.`materiaprimaesquemafabricacaofiscal` 
+DROP INDEX `fk_materiaprimaesquemafabricacaofiscal_materiaprima_idx` ;
+
+ALTER TABLE `imjoias`.`materiaprimaesquemafabricacaofiscal` 
+ADD UNIQUE INDEX `unique_materiaprimaesquemafabricacao` (`esquema` ASC, `materiaprima` ASC, `fechamento` ASC);
+
+ALTER TABLE `imjoias`.`materiaprimaesquemafabricacaofiscal` 
+ADD INDEX `idx_materiaprimaesquema_materiaprima` (`materiaprima` ASC);
+
