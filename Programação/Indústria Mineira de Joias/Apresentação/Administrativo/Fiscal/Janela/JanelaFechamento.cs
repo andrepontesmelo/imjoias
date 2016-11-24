@@ -20,6 +20,9 @@ namespace Apresentação.Administrativo.Fiscal.Janela
             chkFechado.Checked = entidade.Fechado;
             dataInício.Value = entidade.Início;
             dataFim.Value = entidade.Fim;
+
+            CorrigirMinimoDataFim();
+            CorrigirMáximoDataInício();
         }
 
         private void btnCancelar_Click(object sender, System.EventArgs e)
@@ -44,6 +47,38 @@ namespace Apresentação.Administrativo.Fiscal.Janela
         internal void Carregar()
         {
             Carregar(new Fechamento());
+        }
+
+        private void dataInício_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = !DatasVálidas;
+        }
+
+        private bool DatasVálidas => dataInício.Value <= dataFim.Value;
+
+        private void dataFim_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = !DatasVálidas;
+        }
+
+        private void dataInício_Validated(object sender, EventArgs e)
+        {
+            CorrigirMinimoDataFim();
+        }
+
+        private void CorrigirMinimoDataFim()
+        {
+            dataFim.MinDate = dataInício.Value;
+        }
+
+        private void dataFim_Validated(object sender, EventArgs e)
+        {
+            CorrigirMáximoDataInício();
+        }
+
+        private void CorrigirMáximoDataInício()
+        {
+            dataInício.MaxDate = dataFim.Value;
         }
     }
 }

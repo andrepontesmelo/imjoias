@@ -81,6 +81,8 @@
             this.dataInício.Name = "dataInício";
             this.dataInício.Size = new System.Drawing.Size(336, 20);
             this.dataInício.TabIndex = 5;
+            this.dataInício.Validating += new System.ComponentModel.CancelEventHandler(this.dataInício_Validating);
+            this.dataInício.Validated += new System.EventHandler(this.dataInício_Validated);
             // 
             // dataFim
             // 
@@ -90,6 +92,8 @@
             this.dataFim.Name = "dataFim";
             this.dataFim.Size = new System.Drawing.Size(336, 20);
             this.dataFim.TabIndex = 6;
+            this.dataFim.Validating += new System.ComponentModel.CancelEventHandler(this.dataFim_Validating);
+            this.dataFim.Validated += new System.EventHandler(this.dataFim_Validated);
             // 
             // label1
             // 
