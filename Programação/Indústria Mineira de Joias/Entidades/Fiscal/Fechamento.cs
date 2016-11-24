@@ -54,44 +54,61 @@ namespace Entidades.Fiscal
             {
                 using (var transação = conexão.BeginTransaction())
                 {
-                    using (var cmd = conexão.CreateCommand())
-                    {
-                        cmd.Transaction = transação;
-                        cmd.CommandText = "delete from esquemafabricacaofiscal where fechamento=" + DbTransformar(Código);
-                        cmd.ExecuteNonQuery();
-                    }
-
-                    using (var cmd = conexão.CreateCommand())
-                    {
-                        cmd.Transaction = transação;
-                        cmd.CommandText = "delete from materiaprimaesquemafabricacaofiscal where fechamento=" + DbTransformar(Código);
-                        cmd.ExecuteNonQuery();
-                    }
-
-                    using (var cmd = conexão.CreateCommand())
-                    {
-                        cmd.Transaction = transação;
-                        cmd.CommandText = string.Format("insert into esquemafabricacaofiscal select referencia, quantidade, {0} as fechamento " +
-                            " from esquemafabricacaofiscal where fechamento={1}",
-                            DbTransformar(Código),
-                            DbTransformar(origem.Código));
-
-                        cmd.ExecuteNonQuery();
-                    }
-
-                    using (var cmd = conexão.CreateCommand())
-                    {
-                        cmd.Transaction = transação;
-                        cmd.CommandText = string.Format("insert into materiaprimaesquemafabricacaofiscal select " + 
-                            " esquema, materiaprima, quantidade, {0} as fechamento from materiaprimaesquemafabricacaofiscal where fechamento={1}",
-                            DbTransformar(Código),
-                            DbTransformar(origem.Código));
-
-                        cmd.ExecuteNonQuery();
-                    }
+                    ApagarEsquemaFabricação(conexão, transação);
+                    ApagarMatériaPrima(conexão, transação);
+                    InserirEsquemaFabricação(origem, conexão, transação);
+                    InserirMatériaPrima(origem, conexão, transação);
 
                     transação.Commit();
                 }
+            }
+        }
+
+        private void InserirMatériaPrima(Fechamento origem, System.Data.IDbConnection conexão, System.Data.IDbTransaction transação)
+        {
+            using (var cmd = conexão.CreateCommand())
+            {
+                cmd.Transaction = transação;
+                cmd.CommandText = string.Format("insert into materiaprimaesquemafabricacaofiscal select " +
+                    " esquema, materiaprima, quantidade, {0} as fechamento from materiaprimaesquemafabricacaofiscal where fechamento={1}",
+                    DbTransformar(Código),
+                    DbTransformar(origem.Código));
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        private void InserirEsquemaFabricação(Fechamento origem, System.Data.IDbConnection conexão, System.Data.IDbTransaction transação)
+        {
+            using (var cmd = conexão.CreateCommand())
+            {
+                cmd.Transaction = transação;
+                cmd.CommandText = string.Format("insert into esquemafabricacaofiscal select referencia, quantidade, {0} as fechamento " +
+                    " from esquemafabricacaofiscal where fechamento={1}",
+                    DbTransformar(Código),
+                    DbTransformar(origem.Código));
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        private void ApagarMatériaPrima(System.Data.IDbConnection conexão, System.Data.IDbTransaction transação)
+        {
+            using (var cmd = conexão.CreateCommand())
+            {
+                cmd.Transaction = transação;
+                cmd.CommandText = "delete from materiaprimaesquemafabricacaofiscal where fechamento=" + DbTransformar(Código);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        private void ApagarEsquemaFabricação(System.Data.IDbConnection conexão, System.Data.IDbTransaction transação)
+        {
+            using (var cmd = conexão.CreateCommand())
+            {
+                cmd.Transaction = transação;
+                cmd.CommandText = "delete from esquemafabricacaofiscal where fechamento=" + DbTransformar(Código);
+                cmd.ExecuteNonQuery();
             }
         }
 
