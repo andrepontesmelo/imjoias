@@ -2,6 +2,7 @@
 using Apresentação.Formulários;
 using Apresentação.Impressão.Relatórios.Fiscal.Extrato;
 using Entidades.Configuração;
+using Entidades.Fiscal;
 using Entidades.Fiscal.Registro;
 using System;
 
@@ -9,9 +10,10 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
 {
     public partial class BaseExtrato : Apresentação.Formulários.BaseInferior
     {
+        private Fechamento fechamento;
 
-        private DateTime? DataInicial => comboFechamento.Seleção?.Início;
-        private DateTime? DataFinal => comboFechamento.Seleção?.Fim;
+        private DateTime? DataInicial => fechamento.Início;
+        private DateTime? DataFinal => fechamento.Fim;
 
         private string referência;
 
@@ -23,9 +25,10 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
         }
 
 
-        public BaseExtrato(string referência) : this()
+        public BaseExtrato(string referência, Fechamento fechamento) : this()
         {
             this.referência = referência;
+            this.fechamento = fechamento;
 
             Carregar();
         }
@@ -45,7 +48,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
 
             CarregarEstoqueAnterior();
 
-            listaExtrato.Carregar(referência, DataInicial.Value, DataFinal.Value);
+            listaExtrato.Carregar(referência, fechamento);
             título.Descrição = string.Format("Extrato de {0} de {1} até {2} ",
                 ReferênciaFormatada, DataInicial.Value.ToShortDateString(), DataFinal.Value.ToShortDateString());
 
@@ -74,13 +77,14 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
 
             janela.InserirDocumento("Extrato Geral",
                 string.Format("Relatório de extrato de {0} até {1}", dataInicial.ToShortDateString(), dataFinal.ToShortDateString()),
-                new ControladorImpressãoExtrato().CriarRelatório(null, dataInicial, dataFinal));
+                new ControladorImpressãoExtrato().CriarRelatório(null, fechamento));
 
             janela.ShowDialog(this);
         }
 
         private void comboFechamento_SelectedIndexChanged(object sender, EventArgs e)
         {
+            fechamento = comboFechamento.Seleção;
             Carregar();
         }
     }

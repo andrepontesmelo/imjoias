@@ -85,7 +85,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
 
         private void AbrirExtrato()
         {
-            SubstituirBase(new BaseExtrato(listaInventário.ObterItemSelecionado()?.Referência));
+            SubstituirBase(new BaseExtrato(listaInventário.ObterItemSelecionado()?.Referência, Fechamento));
         }
 
         private void opçãoExtrato_Click(object sender, EventArgs e)

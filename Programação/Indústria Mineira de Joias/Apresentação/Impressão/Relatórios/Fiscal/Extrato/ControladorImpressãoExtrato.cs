@@ -2,6 +2,7 @@
 using System.Data;
 using Entidades.Fiscal.Registro;
 using System.Collections.Generic;
+using Entidades.Fiscal;
 
 namespace Apresentação.Impressão.Relatórios.Fiscal.Extrato
 {
@@ -9,15 +10,15 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Extrato
     {
         private Dictionary<string, decimal> hashReferênciaInventárioAnterior;
 
-        public RelatórioExtrato CriarRelatório(string referência, DateTime dataInicial, DateTime dataFinal)
+        public RelatórioExtrato CriarRelatório(string referência, Fechamento fechamento)
         {
             var relatório = new RelatórioExtrato();
             var dataset = new DataSetExtrato();
             relatório.SetDataSource(dataset);
-            hashReferênciaInventárioAnterior = InventárioAnterior.ObterHashReferênciaQuantidade(dataInicial);
+            hashReferênciaInventárioAnterior = InventárioAnterior.ObterHashReferênciaQuantidade(fechamento.Início);
 
-            CriarAdicionarDocumento(dataset, dataInicial, dataFinal);
-            CriarItens(Entidades.Fiscal.Extrato.ObterEstoqueAcumulado(referência, dataInicial, dataFinal), dataset.Tables["Item"]);
+            CriarAdicionarDocumento(dataset, fechamento.Início, fechamento.Fim);
+            CriarItens(Entidades.Fiscal.Extrato.ObterEstoqueAcumulado(referência, fechamento), dataset.Tables["Item"]);
 
             return relatório;
         }

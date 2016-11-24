@@ -12,9 +12,9 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             InitializeComponent();
         }
         
-        public void Carregar(string referência, DateTime início, DateTime fim)
+        public void Carregar(string referência, Fechamento fechamento)
         {
-            CarregarItens(CriarItens(Extrato.ObterEstoqueAcumulado(referência, início, fim)));
+            CarregarItens(CriarItens(Extrato.ObterEstoqueAcumulado(referência, fechamento)));
         }
 
         private void CarregarItens(ListViewItem[] itens)

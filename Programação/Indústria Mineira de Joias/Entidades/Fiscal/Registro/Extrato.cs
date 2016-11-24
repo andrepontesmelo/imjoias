@@ -102,28 +102,25 @@ namespace Entidades.Fiscal
 
         public string ValorFormatado => FormatarMoeda(valor);
 
-        public static List<Extrato> ObterEstoqueAcumulado(string referência, DateTime início, DateTime fim)
+        public static List<Extrato> ObterEstoqueAcumulado(string referência, Fechamento fechamento)
         {
-            var hashReferênciaEstoqueAnterior = InventárioAnterior.ObterHashReferênciaQuantidade(início);
+            var hashReferênciaEstoqueAnterior = InventárioAnterior.ObterHashReferênciaQuantidade(fechamento.Início);
 
-            var resultado = Obter(referência, início, fim);
+            var resultado = Obter(referência, fechamento);
             CalcularEstoqueAcumulado(resultado, hashReferênciaEstoqueAnterior);
 
             return resultado;
         }
 
-        private static List<Extrato> Obter(string referência, DateTime início, DateTime fim)
+        private static List<Extrato> Obter(string referência, Fechamento fechamento)
         {
-            início = RetirarTempo(início);
-            fim = RetirarTempo(fim).AddDays(1);
-
-            return Mapear<Extrato>(
-                string.Format("select e.*, nome, classificacaofiscal, tipounidade, CAST(p.novoPrecoCusto as DECIMAL(8,2)) as valor from extratoinventario e " +
-                " left join mercadoria m on e.referencia=m.referencia left join novosPrecos p on e.referencia=p.mercadoria " +
-                " where e.referencia={0} and data >= {1} and data < {2} order by e.referencia, data",
-                referência != null ? DbTransformar(referência) : "e.referencia",
-                DbTransformar(início),
-                DbTransformar(fim)));
+            return Mapear<Extrato>(string.Format("select e.*, mf.descricao, classificacaofiscal, tipounidade, mf.valor from extratoinventario e " +
+                " left join mercadoria m on e.referencia = m.referencia " +
+                " left join mercadoriafechamento mf on mf.referencia = e.referencia and mf.fechamento = {0} " +
+                " where e.referencia = {1} and {2} order by e.referencia, data",
+                fechamento.Código,
+                referência == null ? "e.referencia" : DbTransformar(referência),
+                DbDataEntre("data", fechamento.Início, fechamento.Fim.AddDays(1))));
         }
 
         public static List<Extrato> CalcularEstoqueAcumulado(List<Extrato> lista, 

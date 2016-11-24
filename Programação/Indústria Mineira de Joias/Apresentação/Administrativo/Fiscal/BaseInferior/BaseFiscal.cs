@@ -83,6 +83,7 @@ namespace Apresentação.Fiscal.BaseInferior
 
         private void listaFechamento_AoAbrirEsquema(object sender, EventArgs e)
         {
+
             AbrirEsquemaFechamento();
         }
 
