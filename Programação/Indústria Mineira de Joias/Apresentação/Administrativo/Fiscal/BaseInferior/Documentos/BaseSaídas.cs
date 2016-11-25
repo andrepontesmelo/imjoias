@@ -71,13 +71,13 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
 
         private void CarregarListas()
         {
-            if (!seleçãoPeríodo.DatasVálidas)
-                seleçãoPeríodo.AtribuirIntervaloDatasPadrão();
+            if (MostrarMensagemFechamentoDeveSerEscolhido())
+                return;
 
             foreach (TabPage aba in tabControl.TabPages)
             {
                 ListaDocumentoSaída lista = (ListaDocumentoSaída) aba.Controls[0];
-                lista.Carregar(quadroTipo.Seleção?.Id, (uint) lista.Tag, seleçãoPeríodo.DataInicial.Value, seleçãoPeríodo.DataFinal.Value);
+                lista.Carregar(quadroTipo.Seleção?.Id, (uint) lista.Tag, Fechamento.Início, Fechamento.Fim);
             }
         }
 

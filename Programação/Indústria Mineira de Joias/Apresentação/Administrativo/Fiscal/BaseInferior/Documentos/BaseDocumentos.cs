@@ -4,6 +4,7 @@ using Apresentação.Formulário.Exceção;
 using Entidades.Fiscal;
 using System;
 using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace Apresentação.Fiscal.BaseInferior.Documentos
 {
@@ -18,6 +19,7 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
             if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
                 return;
 
+            comboFechamento.Carregar();
             controlador = ConstruirControlador();
         }
 
@@ -41,6 +43,18 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
         {
         }
 
+        protected Fechamento Fechamento => comboFechamento.Seleção;
+
+        protected bool MostrarMensagemFechamentoDeveSerEscolhido()
+        {
+            if (Fechamento == null)
+            {
+                MessageBox.Show("Selecionar um fechamento");
+                return true;
+            }
+
+            return false;
+        }
         public virtual ListaDocumentoFiscal ObterListaAtiva()
         {
             throw new ExceçãoChamadaMétodoAbstrato();
@@ -61,7 +75,7 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
             throw new ExceçãoChamadaMétodoAbstrato();
         }
 
-        private void seleçãoPeríodo_AoAlterar(object sender, EventArgs e)
+        private void comboFechamento_SelectedIndexChanged(object sender, EventArgs e)
         {
             Recarregar();
         }

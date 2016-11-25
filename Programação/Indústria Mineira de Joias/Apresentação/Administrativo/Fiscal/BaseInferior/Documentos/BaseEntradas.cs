@@ -1,6 +1,8 @@
 ﻿using Apresentação.Fiscal.BaseInferior.Documentos.Exclusão;
 using Apresentação.Fiscal.Lista;
 using Entidades.Fiscal;
+using System.Windows.Forms;
+using System;
 
 namespace Apresentação.Fiscal.BaseInferior.Documentos
 {
@@ -35,11 +37,12 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
 
         private void CarregarLista()
         {
-            if (!seleçãoPeríodo.DatasVálidas)
-                seleçãoPeríodo.AtribuirIntervaloDatasPadrão();
+            if (MostrarMensagemFechamentoDeveSerEscolhido())
+                return;
 
-            lista.Carregar(quadroTipo.Seleção?.Id, seleçãoPeríodo.DataInicial.Value, seleçãoPeríodo.DataFinal.Value);
+            lista.Carregar(quadroTipo.Seleção?.Id, Fechamento.Início, Fechamento.Fim);
         }
+
 
         public override ListaDocumentoFiscal ObterListaAtiva()
         {

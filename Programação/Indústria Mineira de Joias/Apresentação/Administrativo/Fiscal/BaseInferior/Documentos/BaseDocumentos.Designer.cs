@@ -35,7 +35,7 @@
             this.opçãoExcluir = new Apresentação.Formulários.Opção();
             this.opçãoImprimir = new Apresentação.Formulários.Opção();
             this.quadroTipo = new Apresentação.Fiscal.QuadroTipo();
-            this.seleçãoPeríodo = new Apresentação.Administrativo.Fiscal.SeleçãoPeríodo();
+            this.comboFechamento = new Apresentação.Administrativo.Fiscal.Combo.ComboFechamento();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.quadro2.SuspendLayout();
@@ -61,7 +61,7 @@
             this.títuloBaseInferior1.Imagem = global::Apresentação.Resource.fiscal1;
             this.títuloBaseInferior1.Location = new System.Drawing.Point(202, 3);
             this.títuloBaseInferior1.Name = "títuloBaseInferior1";
-            this.títuloBaseInferior1.Size = new System.Drawing.Size(595, 70);
+            this.títuloBaseInferior1.Size = new System.Drawing.Size(697, 70);
             this.títuloBaseInferior1.TabIndex = 6;
             this.títuloBaseInferior1.Título = "Documentos";
             // 
@@ -153,23 +153,24 @@
             this.quadroTipo.Size = new System.Drawing.Size(160, 81);
             this.quadroTipo.TabIndex = 9;
             // 
-            // seleçãoPeríodo
+            // comboFechamento
             // 
-            this.seleçãoPeríodo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.seleçãoPeríodo.Location = new System.Drawing.Point(554, 52);
-            this.seleçãoPeríodo.Name = "seleçãoPeríodo";
-            this.seleçãoPeríodo.Size = new System.Drawing.Size(246, 21);
-            this.seleçãoPeríodo.TabIndex = 7;
-            this.seleçãoPeríodo.AoAlterar += new System.EventHandler(this.seleçãoPeríodo_AoAlterar);
+            this.comboFechamento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboFechamento.Location = new System.Drawing.Point(559, 51);
+            this.comboFechamento.Name = "comboFechamento";
+            this.comboFechamento.Size = new System.Drawing.Size(340, 22);
+            this.comboFechamento.TabIndex = 7;
+            this.comboFechamento.SelectedIndexChanged += new System.EventHandler(this.comboFechamento_SelectedIndexChanged);
             // 
             // BaseDocumentos
             // 
-            this.Controls.Add(this.seleçãoPeríodo);
+            this.Controls.Add(this.comboFechamento);
             this.Controls.Add(this.títuloBaseInferior1);
             this.Name = "BaseDocumentos";
+            this.Size = new System.Drawing.Size(902, 296);
             this.Controls.SetChildIndex(this.esquerda, 0);
             this.Controls.SetChildIndex(this.títuloBaseInferior1, 0);
-            this.Controls.SetChildIndex(this.seleçãoPeríodo, 0);
+            this.Controls.SetChildIndex(this.comboFechamento, 0);
             this.esquerda.ResumeLayout(false);
             this.quadro1.ResumeLayout(false);
             this.quadro2.ResumeLayout(false);
@@ -185,6 +186,6 @@
         protected Formulários.TítuloBaseInferior títuloBaseInferior1;
         protected Formulários.Opção opçãoNovo;
         protected QuadroTipo quadroTipo;
-        protected Administrativo.Fiscal.SeleçãoPeríodo seleçãoPeríodo;
+        protected Administrativo.Fiscal.Combo.ComboFechamento comboFechamento;
     }
 }
