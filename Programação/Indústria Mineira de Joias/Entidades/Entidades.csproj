@@ -356,7 +356,6 @@
     <Compile Include="Mercadoria\Mercadoria.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Mercadoria\MercadoriaManutenção.cs" />
     <Compile Include="Mercadoria\MercadoriaOca.cs">
       <SubType>Code</SubType>
     </Compile>
