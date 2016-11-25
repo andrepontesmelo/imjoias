@@ -32,14 +32,14 @@ namespace Apresentação.Fiscal.Janela
 
         private void CarregarOpções()
         {
+            comboFechamento.Carregar();
+
             chkEntradaXMLAtacado.Checked = importarXMLAtacadoEntrada.Valor;
             chkSaídaXMLAtacado.Checked = importarXMLAtacadoSaída.Valor;
             chkSaídaTDMVarejo.Checked = importarTDMVarejoSaída.Valor;
             chkSaídaPDFAtacado.Checked = importarPDFAtacadoSaída.Valor;
 
             txtDiretório.Text = diretórioInicial.Valor;
-
-            comboFechamento.Carregar();
         }
 
         private void btnCancelar_Click(object sender, System.EventArgs e)

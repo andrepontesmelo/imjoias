@@ -9,6 +9,7 @@ using Entidades.Fiscal.Exceções;
 using Entidades.Fiscal.Fabricação;
 using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
 {
@@ -44,6 +45,12 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
         private void Carregar()
         {
             cmbFechamento.Carregar();
+
+            if (Fechamento == null)
+            {
+                MessageBox.Show("Selecione um fechamento.");
+                return;
+            }
 
             títuloBaseInferior1.Título = string.Format("Inventário {0}",
                 !Data.HasValue ? "atual" : "em " + Data.Value.ToShortDateString());
