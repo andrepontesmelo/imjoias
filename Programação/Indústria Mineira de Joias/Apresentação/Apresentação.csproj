@@ -329,6 +329,18 @@
       <DependentUpon>RelatórioInventário.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Impressão\Relatórios\Fiscal\ListaDocumento\ControladorImpressão.cs" />
+    <Compile Include="Impressão\Relatórios\Fiscal\ListaDocumento\DataSetListaDocumento.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetListaDocumento.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Impressão\Relatórios\Fiscal\ListaDocumento\Relatório.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Relatório.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Mercadoria\Janela\JanelaPesquisaReferência.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2643,6 +2655,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RelatórioInventário.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Impressão\Relatórios\Fiscal\ListaDocumento\Relatório.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Relatório.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Mercadoria\Janela\JanelaPesquisaReferência.resx">
       <DependentUpon>JanelaPesquisaReferência.cs</DependentUpon>
     </EmbeddedResource>
@@ -3825,6 +3841,17 @@
     </None>
     <None Include="Impressão\Relatórios\Fiscal\Inventário\DataSetInventário.xss">
       <DependentUpon>DataSetInventário.xsd</DependentUpon>
+    </None>
+    <None Include="Impressão\Relatórios\Fiscal\ListaDocumento\DataSetListaDocumento.xsc">
+      <DependentUpon>DataSetListaDocumento.xsd</DependentUpon>
+    </None>
+    <None Include="Impressão\Relatórios\Fiscal\ListaDocumento\DataSetListaDocumento.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetListaDocumento.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Impressão\Relatórios\Fiscal\ListaDocumento\DataSetListaDocumento.xss">
+      <DependentUpon>DataSetListaDocumento.xsd</DependentUpon>
     </None>
     <None Include="Impressão\Relatórios\Pedido\MercadoriaEmFaltaCliente\DataSetMercadoriaEmFaltaCliente.xsc">
       <DependentUpon>DataSetMercadoriaEmFaltaCliente.xsd</DependentUpon>
