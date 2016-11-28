@@ -16,16 +16,15 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
             InitializeComponent();
         }
 
-        protected override void AoExibirDaPrimeiraVez()
+        protected override void AoExibir()
         {
-            base.AoExibirDaPrimeiraVez();
-
+            base.AoExibir();
             CarregarLista();
         }
 
         private void CarregarLista()
         {
-            lista.Carregar(fechamento);
+            lista?.Carregar(fechamento);
         }
 
         private void lista_AoExcluir(object sender, System.EventArgs e)
