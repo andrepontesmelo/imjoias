@@ -82,14 +82,17 @@ namespace Entidades.Fiscal.Esquema
             return hash;
         }
 
-        public static void Excluir(List<EsquemaFabricação> seleção)
+        public static void Excluir(List<EsquemaFabricação> seleção, Fechamento fechamento)
         {
-            ExcluirEntidades(seleção);
+            ExcluirEntidades(seleção, fechamento);
         }
 
-        private static void ExcluirEntidades(List<EsquemaFabricação> seleção)
+        private static void ExcluirEntidades(List<EsquemaFabricação> seleção, Fechamento fechamento)
         {
-            StringBuilder sql = new StringBuilder("delete from esquemafabricacaofiscal where referencia in (");
+            StringBuilder sql = new StringBuilder("delete from esquemafabricacaofiscal where fechamento=");
+            sql.Append(fechamento.Código);
+
+            sql.Append(" AND referencia in (");
 
             bool primeiro = true;
             foreach (EsquemaFabricação e in seleção)

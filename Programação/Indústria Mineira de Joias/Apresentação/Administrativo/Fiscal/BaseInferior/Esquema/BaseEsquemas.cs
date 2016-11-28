@@ -45,8 +45,9 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
                 "Confirmação de exclusão",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != DialogResult.Yes)
                 return;
+            
+            EsquemaFabricação.Excluir(seleção, fechamento);
 
-            EsquemaFabricação.Excluir(seleção);
             lista.Carregar(fechamento);
         }
 
