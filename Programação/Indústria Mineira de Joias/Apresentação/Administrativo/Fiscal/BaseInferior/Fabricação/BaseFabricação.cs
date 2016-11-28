@@ -115,7 +115,9 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
 
             txtCFOP.Text = mercadoria?.CFOP.ToString();
             txtDescrição.Text = mercadoria?.Descrição;
-            cmbTipoUnidade.Seleção = mercadoria == null ? null : mercadoria.TipoUnidadeComercial;
+
+            if (cmbTipoUnidade != null)
+                cmbTipoUnidade.Seleção = mercadoria == null ? null : mercadoria.TipoUnidadeComercial;
         }
     }
 }
