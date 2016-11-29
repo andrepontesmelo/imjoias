@@ -1,122 +1,97 @@
-CREATE TABLE `imjoias`.`fechamento` (
-  `codigo` INT NOT NULL,
-  `inicio` DATETIME NOT NULL,
-  `fim` DATETIME NOT NULL,
-  `fechado` TINYINT NOT NULL,
-  PRIMARY KEY (`codigo`));
 
-ALTER TABLE `imjoias`.`fechamento` 
-CHANGE COLUMN `codigo` `codigo` INT(11) NOT NULL AUTO_INCREMENT ;
+ALTER TABLE `imjoias`.`saidafabricacaofiscal`
+ADD COLUMN `codigo` INT NOT NULL AUTO_INCREMENT AFTER `referencia`,
+ADD PRIMARY KEY (`codigo`);
 
-USE `imjoias`;
-CREATE  OR REPLACE VIEW `mercadoria_fiscal` AS
-SELECT 
-        `m`.`referencia` AS `referencia`,
-        `m`.`nome` AS `nome`,
-        `m`.`classificacaofiscal` AS `classificacaofiscal`,
-        IFNULL(`a`.`valor`, `p`.`novoPrecoCusto`) AS `valor`
-    FROM
-        `imjoias`.`mercadoria` `m`
-        LEFT JOIN `imjoias`.`materiaprima` `a` ON `a`.`referencia` = `m`.`referencia`
-        LEFT JOIN `imjoias`.`novosPrecos` `p` ON `m`.`referencia` = `p`.`mercadoria`;
+ALTER TABLE `imjoias`.`entradafabricacaofiscal`
+ADD COLUMN `codigo` INT NOT NULL AUTO_INCREMENT AFTER `referencia`,
+ADD PRIMARY KEY (`codigo`);
 
-CREATE TABLE `imjoias`.`mercadoriafechamento` (
-  `mercadoria` VARCHAR(11) NOT NULL,
-  `descricao` VARCHAR(100) NULL,
-  `precocusto` DECIMAL(8,2) NULL,
-  `fechamento` INT NOT NULL);
-
-ALTER TABLE `imjoias`.`mercadoriafechamento` 
-ADD UNIQUE INDEX `idx_mercadoriafechamento_unica` (`mercadoria` ASC, `fechamento` ASC);
+ALTER TABLE `imjoias`.`saidafabricacaofiscal`
+CHANGE COLUMN `codigo` `codigo` INT(11) NOT NULL AUTO_INCREMENT FIRST;
 
 
+ALTER TABLE `imjoias`.`entradafabricacaofiscal`
+CHANGE COLUMN `codigo` `codigo` INT(11) NOT NULL AUTO_INCREMENT FIRST;
 
-ALTER TABLE `imjoias`.`mercadoriafechamento` 
-ADD INDEX `fk_mercadoriafechamento_fechamento_idx` (`fechamento` ASC);
-ALTER TABLE `imjoias`.`mercadoriafechamento` 
-ADD CONSTRAINT `fk_mercadoriafechamento_fechamento`
-  FOREIGN KEY (`fechamento`)
-  REFERENCES `imjoias`.`fechamento` (`codigo`)
-  ON DELETE CASCADE
-  ON UPDATE CASCADE;
-
-ALTER TABLE `imjoias`.`mercadoriafechamento` 
-CHANGE COLUMN `mercadoria` `referencia` VARCHAR(11) NOT NULL ;
-
-ALTER TABLE `imjoias`.`mercadoriafechamento` 
-CHANGE COLUMN `precocusto` `valor` DECIMAL(8,2) NULL DEFAULT NULL ;
-
-USE `imjoias`;
-CREATE 
-     OR REPLACE ALGORITHM = UNDEFINED 
-    DEFINER = `root`@`localhost` 
-    SQL SECURITY DEFINER
-VIEW `mercadoria_fiscal` AS
-    SELECT 
-        `m`.`referencia` AS `referencia`,
-        `m`.`nome` AS `descricao`,
-        IFNULL(`a`.`valor`, `p`.`novoPrecoCusto`) AS `valor`
-    FROM
-        ((`mercadoria` `m`
-        LEFT JOIN `materiaprima` `a` ON ((`a`.`referencia` = `m`.`referencia`)))
-        LEFT JOIN `novosPrecos` `p` ON ((`m`.`referencia` = `p`.`mercadoria`)));
+ALTER TABLE `imjoias`.`saidafabricacaofiscal`
+ADD COLUMN `valor` DECIMAL(8,2) NOT NULL AFTER `referencia`;
 
 
-start transaction;
-delete from mercadoriafechamento where fechamento=5;
-insert into mercadoriafechamento(referencia, descricao, valor, fechamento) select m.*, 5 as fechamento from mercadoria_fiscal m;
-commit;
+ALTER TABLE `imjoias`.`entradafabricacaofiscal`
+ADD COLUMN `valor` DECIMAL(8,2) NOT NULL AFTER `referencia`;
 
-drop table inventario_total;
+ALTER TABLE `imjoias`.`saidafabricacaofiscal`
+DROP FOREIGN KEY `fk_saidaproducaofiscal_2`;
+ALTER TABLE `imjoias`.`saidafabricacaofiscal`
+DROP INDEX `fk_saidafabricacaofiscal_referencia` ;
 
-ALTER TABLE `imjoias`.`esquemafabricacaofiscal` 
-ADD COLUMN `fechamento` INT NOT NULL AFTER `quantidade`;
+ALTER TABLE `imjoias`.`entradafabricacaofiscal`
+DROP FOREIGN KEY `fk_entradaproducaofiscal_2`;
+ALTER TABLE `imjoias`.`entradafabricacaofiscal`
+DROP INDEX `fk_entradafabricacaofiscal_referencia` ;
 
-delete from esquemafabricacaofiscal;
+delete from entradafabricacaofiscal;
 
-ALTER TABLE esquemafabricacaofiscal DROP PRIMARY KEY, add primary key (referencia, fechamento);
-
-ALTER TABLE `imjoias`.`esquemafabricacaofiscal` 
-DROP FOREIGN KEY `fk_esquemaproducaofiscal_1`;
-
-
-ALTER TABLE `imjoias`.`esquemafabricacaofiscal` 
-ADD INDEX `fk_esquemafabricacaofiscal_fechamento_idx` (`fechamento` ASC);
-ALTER TABLE `imjoias`.`esquemafabricacaofiscal` 
-ADD CONSTRAINT `fk_esquemafabricacaofiscal_fechamento`
-  FOREIGN KEY (`fechamento`)
-  REFERENCES `imjoias`.`fechamento` (`codigo`)
+ALTER TABLE `imjoias`.`entradafabricacaofiscal`
+ADD CONSTRAINT `fk_entradafabricacaofiscal_fabricacao`
+  FOREIGN KEY (`fabricacaofiscal`)
+  REFERENCES `imjoias`.`fabricacaofiscal` (`codigo`)
   ON DELETE CASCADE
   ON UPDATE CASCADE;
 
 
-
-delete from materiaprimaesquemafabricacaofiscal;
-
-
-ALTER TABLE `imjoias`.`materiaprimaesquemafabricacaofiscal` 
-ADD COLUMN `fechamento` INT NOT NULL AFTER `quantidade`;
-
-ALTER TABLE `imjoias`.`materiaprimaesquemafabricacaofiscal` 
-ADD INDEX `fk_materiaprimaesquemafabricacaofiscal_fechamento_idx` (`fechamento` ASC);
-ALTER TABLE `imjoias`.`materiaprimaesquemafabricacaofiscal` 
-ADD CONSTRAINT `fk_materiaprimaesquemafabricacaofiscal_fechamento`
-  FOREIGN KEY (`fechamento`)
-  REFERENCES `imjoias`.`fechamento` (`codigo`)
-  ON DELETE CASCADE
-  ON UPDATE CASCADE;
-
-ALTER TABLE `imjoias`.`materiaprimaesquemafabricacaofiscal` 
-DROP FOREIGN KEY `fk_materiaprimaesquemaproducaofiscal_esquema`;
-ALTER TABLE `imjoias`.`materiaprimaesquemafabricacaofiscal` 
-DROP INDEX `idx_esquema_materiaprima` ;
-
-ALTER TABLE `imjoias`.`materiaprimaesquemafabricacaofiscal` 
-DROP INDEX `fk_materiaprimaesquemafabricacaofiscal_materiaprima_idx` ;
-
-ALTER TABLE `imjoias`.`materiaprimaesquemafabricacaofiscal` 
-ADD UNIQUE INDEX `unique_materiaprimaesquemafabricacao` (`esquema` ASC, `materiaprima` ASC, `fechamento` ASC);
-
-ALTER TABLE `imjoias`.`materiaprimaesquemafabricacaofiscal` 
-ADD INDEX `idx_materiaprimaesquema_materiaprima` (`materiaprima` ASC);
-
+  USE `imjoias`;
+  CREATE
+       OR REPLACE ALGORITHM = UNDEFINED
+      DEFINER = `root`@`localhost`
+      SQL SECURITY DEFINER
+  VIEW `extratoinventario` AS
+      SELECT
+          `e`.`tipo` AS `tipodocumento`,
+          'E' AS `tipoextrato`,
+          `ei`.`referencia` AS `referencia`,
+          `e`.`dataentrada` AS `data`,
+          `ei`.`quantidade` AS `quantidade`,
+          `ei`.`valor` AS `valor`
+      FROM
+          (`entradaitemfiscal` `ei`
+          JOIN `entradafiscal` `e` ON ((`ei`.`entradafiscal` = `e`.`id`)))
+      WHERE
+          (`e`.`dataentrada` < NOW())
+      UNION SELECT
+          `e`.`tipo` AS `tipodocumento`,
+          'S' AS `tipoextrato`,
+          `ei`.`referencia` AS `referencia`,
+          `e`.`datasaida` AS `data`,
+          (-(1) * `ei`.`quantidade`) AS `-1*ei.quantidade`,
+          `ei`.`valor` AS `valor`
+      FROM
+          (`saidaitemfiscal` `ei`
+          JOIN `saidafiscal` `e` ON ((`ei`.`saidafiscal` = `e`.`id`)))
+      WHERE
+          (`e`.`datasaida` < NOW())
+      UNION SELECT
+          NULL AS `tipodocumento`,
+          'OT' AS `tipoextrato`,
+          `ei`.`referencia` AS `referencia`,
+          `e`.`data` AS `data`,
+          (-(1) * `ei`.`quantidade`) AS `-1*ei.quantidade`,
+          ei.valor AS `valor`
+      FROM
+          (`entradafabricacaofiscal` `ei`
+          JOIN `fabricacaofiscal` `e` ON ((`ei`.`fabricacaofiscal` = `e`.`codigo`)))
+      WHERE
+          (`e`.`data` < NOW())
+      UNION SELECT
+          NULL AS `tipodocumento`,
+          'TO' AS `tipoextrato`,
+          `ei`.`referencia` AS `referencia`,
+          `e`.`data` AS `data`,
+          `ei`.`quantidade` AS `quantidade`,
+  		ei.valor AS `valor`
+      FROM
+          (`saidafabricacaofiscal` `ei`
+          JOIN `fabricacaofiscal` `e` ON ((`ei`.`fabricacaofiscal` = `e`.`codigo`)))
+      WHERE
+          (`e`.`data` < NOW());
