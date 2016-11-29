@@ -30,6 +30,7 @@
         {
             this.títuloBaseInferior = new Apresentação.Formulários.TítuloBaseInferior();
             this.quadro1 = new Apresentação.Formulários.Quadro();
+            this.opçãoConfigurar = new Apresentação.Formulários.Opção();
             this.opçãoImprimir = new Apresentação.Formulários.Opção();
             this.btnIncluir = new System.Windows.Forms.Button();
             this.cmbTipoUnidade = new Apresentação.Fiscal.Combobox.ComboTipoUnidade();
@@ -48,7 +49,7 @@
             this.listaSaídas = new Apresentação.Administrativo.Fiscal.Lista.Fabricação.ListaSaídaFabricaçãoFiscal();
             this.listaEntradas = new Apresentação.Administrativo.Fiscal.Lista.Fabricação.ListaEntradaFabricaçãoFiscal();
             this.label2 = new System.Windows.Forms.Label();
-            this.opçãoConfigurar = new Apresentação.Formulários.Opção();
+            this.btnExcluir = new System.Windows.Forms.Button();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.quadroItem.SuspendLayout();
@@ -93,6 +94,20 @@
             this.quadro1.TabIndex = 1;
             this.quadro1.Tamanho = 30;
             this.quadro1.Título = "Documento";
+            // 
+            // opçãoConfigurar
+            // 
+            this.opçãoConfigurar.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoConfigurar.Descrição = "Configurar";
+            this.opçãoConfigurar.Imagem = global::Apresentação.Resource.repair;
+            this.opçãoConfigurar.Location = new System.Drawing.Point(7, 50);
+            this.opçãoConfigurar.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoConfigurar.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoConfigurar.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoConfigurar.Name = "opçãoConfigurar";
+            this.opçãoConfigurar.Size = new System.Drawing.Size(150, 16);
+            this.opçãoConfigurar.TabIndex = 3;
+            this.opçãoConfigurar.Click += new System.EventHandler(this.opçãoConfigurar_Click);
             // 
             // opçãoImprimir
             // 
@@ -207,6 +222,7 @@
             this.quadroItem.bInfEsqArredondada = true;
             this.quadroItem.bSupDirArredondada = true;
             this.quadroItem.bSupEsqArredondada = true;
+            this.quadroItem.Controls.Add(this.btnExcluir);
             this.quadroItem.Controls.Add(this.txtMercadoria);
             this.quadroItem.Controls.Add(this.btnIncluir);
             this.quadroItem.Controls.Add(this.cmbTipoUnidade);
@@ -242,7 +258,7 @@
             // btnAlterar
             // 
             this.btnAlterar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAlterar.Location = new System.Drawing.Point(848, 99);
+            this.btnAlterar.Location = new System.Drawing.Point(767, 99);
             this.btnAlterar.Name = "btnAlterar";
             this.btnAlterar.Size = new System.Drawing.Size(75, 23);
             this.btnAlterar.TabIndex = 7;
@@ -301,19 +317,16 @@
             this.label2.TabIndex = 10;
             this.label2.Text = "OT: Transferência do inventário para a fabricação";
             // 
-            // opçãoConfigurar
+            // btnExcluir
             // 
-            this.opçãoConfigurar.BackColor = System.Drawing.Color.Transparent;
-            this.opçãoConfigurar.Descrição = "Configurar";
-            this.opçãoConfigurar.Imagem = global::Apresentação.Resource.repair;
-            this.opçãoConfigurar.Location = new System.Drawing.Point(7, 50);
-            this.opçãoConfigurar.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.opçãoConfigurar.MaximumSize = new System.Drawing.Size(150, 100);
-            this.opçãoConfigurar.MinimumSize = new System.Drawing.Size(150, 16);
-            this.opçãoConfigurar.Name = "opçãoConfigurar";
-            this.opçãoConfigurar.Size = new System.Drawing.Size(150, 16);
-            this.opçãoConfigurar.TabIndex = 3;
-            this.opçãoConfigurar.Click += new System.EventHandler(this.opçãoConfigurar_Click);
+            this.btnExcluir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExcluir.Location = new System.Drawing.Point(686, 99);
+            this.btnExcluir.Name = "btnExcluir";
+            this.btnExcluir.Size = new System.Drawing.Size(75, 23);
+            this.btnExcluir.TabIndex = 13;
+            this.btnExcluir.Text = "Excluir";
+            this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Visible = false;
             // 
             // BaseFabricação
             // 
@@ -366,5 +379,6 @@
         private System.Windows.Forms.Label label2;
         private Mercadoria.TxtMercadoriaLivre txtMercadoria;
         private Formulários.Opção opçãoConfigurar;
+        private System.Windows.Forms.Button btnExcluir;
     }
 }
