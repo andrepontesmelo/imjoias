@@ -30,7 +30,9 @@ namespace Apresentação.Administrativo.Fiscal.Combo
                 return;
 
             var seleção = Seleção;
-            fechamentoEmUso.Valor = seleção.Código;
+
+            if (seleção != null)
+                fechamentoEmUso.Valor = seleção.Código;
 
             SelectedIndexChanged?.Invoke(sender, e);
         }

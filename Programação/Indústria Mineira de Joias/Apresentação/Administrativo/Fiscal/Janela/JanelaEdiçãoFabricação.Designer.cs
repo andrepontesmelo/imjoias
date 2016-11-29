@@ -60,6 +60,7 @@
             this.comboFechamento.Enabled = false;
             this.comboFechamento.Location = new System.Drawing.Point(15, 126);
             this.comboFechamento.Name = "comboFechamento";
+            this.comboFechamento.Seleção = null;
             this.comboFechamento.Size = new System.Drawing.Size(324, 22);
             this.comboFechamento.TabIndex = 3;
             // 
@@ -96,6 +97,7 @@
             // btnCancelar
             // 
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.Location = new System.Drawing.Point(264, 348);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
@@ -117,6 +119,7 @@
             // 
             // JanelaEdiçãoFabricação
             // 
+            this.AcceptButton = this.btnOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(353, 383);

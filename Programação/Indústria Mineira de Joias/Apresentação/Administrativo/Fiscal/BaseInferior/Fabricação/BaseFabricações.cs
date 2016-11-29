@@ -1,4 +1,5 @@
-﻿using Entidades.Fiscal;
+﻿using Apresentação.Administrativo.Fiscal.Janela;
+using Entidades.Fiscal;
 using Entidades.Fiscal.Fabricação;
 using System;
 
@@ -13,7 +14,17 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
 
         private void opçãoNovafabricação_Click(object sender, EventArgs e)
         {
-            SubstituirBaseEdição(FabricaçãoFiscal.Criar());
+            var fabricação = FabricaçãoFiscal.Criar();
+            var janelaEdiçãoFabricação = new JanelaEdiçãoFabricação(fabricação);
+            var resultado = janelaEdiçãoFabricação.Mostrar(this);
+
+            if (resultado == System.Windows.Forms.DialogResult.Cancel)
+            {
+                fabricação.Descadastrar();
+                return;
+            }
+
+            SubstituirBaseEdição(fabricação);
         }
 
         private void SubstituirBaseEdição(FabricaçãoFiscal fabricação)

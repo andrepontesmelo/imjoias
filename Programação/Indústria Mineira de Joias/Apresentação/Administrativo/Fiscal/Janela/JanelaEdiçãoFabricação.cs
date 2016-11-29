@@ -1,20 +1,36 @@
 ﻿using Apresentação.Formulários;
 using Entidades.Fiscal.Fabricação;
+using System.Windows.Forms;
+using System;
 
 namespace Apresentação.Administrativo.Fiscal.Janela
 {
     public partial class JanelaEdiçãoFabricação : JanelaExplicativa
     {
         FabricaçãoFiscal fabricação;
+        DialogResult resultado = DialogResult.Cancel;
 
         public JanelaEdiçãoFabricação()
         {
             InitializeComponent();
         }
 
+        public JanelaEdiçãoFabricação(FabricaçãoFiscal fabricação) : this()
+        {
+            this.fabricação = fabricação;
+        }
+
+        public DialogResult Mostrar(IWin32Window dono)
+        {
+            Carregar(fabricação);
+            ShowDialog(dono);
+
+            return resultado;
+        }
+
         private void btnCancelar_Click(object sender, System.EventArgs e)
         {
-            Close();
+            AtribuirResultado(DialogResult.Cancel);
         }
 
         public void Carregar(FabricaçãoFiscal fabricação)
@@ -41,8 +57,13 @@ namespace Apresentação.Administrativo.Fiscal.Janela
         {
             fabricação.Data = dateTimePicker.Value;
             fabricação.Atualizar();
+            AtribuirResultado(DialogResult.OK);
+        }
 
-            Close();
+        private void AtribuirResultado(DialogResult resultado)
+        {
+            this.resultado = resultado;
+            this.DialogResult = resultado;
         }
     }
 }
