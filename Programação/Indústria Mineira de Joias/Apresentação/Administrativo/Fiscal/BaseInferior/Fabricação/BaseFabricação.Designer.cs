@@ -41,13 +41,14 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.quadroItem = new Apresentação.Formulários.Quadro();
+            this.txtMercadoria = new Apresentação.Mercadoria.TxtMercadoriaLivre();
             this.btnAlterar = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.listaSaídas = new Apresentação.Administrativo.Fiscal.Lista.Fabricação.ListaSaídaFabricaçãoFiscal();
             this.listaEntradas = new Apresentação.Administrativo.Fiscal.Lista.Fabricação.ListaEntradaFabricaçãoFiscal();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtMercadoria = new Apresentação.Mercadoria.TxtMercadoriaLivre();
+            this.opçãoConfigurar = new Apresentação.Formulários.Opção();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.quadroItem.SuspendLayout();
@@ -64,8 +65,7 @@
             this.títuloBaseInferior.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.títuloBaseInferior.BackColor = System.Drawing.Color.White;
-            this.títuloBaseInferior.Descrição = "Fabricação de um item de inventá" +
-    "rio.";
+            this.títuloBaseInferior.Descrição = "Fabricação de um item de inventário.";
             this.títuloBaseInferior.ÍconeArredondado = false;
             this.títuloBaseInferior.Imagem = global::Apresentação.Resource.fiscal1;
             this.títuloBaseInferior.Location = new System.Drawing.Point(193, 3);
@@ -81,6 +81,7 @@
             this.quadro1.bInfEsqArredondada = true;
             this.quadro1.bSupDirArredondada = true;
             this.quadro1.bSupEsqArredondada = true;
+            this.quadro1.Controls.Add(this.opçãoConfigurar);
             this.quadro1.Controls.Add(this.opçãoImprimir);
             this.quadro1.Cor = System.Drawing.Color.Black;
             this.quadro1.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
@@ -88,7 +89,7 @@
             this.quadro1.Location = new System.Drawing.Point(7, 13);
             this.quadro1.MostrarBotãoMinMax = false;
             this.quadro1.Name = "quadro1";
-            this.quadro1.Size = new System.Drawing.Size(160, 52);
+            this.quadro1.Size = new System.Drawing.Size(160, 74);
             this.quadro1.TabIndex = 1;
             this.quadro1.Tamanho = 30;
             this.quadro1.Título = "Documento";
@@ -229,6 +230,15 @@
             this.quadroItem.Tamanho = 30;
             this.quadroItem.Título = "Detalhe do item";
             // 
+            // txtMercadoria
+            // 
+            this.txtMercadoria.Location = new System.Drawing.Point(19, 44);
+            this.txtMercadoria.Name = "txtMercadoria";
+            this.txtMercadoria.Referência = "";
+            this.txtMercadoria.Size = new System.Drawing.Size(177, 23);
+            this.txtMercadoria.TabIndex = 11;
+            this.txtMercadoria.ReferênciaAlterada += new System.EventHandler(this.txtMercadoria_ReferênciaAlterada);
+            // 
             // btnAlterar
             // 
             this.btnAlterar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -255,7 +265,7 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(193, 232);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(285, 13);
+            this.label1.Size = new System.Drawing.Size(292, 13);
             this.label1.TabIndex = 8;
             this.label1.Text = "TO: Transferência da fabricação para o inventário";
             // 
@@ -287,20 +297,25 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(193, 347);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(285, 13);
+            this.label2.Size = new System.Drawing.Size(292, 13);
             this.label2.TabIndex = 10;
             this.label2.Text = "OT: Transferência do inventário para a fabricação";
             // 
-            // txtMercadoria
+            // opçãoConfigurar
             // 
-            this.txtMercadoria.Location = new System.Drawing.Point(19, 44);
-            this.txtMercadoria.Name = "txtMercadoria";
-            this.txtMercadoria.Referência = "";
-            this.txtMercadoria.Size = new System.Drawing.Size(177, 23);
-            this.txtMercadoria.TabIndex = 11;
-            this.txtMercadoria.ReferênciaAlterada += new System.EventHandler(this.txtMercadoria_ReferênciaAlterada);
+            this.opçãoConfigurar.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoConfigurar.Descrição = "Configurar";
+            this.opçãoConfigurar.Imagem = global::Apresentação.Resource.repair;
+            this.opçãoConfigurar.Location = new System.Drawing.Point(7, 50);
+            this.opçãoConfigurar.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoConfigurar.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoConfigurar.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoConfigurar.Name = "opçãoConfigurar";
+            this.opçãoConfigurar.Size = new System.Drawing.Size(150, 16);
+            this.opçãoConfigurar.TabIndex = 3;
+            this.opçãoConfigurar.Click += new System.EventHandler(this.opçãoConfigurar_Click);
             // 
-            // Basefabricação
+            // BaseFabricação
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -310,7 +325,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.quadroItem);
             this.Controls.Add(this.títuloBaseInferior);
-            this.Name = "Basefabricação";
+            this.Name = "BaseFabricação";
             this.Size = new System.Drawing.Size(1148, 483);
             this.Controls.SetChildIndex(this.esquerda, 0);
             this.Controls.SetChildIndex(this.títuloBaseInferior, 0);
@@ -350,5 +365,6 @@
         private Lista.Fabricação.ListaEntradaFabricaçãoFiscal listaEntradas;
         private System.Windows.Forms.Label label2;
         private Mercadoria.TxtMercadoriaLivre txtMercadoria;
+        private Formulários.Opção opçãoConfigurar;
     }
 }

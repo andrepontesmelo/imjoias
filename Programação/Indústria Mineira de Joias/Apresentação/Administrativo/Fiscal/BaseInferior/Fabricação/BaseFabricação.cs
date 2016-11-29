@@ -5,6 +5,7 @@ using Entidades.Fiscal.Fabricação;
 using System.Windows.Forms;
 using System;
 using Entidades.Fiscal;
+using Apresentação.Administrativo.Fiscal.Janela;
 
 namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
 {
@@ -118,6 +119,15 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
 
             if (cmbTipoUnidade != null)
                 cmbTipoUnidade.Seleção = mercadoria == null ? null : mercadoria.TipoUnidadeComercial;
+        }
+
+        private void opçãoConfigurar_Click(object sender, EventArgs e)
+        {
+            var janela = new JanelaEdiçãoFabricação();
+            janela.Carregar(fabricação);
+            janela.ShowDialog(this);
+
+            Carregar(fabricação);
         }
     }
 }

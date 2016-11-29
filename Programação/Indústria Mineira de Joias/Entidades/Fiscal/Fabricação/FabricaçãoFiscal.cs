@@ -17,7 +17,13 @@ namespace Entidades.Fiscal.Fabricação
         private DateTime data;
 
         public int Código => codigo;
-        public DateTime Data => data;
+
+        public DateTime Data
+        {
+            get { return data; }
+            set { data = value; }
+        }
+
 
         public string DataFormatada => string.Format("{0} {1}", data.ToShortDateString(), data.ToShortTimeString());
 

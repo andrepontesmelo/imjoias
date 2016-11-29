@@ -35,7 +35,11 @@ namespace Apresentação.Administrativo.Fiscal.Combo
             SelectedIndexChanged?.Invoke(sender, e);
         }
 
-        public Fechamento Seleção => cmb.SelectedItem as Fechamento;
+        public Fechamento Seleção
+        {
+            get { return cmb.SelectedItem as Fechamento; }
+            set { cmb.SelectedItem = value; }
+        }
 
         public void Carregar()
         {
