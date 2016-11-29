@@ -1,11 +1,11 @@
 ﻿using Apresentação.Administrativo.Fiscal.BaseInferior.Esquema;
+using Apresentação.Administrativo.Fiscal.Janela;
 using Apresentação.Formulários;
+using Entidades.Fiscal;
 using Entidades.Fiscal.Exceções;
 using Entidades.Fiscal.Fabricação;
-using System.Windows.Forms;
 using System;
-using Entidades.Fiscal;
-using Apresentação.Administrativo.Fiscal.Janela;
+using System.Windows.Forms;
 
 namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
 {
@@ -123,9 +123,10 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
 
         private void opçãoConfigurar_Click(object sender, EventArgs e)
         {
-            var janela = new JanelaEdiçãoFabricação();
-            janela.Carregar(fabricação);
-            janela.ShowDialog(this);
+            var janela = new JanelaEdiçãoFabricação(fabricação);
+
+            if (janela.Mostrar(this) == DialogResult.Cancel)
+                return;
 
             Carregar(fabricação);
         }

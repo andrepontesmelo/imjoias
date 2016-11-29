@@ -1,14 +1,12 @@
 ﻿using Apresentação.Formulários;
 using Entidades.Fiscal.Fabricação;
 using System.Windows.Forms;
-using System;
 
 namespace Apresentação.Administrativo.Fiscal.Janela
 {
     public partial class JanelaEdiçãoFabricação : JanelaExplicativa
     {
         FabricaçãoFiscal fabricação;
-        DialogResult resultado = DialogResult.Cancel;
 
         public JanelaEdiçãoFabricação()
         {
@@ -25,7 +23,7 @@ namespace Apresentação.Administrativo.Fiscal.Janela
             Carregar(fabricação);
             ShowDialog(dono);
 
-            return resultado;
+            return DialogResult;
         }
 
         private void btnCancelar_Click(object sender, System.EventArgs e)
@@ -62,7 +60,6 @@ namespace Apresentação.Administrativo.Fiscal.Janela
 
         private void AtribuirResultado(DialogResult resultado)
         {
-            this.resultado = resultado;
             this.DialogResult = resultado;
         }
     }
