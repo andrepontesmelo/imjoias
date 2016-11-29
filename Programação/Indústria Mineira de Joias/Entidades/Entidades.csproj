@@ -271,6 +271,7 @@
     <Compile Include="Fiscal\Fechamento.cs" />
     <Compile Include="Fiscal\Importação\Legado\EstoqueLegado.cs" />
     <Compile Include="Fiscal\Importação\Legado\ImportaçãoSistemaLegado.cs" />
+    <Compile Include="Fiscal\MercadoriaFechamento.cs" />
     <Compile Include="Fiscal\Registro\Extrato.cs" />
     <Compile Include="Fiscal\Importação\Importador.cs" />
     <Compile Include="Fiscal\Importação\ImportadorNotaFiscal.cs" />
