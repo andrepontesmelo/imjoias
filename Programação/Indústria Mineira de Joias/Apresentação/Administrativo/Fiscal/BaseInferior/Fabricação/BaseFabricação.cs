@@ -69,47 +69,6 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
             cmbTipoUnidade = null;
         }
 
-        private void listaEntradas_AoExcluir(object sender, System.EventArgs e)
-        {
-            MessageBox.Show(this,
-                "Favor manipular apenas as saídas.",
-                "Manipulação de entrada",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Error);
-        }
-
-        private void listaSaídas_AoExcluir(object sender, System.EventArgs e)
-        {
-            var seleção = listaSaídas.ObterSeleção();
-
-            if (seleção.Count == 0)
-                return;
-
-            if (MessageBox.Show(this,
-                string.Format("Confirma exclusão de {0} iten(s) ?", seleção.Count),
-                "Confirmação de exclusão",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question,
-                MessageBoxDefaultButton.Button2) != DialogResult.Yes)
-                return;
-
-            AguardeDB.Mostrar();
-            try
-            {
-                fabricação.Remover(seleção, fechamento);
-            }
-            catch (ExceçãoFiscal erro)
-            {
-                AguardeDB.Fechar();
-                MensagemErro.MostrarMensagem(this, erro, "Erro ao remover seleção");
-            }
-            finally
-            {
-                Carregar(fabricação);
-                AguardeDB.Fechar();
-            }
-        }
-
         private void txtMercadoria_ReferênciaAlterada(object sender, System.EventArgs e)
         {
             var mercadoria = txtMercadoria.Mercadoria;

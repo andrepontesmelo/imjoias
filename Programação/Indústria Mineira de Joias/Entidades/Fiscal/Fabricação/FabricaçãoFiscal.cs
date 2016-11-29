@@ -166,30 +166,6 @@ namespace Entidades.Fiscal.Fabricação
             }
         }
 
-        public void Remover(List<ItemFabricaçãoFiscal> itensRemover, Fechamento fechamento)
-        {
-            List<ItemFabricaçãoFiscal> novaListaSaída = FiltrarItens(SaídaFabricaçãoFiscal.Obter(Código), itensRemover);
-
-            foreach (ItemFabricaçãoFiscal novoItem in novaListaSaída)
-                ObterEsquemaLevantandoErroCasoNãoExista(novoItem, fechamento);
-
-            var conexão = Conexão;
-
-            lock (conexão)
-            {
-                using (var transação = conexão.BeginTransaction())
-                {
-                    RemoverSaídas(conexão, transação);
-                    RemoverEntradas(conexão, transação);
-
-                    foreach (ItemFabricaçãoFiscal novoItem in novaListaSaída)
-                        AdicionarFabricação(conexão, transação, novoItem, ObterEsquemaLevantandoErroCasoNãoExista(novoItem, fechamento));
-
-                    transação.Commit();
-                }
-            }
-        }
-
         private void RemoverItens(System.Data.IDbConnection conexão, string relação, System.Data.IDbTransaction transação)
         {
             using (var cmd = conexão.CreateCommand())
@@ -208,19 +184,6 @@ namespace Entidades.Fiscal.Fabricação
         private void RemoverSaídas(System.Data.IDbConnection conexão, System.Data.IDbTransaction transação)
         {
             RemoverItens(conexão, SaídaFabricaçãoFiscal.RELAÇÃO, transação);
-        }
-
-        private List<ItemFabricaçãoFiscal> FiltrarItens(List<ItemFabricaçãoFiscal> itens, List<ItemFabricaçãoFiscal> itensExcluir)
-        {
-            List<ItemFabricaçãoFiscal> novaLista = new List<ItemFabricaçãoFiscal>();
-
-            foreach (ItemFabricaçãoFiscal i in itens)
-            {
-                if (!itensExcluir.Contains(i))
-                    novaLista.Add(i);
-            }
-
-            return novaLista;
         }
 
         public static void Remover(List<FabricaçãoFiscal> lstFabricações)
