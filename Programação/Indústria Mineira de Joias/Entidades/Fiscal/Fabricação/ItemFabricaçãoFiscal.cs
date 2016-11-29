@@ -7,9 +7,13 @@ namespace Entidades.Fiscal.Fabricação
     {
         protected string referencia;
         protected decimal quantidade;
+        protected int codigo;
+        protected decimal valor;
 
         public string Referência => referencia;
         public decimal Quantidade => quantidade;
+        public int Código => codigo;
+        public decimal Valor => valor;
 
         public Mercadoria.Mercadoria Mercadoria => 
             Entidades.Mercadoria.Mercadoria.ObterMercadoria(referencia);

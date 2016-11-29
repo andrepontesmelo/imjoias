@@ -35,14 +35,18 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             this.colTipo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colReferência = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colDescrição = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colCódigo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colValor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lista
             // 
             this.lista.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colCódigo,
+            this.colReferência,
             this.colQuantidade,
             this.colTipo,
-            this.colReferência,
+            this.colValor,
             this.colDescrição});
             this.lista.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lista.FullRowSelect = true;
@@ -73,12 +77,20 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             this.colDescrição.Text = "Descrição";
             this.colDescrição.Width = 569;
             // 
-            // ListaItemfabricaçãoFiscal
+            // colCódigo
+            // 
+            this.colCódigo.Text = "Código";
+            // 
+            // colValor
+            // 
+            this.colValor.Text = "Valor";
+            // 
+            // ListaItemFabricaçãoFiscal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lista);
-            this.Name = "ListaItemfabricaçãoFiscal";
+            this.Name = "ListaItemFabricaçãoFiscal";
             this.Size = new System.Drawing.Size(985, 471);
             this.ResumeLayout(false);
 
@@ -91,5 +103,7 @@ namespace Apresentação.Administrativo.Fiscal.Lista
         private System.Windows.Forms.ColumnHeader colTipo;
         private System.Windows.Forms.ColumnHeader colReferência;
         private System.Windows.Forms.ColumnHeader colDescrição;
+        private System.Windows.Forms.ColumnHeader colCódigo;
+        private System.Windows.Forms.ColumnHeader colValor;
     }
 }

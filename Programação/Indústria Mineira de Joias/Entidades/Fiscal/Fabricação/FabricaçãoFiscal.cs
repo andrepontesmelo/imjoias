@@ -21,12 +21,27 @@ namespace Entidades.Fiscal.Fabricação
         public DateTime Data
         {
             get { return data; }
-            set { data = value; }
+            set
+            {
+                data = value;
+                AtualizarMercadoriasFechamento();
+            }
+        }
+
+        public void AtualizarMercadoriasFechamento()
+        {
+            var fechamento = Fechamento.Obter(data);
+
+            if (fechamento == null)
+                return;
+
+            fechamento.AtualizarMercadoriasSeAberto();
         }
 
 
         public string DataFormatada => string.Format("{0} {1}", data.ToShortDateString(), data.ToShortTimeString());
 
+      
         public FabricaçãoFiscal()
         {
         }
@@ -40,6 +55,7 @@ namespace Entidades.Fiscal.Fabricação
         {
             var fabricação = new FabricaçãoFiscal(DadosGlobais.Instância.HoraDataAtual);
             fabricação.Cadastrar();
+            fabricação.AtualizarMercadoriasFechamento();
 
             return fabricação;
         }
@@ -110,10 +126,10 @@ namespace Entidades.Fiscal.Fabricação
             var ingredientes = MateriaPrima.Obter(esquema.Referência, esquema.Fechamento);
             decimal qtdReceitas = novoItem.Quantidade / esquema.Quantidade;
 
-            AdicionarSaída(conexão, transação, novoItem, qtdReceitas);
-
+            AdicionarSaída(conexão, transação, novoItem, qtdReceitas, esquema.Fechamento);
+            
             foreach (var ingrediente in ingredientes)
-                AdicionarEntrada(conexão, transação, qtdReceitas, ingrediente);
+                AdicionarEntrada(conexão, transação, qtdReceitas, ingrediente, esquema.Fechamento);
         }
 
         private static EsquemaFabricação ObterEsquemaLevantandoErroCasoNãoExista(ItemFabricaçãoFiscal novoItem, Fechamento fechamento)
@@ -126,21 +142,25 @@ namespace Entidades.Fiscal.Fabricação
             return esquema;
         }
 
-        private void AdicionarEntrada(System.Data.IDbConnection conexão, System.Data.IDbTransaction transação, decimal qtdReceitas, MateriaPrima ingrediente)
+        private void AdicionarEntrada(System.Data.IDbConnection conexão, System.Data.IDbTransaction transação, decimal qtdReceitas, MateriaPrima ingrediente, int fechamento)
         {
+            var hashReferênciaValor = MercadoriaFechamento.ObterHashReferênciaValor(fechamento);
+
             using (var cmd = conexão.CreateCommand())
             {
-                cmd.CommandText = EntradaFabricaçãoFiscal.ObterSqlInserçãoEntrada(this, ingrediente, qtdReceitas);
+                cmd.CommandText = EntradaFabricaçãoFiscal.ObterSqlInserçãoEntrada(this, ingrediente, qtdReceitas, hashReferênciaValor[ingrediente.Referência]);
                 cmd.Transaction = transação;
                 cmd.ExecuteNonQuery();
             }
         }
 
-        private void AdicionarSaída(System.Data.IDbConnection conexão, System.Data.IDbTransaction transação, ItemFabricaçãoFiscal novoItem, decimal qtdReceitas)
+        private void AdicionarSaída(System.Data.IDbConnection conexão, System.Data.IDbTransaction transação, ItemFabricaçãoFiscal novoItem, decimal qtdReceitas, int fechamento)
         {
+            var hashReferênciaValor = MercadoriaFechamento.ObterHashReferênciaValor(fechamento);
+
             using (var cmd = conexão.CreateCommand())
             {
-                cmd.CommandText = SaídaFabricaçãoFiscal.ObterSqlInserçãoSaída(this, qtdReceitas, novoItem.Referência, novoItem.Quantidade);
+                cmd.CommandText = SaídaFabricaçãoFiscal.ObterSqlInserçãoSaída(this, qtdReceitas, novoItem.Referência, novoItem.Quantidade, hashReferênciaValor[novoItem.Referência]);
                 cmd.Transaction = transação;
                 cmd.ExecuteNonQuery();
             }

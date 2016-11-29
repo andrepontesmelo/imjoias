@@ -48,10 +48,13 @@ namespace Apresentação.Administrativo.Fiscal.Lista
         private ListViewItem CriarItem(ItemFabricaçãoFiscal entidade)
         {
             var item = new ListViewItem(new string[lista.Columns.Count]);
+            item.SubItems[colCódigo.Index].Text = entidade.Código.ToString();
             item.SubItems[colReferência.Index].Text = entidade.Mercadoria.Referência;
             item.SubItems[colQuantidade.Index].Text = entidade.Quantidade.ToString();
             item.SubItems[colDescrição.Index].Text = entidade.Mercadoria.Descrição;
             item.SubItems[colTipo.Index].Text = entidade.Mercadoria.TipoUnidadeComercial.Nome;
+            item.SubItems[colValor.Index].Text = entidade.Valor.ToString("C");
+
             item.Tag = entidade;
 
             return item;

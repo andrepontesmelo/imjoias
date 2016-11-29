@@ -70,6 +70,9 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
 
         private void opçãoImprimir_Click(object sender, EventArgs e)
         {
+            if (fechamento == null)
+                return;
+
             var janela = new JanelaImpressãoFiscal();
 
             DateTime dataInicial = DataInicial.HasValue ? DataInicial.Value : DadosGlobais.Instância.HoraDataAtual;
