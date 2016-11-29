@@ -63,7 +63,9 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
         private void CarregarLista()
         {
             Fechamento fechamento = comboFechamento.Seleção;
-            listaFabricações.Carregar(fechamento.Início, fechamento.Fim);
+
+            if (fechamento != null)
+                listaFabricações.Carregar(fechamento.Início, fechamento.Fim);
         }
     }
 }
