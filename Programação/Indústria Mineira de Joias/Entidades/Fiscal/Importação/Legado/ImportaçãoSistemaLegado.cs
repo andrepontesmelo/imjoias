@@ -1,4 +1,5 @@
 ﻿using Acesso.Comum;
+using Entidades.Configuração;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,7 +14,10 @@ namespace Entidades.Fiscal.Importação.Legado
 
         public void CriarEntradaTransição()
         {
-            var fechamento = CriarFechamento();
+            var fechamento = Fechamento.Obter(DadosGlobais.Instância.HoraDataAtual);
+
+            if (fechamento == null)
+                throw new NullReferenceException("Não há fechamento vigente na data atual");
 
             var hashInventário = ObterHashInventário(fechamento);
             StringBuilder sql = new StringBuilder();
@@ -52,16 +56,6 @@ namespace Entidades.Fiscal.Importação.Legado
                 transação.Commit();
                 Console.WriteLine("Commit Fim.");
             }
-        }
-
-        private static Fechamento CriarFechamento()
-        {
-            Fechamento fechamento = new Fechamento();
-            fechamento.Início = new DateTime(1980, 1, 1);
-            fechamento.Fim = DateTime.Today;
-            fechamento.Cadastrar();
-
-            return fechamento;
         }
 
         private void Inserir(string referência, decimal qtd, StringBuilder sql)
