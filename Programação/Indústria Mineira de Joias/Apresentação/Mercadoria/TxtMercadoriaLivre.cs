@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
+﻿using Entidades.Mercadoria;
+using System;
 using System.Windows.Forms;
-using Entidades.Mercadoria;
 
 namespace Apresentação.Mercadoria
 {
     public partial class TxtMercadoriaLivre : UserControl
     {
         public event EventHandler ReferênciaAlterada;
+        private string últimaReferência = "";
 
         public TxtMercadoriaLivre()
         {
@@ -44,12 +39,21 @@ namespace Apresentação.Mercadoria
 
             Entidades.Mercadoria.Mercadoria.DesmascararReferência(referência, out referênciaNumérica, out dígito);
             txtReferência.Text = referênciaNumérica + dígito;
-            ReferênciaAlterada?.Invoke(this, null);
+            InvocarReferênciaAlteradaSeNecessário();
+        }
+
+        private void InvocarReferênciaAlteradaSeNecessário()
+        {
+            if (Referência != últimaReferência)
+            {
+                últimaReferência = Referência;
+                ReferênciaAlterada?.Invoke(this, null);
+            }
         }
 
         private void txtReferência_Validated(object sender, EventArgs e)
         {
-            ReferênciaAlterada?.Invoke(sender, e);
+            InvocarReferênciaAlteradaSeNecessário();
         }
     }
 }
