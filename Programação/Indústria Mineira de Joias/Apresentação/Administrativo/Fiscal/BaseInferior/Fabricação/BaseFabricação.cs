@@ -38,6 +38,8 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
             if (fechamento != null)
                 títuloBaseInferior.Descrição = string.Format("Serão usados os esquemas do fechamento {0}, vigentes de {1} até {2}.",
                     fechamento.Código, fechamento.Início.ToShortDateString(), fechamento.Fim.ToShortDateString());
+            else
+                títuloBaseInferior.Descrição = "Tela em modo somente leitura uma vez que não é possível encontrar fechamento para a data desta fabricação. Altere a data da fabricação ou altere a data dos fechamentos.";
 
             AtualizarVisão(false, null, null);
         }
@@ -118,6 +120,9 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
             AtualizarBotões(alteração, ObterTexto(tipoAlteração));
             AtualizarCor(alteração);
             AtualizarItem(item);
+
+            bool somenteLeitura = (fechamento == null);
+            quadroItem.Enabled = !somenteLeitura;
         }
 
         private static string ObterTexto(TipoAlteração? tipoAlteração)
