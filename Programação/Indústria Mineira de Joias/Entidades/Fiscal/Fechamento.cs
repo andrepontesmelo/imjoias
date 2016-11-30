@@ -116,7 +116,7 @@ namespace Entidades.Fiscal
         {
             data = new DateTime(data.Year, data.Month, data.Day);
 
-            return MapearÚnicaLinha<Fechamento>(string.Format("select * from fechamento where inicio <= {0} and fim > {0} limit 1",
+            return MapearÚnicaLinha<Fechamento>(string.Format("select * from fechamento where inicio <= {0} and fim >= {0} limit 1",
                 DbTransformar(data)));
         }
 
