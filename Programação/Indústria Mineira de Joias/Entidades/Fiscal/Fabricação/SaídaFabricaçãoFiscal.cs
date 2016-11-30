@@ -38,5 +38,13 @@ namespace Entidades.Fiscal.Fabricação
 
             ExecutarComando(sql);
         }
+
+        public static void Excluir(ItemFabricaçãoFiscal entidade)
+        {
+            var sql = string.Format("DELETE FROM saidafabricacaofiscal where codigo={0}",
+            DbTransformar(entidade.Código));
+
+            ExecutarComando(sql);
+        }
     }
 }

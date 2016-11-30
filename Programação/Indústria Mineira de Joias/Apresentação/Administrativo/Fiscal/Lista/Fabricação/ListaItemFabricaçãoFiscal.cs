@@ -1,5 +1,5 @@
 ﻿using Entidades.Fiscal.Fabricação;
-using Entidades.Fiscal.Tipo;
+using Entidades.Fiscal.Registro;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -10,6 +10,9 @@ namespace Apresentação.Administrativo.Fiscal.Lista
     {
         public event EventHandler AoExcluir;
         public event EventHandler AoSelecionar;
+        private FabricaçãoFiscal fabricação;
+        private Dictionary<string, decimal> hashSaldoAnterior, hashSaldoPosterior;
+
 
         public ListaItemFabricaçãoFiscal()
         {
@@ -30,12 +33,22 @@ namespace Apresentação.Administrativo.Fiscal.Lista
 
         public ItemFabricaçãoFiscal Seleção => lista.SelectedItems.Count > 0 ? lista.SelectedItems[0].Tag as ItemFabricaçãoFiscal : null;
 
-        protected void Carregar(List<ItemFabricaçãoFiscal> entidades)
+        public void Carregar(FabricaçãoFiscal fabricação)
         {
-            AdicionarItens(CriarItens(entidades));
+            this.fabricação = fabricação;
+
+            hashSaldoAnterior = InventárioRelativo.ObterHashReferênciaQuantidadeInventárioAnterior(fabricação.Data);
+            hashSaldoPosterior = InventárioRelativo.ObterHashReferênciaQuantidadeInventárioPosterior(fabricação.Data);
+
+            AdicionarItens(CriarItensGráficos(ObterItensEntidade(fabricação)));
         }
 
-        private ListViewItem[] CriarItens(List<ItemFabricaçãoFiscal> entidades)
+        protected virtual List<ItemFabricaçãoFiscal> ObterItensEntidade(FabricaçãoFiscal fabricação)
+        {
+            throw new NotImplementedException();
+        }
+
+        private ListViewItem[] CriarItensGráficos(List<ItemFabricaçãoFiscal> entidades)
         {
             ListViewItem[] itens = new ListViewItem[entidades.Count];
             int x = 0;
@@ -63,6 +76,11 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             item.SubItems[colDescrição.Index].Text = entidade.Mercadoria?.Descrição;
             item.SubItems[colTipo.Index].Text = entidade.Mercadoria?.TipoUnidadeComercial.Nome;
             item.SubItems[colValor.Index].Text = entidade.Valor.ToString("C");
+
+            decimal saldoAnterior = 0;
+            hashSaldoAnterior.TryGetValue(entidade.Referência, out saldoAnterior);
+            item.SubItems[colSaldoAnterior.Index].Text = saldoAnterior.ToString();
+            item.SubItems[colSaldoPosterior.Index].Text = hashSaldoPosterior[entidade.Referência].ToString();
 
             item.Tag = entidade;
 

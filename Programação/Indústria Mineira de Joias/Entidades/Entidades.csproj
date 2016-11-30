@@ -316,7 +316,7 @@
     <Compile Include="Fiscal\Fabricação\ItemFabricaçãoFiscal.cs" />
     <Compile Include="Fiscal\Fabricação\FabricaçãoFiscal.cs" />
     <Compile Include="Fiscal\Fabricação\SaídaFabricaçãoFiscal.cs" />
-    <Compile Include="Fiscal\Registro\InventárioAnterior.cs" />
+    <Compile Include="Fiscal\Registro\InventárioRelativo.cs" />
     <Compile Include="Fiscal\Registro\RegistroAbstrato.cs" />
     <Compile Include="Fiscal\SaídaFiscal.cs" />
     <Compile Include="Fiscal\EntradaItemFiscal.cs" />

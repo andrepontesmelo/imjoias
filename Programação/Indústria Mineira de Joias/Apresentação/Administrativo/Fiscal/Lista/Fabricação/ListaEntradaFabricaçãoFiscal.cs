@@ -1,4 +1,5 @@
-﻿using Entidades.Fiscal.Fabricação;
+﻿using System.Collections.Generic;
+using Entidades.Fiscal.Fabricação;
 
 namespace Apresentação.Administrativo.Fiscal.Lista.Fabricação
 {
@@ -9,9 +10,9 @@ namespace Apresentação.Administrativo.Fiscal.Lista.Fabricação
             InitializeComponent();
         }
 
-        public void Carregar(int fabricação)
+        protected override List<ItemFabricaçãoFiscal> ObterItensEntidade(FabricaçãoFiscal fabricação)
         {
-            Carregar(EntradaFabricaçãoFiscal.Obter(fabricação));
+            return EntradaFabricaçãoFiscal.Obter(fabricação.Código);
         }
     }
 }

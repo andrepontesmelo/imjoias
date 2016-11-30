@@ -31,8 +31,8 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
         {
             this.fabricação = fabricação;
             títuloBaseInferior.Título = string.Format("Fabricação fiscal #{0} de {1}", fabricação.Código, fabricação.DataFormatada);
-            listaEntradas.Carregar(fabricação.Código);
-            listaSaídas.Carregar(fabricação.Código);
+            listaEntradas.Carregar(fabricação);
+            listaSaídas.Carregar(fabricação);
 
             fechamento = Fechamento.Obter(fabricação.Data);
             if (fechamento != null)
@@ -187,6 +187,14 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
+            if (MessageBox.Show(this,
+                "Certifique-se de atualizar os outros itens envolvidos para manter a consistência do documento. \nConfirma Alteração ?",
+                "Confirmação",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2) == DialogResult.No)
+                return;
+
             itemAlteração.Referência = txtMercadoria.Referência;
             itemAlteração.Quantidade = (decimal) txtQuantidade.Double;
             itemAlteração.Valor = (decimal) txtValor.Double;
@@ -203,6 +211,25 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
         private enum TipoAlteração
         {
             TO, OT
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(this,
+                "Certifique-se de atualizar os outros itens envolvidos para manter a consistência do documento. \nConfirma Exclusão ?",
+                "Confirmação",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2) == DialogResult.No)
+                return;
+
+            if (tipoAlteração == TipoAlteração.TO)
+                SaídaFabricaçãoFiscal.Excluir(itemAlteração);
+            else if (tipoAlteração == TipoAlteração.OT)
+                EntradaFabricaçãoFiscal.Excluir(itemAlteração);
+            else throw new NotImplementedException();
+
+            Carregar(fabricação);
         }
     }
 }

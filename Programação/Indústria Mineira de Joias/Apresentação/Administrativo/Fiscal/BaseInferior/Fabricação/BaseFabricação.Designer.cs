@@ -42,6 +42,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.quadroItem = new Apresentação.Formulários.Quadro();
+            this.txtValor = new AMS.TextBox.NumericTextBox();
+            this.lblValor = new System.Windows.Forms.Label();
             this.btnExcluir = new System.Windows.Forms.Button();
             this.txtMercadoria = new Apresentação.Mercadoria.TxtMercadoriaLivre();
             this.btnAlterar = new System.Windows.Forms.Button();
@@ -50,8 +52,6 @@
             this.listaSaídas = new Apresentação.Administrativo.Fiscal.Lista.Fabricação.ListaSaídaFabricaçãoFiscal();
             this.listaEntradas = new Apresentação.Administrativo.Fiscal.Lista.Fabricação.ListaEntradaFabricaçãoFiscal();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtValor = new AMS.TextBox.NumericTextBox();
-            this.lblValor = new System.Windows.Forms.Label();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.quadroItem.SuspendLayout();
@@ -250,6 +250,30 @@
             this.quadroItem.Tamanho = 30;
             this.quadroItem.Título = "Detalhe do item";
             // 
+            // txtValor
+            // 
+            this.txtValor.AllowNegative = true;
+            this.txtValor.DigitsInGroup = 0;
+            this.txtValor.Flags = 0;
+            this.txtValor.Location = new System.Drawing.Point(275, 102);
+            this.txtValor.MaxDecimalPlaces = 4;
+            this.txtValor.MaxWholeDigits = 9;
+            this.txtValor.Name = "txtValor";
+            this.txtValor.Prefix = "";
+            this.txtValor.RangeMax = 1.7976931348623157E+308D;
+            this.txtValor.RangeMin = -1.7976931348623157E+308D;
+            this.txtValor.Size = new System.Drawing.Size(58, 20);
+            this.txtValor.TabIndex = 14;
+            // 
+            // lblValor
+            // 
+            this.lblValor.AutoSize = true;
+            this.lblValor.Location = new System.Drawing.Point(272, 86);
+            this.lblValor.Name = "lblValor";
+            this.lblValor.Size = new System.Drawing.Size(31, 13);
+            this.lblValor.TabIndex = 15;
+            this.lblValor.Text = "Valor";
+            // 
             // btnExcluir
             // 
             this.btnExcluir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -260,6 +284,7 @@
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
             this.btnExcluir.Visible = false;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // txtMercadoria
             // 
@@ -332,30 +357,6 @@
             this.label2.Size = new System.Drawing.Size(292, 13);
             this.label2.TabIndex = 10;
             this.label2.Text = "OT: Transferência do inventário para a fabricação";
-            // 
-            // txtValor
-            // 
-            this.txtValor.AllowNegative = true;
-            this.txtValor.DigitsInGroup = 0;
-            this.txtValor.Flags = 0;
-            this.txtValor.Location = new System.Drawing.Point(275, 102);
-            this.txtValor.MaxDecimalPlaces = 4;
-            this.txtValor.MaxWholeDigits = 9;
-            this.txtValor.Name = "txtValor";
-            this.txtValor.Prefix = "";
-            this.txtValor.RangeMax = 1.7976931348623157E+308D;
-            this.txtValor.RangeMin = -1.7976931348623157E+308D;
-            this.txtValor.Size = new System.Drawing.Size(58, 20);
-            this.txtValor.TabIndex = 14;
-            // 
-            // lblValor
-            // 
-            this.lblValor.AutoSize = true;
-            this.lblValor.Location = new System.Drawing.Point(272, 86);
-            this.lblValor.Name = "lblValor";
-            this.lblValor.Size = new System.Drawing.Size(31, 13);
-            this.lblValor.TabIndex = 15;
-            this.lblValor.Text = "Valor";
             // 
             // BaseFabricação
             // 

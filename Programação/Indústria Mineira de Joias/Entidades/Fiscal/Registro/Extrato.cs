@@ -104,7 +104,7 @@ namespace Entidades.Fiscal
 
         public static List<Extrato> ObterEstoqueAcumulado(string referência, Fechamento fechamento)
         {
-            var hashReferênciaEstoqueAnterior = InventárioAnterior.ObterHashReferênciaQuantidade(fechamento.Início);
+            var hashReferênciaEstoqueAnterior = InventárioRelativo.ObterHashReferênciaQuantidadeInventárioAnterior(fechamento.Início);
 
             var resultado = Obter(referência, fechamento);
             CalcularEstoqueAcumulado(resultado, hashReferênciaEstoqueAnterior);

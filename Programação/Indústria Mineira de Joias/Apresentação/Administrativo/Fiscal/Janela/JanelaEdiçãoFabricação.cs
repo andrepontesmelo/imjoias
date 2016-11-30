@@ -36,7 +36,7 @@ namespace Apresentação.Administrativo.Fiscal.Janela
             this.fabricação = fabricação;
             dateTimePicker.Value = fabricação.Data;
 
-            lblTítulo.Text = string.Format("Edição de fabricação # {0}", fabricação.Código);
+            lblTítulo.Text = string.Format("Fabricação # {0}", fabricação.Código);
             comboFechamento.Carregar();
             CarregarFechamento();
         }

@@ -15,7 +15,7 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Extrato
             var relatório = new RelatórioExtrato();
             var dataset = new DataSetExtrato();
             relatório.SetDataSource(dataset);
-            hashReferênciaInventárioAnterior = InventárioAnterior.ObterHashReferênciaQuantidade(fechamento.Início);
+            hashReferênciaInventárioAnterior = InventárioRelativo.ObterHashReferênciaQuantidadeInventárioAnterior(fechamento.Início);
 
             CriarAdicionarDocumento(dataset, fechamento.Início, fechamento.Fim);
             CriarItens(Entidades.Fiscal.Extrato.ObterEstoqueAcumulado(referência, fechamento), dataset.Tables["Item"]);

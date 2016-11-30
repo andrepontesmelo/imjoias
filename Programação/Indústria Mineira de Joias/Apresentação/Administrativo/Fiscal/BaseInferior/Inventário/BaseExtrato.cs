@@ -58,7 +58,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
         private void CarregarEstoqueAnterior()
         {
             decimal estoqueAnterior = 0;
-            InventárioAnterior.ObterHashReferênciaQuantidade(DataInicial.Value).TryGetValue(referência, out estoqueAnterior);
+            InventárioRelativo.ObterHashReferênciaQuantidadeInventárioAnterior(DataInicial.Value).TryGetValue(referência, out estoqueAnterior);
             txtEstoqueAnterior.Text = estoqueAnterior.ToString();
         }
 
