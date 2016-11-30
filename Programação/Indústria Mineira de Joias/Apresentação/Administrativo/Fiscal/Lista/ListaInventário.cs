@@ -60,14 +60,14 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             return item;
         }
 
-        internal List<ItemFabricaçãoFiscal> ObterItensChecados()
+        internal List<ItemFabricaçãoFiscal> ObterItensChecados(int fechamento)
         {
             var listaEntidades = new List<ItemFabricaçãoFiscal>();
 
             foreach (ListViewItem item in lista.CheckedItems)
             {
                 Inventário i = item.Tag as Inventário;
-                listaEntidades.Add(i.ObterItemfabricação());
+                listaEntidades.Add(i.ObterItemfabricação(fechamento));
             }
 
             return listaEntidades;

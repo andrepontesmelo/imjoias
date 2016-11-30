@@ -156,11 +156,9 @@ namespace Entidades.Fiscal.Fabricação
 
         private void AdicionarSaída(System.Data.IDbConnection conexão, System.Data.IDbTransaction transação, ItemFabricaçãoFiscal novoItem, decimal qtdReceitas, int fechamento)
         {
-            var hashReferênciaValor = MercadoriaFechamento.ObterHashReferênciaValor(fechamento);
-
             using (var cmd = conexão.CreateCommand())
             {
-                cmd.CommandText = SaídaFabricaçãoFiscal.ObterSqlInserçãoSaída(this, qtdReceitas, novoItem.Referência, novoItem.Quantidade, hashReferênciaValor[novoItem.Referência]);
+                cmd.CommandText = SaídaFabricaçãoFiscal.ObterSqlInserçãoSaída(this, qtdReceitas, novoItem.Referência, novoItem.Quantidade, novoItem.Valor);
                 cmd.Transaction = transação;
                 cmd.ExecuteNonQuery();
             }

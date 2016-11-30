@@ -31,12 +31,12 @@ namespace Apresentação.Administrativo.Fiscal.Lista
         private void InitializeComponent()
         {
             this.lista = new Apresentação.Formulários.ListViewUsabilidade();
+            this.colCódigo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colReferência = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colQuantidade = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colTipo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colReferência = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colDescrição = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colCódigo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colValor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colDescrição = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lista
@@ -57,6 +57,15 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             this.lista.UseCompatibleStateImageBehavior = false;
             this.lista.View = System.Windows.Forms.View.Details;
             // 
+            // colCódigo
+            // 
+            this.colCódigo.Text = "Código";
+            // 
+            // colReferência
+            // 
+            this.colReferência.Text = "Referência";
+            this.colReferência.Width = 146;
+            // 
             // colQuantidade
             // 
             this.colQuantidade.Text = "Quantidade";
@@ -67,23 +76,15 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             this.colTipo.Text = "Tipo de unidade";
             this.colTipo.Width = 123;
             // 
-            // colReferência
+            // colValor
             // 
-            this.colReferência.Text = "Referência";
-            this.colReferência.Width = 146;
+            this.colValor.Text = "Valor";
+            this.colValor.Width = 107;
             // 
             // colDescrição
             // 
             this.colDescrição.Text = "Descrição";
             this.colDescrição.Width = 569;
-            // 
-            // colCódigo
-            // 
-            this.colCódigo.Text = "Código";
-            // 
-            // colValor
-            // 
-            this.colValor.Text = "Valor";
             // 
             // ListaItemFabricaçãoFiscal
             // 

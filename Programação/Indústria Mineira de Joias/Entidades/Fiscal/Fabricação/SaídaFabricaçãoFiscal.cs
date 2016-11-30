@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Acesso.Comum;
+using System.Collections.Generic;
+using System;
 
 namespace Entidades.Fiscal.Fabricação
 {
+    [DbTabela("saidafabricacaofiscal")]
     public class SaídaFabricaçãoFiscal : ItemFabricaçãoFiscal
     {
         internal static readonly string RELAÇÃO = "saidafabricacaofiscal";
@@ -23,6 +26,17 @@ namespace Entidades.Fiscal.Fabricação
 
         public SaídaFabricaçãoFiscal()
         {
+        }
+
+        public static void Alterar(ItemFabricaçãoFiscal entidade)
+        {
+            var sql = string.Format("UPDATE saidafabricacaofiscal set referencia={0}, quantidade={1}, valor={2} where codigo={3}",
+            DbTransformar(entidade.Referência),
+            DbTransformar(entidade.Quantidade),
+            DbTransformar(entidade.Valor),
+            DbTransformar(entidade.Código));
+
+            ExecutarComando(sql);
         }
     }
 }

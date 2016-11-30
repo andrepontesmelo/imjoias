@@ -42,6 +42,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.quadroItem = new Apresentação.Formulários.Quadro();
+            this.btnExcluir = new System.Windows.Forms.Button();
             this.txtMercadoria = new Apresentação.Mercadoria.TxtMercadoriaLivre();
             this.btnAlterar = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
@@ -49,7 +50,8 @@
             this.listaSaídas = new Apresentação.Administrativo.Fiscal.Lista.Fabricação.ListaSaídaFabricaçãoFiscal();
             this.listaEntradas = new Apresentação.Administrativo.Fiscal.Lista.Fabricação.ListaEntradaFabricaçãoFiscal();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnExcluir = new System.Windows.Forms.Button();
+            this.txtValor = new AMS.TextBox.NumericTextBox();
+            this.lblValor = new System.Windows.Forms.Label();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.quadroItem.SuspendLayout();
@@ -125,7 +127,7 @@
             // btnIncluir
             // 
             this.btnIncluir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnIncluir.Location = new System.Drawing.Point(848, 99);
+            this.btnIncluir.Location = new System.Drawing.Point(851, 100);
             this.btnIncluir.Name = "btnIncluir";
             this.btnIncluir.Size = new System.Drawing.Size(75, 23);
             this.btnIncluir.TabIndex = 5;
@@ -138,7 +140,7 @@
             this.cmbTipoUnidade.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTipoUnidade.Enabled = false;
             this.cmbTipoUnidade.FormattingEnabled = true;
-            this.cmbTipoUnidade.Location = new System.Drawing.Point(284, 102);
+            this.cmbTipoUnidade.Location = new System.Drawing.Point(352, 102);
             this.cmbTipoUnidade.Name = "cmbTipoUnidade";
             this.cmbTipoUnidade.Seleção = null;
             this.cmbTipoUnidade.Size = new System.Drawing.Size(100, 21);
@@ -149,7 +151,7 @@
             this.txtQuantidade.AllowNegative = true;
             this.txtQuantidade.DigitsInGroup = 0;
             this.txtQuantidade.Flags = 0;
-            this.txtQuantidade.Location = new System.Drawing.Point(207, 102);
+            this.txtQuantidade.Location = new System.Drawing.Point(207, 103);
             this.txtQuantidade.MaxDecimalPlaces = 4;
             this.txtQuantidade.MaxWholeDigits = 9;
             this.txtQuantidade.Name = "txtQuantidade";
@@ -170,7 +172,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(281, 86);
+            this.label10.Location = new System.Drawing.Point(349, 86);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(86, 13);
             this.label10.TabIndex = 10;
@@ -222,6 +224,8 @@
             this.quadroItem.bInfEsqArredondada = true;
             this.quadroItem.bSupDirArredondada = true;
             this.quadroItem.bSupEsqArredondada = true;
+            this.quadroItem.Controls.Add(this.txtValor);
+            this.quadroItem.Controls.Add(this.lblValor);
             this.quadroItem.Controls.Add(this.btnExcluir);
             this.quadroItem.Controls.Add(this.txtMercadoria);
             this.quadroItem.Controls.Add(this.btnIncluir);
@@ -246,6 +250,17 @@
             this.quadroItem.Tamanho = 30;
             this.quadroItem.Título = "Detalhe do item";
             // 
+            // btnExcluir
+            // 
+            this.btnExcluir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExcluir.Location = new System.Drawing.Point(689, 100);
+            this.btnExcluir.Name = "btnExcluir";
+            this.btnExcluir.Size = new System.Drawing.Size(75, 23);
+            this.btnExcluir.TabIndex = 13;
+            this.btnExcluir.Text = "Excluir";
+            this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Visible = false;
+            // 
             // txtMercadoria
             // 
             this.txtMercadoria.Location = new System.Drawing.Point(19, 44);
@@ -258,13 +273,14 @@
             // btnAlterar
             // 
             this.btnAlterar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAlterar.Location = new System.Drawing.Point(767, 99);
+            this.btnAlterar.Location = new System.Drawing.Point(770, 100);
             this.btnAlterar.Name = "btnAlterar";
             this.btnAlterar.Size = new System.Drawing.Size(75, 23);
             this.btnAlterar.TabIndex = 7;
             this.btnAlterar.Text = "Alterar";
             this.btnAlterar.UseVisualStyleBackColor = true;
             this.btnAlterar.Visible = false;
+            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
             // 
             // label8
             // 
@@ -294,6 +310,7 @@
             this.listaSaídas.Name = "listaSaídas";
             this.listaSaídas.Size = new System.Drawing.Size(934, 86);
             this.listaSaídas.TabIndex = 9;
+            this.listaSaídas.AoSelecionar += new System.EventHandler(this.listaSaídas_AoSelecionar);
             // 
             // listaEntradas
             // 
@@ -303,6 +320,7 @@
             this.listaEntradas.Name = "listaEntradas";
             this.listaEntradas.Size = new System.Drawing.Size(934, 106);
             this.listaEntradas.TabIndex = 11;
+            this.listaEntradas.AoSelecionar += new System.EventHandler(this.listaEntradas_AoSelecionar);
             // 
             // label2
             // 
@@ -315,16 +333,29 @@
             this.label2.TabIndex = 10;
             this.label2.Text = "OT: Transferência do inventário para a fabricação";
             // 
-            // btnExcluir
+            // txtValor
             // 
-            this.btnExcluir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExcluir.Location = new System.Drawing.Point(686, 99);
-            this.btnExcluir.Name = "btnExcluir";
-            this.btnExcluir.Size = new System.Drawing.Size(75, 23);
-            this.btnExcluir.TabIndex = 13;
-            this.btnExcluir.Text = "Excluir";
-            this.btnExcluir.UseVisualStyleBackColor = true;
-            this.btnExcluir.Visible = false;
+            this.txtValor.AllowNegative = true;
+            this.txtValor.DigitsInGroup = 0;
+            this.txtValor.Flags = 0;
+            this.txtValor.Location = new System.Drawing.Point(275, 102);
+            this.txtValor.MaxDecimalPlaces = 4;
+            this.txtValor.MaxWholeDigits = 9;
+            this.txtValor.Name = "txtValor";
+            this.txtValor.Prefix = "";
+            this.txtValor.RangeMax = 1.7976931348623157E+308D;
+            this.txtValor.RangeMin = -1.7976931348623157E+308D;
+            this.txtValor.Size = new System.Drawing.Size(58, 20);
+            this.txtValor.TabIndex = 14;
+            // 
+            // lblValor
+            // 
+            this.lblValor.AutoSize = true;
+            this.lblValor.Location = new System.Drawing.Point(272, 86);
+            this.lblValor.Name = "lblValor";
+            this.lblValor.Size = new System.Drawing.Size(31, 13);
+            this.lblValor.TabIndex = 15;
+            this.lblValor.Text = "Valor";
             // 
             // BaseFabricação
             // 
@@ -378,5 +409,7 @@
         private Mercadoria.TxtMercadoriaLivre txtMercadoria;
         private Formulários.Opção opçãoConfigurar;
         private System.Windows.Forms.Button btnExcluir;
+        private AMS.TextBox.NumericTextBox txtValor;
+        private System.Windows.Forms.Label lblValor;
     }
 }

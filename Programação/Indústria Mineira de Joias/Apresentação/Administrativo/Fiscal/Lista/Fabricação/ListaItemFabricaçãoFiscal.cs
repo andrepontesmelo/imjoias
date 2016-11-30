@@ -9,17 +9,26 @@ namespace Apresentação.Administrativo.Fiscal.Lista
     public partial class ListaItemFabricaçãoFiscal : UserControl
     {
         public event EventHandler AoExcluir;
+        public event EventHandler AoSelecionar;
 
         public ListaItemFabricaçãoFiscal()
         {
             InitializeComponent();
             lista.AoExcluir += Lista_AoExcluir;
+            lista.SelectedIndexChanged += Lista_SelectedIndexChanged;
+        }
+
+        private void Lista_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AoSelecionar?.Invoke(sender, e);
         }
 
         private void Lista_AoExcluir(object sender, EventArgs e)
         {
             AoExcluir?.Invoke(sender, e);
         }
+
+        public ItemFabricaçãoFiscal Seleção => lista.SelectedItems.Count > 0 ? lista.SelectedItems[0].Tag as ItemFabricaçãoFiscal : null;
 
         protected void Carregar(List<ItemFabricaçãoFiscal> entidades)
         {
@@ -49,10 +58,10 @@ namespace Apresentação.Administrativo.Fiscal.Lista
         {
             var item = new ListViewItem(new string[lista.Columns.Count]);
             item.SubItems[colCódigo.Index].Text = entidade.Código.ToString();
-            item.SubItems[colReferência.Index].Text = entidade.Mercadoria.Referência;
+            item.SubItems[colReferência.Index].Text = Entidades.Mercadoria.Mercadoria.MascararReferência(entidade.Referência, true);
             item.SubItems[colQuantidade.Index].Text = entidade.Quantidade.ToString();
-            item.SubItems[colDescrição.Index].Text = entidade.Mercadoria.Descrição;
-            item.SubItems[colTipo.Index].Text = entidade.Mercadoria.TipoUnidadeComercial.Nome;
+            item.SubItems[colDescrição.Index].Text = entidade.Mercadoria?.Descrição;
+            item.SubItems[colTipo.Index].Text = entidade.Mercadoria?.TipoUnidadeComercial.Nome;
             item.SubItems[colValor.Index].Text = entidade.Valor.ToString("C");
 
             item.Tag = entidade;

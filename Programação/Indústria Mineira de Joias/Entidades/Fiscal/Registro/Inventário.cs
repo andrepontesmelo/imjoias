@@ -43,9 +43,10 @@ namespace Entidades.Fiscal
             return Mapear<Inventário>(sql);
         }
 
-        public ItemFabricaçãoFiscal ObterItemfabricação()
+        public ItemFabricaçãoFiscal ObterItemfabricação(int fechamento)
         {
-            return new ItemFabricaçãoFiscal(Referência, Math.Abs(Quantidade));
+            var hashReferênciaValor = MercadoriaFechamento.ObterHashReferênciaValor(fechamento);
+            return new ItemFabricaçãoFiscal(Referência, Math.Abs(Quantidade), hashReferênciaValor[Referência]);
         }
     }
 }
