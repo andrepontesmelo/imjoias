@@ -144,6 +144,7 @@
             this.opçãoImprimir.Name = "opçãoImprimir";
             this.opçãoImprimir.Size = new System.Drawing.Size(150, 16);
             this.opçãoImprimir.TabIndex = 3;
+            this.opçãoImprimir.Click += new System.EventHandler(this.opçãoImprimir_Click);
             // 
             // quadroTipo
             // 
@@ -158,6 +159,7 @@
             this.comboFechamento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboFechamento.Location = new System.Drawing.Point(559, 51);
             this.comboFechamento.Name = "comboFechamento";
+            this.comboFechamento.Seleção = null;
             this.comboFechamento.Size = new System.Drawing.Size(340, 22);
             this.comboFechamento.TabIndex = 7;
             this.comboFechamento.SelectedIndexChanged += new System.EventHandler(this.comboFechamento_SelectedIndexChanged);

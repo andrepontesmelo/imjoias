@@ -1,4 +1,5 @@
 ﻿using Entidades.Fiscal;
+using Entidades.Fiscal.Registro;
 using System.Collections.Generic;
 using System.Data;
 
@@ -6,14 +7,14 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.ListaDocumento
 {
     public class ControladorImpressão : ControladorImpressãoFiscal
     {
-        public Relatório CriarRelatório(string referência, Fechamento fechamento)
+        public Relatório CriarRelatório(Fechamento fechamento, List<DocumentoFiscal> entidades)
         {
             var relatório = new Relatório();
             var dataset = new DataSetListaDocumento();
             relatório.SetDataSource(dataset);
 
             CriarAdicionarDocumento(dataset, fechamento);
-            CriarItens(new List<Entidades.Fiscal.Registro.RegistroAbstrato>(), dataset.Tables["Item"]);
+            CriarItens(entidades, dataset.Tables["Item"]);
 
             return relatório;
         }
@@ -24,11 +25,34 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.ListaDocumento
             tabelaDocumento.Rows.Add(CriarDocumento(tabelaDocumento, fechamento));
         }
 
-        private void CriarItens(List<Entidades.Fiscal.Registro.RegistroAbstrato> entidades, DataTable tabelaItens)
+        private void CriarItens(List<DocumentoFiscal> entidades, DataTable tabelaItens)
         {
             foreach (var entidade in entidades)
             {
                 DataRow item = CriarItem(tabelaItens);
+
+                item["tipoDocumento"] = Entidades.Fiscal.Tipo.TipoDocumento.Obter(entidade.TipoDocumento).NomeResumido;
+                item["numero"] = entidade.Número;
+                item["Id"] = entidade.Id;
+                item["Valor"] = entidade.ValorTotal;
+                item["Emissão"] = entidade.DataEmissão.ToShortDateString();
+                item["Emitente"] = entidade.CNPJEmitenteFormatado;
+
+                var saída = entidade as SaídaFiscal;
+                var entrada = entidade as EntradaFiscal;
+
+                if (saída != null)
+                {
+                    item["Cancelada"] = saída.Cancelada;
+                    item["DataEntradaSaída"] = saída.DataSaída.ToShortDateString();
+                    item["Máquina"] = saída.Máquina;
+                }
+
+                if (entrada != null)
+                {
+                    item["DataEntradaSaída"] = entrada.DataEntrada.ToShortDateString();
+                }
+
                 tabelaItens.Rows.Add(item);
             }
         }

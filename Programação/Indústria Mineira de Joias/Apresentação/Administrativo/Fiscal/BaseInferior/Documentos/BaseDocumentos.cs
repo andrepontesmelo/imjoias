@@ -1,8 +1,11 @@
 ﻿using Apresentação.Fiscal.BaseInferior.Documentos.Exclusão;
 using Apresentação.Fiscal.Lista;
 using Apresentação.Formulário.Exceção;
+using Apresentação.Formulários;
+using Apresentação.Impressão.Relatórios.Fiscal.ListaDocumento;
 using Entidades.Fiscal;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 
@@ -78,6 +81,21 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
         private void comboFechamento_SelectedIndexChanged(object sender, EventArgs e)
         {
             Recarregar();
+        }
+
+        private void opçãoImprimir_Click(object sender, EventArgs e)
+        {
+            var controlador = new ControladorImpressão();
+            var relatório = controlador.CriarRelatório(Fechamento, ObterEntidades());
+
+            var janela = new JanelaImpressão();
+            janela.InserirDocumento(relatório, "Documento");
+            janela.ShowDialog();
+        }
+
+        protected virtual List<DocumentoFiscal> ObterEntidades()
+        {
+            throw new NotImplementedException();
         }
     }
 }

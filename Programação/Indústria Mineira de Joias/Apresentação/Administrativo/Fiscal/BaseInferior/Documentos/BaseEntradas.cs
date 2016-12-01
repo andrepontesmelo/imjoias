@@ -3,6 +3,8 @@ using Apresentação.Fiscal.Lista;
 using Entidades.Fiscal;
 using System.Windows.Forms;
 using System;
+using Entidades.Fiscal.Registro;
+using System.Collections.Generic;
 
 namespace Apresentação.Fiscal.BaseInferior.Documentos
 {
@@ -78,6 +80,11 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
         private void lista_AoSolicitarExclusão(object sender, System.EventArgs e)
         {
             Excluir();
+        }
+
+        protected override List<DocumentoFiscal> ObterEntidades()
+        {
+            return EntradaFiscal.Obter(quadroTipo.Seleção?.Id, Fechamento.Início, Fechamento.Fim);
         }
     }
 }
