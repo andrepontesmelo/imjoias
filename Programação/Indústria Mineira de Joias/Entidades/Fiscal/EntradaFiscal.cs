@@ -99,5 +99,21 @@ namespace Entidades.Fiscal
         {
             itens = new List<ItemFiscal>(EntradaItemFiscal.CarregarItens(id));
         }
+
+        public override void GravarEntidade(IDbTransaction transação, IDbConnection conexão)
+        {
+            base.GravarEntidade(transação, conexão);
+
+            using (IDbCommand cmd = conexão.CreateCommand())
+            {
+                cmd.Transaction = transação;
+                cmd.CommandText = string.Format("update {0} set dataentrada={1} WHERE id={2}",
+                    NomeRelação,
+                    DbTransformar(dataEntrada),
+                    DbTransformar(id));
+
+                cmd.ExecuteNonQuery();
+            }
+        }
     }
 }

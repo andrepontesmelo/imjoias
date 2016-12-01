@@ -96,12 +96,13 @@ namespace Entidades.Fiscal
             using (IDbCommand cmd = conexão.CreateCommand())
             {
                 cmd.Transaction = transação;
-                cmd.CommandText = string.Format("update {0} set cancelada={1}, setor={2}, maquina={3}, cliente={4} WHERE id={5}",
+                cmd.CommandText = string.Format("update {0} set cancelada={1}, setor={2}, maquina={3}, cliente={4}, datasaida={5} WHERE id={6}",
                     NomeRelação,
                     DbTransformar(cancelada),
                     DbTransformar(setor),
                     DbTransformar(maquina),
                     DbTransformar(cliente),
+                    DbTransformar(dataSaída),
                     DbTransformar(id));
 
                 cmd.ExecuteNonQuery();

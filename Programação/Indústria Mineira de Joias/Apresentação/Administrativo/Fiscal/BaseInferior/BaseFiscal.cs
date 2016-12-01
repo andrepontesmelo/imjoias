@@ -64,10 +64,10 @@ namespace Apresentação.Fiscal.BaseInferior
                 AguardeDB.Fechar();
                 MessageBox.Show("Entrada de transição preenchida.\nInventário atual idêntico ao 'estoque anterior' do sistema legado.");
 
-            } catch (Exception)
+            } catch (Exception erro)
             {
                 AguardeDB.Fechar();
-                MessageBox.Show("Erro ao preencher entrada de transição.\nA transição já deve existir no banco de dados.");
+                MessageBox.Show("Erro ao preencher entrada de transição.\nA transição já deve existir no banco de dados.\n\n" + erro.Message);
             }
         }
 
