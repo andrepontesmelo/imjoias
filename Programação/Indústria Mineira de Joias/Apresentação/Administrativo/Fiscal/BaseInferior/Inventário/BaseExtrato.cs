@@ -35,10 +35,10 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
 
         private void Carregar()
         {
+            comboFechamento.Carregar();
+
             if (referência == null)
                 return;
-
-            comboFechamento.Carregar();
 
             txtMercadoria.Referência = ReferênciaFormatada;
 
