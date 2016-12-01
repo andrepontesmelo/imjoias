@@ -7,22 +7,22 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.ListaDocumento
 {
     public class ControladorImpressão : ControladorImpressãoFiscal
     {
-        public Relatório CriarRelatório(Fechamento fechamento, List<DocumentoFiscal> entidades)
+        public Relatório CriarRelatório(Fechamento fechamento, List<DocumentoFiscal> entidades, bool entradas)
         {
             var relatório = new Relatório();
             var dataset = new DataSetListaDocumento();
             relatório.SetDataSource(dataset);
 
-            CriarAdicionarDocumento(dataset, fechamento);
+            CriarAdicionarDocumento(dataset, fechamento, entradas);
             CriarItens(entidades, dataset.Tables["Item"]);
 
             return relatório;
         }
 
-        private void CriarAdicionarDocumento(DataSetListaDocumento dataset, Fechamento fechamento)
+        private void CriarAdicionarDocumento(DataSetListaDocumento dataset, Fechamento fechamento, bool entradas)
         {
             var tabelaDocumento = dataset.Tables["Documento"];
-            tabelaDocumento.Rows.Add(CriarDocumento(tabelaDocumento, fechamento));
+            tabelaDocumento.Rows.Add(CriarDocumento(tabelaDocumento, fechamento, entradas));
         }
 
         private void CriarItens(List<DocumentoFiscal> entidades, DataTable tabelaItens)
@@ -58,11 +58,11 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.ListaDocumento
         }
 
 
-        private DataRow CriarDocumento(DataTable tabelaDocumento, Fechamento fechamento)
+        private DataRow CriarDocumento(DataTable tabelaDocumento, Fechamento fechamento, bool entradas)
         {
             var linha = CriarDocumento(tabelaDocumento);
 
-            linha["título"] = "REGISTRO DE ENTRADAS";
+            linha["título"] = entradas ? "REGISTRO DE ENTRADAS" : "REGISTRO DE SAÍDAS";
             linha["fechamento"] = string.Format("DE: {0} ATÉ: {1}", fechamento.Início.ToShortDateString(),
                 fechamento.Fim.ToShortDateString());
 

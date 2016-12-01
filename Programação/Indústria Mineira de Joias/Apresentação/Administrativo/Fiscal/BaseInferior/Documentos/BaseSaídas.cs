@@ -4,6 +4,8 @@ using Entidades.Fiscal;
 using System;
 using System.Windows.Forms;
 using Apresentação.Fiscal.BaseInferior.Documentos.Exclusão;
+using System.Collections.Generic;
+using Apresentação.Impressão.Relatórios.Fiscal.ListaDocumento;
 
 namespace Apresentação.Fiscal.BaseInferior.Documentos
 {
@@ -108,6 +110,17 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
         protected override ControladorExclusão ConstruirControlador()
         {
             return new ControladorExclusãoSaída(this);
+        }
+
+        protected override List<DocumentoFiscal> ObterEntidades()
+        {
+            uint? setor = ObterListaAtiva().Tag as uint?;
+            return SaídaFiscal.Obter(quadroTipo.Seleção?.Id, setor, Fechamento.Início, Fechamento.Fim);
+        }
+
+        protected override Relatório CriarRelatório(ControladorImpressão controlador)
+        {
+            return controlador.CriarRelatório(Fechamento, ObterEntidades(), false);
         }
     }
 }

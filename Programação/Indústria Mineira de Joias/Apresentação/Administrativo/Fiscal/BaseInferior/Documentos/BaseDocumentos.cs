@@ -86,11 +86,17 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
         private void opçãoImprimir_Click(object sender, EventArgs e)
         {
             var controlador = new ControladorImpressão();
-            var relatório = controlador.CriarRelatório(Fechamento, ObterEntidades());
+
+            Relatório relatório = CriarRelatório(controlador);
 
             var janela = new JanelaImpressão();
             janela.InserirDocumento(relatório, "Documento");
             janela.ShowDialog();
+        }
+
+        protected virtual Relatório CriarRelatório(ControladorImpressão controlador)
+        {
+            throw new Exception("Método abstrato");
         }
 
         protected virtual List<DocumentoFiscal> ObterEntidades()
