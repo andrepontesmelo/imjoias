@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Entidades.Fiscal.Fabricação;
+using System.Drawing;
 
 namespace Apresentação.Administrativo.Fiscal.Lista
 {
@@ -54,6 +55,9 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             item.SubItems[colTipoUnidade.Index].Text = entidade.TipoUnidadeComercial?.Nome;
             item.SubItems[colValorUnitário.Index].Text = entidade.ValorFormatado;
             item.SubItems[colValorTotal.Index].Text = entidade.ValorTotalFormatado;
+
+            if (entidade.Quantidade < 0)
+                item.BackColor = Color.Yellow;
 
             item.Tag = entidade;
 
