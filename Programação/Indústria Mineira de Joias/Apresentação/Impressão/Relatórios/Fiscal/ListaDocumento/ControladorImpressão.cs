@@ -1,5 +1,4 @@
 ﻿using Entidades.Fiscal;
-using Entidades.Fiscal.Registro;
 using System.Collections.Generic;
 using System.Data;
 

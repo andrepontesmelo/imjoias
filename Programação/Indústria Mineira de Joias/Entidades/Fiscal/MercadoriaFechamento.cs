@@ -6,14 +6,24 @@ namespace Entidades.Fiscal
     [DbTabela("mercadoriafechamento")]
     public class MercadoriaFechamento : DbManipulaçãoSimples
     {
-        private string referencia;
+
+        [DbColuna("referencia")]
+        private string referência;
+
+        [DbColuna("descricao")]
+        private string descricao;
+
         private decimal valor;
 
-        private static Dictionary<int, Dictionary<string, decimal>> hashFechamentos = new Dictionary<int, Dictionary<string, decimal>>();
+        public string Referência => referência;
+        public decimal Valor => valor;
+        public string Descrição => descricao;
 
-        public static Dictionary<string, decimal> ObterHashReferênciaValor(int fechamento)
+        private static Dictionary<int, Dictionary<string, MercadoriaFechamento>> hashFechamentos = new Dictionary<int, Dictionary<string, MercadoriaFechamento>>();
+
+        public static Dictionary<string, MercadoriaFechamento> ObterHash(int fechamento)
         {
-            Dictionary<string, decimal> hash;
+            Dictionary<string, MercadoriaFechamento> hash;
 
             if (hashFechamentos.TryGetValue(fechamento, out hash))
                 return hash;
@@ -24,13 +34,13 @@ namespace Entidades.Fiscal
             return hash;
         }
 
-        private static Dictionary<string, decimal> CarregarHash(int fechamento)
+        private static Dictionary<string, MercadoriaFechamento> CarregarHash(int fechamento)
         {
-            Dictionary<string, decimal> hash = new Dictionary<string, decimal>();
-            var lista = Mapear<MercadoriaFechamento>("select referencia, valor from mercadoriafechamento where fechamento=" + fechamento.ToString());
+            Dictionary<string, MercadoriaFechamento> hash = new Dictionary<string, MercadoriaFechamento>();
+            var lista = Mapear<MercadoriaFechamento>("select referencia, valor, descricao from mercadoriafechamento where fechamento=" + fechamento.ToString());
 
             foreach (MercadoriaFechamento m in lista)
-                hash[m.referencia] = m.valor;
+                hash[m.referência] = m;
 
             return hash;
         }

@@ -1,6 +1,7 @@
 ﻿using Apresentação.Administrativo.Fiscal.BaseInferior.Esquema;
 using Apresentação.Administrativo.Fiscal.Janela;
 using Apresentação.Formulários;
+using Apresentação.Impressão.Relatórios.Fiscal.Fabricação;
 using Entidades.Fiscal;
 using Entidades.Fiscal.Exceções;
 using Entidades.Fiscal.Fabricação;
@@ -86,11 +87,14 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
             txtCFOP.Text = mercadoria?.CFOP.ToString();
             txtDescrição.Text = mercadoria?.Descrição;
             
-            var hashReferênciaValor = MercadoriaFechamento.ObterHashReferênciaValor(fechamento.Código);
+            var hash = MercadoriaFechamento.ObterHash(fechamento.Código);
 
+            MercadoriaFechamento entidade = null;
             decimal valor = 0;
-            if (mercadoria != null)
-                hashReferênciaValor.TryGetValue(mercadoria.ReferênciaNumérica, out valor);
+
+            if (mercadoria != null && hash.TryGetValue(mercadoria.ReferênciaNumérica, out entidade))
+                valor = entidade.Valor;
+
             txtValor.Text = valor.ToString();
 
             cmbTipoUnidade.Seleção = mercadoria == null ? null : mercadoria.TipoUnidadeComercial;
@@ -230,6 +234,15 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
             else throw new NotImplementedException();
 
             Carregar(fabricação);
+        }
+
+        private void opçãoImprimir_Click(object sender, EventArgs e)
+        {
+            var janela = new JanelaImpressão();
+            var controlador = new ControladorImpressãoFabricação();
+            janela.InserirDocumento(controlador.CriarRelatório(fabricação), "Fabricação");
+
+            janela.ShowDialog(this);
         }
     }
 }

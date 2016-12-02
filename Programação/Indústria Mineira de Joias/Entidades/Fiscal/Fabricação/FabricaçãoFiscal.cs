@@ -144,11 +144,11 @@ namespace Entidades.Fiscal.Fabricação
 
         private void AdicionarEntrada(System.Data.IDbConnection conexão, System.Data.IDbTransaction transação, decimal qtdReceitas, MateriaPrima ingrediente, int fechamento)
         {
-            var hashReferênciaValor = MercadoriaFechamento.ObterHashReferênciaValor(fechamento);
+            var hashReferênciaValor = MercadoriaFechamento.ObterHash(fechamento);
 
             using (var cmd = conexão.CreateCommand())
             {
-                cmd.CommandText = EntradaFabricaçãoFiscal.ObterSqlInserçãoEntrada(this, ingrediente, qtdReceitas, hashReferênciaValor[ingrediente.Referência]);
+                cmd.CommandText = EntradaFabricaçãoFiscal.ObterSqlInserçãoEntrada(this, ingrediente, qtdReceitas, hashReferênciaValor[ingrediente.Referência].Valor);
                 cmd.Transaction = transação;
                 cmd.ExecuteNonQuery();
             }
