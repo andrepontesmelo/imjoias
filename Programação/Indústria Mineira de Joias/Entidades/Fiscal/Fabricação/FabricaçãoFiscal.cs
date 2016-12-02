@@ -24,6 +24,8 @@ namespace Entidades.Fiscal.Fabricação
             set
             {
                 data = value;
+                DefinirDesatualizado();
+
                 AtualizarMercadoriasFechamento();
             }
         }
