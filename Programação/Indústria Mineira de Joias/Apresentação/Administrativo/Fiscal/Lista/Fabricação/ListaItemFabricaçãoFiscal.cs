@@ -72,6 +72,7 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             var item = new ListViewItem(new string[lista.Columns.Count]);
             item.SubItems[colCódigo.Index].Text = entidade.Código.ToString();
             item.SubItems[colReferência.Index].Text = Entidades.Mercadoria.Mercadoria.MascararReferência(entidade.Referência, true);
+            item.SubItems[colCFOP.Index].Text = entidade.CFOP.ToString();
             item.SubItems[colQuantidade.Index].Text = entidade.Quantidade.ToString();
             item.SubItems[colDescrição.Index].Text = entidade.Mercadoria?.Descrição;
             item.SubItems[colTipo.Index].Text = entidade.Mercadoria?.TipoUnidadeComercial.Nome;

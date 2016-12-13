@@ -156,7 +156,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
 
             txtMercadoria.Referência = item.Referência;
             txtDescrição.Text = item.Mercadoria?.Descrição;
-            txtCFOP.Text = "item.CFOP"; // TODO: item.CFOP;
+            txtCFOP.Text = item.CFOP.ToString();
             txtQuantidade.Text = item.Quantidade.ToString();
             txtValor.Text = item.Valor.ToString();
 
