@@ -639,6 +639,8 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Extrato {
             
             private global::System.Data.DataColumn columnestoqueAnterior;
             
+            private global::System.Data.DataColumn columncfop;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ItemDataTable() {
@@ -762,6 +764,14 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Extrato {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn cfopColumn {
+                get {
+                    return this.columncfop;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -797,7 +807,7 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Extrato {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ItemRow AddItemRow(string tipoResumido, string data, string valor, string entradaSaída, string quantidade, string estoque, string referência, string descrição, string tipoUnidade, string classificaçãoFiscal, string estoqueAnterior) {
+            public ItemRow AddItemRow(string tipoResumido, string data, string valor, string entradaSaída, string quantidade, string estoque, string referência, string descrição, string tipoUnidade, string classificaçãoFiscal, string estoqueAnterior, string cfop) {
                 ItemRow rowItemRow = ((ItemRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         tipoResumido,
@@ -810,7 +820,8 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Extrato {
                         descrição,
                         tipoUnidade,
                         classificaçãoFiscal,
-                        estoqueAnterior};
+                        estoqueAnterior,
+                        cfop};
                 rowItemRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowItemRow);
                 return rowItemRow;
@@ -844,6 +855,7 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Extrato {
                 this.columntipoUnidade = base.Columns["tipoUnidade"];
                 this.columnclassificaçãoFiscal = base.Columns["classificaçãoFiscal"];
                 this.columnestoqueAnterior = base.Columns["estoqueAnterior"];
+                this.columncfop = base.Columns["cfop"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -871,6 +883,8 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Extrato {
                 base.Columns.Add(this.columnclassificaçãoFiscal);
                 this.columnestoqueAnterior = new global::System.Data.DataColumn("estoqueAnterior", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnestoqueAnterior);
+                this.columncfop = new global::System.Data.DataColumn("cfop", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncfop);
                 this.ExtendedProperties.Add("Generator_RowClassName", "ItemRow");
                 this.ExtendedProperties.Add("Generator_RowEvArgName", "ItemRowChangeEvent");
                 this.ExtendedProperties.Add("Generator_RowEvHandlerName", "ItemRowChangeEventHandler");
@@ -1351,6 +1365,22 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Extrato {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string cfop {
+                get {
+                    try {
+                        return ((string)(this[this.tableItem.cfopColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'cfop\' in table \'Item\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItem.cfopColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IstipoResumidoNull() {
                 return this.IsNull(this.tableItem.tipoResumidoColumn);
             }
@@ -1479,6 +1509,18 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Extrato {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetestoqueAnteriorNull() {
                 this[this.tableItem.estoqueAnteriorColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IscfopNull() {
+                return this.IsNull(this.tableItem.cfopColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetcfopNull() {
+                this[this.tableItem.cfopColumn] = global::System.Convert.DBNull;
             }
         }
         

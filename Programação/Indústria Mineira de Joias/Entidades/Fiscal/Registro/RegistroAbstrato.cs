@@ -9,11 +9,18 @@ namespace Entidades.Fiscal.Registro
         protected string descricao;
         protected int tipounidade;
         protected string classificacaofiscal;
+        protected int cfop;
 
         public string ClassificaçãoFiscal
         {
             get { return classificacaofiscal; }
             set { classificacaofiscal = value; }
+        }
+
+        public int CFOP
+        {
+            get { return cfop; }
+            set { cfop = value; }
         }
 
         protected string FormatarMoeda(decimal valor)

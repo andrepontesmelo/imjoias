@@ -54,6 +54,7 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Extrato
 
             var entidade = (Entidades.Fiscal.Extrato) entidadeGenérica;
 
+            item["cfop"] = entidade.CFOP;
             item["data"] = entidade.DataFormatada;
             item["valor"] = entidade.ValorFormatado;
             item["tipoResumido"] = entidade.TipoResumido;

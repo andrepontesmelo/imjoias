@@ -20,6 +20,7 @@ namespace Entidades.Fiscal
         private DateTime data;
         private decimal quantidade;
         private decimal valor;
+        private int cfop;
 
         [DbAtributo(TipoAtributo.Ignorar)]
         private decimal estoque;
@@ -50,6 +51,7 @@ namespace Entidades.Fiscal
         public DateTime Data => data;
         public decimal Valor => valor;
         public decimal Quantidade => quantidade;
+        public int CFOP => cfop;
         public decimal Estoque
         {
             get { return estoque; }
