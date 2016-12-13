@@ -30,20 +30,25 @@ namespace Apresentação.Formulários
 
         public Quadro()
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
 
-            this.SetStyle(ControlStyles.Opaque, false);
-            this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
-            this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+                this.SetStyle(ControlStyles.Opaque, false);
+                this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
+                this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
 
-            this.BackColor = Color.FromArgb(128, 255, 255, 255);
+                this.BackColor = Color.FromArgb(128, 255, 255, 255);
 
-            for (int i = 0; i < 4; i++)
-                bordaArredondada[i] = true;
+                for (int i = 0; i < 4; i++)
+                    bordaArredondada[i] = true;
 
-            lblTítulo.Width = Width;
+                lblTítulo.Width = Width;
 
-            botãoMinMax.Image = listaIcones.Images[(int)OrdemIcones.minimizar];
+                botãoMinMax.Image = listaIcones.Images[(int)OrdemIcones.minimizar];
+            } catch (Exception)
+            {
+            }
         }
 
         protected override void Dispose(bool disposing)
