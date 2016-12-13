@@ -46,7 +46,7 @@ namespace Entidades.Fiscal
         public ItemFabricaçãoFiscal ObterItemfabricação(int fechamento)
         {
             var hashReferênciaValor = MercadoriaFechamento.ObterHash(fechamento);
-            return new ItemFabricaçãoFiscal(Referência, Math.Abs(Quantidade), hashReferênciaValor[Referência].Valor);
+            return new ItemFabricaçãoFiscal(Referência, Math.Abs(Quantidade), hashReferênciaValor[Referência].Valor, 0);
         }
     }
 }

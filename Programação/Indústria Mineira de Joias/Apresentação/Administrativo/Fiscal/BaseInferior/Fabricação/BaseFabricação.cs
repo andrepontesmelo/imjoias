@@ -2,6 +2,7 @@
 using Apresentação.Administrativo.Fiscal.Janela;
 using Apresentação.Formulários;
 using Apresentação.Impressão.Relatórios.Fiscal.Fabricação;
+using Entidades.Configuração;
 using Entidades.Fiscal;
 using Entidades.Fiscal.Exceções;
 using Entidades.Fiscal.Fabricação;
@@ -55,7 +56,8 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
                 AguardeDB.Mostrar();
                 fabricação.AdicionarFabricação(new ItemFabricaçãoFiscal(txtMercadoria.Mercadoria.ReferênciaNumérica, 
                     (decimal) txtQuantidade.Double, 
-                    (decimal) txtValor.Double), fechamento);
+                    (decimal) txtValor.Double,
+                    int.Parse(txtCFOP.Text)), fechamento);
                 LimparCampos();
             }
             catch (ExceçãoFiscal erro)
@@ -73,7 +75,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
         private void LimparCampos()
         {
             txtMercadoria.Referência = "";
-            txtCFOP.Text = "";
+            txtCFOP.Text = FabricaçãoFiscal.CfopPadrãoOperaçõesInternas.Valor.ToString();
             txtDescrição.Text = "";
             txtQuantidade.Text = "";
             txtValor.Text = "";
@@ -84,7 +86,6 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
         {
             var mercadoria = txtMercadoria.Mercadoria;
 
-            txtCFOP.Text = mercadoria?.CFOP.ToString();
             txtDescrição.Text = mercadoria?.Descrição;
             
             var hash = MercadoriaFechamento.ObterHash(fechamento.Código);
@@ -155,7 +156,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
 
             txtMercadoria.Referência = item.Referência;
             txtDescrição.Text = item.Mercadoria?.Descrição;
-            txtCFOP.Text = item.Mercadoria?.CFOP.ToString();
+            txtCFOP.Text = "item.CFOP"; // TODO: item.CFOP;
             txtQuantidade.Text = item.Quantidade.ToString();
             txtValor.Text = item.Valor.ToString();
 

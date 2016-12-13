@@ -11,11 +11,18 @@ namespace Entidades.Fiscal.Fabricação
         protected string referencia;
         protected decimal quantidade;
         protected decimal valor;
+        protected int cfop;
 
         public string Referência
         {
             get { return referencia; }
             set { referencia = value; DefinirDesatualizado(); }
+        }
+
+        public int CFOP
+        {
+            get { return cfop; }
+            set { cfop = value; DefinirDesatualizado(); }
         }
 
         public decimal Quantidade
@@ -39,11 +46,12 @@ namespace Entidades.Fiscal.Fabricação
         {
         }
 
-        public ItemFabricaçãoFiscal(string referencia, decimal quantidade, decimal valor)
+        public ItemFabricaçãoFiscal(string referencia, decimal quantidade, decimal valor, int cfop)
         {
             this.referencia = referencia;
             this.quantidade = quantidade;
             this.valor = valor;
+            this.cfop = cfop;
         }
 
         public bool Equals(ItemFabricaçãoFiscal outro)

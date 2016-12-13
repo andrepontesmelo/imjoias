@@ -9,18 +9,19 @@ namespace Entidades.Fiscal.Fabricação
     {
         internal static readonly string RELAÇÃO = "saidafabricacaofiscal";
 
-        internal static string ObterSqlInserçãoSaída(FabricaçãoFiscal fabricação, decimal qtdReceitas, string referência, decimal quantidade, decimal valor)
+        internal static string ObterSqlInserçãoSaída(FabricaçãoFiscal fabricação, decimal qtdReceitas, string referência, decimal quantidade, decimal valor, int cfop)
         {
-            return string.Format("INSERT INTO saidafabricacaofiscal (fabricacaofiscal, referencia, quantidade, valor) values ({0}, {1}, {2}, {3})",
+            return string.Format("INSERT INTO saidafabricacaofiscal (fabricacaofiscal, referencia, quantidade, valor, cfop) values ({0}, {1}, {2}, {3}, {4})",
                 DbTransformar(fabricação.Código),
                 DbTransformar(referência),
                 DbTransformar(quantidade),
-                DbTransformar(valor));
+                DbTransformar(valor),
+                DbTransformar(cfop));
         }
 
         public static List<ItemFabricaçãoFiscal> Obter(int fabricação)
         {
-            return Mapear<ItemFabricaçãoFiscal>(string.Format("select codigo, referencia, quantidade, valor from " +
+            return Mapear<ItemFabricaçãoFiscal>(string.Format("select codigo, referencia, quantidade, valor, cfop from " +
                 " saidafabricacaofiscal where fabricacaofiscal={0}", DbTransformar(fabricação)));
         }
 
@@ -30,10 +31,11 @@ namespace Entidades.Fiscal.Fabricação
 
         public static void Alterar(ItemFabricaçãoFiscal entidade)
         {
-            var sql = string.Format("UPDATE saidafabricacaofiscal set referencia={0}, quantidade={1}, valor={2} where codigo={3}",
+            var sql = string.Format("UPDATE saidafabricacaofiscal set referencia={0}, quantidade={1}, valor={2}, cfop={3} where codigo={4}",
             DbTransformar(entidade.Referência),
             DbTransformar(entidade.Quantidade),
             DbTransformar(entidade.Valor),
+            DbTransformar(entidade.CFOP),
             DbTransformar(entidade.Código));
 
             ExecutarComando(sql);
