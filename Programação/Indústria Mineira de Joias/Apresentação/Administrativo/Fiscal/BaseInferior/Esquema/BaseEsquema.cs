@@ -23,7 +23,6 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
 
             listaIngredientes.Carregar(esquema);
 
-            txtCFOPProduzido.Text = esquema.CFOP.ToString();
             if (esquema.Referência != null)
                 txtMercadoriaProduzida.Referência = Entidades.Mercadoria.Mercadoria.MascararReferência(esquema.Referência, true);
             else
@@ -50,7 +49,6 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
         private void CarregarIngrediente(MateriaPrima ingrediente)
         {
             txtMercadoriaSelecionada.Referência = ingrediente?.Referência;
-            txtCFOPSelecionado.Text = ingrediente?.CFOP.ToString();
             txtQuantidadeSelecionada.Text = ingrediente?.Quantidade.ToString();
             txtDescriçãoSelecionado.Text = ingrediente?.Descrição;
             cmbTipoUnidadeSelecionada.Seleção = ingrediente?.TipoUnidadeComercial;
@@ -153,7 +151,6 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
             }
 
             txtDescriçãoProduzida.Text = mercadoria.Descrição;
-            txtCFOPProduzido.Text = mercadoria.CFOP.ToString();
             cmbTipoUnidadeProduzido.Seleção = mercadoria.TipoUnidadeComercial;
 
             try
@@ -181,7 +178,6 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
             btnAlterar.Enabled = mercadoria != null && ingrediente != null;
 
             txtDescriçãoSelecionado.Text = mercadoria?.Descrição;
-            txtCFOPSelecionado.Text = mercadoria?.CFOP.ToString();
             cmbTipoUnidadeSelecionada.Seleção = mercadoria == null ? null : mercadoria.TipoUnidadeComercial;
         }
     }
