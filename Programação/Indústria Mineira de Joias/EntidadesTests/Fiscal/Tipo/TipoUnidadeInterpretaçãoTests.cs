@@ -41,5 +41,11 @@ namespace Entidades.Fiscal.Tipo.Tests
             Assert.AreEqual(TipoUnidadeSistema.Cxa, TipoUnidadeInterpretação.Interpretar("cxa"));
         }
 
+        [TestMethod()]
+        public void DeveInterpretarQuilate()
+        {
+            Assert.AreEqual(TipoUnidadeSistema.Klt, TipoUnidadeInterpretação.Interpretar("KLT"));
+        }
+
     }
 }

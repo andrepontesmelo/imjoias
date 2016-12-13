@@ -36,7 +36,7 @@ namespace Entidades.Fiscal
             " LEFT JOIN `imjoias`.`inventario_interno_parcial` `i` ON((`i`.`referencia` = `f`.`referencia`)) " +
             " LEFT JOIN mercadoria m on f.referencia = m.referencia " +
             " where f.fechamento = {1} " +
-            " GROUP BY `m`.`referencia`) c ",
+            " GROUP BY `m`.`referencia`) c having quantidade != 0 ",
             DbTransformar(fechamento.Fim.AddDays(1)),
             fechamento.Código);
 

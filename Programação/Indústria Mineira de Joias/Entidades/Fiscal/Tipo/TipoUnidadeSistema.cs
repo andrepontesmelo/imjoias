@@ -6,6 +6,7 @@
         Par = 1,
         Grs = 2,
         Un = 3,
-        Cxa = 4
+        Cxa = 4,
+        Klt = 5
     }
 }

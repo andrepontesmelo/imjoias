@@ -19,6 +19,9 @@ namespace Entidades.Fiscal.Tipo
             if (descrição.ToLower().StartsWith("par"))
                 return TipoUnidadeSistema.Par;
 
+            if (descrição.ToLower().StartsWith("klt"))
+                return TipoUnidadeSistema.Klt;
+
             TipoUnidadeSistema tipo;
             if (!Enum.TryParse<TipoUnidadeSistema>(descrição, out tipo))
                 tipo = TipoUnidadeSistema.Un;
