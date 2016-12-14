@@ -53,6 +53,7 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             ListViewItem item = new ListViewItem(new string[lista.Columns.Count]);
 
             bool existeEsquemaFabricação = hashEsquemas.ContainsKey(entidade.Referência);
+            bool produzível = entidade.Quantidade < 0 && existeEsquemaFabricação;
 
             item.SubItems[colClassificação.Index].Text = entidade.ClassificaçãoFiscal;
             item.SubItems[colDescrição.Index].Text = entidade.Descrição;
@@ -62,8 +63,9 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             item.SubItems[colValorUnitário.Index].Text = entidade.ValorFormatado;
             item.SubItems[colValorTotal.Index].Text = entidade.ValorTotalFormatado;
             item.SubItems[colEsquema.Index].Text = existeEsquemaFabricação ? "Sim" : "Não";
+            item.SubItems[colProduzível.Index].Text = produzível ? "Sim" : "Não";
 
-            if (entidade.Quantidade < 0 && existeEsquemaFabricação)
+            if (produzível)
                 item.BackColor = Color.Yellow;
             else if (entidade.Quantidade < 0 && !existeEsquemaFabricação)
                 item.BackColor = Color.FromArgb(0, 255, 255);

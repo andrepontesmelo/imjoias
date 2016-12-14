@@ -37,6 +37,7 @@
             this.colValorUnitário = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colValorTotal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colEsquema = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colProduzível = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lista
@@ -50,7 +51,8 @@
             this.colQuantidade,
             this.colValorUnitário,
             this.colValorTotal,
-            this.colEsquema});
+            this.colEsquema,
+            this.colProduzível});
             this.lista.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lista.FullRowSelect = true;
             this.lista.Location = new System.Drawing.Point(0, 0);
@@ -99,6 +101,10 @@
             // 
             this.colEsquema.Text = "Esquema";
             // 
+            // colProduzível
+            // 
+            this.colProduzível.Text = "Produzível";
+            // 
             // ListaInventário
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -121,5 +127,6 @@
         private System.Windows.Forms.ColumnHeader colValorUnitário;
         private System.Windows.Forms.ColumnHeader colValorTotal;
         private System.Windows.Forms.ColumnHeader colEsquema;
+        private System.Windows.Forms.ColumnHeader colProduzível;
     }
 }
