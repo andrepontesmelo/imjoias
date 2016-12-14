@@ -36,7 +36,11 @@ namespace Entidades.Fiscal.Importação.Legado
                 foreach (EstoqueLegado legado in legados)
                 {
                     x++;
-                    var qtdInventário = hashInventário[legado.Referência].Quantidade;
+                    decimal qtdInventário = 0;
+                    Inventário inventário = null;
+                    if (hashInventário.TryGetValue(legado.Referência, out inventário))
+                        qtdInventário = inventário.Quantidade;
+
                     var qtdLegado = legado.Estoque;
 
                     Inserir(legado.Referência, qtdLegado - qtdInventário, sql);
