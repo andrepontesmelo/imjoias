@@ -56,7 +56,7 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             bool produzível = entidade.Quantidade < 0 && existeEsquemaFabricação;
             bool requerEsquema = entidade.Quantidade < 0 && !existeEsquemaFabricação;
 
-            item.SubItems[colClassificação.Index].Text = entidade.ClassificaçãoFiscal;
+            item.SubItems[colClassificação.Index].Text = entidade.ClassificaçãoFiscalFormatada;
             item.SubItems[colDescrição.Index].Text = entidade.Descrição;
             item.SubItems[colQuantidade.Index].Text = entidade.Quantidade.ToString();
             item.SubItems[colReferência.Index].Text = Entidades.Mercadoria.Mercadoria.MascararReferência(entidade.Referência, true);
