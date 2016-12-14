@@ -39,7 +39,7 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Inventário
         private DataRow CriarDocumento(DataTable tabelaDocumento, DateTime data)
         {
             var linha = CriarDocumento(tabelaDocumento);
-            linha["data"] = string.Format("{0} {1}", data.ToShortDateString(), data.ToShortTimeString());
+            linha["data"] = string.Format("{0}", data.ToShortDateString());
 
             return linha;
         }

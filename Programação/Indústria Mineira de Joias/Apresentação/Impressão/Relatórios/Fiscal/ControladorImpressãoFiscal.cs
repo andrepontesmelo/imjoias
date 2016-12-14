@@ -21,6 +21,9 @@ namespace Apresentação.Impressão.Relatórios.Fiscal
                     return "PÇA";
                 case (int)TipoUnidadeSistema.Un:
                     return "UN";
+                case (int)TipoUnidadeSistema.Klt:
+                    return "KLT";
+
                 default:
                     return tipoUnidadeComercial.Nome.ToUpper();
             }
