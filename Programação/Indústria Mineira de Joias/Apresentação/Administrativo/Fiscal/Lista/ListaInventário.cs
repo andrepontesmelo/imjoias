@@ -54,6 +54,7 @@ namespace Apresentação.Administrativo.Fiscal.Lista
 
             bool existeEsquemaFabricação = hashEsquemas.ContainsKey(entidade.Referência);
             bool produzível = entidade.Quantidade < 0 && existeEsquemaFabricação;
+            bool requerEsquema = entidade.Quantidade < 0 && !existeEsquemaFabricação;
 
             item.SubItems[colClassificação.Index].Text = entidade.ClassificaçãoFiscal;
             item.SubItems[colDescrição.Index].Text = entidade.Descrição;
@@ -62,13 +63,14 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             item.SubItems[colTipoUnidade.Index].Text = entidade.TipoUnidadeComercial?.Nome;
             item.SubItems[colValorUnitário.Index].Text = entidade.ValorFormatado;
             item.SubItems[colValorTotal.Index].Text = entidade.ValorTotalFormatado;
-            item.SubItems[colEsquema.Index].Text = existeEsquemaFabricação ? "Sim" : "Não";
+            item.SubItems[colPossuiEsquema.Index].Text = existeEsquemaFabricação ? "Sim" : "Não";
             item.SubItems[colProduzível.Index].Text = produzível ? "Sim" : "Não";
+            item.SubItems[colRequerEsquema.Index].Text = requerEsquema ? "Sim" : "Não";
 
             if (produzível)
+                item.BackColor = Color.LightGreen;
+            else if (requerEsquema)
                 item.BackColor = Color.Yellow;
-            else if (entidade.Quantidade < 0 && !existeEsquemaFabricação)
-                item.BackColor = Color.FromArgb(0, 255, 255);
 
             item.Tag = entidade;
 

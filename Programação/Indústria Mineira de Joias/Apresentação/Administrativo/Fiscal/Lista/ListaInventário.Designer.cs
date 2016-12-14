@@ -36,8 +36,9 @@
             this.colQuantidade = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colValorUnitário = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colValorTotal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colEsquema = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colPossuiEsquema = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colProduzível = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colRequerEsquema = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lista
@@ -51,7 +52,8 @@
             this.colQuantidade,
             this.colValorUnitário,
             this.colValorTotal,
-            this.colEsquema,
+            this.colPossuiEsquema,
+            this.colRequerEsquema,
             this.colProduzível});
             this.lista.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lista.FullRowSelect = true;
@@ -97,13 +99,18 @@
             this.colValorTotal.Text = "Valor Total";
             this.colValorTotal.Width = 100;
             // 
-            // colEsquema
+            // colPossuiEsquema
             // 
-            this.colEsquema.Text = "Esquema";
+            this.colPossuiEsquema.Text = "Possui Esquema";
             // 
             // colProduzível
             // 
             this.colProduzível.Text = "Produzível";
+            this.colProduzível.Width = 83;
+            // 
+            // colRequerEsquema
+            // 
+            this.colRequerEsquema.Text = "Requer esquema";
             // 
             // ListaInventário
             // 
@@ -126,7 +133,8 @@
         private System.Windows.Forms.ColumnHeader colQuantidade;
         private System.Windows.Forms.ColumnHeader colValorUnitário;
         private System.Windows.Forms.ColumnHeader colValorTotal;
-        private System.Windows.Forms.ColumnHeader colEsquema;
+        private System.Windows.Forms.ColumnHeader colPossuiEsquema;
         private System.Windows.Forms.ColumnHeader colProduzível;
+        private System.Windows.Forms.ColumnHeader colRequerEsquema;
     }
 }
