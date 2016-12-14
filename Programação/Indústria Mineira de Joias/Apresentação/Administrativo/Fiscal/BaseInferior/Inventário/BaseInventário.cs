@@ -80,6 +80,10 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
             {
                 MensagemErro.MostrarMensagem(this, erro, "Erro ao criar fabricação");
                 return;
+            } catch (Exception outroErro)
+            {
+                MessageBox.Show(outroErro.ToString());
+                return;
             }
 
             var janelaEdiçãoFabricação = new JanelaEdiçãoFabricação(novafabricação);

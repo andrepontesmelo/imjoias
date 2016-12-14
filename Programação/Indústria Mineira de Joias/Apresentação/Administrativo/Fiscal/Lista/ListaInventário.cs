@@ -5,11 +5,14 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using Entidades.Fiscal.Fabricação;
 using System.Drawing;
+using Entidades.Fiscal.Esquema;
 
 namespace Apresentação.Administrativo.Fiscal.Lista
 {
     public partial class ListaInventário : UserControl
     {
+        private Dictionary<string, EsquemaFabricação> hashEsquemas;
+
         public event EventHandler AoDuploClique;
 
         public ListaInventário()
@@ -32,6 +35,7 @@ namespace Apresentação.Administrativo.Fiscal.Lista
 
         public void Carregar(Fechamento fechamento)
         {
+            hashEsquemas = EsquemaFabricação.ObterHash(fechamento);
             CarregarItens(CriarItens(Inventário.Obter(fechamento)));
         }
 
@@ -56,8 +60,12 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             item.SubItems[colValorUnitário.Index].Text = entidade.ValorFormatado;
             item.SubItems[colValorTotal.Index].Text = entidade.ValorTotalFormatado;
 
-            if (entidade.Quantidade < 0)
+            bool existeEsquemaFabricação = hashEsquemas.ContainsKey(entidade.Referência);
+
+            if (entidade.Quantidade < 0 && existeEsquemaFabricação)
                 item.BackColor = Color.Yellow;
+            else if (entidade.Quantidade < 0 && !existeEsquemaFabricação)
+                item.BackColor = Color.FromArgb(0, 255, 255);
 
             item.Tag = entidade;
 
