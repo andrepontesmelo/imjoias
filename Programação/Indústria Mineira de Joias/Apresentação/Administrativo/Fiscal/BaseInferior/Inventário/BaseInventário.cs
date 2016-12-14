@@ -73,6 +73,8 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
             if (itens.Count == 0)
                 return;
 
+            AguardeDB.Mostrar();
+
             try
             {
                 novafabricação = FabricaçãoFiscal.Criar(itens, Fechamento);
@@ -84,6 +86,9 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
             {
                 MessageBox.Show(outroErro.ToString());
                 return;
+            } finally
+            {
+                AguardeDB.Fechar();
             }
 
             var janelaEdiçãoFabricação = new JanelaEdiçãoFabricação(novafabricação);
