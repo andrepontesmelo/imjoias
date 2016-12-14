@@ -82,6 +82,15 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
                 return;
             }
 
+            var janelaEdiçãoFabricação = new JanelaEdiçãoFabricação(novafabricação);
+            var resultado = janelaEdiçãoFabricação.Mostrar(this);
+
+            if (resultado == DialogResult.Cancel)
+            {
+                novafabricação.Descadastrar();
+                return;
+            }
+
             SubstituirBase(new BaseFabricação(novafabricação));
         }
 
