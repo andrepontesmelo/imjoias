@@ -106,7 +106,22 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             lista.SuspendLayout();
             lista.Items.Clear();
             lista.Items.AddRange(itens);
+            AtualizarTamanhoColunas();
             lista.ResumeLayout();
+        }
+
+        private void AtualizarTamanhoColunas()
+        {
+            colReferência.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
+            colClassificação.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
+            colDescrição.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
+            colTipoUnidade.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
+            colQuantidade.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
+            colValorTotal.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
+            colValorUnitário.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
+            colPossuiEsquema.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
+            colRequerEsquema.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
+            colProduzível.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
         internal void LimparSeleção()

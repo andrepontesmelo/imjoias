@@ -66,8 +66,8 @@
             // 
             // colClassificação
             // 
-            this.colClassificação.Text = "Classificação Fiscal";
-            this.colClassificação.Width = 156;
+            this.colClassificação.Text = "Classificação F.";
+            this.colClassificação.Width = 107;
             // 
             // colReferência
             // 
@@ -81,7 +81,7 @@
             // 
             // colTipoUnidade
             // 
-            this.colTipoUnidade.Text = "Tipo de unidade";
+            this.colTipoUnidade.Text = "Tipo de U.";
             this.colTipoUnidade.Width = 112;
             // 
             // colQuantidade
@@ -91,17 +91,17 @@
             // 
             // colValorUnitário
             // 
-            this.colValorUnitário.Text = "Valor unitário";
+            this.colValorUnitário.Text = "Valor U.";
             this.colValorUnitário.Width = 97;
             // 
             // colValorTotal
             // 
-            this.colValorTotal.Text = "Valor Total";
+            this.colValorTotal.Text = "Valor T.";
             this.colValorTotal.Width = 100;
             // 
             // colPossuiEsquema
             // 
-            this.colPossuiEsquema.Text = "Possui Esquema";
+            this.colPossuiEsquema.Text = "Possui E.";
             // 
             // colProduzível
             // 
@@ -110,7 +110,7 @@
             // 
             // colRequerEsquema
             // 
-            this.colRequerEsquema.Text = "Requer esquema";
+            this.colRequerEsquema.Text = "Requer E.";
             // 
             // ListaInventário
             // 
