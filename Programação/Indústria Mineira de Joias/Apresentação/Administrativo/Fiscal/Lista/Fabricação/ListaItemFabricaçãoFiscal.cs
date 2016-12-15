@@ -1,4 +1,5 @@
-﻿using Entidades.Fiscal.Fabricação;
+﻿using Apresentação.Formulários;
+using Entidades.Fiscal.Fabricação;
 using Entidades.Fiscal.Registro;
 using System;
 using System.Collections.Generic;
@@ -35,12 +36,14 @@ namespace Apresentação.Administrativo.Fiscal.Lista
 
         public void Carregar(FabricaçãoFiscal fabricação)
         {
+            AguardeDB.Mostrar();
             this.fabricação = fabricação;
 
             hashSaldoAnterior = InventárioRelativo.ObterHashReferênciaQuantidadeInventárioAnterior(fabricação.Data);
             hashSaldoPosterior = InventárioRelativo.ObterHashReferênciaQuantidadeInventárioPosterior(fabricação.Data);
 
             AdicionarItens(CriarItensGráficos(ObterItensEntidade(fabricação)));
+            AguardeDB.Fechar();
         }
 
         protected virtual List<ItemFabricaçãoFiscal> ObterItensEntidade(FabricaçãoFiscal fabricação)
