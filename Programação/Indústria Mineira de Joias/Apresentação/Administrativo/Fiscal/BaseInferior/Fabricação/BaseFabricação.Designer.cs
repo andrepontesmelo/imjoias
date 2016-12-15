@@ -131,7 +131,7 @@
             this.btnIncluir.Location = new System.Drawing.Point(851, 100);
             this.btnIncluir.Name = "btnIncluir";
             this.btnIncluir.Size = new System.Drawing.Size(75, 23);
-            this.btnIncluir.TabIndex = 5;
+            this.btnIncluir.TabIndex = 3;
             this.btnIncluir.Text = "Incluir TO";
             this.btnIncluir.UseVisualStyleBackColor = true;
             this.btnIncluir.Click += new System.EventHandler(this.btnIncluir_Click);
@@ -160,7 +160,7 @@
             this.txtQuantidade.RangeMax = 1.7976931348623157E+308D;
             this.txtQuantidade.RangeMin = -1.7976931348623157E+308D;
             this.txtQuantidade.Size = new System.Drawing.Size(59, 20);
-            this.txtQuantidade.TabIndex = 3;
+            this.txtQuantidade.TabIndex = 1;
             // 
             // txtCFOP
             // 
@@ -264,7 +264,7 @@
             this.txtValor.RangeMax = 1.7976931348623157E+308D;
             this.txtValor.RangeMin = -1.7976931348623157E+308D;
             this.txtValor.Size = new System.Drawing.Size(58, 20);
-            this.txtValor.TabIndex = 14;
+            this.txtValor.TabIndex = 2;
             // 
             // lblValor
             // 
@@ -293,7 +293,7 @@
             this.txtMercadoria.Name = "txtMercadoria";
             this.txtMercadoria.Referência = "";
             this.txtMercadoria.Size = new System.Drawing.Size(177, 23);
-            this.txtMercadoria.TabIndex = 11;
+            this.txtMercadoria.TabIndex = 0;
             this.txtMercadoria.ReferênciaAlterada += new System.EventHandler(this.txtMercadoria_ReferênciaAlterada);
             // 
             // btnAlterar

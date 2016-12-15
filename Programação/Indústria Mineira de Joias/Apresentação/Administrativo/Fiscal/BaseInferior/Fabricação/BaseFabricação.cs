@@ -51,6 +51,12 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
             if (txtQuantidade.Double == 0)
                 return;
 
+            if (txtMercadoria.Mercadoria == null)
+            {
+                MessageBox.Show("Referência não encontrada");
+                return;
+            }
+
             try
             {
                 AguardeDB.Mostrar();
