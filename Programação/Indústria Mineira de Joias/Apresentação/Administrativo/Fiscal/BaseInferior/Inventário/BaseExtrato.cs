@@ -46,6 +46,11 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
 
             título.Título = "Extrato de " + ReferênciaFormatada;
 
+            var hash = MercadoriaFechamento.ObterHash(fechamento.Código);
+            MercadoriaFechamento mercadoria;
+            if (hash.TryGetValue(referência, out mercadoria))
+                título.Título += " - " + mercadoria.Descrição;
+            
             CarregarEstoqueAnterior();
 
             listaExtrato.Carregar(referência, fechamento);
