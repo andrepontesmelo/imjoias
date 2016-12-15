@@ -130,13 +130,13 @@ namespace Apresentação.Administrativo.Fiscal.Lista
                 item.Checked = false;
         }
 
-        public void SelecionarNegativos()
+        public void SelecionarProduzíveis()
         {
             foreach (ListViewItem item in lista.Items)
             {
                 Inventário inventário = item.Tag as Inventário;
 
-                if (inventário.Quantidade < 0)
+                if (inventário.Quantidade < 0 && hashEsquemas.ContainsKey(inventário.Referência))
                     item.Checked = true;
             }
         }

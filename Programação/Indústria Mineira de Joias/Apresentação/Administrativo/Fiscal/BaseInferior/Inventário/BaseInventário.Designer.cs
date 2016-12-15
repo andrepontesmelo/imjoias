@@ -35,7 +35,7 @@
             this.opçãoImprimir = new Apresentação.Formulários.Opção();
             this.listaInventário = new Apresentação.Administrativo.Fiscal.Lista.ListaInventário();
             this.quadro2 = new Apresentação.Formulários.Quadro();
-            this.opçãoSelecionarNegativos = new Apresentação.Formulários.Opção();
+            this.opçãoSelecionarProduzíveis = new Apresentação.Formulários.Opção();
             this.opçãoLimparSeleção = new Apresentação.Formulários.Opção();
             this.cmbFechamento = new Apresentação.Administrativo.Fiscal.Combo.ComboFechamento();
             this.esquerda.SuspendLayout();
@@ -146,7 +146,7 @@
             this.quadro2.bInfEsqArredondada = true;
             this.quadro2.bSupDirArredondada = true;
             this.quadro2.bSupEsqArredondada = true;
-            this.quadro2.Controls.Add(this.opçãoSelecionarNegativos);
+            this.quadro2.Controls.Add(this.opçãoSelecionarProduzíveis);
             this.quadro2.Controls.Add(this.opçãoLimparSeleção);
             this.quadro2.Cor = System.Drawing.Color.Black;
             this.quadro2.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
@@ -159,19 +159,19 @@
             this.quadro2.Tamanho = 30;
             this.quadro2.Título = "Seleção";
             // 
-            // opçãoSelecionarNegativos
+            // opçãoSelecionarProduzíveis
             // 
-            this.opçãoSelecionarNegativos.BackColor = System.Drawing.Color.Transparent;
-            this.opçãoSelecionarNegativos.Descrição = "Negativos";
-            this.opçãoSelecionarNegativos.Imagem = global::Apresentação.Resource.Filter2HS;
-            this.opçãoSelecionarNegativos.Location = new System.Drawing.Point(7, 50);
-            this.opçãoSelecionarNegativos.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.opçãoSelecionarNegativos.MaximumSize = new System.Drawing.Size(150, 100);
-            this.opçãoSelecionarNegativos.MinimumSize = new System.Drawing.Size(150, 16);
-            this.opçãoSelecionarNegativos.Name = "opçãoSelecionarNegativos";
-            this.opçãoSelecionarNegativos.Size = new System.Drawing.Size(150, 16);
-            this.opçãoSelecionarNegativos.TabIndex = 4;
-            this.opçãoSelecionarNegativos.Click += new System.EventHandler(this.opçãoSelecionarNegativos_Click);
+            this.opçãoSelecionarProduzíveis.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoSelecionarProduzíveis.Descrição = "Produzíveis";
+            this.opçãoSelecionarProduzíveis.Imagem = global::Apresentação.Resource.Filter2HS;
+            this.opçãoSelecionarProduzíveis.Location = new System.Drawing.Point(7, 50);
+            this.opçãoSelecionarProduzíveis.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoSelecionarProduzíveis.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoSelecionarProduzíveis.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoSelecionarProduzíveis.Name = "opçãoSelecionarProduzíveis";
+            this.opçãoSelecionarProduzíveis.Size = new System.Drawing.Size(150, 16);
+            this.opçãoSelecionarProduzíveis.TabIndex = 4;
+            this.opçãoSelecionarProduzíveis.Click += new System.EventHandler(this.opçãoSelecionarNegativos_Click);
             // 
             // opçãoLimparSeleção
             // 
@@ -226,7 +226,7 @@
         private Formulários.Opção opçãoImprimir;
         private Lista.ListaInventário listaInventário;
         private Formulários.Quadro quadro2;
-        private Formulários.Opção opçãoSelecionarNegativos;
+        private Formulários.Opção opçãoSelecionarProduzíveis;
         private Formulários.Opção opçãoLimparSeleção;
         private Combo.ComboFechamento cmbFechamento;
     }

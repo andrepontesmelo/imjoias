@@ -80,10 +80,14 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
                 novafabricação = FabricaçãoFiscal.Criar(itens, Fechamento);
             } catch (ExceçãoFiscal erro)
             {
+                AguardeDB.Fechar();
+
                 MensagemErro.MostrarMensagem(this, erro, "Erro ao criar fabricação");
                 return;
             } catch (Exception outroErro)
             {
+                AguardeDB.Fechar();
+
                 MessageBox.Show(outroErro.ToString());
                 return;
             } finally
@@ -141,7 +145,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
 
         private void opçãoSelecionarNegativos_Click(object sender, EventArgs e)
         {
-            listaInventário.SelecionarNegativos();
+            listaInventário.SelecionarProduzíveis();
         }
 
         private void cmbFechamento_SelectedIndexChanged(object sender, EventArgs e)
