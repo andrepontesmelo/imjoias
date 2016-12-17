@@ -26,19 +26,14 @@ namespace Entidades.Fiscal
         {
             fechamento.AtualizarMercadoriasSeAberto();
 
-            var sql = string.Format("  select c.* from(select @d1:= {0} p) parm, ( " +
-            " SELECT f.referencia, " +
-            " SUM(IFNULL(`i`.`quantidade`, 0)) AS `quantidade`, " +
-            " descricao, classificacaofiscal,tipounidade,f.valor, " +
-            " (SUM(IFNULL(`i`.`quantidade`, 0)) * f.valor) AS `valortotal` " +
-            " FROM " +
-            " mercadoriafechamento f " +
-            " LEFT JOIN `imjoias`.`inventario_interno_parcial` `i` ON((`i`.`referencia` = `f`.`referencia`)) " +
-            " LEFT JOIN mercadoria m on f.referencia = m.referencia " +
-            " where f.fechamento = {1} " +
-            " GROUP BY `m`.`referencia`) c having quantidade != 0 ",
-            DbTransformar(fechamento.Fim.AddDays(1)),
-            fechamento.Código);
+            var sql = string.Format(" select f.referencia, sum(i.quantidade) as quantidade, descricao, classificacaofiscal, tipounidade, " +
+                " f.valor, (SUM(i.quantidade) * f.valor) AS valortotal from mercadoriafechamento f " +
+                " left join extratoinventario i on i.referencia = f.referencia and f.fechamento = {0} " +
+                " left join mercadoria m on f.referencia = m.referencia " +
+                " where i.data < {1} " + 
+                " group by f.referencia having quantidade != 0 ",
+                fechamento.Código,
+                DbTransformar(fechamento.Fim.AddDays(1)));
 
             return Mapear<Inventário>(sql);
         }
