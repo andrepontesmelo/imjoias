@@ -22,6 +22,10 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             lista.SuspendLayout();
             lista.Items.Clear();
             lista.Items.AddRange(itens);
+
+            colIdPai.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
+            colIdFilho.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
+
             lista.ResumeLayout();
         }
 
@@ -46,6 +50,8 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             item.SubItems[colTipoDocumento.Index].Text = entidade.TipoDocumento?.Nome;
             item.SubItems[colTipoExtrato.Index].Text = entidade.TipoExtrato;
             item.SubItems[colValor.Index].Text = entidade.Valor.ToString("C");
+            item.SubItems[colIdPai.Index].Text = entidade.IdPai;
+            item.SubItems[colIdFilho.Index].Text = entidade.IdFilho;
 
             return item;
         }

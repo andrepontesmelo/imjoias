@@ -35,6 +35,8 @@
             this.colValor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colQuantidade = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colEstoque = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colIdPai = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colIdFilho = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lista
@@ -45,7 +47,9 @@
             this.colData,
             this.colValor,
             this.colQuantidade,
-            this.colEstoque});
+            this.colEstoque,
+            this.colIdPai,
+            this.colIdFilho});
             this.lista.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lista.FullRowSelect = true;
             this.lista.Location = new System.Drawing.Point(0, 0);
@@ -85,6 +89,15 @@
             this.colEstoque.Text = "Estoque";
             this.colEstoque.Width = 107;
             // 
+            // colIdPai
+            // 
+            this.colIdPai.Text = "Id Pai";
+            this.colIdPai.Width = 261;
+            // 
+            // colIdFilho
+            // 
+            this.colIdFilho.Text = "Id Filho";
+            // 
             // ListaExtrato
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -105,5 +118,7 @@
         private System.Windows.Forms.ColumnHeader colValor;
         private System.Windows.Forms.ColumnHeader colQuantidade;
         private System.Windows.Forms.ColumnHeader colEstoque;
+        private System.Windows.Forms.ColumnHeader colIdPai;
+        private System.Windows.Forms.ColumnHeader colIdFilho;
     }
 }

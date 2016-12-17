@@ -21,6 +21,8 @@ namespace Entidades.Fiscal
         private decimal quantidade;
         private decimal valor;
         private int cfop;
+        private string idpai;
+        private string idfilho;
 
         [DbAtributo(TipoAtributo.Ignorar)]
         private decimal estoque;
@@ -57,6 +59,9 @@ namespace Entidades.Fiscal
             get { return estoque; }
             set { estoque = value; }
         }
+
+        public string IdPai => idpai;
+        public string IdFilho => idfilho;
 
         public string EntradaSaída
         {
