@@ -63,12 +63,6 @@ namespace Entidades.Fiscal.Cupom.Tests
         }
 
         [TestMethod()]
-        public void DeveAdaptarCFOP()
-        {
-            Assert.IsNull(adaptador.Transformar().Itens[0].Cfop);
-        }
-
-        [TestMethod()]
         public void DeveAdaptarTipoUnidade()
         {
             Assert.AreEqual((int) TipoUnidadeSistema.Pca, adaptador.Transformar().Itens[0].TipoUnidade);

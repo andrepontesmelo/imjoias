@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System;
 using Entidades.Fiscal.Tipo;
+using Entidades.Configuração;
 
 namespace Entidades.Fiscal.Cupom
 {
     public class AdaptadorVarejo : ITransformavelDocumentoFiscal
     {
         private CupomFiscal cupom;
+
+        private static ConfiguraçãoGlobal<int?> configuraçãoCFOPVarejo = new ConfiguraçãoGlobal<int?>("cfop_varejo", 5101);
 
         public AdaptadorVarejo(CupomFiscal cupom)
         {
@@ -56,7 +59,7 @@ namespace Entidades.Fiscal.Cupom
         {
             return new SaídaItemFiscal(AdaptarReferência(detalhe),
                                 detalhe.Descricao.Trim(),
-                                null,
+                                configuraçãoCFOPVarejo.Valor,
                                 (int) TipoUnidadeInterpretação.Interpretar(detalhe.Unidade),
                                 detalhe.Quantidade,
                                 detalhe.ValorUnitario,
