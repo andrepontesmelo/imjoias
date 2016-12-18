@@ -341,10 +341,13 @@ namespace Acesso.Comum
 
         protected static string DbDataEntre(string nomeAtributo, DateTime dataInicial, DateTime dataFinal)
         {
+            DateTime novaDataFinal = new DateTime(dataFinal.Year, dataFinal.Month, dataFinal.Day);
+            novaDataFinal = novaDataFinal.AddDays(1);
+
             return string.Format("{0} >= {1} and {0} < {2}",
                 nomeAtributo,
                 DbTransformar(dataInicial),
-                DbTransformar(dataFinal));
+                DbTransformar(novaDataFinal));
         }
 
         private static CacheMapeamento cacheMapeamento = new CacheMapeamento();

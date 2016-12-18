@@ -127,7 +127,7 @@ namespace Entidades.Fiscal
                 " where e.referencia = {1} and {2} order by e.referencia, data",
                 fechamento.Código,
                 referência == null ? "e.referencia" : DbTransformar(referência),
-                DbDataEntre("data", fechamento.Início, fechamento.Fim.AddDays(1))));
+                DbDataEntre("data", fechamento.Início, fechamento.Fim)));
         }
 
         public static List<Extrato> CalcularEstoqueAcumulado(List<Extrato> lista, 

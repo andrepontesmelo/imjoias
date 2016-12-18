@@ -106,7 +106,7 @@ namespace Entidades.Fiscal.Fabricação
         public static List<FabricaçãoFiscal> Obter(DateTime inicio, DateTime fim)
         {
             return Mapear<FabricaçãoFiscal>(string.Format("select * from fabricacaofiscal where {0}",
-            DbDataEntre("data", inicio, fim.AddDays(1))));
+            DbDataEntre("data", inicio, fim)));
         }
 
         public void AdicionarFabricação(ItemFabricaçãoFiscal novoItem, Fechamento fechamento)
