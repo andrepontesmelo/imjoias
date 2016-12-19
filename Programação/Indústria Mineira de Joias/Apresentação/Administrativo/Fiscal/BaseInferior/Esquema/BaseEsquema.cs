@@ -35,18 +35,13 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
 
         private void listaIngredientes_AoSelecionar(object sender, System.EventArgs e)
         {
-            var seleção = listaIngredientes.Seleção;
+            var listaSeleção = listaIngredientes.Seleção;
+            var primeiroSelecionado = (listaSeleção.Count != 0) ? listaSeleção[0] : null;
 
-            if (seleção.Count == 0)
-            {
-                btnAlterar.Enabled = false;
-                return;
-            }
-
-            CarregarIngrediente(seleção[0]);
+            Carregar(primeiroSelecionado);
         }
 
-        private void CarregarIngrediente(MateriaPrima ingrediente)
+        private void Carregar(MateriaPrima ingrediente)
         {
             txtMercadoriaSelecionada.Referência = ingrediente?.Referência;
             txtQuantidadeSelecionada.Text = ingrediente?.Quantidade.ToString();
@@ -121,7 +116,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
             }
 
             listaIngredientes.Carregar(esquema);
-            CarregarIngrediente(null);
+            Carregar((MateriaPrima)null);
         }
 
         private void txtQuantidadeProduzida_Validating(object sender, System.ComponentModel.CancelEventArgs e)
