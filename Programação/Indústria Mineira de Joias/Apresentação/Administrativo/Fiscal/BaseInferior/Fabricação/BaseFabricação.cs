@@ -100,11 +100,16 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
 
             MercadoriaFechamento entidade = null;
             decimal valor = 0;
+            decimal peso = 0;
 
             if (mercadoria != null && hash.TryGetValue(mercadoria.ReferênciaNumérica, out entidade))
+            {
                 valor = entidade.Valor;
+                peso = entidade.Peso;
+            }
 
             txtValor.Text = valor.ToString();
+            txtPeso.Text = peso.ToString();
 
             cmbTipoUnidade.Seleção = mercadoria == null ? null : mercadoria.TipoUnidadeComercial;
         }
