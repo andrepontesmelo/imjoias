@@ -52,6 +52,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.quadro3 = new Apresentação.Formulários.Quadro();
             this.listaIngredientes = new Apresentação.Administrativo.Fiscal.Lista.ListaIngredienteEsquema();
+            this.chkProporcional = new System.Windows.Forms.CheckBox();
             this.quadro1.SuspendLayout();
             this.quadro2.SuspendLayout();
             this.quadro3.SuspendLayout();
@@ -197,6 +198,7 @@
             this.quadro2.bInfEsqArredondada = true;
             this.quadro2.bSupDirArredondada = true;
             this.quadro2.bSupEsqArredondada = true;
+            this.quadro2.Controls.Add(this.chkProporcional);
             this.quadro2.Controls.Add(this.txtMercadoriaSelecionada);
             this.quadro2.Controls.Add(this.btnAdicionar);
             this.quadro2.Controls.Add(this.btnAlterar);
@@ -368,6 +370,16 @@
             this.listaIngredientes.AoSelecionar += new System.EventHandler(this.listaIngredientes_AoSelecionar);
             this.listaIngredientes.AoExcluir += new System.EventHandler(this.listaIngredientes_AoExcluir);
             // 
+            // chkProporcional
+            // 
+            this.chkProporcional.AutoSize = true;
+            this.chkProporcional.Location = new System.Drawing.Point(11, 92);
+            this.chkProporcional.Name = "chkProporcional";
+            this.chkProporcional.Size = new System.Drawing.Size(196, 17);
+            this.chkProporcional.TabIndex = 21;
+            this.chkProporcional.Text = "Proporcional ao peso da mercadoria";
+            this.chkProporcional.UseVisualStyleBackColor = true;
+            // 
             // BaseEsquema
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -418,5 +430,6 @@
         private System.Windows.Forms.Label label10;
         private Mercadoria.TxtMercadoriaLivre txtMercadoriaProduzida;
         private Mercadoria.TxtMercadoriaLivre txtMercadoriaSelecionada;
+        private System.Windows.Forms.CheckBox chkProporcional;
     }
 }

@@ -52,7 +52,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
             txtQuantidadeSelecionada.Text = ingrediente?.Quantidade.ToString();
             txtDescriçãoSelecionado.Text = ingrediente?.Descrição;
             cmbTipoUnidadeSelecionada.Seleção = ingrediente?.TipoUnidadeComercial;
-
+            chkProporcional.Checked = ingrediente != null ? ingrediente.Proporcional : false;
             this.ingrediente = ingrediente;
             btnAlterar.Enabled = ingrediente != null;
         }
@@ -63,6 +63,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
 
             ingrediente.Referência = txtMercadoriaSelecionada.Referência;
             ingrediente.Quantidade = (decimal)txtQuantidadeSelecionada.Double;
+            ingrediente.Proporcional = chkProporcional.Checked;
             ingrediente.Atualizar();
             ingrediente = null;
 
@@ -108,7 +109,8 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
                 new MateriaPrima(esquema.Fechamento, 
                     esquema.Referência,
                     txtMercadoriaSelecionada.Referência,
-                    (decimal)txtQuantidadeSelecionada.Double).Cadastrar();
+                    (decimal) txtQuantidadeSelecionada.Double,
+                    chkProporcional.Checked).Cadastrar();
             } catch (Exception erro)
             {
                 MessageBox.Show(this,

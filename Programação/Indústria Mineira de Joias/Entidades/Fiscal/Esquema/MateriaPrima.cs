@@ -12,12 +12,13 @@ namespace Entidades.Fiscal.Esquema
         {
         }
 
-        public MateriaPrima(int fechamento, string esquema, string materiaprima, decimal quantidade)
+        public MateriaPrima(int fechamento, string esquema, string materiaprima, decimal quantidade, bool proporcional)
         {
             this.fechamento = fechamento;
             this.esquema = esquema;
             this.materiaprima = materiaprima;
             this.quantidade = quantidade;
+            this.proporcional = proporcional;
         }
 
         private int fechamento;
@@ -27,6 +28,7 @@ namespace Entidades.Fiscal.Esquema
         private string descricao;
         private int tipounidade;
         private int cfop;
+        private bool proporcional;
 
         private string referenciaAlterada;
         public int Fechamento => fechamento;
@@ -34,6 +36,11 @@ namespace Entidades.Fiscal.Esquema
         public string Descrição => descricao;
         public int CFOP => cfop;
         public TipoUnidade TipoUnidadeComercial => TipoUnidade.Obter(tipounidade);
+        public bool Proporcional
+        {
+            get { return proporcional; }
+            set { proporcional = value; }
+        }
 
         public decimal Quantidade
         {
@@ -58,7 +65,8 @@ namespace Entidades.Fiscal.Esquema
         {
             var sql = "UPDATE materiaprimaesquemafabricacaofiscal set " +
                 "materiaprima=" + DbTransformar(Referência) + ", " +
-                "quantidade=" + DbTransformar(Quantidade) +
+                "quantidade=" + DbTransformar(Quantidade) + ", " +
+                "proporcional=" + DbTransformar(Proporcional) +
                 " WHERE materiaprima=" + DbTransformar(materiaprima) +
                 " AND esquema=" + DbTransformar(Esquema) +
                 " AND fechamento=" + DbTransformar(Fechamento);
@@ -68,8 +76,10 @@ namespace Entidades.Fiscal.Esquema
 
         public void Cadastrar()
         {
-            ExecutarComando(string.Format("INSERT INTO materiaprimaesquemafabricacaofiscal (materiaprima, quantidade, esquema, fechamento) values ({0},{1},{2},{3})",
-                DbTransformar(Referência), DbTransformar(Quantidade), DbTransformar(Esquema), DbTransformar(Fechamento)));
+            ExecutarComando(string.Format("INSERT INTO materiaprimaesquemafabricacaofiscal (materiaprima, quantidade, " + 
+                " esquema, fechamento, proporcional) values ({0},{1},{2},{3}, {4})",
+                DbTransformar(Referência), DbTransformar(Quantidade), DbTransformar(Esquema), DbTransformar(Fechamento), 
+                DbTransformar(Proporcional)));
         }
 
         public static void Excluir(List<MateriaPrima> materiasPrimas)

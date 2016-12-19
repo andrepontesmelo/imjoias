@@ -30,16 +30,18 @@ namespace Apresentação.Administrativo.Fiscal.Lista
         /// </summary>
         private void InitializeComponent()
         {
-            this.lista = new ListViewUsabilidade();
+            this.lista = new Apresentação.Formulários.ListViewUsabilidade();
             this.colQuantidade = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colTipoUnidade = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colReferência = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colDescrição = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colProporcional = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lista
             // 
             this.lista.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colProporcional,
             this.colQuantidade,
             this.colTipoUnidade,
             this.colReferência,
@@ -73,6 +75,11 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             this.colDescrição.Text = "Descrição";
             this.colDescrição.Width = 331;
             // 
+            // colProporcional
+            // 
+            this.colProporcional.Text = "Proporcional";
+            this.colProporcional.Width = 93;
+            // 
             // ListaIngredienteEsquema
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -91,5 +98,6 @@ namespace Apresentação.Administrativo.Fiscal.Lista
         private System.Windows.Forms.ColumnHeader colTipoUnidade;
         private System.Windows.Forms.ColumnHeader colReferência;
         private System.Windows.Forms.ColumnHeader colDescrição;
+        private System.Windows.Forms.ColumnHeader colProporcional;
     }
 }
