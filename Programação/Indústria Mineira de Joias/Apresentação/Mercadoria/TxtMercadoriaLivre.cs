@@ -7,7 +7,6 @@ namespace Apresentação.Mercadoria
     public partial class TxtMercadoriaLivre : UserControl
     {
         public event EventHandler ReferênciaAlterada;
-        private string últimaReferência = "";
 
         public TxtMercadoriaLivre()
         {
@@ -39,21 +38,13 @@ namespace Apresentação.Mercadoria
 
             Entidades.Mercadoria.Mercadoria.DesmascararReferência(referência, out referênciaNumérica, out dígito);
             txtReferência.Text = referênciaNumérica + dígito;
-            InvocarReferênciaAlteradaSeNecessário();
+            ReferênciaAlterada?.Invoke(this, null);
         }
 
-        private void InvocarReferênciaAlteradaSeNecessário()
-        {
-            if (Referência != últimaReferência)
-            {
-                últimaReferência = Referência;
-                ReferênciaAlterada?.Invoke(this, null);
-            }
-        }
 
         private void txtReferência_Validated(object sender, EventArgs e)
         {
-            InvocarReferênciaAlteradaSeNecessário();
+            ReferênciaAlterada?.Invoke(this, null);
         }
     }
 }

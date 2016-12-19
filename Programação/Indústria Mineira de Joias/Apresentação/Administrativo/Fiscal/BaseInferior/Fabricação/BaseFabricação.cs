@@ -2,7 +2,6 @@
 using Apresentação.Administrativo.Fiscal.Janela;
 using Apresentação.Formulários;
 using Apresentação.Impressão.Relatórios.Fiscal.Fabricação;
-using Entidades.Configuração;
 using Entidades.Fiscal;
 using Entidades.Fiscal.Exceções;
 using Entidades.Fiscal.Fabricação;
