@@ -29,6 +29,7 @@ namespace Entidades.Fiscal.Fabricação
 
         public SaídaFabricaçãoFiscal(ItemFabricaçãoFiscal item, decimal peso)
         {
+            this.codigo = item.Código;
             this.referencia = item.Referência;
             this.quantidade = item.Quantidade;
             this.valor = item.Valor;
