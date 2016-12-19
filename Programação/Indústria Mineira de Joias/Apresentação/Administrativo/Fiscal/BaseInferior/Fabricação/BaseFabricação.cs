@@ -13,6 +13,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
 {
     public partial class BaseFabricação : Formulários.BaseInferior
     {
+        private const string MENSAGEM_TELA_SOMENTE_LEITURA = "Tela em modo somente leitura uma vez que não é possível encontrar fechamento para a data desta fabricação. Altere a data da fabricação ou altere a data dos fechamentos.";
         private FabricaçãoFiscal fabricação;
         private Fechamento fechamento;
         private ItemFabricaçãoFiscal itemAlteração;
@@ -40,7 +41,16 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
                 títuloBaseInferior.Descrição = string.Format("Serão usados os esquemas do fechamento {0}, vigentes de {1} até {2}.",
                     fechamento.Código, fechamento.Início.ToShortDateString(), fechamento.Fim.ToShortDateString());
             else
-                títuloBaseInferior.Descrição = "Tela em modo somente leitura uma vez que não é possível encontrar fechamento para a data desta fabricação. Altere a data da fabricação ou altere a data dos fechamentos.";
+            {
+                títuloBaseInferior.Descrição = MENSAGEM_TELA_SOMENTE_LEITURA;
+
+                MessageBox.Show(this,
+                    MENSAGEM_TELA_SOMENTE_LEITURA,
+                    "Modo somente leitura",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+            }
+
 
             AtualizarVisão(false, null, null);
         }
