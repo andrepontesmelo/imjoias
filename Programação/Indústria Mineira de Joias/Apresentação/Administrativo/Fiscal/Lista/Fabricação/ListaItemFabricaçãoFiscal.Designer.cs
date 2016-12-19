@@ -125,16 +125,16 @@ namespace Apresentação.Administrativo.Fiscal.Lista
 
         #endregion
 
-        private ListViewUsabilidade lista;
-        private System.Windows.Forms.ColumnHeader colQuantidade;
-        private System.Windows.Forms.ColumnHeader colTipo;
-        private System.Windows.Forms.ColumnHeader colReferência;
-        private System.Windows.Forms.ColumnHeader colDescrição;
-        private System.Windows.Forms.ColumnHeader colCódigo;
-        private System.Windows.Forms.ColumnHeader colValor;
-        private System.Windows.Forms.ColumnHeader colSaldoAnterior;
-        private System.Windows.Forms.ColumnHeader colSaldoPosterior;
-        private System.Windows.Forms.ColumnHeader colCFOP;
+        protected ListViewUsabilidade lista;
+        protected System.Windows.Forms.ColumnHeader colQuantidade;
+        protected System.Windows.Forms.ColumnHeader colTipo;
+        protected System.Windows.Forms.ColumnHeader colReferência;
+        protected System.Windows.Forms.ColumnHeader colDescrição;
+        protected System.Windows.Forms.ColumnHeader colCódigo;
+        protected System.Windows.Forms.ColumnHeader colValor;
+        protected System.Windows.Forms.ColumnHeader colSaldoAnterior;
+        protected System.Windows.Forms.ColumnHeader colSaldoPosterior;
+        protected System.Windows.Forms.ColumnHeader colCFOP;
         protected System.Windows.Forms.ColumnHeader colPeso;
     }
 }
