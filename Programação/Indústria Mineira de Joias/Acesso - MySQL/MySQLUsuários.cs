@@ -8,7 +8,7 @@ namespace Acesso.MySQL
 {
 	/// <summary>
 	/// Gerenciador de usuários
-	/// </summary>
+	/// </summary
 	/// <remarks>Singleton</remarks>
 	public class MySQLUsuários : Usuários
 	{
@@ -18,6 +18,7 @@ namespace Acesso.MySQL
 
 #if DEBUG
         private const string hostPadrão = "192.168.144.1";
+        //private const string hostPadrão = "192.168.1.110";
         private const int portPadrão = 3306;
 #else
         private const string hostPadrão = "192.168.1.25";

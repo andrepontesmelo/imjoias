@@ -60,10 +60,11 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
             try
             {
                 AguardeDB.Mostrar();
-                fabricação.AdicionarFabricação(new ItemFabricaçãoFiscal(txtMercadoria.Mercadoria.ReferênciaNumérica, 
+                fabricação.AdicionarFabricação(new SaídaFabricaçãoFiscal(txtMercadoria.Mercadoria.ReferênciaNumérica, 
                     (decimal) txtQuantidade.Double, 
                     (decimal) txtValor.Double,
-                    int.Parse(txtCFOP.Text)), fechamento);
+                    int.Parse(txtCFOP.Text),
+                    (decimal) txtPeso.Double), fechamento);
                 LimparCampos();
             }
             catch (ExceçãoFiscal erro)
@@ -83,6 +84,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
             txtMercadoria.Referência = "";
             txtCFOP.Text = FabricaçãoFiscal.CfopPadrãoOperaçõesInternas.Valor.ToString();
             txtDescrição.Text = "";
+            txtPeso.Text = "";
             txtQuantidade.Text = "";
             txtValor.Text = "";
             cmbTipoUnidade.Seleção = null;
@@ -160,6 +162,18 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
                 return;
             }
 
+            SaídaFabricaçãoFiscal saída = item as SaídaFabricaçãoFiscal;
+
+            if (saída == null)
+            {
+                txtPeso.Enabled = false;
+                txtPeso.Text = "";
+            } else
+            {
+                txtPeso.Enabled = true;
+                txtPeso.Text = saída.Peso.ToString();
+            }
+
             txtMercadoria.Referência = item.Referência;
             txtDescrição.Text = item.Mercadoria?.Descrição;
             txtCFOP.Text = item.CFOP.ToString();
@@ -211,7 +225,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
             itemAlteração.Valor = (decimal) txtValor.Double;
 
             if (tipoAlteração == TipoAlteração.TO)
-                SaídaFabricaçãoFiscal.Alterar(itemAlteração);
+                SaídaFabricaçãoFiscal.Alterar(new SaídaFabricaçãoFiscal(itemAlteração, (decimal)txtPeso.Double));
             else if (tipoAlteração == TipoAlteração.OT)
                 EntradaFabricaçãoFiscal.Alterar(itemAlteração);
             else throw new NotImplementedException();

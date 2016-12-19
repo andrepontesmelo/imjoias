@@ -77,9 +77,9 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             return item;
         }
 
-        internal List<ItemFabricaçãoFiscal> ObterItensChecados(int fechamento)
+        internal List<SaídaFabricaçãoFiscal> ObterItensChecados(int fechamento)
         {
-            var listaEntidades = new List<ItemFabricaçãoFiscal>();
+            var listaEntidades = new List<SaídaFabricaçãoFiscal>();
 
             foreach (ListViewItem item in lista.CheckedItems)
             {

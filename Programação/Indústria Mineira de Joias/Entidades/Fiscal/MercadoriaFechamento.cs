@@ -14,10 +14,12 @@ namespace Entidades.Fiscal
         private string descricao;
 
         private decimal valor;
+        private decimal peso;
 
         public string Referência => referência;
         public decimal Valor => valor;
         public string Descrição => descricao;
+        public decimal Peso => peso;
 
         private static Dictionary<int, Dictionary<string, MercadoriaFechamento>> hashFechamentos = new Dictionary<int, Dictionary<string, MercadoriaFechamento>>();
 
@@ -37,7 +39,7 @@ namespace Entidades.Fiscal
         private static Dictionary<string, MercadoriaFechamento> CarregarHash(int fechamento)
         {
             Dictionary<string, MercadoriaFechamento> hash = new Dictionary<string, MercadoriaFechamento>();
-            var lista = Mapear<MercadoriaFechamento>("select referencia, valor, descricao from mercadoriafechamento where fechamento=" + fechamento.ToString());
+            var lista = Mapear<MercadoriaFechamento>("select referencia, valor, descricao, peso from mercadoriafechamento where fechamento=" + fechamento.ToString());
 
             foreach (MercadoriaFechamento m in lista)
                 hash[m.referência] = m;

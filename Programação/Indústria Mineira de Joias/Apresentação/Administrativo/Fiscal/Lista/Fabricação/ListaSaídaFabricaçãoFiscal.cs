@@ -1,5 +1,6 @@
 ﻿using Entidades.Fiscal.Fabricação;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Apresentação.Administrativo.Fiscal.Lista.Fabricação
 {
@@ -12,7 +13,16 @@ namespace Apresentação.Administrativo.Fiscal.Lista.Fabricação
 
         protected override List<ItemFabricaçãoFiscal> ObterItensEntidade(FabricaçãoFiscal fabricação)
         {
-            return SaídaFabricaçãoFiscal.Obter(fabricação.Código);
+            return new List<ItemFabricaçãoFiscal>(SaídaFabricaçãoFiscal.Obter(fabricação.Código));
+        }
+
+        protected override ListViewItem CriarItem(ItemFabricaçãoFiscal entidade)
+        {
+            var item = base.CriarItem(entidade);
+
+            item.SubItems[colPeso.Index].Text = ((SaídaFabricaçãoFiscal)entidade).Peso.ToString();
+
+            return item;
         }
     }
 }

@@ -67,7 +67,7 @@ namespace Entidades.Fiscal.Fabricação
             return fabricação;
         }
 
-        public static FabricaçãoFiscal Criar(List<ItemFabricaçãoFiscal> itens, Fechamento fechamento)
+        public static FabricaçãoFiscal Criar(List<SaídaFabricaçãoFiscal> itens, Fechamento fechamento)
         {
             LevantarErrosCriação(itens, fechamento);
 
@@ -78,7 +78,7 @@ namespace Entidades.Fiscal.Fabricação
             {
                 using (var transação = conexão.BeginTransaction())
                 {
-                    foreach (ItemFabricaçãoFiscal item in itens)
+                    foreach (SaídaFabricaçãoFiscal item in itens)
                         fabricação.AdicionarFabricação(conexão, transação, item,
                             ObterEsquemaLevantandoErroCasoNãoExista(item, fechamento));
 
@@ -89,7 +89,7 @@ namespace Entidades.Fiscal.Fabricação
             return fabricação;
         }
 
-        private static void LevantarErrosCriação(List<ItemFabricaçãoFiscal> itens, Fechamento fechamento)
+        private static void LevantarErrosCriação(List<SaídaFabricaçãoFiscal> itens, Fechamento fechamento)
         {
             foreach (ItemFabricaçãoFiscal item in itens)
                 ObterEsquemaLevantandoErroCasoNãoExista(item, fechamento);
@@ -98,7 +98,7 @@ namespace Entidades.Fiscal.Fabricação
                 throw new FabricaçãoVazia();
         }
 
-        private static bool ExisteItemNãoVazio(List<ItemFabricaçãoFiscal> itens)
+        private static bool ExisteItemNãoVazio(List<SaídaFabricaçãoFiscal> itens)
         {
             return (from i in itens where i.Quantidade != 0 select i).FirstOrDefault() != null;
         }
@@ -109,7 +109,7 @@ namespace Entidades.Fiscal.Fabricação
             DbDataEntre("data", inicio, fim)));
         }
 
-        public void AdicionarFabricação(ItemFabricaçãoFiscal novoItem, Fechamento fechamento)
+        public void AdicionarFabricação(SaídaFabricaçãoFiscal novoItem, Fechamento fechamento)
         {
             var esquema = ObterEsquemaLevantandoErroCasoNãoExista(novoItem, fechamento);
 
@@ -125,7 +125,7 @@ namespace Entidades.Fiscal.Fabricação
             }
         }
 
-        private void AdicionarFabricação(System.Data.IDbConnection conexão, System.Data.IDbTransaction transação, ItemFabricaçãoFiscal novoItem, EsquemaFabricação esquema)
+        private void AdicionarFabricação(System.Data.IDbConnection conexão, System.Data.IDbTransaction transação, SaídaFabricaçãoFiscal novoItem, EsquemaFabricação esquema)
         {
             if (novoItem.Quantidade == 0)
                 return;
@@ -161,11 +161,11 @@ namespace Entidades.Fiscal.Fabricação
             }
         }
 
-        private void AdicionarSaída(System.Data.IDbConnection conexão, System.Data.IDbTransaction transação, ItemFabricaçãoFiscal novoItem, decimal qtdReceitas, int fechamento)
+        private void AdicionarSaída(System.Data.IDbConnection conexão, System.Data.IDbTransaction transação, SaídaFabricaçãoFiscal novoItem, decimal qtdReceitas, int fechamento)
         {
             using (var cmd = conexão.CreateCommand())
             {
-                cmd.CommandText = SaídaFabricaçãoFiscal.ObterSqlInserçãoSaída(this, qtdReceitas, novoItem.Referência, novoItem.Quantidade, novoItem.Valor, cfopPadrãoOperaçõesInternas.Valor);
+                cmd.CommandText = SaídaFabricaçãoFiscal.ObterSqlInserçãoSaída(this, qtdReceitas, novoItem.Referência, novoItem.Quantidade, novoItem.Valor, cfopPadrãoOperaçõesInternas.Valor, novoItem.Peso);
                 cmd.Transaction = transação;
                 cmd.ExecuteNonQuery();
             }

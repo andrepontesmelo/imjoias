@@ -33,13 +33,14 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             this.lista = new Apresentação.Formulários.ListViewUsabilidade();
             this.colCódigo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colReferência = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colCFOP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colSaldoAnterior = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colQuantidade = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colSaldoPosterior = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colTipo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colValor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colDescrição = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colCFOP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colPeso = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lista
@@ -50,6 +51,7 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             this.colCFOP,
             this.colSaldoAnterior,
             this.colQuantidade,
+            this.colPeso,
             this.colSaldoPosterior,
             this.colTipo,
             this.colValor,
@@ -71,6 +73,10 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             // 
             this.colReferência.Text = "Referência";
             this.colReferência.Width = 128;
+            // 
+            // colCFOP
+            // 
+            this.colCFOP.Text = "CFOP";
             // 
             // colSaldoAnterior
             // 
@@ -102,9 +108,9 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             this.colDescrição.Text = "Descrição";
             this.colDescrição.Width = 569;
             // 
-            // colCFOP
+            // colPeso
             // 
-            this.colCFOP.Text = "CFOP";
+            this.colPeso.Text = "Peso";
             // 
             // ListaItemFabricaçãoFiscal
             // 
@@ -129,5 +135,6 @@ namespace Apresentação.Administrativo.Fiscal.Lista
         private System.Windows.Forms.ColumnHeader colSaldoAnterior;
         private System.Windows.Forms.ColumnHeader colSaldoPosterior;
         private System.Windows.Forms.ColumnHeader colCFOP;
+        protected System.Windows.Forms.ColumnHeader colPeso;
     }
 }

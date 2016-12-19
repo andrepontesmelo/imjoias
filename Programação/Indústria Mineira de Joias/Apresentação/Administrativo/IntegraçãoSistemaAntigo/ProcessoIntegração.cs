@@ -1,4 +1,5 @@
 using Apresentação.Formulários;
+using Entidades.Configuração;
 using Entidades.Financeiro;
 using Entidades.Mercadoria;
 using Entidades.Moedas;
@@ -43,9 +44,6 @@ namespace Apresentação.IntegraçãoSistemaAntigo
             AguardeDB.Mostrar();
             new EstoqueLegado(new Dbf(diretório).ObterDataSetMercadoria()).Transpor();
             AguardeDB.Fechar();
-
-            MessageBox.Show("Fim. Estoque fiscal anterior foi importado !");
-            Environment.Exit(0);
         }
 
         public void TransporPreçosMatériasPrimas()
@@ -60,9 +58,6 @@ namespace Apresentação.IntegraçãoSistemaAntigo
             DataSet dsVelho = TransporMercadoriasMatériasPrimas(diretório);
             MatériaPrima.Importar(dsVelho.Tables["cadmer"]);
             AguardeDB.Fechar();
-
-            MessageBox.Show("Fim. Preços de matérias primas importado !");
-            Environment.Exit(0);
         }
 
         private DataSet TransporMercadoriasMatériasPrimas(string diretório)
@@ -104,15 +99,19 @@ namespace Apresentação.IntegraçãoSistemaAntigo
             Environment.Exit(0);
         }
 
-        private string ObterPastaSelecionada()
+        public string ObterPastaSelecionada()
         {
+            ConfiguraçãoUsuário<string> pastaImportaçãoFiscal = new ConfiguraçãoUsuário<string>("pasta_importação_fiscal", "");
+
             FolderBrowserDialog pasta = new FolderBrowserDialog();
+            pasta.SelectedPath = pastaImportaçãoFiscal.Valor;
             pasta.ShowNewFolderButton = false;
             pasta.Description = "Selecione a pasta com DBF's.";
 
             if (pasta.ShowDialog() != DialogResult.OK)
                 return null;
 
+            pastaImportaçãoFiscal.Valor = pasta.SelectedPath;
             return pasta.SelectedPath;
         }
 

@@ -210,7 +210,7 @@ namespace Entidades.Fiscal
                     using (var cmd = conexão.CreateCommand())
                     {
                         cmd.Transaction = transação;
-                        cmd.CommandText = string.Format("insert into mercadoriafechamento(referencia, descricao, valor, fechamento) " +
+                        cmd.CommandText = string.Format("insert into mercadoriafechamento(referencia, descricao, valor, peso, fechamento) " +
                         " select m.*, {0} as fechamento from mercadoria_fiscal m", DbTransformar(Código));
                         cmd.ExecuteNonQuery();
                     }

@@ -52,6 +52,8 @@
             this.listaSaídas = new Apresentação.Administrativo.Fiscal.Lista.Fabricação.ListaSaídaFabricaçãoFiscal();
             this.listaEntradas = new Apresentação.Administrativo.Fiscal.Lista.Fabricação.ListaEntradaFabricaçãoFiscal();
             this.label2 = new System.Windows.Forms.Label();
+            this.txtPeso = new AMS.TextBox.NumericTextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.quadroItem.SuspendLayout();
@@ -141,7 +143,7 @@
             this.cmbTipoUnidade.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTipoUnidade.Enabled = false;
             this.cmbTipoUnidade.FormattingEnabled = true;
-            this.cmbTipoUnidade.Location = new System.Drawing.Point(352, 102);
+            this.cmbTipoUnidade.Location = new System.Drawing.Point(416, 102);
             this.cmbTipoUnidade.Name = "cmbTipoUnidade";
             this.cmbTipoUnidade.Seleção = null;
             this.cmbTipoUnidade.Size = new System.Drawing.Size(100, 21);
@@ -173,7 +175,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(349, 86);
+            this.label10.Location = new System.Drawing.Point(413, 86);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(86, 13);
             this.label10.TabIndex = 10;
@@ -225,6 +227,8 @@
             this.quadroItem.bInfEsqArredondada = true;
             this.quadroItem.bSupDirArredondada = true;
             this.quadroItem.bSupEsqArredondada = true;
+            this.quadroItem.Controls.Add(this.txtPeso);
+            this.quadroItem.Controls.Add(this.label3);
             this.quadroItem.Controls.Add(this.txtValor);
             this.quadroItem.Controls.Add(this.lblValor);
             this.quadroItem.Controls.Add(this.btnExcluir);
@@ -256,7 +260,7 @@
             this.txtValor.AllowNegative = true;
             this.txtValor.DigitsInGroup = 0;
             this.txtValor.Flags = 0;
-            this.txtValor.Location = new System.Drawing.Point(275, 102);
+            this.txtValor.Location = new System.Drawing.Point(346, 102);
             this.txtValor.MaxDecimalPlaces = 4;
             this.txtValor.MaxWholeDigits = 9;
             this.txtValor.Name = "txtValor";
@@ -269,7 +273,7 @@
             // lblValor
             // 
             this.lblValor.AutoSize = true;
-            this.lblValor.Location = new System.Drawing.Point(272, 86);
+            this.lblValor.Location = new System.Drawing.Point(343, 86);
             this.lblValor.Name = "lblValor";
             this.lblValor.Size = new System.Drawing.Size(31, 13);
             this.lblValor.TabIndex = 15;
@@ -359,6 +363,30 @@
             this.label2.TabIndex = 10;
             this.label2.Text = "OT: Transferência do inventário para a fabricação";
             // 
+            // txtPeso
+            // 
+            this.txtPeso.AllowNegative = true;
+            this.txtPeso.DigitsInGroup = 0;
+            this.txtPeso.Flags = 0;
+            this.txtPeso.Location = new System.Drawing.Point(275, 103);
+            this.txtPeso.MaxDecimalPlaces = 4;
+            this.txtPeso.MaxWholeDigits = 9;
+            this.txtPeso.Name = "txtPeso";
+            this.txtPeso.Prefix = "";
+            this.txtPeso.RangeMax = 1.7976931348623157E+308D;
+            this.txtPeso.RangeMin = -1.7976931348623157E+308D;
+            this.txtPeso.Size = new System.Drawing.Size(59, 20);
+            this.txtPeso.TabIndex = 16;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(272, 86);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(31, 13);
+            this.label3.TabIndex = 17;
+            this.label3.Text = "Peso";
+            // 
             // BaseFabricação
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -413,5 +441,7 @@
         private System.Windows.Forms.Button btnExcluir;
         private AMS.TextBox.NumericTextBox txtValor;
         private System.Windows.Forms.Label lblValor;
+        private AMS.TextBox.NumericTextBox txtPeso;
+        private System.Windows.Forms.Label label3;
     }
 }

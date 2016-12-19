@@ -70,7 +70,7 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             lista.ResumeLayout();
         }
 
-        private ListViewItem CriarItem(ItemFabricaçãoFiscal entidade)
+        protected virtual ListViewItem CriarItem(ItemFabricaçãoFiscal entidade)
         {
             var item = new ListViewItem(new string[lista.Columns.Count]);
             item.SubItems[colCódigo.Index].Text = entidade.Código.ToString();

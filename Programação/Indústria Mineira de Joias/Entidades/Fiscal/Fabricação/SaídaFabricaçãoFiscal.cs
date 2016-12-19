@@ -8,34 +8,59 @@ namespace Entidades.Fiscal.Fabricação
     public class SaídaFabricaçãoFiscal : ItemFabricaçãoFiscal
     {
         internal static readonly string RELAÇÃO = "saidafabricacaofiscal";
+        private decimal peso;
 
-        internal static string ObterSqlInserçãoSaída(FabricaçãoFiscal fabricação, decimal qtdReceitas, string referência, decimal quantidade, decimal valor, int cfop)
+        public decimal Peso
         {
-            return string.Format("INSERT INTO saidafabricacaofiscal (fabricacaofiscal, referencia, quantidade, valor, cfop) values ({0}, {1}, {2}, {3}, {4})",
+            get { return peso; }
+            set { peso = value; }
+        }
+
+        internal static string ObterSqlInserçãoSaída(FabricaçãoFiscal fabricação, decimal qtdReceitas, string referência, decimal quantidade, decimal valor, int cfop, decimal peso)
+        {
+            return string.Format("INSERT INTO saidafabricacaofiscal (fabricacaofiscal, referencia, quantidade, valor, cfop, peso) values ({0}, {1}, {2}, {3}, {4}, {5})",
                 DbTransformar(fabricação.Código),
                 DbTransformar(referência),
                 DbTransformar(quantidade),
                 DbTransformar(valor),
-                DbTransformar(cfop));
+                DbTransformar(cfop),
+                DbTransformar(peso));
         }
 
-        public static List<ItemFabricaçãoFiscal> Obter(int fabricação)
+        public SaídaFabricaçãoFiscal(ItemFabricaçãoFiscal item, decimal peso)
         {
-            return Mapear<ItemFabricaçãoFiscal>(string.Format("select codigo, referencia, quantidade, valor, cfop from " +
-                " saidafabricacaofiscal where fabricacaofiscal={0}", DbTransformar(fabricação)));
+            this.referencia = item.Referência;
+            this.quantidade = item.Quantidade;
+            this.valor = item.Valor;
+            this.cfop = item.CFOP;
+            this.peso = peso;
+        }
+
+        public SaídaFabricaçãoFiscal(string referência, decimal quantidade, decimal valor, int cfop, decimal peso) :
+            base(referência, quantidade, valor, cfop)
+        {
+            this.peso = peso;
         }
 
         public SaídaFabricaçãoFiscal()
         {
         }
 
-        public static void Alterar(ItemFabricaçãoFiscal entidade)
+        public static List<SaídaFabricaçãoFiscal> Obter(int fabricação)
         {
-            var sql = string.Format("UPDATE saidafabricacaofiscal set referencia={0}, quantidade={1}, valor={2}, cfop={3} where codigo={4}",
+            return Mapear<SaídaFabricaçãoFiscal>(string.Format("select codigo, referencia, quantidade, valor, cfop, peso from " +
+                " saidafabricacaofiscal where fabricacaofiscal={0}", DbTransformar(fabricação)));
+        }
+
+        
+        public static void Alterar(SaídaFabricaçãoFiscal entidade)
+        {
+            var sql = string.Format("UPDATE saidafabricacaofiscal set referencia={0}, quantidade={1}, valor={2}, cfop={3}, peso={4} where codigo={5}",
             DbTransformar(entidade.Referência),
             DbTransformar(entidade.Quantidade),
             DbTransformar(entidade.Valor),
             DbTransformar(entidade.CFOP),
+            DbTransformar(entidade.Peso),
             DbTransformar(entidade.Código));
 
             ExecutarComando(sql);

@@ -67,7 +67,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
 
         private void opçãoProduzir_Click(object sender, EventArgs e)
         {
-            List<ItemFabricaçãoFiscal> itens = listaInventário.ObterItensChecados(Fechamento.Código);
+            List<SaídaFabricaçãoFiscal> itens = listaInventário.ObterItensChecados(Fechamento.Código);
             FabricaçãoFiscal novafabricação;
 
             if (itens.Count == 0)

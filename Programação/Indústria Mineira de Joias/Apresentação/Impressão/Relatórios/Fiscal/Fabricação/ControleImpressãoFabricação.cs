@@ -19,7 +19,7 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Fabricação
             CriarAdicionarDocumento(dataset, fabricação);
 
             hashFechamento = MercadoriaFechamento.ObterHash(Fechamento.Obter(fabricação.Data).Código);
-            CriarItens(SaídaFabricaçãoFiscal.Obter(fabricação.Código), true, dataset.Tables["Item"]);
+            CriarItens(new List<ItemFabricaçãoFiscal>(SaídaFabricaçãoFiscal.Obter(fabricação.Código)), true, dataset.Tables["Item"]);
             CriarItens(EntradaFabricaçãoFiscal.Obter(fabricação.Código), false, dataset.Tables["Item"]);
 
             return relatório;

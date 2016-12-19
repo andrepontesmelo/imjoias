@@ -38,10 +38,11 @@ namespace Entidades.Fiscal
             return Mapear<Inventário>(sql);
         }
 
-        public ItemFabricaçãoFiscal ObterItemfabricação(int fechamento)
+        public SaídaFabricaçãoFiscal ObterItemfabricação(int fechamento)
         {
-            var hashReferênciaValor = MercadoriaFechamento.ObterHash(fechamento);
-            return new ItemFabricaçãoFiscal(Referência, Math.Abs(Quantidade), hashReferênciaValor[Referência].Valor, 0);
+            var hashReferênciaMercadoriaFechamento = MercadoriaFechamento.ObterHash(fechamento);
+            var mercadoriaFechamento = hashReferênciaMercadoriaFechamento[Referência];
+            return new SaídaFabricaçãoFiscal(Referência, Math.Abs(Quantidade), mercadoriaFechamento.Valor, 0, mercadoriaFechamento.Peso);
         }
     }
 }

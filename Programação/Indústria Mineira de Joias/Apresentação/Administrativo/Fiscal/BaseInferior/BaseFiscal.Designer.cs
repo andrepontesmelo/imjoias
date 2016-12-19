@@ -291,7 +291,7 @@
             this.quadro5.Tamanho = 30;
             this.quadro5.Título = "Sistema Legado";
             // 
-            // opçãoImportarPreçosMatériasPrimas
+            // opçãoImportarMatériasPrimas
             // 
             this.opçãoImportarMatériasPrimas.BackColor = System.Drawing.Color.Transparent;
             this.opçãoImportarMatériasPrimas.Descrição = "Importar Matérias Primas";
@@ -300,7 +300,7 @@
             this.opçãoImportarMatériasPrimas.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoImportarMatériasPrimas.MaximumSize = new System.Drawing.Size(150, 100);
             this.opçãoImportarMatériasPrimas.MinimumSize = new System.Drawing.Size(150, 16);
-            this.opçãoImportarMatériasPrimas.Name = "opçãoImportarPreçosMatériasPrimas";
+            this.opçãoImportarMatériasPrimas.Name = "opçãoImportarMatériasPrimas";
             this.opçãoImportarMatériasPrimas.Size = new System.Drawing.Size(150, 31);
             this.opçãoImportarMatériasPrimas.TabIndex = 6;
             this.opçãoImportarMatériasPrimas.Click += new System.EventHandler(this.opçãoImportarPreçosMatériasPrimas_Click);
