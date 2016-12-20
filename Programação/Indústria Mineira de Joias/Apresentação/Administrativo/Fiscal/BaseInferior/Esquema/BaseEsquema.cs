@@ -5,7 +5,7 @@ using Entidades.Mercadoria;
 
 namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
 {
-    public partial class BaseEsquema : Apresentação.Formulários.BaseInferior
+    public partial class BaseEsquema : Formulários.BaseInferior
     {
         private EsquemaFabricação esquema;
         private MateriaPrima ingrediente;

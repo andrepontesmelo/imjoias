@@ -134,9 +134,14 @@ namespace Entidades.Fiscal.Fabricação
             decimal qtdReceitas = novoItem.Quantidade / esquema.Quantidade;
 
             AdicionarSaída(conexão, transação, novoItem, qtdReceitas, esquema.Fechamento);
-            
+
             foreach (var ingrediente in ingredientes)
+            {
+                if (ingrediente.Proporcional)
+                    qtdReceitas *= novoItem.Peso;
+
                 AdicionarEntrada(conexão, transação, qtdReceitas, ingrediente, esquema.Fechamento);
+            }
         }
 
         private static EsquemaFabricação ObterEsquemaLevantandoErroCasoNãoExista(ItemFabricaçãoFiscal novoItem, Fechamento fechamento)
