@@ -50,5 +50,11 @@ namespace Entidades.Fiscal.Fabricação
 
             ExecutarComando(sql);
         }
+
+        public static void Excluir(List<ItemFabricaçãoFiscal> lista)
+        {
+            foreach (var entidade in lista)
+                Excluir(entidade);
+        }
     }
 }

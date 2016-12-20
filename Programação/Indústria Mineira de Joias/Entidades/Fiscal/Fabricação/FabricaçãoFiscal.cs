@@ -87,18 +87,18 @@ namespace Entidades.Fiscal.Fabricação
             {
                 using (var transação = conexão.BeginTransaction())
                 {
-                    AdicionarMatériasPrimas(itens, fechamento, conexão, transação);
+                    AdicionarEntradas(itens, fechamento, conexão, transação);
 
                     transação.Commit();
                 }
             }
         }
 
-        public void AdicionarMatériasPrimas(List<SaídaFabricaçãoFiscal> itens, Fechamento fechamento, IDbConnection conexão, IDbTransaction transação)
+        public void AdicionarEntradas(List<SaídaFabricaçãoFiscal> itens, Fechamento fechamento, IDbConnection conexão, IDbTransaction transação)
         {
             foreach (SaídaFabricaçãoFiscal item in itens)
                 AdicionarFabricação(conexão, transação, item,
-                    ObterEsquemaLevantandoErroCasoNãoExista(item, fechamento));
+                    ObterEsquemaLevantandoErroCasoNãoExista(item, fechamento), false);
         }
 
 
@@ -132,13 +132,14 @@ namespace Entidades.Fiscal.Fabricação
             {
                 using (var transação = conexão.BeginTransaction())
                 {
-                    AdicionarFabricação(conexão, transação, novoItem, esquema);
+                    AdicionarFabricação(conexão, transação, novoItem, esquema, true);
                     transação.Commit();
                 }
             }
         }
 
-        private void AdicionarFabricação(System.Data.IDbConnection conexão, System.Data.IDbTransaction transação, SaídaFabricaçãoFiscal novoItem, EsquemaFabricação esquema)
+        private void AdicionarFabricação(System.Data.IDbConnection conexão, System.Data.IDbTransaction transação, 
+            SaídaFabricaçãoFiscal novoItem, EsquemaFabricação esquema, bool adicionarSaída)
         {
             if (novoItem.Quantidade == 0)
                 return;
@@ -146,7 +147,8 @@ namespace Entidades.Fiscal.Fabricação
             var ingredientes = MateriaPrima.Obter(esquema.Referência, esquema.Fechamento);
             decimal qtdReceitas = novoItem.Quantidade / esquema.Quantidade;
 
-            AdicionarSaída(conexão, transação, novoItem, qtdReceitas, esquema.Fechamento);
+            if (adicionarSaída)
+                AdicionarSaída(conexão, transação, novoItem, qtdReceitas, esquema.Fechamento);
 
             foreach (var ingrediente in ingredientes)
             {
@@ -241,7 +243,7 @@ namespace Entidades.Fiscal.Fabricação
                 using (var transação = conexão.BeginTransaction())
                 {
                     RemoverEntradas(conexão, transação);
-                    AdicionarMatériasPrimas(saídas, fechamentoVigente, conexão, transação);
+                    AdicionarEntradas(saídas, fechamentoVigente, conexão, transação);
 
                     transação.Commit();
                 }

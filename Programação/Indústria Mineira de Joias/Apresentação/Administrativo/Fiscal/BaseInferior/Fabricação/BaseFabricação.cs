@@ -281,9 +281,9 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
                 return;
 
             if (tipoAlteração == TipoAlteração.TO)
-                SaídaFabricaçãoFiscal.Excluir(itemAlteração);
+                SaídaFabricaçãoFiscal.Excluir(listaSaídas.ObterSeleção());
             else if (tipoAlteração == TipoAlteração.OT)
-                EntradaFabricaçãoFiscal.Excluir(itemAlteração);
+                EntradaFabricaçãoFiscal.Excluir(listaEntradas.ObterSeleção());
             else throw new NotImplementedException();
 
             Carregar(fabricação);
