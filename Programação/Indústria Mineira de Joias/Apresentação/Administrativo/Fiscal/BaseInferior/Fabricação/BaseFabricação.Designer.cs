@@ -42,6 +42,10 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.quadroItem = new Apresentação.Formulários.Quadro();
+            this.txtValorPorGrama = new AMS.TextBox.NumericTextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtPeso = new AMS.TextBox.NumericTextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.txtValor = new AMS.TextBox.NumericTextBox();
             this.lblValor = new System.Windows.Forms.Label();
             this.btnExcluir = new System.Windows.Forms.Button();
@@ -52,8 +56,7 @@
             this.listaSaídas = new Apresentação.Administrativo.Fiscal.Lista.Fabricação.ListaSaídaFabricaçãoFiscal();
             this.listaEntradas = new Apresentação.Administrativo.Fiscal.Lista.Fabricação.ListaEntradaFabricaçãoFiscal();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtPeso = new AMS.TextBox.NumericTextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.opçãoRecalcularMatériasPrimas = new Apresentação.Formulários.Opção();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.quadroItem.SuspendLayout();
@@ -86,6 +89,7 @@
             this.quadro1.bInfEsqArredondada = true;
             this.quadro1.bSupDirArredondada = true;
             this.quadro1.bSupEsqArredondada = true;
+            this.quadro1.Controls.Add(this.opçãoRecalcularMatériasPrimas);
             this.quadro1.Controls.Add(this.opçãoConfigurar);
             this.quadro1.Controls.Add(this.opçãoImprimir);
             this.quadro1.Cor = System.Drawing.Color.Black;
@@ -94,7 +98,7 @@
             this.quadro1.Location = new System.Drawing.Point(7, 13);
             this.quadro1.MostrarBotãoMinMax = false;
             this.quadro1.Name = "quadro1";
-            this.quadro1.Size = new System.Drawing.Size(160, 74);
+            this.quadro1.Size = new System.Drawing.Size(160, 95);
             this.quadro1.TabIndex = 1;
             this.quadro1.Tamanho = 30;
             this.quadro1.Título = "Documento";
@@ -143,7 +147,7 @@
             this.cmbTipoUnidade.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTipoUnidade.Enabled = false;
             this.cmbTipoUnidade.FormattingEnabled = true;
-            this.cmbTipoUnidade.Location = new System.Drawing.Point(416, 102);
+            this.cmbTipoUnidade.Location = new System.Drawing.Point(483, 102);
             this.cmbTipoUnidade.Name = "cmbTipoUnidade";
             this.cmbTipoUnidade.Seleção = null;
             this.cmbTipoUnidade.Size = new System.Drawing.Size(100, 21);
@@ -175,7 +179,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(413, 86);
+            this.label10.Location = new System.Drawing.Point(480, 86);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(86, 13);
             this.label10.TabIndex = 10;
@@ -227,6 +231,8 @@
             this.quadroItem.bInfEsqArredondada = true;
             this.quadroItem.bSupDirArredondada = true;
             this.quadroItem.bSupEsqArredondada = true;
+            this.quadroItem.Controls.Add(this.txtValorPorGrama);
+            this.quadroItem.Controls.Add(this.label5);
             this.quadroItem.Controls.Add(this.txtPeso);
             this.quadroItem.Controls.Add(this.label3);
             this.quadroItem.Controls.Add(this.txtValor);
@@ -255,12 +261,62 @@
             this.quadroItem.Tamanho = 30;
             this.quadroItem.Título = "Detalhe do item";
             // 
+            // txtValorPorGrama
+            // 
+            this.txtValorPorGrama.AllowNegative = true;
+            this.txtValorPorGrama.DigitsInGroup = 0;
+            this.txtValorPorGrama.Enabled = false;
+            this.txtValorPorGrama.Flags = 0;
+            this.txtValorPorGrama.Location = new System.Drawing.Point(343, 102);
+            this.txtValorPorGrama.MaxDecimalPlaces = 4;
+            this.txtValorPorGrama.MaxWholeDigits = 9;
+            this.txtValorPorGrama.Name = "txtValorPorGrama";
+            this.txtValorPorGrama.Prefix = "";
+            this.txtValorPorGrama.RangeMax = 1.7976931348623157E+308D;
+            this.txtValorPorGrama.RangeMin = -1.7976931348623157E+308D;
+            this.txtValorPorGrama.Size = new System.Drawing.Size(58, 20);
+            this.txtValorPorGrama.TabIndex = 18;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(340, 86);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(42, 13);
+            this.label5.TabIndex = 19;
+            this.label5.Text = "Valor/g";
+            // 
+            // txtPeso
+            // 
+            this.txtPeso.AllowNegative = true;
+            this.txtPeso.DigitsInGroup = 0;
+            this.txtPeso.Flags = 0;
+            this.txtPeso.Location = new System.Drawing.Point(275, 103);
+            this.txtPeso.MaxDecimalPlaces = 4;
+            this.txtPeso.MaxWholeDigits = 9;
+            this.txtPeso.Name = "txtPeso";
+            this.txtPeso.Prefix = "";
+            this.txtPeso.RangeMax = 1.7976931348623157E+308D;
+            this.txtPeso.RangeMin = -1.7976931348623157E+308D;
+            this.txtPeso.Size = new System.Drawing.Size(59, 20);
+            this.txtPeso.TabIndex = 2;
+            this.txtPeso.Validated += new System.EventHandler(this.txtPeso_Validated);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(272, 86);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(31, 13);
+            this.label3.TabIndex = 17;
+            this.label3.Text = "Peso";
+            // 
             // txtValor
             // 
             this.txtValor.AllowNegative = true;
             this.txtValor.DigitsInGroup = 0;
             this.txtValor.Flags = 0;
-            this.txtValor.Location = new System.Drawing.Point(346, 102);
+            this.txtValor.Location = new System.Drawing.Point(410, 102);
             this.txtValor.MaxDecimalPlaces = 4;
             this.txtValor.MaxWholeDigits = 9;
             this.txtValor.Name = "txtValor";
@@ -273,7 +329,7 @@
             // lblValor
             // 
             this.lblValor.AutoSize = true;
-            this.lblValor.Location = new System.Drawing.Point(343, 86);
+            this.lblValor.Location = new System.Drawing.Point(407, 86);
             this.lblValor.Name = "lblValor";
             this.lblValor.Size = new System.Drawing.Size(31, 13);
             this.lblValor.TabIndex = 15;
@@ -363,29 +419,19 @@
             this.label2.TabIndex = 10;
             this.label2.Text = "OT: Transferência do inventário para a fabricação";
             // 
-            // txtPeso
+            // opçãoRecalcularMatériasPrimas
             // 
-            this.txtPeso.AllowNegative = true;
-            this.txtPeso.DigitsInGroup = 0;
-            this.txtPeso.Flags = 0;
-            this.txtPeso.Location = new System.Drawing.Point(275, 103);
-            this.txtPeso.MaxDecimalPlaces = 4;
-            this.txtPeso.MaxWholeDigits = 9;
-            this.txtPeso.Name = "txtPeso";
-            this.txtPeso.Prefix = "";
-            this.txtPeso.RangeMax = 1.7976931348623157E+308D;
-            this.txtPeso.RangeMin = -1.7976931348623157E+308D;
-            this.txtPeso.Size = new System.Drawing.Size(59, 20);
-            this.txtPeso.TabIndex = 16;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(272, 86);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(31, 13);
-            this.label3.TabIndex = 17;
-            this.label3.Text = "Peso";
+            this.opçãoRecalcularMatériasPrimas.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoRecalcularMatériasPrimas.Descrição = "Recalcular M. Primas";
+            this.opçãoRecalcularMatériasPrimas.Imagem = global::Apresentação.Resource.repair;
+            this.opçãoRecalcularMatériasPrimas.Location = new System.Drawing.Point(7, 70);
+            this.opçãoRecalcularMatériasPrimas.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoRecalcularMatériasPrimas.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoRecalcularMatériasPrimas.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoRecalcularMatériasPrimas.Name = "opçãoRecalcularMatériasPrimas";
+            this.opçãoRecalcularMatériasPrimas.Size = new System.Drawing.Size(150, 25);
+            this.opçãoRecalcularMatériasPrimas.TabIndex = 4;
+            this.opçãoRecalcularMatériasPrimas.Click += new System.EventHandler(this.opçãoRecalcularMatériasPrimas_Click);
             // 
             // BaseFabricação
             // 
@@ -443,5 +489,8 @@
         private System.Windows.Forms.Label lblValor;
         private AMS.TextBox.NumericTextBox txtPeso;
         private System.Windows.Forms.Label label3;
+        private AMS.TextBox.NumericTextBox txtValorPorGrama;
+        private System.Windows.Forms.Label label5;
+        private Formulários.Opção opçãoRecalcularMatériasPrimas;
     }
 }

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using System.Data;
 
 namespace Entidades.Fiscal.Fabricação
 {
@@ -72,22 +73,34 @@ namespace Entidades.Fiscal.Fabricação
             LevantarErrosCriação(itens, fechamento);
 
             var fabricação = Criar();
+
+            fabricação.AdicionarMatériasPrimas(itens, fechamento);
+
+            return fabricação;
+        }
+
+        public void AdicionarMatériasPrimas(List<SaídaFabricaçãoFiscal> itens, Fechamento fechamento)
+        {
             var conexão = Conexão;
 
             lock (conexão)
             {
                 using (var transação = conexão.BeginTransaction())
                 {
-                    foreach (SaídaFabricaçãoFiscal item in itens)
-                        fabricação.AdicionarFabricação(conexão, transação, item,
-                            ObterEsquemaLevantandoErroCasoNãoExista(item, fechamento));
+                    AdicionarMatériasPrimas(itens, fechamento, conexão, transação);
 
                     transação.Commit();
                 }
             }
-
-            return fabricação;
         }
+
+        public void AdicionarMatériasPrimas(List<SaídaFabricaçãoFiscal> itens, Fechamento fechamento, IDbConnection conexão, IDbTransaction transação)
+        {
+            foreach (SaídaFabricaçãoFiscal item in itens)
+                AdicionarFabricação(conexão, transação, item,
+                    ObterEsquemaLevantandoErroCasoNãoExista(item, fechamento));
+        }
+
 
         private static void LevantarErrosCriação(List<SaídaFabricaçãoFiscal> itens, Fechamento fechamento)
         {
@@ -214,6 +227,25 @@ namespace Entidades.Fiscal.Fabricação
             sql.Append(")");
 
             ExecutarComando(sql.ToString());
+        }
+
+        public void RecalcularMatériasPrimas()
+        {
+            var saídas = SaídaFabricaçãoFiscal.Obter(codigo);
+            var fechamentoVigente = Fechamento.Obter(data);
+
+            var conexão = Conexão;
+
+            lock (conexão)
+            {
+                using (var transação = conexão.BeginTransaction())
+                {
+                    RemoverEntradas(conexão, transação);
+                    AdicionarMatériasPrimas(saídas, fechamentoVigente, conexão, transação);
+
+                    transação.Commit();
+                }
+            }
         }
     }
 }

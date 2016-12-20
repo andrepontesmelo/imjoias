@@ -96,31 +96,45 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
             txtPeso.Text = "";
             txtQuantidade.Text = "";
             txtValor.Text = "";
+            txtValorPorGrama.Text = "";
             cmbTipoUnidade.Seleção = null;
         }
 
         private void txtMercadoria_ReferênciaAlterada(object sender, System.EventArgs e)
         {
+            decimal valor, peso;
+            var mercadoria = ObterMercadoria(out valor, out peso);
+            txtDescrição.Text = mercadoria?.Descrição;
+
+            txtValorPorGrama.Text = valor.ToString();
+            txtPeso.Text = peso.ToString();
+            AtualizarValor(valor, peso);
+
+            cmbTipoUnidade.Seleção = mercadoria == null ? null : mercadoria.TipoUnidadeComercial;
+        }
+
+        private Entidades.Mercadoria.Mercadoria ObterMercadoria(out decimal valorPorGrama, out decimal peso)
+        {
+            MercadoriaFechamento entidade = null;
             var mercadoria = txtMercadoria.Mercadoria;
 
-            txtDescrição.Text = mercadoria?.Descrição;
-            
             var hash = MercadoriaFechamento.ObterHash(fechamento.Código);
 
-            MercadoriaFechamento entidade = null;
-            decimal valor = 0;
-            decimal peso = 0;
+            valorPorGrama = 0;
+            peso = 0;
 
             if (mercadoria != null && hash.TryGetValue(mercadoria.ReferênciaNumérica, out entidade))
             {
-                valor = entidade.Valor;
+                valorPorGrama = entidade.Valor;
                 peso = entidade.Peso;
             }
 
-            txtValor.Text = valor.ToString();
-            txtPeso.Text = peso.ToString();
+            return mercadoria;
+        }
 
-            cmbTipoUnidade.Seleção = mercadoria == null ? null : mercadoria.TipoUnidadeComercial;
+        private void AtualizarValor(decimal valorPorGrama, decimal peso)
+        {
+            txtValor.Text = Math.Round(valorPorGrama * peso, 2).ToString();
         }
 
         private void opçãoConfigurar_Click(object sender, EventArgs e)
@@ -193,6 +207,10 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
             txtCFOP.Text = item.CFOP.ToString();
             txtQuantidade.Text = item.Quantidade.ToString();
             txtValor.Text = item.Valor.ToString();
+            decimal valorPorGrama, peso = 0;
+
+            ObterMercadoria(out valorPorGrama, out peso);
+            txtValorPorGrama.Text = peso.ToString();
 
             cmbTipoUnidade.Seleção = item.Mercadoria?.TipoUnidadeComercial;
         }
@@ -278,6 +296,21 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
             janela.InserirDocumento(controlador.CriarRelatório(fabricação), "Fabricação");
 
             janela.ShowDialog(this);
+        }
+
+        private void txtPeso_Validated(object sender, EventArgs e)
+        {
+            decimal valor, peso;
+            ObterMercadoria(out valor, out peso);
+            AtualizarValor(valor,  (decimal) txtPeso.Double);
+        }
+
+        private void opçãoRecalcularMatériasPrimas_Click(object sender, EventArgs e)
+        {
+            AguardeDB.Mostrar();
+            fabricação.RecalcularMatériasPrimas();
+            Carregar(fabricação);
+            AguardeDB.Fechar();
         }
     }
 }
