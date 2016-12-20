@@ -59,6 +59,14 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Fabricação
             item["quantidade"] = entidade.Quantidade.ToString();
             item["tipo"] = ObterTipo(saída);
             item["valor"] = entidade.Valor;
+            item["valorTotal"] = entidade.ValorTotal;
+            var entidadeSaída = entidade as SaídaFabricaçãoFiscal;
+
+            if (entidadeSaída != null)
+            {
+                item["peso"] = entidadeSaída.Peso;
+                item["pesoTotal"] = entidadeSaída.PesoTotal;
+            }
 
             if (hashFechamento != null)
             {

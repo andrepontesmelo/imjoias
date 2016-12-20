@@ -87,7 +87,8 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             item.SubItems[colQuantidade.Index].Text = entidade.Quantidade.ToString();
             item.SubItems[colDescrição.Index].Text = entidade.Mercadoria?.Descrição;
             item.SubItems[colTipo.Index].Text = entidade.Mercadoria?.TipoUnidadeComercial.Nome;
-            item.SubItems[colValor.Index].Text = entidade.Valor.ToString("C");
+            item.SubItems[colValorUnitário.Index].Text = entidade.Valor.ToString("C");
+            item.SubItems[colValorTotal.Index].Text = entidade.ValorTotal.ToString("C");
 
             decimal saldoAnterior = 0;
             hashSaldoAnterior.TryGetValue(entidade.Referência, out saldoAnterior);

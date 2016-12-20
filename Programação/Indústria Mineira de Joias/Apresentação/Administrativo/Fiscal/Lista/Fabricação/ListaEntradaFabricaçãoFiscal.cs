@@ -18,7 +18,8 @@ namespace Apresentação.Administrativo.Fiscal.Lista.Fabricação
             this.colQuantidade,
             this.colSaldoPosterior,
             this.colTipo,
-            this.colValor,
+            this.colValorUnitário,
+            this.colValorTotal,
             this.colDescrição});
         }
 

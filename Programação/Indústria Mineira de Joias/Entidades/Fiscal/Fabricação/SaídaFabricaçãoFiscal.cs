@@ -16,6 +16,8 @@ namespace Entidades.Fiscal.Fabricação
             set { peso = value; }
         }
 
+        public decimal PesoTotal => Peso * Quantidade;
+
         internal static string ObterSqlInserçãoSaída(FabricaçãoFiscal fabricação, decimal qtdReceitas, string referência, decimal quantidade, decimal valor, int cfop, decimal peso)
         {
             return string.Format("INSERT INTO saidafabricacaofiscal (fabricacaofiscal, referencia, quantidade, valor, cfop, peso) values ({0}, {1}, {2}, {3}, {4}, {5})",

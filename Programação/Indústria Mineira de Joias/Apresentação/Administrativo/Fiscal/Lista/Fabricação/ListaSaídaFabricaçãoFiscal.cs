@@ -1,4 +1,5 @@
 ﻿using Entidades.Fiscal.Fabricação;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -20,7 +21,8 @@ namespace Apresentação.Administrativo.Fiscal.Lista.Fabricação
         {
             var item = base.CriarItem(entidade);
 
-            item.SubItems[colPeso.Index].Text = ((SaídaFabricaçãoFiscal)entidade).Peso.ToString();
+            item.SubItems[colPeso.Index].Text = ((SaídaFabricaçãoFiscal) entidade).Peso.ToString();
+            item.SubItems[colPesoTotal.Index].Text =  Math.Round(((SaídaFabricaçãoFiscal) entidade).PesoTotal, 2).ToString();
 
             return item;
         }

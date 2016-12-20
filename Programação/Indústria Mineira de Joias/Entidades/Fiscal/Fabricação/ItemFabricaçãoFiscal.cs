@@ -39,6 +39,8 @@ namespace Entidades.Fiscal.Fabricação
             set { valor = value; }
         }
 
+        public decimal ValorTotal => Valor * Quantidade;
+
         public Mercadoria.Mercadoria Mercadoria => 
             Entidades.Mercadoria.Mercadoria.ObterMercadoria(referencia);
 
