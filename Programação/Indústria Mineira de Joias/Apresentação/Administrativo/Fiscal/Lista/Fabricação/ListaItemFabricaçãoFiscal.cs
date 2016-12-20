@@ -13,13 +13,21 @@ namespace Apresentação.Administrativo.Fiscal.Lista
         public event EventHandler AoSelecionar;
         private FabricaçãoFiscal fabricação;
         private Dictionary<string, decimal> hashSaldoAnterior, hashSaldoPosterior;
-
+        private ListViewColumnSorter ordenador;
 
         public ListaItemFabricaçãoFiscal()
         {
             InitializeComponent();
             lista.AoExcluir += Lista_AoExcluir;
             lista.SelectedIndexChanged += Lista_SelectedIndexChanged;
+            ordenador = new Formulários.ListViewColumnSorter();
+            lista.ListViewItemSorter = ordenador;
+            lista.ColumnClick += Lista_ColumnClick;
+        }
+
+        private void Lista_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            ordenador.OnClick(lista, e);
         }
 
         private void Lista_SelectedIndexChanged(object sender, EventArgs e)
