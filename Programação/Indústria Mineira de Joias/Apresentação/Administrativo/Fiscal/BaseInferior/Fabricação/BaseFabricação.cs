@@ -210,7 +210,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
             decimal valorPorGrama, peso = 0;
 
             ObterMercadoria(out valorPorGrama, out peso);
-            txtValorPorGrama.Text = peso.ToString();
+            txtValorPorGrama.Text = valorPorGrama.ToString();
 
             cmbTipoUnidade.Seleção = item.Mercadoria?.TipoUnidadeComercial;
         }
