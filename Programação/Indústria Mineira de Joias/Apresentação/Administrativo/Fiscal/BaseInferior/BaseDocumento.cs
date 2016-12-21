@@ -142,7 +142,7 @@ namespace Apresentação.Fiscal.BaseInferior
 
         private void CarregarAtributos(ItemFiscal entidade)
         {
-            txtMercadoria.Text = entidade?.Referência;
+            txtMercadoria.Referência = entidade?.Referência;
             txtCFOP.Text = entidade?.Cfop?.ToString();
             txtDescrição.Text = entidade?.Descrição;
             txtValorTotal.Text = entidade?.Valor.ToString("C");

@@ -75,7 +75,7 @@ namespace Apresentação.Fiscal.Lista
             itemGráfico.SubItems[colCFOP.Index].Text = item.Cfop?.ToString();
             itemGráfico.SubItems[colDescrição.Index].Text = item.Descrição;
             itemGráfico.SubItems[colQuantidade.Index].Text = item.Quantidade.ToString("0.00");
-            itemGráfico.SubItems[colReferência.Index].Text = item.Referência;
+            itemGráfico.SubItems[colReferência.Index].Text = Entidades.Mercadoria.Mercadoria.MascararReferência(item.Referência, true);
 
             if (item.TipoUnidade.HasValue)
                 itemGráfico.SubItems[colTipoUnidade.Index].Text = TipoUnidade.Obter(item.TipoUnidade.Value).Nome;

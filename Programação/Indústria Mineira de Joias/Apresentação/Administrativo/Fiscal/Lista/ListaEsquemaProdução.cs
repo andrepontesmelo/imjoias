@@ -60,7 +60,7 @@ namespace Apresentação.Administrativo.Fiscal.Lista
         {
             var item = new ListViewItem(new string[lista.Columns.Count]);
 
-            item.SubItems[colReferência.Index].Text = esquema.Referência;
+            item.SubItems[colReferência.Index].Text = Entidades.Mercadoria.Mercadoria.MascararReferência(esquema.Referência, true);
             item.SubItems[colDescrição.Index].Text = esquema.Descrição;
             item.SubItems[colQuantidade.Index].Text = esquema.Quantidade.ToString();
             item.SubItems[colTipoUnidadeFiscal.Index].Text = esquema.TipoUnidadeFiscal.Nome;

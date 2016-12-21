@@ -17,8 +17,30 @@ namespace Apresentação.Mercadoria
 
         public string Referência
         {
-            get { return txtReferência.Text; }
-            set { txtReferência.Text = value; }
+            get
+            {
+                return ObterReferênciaDesmascarada();
+            }
+            set
+            {
+                AtribuirMascararReferência(value);
+            }
+        }
+
+        private void AtribuirMascararReferência(string referência)
+        {
+            if (referência == null)
+                txtReferência.Text = "";
+            else
+                txtReferência.Text = Entidades.Mercadoria.Mercadoria.MascararReferência(referência, true);
+        }
+
+        private string ObterReferênciaDesmascarada()
+        {
+            string referênciaNumérica;
+            int dígito;
+            Entidades.Mercadoria.Mercadoria.DesmascararReferência(txtReferência.Text, out referênciaNumérica, out dígito);
+            return referênciaNumérica;
         }
 
         public Entidades.Mercadoria.Mercadoria Mercadoria => Entidades.Mercadoria.Mercadoria.ObterMercadoria(Referência);
@@ -32,18 +54,15 @@ namespace Apresentação.Mercadoria
         }
 
         private void Janela_AoSelecionar(string referência)
-        {
-            string referênciaNumérica;
-            int dígito;
-
-            Entidades.Mercadoria.Mercadoria.DesmascararReferência(referência, out referênciaNumérica, out dígito);
-            txtReferência.Text = referênciaNumérica + dígito;
+        { 
+            txtReferência.Text = referência; 
             ReferênciaAlterada?.Invoke(this, null);
         }
 
 
         private void txtReferência_Validated(object sender, EventArgs e)
         {
+            AtribuirMascararReferência(ObterReferênciaDesmascarada());
             ReferênciaAlterada?.Invoke(this, null);
         }
     }

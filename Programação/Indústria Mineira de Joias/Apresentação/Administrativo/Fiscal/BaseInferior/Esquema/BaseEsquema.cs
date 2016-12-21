@@ -23,11 +23,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Esquema
 
             listaIngredientes.Carregar(esquema);
 
-            if (esquema.Referência != null)
-                txtMercadoriaProduzida.Referência = Entidades.Mercadoria.Mercadoria.MascararReferência(esquema.Referência, true);
-            else
-                txtMercadoriaProduzida.Referência = "";
-
+            txtMercadoriaProduzida.Referência = esquema.Referência;
             txtQuantidadeProduzida.Text = esquema.Quantidade.ToString();
             txtDescriçãoProduzida.Text = esquema.Descrição;
             cmbTipoUnidadeProduzido.Seleção = esquema.TipoUnidadeFiscal;

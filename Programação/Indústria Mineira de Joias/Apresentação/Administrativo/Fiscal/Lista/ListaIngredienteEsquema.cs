@@ -59,7 +59,7 @@ namespace Apresentação.Administrativo.Fiscal.Lista
         {
             ListViewItem item = new ListViewItem(new string[lista.Columns.Count]);
             item.SubItems[colProporcional.Index].Text = i.Proporcional ? "Sim" : "Não";
-            item.SubItems[colReferência.Index].Text = Entidades.Mercadoria.Mercadoria.MascararReferência(i.Referência);
+            item.SubItems[colReferência.Index].Text = Entidades.Mercadoria.Mercadoria.MascararReferência(i.Referência, true);
             item.SubItems[colTipoUnidade.Index].Text = i.TipoUnidadeComercial.Nome;
             item.SubItems[colQuantidade.Index].Text = i.Quantidade.ToString();
             item.SubItems[colDescrição.Index].Text = i.Descrição;
