@@ -38,18 +38,28 @@
             this.opçãoSelecionarProduzíveis = new Apresentação.Formulários.Opção();
             this.opçãoLimparSeleção = new Apresentação.Formulários.Opção();
             this.cmbFechamento = new Apresentação.Administrativo.Fiscal.Combo.ComboFechamento();
+            this.quadro3 = new Apresentação.Formulários.Quadro();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.quadro2.SuspendLayout();
+            this.quadro3.SuspendLayout();
             this.SuspendLayout();
             // 
             // esquerda
             // 
+            this.esquerda.Controls.Add(this.quadro3);
             this.esquerda.Controls.Add(this.quadro2);
             this.esquerda.Controls.Add(this.quadro1);
             this.esquerda.Size = new System.Drawing.Size(187, 597);
             this.esquerda.Controls.SetChildIndex(this.quadro1, 0);
             this.esquerda.Controls.SetChildIndex(this.quadro2, 0);
+            this.esquerda.Controls.SetChildIndex(this.quadro3, 0);
             // 
             // títuloBaseInferior1
             // 
@@ -193,9 +203,90 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbFechamento.Location = new System.Drawing.Point(792, 71);
             this.cmbFechamento.Name = "cmbFechamento";
+            this.cmbFechamento.Seleção = null;
             this.cmbFechamento.Size = new System.Drawing.Size(252, 23);
             this.cmbFechamento.TabIndex = 8;
             this.cmbFechamento.SelectedIndexChanged += new System.EventHandler(this.cmbFechamento_SelectedIndexChanged);
+            // 
+            // quadro3
+            // 
+            this.quadro3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.quadro3.bInfDirArredondada = true;
+            this.quadro3.bInfEsqArredondada = true;
+            this.quadro3.bSupDirArredondada = true;
+            this.quadro3.bSupEsqArredondada = true;
+            this.quadro3.Controls.Add(this.label4);
+            this.quadro3.Controls.Add(this.label3);
+            this.quadro3.Controls.Add(this.panel2);
+            this.quadro3.Controls.Add(this.label2);
+            this.quadro3.Controls.Add(this.label1);
+            this.quadro3.Controls.Add(this.panel1);
+            this.quadro3.Cor = System.Drawing.Color.Black;
+            this.quadro3.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
+            this.quadro3.LetraTítulo = System.Drawing.Color.White;
+            this.quadro3.Location = new System.Drawing.Point(7, 199);
+            this.quadro3.MostrarBotãoMinMax = false;
+            this.quadro3.Name = "quadro3";
+            this.quadro3.Size = new System.Drawing.Size(160, 110);
+            this.quadro3.TabIndex = 3;
+            this.quadro3.Tamanho = 30;
+            this.quadro3.Título = "Legenda";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.LightGreen;
+            this.panel1.Location = new System.Drawing.Point(7, 30);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(15, 15);
+            this.panel1.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(27, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(122, 15);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Produzível";
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(27, 70);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(126, 15);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Requer esquema";
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Yellow;
+            this.panel2.Location = new System.Drawing.Point(7, 70);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(15, 15);
+            this.panel2.TabIndex = 5;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Location = new System.Drawing.Point(23, 45);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(127, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Qtd < 0 && existe esquema";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Location = new System.Drawing.Point(23, 85);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(136, 13);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Qtd < 0 && ñ existe esquema";
             // 
             // BaseInventário
             // 
@@ -213,6 +304,8 @@
             this.esquerda.ResumeLayout(false);
             this.quadro1.ResumeLayout(false);
             this.quadro2.ResumeLayout(false);
+            this.quadro3.ResumeLayout(false);
+            this.quadro3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -229,5 +322,12 @@
         private Formulários.Opção opçãoSelecionarProduzíveis;
         private Formulários.Opção opçãoLimparSeleção;
         private Combo.ComboFechamento cmbFechamento;
+        private Formulários.Quadro quadro3;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }
