@@ -2632,6 +2632,9 @@
     <EmbeddedResource Include="Administrativo\Fiscal\Janela\JanelaImpressãoFiscal.resx">
       <DependentUpon>JanelaImpressãoFiscal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Administrativo\Fiscal\Lista\Fabricação\ListaSaídaFabricaçãoFiscal.resx">
+      <DependentUpon>ListaSaídaFabricaçãoFiscal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Administrativo\Fiscal\Lista\ListaEsquemaProdução.resx">
       <DependentUpon>ListaEsquemaProdução.cs</DependentUpon>
     </EmbeddedResource>

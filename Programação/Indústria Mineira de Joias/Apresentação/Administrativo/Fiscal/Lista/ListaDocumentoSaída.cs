@@ -29,6 +29,7 @@ namespace Apresentação.Fiscal.Lista
             colEntradaSaída,
             colValor,
             colNúmero,
+            colFabricação,
             colMáquina});
 
             lista.Columns.Add(colObservações);
@@ -63,6 +64,7 @@ namespace Apresentação.Fiscal.Lista
 
             item.SubItems[colEntradaSaída.Index].Text = string.Format("{0} {1}", dataSaída.ToShortDateString(), dataSaída.ToLongTimeString());
             item.SubItems[colMáquina.Index].Text = saída.Máquina?.ToString();
+            item.SubItems[colFabricação.Index].Text = saída.Fabricação?.ToString();
 
             return item;
         }

@@ -30,11 +30,13 @@
         {
             this.colCancelada = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colMáquina = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colFabricação = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lista
             // 
             this.lista.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colFabricação,
             this.colMáquina,
             this.colCancelada});
             // 
@@ -45,6 +47,11 @@
             // colMáquina
             // 
             this.colMáquina.Text = "Máquina";
+            // 
+            // colFabricação
+            // 
+            this.colFabricação.Text = "Fabricação";
+            this.colFabricação.Width = 91;
             // 
             // ListaDocumentoSaída
             // 
@@ -58,5 +65,6 @@
 
         private System.Windows.Forms.ColumnHeader colCancelada;
         private System.Windows.Forms.ColumnHeader colMáquina;
+        private System.Windows.Forms.ColumnHeader colFabricação;
     }
 }

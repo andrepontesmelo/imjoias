@@ -28,7 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // lista
+            // 
+            this.lista.Size = new System.Drawing.Size(1097, 471);
+            // 
+            // ListaSaídaFabricaçãoFiscal
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.Name = "ListaSaídaFabricaçãoFiscal";
+            this.Size = new System.Drawing.Size(1097, 471);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
