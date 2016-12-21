@@ -23,6 +23,7 @@ namespace Entidades.Fiscal
         private int cfop;
         private string idpai;
         private string idfilho;
+        private int? fabricacao;
 
         [DbAtributo(TipoAtributo.Ignorar)]
         private decimal estoque;
@@ -62,6 +63,7 @@ namespace Entidades.Fiscal
 
         public string IdPai => idpai;
         public string IdFilho => idfilho;
+        public int? Fabricação => fabricacao;
 
         public string EntradaSaída
         {

@@ -61,6 +61,7 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Extrato
             item["entradaSaída"] = entidade.EntradaSaída;
             item["quantidade"] = entidade.Quantidade.ToString();
             item["estoque"] = entidade.Estoque.ToString();
+            item["fabricação"] = entidade.Fabricação.ToString();
 
             decimal estoqueAnterior = 0;
             hashReferênciaInventárioAnterior.TryGetValue(entidadeGenérica.Referência, out estoqueAnterior);

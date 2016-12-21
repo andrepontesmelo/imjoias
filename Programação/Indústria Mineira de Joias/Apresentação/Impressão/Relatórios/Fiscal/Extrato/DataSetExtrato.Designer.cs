@@ -641,6 +641,8 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Extrato {
             
             private global::System.Data.DataColumn columncfop;
             
+            private global::System.Data.DataColumn columnfabricação;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ItemDataTable() {
@@ -772,6 +774,14 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Extrato {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn fabricaçãoColumn {
+                get {
+                    return this.columnfabricação;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -807,7 +817,7 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Extrato {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ItemRow AddItemRow(string tipoResumido, string data, string valor, string entradaSaída, string quantidade, string estoque, string referência, string descrição, string tipoUnidade, string classificaçãoFiscal, string estoqueAnterior, string cfop) {
+            public ItemRow AddItemRow(string tipoResumido, string data, string valor, string entradaSaída, string quantidade, string estoque, string referência, string descrição, string tipoUnidade, string classificaçãoFiscal, string estoqueAnterior, string cfop, string fabricação) {
                 ItemRow rowItemRow = ((ItemRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         tipoResumido,
@@ -821,7 +831,8 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Extrato {
                         tipoUnidade,
                         classificaçãoFiscal,
                         estoqueAnterior,
-                        cfop};
+                        cfop,
+                        fabricação};
                 rowItemRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowItemRow);
                 return rowItemRow;
@@ -856,6 +867,7 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Extrato {
                 this.columnclassificaçãoFiscal = base.Columns["classificaçãoFiscal"];
                 this.columnestoqueAnterior = base.Columns["estoqueAnterior"];
                 this.columncfop = base.Columns["cfop"];
+                this.columnfabricação = base.Columns["fabricação"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -885,6 +897,8 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Extrato {
                 base.Columns.Add(this.columnestoqueAnterior);
                 this.columncfop = new global::System.Data.DataColumn("cfop", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncfop);
+                this.columnfabricação = new global::System.Data.DataColumn("fabricação", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnfabricação);
                 this.ExtendedProperties.Add("Generator_RowClassName", "ItemRow");
                 this.ExtendedProperties.Add("Generator_RowEvArgName", "ItemRowChangeEvent");
                 this.ExtendedProperties.Add("Generator_RowEvHandlerName", "ItemRowChangeEventHandler");
@@ -1381,6 +1395,22 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Extrato {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string fabricação {
+                get {
+                    try {
+                        return ((string)(this[this.tableItem.fabricaçãoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'fabricação\' in table \'Item\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItem.fabricaçãoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IstipoResumidoNull() {
                 return this.IsNull(this.tableItem.tipoResumidoColumn);
             }
@@ -1521,6 +1551,18 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Extrato {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetcfopNull() {
                 this[this.tableItem.cfopColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsfabricaçãoNull() {
+                return this.IsNull(this.tableItem.fabricaçãoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetfabricaçãoNull() {
+                this[this.tableItem.fabricaçãoColumn] = global::System.Convert.DBNull;
             }
         }
         

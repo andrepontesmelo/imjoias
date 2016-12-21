@@ -37,6 +37,7 @@
             this.colEstoque = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colIdPai = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colIdFilho = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colFabricação = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lista
@@ -49,12 +50,13 @@
             this.colQuantidade,
             this.colEstoque,
             this.colIdPai,
-            this.colIdFilho});
+            this.colIdFilho,
+            this.colFabricação});
             this.lista.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lista.FullRowSelect = true;
             this.lista.Location = new System.Drawing.Point(0, 0);
             this.lista.Name = "lista";
-            this.lista.Size = new System.Drawing.Size(716, 404);
+            this.lista.Size = new System.Drawing.Size(856, 404);
             this.lista.TabIndex = 0;
             this.lista.UseCompatibleStateImageBehavior = false;
             this.lista.View = System.Windows.Forms.View.Details;
@@ -98,13 +100,17 @@
             // 
             this.colIdFilho.Text = "Id Filho";
             // 
+            // colFabricação
+            // 
+            this.colFabricação.Text = "Fabricação";
+            // 
             // ListaExtrato
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lista);
             this.Name = "ListaExtrato";
-            this.Size = new System.Drawing.Size(716, 404);
+            this.Size = new System.Drawing.Size(856, 404);
             this.ResumeLayout(false);
 
         }
@@ -120,5 +126,6 @@
         private System.Windows.Forms.ColumnHeader colEstoque;
         private System.Windows.Forms.ColumnHeader colIdPai;
         private System.Windows.Forms.ColumnHeader colIdFilho;
+        private System.Windows.Forms.ColumnHeader colFabricação;
     }
 }

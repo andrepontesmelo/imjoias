@@ -25,6 +25,7 @@ namespace Apresentação.Administrativo.Fiscal.Lista
 
             colIdPai.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
             colIdFilho.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
+            colFabricação.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
 
             lista.ResumeLayout();
         }
@@ -52,8 +53,10 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             item.SubItems[colValor.Index].Text = entidade.Valor.ToString("C");
             item.SubItems[colIdPai.Index].Text = entidade.IdPai;
             item.SubItems[colIdFilho.Index].Text = entidade.IdFilho;
+            item.SubItems[colFabricação.Index].Text = entidade.Fabricação.ToString();
 
             return item;
         }
     }
 }
+
