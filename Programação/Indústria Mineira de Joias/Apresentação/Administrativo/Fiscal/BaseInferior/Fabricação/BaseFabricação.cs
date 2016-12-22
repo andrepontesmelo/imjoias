@@ -3,9 +3,11 @@ using Apresentação.Administrativo.Fiscal.Janela;
 using Apresentação.Formulários;
 using Apresentação.Impressão.Relatórios.Fiscal.Fabricação;
 using Entidades.Fiscal;
+using Entidades.Fiscal.Esquema;
 using Entidades.Fiscal.Exceções;
 using Entidades.Fiscal.Fabricação;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -18,6 +20,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
         private Fechamento fechamento;
         private ItemFabricaçãoFiscal itemAlteração;
         private TipoAlteração? tipoAlteração;
+        private Dictionary<string, EsquemaFabricação> hashEsquemas;
 
         public BaseFabricação()
         {
@@ -33,10 +36,13 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
         {
             this.fabricação = fabricação;
             títuloBaseInferior.Título = string.Format("Fabricação fiscal #{0} de {1}", fabricação.Código, fabricação.DataFormatada);
+
+            fechamento = Fechamento.Obter(fabricação.Data);
+            hashEsquemas = EsquemaFabricação.ObterHashEsquemas(fechamento);
+
             listaEntradas.Carregar(fabricação);
             listaSaídas.Carregar(fabricação);
 
-            fechamento = Fechamento.Obter(fabricação.Data);
             if (fechamento != null)
                 títuloBaseInferior.Descrição = string.Format("Serão usados os esquemas do fechamento {0}, vigentes de {1} até {2}.",
                     fechamento.Código, fechamento.Início.ToShortDateString(), fechamento.Fim.ToShortDateString());
@@ -73,7 +79,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
                     (decimal) txtQuantidade.Double, 
                     (decimal) txtValor.Double,
                     int.Parse(txtCFOP.Text),
-                    (decimal) txtPeso.Double), fechamento);
+                    (decimal) txtPeso.Double), hashEsquemas);
                 LimparCampos();
             }
             catch (ExceçãoFiscal erro)

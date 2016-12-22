@@ -35,7 +35,7 @@ namespace Apresentação.Administrativo.Fiscal.Lista
 
         public void Carregar(Fechamento fechamento)
         {
-            hashEsquemas = EsquemaFabricação.ObterHash(fechamento);
+            hashEsquemas = EsquemaFabricação.ObterHashEsquemas(fechamento);
             CarregarItens(CriarItens(Inventário.Obter(fechamento)));
         }
 

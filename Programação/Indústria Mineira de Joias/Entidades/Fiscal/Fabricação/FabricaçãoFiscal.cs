@@ -70,18 +70,19 @@ namespace Entidades.Fiscal.Fabricação
 
         public static FabricaçãoFiscal Criar(List<SaídaFabricaçãoFiscal> itens, Fechamento fechamento)
         {
-            LevantarErrosCriação(itens, fechamento);
+            Dictionary<string, EsquemaFabricação> hashEsquemas = EsquemaFabricação.ObterHashEsquemas(fechamento);
+
+            LevantarErrosCriação(itens, hashEsquemas);
 
             var fabricação = Criar();
-
-            fabricação.AdicionarMatériasPrimas(itens, fechamento);
+            fabricação.AdicionarMatériasPrimas(itens, hashEsquemas);
 
             return fabricação;
         }
 
-        public void AdicionarMatériasPrimas(List<SaídaFabricaçãoFiscal> itens, Fechamento fechamento)
+        public void AdicionarMatériasPrimas(List<SaídaFabricaçãoFiscal> itens, Dictionary<string, EsquemaFabricação> hashEsquemas)
         {
-            LevantarErrosCriação(itens, fechamento);
+            LevantarErrosCriação(itens, hashEsquemas);
 
             foreach (var novoItem in itens)
                 ExecutarComando(SaídaFabricaçãoFiscal.ObterSqlInserçãoSaída(this, novoItem.Referência, novoItem.Quantidade, novoItem.Valor, novoItem.CFOP, novoItem.Peso));
@@ -89,17 +90,17 @@ namespace Entidades.Fiscal.Fabricação
             RecalcularMatériasPrimas();
         }
 
-        public void AdicionarFabricação(SaídaFabricaçãoFiscal novoItem, Fechamento fechamento)
+        public void AdicionarFabricação(SaídaFabricaçãoFiscal novoItem, Dictionary<string, EsquemaFabricação> hashEsquemas)
         {
-            ObterEsquemaLevantandoErroCasoNãoExista(novoItem, fechamento);
+            ObterEsquemaLevantandoErroCasoNãoExista(novoItem, hashEsquemas);
             ExecutarComando(SaídaFabricaçãoFiscal.ObterSqlInserçãoSaída(this, novoItem.Referência, novoItem.Quantidade, novoItem.Valor, novoItem.CFOP, novoItem.Peso));
             RecalcularMatériasPrimas();
         }
 
-        private static void LevantarErrosCriação(List<SaídaFabricaçãoFiscal> itens, Fechamento fechamento)
+        private static void LevantarErrosCriação(List<SaídaFabricaçãoFiscal> itens, Dictionary<string, EsquemaFabricação> hashEsquemas)
         {
             foreach (ItemFabricaçãoFiscal item in itens)
-                ObterEsquemaLevantandoErroCasoNãoExista(item, fechamento);
+                ObterEsquemaLevantandoErroCasoNãoExista(item, hashEsquemas);
 
             if (!ExisteItemNãoVazio(itens))
                 throw new FabricaçãoVazia();
@@ -116,14 +117,14 @@ namespace Entidades.Fiscal.Fabricação
             DbDataEntre("data", inicio, fim)));
         }
 
-        private static EsquemaFabricação ObterEsquemaLevantandoErroCasoNãoExista(ItemFabricaçãoFiscal novoItem, Fechamento fechamento)
+        private static EsquemaFabricação ObterEsquemaLevantandoErroCasoNãoExista(ItemFabricaçãoFiscal novoItem, Dictionary<string, EsquemaFabricação> hashEsquemas)
         {
-            EsquemaFabricação esquema = EsquemaFabricação.ObterÚnico(fechamento, novoItem.Referência);
+            EsquemaFabricação resultado = null;
 
-            if (esquema == null)
+            if (!hashEsquemas.TryGetValue(novoItem.Referência, out resultado))
                 throw new EsquemaInexistente(novoItem.Referência);
 
-            return esquema;
+            return resultado;
         }
 
         private void AdicionarMatériaPrimaSql(IDbConnection conexão, IDbTransaction transação, decimal qtd, decimal valor, string ingrediente, int fechamento, int fabricação)
@@ -163,8 +164,9 @@ namespace Entidades.Fiscal.Fabricação
             var saídas = SaídaFabricaçãoFiscal.Obter(codigo);
             var fechamentoVigente = Fechamento.Obter(data);
             var hashReferênciaValor = MercadoriaFechamento.ObterHash(fechamentoVigente.Código);
+            var hashEsquemas = EsquemaFabricação.ObterHashEsquemas(fechamentoVigente);
 
-            var hashMatériasPrimas = CalcularMatériasPrimas(saídas, fechamentoVigente);
+            var hashMatériasPrimas = CalcularMatériasPrimas(saídas, hashEsquemas);
 
             var conexão = Conexão;
             
@@ -187,13 +189,13 @@ namespace Entidades.Fiscal.Fabricação
             }
         }
 
-        public Dictionary<string, decimal> CalcularMatériasPrimas(List<SaídaFabricaçãoFiscal> itens, Fechamento fechamento)
+        public Dictionary<string, decimal> CalcularMatériasPrimas(List<SaídaFabricaçãoFiscal> itens, Dictionary<string, EsquemaFabricação> hashEsquemas)
         {
             Dictionary<string, decimal> hashMatériaPrimaQuantidade = new Dictionary<string, decimal>();
 
             foreach (SaídaFabricaçãoFiscal item in itens)
             {
-                var esquemaFabricação = ObterEsquemaLevantandoErroCasoNãoExista(item, fechamento);
+                var esquemaFabricação = ObterEsquemaLevantandoErroCasoNãoExista(item, hashEsquemas);
                 ProcessarSaída(hashMatériaPrimaQuantidade, item, esquemaFabricação);
             }
 

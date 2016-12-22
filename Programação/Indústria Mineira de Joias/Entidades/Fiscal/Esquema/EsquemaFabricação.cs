@@ -72,12 +72,12 @@ namespace Entidades.Fiscal.Esquema
                 + " AND e.referencia=" + (referência == null ? "e.referencia" : DbTransformar(referência)));
         }
 
-        public static Dictionary<string, EsquemaFabricação> ObterHash(Fechamento fechamento)
+        public static Dictionary<string, EsquemaFabricação> ObterHashEsquemas(Fechamento fechamento)
         {
-            var esquemas = Obter(fechamento);
-            Dictionary<string, EsquemaFabricação> hash = new Dictionary<string, Esquema.EsquemaFabricação>();
-            foreach (var esquema in esquemas)
-                hash[esquema.referencia] = esquema;
+            Dictionary<string, EsquemaFabricação> hash = new Dictionary<string, EsquemaFabricação>();
+            var esquemas = Obter(fechamento, null);
+            foreach (EsquemaFabricação esquema in esquemas)
+                hash[esquema.Referência] = esquema;
 
             return hash;
         }
