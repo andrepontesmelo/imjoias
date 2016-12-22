@@ -181,7 +181,6 @@
         }
 
         #endregion
-        private Formulários.Quadro quadro2;
         private Formulários.Opção opçãoExcluir;
         private Formulários.Opção opçãoImprimir;
         private Formulários.Quadro quadro1;
@@ -189,5 +188,6 @@
         protected Formulários.Opção opçãoNovo;
         protected QuadroTipo quadroTipo;
         protected Administrativo.Fiscal.Combo.ComboFechamento comboFechamento;
+        protected Formulários.Quadro quadro2;
     }
 }

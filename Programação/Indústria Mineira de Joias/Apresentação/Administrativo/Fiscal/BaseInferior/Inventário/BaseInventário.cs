@@ -1,5 +1,5 @@
 ﻿using Apresentação.Administrativo.Fiscal.BaseInferior.Esquema;
-using Apresentação.Administrativo.Fiscal.BaseInferior.fabricação;
+using Apresentação.Administrativo.Fiscal.BaseInferior.Fabricação;
 using Apresentação.Administrativo.Fiscal.Janela;
 using Apresentação.Formulários;
 using Apresentação.Impressão.Relatórios.Fiscal.Inventário;

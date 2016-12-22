@@ -1,6 +1,6 @@
 ﻿using Apresentação.Administrativo.Fiscal.BaseInferior;
 using Apresentação.Administrativo.Fiscal.BaseInferior.Esquema;
-using Apresentação.Administrativo.Fiscal.BaseInferior.fabricação;
+using Apresentação.Administrativo.Fiscal.BaseInferior.Fabricação;
 using Apresentação.Administrativo.Fiscal.BaseInferior.Inventário;
 using Apresentação.Fiscal.BaseInferior.Documentos;
 using Apresentação.Fiscal.Janela;

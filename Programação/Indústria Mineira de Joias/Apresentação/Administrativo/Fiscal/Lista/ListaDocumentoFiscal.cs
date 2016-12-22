@@ -86,6 +86,18 @@ namespace Apresentação.Fiscal.Lista
             return item;
         }
 
+        public List<DocumentoFiscal> ObterEntidadesSelecionadas()
+        {
+            List<DocumentoFiscal> resultado = new List<DocumentoFiscal>();
+
+            foreach (ListViewItem item in lista.SelectedItems)
+            {
+                resultado.Add(item.Tag as DocumentoFiscal);
+            }
+
+            return resultado;
+        }
+
         private void lista_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             ((ListViewColumnSorter)lista.ListViewItemSorter).OnClick(lista, e);

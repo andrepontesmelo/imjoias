@@ -20,7 +20,12 @@ namespace Entidades.Fiscal
         public decimal ValorTotal => valortotal;
         public string ValorFormatado => FormatarMoeda(valor);
         public string ValorTotalFormatado => FormatarMoeda(valortotal);
-        public decimal Quantidade => quantidade;
+
+        public decimal Quantidade
+        {
+            get { return quantidade; }
+            set { quantidade = value; }
+        }
 
         public static List<Inventário> Obter(Fechamento fechamento)
         {
@@ -36,6 +41,17 @@ namespace Entidades.Fiscal
                 DbTransformar(fechamento.Fim.AddDays(1)));
 
             return Mapear<Inventário>(sql);
+        }
+
+        public static Dictionary<string, Inventário> ObterHash(Fechamento fechamento)
+        {
+            Dictionary<string, Inventário> hash = new Dictionary<string, Fiscal.Inventário>();
+            var listaInventário = Obter(fechamento);
+
+            foreach (Inventário i in listaInventário)
+                hash[i.Referência] = i;
+
+            return hash;
         }
 
         public SaídaFabricaçãoFiscal ObterItemfabricação(int fechamento)

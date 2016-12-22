@@ -3,7 +3,7 @@ using Entidades.Fiscal;
 using Entidades.Fiscal.Fabricação;
 using System;
 
-namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
+namespace Apresentação.Administrativo.Fiscal.BaseInferior.Fabricação
 {
     public partial class BaseFabricações : Apresentação.Formulários.BaseInferior
     {

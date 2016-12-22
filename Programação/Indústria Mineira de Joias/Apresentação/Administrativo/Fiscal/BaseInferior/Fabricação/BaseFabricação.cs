@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
+namespace Apresentação.Administrativo.Fiscal.BaseInferior.Fabricação
 {
     public partial class BaseFabricação : Formulários.BaseInferior
     {

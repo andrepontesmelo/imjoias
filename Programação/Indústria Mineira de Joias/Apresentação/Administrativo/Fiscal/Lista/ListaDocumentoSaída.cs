@@ -1,6 +1,7 @@
 ﻿using Entidades.Fiscal;
 using Entidades.Fiscal.Pdf;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Apresentação.Fiscal.Lista

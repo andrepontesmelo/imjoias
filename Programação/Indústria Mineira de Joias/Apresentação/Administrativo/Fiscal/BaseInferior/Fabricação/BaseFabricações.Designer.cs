@@ -1,4 +1,4 @@
-﻿namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
+﻿namespace Apresentação.Administrativo.Fiscal.BaseInferior.Fabricação
 {
     partial class BaseFabricações
     {

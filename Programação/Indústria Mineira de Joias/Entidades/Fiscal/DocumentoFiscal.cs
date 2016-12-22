@@ -1,5 +1,6 @@
 ﻿using Acesso.Comum;
 using Entidades.Configuração;
+using Entidades.Fiscal.Fabricação;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -297,5 +298,50 @@ namespace Entidades.Fiscal
 
             CarregarItens();
         }
+
+        internal static Dictionary<string, SaídaFabricaçãoFiscal> Agrupar(List<DocumentoFiscal> entidades,
+            Dictionary<string, MercadoriaFechamento> hashMercadoriaFechamento)
+        {
+            Dictionary<string, SaídaFabricaçãoFiscal> hash = new Dictionary<string, SaídaFabricaçãoFiscal>();
+
+            foreach (var documento in entidades)
+            {
+                foreach (var item in documento.Itens)
+                {
+                    var mercadoria = hashMercadoriaFechamento[item.Referência];
+                    decimal qtd = 0;
+                    decimal peso = 0;
+
+                    if (mercadoria.DePeso)
+                    {
+                        peso = item.Quantidade;
+                        qtd = 1;
+                    }
+                    else
+                    {
+                        peso = mercadoria.Peso;
+                        qtd = item.Quantidade;
+                    }
+
+                    SaídaFabricaçãoFiscal itemHash;
+                    var códigoHash = ObterCódigoHash(item.Referência, peso);
+                    if (!hash.TryGetValue(códigoHash, out itemHash))
+                    {
+                        itemHash = new SaídaFabricaçãoFiscal(item.Referência, qtd, 0,  0, peso);
+                        hash[códigoHash] = itemHash;
+                    }
+
+                    itemHash.Quantidade += item.Quantidade;
+                }
+            }
+
+            return hash;
+        }
+
+        private static string ObterCódigoHash(string referência, decimal peso)
+        {
+            return string.Format("{0}#{1}", referência, peso);
+        }
+
     }
 }

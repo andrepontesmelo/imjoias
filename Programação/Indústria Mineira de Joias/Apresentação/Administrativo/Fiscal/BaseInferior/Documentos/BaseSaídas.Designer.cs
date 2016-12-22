@@ -32,6 +32,8 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
         {
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.opçãoProduzir = new Apresentação.Formulários.Opção();
+            this.quadro2.SuspendLayout();
             this.esquerda.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.SuspendLayout();
@@ -47,12 +49,19 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
             // 
             // quadroTipo
             // 
+            this.quadroTipo.Location = new System.Drawing.Point(7, 176);
             this.quadroTipo.SeleçãoAlterada += new System.EventHandler(this.quadroTipo_SeleçãoAlterada);
             // 
             // comboFechamento
             // 
             this.comboFechamento.Location = new System.Drawing.Point(386, 51);
             this.comboFechamento.Size = new System.Drawing.Size(394, 22);
+            // 
+            // quadro2
+            // 
+            this.quadro2.Controls.Add(this.opçãoProduzir);
+            this.quadro2.Size = new System.Drawing.Size(160, 90);
+            this.quadro2.Controls.SetChildIndex(this.opçãoProduzir, 0);
             // 
             // esquerda
             // 
@@ -80,6 +89,20 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // opçãoProduzir
+            // 
+            this.opçãoProduzir.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoProduzir.Descrição = "Produzir";
+            this.opçãoProduzir.Imagem = global::Apresentação.Resource.AddTableHS;
+            this.opçãoProduzir.Location = new System.Drawing.Point(7, 70);
+            this.opçãoProduzir.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoProduzir.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoProduzir.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoProduzir.Name = "opçãoProduzir";
+            this.opçãoProduzir.Size = new System.Drawing.Size(150, 24);
+            this.opçãoProduzir.TabIndex = 5;
+            this.opçãoProduzir.Click += new System.EventHandler(this.opçãoProduzir_Click);
+            // 
             // BaseSaídas
             // 
             this.Controls.Add(this.tabControl);
@@ -89,6 +112,7 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
             this.Controls.SetChildIndex(this.esquerda, 0);
             this.Controls.SetChildIndex(this.tabControl, 0);
             this.Controls.SetChildIndex(this.comboFechamento, 0);
+            this.quadro2.ResumeLayout(false);
             this.esquerda.ResumeLayout(false);
             this.tabControl.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -99,5 +123,6 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
 
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabPage1;
+        private Formulários.Opção opçãoProduzir;
     }
 }

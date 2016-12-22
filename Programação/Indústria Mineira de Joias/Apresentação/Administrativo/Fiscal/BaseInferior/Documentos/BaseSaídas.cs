@@ -6,6 +6,10 @@ using System.Windows.Forms;
 using Apresentação.Fiscal.BaseInferior.Documentos.Exclusão;
 using System.Collections.Generic;
 using Apresentação.Impressão.Relatórios.Fiscal.ListaDocumento;
+using Entidades.Fiscal.Fabricação;
+using Apresentação.Administrativo.Fiscal.BaseInferior.Fabricação;
+using Apresentação.Administrativo.Fiscal.Janela;
+using Entidades.Fiscal.Esquema;
 
 namespace Apresentação.Fiscal.BaseInferior.Documentos
 {
@@ -121,6 +125,24 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
         protected override Relatório CriarRelatório(ControladorImpressão controlador)
         {
             return controlador.CriarRelatório(Fechamento, ObterEntidades(), false);
+        }
+
+        private void opçãoProduzir_Click(object sender, EventArgs e)
+        {
+            if (MostrarMensagemFechamentoDeveSerEscolhido())
+                return;
+
+            var novaFabricação = FabricaçãoFiscal.Criar();
+            var janela = new JanelaEdiçãoFabricação(novaFabricação);
+            if (janela.ShowDialog() != DialogResult.OK)
+            {
+                novaFabricação.Descadastrar();
+                return;
+            }
+
+            var itensNecessários = novaFabricação.CalcularProduçãoNecessária(ObterListaAtiva().ObterEntidadesSelecionadas());
+            novaFabricação.AdicionarMatériasPrimas(itensNecessários, EsquemaFabricação.ObterHashEsquemas(Fechamento.Obter(novaFabricação.Data)));
+            SubstituirBase(new BaseFabricação(novaFabricação));
         }
     }
 }
