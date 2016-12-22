@@ -316,7 +316,15 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.fabricação
         private void opçãoRecalcularMatériasPrimas_Click(object sender, EventArgs e)
         {
             AguardeDB.Mostrar();
-            fabricação.RecalcularMatériasPrimas();
+            try
+            {
+                fabricação.RecalcularMatériasPrimas();
+            } catch (ExceçãoFiscal erro)
+            {
+                AguardeDB.Fechar();
+                MessageBox.Show(erro.Message);
+            }
+
             Carregar(fabricação);
             AguardeDB.Fechar();
         }

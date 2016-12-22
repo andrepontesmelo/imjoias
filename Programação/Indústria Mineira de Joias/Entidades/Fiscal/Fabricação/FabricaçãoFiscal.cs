@@ -81,26 +81,20 @@ namespace Entidades.Fiscal.Fabricação
 
         public void AdicionarMatériasPrimas(List<SaídaFabricaçãoFiscal> itens, Fechamento fechamento)
         {
-            var conexão = Conexão;
+            LevantarErrosCriação(itens, fechamento);
 
-            lock (conexão)
-            {
-                using (var transação = conexão.BeginTransaction())
-                {
-                    AdicionarEntradas(itens, fechamento, conexão, transação);
+            foreach (var novoItem in itens)
+                ExecutarComando(SaídaFabricaçãoFiscal.ObterSqlInserçãoSaída(this, novoItem.Referência, novoItem.Quantidade, novoItem.Valor, novoItem.CFOP, novoItem.Peso));
 
-                    transação.Commit();
-                }
-            }
+            RecalcularMatériasPrimas();
         }
 
-        public void AdicionarEntradas(List<SaídaFabricaçãoFiscal> itens, Fechamento fechamento, IDbConnection conexão, IDbTransaction transação)
+        public void AdicionarFabricação(SaídaFabricaçãoFiscal novoItem, Fechamento fechamento)
         {
-            foreach (SaídaFabricaçãoFiscal item in itens)
-                AdicionarFabricação(conexão, transação, item,
-                    ObterEsquemaLevantandoErroCasoNãoExista(item, fechamento), false);
+            ObterEsquemaLevantandoErroCasoNãoExista(novoItem, fechamento);
+            ExecutarComando(SaídaFabricaçãoFiscal.ObterSqlInserçãoSaída(this, novoItem.Referência, novoItem.Quantidade, novoItem.Valor, novoItem.CFOP, novoItem.Peso));
+            RecalcularMatériasPrimas();
         }
-
 
         private static void LevantarErrosCriação(List<SaídaFabricaçãoFiscal> itens, Fechamento fechamento)
         {
@@ -122,43 +116,6 @@ namespace Entidades.Fiscal.Fabricação
             DbDataEntre("data", inicio, fim)));
         }
 
-        public void AdicionarFabricação(SaídaFabricaçãoFiscal novoItem, Fechamento fechamento)
-        {
-            var esquema = ObterEsquemaLevantandoErroCasoNãoExista(novoItem, fechamento);
-
-            var conexão = Conexão;
-
-            lock (conexão)
-            {
-                using (var transação = conexão.BeginTransaction())
-                {
-                    AdicionarFabricação(conexão, transação, novoItem, esquema, true);
-                    transação.Commit();
-                }
-            }
-        }
-
-        private void AdicionarFabricação(System.Data.IDbConnection conexão, System.Data.IDbTransaction transação, 
-            SaídaFabricaçãoFiscal novoItem, EsquemaFabricação esquema, bool adicionarSaída)
-        {
-            if (novoItem.Quantidade == 0)
-                return;
-
-            var ingredientes = MateriaPrima.Obter(esquema.Referência, esquema.Fechamento);
-            decimal qtdReceitas = novoItem.Quantidade / esquema.Quantidade;
-
-            if (adicionarSaída)
-                AdicionarSaída(conexão, transação, novoItem, qtdReceitas, esquema.Fechamento);
-
-            foreach (var ingrediente in ingredientes)
-            {
-                if (ingrediente.Proporcional)
-                    qtdReceitas *= novoItem.Peso;
-
-                AdicionarEntrada(conexão, transação, qtdReceitas, ingrediente, esquema.Fechamento);
-            }
-        }
-
         private static EsquemaFabricação ObterEsquemaLevantandoErroCasoNãoExista(ItemFabricaçãoFiscal novoItem, Fechamento fechamento)
         {
             EsquemaFabricação esquema = EsquemaFabricação.ObterÚnico(fechamento, novoItem.Referência);
@@ -169,46 +126,16 @@ namespace Entidades.Fiscal.Fabricação
             return esquema;
         }
 
-        private void AdicionarEntrada(System.Data.IDbConnection conexão, System.Data.IDbTransaction transação, decimal qtdReceitas, MateriaPrima ingrediente, int fechamento)
+        private void AdicionarMatériaPrimaSql(IDbConnection conexão, IDbTransaction transação, decimal qtd, decimal valor, string ingrediente, int fechamento, int fabricação)
         {
             var hashReferênciaValor = MercadoriaFechamento.ObterHash(fechamento);
 
             using (var cmd = conexão.CreateCommand())
             {
-                cmd.CommandText = EntradaFabricaçãoFiscal.ObterSqlInserçãoEntrada(this, ingrediente, qtdReceitas, hashReferênciaValor[ingrediente.Referência].Valor, cfopPadrãoOperaçõesInternas.Valor);
+                cmd.CommandText = EntradaFabricaçãoFiscal.ObterSqlInserçãoEntrada(Código, ingrediente, qtd, valor, cfopPadrãoOperaçõesInternas.Valor);
                 cmd.Transaction = transação;
                 cmd.ExecuteNonQuery();
             }
-        }
-
-        private void AdicionarSaída(System.Data.IDbConnection conexão, System.Data.IDbTransaction transação, SaídaFabricaçãoFiscal novoItem, decimal qtdReceitas, int fechamento)
-        {
-            using (var cmd = conexão.CreateCommand())
-            {
-                cmd.CommandText = SaídaFabricaçãoFiscal.ObterSqlInserçãoSaída(this, qtdReceitas, novoItem.Referência, novoItem.Quantidade, novoItem.Valor, cfopPadrãoOperaçõesInternas.Valor, novoItem.Peso);
-                cmd.Transaction = transação;
-                cmd.ExecuteNonQuery();
-            }
-        }
-
-        private void RemoverItens(System.Data.IDbConnection conexão, string relação, System.Data.IDbTransaction transação)
-        {
-            using (var cmd = conexão.CreateCommand())
-            {
-                cmd.CommandText = string.Format("delete from {0} where fabricacaofiscal = {1}", relação, DbTransformar(Código));
-                cmd.Transaction = transação;
-                cmd.ExecuteNonQuery();
-            }
-        }
-
-        private void RemoverEntradas(System.Data.IDbConnection conexão, System.Data.IDbTransaction transação)
-        {
-            RemoverItens(conexão, EntradaFabricaçãoFiscal.RELAÇÃO, transação);
-        }
-
-        private void RemoverSaídas(System.Data.IDbConnection conexão, System.Data.IDbTransaction transação)
-        {
-            RemoverItens(conexão, SaídaFabricaçãoFiscal.RELAÇÃO, transação);
         }
 
         public static void Remover(List<FabricaçãoFiscal> lstFabricações)
@@ -235,19 +162,87 @@ namespace Entidades.Fiscal.Fabricação
         {
             var saídas = SaídaFabricaçãoFiscal.Obter(codigo);
             var fechamentoVigente = Fechamento.Obter(data);
+            var hashReferênciaValor = MercadoriaFechamento.ObterHash(fechamentoVigente.Código);
+
+            var hashMatériasPrimas = CalcularMatériasPrimas(saídas, fechamentoVigente);
 
             var conexão = Conexão;
-
+            
             lock (conexão)
             {
                 using (var transação = conexão.BeginTransaction())
                 {
-                    RemoverEntradas(conexão, transação);
-                    AdicionarEntradas(saídas, fechamentoVigente, conexão, transação);
+                    RemoverMatériasPrimas(conexão, transação);
 
+                    foreach (KeyValuePair<string, decimal> par in hashMatériasPrimas)
+                    {
+                        var matériaPrima = par.Key;
+                        var qtd = par.Value;
+                        var valor = hashReferênciaValor[matériaPrima].Valor;
+
+                        AdicionarMatériaPrimaSql(conexão, transação, qtd, valor, matériaPrima, fechamentoVigente.Código, Código);
+                    }
                     transação.Commit();
                 }
             }
         }
+
+        public Dictionary<string, decimal> CalcularMatériasPrimas(List<SaídaFabricaçãoFiscal> itens, Fechamento fechamento)
+        {
+            Dictionary<string, decimal> hashMatériaPrimaQuantidade = new Dictionary<string, decimal>();
+
+            foreach (SaídaFabricaçãoFiscal item in itens)
+            {
+                var esquemaFabricação = ObterEsquemaLevantandoErroCasoNãoExista(item, fechamento);
+                ProcessarSaída(hashMatériaPrimaQuantidade, item, esquemaFabricação);
+            }
+
+            return hashMatériaPrimaQuantidade;
+        }
+
+        private void ProcessarSaída(Dictionary<string, decimal> hashMatériaPrimaQuantidade, SaídaFabricaçãoFiscal novoItem, EsquemaFabricação esquema)
+        {
+            if (novoItem.Quantidade == 0)
+                return;
+
+            var ingredientes = MateriaPrima.Obter(esquema.Referência, esquema.Fechamento);
+            decimal qtdReceitas = novoItem.Quantidade / esquema.Quantidade;
+
+            foreach (var ingrediente in ingredientes)
+            {
+                if (ingrediente.Proporcional)
+                    qtdReceitas *= novoItem.Peso;
+
+                ProcessarIngrediente(hashMatériaPrimaQuantidade, qtdReceitas, ingrediente);
+            }
+        }
+
+        private void ProcessarIngrediente(Dictionary<string, decimal> hashMatériaPrimaQuantidade, decimal qtdReceitas, MateriaPrima ingrediente)
+        {
+            string matériaPrima = ingrediente.Referência;
+            decimal qtd = qtdReceitas * ingrediente.Quantidade;
+
+            decimal qtdAnterior = 0;
+            hashMatériaPrimaQuantidade.TryGetValue(matériaPrima, out qtdAnterior);
+
+            hashMatériaPrimaQuantidade[matériaPrima] = qtdAnterior + qtd;
+        }
+
+
+        private void RemoverMatériasPrimas(System.Data.IDbConnection conexão, System.Data.IDbTransaction transação)
+        {
+            RemoverItens(conexão, EntradaFabricaçãoFiscal.RELAÇÃO, transação);
+        }
+
+        private void RemoverItens(System.Data.IDbConnection conexão, string relação, System.Data.IDbTransaction transação)
+        {
+            using (var cmd = conexão.CreateCommand())
+            {
+                cmd.CommandText = string.Format("delete from {0} where fabricacaofiscal = {1}", relação, DbTransformar(Código));
+                cmd.Transaction = transação;
+                cmd.ExecuteNonQuery();
+            }
+        }
+
     }
 }

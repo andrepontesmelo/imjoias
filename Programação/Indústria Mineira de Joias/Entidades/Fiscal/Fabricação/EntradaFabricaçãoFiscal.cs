@@ -11,12 +11,12 @@ namespace Entidades.Fiscal.Fabricação
     {
         internal static readonly string RELAÇÃO = "entradafabricacaofiscal";
 
-        internal static string ObterSqlInserçãoEntrada(FabricaçãoFiscal fabricação, MateriaPrima ingrediente, decimal qtdReceitas, decimal valor, int cfop)
+        internal static string ObterSqlInserçãoEntrada(int fabricação, string ingrediente, decimal qtd, decimal valor, int cfop)
         {
             return string.Format("INSERT INTO entradafabricacaofiscal (fabricacaofiscal, referencia, quantidade, valor, cfop) values ({0}, {1}, {2}, {3}, {4})",
-                    DbTransformar(fabricação.Código),
-                    DbTransformar(ingrediente.Referência),
-                    DbTransformar(qtdReceitas * ingrediente.Quantidade),
+                    DbTransformar(fabricação),
+                    DbTransformar(ingrediente),
+                    DbTransformar(qtd),
                     DbTransformar(valor),
                     DbTransformar(cfop));
         }
