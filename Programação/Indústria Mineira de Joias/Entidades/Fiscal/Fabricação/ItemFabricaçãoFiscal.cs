@@ -41,8 +41,7 @@ namespace Entidades.Fiscal.Fabricação
 
         public decimal ValorTotal => Valor * Quantidade;
 
-        public Mercadoria.Mercadoria Mercadoria => 
-            Entidades.Mercadoria.Mercadoria.ObterMercadoria(referencia);
+        public Mercadoria.Mercadoria Mercadoria => Entidades.Mercadoria.Mercadoria.ObterMercadoriaComCache(referencia, Entidades.Tabela.TabelaPadrão);
 
         public ItemFabricaçãoFiscal()
         {
