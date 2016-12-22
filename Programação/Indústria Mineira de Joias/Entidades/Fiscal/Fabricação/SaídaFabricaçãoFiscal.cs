@@ -1,6 +1,7 @@
 ﻿using Acesso.Comum;
 using System.Collections.Generic;
 using System;
+using System.Text;
 
 namespace Entidades.Fiscal.Fabricação
 {
@@ -27,6 +28,22 @@ namespace Entidades.Fiscal.Fabricação
                 DbTransformar(valor),
                 DbTransformar(cfop),
                 DbTransformar(peso));
+        }
+
+        internal static void AdicionarSqlInserçãoSaída(StringBuilder str, FabricaçãoFiscal fabricação, string referência, decimal quantidade, decimal valor, int cfop, decimal peso)
+        {
+            str.Append(string.Format("({0}, {1}, {2}, {3}, {4}, {5})",
+                DbTransformar(fabricação.Código),
+                DbTransformar(referência),
+                DbTransformar(quantidade),
+                DbTransformar(valor),
+                DbTransformar(cfop),
+                DbTransformar(peso)));
+        }
+
+        internal static StringBuilder ObterCabeçalhoSqlInserçãoSaída()
+        {
+            return new StringBuilder("INSERT INTO saidafabricacaofiscal (fabricacaofiscal, referencia, quantidade, valor, cfop, peso) values ");
         }
 
         public SaídaFabricaçãoFiscal(ItemFabricaçãoFiscal item, decimal peso)

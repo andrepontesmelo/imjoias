@@ -58,8 +58,32 @@ namespace Entidades.Fiscal.Esquema
         {
             return Mapear<MateriaPrima>(
                 string.Format("select i.*, m.nome as descricao, m.tipounidade, m.cfop from materiaprimaesquemafabricacaofiscal i join mercadoria m on " + 
-                " i.materiaprima=m.referencia where esquema={0} and fechamento={1}", DbTransformar(esquema), DbTransformar(fechamento)));
+                " i.materiaprima=m.referencia where esquema={0} and fechamento={1}", 
+                esquema == null ? "esquema" : DbTransformar(esquema), 
+                DbTransformar(fechamento)));
         }
+
+        public static Dictionary<string, List<MateriaPrima>> ObterHash(int fechamento)
+        {
+            Dictionary<string, List<MateriaPrima>> hash = new Dictionary<string, List<Fiscal.Esquema.MateriaPrima>>();
+
+            List<MateriaPrima> todas = Obter(null, fechamento);
+
+            foreach (MateriaPrima m in todas)
+            {
+                List<MateriaPrima> lista;
+                if (!hash.TryGetValue(m.Esquema, out lista))
+                {
+                    lista = new List<MateriaPrima>();
+                    hash[m.Esquema] = lista;
+                }
+
+                lista.Add(m);
+            }
+
+            return hash;
+        }
+
 
         public void Atualizar()
         {

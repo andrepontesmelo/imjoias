@@ -84,9 +84,21 @@ namespace Entidades.Fiscal.Fabricação
         {
             LevantarErrosCriação(itens, hashEsquemas);
 
-            foreach (var novoItem in itens)
-                ExecutarComando(SaídaFabricaçãoFiscal.ObterSqlInserçãoSaída(this, novoItem.Referência, novoItem.Quantidade, novoItem.Valor, novoItem.CFOP, novoItem.Peso));
+            StringBuilder cmd = SaídaFabricaçãoFiscal.ObterCabeçalhoSqlInserçãoSaída();
 
+            bool primeiro = true;
+
+            foreach (var novoItem in itens)
+            {
+                if (!primeiro)
+                    cmd.Append(", ");
+
+                SaídaFabricaçãoFiscal.AdicionarSqlInserçãoSaída(cmd, this, novoItem.Referência, novoItem.Quantidade, novoItem.Valor, novoItem.CFOP, novoItem.Peso);
+
+                primeiro = false;
+            }
+
+            ExecutarComando(cmd.ToString());
             RecalcularMatériasPrimas();
         }
 
@@ -166,7 +178,7 @@ namespace Entidades.Fiscal.Fabricação
             var hashReferênciaValor = MercadoriaFechamento.ObterHash(fechamentoVigente.Código);
             var hashEsquemas = EsquemaFabricação.ObterHashEsquemas(fechamentoVigente);
 
-            var hashMatériasPrimas = CalcularMatériasPrimas(saídas, hashEsquemas);
+            var hashMatériasPrimas = CalcularMatériasPrimas(saídas, hashEsquemas, fechamentoVigente);
 
             var conexão = Conexão;
             
@@ -189,25 +201,31 @@ namespace Entidades.Fiscal.Fabricação
             }
         }
 
-        public Dictionary<string, decimal> CalcularMatériasPrimas(List<SaídaFabricaçãoFiscal> itens, Dictionary<string, EsquemaFabricação> hashEsquemas)
+        public Dictionary<string, decimal> CalcularMatériasPrimas(List<SaídaFabricaçãoFiscal> itens, 
+            Dictionary<string, EsquemaFabricação> hashEsquemas,
+            Fechamento fechamento)
         {
             Dictionary<string, decimal> hashMatériaPrimaQuantidade = new Dictionary<string, decimal>();
+            Dictionary<string, List<MateriaPrima>> hashEsquemaMatériaPrima = MateriaPrima.ObterHash(fechamento.Código);
 
             foreach (SaídaFabricaçãoFiscal item in itens)
             {
                 var esquemaFabricação = ObterEsquemaLevantandoErroCasoNãoExista(item, hashEsquemas);
-                ProcessarSaída(hashMatériaPrimaQuantidade, item, esquemaFabricação);
+                ProcessarSaída(hashMatériaPrimaQuantidade, hashEsquemaMatériaPrima, item, esquemaFabricação);
             }
 
             return hashMatériaPrimaQuantidade;
         }
 
-        private void ProcessarSaída(Dictionary<string, decimal> hashMatériaPrimaQuantidade, SaídaFabricaçãoFiscal novoItem, EsquemaFabricação esquema)
+        private void ProcessarSaída(Dictionary<string, decimal> hashMatériaPrimaQuantidade, 
+            Dictionary<string, List<MateriaPrima>> hashEsquemaMatériaPrima,            
+            SaídaFabricaçãoFiscal novoItem, 
+            EsquemaFabricação esquema)
         {
             if (novoItem.Quantidade == 0)
                 return;
 
-            var ingredientes = MateriaPrima.Obter(esquema.Referência, esquema.Fechamento);
+            var ingredientes = hashEsquemaMatériaPrima[esquema.Referência];
             decimal qtdReceitas = novoItem.Quantidade / esquema.Quantidade;
 
             foreach (var ingrediente in ingredientes)
