@@ -324,6 +324,8 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Extrato {
             
             private global::System.Data.DataColumn columninscriçãoEstadual;
             
+            private global::System.Data.DataColumn columnprimeiraFolha;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public DocumentoDataTable() {
@@ -399,6 +401,14 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Extrato {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn primeiraFolhaColumn {
+                get {
+                    return this.columnprimeiraFolha;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -434,14 +444,15 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Extrato {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DocumentoRow AddDocumentoRow(string datainicial, string datafinal, string nomeEmpresa, string cnpj, string inscriçãoEstadual) {
+            public DocumentoRow AddDocumentoRow(string datainicial, string datafinal, string nomeEmpresa, string cnpj, string inscriçãoEstadual, int primeiraFolha) {
                 DocumentoRow rowDocumentoRow = ((DocumentoRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         datainicial,
                         datafinal,
                         nomeEmpresa,
                         cnpj,
-                        inscriçãoEstadual};
+                        inscriçãoEstadual,
+                        primeiraFolha};
                 rowDocumentoRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDocumentoRow);
                 return rowDocumentoRow;
@@ -469,6 +480,7 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Extrato {
                 this.columnnomeEmpresa = base.Columns["nomeEmpresa"];
                 this.columncnpj = base.Columns["cnpj"];
                 this.columninscriçãoEstadual = base.Columns["inscriçãoEstadual"];
+                this.columnprimeiraFolha = base.Columns["primeiraFolha"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -484,6 +496,8 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Extrato {
                 base.Columns.Add(this.columncnpj);
                 this.columninscriçãoEstadual = new global::System.Data.DataColumn("inscriçãoEstadual", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columninscriçãoEstadual);
+                this.columnprimeiraFolha = new global::System.Data.DataColumn("primeiraFolha", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnprimeiraFolha);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1128,6 +1142,22 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Extrato {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int primeiraFolha {
+                get {
+                    try {
+                        return ((int)(this[this.tableDocumento.primeiraFolhaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'primeiraFolha\' in table \'Documento\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDocumento.primeiraFolhaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsdatainicialNull() {
                 return this.IsNull(this.tableDocumento.datainicialColumn);
             }
@@ -1184,6 +1214,18 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Extrato {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetinscriçãoEstadualNull() {
                 this[this.tableDocumento.inscriçãoEstadualColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsprimeiraFolhaNull() {
+                return this.IsNull(this.tableDocumento.primeiraFolhaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetprimeiraFolhaNull() {
+                this[this.tableDocumento.primeiraFolhaColumn] = global::System.Convert.DBNull;
             }
         }
         

@@ -83,9 +83,12 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Inventário
             DateTime dataInicial = DataInicial.HasValue ? DataInicial.Value : DadosGlobais.Instância.HoraDataAtual;
             DateTime dataFinal = DataFinal.HasValue ? DataFinal.Value : DadosGlobais.Instância.HoraDataAtual;
 
+            var janelaPágina = new JanelaPáginaInicial();
+            janelaPágina.ShowDialog(this);
+            
             janela.InserirDocumento("Extrato Geral",
                 string.Format("Relatório de extrato de {0} até {1}", dataInicial.ToShortDateString(), dataFinal.ToShortDateString()),
-                new ControladorImpressãoExtrato().CriarRelatório(null, fechamento));
+                new ControladorImpressãoExtrato().CriarRelatório(null, fechamento, janelaPágina.PrimeiraPágina));
 
             janela.ShowDialog(this);
         }

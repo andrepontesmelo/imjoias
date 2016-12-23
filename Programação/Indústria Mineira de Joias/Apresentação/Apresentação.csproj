@@ -225,6 +225,12 @@
     <Compile Include="Administrativo\Fiscal\Janela\JanelaImpressãoFiscal.Designer.cs">
       <DependentUpon>JanelaImpressãoFiscal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrativo\Fiscal\Janela\JanelaPáginaInicial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrativo\Fiscal\Janela\JanelaPáginaInicial.Designer.cs">
+      <DependentUpon>JanelaPáginaInicial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administrativo\Fiscal\Lista\ListaEsquemaProdução.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -2631,6 +2637,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administrativo\Fiscal\Janela\JanelaImpressãoFiscal.resx">
       <DependentUpon>JanelaImpressãoFiscal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrativo\Fiscal\Janela\JanelaPáginaInicial.resx">
+      <DependentUpon>JanelaPáginaInicial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administrativo\Fiscal\Lista\Fabricação\ListaSaídaFabricaçãoFiscal.resx">
       <DependentUpon>ListaSaídaFabricaçãoFiscal.cs</DependentUpon>

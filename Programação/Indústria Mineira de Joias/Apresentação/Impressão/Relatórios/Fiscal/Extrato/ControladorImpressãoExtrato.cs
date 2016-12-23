@@ -10,23 +10,23 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Extrato
     {
         private Dictionary<string, decimal> hashReferênciaInventárioAnterior;
 
-        public RelatórioExtrato CriarRelatório(string referência, Fechamento fechamento)
+        public RelatórioExtrato CriarRelatório(string referência, Fechamento fechamento, int páginaInicial)
         {
             var relatório = new RelatórioExtrato();
             var dataset = new DataSetExtrato();
             relatório.SetDataSource(dataset);
             hashReferênciaInventárioAnterior = InventárioRelativo.ObterHashReferênciaQuantidadeInventárioAnterior(fechamento.Início);
 
-            CriarAdicionarDocumento(dataset, fechamento.Início, fechamento.Fim);
+            CriarAdicionarDocumento(dataset, fechamento.Início, fechamento.Fim, páginaInicial);
             CriarItens(Entidades.Fiscal.Extrato.ObterEstoqueAcumulado(referência, fechamento), dataset.Tables["Item"]);
 
             return relatório;
         }
 
-        private void CriarAdicionarDocumento(DataSetExtrato dataset, DateTime dataInicial, DateTime dataFinal)
+        private void CriarAdicionarDocumento(DataSetExtrato dataset, DateTime dataInicial, DateTime dataFinal, int páginaInicial)
         {
             var tabelaDocumento = dataset.Tables["Documento"];
-            tabelaDocumento.Rows.Add(CriarDocumento(tabelaDocumento, dataInicial, dataFinal));
+            tabelaDocumento.Rows.Add(CriarDocumento(tabelaDocumento, dataInicial, dataFinal, páginaInicial));
         }
 
         private void CriarItens(List<Entidades.Fiscal.Extrato> entidades, DataTable tabelaItens)
@@ -38,12 +38,12 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Extrato
             }
         }
 
-
-        private DataRow CriarDocumento(DataTable tabelaDocumento, DateTime dataInicial, DateTime dataFinal)
+        private DataRow CriarDocumento(DataTable tabelaDocumento, DateTime dataInicial, DateTime dataFinal, int páginaInicial)
         {
             var linha = CriarDocumento(tabelaDocumento);
             linha["dataInicial"] = dataInicial.ToShortDateString();
             linha["dataFinal"] = dataFinal.ToShortDateString();
+            linha["primeiraFolha"] = páginaInicial;
 
             return linha;
         }
