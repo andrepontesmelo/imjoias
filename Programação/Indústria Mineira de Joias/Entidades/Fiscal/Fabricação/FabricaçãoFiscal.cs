@@ -121,48 +121,6 @@ namespace Entidades.Fiscal.Fabricação
             return (from i in itens where i.Quantidade != 0 select i).FirstOrDefault() != null;
         }
 
-        public List<SaídaFabricaçãoFiscal> CalcularProduçãoNecessária(List<DocumentoFiscal> entidades)
-        {
-            List<SaídaFabricaçãoFiscal> resultado = new List<SaídaFabricaçãoFiscal>();
-            var fechamento = Fechamento.Obter(data);
-            var hashMercadoriaFechamento = MercadoriaFechamento.ObterHash(fechamento.Código);
-
-
-            Dictionary<string, SaídaFabricaçãoFiscal> saídasAgrupadas = DocumentoFiscal.Agrupar(entidades, hashMercadoriaFechamento);
-            Dictionary<string, Inventário> hashInventário = Inventário.ObterHash(fechamento);
-
-            foreach (SaídaFabricaçãoFiscal item in saídasAgrupadas.Values)
-            {
-                decimal qtdInventário = 0;
-
-                Inventário inventário;
-                if (hashInventário.TryGetValue(item.Referência, out inventário))
-                    qtdInventário = inventário.Quantidade;
-                else
-                {
-                    inventário = new Inventário();
-                    hashInventário[item.Referência] = inventário;
-                }
-
-                decimal qtdSaída = item.Quantidade;
-
-                decimal qtdProduzir = qtdSaída;
-
-                if (qtdProduzir > 0)
-                {
-                    resultado.Add(item);
-                    inventário.Quantidade += qtdProduzir;
-                }
-                else
-                {
-                    inventário.Quantidade -= item.Quantidade;
-                }
-                
-            }
-
-            return resultado;
-        }
-
         public static List<FabricaçãoFiscal> Obter(DateTime inicio, DateTime fim)
         {
             return Mapear<FabricaçãoFiscal>(string.Format("select * from fabricacaofiscal where {0}",

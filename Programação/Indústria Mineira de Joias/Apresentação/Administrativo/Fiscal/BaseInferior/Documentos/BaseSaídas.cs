@@ -140,8 +140,10 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
                 return;
             }
 
-            var itensNecessários = novaFabricação.CalcularProduçãoNecessária(ObterListaAtiva().ObterEntidadesSelecionadas());
-            novaFabricação.AdicionarMatériasPrimas(itensNecessários, EsquemaFabricação.ObterHashEsquemas(Fechamento.Obter(novaFabricação.Data)));
+            var fechamento = Fechamento.Obter(novaFabricação.Data);
+            var entidades = ObterListaAtiva().ObterEntidadesSelecionadas();
+            var produçãoNecessária = new ControladorFabricaçãoAutomática(novaFabricação).CalcularProduçãoNecessária(entidades);
+            novaFabricação.AdicionarMatériasPrimas(produçãoNecessária, EsquemaFabricação.ObterHashEsquemas(fechamento));
             SubstituirBase(new BaseFabricação(novaFabricação));
         }
     }
