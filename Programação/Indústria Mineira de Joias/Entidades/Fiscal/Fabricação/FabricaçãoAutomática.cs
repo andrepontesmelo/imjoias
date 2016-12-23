@@ -31,15 +31,25 @@ namespace Entidades.Fiscal.Fabricação
                     resultado.Add(itemProduzido);
             }
 
-            return CalcularValores(resultado);
+            return AbribuirCFOPMovimentaçãoInterna(CalcularValores(resultado));
+        }
+
+        private List<SaídaFabricaçãoFiscal> AbribuirCFOPMovimentaçãoInterna(List<SaídaFabricaçãoFiscal> entidades)
+        {
+            var cfop = FabricaçãoFiscal.CfopPadrãoOperaçõesInternas.Valor;
+
+            foreach (var entidade in entidades)
+                entidade.CFOP = cfop;
+
+            return entidades;
         }
 
         private List<SaídaFabricaçãoFiscal> CalcularValores(List<SaídaFabricaçãoFiscal> entidades)
         {
-            foreach (SaídaFabricaçãoFiscal saída in entidades)
+            foreach (var entidade in entidades)
             {
-                var mercadoria = hashMercadoriaFechamento[saída.Referência];
-                saída.Valor = mercadoria.DePeso ? saída.Peso * mercadoria.Valor : mercadoria.Valor;
+                var mercadoria = hashMercadoriaFechamento[entidade.Referência];
+                entidade.Valor = mercadoria.DePeso ? entidade.Peso * mercadoria.Valor : mercadoria.Valor;
             }
 
             return entidades;
