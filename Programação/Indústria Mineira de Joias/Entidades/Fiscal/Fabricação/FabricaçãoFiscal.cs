@@ -146,7 +146,7 @@ namespace Entidades.Fiscal.Fabricação
 
                 decimal qtdSaída = item.Quantidade;
 
-                decimal qtdProduzir = qtdSaída - qtdInventário;
+                decimal qtdProduzir = qtdSaída;
 
                 if (qtdProduzir > 0)
                 {

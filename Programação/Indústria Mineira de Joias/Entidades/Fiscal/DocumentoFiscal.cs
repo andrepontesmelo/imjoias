@@ -327,11 +327,11 @@ namespace Entidades.Fiscal
                     var códigoHash = ObterCódigoHash(item.Referência, peso);
                     if (!hash.TryGetValue(códigoHash, out itemHash))
                     {
-                        itemHash = new SaídaFabricaçãoFiscal(item.Referência, qtd, 0,  0, peso);
+                        itemHash = new SaídaFabricaçãoFiscal(item.Referência, 0, 0,  0, peso);
                         hash[códigoHash] = itemHash;
                     }
 
-                    itemHash.Quantidade += item.Quantidade;
+                    itemHash.Quantidade += qtd;
                 }
             }
 
