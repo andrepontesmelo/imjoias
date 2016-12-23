@@ -47,7 +47,7 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             item.Tag = entidade;
             item.SubItems[colData.Index].Text = entidade.DataFormatada;
             item.SubItems[colEstoque.Index].Text = entidade.Estoque.ToString();
-            item.SubItems[colQuantidade.Index].Text = entidade.Quantidade.ToString();
+            item.SubItems[colQuantidade.Index].Text = Math.Abs(entidade.Quantidade).ToString();
             item.SubItems[colTipoDocumento.Index].Text = entidade.TipoDocumento?.Nome;
             item.SubItems[colTipoExtrato.Index].Text = entidade.TipoExtrato;
             item.SubItems[colValor.Index].Text = entidade.Valor.ToString("C");

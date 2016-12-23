@@ -59,7 +59,7 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Extrato
             item["valor"] = entidade.ValorFormatado;
             item["tipoResumido"] = entidade.TipoResumido;
             item["entradaSaída"] = entidade.EntradaSaída;
-            item["quantidade"] = entidade.Quantidade.ToString();
+            item["quantidade"] = Math.Abs(entidade.Quantidade).ToString();
             item["estoque"] = entidade.Estoque.ToString();
             item["fabricação"] = entidade.Fabricação.ToString();
 
