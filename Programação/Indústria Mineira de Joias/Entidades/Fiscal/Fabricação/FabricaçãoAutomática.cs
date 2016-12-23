@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Entidades.Fiscal.Fabricação
 {
@@ -30,7 +31,18 @@ namespace Entidades.Fiscal.Fabricação
                     resultado.Add(itemProduzido);
             }
 
-            return resultado;
+            return CalcularValores(resultado);
+        }
+
+        private List<SaídaFabricaçãoFiscal> CalcularValores(List<SaídaFabricaçãoFiscal> entidades)
+        {
+            foreach (SaídaFabricaçãoFiscal saída in entidades)
+            {
+                var mercadoria = hashMercadoriaFechamento[saída.Referência];
+                saída.Valor = mercadoria.DePeso ? saída.Peso * mercadoria.Valor : mercadoria.Valor;
+            }
+
+            return entidades;
         }
 
         private SaídaFabricaçãoFiscal CalcularProdução(SaídaFabricaçãoFiscal item)
