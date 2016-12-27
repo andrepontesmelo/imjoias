@@ -106,8 +106,7 @@ namespace Entidades.Fiscal
             }
         }
 
-        public string DataFormatada => string.Format("{0} {1}",
-            data.ToShortDateString(), data.ToShortTimeString());
+        public string DataFormatada => data.ToShortDateString();
 
         public string ValorFormatado => FormatarMoeda(valor);
 

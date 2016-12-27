@@ -62,7 +62,7 @@ namespace Entidades.Fiscal.Fabricação
 
         public static FabricaçãoFiscal Criar()
         {
-            var fabricação = new FabricaçãoFiscal(DadosGlobais.Instância.HoraDataAtual);
+            var fabricação = new FabricaçãoFiscal(DateTime.Today);
             fabricação.Cadastrar();
             fabricação.AtualizarMercadoriasFechamento();
 
