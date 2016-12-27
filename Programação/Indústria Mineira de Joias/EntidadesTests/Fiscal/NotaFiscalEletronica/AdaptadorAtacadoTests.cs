@@ -95,6 +95,12 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         }
 
         [TestMethod()]
+        public void DeveAdaptarSubTotalVenda()
+        {
+            Assert.AreEqual(5800.06M, adaptador.Transformar().SubTotal);
+        }
+
+        [TestMethod()]
         public void DeveAdaptarNNF()
         {
             Assert.AreEqual(348, adaptador.Transformar().Número);
