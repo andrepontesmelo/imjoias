@@ -47,7 +47,7 @@ namespace Entidades.Fiscal.Fabricação
         }
 
 
-        public string DataFormatada => string.Format("{0} {1}", data.ToShortDateString(), data.ToShortTimeString());
+        public string DataFormatada => data.ToShortDateString();
 
         public Fechamento Fechamento => Fechamento.Obter(data);
         
