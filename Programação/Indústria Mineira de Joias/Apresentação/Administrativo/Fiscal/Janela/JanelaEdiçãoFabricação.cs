@@ -15,7 +15,7 @@ namespace Apresentação.Administrativo.Fiscal.Janela
 
         public JanelaEdiçãoFabricação(FabricaçãoFiscal fabricação) : this()
         {
-            this.fabricação = fabricação;
+            Carregar(fabricação);
         }
 
         public DialogResult Mostrar(IWin32Window dono)
