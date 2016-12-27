@@ -69,6 +69,9 @@ namespace Apresentação.Fiscal.Lista
             item.SubItems[colMáquina.Index].Text = saída.Máquina?.ToString();
             item.SubItems[colFabricação.Index].Text = saída.Fabricação?.ToString();
 
+            if (saída.Cancelada)
+                item.Font = new System.Drawing.Font(item.Font, System.Drawing.FontStyle.Strikeout);
+            
             return item;
         }
     }
