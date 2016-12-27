@@ -10,6 +10,7 @@ using Entidades.Fiscal.Fabricação;
 using Apresentação.Administrativo.Fiscal.BaseInferior.Fabricação;
 using Apresentação.Administrativo.Fiscal.Janela;
 using Entidades.Fiscal.Esquema;
+using Entidades.Fiscal.Exceções;
 
 namespace Apresentação.Fiscal.BaseInferior.Documentos
 {
@@ -142,9 +143,16 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
 
             var fechamento = Fechamento.Obter(novaFabricação.Data);
             var entidades = ObterListaAtiva().ObterEntidadesSelecionadas();
-            var produçãoNecessária = new ControladorFabricaçãoAutomática(novaFabricação).CalcularProduçãoNecessária(entidades);
-            novaFabricação.AdicionarMatériasPrimas(produçãoNecessária, EsquemaFabricação.ObterHashEsquemas(fechamento));
-            SubstituirBase(new BaseFabricação(novaFabricação));
+            try
+            {
+                var produçãoNecessária = new ControladorFabricaçãoAutomática(novaFabricação).CalcularProduçãoNecessária(entidades);
+                novaFabricação.AdicionarMatériasPrimas(produçãoNecessária, EsquemaFabricação.ObterHashEsquemas(fechamento));
+                SubstituirBase(new BaseFabricação(novaFabricação));
+            }
+            catch (ExceçãoFiscal erro)
+            {
+                MessageBox.Show(erro.Message);
+            }
         }
     }
 }

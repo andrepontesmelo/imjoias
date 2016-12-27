@@ -266,6 +266,7 @@
     <Compile Include="Fiscal\Exceções\ExceçãoFiscal.cs" />
     <Compile Include="Fiscal\Exceções\EsquemaInexistente.cs" />
     <Compile Include="Fiscal\Exceções\FabricaçãoVazia.cs" />
+    <Compile Include="Fiscal\Exceções\FechamentoInexistente.cs" />
     <Compile Include="Fiscal\Exceções\NotaInexistente.cs" />
     <Compile Include="Fiscal\Exceções\XmlIncompatível.cs" />
     <Compile Include="Fiscal\Fabricação\FabricaçãoAutomática.cs" />

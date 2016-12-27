@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entidades.Fiscal.Exceções;
+using System;
 using System.Collections.Generic;
 
 namespace Entidades.Fiscal.Fabricação
@@ -13,7 +14,11 @@ namespace Entidades.Fiscal.Fabricação
         public ControladorFabricaçãoAutomática(FabricaçãoFiscal fabricação)
         {
             this.fabricação = fabricação;
-            this.fechamento = Fechamento.Obter(fabricação.Data);
+            this.fechamento = fabricação.Fechamento;
+
+            if (fechamento == null)
+                throw new FechamentoInexistente(fabricação.Data);
+
             this.hashMercadoriaFechamento = MercadoriaFechamento.ObterHash(fechamento.Código);
             this.hashInventário = Inventário.ObterHash(fechamento);
         }
