@@ -126,7 +126,7 @@ namespace Entidades.Fiscal
             return Mapear<Extrato>(string.Format("select e.*, mf.descricao, classificacaofiscal, tipounidade from extratoinventario e " +
                 " left join mercadoria m on e.referencia = m.referencia " +
                 " left join mercadoriafechamento mf on mf.referencia = e.referencia and mf.fechamento = {0} " +
-                " where e.referencia = {1} and {2} order by e.referencia, data",
+                " where e.referencia = {1} and {2} order by e.referencia, data, cfop",
                 fechamento.Código,
                 referência == null ? "e.referencia" : DbTransformar(referência),
                 DbDataEntre("data", fechamento.Início, fechamento.Fim)));
