@@ -73,6 +73,12 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         }
 
         [TestMethod()]
+        public void DeveLerDesconto()
+        {
+            Assert.AreEqual(0M, parser.LerValorDesconto());
+        }
+
+        [TestMethod()]
         public void DeveLerDescrição()
         {
             Assert.AreEqual("Gargantilha de Ouro", parser.ObterDescrição(11));

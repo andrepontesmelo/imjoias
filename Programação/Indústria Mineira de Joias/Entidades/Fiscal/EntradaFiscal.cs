@@ -20,8 +20,8 @@ namespace Entidades.Fiscal
         private static readonly string NOME_RELAÇÃO = "entradafiscal";
 
         public EntradaFiscal(int tipoDocumento, DateTime dataEmissão, DateTime dataEntrada, string id,
-        decimal subTotal, decimal valorTotal, int? nnf, string emitidoPorCNPJ, string observações, List<ItemFiscal> itens) : 
-            base(tipoDocumento, dataEmissão, id, subTotal, valorTotal, nnf, emitidoPorCNPJ, observações, itens)
+        decimal subTotal, decimal desconto, decimal valorTotal, int? nnf, string emitidoPorCNPJ, string observações, List<ItemFiscal> itens) : 
+            base(tipoDocumento, dataEmissão, id, subTotal, desconto, valorTotal, nnf, emitidoPorCNPJ, observações, itens)
         {
             this.dataEntrada = dataEntrada;
         }
@@ -66,12 +66,14 @@ namespace Entidades.Fiscal
             {
                 cmd.Transaction = transação;
 
-                cmd.CommandText = string.Format("INSERT INTO {0} (dataemissao, dataentrada, id, valortotal, numero, cnpjemitente, tipo) " + 
-                    "values ({1}, {2}, {3}, {4}, {5}, {6}, {7})",
+                cmd.CommandText = string.Format("INSERT INTO {0} (dataemissao, dataentrada, id, subtotal, desconto, valortotal, numero, cnpjemitente, tipo) " + 
+                    "values ({1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9})",
                     NOME_RELAÇÃO,
                     DbTransformar(DataEmissão),
                     DbTransformar(dataEntrada),
                     DbTransformar(Id),
+                    DbTransformar(SubTotal),
+                    DbTransformar(Desconto),
                     DbTransformar(ValorTotal),
                     DbTransformar(Número),
                     DbTransformar(CnpjEmitente), 

@@ -24,6 +24,11 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Parser
             return ObterDecimal(XML_CAMINHO_TOTAIS + "/vNF");
         }
 
+        public decimal LerValorDesconto()
+        {
+            return ObterDecimal(XML_CAMINHO_TOTAIS + "/vDesc");
+        }
+
         private string ObterCaminhoRaiz(int vendaItem)
         {
             return XML_CAMINHO_ITENS + "[" + vendaItem.ToString() + "]/prod";

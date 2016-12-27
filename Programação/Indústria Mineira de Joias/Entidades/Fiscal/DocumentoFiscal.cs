@@ -45,7 +45,7 @@ namespace Entidades.Fiscal
         {
         }
 
-        public DocumentoFiscal(int tipoDocumento, DateTime dataEmissão, string id, decimal subTotal,
+        public DocumentoFiscal(int tipoDocumento, DateTime dataEmissão, string id, decimal subTotal, decimal desconto,
             decimal valorTotal, int? número,  
             string cnpjEmitente, string observações, List<ItemFiscal> itens)
         {
@@ -54,6 +54,7 @@ namespace Entidades.Fiscal
             this.id = id;
             this.novoId = id;
             this.subTotal = subTotal;
+            this.desconto = desconto;
             this.valorTotal = valorTotal;
             this.número = número;
             this.cnpjEmitente = cnpjEmitente;
@@ -92,14 +93,15 @@ namespace Entidades.Fiscal
 
                 cmd.Transaction = transação;
                 cmd.CommandText = string.Format("update {0} set id={1}, " +
-                    " numero={2}, tipo={3}, dataemissao={4}, subtotal={5}, valortotal={6}, " +
-                    " cnpjemitente={7}, observacoes={8} where id={9}",
+                    " numero={2}, tipo={3}, dataemissao={4}, subtotal={5}, desconto={6}, valortotal={7}, " +
+                    " cnpjemitente={8}, observacoes={9} where id={10}",
                     NomeRelação,
                     DbTransformar(novoId),
                     DbTransformar(número),
                     DbTransformar(tipoDocumento),
                     DbTransformar(dataEmissão),
                     DbTransformar(subTotal),
+                    DbTransformar(desconto),
                     DbTransformar(valorTotal),
                     DbTransformar(cnpjEmitente),
                     DbTransformar(observações),
