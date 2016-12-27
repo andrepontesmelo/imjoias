@@ -3,6 +3,8 @@ using Entidades.Configuração;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using Entidades.Fiscal.Fabricação;
+using System.Text;
 
 namespace Entidades.Fiscal
 {
@@ -150,6 +152,27 @@ namespace Entidades.Fiscal
 
                 cmd.ExecuteNonQuery();
             }
+        }
+
+        public static void VincularFabricação(List<DocumentoFiscal> entidades, FabricaçãoFiscal fabricação)
+        {
+            StringBuilder sql = new StringBuilder("update saidafiscal set fabricacao=");
+            sql.Append(fabricação.Código);
+            sql.Append(" WHERE id in (");
+
+            bool primeiro = true;
+
+            foreach (DocumentoFiscal d in entidades)
+            {
+                if (!primeiro)
+                    sql.Append(", ");
+
+                sql.Append(DbTransformar(d.Id));
+                primeiro = false;
+            }
+
+            sql.Append(")");
+            ExecutarComando(sql.ToString());
         }
 
         public static DocumentoFiscal CriarDocumento(uint setor)

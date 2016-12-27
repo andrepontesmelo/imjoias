@@ -147,6 +147,7 @@ namespace Apresentação.Fiscal.BaseInferior.Documentos
             {
                 var produçãoNecessária = new ControladorFabricaçãoAutomática(novaFabricação).CalcularProduçãoNecessária(entidades);
                 novaFabricação.AdicionarMatériasPrimas(produçãoNecessária, EsquemaFabricação.ObterHashEsquemas(fechamento));
+                SaídaFiscal.VincularFabricação(entidades, novaFabricação);
                 SubstituirBase(new BaseFabricação(novaFabricação));
             }
             catch (ExceçãoFiscal erro)
