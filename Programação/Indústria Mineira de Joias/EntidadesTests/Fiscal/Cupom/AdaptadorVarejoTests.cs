@@ -14,6 +14,9 @@ namespace Entidades.Fiscal.Cupom.Tests
         private static string ARQUIVO_ENTRADA = Directory.GetParent(Directory.GetParent(Path.GetDirectoryName(
             Assembly.GetExecutingAssembly().Location)).FullName).FullName + @"\Arquivos\arquivo.tdm";
 
+        private static string ARQUIVO_ENTRADA_DESCONTO = Directory.GetParent(Directory.GetParent(Path.GetDirectoryName(
+            Assembly.GetExecutingAssembly().Location)).FullName).FullName + @"\Arquivos\arquivo_desconto.tdm";
+
         ITransformavelDocumentoFiscal adaptador;
 
         [TestInitialize]
@@ -103,6 +106,14 @@ namespace Entidades.Fiscal.Cupom.Tests
         public void DeveAdaptarCancalamento()
         {
             Assert.IsTrue(((SaídaFiscal) adaptador.Transformar()).Cancelada);
+        }
+
+        [TestMethod()]
+        public void DeveAdaptarSubtotal()
+        {
+            var cupom = new AdaptadorVarejo(Interpretador.InterpretaArquivo(ARQUIVO_ENTRADA_DESCONTO).CuponsFiscais[3]);
+
+            Assert.AreEqual(2471.89, cupom.Transformar().SubTotal);
         }
     }
 }

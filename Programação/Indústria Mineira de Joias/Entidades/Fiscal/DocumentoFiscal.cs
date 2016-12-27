@@ -222,6 +222,7 @@ namespace Entidades.Fiscal
         }
 
         public abstract string NomeRelação { get; }
+        public double SubTotal { get; set; }
 
         protected abstract void CadastrarEntidade(IDbTransaction transação, IDbConnection conexão);
 
