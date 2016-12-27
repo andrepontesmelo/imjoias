@@ -115,5 +115,14 @@ namespace Entidades.Fiscal.Cupom.Tests
 
             Assert.AreEqual((decimal) 2471.89, cupom.Transformar().SubTotal);
         }
+
+        [TestMethod()]
+        public void DeveAdaptarDesconto()
+        {
+            var cupom = new AdaptadorVarejo(Interpretador.InterpretaArquivo(ARQUIVO_ENTRADA_DESCONTO).CuponsFiscais[2]);
+
+            Assert.AreEqual((decimal)741.57, cupom.Transformar().Desconto);
+        }
+
     }
 }
