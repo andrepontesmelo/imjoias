@@ -41,7 +41,7 @@ namespace Entidades.Fiscal.Fabricação
 
         private List<SaídaFabricaçãoFiscal> AbribuirCFOPMovimentaçãoInterna(List<SaídaFabricaçãoFiscal> entidades)
         {
-            var cfop = FabricaçãoFiscal.CfopPadrãoOperaçõesInternas.Valor;
+            var cfop = FabricaçãoFiscal.CfopPadrãoOperaçõesInternasTO.Valor;
 
             foreach (var entidade in entidades)
                 entidade.CFOP = cfop;

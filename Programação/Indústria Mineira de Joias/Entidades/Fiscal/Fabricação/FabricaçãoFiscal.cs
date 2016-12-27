@@ -19,10 +19,14 @@ namespace Entidades.Fiscal.Fabricação
 
         public int Código => codigo;
 
-        private static ConfiguraçãoGlobal<int> cfopPadrãoOperaçõesInternas =
-            new ConfiguraçãoGlobal<int>("cfopPadrãoOperaçõesInternas", 1999);
+        private static ConfiguraçãoGlobal<int> cfopPadrãoOperaçõesInternasTO =
+            new ConfiguraçãoGlobal<int>("cfopPadrãoOperaçõesInternasTO", 1999);
 
-        public static ConfiguraçãoGlobal<int> CfopPadrãoOperaçõesInternas => cfopPadrãoOperaçõesInternas;
+        private static ConfiguraçãoGlobal<int> cfopPadrãoOperaçõesInternasOT =
+            new ConfiguraçãoGlobal<int>("cfopPadrãoOperaçõesInternasTO", 5999);
+
+        public static ConfiguraçãoGlobal<int> CfopPadrãoOperaçõesInternasTO => cfopPadrãoOperaçõesInternasTO;
+        public static ConfiguraçãoGlobal<int> CfopPadrãoOperaçõesInternasOT => cfopPadrãoOperaçõesInternasOT;
 
         public DateTime Data
         {
@@ -144,7 +148,7 @@ namespace Entidades.Fiscal.Fabricação
 
             using (var cmd = conexão.CreateCommand())
             {
-                cmd.CommandText = EntradaFabricaçãoFiscal.ObterSqlInserçãoEntrada(Código, ingrediente, qtd, valor, cfopPadrãoOperaçõesInternas.Valor);
+                cmd.CommandText = EntradaFabricaçãoFiscal.ObterSqlInserçãoEntrada(Código, ingrediente, qtd, valor, cfopPadrãoOperaçõesInternasOT.Valor);
                 cmd.Transaction = transação;
                 cmd.ExecuteNonQuery();
             }

@@ -97,7 +97,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Fabricação
         private void LimparCampos()
         {
             txtMercadoria.Referência = "";
-            txtCFOP.Text = FabricaçãoFiscal.CfopPadrãoOperaçõesInternas.Valor.ToString();
+            txtCFOP.Text = FabricaçãoFiscal.CfopPadrãoOperaçõesInternasTO.Valor.ToString();
             txtDescrição.Text = "";
             txtPeso.Text = "";
             txtQuantidade.Text = "";
