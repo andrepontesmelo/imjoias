@@ -36,11 +36,16 @@ namespace Entidades.Fiscal
         [DbAtributo(TipoAtributo.Ignorar)]
         protected List<ItemFiscal> itens;
 
+        [DbColuna("subtotal")]
+        protected decimal subTotal;
+
+        protected decimal desconto;
+
         public DocumentoFiscal()
         {
         }
 
-        public DocumentoFiscal(int tipoDocumento, DateTime dataEmissão, string id, 
+        public DocumentoFiscal(int tipoDocumento, DateTime dataEmissão, string id, decimal subTotal,
             decimal valorTotal, int? número,  
             string cnpjEmitente, string observações, List<ItemFiscal> itens)
         {
@@ -48,6 +53,7 @@ namespace Entidades.Fiscal
             this.dataEmissão = dataEmissão;
             this.id = id;
             this.novoId = id;
+            this.subTotal = subTotal;
             this.valorTotal = valorTotal;
             this.número = número;
             this.cnpjEmitente = cnpjEmitente;
@@ -86,13 +92,14 @@ namespace Entidades.Fiscal
 
                 cmd.Transaction = transação;
                 cmd.CommandText = string.Format("update {0} set id={1}, " +
-                    " numero={2}, tipo={3}, dataemissao={4}, valortotal={5}, " +
-                    " cnpjemitente={6}, observacoes={7} where id={8}",
+                    " numero={2}, tipo={3}, dataemissao={4}, subtotal={5}, valortotal={6}, " +
+                    " cnpjemitente={7}, observacoes={8} where id={9}",
                     NomeRelação,
                     DbTransformar(novoId),
                     DbTransformar(número),
                     DbTransformar(tipoDocumento),
                     DbTransformar(dataEmissão),
+                    DbTransformar(subTotal),
                     DbTransformar(valorTotal),
                     DbTransformar(cnpjEmitente),
                     DbTransformar(observações),
@@ -221,8 +228,22 @@ namespace Entidades.Fiscal
             }
         }
 
+        public decimal SubTotal
+        {
+            get { return subTotal; }
+            set { subTotal = value; }
+        }
+
         public abstract string NomeRelação { get; }
-        public double SubTotal { get; set; }
+
+        public decimal Desconto
+        {
+            get { return desconto; }
+            set
+            {
+                desconto = value;
+            }
+        }
 
         protected abstract void CadastrarEntidade(IDbTransaction transação, IDbConnection conexão);
 

@@ -23,6 +23,7 @@ namespace Entidades.Fiscal.Cupom
                 cupom.DataInicioEmissao,
                 cupom.DataInicioEmissao,
                 AdaptarId(cupom),
+                cupom.Subtotal,
                 cupom.ValorTotalLiquido,
                 cupom.ReducaoZ.CRZ,
                 null,

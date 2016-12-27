@@ -22,6 +22,8 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior
             txtId.Text = documento.Id;
             dtEmissão.Value = documento.DataEmissão;
             txtValor.Text = documento.ValorTotal.ToString("C");
+            txtDesconto.Text = documento.Desconto.ToString("C");
+            txtSubtotal.Text = documento.SubTotal.ToString("C");
             txtNúmero.Text = documento.Número.ToString();
             txtEmitente.Text = documento.CNPJEmitenteFormatado;
             cmbTipoDocumento.Seleção = TipoDocumento.Obter(documento.TipoDocumento);
@@ -72,6 +74,18 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior
         {
             var idDesejado = txtId.Text.Trim().ToLower();
             e.Cancel = !idDesejado.ToLower().Equals(documento.Id.ToLower()) && ObterIdsEmUso().Contains(idDesejado);
+        }
+
+        private void txtSubtotal_Validated(object sender, System.EventArgs e)
+        {
+            documento.SubTotal = (decimal) txtSubtotal.Double;
+            documento.Gravar();
+        }
+
+        private void txtDesconto_Validated(object sender, System.EventArgs e)
+        {
+            documento.Desconto = (decimal) txtDesconto.Double;
+            documento.Gravar();
         }
     }
 }

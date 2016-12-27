@@ -24,7 +24,9 @@ namespace Apresentação.Fiscal.Lista
             colEmissão,
             colEmitente,
             colEntradaSaída,
-            colValor,
+            colSubTotal,
+            colDesconto,
+            colValorTotal,
             colNúmero,
             colObservações});
         }

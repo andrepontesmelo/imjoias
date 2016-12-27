@@ -16,6 +16,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
                 parser.LerDataEmissão(),
                 parser.LerDataEntradaSaída(),
                 parser.LerId(),
+                0, // TODO: Subtotal
                 parser.LerValorTotal(),
                 parser.LerNNF(),
                 parser.LerCNPJEmitente(),

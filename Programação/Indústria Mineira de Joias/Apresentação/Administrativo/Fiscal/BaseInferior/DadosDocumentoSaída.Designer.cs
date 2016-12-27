@@ -45,12 +45,7 @@
             // 
             // dtEntradaSaída
             // 
-            this.dtEntradaSaída.Location = new System.Drawing.Point(61, 55);
             this.dtEntradaSaída.Validated += new System.EventHandler(this.dtEntradaSaída_Validated);
-            // 
-            // txtId
-            // 
-            this.txtId.Location = new System.Drawing.Point(61, 3);
             // 
             // lblTipoDocumento
             // 
@@ -58,51 +53,54 @@
             // 
             // lblEntradaSaída
             // 
-            this.lblEntradaSaída.Location = new System.Drawing.Point(7, 61);
             this.lblEntradaSaída.Size = new System.Drawing.Size(39, 13);
             this.lblEntradaSaída.Text = "Saída:";
             // 
             // txtEmitente
             // 
-            this.txtEmitente.Location = new System.Drawing.Point(61, 132);
-            // 
-            // dtEmissão
-            // 
-            this.dtEmissão.Location = new System.Drawing.Point(61, 29);
+            this.txtEmitente.Location = new System.Drawing.Point(72, 186);
             // 
             // txtNúmero
             // 
-            this.txtNúmero.Location = new System.Drawing.Point(61, 106);
+            this.txtNúmero.Location = new System.Drawing.Point(72, 160);
             // 
             // txtValor
             // 
-            this.txtValor.Location = new System.Drawing.Point(61, 80);
+            this.txtValor.Location = new System.Drawing.Point(72, 132);
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(7, 136);
+            this.label5.Location = new System.Drawing.Point(12, 193);
             // 
             // label6
             // 
-            this.label6.Location = new System.Drawing.Point(7, 113);
+            this.label6.Location = new System.Drawing.Point(12, 167);
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(7, 87);
+            this.label3.Location = new System.Drawing.Point(12, 139);
             // 
-            // label2
+            // txtSubtotal
             // 
-            this.label2.Location = new System.Drawing.Point(6, 35);
+            this.txtSubtotal.Location = new System.Drawing.Point(72, 80);
             // 
-            // label1
+            // lblSubTotal
             // 
-            this.label1.Location = new System.Drawing.Point(7, 6);
+            this.lblSubTotal.Location = new System.Drawing.Point(12, 87);
+            // 
+            // txtDesconto
+            // 
+            this.txtDesconto.Location = new System.Drawing.Point(72, 106);
+            // 
+            // lblDesconto
+            // 
+            this.lblDesconto.Location = new System.Drawing.Point(12, 113);
             // 
             // chkCancelada
             // 
             this.chkCancelada.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.chkCancelada.AutoSize = true;
-            this.chkCancelada.Location = new System.Drawing.Point(61, 179);
+            this.chkCancelada.Location = new System.Drawing.Point(72, 234);
             this.chkCancelada.Name = "chkCancelada";
             this.chkCancelada.Size = new System.Drawing.Size(77, 17);
             this.chkCancelada.TabIndex = 6;
@@ -158,7 +156,7 @@
             // 
             this.txtCliente.AlturaProposta = 60;
             this.txtCliente.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtCliente.Location = new System.Drawing.Point(61, 158);
+            this.txtCliente.Location = new System.Drawing.Point(72, 212);
             this.txtCliente.Name = "txtCliente";
             this.txtCliente.Pessoa = null;
             this.txtCliente.Size = new System.Drawing.Size(326, 20);
@@ -170,7 +168,7 @@
             // 
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(7, 163);
+            this.label7.Location = new System.Drawing.Point(12, 219);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(42, 13);
             this.label7.TabIndex = 32;
@@ -187,7 +185,11 @@
             this.Controls.Add(this.cmbSetor);
             this.Controls.Add(this.label13);
             this.Name = "DadosDocumentoSaída";
-            this.Size = new System.Drawing.Size(752, 202);
+            this.Size = new System.Drawing.Size(752, 257);
+            this.Controls.SetChildIndex(this.lblSubTotal, 0);
+            this.Controls.SetChildIndex(this.txtSubtotal, 0);
+            this.Controls.SetChildIndex(this.lblDesconto, 0);
+            this.Controls.SetChildIndex(this.txtDesconto, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.label2, 0);
             this.Controls.SetChildIndex(this.label3, 0);

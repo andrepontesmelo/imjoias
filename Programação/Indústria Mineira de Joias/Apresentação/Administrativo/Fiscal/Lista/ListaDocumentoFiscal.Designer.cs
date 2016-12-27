@@ -35,9 +35,11 @@
             this.colId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colEmissão = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colEntradaSaída = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colValor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colValorTotal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colNúmero = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colObservações = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colDesconto = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colSubTotal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // imageList1
@@ -52,7 +54,9 @@
             this.colId,
             this.colEmissão,
             this.colEntradaSaída,
-            this.colValor,
+            this.colSubTotal,
+            this.colDesconto,
+            this.colValorTotal,
             this.colNúmero,
             this.colObservações});
             this.lista.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -82,9 +86,10 @@
             this.colEntradaSaída.Text = "Entrada Ou Saída";
             this.colEntradaSaída.Width = 172;
             // 
-            // colValor
+            // colValorTotal
             // 
-            this.colValor.Text = "Valor";
+            this.colValorTotal.DisplayIndex = 3;
+            this.colValorTotal.Text = "Total";
             // 
             // colNúmero
             // 
@@ -94,6 +99,15 @@
             // 
             this.colObservações.Text = "Observações";
             this.colObservações.Width = 500;
+            // 
+            // colDesconto
+            // 
+            this.colDesconto.Text = "Desconto";
+            // 
+            // colSubTotal
+            // 
+            this.colSubTotal.Text = "Subtotal";
+            this.colSubTotal.Width = 74;
             // 
             // ListaDocumentoFiscal
             // 
@@ -110,10 +124,12 @@
         protected System.Windows.Forms.ColumnHeader colEntradaSaída;
         protected Apresentação.Formulários.ListViewUsabilidade lista;
         protected System.Windows.Forms.ColumnHeader colId;
-        protected System.Windows.Forms.ColumnHeader colValor;
+        protected System.Windows.Forms.ColumnHeader colValorTotal;
         protected System.Windows.Forms.ColumnHeader colEmissão;
         protected System.Windows.Forms.ColumnHeader colObservações;
         protected System.Windows.Forms.ColumnHeader colNúmero;
         private System.Windows.Forms.ImageList imageList1;
+        protected System.Windows.Forms.ColumnHeader colSubTotal;
+        protected System.Windows.Forms.ColumnHeader colDesconto;
     }
 }

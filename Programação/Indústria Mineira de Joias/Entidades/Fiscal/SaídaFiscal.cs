@@ -49,9 +49,9 @@ namespace Entidades.Fiscal
 
         private static readonly string NOME_RELAÇÃO = "saidafiscal";
 
-        public SaídaFiscal(int tipoDocumento, DateTime dataEmissão, DateTime dataSaída, string id,
+        public SaídaFiscal(int tipoDocumento, DateTime dataEmissão, DateTime dataSaída, string id, decimal subTotal,
             decimal valorTotal, int? número, string cnpjEmitente, bool cancelada, string observações, uint setor, int? maquina, List<ItemFiscal> itens) : 
-            base(tipoDocumento, dataEmissão, id, valorTotal, número, cnpjEmitente, observações, itens)
+            base(tipoDocumento, dataEmissão, id, subTotal, valorTotal, número, cnpjEmitente, observações, itens)
         {
             this.dataSaída = dataSaída;
             this.setor = setor;
@@ -130,13 +130,14 @@ namespace Entidades.Fiscal
                 cmd.Transaction = transação;
 
                 cmd.CommandText = string.Format("INSERT INTO {0} " + 
-                    "(dataemissao, datasaida, tipo, id, valortotal, numero, cnpjemitente, cancelada, setor, maquina, cliente, fabricacao) " + 
-                    " values ({1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11}, {12})",
+                    "(dataemissao, datasaida, tipo, id, subtotal, valortotal, numero, cnpjemitente, cancelada, setor, maquina, cliente, fabricacao) " + 
+                    " values ({1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11}, {12}, {13})",
                     NOME_RELAÇÃO,
                     DbTransformar(DataEmissão),
                     DbTransformar(dataSaída),
                     DbTransformar(((int) TipoDocumento).ToString()),
                     DbTransformar(Id),
+                    DbTransformar(SubTotal),
                     DbTransformar(ValorTotal),
                     DbTransformar(Número),
                     DbTransformar(CnpjEmitente),

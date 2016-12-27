@@ -28,7 +28,9 @@ namespace Apresentação.Fiscal.Lista
             colId,
             colEmissão,
             colEntradaSaída,
-            colValor,
+            colSubTotal,
+            colDesconto,
+            colValorTotal,
             colNúmero,
             colFabricação,
             colMáquina});

@@ -52,7 +52,9 @@ namespace Apresentação.Fiscal.Lista
         protected virtual void AtualizarTamanhoColunas()
         {
             colId.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
-            colValor.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
+            colValorTotal.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
+            colSubTotal.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
+            colDesconto.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
             colEntradaSaída.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
 
@@ -73,8 +75,13 @@ namespace Apresentação.Fiscal.Lista
             item.SubItems[colId.Index].Text = documentoFiscal.Id;
             item.SubItems[colEmissão.Index].Text = string.Format("{0} {1}", documentoFiscal.DataEmissão.ToShortDateString(),
                 documentoFiscal.DataEmissão.ToLongTimeString());
-            item.SubItems[colValor.Index].Text = documentoFiscal.ValorTotal.ToString("C",
+            item.SubItems[colValorTotal.Index].Text = documentoFiscal.ValorTotal.ToString("C",
                 Entidades.Configuração.DadosGlobais.Instância.Cultura);
+            item.SubItems[colDesconto.Index].Text = documentoFiscal.Desconto.ToString("C",
+                Entidades.Configuração.DadosGlobais.Instância.Cultura);
+            item.SubItems[colSubTotal.Index].Text = documentoFiscal.SubTotal.ToString("C",
+                Entidades.Configuração.DadosGlobais.Instância.Cultura);
+
             item.SubItems[colNúmero.Index].Text = documentoFiscal.Número.ToString();
             item.SubItems[colObservações.Index].Text = documentoFiscal.Observações.Replace("\n", " ");
 
