@@ -229,10 +229,11 @@ namespace Entidades.Fiscal.Fabricação
                 return;
 
             var ingredientes = hashEsquemaMatériaPrima[esquema.Referência];
-            decimal qtdReceitas = novoItem.Quantidade / esquema.Quantidade;
 
             foreach (var ingrediente in ingredientes)
             {
+                decimal qtdReceitas = novoItem.Quantidade / esquema.Quantidade;
+
                 if (ingrediente.Proporcional)
                     qtdReceitas *= novoItem.Peso;
 
