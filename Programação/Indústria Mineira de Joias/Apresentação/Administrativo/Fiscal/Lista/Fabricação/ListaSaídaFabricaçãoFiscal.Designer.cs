@@ -28,11 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.colEstoqueAnterior = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colApuração = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lista
             // 
+            this.lista.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colEstoqueAnterior,
+            this.colApuração});
             this.lista.Size = new System.Drawing.Size(1097, 471);
+            // 
+            // colEstoqueAnterior
+            // 
+            this.colEstoqueAnterior.Text = "Estoque";
+            // 
+            // colApuração
+            // 
+            this.colApuração.Text = "Apuração";
             // 
             // ListaSaídaFabricaçãoFiscal
             // 
@@ -44,5 +57,8 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.ColumnHeader colEstoqueAnterior;
+        private System.Windows.Forms.ColumnHeader colApuração;
     }
 }

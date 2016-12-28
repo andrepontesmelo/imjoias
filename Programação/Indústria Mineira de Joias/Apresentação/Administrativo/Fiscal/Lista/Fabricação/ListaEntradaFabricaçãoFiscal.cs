@@ -11,7 +11,6 @@ namespace Apresentação.Administrativo.Fiscal.Lista.Fabricação
 
             lista.Columns.Clear();
             this.lista.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.colCódigo,
             this.colReferência,
             this.colCFOP,
             this.colSaldoAnterior,

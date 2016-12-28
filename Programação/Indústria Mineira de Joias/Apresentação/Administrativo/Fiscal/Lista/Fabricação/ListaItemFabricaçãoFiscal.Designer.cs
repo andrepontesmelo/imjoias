@@ -31,28 +31,26 @@ namespace Apresentação.Administrativo.Fiscal.Lista
         private void InitializeComponent()
         {
             this.lista = new Apresentação.Formulários.ListViewUsabilidade();
-            this.colCódigo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colReferência = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colCFOP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colSaldoAnterior = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colQuantidade = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colPeso = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colPesoTotal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colSaldoPosterior = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colTipo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colValorUnitário = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colValorTotal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colDescrição = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colPesoTotal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lista
             // 
             this.lista.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.colCódigo,
+            this.colQuantidade,
             this.colReferência,
             this.colCFOP,
             this.colSaldoAnterior,
-            this.colQuantidade,
             this.colPeso,
             this.colPesoTotal,
             this.colSaldoPosterior,
@@ -68,10 +66,6 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             this.lista.TabIndex = 0;
             this.lista.UseCompatibleStateImageBehavior = false;
             this.lista.View = System.Windows.Forms.View.Details;
-            // 
-            // colCódigo
-            // 
-            this.colCódigo.Text = "Código";
             // 
             // colReferência
             // 
@@ -95,6 +89,10 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             // colPeso
             // 
             this.colPeso.Text = "Peso";
+            // 
+            // colPesoTotal
+            // 
+            this.colPesoTotal.Text = "Peso T";
             // 
             // colSaldoPosterior
             // 
@@ -121,10 +119,6 @@ namespace Apresentação.Administrativo.Fiscal.Lista
             this.colDescrição.Text = "Descrição";
             this.colDescrição.Width = 569;
             // 
-            // colPesoTotal
-            // 
-            this.colPesoTotal.Text = "Peso T";
-            // 
             // ListaItemFabricaçãoFiscal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -143,7 +137,6 @@ namespace Apresentação.Administrativo.Fiscal.Lista
         protected System.Windows.Forms.ColumnHeader colTipo;
         protected System.Windows.Forms.ColumnHeader colReferência;
         protected System.Windows.Forms.ColumnHeader colDescrição;
-        protected System.Windows.Forms.ColumnHeader colCódigo;
         protected System.Windows.Forms.ColumnHeader colValorUnitário;
         protected System.Windows.Forms.ColumnHeader colSaldoAnterior;
         protected System.Windows.Forms.ColumnHeader colSaldoPosterior;

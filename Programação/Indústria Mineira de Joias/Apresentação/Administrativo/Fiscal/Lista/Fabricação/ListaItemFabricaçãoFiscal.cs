@@ -15,6 +15,8 @@ namespace Apresentação.Administrativo.Fiscal.Lista
         private Dictionary<string, decimal> hashSaldoAnterior, hashSaldoPosterior;
         private ListViewColumnSorter ordenador;
 
+        public FabricaçãoFiscal Fabricação => fabricação;
+
         public ListaItemFabricaçãoFiscal()
         {
             InitializeComponent();
@@ -42,7 +44,7 @@ namespace Apresentação.Administrativo.Fiscal.Lista
 
         public ItemFabricaçãoFiscal Seleção => lista.SelectedItems.Count > 0 ? lista.SelectedItems[0].Tag as ItemFabricaçãoFiscal : null;
 
-        public void Carregar(FabricaçãoFiscal fabricação)
+        public virtual void Carregar(FabricaçãoFiscal fabricação)
         {
             AguardeDB.Mostrar();
             this.fabricação = fabricação;
@@ -81,7 +83,7 @@ namespace Apresentação.Administrativo.Fiscal.Lista
         protected virtual ListViewItem CriarItem(ItemFabricaçãoFiscal entidade)
         {
             var item = new ListViewItem(new string[lista.Columns.Count]);
-            item.SubItems[colCódigo.Index].Text = entidade.Código.ToString();
+
             item.SubItems[colReferência.Index].Text = Entidades.Mercadoria.Mercadoria.MascararReferência(entidade.Referência, true);
             item.SubItems[colCFOP.Index].Text = entidade.CFOP.ToString();
             item.SubItems[colQuantidade.Index].Text = entidade.Quantidade.ToString();
