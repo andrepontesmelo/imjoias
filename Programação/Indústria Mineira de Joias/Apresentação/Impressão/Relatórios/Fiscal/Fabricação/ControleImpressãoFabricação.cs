@@ -9,6 +9,7 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Fabricação
     public class ControladorImpressãoFabricação : ControladorImpressãoFiscal
     {
         private Dictionary<string, MercadoriaFechamento> hashFechamento;
+        private ApuradorFabricação apurador;
 
         public RelatórioFabricação CriarRelatório(FabricaçãoFiscal fabricação)
         {
@@ -18,7 +19,10 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Fabricação
 
             CriarAdicionarDocumento(dataset, fabricação);
 
-            hashFechamento = MercadoriaFechamento.ObterHash(Fechamento.Obter(fabricação.Data).Código);
+            apurador = new ApuradorFabricação(fabricação);
+            var fechamento = Fechamento.Obter(fabricação.Data);
+            hashFechamento = MercadoriaFechamento.ObterHash(fechamento.Código);
+
             CriarItens(new List<ItemFabricaçãoFiscal>(SaídaFabricaçãoFiscal.Obter(fabricação.Código)), true, dataset.Tables["Item"]);
             CriarItens(EntradaFabricaçãoFiscal.Obter(fabricação.Código), false, dataset.Tables["Item"]);
 
@@ -56,6 +60,9 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Fabricação
 
             item["código"] = entidade.Código.ToString();
             item["referência"] = Entidades.Mercadoria.Mercadoria.MascararReferência(entidade.Referência, true);
+            item["inventário"] = apurador.ObterInventário(entidade);
+            item["inventárioAnterior"] = apurador.ObterInventárioAnterior(entidade);
+            item["apuração"] = apurador.ObterApuração(entidade);
             item["quantidade"] = entidade.Quantidade.ToString();
             item["tipo"] = ObterTipo(saída);
             item["valor"] = entidade.Valor;

@@ -38,10 +38,6 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Fabricação
             títuloBaseInferior.Título = string.Format("Fabricação fiscal #{0} de {1}", fabricação.Código, fabricação.DataFormatada);
 
             fechamento = Fechamento.Obter(fabricação.Data);
-            hashEsquemas = EsquemaFabricação.ObterHashEsquemas(fechamento);
-
-            listaEntradas.Carregar(fabricação);
-            listaSaídas.Carregar(fabricação);
 
             if (fechamento != null)
                 títuloBaseInferior.Descrição = string.Format("Serão usados os esquemas do fechamento {0}, vigentes de {1} até {2}.",
@@ -55,9 +51,14 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior.Fabricação
                     "Modo somente leitura",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
+
+                return;
             }
 
+            hashEsquemas = EsquemaFabricação.ObterHashEsquemas(fechamento);
 
+            listaEntradas.Carregar(fabricação);
+            listaSaídas.Carregar(fabricação);
             AtualizarVisão(false, null, null);
         }
 

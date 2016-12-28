@@ -35,6 +35,9 @@
               <xs:element name="valorTotal" msprop:Generator_ColumnVarNameInTable="columnvalorTotal" msprop:Generator_ColumnPropNameInRow="valorTotal" msprop:Generator_ColumnPropNameInTable="valorTotalColumn" msprop:Generator_UserColumnName="valorTotal" type="xs:decimal" minOccurs="0" />
               <xs:element name="peso" msprop:Generator_ColumnVarNameInTable="columnpeso" msprop:Generator_ColumnPropNameInRow="peso" msprop:Generator_ColumnPropNameInTable="pesoColumn" msprop:Generator_UserColumnName="peso" type="xs:decimal" minOccurs="0" />
               <xs:element name="pesoTotal" msprop:Generator_ColumnVarNameInTable="columnpesoTotal" msprop:Generator_ColumnPropNameInRow="pesoTotal" msprop:Generator_ColumnPropNameInTable="pesoTotalColumn" msprop:Generator_UserColumnName="pesoTotal" type="xs:decimal" minOccurs="0" />
+              <xs:element name="inventário" msprop:Generator_ColumnVarNameInTable="columninventário" msprop:Generator_ColumnPropNameInRow="inventário" msprop:Generator_ColumnPropNameInTable="inventárioColumn" msprop:Generator_UserColumnName="inventário" type="xs:decimal" minOccurs="0" />
+              <xs:element name="inventárioAnterior" msprop:Generator_ColumnVarNameInTable="columninventárioAnterior" msprop:Generator_ColumnPropNameInRow="inventárioAnterior" msprop:Generator_ColumnPropNameInTable="inventárioAnteriorColumn" msprop:Generator_UserColumnName="inventárioAnterior" type="xs:decimal" minOccurs="0" />
+              <xs:element name="apuração" msprop:Generator_ColumnVarNameInTable="columnapuração" msprop:Generator_ColumnPropNameInRow="apuração" msprop:Generator_ColumnPropNameInTable="apuraçãoColumn" msprop:Generator_UserColumnName="apuração" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

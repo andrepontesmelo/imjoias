@@ -635,6 +635,12 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Fabricação {
             
             private global::System.Data.DataColumn columnpesoTotal;
             
+            private global::System.Data.DataColumn columninventário;
+            
+            private global::System.Data.DataColumn columninventárioAnterior;
+            
+            private global::System.Data.DataColumn columnapuração;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ItemDataTable() {
@@ -742,6 +748,30 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Fabricação {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn inventárioColumn {
+                get {
+                    return this.columninventário;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn inventárioAnteriorColumn {
+                get {
+                    return this.columninventárioAnterior;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn apuraçãoColumn {
+                get {
+                    return this.columnapuração;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -777,7 +807,7 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Fabricação {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ItemRow AddItemRow(string código, string referência, decimal quantidade, decimal valor, string tipo, string descrição, decimal valorTotal, decimal peso, decimal pesoTotal) {
+            public ItemRow AddItemRow(string código, string referência, decimal quantidade, decimal valor, string tipo, string descrição, decimal valorTotal, decimal peso, decimal pesoTotal, decimal inventário, decimal inventárioAnterior, decimal apuração) {
                 ItemRow rowItemRow = ((ItemRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         código,
@@ -788,7 +818,10 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Fabricação {
                         descrição,
                         valorTotal,
                         peso,
-                        pesoTotal};
+                        pesoTotal,
+                        inventário,
+                        inventárioAnterior,
+                        apuração};
                 rowItemRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowItemRow);
                 return rowItemRow;
@@ -820,6 +853,9 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Fabricação {
                 this.columnvalorTotal = base.Columns["valorTotal"];
                 this.columnpeso = base.Columns["peso"];
                 this.columnpesoTotal = base.Columns["pesoTotal"];
+                this.columninventário = base.Columns["inventário"];
+                this.columninventárioAnterior = base.Columns["inventárioAnterior"];
+                this.columnapuração = base.Columns["apuração"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -843,6 +879,12 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Fabricação {
                 base.Columns.Add(this.columnpeso);
                 this.columnpesoTotal = new global::System.Data.DataColumn("pesoTotal", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnpesoTotal);
+                this.columninventário = new global::System.Data.DataColumn("inventário", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columninventário);
+                this.columninventárioAnterior = new global::System.Data.DataColumn("inventárioAnterior", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columninventárioAnterior);
+                this.columnapuração = new global::System.Data.DataColumn("apuração", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnapuração);
                 this.ExtendedProperties.Add("Generator_RowClassName", "ItemRow");
                 this.ExtendedProperties.Add("Generator_RowEvArgName", "ItemRowChangeEvent");
                 this.ExtendedProperties.Add("Generator_RowEvHandlerName", "ItemRowChangeEventHandler");
@@ -1291,6 +1333,54 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Fabricação {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal inventário {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableItem.inventárioColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'inventário\' in table \'Item\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItem.inventárioColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal inventárioAnterior {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableItem.inventárioAnteriorColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'inventárioAnterior\' in table \'Item\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItem.inventárioAnteriorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal apuração {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableItem.apuraçãoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'apuração\' in table \'Item\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableItem.apuraçãoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IscódigoNull() {
                 return this.IsNull(this.tableItem.códigoColumn);
             }
@@ -1395,6 +1485,42 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Fabricação {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetpesoTotalNull() {
                 this[this.tableItem.pesoTotalColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsinventárioNull() {
+                return this.IsNull(this.tableItem.inventárioColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetinventárioNull() {
+                this[this.tableItem.inventárioColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsinventárioAnteriorNull() {
+                return this.IsNull(this.tableItem.inventárioAnteriorColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetinventárioAnteriorNull() {
+                this[this.tableItem.inventárioAnteriorColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsapuraçãoNull() {
+                return this.IsNull(this.tableItem.apuraçãoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetapuraçãoNull() {
+                this[this.tableItem.apuraçãoColumn] = global::System.Convert.DBNull;
             }
         }
         

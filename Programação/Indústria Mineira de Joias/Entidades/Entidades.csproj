@@ -269,6 +269,7 @@
     <Compile Include="Fiscal\Exceções\FechamentoInexistente.cs" />
     <Compile Include="Fiscal\Exceções\NotaInexistente.cs" />
     <Compile Include="Fiscal\Exceções\XmlIncompatível.cs" />
+    <Compile Include="Fiscal\Fabricação\ApuradorFabricação.cs" />
     <Compile Include="Fiscal\Fabricação\FabricaçãoAutomática.cs" />
     <Compile Include="Fiscal\Fechamento.cs" />
     <Compile Include="Fiscal\Importação\Legado\EstoqueLegado.cs" />
