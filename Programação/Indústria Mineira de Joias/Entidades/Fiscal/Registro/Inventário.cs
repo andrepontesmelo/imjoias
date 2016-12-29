@@ -61,7 +61,7 @@ namespace Entidades.Fiscal
         public static Dictionary<string, Inventário> ObterHash(Fechamento fechamento, DateTime data)
         {
             Dictionary<string, Inventário> hash = new Dictionary<string, Fiscal.Inventário>();
-            var listaInventário = Obter(fechamento);
+            var listaInventário = Obter(fechamento, data);
 
             foreach (Inventário i in listaInventário)
                 hash[i.Referência] = i;
