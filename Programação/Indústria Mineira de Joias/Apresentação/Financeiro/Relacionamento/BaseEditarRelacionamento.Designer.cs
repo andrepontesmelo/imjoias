@@ -343,5 +343,7 @@ namespace Apresentação.Financeiro
         protected System.Windows.Forms.RichTextBox txtObservação;
         protected System.Windows.Forms.Label lblTravamento;
         private Formulários.Opção opçãoVisualizarImpressão;
+        protected Formulários.Quadro quadroAlternaBandeja;
+        protected Formulários.Quadro quadroOpçãoPedido;
     }
 }

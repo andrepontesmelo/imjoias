@@ -9,18 +9,16 @@ using System.Windows.Forms;
 
 namespace Apresentação.Financeiro
 {
-    abstract public partial class BaseEditarRelacionamento : BaseInferior
+    public partial class BaseEditarRelacionamento : BaseInferior
     {
         private Relacionamento entidade;
 
         // Componentes
         private AMS.TextBox.IntegerTextBox integerTextBox1;
         private System.ComponentModel.IContainer components = null;
-        private Quadro quadroAlternaBandeja;
         protected RadioButton optAgrupado;
         private RadioButton optHistórico;
         protected TítuloBaseInferior título;
-        private Quadro quadroOpçãoPedido;
 
         /// <summary>
         /// Ocorre quando a trava é alterada.
@@ -183,7 +181,10 @@ namespace Apresentação.Financeiro
             AtualizarTravamento(travado);
         }
 
-        protected abstract bool ValidarPermissãoDestravar();
+        protected virtual bool ValidarPermissãoDestravar()
+        {
+            throw new Exception("Abstrato");
+        }
 
         private void opçãoDestravar_Click(object sender, EventArgs e)
         {
@@ -330,7 +331,10 @@ namespace Apresentação.Financeiro
             j.Show();
         }
 
-        protected abstract void InserirDocumento(Formulários.JanelaImpressão j);
+        protected virtual void InserirDocumento(Formulários.JanelaImpressão j)
+        {
+            throw new Exception("abstrato");
+        }
 
         public void Recarregar()
         {
