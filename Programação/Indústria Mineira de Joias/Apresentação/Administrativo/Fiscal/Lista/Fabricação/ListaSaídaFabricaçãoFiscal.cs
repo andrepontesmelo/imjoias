@@ -37,7 +37,8 @@ namespace Apresentação.Administrativo.Fiscal.Lista.Fabricação
 
             item.SubItems[colPeso.Index].Text = saída.Peso.ToString();
             item.SubItems[colPesoTotal.Index].Text =  Math.Round(saída.PesoTotal, 2).ToString();
-            item.SubItems[colApuração.Index].Text = apurador.ObterApuração(entidade).ToString();
+            var apuração = apurador.ObterApuração(entidade);
+            item.SubItems[colApuração.Index].Text = apuração.ToString();
             item.SubItems[colEstoqueAnterior.Index].Text = apurador.ObterInventárioAnterior(entidade).ToString();
 
             return item;

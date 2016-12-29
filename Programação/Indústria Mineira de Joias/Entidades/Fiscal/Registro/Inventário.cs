@@ -27,7 +27,17 @@ namespace Entidades.Fiscal
             set { quantidade = value; }
         }
 
+        private static DateTime ObterDataLimiteFechamento(Fechamento fechamento)
+        {
+            return fechamento.Fim.AddDays(1);
+        }
+
         public static List<Inventário> Obter(Fechamento fechamento)
+        {
+            return Obter(fechamento, ObterDataLimiteFechamento(fechamento));
+        }
+
+        public static List<Inventário> Obter(Fechamento fechamento, DateTime data)
         {
             fechamento.AtualizarMercadoriasSeAberto();
 
@@ -38,12 +48,17 @@ namespace Entidades.Fiscal
                 " where i.data < {1} " + 
                 " group by f.referencia having quantidade != 0 ",
                 fechamento.Código,
-                DbTransformar(fechamento.Fim.AddDays(1)));
+                DbTransformar(data));
 
             return Mapear<Inventário>(sql);
         }
 
         public static Dictionary<string, Inventário> ObterHash(Fechamento fechamento)
+        {
+            return ObterHash(fechamento, ObterDataLimiteFechamento(fechamento));
+        }
+
+        public static Dictionary<string, Inventário> ObterHash(Fechamento fechamento, DateTime data)
         {
             Dictionary<string, Inventário> hash = new Dictionary<string, Fiscal.Inventário>();
             var listaInventário = Obter(fechamento);

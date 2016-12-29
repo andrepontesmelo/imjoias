@@ -11,18 +11,18 @@ namespace Entidades.Fiscal.Fabricação
         {
             this.fabricação = fabricação;
             var fechamento = Fechamento.Obter(fabricação.Data);
-            hashInventário = Inventário.ObterHash(fechamento);
+            hashInventário = Inventário.ObterHash(fechamento, fabricação.Data);
         }
 
         public decimal ObterInventário(ItemFabricaçãoFiscal item)
         {
-            Inventário i;
-            return hashInventário.TryGetValue(item.Referência, out i) ? i.Quantidade : 0;
+            return ObterInventárioAnterior(item) + item.Quantidade;
         }
 
         public decimal ObterInventárioAnterior(ItemFabricaçãoFiscal item)
         {
-            return ObterInventário(item) - item.Quantidade;
+            Inventário i;
+            return hashInventário.TryGetValue(item.Referência, out i) ? i.Quantidade : 0;
         }
 
         public decimal ObterApuração(ItemFabricaçãoFiscal item)
