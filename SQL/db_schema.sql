@@ -1,10 +1,10 @@
 -- mysqldump --routines --no-data -u root -p  --opt imjoias -d --single-transaction | sed 's/ AUTO_INCREMENT=[0-9]*\b//'  | sed 's/![0-9]*\b//' | sed 's/\/\*//'  | sed 's/*\///' > db_schema.sql
-
--- MySQL dump 10.16  Distrib 10.1.19-MariaDB, for Linux (x86_64)
+--
+-- MySQL dump 10.16  Distrib 10.1.20-MariaDB, for Linux (x86_64)
 --
 -- Host: localhost    Database: localhost
 -- ------------------------------------------------------
--- Server version	10.1.19-MariaDB
+-- Server version	10.1.20-MariaDB
 
  SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT ;
  SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS ;
@@ -180,6 +180,23 @@ SET character_set_client = utf8;
 SET character_set_client = @saved_cs_client;
 
 --
+-- Table structure for table `cep`
+--
+
+DROP TABLE IF EXISTS `cep`;
+ SET @saved_cs_client     = @@character_set_client ;
+ SET character_set_client = utf8 ;
+CREATE TABLE `cep` (
+  `cep` char(9) NOT NULL,
+  `localidade` int(10) unsigned NOT NULL,
+  `logradouro` varchar(255) DEFAULT NULL,
+  `bairro` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`cep`),
+  KEY `FK_cep_localidade` (`localidade`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 ROW_FORMAT=COMPRESSED COMMENT='InnoDB free: 280576 kB; (`localidade`) REFER `imjoias/locali' DATA DIRECTORY='/var/lib/mysql_hd/';
+ SET character_set_client = @saved_cs_client ;
+
+--
 -- Table structure for table `cheque`
 --
 
@@ -193,7 +210,7 @@ CREATE TABLE `cheque` (
   `deTerceiro` tinyint(1) NOT NULL,
   `prorrogadopara` datetime DEFAULT NULL,
   PRIMARY KEY (`codigo`),
-  CONSTRAINT `cheque_FK` FOREIGN KEY (`codigo`) REFERENCES `pagamento` (`codigo`) ON UPDATE CASCADE
+  CONSTRAINT `cheque_FK` FOREIGN KEY (`codigo`) REFERENCES `pagamento` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
  SET character_set_client = @saved_cs_client ;
 
@@ -629,12 +646,15 @@ DROP TABLE IF EXISTS `entradafabricacaofiscal`;
  SET @saved_cs_client     = @@character_set_client ;
  SET character_set_client = utf8 ;
 CREATE TABLE `entradafabricacaofiscal` (
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
   `fabricacaofiscal` int(11) NOT NULL,
   `quantidade` decimal(10,2) NOT NULL,
   `referencia` varchar(11) NOT NULL,
+  `valor` decimal(8,2) NOT NULL,
+  `cfop` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`codigo`),
   KEY `fk_entradafabricacaofiscal_fabricacaofiscal` (`fabricacaofiscal`),
-  KEY `fk_entradafabricacaofiscal_referencia` (`referencia`),
-  CONSTRAINT `fk_entradaproducaofiscal_2` FOREIGN KEY (`referencia`) REFERENCES `mercadoria` (`referencia`) ON UPDATE CASCADE
+  CONSTRAINT `fk_entradafabricacaofiscal_fabricacao` FOREIGN KEY (`fabricacaofiscal`) REFERENCES `fabricacaofiscal` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
  SET character_set_client = @saved_cs_client ;
 
@@ -654,6 +674,8 @@ CREATE TABLE `entradafiscal` (
   `tipo` int(11) NOT NULL,
   `observacoes` mediumtext NOT NULL,
   `dataentrada` datetime NOT NULL,
+  `subtotal` decimal(8,2) NOT NULL DEFAULT '0.00',
+  `desconto` decimal(8,2) NOT NULL DEFAULT '0.00',
   PRIMARY KEY (`id`),
   KEY `entradafiscal_tipodocumentofiscal_FK` (`tipo`),
   KEY `idx_data_entrada` (`dataentrada`),
@@ -737,8 +759,10 @@ DROP TABLE IF EXISTS `esquemafabricacaofiscal`;
 CREATE TABLE `esquemafabricacaofiscal` (
   `referencia` varchar(11) NOT NULL,
   `quantidade` decimal(10,2) NOT NULL,
-  PRIMARY KEY (`referencia`),
-  CONSTRAINT `fk_esquemaproducaofiscal_1` FOREIGN KEY (`referencia`) REFERENCES `mercadoria` (`referencia`) ON DELETE CASCADE ON UPDATE CASCADE
+  `fechamento` int(11) NOT NULL,
+  PRIMARY KEY (`referencia`,`fechamento`),
+  KEY `fk_esquemafabricacaofiscal_fechamento_idx` (`fechamento`),
+  CONSTRAINT `fk_esquemafabricacaofiscal_fechamento` FOREIGN KEY (`fechamento`) REFERENCES `fechamento` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
  SET character_set_client = @saved_cs_client ;
 
@@ -864,7 +888,11 @@ SET character_set_client = utf8;
   `referencia` tinyint NOT NULL,
   `data` tinyint NOT NULL,
   `quantidade` tinyint NOT NULL,
-  `valor` tinyint NOT NULL
+  `valor` tinyint NOT NULL,
+  `cfop` tinyint NOT NULL,
+  `idpai` tinyint NOT NULL,
+  `idfilho` tinyint NOT NULL,
+  `fabricacao` tinyint NOT NULL
 ) ENGINE=MyISAM ;
 SET character_set_client = @saved_cs_client;
 
@@ -897,6 +925,22 @@ CREATE TABLE `faixa` (
   KEY `IDX_Faixa_Faixa` (`faixa`),
   KEY `fk_faixa_1_idx` (`setor`),
   CONSTRAINT `fk_faixa_1` FOREIGN KEY (`setor`) REFERENCES `tabela` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ SET character_set_client = @saved_cs_client ;
+
+--
+-- Table structure for table `fechamento`
+--
+
+DROP TABLE IF EXISTS `fechamento`;
+ SET @saved_cs_client     = @@character_set_client ;
+ SET character_set_client = utf8 ;
+CREATE TABLE `fechamento` (
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
+  `inicio` datetime NOT NULL,
+  `fim` datetime NOT NULL,
+  `fechado` tinyint(4) NOT NULL,
+  PRIMARY KEY (`codigo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
  SET character_set_client = @saved_cs_client ;
 
@@ -939,6 +983,25 @@ CREATE TABLE `fornecedor` (
   `codigo` int(10) unsigned NOT NULL,
   PRIMARY KEY (`codigo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ SET character_set_client = @saved_cs_client ;
+
+--
+-- Table structure for table `foto`
+--
+
+DROP TABLE IF EXISTS `foto`;
+ SET @saved_cs_client     = @@character_set_client ;
+ SET character_set_client = utf8 ;
+CREATE TABLE `foto` (
+  `codigo` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `mercadoria` varchar(100) NOT NULL DEFAULT '',
+  `descricao` varchar(45) DEFAULT NULL,
+  `foto` mediumblob NOT NULL,
+  `icone` blob,
+  `data` datetime DEFAULT NULL,
+  PRIMARY KEY (`codigo`),
+  KEY `idx_foto_mercadoria` (`mercadoria`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 DATA DIRECTORY='/var/lib/mysql_hd/';
  SET character_set_client = @saved_cs_client ;
 
 --
@@ -1122,24 +1185,6 @@ SET character_set_client = utf8;
 SET character_set_client = @saved_cs_client;
 
 --
--- Table structure for table `inventario_total`
---
-
-DROP TABLE IF EXISTS `inventario_total`;
- SET @saved_cs_client     = @@character_set_client ;
- SET character_set_client = utf8 ;
-CREATE TABLE `inventario_total` (
-  `referencia` tinyint(4) NOT NULL,
-  `quantidade` tinyint(4) NOT NULL,
-  `nome` tinyint(4) NOT NULL,
-  `classificacaofiscal` tinyint(4) NOT NULL,
-  `tipounidade` tinyint(4) NOT NULL,
-  `valor` tinyint(4) NOT NULL,
-  `valortotal` tinyint(4) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
- SET character_set_client = @saved_cs_client ;
-
---
 -- Table structure for table `localidade`
 --
 
@@ -1204,9 +1249,12 @@ CREATE TABLE `materiaprimaesquemafabricacaofiscal` (
   `esquema` varchar(11) NOT NULL,
   `materiaprima` varchar(11) NOT NULL,
   `quantidade` decimal(10,2) NOT NULL,
-  UNIQUE KEY `idx_esquema_materiaprima` (`esquema`,`materiaprima`),
-  KEY `fk_materiaprimaesquemafabricacaofiscal_materiaprima_idx` (`materiaprima`),
-  CONSTRAINT `fk_materiaprimaesquemaproducaofiscal_esquema` FOREIGN KEY (`esquema`) REFERENCES `esquemafabricacaofiscal` (`referencia`) ON DELETE CASCADE ON UPDATE CASCADE
+  `fechamento` int(11) NOT NULL,
+  `proporcional` tinyint(4) DEFAULT '0',
+  UNIQUE KEY `unique_materiaprimaesquemafabricacao` (`esquema`,`materiaprima`,`fechamento`),
+  KEY `fk_materiaprimaesquemafabricacaofiscal_fechamento_idx` (`fechamento`),
+  KEY `idx_materiaprimaesquema_materiaprima` (`materiaprima`),
+  CONSTRAINT `fk_materiaprimaesquemafabricacaofiscal_fechamento` FOREIGN KEY (`fechamento`) REFERENCES `fechamento` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
  SET character_set_client = @saved_cs_client ;
 
@@ -1242,28 +1290,39 @@ CREATE TABLE `mercadoria` (
  SET character_set_client = @saved_cs_client ;
 
 --
--- Table structure for table `mercadoriaalteracao`
+-- Temporary table structure for view `mercadoria_fiscal`
 --
 
-DROP TABLE IF EXISTS `mercadoriaalteracao`;
+DROP TABLE IF EXISTS `mercadoria_fiscal`;
+ DROP VIEW IF EXISTS `mercadoria_fiscal`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+ CREATE TABLE `mercadoria_fiscal` (
+  `referencia` tinyint NOT NULL,
+  `descricao` tinyint NOT NULL,
+  `valor` tinyint NOT NULL,
+  `peso` tinyint NOT NULL,
+  `depeso` tinyint NOT NULL
+) ENGINE=MyISAM ;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table `mercadoriafechamento`
+--
+
+DROP TABLE IF EXISTS `mercadoriafechamento`;
  SET @saved_cs_client     = @@character_set_client ;
  SET character_set_client = utf8 ;
-CREATE TABLE `mercadoriaalteracao` (
-  `referencia` varchar(11) NOT NULL DEFAULT '',
-  `nome` varchar(100) DEFAULT NULL,
-  `teor` int(11) DEFAULT NULL,
-  `peso` double DEFAULT NULL,
-  `faixa` char(1) DEFAULT NULL,
-  `grupo` int(11) DEFAULT NULL,
-  `digito` tinyint(4) DEFAULT NULL,
-  `foradelinha` tinyint(4) DEFAULT NULL,
-  `depeso` tinyint(4) DEFAULT NULL,
-  PRIMARY KEY (`referencia`),
-  KEY `IDX_mercadoriaalteracao_Faixa` (`faixa`),
-  KEY `IDX_mercadoriaalteracao_ForaDeLinha` (`foradelinha`),
-  KEY `IDX_mercadoriaalteracao_DePeso` (`depeso`),
-  KEY `IDX_mercadoriaalteracao_Digito` (`digito`),
-  KEY `IDX_mercadoriaalteracao_Grupo` (`grupo`)
+CREATE TABLE `mercadoriafechamento` (
+  `referencia` varchar(11) NOT NULL,
+  `descricao` varchar(100) DEFAULT NULL,
+  `valor` decimal(8,2) DEFAULT NULL,
+  `fechamento` int(11) NOT NULL,
+  `peso` decimal(8,2) NOT NULL,
+  `depeso` tinyint(1) NOT NULL DEFAULT '0',
+  UNIQUE KEY `idx_mercadoriafechamento_unica` (`referencia`,`fechamento`),
+  KEY `fk_mercadoriafechamento_fechamento_idx` (`fechamento`),
+  CONSTRAINT `fk_mercadoriafechamento_fechamento` FOREIGN KEY (`fechamento`) REFERENCES `fechamento` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
  SET character_set_client = @saved_cs_client ;
 
@@ -1833,13 +1892,17 @@ DROP TABLE IF EXISTS `saidafabricacaofiscal`;
  SET @saved_cs_client     = @@character_set_client ;
  SET character_set_client = utf8 ;
 CREATE TABLE `saidafabricacaofiscal` (
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
   `fabricacaofiscal` int(11) NOT NULL,
   `quantidade` decimal(10,2) NOT NULL,
   `referencia` varchar(11) NOT NULL,
-  KEY `fk_saidafabricacaofiscal_referencia` (`referencia`),
+  `valor` decimal(8,2) NOT NULL,
+  `cfop` int(11) NOT NULL DEFAULT '0',
+  `peso` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `quantidadeextrato` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY (`codigo`),
   KEY `fk_saidaproducaofiscal_fabricacaofiscal` (`fabricacaofiscal`),
-  CONSTRAINT `fk_saidaproducaofiscal_1` FOREIGN KEY (`fabricacaofiscal`) REFERENCES `fabricacaofiscal` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_saidaproducaofiscal_2` FOREIGN KEY (`referencia`) REFERENCES `mercadoria` (`referencia`) ON UPDATE CASCADE
+  CONSTRAINT `fk_saidaproducaofiscal_1` FOREIGN KEY (`fabricacaofiscal`) REFERENCES `fabricacaofiscal` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
  SET character_set_client = @saved_cs_client ;
 
@@ -1863,6 +1926,9 @@ CREATE TABLE `saidafiscal` (
   `setor` int(10) unsigned NOT NULL,
   `maquina` int(11) DEFAULT NULL,
   `cliente` int(10) unsigned DEFAULT NULL,
+  `fabricacao` int(11) DEFAULT NULL,
+  `subtotal` decimal(8,2) NOT NULL DEFAULT '0.00',
+  `desconto` decimal(8,2) NOT NULL DEFAULT '0.00',
   PRIMARY KEY (`id`),
   KEY `saidafiscal_tipodocumentofiscal_FK` (`tipo`),
   KEY `saidafiscal_setor_FK` (`setor`),
@@ -1870,8 +1936,10 @@ CREATE TABLE `saidafiscal` (
   KEY `index5` (`cancelada`),
   KEY `index6` (`datasaida`),
   KEY `fk_saidafiscal_cliente_idx` (`cliente`),
+  KEY `fk_saidafiscal_fabricacao_idx` (`fabricacao`),
   CONSTRAINT `fk_saidafiscal_1` FOREIGN KEY (`maquina`) REFERENCES `maquinafiscal` (`codigo`) ON UPDATE CASCADE,
   CONSTRAINT `fk_saidafiscal_cliente` FOREIGN KEY (`cliente`) REFERENCES `pessoa` (`codigo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_saidafiscal_fabricacao` FOREIGN KEY (`fabricacao`) REFERENCES `fabricacaofiscal` (`codigo`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `saidafiscal_setor_FK` FOREIGN KEY (`setor`) REFERENCES `setor` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `saidafiscal_tipodocumentofiscal_FK` FOREIGN KEY (`tipo`) REFERENCES `tipodocumentofiscal` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -2838,25 +2906,6 @@ DELIMITER ;
  SET character_set_client  = @saved_cs_client  ;
  SET character_set_results = @saved_cs_results  ;
  SET collation_connection  = @saved_col_connection  ;
- DROP PROCEDURE IF EXISTS `inventario` ;
- SET @saved_cs_client      = @@character_set_client  ;
- SET @saved_cs_results     = @@character_set_results  ;
- SET @saved_col_connection = @@collation_connection  ;
- SET character_set_client  = utf8  ;
- SET character_set_results = utf8  ;
- SET collation_connection  = utf8_general_ci  ;
- SET @saved_sql_mode       = @@sql_mode  ;
- SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'  ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `inventario`(IN dataMaxima DATETIME)
-BEGIN
- select i.* from (select @d1:=dataMaxima p) parm, inventario_parcial i;
- END ;;
-DELIMITER ;
- SET sql_mode              = @saved_sql_mode  ;
- SET character_set_client  = @saved_cs_client  ;
- SET character_set_results = @saved_cs_results  ;
- SET collation_connection  = @saved_col_connection  ;
  DROP PROCEDURE IF EXISTS `lerParametrosGeracaoPrecos` ;
  SET @saved_cs_client      = @@character_set_client  ;
  SET @saved_cs_results     = @@character_set_results  ;
@@ -3120,7 +3169,7 @@ DELIMITER ;
  SET collation_connection      = utf8_general_ci ;
  CREATE ALGORITHM=UNDEFINED 
  DEFINER=`root`@`localhost` SQL SECURITY DEFINER 
- VIEW `extratoinventario` AS select `e`.`tipo` AS `tipodocumento`,'E' AS `tipoextrato`,`ei`.`referencia` AS `referencia`,`e`.`dataentrada` AS `data`,`ei`.`quantidade` AS `quantidade`,`ei`.`valor` AS `valor` from (`entradaitemfiscal` `ei` join `entradafiscal` `e` on((`ei`.`entradafiscal` = `e`.`id`))) where (`e`.`dataentrada` < now()) union select `e`.`tipo` AS `tipodocumento`,'S' AS `tipoextrato`,`ei`.`referencia` AS `referencia`,`e`.`datasaida` AS `data`,(-(1) * `ei`.`quantidade`) AS `-1*ei.quantidade`,`ei`.`valor` AS `valor` from (`saidaitemfiscal` `ei` join `saidafiscal` `e` on((`ei`.`saidafiscal` = `e`.`id`))) where (`e`.`datasaida` < now()) union select NULL AS `tipodocumento`,'OT' AS `tipoextrato`,`ei`.`referencia` AS `referencia`,`e`.`data` AS `data`,(-(1) * `ei`.`quantidade`) AS `-1*ei.quantidade`,0 AS `valor` from (`entradafabricacaofiscal` `ei` join `fabricacaofiscal` `e` on((`ei`.`fabricacaofiscal` = `e`.`codigo`))) where (`e`.`data` < now()) union select NULL AS `tipodocumento`,'TO' AS `tipoextrato`,`ei`.`referencia` AS `referencia`,`e`.`data` AS `data`,`ei`.`quantidade` AS `quantidade`,0 AS `valor` from (`saidafabricacaofiscal` `ei` join `fabricacaofiscal` `e` on((`ei`.`fabricacaofiscal` = `e`.`codigo`))) where (`e`.`data` < now()) ;
+ VIEW `extratoinventario` AS select `e`.`tipo` AS `tipodocumento`,'E' AS `tipoextrato`,`ei`.`referencia` AS `referencia`,`e`.`dataentrada` AS `data`,`ei`.`quantidade` AS `quantidade`,`ei`.`valor` AS `valor`,`ei`.`cfop` AS `cfop`,`e`.`id` AS `idpai`,`ei`.`codigo` AS `idfilho`,NULL AS `fabricacao` from (`entradaitemfiscal` `ei` join `entradafiscal` `e` on((`ei`.`entradafiscal` = `e`.`id`))) where (`e`.`dataentrada` < now()) union select `e`.`tipo` AS `tipodocumento`,'S' AS `tipoextrato`,`ei`.`referencia` AS `referencia`,`e`.`datasaida` AS `data`,if(`m`.`depeso`,-(1),(-(1) * `ei`.`quantidade`)) AS `if(m.depeso, -1, -1*quantidade)`,round((`ei`.`valor` * (`e`.`valortotal` / `e`.`subtotal`)),2) AS `valor`,`ei`.`cfop` AS `cfop`,cast(`e`.`id` as char charset utf8) AS `idpai`,cast(`ei`.`codigo` as char charset utf8) AS `idfilho`,`e`.`fabricacao` AS `fabricacao` from (((`saidaitemfiscal` `ei` join `saidafiscal` `e` on((`ei`.`saidafiscal` = `e`.`id`))) join `fechamento` `f` on((`e`.`datasaida` between `f`.`inicio` and `f`.`fim`))) join `mercadoriafechamento` `m` on(((`m`.`fechamento` = `f`.`codigo`) and (`m`.`referencia` = `ei`.`referencia`)))) where ((`e`.`cancelada` = 0) and (`e`.`datasaida` < now())) union select NULL AS `tipodocumento`,'OT' AS `tipoextrato`,`ei`.`referencia` AS `referencia`,`e`.`data` AS `data`,(-(1) * `ei`.`quantidade`) AS `-1*ei.quantidade`,round((`ei`.`valor` * `ei`.`quantidade`),2) AS `valor`,`ei`.`cfop` AS `cfop`,`e`.`codigo` AS `idpai`,cast(`ei`.`codigo` as char charset utf8) AS `idfilho`,cast(`e`.`codigo` as char charset utf8) AS `fabricacao` from (`entradafabricacaofiscal` `ei` join `fabricacaofiscal` `e` on((`ei`.`fabricacaofiscal` = `e`.`codigo`))) where (`e`.`data` < now()) union select NULL AS `tipodocumento`,'TO' AS `tipoextrato`,`ei`.`referencia` AS `referencia`,`e`.`data` AS `data`,`ei`.`quantidade` AS `quantidade`,round((`ei`.`valor` * `ei`.`quantidade`),2) AS `valor`,`ei`.`cfop` AS `cfop`,cast(`e`.`codigo` as char charset utf8) AS `idpai`,cast(`ei`.`codigo` as char charset utf8) AS `idfilho`,`e`.`codigo` AS `fabricacao` from (`saidafabricacaofiscal` `ei` join `fabricacaofiscal` `e` on((`ei`.`fabricacaofiscal` = `e`.`codigo`))) where (`e`.`data` < now()) ;
  SET character_set_client      = @saved_cs_client ;
  SET character_set_results     = @saved_cs_results ;
  SET collation_connection      = @saved_col_connection ;
@@ -3178,6 +3227,25 @@ DELIMITER ;
  CREATE ALGORITHM=UNDEFINED 
  DEFINER=`root`@`localhost` SQL SECURITY DEFINER 
  VIEW `inventario_parcial` AS select `m`.`referencia` AS `referencia`,sum(ifnull(`i`.`quantidade`,0)) AS `quantidade`,`m`.`nome` AS `nome`,`m`.`classificacaofiscal` AS `classificacaofiscal`,`m`.`tipounidade` AS `tipounidade`,ifnull(`a`.`valor`,`p`.`novoPrecoCusto`) AS `valor`,(sum(ifnull(`i`.`quantidade`,0)) * ifnull(`a`.`valor`,`p`.`novoPrecoCusto`)) AS `valortotal` from (((`mercadoria` `m` left join `materiaprima` `a` on((`a`.`referencia` = `m`.`referencia`))) left join `inventario_interno_parcial` `i` on((`i`.`referencia` = `m`.`referencia`))) left join `novosPrecos` `p` on((`m`.`referencia` = `p`.`mercadoria`))) group by `m`.`referencia` ;
+ SET character_set_client      = @saved_cs_client ;
+ SET character_set_results     = @saved_cs_results ;
+ SET collation_connection      = @saved_col_connection ;
+
+--
+-- Final view structure for view `mercadoria_fiscal`
+--
+
+ DROP TABLE IF EXISTS `mercadoria_fiscal`;
+ DROP VIEW IF EXISTS `mercadoria_fiscal`;
+ SET @saved_cs_client          = @@character_set_client ;
+ SET @saved_cs_results         = @@character_set_results ;
+ SET @saved_col_connection     = @@collation_connection ;
+ SET character_set_client      = utf8 ;
+ SET character_set_results     = utf8 ;
+ SET collation_connection      = utf8_general_ci ;
+ CREATE ALGORITHM=UNDEFINED 
+ DEFINER=`root`@`localhost` SQL SECURITY DEFINER 
+ VIEW `mercadoria_fiscal` AS select `m`.`referencia` AS `referencia`,`m`.`nome` AS `descricao`,ifnull(`a`.`valor`,`p`.`novoPrecoCusto`) AS `valor`,`m`.`peso` AS `peso`,`m`.`depeso` AS `depeso` from ((`mercadoria` `m` left join `materiaprima` `a` on((`a`.`referencia` = `m`.`referencia`))) left join `novosPrecos` `p` on((`m`.`referencia` = `p`.`mercadoria`))) ;
  SET character_set_client      = @saved_cs_client ;
  SET character_set_results     = @saved_cs_results ;
  SET collation_connection      = @saved_col_connection ;
@@ -3286,4 +3354,4 @@ DELIMITER ;
  SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION ;
  SET SQL_NOTES=@OLD_SQL_NOTES ;
 
--- Dump completed on 2016-11-22 13:36:07
+-- Dump completed on 2016-12-29 15:28:04
