@@ -41,7 +41,7 @@ namespace Apresentação.Financeiro.Pagamento
         public Entidades.Relacionamento.Venda.IDadosVenda Venda
         {
             get { return venda; }
-            set 
+            set
             {
                 IDadosVenda anterior = this.venda;
 
@@ -59,7 +59,7 @@ namespace Apresentação.Financeiro.Pagamento
         public Entidades.Pessoa.Pessoa Cliente
         {
             get { return cliente; }
-            set 
+            set
             {
                 cliente = value;
 
@@ -88,7 +88,7 @@ namespace Apresentação.Financeiro.Pagamento
             lista.ListViewItemSorter = ordenador;
 
             Image imagemDinheiro = (Image)global::Apresentação.Resource.dinheiro;
-            imageList.Images.Add(Entidades.Pagamentos.Pagamento.TipoEnum.Dinheiro.ToString(), (Image) global::Apresentação.Resource.dinheiro);
+            imageList.Images.Add(Entidades.Pagamentos.Pagamento.TipoEnum.Dinheiro.ToString(), (Image)global::Apresentação.Resource.dinheiro);
             imageList.Images.Add(Entidades.Pagamentos.Pagamento.TipoEnum.Cheque.ToString(), (Image)global::Apresentação.Resource.cheque1);
             imageList.Images.Add(Entidades.Pagamentos.Pagamento.TipoEnum.NotaPromissória.ToString(), (Image)global::Apresentação.Resource.np);
             imageList.Images.Add(Entidades.Pagamentos.Pagamento.TipoEnum.Ouro.ToString(), (Image)global::Apresentação.Resource.botão___ouro);
@@ -109,7 +109,7 @@ namespace Apresentação.Financeiro.Pagamento
 
             ordenador.SortColumn = colData.Index;
             ordenador.OrderOfSort = SortOrder.Descending;
-       }
+        }
 
         /// <summary>
         /// É o mesmo que atribuir as propriedades Venda e Cliente e chamar Carregar().
@@ -167,13 +167,13 @@ namespace Apresentação.Financeiro.Pagamento
 
                 janela.PagamentoAlteradoOuRegistrado += new EventHandler(janela_PagamentoAlteradoOuRegistrado);
                 janela.Disposed += new EventHandler(janela_Disposed);
-                
+
                 /* É necessário clonar o pagamento, de forma que se o usuário fizer alguma
                  * modificação e depois cancelar, não é pertubado nas entidades da lista. 
                  */
-                janela.PrepararParaAlteração((Entidades.Pagamentos.Pagamento) pagamento.Clone());
+                janela.PrepararParaAlteração((Entidades.Pagamentos.Pagamento)pagamento.Clone());
                 janela.ShowDialog(ParentForm);
-                
+
                 UseWaitCursor = false;
             }
         }
@@ -259,8 +259,8 @@ namespace Apresentação.Financeiro.Pagamento
 
         void janela_Disposed(object sender, EventArgs e)
         {
-            Cadastro janela = (Cadastro) sender;
-            
+            Cadastro janela = (Cadastro)sender;
+
             // Desregistra os eventos
             janela.Disposed -= new EventHandler(janela_Disposed);
             janela.PagamentoAlteradoOuRegistrado -= new EventHandler(janela_PagamentoAlteradoOuRegistrado);
@@ -276,12 +276,12 @@ namespace Apresentação.Financeiro.Pagamento
 
         private void lista_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnAlterar.Enabled =  btnExcluir.Enabled = lista.SelectedItems.Count > 0;
+            btnAlterar.Enabled = btnExcluir.Enabled = lista.SelectedItems.Count > 0;
         }
 
         private void localizador_EncontrarItem(object item, object itemAnterior)
         {
-            ListViewItem i = (ListViewItem) item;
+            ListViewItem i = (ListViewItem)item;
             ListViewItem iAnterior = itemAnterior as ListViewItem;
 
             if (iAnterior != null)
@@ -341,7 +341,7 @@ namespace Apresentação.Financeiro.Pagamento
                     item.Pagamento.Descadastrar();
 
                 Carregar();
-            } 
+            }
         }
 
         private void btnAlterar_Click(object sender, EventArgs e)
@@ -354,7 +354,7 @@ namespace Apresentação.Financeiro.Pagamento
         {
             if (e.Modifiers == Keys.Control && e.KeyCode == Keys.F)
                 localizador.Abrir();
-            
+
             if (e.KeyCode == Keys.Delete)
                 Excluir();
 
@@ -458,7 +458,7 @@ namespace Apresentação.Financeiro.Pagamento
                 else
                     dados.entidades = Entidades.Pagamentos.Pagamento.ObterPagamentos(cliente);
 
-                dados.hashPagoNaVenda = 
+                dados.hashPagoNaVenda =
                     Entidades.Relacionamento.Venda.Venda.ObterCódigoVendasQuePagam(dados.entidades);
 
                 e.Result = dados;
@@ -557,10 +557,10 @@ namespace Apresentação.Financeiro.Pagamento
                 itemPagamento.ProrrogadoPara = null;
 
             if (p is Cheque)
-                itemPagamento.Vencimento = ((Cheque) p).Vencimento;
+                itemPagamento.Vencimento = ((Cheque)p).Vencimento;
             else
 
-                itemPagamento.Vencimento =  p.ÚltimoVencimento;
+                itemPagamento.Vencimento = p.ÚltimoVencimento;
 
             if (itemPagamento.Vencimento.HasValue)
             {
@@ -597,7 +597,7 @@ namespace Apresentação.Financeiro.Pagamento
             dados.hashPagoNaVenda.TryGetValue(p.Código, out pagoNaVenda);
 
             if (pagoNaVenda.HasValue)
-                item.SubItems[colPagoNaVenda.Index].Text =  Entidades.Relacionamento.Venda.Venda.FormatarCódigo(pagoNaVenda.Value).ToString();
+                item.SubItems[colPagoNaVenda.Index].Text = Entidades.Relacionamento.Venda.Venda.FormatarCódigo(pagoNaVenda.Value).ToString();
             else
                 item.SubItems[colPagoNaVenda.Index].Text = "";
 
@@ -621,24 +621,32 @@ namespace Apresentação.Financeiro.Pagamento
             Cadastro c = new CadastroCrédito();
             AbrirJanelaCadastro(c);
 
-            while (c.DialogResult != DialogResult.Cancel) {
+            while (c.DialogResult != DialogResult.Cancel)
+            {
                 c = new CadastroCrédito();
                 AbrirJanelaCadastro(c);
             }
 
         }
 
-        /// <summary>
-        /// Retorna os pagamentos que estão mostados na lista.
-        /// É util para imprimir a informação na mesma ordem que mostrado na tela.
-        /// </summary>
-        /// <returns></returns>
         internal List<Entidades.Pagamentos.Pagamento> ObterPagamentosExibidos()
         {
             List<Entidades.Pagamentos.Pagamento> lst = new List<Entidades.Pagamentos.Pagamento>(lista.Items.Count);
             foreach (ListViewItem item in lista.Items)
                 lst.Add(hashItemListaPagamento[item].Pagamento);
-            
+
+            return lst;
+        }
+
+        internal List<Entidades.Pagamentos.Pagamento> ObterPagamentosSelecionadosOuExibidos()
+        {
+            if (lista.SelectedItems.Count == 0)
+                return ObterPagamentosExibidos();
+
+            List<Entidades.Pagamentos.Pagamento> lst = new List<Entidades.Pagamentos.Pagamento>(lista.SelectedItems.Count);
+            foreach (ListViewItem item in lista.SelectedItems)
+                lst.Add(hashItemListaPagamento[item].Pagamento);
+
             return lst;
         }
     }

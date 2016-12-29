@@ -37,8 +37,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.quadro2 = new Apresentação.Formulários.Quadro();
-            this.opçãoImprimirPromissórias = new Apresentação.Formulários.Opção();
             this.opçãoImprimir = new Apresentação.Formulários.Opção();
+            this.opçãoImprimirPromissórias = new Apresentação.Formulários.Opção();
             this.esquerda.SuspendLayout();
             this.quadro.SuspendLayout();
             this.quadro1.SuspendLayout();
@@ -49,6 +49,7 @@
             // 
             this.esquerda.Controls.Add(this.quadro2);
             this.esquerda.Controls.Add(this.quadro1);
+            this.esquerda.Size = new System.Drawing.Size(187, 296);
             this.esquerda.Controls.SetChildIndex(this.quadro1, 0);
             this.esquerda.Controls.SetChildIndex(this.quadro2, 0);
             // 
@@ -183,20 +184,6 @@
             this.quadro2.Tamanho = 30;
             this.quadro2.Título = "Impressão";
             // 
-            // opçãoImprimirPromissórias
-            // 
-            this.opçãoImprimirPromissórias.BackColor = System.Drawing.Color.Transparent;
-            this.opçãoImprimirPromissórias.Descrição = "Promissória(s)";
-            this.opçãoImprimirPromissórias.Imagem = global::Apresentação.Resource.impressora___161;
-            this.opçãoImprimirPromissórias.Location = new System.Drawing.Point(7, 50);
-            this.opçãoImprimirPromissórias.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.opçãoImprimirPromissórias.MaximumSize = new System.Drawing.Size(150, 100);
-            this.opçãoImprimirPromissórias.MinimumSize = new System.Drawing.Size(150, 16);
-            this.opçãoImprimirPromissórias.Name = "opçãoImprimirPromissórias";
-            this.opçãoImprimirPromissórias.Size = new System.Drawing.Size(150, 18);
-            this.opçãoImprimirPromissórias.TabIndex = 2;
-            this.opçãoImprimirPromissórias.Click += new System.EventHandler(this.opçãoImprimirPromissórias_Click);
-            // 
             // opçãoImprimir
             // 
             this.opçãoImprimir.BackColor = System.Drawing.Color.Transparent;
@@ -210,6 +197,20 @@
             this.opçãoImprimir.Size = new System.Drawing.Size(150, 17);
             this.opçãoImprimir.TabIndex = 3;
             this.opçãoImprimir.Click += new System.EventHandler(this.opçãoImprimir_Click);
+            // 
+            // opçãoImprimirPromissórias
+            // 
+            this.opçãoImprimirPromissórias.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoImprimirPromissórias.Descrição = "Promissórias Selecionadas";
+            this.opçãoImprimirPromissórias.Imagem = global::Apresentação.Resource.impressora___161;
+            this.opçãoImprimirPromissórias.Location = new System.Drawing.Point(7, 50);
+            this.opçãoImprimirPromissórias.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoImprimirPromissórias.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoImprimirPromissórias.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoImprimirPromissórias.Name = "opçãoImprimirPromissórias";
+            this.opçãoImprimirPromissórias.Size = new System.Drawing.Size(150, 18);
+            this.opçãoImprimirPromissórias.TabIndex = 2;
+            this.opçãoImprimirPromissórias.Click += new System.EventHandler(this.opçãoImprimirPromissórias_Click);
             // 
             // BasePagamentos
             // 
