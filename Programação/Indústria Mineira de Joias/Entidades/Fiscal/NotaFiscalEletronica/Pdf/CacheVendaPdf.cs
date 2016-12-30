@@ -29,7 +29,8 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf
 
         public void Recarregar()
         {
-            vendasComPdfs = MapearCódigos("select n.venda from nfe n join saidafiscal s on n.nfe=s.numero join saidafiscalpdf p on s.id=p.id");
+            vendasComPdfs = MapearCódigos("select n.venda from nfe n join saidafiscal s on n.nfe=s.numero " +
+                " join saidafiscalpdf p on s.id=p.id WHERE s.setor != " + DbTransformar((int)SetorSistema.Varejo));
             últimaObtenção = DateTime.Now;
         }
 

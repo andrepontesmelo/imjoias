@@ -39,7 +39,11 @@ namespace Entidades.Fiscal.Pdf
 
         public static SaidaFiscalPdf Obter(long venda)
         {
-            string sql = string.Format("select * from saidafiscalpdf where id=(select id from saidafiscal where numero =(select nfe from nfe where venda={0}))", DbTransformar(venda));
+            string sql = string.Format("select p.* from saidafiscalpdf p join saidafiscal s on p.id=s.id " + 
+                " join nfe n on n.nfe = s.numero " + " WHERE s.setor != {0} " + 
+                " AND n.venda = {1} ", DbTransformar((int) SetorSistema.Varejo), 
+                DbTransformar(venda));
+
             return MapearÚnicaLinha<SaidaFiscalPdf>(sql);
         }
 
