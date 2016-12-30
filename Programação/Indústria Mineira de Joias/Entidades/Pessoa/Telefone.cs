@@ -55,8 +55,7 @@ namespace Entidades.Pessoa
         }
 
 
-
-        public static Dictionary<Pessoa, Telefone[]> ObterTelefonesConsultaÚnica(List<Pessoa> pessoas)
+        public static Dictionary<Pessoa, Telefone[]> ObterTelefonesConsultaÚnica(HashSet<Pessoa> pessoas)
         {
             Dictionary<Pessoa, Telefone[]> retorno = new Dictionary<Pessoa, Telefone[]>();
 
@@ -68,9 +67,9 @@ namespace Entidades.Pessoa
 
             Dictionary<ulong, KeyValuePair<Pessoa, List<Telefone>>> hashPessoaTelefones = 
                 new Dictionary<ulong, KeyValuePair<Pessoa, List<Telefone>>>();
-            
+
             foreach (Pessoa p in pessoas)
-                hashPessoaTelefones.Add(p.Código, new KeyValuePair<Pessoa, List<Telefone>>(p, new List<Telefone>()));
+                hashPessoaTelefones[p.Código] = new KeyValuePair<Pessoa, List<Telefone>>(p, new List<Telefone>());
 
             IDbConnection conexão = Conexão;
             IDataReader leitor = null;
@@ -136,7 +135,7 @@ namespace Entidades.Pessoa
 
         public static void PreencherTelefonesUsandoCache(List<Entidades.Pessoa.Pessoa> lstPessoas)
         {
-            List<Pessoa> telefonesNãoCarregados = null;
+            HashSet<Pessoa> telefonesNãoCarregados = null;
 
             foreach (Pessoa p in lstPessoas)
             {
@@ -145,7 +144,7 @@ namespace Entidades.Pessoa
                 if (!hashTelefones.TryGetValue(p.Código, out telefones))
                 {
                     if (telefonesNãoCarregados == null)
-                        telefonesNãoCarregados = new List<Pessoa>();
+                        telefonesNãoCarregados = new HashSet<Pessoa>();
 
                     telefonesNãoCarregados.Add(p);
                 }
@@ -163,7 +162,7 @@ namespace Entidades.Pessoa
             }
         }
 
-        private static Dictionary<ulong, DbComposição<Telefone>> CarregarTelefonesConsultaÚnica(List<Pessoa> telefonesNãoCarregados)
+        private static Dictionary<ulong, DbComposição<Telefone>> CarregarTelefonesConsultaÚnica(HashSet<Pessoa> telefonesNãoCarregados)
         {
             // Carrega do DB
 

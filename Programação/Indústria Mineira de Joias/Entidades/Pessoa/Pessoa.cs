@@ -512,7 +512,7 @@ namespace Entidades.Pessoa
             return RealizarConsulta(cmd, 0, Pessoa.TotalAtributos);
         }
 
-        public static string ObterCódigoPessoas(List<Pessoa> pessoas)
+        public static string ObterCódigoPessoas(HashSet<Pessoa> pessoas)
         {
             String retorno;
             StringBuilder códigoPessoas = new StringBuilder("(");
