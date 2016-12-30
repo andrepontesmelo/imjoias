@@ -252,7 +252,7 @@
             this.btnAbrirPdf.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnAbrirPdf.Name = "btnAbrirPdf";
             this.btnAbrirPdf.Size = new System.Drawing.Size(48, 22);
-            this.btnAbrirPdf.Text = "NFe";
+            this.btnAbrirPdf.Text = "PDF NF-e";
             this.btnAbrirPdf.Click += new System.EventHandler(this.btnAbrirPdf_Click);
             // 
             // panelInterno
