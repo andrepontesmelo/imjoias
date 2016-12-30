@@ -2,7 +2,7 @@
 {
     public class Versão
     {
-        public static string GithubBranch = "v0.6.9.8";
+        public static string GithubBranch = "v0.6.9.9";
         public static string NomeAplicação = "Indústria Mineira de Joias";
         public static bool Beta = true;
 
