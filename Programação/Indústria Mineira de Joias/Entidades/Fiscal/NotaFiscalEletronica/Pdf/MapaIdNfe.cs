@@ -42,7 +42,8 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Pdf
             {
                 using (var cmd = conexão.CreateCommand())
                 {
-                    cmd.CommandText = "select id, numero from saidafiscal group by id, numero";
+                    cmd.CommandText = string.Format("select id, numero from saidafiscal where setor != {0} group by id, numero",
+                        DbTransformar((int) SetorSistema.Varejo));
 
                     using (var leitor = cmd.ExecuteReader())
                     {
