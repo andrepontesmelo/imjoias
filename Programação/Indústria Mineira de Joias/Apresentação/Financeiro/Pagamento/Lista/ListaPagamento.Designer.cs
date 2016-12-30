@@ -59,8 +59,9 @@
             this.qtdStatusStrip = new System.Windows.Forms.ToolStripStatusLabel();
             this.valorTotalStrip = new System.Windows.Forms.ToolStripStatusLabel();
             this.valorTotalLíquidoStrip = new System.Windows.Forms.ToolStripStatusLabel();
-            this.bgCarregar = new System.ComponentModel.BackgroundWorker();
             this.valorPendente = new System.Windows.Forms.ToolStripStatusLabel();
+            this.bgCarregar = new System.ComponentModel.BackgroundWorker();
+            this.btnImprimirNotasPromissóriasPendentes = new System.Windows.Forms.ToolStripButton();
             this.toolStrip.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -166,7 +167,8 @@
             this.btnLocalizar,
             this.btnAdicionar,
             this.btnExcluir,
-            this.btnAlterar});
+            this.btnAlterar,
+            this.btnImprimirNotasPromissóriasPendentes});
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Size = new System.Drawing.Size(737, 25);
@@ -325,16 +327,25 @@
             this.valorTotalLíquidoStrip.Size = new System.Drawing.Size(44, 17);
             this.valorTotalLíquidoStrip.Text = "liquido";
             // 
-            // bgCarregar
-            // 
-            this.bgCarregar.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgCarregar_DoWork);
-            this.bgCarregar.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgCarregar_RunWorkerCompleted);
-            // 
             // valorPendente
             // 
             this.valorPendente.Name = "valorPendente";
             this.valorPendente.Size = new System.Drawing.Size(83, 17);
             this.valorPendente.Text = "valorPendente";
+            // 
+            // bgCarregar
+            // 
+            this.bgCarregar.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgCarregar_DoWork);
+            this.bgCarregar.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgCarregar_RunWorkerCompleted);
+            // 
+            // btnImprimirNotasPromissóriasPendentes
+            // 
+            this.btnImprimirNotasPromissóriasPendentes.Image = global::Apresentação.Resource.Impressora_3D;
+            this.btnImprimirNotasPromissóriasPendentes.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnImprimirNotasPromissóriasPendentes.Name = "btnImprimirNotasPromissóriasPendentes";
+            this.btnImprimirNotasPromissóriasPendentes.Size = new System.Drawing.Size(128, 22);
+            this.btnImprimirNotasPromissóriasPendentes.Text = "Notas Promissórias";
+            this.btnImprimirNotasPromissóriasPendentes.Click += new System.EventHandler(this.btnImprimirNotasPromissóriasPendentes_Click);
             // 
             // ListaPagamento
             // 
@@ -389,5 +400,6 @@
         private System.Windows.Forms.ColumnHeader colDescrição;
         private System.Windows.Forms.ColumnHeader colContador;
         private System.Windows.Forms.ToolStripStatusLabel valorPendente;
+        private System.Windows.Forms.ToolStripButton btnImprimirNotasPromissóriasPendentes;
     }
 }

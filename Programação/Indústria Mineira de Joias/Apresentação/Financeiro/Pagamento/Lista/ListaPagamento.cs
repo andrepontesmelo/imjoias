@@ -1,4 +1,5 @@
 ﻿using Apresentação.Formulários;
+using Apresentação.Impressão.Relatórios.NotaPromissória;
 using Entidades.Configuração;
 using Entidades.Pagamentos;
 using Entidades.Relacionamento.Venda;
@@ -648,6 +649,40 @@ namespace Apresentação.Financeiro.Pagamento
                 lst.Add(hashItemListaPagamento[item].Pagamento);
 
             return lst;
+        }
+
+        private void btnImprimirNotasPromissóriasPendentes_Click(object sender, EventArgs e)
+        {
+            AguardeDB.Mostrar();
+            JanelaImpressão janela = new JanelaImpressão();
+            janela.Título = "Nota Promissória";
+            janela.Descrição = "Visualização de impressão para nota promissória";
+
+            List<NotaPromissória> lstNotasPromissórias =
+                NotaPromissória.FiltrarNotasPromissórias(ObterPagamentosSelecionadosOuExibidos(), true);
+
+            if (lstNotasPromissórias.Count == 0)
+            {
+                AguardeDB.Fechar();
+
+                MessageBox.Show(this,
+                    "Não existem notas promissórias pendentes",
+                    "Impressão de NPs",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                return;
+            }
+
+            Relatório relatório = new Relatório();
+            ControleImpressão controle = new ControleImpressão();
+
+            controle.PrepararImpressão(relatório, lstNotasPromissórias);
+
+            janela.InserirDocumento(relatório, "Nota(s) Promissória(s)");
+
+            AguardeDB.Fechar();
+            janela.Abrir(this);
         }
     }
 }
