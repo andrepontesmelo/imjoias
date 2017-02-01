@@ -303,6 +303,7 @@
     <Compile Include="ComboSetor.Designer.cs">
       <DependentUpon>ComboSetor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Financeiro\Relacionamento\Venda\Semáforo\ConfiguraçãoMarcaçãoSemáforo.cs" />
     <Compile Include="Formulário\ComboRígido.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -886,10 +887,10 @@
     <Compile Include="Financeiro\Indicadores\JanelaCalculoJuros.Designer.cs">
       <DependentUpon>JanelaCalculoJuros.cs</DependentUpon>
     </Compile>
-    <Compile Include="Financeiro\Relacionamento\Venda\SemaforoLegenda.cs">
+    <Compile Include="Financeiro\Relacionamento\Venda\Semáforo\SemaforoLegenda.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Financeiro\Relacionamento\Venda\SemaforoLegenda.Designer.cs">
+    <Compile Include="Financeiro\Relacionamento\Venda\Semáforo\SemaforoLegenda.Designer.cs">
       <DependentUpon>SemaforoLegenda.cs</DependentUpon>
     </Compile>
     <Compile Include="Financeiro\Relacionamento\ÁreaDeTransferência.cs" />
@@ -3230,7 +3231,7 @@
       <DependentUpon>JanelaProcuraVendas.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Financeiro\Relacionamento\Venda\SemaforoLegenda.resx">
+    <EmbeddedResource Include="Financeiro\Relacionamento\Venda\Semáforo\SemaforoLegenda.resx">
       <DependentUpon>SemaforoLegenda.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Financeiro\Relacionamento\VerificadorMercadoria.resx">

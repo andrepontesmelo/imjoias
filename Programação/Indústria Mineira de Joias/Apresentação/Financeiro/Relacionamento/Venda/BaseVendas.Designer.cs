@@ -1,3 +1,5 @@
+using Apresentação.Financeiro.Venda.Semáforo;
+
 namespace Apresentação.Financeiro.Venda
 {
     partial class BaseVendas
@@ -40,7 +42,7 @@ namespace Apresentação.Financeiro.Venda
             this.quadroLista = new Apresentação.Formulários.Quadro();
             this.quadroComprasDesteFuncionário = new Apresentação.Formulários.Quadro();
             this.opçãoComprasDesteFuncionário = new Apresentação.Formulários.Opção();
-            this.semaforoLegenda1 = new Apresentação.Financeiro.Venda.SemaforoLegenda();
+            this.semaforoLegenda1 = new SemaforoLegenda();
             this.esquerda.SuspendLayout();
             this.quadroOpçõesVenda.SuspendLayout();
             this.quadroLista.SuspendLayout();

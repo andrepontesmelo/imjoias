@@ -1,4 +1,4 @@
-﻿namespace Apresentação.Financeiro.Venda
+﻿namespace Apresentação.Financeiro.Venda.Semáforo
 {
     partial class SemaforoLegenda
     {
@@ -135,7 +135,6 @@
             this.chkVendaDia.Size = new System.Drawing.Size(16, 20);
             this.chkVendaDia.TabIndex = 8;
             this.chkVendaDia.UseVisualStyleBackColor = false;
-            this.chkVendaDia.CheckedChanged += new System.EventHandler(this.chkVendaDia_CheckedChanged);
             // 
             // chkNFe
             // 
@@ -145,7 +144,6 @@
             this.chkNFe.Size = new System.Drawing.Size(16, 20);
             this.chkNFe.TabIndex = 9;
             this.chkNFe.UseVisualStyleBackColor = false;
-            this.chkNFe.CheckedChanged += new System.EventHandler(this.chkNFe_CheckedChanged);
             // 
             // chkCobrança
             // 
@@ -155,7 +153,6 @@
             this.chkCobrança.Size = new System.Drawing.Size(16, 20);
             this.chkCobrança.TabIndex = 10;
             this.chkCobrança.UseVisualStyleBackColor = false;
-            this.chkCobrança.CheckedChanged += new System.EventHandler(this.chkCobrança_CheckedChanged);
             // 
             // chkNãoQuitada
             // 
@@ -165,7 +162,6 @@
             this.chkNãoQuitada.Size = new System.Drawing.Size(16, 20);
             this.chkNãoQuitada.TabIndex = 11;
             this.chkNãoQuitada.UseVisualStyleBackColor = false;
-            this.chkNãoQuitada.CheckedChanged += new System.EventHandler(this.chkNãoQuitada_CheckedChanged);
             // 
             // chkQuitadaAberta
             // 
@@ -175,7 +171,6 @@
             this.chkQuitadaAberta.Size = new System.Drawing.Size(16, 20);
             this.chkQuitadaAberta.TabIndex = 12;
             this.chkQuitadaAberta.UseVisualStyleBackColor = false;
-            this.chkQuitadaAberta.CheckedChanged += new System.EventHandler(this.chkQuitadaAberta_CheckedChanged);
             // 
             // chkComissãoFechada
             // 
@@ -185,7 +180,6 @@
             this.chkComissãoFechada.Size = new System.Drawing.Size(16, 20);
             this.chkComissãoFechada.TabIndex = 13;
             this.chkComissãoFechada.UseVisualStyleBackColor = false;
-            this.chkComissãoFechada.CheckedChanged += new System.EventHandler(this.chkComissãoFechada_CheckedChanged);
             // 
             // SemaforoLegenda
             // 

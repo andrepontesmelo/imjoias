@@ -1,4 +1,6 @@
-﻿namespace Apresentação.Financeiro.Comissões.BaseInferior
+﻿using Apresentação.Financeiro.Venda.Semáforo;
+
+namespace Apresentação.Financeiro.Comissões.BaseInferior
 {
     partial class BaseVendaSemComissão
     {
@@ -30,16 +32,16 @@
         {
             this.listViewVendas = new Apresentação.Financeiro.Venda.ListViewVendas();
             this.títuloBaseInferior1 = new Apresentação.Formulários.TítuloBaseInferior();
-            this.semaforoLegenda1 = new Apresentação.Financeiro.Venda.SemaforoLegenda();
+            this.semaforoLegenda = new SemaforoLegenda();
             this.bg = new System.ComponentModel.BackgroundWorker();
             this.esquerda.SuspendLayout();
             this.SuspendLayout();
             // 
             // esquerda
             // 
-            this.esquerda.Controls.Add(this.semaforoLegenda1);
+            this.esquerda.Controls.Add(this.semaforoLegenda);
             this.esquerda.Size = new System.Drawing.Size(187, 342);
-            this.esquerda.Controls.SetChildIndex(this.semaforoLegenda1, 0);
+            this.esquerda.Controls.SetChildIndex(this.semaforoLegenda, 0);
             // 
             // listViewVendas
             // 
@@ -69,21 +71,21 @@
             // 
             // semaforoLegenda1
             // 
-            this.semaforoLegenda1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.semaforoLegenda1.bInfDirArredondada = true;
-            this.semaforoLegenda1.bInfEsqArredondada = true;
-            this.semaforoLegenda1.bSupDirArredondada = true;
-            this.semaforoLegenda1.bSupEsqArredondada = true;
-            this.semaforoLegenda1.Cor = System.Drawing.Color.Black;
-            this.semaforoLegenda1.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
-            this.semaforoLegenda1.LetraTítulo = System.Drawing.Color.White;
-            this.semaforoLegenda1.Location = new System.Drawing.Point(7, 13);
-            this.semaforoLegenda1.MostrarBotãoMinMax = false;
-            this.semaforoLegenda1.Name = "semaforoLegenda1";
-            this.semaforoLegenda1.Size = new System.Drawing.Size(160, 152);
-            this.semaforoLegenda1.TabIndex = 1;
-            this.semaforoLegenda1.Tamanho = 30;
-            this.semaforoLegenda1.Título = "Legenda";
+            this.semaforoLegenda.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.semaforoLegenda.bInfDirArredondada = true;
+            this.semaforoLegenda.bInfEsqArredondada = true;
+            this.semaforoLegenda.bSupDirArredondada = true;
+            this.semaforoLegenda.bSupEsqArredondada = true;
+            this.semaforoLegenda.Cor = System.Drawing.Color.Black;
+            this.semaforoLegenda.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
+            this.semaforoLegenda.LetraTítulo = System.Drawing.Color.White;
+            this.semaforoLegenda.Location = new System.Drawing.Point(7, 13);
+            this.semaforoLegenda.MostrarBotãoMinMax = false;
+            this.semaforoLegenda.Name = "semaforoLegenda1";
+            this.semaforoLegenda.Size = new System.Drawing.Size(160, 152);
+            this.semaforoLegenda.TabIndex = 1;
+            this.semaforoLegenda.Tamanho = 30;
+            this.semaforoLegenda.Título = "Legenda";
             // 
             // bg
             // 
@@ -109,7 +111,7 @@
 
         private Venda.ListViewVendas listViewVendas;
         private Formulários.TítuloBaseInferior títuloBaseInferior1;
-        private Venda.SemaforoLegenda semaforoLegenda1;
+        private SemaforoLegenda semaforoLegenda;
         private System.ComponentModel.BackgroundWorker bg;
     }
 }
