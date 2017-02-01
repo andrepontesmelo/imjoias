@@ -21,6 +21,8 @@ namespace Apresentação.Fiscal.Janela
         private ConfiguraçãoGlobal<int> últimaFatura = null;
         private ConfiguraçãoGlobal<long> últimaVendaExportada = null;
         private ConfiguraçãoGlobal<int> cfop = null;
+
+        private ConfiguraçãoGlobal<bool> usarApenasPeça = null;
         
         public JanelaNFe()
         {
@@ -30,9 +32,12 @@ namespace Apresentação.Fiscal.Janela
 
         private void Carregar()
         {
+            usarApenasPeça = new ConfiguraçãoGlobal<bool>("usarApenasPeça", true);
             últimaNFe = new ConfiguraçãoGlobal<int>("ultimaNfe", 301);
             últimaFatura = new ConfiguraçãoGlobal<int>("ultimaFatura", 422);
             cfop = new ConfiguraçãoGlobal<int>("cfop", 5101);
+
+            chkUsarApenasPeça.Checked = usarApenasPeça.Valor;
             txtNfe.Text = (últimaNFe.Valor + 1).ToString();
             txtNumeroFatura.Text = (últimaFatura.Valor + 1).ToString();
             txtCFOP.Text = cfop.Valor.ToString();
@@ -140,7 +145,7 @@ namespace Apresentação.Fiscal.Janela
         {
             try
             {
-                escritorTxt.Salvar(arquivo);
+                escritorTxt.Salvar(arquivo, usarApenasPeça.Valor);
             }
             catch (Exception erro)
             {
@@ -247,6 +252,11 @@ namespace Apresentação.Fiscal.Janela
             venda = Venda.ObterVenda(códigoVenda);
             Carregar(venda);
             btnSalvar.Enabled = true;
+        }
+
+        private void chkUsarApenasPeça_CheckedChanged(object sender, EventArgs e)
+        {
+            usarApenasPeça.Valor = chkUsarApenasPeça.Checked;
         }
     }
 }

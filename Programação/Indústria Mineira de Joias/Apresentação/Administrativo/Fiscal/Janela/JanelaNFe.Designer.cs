@@ -47,6 +47,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtCódigoVenda = new System.Windows.Forms.TextBox();
             this.btnSalvar = new System.Windows.Forms.Button();
+            this.chkUsarApenasPeça = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.picÍcone)).BeginInit();
             this.tab.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -89,6 +90,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.chkUsarApenasPeça);
             this.tabPage1.Controls.Add(this.txtAliquota);
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.txtNumeroFatura);
@@ -251,6 +253,17 @@
             this.btnSalvar.UseVisualStyleBackColor = true;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
+            // chkUsarApenasPeça
+            // 
+            this.chkUsarApenasPeça.AutoSize = true;
+            this.chkUsarApenasPeça.Location = new System.Drawing.Point(179, 96);
+            this.chkUsarApenasPeça.Name = "chkUsarApenasPeça";
+            this.chkUsarApenasPeça.Size = new System.Drawing.Size(216, 17);
+            this.chkUsarApenasPeça.TabIndex = 18;
+            this.chkUsarApenasPeça.Text = "Usar apenas tipo de unidade fiscal peça";
+            this.chkUsarApenasPeça.UseVisualStyleBackColor = true;
+            this.chkUsarApenasPeça.CheckedChanged += new System.EventHandler(this.chkUsarApenasPeça_CheckedChanged);
+            // 
             // JanelaNFe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -292,5 +305,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtAliquota;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.CheckBox chkUsarApenasPeça;
     }
 }

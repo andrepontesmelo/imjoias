@@ -42,7 +42,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
             }
         }
 
-        public void Salvar(string arquivoUrl)
+        public void Salvar(string arquivoUrl, bool usarApenasTipoUnidadeFiscalPeça)
         {
             using (StreamWriter s = new StreamWriter(arquivoUrl))
             {
@@ -73,7 +73,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
                 s.WriteLine("C05|Rua Pouso Alegre|546||Floresta|3106200|Belo Horizonte|MG|31110010|1058|BRASIL|3130577555|");
                 PreeencherPessoa(s);
 
-                PreencherProdutos(s);
+                PreencherProdutos(s, usarApenasTipoUnidadeFiscalPeça);
                 string valorTotalVenda = entidade.Venda.Valor.ToString("0.00", Cultura);
 
                 s.WriteLine("W|");
@@ -117,7 +117,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
             + "T" + dateTime.ToString("HH:mm:ss") + "-03:00";
         }
 
-        private void PreencherProdutos(StreamWriter s)
+        private void PreencherProdutos(StreamWriter s, bool usarApenasTipoUnidadeFiscalPeça)
         {
             bool erro;
             ArrayList listaSaquinhos = entidade.Venda.Itens.ObterSaquinhosAgrupadosOrdenados(out erro);
@@ -127,7 +127,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
 
             for (int x = 0; x < listaSaquinhos.Count; x++)
             {
-                PreencherProduto(s, (SaquinhoRelacionamento)listaSaquinhos[x], x + 1);
+                PreencherProduto(s, (SaquinhoRelacionamento) listaSaquinhos[x], x + 1, usarApenasTipoUnidadeFiscalPeça);
             }
         }
 
@@ -136,7 +136,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
             return m.ReferênciaNumérica + m.Dígito;
         }
 
-        private void PreencherProduto(StreamWriter s, SaquinhoRelacionamento saquinhoRelacionamento, int posição)
+        private void PreencherProduto(StreamWriter s, SaquinhoRelacionamento saquinhoRelacionamento, int posição, bool usarApenasTipoUnidadeFiscalPeça)
         {
 
             string descricaoAdicionalProduto = "";
@@ -151,24 +151,38 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
             s.Write(saquinhoRelacionamento.Mercadoria.Descrição);
             s.Write("|71131900||");
             s.Write(entidade.Cfop.ToString());
-            s.Write("|Pca|");
-            s.Write(saquinhoRelacionamento.Quantidade.ToString("0.0000", Cultura));
-            double valorUn = saquinhoRelacionamento.Mercadoria.CalcularPreço(entidade.Venda.Cotação).Valor;
-            double valorTot = Math.Round(valorUn * saquinhoRelacionamento.Quantidade, 2);
+
+            var tipoUnidadePeça = usarApenasTipoUnidadeFiscalPeça || !saquinhoRelacionamento.Mercadoria.DePeso;
+            if (tipoUnidadePeça)
+                s.Write("|Pca|");
+            else
+                s.Write("|Grs|");
+
+            PreencherQuantidade(s, saquinhoRelacionamento, tipoUnidadePeça);
+
+            decimal valorUn = (decimal) saquinhoRelacionamento.Mercadoria.CalcularPreço(entidade.Venda.Cotação).Valor;
+
+            if (!tipoUnidadePeça)
+                valorUn = valorUn / (decimal) saquinhoRelacionamento.Peso;
+
+            decimal valorTot = Math.Round(valorUn * CalcularQuantidade(saquinhoRelacionamento, tipoUnidadePeça), 2);
 
             s.Write("|");
             s.Write(valorUn.ToString("0.0000000000", Cultura));
             s.Write("|");
             s.Write(valorTot.ToString("0.00", Cultura));
-            s.Write("||Pca|");
-            s.Write(saquinhoRelacionamento.Quantidade.ToString("0.0000", Cultura));
+
+            if (tipoUnidadePeça)
+                s.Write("||Pca|");
+            else
+                s.Write("||Grs|");
+
+            PreencherQuantidade(s, saquinhoRelacionamento, tipoUnidadePeça);
 
             s.Write("|");
             s.Write(valorUn.ToString("0.0000000000", Cultura));
             s.Write("|||||1|");
-            //s.Write("999999999999999");
             s.Write("|");
-            //s.Write("999999");
             s.Write("||");
             s.WriteLine();
             s.WriteLine("M||");
@@ -181,6 +195,19 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
             s.WriteLine("S|");
 
             s.WriteLine("S04|07|");
+        }
+
+        private void PreencherQuantidade(StreamWriter s, SaquinhoRelacionamento saquinho, bool tipoUnidadePeça)
+        {
+                s.Write(CalcularQuantidade(saquinho, tipoUnidadePeça).ToString("0.0000", Cultura));
+        }
+
+        private decimal CalcularQuantidade(SaquinhoRelacionamento saquinho, bool tipoUnidadePeça)
+        {
+            if (tipoUnidadePeça)
+                return (decimal) saquinho.Quantidade;
+            else
+                return (decimal) saquinho.Quantidade * (decimal) saquinho.Peso;
         }
 
         private void PreeencherPessoa(StreamWriter s)
