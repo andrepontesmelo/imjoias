@@ -14,7 +14,6 @@ namespace Entidades.Fiscal
         private DateTime dataSaída;
         private uint setor;
         protected bool cancelada;
-        protected int? cliente;
         private int? maquina;
 
         [DbColuna("fabricacao")]
@@ -24,12 +23,6 @@ namespace Entidades.Fiscal
         {
             get { return maquina; }
             set { maquina = value; }
-        }
-
-        public int? Cliente
-        {
-            get { return cliente;  }
-            set { cliente = value; }
         }
 
         public DateTime DataSaída
@@ -106,12 +99,11 @@ namespace Entidades.Fiscal
             using (IDbCommand cmd = conexão.CreateCommand())
             {
                 cmd.Transaction = transação;
-                cmd.CommandText = string.Format("update {0} set cancelada={1}, setor={2}, maquina={3}, cliente={4}, datasaida={5}, fabricacao={6} WHERE id={7}",
+                cmd.CommandText = string.Format("update {0} set cancelada={1}, setor={2}, maquina={3}, datasaida={4}, fabricacao={5} WHERE id={6}",
                     NomeRelação,
                     DbTransformar(cancelada),
                     DbTransformar(setor),
                     DbTransformar(maquina),
-                    DbTransformar(cliente),
                     DbTransformar(dataSaída),
                     DbTransformar(fabricação),
                     DbTransformar(id));
@@ -132,8 +124,8 @@ namespace Entidades.Fiscal
                 cmd.Transaction = transação;
 
                 cmd.CommandText = string.Format("INSERT INTO {0} " + 
-                    "(dataemissao, datasaida, tipo, id, subtotal, desconto, valortotal, numero, cnpjemitente, cancelada, setor, maquina, cliente, fabricacao) " + 
-                    " values ({1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11}, {12}, {13}, {14})",
+                    "(dataemissao, datasaida, tipo, id, subtotal, desconto, valortotal, numero, cnpjemitente, cancelada, setor, maquina, fabricacao) " + 
+                    " values ({1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11}, {12}, {13})",
                     NOME_RELAÇÃO,
                     DbTransformar(DataEmissão),
                     DbTransformar(dataSaída),
@@ -147,7 +139,6 @@ namespace Entidades.Fiscal
                     DbTransformar(Cancelada),
                     DbTransformar(Setor),
                     DbTransformar(Máquina),
-                    DbTransformar(Cliente),
                     DbTransformar(Fabricação));
 
                 cmd.ExecuteNonQuery();

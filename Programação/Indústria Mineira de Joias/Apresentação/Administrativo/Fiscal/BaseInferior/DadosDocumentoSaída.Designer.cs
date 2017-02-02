@@ -33,8 +33,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.cmbMáquina = new Apresentação.Administrativo.Fiscal.Combo.ComboMáquina();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtCliente = new Apresentação.Pessoa.Consultas.TextBoxPessoa();
-            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cmbTipoDocumento
@@ -152,33 +150,9 @@
             this.label4.TabIndex = 30;
             this.label4.Text = "Máquina:";
             // 
-            // txtCliente
-            // 
-            this.txtCliente.AlturaProposta = 60;
-            this.txtCliente.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtCliente.Location = new System.Drawing.Point(72, 212);
-            this.txtCliente.Name = "txtCliente";
-            this.txtCliente.Pessoa = null;
-            this.txtCliente.Size = new System.Drawing.Size(326, 20);
-            this.txtCliente.TabIndex = 31;
-            this.txtCliente.Selecionado += new System.EventHandler(this.txtCliente_Selecionado);
-            this.txtCliente.Deselecionado += new System.EventHandler(this.txtCliente_Deselecionado);
-            // 
-            // label7
-            // 
-            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 219);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(42, 13);
-            this.label7.TabIndex = 32;
-            this.label7.Text = "Cliente:";
-            // 
             // DadosDocumentoSaída
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.txtCliente);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cmbMáquina);
             this.Controls.Add(this.chkCancelada);
@@ -209,8 +183,6 @@
             this.Controls.SetChildIndex(this.chkCancelada, 0);
             this.Controls.SetChildIndex(this.cmbMáquina, 0);
             this.Controls.SetChildIndex(this.label4, 0);
-            this.Controls.SetChildIndex(this.txtCliente, 0);
-            this.Controls.SetChildIndex(this.label7, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -223,7 +195,5 @@
         private System.Windows.Forms.Label label13;
         private Combo.ComboMáquina cmbMáquina;
         private System.Windows.Forms.Label label4;
-        private Pessoa.Consultas.TextBoxPessoa txtCliente;
-        private System.Windows.Forms.Label label7;
     }
 }
