@@ -41,8 +41,16 @@ namespace Apresentação.Financeiro.Venda
             TimeSpan umAno = TimeSpan.FromDays(365);
             dataInício = DateTime.Now - umAno;
             dataFim = DateTime.Now;
+
+            semaforoLegenda.AlterouConfiguração += SemaforoLegenda_AlterouConfiguração;
+            lista.Configuração = semaforoLegenda.Configuração;
         }
-    
+
+        private void SemaforoLegenda_AlterouConfiguração(object sender, EventArgs e)
+        {
+            Recarregar();
+        }
+
         private void MudarLeiaute(bool cliente)
         {
             if (cliente || forçarHistóricoCompras)
@@ -380,7 +388,7 @@ namespace Apresentação.Financeiro.Venda
 
         private void Lista_LegendasContabilizadas(int[] legendas)
         {
-            semaforoLegenda1.AtualizarContagemLegendas(legendas);
+            semaforoLegenda.AtualizarContagemLegendas(legendas);
         }
     }
 }

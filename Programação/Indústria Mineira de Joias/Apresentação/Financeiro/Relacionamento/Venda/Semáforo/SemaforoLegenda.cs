@@ -9,6 +9,8 @@ namespace Apresentação.Financeiro.Venda.Semáforo
     {
         public delegate void LegendaClicada(SemaforoEnum legenda);
         public event LegendaClicada ClicouNaLegenda;
+        public event EventHandler AlterouConfiguração;
+
         private Opção[] opções;
         private string[] descriçãoLegendas;
         private ConfiguraçãoMarcaçãoSemáforo configuração;
@@ -18,11 +20,21 @@ namespace Apresentação.Financeiro.Venda.Semáforo
             InitializeComponent();
             opções = new Opção[6] { opçãoNãoQuitada, opçãoCobrança, opçãoQuitadaAberta, opçãoComissãoFechada, opçãoVendaDia, opçãoNFe };
             descriçãoLegendas = new string[6] { "Não quitada", "Cobrança", "Quitada; c. aberta", "Comissão fechada", "Venda do dia", "Nota fiscal" };
+            var caixas = new CheckBox[6] { chkNãoQuitada, chkCobrança, chkQuitadaAberta, chkComissãoFechada, chkVendaDia, chkNFe };
+            configuração = new ConfiguraçãoMarcaçãoSemáforo(caixas);
+            
+            foreach (CheckBox caixa in caixas)
+                caixa.CheckedChanged += Caixa_CheckedChanged;
 
-            configuração = new ConfiguraçãoMarcaçãoSemáforo(new CheckBox[6] { chkNãoQuitada, chkCobrança, chkQuitadaAberta, chkComissãoFechada, chkVendaDia, chkNFe });
         }
 
-        
+        private void Caixa_CheckedChanged(object sender, EventArgs e)
+        {
+            AlterouConfiguração?.Invoke(sender, e);
+        }
+
+        public ConfiguraçãoMarcaçãoSemáforo Configuração => configuração;
+
         private void opçãoVendaDia_Click(object sender, EventArgs e)
         {
             ClicouNaLegenda?.Invoke(SemaforoEnum.DoDia);

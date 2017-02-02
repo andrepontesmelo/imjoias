@@ -1,5 +1,7 @@
 ﻿using Entidades.Configuração;
 using System.Windows.Forms;
+using Entidades.Relacionamento.Venda;
+using System;
 
 namespace Apresentação.Financeiro.Venda.Semáforo
 {
@@ -7,17 +9,17 @@ namespace Apresentação.Financeiro.Venda.Semáforo
     {
         private static readonly string PREFIXO_CONFIGURAÇÃO = "semáforo_";
 
-        private CheckBox[] checkBox;
+        private CheckBox[] checkBoxes;
 
         public ConfiguraçãoMarcaçãoSemáforo()
         {
         }
 
-        public ConfiguraçãoMarcaçãoSemáforo(CheckBox[] checkBox)
+        public ConfiguraçãoMarcaçãoSemáforo(CheckBox[] checkBoxes)
         {
-            this.checkBox = checkBox;
+            this.checkBoxes = checkBoxes;
 
-            foreach (CheckBox controle in checkBox)
+            foreach (CheckBox controle in checkBoxes)
             {
                 controle.CheckedChanged += Controle_CheckedChanged;
                 controle.Checked = ObterConfiguração(controle).Valor;
@@ -34,13 +36,18 @@ namespace Apresentação.Financeiro.Venda.Semáforo
 
         private void CarregarMarcações()
         {
-            foreach (CheckBox controle in checkBox)
+            foreach (CheckBox controle in checkBoxes)
                 controle.Checked = ObterConfiguração(controle).Valor;
         }
 
         private ConfiguraçãoUsuário<bool> ObterConfiguração(CheckBox controle)
         {
             return new ConfiguraçãoUsuário<bool>(PREFIXO_CONFIGURAÇÃO + controle.Name, true);
+        }
+
+        internal bool DeveExibir(SemaforoEnum semáforo)
+        {
+            return checkBoxes[(int)semáforo].Checked;
         }
     }
 }

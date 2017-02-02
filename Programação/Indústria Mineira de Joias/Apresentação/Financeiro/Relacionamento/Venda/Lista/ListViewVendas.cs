@@ -1,4 +1,5 @@
-﻿using Apresentação.Fiscal;
+﻿using Apresentação.Financeiro.Venda.Semáforo;
+using Apresentação.Fiscal;
 using Entidades.Fiscal.NotaFiscalEletronica.ArquivoPdf;
 using Entidades.Relacionamento.Venda;
 using System;
@@ -27,6 +28,8 @@ namespace Apresentação.Financeiro.Venda
         public delegate void DelegateLegendasContabilizadas(int[] legendas);
         public event DelegateLegendasContabilizadas LegendasContabilizadas;
 
+        private ConfiguraçãoMarcaçãoSemáforo configuração = null;
+
         [DefaultValue(false), Description("Determina se serão exibidas somente vendas não acertadas.")]
         public bool ApenasNãoAcertado
         {
@@ -40,6 +43,10 @@ namespace Apresentação.Financeiro.Venda
             }
         }
 
+        public ConfiguraçãoMarcaçãoSemáforo Configuração
+        {
+            set { configuração = value; }
+        }
 
         [DefaultValue(VínculoVendaPessoa.Cliente),
         Description("Tipo de exibição da venda.")]
@@ -283,18 +290,22 @@ namespace Apresentação.Financeiro.Venda
 
             foreach (IDadosVenda v in vendas)
                 legendas[(int)v.Semáforo]++;
-
+            
             LegendasContabilizadas?.Invoke(legendas);
         }
 
         private double AdicionarVendas(IDadosVenda[] vendas)
         {
-            ListViewItem[] novosItens = new ListViewItem[vendas.Length];
-            int x = 0;
+            List<ListViewItem> novosItens = new List<ListViewItem>();
             double valorTotalGlobal = 0;
 
             foreach (IDadosVenda venda in vendas)
             {
+                bool deveExibir = configuração == null || configuração.DeveExibir(venda.Semáforo);
+
+                if (!deveExibir)
+                    continue;
+
                 double valorTotal;
                 ListViewItem item = CriarItem(venda, out valorTotal);
 
@@ -304,11 +315,11 @@ namespace Apresentação.Financeiro.Venda
                 foreach (ListViewItem.ListViewSubItem subitem in item.SubItems)
                     localizador.InserirFraseBuscável(subitem.Text, item);
 
-                novosItens[x++] = item;
+                novosItens.Add(item);
                 valorTotalGlobal += valorTotal;
             }
 
-            lista.Items.AddRange(novosItens);
+            lista.Items.AddRange(novosItens.ToArray());
 
             return valorTotalGlobal;
         }

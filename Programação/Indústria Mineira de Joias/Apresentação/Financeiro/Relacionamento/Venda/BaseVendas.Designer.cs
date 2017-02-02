@@ -42,7 +42,7 @@ namespace Apresentação.Financeiro.Venda
             this.quadroLista = new Apresentação.Formulários.Quadro();
             this.quadroComprasDesteFuncionário = new Apresentação.Formulários.Quadro();
             this.opçãoComprasDesteFuncionário = new Apresentação.Formulários.Opção();
-            this.semaforoLegenda1 = new SemaforoLegenda();
+            this.semaforoLegenda = new SemaforoLegenda();
             this.esquerda.SuspendLayout();
             this.quadroOpçõesVenda.SuspendLayout();
             this.quadroLista.SuspendLayout();
@@ -51,13 +51,13 @@ namespace Apresentação.Financeiro.Venda
             // 
             // esquerda
             // 
-            this.esquerda.Controls.Add(this.semaforoLegenda1);
+            this.esquerda.Controls.Add(this.semaforoLegenda);
             this.esquerda.Controls.Add(this.quadroComprasDesteFuncionário);
             this.esquerda.Controls.Add(this.quadroOpçõesVenda);
             this.esquerda.Size = new System.Drawing.Size(187, 419);
             this.esquerda.Controls.SetChildIndex(this.quadroOpçõesVenda, 0);
             this.esquerda.Controls.SetChildIndex(this.quadroComprasDesteFuncionário, 0);
-            this.esquerda.Controls.SetChildIndex(this.semaforoLegenda1, 0);
+            this.esquerda.Controls.SetChildIndex(this.semaforoLegenda, 0);
             // 
             // título
             // 
@@ -242,22 +242,22 @@ namespace Apresentação.Financeiro.Venda
             // 
             // semaforoLegenda1
             // 
-            this.semaforoLegenda1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.semaforoLegenda1.bInfDirArredondada = true;
-            this.semaforoLegenda1.bInfEsqArredondada = true;
-            this.semaforoLegenda1.bSupDirArredondada = true;
-            this.semaforoLegenda1.bSupEsqArredondada = true;
-            this.semaforoLegenda1.Cor = System.Drawing.Color.Black;
-            this.semaforoLegenda1.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
-            this.semaforoLegenda1.LetraTítulo = System.Drawing.Color.White;
-            this.semaforoLegenda1.Location = new System.Drawing.Point(7, 229);
-            this.semaforoLegenda1.MostrarBotãoMinMax = false;
-            this.semaforoLegenda1.Name = "semaforoLegenda1";
-            this.semaforoLegenda1.Size = new System.Drawing.Size(160, 155);
-            this.semaforoLegenda1.TabIndex = 2;
-            this.semaforoLegenda1.Tamanho = 30;
-            this.semaforoLegenda1.Título = "Legenda";
-            this.semaforoLegenda1.ClicouNaLegenda += SemaforoLegenda1_aoClicarLegenda;
+            this.semaforoLegenda.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.semaforoLegenda.bInfDirArredondada = true;
+            this.semaforoLegenda.bInfEsqArredondada = true;
+            this.semaforoLegenda.bSupDirArredondada = true;
+            this.semaforoLegenda.bSupEsqArredondada = true;
+            this.semaforoLegenda.Cor = System.Drawing.Color.Black;
+            this.semaforoLegenda.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
+            this.semaforoLegenda.LetraTítulo = System.Drawing.Color.White;
+            this.semaforoLegenda.Location = new System.Drawing.Point(7, 229);
+            this.semaforoLegenda.MostrarBotãoMinMax = false;
+            this.semaforoLegenda.Name = "semaforoLegenda1";
+            this.semaforoLegenda.Size = new System.Drawing.Size(160, 155);
+            this.semaforoLegenda.TabIndex = 2;
+            this.semaforoLegenda.Tamanho = 30;
+            this.semaforoLegenda.Título = "Legenda";
+            this.semaforoLegenda.ClicouNaLegenda += SemaforoLegenda1_aoClicarLegenda;
             // 
             // BaseVendas
             // 
@@ -289,6 +289,6 @@ namespace Apresentação.Financeiro.Venda
         private Apresentação.Formulários.Quadro quadroComprasDesteFuncionário;
         private Apresentação.Formulários.Opção opçãoComprasDesteFuncionário;
         private Apresentação.Formulários.Opção opçãoExcluirVendas;
-        private SemaforoLegenda semaforoLegenda1;
+        private SemaforoLegenda semaforoLegenda;
     }
 }
