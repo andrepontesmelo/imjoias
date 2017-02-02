@@ -456,10 +456,13 @@ namespace Apresentação.Financeiro.Venda
 
         private void MostrarPrimeiroItem(ListViewGroup grupo)
         {
+            if (grupo.Items.Count == 0)
+                return;
+
             int menorIndice = int.MaxValue;
             foreach (ListViewItem i in grupo.Items)
             {
-                if (i.Index < menorIndice)
+                if (i.Index != -1 && i.Index < menorIndice)
                     menorIndice = i.Index;
             }
 
@@ -531,10 +534,7 @@ namespace Apresentação.Financeiro.Venda
         {
             AoSelecionar?.Invoke(ItemSelecionado);
 
-            if (VendaSelecionada == null)
-                return;
-
-            btnAbrirPdf.Enabled = CacheVendaPdf.Instância.ObterVendasPdfs().Contains(VendaSelecionada.Código);
+            btnAbrirPdf.Enabled = VendaSelecionada != null && CacheVendaPdf.Instância.ObterVendasPdfs().Contains(VendaSelecionada.Código);
         }
 
         private void lista_DoubleClick(object sender, EventArgs e)
@@ -626,8 +626,13 @@ namespace Apresentação.Financeiro.Venda
 
         private void btnAbrirPdf_Click(object sender, EventArgs e)
         {
+            var seleção = VendaSelecionada;
+
+            if (seleção == null)
+                return;
+
             VisualizadorPDF visualizador = new VisualizadorPDF();
-            visualizador.Carregar(VendaSelecionada);
+            visualizador.Carregar(seleção);
             visualizador.ShowDialog(this);
         }
     }
