@@ -33,6 +33,7 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior
             chkCancelada.Checked = saída.Cancelada;
             dtEntradaSaída.Value = saída.DataSaída;
             cmbMáquina.Seleção = Máquina.ObterMáquina(saída.Máquina);
+            txtVenda.Text = saída.Venda.ToString();
         }
 
         private void cmbSetor_Validated(object sender, System.EventArgs e)
@@ -58,6 +59,38 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior
         private void cmbMáquina_Validated(object sender, System.EventArgs e)
         {
             Documento.Máquina = cmbMáquina.Seleção?.Código;
+            Documento.Gravar();
+        }
+
+        private void txtVenda_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (txtVenda.Text.Trim().Equals(""))
+            {
+                e.Cancel = false;
+                return;
+            }
+
+            int valor;
+            if (!int.TryParse(txtVenda.Text, out valor))
+            {
+                e.Cancel = true;
+                return;
+            }
+
+            var venda = Entidades.Relacionamento.Venda.Venda.ObterVenda(valor);
+            e.Cancel = venda == null;
+        }
+
+        private void txtVenda_Validated(object sender, System.EventArgs e)
+        {
+            int valor;
+
+            if (!int.TryParse(txtVenda.Text, out valor) || valor == 0)
+            {
+                Documento.Venda = null;
+            } else
+                Documento.Venda = valor;
+
             Documento.Gravar();
         }
     }

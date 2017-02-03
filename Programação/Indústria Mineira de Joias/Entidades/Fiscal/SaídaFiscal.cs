@@ -15,6 +15,7 @@ namespace Entidades.Fiscal
         private uint setor;
         protected bool cancelada;
         private int? maquina;
+        private int? venda;
 
         [DbColuna("fabricacao")]
         private int? fabricação;
@@ -29,6 +30,12 @@ namespace Entidades.Fiscal
         {
             get { return dataSaída; }
             set { dataSaída = value; }
+        }
+        
+        public int? Venda
+        {
+            get { return venda; }
+            set { venda = value; }
         }
 
         public int? Fabricação
@@ -45,13 +52,14 @@ namespace Entidades.Fiscal
         private static readonly string NOME_RELAÇÃO = "saidafiscal";
 
         public SaídaFiscal(int tipoDocumento, DateTime dataEmissão, DateTime dataSaída, string id, decimal subTotal, decimal desconto,
-            decimal valorTotal, int? número, string cnpjEmitente, string cpfEmissor, string cnpjEmissor, bool cancelada, string observações, uint setor, int? maquina, List<ItemFiscal> itens) : 
+            decimal valorTotal, int? número, string cnpjEmitente, string cpfEmissor, string cnpjEmissor, bool cancelada, string observações, uint setor, int? maquina, int? venda, List<ItemFiscal> itens) : 
             base(tipoDocumento, dataEmissão, id, subTotal, desconto, valorTotal, número, cnpjEmitente, cpfEmissor, cnpjEmissor, observações, itens)
         {
             this.dataSaída = dataSaída;
             this.setor = setor;
             this.cancelada = cancelada;
             this.maquina = maquina;
+            this.venda = venda;
         }
 
         public bool Cancelada
@@ -99,13 +107,14 @@ namespace Entidades.Fiscal
             using (IDbCommand cmd = conexão.CreateCommand())
             {
                 cmd.Transaction = transação;
-                cmd.CommandText = string.Format("update {0} set cancelada={1}, setor={2}, maquina={3}, datasaida={4}, fabricacao={5} WHERE id={6}",
+                cmd.CommandText = string.Format("update {0} set cancelada={1}, setor={2}, maquina={3}, datasaida={4}, fabricacao={5}, venda={6} WHERE id={7}",
                     NomeRelação,
                     DbTransformar(cancelada),
                     DbTransformar(setor),
                     DbTransformar(maquina),
                     DbTransformar(dataSaída),
                     DbTransformar(fabricação),
+                    DbTransformar(venda),
                     DbTransformar(id));
 
                 cmd.ExecuteNonQuery();
@@ -124,8 +133,8 @@ namespace Entidades.Fiscal
                 cmd.Transaction = transação;
 
                 cmd.CommandText = string.Format("INSERT INTO {0} " + 
-                    "(dataemissao, datasaida, tipo, id, subtotal, desconto, valortotal, numero, cnpjemitente, cancelada, setor, maquina, fabricacao, cnpjemissor, cpfemissor) " + 
-                    " values ({1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11}, {12}, {13}, {14}, {15})",
+                    "(dataemissao, datasaida, tipo, id, subtotal, desconto, valortotal, numero, cnpjemitente, cancelada, setor, maquina, fabricacao, cnpjemissor, cpfemissor, venda) " + 
+                    " values ({1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11}, {12}, {13}, {14}, {15}, {16})",
                     NOME_RELAÇÃO,
                     DbTransformar(DataEmissão),
                     DbTransformar(dataSaída),
@@ -141,7 +150,8 @@ namespace Entidades.Fiscal
                     DbTransformar(Máquina),
                     DbTransformar(Fabricação),
                     DbTransformar(CnpjEmissor),
-                    DbTransformar(CpfEmissor));
+                    DbTransformar(CpfEmissor),
+                    DbTransformar(venda));
 
                 cmd.ExecuteNonQuery();
             }

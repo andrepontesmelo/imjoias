@@ -33,6 +33,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.cmbMáquina = new Apresentação.Administrativo.Fiscal.Combo.ComboMáquina();
             this.label4 = new System.Windows.Forms.Label();
+            this.txtVenda = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cmbTipoDocumento
@@ -151,9 +153,31 @@
             this.label4.TabIndex = 30;
             this.label4.Text = "Máquina:";
             // 
+            // txtVenda
+            // 
+            this.txtVenda.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtVenda.Location = new System.Drawing.Point(509, 80);
+            this.txtVenda.Name = "txtVenda";
+            this.txtVenda.Size = new System.Drawing.Size(231, 20);
+            this.txtVenda.TabIndex = 36;
+            this.txtVenda.Validating += new System.ComponentModel.CancelEventHandler(this.txtVenda_Validating);
+            this.txtVenda.Validated += new System.EventHandler(this.txtVenda_Validated);
+            // 
+            // label9
+            // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(401, 83);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(41, 13);
+            this.label9.TabIndex = 37;
+            this.label9.Text = "Venda:";
+            // 
             // DadosDocumentoSaída
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.txtVenda);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cmbMáquina);
             this.Controls.Add(this.chkCancelada);
@@ -184,6 +208,8 @@
             this.Controls.SetChildIndex(this.chkCancelada, 0);
             this.Controls.SetChildIndex(this.cmbMáquina, 0);
             this.Controls.SetChildIndex(this.label4, 0);
+            this.Controls.SetChildIndex(this.txtVenda, 0);
+            this.Controls.SetChildIndex(this.label9, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -196,5 +222,7 @@
         private System.Windows.Forms.Label label13;
         private Combo.ComboMáquina cmbMáquina;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtVenda;
+        private System.Windows.Forms.Label label9;
     }
 }

@@ -27,6 +27,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
                 "",
                 (uint) SetorSistema.Atacado,
                 null,
+                null,
                 TransformarItens());
 
             return entidade;

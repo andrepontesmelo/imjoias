@@ -40,6 +40,7 @@ namespace Entidades.Fiscal.Cupom
                 "",
                 (uint) SetorSistema.Varejo,
                 ObterCódigoMáquina(cupom),
+                null,
                 AdaptarItens(cupom.Detalhes));
 
             return entidade;
