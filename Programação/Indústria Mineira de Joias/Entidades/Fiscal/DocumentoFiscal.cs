@@ -53,7 +53,7 @@ namespace Entidades.Fiscal
 
         public DocumentoFiscal(int tipoDocumento, DateTime dataEmissão, string id, decimal subTotal, decimal desconto,
             decimal valorTotal, int? número,  
-            string cnpjEmitente, string observações, List<ItemFiscal> itens)
+            string cnpjEmitente, string cpfEmissor, string cnpjEmissor, string observações, List<ItemFiscal> itens)
         {
             this.tipoDocumento = tipoDocumento;
             this.dataEmissão = dataEmissão;
@@ -64,6 +64,8 @@ namespace Entidades.Fiscal
             this.valorTotal = valorTotal;
             this.número = número;
             this.cnpjEmitente = cnpjEmitente;
+            this.cpfEmissor = cpfEmissor;
+            this.cnpjEmissor = cnpjEmissor;
             this.observações = observações;
             this.itens = itens;
         }
@@ -171,8 +173,6 @@ namespace Entidades.Fiscal
             get { return cnpjEmissor; }
             set { cnpjEmissor = value; }
         }
-
-
 
         public int? Número
         {

@@ -28,6 +28,8 @@ namespace Entidades.Fiscal.Cupom
                 cupom.ValorTotalLiquido,
                 cupom.ReducaoZ.CRZ,
                 null,
+                null,
+                null,
                 cupom.IndicadorCancelamento,
                 "",
                 (uint) SetorSistema.Varejo,

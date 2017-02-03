@@ -187,8 +187,8 @@
   <data name="sedex31" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\sedex31.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ok" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\ok.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Acerto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Acerto.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Modelo-Simples" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Simples.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -265,8 +265,8 @@
   <data name="comissao" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\comissao.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="fiscal" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\fiscal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="elegant1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\elegant1.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DedoMenor" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\DedoMenor.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -427,8 +427,8 @@
   <data name="warning1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\warning1.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="janela_estilista" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\janela estilista.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="cadeado fechado" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\cadeado fechado.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="mulherpreto" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\female_user_icon_pequeno1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -478,6 +478,9 @@
   <data name="impressora (altura 58)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\impressora (altura 58).png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="cheque" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\cheque.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Lupa2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Lupa2.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -486,9 +489,6 @@
   </data>
   <data name="remover_pagamento" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\remover_pagamento.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="elegant1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\elegant1.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="RefreshDocViewHS" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\RefreshDocViewHS.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -535,9 +535,6 @@
   <data name="pagamento1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\pagamento1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="cadeado fechado" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\cadeado fechado.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Lupa" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\ZoomHS.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -553,11 +550,14 @@
   <data name="Acerto (Pequeno)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Acerto (Pequeno)1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="cheque" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\cheque.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Retorno__Ícone_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Retorno (Ícone)2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="eventlogInfo3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\eventlogInfo3.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="janela_estilista" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\janela estilista.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="dinheiro" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\dinheiro1.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -631,8 +631,8 @@
   <data name="botão - pessoas" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\botão - pessoas1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Retorno__Ícone_" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Retorno (Ícone)2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="fiscal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\fiscal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Shaking Hands" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Shaking Hands.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -649,8 +649,8 @@
   <data name="estrelaCinza" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\estrela-3.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Acerto" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Acerto.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ok" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\ok.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="visualizacao_impressao4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\visualizacao_impressao4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -670,6 +670,9 @@
   <data name="Excluir" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Excluir1.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="esquerda.BackgroundImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\esquerda.BackgroundImage.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="none" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\none.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -682,7 +685,7 @@
   <data name="oksimples1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\oksimples1.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="esquerda.BackgroundImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\esquerda.BackgroundImage.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="opçãoCarregarPDF1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\opçãoCarregarPDF.Imagem1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

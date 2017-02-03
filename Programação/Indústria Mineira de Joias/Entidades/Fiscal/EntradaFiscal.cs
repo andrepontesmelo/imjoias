@@ -20,8 +20,8 @@ namespace Entidades.Fiscal
         private static readonly string NOME_RELAÇÃO = "entradafiscal";
 
         public EntradaFiscal(int tipoDocumento, DateTime dataEmissão, DateTime dataEntrada, string id,
-        decimal subTotal, decimal desconto, decimal valorTotal, int? nnf, string emitidoPorCNPJ, string observações, List<ItemFiscal> itens) : 
-            base(tipoDocumento, dataEmissão, id, subTotal, desconto, valorTotal, nnf, emitidoPorCNPJ, observações, itens)
+        decimal subTotal, decimal desconto, decimal valorTotal, int? nnf, string cnpjEmitente, string cpfEmissor, string cnpjEmissor, string observações, List<ItemFiscal> itens) : 
+            base(tipoDocumento, dataEmissão, id, subTotal, desconto, valorTotal, nnf, cnpjEmitente, cpfEmissor, cnpjEmissor, observações, itens)
         {
             this.dataEntrada = dataEntrada;
         }

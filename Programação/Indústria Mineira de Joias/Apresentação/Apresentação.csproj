@@ -5676,6 +5676,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Administrativo\IntegraçãoSistemaAntigo\App.ico" />
+    <None Include="Resources\opçãoCarregarPDF.Imagem1.png" />
     <None Include="Resources\esquerda.BackgroundImage.jpg" />
     <None Include="Resources\pdf_icon.png" />
     <None Include="Resources\fiscal1.png" />

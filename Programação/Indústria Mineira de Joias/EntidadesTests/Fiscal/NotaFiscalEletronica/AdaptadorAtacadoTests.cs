@@ -109,7 +109,13 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         [TestMethod()]
         public void DeveAdaptarCNPJEmissor()
         {
-            //Assert.AreEqual("04273797000151", adaptador.Transformar().CnpjEmissor);
+            Assert.AreEqual("00093400000199", adaptador.Transformar().CnpjEmissor);
+        }
+
+        [TestMethod()]
+        public void DeveAdaptarCPFEmissor()
+        {
+            Assert.IsNull(adaptador.Transformar().CpfEmissor);
         }
     }
 }

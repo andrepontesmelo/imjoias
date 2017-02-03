@@ -47,6 +47,7 @@ namespace Apresentação.Fiscal.BaseInferior
             this.quadroLista = new Apresentação.Formulários.Quadro();
             this.lstItens = new Apresentação.Fiscal.Lista.ListaItem();
             this.quadroItem = new Apresentação.Formulários.Quadro();
+            this.txtMercadoria = new Apresentação.Mercadoria.TxtMercadoriaLivre();
             this.btnIncluir = new System.Windows.Forms.Button();
             this.txtValorTotal = new AMS.TextBox.CurrencyTextBox();
             this.txtValorUnitário = new AMS.TextBox.CurrencyTextBox();
@@ -66,7 +67,6 @@ namespace Apresentação.Fiscal.BaseInferior
             this.tabObservações = new System.Windows.Forms.TabPage();
             this.txtObservações = new System.Windows.Forms.TextBox();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.txtMercadoria = new Apresentação.Mercadoria.TxtMercadoriaLivre();
             this.esquerda.SuspendLayout();
             this.quadroDocumento.SuspendLayout();
             this.quadroPDF.SuspendLayout();
@@ -159,7 +159,7 @@ namespace Apresentação.Fiscal.BaseInferior
             // 
             this.opçãoCarregarPDF.BackColor = System.Drawing.Color.Transparent;
             this.opçãoCarregarPDF.Descrição = "Carregar";
-            this.opçãoCarregarPDF.Imagem = ((System.Drawing.Image)(resources.GetObject("opçãoCarregarPDF.Imagem")));
+            this.opçãoCarregarPDF.Imagem = global::Apresentação.Resource.opçãoCarregarPDF1;
             this.opçãoCarregarPDF.Location = new System.Drawing.Point(7, 50);
             this.opçãoCarregarPDF.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoCarregarPDF.MaximumSize = new System.Drawing.Size(150, 100);
@@ -329,6 +329,15 @@ namespace Apresentação.Fiscal.BaseInferior
             this.quadroItem.TabIndex = 1;
             this.quadroItem.Tamanho = 30;
             this.quadroItem.Título = "Detalhe do item";
+            // 
+            // txtMercadoria
+            // 
+            this.txtMercadoria.Location = new System.Drawing.Point(19, 44);
+            this.txtMercadoria.Name = "txtMercadoria";
+            this.txtMercadoria.Referência = "";
+            this.txtMercadoria.Size = new System.Drawing.Size(180, 23);
+            this.txtMercadoria.TabIndex = 13;
+            this.txtMercadoria.ReferênciaAlterada += new System.EventHandler(this.txtMercadoria_ReferênciaAlterada);
             // 
             // btnIncluir
             // 
@@ -521,15 +530,6 @@ namespace Apresentação.Fiscal.BaseInferior
             this.imageList1.Images.SetKeyName(0, "bandeira.png");
             this.imageList1.Images.SetKeyName(1, "caderno.png");
             this.imageList1.Images.SetKeyName(2, "info.png");
-            // 
-            // txtMercadoria
-            // 
-            this.txtMercadoria.Location = new System.Drawing.Point(19, 44);
-            this.txtMercadoria.Name = "txtMercadoria";
-            this.txtMercadoria.Referência = "";
-            this.txtMercadoria.Size = new System.Drawing.Size(180, 23);
-            this.txtMercadoria.TabIndex = 13;
-            this.txtMercadoria.ReferênciaAlterada += new System.EventHandler(this.txtMercadoria_ReferênciaAlterada);
             // 
             // BaseDocumento
             // 

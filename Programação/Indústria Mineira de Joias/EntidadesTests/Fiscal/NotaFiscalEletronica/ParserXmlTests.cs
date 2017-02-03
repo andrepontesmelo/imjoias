@@ -156,5 +156,17 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Tests
         {
             Assert.AreEqual("18219329000103", parser.LerCNPJEmitente());
         }
+
+        [TestMethod()]
+        public void DeveLerCNJPEmissor()
+        {
+            Assert.AreEqual("00093400000199", parser.LerCNPJEmissor());
+        }
+
+        [TestMethod()]
+        public void DeveLerCPFEmissor()
+        {
+            Assert.IsNull(parser.LerCPFEmissor());
+        }
     }
 }

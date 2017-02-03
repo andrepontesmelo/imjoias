@@ -45,8 +45,8 @@ namespace Entidades.Fiscal
         private static readonly string NOME_RELAÇÃO = "saidafiscal";
 
         public SaídaFiscal(int tipoDocumento, DateTime dataEmissão, DateTime dataSaída, string id, decimal subTotal, decimal desconto,
-            decimal valorTotal, int? número, string cnpjEmitente, bool cancelada, string observações, uint setor, int? maquina, List<ItemFiscal> itens) : 
-            base(tipoDocumento, dataEmissão, id, subTotal, desconto, valorTotal, número, cnpjEmitente, observações, itens)
+            decimal valorTotal, int? número, string cnpjEmitente, string cpfEmissor, string cnpjEmissor, bool cancelada, string observações, uint setor, int? maquina, List<ItemFiscal> itens) : 
+            base(tipoDocumento, dataEmissão, id, subTotal, desconto, valorTotal, número, cnpjEmitente, cpfEmissor, cnpjEmissor, observações, itens)
         {
             this.dataSaída = dataSaída;
             this.setor = setor;

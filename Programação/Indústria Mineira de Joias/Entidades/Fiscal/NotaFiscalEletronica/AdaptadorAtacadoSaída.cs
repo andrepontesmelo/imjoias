@@ -21,6 +21,8 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
                 parser.LerValorTotal(),
                 parser.LerNNF(),
                 parser.LerCNPJEmitente(),
+                parser.LerCPFEmissor(),
+                parser.LerCNPJEmissor(),
                 false,
                 "",
                 (uint) SetorSistema.Atacado,

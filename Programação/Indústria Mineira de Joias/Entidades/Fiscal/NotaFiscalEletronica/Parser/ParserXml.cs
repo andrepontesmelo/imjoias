@@ -21,7 +21,9 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Parser
 
         protected string ObterTexto(string caminho)
         {
-            return ObterNó(caminho).InnerText;
+            XmlNode nó = ObterNó(caminho);
+
+            return nó?.InnerText;
         }
 
         protected bool Existe(string caminho)

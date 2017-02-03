@@ -11,6 +11,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Parser
         private static readonly string XML_CAMINHO_RAIZ = "/nfeProc/NFe/infNFe";
         private static readonly string XML_CAMINHO_VENDA = XML_CAMINHO_RAIZ + "/ide";
         private static readonly string XML_CAMINHO_EMITENTE = XML_CAMINHO_RAIZ + "/emit";
+        private static readonly string XML_CAMINHO_EMISSOR= XML_CAMINHO_RAIZ + "/dest";
         private static readonly string XML_CAMINHO_ITENS = XML_CAMINHO_RAIZ + "/det";
         private static readonly string XML_CAMINHO_TOTAIS = XML_CAMINHO_RAIZ + "/total/ICMSTot";
         private static readonly CultureInfo CULTURA_AMERICANA = new CultureInfo("en-US");
@@ -161,6 +162,16 @@ namespace Entidades.Fiscal.NotaFiscalEletronica.Parser
         public string LerCNPJEmitente()
         {
             return ObterTexto(XML_CAMINHO_EMITENTE + "/CNPJ");
+        }
+
+        public string LerCNPJEmissor()
+        {
+            return ObterTexto(XML_CAMINHO_EMISSOR + "/CNPJ");
+        }
+
+        public string LerCPFEmissor()
+        {
+            return ObterTexto(XML_CAMINHO_EMISSOR + "/CPF");
         }
 
         public int LerNNF()
