@@ -38,5 +38,15 @@ namespace Apresentação.Fiscal.BaseInferior
         {
             return new SaídaItemFiscal(códigoDocumento);
         }
+
+        private void opçãoAbrirVenda_Click(object sender, System.EventArgs e)
+        {
+            if (!Documento.Venda.HasValue)
+                return;
+
+            var baseVenda = new Financeiro.Venda.BaseEditarVenda();
+            baseVenda.Abrir(Entidades.Relacionamento.Venda.Venda.ObterVenda(Documento.Venda.Value));
+            SubstituirBase(baseVenda);
+        }
     }
 }

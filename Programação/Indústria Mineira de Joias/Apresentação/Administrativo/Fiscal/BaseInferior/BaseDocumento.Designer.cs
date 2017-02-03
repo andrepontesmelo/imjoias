@@ -558,9 +558,6 @@ namespace Apresentação.Fiscal.BaseInferior
         }
 
         #endregion
-
-        private Formulários.Quadro quadroDocumento;
-        private Formulários.Quadro quadroPDF;
         private Formulários.Opção opçãoExcluirPDF;
         private Formulários.Opção opçãoCarregarPDF;
         private Formulários.Opção opçãoAbrirPDF;
@@ -594,5 +591,7 @@ namespace Apresentação.Fiscal.BaseInferior
         protected Administrativo.Fiscal.BaseInferior.DadosDocumento dados;
         private System.Windows.Forms.ImageList imageList1;
         private Mercadoria.TxtMercadoriaLivre txtMercadoria;
+        protected Formulários.Quadro quadroDocumento;
+        protected Formulários.Quadro quadroPDF;
     }
 }
