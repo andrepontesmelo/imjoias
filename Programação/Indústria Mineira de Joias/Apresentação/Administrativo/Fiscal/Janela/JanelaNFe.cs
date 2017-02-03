@@ -95,7 +95,7 @@ namespace Apresentação.Fiscal.Janela
                 return;
             }
 
-            NfeVenda nota = new NfeVenda(v, códigoNfe, códigoCFOP, códigoFatura, aliquota);
+            VínculoNfeVenda nota = new VínculoNfeVenda(v, códigoNfe, códigoCFOP, códigoFatura, aliquota);
             NfeVendaTxt escritorTxt = new NfeVendaTxt(nota);
             FolderBrowserDialog janela = new FolderBrowserDialog();
             DialogResult resultado = janela.ShowDialog();
@@ -104,7 +104,7 @@ namespace Apresentação.Fiscal.Janela
                 SalvarVenda(v, códigoNfe, códigoFatura, nota, escritorTxt, janela);
         }
 
-        private void SalvarVenda(Venda v, int códigoNfe, int códigoFatura, NfeVenda nota, NfeVendaTxt escritorTxt, FolderBrowserDialog janela)
+        private void SalvarVenda(Venda v, int códigoNfe, int códigoFatura, VínculoNfeVenda nota, NfeVendaTxt escritorTxt, FolderBrowserDialog janela)
         {
             string arquivo = Path.Combine(janela.SelectedPath, v.Código.ToString() + ".txt");
             if (File.Exists(arquivo))

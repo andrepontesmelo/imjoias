@@ -1,13 +1,17 @@
 ﻿using Entidades.Fiscal.NotaFiscalEletronica.Parser;
 using Entidades.Fiscal.Tipo;
 using System.Collections.Generic;
+using System;
 
 namespace Entidades.Fiscal.NotaFiscalEletronica
 {
     public class AdaptadorAtacadoSaída : AdaptadorAtacado
     {
-        public AdaptadorAtacadoSaída(ParserXmlAtacado parser) : base(parser)
+        private Dictionary<uint, long> hashNfeVenda;
+
+        public AdaptadorAtacadoSaída(ParserXmlAtacado parser, Dictionary<uint, long> hashNfeVenda) : base(parser)
         {
+            this.hashNfeVenda = hashNfeVenda;
         }
 
         public override DocumentoFiscal Transformar()
@@ -27,10 +31,19 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
                 "",
                 (uint) SetorSistema.Atacado,
                 null,
-                null,
+                ObterCódigoVenda((uint) parser.LerNNF()),
                 TransformarItens());
 
             return entidade;
+        }
+
+        private int? ObterCódigoVenda(uint nfe)
+        {
+            long venda;
+            if (!hashNfeVenda.TryGetValue(nfe, out venda))
+                return null;
+
+            return (int) venda;
         }
 
         protected override List<ItemFiscal> TransformarItens()

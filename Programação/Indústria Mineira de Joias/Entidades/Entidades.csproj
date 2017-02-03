@@ -305,7 +305,7 @@
     <Compile Include="Fiscal\NotaFiscalEletronica\Pdf\CacheVendaPdf.cs" />
     <Compile Include="Fiscal\Exceções\CódigoDuplicado.cs" />
     <Compile Include="Fiscal\Exceções\NomeArquivoInválido.cs" />
-    <Compile Include="Fiscal\NotaFiscalEletronica\NfeVenda.cs" />
+    <Compile Include="Fiscal\NotaFiscalEletronica\VínculoNfeVenda.cs" />
     <Compile Include="Fiscal\Pdf\CacheIds.cs" />
     <Compile Include="Fiscal\Pdf\EntradaFiscalPdf.cs" />
     <Compile Include="Fiscal\Pdf\FiscalPdf.cs" />

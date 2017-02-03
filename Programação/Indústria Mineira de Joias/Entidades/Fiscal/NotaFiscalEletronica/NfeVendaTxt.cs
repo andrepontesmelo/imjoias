@@ -12,13 +12,13 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
 {
     public class NfeVendaTxt
     {
-        private NfeVenda entidade;
+        private VínculoNfeVenda entidade;
 
         Pessoa.Pessoa cliente;
         PessoaFísica física;
         PessoaJurídica jurídica;
 
-        public NfeVendaTxt(NfeVenda entidade)
+        public NfeVendaTxt(VínculoNfeVenda entidade)
         {
             this.entidade = entidade;
 
