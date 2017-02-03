@@ -46,6 +46,12 @@
             this.lblDesconto = new System.Windows.Forms.Label();
             this.cmbTipoDocumento = new Apresentação.Fiscal.Combobox.ComboTipoDocumento();
             this.txtEmitente = new Apresentação.Pessoa.TextBoxCNPJ();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtCnpjEmissor = new Apresentação.Pessoa.TextBoxCNPJ();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtCpfEmissor = new Apresentação.Pessoa.TextBoxCPF();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dtEntradaSaída
@@ -253,10 +259,59 @@
             this.txtEmitente.TabIndex = 5;
             this.txtEmitente.Validated += new System.EventHandler(this.txtEmitente_Validated);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.txtCnpjEmissor);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.txtCpfEmissor);
+            this.groupBox1.Location = new System.Drawing.Point(15, 213);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(393, 74);
+            this.groupBox1.TabIndex = 35;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Emissor";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(13, 47);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(30, 13);
+            this.label8.TabIndex = 34;
+            this.label8.Text = "CPF:";
+            // 
+            // txtCnpjEmissor
+            // 
+            this.txtCnpjEmissor.Location = new System.Drawing.Point(57, 21);
+            this.txtCnpjEmissor.Name = "txtCnpjEmissor";
+            this.txtCnpjEmissor.Size = new System.Drawing.Size(323, 20);
+            this.txtCnpjEmissor.TabIndex = 31;
+            this.txtCnpjEmissor.Validated += new System.EventHandler(this.txtCnpjEmissor_Validated);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(13, 26);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(37, 13);
+            this.label7.TabIndex = 33;
+            this.label7.Text = "CNPJ:";
+            // 
+            // txtCpfEmissor
+            // 
+            this.txtCpfEmissor.Location = new System.Drawing.Point(57, 47);
+            this.txtCpfEmissor.Name = "txtCpfEmissor";
+            this.txtCpfEmissor.Size = new System.Drawing.Size(323, 20);
+            this.txtCpfEmissor.TabIndex = 32;
+            this.txtCpfEmissor.Validated += new System.EventHandler(this.txtCpfEmissor_Validated);
+            // 
             // DadosDocumento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.txtDesconto);
             this.Controls.Add(this.lblDesconto);
             this.Controls.Add(this.txtSubtotal);
@@ -276,7 +331,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "DadosDocumento";
-            this.Size = new System.Drawing.Size(654, 213);
+            this.Size = new System.Drawing.Size(654, 297);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -302,5 +359,10 @@
         protected System.Windows.Forms.Label lblSubTotal;
         protected AMS.TextBox.CurrencyTextBox txtDesconto;
         protected System.Windows.Forms.Label lblDesconto;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label8;
+        private Pessoa.TextBoxCNPJ txtCnpjEmissor;
+        private System.Windows.Forms.Label label7;
+        private Pessoa.TextBoxCPF txtCpfEmissor;
     }
 }

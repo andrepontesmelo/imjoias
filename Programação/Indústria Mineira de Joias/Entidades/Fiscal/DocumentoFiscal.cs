@@ -39,6 +39,12 @@ namespace Entidades.Fiscal
         [DbColuna("subtotal")]
         protected decimal subTotal;
 
+        [DbColuna("cpfemissor")]
+        protected string cpfEmissor;
+
+        [DbColuna("cnpjemissor")]
+        protected string cnpjEmissor;
+
         protected decimal desconto;
 
         public DocumentoFiscal()
@@ -94,7 +100,7 @@ namespace Entidades.Fiscal
                 cmd.Transaction = transação;
                 cmd.CommandText = string.Format("update {0} set id={1}, " +
                     " numero={2}, tipo={3}, dataemissao={4}, subtotal={5}, desconto={6}, valortotal={7}, " +
-                    " cnpjemitente={8}, observacoes={9} where id={10}",
+                    " cnpjemitente={8}, observacoes={9}, cpfemissor={10}, cnpjemissor={11} where id={12}",
                     NomeRelação,
                     DbTransformar(novoId),
                     DbTransformar(número),
@@ -105,6 +111,8 @@ namespace Entidades.Fiscal
                     DbTransformar(valorTotal),
                     DbTransformar(cnpjEmitente),
                     DbTransformar(observações),
+                    DbTransformar(cpfEmissor),
+                    DbTransformar(CnpjEmissor),
                     DbTransformar(id));
 
                 cmd.ExecuteNonQuery();
@@ -121,7 +129,7 @@ namespace Entidades.Fiscal
                 d.AtualizarIdDocumento(novoId);
         }
 
-        public bool EmitidoPorEstaEmpresa => cnpjEmitente.Equals(Configuração.DadosGlobais.Instância.CNPJEmpresa);
+        public bool EmitidoPorEstaEmpresa => cnpjEmitente.Equals(DadosGlobais.Instância.CNPJEmpresa);
         public string CNPJEmitenteFormatado => Pessoa.PessoaJurídica.FormatarCNPJ(cnpjEmitente);
 
         public List<ItemFiscal> Itens
@@ -151,6 +159,20 @@ namespace Entidades.Fiscal
                 novoId = value;
             }
         }
+
+        public string CpfEmissor
+        {
+            get { return cpfEmissor; }
+            set { cpfEmissor = value; }
+        }
+
+        public string CnpjEmissor
+        {
+            get { return cnpjEmissor; }
+            set { cnpjEmissor = value; }
+        }
+
+
 
         public int? Número
         {

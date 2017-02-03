@@ -66,8 +66,8 @@ namespace Entidades.Fiscal
             {
                 cmd.Transaction = transação;
 
-                cmd.CommandText = string.Format("INSERT INTO {0} (dataemissao, dataentrada, id, subtotal, desconto, valortotal, numero, cnpjemitente, tipo) " + 
-                    "values ({1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9})",
+                cmd.CommandText = string.Format("INSERT INTO {0} (dataemissao, dataentrada, id, subtotal, desconto, valortotal, numero, cnpjemitente, cpfemissor, cnpjemissor, tipo) " + 
+                    "values ({1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11})",
                     NOME_RELAÇÃO,
                     DbTransformar(DataEmissão),
                     DbTransformar(dataEntrada),
@@ -77,6 +77,8 @@ namespace Entidades.Fiscal
                     DbTransformar(ValorTotal),
                     DbTransformar(Número),
                     DbTransformar(CnpjEmitente), 
+                    DbTransformar(CpfEmissor),
+                    DbTransformar(CnpjEmissor),
                     DbTransformar(TipoDocumento));
 
                 cmd.ExecuteNonQuery();

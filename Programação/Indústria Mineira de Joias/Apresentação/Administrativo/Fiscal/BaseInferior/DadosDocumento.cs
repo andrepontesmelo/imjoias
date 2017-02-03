@@ -26,6 +26,9 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior
             txtSubtotal.Text = documento.SubTotal.ToString("C");
             txtNúmero.Text = documento.Número.ToString();
             txtEmitente.Text = documento.CNPJEmitenteFormatado;
+            txtCpfEmissor.Text = documento.CpfEmissor == null ? "" : documento.CpfEmissor;
+            txtCnpjEmissor.Text = documento.CnpjEmissor == null ? "" : documento.CnpjEmissor;
+
             cmbTipoDocumento.Seleção = TipoDocumento.Obter(documento.TipoDocumento);
         }
 
@@ -85,6 +88,18 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior
         private void txtDesconto_Validated(object sender, System.EventArgs e)
         {
             documento.Desconto = (decimal) txtDesconto.Double;
+            documento.Gravar();
+        }
+
+        private void txtCnpjEmissor_Validated(object sender, System.EventArgs e)
+        {
+            documento.CnpjEmissor = txtCnpjEmissor.Text;
+            documento.Gravar();
+        }
+
+        private void txtCpfEmissor_Validated(object sender, System.EventArgs e)
+        {
+            documento.CpfEmissor = txtCpfEmissor.Text;
             documento.Gravar();
         }
     }

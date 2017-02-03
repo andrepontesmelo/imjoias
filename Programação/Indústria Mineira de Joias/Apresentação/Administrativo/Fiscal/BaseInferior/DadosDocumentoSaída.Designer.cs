@@ -33,12 +33,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.cmbMáquina = new Apresentação.Administrativo.Fiscal.Combo.ComboMáquina();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtCnpjEmissor = new Apresentação.Pessoa.TextBoxCNPJ();
-            this.txtCpfEmissor = new Apresentação.Pessoa.TextBoxCPF();
-            this.label7 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmbTipoDocumento
@@ -157,58 +151,9 @@
             this.label4.TabIndex = 30;
             this.label4.Text = "Máquina:";
             // 
-            // txtCnpjEmissor
-            // 
-            this.txtCnpjEmissor.Location = new System.Drawing.Point(57, 21);
-            this.txtCnpjEmissor.Name = "txtCnpjEmissor";
-            this.txtCnpjEmissor.Size = new System.Drawing.Size(323, 20);
-            this.txtCnpjEmissor.TabIndex = 31;
-            this.txtCnpjEmissor.Validated += new System.EventHandler(this.txtCnpjEmissor_Validated);
-            // 
-            // txtCpfEmissor
-            // 
-            this.txtCpfEmissor.Location = new System.Drawing.Point(57, 47);
-            this.txtCpfEmissor.Name = "txtCpfEmissor";
-            this.txtCpfEmissor.Size = new System.Drawing.Size(323, 20);
-            this.txtCpfEmissor.TabIndex = 32;
-            this.txtCpfEmissor.Validated += new System.EventHandler(this.txtCpfEmissor_Validated);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(13, 26);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(37, 13);
-            this.label7.TabIndex = 33;
-            this.label7.Text = "CNPJ:";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.txtCnpjEmissor);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.txtCpfEmissor);
-            this.groupBox1.Location = new System.Drawing.Point(15, 215);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(393, 74);
-            this.groupBox1.TabIndex = 34;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Emissor";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(13, 47);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(30, 13);
-            this.label8.TabIndex = 34;
-            this.label8.Text = "CPF:";
-            // 
             // DadosDocumentoSaída
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cmbMáquina);
             this.Controls.Add(this.chkCancelada);
@@ -239,9 +184,6 @@
             this.Controls.SetChildIndex(this.chkCancelada, 0);
             this.Controls.SetChildIndex(this.cmbMáquina, 0);
             this.Controls.SetChildIndex(this.label4, 0);
-            this.Controls.SetChildIndex(this.groupBox1, 0);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -254,10 +196,5 @@
         private System.Windows.Forms.Label label13;
         private Combo.ComboMáquina cmbMáquina;
         private System.Windows.Forms.Label label4;
-        private Pessoa.TextBoxCNPJ txtCnpjEmissor;
-        private Pessoa.TextBoxCPF txtCpfEmissor;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label8;
     }
 }
