@@ -84,7 +84,7 @@ namespace Entidades.Pessoa
 		}
 
 		public static bool ValidarCPF(string cpf)
-		{
+        {
             if (cpf == null || cpf.Trim().Length == 0)
                 return true;
 
@@ -95,8 +95,7 @@ namespace Entidades.Pessoa
             int soma;
             int resto;
 
-            cpf = cpf.Trim();
-            cpf = cpf.Replace(".", "").Replace("-", "");
+            cpf = LimparFormataçãoCpf(cpf);
 
             if (cpf.Length != 11)
                 return false;
@@ -129,9 +128,17 @@ namespace Entidades.Pessoa
             digito = digito + resto.ToString();
 
             return cpf.EndsWith(digito);
-		}
+        }
 
-		public DateTime? Nascimento
+        public static string LimparFormataçãoCpf(string cpf)
+        {
+            cpf = cpf.Trim();
+            cpf = cpf.Replace(".", "").Replace("-", "");
+
+            return cpf;
+        }
+
+        public DateTime? Nascimento
 		{
 			get { return nascimento; }
             set { nascimento = value; DefinirDesatualizado(); }

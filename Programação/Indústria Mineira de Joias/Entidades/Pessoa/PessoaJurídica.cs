@@ -128,8 +128,7 @@ namespace Entidades.Pessoa
             string digito;
             string tempCnpj;
 
-            cnpj = cnpj.Trim();
-            cnpj = cnpj.Replace(".", "").Replace("-", "").Replace("/", "");
+            cnpj = LimparFormataçãoCnpj(cnpj);
 
             if (cnpj.Length != 14)
                 return false;
@@ -162,6 +161,14 @@ namespace Entidades.Pessoa
             digito = digito + resto.ToString();
 
             return cnpj.EndsWith(digito);
+        }
+
+        public static string LimparFormataçãoCnpj(string cnpj)
+        {
+            cnpj = cnpj.Trim();
+            cnpj = cnpj.Replace(".", "").Replace("-", "").Replace("/", "");
+
+            return cnpj;
         }
 
         private static bool ExtrairNúmerosCNPJ(string cnpj, out int[] número)

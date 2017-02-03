@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
+using Entidades.Pessoa;
 
 namespace Apresentação.Pessoa
 {
@@ -22,7 +23,7 @@ namespace Apresentação.Pessoa
 
         private void txtCNPJ_Validating(object sender, CancelEventArgs e)
         {
-            if (txtCNPJ.Text.Length == 0 || Entidades.Pessoa.PessoaJurídica.ValidarCNPJ(txtCNPJ.Text))
+            if (txtCNPJ.Text.Length == 0 || PessoaJurídica.ValidarCNPJ(txtCNPJ.Text))
             {
                 txtCNPJ.ForeColor = SystemColors.ControlText;
                 txtCNPJ.Refresh();
@@ -49,6 +50,8 @@ namespace Apresentação.Pessoa
                 txtCNPJ.Text = value;
             }
         }
+
+        public string TextoSemFormatação => PessoaJurídica.LimparFormataçãoCnpj(Text);
 
         public override bool Focused
         {

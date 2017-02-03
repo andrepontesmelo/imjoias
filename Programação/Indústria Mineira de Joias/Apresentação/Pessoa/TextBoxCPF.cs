@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
+using Entidades.Pessoa;
 
 namespace Apresentação.Pessoa
 {
@@ -49,6 +50,8 @@ namespace Apresentação.Pessoa
                 txtCPF.Text = value;
             }
         }
+
+        public string TextoSemFormatação => PessoaFísica.LimparFormataçãoCpf(Text);
 
         private void txtCPF_TextChanged(object sender, EventArgs e)
         {

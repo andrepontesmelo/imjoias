@@ -93,13 +93,13 @@ namespace Apresentação.Administrativo.Fiscal.BaseInferior
 
         private void txtCnpjEmissor_Validated(object sender, System.EventArgs e)
         {
-            documento.CnpjEmissor = txtCnpjEmissor.Text;
+            documento.CnpjEmissor = txtCnpjEmissor.TextoSemFormatação;
             documento.Gravar();
         }
 
         private void txtCpfEmissor_Validated(object sender, System.EventArgs e)
         {
-            documento.CpfEmissor = txtCpfEmissor.Text;
+            documento.CpfEmissor = txtCpfEmissor.TextoSemFormatação;
             documento.Gravar();
         }
     }
