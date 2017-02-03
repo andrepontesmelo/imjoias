@@ -17,7 +17,10 @@ namespace Entidades.Fiscal.Cupom.Tests
         private static string ARQUIVO_ENTRADA_DESCONTO = Directory.GetParent(Directory.GetParent(Path.GetDirectoryName(
             Assembly.GetExecutingAssembly().Location)).FullName).FullName + @"\Arquivos\arquivo_desconto.tdm";
 
-        ITransformavelDocumentoFiscal adaptador;
+        private static string ARQUIVO_ENTRADA_CPF = Directory.GetParent(Directory.GetParent(Path.GetDirectoryName(
+            Assembly.GetExecutingAssembly().Location)).FullName).FullName + @"\Arquivos\arquivo_tdm_cpf.tdm";
+
+        AdaptadorVarejo adaptador;
 
         [TestInitialize]
         public void PreparaTestes()
@@ -25,7 +28,7 @@ namespace Entidades.Fiscal.Cupom.Tests
             Interpretador interpretador = Interpretador.InterpretaArquivo(ARQUIVO_ENTRADA);
             CupomFiscal primeiroCupom = interpretador.CuponsFiscais[0];
 
-            adaptador = new AdaptadorVarejo(primeiroCupom);
+            adaptador = new AdaptadorVarejo(primeiroCupom, interpretador);
         }
 
         [TestMethod()]
@@ -122,6 +125,37 @@ namespace Entidades.Fiscal.Cupom.Tests
             var cupom = new AdaptadorVarejo(Interpretador.InterpretaArquivo(ARQUIVO_ENTRADA_DESCONTO).CuponsFiscais[2]);
 
             Assert.AreEqual(741.57M, cupom.Transformar().Desconto);
+        }
+
+        [TestMethod()]
+        public void DeveAdaptarCPFAdquirente()
+        {
+            var cupom = new AdaptadorVarejo(Interpretador.InterpretaArquivo(ARQUIVO_ENTRADA_CPF).CuponsFiscais[17]);
+            Assert.AreEqual("06504356645", cupom.Transformar().CpfEmissor);
+        }
+
+        [TestMethod()]
+        public void DeveReduzirCPFVálido()
+        {
+            Assert.AreEqual("06504356645", adaptador.ReduzirCpf("00006504356645"));
+        }
+
+        [TestMethod()]
+        public void NãoDeveReduzirCPFInválido()
+        {
+            Assert.IsNull(adaptador.ReduzirCpf("00996504356645"));
+        }
+
+        [TestMethod()]
+        public void DeveReduzirCNPJVálido()
+        {
+            Assert.AreEqual("18219329000103", adaptador.ReduzirCnpj("18219329000103"));
+        }
+
+        [TestMethod()]
+        public void NãoDeveReduzirCNPJInválido()
+        {
+            Assert.IsNull(adaptador.ReduzirCnpj("00006504356645"));
         }
     }
 }

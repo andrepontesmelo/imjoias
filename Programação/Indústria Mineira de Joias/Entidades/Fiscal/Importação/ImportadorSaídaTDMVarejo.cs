@@ -40,9 +40,10 @@ namespace Entidades.Fiscal.Importação
         {
             try
             {
-                foreach (CupomFiscal cupom in Interpretador.InterpretaArquivo(arquivo).CuponsFiscais)
+                var interpretador = Interpretador.InterpretaArquivo(arquivo);
+                foreach (CupomFiscal cupom in interpretador.CuponsFiscais)
                 {
-                    DocumentoFiscal saída = new AdaptadorVarejo(cupom).Transformar();
+                    DocumentoFiscal saída = new AdaptadorVarejo(cupom, interpretador).Transformar();
 
                     if (IgnorarArquivo(arquivo, resultado, saída))
                         continue;

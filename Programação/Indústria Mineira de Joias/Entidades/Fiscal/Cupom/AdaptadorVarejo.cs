@@ -1,20 +1,26 @@
-﻿using InterpretadorTDM.Registro;
-using System.Collections.Generic;
-using System;
+﻿using Entidades.Configuração;
 using Entidades.Fiscal.Tipo;
-using Entidades.Configuração;
+using InterpretadorTDM;
+using InterpretadorTDM.Registro;
+using System.Collections.Generic;
 
 namespace Entidades.Fiscal.Cupom
 {
     public class AdaptadorVarejo : ITransformavelDocumentoFiscal
     {
         private CupomFiscal cupom;
+        private Interpretador interpretador;
 
         private static ConfiguraçãoGlobal<int?> configuraçãoCFOPVarejo = new ConfiguraçãoGlobal<int?>("cfop_varejo", 5101);
 
-        public AdaptadorVarejo(CupomFiscal cupom)
+        public AdaptadorVarejo(CupomFiscal cupom) : this(cupom, null)
+        {
+        }
+
+        public AdaptadorVarejo(CupomFiscal cupom, Interpretador interpretador)
         {
             this.cupom = cupom;
+            this.interpretador = interpretador;
         }
 
         public DocumentoFiscal Transformar()
@@ -27,9 +33,9 @@ namespace Entidades.Fiscal.Cupom
                 cupom.DescontoSubtotal,
                 cupom.ValorTotalLiquido,
                 cupom.ReducaoZ.CRZ,
-                null,
-                null,
-                null,
+                interpretador == null ? null : interpretador.IdentificacaoUsuario.CNPJUsuario,
+                ReduzirCpf(cupom.CPFCNPJAdquirente),
+                ReduzirCnpj(cupom.CPFCNPJAdquirente),
                 cupom.IndicadorCancelamento,
                 "",
                 (uint) SetorSistema.Varejo,
@@ -37,6 +43,34 @@ namespace Entidades.Fiscal.Cupom
                 AdaptarItens(cupom.Detalhes));
 
             return entidade;
+        }
+
+        private bool ApenasZeros(string entrada)
+        {
+            return entrada.Replace("0", "").Equals("");
+        }
+
+        private bool ÉCpf(string cpfOuCnpj)
+        {
+            string primeirosDígitos = cpfOuCnpj.Substring(0, cpfOuCnpj.Length - 11);
+            
+            return ApenasZeros(primeirosDígitos);
+        }
+    
+        public string ReduzirCpf(string cpfOuCnpj)
+        {
+            if (!ÉCpf(cpfOuCnpj) || ApenasZeros(cpfOuCnpj))
+                return null;
+
+            return cpfOuCnpj.Substring(cpfOuCnpj.Length - 11);
+        }
+
+        public string ReduzirCnpj(string cpfOuCnpj)
+        {
+            if (ÉCpf(cpfOuCnpj) || ApenasZeros(cpfOuCnpj))
+                return null;
+
+            return cpfOuCnpj;
         }
 
         private int? ObterCódigoMáquina(CupomFiscal cupom)

@@ -84,6 +84,7 @@
   <ItemGroup>
     <None Include="Arquivos\arquivo.tdm" />
     <None Include="Arquivos\arquivo_desconto.tdm" />
+    <None Include="Arquivos\arquivo_tdm_cpf.tdm" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
