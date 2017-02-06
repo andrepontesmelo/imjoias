@@ -1,10 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 
 namespace Apresentação.Financeiro.Pagamento
 {
@@ -17,11 +11,6 @@ namespace Apresentação.Financeiro.Pagamento
 
         protected override Entidades.Pagamentos.Pagamento CriarEntidade()
         {
-            //Entidades.Pagamentos.Cheque ch = new Entidades.Pagamentos.Cheque();
-            //ch.Vencimento = dataVencimento.Value;
-
-            //return ch;
-
             return new Entidades.Pagamentos.Cheque();
         }
 

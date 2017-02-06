@@ -64,18 +64,9 @@ namespace Entidades.Pessoa
 			set
 			{
                 if (ValidarCPF(value))
-                    cpf = value;
+                    cpf = LimparFormataçãoCpf(value);
                 else
                 {
-                    /* Para permitir que seja possível a importação
-                     * de cadastros com CPF inválido do banco de dados
-                     * antigo, o valor do CPF deve ser atribuído
-                     * ao objeto.
-                     * -- Júlio, 17/09/2006
-                     */
-                    if (!Cadastrado)
-                        cpf = value;
-
                     throw new Exception("CPF inválido! Por favor, siga o formato \"ddd.ddd.ddd-dd\", onde \"d\" é um dígito.");
                 }
 
@@ -132,6 +123,9 @@ namespace Entidades.Pessoa
 
         public static string LimparFormataçãoCpf(string cpf)
         {
+            if (cpf == null)
+                return null;
+
             cpf = cpf.Trim();
             cpf = cpf.Replace(".", "").Replace("-", "");
 
@@ -290,7 +284,7 @@ namespace Entidades.Pessoa
                 {
                     cmd.CommandText = "SELECT * FROM pessoa p JOIN pessoafisica pf"
                         + " ON p.codigo = pf.codigo"
-                        + " WHERE pf.cpf = " + DbTransformar(FormatarCPF(cpf));
+                        + " WHERE pf.cpf = " + DbTransformar(LimparFormataçãoCpf(cpf));
 
                     return MapearÚnicaLinha<PessoaFísica>(cmd);
                 }
@@ -309,7 +303,7 @@ namespace Entidades.Pessoa
                 using (IDbCommand cmd = conexão.CreateCommand())
                 {
                     cmd.CommandText = "SELECT COUNT(*) FROM pessoafisica"
-                        + " WHERE cpf = " + DbTransformar(FormatarCPF(cpf));
+                        + " WHERE cpf = " + DbTransformar(LimparFormataçãoCpf(cpf));
 
                     return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
                 }

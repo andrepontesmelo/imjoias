@@ -37,7 +37,7 @@ namespace Entidades.Pessoa
                     if (!ValidarCNPJ(cnpjFormatado))
                         throw new Exception("CNPJ inválido.");
 
-                    cnpj = cnpjFormatado;
+                    cnpj = LimparFormataçãoCnpj(cnpjFormatado);
                     DefinirDesatualizado();
                 }
             }
@@ -82,7 +82,7 @@ namespace Entidades.Pessoa
                 {
                     cmd.CommandText = "SELECT * FROM pessoa p, pessoajuridica pj"
                         + " WHERE p.codigo = pj.codigo"
-                        + " AND pj.cnpj = " + DbTransformar(cnpj);
+                        + " AND pj.cnpj = " + DbTransformar(LimparFormataçãoCnpj(cnpj));
 
                     return MapearÚnicaLinha<PessoaJurídica>(cmd);
                 }
@@ -91,7 +91,7 @@ namespace Entidades.Pessoa
 
         public static List<Pessoa> ObterPessoasPorCNPJ(string cnpj)
         {
-            string cnpjFormatado = FormatarCNPJ(cnpj);
+            string cnpjLimpo = LimparFormataçãoCnpj(cnpj);
 
             IDbConnection conexão = Conexão;
 
@@ -101,7 +101,7 @@ namespace Entidades.Pessoa
                 {
                     cmd.CommandText = "SELECT p.* FROM pessoa p, pessoajuridica pj"
                         + " WHERE p.codigo = pj.codigo"
-                        + " AND pj.cnpj = " + DbTransformar(cnpjFormatado)
+                        + " AND pj.cnpj = " + DbTransformar(cnpjLimpo)
                         + " OR pj.cnpj LIKE '%" + cnpj + "%' ";
 
                     return Mapear<Pessoa>(cmd);

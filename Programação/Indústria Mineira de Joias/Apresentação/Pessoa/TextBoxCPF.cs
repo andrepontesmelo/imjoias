@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Entidades.Pessoa;
+using System;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
-using Entidades.Pessoa;
 
 namespace Apresentação.Pessoa
 {
