@@ -303,6 +303,30 @@
     <Compile Include="ComboSetor.Designer.cs">
       <DependentUpon>ComboSetor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Financeiro\Coaf\BaseCoaf.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Financeiro\Coaf\BaseCoaf.Designer.cs">
+      <DependentUpon>BaseCoaf.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Financeiro\Coaf\JanelaConfiguração.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Financeiro\Coaf\JanelaConfiguração.Designer.cs">
+      <DependentUpon>JanelaConfiguração.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Financeiro\Coaf\Lista\ListaSaída.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Financeiro\Coaf\Lista\ListaSaída.Designer.cs">
+      <DependentUpon>ListaSaída.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Financeiro\Coaf\Lista\ListaPessoa.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Financeiro\Coaf\Lista\ListaPessoa.Designer.cs">
+      <DependentUpon>ListaPessoa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Financeiro\Relacionamento\Venda\Semáforo\ConfiguraçãoMarcaçãoSemáforo.cs" />
     <Compile Include="Formulário\ComboRígido.cs">
       <SubType>Component</SubType>
@@ -2674,6 +2698,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ComboSetor.resx">
       <DependentUpon>ComboSetor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Financeiro\Coaf\BaseCoaf.resx">
+      <DependentUpon>BaseCoaf.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Financeiro\Coaf\JanelaConfiguração.resx">
+      <DependentUpon>JanelaConfiguração.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Financeiro\Coaf\Lista\ListaSaída.resx">
+      <DependentUpon>ListaSaída.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Financeiro\Coaf\Lista\ListaPessoa.resx">
+      <DependentUpon>ListaPessoa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Financeiro\Relacionamento\Impressão.resx">
       <DependentUpon>Impressão.cs</DependentUpon>
@@ -5676,6 +5712,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Administrativo\IntegraçãoSistemaAntigo\App.ico" />
+    <None Include="Resources\Logo-COAF.png" />
     <None Include="Resources\opçãoCarregarPDF.Imagem1.png" />
     <None Include="Resources\esquerda.BackgroundImage.jpg" />
     <None Include="Resources\pdf_icon.png" />

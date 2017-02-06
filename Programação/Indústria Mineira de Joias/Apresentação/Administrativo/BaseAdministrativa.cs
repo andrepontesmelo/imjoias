@@ -1,4 +1,4 @@
-using Apresentação.Financeiro.Comissões;
+using Apresentação.Financeiro.Coaf;
 using Apresentação.Financeiro.Comissões.BaseInferior;
 using Apresentação.Fiscal.BaseInferior;
 using Apresentação.Fiscal.Janela;
@@ -77,9 +77,9 @@ namespace Apresentação.Administrativo
             quadroFiscalExportacaoEconnectVarejo.Visible = técnico;
             quadroFiscal.Visible = técnico;
             quadroFiscal.Visible = técnico;
-
             quadroExportaVenda.Visible = técnico;
             quadroOpçãoImportação.Visible = técnico;
+            quadroOpçãoCoaf.Visible = técnico;
 
             quadroOpçãoBalanço.Visible = PermissãoFuncionário.ValidarPermissão(Permissão.Balanço);
             quadroControleEstoque.Visible = PermissãoFuncionário.ValidarPermissão(Permissão.Estoque);
@@ -94,6 +94,11 @@ namespace Apresentação.Administrativo
         private void quadroFiscal_Click(object sender, EventArgs e)
         {
             SubstituirBase(new BaseFiscal());
+        }
+
+        private void quadroOpçãoCoaf_Click(object sender, EventArgs e)
+        {
+            SubstituirBase(new BaseCoaf());
         }
     }
 }

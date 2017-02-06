@@ -226,6 +226,12 @@ namespace Entidades.Fiscal
                 + " AND  " + DbDataEntre("datasaida", dataInicial, dataFinal));
         }
 
+
+        public static SaídaFiscal ObterEntidade(string id)
+        {
+            return MapearÚnicaLinha<SaídaFiscal>("select * from " + NOME_RELAÇÃO + " WHERE id= " + DbTransformar(id));
+        }
+
         public override string ToString()
         {
             return "Saída " + base.ToString();

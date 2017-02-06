@@ -40,6 +40,7 @@ namespace Apresentação.Administrativo
             this.quadroComissão = new Apresentação.Formulários.QuadroOpção();
             this.quadroControleEstoque = new Apresentação.Formulários.QuadroOpção();
             this.quadroFiscal = new Apresentação.Formulários.QuadroOpção();
+            this.quadroOpçãoCoaf = new Apresentação.Formulários.QuadroOpção();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,6 +76,7 @@ namespace Apresentação.Administrativo
             this.flowLayoutPanel1.Controls.Add(this.quadroComissão);
             this.flowLayoutPanel1.Controls.Add(this.quadroControleEstoque);
             this.flowLayoutPanel1.Controls.Add(this.quadroFiscal);
+            this.flowLayoutPanel1.Controls.Add(this.quadroOpçãoCoaf);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(207, 103);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(10);
@@ -196,6 +198,20 @@ namespace Apresentação.Administrativo
             this.quadroFiscal.Título = "Fiscal";
             this.quadroFiscal.Click += new System.EventHandler(this.quadroFiscal_Click);
             // 
+            // quadroOpçãoCoaf
+            // 
+            this.quadroOpçãoCoaf.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.quadroOpçãoCoaf.Descrição = "Acumulado de operações por pessoa";
+            this.quadroOpçãoCoaf.Ícone = global::Apresentação.Resource.Logo_COAF;
+            this.quadroOpçãoCoaf.Location = new System.Drawing.Point(304, 155);
+            this.quadroOpçãoCoaf.MaximumSize = new System.Drawing.Size(600, 70);
+            this.quadroOpçãoCoaf.MinimumSize = new System.Drawing.Size(200, 70);
+            this.quadroOpçãoCoaf.Name = "quadroOpçãoCoaf";
+            this.quadroOpçãoCoaf.Size = new System.Drawing.Size(295, 70);
+            this.quadroOpçãoCoaf.TabIndex = 8;
+            this.quadroOpçãoCoaf.Título = "Relatório de Operações";
+            this.quadroOpçãoCoaf.Click += new System.EventHandler(this.quadroOpçãoCoaf_Click);
+            // 
             // BaseAdministrativa
             // 
             this.Controls.Add(this.flowLayoutPanel1);
@@ -223,5 +239,6 @@ namespace Apresentação.Administrativo
         private Formulários.QuadroOpção quadroExportaVenda;
         private Formulários.QuadroOpção quadroControleEstoque;
         private Formulários.QuadroOpção quadroFiscal;
+        private Formulários.QuadroOpção quadroOpçãoCoaf;
     }
 }
