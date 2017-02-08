@@ -37,13 +37,15 @@
             this.lblInscMunicipal = new System.Windows.Forms.Label();
             this.txtInscEstadual = new System.Windows.Forms.TextBox();
             this.lblInscEstadual = new System.Windows.Forms.Label();
-            this.txtCNPJ = new Apresentação.Pessoa.TextBoxCNPJ();
             this.lblCNPJ = new System.Windows.Forms.Label();
             this.txtFantasia = new System.Windows.Forms.TextBox();
             this.lblFantasia = new System.Windows.Forms.Label();
             this.lblNome = new System.Windows.Forms.Label();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.abrirArquivo = new System.Windows.Forms.OpenFileDialog();
+            this.lblPreposto = new System.Windows.Forms.Label();
+            this.txtPreposto = new Apresentação.Pessoa.Consultas.TextBoxPessoa();
+            this.txtCNPJ = new Apresentação.Pessoa.TextBoxCNPJ();
             this.formatadorRazãoSocial = new Apresentação.Pessoa.FormatadorNome(this.components);
             this.formatadorNomeFantasia = new Apresentação.Pessoa.FormatadorNome(this.components);
             this.groupBox4.SuspendLayout();
@@ -53,6 +55,8 @@
             // 
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Controls.Add(this.txtPreposto);
+            this.groupBox4.Controls.Add(this.lblPreposto);
             this.groupBox4.Controls.Add(this.txtCódigo);
             this.groupBox4.Controls.Add(this.cmbNumeraçãoAutomática);
             this.groupBox4.Controls.Add(this.label4);
@@ -115,7 +119,7 @@
             // 
             // txtInscMunicipal
             // 
-            this.txtInscMunicipal.Location = new System.Drawing.Point(88, 145);
+            this.txtInscMunicipal.Location = new System.Drawing.Point(88, 177);
             this.txtInscMunicipal.MaxLength = 15;
             this.txtInscMunicipal.Name = "txtInscMunicipal";
             this.txtInscMunicipal.Size = new System.Drawing.Size(117, 20);
@@ -125,7 +129,7 @@
             // lblInscMunicipal
             // 
             this.lblInscMunicipal.AutoSize = true;
-            this.lblInscMunicipal.Location = new System.Drawing.Point(5, 148);
+            this.lblInscMunicipal.Location = new System.Drawing.Point(5, 180);
             this.lblInscMunicipal.Name = "lblInscMunicipal";
             this.lblInscMunicipal.Size = new System.Drawing.Size(81, 13);
             this.lblInscMunicipal.TabIndex = 8;
@@ -133,7 +137,7 @@
             // 
             // txtInscEstadual
             // 
-            this.txtInscEstadual.Location = new System.Drawing.Point(88, 119);
+            this.txtInscEstadual.Location = new System.Drawing.Point(88, 151);
             this.txtInscEstadual.Name = "txtInscEstadual";
             this.txtInscEstadual.Size = new System.Drawing.Size(117, 20);
             this.txtInscEstadual.TabIndex = 7;
@@ -142,25 +146,16 @@
             // lblInscEstadual
             // 
             this.lblInscEstadual.AutoSize = true;
-            this.lblInscEstadual.Location = new System.Drawing.Point(5, 122);
+            this.lblInscEstadual.Location = new System.Drawing.Point(5, 154);
             this.lblInscEstadual.Name = "lblInscEstadual";
             this.lblInscEstadual.Size = new System.Drawing.Size(77, 13);
             this.lblInscEstadual.TabIndex = 6;
             this.lblInscEstadual.Text = "Insc. Estadual:";
             // 
-            // txtCNPJ
-            // 
-            this.txtCNPJ.Location = new System.Drawing.Point(88, 93);
-            this.txtCNPJ.Name = "txtCNPJ";
-            this.txtCNPJ.Size = new System.Drawing.Size(117, 20);
-            this.txtCNPJ.TabIndex = 5;
-            this.txtCNPJ.Validating += new System.ComponentModel.CancelEventHandler(this.txtCNPJ_Validating);
-            this.txtCNPJ.Validated += new System.EventHandler(this.txtCNPJ_Validated);
-            // 
             // lblCNPJ
             // 
             this.lblCNPJ.AutoSize = true;
-            this.lblCNPJ.Location = new System.Drawing.Point(4, 96);
+            this.lblCNPJ.Location = new System.Drawing.Point(4, 128);
             this.lblCNPJ.Name = "lblCNPJ";
             this.lblCNPJ.Size = new System.Drawing.Size(37, 13);
             this.lblCNPJ.TabIndex = 4;
@@ -171,7 +166,7 @@
             this.txtFantasia.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.formatadorNomeFantasia.SetFormatarNome(this.txtFantasia, true);
-            this.txtFantasia.Location = new System.Drawing.Point(88, 67);
+            this.txtFantasia.Location = new System.Drawing.Point(88, 99);
             this.txtFantasia.Name = "txtFantasia";
             this.txtFantasia.Size = new System.Drawing.Size(296, 20);
             this.txtFantasia.TabIndex = 3;
@@ -180,7 +175,7 @@
             // lblFantasia
             // 
             this.lblFantasia.AutoSize = true;
-            this.lblFantasia.Location = new System.Drawing.Point(4, 70);
+            this.lblFantasia.Location = new System.Drawing.Point(4, 102);
             this.lblFantasia.Name = "lblFantasia";
             this.lblFantasia.Size = new System.Drawing.Size(78, 13);
             this.lblFantasia.TabIndex = 2;
@@ -189,7 +184,7 @@
             // lblNome
             // 
             this.lblNome.AutoSize = true;
-            this.lblNome.Location = new System.Drawing.Point(4, 44);
+            this.lblNome.Location = new System.Drawing.Point(4, 76);
             this.lblNome.Name = "lblNome";
             this.lblNome.Size = new System.Drawing.Size(71, 13);
             this.lblNome.TabIndex = 0;
@@ -200,7 +195,7 @@
             this.txtNome.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.formatadorRazãoSocial.SetFormatarNome(this.txtNome, true);
-            this.txtNome.Location = new System.Drawing.Point(88, 41);
+            this.txtNome.Location = new System.Drawing.Point(88, 73);
             this.txtNome.MaxLength = 100;
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(296, 20);
@@ -211,6 +206,37 @@
             // 
             this.abrirArquivo.Filter = "Todas as imagens|*.bmp; *.gif; *.jpg; *.jpeg; *.png; *.ico; *.emf; *.wmf";
             this.abrirArquivo.Title = "Inserir foto para pessoa física";
+            // 
+            // lblPreposto
+            // 
+            this.lblPreposto.AutoSize = true;
+            this.lblPreposto.Location = new System.Drawing.Point(4, 49);
+            this.lblPreposto.Name = "lblPreposto";
+            this.lblPreposto.Size = new System.Drawing.Size(52, 13);
+            this.lblPreposto.TabIndex = 19;
+            this.lblPreposto.Text = "Preposto:";
+            // 
+            // txtPreposto
+            // 
+            this.txtPreposto.AlturaProposta = 60;
+            this.txtPreposto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPreposto.Location = new System.Drawing.Point(88, 45);
+            this.txtPreposto.Name = "txtPreposto";
+            this.txtPreposto.Pessoa = null;
+            this.txtPreposto.Size = new System.Drawing.Size(296, 20);
+            this.txtPreposto.TabIndex = 20;
+            this.txtPreposto.Selecionado += new System.EventHandler(this.txtPreposto_Selecionado);
+            this.txtPreposto.Deselecionado += new System.EventHandler(this.txtPreposto_Deselecionado);
+            // 
+            // txtCNPJ
+            // 
+            this.txtCNPJ.Location = new System.Drawing.Point(88, 125);
+            this.txtCNPJ.Name = "txtCNPJ";
+            this.txtCNPJ.Size = new System.Drawing.Size(117, 20);
+            this.txtCNPJ.TabIndex = 5;
+            this.txtCNPJ.Validating += new System.ComponentModel.CancelEventHandler(this.txtCNPJ_Validating);
+            this.txtCNPJ.Validated += new System.EventHandler(this.txtCNPJ_Validated);
             // 
             // DadosPessoaJurídica
             // 
@@ -245,5 +271,7 @@
         private System.Windows.Forms.Label label4;
         private FormatadorNome formatadorNomeFantasia;
         private FormatadorNome formatadorRazãoSocial;
+        private Consultas.TextBoxPessoa txtPreposto;
+        private System.Windows.Forms.Label lblPreposto;
     }
 }

@@ -45,5 +45,21 @@ namespace Apresentação.Financeiro.Coaf
             baseSaída.Carregar(entidade);
             SubstituirBase(baseSaída);
         }
+
+        private void opçãoImportar_Click(object sender, System.EventArgs e)
+        {
+            OpenFileDialog janela = new OpenFileDialog();
+            janela.Title = "Escolha do CSV";
+            janela.DefaultExt = "csv";
+
+            if (janela.ShowDialog() != DialogResult.OK)
+                return;
+
+            AguardeDB.Mostrar();
+            var pessoasImportadas = new Entidades.Coaf.ImportadorPep().Importar(janela.FileName);
+            AguardeDB.Fechar();
+
+            MessageBox.Show(string.Format("Fim da importação. {0} CPF's importados", pessoasImportadas));
+        }
     }
 }

@@ -98,7 +98,7 @@ namespace Entidades.Pessoa
         {
             comando.Append("SELECT p.codigo as cod, p.nome, p.setor, p.email, p.observacoes, p.ultimaVisita, p.dataRegistro, " +
                 " p.dataAlteracao, p.classificacoes, p.maiorVenda, p.credito, p.regiao, pf.*,pj.codigo as c, pj.cnpj, pj.fantasia, " +
-                " pj.inscEstadual, pj.inscMunicipal FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE  ");
+                " pj.inscEstadual, pj.inscMunicipal, pj.preposto FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE  ");
         }
 
         private static void AdicionaCondição(string chaveBusca, StringBuilder comando, TipoBusca tipo)
