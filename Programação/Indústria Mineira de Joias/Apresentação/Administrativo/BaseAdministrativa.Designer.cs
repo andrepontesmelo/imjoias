@@ -41,6 +41,7 @@ namespace Apresentação.Administrativo
             this.quadroControleEstoque = new Apresentação.Formulários.QuadroOpção();
             this.quadroFiscal = new Apresentação.Formulários.QuadroOpção();
             this.quadroOpçãoCoaf = new Apresentação.Formulários.QuadroOpção();
+            this.quadroManutençãoMercadorias = new Apresentação.Formulários.QuadroOpção();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,6 +78,7 @@ namespace Apresentação.Administrativo
             this.flowLayoutPanel1.Controls.Add(this.quadroControleEstoque);
             this.flowLayoutPanel1.Controls.Add(this.quadroFiscal);
             this.flowLayoutPanel1.Controls.Add(this.quadroOpçãoCoaf);
+            this.flowLayoutPanel1.Controls.Add(this.quadroManutençãoMercadorias);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(207, 103);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(10);
@@ -212,6 +214,20 @@ namespace Apresentação.Administrativo
             this.quadroOpçãoCoaf.Título = "Relatório de Operações";
             this.quadroOpçãoCoaf.Click += new System.EventHandler(this.quadroOpçãoCoaf_Click);
             // 
+            // quadroManutençãoMercadorias
+            // 
+            this.quadroManutençãoMercadorias.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.quadroManutençãoMercadorias.Descrição = "Manutenção no cadastro de mercadorias";
+            this.quadroManutençãoMercadorias.Ícone = global::Apresentação.Resource.ficha;
+            this.quadroManutençãoMercadorias.Location = new System.Drawing.Point(304, 231);
+            this.quadroManutençãoMercadorias.MaximumSize = new System.Drawing.Size(600, 70);
+            this.quadroManutençãoMercadorias.MinimumSize = new System.Drawing.Size(200, 70);
+            this.quadroManutençãoMercadorias.Name = "quadroManutençãoMercadorias";
+            this.quadroManutençãoMercadorias.Size = new System.Drawing.Size(295, 70);
+            this.quadroManutençãoMercadorias.TabIndex = 9;
+            this.quadroManutençãoMercadorias.Título = "Cadastro de mercadorias";
+            this.quadroManutençãoMercadorias.Click += new System.EventHandler(this.quadroManutençãoMercadorias_Click);
+            // 
             // BaseAdministrativa
             // 
             this.Controls.Add(this.flowLayoutPanel1);
@@ -240,5 +256,6 @@ namespace Apresentação.Administrativo
         private Formulários.QuadroOpção quadroControleEstoque;
         private Formulários.QuadroOpção quadroFiscal;
         private Formulários.QuadroOpção quadroOpçãoCoaf;
+        private Formulários.QuadroOpção quadroManutençãoMercadorias;
     }
 }

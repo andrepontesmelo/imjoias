@@ -70,8 +70,8 @@ namespace Apresentação.Estoque
         {
             arrayFornecedores = Entidades.Fornecedor.ObterFornecedores().ToArray();
             
-            itens = Entidades.Estoque.Saldo.Obter(opções.IncluirPeso, opções.IncluirReferência, 
-                opções.FornecedorÚnico, Saldo.Ordem.ReferênciaPeso, opções.UsarPesoMédio);
+            itens = Saldo.Obter(opções.IncluirPeso, opções.IncluirReferência, 
+                opções.FornecedorÚnico, Saldo.Ordem.ReferênciaPeso, opções.UsarPesoMédio, opções.AgruparReferências);
 
             ResultadoCarga resultado = new ResultadoCarga();
 

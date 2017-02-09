@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using Apresentação.Estoque.Extrato;
 using Apresentação.Formulários;
-using Entidades.Estoque;
-using Apresentação.Estoque.Extrato;
-using CrystalDecisions.CrystalReports.Engine;
 using Apresentação.Impressão.Relatórios.Estoque.Fornecedor;
-using Apresentação.Impressão.Relatórios.Estoque.Resumo;
 using Apresentação.Impressão.Relatórios.Estoque.Referência;
+using Apresentação.Impressão.Relatórios.Estoque.Resumo;
+using CrystalDecisions.CrystalReports.Engine;
+using Entidades.Estoque;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Apresentação.Estoque
 {
@@ -117,7 +112,7 @@ namespace Apresentação.Estoque
         private List<Saldo> ObterItens(Saldo.Ordem ordem)
         {
             List<Saldo> itens = Saldo.Obter(opções.IncluirPeso, opções.IncluirReferência, 
-                opções.FornecedorÚnico, ordem, opções.UsarPesoMédio);
+                opções.FornecedorÚnico, ordem, opções.UsarPesoMédio, opções.AgruparReferências);
 
             return itens;
         }

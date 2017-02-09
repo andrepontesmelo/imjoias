@@ -1,14 +1,16 @@
 ﻿using Apresentação.Formulários;
+using Entidades.Configuração;
 using System;
 
 namespace Apresentação.Estoque
 {
     public partial class JanelaOpçõesEstoque : JanelaExplicativa
     {
-        private Entidades.Configuração.ConfiguraçãoUsuário<bool> configuraçãoReferência;
-        private Entidades.Configuração.ConfiguraçãoUsuário<bool> configuraçãoPeso;
-        private Entidades.Configuração.ConfiguraçãoUsuário<bool> configuraçãoPesoMédio;
-        private Entidades.Configuração.ConfiguraçãoUsuário<ulong> configuraçãoFornecedorÚnicoCódigoFornecedor;
+        private ConfiguraçãoUsuário<bool> configuraçãoReferência;
+        private ConfiguraçãoUsuário<bool> configuraçãoPeso;
+        private ConfiguraçãoUsuário<bool> configuraçãoPesoMédio;
+        private ConfiguraçãoUsuário<ulong> configuraçãoFornecedorÚnicoCódigoFornecedor;
+        private ConfiguraçãoUsuário<bool> configuraçãoAgrupado;
 
         public JanelaOpçõesEstoque()
         {
@@ -17,11 +19,12 @@ namespace Apresentação.Estoque
             if (!DesignMode)
                 comboBoxFornecedor.Carregar();
 
-            configuraçãoReferência = new Entidades.Configuração.ConfiguraçãoUsuário<bool>("estoque_opcoes_impressao_incluir_referencia", true);
-            configuraçãoPeso =  new Entidades.Configuração.ConfiguraçãoUsuário<bool>("estoque_opcoes_impressao_incluir_peso", true);
-            configuraçãoFornecedorÚnicoCódigoFornecedor = new Entidades.Configuração.ConfiguraçãoUsuário<ulong>("estoque_opcoes_fornecedor_unico", 0);
-
-            configuraçãoPesoMédio = new Entidades.Configuração.ConfiguraçãoUsuário<bool>("estoque_opcoes_peso_medio", false);
+            configuraçãoReferência = new ConfiguraçãoUsuário<bool>("estoque_opcoes_impressao_incluir_referencia", true);
+            configuraçãoPeso =  new ConfiguraçãoUsuário<bool>("estoque_opcoes_impressao_incluir_peso", true);
+            configuraçãoFornecedorÚnicoCódigoFornecedor = new ConfiguraçãoUsuário<ulong>("estoque_opcoes_fornecedor_unico", 0);
+            configuraçãoAgrupado = new ConfiguraçãoUsuário<bool>("estoque_opcoes_agrupado", false);
+            configuraçãoPesoMédio = new ConfiguraçãoUsuário<bool>("estoque_opcoes_peso_medio", false);
+            chkAgruparReferências.Checked = configuraçãoAgrupado.Valor;
             chkReferência.Checked = configuraçãoReferência.Valor;
             chkPesoMédio.Checked = configuraçãoPesoMédio.Valor;
             chkPeso.Checked = configuraçãoPeso.Valor;
@@ -48,6 +51,8 @@ namespace Apresentação.Estoque
         public bool UsarPesoMédio
         { get { return chkPesoMédio.Checked;  } }
 
+        public bool AgruparReferências => chkAgruparReferências.Checked;
+
         public Entidades.Fornecedor FornecedorÚnico
         {
             get
@@ -61,6 +66,7 @@ namespace Apresentação.Estoque
 
         private void btnOk_Click(object sender, EventArgs e)
         {
+            configuraçãoAgrupado.Valor = chkAgruparReferências.Checked;
             configuraçãoPesoMédio.Valor = chkPesoMédio.Checked;
             configuraçãoPeso.Valor = IncluirPeso;
             configuraçãoReferência.Valor = IncluirReferência;

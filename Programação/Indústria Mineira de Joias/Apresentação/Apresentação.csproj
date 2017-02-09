@@ -396,6 +396,30 @@
     <Compile Include="Mercadoria\Janela\JanelaPesquisaReferência.Designer.cs">
       <DependentUpon>JanelaPesquisaReferência.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mercadoria\Manutenção\Base\BaseEdição.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Mercadoria\Manutenção\Base\BaseEdição.Designer.cs">
+      <DependentUpon>BaseEdição.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mercadoria\Manutenção\Base\BaseManutenção.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Mercadoria\Manutenção\Base\BaseManutenção.Designer.cs">
+      <DependentUpon>BaseManutenção.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mercadoria\Manutenção\Lista\ListaComponenteCusto.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Mercadoria\Manutenção\Lista\ListaComponenteCusto.Designer.cs">
+      <DependentUpon>ListaComponenteCusto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mercadoria\Manutenção\Lista\ListaMercadorias.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Mercadoria\Manutenção\Lista\ListaMercadorias.Designer.cs">
+      <DependentUpon>ListaMercadorias.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mercadoria\TxtMercadoriaLivre.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -2735,6 +2759,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mercadoria\Janela\JanelaPesquisaReferência.resx">
       <DependentUpon>JanelaPesquisaReferência.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mercadoria\Manutenção\Base\BaseEdição.resx">
+      <DependentUpon>BaseEdição.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mercadoria\Manutenção\Base\BaseManutenção.resx">
+      <DependentUpon>BaseManutenção.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mercadoria\Manutenção\Lista\ListaComponenteCusto.resx">
+      <DependentUpon>ListaComponenteCusto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mercadoria\Manutenção\Lista\ListaMercadorias.resx">
+      <DependentUpon>ListaMercadorias.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mercadoria\TxtMercadoriaLivre.resx">
       <DependentUpon>TxtMercadoriaLivre.cs</DependentUpon>
@@ -5712,6 +5748,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Administrativo\IntegraçãoSistemaAntigo\App.ico" />
+    <None Include="Resources\ficha.png" />
     <None Include="Resources\Logo-COAF.png" />
     <None Include="Resources\opçãoCarregarPDF.Imagem1.png" />
     <None Include="Resources\esquerda.BackgroundImage.jpg" />

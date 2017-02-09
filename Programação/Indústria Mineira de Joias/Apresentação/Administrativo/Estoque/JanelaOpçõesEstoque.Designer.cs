@@ -38,6 +38,7 @@
             this.chkFiltrarFornecedor = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.chkPesoMédio = new System.Windows.Forms.CheckBox();
+            this.chkAgruparReferências = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.picÍcone)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -61,7 +62,7 @@
             // btnOk
             // 
             this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOk.Location = new System.Drawing.Point(143, 296);
+            this.btnOk.Location = new System.Drawing.Point(143, 322);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 4;
@@ -73,7 +74,7 @@
             // 
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(224, 296);
+            this.btnCancelar.Location = new System.Drawing.Point(224, 322);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 5;
@@ -172,13 +173,24 @@
             this.chkPesoMédio.Text = "Usar peso médio";
             this.chkPesoMédio.UseVisualStyleBackColor = true;
             // 
+            // chkAgruparReferências
+            // 
+            this.chkAgruparReferências.AutoSize = true;
+            this.chkAgruparReferências.Location = new System.Drawing.Point(77, 299);
+            this.chkAgruparReferências.Name = "chkAgruparReferências";
+            this.chkAgruparReferências.Size = new System.Drawing.Size(224, 17);
+            this.chkAgruparReferências.TabIndex = 9;
+            this.chkAgruparReferências.Text = "Agrupar referências por 6 primeiros dígitos";
+            this.chkAgruparReferências.UseVisualStyleBackColor = true;
+            // 
             // JanelaOpçõesEstoque
             // 
             this.AcceptButton = this.btnOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(311, 331);
+            this.ClientSize = new System.Drawing.Size(311, 357);
+            this.Controls.Add(this.chkAgruparReferências);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -191,6 +203,7 @@
             this.Controls.SetChildIndex(this.groupBox1, 0);
             this.Controls.SetChildIndex(this.groupBox2, 0);
             this.Controls.SetChildIndex(this.groupBox3, 0);
+            this.Controls.SetChildIndex(this.chkAgruparReferências, 0);
             ((System.ComponentModel.ISupportInitialize)(this.picÍcone)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -199,6 +212,7 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -215,5 +229,6 @@
         private System.Windows.Forms.CheckBox chkFiltrarFornecedor;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.CheckBox chkPesoMédio;
+        private System.Windows.Forms.CheckBox chkAgruparReferências;
     }
 }

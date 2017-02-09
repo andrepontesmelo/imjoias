@@ -723,6 +723,16 @@ namespace Apresentação {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ficha {
+            get {
+                object obj = ResourceManager.GetObject("ficha", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap FillDownHS {
             get {
                 object obj = ResourceManager.GetObject("FillDownHS", resourceCulture);

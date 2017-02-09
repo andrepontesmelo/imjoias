@@ -100,5 +100,10 @@ namespace Apresentação.Administrativo
         {
             SubstituirBase(new BaseCoaf());
         }
+
+        private void quadroManutençãoMercadorias_Click(object sender, EventArgs e)
+        {
+            SubstituirBase(new Mercadoria.Manutenção.Base.BaseManutenção());
+        }
     }
 }

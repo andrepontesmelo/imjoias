@@ -67,6 +67,8 @@ namespace Entidades.Estoque
         }
         private double saldo;
 
+        private double produtoPesoSaldo;
+
         /// <summary>
         /// Entrada - Venda + Devolução
         /// </summary>
@@ -98,24 +100,27 @@ namespace Entidades.Estoque
 
         public static List<Saldo> Obter()
         {
-            return Obter(true, true, null, Ordem.FornecedorReferênciaPeso, false);
+            return Obter(true, true, null, Ordem.FornecedorReferênciaPeso, false, false);
         }
 
         public enum Ordem { FornecedorReferênciaPeso, ReferênciaPeso }
         
         public static List<Saldo> Obter(bool incluirPeso, bool incluirReferências, 
-            Entidades.Fornecedor fornecedorÚnico, Ordem ordem, bool usarPesoMédio)
+            Entidades.Fornecedor fornecedorÚnico, Ordem ordem, bool usarPesoMédio, bool agruparReferências)
         {
             if (!incluirPeso && !incluirReferências)
                 return new List<Saldo>();
 
             StringBuilder consulta = new StringBuilder();
 
-            consulta.Append("select v.inicio, v.referenciafornecedor as referenciafornecedor, v.foradelinha, m.referencia, ");
+            consulta.Append("select v.inicio, v.referenciafornecedor as referenciafornecedor, v.foradelinha, ");
+            consulta.Append(agruparReferências ? "substr(m.referencia,1,6) as referencia," : " m.referencia, ");
+            consulta.Append(agruparReferências ? " round(avg(" : "");
             consulta.Append(usarPesoMédio ? " m.peso " : " ifnull(e.peso, m.peso) " );
-
-            consulta.Append(" as peso, sum(ifnull(e.entrada,0)) as entrada,sum(ifnull(e.venda,0)) as venda ,sum(ifnull(e.devolucao,0)) as devolucao,sum(ifnull(e.saldo,0)) as saldo, " +
-                " m.depeso, v.fornecedor from mercadoria m left join estoque_saldo e " +
+            consulta.Append(agruparReferências ? "),1) " : "");
+            consulta.Append(" as peso, sum(ifnull(e.entrada,0)) as entrada,sum(ifnull(e.venda,0)) as venda, ");
+            consulta.Append(" sum(ifnull(e.devolucao,0)) as devolucao, sum(ifnull(e.saldo,0)) as saldo, " +
+                " m.depeso, v.fornecedor, round(sum(e.saldo*m.peso),1) as produtoPesoSaldo from mercadoria m left join estoque_saldo e " +
                 " on e.referencia=m.referencia " +
                 " join vinculomercadoriafornecedor v on m.referencia=v.mercadoria " +
                 " WHERE m.foradelinha=0 AND " +
@@ -123,27 +128,31 @@ namespace Entidades.Estoque
                 " ( m.depeso=" + (incluirPeso ? "1" : "0") +
                 " or m.depeso=" + (incluirReferências ? "0" : "1") +
                 " ) ");
-            
+
+            string nomeAtributoPeso = (usarPesoMédio ? "m.peso" : "e.peso");
+
             consulta.Append(" GROUP BY ");
-            string peso = (usarPesoMédio ? "m.peso" : "e.peso");
-            consulta.Append(" m.referencia,");
-            consulta.Append(peso);
-            consulta.Append(", inicio, referenciafornecedor, v.fornecedor ");
+
+            if (agruparReferências)
+            {
+                consulta.Append("substr(m.referencia,1,6) ");
+            }
+            else
+            {
+                consulta.Append("m.referencia,");
+                consulta.Append(nomeAtributoPeso);
+                consulta.Append(", inicio, referenciafornecedor, v.fornecedor ");
+            }
+
             consulta.Append(" ORDER BY ");
             consulta.Append((ordem == Ordem.FornecedorReferênciaPeso ? " v.fornecedor ,  " : " "));
             consulta.Append(" m.referencia, ");
-            consulta.Append(peso);
+            consulta.Append(nomeAtributoPeso);
 
             return Mapear<Saldo>(consulta.ToString());
         }
 
-        public double ProdudoPesoSaldo
-        {
-            get
-            {
-                return peso * saldo;
-            }
-        }
+        public double ProdudoPesoSaldo => produtoPesoSaldo;
 
         public string InícioFormatado 
         {
