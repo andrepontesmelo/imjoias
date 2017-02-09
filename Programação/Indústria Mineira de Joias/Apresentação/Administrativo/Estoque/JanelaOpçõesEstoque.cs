@@ -11,6 +11,7 @@ namespace Apresentação.Estoque
         private ConfiguraçãoUsuário<bool> configuraçãoPesoMédio;
         private ConfiguraçãoUsuário<ulong> configuraçãoFornecedorÚnicoCódigoFornecedor;
         private ConfiguraçãoUsuário<bool> configuraçãoAgrupado;
+        private ConfiguraçãoUsuário<int> configuraçãoDígitosAgrupados;
 
         public JanelaOpçõesEstoque()
         {
@@ -24,11 +25,13 @@ namespace Apresentação.Estoque
             configuraçãoFornecedorÚnicoCódigoFornecedor = new ConfiguraçãoUsuário<ulong>("estoque_opcoes_fornecedor_unico", 0);
             configuraçãoAgrupado = new ConfiguraçãoUsuário<bool>("estoque_opcoes_agrupado", false);
             configuraçãoPesoMédio = new ConfiguraçãoUsuário<bool>("estoque_opcoes_peso_medio", false);
+            configuraçãoDígitosAgrupados = new ConfiguraçãoUsuário<int>("estoque_opcoes_qtd_digitos_agrupados", 6);
             chkAgruparReferências.Checked = configuraçãoAgrupado.Valor;
             chkReferência.Checked = configuraçãoReferência.Valor;
             chkPesoMédio.Checked = configuraçãoPesoMédio.Valor;
             chkPeso.Checked = configuraçãoPeso.Valor;
-            
+            qtdAgrupado.Value = configuraçãoDígitosAgrupados.Valor;
+
             if (configuraçãoFornecedorÚnicoCódigoFornecedor.Valor == 0)
             {
                 chkFiltrarFornecedor.Checked = false;
@@ -51,7 +54,7 @@ namespace Apresentação.Estoque
         public bool UsarPesoMédio
         { get { return chkPesoMédio.Checked;  } }
 
-        public bool AgruparReferências => chkAgruparReferências.Checked;
+        public int? AgruparPrimeirosDígitos => chkAgruparReferências.Checked ? (int?) qtdAgrupado.Value : null;
 
         public Entidades.Fornecedor FornecedorÚnico
         {
@@ -73,6 +76,8 @@ namespace Apresentação.Estoque
             configuraçãoFornecedorÚnicoCódigoFornecedor.Valor = 
                 (FornecedorÚnico == null ? 0 : FornecedorÚnico.Código);
 
+            configuraçãoDígitosAgrupados.Valor = (int) qtdAgrupado.Value;
+
             DialogResult = System.Windows.Forms.DialogResult.OK;
             Hide();
         }
@@ -86,6 +91,16 @@ namespace Apresentação.Estoque
         {
             DialogResult = System.Windows.Forms.DialogResult.Cancel;
             Hide();
+        }
+
+        private void qtdAgrupado_ValueChanged(object sender, EventArgs e)
+        {
+            chkAgruparReferências.Text = string.Format("Agrupar referências pelos {0} primeiros dígitos", qtdAgrupado.Value);
+        }
+
+        private void chkAgruparReferências_CheckedChanged(object sender, EventArgs e)
+        {
+            qtdAgrupado.Enabled = chkAgruparReferências.Checked;
         }
     }
 }

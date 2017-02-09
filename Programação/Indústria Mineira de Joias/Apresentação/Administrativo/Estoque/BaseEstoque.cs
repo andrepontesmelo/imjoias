@@ -112,7 +112,7 @@ namespace Apresentação.Estoque
         private List<Saldo> ObterItens(Saldo.Ordem ordem)
         {
             List<Saldo> itens = Saldo.Obter(opções.IncluirPeso, opções.IncluirReferência, 
-                opções.FornecedorÚnico, ordem, opções.UsarPesoMédio, opções.AgruparReferências);
+                opções.FornecedorÚnico, ordem, opções.UsarPesoMédio, opções.AgruparPrimeirosDígitos);
 
             return itens;
         }

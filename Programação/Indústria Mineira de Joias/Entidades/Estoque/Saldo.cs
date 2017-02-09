@@ -100,24 +100,26 @@ namespace Entidades.Estoque
 
         public static List<Saldo> Obter()
         {
-            return Obter(true, true, null, Ordem.FornecedorReferênciaPeso, false, false);
+            return Obter(true, true, null, Ordem.FornecedorReferênciaPeso, false, null);
         }
 
         public enum Ordem { FornecedorReferênciaPeso, ReferênciaPeso }
         
         public static List<Saldo> Obter(bool incluirPeso, bool incluirReferências, 
-            Entidades.Fornecedor fornecedorÚnico, Ordem ordem, bool usarPesoMédio, bool agruparReferências)
+            Entidades.Fornecedor fornecedorÚnico, Ordem ordem, bool usarPesoMédio, int? agruparPrimeirosDígitos)
         {
             if (!incluirPeso && !incluirReferências)
                 return new List<Saldo>();
 
             StringBuilder consulta = new StringBuilder();
+            string substringPrimeirosDigitos = agruparPrimeirosDígitos.HasValue ?
+                string.Format(" substr(m.referencia, 1, {0}) ", agruparPrimeirosDígitos.Value) : "";
 
             consulta.Append("select v.inicio, v.referenciafornecedor as referenciafornecedor, v.foradelinha, ");
-            consulta.Append(agruparReferências ? "substr(m.referencia,1,6) as referencia," : " m.referencia, ");
-            consulta.Append(agruparReferências ? " round(avg(" : "");
+            consulta.Append(agruparPrimeirosDígitos.HasValue ? substringPrimeirosDigitos + " as referencia, " : " m.referencia, ");
+            consulta.Append("round(avg(");
             consulta.Append(usarPesoMédio ? " m.peso " : " ifnull(e.peso, m.peso) " );
-            consulta.Append(agruparReferências ? "),1) " : "");
+            consulta.Append("),1) ");
             consulta.Append(" as peso, sum(ifnull(e.entrada,0)) as entrada,sum(ifnull(e.venda,0)) as venda, ");
             consulta.Append(" sum(ifnull(e.devolucao,0)) as devolucao, sum(ifnull(e.saldo,0)) as saldo, " +
                 " m.depeso, v.fornecedor, round(sum(e.saldo*m.peso),1) as produtoPesoSaldo from mercadoria m left join estoque_saldo e " +
@@ -133,10 +135,8 @@ namespace Entidades.Estoque
 
             consulta.Append(" GROUP BY ");
 
-            if (agruparReferências)
-            {
-                consulta.Append("substr(m.referencia,1,6) ");
-            }
+            if (agruparPrimeirosDígitos.HasValue)
+                consulta.Append(substringPrimeirosDigitos);
             else
             {
                 consulta.Append("m.referencia,");

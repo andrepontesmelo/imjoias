@@ -1,13 +1,16 @@
 ﻿using Entidades.Fiscal.NotaFiscalEletronica.Parser;
 using Entidades.Fiscal.Tipo;
 using System.Collections.Generic;
-using System;
 
 namespace Entidades.Fiscal.NotaFiscalEletronica
 {
     public class AdaptadorAtacadoSaída : AdaptadorAtacado
     {
         private Dictionary<uint, long> hashNfeVenda;
+
+        public AdaptadorAtacadoSaída(ParserXmlAtacado parser) : this(parser, null)
+        {
+        }
 
         public AdaptadorAtacadoSaída(ParserXmlAtacado parser, Dictionary<uint, long> hashNfeVenda) : base(parser)
         {
@@ -40,7 +43,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
         private int? ObterCódigoVenda(uint nfe)
         {
             long venda;
-            if (!hashNfeVenda.TryGetValue(nfe, out venda))
+            if (hashNfeVenda == null || !hashNfeVenda.TryGetValue(nfe, out venda))
                 return null;
 
             return (int) venda;

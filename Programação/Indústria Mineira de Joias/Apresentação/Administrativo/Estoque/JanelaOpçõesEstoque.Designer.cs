@@ -39,10 +39,14 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.chkPesoMédio = new System.Windows.Forms.CheckBox();
             this.chkAgruparReferências = new System.Windows.Forms.CheckBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.qtdAgrupado = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.picÍcone)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.qtdAgrupado)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTítulo
@@ -62,7 +66,7 @@
             // btnOk
             // 
             this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOk.Location = new System.Drawing.Point(143, 322);
+            this.btnOk.Location = new System.Drawing.Point(143, 378);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 4;
@@ -74,7 +78,7 @@
             // 
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(224, 322);
+            this.btnCancelar.Location = new System.Drawing.Point(224, 378);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 5;
@@ -176,12 +180,37 @@
             // chkAgruparReferências
             // 
             this.chkAgruparReferências.AutoSize = true;
-            this.chkAgruparReferências.Location = new System.Drawing.Point(77, 299);
+            this.chkAgruparReferências.Location = new System.Drawing.Point(27, 23);
             this.chkAgruparReferências.Name = "chkAgruparReferências";
-            this.chkAgruparReferências.Size = new System.Drawing.Size(224, 17);
+            this.chkAgruparReferências.Size = new System.Drawing.Size(225, 17);
             this.chkAgruparReferências.TabIndex = 9;
-            this.chkAgruparReferências.Text = "Agrupar referências por 6 primeiros dígitos";
+            this.chkAgruparReferências.Text = "Agrupar referências pelos primeiros dígitos";
             this.chkAgruparReferências.UseVisualStyleBackColor = true;
+            this.chkAgruparReferências.CheckedChanged += new System.EventHandler(this.chkAgruparReferências_CheckedChanged);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Controls.Add(this.qtdAgrupado);
+            this.groupBox4.Controls.Add(this.chkAgruparReferências);
+            this.groupBox4.Location = new System.Drawing.Point(12, 296);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(287, 76);
+            this.groupBox4.TabIndex = 10;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Agrupar Referência";
+            // 
+            // qtdAgrupado
+            // 
+            this.qtdAgrupado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.qtdAgrupado.Enabled = false;
+            this.qtdAgrupado.Location = new System.Drawing.Point(66, 46);
+            this.qtdAgrupado.Name = "qtdAgrupado";
+            this.qtdAgrupado.Size = new System.Drawing.Size(215, 20);
+            this.qtdAgrupado.TabIndex = 10;
+            this.qtdAgrupado.ValueChanged += new System.EventHandler(this.qtdAgrupado_ValueChanged);
             // 
             // JanelaOpçõesEstoque
             // 
@@ -189,8 +218,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(311, 357);
-            this.Controls.Add(this.chkAgruparReferências);
+            this.ClientSize = new System.Drawing.Size(311, 413);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -203,7 +232,7 @@
             this.Controls.SetChildIndex(this.groupBox1, 0);
             this.Controls.SetChildIndex(this.groupBox2, 0);
             this.Controls.SetChildIndex(this.groupBox3, 0);
-            this.Controls.SetChildIndex(this.chkAgruparReferências, 0);
+            this.Controls.SetChildIndex(this.groupBox4, 0);
             ((System.ComponentModel.ISupportInitialize)(this.picÍcone)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -211,8 +240,10 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.qtdAgrupado)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -230,5 +261,7 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.CheckBox chkPesoMédio;
         private System.Windows.Forms.CheckBox chkAgruparReferências;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.NumericUpDown qtdAgrupado;
     }
 }
