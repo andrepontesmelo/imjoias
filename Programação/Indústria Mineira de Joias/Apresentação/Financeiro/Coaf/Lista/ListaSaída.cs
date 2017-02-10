@@ -17,7 +17,10 @@ namespace Apresentação.Financeiro.Coaf.Lista
 
         public SaídaFiscal ObterSaídaSelecionada()
         {
-            return SaídaFiscal.ObterEntidade("1003@1");
+            if (lista.SelectedItems.Count == 0)
+                return null;
+
+            return lista.SelectedItems[0].Tag as SaídaFiscal;
         }
 
         private void lista_DoubleClick(object sender, EventArgs e)
@@ -52,6 +55,7 @@ namespace Apresentação.Financeiro.Coaf.Lista
             item.SubItems[colSaída.Index].Text = saída.Id;
             item.SubItems[colTotal.Index].Text = saída.ValorTotal.ToString("C");
             item.SubItems[colVenda.Index].Text = saída.Venda.ToString();
+            item.Tag = saída;
 
             if (saída.Cancelada)
                 item.Font = new System.Drawing.Font(item.Font, System.Drawing.FontStyle.Strikeout);

@@ -244,7 +244,7 @@ namespace Entidades.Fiscal
 
         public static List<SaídaFiscal> Obter(string cpfCnpj)
         {
-            string sql = "select id, datasaida, valortotal, venda, cancelada from saidafiscal where ";
+            string sql = "select * from saidafiscal where ";
             bool cpf = cpfCnpj.Length == 11;
 
             sql += cpf ? "cpfemissor" : "cnpjemissor";
