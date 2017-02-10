@@ -1,4 +1,5 @@
-﻿using Entidades.Mercadoria;
+﻿using Apresentação.Formulários;
+using Entidades.Mercadoria;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -12,6 +13,13 @@ namespace Apresentação.Mercadoria.Manutenção.Lista
         public ListaMercadorias()
         {
             InitializeComponent();
+            lista.ListViewItemSorter = new ListViewColumnSorter();
+            lista.ColumnClick += Lista_ColumnClick;
+        }
+
+        private void Lista_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            ((ListViewColumnSorter)lista.ListViewItemSorter).OnClick(lista, e);
         }
 
         private void lista_DoubleClick(object sender, System.EventArgs e)
