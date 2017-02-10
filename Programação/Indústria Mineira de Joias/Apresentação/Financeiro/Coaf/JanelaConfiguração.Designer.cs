@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.currencyTextBox2 = new AMS.TextBox.CurrencyTextBox();
-            this.currencyTextBox1 = new AMS.TextBox.CurrencyTextBox();
+            this.txtMínimoDemais = new AMS.TextBox.CurrencyTextBox();
+            this.txtMínimoPEP = new AMS.TextBox.CurrencyTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
@@ -64,8 +64,8 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.currencyTextBox2);
-            this.groupBox1.Controls.Add(this.currencyTextBox1);
+            this.groupBox1.Controls.Add(this.txtMínimoDemais);
+            this.groupBox1.Controls.Add(this.txtMínimoPEP);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 96);
@@ -75,31 +75,31 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Limites mínimos";
             // 
-            // currencyTextBox2
+            // txtMínimoDemais
             // 
-            this.currencyTextBox2.AllowNegative = true;
-            this.currencyTextBox2.Flags = 7680;
-            this.currencyTextBox2.Location = new System.Drawing.Point(56, 48);
-            this.currencyTextBox2.MaxWholeDigits = 9;
-            this.currencyTextBox2.Name = "currencyTextBox2";
-            this.currencyTextBox2.RangeMax = 1.7976931348623157E+308D;
-            this.currencyTextBox2.RangeMin = -1.7976931348623157E+308D;
-            this.currencyTextBox2.Size = new System.Drawing.Size(143, 20);
-            this.currencyTextBox2.TabIndex = 8;
-            this.currencyTextBox2.Text = "R$ 30.000,00";
+            this.txtMínimoDemais.AllowNegative = true;
+            this.txtMínimoDemais.Flags = 7680;
+            this.txtMínimoDemais.Location = new System.Drawing.Point(56, 48);
+            this.txtMínimoDemais.MaxWholeDigits = 9;
+            this.txtMínimoDemais.Name = "txtMínimoDemais";
+            this.txtMínimoDemais.RangeMax = 1.7976931348623157E+308D;
+            this.txtMínimoDemais.RangeMin = -1.7976931348623157E+308D;
+            this.txtMínimoDemais.Size = new System.Drawing.Size(143, 20);
+            this.txtMínimoDemais.TabIndex = 8;
+            this.txtMínimoDemais.Text = "R$ 30.000,00";
             // 
-            // currencyTextBox1
+            // txtMínimoPEP
             // 
-            this.currencyTextBox1.AllowNegative = true;
-            this.currencyTextBox1.Flags = 7680;
-            this.currencyTextBox1.Location = new System.Drawing.Point(56, 25);
-            this.currencyTextBox1.MaxWholeDigits = 9;
-            this.currencyTextBox1.Name = "currencyTextBox1";
-            this.currencyTextBox1.RangeMax = 1.7976931348623157E+308D;
-            this.currencyTextBox1.RangeMin = -1.7976931348623157E+308D;
-            this.currencyTextBox1.Size = new System.Drawing.Size(143, 20);
-            this.currencyTextBox1.TabIndex = 7;
-            this.currencyTextBox1.Text = "R$ 10.000,00";
+            this.txtMínimoPEP.AllowNegative = true;
+            this.txtMínimoPEP.Flags = 7680;
+            this.txtMínimoPEP.Location = new System.Drawing.Point(56, 25);
+            this.txtMínimoPEP.MaxWholeDigits = 9;
+            this.txtMínimoPEP.Name = "txtMínimoPEP";
+            this.txtMínimoPEP.RangeMax = 1.7976931348623157E+308D;
+            this.txtMínimoPEP.RangeMin = -1.7976931348623157E+308D;
+            this.txtMínimoPEP.Size = new System.Drawing.Size(143, 20);
+            this.txtMínimoPEP.TabIndex = 7;
+            this.txtMínimoPEP.Text = "R$ 10.000,00";
             // 
             // label2
             // 
@@ -117,7 +117,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(31, 13);
             this.label1.TabIndex = 5;
-            this.label1.Text = "PPE:";
+            this.label1.Text = "PEP:";
             // 
             // btnCancelar
             // 
@@ -187,6 +187,7 @@
             this.btnRestaurarPadrão.TabIndex = 10;
             this.btnRestaurarPadrão.Text = "Restaurar Padrão";
             this.btnRestaurarPadrão.UseVisualStyleBackColor = true;
+            this.btnRestaurarPadrão.Click += new System.EventHandler(this.btnRestaurarPadrão_Click);
             // 
             // JanelaConfiguração
             // 
@@ -218,8 +219,8 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private AMS.TextBox.CurrencyTextBox currencyTextBox2;
-        private AMS.TextBox.CurrencyTextBox currencyTextBox1;
+        private AMS.TextBox.CurrencyTextBox txtMínimoDemais;
+        private AMS.TextBox.CurrencyTextBox txtMínimoPEP;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCancelar;

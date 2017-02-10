@@ -201,6 +201,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Balanço\SaquinhoBalanço.cs" />
+    <Compile Include="Coaf\ConfiguraçõesCoaf.cs" />
     <Compile Include="Coaf\CódigoPep.cs" />
     <Compile Include="Coaf\ImportadorPep.cs" />
     <Compile Include="Coaf\PessoaExpostaPoliticamente.cs" />

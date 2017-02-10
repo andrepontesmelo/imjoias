@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseCoaf));
             this.título = new Apresentação.Formulários.TítuloBaseInferior();
             this.quadro1 = new Apresentação.Formulários.Quadro();
             this.opçãoImportar = new Apresentação.Formulários.Opção();
@@ -35,8 +37,15 @@
             this.opçãoConfigurar = new Apresentação.Formulários.Opção();
             this.listaSaída = new Apresentação.Financeiro.Coaf.Lista.ListaSaída();
             this.listaPessoa = new Apresentação.Financeiro.Coaf.Lista.ListaPessoa();
+            this.tabControl = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
+            this.tabControl.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // esquerda
@@ -127,40 +136,83 @@
             // 
             // listaSaída
             // 
-            this.listaSaída.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listaSaída.Location = new System.Drawing.Point(193, 387);
+            this.listaSaída.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listaSaída.Location = new System.Drawing.Point(3, 3);
             this.listaSaída.Name = "listaSaída";
-            this.listaSaída.Size = new System.Drawing.Size(705, 77);
+            this.listaSaída.Size = new System.Drawing.Size(706, 350);
             this.listaSaída.TabIndex = 7;
             this.listaSaída.DuploClique += new System.EventHandler(this.listaSaída_DuploClique);
             // 
             // listaPessoa
             // 
-            this.listaPessoa.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listaPessoa.Location = new System.Drawing.Point(193, 79);
+            this.listaPessoa.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listaPessoa.Location = new System.Drawing.Point(3, 3);
             this.listaPessoa.Name = "listaPessoa";
-            this.listaPessoa.Size = new System.Drawing.Size(708, 302);
+            this.listaPessoa.Size = new System.Drawing.Size(706, 350);
             this.listaPessoa.TabIndex = 8;
             this.listaPessoa.DuploClique += new System.EventHandler(this.listaPessoa_DuploClique);
+            // 
+            // tabControl
+            // 
+            this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl.Controls.Add(this.tabPage1);
+            this.tabControl.Controls.Add(this.tabPage2);
+            this.tabControl.ImageList = this.imageList1;
+            this.tabControl.Location = new System.Drawing.Point(193, 83);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(720, 383);
+            this.tabControl.TabIndex = 9;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.listaPessoa);
+            this.tabPage1.ImageIndex = 0;
+            this.tabPage1.Location = new System.Drawing.Point(4, 23);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(712, 356);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Sumário";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.listaSaída);
+            this.tabPage2.ImageIndex = 1;
+            this.tabPage2.Location = new System.Drawing.Point(4, 23);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(712, 356);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Operações";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "chamando atenção.gif");
+            this.imageList1.Images.SetKeyName(1, "info.png");
             // 
             // BaseCoaf
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.listaPessoa);
-            this.Controls.Add(this.listaSaída);
+            this.Controls.Add(this.tabControl);
             this.Controls.Add(this.título);
             this.Name = "BaseCoaf";
             this.Size = new System.Drawing.Size(916, 478);
             this.Controls.SetChildIndex(this.esquerda, 0);
             this.Controls.SetChildIndex(this.título, 0);
-            this.Controls.SetChildIndex(this.listaSaída, 0);
-            this.Controls.SetChildIndex(this.listaPessoa, 0);
+            this.Controls.SetChildIndex(this.tabControl, 0);
             this.esquerda.ResumeLayout(false);
             this.quadro1.ResumeLayout(false);
+            this.tabControl.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -174,5 +226,9 @@
         private Lista.ListaSaída listaSaída;
         private Lista.ListaPessoa listaPessoa;
         private Formulários.Opção opçãoImportar;
+        private System.Windows.Forms.TabControl tabControl;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }
