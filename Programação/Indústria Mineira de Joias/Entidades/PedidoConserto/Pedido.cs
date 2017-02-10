@@ -18,7 +18,7 @@ namespace Entidades.PedidoConserto
             entrega = Entrega.Levar;
         }
 
-        private static readonly int TotalAtributos = 18;
+        private static readonly int TotalAtributosPedidos = 18;
 
         #region Atributos
 #pragma warning disable 0649        // Field 'field' is never assigned to, and will always have its default value 'value'
@@ -344,14 +344,13 @@ namespace Entidades.PedidoConserto
                         DateTime dataFimUtilizar = (fim.Date.Date == DateTime.MaxValue.Date ? DateTime.MaxValue : fim.Date.AddDays(1));
 
                         cmd.CommandText = string.Format(
-                        "SELECT * FROM pedido left join pessoa on pedido.cliente=pessoa.codigo left join pessoafisica on pessoa.codigo=pessoafisica.codigo " +
+                        "SELECT * FROM pedido left join pessoa on pedido.cliente=pessoa.codigo left join pessoafisica on pessoa.codigo=pessoafisica.codigo left join pessoajuridica pj on pessoa.codigo=pj.codigo " +
                         " left join pessoa p on p.codigo=pedido.representante left join pessoafisica pf on pf.codigo=pedido.representante WHERE " + (períodoPrevisão ? "dataPrevisao" : "dataRecepcao")
                         + " BETWEEN {0} AND {1} "
                         + (ocultarJáEntregues ? "AND dataEntrega is null " : "")
                         + " and tipo = " + (apenasPedidos ? "'E'" : "'C'")
                         + " order by dataRecepcao",
                         inicio, DbTransformar(dataFimUtilizar));
-
 
                         using (leitor = cmd.ExecuteReader())
                         {
@@ -424,19 +423,20 @@ namespace Entidades.PedidoConserto
             Pedido pedido = new Pedido();
             pedido.código = (ulong) leitor.GetInt64(0 + inicioPedidos);
 
-            //if (!leitor.IsDBNull(1 + inicioPedidos))
-            //    pedido.controle = (uint)leitor.GetInt32(1 + inicioPedidos);
-
             pedido.tipo = (Tipo)new ConversorTipo().ConverterDeDB(leitor.GetString(1 + inicioPedidos));
 
-            pedido.cliente = Entidades.Pessoa.Pessoa.ObterPessoa(leitor, TotalAtributos + inicioPedidos,
-                TotalAtributos + inicioPedidos + Entidades.Pessoa.Pessoa.TotalAtributos, 0);
+            var fimPedidos = TotalAtributosPedidos + inicioPedidos;
+            var inícioPessoaFísicaCliente = fimPedidos + Pessoa.Pessoa.TotalAtributos;
+            var inícioPessoaJurídicaCliente = inícioPessoaFísicaCliente + PessoaFísica.TotalAtributos;
+
+            pedido.cliente = Pessoa.Pessoa.ObterPessoa(leitor, fimPedidos, inícioPessoaFísicaCliente, inícioPessoaJurídicaCliente);
+
+            var inícioPessoaRepresentante = inícioPessoaJurídicaCliente + PessoaJurídica.TotalAtributos;
+            var inícioPessoaFísicaRepresenante = inícioPessoaRepresentante + Pessoa.Pessoa.TotalAtributos;
 
             if (!leitor.IsDBNull(3 + inicioPedidos))
                 pedido.representante = Entidades.Pessoa.Representante.Obter(leitor,
-                    TotalAtributos + inicioPedidos + Entidades.Pessoa.Pessoa.TotalAtributos + Entidades.Pessoa.PessoaFísica.TotalAtributos,
-                    TotalAtributos + inicioPedidos + 2 * Entidades.Pessoa.Pessoa.TotalAtributos + Entidades.Pessoa.PessoaFísica.TotalAtributos);
-
+                    inícioPessoaRepresentante, inícioPessoaFísicaRepresenante);
 
             if (!leitor.IsDBNull(4 + inicioPedidos))
                 pedido.receptor = Funcionário.ObterPessoa((ulong)leitor.GetInt64(4 + inicioPedidos));
@@ -519,6 +519,7 @@ namespace Entidades.PedidoConserto
             consulta.Append(" ) consulta ");
             
             consulta.Append(" left join pessoa on consulta.cliente=pessoa.codigo left join pessoafisica on pessoa.codigo=pessoafisica.codigo ");
+            consulta.Append(" left join pessoajuridica pj on pessoa.codigo=pj.codigo ");
             consulta.Append(" left join pessoa p on p.codigo=consulta.representante left join pessoafisica pf on pf.codigo=consulta.representante ");
 
             consulta.Append(" LIMIT ");

@@ -9,6 +9,8 @@ namespace Entidades.Pessoa
     [Serializable, Cacheável("ObterPessoaSemCache"), Cacheável("ObterPessoaPorCNPJSemCache")]
 	public class PessoaJurídica : Pessoa
 	{
+        public static new readonly int TotalAtributos = 6;
+
         protected string fantasia;
         
         protected string cnpj;
