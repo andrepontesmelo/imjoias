@@ -358,6 +358,7 @@
     <Compile Include="Mercadoria\MercadoriaEmFaltaCliente.cs" />
     <Compile Include="Mercadoria\MercadoriaFornecedor.cs" />
     <Compile Include="Mercadoria\MercadoriaImpressão.cs" />
+    <Compile Include="Mercadoria\MercadoriaManutenção.cs" />
     <Compile Include="Mercadoria\MercadoriaTipo.cs" />
     <Compile Include="Mercadoria\Metal.cs" />
     <Compile Include="Mercadoria\Pedra.cs" />

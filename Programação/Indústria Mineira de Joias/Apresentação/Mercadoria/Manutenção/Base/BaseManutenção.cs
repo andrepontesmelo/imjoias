@@ -13,5 +13,12 @@ namespace Apresentação.Mercadoria.Manutenção.Base
         {
             SubstituirBase(new BaseEdição());
         }
+
+        protected override void AoExibir()
+        {
+            base.AoExibir();
+
+            lista.Carregar();
+        }
     }
 }

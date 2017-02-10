@@ -44,6 +44,7 @@ namespace Apresentação.Mercadoria.Manutenção.Lista
             this.colFornecedor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colPreçoCusto = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colDescrição = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colForaDeLinha = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lista
@@ -54,7 +55,8 @@ namespace Apresentação.Mercadoria.Manutenção.Lista
             this.colDePeso,
             this.colFornecedor,
             this.colPreçoCusto,
-            this.colDescrição});
+            this.colDescrição,
+            this.colForaDeLinha});
             this.lista.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lista.FullRowSelect = true;
             this.lista.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
@@ -95,6 +97,10 @@ namespace Apresentação.Mercadoria.Manutenção.Lista
             this.colDescrição.Text = "Descrição";
             this.colDescrição.Width = 262;
             // 
+            // colForaDeLinha
+            // 
+            this.colForaDeLinha.Text = "Fora De Linha";
+            // 
             // ListaMercadorias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -115,5 +121,6 @@ namespace Apresentação.Mercadoria.Manutenção.Lista
         private System.Windows.Forms.ColumnHeader colFornecedor;
         private System.Windows.Forms.ColumnHeader colPreçoCusto;
         private System.Windows.Forms.ColumnHeader colDescrição;
+        private System.Windows.Forms.ColumnHeader colForaDeLinha;
     }
 }
