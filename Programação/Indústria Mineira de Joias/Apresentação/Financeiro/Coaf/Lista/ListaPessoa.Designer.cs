@@ -1,4 +1,6 @@
-﻿namespace Apresentação.Financeiro.Coaf.Lista
+﻿using Apresentação.Formulários;
+
+namespace Apresentação.Financeiro.Coaf.Lista
 {
     partial class ListaPessoa
     {
@@ -28,23 +30,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
-            "111333",
-            "Dalmo",
-            "Deputado Federal - Câmara dos deputados",
-            "17.0394.480.000-1000",
-            "R$ 500.000,00"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
-            "",
-            "",
-            "2484.0001.001/1000",
-            "R$ 30.000,00"}, -1);
-            this.lista = new System.Windows.Forms.ListView();
+            this.lista = new Apresentação.Formulários.ListViewUsabilidade();
+            this.colCódigo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colPessoa = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colPEP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colCPFCNPJ = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colValorAcumulado = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colCódigo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lista
@@ -57,9 +48,6 @@
             this.colValorAcumulado});
             this.lista.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lista.FullRowSelect = true;
-            this.lista.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2});
             this.lista.Location = new System.Drawing.Point(0, 0);
             this.lista.Name = "lista";
             this.lista.Size = new System.Drawing.Size(757, 366);
@@ -67,6 +55,10 @@
             this.lista.UseCompatibleStateImageBehavior = false;
             this.lista.View = System.Windows.Forms.View.Details;
             this.lista.DoubleClick += new System.EventHandler(this.lista_DoubleClick);
+            // 
+            // colCódigo
+            // 
+            this.colCódigo.Text = "Código";
             // 
             // colPessoa
             // 
@@ -88,10 +80,6 @@
             this.colValorAcumulado.Text = "Valor Acumulado";
             this.colValorAcumulado.Width = 131;
             // 
-            // colCódigo
-            // 
-            this.colCódigo.Text = "Código";
-            // 
             // ListaPessoa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -105,7 +93,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView lista;
+        private ListViewUsabilidade lista;
         private System.Windows.Forms.ColumnHeader colPessoa;
         private System.Windows.Forms.ColumnHeader colPEP;
         private System.Windows.Forms.ColumnHeader colCPFCNPJ;

@@ -1,4 +1,5 @@
-﻿using Entidades.Coaf;
+﻿using Apresentação.Formulários;
+using Entidades.Coaf;
 using Entidades.Configuração;
 using System;
 using System.Collections.Generic;
@@ -9,10 +10,17 @@ namespace Apresentação.Financeiro.Coaf.Lista
     public partial class ListaPessoa : UserControl
     {
         public event EventHandler DuploClique;
-
+        
         public ListaPessoa()
         {
             InitializeComponent();
+            lista.ListViewItemSorter = new ListViewColumnSorter();
+            lista.ColumnClick += Lista_ColumnClick;
+        }
+
+        private void Lista_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            ((ListViewColumnSorter)lista.ListViewItemSorter).OnClick(lista, e);
         }
 
         public uint? ObterPessoaSelecionada()
