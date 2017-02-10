@@ -1,4 +1,5 @@
 ﻿using Apresentação.Formulários;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace Apresentação.Financeiro.Coaf
@@ -56,10 +57,23 @@ namespace Apresentação.Financeiro.Coaf
                 return;
 
             AguardeDB.Mostrar();
-            var pessoasImportadas = new Entidades.Coaf.ImportadorPep().Importar(janela.FileName);
-            AguardeDB.Fechar();
+            BackgroundWorker bg = new BackgroundWorker();
+            bg.DoWork += Bg_DoWork;
+            bg.RunWorkerCompleted += Bg_RunWorkerCompleted;
+            bg.RunWorkerAsync(janela.FileName);
+        }
 
-            MessageBox.Show(string.Format("Fim da importação. {0} CPF's importados", pessoasImportadas));
+        private void Bg_DoWork(object sender, DoWorkEventArgs e)
+        {
+            string arquivo = e.Argument as string;
+            e.Result = new Entidades.Coaf.ImportadorPep().Importar(arquivo);
+        }
+
+        private void Bg_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            int? qtdPessoasImportadas = e.Result as int?;
+            AguardeDB.Fechar();
+            MessageBox.Show(string.Format("Fim da importação. {0} CPF's importados", qtdPessoasImportadas));
         }
     }
 }
