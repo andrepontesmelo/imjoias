@@ -7,10 +7,14 @@ namespace Entidades.Coaf
     [DbTabela("pep")]
     public class PessoaExpostaPoliticamente : DbManipulaçãoSimples
     {
-        private string cpf;
-        private string descricao;
+        protected string cpf;
+        protected string descricao;
 
         public string Descrição => descricao;
+
+        public PessoaExpostaPoliticamente()
+        {
+        }
 
         public PessoaExpostaPoliticamente(string cpf, string descrição)
         {

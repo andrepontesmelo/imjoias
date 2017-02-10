@@ -29,7 +29,8 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
-            "Dalmo Joias",
+            "111333",
+            "Dalmo",
             "Deputado Federal - Câmara dos deputados",
             "17.0394.480.000-1000",
             "R$ 500.000,00"}, -1);
@@ -43,11 +44,13 @@
             this.colPEP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colCPFCNPJ = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colValorAcumulado = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colCódigo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lista
             // 
             this.lista.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colCódigo,
             this.colPessoa,
             this.colPEP,
             this.colCPFCNPJ,
@@ -85,6 +88,10 @@
             this.colValorAcumulado.Text = "Valor Acumulado";
             this.colValorAcumulado.Width = 131;
             // 
+            // colCódigo
+            // 
+            this.colCódigo.Text = "Código";
+            // 
             // ListaPessoa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -103,5 +110,6 @@
         private System.Windows.Forms.ColumnHeader colPEP;
         private System.Windows.Forms.ColumnHeader colCPFCNPJ;
         private System.Windows.Forms.ColumnHeader colValorAcumulado;
+        private System.Windows.Forms.ColumnHeader colCódigo;
     }
 }

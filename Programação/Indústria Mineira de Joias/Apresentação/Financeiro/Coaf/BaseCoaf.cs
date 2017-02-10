@@ -16,6 +16,12 @@ namespace Apresentação.Financeiro.Coaf
             new JanelaConfiguração().Show();
         }
 
+        protected override void AoExibir()
+        {
+            base.AoExibir();
+            listaPessoa.Carregar();
+        }
+
         private void opçãoImprimir_Click(object sender, System.EventArgs e)
         {
             MessageBox.Show(this,
@@ -28,11 +34,11 @@ namespace Apresentação.Financeiro.Coaf
 
         private void listaPessoa_DuploClique(object sender, System.EventArgs e)
         {
-            int? pessoa = listaPessoa.ObterPessoaSelecionada();
+            uint? pessoa = listaPessoa.ObterPessoaSelecionada();
 
             if (pessoa.HasValue)
                 SubstituirBase(new Apresentação.Atendimento.BaseAtendimento(
-                    Entidades.Pessoa.Pessoa.ObterPessoa((ulong) pessoa.Value)));
+                    Entidades.Pessoa.Pessoa.ObterPessoa(pessoa.Value)));
         }
 
         private void listaSaída_DuploClique(object sender, System.EventArgs e)
