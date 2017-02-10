@@ -62,5 +62,13 @@ namespace Entidades.Pessoa
 		{
 			return PessoaJurídica.ObterPessoa(pessoa.Código);
 		}
-	}
+
+        public static string FormatarCpfCnpj(string cpfCnpj)
+        {
+            if (cpfCnpj.Length == 11)
+                return PessoaFísica.Formatar(cpfCnpj);
+            else
+                return PessoaJurídica.FormatarCNPJ(cpfCnpj);
+        }
+    }
 }

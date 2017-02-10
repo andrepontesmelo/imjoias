@@ -1,6 +1,7 @@
 ﻿using Apresentação.Formulários;
 using Entidades.Coaf;
 using Entidades.Configuração;
+using Entidades.Pessoa;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -53,7 +54,7 @@ namespace Apresentação.Financeiro.Coaf.Lista
             {
                 ListViewItem item = new ListViewItem();
                 item.SubItems.AddRange(new string[] { "", "", "", "", "" });
-                item.SubItems[colCPFCNPJ.Index].Text = entidade.CpfCnpj;
+                item.SubItems[colCPFCNPJ.Index].Text = FormatarCpfCnpj(entidade.CpfCnpj);
                 item.SubItems[colCódigo.Index].Text = entidade.Código.ToString();
                 item.SubItems[colPessoa.Index].Text = entidade.Nome;
                 item.SubItems[colValorAcumulado.Index].Text = entidade.ValorAcumulado.ToString("C");
@@ -66,6 +67,11 @@ namespace Apresentação.Financeiro.Coaf.Lista
             }
 
             return resultado;
+        }
+
+        private string FormatarCpfCnpj(string cpfCnpj)
+        {
+            return PessoaCPFCNPJRG.FormatarCpfCnpj(cpfCnpj);
         }
 
         private List<PessoaResumo> ObterEntidades()

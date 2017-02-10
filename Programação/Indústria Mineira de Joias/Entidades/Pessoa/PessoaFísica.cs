@@ -74,7 +74,12 @@ namespace Entidades.Pessoa
 			}
 		}
 
-		public static bool ValidarCPF(string cpf)
+        public static string Formatar(string cpf)
+        {
+            return Convert.ToUInt64(cpf).ToString(@"000\.000\.000\-00");
+        }
+
+        public static bool ValidarCPF(string cpf)
         {
             if (cpf == null || cpf.Trim().Length == 0)
                 return true;
