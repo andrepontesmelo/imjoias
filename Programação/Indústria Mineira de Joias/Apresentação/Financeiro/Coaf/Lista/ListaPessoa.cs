@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Runtime.Serialization;
 
 namespace Apresentação.Financeiro.Coaf.Lista
 {
@@ -53,18 +54,12 @@ namespace Apresentação.Financeiro.Coaf.Lista
 
             foreach (PessoaResumo entidade in entidades)
             {
-                ListViewItem item = new ListViewItem();
+                ListViewItem item = new ListViewItem(ObterGrupo(entidade));
                 item.SubItems.AddRange(new string[] { "", "", "", "", "" });
                 item.SubItems[colCPFCNPJ.Index].Text = FormatarCpfCnpj(entidade.CpfCnpj);
                 item.SubItems[colCódigo.Index].Text = entidade.Código.ToString();
                 item.SubItems[colPessoa.Index].Text = entidade.Nome;
                 item.SubItems[colValorAcumulado.Index].Text = entidade.ValorAcumulado.ToString("C");
-
-                if (entidade.Notificável)
-                {
-                    item.SubItems[colNotificável.Index].Text = "Notificável";
-                    item.BackColor = Color.Yellow;
-                }
                 item.Tag = entidade;
 
                 if (entidade.PoliticamenteExposta)
@@ -74,6 +69,11 @@ namespace Apresentação.Financeiro.Coaf.Lista
             }
 
             return resultado;
+        }
+
+        private ListViewGroup ObterGrupo(PessoaResumo entidade)
+        {
+            return entidade.Notificável ? lista.Groups["grupoNotificáveis"] : lista.Groups["grupoNãoNotificáveis"];
         }
 
         private string FormatarCpfCnpj(string cpfCnpj)
