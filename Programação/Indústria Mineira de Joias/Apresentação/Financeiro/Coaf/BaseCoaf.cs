@@ -13,7 +13,8 @@ namespace Apresentação.Financeiro.Coaf
 
         private void opçãoConfigurar_Click(object sender, System.EventArgs e)
         {
-            new JanelaConfiguração().Show();
+            new JanelaConfiguração().ShowDialog(this);
+            listaPessoa.Carregar();
         }
 
         protected override void AoExibir()

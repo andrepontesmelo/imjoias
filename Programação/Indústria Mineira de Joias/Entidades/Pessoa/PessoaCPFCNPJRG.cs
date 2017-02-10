@@ -1,14 +1,11 @@
 using System;
-using System.Data;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace Entidades.Pessoa
 {
-	/// <summary>
-	/// Pessoa contendo CPF, CNPJ e RG, para fins de recuperação do banco de dados
-	/// </summary>
-	[Serializable]
+    /// <summary>
+    /// Pessoa contendo CPF, CNPJ e RG, para fins de recuperação do banco de dados
+    /// </summary>
+    [Serializable]
 	public class PessoaCPFCNPJRG : Pessoa
 	{
 		//Atributos

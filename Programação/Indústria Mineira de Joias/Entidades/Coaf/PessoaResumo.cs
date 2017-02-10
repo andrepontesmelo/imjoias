@@ -20,6 +20,20 @@ namespace Entidades.Coaf
         public string CpfCnpj => cpfcnpj;
         public decimal ValorAcumulado => valoracumulado;
 
+        public bool Notificável
+        {
+            get
+            {
+                var configuração = ConfiguraçõesCoaf.Instância;
+                decimal valorMínimo = PoliticamenteExposta ? 
+                    configuração.ValorMínimoAcumuladoPessoaExpostaPoliticamente.Valor : 
+                    configuração.ValorMínimoAcumuladoDemaisPessoas.Valor;
+                return (ValorAcumulado >= valorMínimo);
+            }
+        }
+
+        public bool PoliticamenteExposta => CódigoPep.PessoaÉPoliticamenteExposta(Código);
+
         public static List<PessoaResumo> Obter(DateTime dataInicial)
         {
             string sql =

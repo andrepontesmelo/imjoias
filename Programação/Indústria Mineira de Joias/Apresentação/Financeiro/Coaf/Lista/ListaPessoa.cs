@@ -4,6 +4,7 @@ using Entidades.Configuração;
 using Entidades.Pessoa;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Apresentação.Financeiro.Coaf.Lista
@@ -58,9 +59,15 @@ namespace Apresentação.Financeiro.Coaf.Lista
                 item.SubItems[colCódigo.Index].Text = entidade.Código.ToString();
                 item.SubItems[colPessoa.Index].Text = entidade.Nome;
                 item.SubItems[colValorAcumulado.Index].Text = entidade.ValorAcumulado.ToString("C");
+
+                if (entidade.Notificável)
+                {
+                    item.SubItems[colNotificável.Index].Text = "Notificável";
+                    item.BackColor = Color.Yellow;
+                }
                 item.Tag = entidade;
 
-                if (CódigoPep.PessoaÉPoliticamenteExposta(entidade.Código))
+                if (entidade.PoliticamenteExposta)
                     item.SubItems[colPEP.Index].Text = CódigoPep.Hash[entidade.Código].Descrição;
 
                 resultado.Add(item);

@@ -36,6 +36,7 @@ namespace Apresentação.Financeiro.Coaf.Lista
             this.colPEP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colCPFCNPJ = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colValorAcumulado = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colNotificável = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lista
@@ -45,7 +46,8 @@ namespace Apresentação.Financeiro.Coaf.Lista
             this.colPessoa,
             this.colPEP,
             this.colCPFCNPJ,
-            this.colValorAcumulado});
+            this.colValorAcumulado,
+            this.colNotificável});
             this.lista.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lista.FullRowSelect = true;
             this.lista.Location = new System.Drawing.Point(0, 0);
@@ -80,6 +82,10 @@ namespace Apresentação.Financeiro.Coaf.Lista
             this.colValorAcumulado.Text = "Valor Acumulado";
             this.colValorAcumulado.Width = 131;
             // 
+            // colNotificável
+            // 
+            this.colNotificável.Text = "Notificável";
+            // 
             // ListaPessoa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -99,5 +105,6 @@ namespace Apresentação.Financeiro.Coaf.Lista
         private System.Windows.Forms.ColumnHeader colCPFCNPJ;
         private System.Windows.Forms.ColumnHeader colValorAcumulado;
         private System.Windows.Forms.ColumnHeader colCódigo;
+        private System.Windows.Forms.ColumnHeader colNotificável;
     }
 }
