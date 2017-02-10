@@ -8,10 +8,14 @@ namespace Entidades.Coaf
     public class PessoaExpostaPoliticamente : DbManipulaçãoSimples
     {
         private string cpf;
+        private string descricao;
 
-        public PessoaExpostaPoliticamente(string cpf)
+        public string Descrição => descricao;
+
+        public PessoaExpostaPoliticamente(string cpf, string descrição)
         {
             this.cpf = cpf;
+            this.descricao = descrição;
         }        
 
         public static void Persistir(List<PessoaExpostaPoliticamente> pessoas)
@@ -40,11 +44,13 @@ namespace Entidades.Coaf
                 return "";
 
             StringBuilder sql = new StringBuilder();
-            sql.AppendLine("insert into pep (cpf) values ('");
+            sql.AppendLine("insert into pep (cpf, descricao) values ('");
 
             foreach (var pessoa in pessoas)
             {
                 sql.Append(pessoa.cpf);
+                sql.Append("','");
+                sql.Append(pessoa.descricao.Trim());
                 sql.Append("'),('");
             }
 

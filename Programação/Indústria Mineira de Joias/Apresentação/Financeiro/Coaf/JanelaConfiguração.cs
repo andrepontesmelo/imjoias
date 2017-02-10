@@ -18,5 +18,10 @@ namespace Apresentação.Financeiro.Coaf
         {
             Close();
         }
+
+        private void txtMeses_ValueChanged(object sender, System.EventArgs e)
+        {
+            grupoPeríodo.Text = string.Format("Período: últimos {0} meses", txtMeses.Value);
+        }
     }
 }

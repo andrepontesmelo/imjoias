@@ -30,11 +30,11 @@
         {
             this.título = new Apresentação.Formulários.TítuloBaseInferior();
             this.quadro1 = new Apresentação.Formulários.Quadro();
+            this.opçãoImportar = new Apresentação.Formulários.Opção();
             this.opçãoImprimir = new Apresentação.Formulários.Opção();
             this.opçãoConfigurar = new Apresentação.Formulários.Opção();
             this.listaSaída = new Apresentação.Financeiro.Coaf.Lista.ListaSaída();
             this.listaPessoa = new Apresentação.Financeiro.Coaf.Lista.ListaPessoa();
-            this.opçãoImportar = new Apresentação.Formulários.Opção();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.SuspendLayout();
@@ -50,9 +50,9 @@
             this.título.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.título.BackColor = System.Drawing.Color.White;
-            this.título.Descrição = "Operações de saídas fiscais acumuladas nos últimos mêses por pessoa. Este relatór" +
-    "io implementa a resolução 23 de 20 de Dezembro de 2012 da COAF. PPE: Pessoa polí" +
-    "ticamente exposta.";
+            this.título.Descrição = "Operações de saídas fiscais acumuladas nos últimos 6 mêses. Este relatório implem" +
+    "enta a resolução 23 de 20 de Dezembro de 2012 da COAF. PEP: Pessoa exposta polít" +
+    "icamente.";
             this.título.ÍconeArredondado = false;
             this.título.Imagem = global::Apresentação.Resource.Logo_COAF;
             this.título.Location = new System.Drawing.Point(193, 3);
@@ -82,6 +82,20 @@
             this.quadro1.Tamanho = 30;
             this.quadro1.Título = "Ações";
             // 
+            // opçãoImportar
+            // 
+            this.opçãoImportar.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoImportar.Descrição = "Importar";
+            this.opçãoImportar.Imagem = global::Apresentação.Resource.importar21;
+            this.opçãoImportar.Location = new System.Drawing.Point(7, 70);
+            this.opçãoImportar.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoImportar.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoImportar.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoImportar.Name = "opçãoImportar";
+            this.opçãoImportar.Size = new System.Drawing.Size(150, 18);
+            this.opçãoImportar.TabIndex = 10;
+            this.opçãoImportar.Click += new System.EventHandler(this.opçãoImportar_Click);
+            // 
             // opçãoImprimir
             // 
             this.opçãoImprimir.BackColor = System.Drawing.Color.Transparent;
@@ -94,6 +108,7 @@
             this.opçãoImprimir.Name = "opçãoImprimir";
             this.opçãoImprimir.Size = new System.Drawing.Size(150, 18);
             this.opçãoImprimir.TabIndex = 8;
+            this.opçãoImprimir.Visible = false;
             this.opçãoImprimir.Click += new System.EventHandler(this.opçãoImprimir_Click);
             // 
             // opçãoConfigurar
@@ -130,20 +145,6 @@
             this.listaPessoa.Size = new System.Drawing.Size(708, 302);
             this.listaPessoa.TabIndex = 8;
             this.listaPessoa.DuploClique += new System.EventHandler(this.listaPessoa_DuploClique);
-            // 
-            // opçãoImportar
-            // 
-            this.opçãoImportar.BackColor = System.Drawing.Color.Transparent;
-            this.opçãoImportar.Descrição = "Importar";
-            this.opçãoImportar.Imagem = global::Apresentação.Resource.importar21;
-            this.opçãoImportar.Location = new System.Drawing.Point(7, 70);
-            this.opçãoImportar.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.opçãoImportar.MaximumSize = new System.Drawing.Size(150, 100);
-            this.opçãoImportar.MinimumSize = new System.Drawing.Size(150, 16);
-            this.opçãoImportar.Name = "opçãoImportar";
-            this.opçãoImportar.Size = new System.Drawing.Size(150, 18);
-            this.opçãoImportar.TabIndex = 10;
-            this.opçãoImportar.Click += new System.EventHandler(this.opçãoImportar_Click);
             // 
             // BaseCoaf
             // 

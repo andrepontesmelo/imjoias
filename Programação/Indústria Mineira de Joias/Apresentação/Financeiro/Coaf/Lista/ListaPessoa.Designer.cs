@@ -30,7 +30,7 @@
         {
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "Dalmo Joias",
-            "Não",
+            "Deputado Federal - Câmara dos deputados",
             "17.0394.480.000-1000",
             "R$ 500.000,00"}, -1);
             System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
@@ -40,7 +40,7 @@
             "R$ 30.000,00"}, -1);
             this.lista = new System.Windows.Forms.ListView();
             this.colPessoa = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colPPE = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colPEP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colCPFCNPJ = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colValorAcumulado = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
@@ -49,7 +49,7 @@
             // 
             this.lista.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colPessoa,
-            this.colPPE,
+            this.colPEP,
             this.colCPFCNPJ,
             this.colValorAcumulado});
             this.lista.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -70,9 +70,10 @@
             this.colPessoa.Text = "Pessoa";
             this.colPessoa.Width = 190;
             // 
-            // colPPE
+            // colPEP
             // 
-            this.colPPE.Text = "PPE";
+            this.colPEP.Text = "PEP";
+            this.colPEP.Width = 223;
             // 
             // colCPFCNPJ
             // 
@@ -99,7 +100,7 @@
 
         private System.Windows.Forms.ListView lista;
         private System.Windows.Forms.ColumnHeader colPessoa;
-        private System.Windows.Forms.ColumnHeader colPPE;
+        private System.Windows.Forms.ColumnHeader colPEP;
         private System.Windows.Forms.ColumnHeader colCPFCNPJ;
         private System.Windows.Forms.ColumnHeader colValorAcumulado;
     }
