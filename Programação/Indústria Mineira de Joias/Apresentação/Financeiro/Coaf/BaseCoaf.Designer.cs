@@ -151,6 +151,7 @@
             this.listaPessoa.Size = new System.Drawing.Size(706, 350);
             this.listaPessoa.TabIndex = 8;
             this.listaPessoa.DuploClique += new System.EventHandler(this.listaPessoa_DuploClique);
+            this.listaPessoa.SeleçãoAlterada += new System.EventHandler(this.listaPessoa_SeleçãoAlterada);
             // 
             // tabControl
             // 

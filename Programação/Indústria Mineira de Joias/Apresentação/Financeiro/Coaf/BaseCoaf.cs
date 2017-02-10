@@ -82,5 +82,13 @@ namespace Apresentação.Financeiro.Coaf
             AguardeDB.Fechar();
             MessageBox.Show(string.Format("Fim da importação. {0} CPF's importados", qtdPessoasImportadas));
         }
+
+        private void listaPessoa_SeleçãoAlterada(object sender, System.EventArgs e)
+        {
+            string pessoa = listaPessoa.ObterCpfCnpjPessoaSelecionada();
+
+            if (pessoa != null)
+                listaSaída.Carregar(pessoa);
+        }
     }
 }

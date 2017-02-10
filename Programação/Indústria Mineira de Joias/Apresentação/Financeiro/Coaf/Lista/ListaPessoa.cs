@@ -4,16 +4,15 @@ using Entidades.Configuração;
 using Entidades.Pessoa;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Forms;
-using System.Runtime.Serialization;
 
 namespace Apresentação.Financeiro.Coaf.Lista
 {
     public partial class ListaPessoa : UserControl
     {
         public event EventHandler DuploClique;
-        
+        public event EventHandler SeleçãoAlterada;
+
         public ListaPessoa()
         {
             InitializeComponent();
@@ -32,6 +31,14 @@ namespace Apresentação.Financeiro.Coaf.Lista
                 return null;
 
             return (lista.SelectedItems[0].Tag as PessoaResumo).Código;
+        }
+
+        public string ObterCpfCnpjPessoaSelecionada()
+        {
+            if (lista.SelectedItems.Count == 0)
+                return null;
+
+            return (lista.SelectedItems[0].Tag as PessoaResumo).CpfCnpj;
         }
 
         private void lista_DoubleClick(object sender, EventArgs e)
@@ -88,6 +95,11 @@ namespace Apresentação.Financeiro.Coaf.Lista
             var início = agora.AddMonths(-1 * meses);
 
             return PessoaResumo.Obter(início);
+        }
+
+        private void lista_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SeleçãoAlterada?.Invoke(sender, e);
         }
     }
 }

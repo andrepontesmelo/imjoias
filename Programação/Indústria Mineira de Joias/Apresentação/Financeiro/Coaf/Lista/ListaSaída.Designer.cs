@@ -28,16 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
-            "4721@1",
-            "1/1/2001",
-            "R$ 25.000,00",
-            "223.452"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
-            "3212@2",
-            "2/2/2002",
-            "R$ 50.000,00",
-            ""}, -1);
             this.lista = new System.Windows.Forms.ListView();
             this.colSaída = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colDataSaída = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -54,9 +44,6 @@
             this.colVenda});
             this.lista.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lista.FullRowSelect = true;
-            this.lista.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2});
             this.lista.Location = new System.Drawing.Point(0, 0);
             this.lista.Name = "lista";
             this.lista.Size = new System.Drawing.Size(593, 283);

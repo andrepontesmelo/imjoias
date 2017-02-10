@@ -63,6 +63,7 @@ namespace Apresentação.Financeiro.Coaf.Lista
             this.lista.TabIndex = 0;
             this.lista.UseCompatibleStateImageBehavior = false;
             this.lista.View = System.Windows.Forms.View.Details;
+            this.lista.SelectedIndexChanged += new System.EventHandler(this.lista_SelectedIndexChanged);
             this.lista.DoubleClick += new System.EventHandler(this.lista_DoubleClick);
             // 
             // colCódigo

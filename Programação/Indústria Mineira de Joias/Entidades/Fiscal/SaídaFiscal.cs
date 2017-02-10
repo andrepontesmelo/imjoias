@@ -241,5 +241,17 @@ namespace Entidades.Fiscal
         {
             itens = new List<ItemFiscal>(SaídaItemFiscal.CarregarItens(id));
         }
+
+        public static List<SaídaFiscal> Obter(string cpfCnpj)
+        {
+            string sql = "select id, datasaida, valortotal, venda, cancelada from saidafiscal where ";
+            bool cpf = cpfCnpj.Length == 11;
+
+            sql += cpf ? "cpfemissor" : "cnpjemissor";
+
+            sql += " = " + DbTransformar(cpfCnpj);
+
+            return Mapear<SaídaFiscal>(sql);
+        }
     }
 }
