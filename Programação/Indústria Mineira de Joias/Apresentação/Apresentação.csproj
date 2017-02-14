@@ -327,6 +327,12 @@
     <Compile Include="Financeiro\Coaf\Lista\ListaPessoa.Designer.cs">
       <DependentUpon>ListaPessoa.cs</DependentUpon>
     </Compile>
+    <Compile Include="Financeiro\Coaf\Lista\ListaNotificações.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Financeiro\Coaf\Lista\ListaNotificações.Designer.cs">
+      <DependentUpon>ListaNotificações.cs</DependentUpon>
+    </Compile>
     <Compile Include="Financeiro\Relacionamento\Venda\Semáforo\ConfiguraçãoMarcaçãoSemáforo.cs" />
     <Compile Include="Formulário\ComboRígido.cs">
       <SubType>Component</SubType>
@@ -2734,6 +2740,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Financeiro\Coaf\Lista\ListaPessoa.resx">
       <DependentUpon>ListaPessoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Financeiro\Coaf\Lista\ListaNotificações.resx">
+      <DependentUpon>ListaNotificações.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Financeiro\Relacionamento\Impressão.resx">
       <DependentUpon>Impressão.cs</DependentUpon>
