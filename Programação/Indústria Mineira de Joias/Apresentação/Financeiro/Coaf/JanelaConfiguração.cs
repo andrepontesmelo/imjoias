@@ -24,13 +24,15 @@ namespace Apresentação.Financeiro.Coaf
             txtMeses.Value = Configurações.QtdMeses;
             txtMínimoDemais.Text = Configurações.ValorMínimoAcumuladoDemaisPessoas.Valor.ToString();
             txtMínimoPEP.Text = Configurações.ValorMínimoAcumuladoPessoaExpostaPoliticamente.Valor.ToString();
-        }
+            chkExibirOperaçõesNãoNotificáveis.Checked = Configurações.ExibirOperaçõesNãoNotificáveis.Valor;
+       }
 
         private void btnOk_Click(object sender, System.EventArgs e)
         {
             Configurações.QtdMeses.Valor = (int) txtMeses.Value;
             Configurações.ValorMínimoAcumuladoPessoaExpostaPoliticamente.Valor = (decimal) txtMínimoPEP.Double;
             Configurações.ValorMínimoAcumuladoDemaisPessoas.Valor = (decimal) txtMínimoDemais.Double;
+            Configurações.ExibirOperaçõesNãoNotificáveis.Valor = chkExibirOperaçõesNãoNotificáveis.Checked;
 
             Close();
         }

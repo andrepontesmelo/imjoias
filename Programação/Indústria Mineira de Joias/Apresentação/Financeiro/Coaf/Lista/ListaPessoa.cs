@@ -61,6 +61,9 @@ namespace Apresentação.Financeiro.Coaf.Lista
 
             foreach (PessoaResumo entidade in entidades)
             {
+                if (!ConfiguraçõesCoaf.Instância.ExibirOperaçõesNãoNotificáveis && !entidade.Notificável)
+                    continue;
+
                 ListViewItem item = new ListViewItem(ObterGrupo(entidade));
                 item.SubItems.AddRange(new string[] { "", "", "", "", "" });
                 item.SubItems[colCPFCNPJ.Index].Text = FormatarCpfCnpj(entidade.CpfCnpj);
