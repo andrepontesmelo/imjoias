@@ -358,6 +358,7 @@
     <Compile Include="Mercadoria\IMercadoriaCampos.cs" />
     <Compile Include="Mercadoria\MatériaPrima.cs" />
     <Compile Include="Mercadoria\MercadoriaCampos.cs" />
+    <Compile Include="Mercadoria\MercadoriaDePeso.cs" />
     <Compile Include="Mercadoria\MercadoriaEmFaltaCliente.cs" />
     <Compile Include="Mercadoria\MercadoriaFornecedor.cs" />
     <Compile Include="Mercadoria\MercadoriaImpressão.cs" />

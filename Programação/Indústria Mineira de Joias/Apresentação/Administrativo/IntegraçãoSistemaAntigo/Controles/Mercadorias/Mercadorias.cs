@@ -226,35 +226,9 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 
 		public static bool ConferirÉDePeso(DataRow cadmerItem)
 		{
-            string referência = cadmerItem["cm_codmer"].ToString();
-            string componenteCusto = cadmerItem["cm_ccusto"].ToString();
+            string referência = cadmerItem["cm_codmer"].ToString().Trim();
 
-            if (componenteCusto.StartsWith("0A")
-                || componenteCusto.StartsWith("1A")
-                || componenteCusto.StartsWith("2A")
-                || componenteCusto.StartsWith("3A")
-                || componenteCusto.StartsWith("4A")
-                || componenteCusto.StartsWith("5A")
-                || componenteCusto.StartsWith("6A")
-                || componenteCusto.StartsWith("7A")
-                || componenteCusto.StartsWith("8A")
-                || componenteCusto.StartsWith("9A")
-                || componenteCusto.StartsWith("19"))
-                return false;
-
-
-            if (referência.Length < 4)
-                return false;
-
-            if (referência.StartsWith("3") || referência.StartsWith("2"))
-                return true;
-
-            string quartoDigito = referência.Substring(3, 1);
-
-            if ((quartoDigito == "9") || (quartoDigito == "8"))
-                return true;
-
-            return false;
+            return MercadoriaDePeso.Hash.Contains(referência);
         }
     }
 }
