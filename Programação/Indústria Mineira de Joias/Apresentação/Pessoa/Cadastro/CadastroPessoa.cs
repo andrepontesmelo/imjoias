@@ -1,4 +1,5 @@
 using Apresentação.Formulários;
+using Entidades.Configuração;
 using Entidades.Pessoa;
 using Entidades.Privilégio;
 using System;
@@ -456,13 +457,15 @@ namespace Apresentação.Pessoa.Cadastro
 
                 if (Pessoa.Cadastrado)
                 {
-                    TimeSpan TempoDesatualizado = Entidades.Configuração.DadosGlobais.Instância.HoraDataAtual - Pessoa.DataAlteração.Value;
+                    TimeSpan TempoDesatualizado = DadosGlobais.Instância.HoraDataAtual - Pessoa.DataAlteração.Value;
                     double dias = Math.Round(TempoDesatualizado.TotalDays);
 
+                    Text = Pessoa.Nome + " | Últ. Alteração: ";
+
                     if (dias <= 1)
-                        Text = "Última alteração na cadastro foi em " + Pessoa.DataAlteração.Value.ToShortDateString() + ", às " + Pessoa.DataAlteração.Value.ToShortTimeString();
+                        Text += Pessoa.DataAlteração.Value.ToShortDateString() + ", às " + Pessoa.DataAlteração.Value.ToShortTimeString();
                     else
-                        Text = "Última alteração na cadastro: " + dias + " dias";
+                        Text += dias + " dias";
                 }
 
                 // Prepara e adiciona controle na aba de dados pessoais.
