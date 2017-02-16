@@ -27,8 +27,8 @@ namespace Apresentação.Pessoa.Cadastro
                 txtCNPJ.Text = value.CNPJ != null ? value.CNPJ : "";
                 txtInscEstadual.Text = value.InscEstadual != null ? value.InscEstadual : "";
                 txtInscMunicipal.Text = value.InscMunicipal != null ? value.InscMunicipal : "";
-                txtCPFPreposto.Text = value.CpfPreposto != null ? value.CpfPreposto : "";
-
+                CarregarDadosPreposto();
+                
                 if (pessoa.Cadastrado)
                 {
                     this.txtCódigo.Text = pessoa.Código.ToString();
@@ -126,6 +126,19 @@ namespace Apresentação.Pessoa.Cadastro
         private void txtCPFPreposto_Validated(object sender, EventArgs e)
         {
             pessoa.CpfPreposto = txtCPFPreposto.TextoSemFormatação;
+            CarregarDadosPreposto();
+        }
+
+        private void CarregarDadosPreposto()
+        {
+            txtCPFPreposto.Text = pessoa.CpfPreposto != null ? pessoa.CpfPreposto : "";
+
+            var preposto = PessoaFísica.ObterPessoaPorCPF(pessoa.CpfPreposto);
+
+            txtNomePreposto.Text = preposto != null ? preposto.Nome : "";
+            txtCódigoPreposto.Text = preposto != null ? preposto.Código.ToString() : "";
+            txtRG.Text = preposto != null ? preposto.DI : "";
+            txtRGEmissor.Text = preposto != null ? preposto.DIEmissor : "";
         }
     }
 }

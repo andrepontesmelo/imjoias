@@ -37,18 +37,26 @@
             this.lblInscMunicipal = new System.Windows.Forms.Label();
             this.txtInscEstadual = new System.Windows.Forms.TextBox();
             this.lblInscEstadual = new System.Windows.Forms.Label();
-            this.txtCNPJ = new Apresentação.Pessoa.TextBoxCNPJ();
             this.lblCNPJ = new System.Windows.Forms.Label();
             this.txtFantasia = new System.Windows.Forms.TextBox();
             this.lblFantasia = new System.Windows.Forms.Label();
             this.lblNome = new System.Windows.Forms.Label();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.abrirArquivo = new System.Windows.Forms.OpenFileDialog();
-            this.formatadorRazãoSocial = new Apresentação.Pessoa.FormatadorNome(this.components);
-            this.formatadorNomeFantasia = new Apresentação.Pessoa.FormatadorNome(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtCódigoPreposto = new AMS.TextBox.IntegerTextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtNomePreposto = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtRG = new System.Windows.Forms.TextBox();
+            this.txtRGEmissor = new System.Windows.Forms.TextBox();
+            this.lblEmissor = new System.Windows.Forms.Label();
             this.txtCPFPreposto = new Apresentação.Pessoa.TextBoxCPF();
+            this.txtCNPJ = new Apresentação.Pessoa.TextBoxCNPJ();
+            this.formatadorRazãoSocial = new Apresentação.Pessoa.FormatadorNome(this.components);
+            this.formatadorNomeFantasia = new Apresentação.Pessoa.FormatadorNome(this.components);
             this.groupBox4.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -73,7 +81,7 @@
             this.groupBox4.Controls.Add(this.txtNome);
             this.groupBox4.Location = new System.Drawing.Point(0, 0);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(392, 329);
+            this.groupBox4.Size = new System.Drawing.Size(392, 179);
             this.groupBox4.TabIndex = 1;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Identificação";
@@ -153,15 +161,6 @@
             this.lblInscEstadual.TabIndex = 6;
             this.lblInscEstadual.Text = "Insc. Estadual:";
             // 
-            // txtCNPJ
-            // 
-            this.txtCNPJ.Location = new System.Drawing.Point(88, 95);
-            this.txtCNPJ.Name = "txtCNPJ";
-            this.txtCNPJ.Size = new System.Drawing.Size(117, 20);
-            this.txtCNPJ.TabIndex = 5;
-            this.txtCNPJ.Validating += new System.ComponentModel.CancelEventHandler(this.txtCNPJ_Validating);
-            this.txtCNPJ.Validated += new System.EventHandler(this.txtCNPJ_Validated);
-            // 
             // lblCNPJ
             // 
             this.lblCNPJ.AutoSize = true;
@@ -221,11 +220,19 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.txtCódigoPreposto);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.txtNomePreposto);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.txtRG);
+            this.groupBox1.Controls.Add(this.txtRGEmissor);
+            this.groupBox1.Controls.Add(this.lblEmissor);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtCPFPreposto);
-            this.groupBox1.Location = new System.Drawing.Point(3, 335);
+            this.groupBox1.Location = new System.Drawing.Point(3, 185);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(386, 49);
+            this.groupBox1.Size = new System.Drawing.Size(386, 199);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Preposto";
@@ -239,6 +246,95 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "CPF:";
             // 
+            // txtCódigoPreposto
+            // 
+            this.txtCódigoPreposto.AllowNegative = true;
+            this.txtCódigoPreposto.DigitsInGroup = 0;
+            this.txtCódigoPreposto.Enabled = false;
+            this.txtCódigoPreposto.Flags = 0;
+            this.txtCódigoPreposto.Location = new System.Drawing.Point(85, 51);
+            this.txtCódigoPreposto.MaxDecimalPlaces = 0;
+            this.txtCódigoPreposto.MaxWholeDigits = 9;
+            this.txtCódigoPreposto.Name = "txtCódigoPreposto";
+            this.txtCódigoPreposto.Prefix = "";
+            this.txtCódigoPreposto.RangeMax = 1.7976931348623157E+308D;
+            this.txtCódigoPreposto.RangeMin = -1.7976931348623157E+308D;
+            this.txtCódigoPreposto.Size = new System.Drawing.Size(117, 20);
+            this.txtCódigoPreposto.TabIndex = 23;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Enabled = false;
+            this.label2.Location = new System.Drawing.Point(6, 54);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(43, 13);
+            this.label2.TabIndex = 22;
+            this.label2.Text = "Código:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Enabled = false;
+            this.label3.Location = new System.Drawing.Point(6, 80);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(38, 13);
+            this.label3.TabIndex = 16;
+            this.label3.Text = "&Nome:";
+            // 
+            // txtNomePreposto
+            // 
+            this.txtNomePreposto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNomePreposto.Enabled = false;
+            this.txtNomePreposto.Location = new System.Drawing.Point(85, 77);
+            this.txtNomePreposto.MaxLength = 100;
+            this.txtNomePreposto.Name = "txtNomePreposto";
+            this.txtNomePreposto.Size = new System.Drawing.Size(296, 20);
+            this.txtNomePreposto.TabIndex = 18;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Enabled = false;
+            this.label5.Location = new System.Drawing.Point(6, 107);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(21, 13);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "&DI:";
+            // 
+            // txtRG
+            // 
+            this.txtRG.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtRG.Enabled = false;
+            this.txtRG.Location = new System.Drawing.Point(85, 104);
+            this.txtRG.MaxLength = 15;
+            this.txtRG.Name = "txtRG";
+            this.txtRG.Size = new System.Drawing.Size(117, 20);
+            this.txtRG.TabIndex = 19;
+            // 
+            // txtRGEmissor
+            // 
+            this.txtRGEmissor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtRGEmissor.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtRGEmissor.Enabled = false;
+            this.txtRGEmissor.Location = new System.Drawing.Point(85, 130);
+            this.txtRGEmissor.MaxLength = 10;
+            this.txtRGEmissor.Name = "txtRGEmissor";
+            this.txtRGEmissor.Size = new System.Drawing.Size(117, 20);
+            this.txtRGEmissor.TabIndex = 21;
+            // 
+            // lblEmissor
+            // 
+            this.lblEmissor.AutoSize = true;
+            this.lblEmissor.Enabled = false;
+            this.lblEmissor.Location = new System.Drawing.Point(6, 133);
+            this.lblEmissor.Name = "lblEmissor";
+            this.lblEmissor.Size = new System.Drawing.Size(78, 13);
+            this.lblEmissor.TabIndex = 20;
+            this.lblEmissor.Text = "&Órgão Emissor:";
+            // 
             // txtCPFPreposto
             // 
             this.txtCPFPreposto.Location = new System.Drawing.Point(85, 19);
@@ -246,6 +342,15 @@
             this.txtCPFPreposto.Size = new System.Drawing.Size(117, 20);
             this.txtCPFPreposto.TabIndex = 0;
             this.txtCPFPreposto.Validated += new System.EventHandler(this.txtCPFPreposto_Validated);
+            // 
+            // txtCNPJ
+            // 
+            this.txtCNPJ.Location = new System.Drawing.Point(88, 95);
+            this.txtCNPJ.Name = "txtCNPJ";
+            this.txtCNPJ.Size = new System.Drawing.Size(117, 20);
+            this.txtCNPJ.TabIndex = 5;
+            this.txtCNPJ.Validating += new System.ComponentModel.CancelEventHandler(this.txtCNPJ_Validating);
+            this.txtCNPJ.Validated += new System.EventHandler(this.txtCNPJ_Validated);
             // 
             // DadosPessoaJurídica
             // 
@@ -285,5 +390,13 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
         private TextBoxCPF txtCPFPreposto;
+        private AMS.TextBox.IntegerTextBox txtCódigoPreposto;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtNomePreposto;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtRG;
+        private System.Windows.Forms.TextBox txtRGEmissor;
+        private System.Windows.Forms.Label lblEmissor;
     }
 }

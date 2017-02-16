@@ -281,6 +281,9 @@ namespace Entidades.Pessoa
 		/// <returns>Pessoa-física.</returns>
         public static PessoaFísica ObterPessoaPorCPF(string cpf)
         {
+            if (cpf == null)
+                return null;
+
             IDbConnection conexão = Conexão;
 
             lock (conexão)
