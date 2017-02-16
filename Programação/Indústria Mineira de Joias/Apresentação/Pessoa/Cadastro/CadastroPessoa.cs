@@ -12,17 +12,17 @@ namespace Apresentação.Pessoa.Cadastro
     /// Tela para cadastro de pessoa.
     /// </summary>
     public class CadastroPessoa : Form, IRequerPrivilégio
-	{
-		private Entidades.Pessoa.Pessoa entidade;
+    {
+        private Entidades.Pessoa.Pessoa entidade;
         protected TabControl tab;
 
         // Designer
-		private System.Windows.Forms.TabPage tabDadosPessoais;
-		protected System.Windows.Forms.ImageList ícones;
+        private System.Windows.Forms.TabPage tabDadosPessoais;
+        protected System.Windows.Forms.ImageList ícones;
         private System.Windows.Forms.TabPage tabEndereço;
         protected Button cmdOK;
         protected System.Windows.Forms.Button cmdCancelar;
-		private System.Windows.Forms.TabPage tabObservações;
+        private System.Windows.Forms.TabPage tabObservações;
         private System.Windows.Forms.TextBox txtObservações;
         private GroupBox grpEletrônico;
         private TextBox txtEmail;
@@ -38,58 +38,58 @@ namespace Apresentação.Pessoa.Cadastro
         private Label label2;
         private Apresentação.Pessoa.Endereço.ComboBoxRegião cmbRegião;
         protected Button btnExcluir;
-		private System.ComponentModel.IContainer components;
+        private System.ComponentModel.IContainer components;
 
-		/// <summary>
-		/// Constrói o formlário de cadastro de pessoa física.
-		/// </summary>
-		/// <remarks>
-		/// A pessoa física NÃO é cadastrada/atualizada no
-		/// banco de dados.
-		/// </remarks>
-		public CadastroPessoa()
-		{
-			InitializeComponent();
+        /// <summary>
+        /// Constrói o formlário de cadastro de pessoa física.
+        /// </summary>
+        /// <remarks>
+        /// A pessoa física NÃO é cadastrada/atualizada no
+        /// banco de dados.
+        /// </remarks>
+        public CadastroPessoa()
+        {
+            InitializeComponent();
 
             btnExcluir.Visible = btnExcluir.Enabled = PermissãoFuncionário.ValidarPermissão(Permissão.CadastroRemover);
-		}
+        }
 
-		/// <summary>
-		/// Constrói o cadastro de pessoa a partir de dados
-		/// já definidos.
-		/// </summary>
-		/// <param name="pessoa">Pessoa física ou jurídica.</param>
-		public CadastroPessoa(Entidades.Pessoa.Pessoa pessoa) : this()
-		{
+        /// <summary>
+        /// Constrói o cadastro de pessoa a partir de dados
+        /// já definidos.
+        /// </summary>
+        /// <param name="pessoa">Pessoa física ou jurídica.</param>
+        public CadastroPessoa(Entidades.Pessoa.Pessoa pessoa) : this()
+        {
             AguardeDB.Mostrar();
 
-			this.Pessoa = pessoa;
+            this.Pessoa = pessoa;
 
             AguardeDB.Fechar();
-		}
+        }
 
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		protected override void Dispose( bool disposing )
-		{
-			if( disposing )
-			{
-				if(components != null)
-				{
-					components.Dispose();
-				}
-			}
-			base.Dispose( disposing );
-		}
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (components != null)
+                {
+                    components.Dispose();
+                }
+            }
+            base.Dispose(disposing);
+        }
 
-		#region Windows Form Designer generated code
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
+        #region Windows Form Designer generated code
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CadastroPessoa));
             this.tab = new System.Windows.Forms.TabControl();
@@ -127,8 +127,8 @@ namespace Apresentação.Pessoa.Cadastro
             // 
             // tab
             // 
-            this.tab.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.tab.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tab.Controls.Add(this.tabDadosPessoais);
             this.tab.Controls.Add(this.tabEndereço);
@@ -199,8 +199,8 @@ namespace Apresentação.Pessoa.Cadastro
             // 
             // grpFísico
             // 
-            this.grpFísico.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.grpFísico.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grpFísico.Controls.Add(this.endereços);
             this.grpFísico.Location = new System.Drawing.Point(3, 108);
@@ -220,7 +220,7 @@ namespace Apresentação.Pessoa.Cadastro
             // 
             // grpEletrônico
             // 
-            this.grpEletrônico.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.grpEletrônico.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grpEletrônico.Controls.Add(this.txtEmail);
             this.grpEletrônico.Controls.Add(this.label1);
@@ -233,7 +233,7 @@ namespace Apresentação.Pessoa.Cadastro
             // 
             // txtEmail
             // 
-            this.txtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEmail.Location = new System.Drawing.Point(59, 19);
             this.txtEmail.Name = "txtEmail";
@@ -409,21 +409,21 @@ namespace Apresentação.Pessoa.Cadastro
             this.tabDatas.ResumeLayout(false);
             this.ResumeLayout(false);
 
-		}
-		#endregion
+        }
+        #endregion
 
-		/// <summary>
-		/// Dados da pessoa física
-		/// </summary>
+        /// <summary>
+        /// Dados da pessoa física
+        /// </summary>
         [Browsable(false), DefaultValue(null), ReadOnly(true)]
-		public virtual Entidades.Pessoa.Pessoa Pessoa
-		{
-			get
-			{
+        public virtual Entidades.Pessoa.Pessoa Pessoa
+        {
+            get
+            {
                 return entidade;
-			}
-			set
-			{
+            }
+            set
+            {
                 Control controle;
 
                 entidade = value;
@@ -481,7 +481,7 @@ namespace Apresentação.Pessoa.Cadastro
 
                 cmbRegião.Região = value.Região;
             }
-		}
+        }
 
         public Permissão Privilégio
         {
@@ -731,7 +731,7 @@ namespace Apresentação.Pessoa.Cadastro
                     "Cadastro de funcionário",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
-                
+
                 return false;
             }
 
@@ -873,10 +873,92 @@ namespace Apresentação.Pessoa.Cadastro
                     new MailAddress(email);
 
                 e.Cancel = false;
-            } catch (Exception)
+            }
+            catch (Exception)
             {
                 e.Cancel = true;
             }
+        }
+
+
+        public static DialogResult Abrir(Entidades.Pessoa.Pessoa pessoa, IWin32Window pai,
+        out Entidades.Pessoa.Pessoa pessoaAtualizada)
+        {
+            DialogResult resultado;
+
+            if (Funcionário.ÉFuncionário(pessoa))
+            {
+                AguardeDB.Mostrar();
+
+                try
+                {
+                    if (!(pessoa is Funcionário))
+                        pessoa = Funcionário.ObterPessoa(pessoa.Código);
+                }
+                finally
+                {
+                    AguardeDB.Fechar();
+                }
+
+                using (CadastroFuncionário frm = new CadastroFuncionário((Entidades.Pessoa.Funcionário)pessoa))
+                {
+                    resultado = frm.ShowDialog(pai);
+                    pessoaAtualizada = frm.Funcionário;
+                }
+            }
+            else if (pessoa is PessoaFísica)
+            {
+                using (CadastroCliente frm = new CadastroCliente((PessoaFísica)pessoa))
+                {
+                    resultado = frm.ShowDialog(pai);
+                    pessoaAtualizada = frm.Pessoa;
+                }
+            }
+            else if (pessoa is PessoaJurídica)
+                using (CadastroCliente frm = new CadastroCliente((PessoaJurídica)pessoa))
+                {
+                    resultado = frm.ShowDialog(pai);
+                    pessoaAtualizada = frm.Pessoa;
+                }
+            else if (pessoa is Entidades.Pessoa.Pessoa)
+            {
+                PessoaJurídica juridica = PessoaJurídica.ObterPessoa(pessoa.Código);
+
+                if (juridica != null)
+                {
+                    using (CadastroCliente frm = new CadastroCliente(juridica))
+                    {
+                        resultado = frm.ShowDialog(pai);
+                        pessoaAtualizada = frm.Pessoa;
+                    }
+                }
+                else
+                {
+                    PessoaFísica fisica = PessoaFísica.ObterPessoa(pessoa.Código);
+
+                    if (fisica != null)
+                    {
+                        using (CadastroCliente frm = new CadastroCliente(fisica))
+                        {
+                            resultado = frm.ShowDialog(pai);
+                            pessoaAtualizada = frm.Pessoa;
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception("A pessoa é do Tipo Entidades.Pessoa, porém não é física nem jurídica!");
+                    }
+                }
+            }
+            else
+            {
+                throw new NotSupportedException("O tipo de pessoa \"" + pessoa.GetType().Name + "\" não é suportado. Código:" + pessoa.Código.ToString());
+            }
+
+            if (resultado == DialogResult.OK)
+                pessoaAtualizada.Atualizar();
+
+            return resultado;
         }
     }
 }

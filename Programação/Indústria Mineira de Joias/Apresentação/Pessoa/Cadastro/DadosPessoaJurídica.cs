@@ -131,14 +131,31 @@ namespace Apresentação.Pessoa.Cadastro
 
         private void CarregarDadosPreposto()
         {
-            txtCPFPreposto.Text = pessoa.CpfPreposto != null ? pessoa.CpfPreposto : "";
+            CarregarDadosPreposto(PessoaFísica.ObterPessoaPorCPF(pessoa.CpfPreposto));
+        }
 
-            var preposto = PessoaFísica.ObterPessoaPorCPF(pessoa.CpfPreposto);
+        private void CarregarDadosPreposto(PessoaFísica preposto)
+        {
+            txtCPFPreposto.Text = pessoa.CpfPreposto != null ? pessoa.CpfPreposto : "";
 
             txtNomePreposto.Text = preposto != null ? preposto.Nome : "";
             txtCódigoPreposto.Text = preposto != null ? preposto.Código.ToString() : "";
             txtRG.Text = preposto != null ? preposto.DI : "";
             txtRGEmissor.Text = preposto != null ? preposto.DIEmissor : "";
+            lnkAbrirCadastroPreposto.Enabled = preposto != null;
+        }
+
+        private void lnkAbrirCadastroPreposto_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            var preposto = PessoaFísica.ObterPessoaPorCPF(pessoa.CpfPreposto);
+
+            if (preposto == null)
+                return;
+
+            Entidades.Pessoa.Pessoa pessoaAtualizada;
+
+            if (CadastroPessoa.Abrir(preposto, this.Parent, out pessoaAtualizada) == DialogResult.OK)
+                CarregarDadosPreposto((PessoaFísica) pessoaAtualizada);
         }
     }
 }

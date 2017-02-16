@@ -906,122 +906,17 @@ namespace Apresentação.Atendimento
 			SubstituirBaseParaAnterior();
 		}
 
-		/// <summary>
-		/// Ocorre ao clicar em "Abrir ficha".
-		/// </summary>
 		private void opçãoAbrir_Click(object sender, System.EventArgs e)
-		{
-			DialogResult            resultado;
-			Entidades.Pessoa.Pessoa entidade;
+        {
+            Entidades.Pessoa.Pessoa pessoaAtualizada;
 
-			/* Abaixo será verificado qual o tipo da pessoa. Em caso
-			 * de alteração, deve-se tomar o CUIDADO com a ORDEM
-			 * de verificação, pois uma classe pai responderá
-			 * pelas classes filhas que estiverem após a sua verificação.
-			 */
+            var resultado = CadastroPessoa.Abrir(pessoa, this.ParentForm, out pessoaAtualizada);
 
-			// Funcionário
-			if (Entidades.Pessoa.Funcionário.ÉFuncionário(pessoa))
-			{
-                AguardeDB.Mostrar();
-
-                try
-                {
-                    if (!(pessoa is Funcionário))
-                        pessoa = Entidades.Pessoa.Funcionário.ObterPessoa(pessoa.Código);
-                }
-                finally
-                {
-                    AguardeDB.Fechar();
-                }
-
-				using (CadastroFuncionário frm = new CadastroFuncionário((Entidades.Pessoa.Funcionário) pessoa))
-				{
-					resultado = frm.ShowDialog(this.ParentForm);
-					entidade  = frm.Funcionário;
-				}
-			}
-			/* Representante ou Pessoa Física
-			 * 
-			 * Um representante só possui um único campo inalterável (código)
-			 * e, portanto, pode ser encarado como pessoa física.
-			 */
-			else if (pessoa is Entidades.Pessoa.PessoaFísica)
-			{
-                using (CadastroCliente frm = new CadastroCliente((PessoaFísica)pessoa))
-				{
-					resultado = frm.ShowDialog(this.ParentForm);
-					entidade = frm.Pessoa;
-				}
-			}
-			// Pessoa jurídica
-            else if (pessoa is Entidades.Pessoa.PessoaJurídica)
-                using (CadastroCliente frm = new CadastroCliente((PessoaJurídica)pessoa))
-                {
-                    resultado = frm.ShowDialog(this.ParentForm);
-                    entidade = frm.Pessoa;
-                }
-            else if (pessoa is Entidades.Pessoa.Pessoa)
-            {
-                Entidades.Pessoa.PessoaJurídica juridica =
-                    Entidades.Pessoa.PessoaJurídica.ObterPessoa(pessoa.Código);
-                if (juridica != null)
-                {
-                    using (CadastroCliente frm = new CadastroCliente(juridica))
-                    {
-                        resultado = frm.ShowDialog(this.ParentForm);
-                        entidade = frm.Pessoa;
-                    }
-                }
-                else
-                {
-                    PessoaFísica fisica = PessoaFísica.ObterPessoa(pessoa.Código);
-
-                    if (fisica != null)
-                    {
-                        using (CadastroCliente frm = new CadastroCliente(fisica))
-                        {
-                            resultado = frm.ShowDialog(this.ParentForm);
-                            entidade = frm.Pessoa;
-                        }
-                    }
-                    else
-                    {
-                        throw new Exception("A pessoa é do Tipo Entidades.Pessoa, porém não é física nem jurídica!");
-                    }
-                }
-            }
-            else
-            {
-                throw new NotSupportedException("O tipo de pessoa \"" + pessoa.GetType().Name + "\" não é suportado. Código:" + pessoa.Código.ToString());
-            }
-
-			// Atualizar dados.
             if (resultado == DialogResult.OK)
-            {
-                AtualizarEntidade(entidade);
-            }
-            else if (resultado == DialogResult.Abort)
-            {
-                base.SubstituirBaseParaAnterior();
-            }
-		}
-
-		/// <summary>
-		/// Atualiza entidade no banco de dados e na base inferior.
-		/// </summary>
-		/// <param name="novaEntidade">Entidade a ser atualizada.</param>
-		protected virtual void AtualizarEntidade(Entidades.Pessoa.Pessoa novaEntidade)
-		{
-            AguardeDB.Mostrar();
-            UseWaitCursor = true;
-
-			novaEntidade.Atualizar();
-			Carregar(novaEntidade);
-
-            UseWaitCursor = false;
-            AguardeDB.Fechar();
-		}
+                Carregar(pessoaAtualizada);
+            if (resultado == DialogResult.Abort)
+                SubstituirBaseParaAnterior();
+        }
 
         /// <summary>
         /// Descobre pendências do cliente e exibe na ListView.
