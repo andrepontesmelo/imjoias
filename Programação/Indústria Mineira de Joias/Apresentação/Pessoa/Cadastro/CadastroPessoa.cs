@@ -458,14 +458,17 @@ namespace Apresentação.Pessoa.Cadastro
                 if (Pessoa.Cadastrado)
                 {
                     TimeSpan TempoDesatualizado = DadosGlobais.Instância.HoraDataAtual - Pessoa.DataAlteração.Value;
-                    double dias = Math.Round(TempoDesatualizado.TotalDays);
+                    int dias = (int) Math.Round(TempoDesatualizado.TotalDays);
 
-                    Text = Pessoa.Nome + " | Últ. Alteração: ";
+                    Text = "Últ. Alteração: ";
+                    Text += Pessoa.DataAlteração.Value.ToShortDateString();
 
-                    if (dias <= 1)
-                        Text += Pessoa.DataAlteração.Value.ToShortDateString() + ", às " + Pessoa.DataAlteração.Value.ToShortTimeString();
+                    if (dias < 7)
+                        Text += ", às " + Pessoa.DataAlteração.Value.ToShortTimeString();
                     else
-                        Text += dias + " dias";
+                        Text += string.Format(" | {0} dias", dias);
+
+                    Text += " | " + Pessoa.Nome;
                 }
 
                 // Prepara e adiciona controle na aba de dados pessoais.
