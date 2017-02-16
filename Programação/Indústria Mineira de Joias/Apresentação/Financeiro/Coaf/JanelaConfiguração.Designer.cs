@@ -39,11 +39,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtMeses = new System.Windows.Forms.NumericUpDown();
             this.btnRestaurarPadrão = new System.Windows.Forms.Button();
-            this.chkExibirOperaçõesNãoNotificáveis = new System.Windows.Forms.CheckBox();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.picÍcone)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.grupoPeríodo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtMeses)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblTítulo
@@ -53,7 +56,7 @@
             // 
             // lblDescrição
             // 
-            this.lblDescrição.Size = new System.Drawing.Size(155, 48);
+            this.lblDescrição.Size = new System.Drawing.Size(154, 48);
             this.lblDescrição.Text = "";
             // 
             // picÍcone
@@ -71,7 +74,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 96);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(217, 78);
+            this.groupBox1.Size = new System.Drawing.Size(216, 78);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Limites mínimos";
@@ -123,7 +126,7 @@
             // btnCancelar
             // 
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancelar.Location = new System.Drawing.Point(154, 323);
+            this.btnCancelar.Location = new System.Drawing.Point(153, 403);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 7;
@@ -134,7 +137,7 @@
             // btnOk
             // 
             this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOk.Location = new System.Drawing.Point(73, 323);
+            this.btnOk.Location = new System.Drawing.Point(72, 403);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 8;
@@ -150,7 +153,7 @@
             this.grupoPeríodo.Controls.Add(this.txtMeses);
             this.grupoPeríodo.Location = new System.Drawing.Point(12, 184);
             this.grupoPeríodo.Name = "grupoPeríodo";
-            this.grupoPeríodo.Size = new System.Drawing.Size(217, 71);
+            this.grupoPeríodo.Size = new System.Drawing.Size(216, 71);
             this.grupoPeríodo.TabIndex = 9;
             this.grupoPeríodo.TabStop = false;
             this.grupoPeríodo.Text = "Período: Últimos 6 meses";
@@ -182,7 +185,7 @@
             this.btnRestaurarPadrão.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRestaurarPadrão.Image = global::Apresentação.Resource.Edit_UndoHS;
             this.btnRestaurarPadrão.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnRestaurarPadrão.Location = new System.Drawing.Point(73, 294);
+            this.btnRestaurarPadrão.Location = new System.Drawing.Point(72, 374);
             this.btnRestaurarPadrão.Name = "btnRestaurarPadrão";
             this.btnRestaurarPadrão.Size = new System.Drawing.Size(156, 23);
             this.btnRestaurarPadrão.TabIndex = 10;
@@ -190,24 +193,31 @@
             this.btnRestaurarPadrão.UseVisualStyleBackColor = true;
             this.btnRestaurarPadrão.Click += new System.EventHandler(this.btnRestaurarPadrão_Click);
             // 
-            // chkExibirOperaçõesNãoNotificáveis
+            // trackBar1
             // 
-            this.chkExibirOperaçõesNãoNotificáveis.AutoSize = true;
-            this.chkExibirOperaçõesNãoNotificáveis.Checked = true;
-            this.chkExibirOperaçõesNãoNotificáveis.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkExibirOperaçõesNãoNotificáveis.Location = new System.Drawing.Point(24, 268);
-            this.chkExibirOperaçõesNãoNotificáveis.Name = "chkExibirOperaçõesNãoNotificáveis";
-            this.chkExibirOperaçõesNãoNotificáveis.Size = new System.Drawing.Size(181, 17);
-            this.chkExibirOperaçõesNãoNotificáveis.TabIndex = 11;
-            this.chkExibirOperaçõesNãoNotificáveis.Text = "Exibir operações não notificáveis";
-            this.chkExibirOperaçõesNãoNotificáveis.UseVisualStyleBackColor = true;
+            this.trackBar1.Location = new System.Drawing.Point(12, 19);
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(197, 45);
+            this.trackBar1.TabIndex = 12;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.trackBar1);
+            this.groupBox2.Location = new System.Drawing.Point(12, 261);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(216, 78);
+            this.groupBox2.TabIndex = 13;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Limiar de conferência";
             // 
             // JanelaConfiguração
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(243, 358);
-            this.Controls.Add(this.chkExibirOperaçõesNãoNotificáveis);
+            this.ClientSize = new System.Drawing.Size(242, 438);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnRestaurarPadrão);
             this.Controls.Add(this.grupoPeríodo);
             this.Controls.Add(this.btnOk);
@@ -220,15 +230,17 @@
             this.Controls.SetChildIndex(this.btnOk, 0);
             this.Controls.SetChildIndex(this.grupoPeríodo, 0);
             this.Controls.SetChildIndex(this.btnRestaurarPadrão, 0);
-            this.Controls.SetChildIndex(this.chkExibirOperaçõesNãoNotificáveis, 0);
+            this.Controls.SetChildIndex(this.groupBox2, 0);
             ((System.ComponentModel.ISupportInitialize)(this.picÍcone)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.grupoPeríodo.ResumeLayout(false);
             this.grupoPeríodo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtMeses)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -245,6 +257,7 @@
         private System.Windows.Forms.Button btnRestaurarPadrão;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown txtMeses;
-        private System.Windows.Forms.CheckBox chkExibirOperaçõesNãoNotificáveis;
+        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }

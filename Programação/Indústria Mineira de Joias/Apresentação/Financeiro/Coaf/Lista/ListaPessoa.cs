@@ -59,17 +59,17 @@ namespace Apresentação.Financeiro.Coaf.Lista
         {
             List<ListViewItem> resultado = new List<ListViewItem>();
 
+            var random = new Random((int) DateTime.Now.Ticks);
             foreach (PessoaResumo entidade in entidades)
             {
-                if (!ConfiguraçõesCoaf.Instância.ExibirOperaçõesNãoNotificáveis && !entidade.Notificável)
-                    continue;
-
                 ListViewItem item = new ListViewItem(ObterGrupo(entidade));
                 item.SubItems.AddRange(new string[] { "", "", "", "", "" });
                 item.SubItems[colCPFCNPJ.Index].Text = FormatarCpfCnpj(entidade.CpfCnpj);
                 item.SubItems[colCódigo.Index].Text = entidade.Código.ToString();
                 item.SubItems[colPessoa.Index].Text = entidade.Nome;
                 item.SubItems[colValorAcumulado.Index].Text = entidade.ValorAcumulado.ToString("C");
+                string[] mensagems = new string[] { "Cadastrar Preposto", "Cadastrar CPF", "Cadastrar órgão expeditor", "Cadastrar documento de identificação" };
+                item.SubItems[colInconsistências.Index].Text = mensagems[random.Next(mensagems.Length)];
                 item.Tag = entidade;
 
                 if (entidade.PoliticamenteExposta)
