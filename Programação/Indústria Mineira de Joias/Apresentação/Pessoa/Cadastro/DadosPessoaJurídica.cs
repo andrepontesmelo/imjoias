@@ -155,7 +155,14 @@ namespace Apresentação.Pessoa.Cadastro
             Entidades.Pessoa.Pessoa pessoaAtualizada;
 
             if (CadastroPessoa.Abrir(preposto, this.Parent, out pessoaAtualizada) == DialogResult.OK)
-                CarregarDadosPreposto((PessoaFísica) pessoaAtualizada);
+            {
+                PessoaFísica pessoaFísica = (PessoaFísica) pessoaAtualizada;
+
+                if (pessoaFísica.CPF == null || !pessoaFísica.CPF.Equals(pessoa.CpfPreposto))
+                    CarregarDadosPreposto();
+                else
+                    CarregarDadosPreposto(pessoaFísica);
+            }
         }
     }
 }
