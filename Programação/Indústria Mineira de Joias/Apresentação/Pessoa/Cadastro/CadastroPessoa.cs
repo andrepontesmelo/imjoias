@@ -554,7 +554,7 @@ namespace Apresentação.Pessoa.Cadastro
             }
         }
 
-        private static PessoaFísica CadastrarNovaPessoaFísica(TipoPessoaFísica tipoPessoaFísica)
+        public static PessoaFísica CadastrarNovaPessoaFísica(TipoPessoaFísica tipoPessoaFísica)
         {
             PessoaFísica entidade = null;
             CadastroPessoa dlg = ConstróiJanelaCadastro(tipoPessoaFísica);

@@ -143,6 +143,7 @@ namespace Apresentação.Pessoa.Cadastro
             txtRG.Text = preposto != null ? preposto.DI : "";
             txtRGEmissor.Text = preposto != null ? preposto.DIEmissor : "";
             lnkAbrirCadastroPreposto.Enabled = preposto != null;
+            lnkCadastrarPreposto.Enabled = preposto == null;
         }
 
         private void lnkAbrirCadastroPreposto_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -162,6 +163,16 @@ namespace Apresentação.Pessoa.Cadastro
                     CarregarDadosPreposto();
                 else
                     CarregarDadosPreposto(pessoaFísica);
+            }
+        }
+
+        private void lnkCadastrarPreposto_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            var preposto = CadastroPessoa.CadastrarNovaPessoaFísica(TipoPessoaFísica.Outro);
+            if (preposto != null)
+            {
+                pessoa.CpfPreposto = preposto.CPF;
+                CarregarDadosPreposto();
             }
         }
     }

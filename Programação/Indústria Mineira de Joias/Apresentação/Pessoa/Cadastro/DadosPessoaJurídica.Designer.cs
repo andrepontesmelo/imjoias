@@ -53,11 +53,12 @@
             this.txtRG = new System.Windows.Forms.TextBox();
             this.txtRGEmissor = new System.Windows.Forms.TextBox();
             this.lblEmissor = new System.Windows.Forms.Label();
+            this.lnkAbrirCadastroPreposto = new System.Windows.Forms.LinkLabel();
             this.txtCPFPreposto = new Apresentação.Pessoa.TextBoxCPF();
             this.txtCNPJ = new Apresentação.Pessoa.TextBoxCNPJ();
             this.formatadorRazãoSocial = new Apresentação.Pessoa.FormatadorNome(this.components);
             this.formatadorNomeFantasia = new Apresentação.Pessoa.FormatadorNome(this.components);
-            this.lnkAbrirCadastroPreposto = new System.Windows.Forms.LinkLabel();
+            this.lnkCadastrarPreposto = new System.Windows.Forms.LinkLabel();
             this.groupBox4.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -221,6 +222,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.lnkCadastrarPreposto);
             this.groupBox1.Controls.Add(this.lnkAbrirCadastroPreposto);
             this.groupBox1.Controls.Add(this.txtCódigoPreposto);
             this.groupBox1.Controls.Add(this.label2);
@@ -337,6 +339,17 @@
             this.lblEmissor.TabIndex = 20;
             this.lblEmissor.Text = "&Órgão Emissor:";
             // 
+            // lnkAbrirCadastroPreposto
+            // 
+            this.lnkAbrirCadastroPreposto.AutoSize = true;
+            this.lnkAbrirCadastroPreposto.Location = new System.Drawing.Point(208, 54);
+            this.lnkAbrirCadastroPreposto.Name = "lnkAbrirCadastroPreposto";
+            this.lnkAbrirCadastroPreposto.Size = new System.Drawing.Size(28, 13);
+            this.lnkAbrirCadastroPreposto.TabIndex = 24;
+            this.lnkAbrirCadastroPreposto.TabStop = true;
+            this.lnkAbrirCadastroPreposto.Text = "Abrir";
+            this.lnkAbrirCadastroPreposto.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkAbrirCadastroPreposto_LinkClicked);
+            // 
             // txtCPFPreposto
             // 
             this.txtCPFPreposto.Location = new System.Drawing.Point(85, 19);
@@ -354,16 +367,16 @@
             this.txtCNPJ.Validating += new System.ComponentModel.CancelEventHandler(this.txtCNPJ_Validating);
             this.txtCNPJ.Validated += new System.EventHandler(this.txtCNPJ_Validated);
             // 
-            // lnkAbrirCadastroPreposto
+            // lnkCadastrarPreposto
             // 
-            this.lnkAbrirCadastroPreposto.AutoSize = true;
-            this.lnkAbrirCadastroPreposto.Location = new System.Drawing.Point(208, 54);
-            this.lnkAbrirCadastroPreposto.Name = "lnkAbrirCadastroPreposto";
-            this.lnkAbrirCadastroPreposto.Size = new System.Drawing.Size(28, 13);
-            this.lnkAbrirCadastroPreposto.TabIndex = 24;
-            this.lnkAbrirCadastroPreposto.TabStop = true;
-            this.lnkAbrirCadastroPreposto.Text = "Abrir";
-            this.lnkAbrirCadastroPreposto.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkAbrirCadastroPreposto_LinkClicked);
+            this.lnkCadastrarPreposto.AutoSize = true;
+            this.lnkCadastrarPreposto.Location = new System.Drawing.Point(208, 26);
+            this.lnkCadastrarPreposto.Name = "lnkCadastrarPreposto";
+            this.lnkCadastrarPreposto.Size = new System.Drawing.Size(52, 13);
+            this.lnkCadastrarPreposto.TabIndex = 25;
+            this.lnkCadastrarPreposto.TabStop = true;
+            this.lnkCadastrarPreposto.Text = "Cadastrar";
+            this.lnkCadastrarPreposto.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkCadastrarPreposto_LinkClicked);
             // 
             // DadosPessoaJurídica
             // 
@@ -412,5 +425,6 @@
         private System.Windows.Forms.TextBox txtRGEmissor;
         private System.Windows.Forms.Label lblEmissor;
         private System.Windows.Forms.LinkLabel lnkAbrirCadastroPreposto;
+        private System.Windows.Forms.LinkLabel lnkCadastrarPreposto;
     }
 }
