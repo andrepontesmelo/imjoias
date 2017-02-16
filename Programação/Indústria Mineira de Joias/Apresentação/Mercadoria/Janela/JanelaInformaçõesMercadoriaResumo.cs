@@ -8,9 +8,6 @@ using System.Windows.Forms;
 
 namespace Apresentação.Mercadoria
 {
-    /// <summary>
-    /// Use apenas Show() para abrir.
-    /// </summary>
     public class JanelaInformaçõesMercadoriaResumo : System.Windows.Forms.Form
     {
         /* Português: pagamento à vista (com crase)
@@ -68,6 +65,7 @@ namespace Apresentação.Mercadoria
         private Label label15;
         private Label lblPreçoÁVistaConsignado;
         private Label label17;
+        private PictureBox picFoto;
         public const int HTCAPTION = 0x2;
         [DllImport("User32.dll")]
         public static extern bool ReleaseCapture();
@@ -76,8 +74,6 @@ namespace Apresentação.Mercadoria
 
 
         // Formulário
-
-        private MostradorAnimação picFoto;
         private System.Windows.Forms.Label lblReferência;
         private System.Windows.Forms.Label lblFaixaGrupoPeso;
         private System.Windows.Forms.Label lblDescrição;
@@ -161,7 +157,7 @@ namespace Apresentação.Mercadoria
             this.label15 = new System.Windows.Forms.Label();
             this.lblPreçoÁVistaConsignado = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.picFoto = new Apresentação.Mercadoria.MostradorAnimação();
+            this.picFoto = new System.Windows.Forms.PictureBox();
             this.mnuPreço.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -739,17 +735,16 @@ namespace Apresentação.Mercadoria
             // 
             // picFoto
             // 
-            this.picFoto.BackColor = System.Drawing.Color.Transparent;
-            this.picFoto.Image = global::Apresentação.Resource.logo;
+            this.picFoto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(247)))), ((int)(((byte)(240)))));
+            this.picFoto.BackgroundImage = global::Apresentação.Resource.logo;
+            this.picFoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.picFoto.Location = new System.Drawing.Point(45, 88);
             this.picFoto.Name = "picFoto";
-            this.picFoto.Size = new System.Drawing.Size(440, 228);
-            this.picFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picFoto.TabIndex = 0;
+            this.picFoto.Size = new System.Drawing.Size(440, 230);
+            this.picFoto.TabIndex = 28;
             this.picFoto.TabStop = false;
-            this.picFoto.MouseDown += new System.Windows.Forms.MouseEventHandler(this.InformaçõesMercadoria_MouseDown);
             // 
-            // InformaçõesMercadoriaResumo
+            // JanelaInformaçõesMercadoriaResumo
             // 
             this.AcceptButton = this.btnFechar;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -758,21 +753,21 @@ namespace Apresentação.Mercadoria
             this.CancelButton = this.btnFechar;
             this.ClientSize = new System.Drawing.Size(498, 461);
             this.ControlBox = false;
+            this.Controls.Add(this.btnSalvarFoto);
+            this.Controls.Add(this.picFoto);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblFaixaGrupoPeso);
             this.Controls.Add(this.btnRastrear);
-            this.Controls.Add(this.btnSalvarFoto);
             this.Controls.Add(this.btnFechar);
             this.Controls.Add(this.lblDescrição);
-            this.Controls.Add(this.picFoto);
             this.Controls.Add(this.lblReferência);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "InformaçõesMercadoriaResumo";
+            this.Name = "JanelaInformaçõesMercadoriaResumo";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -826,6 +821,8 @@ namespace Apresentação.Mercadoria
             Dispose();
         }
 
+        private static Color? fundoLogo = null;
+
         /// <summary>
         /// Mercadoria exibida
         /// </summary>
@@ -840,16 +837,33 @@ namespace Apresentação.Mercadoria
                 lblFaixaGrupoPeso.Text = (mercadoria.Faixa != null ? mercadoria.Faixa + "-" : "") + mercadoria.Grupo
                     + mercadoria.PesoFormatado;
 
-                //lblPeso.Text = mercadoria.PesoFormatado;
-                // lblÍndice.Text = Entidades.Mercadoria.Mercadoria.FormatarÍndice(mercadoria.ÍndiceArredondado);
-                //lblFaixaGrupo.Text = (mercadoria.Faixa != null ?  mercadoria.Faixa  : "") + "-" + mercadoria.Grupo;
-
                 AtualizarPreço();
 
                 lblDescrição.Text = mercadoria.Descrição;
-                //picFoto.Image	   = mercadoria.EnquadrarFoto(picFoto.Width, picFoto.Height);
-                picFoto.MostrarAnimação(mercadoria);
+                CarregarFoto();
             }
+        }
+
+        private void CarregarFoto()
+        {
+            var foto = mercadoria.Foto;
+            picFoto.BackgroundImage = foto != null ? foto : Resource.logo;
+
+            if (foto == null)
+            {
+                picFoto.BackgroundImage = Resource.logo;
+
+                if (!fundoLogo.HasValue)
+                    fundoLogo = new Bitmap(Resource.logo).GetPixel(0, 0);
+
+                picFoto.BackColor = fundoLogo.Value;
+            }
+            else
+            {
+                picFoto.BackgroundImage = foto;
+                picFoto.BackColor = new Bitmap(picFoto.BackgroundImage).GetPixel(0, 0);
+            }
+            btnSalvarFoto.Visible = foto != null;
         }
 
         /// <summary>
@@ -899,11 +913,6 @@ namespace Apresentação.Mercadoria
                 lblÍndice30.Text = Math.Round(mercadoria.ÍndiceArredondado * taxa30Dias, 2).ToString();
                 lblÍndice30x60.Text = Math.Round(mercadoria.ÍndiceArredondado * taxa30x60Dias, 2).ToString();
                 lblÍndice30x60x90.Text = Math.Round(mercadoria.ÍndiceArredondado * taxa30x60x90Dias, 2).ToString();
-
-                //lblCotação.Text = "* Cotação: " +
-                //    (cotação != null ? cotação.Valor.ToString("C", DadosGlobais.Instância.Cultura) : "Informação não disponível");
-                //lblCotação.Text = "; Tabela: " +
-                //    (mercadoria.TabelaPreço != null ? mercadoria.TabelaPreço.Nome : "Desconhecida");
             }
         }
 
@@ -1015,10 +1024,6 @@ namespace Apresentação.Mercadoria
             AtualizarMenuPreço(Convert.ToInt32(dias));
         }
 
-        /// <summary>
-        /// Atualiza o rótulo do preço conforme tag do menu.
-        /// </summary>
-        /// <param name="rótulo">Rótulo a ser exibido.</param>
         private void AtualizarMenuRótulo(string rótulo)
         {
             Label[] lbl = new Label[] {
@@ -1030,10 +1035,6 @@ namespace Apresentação.Mercadoria
             lblRótulo.Text = rótulo;
         }
 
-        /// <summary>
-        /// Atualiza o preço conforme tag do menu.
-        /// </summary>
-        /// <param name="preço">Preço a ser exibido.</param>
         private void AtualizarMenuPreço(int dias)
         {
             Label[] lbl = new Label[] {
@@ -1045,26 +1046,6 @@ namespace Apresentação.Mercadoria
             lblPreço.Text = CalcularPreço(dias); ;
         }
 
-        /// <summary>
-        /// Reposiciona a imagem para mostrar opções de menu
-        /// ao lado do rótulo de preço, sempre que ele mudar de tamanho.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void lblRótuloPreço_Resize(object sender, EventArgs e)
-        {
-            //PictureBox[] pic = new PictureBox[] {
-            //   picEscolhaPreço1, picEscolhaPreço2,
-            //    picEscolhaPreço3, picEscolhaPreço4 };
-            //
-            //pic[int.Parse(((Label)sender).Tag.ToString())].Left = ((Label)sender).Right;
-
-            // picEscolhaPreço4.Left = ((Label)sender).Right;
-        }
-
-        /// <summary>
-        /// Mostra menu de contexto quando o preço é clicado.
-        /// </summary>
         private void lblRótuloPreço_Click(object sender, EventArgs e)
         {
             Label[] lbl = new Label[] {
@@ -1102,9 +1083,6 @@ namespace Apresentação.Mercadoria
                 InterpretarPrazoPersonalizado();
         }
 
-        /// <summary>
-        /// Seleciona todo o texto ao ganhar foco.
-        /// </summary>
         private void mnuPrazoPersonalizadoTxt_Enter(object sender, EventArgs e)
         {
             mnuPrazoPersonalizadoTxt.TextBox.SelectAll();
@@ -1114,10 +1092,6 @@ namespace Apresentação.Mercadoria
 
         private void InformaçõesMercadoria_Shown(object sender, EventArgs e)
         {
-            //Focus();
-            //ActiveControl = btnFechar;
-            //btnFechar.Select();
-            //btnFechar.Focus();
             this.Focus();
         }
 

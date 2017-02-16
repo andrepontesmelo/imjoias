@@ -99,14 +99,17 @@ namespace Apresentação.Mercadoria
         /// Verifica se a mercadoria já possui a animação carregada.
         /// Caso contrário, carrega em segundo plano.
         /// </remarks>
-        public void MostrarAnimação(Entidades.Mercadoria.Mercadoria mercadoria)
+        public bool MostrarAnimação(Entidades.Mercadoria.Mercadoria mercadoria)
         {
 #if DEBUG
             if (animação != null)
                 Console.WriteLine("Mostrando animação: {0}", animação.ToString());
 #endif
             if (mercadoria.FotoObtida)
+            {
                 MostrarAnimação(mercadoria.Animação);
+                return true;
+            }
             else
             {
                 this.animação = new AnimaçãoOca(mercadoria);
@@ -117,6 +120,8 @@ namespace Apresentação.Mercadoria
                     CriarThread();
                 else
                     InterromperThread();
+
+                return false;
             }
         }
 		
