@@ -1,15 +1,14 @@
-using System;
-using System.Text.RegularExpressions;
-using System.Data;
 using Acesso.Comum;
 using Acesso.Comum.Cache;
 using Entidades.Pessoa.Endereço;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 
 namespace Entidades.Pessoa
 {
-	[Serializable, DbTransação, Cacheável("ObterPessoaSemCache")]
+    [Serializable, DbTransação, Cacheável("ObterPessoaSemCache")]
 	public class PessoaFísica : Pessoa
 	{
         public new static readonly int TotalAtributos = 11;

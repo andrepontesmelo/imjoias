@@ -37,26 +37,27 @@
             this.lblInscMunicipal = new System.Windows.Forms.Label();
             this.txtInscEstadual = new System.Windows.Forms.TextBox();
             this.lblInscEstadual = new System.Windows.Forms.Label();
+            this.txtCNPJ = new Apresentação.Pessoa.TextBoxCNPJ();
             this.lblCNPJ = new System.Windows.Forms.Label();
             this.txtFantasia = new System.Windows.Forms.TextBox();
             this.lblFantasia = new System.Windows.Forms.Label();
             this.lblNome = new System.Windows.Forms.Label();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.abrirArquivo = new System.Windows.Forms.OpenFileDialog();
-            this.lblPreposto = new System.Windows.Forms.Label();
-            this.txtPreposto = new Apresentação.Pessoa.Consultas.TextBoxPessoa();
-            this.txtCNPJ = new Apresentação.Pessoa.TextBoxCNPJ();
             this.formatadorRazãoSocial = new Apresentação.Pessoa.FormatadorNome(this.components);
             this.formatadorNomeFantasia = new Apresentação.Pessoa.FormatadorNome(this.components);
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtCPFPreposto = new Apresentação.Pessoa.TextBoxCPF();
             this.groupBox4.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox4
             // 
-            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox4.Controls.Add(this.txtPreposto);
-            this.groupBox4.Controls.Add(this.lblPreposto);
             this.groupBox4.Controls.Add(this.txtCódigo);
             this.groupBox4.Controls.Add(this.cmbNumeraçãoAutomática);
             this.groupBox4.Controls.Add(this.label4);
@@ -72,7 +73,7 @@
             this.groupBox4.Controls.Add(this.txtNome);
             this.groupBox4.Location = new System.Drawing.Point(0, 0);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(392, 390);
+            this.groupBox4.Size = new System.Drawing.Size(392, 329);
             this.groupBox4.TabIndex = 1;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Identificação";
@@ -119,7 +120,7 @@
             // 
             // txtInscMunicipal
             // 
-            this.txtInscMunicipal.Location = new System.Drawing.Point(88, 177);
+            this.txtInscMunicipal.Location = new System.Drawing.Point(88, 147);
             this.txtInscMunicipal.MaxLength = 15;
             this.txtInscMunicipal.Name = "txtInscMunicipal";
             this.txtInscMunicipal.Size = new System.Drawing.Size(117, 20);
@@ -129,7 +130,7 @@
             // lblInscMunicipal
             // 
             this.lblInscMunicipal.AutoSize = true;
-            this.lblInscMunicipal.Location = new System.Drawing.Point(5, 180);
+            this.lblInscMunicipal.Location = new System.Drawing.Point(5, 150);
             this.lblInscMunicipal.Name = "lblInscMunicipal";
             this.lblInscMunicipal.Size = new System.Drawing.Size(81, 13);
             this.lblInscMunicipal.TabIndex = 8;
@@ -137,7 +138,7 @@
             // 
             // txtInscEstadual
             // 
-            this.txtInscEstadual.Location = new System.Drawing.Point(88, 151);
+            this.txtInscEstadual.Location = new System.Drawing.Point(88, 121);
             this.txtInscEstadual.Name = "txtInscEstadual";
             this.txtInscEstadual.Size = new System.Drawing.Size(117, 20);
             this.txtInscEstadual.TabIndex = 7;
@@ -146,16 +147,25 @@
             // lblInscEstadual
             // 
             this.lblInscEstadual.AutoSize = true;
-            this.lblInscEstadual.Location = new System.Drawing.Point(5, 154);
+            this.lblInscEstadual.Location = new System.Drawing.Point(5, 124);
             this.lblInscEstadual.Name = "lblInscEstadual";
             this.lblInscEstadual.Size = new System.Drawing.Size(77, 13);
             this.lblInscEstadual.TabIndex = 6;
             this.lblInscEstadual.Text = "Insc. Estadual:";
             // 
+            // txtCNPJ
+            // 
+            this.txtCNPJ.Location = new System.Drawing.Point(88, 95);
+            this.txtCNPJ.Name = "txtCNPJ";
+            this.txtCNPJ.Size = new System.Drawing.Size(117, 20);
+            this.txtCNPJ.TabIndex = 5;
+            this.txtCNPJ.Validating += new System.ComponentModel.CancelEventHandler(this.txtCNPJ_Validating);
+            this.txtCNPJ.Validated += new System.EventHandler(this.txtCNPJ_Validated);
+            // 
             // lblCNPJ
             // 
             this.lblCNPJ.AutoSize = true;
-            this.lblCNPJ.Location = new System.Drawing.Point(4, 128);
+            this.lblCNPJ.Location = new System.Drawing.Point(4, 98);
             this.lblCNPJ.Name = "lblCNPJ";
             this.lblCNPJ.Size = new System.Drawing.Size(37, 13);
             this.lblCNPJ.TabIndex = 4;
@@ -166,7 +176,7 @@
             this.txtFantasia.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.formatadorNomeFantasia.SetFormatarNome(this.txtFantasia, true);
-            this.txtFantasia.Location = new System.Drawing.Point(88, 99);
+            this.txtFantasia.Location = new System.Drawing.Point(88, 69);
             this.txtFantasia.Name = "txtFantasia";
             this.txtFantasia.Size = new System.Drawing.Size(296, 20);
             this.txtFantasia.TabIndex = 3;
@@ -175,7 +185,7 @@
             // lblFantasia
             // 
             this.lblFantasia.AutoSize = true;
-            this.lblFantasia.Location = new System.Drawing.Point(4, 102);
+            this.lblFantasia.Location = new System.Drawing.Point(4, 72);
             this.lblFantasia.Name = "lblFantasia";
             this.lblFantasia.Size = new System.Drawing.Size(78, 13);
             this.lblFantasia.TabIndex = 2;
@@ -184,7 +194,7 @@
             // lblNome
             // 
             this.lblNome.AutoSize = true;
-            this.lblNome.Location = new System.Drawing.Point(4, 76);
+            this.lblNome.Location = new System.Drawing.Point(4, 46);
             this.lblNome.Name = "lblNome";
             this.lblNome.Size = new System.Drawing.Size(71, 13);
             this.lblNome.TabIndex = 0;
@@ -195,7 +205,7 @@
             this.txtNome.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.formatadorRazãoSocial.SetFormatarNome(this.txtNome, true);
-            this.txtNome.Location = new System.Drawing.Point(88, 73);
+            this.txtNome.Location = new System.Drawing.Point(88, 43);
             this.txtNome.MaxLength = 100;
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(296, 20);
@@ -207,46 +217,48 @@
             this.abrirArquivo.Filter = "Todas as imagens|*.bmp; *.gif; *.jpg; *.jpeg; *.png; *.ico; *.emf; *.wmf";
             this.abrirArquivo.Title = "Inserir foto para pessoa física";
             // 
-            // lblPreposto
+            // groupBox1
             // 
-            this.lblPreposto.AutoSize = true;
-            this.lblPreposto.Location = new System.Drawing.Point(4, 49);
-            this.lblPreposto.Name = "lblPreposto";
-            this.lblPreposto.Size = new System.Drawing.Size(52, 13);
-            this.lblPreposto.TabIndex = 19;
-            this.lblPreposto.Text = "Preposto:";
-            // 
-            // txtPreposto
-            // 
-            this.txtPreposto.AlturaProposta = 60;
-            this.txtPreposto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPreposto.Location = new System.Drawing.Point(88, 45);
-            this.txtPreposto.Name = "txtPreposto";
-            this.txtPreposto.Pessoa = null;
-            this.txtPreposto.Size = new System.Drawing.Size(296, 20);
-            this.txtPreposto.TabIndex = 20;
-            this.txtPreposto.Selecionado += new System.EventHandler(this.txtPreposto_Selecionado);
-            this.txtPreposto.Deselecionado += new System.EventHandler(this.txtPreposto_Deselecionado);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.txtCPFPreposto);
+            this.groupBox1.Location = new System.Drawing.Point(3, 335);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(386, 49);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Preposto";
             // 
-            // txtCNPJ
+            // label1
             // 
-            this.txtCNPJ.Location = new System.Drawing.Point(88, 125);
-            this.txtCNPJ.Name = "txtCNPJ";
-            this.txtCNPJ.Size = new System.Drawing.Size(117, 20);
-            this.txtCNPJ.TabIndex = 5;
-            this.txtCNPJ.Validating += new System.ComponentModel.CancelEventHandler(this.txtCNPJ_Validating);
-            this.txtCNPJ.Validated += new System.EventHandler(this.txtCNPJ_Validated);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(30, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "CPF:";
+            // 
+            // txtCPFPreposto
+            // 
+            this.txtCPFPreposto.Location = new System.Drawing.Point(85, 19);
+            this.txtCPFPreposto.Name = "txtCPFPreposto";
+            this.txtCPFPreposto.Size = new System.Drawing.Size(117, 20);
+            this.txtCPFPreposto.TabIndex = 0;
+            this.txtCPFPreposto.Validated += new System.EventHandler(this.txtCPFPreposto_Validated);
             // 
             // DadosPessoaJurídica
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox4);
             this.Name = "DadosPessoaJurídica";
-            this.Size = new System.Drawing.Size(392, 393);
+            this.Size = new System.Drawing.Size(392, 387);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -256,7 +268,6 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label lblNome;
         private System.Windows.Forms.TextBox txtNome;
-        //private System.Windows.Forms.PictureBox picFoto;
         private TextBoxCNPJ txtCNPJ;
         private System.Windows.Forms.Label lblCNPJ;
         private System.Windows.Forms.TextBox txtFantasia;
@@ -271,7 +282,8 @@
         private System.Windows.Forms.Label label4;
         private FormatadorNome formatadorNomeFantasia;
         private FormatadorNome formatadorRazãoSocial;
-        private Consultas.TextBoxPessoa txtPreposto;
-        private System.Windows.Forms.Label lblPreposto;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label1;
+        private TextBoxCPF txtCPFPreposto;
     }
 }

@@ -27,7 +27,7 @@ namespace Apresentação.Pessoa.Cadastro
                 txtCNPJ.Text = value.CNPJ != null ? value.CNPJ : "";
                 txtInscEstadual.Text = value.InscEstadual != null ? value.InscEstadual : "";
                 txtInscMunicipal.Text = value.InscMunicipal != null ? value.InscMunicipal : "";
-                txtPreposto.Pessoa = value.Preposto.HasValue ? Entidades.Pessoa.Pessoa.ObterPessoa(value.Preposto.Value) : null;
+                txtCPFPreposto.Text = value.CpfPreposto != null ? value.CpfPreposto : "";
 
                 if (pessoa.Cadastrado)
                 {
@@ -123,20 +123,9 @@ namespace Apresentação.Pessoa.Cadastro
             }
         }
 
-        private void txtPreposto_Selecionado(object sender, EventArgs e)
+        private void txtCPFPreposto_Validated(object sender, EventArgs e)
         {
-            if (!(txtPreposto.Pessoa is PessoaFísica))
-            {
-                MessageBox.Show("Favor selecionar uma pessoa física para preposto");
-                return;
-            }
-
-            pessoa.Preposto = txtPreposto.Pessoa.Código;
-        }
-
-        private void txtPreposto_Deselecionado(object sender, EventArgs e)
-        {
-            pessoa.Preposto = null;
+            pessoa.CpfPreposto = txtCPFPreposto.TextoSemFormatação;
         }
     }
 }

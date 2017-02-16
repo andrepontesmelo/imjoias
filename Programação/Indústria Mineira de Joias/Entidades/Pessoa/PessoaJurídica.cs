@@ -16,7 +16,7 @@ namespace Entidades.Pessoa
         protected string cnpj;
         protected string inscEstadual;
         protected string inscMunicipal;
-        protected ulong? preposto;
+        protected string cpfPreposto;
 
         public string Fantasia
         {
@@ -24,11 +24,11 @@ namespace Entidades.Pessoa
             set { fantasia = value; DefinirDesatualizado(); }
         }
 
-        public ulong? Preposto
+        public string CpfPreposto
         {
-            get { return preposto; }
+            get { return cpfPreposto; }
             set {
-                preposto = value;
+                cpfPreposto = String.IsNullOrEmpty(value) ? null : value;
                 DefinirDesatualizado();
             }
         }
@@ -223,13 +223,13 @@ namespace Entidades.Pessoa
                 base.Cadastrar(cmd);
 
             cmd.CommandText = "INSERT INTO pessoajuridica (codigo, fantasia, cnpj, " +
-                "inscEstadual, inscMunicipal, preposto) VALUES (" +
+                "inscEstadual, inscMunicipal, cpfPreposto) VALUES (" +
                 DbTransformar(Código) + ", " +
                 DbTransformar(Fantasia) + ", " +
                 DbTransformar(CNPJ) + ", " +
                 DbTransformar(InscEstadual) + ", " +
                 DbTransformar(InscMunicipal) + "," +
-                DbTransformar(Preposto) + ")";
+                DbTransformar(CpfPreposto) + ")";
 
             cmd.ExecuteNonQuery();
         }
@@ -244,7 +244,7 @@ namespace Entidades.Pessoa
                 "cnpj = " + DbTransformar(cnpj) + ", " +
                 "inscEstadual = " + DbTransformar(inscEstadual) + ", " +
                 "inscMunicipal = " + DbTransformar(inscMunicipal) + ", " + 
-                "preposto = " + DbTransformar(preposto) + 
+                "cpfPreposto = " + DbTransformar(cpfPreposto) + 
                 " WHERE codigo = " + DbTransformar(codigo);
 
             cmd.ExecuteNonQuery();
@@ -268,7 +268,7 @@ namespace Entidades.Pessoa
                 inscMunicipal = leitor.GetString(inicioAtributoPessoaJurídica + 4);
 
             if (!leitor.IsDBNull(inicioAtributoPessoaJurídica + 5))
-                preposto = (ulong?) leitor.GetInt64(inicioAtributoPessoaJurídica + 5);
+                cpfPreposto =  leitor.GetString(inicioAtributoPessoaJurídica + 5);
         }
 
         public static string FormatarCNPJ(string cnpf)
