@@ -33,7 +33,10 @@ namespace Entidades.Mercadoria
                 if (tabela == null)
                     throw new ArgumentNullException("Tabela não pode ser nula!");
 
-                return hashTabela[tabela.Código];
+                if (tabela.Código == 2 || tabela.Código == 6 || tabela.Código == 7)
+                    return hashTabela[3];
+                else
+                    return hashTabela[tabela.Código];
             }
         }
     }

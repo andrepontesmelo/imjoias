@@ -689,7 +689,7 @@ namespace Entidades.Mercadoria
                         }
 
                         // Carregar coeficientes.
-                        cmd.CommandText = "select tb.* from tabelamercadoria tb join mercadoria m on tb.mercadoria=m.referencia and m.foradelinha=0";
+                        cmd.CommandText = "select tb.* from tabelamercadoria tb join mercadoria m on tb.mercadoria=m.referencia and m.foradelinha=0 WHERE tb.tabela not in (6, 2, 7)";
                         List<TabelaMercadoria> coeficientes = Mapear<TabelaMercadoria>(cmd);
 
                         foreach (TabelaMercadoria item in coeficientes)
