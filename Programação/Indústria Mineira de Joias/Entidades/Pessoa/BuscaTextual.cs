@@ -16,7 +16,8 @@ namespace Entidades.Pessoa
         {
             CódigoPessoa,
             TextualGeral,
-            Cidade
+            Cidade,
+            CPF
         }
 
         public static List<Pessoa> ObterPessoas(string nome)
@@ -63,7 +64,7 @@ namespace Entidades.Pessoa
 
             TipoBusca tipo = ObterTipo(chaveBusca);
 
-            if (tipo != TipoBusca.CódigoPessoa)
+            if (tipo != TipoBusca.CódigoPessoa && tipo != TipoBusca.CPF)
                 comando.Append("select * from (");
 
             AdicionaSeleção(comando);
@@ -79,6 +80,9 @@ namespace Entidades.Pessoa
         {
             if (chaveBusca.StartsWith(PREFIXO_CIDADE, StringComparison.CurrentCultureIgnoreCase))
                 return TipoBusca.Cidade;
+
+            if (PessoaFísica.ValidarCPF(chaveBusca))
+                return TipoBusca.CPF;
 
             long código;
             if (long.TryParse(chaveBusca, out código))
@@ -97,7 +101,7 @@ namespace Entidades.Pessoa
         private static void AdicionaSeleção(StringBuilder comando)
         {
             comando.Append("SELECT p.codigo as cod, p.nome, p.setor, p.email, p.observacoes, p.ultimaVisita, p.dataRegistro, " +
-                " p.dataAlteracao, p.classificacoes, p.maiorVenda, p.credito, p.regiao, pf.*,pj.codigo as c, pj.cnpj, pj.fantasia, " +
+                " p.dataAlteracao, p.classificacoes, p.maiorVenda, p.credito, p.regiao, pf.*, pj.codigo as c, pj.cnpj, pj.fantasia, " +
                 " pj.inscEstadual, pj.inscMunicipal, pj.cpfPreposto FROM pessoa p left join pessoafisica pf on p.codigo=pf.codigo left join pessoajuridica pj on p.codigo=pj.codigo WHERE  ");
         }
 
@@ -112,6 +116,10 @@ namespace Entidades.Pessoa
                     CondiçãoChaveNumérica(comando, código);
                     break;
 
+                case TipoBusca.CPF:
+                    CondiçãoCPF(comando, chaveBusca);
+                    break;
+
                 case TipoBusca.Cidade:
                     CondiçãoCidade(chaveBusca, comando);
                     break;
@@ -123,6 +131,12 @@ namespace Entidades.Pessoa
                 default:
                     throw new NotImplementedException();
             }
+        }
+
+        private static void CondiçãoCPF(StringBuilder comando, string cpf)
+        {
+            cpf = PessoaFísica.LimparFormataçãoCpf(cpf);
+            comando.Append(string.Format(" pf.cpf='{0}' ", cpf));
         }
 
         private static void CondiçãoCidade(string chaveBusca, StringBuilder comando)
