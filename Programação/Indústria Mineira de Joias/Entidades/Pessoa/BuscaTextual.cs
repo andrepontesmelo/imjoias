@@ -17,7 +17,8 @@ namespace Entidades.Pessoa
             CódigoPessoa,
             TextualGeral,
             Cidade,
-            CPF
+            CPF,
+            CNPJ
         }
 
         public static List<Pessoa> ObterPessoas(string nome)
@@ -64,7 +65,7 @@ namespace Entidades.Pessoa
 
             TipoBusca tipo = ObterTipo(chaveBusca);
 
-            if (tipo != TipoBusca.CódigoPessoa && tipo != TipoBusca.CPF)
+            if (tipo == TipoBusca.TextualGeral || tipo == TipoBusca.Cidade)
                 comando.Append("select * from (");
 
             AdicionaSeleção(comando);
@@ -83,6 +84,9 @@ namespace Entidades.Pessoa
 
             if (PessoaFísica.ValidarCPF(chaveBusca))
                 return TipoBusca.CPF;
+
+            if (PessoaJurídica.ValidarCNPJ(chaveBusca))
+                return TipoBusca.CNPJ;
 
             long código;
             if (long.TryParse(chaveBusca, out código))
@@ -120,6 +124,10 @@ namespace Entidades.Pessoa
                     CondiçãoCPF(comando, chaveBusca);
                     break;
 
+                case TipoBusca.CNPJ:
+                    CondiçãoCNPJ(comando, chaveBusca);
+                    break;
+
                 case TipoBusca.Cidade:
                     CondiçãoCidade(chaveBusca, comando);
                     break;
@@ -131,6 +139,12 @@ namespace Entidades.Pessoa
                 default:
                     throw new NotImplementedException();
             }
+        }
+
+        private static void CondiçãoCNPJ(StringBuilder comando, string cnpj)
+        {
+            cnpj = PessoaJurídica.LimparFormataçãoCnpj(cnpj);
+            comando.Append(string.Format(" pj.cnpj='{0}' ", cnpj));
         }
 
         private static void CondiçãoCPF(StringBuilder comando, string cpf)
