@@ -41,8 +41,8 @@
             this.split = new System.Windows.Forms.SplitContainer();
             this.listaSaída = new Apresentação.Financeiro.Coaf.Lista.ListaSaída();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.listaNotificações1 = new Apresentação.Financeiro.Coaf.Notificações.ListaNotificações();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.tabControl.SuspendLayout();
@@ -201,6 +201,7 @@
             this.listaSaída.Name = "listaSaída";
             this.listaSaída.Size = new System.Drawing.Size(706, 90);
             this.listaSaída.TabIndex = 9;
+            this.listaSaída.DuploClique += new System.EventHandler(this.listaSaída_DuploClique);
             // 
             // tabPage2
             // 
@@ -214,13 +215,6 @@
             this.tabPage2.Text = "Notificações";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "chamando atenção.gif");
-            this.imageList1.Images.SetKeyName(1, "info.png");
-            // 
             // listaNotificações1
             // 
             this.listaNotificações1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -228,6 +222,13 @@
             this.listaNotificações1.Name = "listaNotificações1";
             this.listaNotificações1.Size = new System.Drawing.Size(706, 350);
             this.listaNotificações1.TabIndex = 0;
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "chamando atenção.gif");
+            this.imageList1.Images.SetKeyName(1, "info.png");
             // 
             // BaseCoaf
             // 
