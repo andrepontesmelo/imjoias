@@ -188,6 +188,8 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
             s.WriteLine("M||");
             s.WriteLine("N|");
             s.WriteLine("N10h|0|900||||||||||||||");
+            // PJ => 900
+            /// Fisica => 102
             s.WriteLine("O|||||999|");
             s.WriteLine("O08|53|");
             s.WriteLine("Q|");
