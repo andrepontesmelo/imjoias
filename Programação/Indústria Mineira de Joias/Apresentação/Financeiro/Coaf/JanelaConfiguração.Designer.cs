@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtMínimoDemais = new AMS.TextBox.CurrencyTextBox();
-            this.txtMínimoPEP = new AMS.TextBox.CurrencyTextBox();
+            this.txtNotificaçãoDemaisPessoas = new AMS.TextBox.CurrencyTextBox();
+            this.txtNotificaçãoPEP = new AMS.TextBox.CurrencyTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
@@ -39,13 +39,17 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtMeses = new System.Windows.Forms.NumericUpDown();
             this.btnRestaurarPadrão = new System.Windows.Forms.Button();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.trackBarVerificação = new System.Windows.Forms.TrackBar();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtConferênciaDemaisPessoas = new AMS.TextBox.CurrencyTextBox();
+            this.txtConferênciaPEP = new AMS.TextBox.CurrencyTextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picÍcone)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.grupoPeríodo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtMeses)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarVerificação)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,7 +60,7 @@
             // 
             // lblDescrição
             // 
-            this.lblDescrição.Size = new System.Drawing.Size(154, 48);
+            this.lblDescrição.Size = new System.Drawing.Size(367, 48);
             this.lblDescrição.Text = "";
             // 
             // picÍcone
@@ -68,42 +72,42 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.txtMínimoDemais);
-            this.groupBox1.Controls.Add(this.txtMínimoPEP);
+            this.groupBox1.Controls.Add(this.txtNotificaçãoDemaisPessoas);
+            this.groupBox1.Controls.Add(this.txtNotificaçãoPEP);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 96);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(216, 78);
+            this.groupBox1.Size = new System.Drawing.Size(214, 78);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Limites mínimos";
+            this.groupBox1.Text = "Limiar de notificação";
             // 
-            // txtMínimoDemais
+            // txtNotificaçãoDemaisPessoas
             // 
-            this.txtMínimoDemais.AllowNegative = true;
-            this.txtMínimoDemais.Flags = 7680;
-            this.txtMínimoDemais.Location = new System.Drawing.Point(56, 48);
-            this.txtMínimoDemais.MaxWholeDigits = 9;
-            this.txtMínimoDemais.Name = "txtMínimoDemais";
-            this.txtMínimoDemais.RangeMax = 1.7976931348623157E+308D;
-            this.txtMínimoDemais.RangeMin = -1.7976931348623157E+308D;
-            this.txtMínimoDemais.Size = new System.Drawing.Size(143, 20);
-            this.txtMínimoDemais.TabIndex = 8;
-            this.txtMínimoDemais.Text = "R$ 30.000,00";
+            this.txtNotificaçãoDemaisPessoas.AllowNegative = true;
+            this.txtNotificaçãoDemaisPessoas.Flags = 7680;
+            this.txtNotificaçãoDemaisPessoas.Location = new System.Drawing.Point(56, 48);
+            this.txtNotificaçãoDemaisPessoas.MaxWholeDigits = 9;
+            this.txtNotificaçãoDemaisPessoas.Name = "txtNotificaçãoDemaisPessoas";
+            this.txtNotificaçãoDemaisPessoas.RangeMax = 1.7976931348623157E+308D;
+            this.txtNotificaçãoDemaisPessoas.RangeMin = -1.7976931348623157E+308D;
+            this.txtNotificaçãoDemaisPessoas.Size = new System.Drawing.Size(143, 20);
+            this.txtNotificaçãoDemaisPessoas.TabIndex = 8;
+            this.txtNotificaçãoDemaisPessoas.Text = "R$ 30.000,00";
             // 
-            // txtMínimoPEP
+            // txtNotificaçãoPEP
             // 
-            this.txtMínimoPEP.AllowNegative = true;
-            this.txtMínimoPEP.Flags = 7680;
-            this.txtMínimoPEP.Location = new System.Drawing.Point(56, 25);
-            this.txtMínimoPEP.MaxWholeDigits = 9;
-            this.txtMínimoPEP.Name = "txtMínimoPEP";
-            this.txtMínimoPEP.RangeMax = 1.7976931348623157E+308D;
-            this.txtMínimoPEP.RangeMin = -1.7976931348623157E+308D;
-            this.txtMínimoPEP.Size = new System.Drawing.Size(143, 20);
-            this.txtMínimoPEP.TabIndex = 7;
-            this.txtMínimoPEP.Text = "R$ 10.000,00";
+            this.txtNotificaçãoPEP.AllowNegative = true;
+            this.txtNotificaçãoPEP.Flags = 7680;
+            this.txtNotificaçãoPEP.Location = new System.Drawing.Point(56, 25);
+            this.txtNotificaçãoPEP.MaxWholeDigits = 9;
+            this.txtNotificaçãoPEP.Name = "txtNotificaçãoPEP";
+            this.txtNotificaçãoPEP.RangeMax = 1.7976931348623157E+308D;
+            this.txtNotificaçãoPEP.RangeMin = -1.7976931348623157E+308D;
+            this.txtNotificaçãoPEP.Size = new System.Drawing.Size(143, 20);
+            this.txtNotificaçãoPEP.TabIndex = 7;
+            this.txtNotificaçãoPEP.Text = "R$ 10.000,00";
             // 
             // label2
             // 
@@ -126,7 +130,7 @@
             // btnCancelar
             // 
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancelar.Location = new System.Drawing.Point(153, 403);
+            this.btnCancelar.Location = new System.Drawing.Point(366, 260);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 7;
@@ -137,7 +141,7 @@
             // btnOk
             // 
             this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOk.Location = new System.Drawing.Point(72, 403);
+            this.btnOk.Location = new System.Drawing.Point(285, 260);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 8;
@@ -151,12 +155,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grupoPeríodo.Controls.Add(this.label3);
             this.grupoPeríodo.Controls.Add(this.txtMeses);
-            this.grupoPeríodo.Location = new System.Drawing.Point(12, 184);
+            this.grupoPeríodo.Location = new System.Drawing.Point(232, 96);
             this.grupoPeríodo.Name = "grupoPeríodo";
-            this.grupoPeríodo.Size = new System.Drawing.Size(216, 71);
+            this.grupoPeríodo.Size = new System.Drawing.Size(214, 78);
             this.grupoPeríodo.TabIndex = 9;
             this.grupoPeríodo.TabStop = false;
-            this.grupoPeríodo.Text = "Período: Últimos 6 meses";
+            this.grupoPeríodo.Text = "Apuração: Últimos 6 meses";
             // 
             // label3
             // 
@@ -185,7 +189,7 @@
             this.btnRestaurarPadrão.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRestaurarPadrão.Image = global::Apresentação.Resource.Edit_UndoHS;
             this.btnRestaurarPadrão.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnRestaurarPadrão.Location = new System.Drawing.Point(72, 374);
+            this.btnRestaurarPadrão.Location = new System.Drawing.Point(285, 231);
             this.btnRestaurarPadrão.Name = "btnRestaurarPadrão";
             this.btnRestaurarPadrão.Size = new System.Drawing.Size(156, 23);
             this.btnRestaurarPadrão.TabIndex = 10;
@@ -193,30 +197,82 @@
             this.btnRestaurarPadrão.UseVisualStyleBackColor = true;
             this.btnRestaurarPadrão.Click += new System.EventHandler(this.btnRestaurarPadrão_Click);
             // 
-            // trackBar1
+            // trackBarVerificação
             // 
-            this.trackBar1.Location = new System.Drawing.Point(12, 19);
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(197, 45);
-            this.trackBar1.TabIndex = 12;
+            this.trackBarVerificação.AutoSize = false;
+            this.trackBarVerificação.Location = new System.Drawing.Point(6, 19);
+            this.trackBarVerificação.Name = "trackBarVerificação";
+            this.trackBarVerificação.Size = new System.Drawing.Size(197, 31);
+            this.trackBarVerificação.TabIndex = 12;
+            this.trackBarVerificação.Scroll += new System.EventHandler(this.trackBarVerificação_Scroll);
             // 
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.trackBar1);
-            this.groupBox2.Location = new System.Drawing.Point(12, 261);
+            this.groupBox2.Controls.Add(this.txtConferênciaDemaisPessoas);
+            this.groupBox2.Controls.Add(this.txtConferênciaPEP);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.trackBarVerificação);
+            this.groupBox2.Location = new System.Drawing.Point(12, 180);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(216, 78);
+            this.groupBox2.Size = new System.Drawing.Size(214, 107);
             this.groupBox2.TabIndex = 13;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Limiar de conferência";
+            this.groupBox2.Text = "Limiar de verificação";
+            // 
+            // txtConferênciaDemaisPessoas
+            // 
+            this.txtConferênciaDemaisPessoas.AllowNegative = true;
+            this.txtConferênciaDemaisPessoas.Flags = 7680;
+            this.txtConferênciaDemaisPessoas.Location = new System.Drawing.Point(56, 79);
+            this.txtConferênciaDemaisPessoas.MaxWholeDigits = 9;
+            this.txtConferênciaDemaisPessoas.Name = "txtConferênciaDemaisPessoas";
+            this.txtConferênciaDemaisPessoas.RangeMax = 1.7976931348623157E+308D;
+            this.txtConferênciaDemaisPessoas.RangeMin = -1.7976931348623157E+308D;
+            this.txtConferênciaDemaisPessoas.Size = new System.Drawing.Size(143, 20);
+            this.txtConferênciaDemaisPessoas.TabIndex = 16;
+            this.txtConferênciaDemaisPessoas.Text = "R$ 30.000,00";
+            this.txtConferênciaDemaisPessoas.Validated += new System.EventHandler(this.txtConferênciaDemaisPessoas_Validated);
+            // 
+            // txtConferênciaPEP
+            // 
+            this.txtConferênciaPEP.AllowNegative = true;
+            this.txtConferênciaPEP.Flags = 7680;
+            this.txtConferênciaPEP.Location = new System.Drawing.Point(56, 56);
+            this.txtConferênciaPEP.MaxWholeDigits = 9;
+            this.txtConferênciaPEP.Name = "txtConferênciaPEP";
+            this.txtConferênciaPEP.RangeMax = 1.7976931348623157E+308D;
+            this.txtConferênciaPEP.RangeMin = -1.7976931348623157E+308D;
+            this.txtConferênciaPEP.Size = new System.Drawing.Size(143, 20);
+            this.txtConferênciaPEP.TabIndex = 15;
+            this.txtConferênciaPEP.Text = "R$ 10.000,00";
+            this.txtConferênciaPEP.Validated += new System.EventHandler(this.txtConferênciaPEP_Validated);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(9, 80);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(45, 13);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Demais:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(9, 57);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(31, 13);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "PEP:";
             // 
             // JanelaConfiguração
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(242, 438);
+            this.ClientSize = new System.Drawing.Size(455, 292);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnRestaurarPadrão);
             this.Controls.Add(this.grupoPeríodo);
@@ -237,7 +293,7 @@
             this.grupoPeríodo.ResumeLayout(false);
             this.grupoPeríodo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtMeses)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarVerificação)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
@@ -247,8 +303,8 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private AMS.TextBox.CurrencyTextBox txtMínimoDemais;
-        private AMS.TextBox.CurrencyTextBox txtMínimoPEP;
+        private AMS.TextBox.CurrencyTextBox txtNotificaçãoDemaisPessoas;
+        private AMS.TextBox.CurrencyTextBox txtNotificaçãoPEP;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCancelar;
@@ -257,7 +313,11 @@
         private System.Windows.Forms.Button btnRestaurarPadrão;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown txtMeses;
-        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.TrackBar trackBarVerificação;
         private System.Windows.Forms.GroupBox groupBox2;
+        private AMS.TextBox.CurrencyTextBox txtConferênciaDemaisPessoas;
+        private AMS.TextBox.CurrencyTextBox txtConferênciaPEP;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }

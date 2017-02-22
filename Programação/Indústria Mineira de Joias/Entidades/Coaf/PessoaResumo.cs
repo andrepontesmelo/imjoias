@@ -26,8 +26,8 @@ namespace Entidades.Coaf
             {
                 var configuração = ConfiguraçõesCoaf.Instância;
                 decimal valorMínimo = PoliticamenteExposta ? 
-                    configuração.ValorMínimoAcumuladoPessoaExpostaPoliticamente.Valor : 
-                    configuração.ValorMínimoAcumuladoDemaisPessoas.Valor;
+                    configuração.LimiarNotificaçãoPessoaExpostaPoliticamente.Valor : 
+                    configuração.LimiarNotificaçãoDemaisPessoas.Valor;
                 return (ValorAcumulado >= valorMínimo);
             }
         }
