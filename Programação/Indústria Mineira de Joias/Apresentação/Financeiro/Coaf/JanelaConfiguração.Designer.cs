@@ -1,4 +1,6 @@
-﻿namespace Apresentação.Financeiro.Coaf
+﻿using Apresentação.Formulário.Componente;
+
+namespace Apresentação.Financeiro.Coaf
 {
     partial class JanelaConfiguração
     {
@@ -39,7 +41,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtMeses = new System.Windows.Forms.NumericUpDown();
             this.btnRestaurarPadrão = new System.Windows.Forms.Button();
-            this.trackBarVerificação = new System.Windows.Forms.TrackBar();
+            this.trackBarVerificação = new Apresentação.Formulário.Componente.TrackBarProporcional();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtConferênciaDemaisPessoas = new AMS.TextBox.CurrencyTextBox();
             this.txtConferênciaPEP = new AMS.TextBox.CurrencyTextBox();
@@ -313,7 +315,7 @@
         private System.Windows.Forms.Button btnRestaurarPadrão;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown txtMeses;
-        private System.Windows.Forms.TrackBar trackBarVerificação;
+        private TrackBarProporcional trackBarVerificação;
         private System.Windows.Forms.GroupBox groupBox2;
         private AMS.TextBox.CurrencyTextBox txtConferênciaDemaisPessoas;
         private AMS.TextBox.CurrencyTextBox txtConferênciaPEP;

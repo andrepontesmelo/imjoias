@@ -340,6 +340,12 @@
     <Compile Include="Formulário\ComboRígido.Designer.cs">
       <DependentUpon>ComboRígido.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formulário\Componente\TrackBarProporcional.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Formulário\Componente\TrackBarProporcional.Designer.cs">
+      <DependentUpon>TrackBarProporcional.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formulário\Exceção\ExceçãoChamadaMétodoAbstrato.cs" />
     <Compile Include="Impressão\Relatórios\Fiscal\ControladorImpressãoFiscal.cs" />
     <Compile Include="Impressão\Relatórios\Fiscal\Extrato\ControladorImpressãoExtrato.cs" />
