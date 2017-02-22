@@ -168,7 +168,8 @@ namespace Apresentação.Pessoa.Cadastro
 
         private void lnkCadastrarPreposto_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            var preposto = CadastroPessoa.CadastrarNovaPessoaFísica(TipoPessoaFísica.Outro);
+            var preposto = CadastroPessoa.CadastrarNovaPessoaFísica(TipoPessoaFísica.Outro, txtCPFPreposto.Text);
+
             if (preposto != null)
             {
                 pessoa.CpfPreposto = preposto.CPF;

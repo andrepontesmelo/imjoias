@@ -556,8 +556,13 @@ namespace Apresentação.Pessoa.Cadastro
 
         public static PessoaFísica CadastrarNovaPessoaFísica(TipoPessoaFísica tipoPessoaFísica)
         {
+            return CadastrarNovaPessoaFísica(tipoPessoaFísica, null);
+        }
+
+        public static PessoaFísica CadastrarNovaPessoaFísica(TipoPessoaFísica tipoPessoaFísica, string cpf)
+        {
             PessoaFísica entidade = null;
-            CadastroPessoa dlg = ConstróiJanelaCadastro(tipoPessoaFísica);
+            CadastroPessoa dlg = ConstróiJanelaCadastro(tipoPessoaFísica, cpf);
 
             try
             {
@@ -584,7 +589,7 @@ namespace Apresentação.Pessoa.Cadastro
                     switch (tipoPessoaFísica)
                     {
                         case TipoPessoaFísica.Outro:
-                            entidade = (PessoaFísica)janela.Pessoa;
+                            entidade = (PessoaFísica) janela.Pessoa;
                             break;
 
                         case TipoPessoaFísica.Funcionário:
@@ -632,21 +637,25 @@ namespace Apresentação.Pessoa.Cadastro
             } while (insistir);
         }
 
-        private static CadastroPessoa ConstróiJanelaCadastro(TipoPessoaFísica tipoPessoaFísica)
+        private static CadastroPessoa ConstróiJanelaCadastro(TipoPessoaFísica tipoPessoaFísica) {
+            return ConstróiJanelaCadastro(tipoPessoaFísica, null);
+        }
+
+        private static CadastroPessoa ConstróiJanelaCadastro(TipoPessoaFísica tipoPessoaFísica, string cpf)
         {
             CadastroPessoa dlg;
             switch (tipoPessoaFísica)
             {
                 case TipoPessoaFísica.Outro:
-                    dlg = new CadastroCliente(new PessoaFísica());
+                    dlg = new CadastroCliente(new PessoaFísica(cpf));
                     break;
 
                 case TipoPessoaFísica.Funcionário:
-                    dlg = new CadastroFuncionário(new Funcionário());
+                    dlg = new CadastroFuncionário(new Funcionário(cpf));
                     break;
 
                 case TipoPessoaFísica.Representante:
-                    dlg = new CadastroRepresentante(new Representante());
+                    dlg = new CadastroRepresentante(new Representante(cpf));
                     break;
 
                 default:

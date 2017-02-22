@@ -47,16 +47,20 @@ namespace Entidades.Pessoa
             DefinirCadastrado(false);
 		}
 
-		#region Cadastrar, Atualizar e Descadastrar
+        public Representante(string cpf) : base(cpf)
+        {
+        }
 
-		/// <summary>
-		/// Cadastra um representante.
-		/// </summary>
-		/// <remarks>
-		/// Caso a pessoa-física já esteja cadastrada,
-		/// somente é inserido uma linha na tabela Representante.
-		/// </remarks>
-		public override void Cadastrar()
+        #region Cadastrar, Atualizar e Descadastrar
+
+        /// <summary>
+        /// Cadastra um representante.
+        /// </summary>
+        /// <remarks>
+        /// Caso a pessoa-física já esteja cadastrada,
+        /// somente é inserido uma linha na tabela Representante.
+        /// </remarks>
+        public override void Cadastrar()
 		{
 			/* O código 0 indica que a pessoa-física
 			 * não encontra-se cadastrada no banco de dados.

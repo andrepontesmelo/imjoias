@@ -64,10 +64,14 @@ namespace Entidades.Pessoa
 		public Funcionário() {}
         public Funcionário(ulong código) : base(código) { }
 
-		
-		#endregion
+        public Funcionário(string cpf) : base(cpf)
+        {
+        }
 
-		#region Propriedades
+
+        #endregion
+
+        #region Propriedades
 
         /// <summary>
         /// Verifica se o funcionário está atendendo.

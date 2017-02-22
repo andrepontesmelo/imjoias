@@ -30,7 +30,12 @@ namespace Entidades.Pessoa
         [DbColuna("profissao")]
         protected string profissão;
 
-        public PessoaFísica() { }
+        public PessoaFísica() { } 
+
+        public PessoaFísica(string cpf)
+        {
+            this.cpf = cpf;
+        }
 
         public PessoaFísica(ulong código) : base(código) { }
 
