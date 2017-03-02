@@ -54,8 +54,18 @@ namespace Apresentação.Financeiro.Coaf
 
         private void btnRestaurarPadrão_Click(object sender, EventArgs e)
         {
-            Configurações.RestaurarPadrão();
-            Carregar();
+            txtConferênciaDemaisPessoas.Double = (double)ConfiguraçõesCoaf.PADRÃO_LIMIAR_CONFERÊNCIA_DEMAIS;
+            txtConferênciaPEP.Double = (double)ConfiguraçõesCoaf.PADRÃO_LIMIAR_CONFERÊNCIA_PEP;
+            txtNotificaçãoDemaisPessoas.Double = (double)ConfiguraçõesCoaf.PADRÃO_LIMIAR_NOTIFICAÇÂO_DEMAIS;
+            txtNotificaçãoPEP.Double = (double)ConfiguraçõesCoaf.PADRÃO_LIMIAR_NOTIFICAÇÂO_PEP;
+            txtMeses.Value = ConfiguraçõesCoaf.PADRÃO_QTD_MESES;
+
+            AtualizarTrackbar();
+        }
+
+        private void AtualizarTrackbar()
+        {
+            trackBarVerificação.Definir(txtConferênciaPEP.Double, txtNotificaçãoPEP.Double);
         }
 
         private void trackBarVerificação_Scroll(object sender, EventArgs e)
@@ -66,7 +76,7 @@ namespace Apresentação.Financeiro.Coaf
 
         private void txtConferênciaPEP_Validated(object sender, EventArgs e)
         {
-            trackBarVerificação.Definir(txtConferênciaPEP.Double, txtNotificaçãoPEP.Double);
+            AtualizarTrackbar();
         }
 
         private void txtConferênciaDemaisPessoas_Validated(object sender, EventArgs e)

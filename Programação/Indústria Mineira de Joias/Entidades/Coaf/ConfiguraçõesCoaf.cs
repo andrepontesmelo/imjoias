@@ -5,11 +5,11 @@ namespace Entidades.Coaf
 {
     public class ConfiguraçõesCoaf
     {
-        private static readonly int PADRÃO_QTD_MESES = 6;
-        private static readonly decimal PADRÃO_LIMIAR_NOTIFICAÇÂO_PEP = 10000;
-        private static readonly int PADRÃO_LIMIAR_NOTIFICAÇÂO_DEMAIS = 30000;
-        private static readonly decimal PADRÃO_LIMIAR_CONFERÊNCIA_PEP = 5000;
-        private static readonly int PADRÃO_LIMIAR_CONFERÊNCIA_DEMAIS = 15000;
+        public static readonly int PADRÃO_QTD_MESES = 6;
+        public static readonly decimal PADRÃO_LIMIAR_NOTIFICAÇÂO_PEP = 10000;
+        public static readonly decimal PADRÃO_LIMIAR_NOTIFICAÇÂO_DEMAIS = 30000;
+        public static readonly decimal PADRÃO_LIMIAR_CONFERÊNCIA_PEP = 5000;
+        public static readonly decimal PADRÃO_LIMIAR_CONFERÊNCIA_DEMAIS = 15000;
 
         private ConfiguraçãoGlobal<int> qtdMeses;
         private ConfiguraçãoGlobal<decimal> limiarNotificaçãoPessoaExpostaPoliticamente;
