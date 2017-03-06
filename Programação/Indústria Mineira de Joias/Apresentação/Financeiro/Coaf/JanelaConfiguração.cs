@@ -24,10 +24,10 @@ namespace Apresentação.Financeiro.Coaf
             txtMeses.Value = Configurações.QtdMeses;
             txtNotificaçãoDemaisPessoas.Text = Configurações.LimiarNotificaçãoDemaisPessoas.Valor.ToString();
             txtNotificaçãoPEP.Text = Configurações.LimiarNotificaçãoPessoaExpostaPoliticamente.Valor.ToString();
-            txtConferênciaDemaisPessoas.Text = Configurações.LimiarConferênciaDemaisPessoas.Valor.ToString();
-            txtConferênciaPEP.Text = Configurações.LimiarConferênciaPessoaExpostaPoliticamente.Valor.ToString();
+            txtVerificaçãoDemaisPessoas.Text = Configurações.LimiarVerificaçãoDemaisPessoas.Valor.ToString();
+            txtVerificaçãoPEP.Text = Configurações.LimiarVerificaçãoPessoaExpostaPoliticamente.Valor.ToString();
 
-            trackBarVerificação.Definir(Configurações.LimiarConferênciaDemaisPessoas.Valor,
+            trackBarVerificação.Definir(Configurações.LimiarVerificaçãoDemaisPessoas.Valor,
                 Configurações.LimiarNotificaçãoDemaisPessoas.Valor);
        }
 
@@ -36,8 +36,8 @@ namespace Apresentação.Financeiro.Coaf
             Configurações.QtdMeses.Valor = (int) txtMeses.Value;
             Configurações.LimiarNotificaçãoPessoaExpostaPoliticamente.Valor = (decimal) txtNotificaçãoPEP.Double;
             Configurações.LimiarNotificaçãoDemaisPessoas.Valor = (decimal) txtNotificaçãoDemaisPessoas.Double;
-            Configurações.LimiarConferênciaPessoaExpostaPoliticamente.Valor = (decimal)txtConferênciaPEP.Double;
-            Configurações.LimiarConferênciaDemaisPessoas.Valor = (decimal)txtConferênciaDemaisPessoas.Double;
+            Configurações.LimiarVerificaçãoPessoaExpostaPoliticamente.Valor = (decimal)txtVerificaçãoPEP.Double;
+            Configurações.LimiarVerificaçãoDemaisPessoas.Valor = (decimal)txtVerificaçãoDemaisPessoas.Double;
 
             Close();
         }
@@ -54,8 +54,8 @@ namespace Apresentação.Financeiro.Coaf
 
         private void btnRestaurarPadrão_Click(object sender, EventArgs e)
         {
-            txtConferênciaDemaisPessoas.Double = (double)ConfiguraçõesCoaf.PADRÃO_LIMIAR_CONFERÊNCIA_DEMAIS;
-            txtConferênciaPEP.Double = (double)ConfiguraçõesCoaf.PADRÃO_LIMIAR_CONFERÊNCIA_PEP;
+            txtVerificaçãoDemaisPessoas.Double = (double)ConfiguraçõesCoaf.PADRÃO_LIMIAR_CONFERÊNCIA_DEMAIS;
+            txtVerificaçãoPEP.Double = (double)ConfiguraçõesCoaf.PADRÃO_LIMIAR_CONFERÊNCIA_PEP;
             txtNotificaçãoDemaisPessoas.Double = (double)ConfiguraçõesCoaf.PADRÃO_LIMIAR_NOTIFICAÇÂO_DEMAIS;
             txtNotificaçãoPEP.Double = (double)ConfiguraçõesCoaf.PADRÃO_LIMIAR_NOTIFICAÇÂO_PEP;
             txtMeses.Value = ConfiguraçõesCoaf.PADRÃO_QTD_MESES;
@@ -65,23 +65,23 @@ namespace Apresentação.Financeiro.Coaf
 
         private void AtualizarTrackbar()
         {
-            trackBarVerificação.Definir(txtConferênciaPEP.Double, txtNotificaçãoPEP.Double);
+            trackBarVerificação.Definir(txtVerificaçãoPEP.Double, txtNotificaçãoPEP.Double);
         }
 
         private void trackBarVerificação_Scroll(object sender, EventArgs e)
         {
-            txtConferênciaDemaisPessoas.Double = trackBarVerificação.CalcularValorProporcional(txtNotificaçãoDemaisPessoas.Double, 2);
-            txtConferênciaPEP.Double = trackBarVerificação.CalcularValorProporcional(txtNotificaçãoPEP.Double, 2);
+            txtVerificaçãoDemaisPessoas.Double = trackBarVerificação.CalcularValorProporcional(txtNotificaçãoDemaisPessoas.Double, 2);
+            txtVerificaçãoPEP.Double = trackBarVerificação.CalcularValorProporcional(txtNotificaçãoPEP.Double, 2);
         }
 
-        private void txtConferênciaPEP_Validated(object sender, EventArgs e)
+        private void txtVerificaçãoPEP_Validated(object sender, EventArgs e)
         {
             AtualizarTrackbar();
         }
 
-        private void txtConferênciaDemaisPessoas_Validated(object sender, EventArgs e)
+        private void txtVerificaçãoDemaisPessoas_Validated(object sender, EventArgs e)
         {
-            trackBarVerificação.Definir(txtConferênciaDemaisPessoas.Double, txtNotificaçãoDemaisPessoas.Double);
+            trackBarVerificação.Definir(txtVerificaçãoDemaisPessoas.Double, txtNotificaçãoDemaisPessoas.Double);
         }
     }
 }

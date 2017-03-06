@@ -14,14 +14,14 @@ namespace Entidades.Coaf
         private ConfiguraçãoGlobal<int> qtdMeses;
         private ConfiguraçãoGlobal<decimal> limiarNotificaçãoPessoaExpostaPoliticamente;
         private ConfiguraçãoGlobal<decimal> limiarNotificaçãoDemaisPessoas;
-        private ConfiguraçãoGlobal<decimal> limiarConferênciaPessoaExpostaPoliticamente;
-        private ConfiguraçãoGlobal<decimal> limiarConferênciaDemaisPessoas;
+        private ConfiguraçãoGlobal<decimal> limiarVerificaçãoPessoaExpostaPoliticamente;
+        private ConfiguraçãoGlobal<decimal> limiarVerificaçãoDemaisPessoas;
 
         public ConfiguraçãoGlobal<int> QtdMeses => qtdMeses;
         public ConfiguraçãoGlobal<decimal> LimiarNotificaçãoPessoaExpostaPoliticamente => limiarNotificaçãoPessoaExpostaPoliticamente;
         public ConfiguraçãoGlobal<decimal> LimiarNotificaçãoDemaisPessoas => limiarNotificaçãoDemaisPessoas;
-        public ConfiguraçãoGlobal<decimal> LimiarConferênciaPessoaExpostaPoliticamente => limiarConferênciaPessoaExpostaPoliticamente;
-        public ConfiguraçãoGlobal<decimal> LimiarConferênciaDemaisPessoas => limiarConferênciaDemaisPessoas;
+        public ConfiguraçãoGlobal<decimal> LimiarVerificaçãoPessoaExpostaPoliticamente => limiarVerificaçãoPessoaExpostaPoliticamente;
+        public ConfiguraçãoGlobal<decimal> LimiarVerificaçãoDemaisPessoas => limiarVerificaçãoDemaisPessoas;
 
         private static ConfiguraçõesCoaf instância;
 
@@ -30,8 +30,8 @@ namespace Entidades.Coaf
             qtdMeses = new ConfiguraçãoGlobal<int>("coaf_qtdMeses", PADRÃO_QTD_MESES);
             limiarNotificaçãoDemaisPessoas = new ConfiguraçãoGlobal<decimal>("coaf_limiar_notificação_demais_pessoas", PADRÃO_LIMIAR_NOTIFICAÇÂO_DEMAIS);
             limiarNotificaçãoPessoaExpostaPoliticamente = new ConfiguraçãoGlobal<decimal>("coaf_limiar_notificação_pep", PADRÃO_LIMIAR_NOTIFICAÇÂO_PEP);
-            limiarConferênciaDemaisPessoas = new ConfiguraçãoGlobal<decimal>("coaf_limiar_conferência_demais_pessoas", PADRÃO_LIMIAR_CONFERÊNCIA_DEMAIS);
-            limiarConferênciaPessoaExpostaPoliticamente= new ConfiguraçãoGlobal<decimal>("coaf_limiar_conferência_pep", PADRÃO_LIMIAR_CONFERÊNCIA_PEP);
+            limiarVerificaçãoDemaisPessoas = new ConfiguraçãoGlobal<decimal>("coaf_limiar_conferência_demais_pessoas", PADRÃO_LIMIAR_CONFERÊNCIA_DEMAIS);
+            limiarVerificaçãoPessoaExpostaPoliticamente= new ConfiguraçãoGlobal<decimal>("coaf_limiar_conferência_pep", PADRÃO_LIMIAR_CONFERÊNCIA_PEP);
 
         }
 
@@ -46,13 +46,17 @@ namespace Entidades.Coaf
             }
         }
 
+        public decimal ValorMínimoLimiar => Math.Min(ValorMínimoVerificação, ValorMínimoNotificação);
+        private decimal ValorMínimoVerificação => Math.Min(LimiarVerificaçãoDemaisPessoas.Valor, LimiarVerificaçãoPessoaExpostaPoliticamente.Valor);
+        private decimal ValorMínimoNotificação => Math.Min(LimiarNotificaçãoDemaisPessoas.Valor, LimiarNotificaçãoPessoaExpostaPoliticamente.Valor);
+
         public void RestaurarPadrão()
         {
             qtdMeses.Valor = PADRÃO_QTD_MESES;
             limiarNotificaçãoPessoaExpostaPoliticamente.Valor = PADRÃO_LIMIAR_NOTIFICAÇÂO_PEP;
             limiarNotificaçãoDemaisPessoas.Valor = PADRÃO_LIMIAR_NOTIFICAÇÂO_DEMAIS;
-            limiarConferênciaPessoaExpostaPoliticamente.Valor = PADRÃO_LIMIAR_CONFERÊNCIA_PEP;
-            limiarConferênciaDemaisPessoas.Valor = PADRÃO_LIMIAR_CONFERÊNCIA_DEMAIS;
+            limiarVerificaçãoPessoaExpostaPoliticamente.Valor = PADRÃO_LIMIAR_CONFERÊNCIA_PEP;
+            limiarVerificaçãoDemaisPessoas.Valor = PADRÃO_LIMIAR_CONFERÊNCIA_DEMAIS;
         }
     }
 }

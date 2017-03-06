@@ -58,10 +58,13 @@ namespace Apresentação.Financeiro.Coaf.Lista
         private List<ListViewItem> CriarItens(List<PessoaResumo> entidades)
         {
             List<ListViewItem> resultado = new List<ListViewItem>();
-
+            
             var random = new Random((int) DateTime.Now.Ticks);
             foreach (PessoaResumo entidade in entidades)
             {
+                if (!entidade.Verificável)
+                    continue;
+
                 ListViewItem item = new ListViewItem(ObterGrupo(entidade));
                 item.SubItems.AddRange(new string[] { "", "", "", "", "" });
                 item.SubItems[colCPFCNPJ.Index].Text = FormatarCpfCnpj(entidade.CpfCnpj);
@@ -73,7 +76,7 @@ namespace Apresentação.Financeiro.Coaf.Lista
                 item.Tag = entidade;
 
                 if (entidade.PoliticamenteExposta)
-                    item.SubItems[colPEP.Index].Text = CódigoPep.Hash[entidade.Código].Descrição;
+                    item.SubItems[colPEP.Index].Text = HashPessoaExpostaPoliticamente.Hash[entidade.CpfResponsável].Descrição;
 
                 resultado.Add(item);
             }
@@ -93,11 +96,11 @@ namespace Apresentação.Financeiro.Coaf.Lista
 
         private List<PessoaResumo> ObterEntidades()
         {
-            int meses = 6;
+            int meses = ConfiguraçõesCoaf.Instância.QtdMeses;
             var agora = DadosGlobais.Instância.HoraDataAtual;
             var início = agora.AddMonths(-1 * meses);
 
-            return PessoaResumo.Obter(início);
+            return PessoaResumo.Obter(início, ConfiguraçõesCoaf.Instância.ValorMínimoLimiar);
         }
 
         private void lista_SelectedIndexChanged(object sender, EventArgs e)

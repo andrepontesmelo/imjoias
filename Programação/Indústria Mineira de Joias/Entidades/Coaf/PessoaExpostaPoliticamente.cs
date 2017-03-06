@@ -11,6 +11,7 @@ namespace Entidades.Coaf
         protected string descricao;
 
         public string Descrição => descricao;
+        public string Cpf => cpf;
 
         public PessoaExpostaPoliticamente()
         {
@@ -61,6 +62,11 @@ namespace Entidades.Coaf
             sql.Remove(sql.Length - 3, 3);
 
             return sql.ToString();
+        }
+
+        public static List<PessoaExpostaPoliticamente> Obter()
+        {
+            return Mapear<PessoaExpostaPoliticamente>("select * from pep");
         }
     }
 }

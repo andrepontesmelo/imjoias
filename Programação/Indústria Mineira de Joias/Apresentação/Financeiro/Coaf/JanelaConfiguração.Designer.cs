@@ -43,8 +43,8 @@ namespace Apresentação.Financeiro.Coaf
             this.btnRestaurarPadrão = new System.Windows.Forms.Button();
             this.trackBarVerificação = new Apresentação.Formulário.Componente.TrackBarProporcional();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtConferênciaDemaisPessoas = new AMS.TextBox.CurrencyTextBox();
-            this.txtConferênciaPEP = new AMS.TextBox.CurrencyTextBox();
+            this.txtVerificaçãoDemaisPessoas = new AMS.TextBox.CurrencyTextBox();
+            this.txtVerificaçãoPEP = new AMS.TextBox.CurrencyTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picÍcone)).BeginInit();
@@ -212,8 +212,8 @@ namespace Apresentação.Financeiro.Coaf
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.txtConferênciaDemaisPessoas);
-            this.groupBox2.Controls.Add(this.txtConferênciaPEP);
+            this.groupBox2.Controls.Add(this.txtVerificaçãoDemaisPessoas);
+            this.groupBox2.Controls.Add(this.txtVerificaçãoPEP);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.trackBarVerificação);
@@ -224,33 +224,33 @@ namespace Apresentação.Financeiro.Coaf
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Limiar de verificação";
             // 
-            // txtConferênciaDemaisPessoas
+            // txtVerificaçãoDemaisPessoas
             // 
-            this.txtConferênciaDemaisPessoas.AllowNegative = true;
-            this.txtConferênciaDemaisPessoas.Flags = 7680;
-            this.txtConferênciaDemaisPessoas.Location = new System.Drawing.Point(56, 79);
-            this.txtConferênciaDemaisPessoas.MaxWholeDigits = 9;
-            this.txtConferênciaDemaisPessoas.Name = "txtConferênciaDemaisPessoas";
-            this.txtConferênciaDemaisPessoas.RangeMax = 1.7976931348623157E+308D;
-            this.txtConferênciaDemaisPessoas.RangeMin = -1.7976931348623157E+308D;
-            this.txtConferênciaDemaisPessoas.Size = new System.Drawing.Size(143, 20);
-            this.txtConferênciaDemaisPessoas.TabIndex = 16;
-            this.txtConferênciaDemaisPessoas.Text = "R$ 30.000,00";
-            this.txtConferênciaDemaisPessoas.Validated += new System.EventHandler(this.txtConferênciaDemaisPessoas_Validated);
+            this.txtVerificaçãoDemaisPessoas.AllowNegative = true;
+            this.txtVerificaçãoDemaisPessoas.Flags = 7680;
+            this.txtVerificaçãoDemaisPessoas.Location = new System.Drawing.Point(56, 79);
+            this.txtVerificaçãoDemaisPessoas.MaxWholeDigits = 9;
+            this.txtVerificaçãoDemaisPessoas.Name = "txtVerificaçãoDemaisPessoas";
+            this.txtVerificaçãoDemaisPessoas.RangeMax = 1.7976931348623157E+308D;
+            this.txtVerificaçãoDemaisPessoas.RangeMin = -1.7976931348623157E+308D;
+            this.txtVerificaçãoDemaisPessoas.Size = new System.Drawing.Size(143, 20);
+            this.txtVerificaçãoDemaisPessoas.TabIndex = 16;
+            this.txtVerificaçãoDemaisPessoas.Text = "R$ 30.000,00";
+            this.txtVerificaçãoDemaisPessoas.Validated += new System.EventHandler(this.txtVerificaçãoDemaisPessoas_Validated);
             // 
-            // txtConferênciaPEP
+            // txtVerificaçãoPEP
             // 
-            this.txtConferênciaPEP.AllowNegative = true;
-            this.txtConferênciaPEP.Flags = 7680;
-            this.txtConferênciaPEP.Location = new System.Drawing.Point(56, 56);
-            this.txtConferênciaPEP.MaxWholeDigits = 9;
-            this.txtConferênciaPEP.Name = "txtConferênciaPEP";
-            this.txtConferênciaPEP.RangeMax = 1.7976931348623157E+308D;
-            this.txtConferênciaPEP.RangeMin = -1.7976931348623157E+308D;
-            this.txtConferênciaPEP.Size = new System.Drawing.Size(143, 20);
-            this.txtConferênciaPEP.TabIndex = 15;
-            this.txtConferênciaPEP.Text = "R$ 10.000,00";
-            this.txtConferênciaPEP.Validated += new System.EventHandler(this.txtConferênciaPEP_Validated);
+            this.txtVerificaçãoPEP.AllowNegative = true;
+            this.txtVerificaçãoPEP.Flags = 7680;
+            this.txtVerificaçãoPEP.Location = new System.Drawing.Point(56, 56);
+            this.txtVerificaçãoPEP.MaxWholeDigits = 9;
+            this.txtVerificaçãoPEP.Name = "txtVerificaçãoPEP";
+            this.txtVerificaçãoPEP.RangeMax = 1.7976931348623157E+308D;
+            this.txtVerificaçãoPEP.RangeMin = -1.7976931348623157E+308D;
+            this.txtVerificaçãoPEP.Size = new System.Drawing.Size(143, 20);
+            this.txtVerificaçãoPEP.TabIndex = 15;
+            this.txtVerificaçãoPEP.Text = "R$ 10.000,00";
+            this.txtVerificaçãoPEP.Validated += new System.EventHandler(this.txtVerificaçãoPEP_Validated);
             // 
             // label4
             // 
@@ -317,8 +317,8 @@ namespace Apresentação.Financeiro.Coaf
         private System.Windows.Forms.NumericUpDown txtMeses;
         private TrackBarProporcional trackBarVerificação;
         private System.Windows.Forms.GroupBox groupBox2;
-        private AMS.TextBox.CurrencyTextBox txtConferênciaDemaisPessoas;
-        private AMS.TextBox.CurrencyTextBox txtConferênciaPEP;
+        private AMS.TextBox.CurrencyTextBox txtVerificaçãoDemaisPessoas;
+        private AMS.TextBox.CurrencyTextBox txtVerificaçãoPEP;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
     }

@@ -202,7 +202,7 @@
     </Compile>
     <Compile Include="Balanço\SaquinhoBalanço.cs" />
     <Compile Include="Coaf\ConfiguraçõesCoaf.cs" />
-    <Compile Include="Coaf\CódigoPep.cs" />
+    <Compile Include="Coaf\HashPessoaExpostaPoliticamente.cs" />
     <Compile Include="Coaf\ImportadorPep.cs" />
     <Compile Include="Coaf\PessoaExpostaPoliticamente.cs" />
     <Compile Include="Coaf\PessoaResumo.cs" />
