@@ -1125,7 +1125,7 @@ namespace Apresentação {
         /// </summary>
         internal static System.Drawing.Bitmap Logo_COAF {
             get {
-                object obj = ResourceManager.GetObject("Logo-COAF", resourceCulture);
+                object obj = ResourceManager.GetObject("Logo_COAF", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

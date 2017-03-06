@@ -5763,8 +5763,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Administrativo\IntegraçãoSistemaAntigo\App.ico" />
-    <None Include="Resources\ficha.png" />
     <None Include="Resources\Logo-COAF.png" />
+    <None Include="Resources\ficha.png" />
     <None Include="Resources\opçãoCarregarPDF.Imagem1.png" />
     <None Include="Resources\esquerda.BackgroundImage.jpg" />
     <None Include="Resources\pdf_icon.png" />

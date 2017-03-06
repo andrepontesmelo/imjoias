@@ -30,6 +30,7 @@ namespace Apresentação.Financeiro.Coaf
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(JanelaConfiguração));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtNotificaçãoDemaisPessoas = new AMS.TextBox.CurrencyTextBox();
             this.txtNotificaçãoPEP = new AMS.TextBox.CurrencyTextBox();
@@ -63,11 +64,11 @@ namespace Apresentação.Financeiro.Coaf
             // lblDescrição
             // 
             this.lblDescrição.Size = new System.Drawing.Size(367, 48);
-            this.lblDescrição.Text = "";
+            this.lblDescrição.Text = resources.GetString("lblDescrição.Text");
             // 
             // picÍcone
             // 
-            this.picÍcone.Image = global::Apresentação.Resource.Logo_COAF;
+            this.picÍcone.Image = ((System.Drawing.Image)(resources.GetObject("picÍcone.Image")));
             this.picÍcone.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             // 
             // groupBox1

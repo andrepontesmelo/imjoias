@@ -72,7 +72,7 @@ namespace Apresentação.Financeiro.Coaf.Lista
                 item.SubItems[colPessoa.Index].Text = entidade.Nome;
                 item.SubItems[colValorAcumulado.Index].Text = entidade.ValorAcumulado.ToString("C");
                 string[] mensagems = new string[] { "Cadastrar Preposto", "Cadastrar CPF", "Cadastrar órgão expeditor", "Cadastrar documento de identificação" };
-                item.SubItems[colInconsistências.Index].Text = mensagems[random.Next(mensagems.Length)];
+                item.SubItems[colPendências.Index].Text = mensagems[random.Next(mensagems.Length)];
                 item.Tag = entidade;
 
                 if (entidade.PoliticamenteExposta)
