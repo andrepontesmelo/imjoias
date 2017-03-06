@@ -3,6 +3,7 @@ using System.Data;
 using Acesso.Comum.Cache;
 using System.Collections.Generic;
 using Entidades.Configuração;
+using Entidades.Coaf;
 
 namespace Entidades.Pessoa
 {
@@ -301,6 +302,17 @@ namespace Entidades.Pessoa
             entidade.DefinirAtualizado();
 
             return entidade;
+        }
+
+        public override PessoaExpostaPoliticamente PessoaExpostaPoliticamente
+        {
+            get
+            {
+                if (cpfPreposto == null)
+                    return null;
+
+                return HashPessoaExpostaPoliticamente.ObterPessoa(cpfPreposto);
+            }
         }
     }
 }

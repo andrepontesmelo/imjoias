@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
+using Entidades.Coaf;
 
 namespace Entidades.Pessoa
 {
@@ -756,6 +757,8 @@ namespace Entidades.Pessoa
                 return base.Atualizado && estadoFoto != EstadoFoto.Desatualizada;
             }
         }
+
+        public virtual PessoaExpostaPoliticamente PessoaExpostaPoliticamente => null;
 
         protected override void Atualizar(IDbCommand cmd)
         {

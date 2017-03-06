@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
+using Entidades.Coaf;
 
 namespace Entidades.Pessoa
 {
@@ -444,8 +445,9 @@ namespace Entidades.Pessoa
 				base.Descadastrar(cmd);
 		}
 
-		#endregion
+        #endregion
 
+        public override PessoaExpostaPoliticamente PessoaExpostaPoliticamente => HashPessoaExpostaPoliticamente.ObterPessoa(CPF);
 
         /// <summary>
         /// Obtem uma pessoafísica através do resultado de um comando com joins das tabelas pessoa e pessoafisica.

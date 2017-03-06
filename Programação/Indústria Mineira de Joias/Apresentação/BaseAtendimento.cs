@@ -10,6 +10,7 @@ using Apresentação.Mercadoria;
 using Apresentação.Pessoa.Cadastro;
 using Entidades;
 using Entidades.Acerto;
+using Entidades.Coaf;
 using Entidades.Pessoa;
 using System;
 using System.Collections.Generic;
@@ -68,6 +69,7 @@ namespace Apresentação.Atendimento
         private SumárioAcerto sumárioAcerto1;
         private Opção opçãoCompras;
         private Opção opçãoHistóricoAtendimentos;
+        private Label lblPEP;
         private System.ComponentModel.IContainer components = null;
 
 		/// <summary>
@@ -178,6 +180,7 @@ namespace Apresentação.Atendimento
             this.quadro1 = new Apresentação.Formulários.Quadro();
             this.opçãoPedido = new Apresentação.Formulários.Opção();
             this.opçãoMalaDireta = new Apresentação.Formulários.Opção();
+            this.lblPEP = new System.Windows.Forms.Label();
             this.esquerda.SuspendLayout();
             this.quadroCliente.SuspendLayout();
             this.quadroRelacionar.SuspendLayout();
@@ -208,13 +211,13 @@ namespace Apresentação.Atendimento
             // 
             this.título.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.título.BackColor = System.Drawing.Color.White;
+            this.título.BackColor = System.Drawing.Color.Transparent;
             this.título.Descrição = "Descrição";
             this.título.ÍconeArredondado = false;
             this.título.Imagem = null;
-            this.título.Location = new System.Drawing.Point(200, 8);
+            this.título.Location = new System.Drawing.Point(200, 12);
             this.título.Name = "título";
-            this.título.Size = new System.Drawing.Size(883, 70);
+            this.título.Size = new System.Drawing.Size(893, 70);
             this.título.TabIndex = 6;
             this.título.Título = "Nome do cliente";
             // 
@@ -760,15 +763,28 @@ namespace Apresentação.Atendimento
             this.opçãoMalaDireta.TabIndex = 3;
             this.opçãoMalaDireta.Click += new System.EventHandler(this.opçãoMalaDireta_Click);
             // 
+            // lblPEP
+            // 
+            this.lblPEP.BackColor = System.Drawing.Color.Transparent;
+            this.lblPEP.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPEP.ForeColor = System.Drawing.Color.Gray;
+            this.lblPEP.Location = new System.Drawing.Point(268, 0);
+            this.lblPEP.Name = "lblPEP";
+            this.lblPEP.Size = new System.Drawing.Size(831, 14);
+            this.lblPEP.TabIndex = 10;
+            this.lblPEP.Text = "PEP";
+            // 
             // BaseAtendimento
             // 
+            this.Controls.Add(this.lblPEP);
             this.Controls.Add(this.título);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "BaseAtendimento";
             this.Size = new System.Drawing.Size(1099, 510);
             this.Controls.SetChildIndex(this.tableLayoutPanel1, 0);
-            this.Controls.SetChildIndex(this.título, 0);
             this.Controls.SetChildIndex(this.esquerda, 0);
+            this.Controls.SetChildIndex(this.título, 0);
+            this.Controls.SetChildIndex(this.lblPEP, 0);
             this.esquerda.ResumeLayout(false);
             this.quadroCliente.ResumeLayout(false);
             this.quadroCliente.PerformLayout();
@@ -813,6 +829,7 @@ namespace Apresentação.Atendimento
         private void CarregarControlesVisuais(Entidades.Pessoa.Pessoa cliente)
         {
             título.Título = ObterTítulo();
+            lblPEP.Text = ObterTextoPep();
             txtObs.Text = pessoa.Observações;
             título.Descrição = ObterDescrição(cliente);
             título.Imagem = ControladorÍconePessoa.ObterÍconeComFundoECódigo(pessoa);
@@ -831,6 +848,13 @@ namespace Apresentação.Atendimento
                 opçãoCompras.Visible = true;
             }
 
+        }
+
+        private string ObterTextoPep()
+        {
+            PessoaExpostaPoliticamente pep = pessoa.PessoaExpostaPoliticamente;
+
+            return (pep == null ? "" : pep.Descrição);
         }
 
         private void VerificarPessoaSemSetor(Entidades.Pessoa.Pessoa cliente)

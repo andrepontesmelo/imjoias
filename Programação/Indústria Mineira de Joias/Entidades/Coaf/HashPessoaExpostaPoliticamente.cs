@@ -21,6 +21,13 @@ namespace Entidades.Coaf
         {
         }
 
+        public static PessoaExpostaPoliticamente ObterPessoa(string cpf)
+        {
+            PessoaExpostaPoliticamente pessoa = null;
+            Hash.TryGetValue(cpf, out pessoa);
+            return pessoa; 
+        }
+
         private static Dictionary<string, PessoaExpostaPoliticamente> ObterHash()
         {
             var hash = new Dictionary<string, PessoaExpostaPoliticamente>();

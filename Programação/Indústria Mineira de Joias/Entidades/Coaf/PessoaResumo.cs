@@ -34,7 +34,7 @@ namespace Entidades.Coaf
             }
         }
 
-        public PessoaExpostaPoliticamente PessoaPoliticamenteExposta => HashPessoaExpostaPoliticamente.Hash[cpfresponsavel];
+        public PessoaExpostaPoliticamente PessoaPoliticamenteExposta => HashPessoaExpostaPoliticamente.ObterPessoa(cpfresponsavel);
         public bool PoliticamenteExposta => HashPessoaExpostaPoliticamente.PessoaÉPoliticamenteExposta(cpfresponsavel);
 
         public bool Verificável
