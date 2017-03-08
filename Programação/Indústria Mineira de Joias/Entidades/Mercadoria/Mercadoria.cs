@@ -33,6 +33,7 @@ namespace Entidades.Mercadoria
 	public class Mercadoria : DbManipulação, IDisposable, ICloneable
 	{
         private static readonly int TAMANHO_REFERÊNCIA = 11;
+        private static readonly int TAMANHO_REFERÊNCIA_RASTREÁVEL = 8;
 
         /// <summary>
         /// Campos compartilhados.
@@ -1229,8 +1230,8 @@ namespace Entidades.Mercadoria
                 using (IDbCommand cmd = conexão.CreateCommand())
                 {
                     cmd.CommandTimeout = 120;
-
-                    cmd.CommandText = "SELECT p.codigo, p.nome, a.previsao, SUM(si.quantidade) - ifnull(rastreamentovenda.qtd,0) - ifnull(rastreamentoretorno.qtd,0) as saldo, si.referencia " +
+                    
+                    cmd.CommandText = string.Format("SELECT p.codigo, p.nome, a.previsao, SUM(si.quantidade) - ifnull(rastreamentovenda.qtd,0) - ifnull(rastreamentoretorno.qtd,0) as saldo, si.referencia " +
                          " FROM saida s JOIN saidaitem si ON s.codigo = si.saida JOIN acertoconsignado a ON a.codigo = s.acerto " +
                          " JOIN pessoa p ON p.codigo = a.cliente " +
                          " left join " +
@@ -1241,7 +1242,7 @@ namespace Entidades.Mercadoria
                          " GROUP BY p.codigo, vi.referencia " +
                          " ) " +
                          " rastreamentovenda on p.codigo=rastreamentovenda.codigo " +
-                         " and substr(si.referencia,1,8)=substr(rastreamentovenda.referencia,1,8) " +
+                         " and substr(si.referencia,1,{0})=substr(rastreamentovenda.referencia,1,{0}) " +
 
                          " left join " +
                          " ( " +
@@ -1251,12 +1252,12 @@ namespace Entidades.Mercadoria
                          " WHERE a.dataEfetiva IS NULL " +
                          " GROUP BY p.codigo, ri.referencia " +
                          " ) rastreamentoretorno on p.codigo=rastreamentoretorno.codigo " +
-                         " and substr(si.referencia,1,8)=substr(rastreamentoretorno.referencia,1,8) " +
+                         " and substr(si.referencia,1,{0})=substr(rastreamentoretorno.referencia,1,{0}) " +
 
                          " WHERE a.dataEfetiva IS NULL " +
-                         " GROUP BY p.codigo, substr(si.referencia,1,8), a.previsao " +
+                         " GROUP BY p.codigo, substr(si.referencia,1,{0}), a.previsao " +
                          " HAVING saldo > 0 " + 
-                         " ORDER BY SUM(si.quantidade) desc ";
+                         " ORDER BY SUM(si.quantidade) desc ", TAMANHO_REFERÊNCIA_RASTREÁVEL);
 
                     using (IDataReader leitor = cmd.ExecuteReader())
                     {
@@ -1373,7 +1374,7 @@ namespace Entidades.Mercadoria
 
         public static string ObterReferênciaRastreável(string referência)
         {
-            return referência.Substring(0, 8);
+            return referência.Substring(0, TAMANHO_REFERÊNCIA_RASTREÁVEL);
         }
 
         /// <summary>
