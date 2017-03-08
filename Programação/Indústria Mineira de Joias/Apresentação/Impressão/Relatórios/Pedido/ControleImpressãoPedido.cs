@@ -38,6 +38,7 @@ namespace Apresentação.Impressão.Relatórios.Pedido
                 {
                     DataRow linha = tabelaRastro.NewRow();
                     linha["referênciaNumérica"] = par.Key;
+                    linha["referênciaRastreável"] = Entidades.Mercadoria.Mercadoria.ObterReferênciaRastreável(par.Key);
                     linha["quantidade"] = rastro.Quantidade;
                     linha["pessoaNome"] = Entidades.Pessoa.Pessoa.AbreviarNome(rastro.Pessoa.Nome);
 
@@ -52,7 +53,7 @@ namespace Apresentação.Impressão.Relatórios.Pedido
             {
                 /* Na apresentação, pode-se escolher entre já entregues ou não.
                  * Porém, apenas os ainda não entregues são obtidos para impressão.
-                 * 
+                 * C:\Users\Andre Pontes\Source\Repos\imjoias\Programação\Indústria Mineira de Joias\Apresentação\Impressão\Relatórios\Pedido\ControleImpressãoPedido.cs
                  * É necessário filtrar ainda ou já concluidos.
                  * Só é impresso a pendência, ou seja, os pedidos não concluídos.
                  */
@@ -123,6 +124,7 @@ namespace Apresentação.Impressão.Relatórios.Pedido
                 linha["quantidade"] = p.Quantidade;
                 linha["referênciaFormatada"] = p.ReferênciaFormatada;
                 linha["referênciaNumérica"] = p.ReferênciaNumérica;
+                linha["referênciaRastreável"] = Entidades.Mercadoria.Mercadoria.ObterReferênciaRastreável(p.ReferênciaNumérica);
 
                 if (!String.IsNullOrEmpty(p.Descrição))
                     linha["descrição"] = p.Descrição.Replace("\r\n"," ");

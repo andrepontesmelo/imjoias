@@ -1228,7 +1228,6 @@ namespace Entidades.Mercadoria
             {
                 using (IDbCommand cmd = conexão.CreateCommand())
                 {
-                    // A consulta demora aprox. 30 segundos.
                     cmd.CommandTimeout = 120;
 
                     cmd.CommandText = "SELECT p.codigo, p.nome, a.previsao, SUM(si.quantidade) - ifnull(rastreamentovenda.qtd,0) - ifnull(rastreamentoretorno.qtd,0) as saldo, si.referencia " +
@@ -1242,7 +1241,7 @@ namespace Entidades.Mercadoria
                          " GROUP BY p.codigo, vi.referencia " +
                          " ) " +
                          " rastreamentovenda on p.codigo=rastreamentovenda.codigo " +
-                         " and si.referencia=rastreamentovenda.referencia " +
+                         " and substr(si.referencia,1,8)=substr(rastreamentovenda.referencia,1,8) " +
 
                          " left join " +
                          " ( " +
@@ -1252,10 +1251,10 @@ namespace Entidades.Mercadoria
                          " WHERE a.dataEfetiva IS NULL " +
                          " GROUP BY p.codigo, ri.referencia " +
                          " ) rastreamentoretorno on p.codigo=rastreamentoretorno.codigo " +
-                         " and si.referencia=rastreamentoretorno.referencia " +
+                         " and substr(si.referencia,1,8)=substr(rastreamentoretorno.referencia,1,8) " +
 
                          " WHERE a.dataEfetiva IS NULL " +
-                         " GROUP BY p.codigo, si.referencia, a.previsao " +
+                         " GROUP BY p.codigo, substr(si.referencia,1,8), a.previsao " +
                          " HAVING saldo > 0 " + 
                          " ORDER BY SUM(si.quantidade) desc ";
 
@@ -1277,10 +1276,10 @@ namespace Entidades.Mercadoria
 
                                 // Procura uma lista para adicionar o rastro nela.
                                 List<RastroConsignado> lista = null;
-                                if (!hash.TryGetValue(rastro.ReferênciaNumérica, out lista))
+                                if (!hash.TryGetValue(ObterReferênciaRastreável(rastro.ReferênciaNumérica), out lista))
                                 {
                                     lista = new List<RastroConsignado>();
-                                    hash[rastro.ReferênciaNumérica] = lista;
+                                    hash[ObterReferênciaRastreável(rastro.ReferênciaNumérica)] = lista;
                                 }
 
                                 lista.Add(rastro);
@@ -1318,7 +1317,7 @@ namespace Entidades.Mercadoria
                          " FROM venda v JOIN vendaitem vi ON v.codigo = vi.venda JOIN acertoconsignado a ON a.codigo = v.acerto " + 
                          " JOIN pessoa p ON p.codigo = a.cliente " + 
                          " WHERE a.dataEfetiva IS NULL  " + 
-                         " and referencia= " + DbTransformar(ReferênciaNumérica) + 
+                         " and referencia LIKE '" + ObterReferênciaRastreável() + "%' " + 
                          " GROUP BY p.codigo " + 
                          " ) " + 
                          " rastreamentovenda on p.codigo=rastreamentovenda.codigo " + 
@@ -1329,13 +1328,12 @@ namespace Entidades.Mercadoria
                          " FROM retorno r JOIN retornoitem ri ON r.codigo = ri.retorno JOIN acertoconsignado a ON a.codigo = r.acerto " + 
                          " JOIN pessoa p ON p.codigo = a.cliente " + 
                          " WHERE a.dataEfetiva IS NULL  " +
-                         " and referencia=" + DbTransformar(ReferênciaNumérica) + 
+                         " and referencia LIKE '" + ObterReferênciaRastreável() + "%' " + 
                          " GROUP BY p.codigo " + 
                          " ) rastreamentoretorno on p.codigo=rastreamentoretorno.codigo " + 
                          
                          " WHERE a.dataEfetiva IS NULL  " +
-                         " and referencia=" + DbTransformar(ReferênciaNumérica) + 
-
+                         " and referencia LIKE '" + ObterReferênciaRastreável() + "%' " + 
                          " GROUP BY p.codigo " + 
                          " ORDER BY SUM(si.quantidade) desc";
 
@@ -1368,6 +1366,16 @@ namespace Entidades.Mercadoria
             return resultado;
         }
 
+        private string ObterReferênciaRastreável()
+        {
+            return ObterReferênciaRastreável(ReferênciaNumérica);
+        }
+
+        public static string ObterReferênciaRastreável(string referência)
+        {
+            return referência.Substring(0, 8);
+        }
+
         /// <summary>
         /// Rastrea mercadoria em todos as vendas marcadas como rastrado.
         /// </summary>
@@ -1383,7 +1391,7 @@ namespace Entidades.Mercadoria
                     cmd.CommandText = "select venda.codigo, venda.data, sum(quantidade) as qtd, cliente, nome from vendaitem, venda "
                         + " left join pessoa on cliente=pessoa.codigo where venda.rastreada=1 "
                         + " and venda.codigo=vendaitem.venda "
-                        + " and referencia =  " + DbTransformar(ReferênciaNumérica)
+                        + " and referencia LIKE '" + ObterReferênciaRastreável() + "%' " 
                         + " group by venda.codigo having qtd > 0";
 
                     using (IDataReader leitor = cmd.ExecuteReader())

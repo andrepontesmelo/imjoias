@@ -7,15 +7,15 @@
         partial class ItensDataTable
         {
         }
-    
+
         partial class RastroDataTable
         {
         }
-    
+
         partial class InformaçõesDataTable
         {
         }
-    
+
         partial class PedidoDataTable
         {
         }

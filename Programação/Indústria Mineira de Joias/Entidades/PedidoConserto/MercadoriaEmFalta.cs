@@ -72,8 +72,8 @@ namespace Entidades.PedidoConserto
             {
                 List<Entidades.Mercadoria.Mercadoria.RastroConsignado> rastro = null;
                 int saldo = 0;
-
-                if (hashRastreamento.TryGetValue(referênciaEmFalta.referenciaNumerica, out rastro))
+                
+                if (hashRastreamento.TryGetValue(Mercadoria.Mercadoria.ObterReferênciaRastreável(referênciaEmFalta.referenciaNumerica), out rastro))
                 {
                     foreach (Entidades.Mercadoria.Mercadoria.RastroConsignado r in rastro)
                         saldo += r.Quantidade;
