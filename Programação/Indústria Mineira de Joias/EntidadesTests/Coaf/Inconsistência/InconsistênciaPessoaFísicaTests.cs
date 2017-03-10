@@ -33,5 +33,61 @@ namespace Entidades.Fiscal.Cupom.Tests
             var pessoa = new Pessoa.PessoaFísica(cpf: "999999999999");
             Assert.IsTrue(new InconsistênciaPessoaFísica(pessoa).ObterInconsistências().Contains(EnumInconsistência.CpfInválido));
         }
+
+
+        [TestMethod()]
+        public void DeveDetectaIdentidadePequenaExplicitamenteInválida()
+        {
+            var pessoa = new Pessoa.PessoaFísica()
+            {
+                DI = "1234"
+            };
+
+            Assert.IsFalse(new InconsistênciaPessoaFísica(pessoa).VerificarIdentidadeVálida());
+        }
+
+        [TestMethod()]
+        public void DeveDetectaIdentidadeComLetrasExplicitamenteInválida()
+        {
+            var pessoa = new Pessoa.PessoaFísica()
+            {
+                DI = "SSPMG 12332121"
+            };
+
+            Assert.IsFalse(new InconsistênciaPessoaFísica(pessoa).VerificarIdentidadeVálida());
+        }
+
+        [TestMethod()]
+        public void DeveDetectaIdentidadeVálidaComPontuação()
+        {
+            var pessoa = new Pessoa.PessoaFísica()
+            {
+                DI = "12.345"
+            };
+
+            Assert.IsTrue(new InconsistênciaPessoaFísica(pessoa).VerificarIdentidadeVálida());
+        }
+
+        [TestMethod()]
+        public void DeveDetectaIdentidadeVálidaSemPontuação()
+        {
+            var pessoa = new Pessoa.PessoaFísica()
+            {
+                DI = "12345"
+            };
+
+            Assert.IsTrue(new InconsistênciaPessoaFísica(pessoa).VerificarIdentidadeVálida());
+        }
+
+        [TestMethod()]
+        public void DeveDetectarIdentidadeInválidoImplicitamente()
+        {
+            var pessoa = new Pessoa.PessoaFísica()
+            {
+                DI = "bla"
+            };
+
+            Assert.IsTrue(new InconsistênciaPessoaFísica(pessoa).ObterInconsistências().Contains(EnumInconsistência.IdentidadeInválida));
+        }
     }
 }

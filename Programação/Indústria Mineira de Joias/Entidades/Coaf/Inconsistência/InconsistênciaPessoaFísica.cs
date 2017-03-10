@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Entidades.Pessoa;
 
 namespace Entidades.Coaf.Inconsistência
@@ -26,5 +27,10 @@ namespace Entidades.Coaf.Inconsistência
 
         }
         private PessoaFísica PessoaFísica => (PessoaFísica) pessoa;
+
+        public bool VerificarIdentidadeVálida()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
