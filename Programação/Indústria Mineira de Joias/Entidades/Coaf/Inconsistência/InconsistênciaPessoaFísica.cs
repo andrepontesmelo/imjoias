@@ -1,19 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+using Entidades.Pessoa;
 
 namespace Entidades.Coaf.Inconsistência
 {
     public class InconsistênciaPessoaFísica : InconsistênciaPessoa
     {
-        public InconsistênciaPessoaFísica(Pessoa.PessoaFísica pessoaFísica) : base(pessoaFísica)
+        public InconsistênciaPessoaFísica(PessoaFísica pessoaFísica) : base(pessoaFísica)
         {
         }
 
         public bool VerificarCpfVálido()
         {
-            throw new NotImplementedException();
+            return PessoaFísica.CPFVálido;
         }
+
+
+        public override List<EnumInconsistência> ObterInconsistências()
+        {
+            var resultado = base.ObterInconsistências();
+
+            if (!VerificarCpfVálido())
+                resultado.Add(EnumInconsistência.CpfInválido);
+
+            return resultado;
+
+        }
+        private PessoaFísica PessoaFísica => (PessoaFísica) pessoa;
     }
 }

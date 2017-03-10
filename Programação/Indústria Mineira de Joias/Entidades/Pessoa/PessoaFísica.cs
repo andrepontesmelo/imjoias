@@ -68,7 +68,7 @@ namespace Entidades.Pessoa
 			get { return cpf; }
 			set
 			{
-                if (ValidarCPF(value))
+                if (value == null || value.Length == 0 || ValidarCPF(value))
                     cpf = LimparFormataçãoCpf(value);
                 else
                 {
@@ -87,7 +87,7 @@ namespace Entidades.Pessoa
         public static bool ValidarCPF(string cpf)
         {
             if (cpf == null || cpf.Trim().Length == 0)
-                return true;
+                return false;
 
             int[] multiplicador1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
             int[] multiplicador2 = new int[10] { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
@@ -505,5 +505,7 @@ namespace Entidades.Pessoa
                 profissão = leitor.GetString(inicioAtributoPessoaFisica + 10);
 
         }
+
+        public bool CPFVálido => ValidarCPF(cpf);
     }
 }

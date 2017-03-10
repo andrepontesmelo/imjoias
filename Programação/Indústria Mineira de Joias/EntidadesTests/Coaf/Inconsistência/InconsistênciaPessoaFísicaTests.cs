@@ -9,44 +9,28 @@ namespace Entidades.Fiscal.Cupom.Tests
         [TestMethod()]
         public void DeveDetectarCpfInválidoExplicitamente()
         {
-            var pessoa = new Pessoa.PessoaFísica()
-            {
-                CPF = "999999999999"
-            };
-
+            var pessoa = new Pessoa.PessoaFísica(cpf: "999999999999");
             Assert.IsFalse(new InconsistênciaPessoaFísica(pessoa).VerificarCpfVálido());
         }
 
         [TestMethod()]
         public void DeveDetectarCpfVálidoExplicitamente()
         {
-            var pessoa = new Pessoa.PessoaFísica()
-            {
-                CPF = "07676631602"
-            };
-
+            var pessoa = new Pessoa.PessoaFísica(cpf: "07676631602");
             Assert.IsTrue(new InconsistênciaPessoaFísica(pessoa).VerificarCpfVálido());
         }
 
         [TestMethod()]
         public void DeveDetectarCpfNuloExplicitamente()
         {
-            var pessoa = new Pessoa.PessoaFísica()
-            {
-                CPF = null
-            };
-
+            var pessoa = new Pessoa.PessoaFísica(cpf: null);
             Assert.IsFalse(new InconsistênciaPessoaFísica(pessoa).VerificarCpfVálido());
         }
 
         [TestMethod()]
         public void DeveDetectarCpfInválidoImplicitamente()
         {
-            var pessoa = new Pessoa.PessoaFísica()
-            {
-                CPF = "999999999999"
-            };
-
+            var pessoa = new Pessoa.PessoaFísica(cpf: "999999999999");
             Assert.IsTrue(new InconsistênciaPessoaFísica(pessoa).ObterInconsistências().Contains(EnumInconsistência.CpfInválido));
         }
     }

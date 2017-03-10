@@ -6,7 +6,7 @@ namespace Entidades.Coaf.Inconsistência
     {
         private const int TAMANHO_MÍNIMO_NOME = 10;
 
-        Pessoa.Pessoa pessoa;
+        protected Pessoa.Pessoa pessoa;
 
         public InconsistênciaPessoa(Pessoa.Pessoa pessoa)
         {
