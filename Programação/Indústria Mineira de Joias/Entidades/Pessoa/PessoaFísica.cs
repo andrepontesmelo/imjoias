@@ -507,5 +507,15 @@ namespace Entidades.Pessoa
         }
 
         public bool CPFVálido => ValidarCPF(cpf);
+
+        public bool DIVálido => ValidarDI(di);
+
+        public static bool ValidarDI(string di)
+        {
+            if (di == null)
+                return false;
+
+            return di.Trim().Length > 4;
+        }
     }
 }

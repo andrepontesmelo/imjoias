@@ -23,6 +23,9 @@ namespace Entidades.Coaf.Inconsistência
             if (!VerificarCpfVálido())
                 resultado.Add(EnumInconsistência.CpfInválido);
 
+            if (!VerificarIdentidadeVálida())
+                resultado.Add(EnumInconsistência.IdentidadeInválida);
+
             return resultado;
 
         }
@@ -30,7 +33,7 @@ namespace Entidades.Coaf.Inconsistência
 
         public bool VerificarIdentidadeVálida()
         {
-            throw new NotImplementedException();
+            return PessoaFísica.DIVálido;
         }
     }
 }

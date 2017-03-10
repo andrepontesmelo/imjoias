@@ -36,22 +36,22 @@ namespace Entidades.Fiscal.Cupom.Tests
 
 
         [TestMethod()]
-        public void DeveDetectaIdentidadePequenaExplicitamenteInválida()
+        public void DeveDetectaIdentidadeNulaExplicitamenteInválida()
         {
             var pessoa = new Pessoa.PessoaFísica()
             {
-                DI = "1234"
+                DI = null
             };
 
             Assert.IsFalse(new InconsistênciaPessoaFísica(pessoa).VerificarIdentidadeVálida());
         }
 
         [TestMethod()]
-        public void DeveDetectaIdentidadeComLetrasExplicitamenteInválida()
+        public void DeveDetectaIdentidadePequenaExplicitamenteInválida()
         {
             var pessoa = new Pessoa.PessoaFísica()
             {
-                DI = "SSPMG 12332121"
+                DI = "1234"
             };
 
             Assert.IsFalse(new InconsistênciaPessoaFísica(pessoa).VerificarIdentidadeVálida());
