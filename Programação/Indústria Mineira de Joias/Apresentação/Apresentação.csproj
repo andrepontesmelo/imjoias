@@ -2527,6 +2527,11 @@
     <Compile Include="Mercadoria\Janela\JanelaProcuraFotosReferência.Designer.cs">
       <DependentUpon>JanelaProcuraFotosReferência.cs</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -3790,6 +3795,10 @@
     <EmbeddedResource Include="Mercadoria\Janela\JanelaProcuraFotosReferência.resx">
       <DependentUpon>JanelaProcuraFotosReferência.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
