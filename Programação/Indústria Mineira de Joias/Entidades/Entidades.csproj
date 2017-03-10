@@ -204,6 +204,10 @@
     <Compile Include="Coaf\ConfiguraçõesCoaf.cs" />
     <Compile Include="Coaf\HashPessoaExpostaPoliticamente.cs" />
     <Compile Include="Coaf\ImportadorPep.cs" />
+    <Compile Include="Coaf\Inconsistência\EnumInconsistência.cs" />
+    <Compile Include="Coaf\Inconsistência\InconsistênciaPessoa.cs" />
+    <Compile Include="Coaf\Inconsistência\InconsistênciaPessoaFísica.cs" />
+    <Compile Include="Coaf\Inconsistência\InconsistênciaPessoaJurídica.cs" />
     <Compile Include="Coaf\PessoaExpostaPoliticamente.cs" />
     <Compile Include="Coaf\PessoaResumo.cs" />
     <Compile Include="Comissão\ComissaoValor.cs" />

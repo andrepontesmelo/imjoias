@@ -88,7 +88,7 @@ namespace Entidades.Configuração
         /// </summary>
         private DadosGlobais()
         {
-            if (ModoDesenho)
+            if (ModoDesenho || !Conectado)
                 return;
 
             cultura = System.Globalization.CultureInfo.CreateSpecificCulture("pt-BR");
@@ -264,6 +264,8 @@ namespace Entidades.Configuração
         }
 
         public string CNPJEmpresa => cnpjEmpresa.Valor;
+
+        public bool Conectado => Usuários.UsuárioAtual != null;
 
         #endregion
 

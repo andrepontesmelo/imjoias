@@ -31,10 +31,10 @@ namespace Entidades.Pessoa
         [DbColuna("classificacoes")]
         protected ulong classificações;
 
-        protected DateTime? dataRegistro = DadosGlobais.Instância.HoraDataAtual;
+        protected DateTime? dataRegistro;
 
         [DbColuna("dataAlteracao")]
-        protected DateTime? dataAlteração = DadosGlobais.Instância.HoraDataAtual;
+        protected DateTime? dataAlteração;
 
         [DbColuna("ultimaVisita")]
         protected DateTime? últimaVisita;
@@ -217,7 +217,14 @@ namespace Entidades.Pessoa
             set { região = value; DefinirDesatualizado(); }
         }
 
-        public Pessoa() { }
+        public Pessoa()
+        {
+            if (DadosGlobais.Instância.Conectado)
+            {
+                dataRegistro = DadosGlobais.Instância.HoraDataAtual;
+                dataAlteração = DadosGlobais.Instância.HoraDataAtual;
+            }
+        }
 
         public Pessoa(ulong código)
         {
