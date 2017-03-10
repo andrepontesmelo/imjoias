@@ -10,5 +10,10 @@ namespace Entidades.Coaf.Inconsistência
         public InconsistênciaPessoaFísica(Pessoa.PessoaFísica pessoaFísica) : base(pessoaFísica)
         {
         }
+
+        public bool VerificarCpfVálido()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -59,6 +59,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Coaf\Inconsistência\InconsistênciaPessoaFísicaTests.cs" />
     <Compile Include="Coaf\Inconsistência\InconsistênciaPessoaTests.cs" />
     <Compile Include="Fiscal\Cupom\AdaptadorVarejoTests.cs" />
     <Compile Include="Fiscal\InventárioTests.cs" />
