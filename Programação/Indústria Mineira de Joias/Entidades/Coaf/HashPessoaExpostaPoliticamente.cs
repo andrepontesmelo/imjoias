@@ -23,8 +23,10 @@ namespace Entidades.Coaf
 
         public static PessoaExpostaPoliticamente ObterPessoa(string cpf)
         {
-            PessoaExpostaPoliticamente pessoa = null;
-            Hash.TryGetValue(cpf, out pessoa);
+            if (cpf == null)
+                return null;
+
+            Hash.TryGetValue(cpf, out PessoaExpostaPoliticamente pessoa);
             return pessoa; 
         }
 
