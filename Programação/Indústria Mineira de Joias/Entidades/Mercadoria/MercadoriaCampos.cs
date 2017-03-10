@@ -35,7 +35,9 @@ namespace Entidades.Mercadoria
     [DbTabela("mercadoria")]
 	public class MercadoriaCampos : DbManipulação, IDisposable, ICloneable, IMercadoriaCampos
 	{
-		protected string referencia;
+        private const int CAPACIDADE_INICIAL_MERCADORIAS = 8000;
+        private const int CAPACIDADE_INICIAL_COEFICIENTES = 33000;
+        protected string referencia;
 		protected int digito = -1;
 		protected string nome;
 		protected int teor;
@@ -671,7 +673,7 @@ namespace Entidades.Mercadoria
                     {
                         cmd.CommandText = "SELECT * FROM mercadoria WHERE foradelinha = 0";
 
-                        List<MercadoriaCampos> lista = Mapear<MercadoriaCampos>(cmd);
+                        List<MercadoriaCampos> lista = MapearCapacidade<MercadoriaCampos>(cmd, CAPACIDADE_INICIAL_MERCADORIAS);
                         Patricia<MercadoriaCampos> árvore;
 
 #if DEBUG
@@ -690,7 +692,7 @@ namespace Entidades.Mercadoria
 
                         // Carregar coeficientes.
                         cmd.CommandText = "select tb.* from tabelamercadoria tb join mercadoria m on tb.mercadoria=m.referencia and m.foradelinha=0 WHERE tb.tabela not in (6, 2, 7)";
-                        List<TabelaMercadoria> coeficientes = Mapear<TabelaMercadoria>(cmd);
+                        List<TabelaMercadoria> coeficientes = MapearCapacidade<TabelaMercadoria>(cmd, CAPACIDADE_INICIAL_COEFICIENTES);
 
                         foreach (TabelaMercadoria item in coeficientes)
                         {

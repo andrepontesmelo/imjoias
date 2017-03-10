@@ -584,7 +584,12 @@ namespace Acesso.Comum
 
         protected static List<DbTipo> Mapear<DbTipo>(IDbCommand cmd) where DbTipo : new()
         {
-            List<DbTipo> conjunto = new List<DbTipo>();
+            return MapearCapacidade<DbTipo>(cmd, null);
+        }
+
+        protected static List<DbTipo> MapearCapacidade<DbTipo>(IDbCommand cmd, int? capacidade) where DbTipo : new()
+        {
+            List<DbTipo> conjunto = capacidade.HasValue ? new List<DbTipo>(capacidade.Value) : new List<DbTipo>();
 
             Mapear(cmd, conjunto);
 
