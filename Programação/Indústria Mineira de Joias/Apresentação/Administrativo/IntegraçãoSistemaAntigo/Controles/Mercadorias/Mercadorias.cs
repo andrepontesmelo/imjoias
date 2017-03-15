@@ -231,9 +231,9 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             return MercadoriaDePeso.Hash.Contains(referência);
         }
 
-        public static bool ConferirGrupoZero(DataRow cadmerItem)
+        public static bool ConferirDePesoPeloGrupo(DataRow cadmerItem)
         {
-            return int.Parse(cadmerItem["cm_grupo"].ToString()) == 0;
+            return int.Parse(cadmerItem["cm_grupo"].ToString()) != 0;
         }
     }
 }

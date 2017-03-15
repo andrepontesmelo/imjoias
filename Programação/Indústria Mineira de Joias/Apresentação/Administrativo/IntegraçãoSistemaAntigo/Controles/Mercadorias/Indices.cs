@@ -116,7 +116,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             if (!deLinha)
                 return;
 
-            if (Mercadorias.ConferirÉDePeso(itemMercadoria))
+            if (Mercadorias.ConferirDePesoPeloGrupo(itemMercadoria))
                 CalcularCoeficienteDePeso(itemMercadoria, saida, ref coeficienteAtacado, ref coeficienteAutoAtacado, ref valorVarejo, ref valorVarejoConsulta, ref erro);
 			else 
                 CalcularCoeficienteDePeça(itemMercadoria, saida, ref coeficienteAtacado, ref coeficienteAutoAtacado, ref valorVarejo, ref valorVarejoConsulta, ref erro);
