@@ -12,8 +12,19 @@ namespace Entidades
     [Cacheável("ObterTabela"), NãoCopiarCache]
     public class Tabela : DbManipulaçãoAutomática
     {
+        public enum Tabelas : uint
+        {
+            Varejo = 1,
+            Consignado = 2,
+            Atacado = 3,
+            AA = 4,
+            VarejoConsulta = 5,
+            Representante = 6,
+            ConsignadoX = 7
+        }
+
 #pragma warning disable 0649        // Field 'field' is never assigned to, and will always have its default value 'value'
-        
+
         [DbChavePrimária(true), DbColuna("codigo")]
         private uint código;
 
