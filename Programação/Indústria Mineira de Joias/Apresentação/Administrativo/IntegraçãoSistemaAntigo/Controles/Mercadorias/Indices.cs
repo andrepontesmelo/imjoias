@@ -112,7 +112,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             double valorVarejoConsulta = 0;
             bool erro = false;
             bool deLinha = itemMercadoria[LINHA].ToString().Trim().ToUpper() == "S";
-
+            
             if (!deLinha)
                 return;
 
@@ -168,14 +168,16 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
 
         private void CalcularCoeficienteDePeso(DataRow itemMercadoria, StringBuilder saida, ref double coeficienteAtacado, ref double coeficienteAutoAtacado, ref double valorVarejo, ref double valorVarejoConsulta, ref bool erro)
         {
+            double peso = double.Parse(itemMercadoria["CM_PESO"].ToString());
+            double fatorPeso = Mercadorias.ConferirMercadoriaDeGramaNova(itemMercadoria) ? peso : 1;
+
             try
             {
-                coeficienteAtacado =
-                    ObterGVistaDeGramas(4, itemMercadoria[FAIXA].ToString(), int.Parse(itemMercadoria[GRUPO].ToString()));
+                coeficienteAtacado = Math.Round(fatorPeso *
+                    ObterGVistaDeGramas(4, itemMercadoria[FAIXA].ToString(), int.Parse(itemMercadoria[GRUPO].ToString())), 2);
 
-                coeficienteAutoAtacado =
-                    ObterGVistaDeGramas(8, itemMercadoria[FAIXA].ToString(), int.Parse(itemMercadoria[GRUPO].ToString()));
-
+                coeficienteAutoAtacado = Math.Round(fatorPeso *
+                    ObterGVistaDeGramas(8, itemMercadoria[FAIXA].ToString(), int.Parse(itemMercadoria[GRUPO].ToString())), 2);
 
                 valorVarejo = double.Parse(itemMercadoria[COLUNA_CADMER_VAREJO].ToString());
                 valorVarejoConsulta = double.Parse(itemMercadoria[COLUNA_CADMER_VAREJO_CONSULTA].ToString());

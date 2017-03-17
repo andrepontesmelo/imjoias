@@ -235,5 +235,11 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
         {
             return int.Parse(cadmerItem["cm_grupo"].ToString()) != 0;
         }
+
+        public static bool ConferirMercadoriaDeGramaNova(DataRow cadmerItem)
+        {
+            return !ConferirÉDePeso(cadmerItem) && ConferirDePesoPeloGrupo(cadmerItem);
+        }
+
     }
 }
