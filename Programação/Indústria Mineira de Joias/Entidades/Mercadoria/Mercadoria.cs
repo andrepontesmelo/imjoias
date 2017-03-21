@@ -264,10 +264,7 @@ namespace Entidades.Mercadoria
 		{
 			get
 			{
-                if (DePeso)
-                    return Coeficiente * Peso;
-                else
-                    return Coeficiente;
+                return Entidades.Mercadoria.Índice.Calcular(Coeficiente, Peso, DePeso);
 			}
             set
             {
@@ -282,11 +279,7 @@ namespace Entidades.Mercadoria
         {
             get
             {
-                if (DePeso)
-                    return Math.Round(Coeficiente * Math.Round(Peso, 2), 2);
-                else
-                    return Math.Round(Coeficiente, 2);
-
+                return Entidades.Mercadoria.Índice.Calcular(Coeficiente, Peso, DePeso, true);
             }
         }
 

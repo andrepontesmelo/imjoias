@@ -382,6 +382,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Mercadoria\TipoMercadoria.cs" />
+    <Compile Include="Mercadoria\Índice.cs" />
     <Compile Include="Moedas\Moeda.cs" />
     <Compile Include="Moedas\MoedaSistema.cs" />
     <Compile Include="MotivoContato.cs">

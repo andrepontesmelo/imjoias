@@ -7,7 +7,7 @@
         partial class InformaçõesDataTable
         {
         }
-    
+
         partial class ItensDataTable
         {
         }
