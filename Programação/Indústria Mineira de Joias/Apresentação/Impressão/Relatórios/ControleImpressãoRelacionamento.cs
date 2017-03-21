@@ -1,4 +1,6 @@
 ﻿using CrystalDecisions.CrystalReports.Engine;
+using Entidades;
+using Entidades.Mercadoria;
 using Entidades.Relacionamento;
 using System;
 using System.Data;
@@ -48,6 +50,11 @@ namespace Apresentação.Impressão.Relatórios
             linha["peso"] = Math.Round(s.Mercadoria.DePeso ? s.Peso : 0.0, 2);
             linha["descrição"] = s.Mercadoria.Descrição;
             linha["depeso"] = s.Mercadoria.DePeso;
+
+            linha["índiceAtacado"] = Índice.Calcular(MercadoriaCampos.ObterMercadoria(s.Mercadoria.ReferênciaNumérica).Coeficientes[Tabela.TabelaPadrão],
+                s.Peso,
+                s.Mercadoria.DePeso,
+                true);
         }
 
         protected virtual string ObterCódigoDocumento(TRelacionamento relacionamento)
