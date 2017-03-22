@@ -51,6 +51,9 @@ namespace Apresentação.Atendimento.Comum
             if (pessoa.Setor != null &&
                 pessoa.Setor.Código == Setor.ObterSetor(SetorSistema.Varejo).Código)
                 corFundo = Color.White;
+            else if (pessoa.Setor != null &&
+                pessoa.Setor.Código == Setor.ObterSetor(SetorSistema.AltoAtacado).Código)
+                    corFundo = Color.BlueViolet;
             else
                 corFundo = Color.DarkGreen;
 
