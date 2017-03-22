@@ -4,6 +4,7 @@ using Acesso.Comum.Cache;
 using System.Collections.Generic;
 using Entidades.Configuração;
 using Entidades.Coaf;
+using System.Text.RegularExpressions;
 
 namespace Entidades.Pessoa
 {
@@ -178,9 +179,7 @@ namespace Entidades.Pessoa
 
         public static string LimparFormataçãoCnpj(string cnpj)
         {
-            cnpj = cnpj.Trim();
-            cnpj = cnpj.Replace(".", "").Replace("-", "").Replace("/", "");
-
+            cnpj = Regex.Replace(cnpj, @"[^\d]", "");
             return cnpj;
         }
 
