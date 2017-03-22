@@ -13,6 +13,7 @@ namespace Apresentação.Impressão.Relatórios.Saída
         protected override void MapearInformações(System.Data.DataRow linha, Entidades.Relacionamento.Saída.Saída saída)
         {
             base.MapearInformações(linha, saída);
+
             linha["cotação"] = saída.Cotação;
 
             if (saída.AcertoConsignado != null)
@@ -37,7 +38,6 @@ namespace Apresentação.Impressão.Relatórios.Saída
 
             linha["imprimirPreço"] = imprimirPreço;
             linha["tabela"] = saída.TabelaPreço.Nome;
-            linha["mostrarÍndiceAtacado"] = saída.TabelaPreço.Código.Equals((uint) Tabela.Tabelas.AA);
         }
 
         protected override void MapearItem(System.Data.DataRow linha, Entidades.Relacionamento.SaquinhoRelacionamento s, Entidades.Relacionamento.Saída.Saída relacionamento)
