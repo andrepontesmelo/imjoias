@@ -174,10 +174,10 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             try
             {
                 coeficienteAtacado = Math.Round(fatorPeso *
-                    ObterGVistaDeGramas(4, itemMercadoria[FAIXA].ToString(), int.Parse(itemMercadoria[GRUPO].ToString())), 2);
+                    ObterGVistaDeGramas(4, itemMercadoria[FAIXA].ToString(), int.Parse(itemMercadoria[GRUPO].ToString())), 4);
 
                 coeficienteAutoAtacado = Math.Round(fatorPeso *
-                    ObterGVistaDeGramas(8, itemMercadoria[FAIXA].ToString(), int.Parse(itemMercadoria[GRUPO].ToString())), 2);
+                    ObterGVistaDeGramas(8, itemMercadoria[FAIXA].ToString(), int.Parse(itemMercadoria[GRUPO].ToString())), 4);
 
                 valorVarejo = double.Parse(itemMercadoria[COLUNA_CADMER_VAREJO].ToString());
                 valorVarejoConsulta = double.Parse(itemMercadoria[COLUNA_CADMER_VAREJO_CONSULTA].ToString());
