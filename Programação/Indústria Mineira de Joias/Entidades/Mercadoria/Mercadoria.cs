@@ -1367,7 +1367,7 @@ namespace Entidades.Mercadoria
 
         public static string ObterReferênciaRastreável(string referência)
         {
-            return referência.Substring(0, TAMANHO_REFERÊNCIA_RASTREÁVEL);
+            return referência?.Substring(0, TAMANHO_REFERÊNCIA_RASTREÁVEL);
         }
 
         /// <summary>
