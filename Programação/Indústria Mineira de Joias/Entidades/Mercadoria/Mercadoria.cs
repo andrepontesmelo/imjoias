@@ -284,6 +284,7 @@ namespace Entidades.Mercadoria
         }
 
 		public bool DePeso => campos.DePeso;
+        public bool DePesoManual => MercadoriaDePesoManual.PesoManual(campos.ReferênciaNumérica);
         public bool ForaDeLinha => campos.ForaDeLinha;
 
 		/// <summary>

@@ -141,10 +141,10 @@ namespace Apresentação.Financeiro
             
             if (m != null)
             {
-                txtPeso.Enabled = m.DePeso;
+                txtPeso.Enabled = m.DePesoManual;
                 btnConsultar.Enabled = true;
 
-                if (m.DePeso && txtMercadoria.DigitaçãoManual)
+                if (m.DePesoManual && txtMercadoria.DigitaçãoManual)
                     txtPeso.Focus();
                 else
                 {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Entidades.Mercadoria
 {
-    public class MercadoriaDePeso : DbManipulaçãoSimples
+    public class MercadoriaDePesoManual : DbManipulaçãoSimples
     {
         private string referencia;
 
@@ -20,16 +20,21 @@ namespace Entidades.Mercadoria
             }
         }
 
-        public MercadoriaDePeso()
+        public MercadoriaDePesoManual()
         {
+        }
+
+        public static bool PesoManual(string referênciaNumérica)
+        {
+            return Hash.Contains(referênciaNumérica);
         }
 
         private static HashSet<string> CarregarHash()
         {
             HashSet<string> resultado = new HashSet<string>();
-            List<MercadoriaDePeso> lista = Mapear<MercadoriaDePeso>("select referencia from mercadoria_depeso");
+            List<MercadoriaDePesoManual> lista = Mapear<MercadoriaDePesoManual>("select referencia from mercadoria_depeso");
 
-            foreach (MercadoriaDePeso mercadoria in lista)
+            foreach (MercadoriaDePesoManual mercadoria in lista)
                 resultado.Add(mercadoria.referencia);
 
             return resultado;

@@ -57,7 +57,7 @@ namespace Apresentação.Mercadoria
                 {
                     if (m != null)
                     {
-                        if (m.DePeso)
+                        if (m.DePesoManual)
                             controlePeso.Enabled = true;
                         else
                         {
@@ -272,7 +272,7 @@ namespace Apresentação.Mercadoria
         private void CorrigePeso(Entidades.Mercadoria.Mercadoria mercadoria)
         {
             // Corrige o peso
-            if (mercadoria != null && mercadoria.DePeso && controlePeso != null)
+            if (mercadoria != null && mercadoria.DePesoManual && controlePeso != null)
                 mercadoria.Peso = controlePeso.Double;
         }
 
