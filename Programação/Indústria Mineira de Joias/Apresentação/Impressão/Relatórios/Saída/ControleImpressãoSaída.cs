@@ -5,6 +5,7 @@ using Entidades.Pessoa;
 using Entidades;
 using CrystalDecisions.CrystalReports.Engine;
 using Entidades.Relacionamento;
+using Entidades.Mercadoria;
 
 namespace Apresentação.Impressão.Relatórios.Saída
 {
@@ -45,6 +46,11 @@ namespace Apresentação.Impressão.Relatórios.Saída
             base.MapearItem(linha, s, relacionamento);
 
             linha["preço"] = s.Mercadoria.CalcularPreço(relacionamento.Cotação).Valor;
+            linha["índiceAtacado"] = Índice.Calcular(MercadoriaCampos.ObterMercadoria(s.Mercadoria.ReferênciaNumérica).Coeficientes[Tabela.TabelaPadrão],
+            s.Peso,
+            s.Mercadoria.DePeso,
+            true);
+
         }
 
         internal static List<ReportClass> CriarImpressão(List<Relacionamento> listaDocumentos)
