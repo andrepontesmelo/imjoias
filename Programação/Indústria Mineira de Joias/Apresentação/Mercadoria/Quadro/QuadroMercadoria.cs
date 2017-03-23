@@ -170,7 +170,7 @@ namespace Apresentação.Mercadoria
             txtPeso.Text = saquinho.Peso.ToString();
             txtQuantidade.Text = saquinho.Quantidade.ToString();
 
-            lblPeso.Enabled = txtPeso.Enabled = saquinho.Mercadoria.DePeso;
+            lblPeso.Enabled = txtPeso.Enabled = saquinho.Mercadoria.DePesoManual;
             ValidarDados();
 
             ação = AçãoEnum.Alterar;
@@ -420,7 +420,7 @@ namespace Apresentação.Mercadoria
                 throw new ArgumentNullException("mercadoria", "Verificação redundante encontrou um problema: a mercadoria obtida da referência foi nula ao clicar no botão de adicionar. O programa tem falhas se a conexão com o servidor não tiver caído. txtReferência.Referência = " + txtReferência.Referência);
 
 			//A edição do peso só é possível se merc. for de peso
-			lblPeso.Enabled = txtPeso.Enabled = mercadoria.DePeso;
+			lblPeso.Enabled = txtPeso.Enabled = mercadoria.DePesoManual;
 
 			/* Dispara evento
 			 * Este evento é útil, por exemplo, para alterar
@@ -443,7 +443,7 @@ namespace Apresentação.Mercadoria
                     txtQuantidade.Focus();
                 }
             }
-            else if (mercadoria.DePeso && txtPeso.Double <= 0)
+            else if (mercadoria.DePesoManual && txtPeso.Double <= 0)
             {
                 Beepador.Erro();
                 txtPeso.Focus();
@@ -477,7 +477,7 @@ namespace Apresentação.Mercadoria
 
             if ((ação == AçãoEnum.Adicionar) && (EventoAdicionou != null))
             {
-                if (mercadoria.DePeso)
+                if (mercadoria.DePesoManual)
                     mercadoria.Peso = txtPeso.Double;
 
 #if DEBUG
