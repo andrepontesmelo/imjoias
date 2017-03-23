@@ -222,6 +222,7 @@ namespace Apresentação.Mercadoria
 				quadroAtual %= animação.Imagens.Count;
 
 				this.Image = (Image) animação.Imagens[quadroAtual];
+                BackColor = new Bitmap(Image).GetPixel(0, 0);
                 mostrandoLogo = false;
 
 				quadroAtual++;

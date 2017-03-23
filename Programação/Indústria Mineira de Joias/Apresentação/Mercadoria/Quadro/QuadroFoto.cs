@@ -56,9 +56,9 @@ namespace Apresentação.Mercadoria
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.picFoto.Image = global::Apresentação.Resource.logo;
-            this.picFoto.Location = new System.Drawing.Point(0, 27);
+            this.picFoto.Location = new System.Drawing.Point(0, 22);
             this.picFoto.Name = "picFoto";
-            this.picFoto.Size = new System.Drawing.Size(597, 441);
+            this.picFoto.Size = new System.Drawing.Size(597, 446);
             this.picFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picFoto.TabIndex = 2;
             this.picFoto.TabStop = false;
