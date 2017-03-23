@@ -10,7 +10,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
     /// Transpõe-se aqui o mercadorias.
     /// Porém não transpoe o indice. é feito em Indice.cs
     /// Também não transpoe o vinculo entre mercadoria e componenete custo
-    /// 
+    ///
     /// A atualização é feita assim:
     /// se existe uma mercadoria com determinado código, então todos os outros
     /// valores são sobrescritos.
@@ -99,15 +99,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
             try
             {
                 novoItem["grupo"] = itemAtual["CM_GRUPO"];
-
-                if (ConferirÉDePeso(itemAtual))
-                {
-                    novoItem["depeso"] = true;
-                }
-                else
-                {
-                    novoItem["depeso"] = false;
-                }
+                novoItem["depeso"] = ConferirDePesoPeloGrupo(itemAtual);
             }
             catch (Exception e)
             {
@@ -195,7 +187,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
                 {
                     if (x != 0)
                         textoArrumado += " ";
-                    
+
 
                     if (stopWord.ContainsKey(palavras[x].ToLower()))
                         textoArrumado += palavras[x].ToLower();
@@ -222,13 +214,6 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Controles.Mercadorias
                 if (matériasPrimas == MatériaPrima.ÉMatériaPrima(itemAtual["cm_codmer"].ToString()))
                     TransporItem(itemAtual, dsNovo, saída);
             }
-        }
-
-        public static bool ConferirÉDePeso(DataRow cadmerItem)
-        {
-            string referência = cadmerItem["cm_codmer"].ToString().Trim();
-
-            return MercadoriaDePeso.Hash.Contains(referência);
         }
 
         public static bool ConferirDePesoPeloGrupo(DataRow cadmerItem)
