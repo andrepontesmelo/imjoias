@@ -26,10 +26,10 @@
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <ManifestCertificateThumbprint>6A418318E58EED9B0E1E0A9649B5BCE177F80F72</ManifestCertificateThumbprint>
-    <ManifestKeyFile>Programa.Recepção_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestCertificateThumbprint>B9F599A8CFEB18F7B3AB1D558F2B9089262BE3C0</ManifestCertificateThumbprint>
+    <ManifestKeyFile>Programa.Cofre_TemporaryKey.pfx</ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
-    <SignManifests>false</SignManifests>
+    <SignManifests>true</SignManifests>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <OldToolsVersion>3.5</OldToolsVersion>
     <TargetZone>LocalIntranet</TargetZone>
@@ -39,7 +39,7 @@
     <TargetFrameworkProfile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <PublishUrl>\\192.168.1.20\publico\beta\</PublishUrl>
+    <PublishUrl>\\192.168.1.20\publico\recepcao\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -49,8 +49,8 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>7</ApplicationRevision>
-    <ApplicationVersion>0.6.6.7</ApplicationVersion>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>0.7.0.2</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -355,6 +355,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Programa.Cofre_TemporaryKey.pfx" />
     <None Include="recepcao.snk" />
     <None Include="Resources\botão - pessoas.png" />
   </ItemGroup>
