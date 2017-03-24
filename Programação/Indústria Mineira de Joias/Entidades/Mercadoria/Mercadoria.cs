@@ -1271,11 +1271,11 @@ namespace Entidades.Mercadoria
             {
                 using (IDbCommand cmd = conexão.CreateCommand())
                 {
-                    cmd.CommandText = "select venda.codigo, venda.data, sum(quantidade) as qtd, cliente, nome from vendaitem, venda "
+                    cmd.CommandText = string.Format("select venda.codigo, venda.data, sum(quantidade) as qtd, cliente, nome from vendaitem, venda "
                         + " left join pessoa on cliente=pessoa.codigo where venda.rastreada=1 "
                         + " and venda.codigo=vendaitem.venda "
                         + " and referencia LIKE '{0}%' " 
-                        + " group by venda.codigo having qtd > 0";
+                        + " group by venda.codigo having qtd > 0", ObterReferênciaRastreável());
 
                     using (IDataReader leitor = cmd.ExecuteReader())
                     {
