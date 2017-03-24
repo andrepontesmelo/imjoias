@@ -2346,7 +2346,6 @@
     <Compile Include="Pessoa\Consultas\TextBoxPessoa.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Pessoa\ControladorÍconePessoa.cs" />
     <Compile Include="Pessoa\Endereço\ComboBoxRegião.cs">
       <SubType>UserControl</SubType>
     </Compile>

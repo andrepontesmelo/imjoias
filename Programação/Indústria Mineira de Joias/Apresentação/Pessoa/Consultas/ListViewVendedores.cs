@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Entidades;
 using Entidades.Pessoa;
 using Entidades.Configuração;
+using Apresentação.Atendimento.Comum;
 
 namespace Apresentação.Pessoa.Consultas
 {
