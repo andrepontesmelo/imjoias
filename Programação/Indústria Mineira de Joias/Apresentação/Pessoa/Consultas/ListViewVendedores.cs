@@ -1,34 +1,26 @@
-﻿using System;
+﻿using Apresentação.Atendimento.Comum;
+using Entidades;
+using Entidades.Configuração;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Runtime.Remoting.Lifetime;
 using System.Windows.Forms;
-using Entidades;
-using Entidades.Pessoa;
-using Entidades.Configuração;
-using Apresentação.Atendimento.Comum;
 
 namespace Apresentação.Pessoa.Consultas
 {
-    /// <summary>
-    /// Mostra lista de vendedores.
-    /// </summary>
-    public class ListViewVendedores : System.Windows.Forms.UserControl, IComparer
+    public class ListViewVendedores : UserControl, IComparer
     {
-        // Atributos
         private List<Entidades.Pessoa.Pessoa> vendedores = null;
         private Dictionary<ListViewItem, Entidades.Pessoa.Pessoa> hashPessoas;
         private Dictionary<Setor, ListViewGroup> hashSetorGrupo;
         private int ordenaçãoColuna = 0;
 
-        // Designer
-        private System.Windows.Forms.ListView lstVendedores;
-        public System.Windows.Forms.ColumnHeader colNome;
-        public System.Windows.Forms.ColumnHeader colSetor;
-        public System.Windows.Forms.ColumnHeader colRamal;
+        private ListView lstVendedores;
+        public ColumnHeader colNome;
+        public ColumnHeader colSetor;
+        public ColumnHeader colRamal;
         private ImageList imageList;
         private IContainer components;
 
@@ -53,9 +45,6 @@ namespace Apresentação.Pessoa.Consultas
             }
         }
 
-        /// <summary>
-        /// Lista de vendedores
-        /// </summary>
         public IEnumerable<Entidades.Pessoa.Pessoa> Vendedores
         {
             get
@@ -81,45 +70,15 @@ namespace Apresentação.Pessoa.Consultas
 
                 foreach (Entidades.Pessoa.Pessoa pessoa in value)
                 {
-                    //if (pessoa is Funcionário)
-                    //    AdicionarFuncionário((Funcionário)pessoa);
-                    //else if (pessoa is Representante)
-                    //    AdicionarRepresentante((Representante)pessoa);
-                    //else
-                    //    throw new NotSupportedException("Tipo de pessoa não suportada pela lista de vendedores.");
-
                     Adicionar(pessoa);
                 }
             }
         }
 
-        ///// <summary>
-        ///// Adiciona funcionário à lista.
-        ///// </summary>
-        ///// <param name="funcionário">Funcionário a ser adicionado.</param>
-        //private void AdicionarFuncionário(Funcionário funcionário)
-        //{
-        //    ListViewItem linha;
-
-        //    // Inserir linha
-        //    linha = new ListViewItem(funcionário.Nome);
-        //    linha.SubItems.Add(funcionário.Ramal.ToString());
-        //    linha.SubItems.Add(funcionário.Setor != null ?
-        //        funcionário.Setor.Nome :
-        //        "");
-
-        //    lstVendedores.Items.Add(linha);
-        //    linhas[funcionário.Código] = linha;
-        //    linhas[linha] = funcionário;
-
-        //    vendedores.Add(funcionário);
-        //}
-
         private void Adicionar(Entidades.Pessoa.Pessoa pessoa)
         {
             ListViewItem linha;
 
-            // Inserir linha
             linha = new ListViewItem(hashSetorGrupo[pessoa.Setor]);
             linha.Text = pessoa.Nome;
             Bitmap ícone = ControladorÍconePessoa.ObterÍcone(pessoa);
@@ -127,32 +86,9 @@ namespace Apresentação.Pessoa.Consultas
             linha.ImageIndex = imageList.Images.Count - 1;
             lstVendedores.Items.Add(linha);
             
-            //vendedores.Add(pessoa);
             hashPessoas[linha] = pessoa;
         }
 
-        ///// <summary>
-        ///// Adiciona representante à lista.
-        ///// </summary>
-        ///// <param name="funcionário">Representante a ser adicionado.</param>
-        //private void AdicionarRepresentante(Representante representante)
-        //{
-        //    ListViewItem linha;
-
-        //    // Inserir linha
-        //    linha = new ListViewItem(representante.Nome);
-        //    linha.SubItems.Add("-");
-        //    linha.SubItems.Add("Representante");
-        //    lstVendedores.Items.Add(linha);
-        //    linhas[representante.Código] = linha;
-        //    linhas[linha] = representante;
-
-        //    vendedores.Add(representante);
-        //}
-
-        /// <summary> 
-        /// Clean up any resources being used.
-        /// </summary>
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -264,12 +200,6 @@ namespace Apresentação.Pessoa.Consultas
             return null;
         }
 
-        /// <summary>
-        /// Procura um vendedor cujo nome se inicia
-        /// com um especificado.
-        /// </summary>
-        /// <param name="nome">Prefixo do nome a ser
-        /// procurado nos funcionários</param>
         public void Procurar(string nome)
         {
             foreach (ListViewItem linha in lstVendedores.Items)
@@ -311,9 +241,6 @@ namespace Apresentação.Pessoa.Consultas
 
         #endregion
 
-        /// <summary>
-        /// Ocorre quando a lista muda sua visibilidade
-        /// </summary>
         private void ListViewVendedores_VisibleChanged(object sender, System.EventArgs e)
         {
             if (this.Visible && lstVendedores.SelectedItems.Count > 0)
