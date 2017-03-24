@@ -1109,11 +1109,11 @@ namespace Entidades.Mercadoria
                             " SELECT saidas.codigopessoa, saidas.nome, saidas.qtd - ifnull(vendas.qtd,0) - ifnull(retornos.qtd,0) as saldo, " +
                             "  saidas.refrastreavel " +
                             "  FROM ( " +
-                            "    SELECT p.codigo as codigopessoa, p.nome, a.previsao, sum(si.quantidade) as qtd, substr(referencia,1,{0}) as refrastreavel " +
-                            "    FROM saida s JOIN saidaitem si ON s.codigo = si.saida JOIN acertoconsignado a ON a.codigo = s.acerto " +
-                            "    JOIN pessoa p ON p.codigo = a.cliente " +
-                            "    WHERE a.dataEfetiva IS NULL " +
-                            "    GROUP BY codigopessoa, refrastreavel " +
+                            "  SELECT p.codigo as codigopessoa, p.nome, a.previsao, sum(si.quantidade) as qtd, substr(referencia,1,{0}) as refrastreavel " +
+                            "  FROM saida s JOIN saidaitem si ON s.codigo = si.saida JOIN acertoconsignado a ON a.codigo = s.acerto " +
+                            "  JOIN pessoa p ON p.codigo = a.cliente " +
+                            "  WHERE a.dataEfetiva IS NULL " +
+                            "  GROUP BY codigopessoa, refrastreavel " +
                             "  ) saidas " +
                             "  left join " +
                             "  ( SELECT p.codigo as codigopessoa, a.previsao, SUM(vi.quantidade) as qtd, substr(referencia,1,{0}) as refrastreavel " +
@@ -1184,34 +1184,41 @@ namespace Entidades.Mercadoria
             {
                 using (IDbCommand cmd = conexão.CreateCommand())
                 {
-                    cmd.CommandText = "SELECT p.codigo, p.nome, a.previsao, SUM(si.quantidade) - ifnull(rastreamentovenda.qtd,0) - ifnull(rastreamentoretorno.qtd,0) " + 
-                         " FROM saida s JOIN saidaitem si ON s.codigo = si.saida JOIN acertoconsignado a ON a.codigo = s.acerto " + 
-                         " JOIN pessoa p ON p.codigo = a.cliente " + 
-                         
-                         " left join  " + 
-                         " ( SELECT p.codigo, SUM(vi.quantidade) as qtd " + 
-                         " FROM venda v JOIN vendaitem vi ON v.codigo = vi.venda JOIN acertoconsignado a ON a.codigo = v.acerto " + 
-                         " JOIN pessoa p ON p.codigo = a.cliente " + 
-                         " WHERE a.dataEfetiva IS NULL  " + 
-                         " and referencia LIKE '" + ObterReferênciaRastreável() + "%' " + 
-                         " GROUP BY p.codigo " + 
-                         " ) " + 
-                         " rastreamentovenda on p.codigo=rastreamentovenda.codigo " + 
-                         
-                         " left join " + 
-                         " ( " + 
-                         " SELECT p.codigo, SUM(ri.quantidade) as qtd " + 
-                         " FROM retorno r JOIN retornoitem ri ON r.codigo = ri.retorno JOIN acertoconsignado a ON a.codigo = r.acerto " + 
-                         " JOIN pessoa p ON p.codigo = a.cliente " + 
-                         " WHERE a.dataEfetiva IS NULL  " +
-                         " and referencia LIKE '" + ObterReferênciaRastreável() + "%' " + 
-                         " GROUP BY p.codigo " + 
-                         " ) rastreamentoretorno on p.codigo=rastreamentoretorno.codigo " + 
-                         
-                         " WHERE a.dataEfetiva IS NULL  " +
-                         " and referencia LIKE '" + ObterReferênciaRastreável() + "%' " + 
-                         " GROUP BY p.codigo " + 
-                         " ORDER BY SUM(si.quantidade) desc";
+                    cmd.CommandText = string.Format(
+                    " SELECT saidas.pessoacodigo, saidas.nomepessoa, saidas.previsao, saidas.qtd - ifnull(vendas.qtd,0) - ifnull(retornos.qtd,0) as saldo" +
+                    " FROM" +
+                    " (SELECT p.codigo as pessoacodigo, p.nome as nomepessoa, a.previsao, sum(quantidade) as qtd" +
+                    " FROM saida s JOIN saidaitem si ON s.codigo = si.saida" +
+                    " JOIN acertoconsignado a ON a.codigo = s.acerto" +
+                    " JOIN pessoa p ON p.codigo = a.cliente" +
+                    " WHERE a.dataEfetiva IS NULL" +
+                    " AND referencia LIKE '{0}%' " + 
+                    " GROUP BY p.codigo, a.previsao" +
+                    " ) saidas" +
+                    " left join" +
+                    " ( SELECT p.codigo as pessoacodigo, previsao, SUM(vi.quantidade) as qtd" +
+                    " FROM venda v JOIN vendaitem vi ON v.codigo = vi.venda JOIN acertoconsignado a ON a.codigo = v.acerto" +
+                    " JOIN pessoa p ON p.codigo = a.cliente" +
+                    " WHERE a.dataEfetiva IS NULL" +
+                    " AND referencia LIKE '{0}%' " + 
+                    " GROUP BY p.codigo, a.previsao" +
+                    " ) vendas" +
+                    " ON saidas.pessoacodigo=vendas.pessoacodigo" +
+                    " AND saidas.previsao=vendas.previsao" +
+                    " " +
+                    " left join" +
+                    " (" +
+                    " SELECT p.codigo as pessoacodigo, previsao, SUM(ri.quantidade) as qtd" +
+                    " FROM retorno r JOIN retornoitem ri ON r.codigo = ri.retorno JOIN acertoconsignado a ON a.codigo = r.acerto" +
+                    " JOIN pessoa p ON p.codigo = a.cliente" +
+                    " WHERE a.dataEfetiva IS NULL" +
+                    " AND referencia LIKE '{0}%' " + 
+                    " GROUP BY p.codigo, a.previsao" +
+                    " ) retornos" +
+                    " ON saidas.pessoacodigo=retornos.pessoacodigo" +
+                    " AND saidas.previsao=retornos.previsao" +
+                    " HAVING saldo > 0" +
+                    " ORDER BY saldo desc", ObterReferênciaRastreável());
 
                     using (IDataReader leitor = cmd.ExecuteReader())
                     {
@@ -1267,7 +1274,7 @@ namespace Entidades.Mercadoria
                     cmd.CommandText = "select venda.codigo, venda.data, sum(quantidade) as qtd, cliente, nome from vendaitem, venda "
                         + " left join pessoa on cliente=pessoa.codigo where venda.rastreada=1 "
                         + " and venda.codigo=vendaitem.venda "
-                        + " and referencia LIKE '" + ObterReferênciaRastreável() + "%' " 
+                        + " and referencia LIKE '{0}%' " 
                         + " group by venda.codigo having qtd > 0";
 
                     using (IDataReader leitor = cmd.ExecuteReader())
