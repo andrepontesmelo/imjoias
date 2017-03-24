@@ -23,7 +23,7 @@ namespace Apresentação.IntegraçãoSistemaAntigo.Fiscal
             InitializeComponent();
         }
 
-        public static void ExportarAtacadoBR500()
+        public static void ExportarVarejoBR500()
         {
             string datayyyymmdd = DateTime.Now.Date.ToString("yyyyMMdd");
 

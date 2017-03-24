@@ -39,9 +39,9 @@ namespace Apresentação.Administrativo
             new ProcessoIntegração().ImportarDadosDoSistemaLegado();
         }
 
-        private void quadroFiscalExportaçãoAtacadoBR500_Click(object sender, EventArgs e)
+        private void quadroFiscalExportaçãoVarejoBR500_Click(object sender, EventArgs e)
         {
-            IntegraçãoSistemaAntigo.Fiscal.BaseFiscal.ExportarAtacadoBR500();
+            IntegraçãoSistemaAntigo.Fiscal.BaseFiscal.ExportarVarejoBR500();
         }
 
         private void quadroComissão_Click(object sender, EventArgs e)
@@ -73,7 +73,7 @@ namespace Apresentação.Administrativo
 
             bool técnico = PermissãoFuncionário.ValidarPermissão(Permissão.Técnico);
 
-            quadroFiscalExportaçãoAtacadoBR500.Visible = técnico;
+            quadroFiscalExportaçãoVarejoBR500.Visible = técnico;
             quadroFiscalExportacaoEconnectVarejo.Visible = técnico;
             quadroFiscal.Visible = técnico;
             quadroFiscal.Visible = técnico;
