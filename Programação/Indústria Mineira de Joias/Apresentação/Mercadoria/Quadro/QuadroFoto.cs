@@ -1,16 +1,11 @@
-using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Forms;
-using Entidades;
 using Entidades.Álbum;
+using System;
 
 namespace Apresentação.Mercadoria
 {
-	public class QuadroFoto : Apresentação.Formulários.Quadro
+    public class QuadroFoto : Apresentação.Formulários.Quadro
 	{
-		private MostradorAnimação picFoto;
+		private Mostrador picFoto;
 		private System.ComponentModel.IContainer components = null;
 		
 		// Atributos
@@ -46,7 +41,7 @@ namespace Apresentação.Mercadoria
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.picFoto = new Apresentação.Mercadoria.MostradorAnimação();
+            this.picFoto = new Apresentação.Mercadoria.Mostrador();
             ((System.ComponentModel.ISupportInitialize)(this.picFoto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -117,7 +112,7 @@ namespace Apresentação.Mercadoria
                 this.origem = OrigemFoto.EntidadeMercadoria;
                 this.mercadoria = mercadoria;
 
-                picFoto.MostrarAnimação(mercadoria);
+                picFoto.Mostrar(mercadoria);
             }
 		}
 
@@ -126,14 +121,9 @@ namespace Apresentação.Mercadoria
             picFoto.MostrarImagem(foto.Imagem);
         }
 
-        /// <summary>
-		/// Mostra o logo, imagem já pre-estabelecida no picFoto.Image.
-		/// </summary>
-		/// <remarks> Só deve ser chamada externamente à classe QuadroFoto</remarks>
 		public void MostrarLogoIMJ()
 		{
-            origem = OrigemFoto.LogoIMJ;
-            picFoto.MostrarImagem(Resource.logo);
+            picFoto.Mostrar(null);
 		}
 
 		/// <summary>

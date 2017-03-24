@@ -30,7 +30,7 @@ namespace Entidades.Mercadoria
     /// </remarks>
     [Serializable]
     [Cacheável("ObterMercadoriaComCache"), Validade(6, 0, 0)]
-	public class Mercadoria : DbManipulação, IDisposable, ICloneable
+	public class Mercadoria : DbManipulação, ICloneable
 	{
         private static readonly int TAMANHO_REFERÊNCIA = 11;
         private static readonly int TAMANHO_REFERÊNCIA_RASTREÁVEL = 8;
@@ -58,10 +58,6 @@ namespace Entidades.Mercadoria
         ///// Mercadorias de peso possuem imagens individuais.
         ///// </summary>
         private DbFoto icone;
-
-      
-		[NonSerialized]
-		private Álbum.Animação		animação;
 
         private double? ranking;
 
@@ -287,67 +283,16 @@ namespace Entidades.Mercadoria
         public bool DePesoManual => MercadoriaDePesoManual.PesoManual(campos.ReferênciaNumérica);
         public bool ForaDeLinha => campos.ForaDeLinha;
 
-		/// <summary>
-		/// Foto da mercadoria
-		/// </summary>
 		public Image Foto
 		{
 			get
 			{
-				// Obtem primeiro frame da animação.
-                if (Animação != null)
-                    return Animação.Foto;
-
-                else if (!animaçãoJáObtida)
-                {
-                    CarregarAnimação();
-                    return Foto;
-                }
-                else
-                    return null;
+                return Entidades.Álbum.Foto.ObterPrimeiraFoto(this);
 			}
 		}
 
         public Tabela TabelaPreço { get { return tabela; } set { tabela = value; } }
 
-
-		/// <summary>
-		/// Informa à propriedade Animação se ela obtém ou não, 
-		/// no caso de ser nulo.
-		/// Porque Animação=Nulo pode ser: 
-		/// 1) não buscou ainda ou 2) já buscou mas não existe
-		/// </summary>
-		private bool animaçãoJáObtida = false;
-		
-		/// <summary>
-		/// Obtém a animação.
-		/// Caso não tenha sido buscada ainda, é buscada no Bd.
-		/// É nulo caso não exista animação
-		/// </summary>
-		public Animação Animação
-		{
-			get
-			{
-                lock (this)
-                {
-                    if (!animaçãoJáObtida)
-                    {
-                        // Carregar do banco de dados
-                        animação = Álbum.Animação.ObterAnimação(this);
-                        animaçãoJáObtida = true;
-                    }
-                }
-				
-				return animação;
-			}
-		}
-
-        //// Não é necessário fazer uma consulta para ver se o ícone realmente não existe
-        //private bool íconeJáObtido = false;
-
-		/// <summary>
-		/// Ícone da mercadoria
-		/// </summary>
 		public Image Ícone
 		{
 			get
@@ -363,14 +308,6 @@ namespace Entidades.Mercadoria
                 return icone;
 			}
 		}
-
-        /// <summary>
-        /// Determina se a foto já foi carregada do banco de dados.
-        /// </summary>
-        public bool FotoObtida
-        {
-            get { return animaçãoJáObtida; }
-        }
 
 		#endregion
 
@@ -455,30 +392,6 @@ namespace Entidades.Mercadoria
 						dígito = int.Parse(referência.Substring(i + 1));
 					break;
 				}
-		}
-
-		#endregion
-
-		#region IDisposable Members
-
-		public void Dispose()
-		{
-			if (animação != null)
-			{
-                animação.Dispose();
-			}
-
-            //if (icone != null)
-            //{
-            //    icone.Dispose();
-            //    icone = null;
-            //    íconeJáObtido = false;
-            //}
-		}
-
-		~Mercadoria()
-		{
-			Dispose();
 		}
 
 		#endregion
@@ -1159,38 +1072,6 @@ namespace Entidades.Mercadoria
             return Entidades.Álbum.Foto.ObterFotos(this);
         }
 
-        public void CarregarAnimação()
-        {
-            if (!animaçãoJáObtida)
-            {
-                // Carregar do banco de dados
-                animação = Álbum.Animação.ObterAnimação(this);
-                animaçãoJáObtida = true;
-            }
-        }
-
-        /// <summary>
-        /// Libera a foto da memória.
-        /// </summary>
-        public void LiberarFoto()
-        {
-            if (animação != null)
-            {
-                animação.Dispose();
-                animação = null;
-                animaçãoJáObtida = false;
-            }
-        }
-
-        /// <summary>
-        /// Inicia carga em segundo plano das mercadorias.
-        /// </summary>
-        /// <remarks>
-        /// Fica à cargo do programador chamar este método por fora.
-        /// 
-        /// Ele é chamado logo após autenticação no AoCarregarCompletamente de
-        /// Apresentação.Formulários.BaseFormulário.
-        /// </remarks>
         public static void IniciarCarga()
         {
             MercadoriaCampos.IniciarCarga();

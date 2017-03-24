@@ -2177,10 +2177,7 @@
     <Compile Include="Mercadoria\ListViewMercadoria.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Mercadoria\MostradorAnimação.AnimaçãoOca.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Mercadoria\MostradorAnimação.cs">
+    <Compile Include="Mercadoria\Mostrador.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Mercadoria\Quadro\QuadroFoto.cs">
@@ -3755,8 +3752,8 @@
       <DependentUpon>ListViewMercadoria.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mercadoria\MostradorAnimação.resx">
-      <DependentUpon>MostradorAnimação.cs</DependentUpon>
+    <EmbeddedResource Include="Mercadoria\Mostrador.resx">
+      <DependentUpon>Mostrador.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Mercadoria\Quadro\QuadroFoto.resx">

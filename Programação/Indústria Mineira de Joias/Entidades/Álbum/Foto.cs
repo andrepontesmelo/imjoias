@@ -506,6 +506,48 @@ namespace Entidades.Álbum
                 "SELECT codigo,mercadoria,descricao,data FROM foto WHERE mercadoria = " + DbTransformar(referência)).ToArray();
         }
 
+        public static Image ObterPrimeiraFoto(Mercadoria.Mercadoria mercadoria)
+        {
+            IDataReader leitor = null;
+            byte[] fotoVetor = null;
+            IDbConnection conexão = Conexão;
+
+            lock (conexão)
+            {
+                Usuários.UsuárioAtual.GerenciadorConexões.RemoverConexão(conexão);
+                using (IDbCommand cmd = conexão.CreateCommand())
+                {
+                    cmd.CommandText = string.Format("SELECT foto FROM foto WHERE mercadoria={0} limit 1",
+                        DbTransformar(mercadoria.ReferênciaNumérica));
+
+                    using (leitor = cmd.ExecuteReader())
+                    {
+
+                        try
+                        {
+                            if (leitor.Read())
+                            {
+                                fotoVetor = (byte[])leitor.GetValue(0);
+                            }
+                        }
+                        finally
+                        {
+                            if (leitor != null)
+                                leitor.Close();
+
+                            Usuários.UsuárioAtual.GerenciadorConexões.AdicionarConexão(conexão);
+                        }
+                    }
+                }
+            }
+
+            if (fotoVetor == null)
+                return null;
+
+            return (Image) new DbFoto(fotoVetor);
+        }
+
+
         /// <summary>
         /// Obtém fotos de um álbum.
         /// </summary>

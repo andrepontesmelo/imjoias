@@ -1,15 +1,10 @@
-﻿using System;
-using System.Drawing;
-using System.Collections;
-using System.ComponentModel;
-using System.Reflection;
-using System.Globalization;
-using System.Windows.Forms;
-using System.Runtime.InteropServices;
-using Entidades;
+﻿using Entidades;
 using Entidades.Configuração;
-using Entidades.Álbum;
-using Acesso.Comum;
+using System;
+using System.ComponentModel;
+using System.Drawing;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace Apresentação.Mercadoria
 {
@@ -64,7 +59,7 @@ namespace Apresentação.Mercadoria
 
         // Formulário
 
-        private MostradorAnimação picFoto;
+        private Mostrador picFoto;
         private System.Windows.Forms.Label lblReferência;
         private System.Windows.Forms.Label lblPeso;
         private System.Windows.Forms.Label label1;
@@ -143,7 +138,7 @@ namespace Apresentação.Mercadoria
             this.btnRastrear = new System.Windows.Forms.Button();
             this.btnSalvarFoto = new System.Windows.Forms.Button();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.picFoto = new Apresentação.Mercadoria.MostradorAnimação();
+            this.picFoto = new Apresentação.Mercadoria.Mostrador();
             this.mnuPreço.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picEscolhaPreço4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFoto)).BeginInit();
@@ -633,8 +628,7 @@ namespace Apresentação.Mercadoria
                 AtualizarPreço();
 
                 lblDescrição.Text = mercadoria.Descrição;
-                //picFoto.Image	   = mercadoria.EnquadrarFoto(picFoto.Width, picFoto.Height);
-                picFoto.MostrarAnimação(mercadoria);
+                picFoto.Mostrar(mercadoria);
             }
         }
 
