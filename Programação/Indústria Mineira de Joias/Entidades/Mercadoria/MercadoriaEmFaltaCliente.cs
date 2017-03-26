@@ -80,7 +80,7 @@ namespace Entidades.Mercadoria
             }
         }
 
-        public string ReferênciaNumérica
+        public string ReferênciaRastreável
         {
             get { return referencia; }
         }
@@ -93,18 +93,21 @@ namespace Entidades.Mercadoria
         public static List<MercadoriaEmFaltaCliente> Obter(ulong pessoa)
         {
             List<MercadoriaEmFaltaCliente> listaPedidos = Mapear<MercadoriaEmFaltaCliente>(
-                        " select pedido.codigo as pedido, pedido.dataRecepcao, pedidoitem.mercadoria as referencia, pessoa.nome as clienteNome, " + 
-                        " sum(pedidoitem.quantidade) as qtdpedido, group_concat(pedidoitem.descricao) as descricao from " +
-                        " pedido, pedidoitem, pessoa where pedido.codigo=pedidoitem.pedido " +
-                        " and pessoa.codigo=pedido.cliente " +
-                        " and tipo = 'E' " +
-                        " and dataEntrega is null " + 
-                        " and pedidoitem.mercadoria in (select referencia from saidaitem, saida, acertoconsignado where  " +
-                        " saida.codigo=saidaitem.saida and saida.acerto=acertoconsignado.codigo and pessoa= " +
-                        DbTransformar(pessoa) +
-                        " and dataEfetiva is null) " +
-                        " group by pedido.codigo, pedidoitem.mercadoria " +
-                        " order by dataRecepcao ");
+                string.Format(
+                " select p.codigo as pedido, p.dataRecepcao, substr(i.mercadoria,1,{0}) as referencia, pessoa.nome as clienteNome, " +
+                " sum(i.quantidade) as qtdpedido, group_concat(i.descricao) as descricao " +
+                " FROM pedido p JOIN pedidoitem i ON p.codigo=i.pedido " +
+                " JOIN pessoa ON pessoa.codigo=p.cliente " +
+                " WHERE tipo = 'E' AND dataEntrega is null " +
+                " AND substr(i.mercadoria,1,{0}) in " +
+                " ( " +
+                "   select distinct substr(referencia,1,{0}) " +
+                "   FROM saidaitem i  " +
+                "   JOIN saida s ON s.codigo=i.saida " +
+                "   JOIN acertoconsignado a ON s.acerto=a.codigo " +
+                "   WHERE pessoa={1} and dataEfetiva is null " +
+                " ) " +
+                " GROUP BY p.codigo, i.mercadoria  order by dataRecepcao ", Mercadoria.TAMANHO_REFERÊNCIA_RASTREÁVEL, pessoa));
 
             if (listaPedidos.Count == 0)
                 return listaPedidos;
@@ -115,10 +118,10 @@ namespace Entidades.Mercadoria
             {
                 List<MercadoriaEmFaltaCliente> lista = null;
 
-                if (!hash.TryGetValue(m.ReferênciaNumérica, out lista))
+                if (!hash.TryGetValue(m.ReferênciaRastreável, out lista))
                 {
                     lista = new List<MercadoriaEmFaltaCliente>();
-                    hash[m.ReferênciaNumérica] = lista;
+                    hash[m.ReferênciaRastreável] = lista;
                 }
 
                 lista.Add(m);
@@ -132,34 +135,41 @@ namespace Entidades.Mercadoria
                 if (!primeiro)
                     referências.Append(",");
 
-                referências.Append(DbTransformar(m.ReferênciaNumérica));
+                referências.Append(DbTransformar(m.ReferênciaRastreável));
                 primeiro = false;
             }
             string referênciasString = referências.ToString();
 
-            StringBuilder comando = new StringBuilder();
-            comando.Append(" select referencia, sum(s)-sum(r)-sum(v) from "
-            + " ( select referencia, SUM(quantidade) as s, 0 as r, 0 as v from saida, saidaitem  "
-            + " WHERE saida.acerto IN (select codigo from acertoconsignado where cliente=");
-            comando.Append(DbTransformar(pessoa));
-            comando.Append(" and dataEfetiva is null) "
-            + " and referencia IN (");
-            comando.Append(referênciasString);
-            comando.Append(") and saida.codigo=saidaitem.saida group by referencia having s > 0"
-            + " UNION select referencia, 0 as s, SUM(quantidade) as r, 0 as v from retorno, retornoitem  "
-            + " WHERE retorno.acerto IN (select codigo from acertoconsignado where cliente=");
-            comando.Append(DbTransformar(pessoa));
-            comando.Append(" and dataEfetiva is null)  and referencia IN (");
-            comando.Append(referênciasString);
-            comando.Append(") and retorno.codigo=retornoitem.retorno group by referencia having r > 0"
-            + " UNION select referencia, 0 as s, 0 as r, SUM(quantidade) as v from venda, vendaitem  "
-            + " WHERE venda.acerto IN (select codigo from acertoconsignado where cliente=");
-            comando.Append(DbTransformar(pessoa));
-            comando.Append(" and dataEfetiva is null)  and referencia IN (");
-            comando.Append(referênciasString);
-            comando.Append(") and venda.codigo=vendaitem.venda group by referencia having v > 0 ) a  group by referencia ");
-
-
+            string comando = string.Format(
+                " SELECT referencia," +
+                "        sum(s)-sum(r)-sum(v)" +
+                " FROM" +
+                "     (SELECT substr(referencia,1,{0}) as referencia, SUM(quantidade) AS s, 0 AS r, 0 AS v" +
+                "     FROM saida sa JOIN saidaitem si ON sa.codigo=si.saida" +
+                "      WHERE sa.acerto IN (SELECT codigo FROM acertoconsignado WHERE cliente={1} AND dataEfetiva IS NULL)" +
+                "      AND substr(referencia,1,{0}) IN ({2})" +
+                "      GROUP BY substr(referencia,1,{0})" +
+                "      HAVING s > 0" +
+                "      UNION SELECT substr(referencia,1,{0}) as referencia,0 AS s,SUM(quantidade) AS r, 0 AS v" +
+                "      FROM retorno re JOIN retornoitem ri ON re.codigo=ri.retorno" +
+                "      WHERE re.acerto IN" +
+                "              (SELECT codigo" +
+                "               FROM acertoconsignado" +
+                "               WHERE cliente={1} AND dataEfetiva IS NULL)" +
+                "          AND substr(referencia,1,{0}) IN ({2})" +
+                "      GROUP BY substr(referencia,1,{0})" +
+                "      HAVING r > 0" +
+                "      UNION SELECT substr(referencia,1,{0}) as referencia," +
+                "                   0 AS s, 0 AS r, SUM(quantidade) AS v" +
+                "      FROM venda ve JOIN vendaitem vi ON ve.codigo=vi.venda" +
+                "      WHERE ve.acerto IN" +
+                "              (SELECT codigo" +
+                "               FROM acertoconsignado" +
+                "               WHERE cliente={1} AND dataEfetiva IS NULL)" +
+                "          AND substr(referencia,1,{0}) IN ({2})" +
+                "      GROUP BY substr(referencia,1,{0})" +
+                "      HAVING v > 0) a" +
+                " GROUP BY referencia", Mercadoria.TAMANHO_REFERÊNCIA_RASTREÁVEL, pessoa, referênciasString);
 
             IDbConnection conexão = Conexão;
             IDataReader leitor = null;
@@ -171,7 +181,7 @@ namespace Entidades.Mercadoria
 
                     try
                     {
-                        cmd.CommandText = comando.ToString();
+                        cmd.CommandText = comando;
                         using (leitor = cmd.ExecuteReader())
                         {
 

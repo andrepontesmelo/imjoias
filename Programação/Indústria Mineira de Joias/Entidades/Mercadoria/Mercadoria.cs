@@ -33,7 +33,7 @@ namespace Entidades.Mercadoria
 	public class Mercadoria : DbManipulação, ICloneable
 	{
         private static readonly int TAMANHO_REFERÊNCIA = 11;
-        private static readonly int TAMANHO_REFERÊNCIA_RASTREÁVEL = 8;
+        public static readonly int TAMANHO_REFERÊNCIA_RASTREÁVEL = 8;
 
         /// <summary>
         /// Campos compartilhados.

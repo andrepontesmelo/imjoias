@@ -19,7 +19,7 @@ namespace Apresentação.Impressão.Relatórios.Pedido.MercadoriaEmFaltaCliente
             foreach (Entidades.Mercadoria.MercadoriaEmFaltaCliente item in itens)
             {
                 DataRow linha = tabelaItens.NewRow();
-                linha["referência"] = Entidades.Mercadoria.Mercadoria.MascararReferência(item.ReferênciaNumérica);
+                linha["referência"] = Entidades.Mercadoria.Mercadoria.MascararReferência(item.ReferênciaRastreável);
                 linha["pedido"] = item.Pedido;
                 linha["qtdPedido"] = item.QuantidadePedido;
                 linha["qtdConsignação"] = item.QuantidadeConsignado;

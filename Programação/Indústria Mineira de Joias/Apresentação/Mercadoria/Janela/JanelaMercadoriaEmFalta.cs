@@ -46,7 +46,7 @@ namespace Apresentação.Mercadoria
                     item.Text = m.DiasEspera.ToString();
                     item.SubItems.Add(m.QuantidadePedido.ToString());
                     item.SubItems.Add(m.QuantidadeConsignado.ToString());
-                    item.SubItems.Add(Entidades.Mercadoria.Mercadoria.MascararReferência(m.ReferênciaNumérica));
+                    item.SubItems.Add(Entidades.Mercadoria.Mercadoria.MascararReferência(m.ReferênciaRastreável));
                     item.SubItems.Add(m.Pedido.ToString());
                     item.SubItems.Add(m.ClienteNome);
                     item.SubItems.Add(m.Descricao);
