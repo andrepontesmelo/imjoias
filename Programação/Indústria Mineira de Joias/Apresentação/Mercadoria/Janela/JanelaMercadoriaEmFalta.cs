@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using Entidades.Mercadoria;
-using Apresentação.Atendimento.Clientes.Pedido;
-using Apresentação.Formulários;
+﻿using Apresentação.Formulários;
 using Apresentação.Impressão.Relatórios.Pedido.MercadoriaEmFaltaCliente;
+using Entidades.Mercadoria;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Apresentação.Mercadoria
 {
-    public partial class JanelaMercadoriaEmFalta : Apresentação.Formulários.JanelaExplicativa
+    public partial class JanelaMercadoriaEmFalta : JanelaExplicativa
     {
-        private List<MercadoriaEmFaltaCliente> itens;
+        private List<MercadoriaEmFaltaCliente> mercadorias;
         private Entidades.Pessoa.Pessoa emPosseDe;
 
         public JanelaMercadoriaEmFalta()
@@ -41,32 +36,34 @@ namespace Apresentação.Mercadoria
             AguardeDB.Mostrar();
 
             emPosseDe = pessoa;
-            itens = MercadoriaEmFaltaCliente.Obter(pessoa.Código);
+            mercadorias = MercadoriaEmFaltaCliente.Obter(pessoa.Código);
             UseWaitCursor = false;
             AguardeDB.Fechar();
 
-            foreach (MercadoriaEmFaltaCliente m in itens)
+            foreach (MercadoriaEmFaltaCliente mercdoria in mercadorias)
             {
-                // Só faz sentido cobrar do cliente quando ele possue as mercadorias em mãos, ou seja, ainda não vendeu nem retornou.
-                if (m.QuantidadeConsignado > 0)
-                {
-                    ListViewItem item = new ListViewItem();
-                    item.Text = m.DiasEspera.ToString();
-                    item.SubItems.Add(m.QuantidadePedido.ToString());
-                    item.SubItems.Add(m.QuantidadeConsignado.ToString());
-                    item.SubItems.Add(Entidades.Mercadoria.Mercadoria.MascararReferência(m.ReferênciaRastreável));
-                    item.SubItems.Add(m.Pedido.ToString());
-                    item.SubItems.Add(m.ClienteNome);
-                    item.SubItems.Add(m.Descricao);
-                    item.Tag = m.Pedido;
-                    this.lista.Items.Add(item);
-                }
+                if (mercdoria.QuantidadeConsignado > 0)
+                    lista.Items.Add(CriarItem(mercdoria));
             }
 
             colCliente.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
             this.Focus();
 
             ShowDialog(janelaBase);
+        }
+
+        private static ListViewItem CriarItem(MercadoriaEmFaltaCliente m)
+        {
+            ListViewItem item = new ListViewItem();
+            item.Text = m.DiasEspera.ToString();
+            item.SubItems.Add(m.QuantidadePedido.ToString());
+            item.SubItems.Add(m.QuantidadeConsignado.ToString());
+            item.SubItems.Add(Entidades.Mercadoria.Mercadoria.MascararReferência(m.ReferênciaRastreável));
+            item.SubItems.Add(m.Pedido.ToString());
+            item.SubItems.Add(m.ClienteNome);
+            item.SubItems.Add(m.Descricao);
+            item.Tag = m.Pedido;
+            return item;
         }
 
         private void lista_DoubleClick(object sender, EventArgs e)
@@ -79,10 +76,10 @@ namespace Apresentação.Mercadoria
                 ListViewItem item = lista.SelectedItems[0];
                 Entidades.PedidoConserto.Pedido p = Entidades.PedidoConserto.Pedido.ObterPedido((long) item.Tag);
 
-                Apresentação.Impressão.Relatórios.Pedido.Recibo.Relatório relatório = new Apresentação.Impressão.Relatórios.Pedido.Recibo.Relatório();
-                Apresentação.Impressão.Relatórios.Pedido.Recibo.ControleImpressão controle = new Apresentação.Impressão.Relatórios.Pedido.Recibo.ControleImpressão();
+                Impressão.Relatórios.Pedido.Recibo.Relatório relatório = new Impressão.Relatórios.Pedido.Recibo.Relatório();
+                Impressão.Relatórios.Pedido.Recibo.ControleImpressão controle = new Impressão.Relatórios.Pedido.Recibo.ControleImpressão();
                 controle.PrepararImpressão(relatório, new List<Entidades.PedidoConserto.Pedido>() { p });
-                Apresentação.Formulários.JanelaImpressão janelaVisualizaçãoImpressão = new Apresentação.Formulários.JanelaImpressão();
+                JanelaImpressão janelaVisualizaçãoImpressão = new JanelaImpressão();
                 janelaVisualizaçãoImpressão.Título = "Impressão de Recibos";
                 janelaVisualizaçãoImpressão.Descrição = "";
                 janelaVisualizaçãoImpressão.InserirDocumento(relatório, "Recibos");
@@ -100,7 +97,7 @@ namespace Apresentação.Mercadoria
 
             Relatório relatório = new Relatório();
 
-            ControleImpressão.PrepararImpressão(relatório, itens, emPosseDe);
+            ControleImpressão.PrepararImpressão(relatório, mercadorias, emPosseDe);
 
             PrintDialog printDialog = new PrintDialog();
             AguardeDB.Fechar();
