@@ -484,15 +484,15 @@ namespace Entidades
 
             DateTime novaData;
 
-            int meses = Math.Abs(dias / 30);
+            int meses = dias / 30;
             dias = dias % 30;
 
             novaData = data.AddMonths(meses);
 
-            
-            if (novaData.AddDays(dias).Month == novaData.Month)
+            bool mudaráMês = (novaData.AddDays(dias).Month != novaData.Month);
+
+            if (!mudaráMês)
             {
-                // Não precisa mudar o mes.
                 novaData = novaData.AddDays(dias);
                 if (novaData.Day > 30)
                 {
@@ -503,22 +503,32 @@ namespace Entidades
                 return novaData;
             }
 
-            // Precisa mudar o mês.
-            // No entanto, talvés seja necessário adicionar alguns dias.
-            DateTime dataAnterior = novaData;
-            int diasQueFaltamParaOFimDoMês = 31 - novaData.Day;
-
-            // novaData = primeiro dia do próximo mes
-            novaData = novaData.AddMonths(1);
-            novaData = novaData.Subtract(new TimeSpan(novaData.Day - 1, 0, 0, 0));
-
-            // Verifica quantos dias adicionou de 'dataAnterior' até novaData:
-            int diasAdicionadosVirtualmente = diasQueFaltamParaOFimDoMês;
-
-            if (diasAdicionadosVirtualmente < dias)
+            if (dias > 0)
             {
-                // Adiciona dias faltantes.
-                novaData = novaData.AddDays(dias - diasAdicionadosVirtualmente);
+                // Precisa mudar o mês.
+                // No entanto, talvés seja necessário adicionar alguns dias.
+                DateTime dataAnterior = novaData;
+                int diasQueFaltamParaOFimDoMês = 31 - novaData.Day;
+
+                // novaData = primeiro dia do próximo mes
+                novaData = novaData.AddMonths(dias > 0 ? 1 : -1);
+                novaData = novaData.Subtract(new TimeSpan(novaData.Day - 1, 0, 0, 0));
+
+                // Verifica quantos dias adicionou de 'dataAnterior' até novaData:
+                int diasAdicionadosVirtualmente = diasQueFaltamParaOFimDoMês;
+
+                if (diasAdicionadosVirtualmente < dias)
+                {
+                    // Adiciona dias faltantes.
+                    novaData = novaData.AddDays(dias - diasAdicionadosVirtualmente);
+                }
+            }
+            else
+            {
+                var mêsAnterior = novaData.AddDays(dias);
+                int diasNoMês = DateTime.DaysInMonth(mêsAnterior.Year, mêsAnterior.Month);
+                int delta = 30 - diasNoMês;
+                novaData = novaData.AddDays(dias + delta);
             }
 
             return novaData;
