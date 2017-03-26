@@ -4,16 +4,10 @@ using System.Text;
 using System.Data;
 
 using Acesso.Comum;
+using Entidades.Configuração;
 
 namespace Entidades.Mercadoria
 {
-    /// <summary>
-    /// Mercadorias que estão em pedidos(encomendas) em aberto são mercadorias em falta.
-    /// 
-    /// É útil obter estas mercadorias para exibir na tela de um cliente,
-    /// para que se atenda as encomendas mais rapidamente evitando que uma mercadoria em falta
-    /// seja emprestada por consignado para alguem.
-    /// </summary>
     public class MercadoriaEmFaltaCliente : DbManipulaçãoAutomática
     {
 #pragma warning disable 0649
@@ -25,7 +19,6 @@ namespace Entidades.Mercadoria
         [DbAtributo(TipoAtributo.Ignorar)]
         private double qtdconsignado;
 
-        //private int diasEspera;
         private string referencia;
         private DateTime dataRecepcao;
 #pragma warning restore 0649
@@ -34,31 +27,12 @@ namespace Entidades.Mercadoria
         {
         }
 
-        public long Pedido
-        {
-            get { return pedido; }
-        }
-
-        public DateTime DataPedido
-        {
-            get
-            {
-                return dataRecepcao;
-            }
-        }
-
-        public string Descricao
-        { get { return descricao; } }
-             
-        public string ClienteNome
-        {
-            get { return clienteNome; }
-        }
-
-        public int QuantidadePedido
-        {
-            get { return (int) qtdpedido; }
-        }
+        public long Pedido => pedido;
+        public DateTime DataPedido => dataRecepcao;
+        public string Descricao => descricao;
+        public string ClienteNome => clienteNome;
+        public int QuantidadePedido => (int) qtdpedido;
+        public string ReferênciaRastreável => referencia;
 
         public int QuantidadeConsignado
         {
@@ -66,80 +40,35 @@ namespace Entidades.Mercadoria
             set { qtdconsignado = value; }
         }
 
-        /// <summary>
-        /// Dias em que o pedido encontra-se em aberto.
-        /// </summary>
         public int DiasEspera
         {
             get 
             {
-                DateTime hoje = Entidades.Configuração.DadosGlobais.Instância.HoraDataAtual.Date;
+                DateTime hoje = DadosGlobais.Instância.HoraDataAtual.Date;
                 TimeSpan tempoEspera = hoje - dataRecepcao.Date;
 
                 return (int) tempoEspera.TotalDays; 
             }
         }
 
-        public string ReferênciaRastreável
-        {
-            get { return referencia; }
-        }
-
-        /// <summary>
-        /// Obtém as mercadorias em falta que estão em consignado para uma determinada pessoa.
-        /// </summary>
-        /// <param name="pessoa"></param>
-        /// <returns></returns>
         public static List<MercadoriaEmFaltaCliente> Obter(ulong pessoa)
         {
-            List<MercadoriaEmFaltaCliente> listaPedidos = Mapear<MercadoriaEmFaltaCliente>(
-                string.Format(
-                " select p.codigo as pedido, p.dataRecepcao, substr(i.mercadoria,1,{0}) as referencia, pessoa.nome as clienteNome, " +
-                " sum(i.quantidade) as qtdpedido, group_concat(i.descricao) as descricao " +
-                " FROM pedido p JOIN pedidoitem i ON p.codigo=i.pedido " +
-                " JOIN pessoa ON pessoa.codigo=p.cliente " +
-                " WHERE tipo = 'E' AND dataEntrega is null " +
-                " AND substr(i.mercadoria,1,{0}) in " +
-                " ( " +
-                "   select distinct substr(referencia,1,{0}) " +
-                "   FROM saidaitem i  " +
-                "   JOIN saida s ON s.codigo=i.saida " +
-                "   JOIN acertoconsignado a ON s.acerto=a.codigo " +
-                "   WHERE pessoa={1} and dataEfetiva is null " +
-                " ) " +
-                " GROUP BY p.codigo, i.mercadoria  order by dataRecepcao ", Mercadoria.TAMANHO_REFERÊNCIA_RASTREÁVEL, pessoa));
+            var listaPedidos = ObterListaPedidosEncomendamMercadoriasComCliente(pessoa);
 
             if (listaPedidos.Count == 0)
                 return listaPedidos;
 
-            // Dado a referência, retorna a lista de pedidos que a contém
-            Dictionary<string, List<MercadoriaEmFaltaCliente>> hash = new Dictionary<string, List<MercadoriaEmFaltaCliente>>(StringComparer.Ordinal);
-            foreach (MercadoriaEmFaltaCliente m in listaPedidos)
-            {
-                List<MercadoriaEmFaltaCliente> lista = null;
+            PreencherQuantidade(pessoa, 
+                listaPedidos, 
+                ObtemHashChaveReferênciaListaPedidosEncomendam(listaPedidos));
+                
+            return listaPedidos;
+        }
 
-                if (!hash.TryGetValue(m.ReferênciaRastreável, out lista))
-                {
-                    lista = new List<MercadoriaEmFaltaCliente>();
-                    hash[m.ReferênciaRastreável] = lista;
-                }
-
-                lista.Add(m);
-            }
-
-            StringBuilder referências = new StringBuilder();
-            bool primeiro = true;
-
-            foreach (MercadoriaEmFaltaCliente m in listaPedidos)
-            {
-                if (!primeiro)
-                    referências.Append(",");
-
-                referências.Append(DbTransformar(m.ReferênciaRastreável));
-                primeiro = false;
-            }
-            string referênciasString = referências.ToString();
-
+        private static void PreencherQuantidade(ulong pessoa, 
+            List<MercadoriaEmFaltaCliente> listaPedidos, 
+            Dictionary<string, List<MercadoriaEmFaltaCliente>> hashReferênciaPedidos)
+        {
             string comando = string.Format(
                 " SELECT referencia," +
                 "        sum(s)-sum(r)-sum(v)" +
@@ -169,7 +98,7 @@ namespace Entidades.Mercadoria
                 "          AND substr(referencia,1,{0}) IN ({2})" +
                 "      GROUP BY substr(referencia,1,{0})" +
                 "      HAVING v > 0) a" +
-                " GROUP BY referencia", Mercadoria.TAMANHO_REFERÊNCIA_RASTREÁVEL, pessoa, referênciasString);
+                " GROUP BY referencia", Mercadoria.TAMANHO_REFERÊNCIA_RASTREÁVEL, pessoa, ObterListaReferências(listaPedidos));
 
             IDbConnection conexão = Conexão;
             IDataReader leitor = null;
@@ -190,7 +119,7 @@ namespace Entidades.Mercadoria
                                 string referência = leitor.GetString(0);
                                 double quantidade = leitor.GetDouble(1);
 
-                                List<MercadoriaEmFaltaCliente> lista = hash[referência];
+                                List<MercadoriaEmFaltaCliente> lista = hashReferênciaPedidos[referência];
                                 foreach (MercadoriaEmFaltaCliente m in lista)
                                 {
                                     m.QuantidadeConsignado = (int)quantidade;
@@ -205,9 +134,62 @@ namespace Entidades.Mercadoria
                     }
                 }
             }
-
-            return listaPedidos;
         }
-       
+
+        private static Dictionary<string, List<MercadoriaEmFaltaCliente>> ObtemHashChaveReferênciaListaPedidosEncomendam(List<MercadoriaEmFaltaCliente> listaPedidos)
+        {
+            Dictionary<string, List<MercadoriaEmFaltaCliente>> hash = new Dictionary<string, List<MercadoriaEmFaltaCliente>>(StringComparer.Ordinal);
+            foreach (MercadoriaEmFaltaCliente m in listaPedidos)
+            {
+                List<MercadoriaEmFaltaCliente> lista = null;
+
+                if (!hash.TryGetValue(m.ReferênciaRastreável, out lista))
+                {
+                    lista = new List<MercadoriaEmFaltaCliente>();
+                    hash[m.ReferênciaRastreável] = lista;
+                }
+
+                lista.Add(m);
+            }
+
+            return hash;
+        }
+
+        private static string ObterListaReferências(List<MercadoriaEmFaltaCliente> listaPedidos)
+        {
+            StringBuilder referências = new StringBuilder();
+            bool primeiro = true;
+
+            foreach (MercadoriaEmFaltaCliente m in listaPedidos)
+            {
+                if (!primeiro)
+                    referências.Append(",");
+
+                referências.Append(DbTransformar(m.ReferênciaRastreável));
+                primeiro = false;
+            }
+            string referênciasString = referências.ToString();
+            return referênciasString;
+        }
+
+        private static List<MercadoriaEmFaltaCliente> ObterListaPedidosEncomendamMercadoriasComCliente(ulong cliente)
+        {
+            return Mapear<MercadoriaEmFaltaCliente>(
+                string.Format(
+                " select p.codigo as pedido, p.dataRecepcao, substr(i.mercadoria,1,{0}) as referencia, pessoa.nome as clienteNome, " +
+                " sum(i.quantidade) as qtdpedido, group_concat(i.descricao) as descricao " +
+                " FROM pedido p JOIN pedidoitem i ON p.codigo=i.pedido " +
+                " JOIN pessoa ON pessoa.codigo=p.cliente " +
+                " WHERE tipo = 'E' AND dataEntrega is null " +
+                " AND substr(i.mercadoria,1,{0}) in " +
+                " ( " +
+                "   select distinct substr(referencia,1,{0}) " +
+                "   FROM saidaitem i  " +
+                "   JOIN saida s ON s.codigo=i.saida " +
+                "   JOIN acertoconsignado a ON s.acerto=a.codigo " +
+                "   WHERE pessoa={1} and dataEfetiva is null " +
+                " ) " +
+                " GROUP BY p.codigo, i.mercadoria  order by dataRecepcao ", Mercadoria.TAMANHO_REFERÊNCIA_RASTREÁVEL, cliente));
+        }
     }
 }
