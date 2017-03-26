@@ -346,24 +346,19 @@ namespace Entidades.Mercadoria
                 return MascararReferência(referênciaNuméricaSemDigito);
         }
                 
-        /// <summary>
-        /// Mascara a referência conforme formato 000.000.00.000
-        /// </summary>
-        /// <param name="referênciaNumérica">Referência numérica, sem formatação</param>
-        /// <returns>Referência formatada</returns>
         public static string MascararReferência(string referênciaNumérica)
         {
-            string referência;
-
-            if (referênciaNumérica.Length < TAMANHO_REFERÊNCIA)
+            if (referênciaNumérica.Length < TAMANHO_REFERÊNCIA
+                && referênciaNumérica.Length != TAMANHO_REFERÊNCIA_RASTREÁVEL)
                 return referênciaNumérica;
 
-            referência = referênciaNumérica.Substring(0, 3) + '.' +
+            string primeirosDígitos = referênciaNumérica.Substring(0, 3) + '.' +
                 referênciaNumérica.Substring(3, 3) + '.' +
-                referênciaNumérica.Substring(6, 2) + '.' +
-                referênciaNumérica.Substring(8);
+                referênciaNumérica.Substring(6, 2);
 
-            return referência;
+            return (referênciaNumérica.Length == TAMANHO_REFERÊNCIA_RASTREÁVEL) ? 
+                primeirosDígitos :
+                primeirosDígitos + '.' + referênciaNumérica.Substring(8);
         }
 
 		/// <summary>
