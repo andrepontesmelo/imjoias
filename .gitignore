@@ -18,8 +18,10 @@ TestResult.xml
 *.exe
 *.exe.config
 *.ini
+**.csproj
 
-# Nuget
+
+ Nuget
 /packages/
 !packages/repositories.config
 UpgradeLog.htm
