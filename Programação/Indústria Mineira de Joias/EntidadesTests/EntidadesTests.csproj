@@ -72,6 +72,7 @@
     <Compile Include="Fiscal\NotaFiscalEletronica\PdfTests.cs" />
     <Compile Include="Fiscal\Registro\ExtratoTests.cs" />
     <Compile Include="Fiscal\Tipo\TipoUnidadeInterpretaçãoTests.cs" />
+    <Compile Include="Mercadoria\MercadoriaTests.cs" />
     <Compile Include="Mercadoria\ÍndiceTests.cs" />
     <Compile Include="Pessoa\AbreviadorTests.cs" />
     <Compile Include="Pessoa\PessoaJurídicaTests.cs" />
