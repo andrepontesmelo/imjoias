@@ -2,6 +2,7 @@ using Acesso.Comum.Exceções;
 using Apresentação.Formulários;
 using Apresentação.Mercadoria.Bandeja;
 using Entidades;
+using Entidades.Mercadoria;
 using Entidades.Pessoa;
 using Entidades.Relacionamento;
 using System;
@@ -587,7 +588,17 @@ namespace Apresentação.Financeiro
             }
         }
 
+        private void BandejaAgrupada_ColarComÍndiceVigente(object sender, System.EventArgs e)
+        {
+            Colar(true);
+        }
+
         private void bandejaAgrupada_ColarSolicitado(object sender, EventArgs e)
+        {
+            Colar(false);
+        }
+
+        private void Colar(bool usarÍndiceVigente)
         {
             List<ISaquinho> lista = ÁreaDeTransferência.Instância.Lista;
 
@@ -601,6 +612,13 @@ namespace Apresentação.Financeiro
             foreach (ISaquinho s in lista)
             {
                 s.Mercadoria.Peso = s.Peso;
+
+                if (usarÍndiceVigente)
+                {
+                    s.Mercadoria.Índice = Índice.Calcular(MercadoriaCampos.ObterMercadoria(s.Mercadoria.ReferênciaNumérica).Coeficientes[Tabela],
+                        s.Peso, s.Mercadoria.DePeso);
+                }
+
                 Adicionar(s.Mercadoria, s.Quantidade, ModoJanelaÍndice.MostrarSeNecessário, false);
                 aguarde.Passo(s.Mercadoria.Referência);
             }

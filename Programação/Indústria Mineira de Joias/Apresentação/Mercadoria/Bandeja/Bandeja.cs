@@ -86,6 +86,7 @@ namespace Apresentação.Mercadoria.Bandeja
         private ToolStripMenuItem mnuColarToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator5;
         private ToolStripMenuItem mnuSelecionarTudo;
+        private ToolStripMenuItem colarCÍndiceVigenteToolStripMenuItem;
         private volatile bool statusAtualizado;
 
 		// Delegações
@@ -101,6 +102,7 @@ namespace Apresentação.Mercadoria.Bandeja
 		public event SaquinhoHandler    SaquinhoExcluído;
         public event SaquinhoHandler    AlteraçãoÍndiceSolicitada;
         public event EventHandler       ColarSolicitado;
+        public event EventHandler       ColarComÍndiceVigenteSolicitado;
 
         [Description("Disparado somente quando usuário altera a tabela pela interface gráfica.")]
         public event TabelaCallback     TabelaAlterada;
@@ -1617,6 +1619,7 @@ namespace Apresentação.Mercadoria.Bandeja
             this.btnAgrupar = new System.Windows.Forms.ToolStripButton();
             this.btnSeparar = new System.Windows.Forms.ToolStripButton();
             this.btnAlterarÍndice = new System.Windows.Forms.ToolStripButton();
+            this.colarCÍndiceVigenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelQuantidade)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelTotalMercadorias)).BeginInit();
@@ -1726,10 +1729,11 @@ namespace Apresentação.Mercadoria.Bandeja
             this.mnuInverterSeleçãoToolStripMenuItem,
             this.mnuCopiarToolStripMenuItem,
             this.mnuColarToolStripMenuItem,
+            this.colarCÍndiceVigenteToolStripMenuItem,
             this.toolStripSeparator5,
             this.mnuSelecionarTudo});
             this.contextMenuStrip.Name = "contextMenuStrip1";
-            this.contextMenuStrip.Size = new System.Drawing.Size(198, 176);
+            this.contextMenuStrip.Size = new System.Drawing.Size(198, 220);
             // 
             // mnuConsultar
             // 
@@ -1785,7 +1789,7 @@ namespace Apresentação.Mercadoria.Bandeja
             // 
             this.mnuColarToolStripMenuItem.Name = "mnuColarToolStripMenuItem";
             this.mnuColarToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.mnuColarToolStripMenuItem.Text = "Colar";
+            this.mnuColarToolStripMenuItem.Text = "Colar c/ índice acerto ou copiado";
             this.mnuColarToolStripMenuItem.Click += new System.EventHandler(this.mnuColarToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
@@ -1977,6 +1981,13 @@ namespace Apresentação.Mercadoria.Bandeja
             this.btnAlterarÍndice.Text = "Alterar Índice";
             this.btnAlterarÍndice.Click += new System.EventHandler(this.btnAlterarÍndice_Click);
             // 
+            // colarCÍndiceVigenteToolStripMenuItem
+            // 
+            this.colarCÍndiceVigenteToolStripMenuItem.Name = "colarCÍndiceVigenteToolStripMenuItem";
+            this.colarCÍndiceVigenteToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.colarCÍndiceVigenteToolStripMenuItem.Text = "Colar c/ índice vigente";
+            this.colarCÍndiceVigenteToolStripMenuItem.Click += new System.EventHandler(this.colarCÍndiceVigenteToolStripMenuItem_Click);
+            // 
             // Bandeja
             // 
             this.Controls.Add(this.barraFerramentas);
@@ -2131,6 +2142,11 @@ namespace Apresentação.Mercadoria.Bandeja
                 ColarSolicitado(null, null);
         }
 
+        private void ColarComÍndiceVigente()
+        {
+            ColarComÍndiceVigenteSolicitado?.Invoke(this, null);
+        }
+
         private void SelecionarTudo()
         {
             foreach (ListViewItem i in lista.Items)
@@ -2140,6 +2156,11 @@ namespace Apresentação.Mercadoria.Bandeja
         private void mnuSelecionarTudo_Click(object sender, EventArgs e)
         {
             SelecionarTudo();
+        }
+
+        private void colarCÍndiceVigenteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ColarComÍndiceVigente();
         }
     }
 }

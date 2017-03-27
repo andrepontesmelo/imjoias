@@ -80,6 +80,7 @@ namespace Apresentação.Financeiro
             this.bandejaAgrupada.SaquinhoExcluído += new Apresentação.Mercadoria.Bandeja.Bandeja.SaquinhoHandler(this.bandejaAgrupada_SaquinhoExcluído);
             this.bandejaAgrupada.AlteraçãoÍndiceSolicitada += new Apresentação.Mercadoria.Bandeja.Bandeja.SaquinhoHandler(this.bandejaAgrupada_AlteraçãoÍndiceSolicitada);
             this.bandejaAgrupada.ColarSolicitado += new System.EventHandler(this.bandejaAgrupada_ColarSolicitado);
+            this.bandejaAgrupada.ColarComÍndiceVigenteSolicitado += BandejaAgrupada_ColarComÍndiceVigente;
             this.bandejaAgrupada.TabelaAlterada += new Apresentação.Mercadoria.Bandeja.Bandeja.TabelaCallback(this.bandejaAgrupada_TabelaAlterada);
             this.bandejaAgrupada.AntesExclusão += new Apresentação.Mercadoria.Bandeja.Bandeja.AntesExclusãoDelegate(this.bandejaAgrupada_AntesExclusão);
             // 
