@@ -1,4 +1,5 @@
 ﻿using Apresentação.Formulários;
+using System;
 using System.ComponentModel;
 using System.Windows.Forms;
 
@@ -73,14 +74,28 @@ namespace Apresentação.Financeiro.Coaf
         private void Bg_DoWork(object sender, DoWorkEventArgs e)
         {
             string arquivo = e.Argument as string;
-            e.Result = new Entidades.Coaf.ImportadorPep().Importar(arquivo);
+            try
+            {
+                e.Result = new Entidades.Coaf.ImportadorPep().Importar(arquivo);
+            } catch (Exception erro)
+            {
+                AguardeDB.Fechar();
+                MessageBox.Show(erro.Message,
+                "Erro ao importar arquivo de pessoas politicamente expostas",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+            }
         }
 
         private void Bg_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             int? qtdPessoasImportadas = e.Result as int?;
             AguardeDB.Fechar();
-            MessageBox.Show(string.Format("Fim da importação. {0} CPF's importados", qtdPessoasImportadas));
+
+            if (qtdPessoasImportadas.HasValue)
+            {
+                MessageBox.Show(string.Format("Fim da importação. {0} CPF's importados", qtdPessoasImportadas));
+            } 
         }
 
         private void listaPessoa_SeleçãoAlterada(object sender, System.EventArgs e)
