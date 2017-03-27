@@ -57,7 +57,7 @@ namespace Apresentação.Financeiro.Coaf
         private void opçãoImportar_Click(object sender, System.EventArgs e)
         {
             OpenFileDialog janela = new OpenFileDialog();
-            janela.Title = "Escolha do CSV";
+            janela.Title = "Escolha do CSV de pessoas politicamente expostas fornecido pela COAF";
             janela.DefaultExt = "csv";
 
             if (janela.ShowDialog() != DialogResult.OK)
