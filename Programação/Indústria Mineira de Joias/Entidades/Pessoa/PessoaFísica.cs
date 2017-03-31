@@ -69,7 +69,7 @@ namespace Entidades.Pessoa
 			set
 			{
                 if (value == null || value.Length == 0 || ValidarCPF(value))
-                    cpf = LimparFormataçãoCpf(value);
+                    cpf = LimparCaracteresNãoNuméricos(value);
                 else
                 {
                     throw new Exception("CPF inválido! Por favor, siga o formato \"ddd.ddd.ddd-dd\", onde \"d\" é um dígito.");
@@ -96,7 +96,7 @@ namespace Entidades.Pessoa
             int soma;
             int resto;
 
-            cpf = LimparFormataçãoCpf(cpf);
+            cpf = LimparCaracteresNãoNuméricos(cpf);
 
             if (cpf.Length != 11)
                 return false;
@@ -129,17 +129,6 @@ namespace Entidades.Pessoa
             digito = digito + resto.ToString();
 
             return cpf.EndsWith(digito);
-        }
-
-        public static string LimparFormataçãoCpf(string cpf)
-        {
-            if (cpf == null)
-                return null;
-
-            cpf = cpf.Trim();
-            cpf = cpf.Replace(".", "").Replace("-", "");
-
-            return cpf;
         }
 
         public DateTime? Nascimento
@@ -322,11 +311,16 @@ namespace Entidades.Pessoa
                 }
         }
 
-		/// <summary>
-		/// Obtém pessoa física a partir do DI.
-		/// </summary>
-		/// <param name="di">DI da pessoa-física.</param>
-		/// <returns>Pessoa-física.</returns>
+        public static string LimparFormataçãoCpf(string cpf)
+        {
+            return LimparCaracteresNãoNuméricos(cpf);
+        }
+
+        /// <summary>
+        /// Obtém pessoa física a partir do DI.
+        /// </summary>
+        /// <param name="di">DI da pessoa-física.</param>
+        /// <returns>Pessoa-física.</returns>
         public static List<Pessoa> ObterPessoasPorRG(string di)
 		{
 			string comando = "SELECT p.* FROM pessoa p JOIN pessoafisica pf"

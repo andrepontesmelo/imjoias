@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Text;
 using Entidades.Coaf;
+using System.Text.RegularExpressions;
 
 namespace Entidades.Pessoa
 {
@@ -1137,6 +1138,11 @@ namespace Entidades.Pessoa
             bool códigoEmUso = ObterPessoa(código) != null;
 
             return respeitaLimite && !códigoEmUso;
+        }
+
+        public static string LimparCaracteresNãoNuméricos(string entrada)
+        {
+            return Regex.Replace(entrada, @"[^\d]", "");
         }
     }
 }

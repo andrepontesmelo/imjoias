@@ -103,6 +103,11 @@ namespace Entidades.Pessoa
             }
 		}
 
+        public static string LimparFormataçãoCnpj(string cnpj)
+        {
+            return LimparCaracteresNãoNuméricos(cnpj);
+        }
+
         public static List<Pessoa> ObterPessoasPorCNPJ(string cnpj)
         {
             string cnpjLimpo = LimparFormataçãoCnpj(cnpj);
@@ -142,7 +147,7 @@ namespace Entidades.Pessoa
             string digito;
             string tempCnpj;
 
-            cnpj = LimparFormataçãoCnpj(cnpj);
+            cnpj = LimparCaracteresNãoNuméricos(cnpj);
 
             if (cnpj.Length != 14)
                 return false;
@@ -175,12 +180,6 @@ namespace Entidades.Pessoa
             digito = digito + resto.ToString();
 
             return cnpj.EndsWith(digito);
-        }
-
-        public static string LimparFormataçãoCnpj(string cnpj)
-        {
-            cnpj = Regex.Replace(cnpj, @"[^\d]", "");
-            return cnpj;
         }
 
         private static bool ExtrairNúmerosCNPJ(string cnpj, out int[] número)
