@@ -1182,7 +1182,7 @@ namespace Entidades.Mercadoria
                     cmd.CommandText = string.Format(
                     " SELECT saidas.pessoacodigo, saidas.nomepessoa, saidas.previsao, saidas.qtd - ifnull(vendas.qtd,0) - ifnull(retornos.qtd,0) as saldo" +
                     " FROM" +
-                    " (SELECT p.codigo as pessoacodigo, p.nome as nomepessoa, a.previsao, sum(quantidade) as qtd" +
+                    " (SELECT p.codigo as pessoacodigo, p.nome as nomepessoa, a.previsao, sum(quantidade) as qtd, a.codigo as acerto" +
                     " FROM saida s JOIN saidaitem si ON s.codigo = si.saida" +
                     " JOIN acertoconsignado a ON a.codigo = s.acerto" +
                     " JOIN pessoa p ON p.codigo = a.cliente" +
@@ -1191,7 +1191,7 @@ namespace Entidades.Mercadoria
                     " GROUP BY p.codigo, a.previsao" +
                     " ) saidas" +
                     " left join" +
-                    " ( SELECT p.codigo as pessoacodigo, previsao, SUM(vi.quantidade) as qtd" +
+                    " ( SELECT p.codigo as pessoacodigo, previsao, SUM(vi.quantidade) as qtd, a.codigo as acerto" +
                     " FROM venda v JOIN vendaitem vi ON v.codigo = vi.venda JOIN acertoconsignado a ON a.codigo = v.acerto" +
                     " JOIN pessoa p ON p.codigo = a.cliente" +
                     " WHERE a.dataEfetiva IS NULL" +
@@ -1199,11 +1199,11 @@ namespace Entidades.Mercadoria
                     " GROUP BY p.codigo, a.previsao" +
                     " ) vendas" +
                     " ON saidas.pessoacodigo=vendas.pessoacodigo" +
-                    " AND saidas.previsao=vendas.previsao" +
+                    " AND saidas.acerto=vendas.acerto" +
                     " " +
                     " left join" +
                     " (" +
-                    " SELECT p.codigo as pessoacodigo, previsao, SUM(ri.quantidade) as qtd" +
+                    " SELECT p.codigo as pessoacodigo, previsao, SUM(ri.quantidade) as qtd, a.codigo as acerto" +
                     " FROM retorno r JOIN retornoitem ri ON r.codigo = ri.retorno JOIN acertoconsignado a ON a.codigo = r.acerto" +
                     " JOIN pessoa p ON p.codigo = a.cliente" +
                     " WHERE a.dataEfetiva IS NULL" +
@@ -1211,7 +1211,7 @@ namespace Entidades.Mercadoria
                     " GROUP BY p.codigo, a.previsao" +
                     " ) retornos" +
                     " ON saidas.pessoacodigo=retornos.pessoacodigo" +
-                    " AND saidas.previsao=retornos.previsao" +
+                    " AND saidas.acerto=retornos.acerto" +
                     " HAVING saldo > 0" +
                     " ORDER BY saldo desc", ObterReferênciaRastreável());
 
