@@ -443,7 +443,7 @@ namespace Apresentação.Álbum.Edição.Fotos
 
         private void visualizarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            JanelaInformaçõesMercadoriaResumo.Abrir(Seleção.ReferênciaNumérica);
+            JanelaInformaçõesMercadoriaResumo.Abrir(Seleção?.ReferênciaNumérica);
         }
 
         private void editarToolStripMenuItem1_Click(object sender, EventArgs e)
