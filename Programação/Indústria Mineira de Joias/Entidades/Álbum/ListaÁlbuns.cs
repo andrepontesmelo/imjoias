@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Acesso.Comum;
+using System;
 using System.Collections.Generic;
-using System.Text;
-using Acesso.Comum;
 
 namespace Entidades.Álbum
 {
@@ -181,16 +180,16 @@ namespace Entidades.Álbum
 
                 if (Álbuns.Count > 0)
                 {
-                    cmd.CommandText = "INSERT INTO vinculofotoalbum"
-                        + " (foto,album) VALUES "
-                        + "(" + DbTransformar(foto.Código)
-                        + "," + DbTransformar(Álbuns[0].Código)
-                        + ")";
+                    cmd.CommandText = "INSERT INTO vinculofotoalbum (foto,album) VALUES ";
 
-                    for (int i = 1; i < Álbuns.Count; i++)
-                        cmd.CommandText += ",(" + DbTransformar(foto.Código)
-                            + "," + DbTransformar(Álbuns[i].Código)
-                            + ")";
+                    for (int i = 0; i < Álbuns.Count; i++)
+                    {
+                        if (i > 0)
+                            cmd.CommandText += ",";
+
+                        cmd.CommandText += string.Format("({0}, {1})",
+                            DbTransformar(foto.Código), DbTransformar(Álbuns[i].Código));
+                    }
                 }
 
                 cmd.ExecuteNonQuery();

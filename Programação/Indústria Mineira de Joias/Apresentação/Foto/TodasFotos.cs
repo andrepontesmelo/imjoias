@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
-using System.Windows.Forms;
+﻿using Apresentação.Álbum.Edição.Álbuns;
 using Apresentação.Formulários;
-using Apresentação.Álbum.Edição.Álbuns;
+using Apresentação.Mercadoria;
+using System;
+using System.Windows.Forms;
 
 namespace Apresentação.Álbum.Edição.Fotos
 {
@@ -80,6 +76,11 @@ namespace Apresentação.Álbum.Edição.Fotos
             {
                 return listaFotosTodas;
             }
+        }
+
+        private void listaFotosTodas_AoDuploClique(Entidades.Álbum.Foto foto)
+        {
+            JanelaInformaçõesMercadoriaResumo.Abrir(foto?.ReferênciaNumérica);
         }
     }
 }

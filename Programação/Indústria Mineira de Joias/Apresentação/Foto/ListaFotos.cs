@@ -31,19 +31,10 @@ namespace Apresentação.Álbum.Edição.Fotos
         {
             InitializeComponent();
 
-            lst.DoubleClick += new EventHandler(lst_DoubleClick);
             lst.MouseMove += new MouseEventHandler(lst_MouseMove);
             lst.MouseDown += new MouseEventHandler(lst_MouseDown);
 
             AllowDrop = true;
-        }
-
-        void lst_DoubleClick(object sender, EventArgs e)
-        {
-            if (AoDuploClique != null)
-                AoDuploClique(Seleção);
-
-            visualizarToolStripMenuItem_Click(sender, e);
         }
 
         /// <summary>
@@ -388,6 +379,9 @@ namespace Apresentação.Álbum.Edição.Fotos
         private void lst_MouseDown(object sender, MouseEventArgs e)
         {
             OnMouseDown(e);
+
+            if (Seleção != null && e.Clicks > 1)
+                AoDuploClique?.Invoke(Seleção);
         }
 
         private void lst_MouseMove(object sender, MouseEventArgs e)

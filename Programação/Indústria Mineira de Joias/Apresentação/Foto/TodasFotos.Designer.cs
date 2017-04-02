@@ -84,6 +84,7 @@
             this.listaFotosTodas.Ordenar = true;
             this.listaFotosTodas.Size = new System.Drawing.Size(477, 217);
             this.listaFotosTodas.TabIndex = 2;
+            this.listaFotosTodas.AoDuploClique += new Apresentação.Álbum.Edição.Fotos.ListaFotos.FotoHandle(this.listaFotosTodas_AoDuploClique);
             // 
             // panel1
             // 
