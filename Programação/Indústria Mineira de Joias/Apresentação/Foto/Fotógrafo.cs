@@ -667,7 +667,7 @@ namespace Apresentação.Álbum.Edição.Fotos
             painelFotos.Limpar();
 
             painelFotos.AdicionarFoto(foto.Imagem);
-            quadroMercadoria.TxtReferênciaEnabled = false;
+            quadroMercadoria.TxtReferênciaEnabled = true;
             quadroMercadoria.Foto = foto;
             quadroExibição.MostrarFoto(foto);
             

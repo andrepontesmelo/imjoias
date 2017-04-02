@@ -102,7 +102,7 @@ namespace Apresentação.Fotos
 
         private void CarregarPeso(Entidades.Mercadoria.Mercadoria mercadoria)
         {
-            txtPeso.Text = mercadoria.Peso.ToString();
+            txtPeso.Text = mercadoria?.Peso.ToString();
         }
 
         /// <summary>
@@ -198,7 +198,7 @@ namespace Apresentação.Fotos
 
             Entidades.Mercadoria.Mercadoria mercadoria = txtReferência.Mercadoria;
 
-            txtDescriçãoMercadoria.Text = txtReferência.Mercadoria.Descrição ?? "";
+            txtDescriçãoMercadoria.Text = txtReferência.Mercadoria?.Descrição ?? "";
 
             CarregarPeso(mercadoria);
             CarregarFornecedor();
