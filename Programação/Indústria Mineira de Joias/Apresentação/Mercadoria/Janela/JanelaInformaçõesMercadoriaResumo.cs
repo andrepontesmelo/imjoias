@@ -90,6 +90,21 @@ namespace Apresentação.Mercadoria
             //this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
         }
 
+        public static void Abrir(string referência)
+        {
+            if (referência == null)
+                return;
+
+            Entidades.Mercadoria.Mercadoria m =
+                Entidades.Mercadoria.Mercadoria.ObterMercadoria(referência, Tabela.TabelaPadrão);
+
+            JanelaInformaçõesMercadoriaResumo janela = new JanelaInformaçõesMercadoriaResumo(m,
+                Entidades.Financeiro.Cotação.ObterCotaçãoVigente(Moeda.ObterMoeda(MoedaSistema.Ouro)));
+
+            janela.Show();
+        }
+
+
 
         /// <summary>
         /// Clean up any resources being used.

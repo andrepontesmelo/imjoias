@@ -474,16 +474,7 @@ namespace Apresentação.Álbum.Edição.Fotos
 
         private void visualizarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Seleção == null)
-                return;
-
-            Entidades.Mercadoria.Mercadoria m =
-                Entidades.Mercadoria.Mercadoria.ObterMercadoria(Seleção.ReferênciaFormatada, Entidades.Tabela.TabelaPadrão);
-
-            JanelaInformaçõesMercadoriaResumo janela = new JanelaInformaçõesMercadoriaResumo(m,
-                Entidades.Financeiro.Cotação.ObterCotaçãoVigente(Moeda.ObterMoeda(MoedaSistema.Ouro)));
-
-            janela.Show();
+            JanelaInformaçõesMercadoriaResumo.Abrir(Seleção.ReferênciaNumérica);
         }
 
         private void editarToolStripMenuItem1_Click(object sender, EventArgs e)
