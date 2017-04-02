@@ -167,7 +167,7 @@ namespace Apresentação.Álbum.Edição.Álbuns
             this.lstEdição.TabIndex = 2;
             this.toolTip.SetToolTip(this.lstEdição, "Estas são as fotos presentes no álbum. Para adicionar uma foto existente, clique " +
         "e arraste a foto na lista ao lado até esta. Para fazer uma nova fotografia, util" +
-        "ize o botão \"Capturar nova foto\".");
+        "ize o botão \"Importar foto\".");
             // 
             // contextMenuStrip
             // 

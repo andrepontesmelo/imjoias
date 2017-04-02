@@ -71,7 +71,7 @@ namespace Apresentação.Álbum.Edição.Álbuns
             this.btnCapturar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnCapturar.Name = "btnCapturar";
             this.btnCapturar.Size = new System.Drawing.Size(136, 22);
-            this.btnCapturar.Text = "Capturar nova foto...";
+            this.btnCapturar.Text = "Importar foto...";
             this.btnCapturar.Click += new System.EventHandler(this.btnCapturar_Click);
             // 
             // btnRemover
