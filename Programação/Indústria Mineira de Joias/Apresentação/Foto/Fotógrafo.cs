@@ -1,14 +1,9 @@
+using Apresentação.Formulários;
+using Entidades.Álbum;
 using System;
-using System.Collections;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-
-using Entidades.Álbum;
-using Apresentação.Álbum;
-using Apresentação.Formulários;
-using Entidades.Configuração;
-using System.Collections.Generic;
 
 namespace Apresentação.Álbum.Edição.Fotos
 {
@@ -584,52 +579,68 @@ namespace Apresentação.Álbum.Edição.Fotos
 
         private void Gravar(string referênciaAntiga, string referênciaNova)
         {
-            if (ValidarDados(referênciaAntiga, referênciaNova))
+            bool referênciaAlterada = !referênciaAntiga.Equals(referênciaNova);
+
+            if (!ValidarDados(referênciaAntiga, referênciaNova))
             {
-                AguardeDB.Mostrar();
-
-                Cursor.Current = Cursors.WaitCursor;
-
-                bool referênciaAlterada = !referênciaAntiga.Equals(referênciaNova);
-
-                if (referênciaAlterada)
-                    Foto.Excluir(referênciaNova);
-
-                quadroMercadoria.Foto.Imagem = painelFotos.FotoSelecionada;
-
-                // Refaz lista de álbuns da foto conforme o que está na tela
-                lock (quadroMercadoria.Foto.Álbuns)
-                {
-                    quadroMercadoria.Foto.Álbuns.Clear();
-                    Entidades.Álbum.Álbum[] albuns = listaÁlbuns.ÁlbunsMarcados;
-
-                    foreach (Entidades.Álbum.Álbum álbum in albuns)
-                        quadroMercadoria.Foto.Álbuns.Add(álbum);
-                }
-                try
-                {
-                    if (!quadroMercadoria.Foto.Cadastrado)
-                        quadroMercadoria.Foto.Cadastrar();
-                    else
-                        quadroMercadoria.Foto.Atualizar();
-                }
-                catch (Exception erro)
-                {
-                    AguardeDB.Fechar();
-                    Cursor.Current = Cursors.Default;
-                    MessageBox.Show("Não foi possível cadastrar a foto no banco de dados!\n\n" + erro.ToString());
-                    return;
-                }
-                finally
-                {
-                    AguardeDB.Fechar();
-                    Cursor.Current = Cursors.Default;
-                }
-            }
-            else {
                 quadroMercadoria.Foto.ReferênciaNumérica = referênciaAntiga;
                 quadroMercadoria.Recarregar();
+                return;
             }
+
+            ModoAguarde();
+
+            if (referênciaAlterada)
+                Foto.Excluir(referênciaNova);
+
+            quadroMercadoria.Foto.Imagem = painelFotos.FotoSelecionada;
+            RefazListaÁlbuns();
+
+            try
+            {
+                CadastraOuAtualiza();
+            }
+            catch (Exception erro)
+            {
+                ModoNormal();
+                MessageBox.Show(erro.ToString());
+                return;
+            }
+            finally
+            {
+                ModoNormal();
+            }
+        }
+
+        private void CadastraOuAtualiza()
+        {
+            if (!quadroMercadoria.Foto.Cadastrado)
+                quadroMercadoria.Foto.Cadastrar();
+            else
+                quadroMercadoria.Foto.Atualizar();
+        }
+
+        private void RefazListaÁlbuns()
+        {
+            lock (quadroMercadoria.Foto.Álbuns)
+            {
+                quadroMercadoria.Foto.Álbuns.Clear();
+
+                foreach (Entidades.Álbum.Álbum álbum in listaÁlbuns.ÁlbunsMarcados)
+                    quadroMercadoria.Foto.Álbuns.Add(álbum);
+            }
+        }
+
+        private static void ModoNormal()
+        {
+            AguardeDB.Fechar();
+            Cursor.Current = Cursors.Default;
+        }
+
+        private static void ModoAguarde()
+        {
+            AguardeDB.Mostrar();
+            Cursor.Current = Cursors.WaitCursor;
         }
 
         /// <summary>
@@ -808,7 +819,8 @@ namespace Apresentação.Álbum.Edição.Fotos
             painelFotos.AdicionarFoto(baseRemover.ImagemTratada);
             quadroMercadoria.Foto.Imagem = baseRemover.ImagemTratada;
             quadroMercadoria.Foto.Atualizar();
-            Entidades.Álbum.CacheMiniaturas.Instância.Remover(quadroMercadoria.Mercadoria);
+
+            CacheMiniaturas.Instância.Remover(quadroMercadoria.Mercadoria);
             quadroExibição.MostrarFoto(quadroMercadoria.Foto);
         }
     }
