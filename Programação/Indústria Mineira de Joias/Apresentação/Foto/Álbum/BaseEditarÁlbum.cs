@@ -1,19 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using Entidades.Álbum;
-using Apresentação.Formulários;
-using Apresentação.Álbum.Edição.Impressão;
 using Apresentação.Álbum.Edição.Álbuns.Desenhista;
 using Apresentação.Álbum.Edição.Fotos;
+using Apresentação.Álbum.Edição.Impressão;
+using Apresentação.Formulários;
+using Entidades.Álbum;
+using System;
+using System.Windows.Forms;
 
 namespace Apresentação.Álbum.Edição.Álbuns
 {
-    public partial class BaseEditarÁlbum : Apresentação.Formulários.BaseInferior
+    public partial class BaseEditarÁlbum : BaseInferior
     {
         private ListaFotos listaFotosTodas;
 
@@ -33,7 +28,8 @@ namespace Apresentação.Álbum.Edição.Álbuns
             lstEdição.Álbum = álbum;
             lstEdição.BaseInferior = this;
 
-            títuloBaseInferior.Descrição = álbum.Nome + "\n" + álbum.Descrição;
+            títuloBaseInferior.Título = álbum.Nome;
+            títuloBaseInferior.Descrição = álbum.Descrição;
         }
 
         /// <summary>
