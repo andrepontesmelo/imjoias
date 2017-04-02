@@ -7,10 +7,8 @@ namespace Apresentação.Fotos
 {
     public partial class IdentificaçãoMercadoria : UserControl
     {
-        /// <summary>
-        /// Ocorre quando usuário altera algum dado.
-        /// </summary>
-        public event EventHandler Alterado;
+        public delegate void AlteradoDelegate(string referênciaAnterior, string referênciaNova);
+        public event AlteradoDelegate Alterado;
 
         /// <summary>
         /// Entidade do banco de dados;
@@ -48,39 +46,44 @@ namespace Apresentação.Fotos
             get { return foto; }
             set
             {
-                if (value != null)
-                {
-                    foto = value;
-
-                    /* Como a referência na foto não contém o dígito
-                     * verificador, a referência deve ser completada
-                     * pelo TxtMeracadoria.
-                     */
-                    txtReferência.Referência = foto.ReferênciaFormatada;
-
-                    txtReferência.CompletarReferência();
-
-                    if (txtReferência.Mercadoria != null)
-                        txtPeso.Double = txtReferência.Mercadoria.Peso;
-                    
-                    CarregarFornecedor();
-
-                    if (foto.Descrição != null)
-                        txtDescrição.Text = foto.Descrição;
-                    else
-                        txtDescrição.Text = "";
-
-                    if (foto.Data.HasValue)
-                        txtData.Text = foto.Data.Value.ToLongDateString();
-                    else
-                        txtData.Text = "N/D";
-
-                    if (listaÁlbuns != null)
-                        listaÁlbuns.CarregarFotoParaAlteração(value);
-                }
-                else
-                    Limpar();
+                Carregar(value);
             }
+        }
+
+        private void Carregar(Entidades.Álbum.Foto value)
+        {
+            if (value != null)
+            {
+                foto = value;
+
+                /* Como a referência na foto não contém o dígito
+                 * verificador, a referência deve ser completada
+                 * pelo TxtMeracadoria.
+                 */
+                txtReferência.Referência = foto.ReferênciaFormatada;
+
+                txtReferência.CompletarReferência();
+
+                if (txtReferência.Mercadoria != null)
+                    txtPeso.Double = txtReferência.Mercadoria.Peso;
+
+                CarregarFornecedor();
+
+                if (foto.Descrição != null)
+                    txtDescrição.Text = foto.Descrição;
+                else
+                    txtDescrição.Text = "";
+
+                if (foto.Data.HasValue)
+                    txtData.Text = foto.Data.Value.ToLongDateString();
+                else
+                    txtData.Text = "N/D";
+
+                if (listaÁlbuns != null)
+                    listaÁlbuns.CarregarFotoParaAlteração(value);
+            }
+            else
+                Limpar();
         }
 
         private void CarregarFornecedor()
@@ -194,6 +197,7 @@ namespace Apresentação.Fotos
         /// </summary>
         private void txtReferência_ReferênciaConfirmada(object sender, EventArgs e)
         {
+            string referênciaAnterior = foto.ReferênciaNumérica;
             foto.ReferênciaNumérica = txtReferência.ReferênciaNumérica;
 
             Entidades.Mercadoria.Mercadoria mercadoria = txtReferência.Mercadoria;
@@ -204,7 +208,7 @@ namespace Apresentação.Fotos
             CarregarFornecedor();
 
             if (Alterado != null)
-                Alterado(sender, e);
+                Alterado(referênciaAnterior, txtReferência.ReferênciaNumérica);
         }
         
         /// <summary>
@@ -215,7 +219,7 @@ namespace Apresentação.Fotos
             foto.Descrição = txtDescrição.Text;
 
             if (Alterado != null)
-                Alterado(sender, e);
+                Alterado(txtReferência.ReferênciaNumérica, txtReferência.ReferênciaNumérica);
         }
 
         /// <summary>
@@ -262,6 +266,11 @@ namespace Apresentação.Fotos
                 GetNextControl(sender as Control, true).Focus();
                 e.Handled = true;
             }
+        }
+
+        internal void Recarregar()
+        {
+            Carregar(Foto);
         }
     }
 }

@@ -432,7 +432,7 @@ namespace Apresentação.Álbum.Edição.Fotos
             this.quadroMercadoria.Size = new System.Drawing.Size(260, 213);
             this.quadroMercadoria.TabIndex = 19;
             this.quadroMercadoria.TxtReferênciaEnabled = true;
-            this.quadroMercadoria.Alterado += new System.EventHandler(this.quadroMercadoria_Alterado);
+            this.quadroMercadoria.Alterado += QuadroMercadoria_Alterado;
             // 
             // quadroExibição
             // 
@@ -486,7 +486,13 @@ namespace Apresentação.Álbum.Edição.Fotos
             this.ResumeLayout(false);
 
 		}
-		#endregion
+
+        private void QuadroMercadoria_Alterado(string referênciaAnterior, string referênciaNova)
+        {
+            if (quadroMercadoria.Foto != null && quadroMercadoria.Foto.Cadastrado)
+                Gravar(referênciaAnterior, referênciaNova);
+        }
+        #endregion
 
         /// <summary>
         /// Abre o controle para cadastro de foto, 
@@ -540,27 +546,57 @@ namespace Apresentação.Álbum.Edição.Fotos
             btnCadastrar.Enabled = true;
         }
 
+        private bool ValidarDados()
+        {
+            return ValidarDados(quadroMercadoria.Foto.ReferênciaNumérica, quadroMercadoria.Foto.ReferênciaNumérica);
+        }
+
         /// <summary>
         /// Valida dados entrados pelo usuário.
         /// </summary>
         /// <returns>Se os dados estão válidos.</returns>
-        private bool ValidarDados()
+        private bool ValidarDados(string referênciaAnterior, string novaReferência)
         {
             bool ok = quadroMercadoria.ValidarDados();
+            bool alteraçãoReferência = !referênciaAnterior.Equals(novaReferência);
+
+            if (ok && alteraçãoReferência && Foto.ObterFotos(novaReferência).Length > 0)
+                ok = QuestionarUsuárioExclusão(novaReferência);
 
             return ok;
         }
 
+        private bool QuestionarUsuárioExclusão(string referência)
+        {
+            return MessageBox.Show(this,
+                string.Format("Referência {0} possui foto que será excluída. Confirma ?",
+                Entidades.Mercadoria.Mercadoria.MascararReferência(referência, true)),
+                "Confirmação de exclusão de foto",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning,
+                MessageBoxDefaultButton.Button1) == DialogResult.Yes;
+        }
+
         private void Gravar()
         {
-            if (ValidarDados())
+            Gravar(quadroMercadoria.Foto.ReferênciaNumérica, quadroMercadoria.Foto.ReferênciaNumérica);
+        }
+
+        private void Gravar(string referênciaAntiga, string referênciaNova)
+        {
+            if (ValidarDados(referênciaAntiga, referênciaNova))
             {
                 AguardeDB.Mostrar();
 
                 Cursor.Current = Cursors.WaitCursor;
 
+                bool referênciaAlterada = !referênciaAntiga.Equals(referênciaNova);
+
+                if (referênciaAlterada)
+                    Foto.Excluir(referênciaNova);
+
                 quadroMercadoria.Foto.Imagem = painelFotos.FotoSelecionada;
-                
+
                 // Refaz lista de álbuns da foto conforme o que está na tela
                 lock (quadroMercadoria.Foto.Álbuns)
                 {
@@ -589,6 +625,10 @@ namespace Apresentação.Álbum.Edição.Fotos
                     AguardeDB.Fechar();
                     Cursor.Current = Cursors.Default;
                 }
+            }
+            else {
+                quadroMercadoria.Foto.ReferênciaNumérica = referênciaAntiga;
+                quadroMercadoria.Recarregar();
             }
         }
 
@@ -747,12 +787,6 @@ namespace Apresentação.Álbum.Edição.Fotos
         }
 
         private void listaÁlbuns_Alterado(object sender, EventArgs e)
-        {
-            if (quadroMercadoria.Foto != null && quadroMercadoria.Foto.Cadastrado)
-                Gravar();
-        }
-
-        private void quadroMercadoria_Alterado(object sender, EventArgs e)
         {
             if (quadroMercadoria.Foto != null && quadroMercadoria.Foto.Cadastrado)
                 Gravar();

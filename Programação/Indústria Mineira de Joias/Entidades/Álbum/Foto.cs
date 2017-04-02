@@ -828,5 +828,10 @@ namespace Entidades.Álbum
 
             return Mapear<Foto>(cmd).ToArray();
         }
+
+        public static void Excluir(string referênciaNova)
+        {
+            ExecutarComando(string.Format("delete from foto where mercadoria={0}", DbTransformar(referênciaNova)));
+        }
     }
 }
