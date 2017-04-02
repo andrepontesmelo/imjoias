@@ -36,11 +36,11 @@ namespace Apresentação.Álbum
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListViewÁlbuns));
             this.lst = new System.Windows.Forms.ListView();
-            this.colÁlbum = new System.Windows.Forms.ColumnHeader();
-            this.colDescrição = new System.Windows.Forms.ColumnHeader();
-            this.colData = new System.Windows.Forms.ColumnHeader();
-            this.bgRecuperação = new System.ComponentModel.BackgroundWorker();
+            this.colÁlbum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colDescrição = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colData = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.bgRecuperação = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // lst
@@ -57,9 +57,9 @@ namespace Apresentação.Álbum
             this.lst.Size = new System.Drawing.Size(393, 150);
             this.lst.TabIndex = 0;
             this.lst.UseCompatibleStateImageBehavior = false;
-            this.lst.Resize += new System.EventHandler(this.AoRedimensionar);
             this.lst.SelectedIndexChanged += new System.EventHandler(this.AoSelecionar);
             this.lst.DoubleClick += new System.EventHandler(this.lst_DoubleClick);
+            this.lst.Resize += new System.EventHandler(this.AoRedimensionar);
             // 
             // colÁlbum
             // 
@@ -77,16 +77,16 @@ namespace Apresentação.Álbum
             this.colData.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.colData.Width = 130;
             // 
-            // bgRecuperação
-            // 
-            this.bgRecuperação.DoWork += new System.ComponentModel.DoWorkEventHandler(this.RecuperarÁlbuns);
-            this.bgRecuperação.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.AoRecuperarÁlbuns);
-            // 
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.White;
-            this.imageList1.Images.SetKeyName(0, "album.tif");
+            this.imageList1.Images.SetKeyName(0, "botão - agenda.png");
+            // 
+            // bgRecuperação
+            // 
+            this.bgRecuperação.DoWork += new System.ComponentModel.DoWorkEventHandler(this.RecuperarÁlbuns);
+            this.bgRecuperação.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.AoRecuperarÁlbuns);
             // 
             // ListViewÁlbuns
             // 
