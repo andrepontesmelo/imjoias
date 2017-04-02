@@ -1,5 +1,6 @@
 using Apresentação.Álbum.Edição.Fotos;
 using Apresentação.Formulários;
+using Apresentação.Mercadoria;
 using Entidades.Álbum;
 using System;
 using System.Windows.Forms;
@@ -175,6 +176,23 @@ namespace Apresentação.Álbum.Edição.Álbuns
                 e.Effect = DragDropEffects.Link;
             else
                 e.Effect = DragDropEffects.None;
+        }
+
+
+        private void btnConsultarFotografia_Click(object sender, EventArgs e)
+        {
+            AbrirJanelaInformaçõesMercadoria();
+        }
+
+        private void AbrirJanelaInformaçõesMercadoria()
+        {
+            if (Seleção != null)
+                JanelaInformaçõesMercadoriaResumo.Abrir(Seleção.ReferênciaNumérica);
+        }
+
+        private void lst_DoubleClick(object sender, EventArgs e)
+        {
+            AbrirJanelaInformaçõesMercadoria();
         }
     }
 }

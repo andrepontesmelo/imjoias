@@ -35,8 +35,9 @@ namespace Apresentação.Álbum.Edição.Álbuns
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnEditar = new System.Windows.Forms.ToolStripButton();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.removerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnConsultarMercadoria = new System.Windows.Forms.ToolStripMenuItem();
             this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -49,6 +50,7 @@ namespace Apresentação.Álbum.Edição.Álbuns
             this.lst.Size = new System.Drawing.Size(354, 125);
             this.lst.DragDrop += new System.Windows.Forms.DragEventHandler(this.lst_DragDrop);
             this.lst.DragEnter += new System.Windows.Forms.DragEventHandler(this.lst_DragEnter);
+            this.lst.DoubleClick += new System.EventHandler(this.lst_DoubleClick);
             // 
             // toolStrip
             // 
@@ -101,26 +103,36 @@ namespace Apresentação.Álbum.Edição.Álbuns
             // contextMenuStrip
             // 
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.removerToolStripMenuItem,
-            this.editarToolStripMenuItem});
+            this.btnConsultarMercadoria,
+            this.editarToolStripMenuItem,
+            this.removerToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(169, 48);
+            this.contextMenuStrip.Size = new System.Drawing.Size(193, 70);
             // 
-            // removerToolStripMenuItem
+            // btnConsultarMercadoria
             // 
-            this.removerToolStripMenuItem.Image = global::Apresentação.Resource.Excluir;
-            this.removerToolStripMenuItem.Name = "removerToolStripMenuItem";
-            this.removerToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.removerToolStripMenuItem.Text = "Remover";
-            this.removerToolStripMenuItem.Click += new System.EventHandler(this.btnRemover_Click);
+            this.btnConsultarMercadoria.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConsultarMercadoria.Image = global::Apresentação.Resource.Etiqueta;
+            this.btnConsultarMercadoria.Name = "btnConsultarMercadoria";
+            this.btnConsultarMercadoria.Size = new System.Drawing.Size(192, 22);
+            this.btnConsultarMercadoria.Text = "Consultar mercadoria";
+            this.btnConsultarMercadoria.Click += new System.EventHandler(this.btnConsultarFotografia_Click);
             // 
             // editarToolStripMenuItem
             // 
             this.editarToolStripMenuItem.Image = global::Apresentação.Resource.propriedades;
             this.editarToolStripMenuItem.Name = "editarToolStripMenuItem";
-            this.editarToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.editarToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
             this.editarToolStripMenuItem.Text = "Editar fotografia...";
             this.editarToolStripMenuItem.Click += new System.EventHandler(this.btnEditar_Click);
+            // 
+            // removerToolStripMenuItem
+            // 
+            this.removerToolStripMenuItem.Image = global::Apresentação.Resource.Excluir;
+            this.removerToolStripMenuItem.Name = "removerToolStripMenuItem";
+            this.removerToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.removerToolStripMenuItem.Text = "Excluir";
+            this.removerToolStripMenuItem.Click += new System.EventHandler(this.btnRemover_Click);
             // 
             // ListViewEdiçãoFotos
             // 
@@ -149,5 +161,6 @@ namespace Apresentação.Álbum.Edição.Álbuns
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem removerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem btnConsultarMercadoria;
     }
 }
