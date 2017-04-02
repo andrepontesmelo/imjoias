@@ -1,59 +1,32 @@
-﻿using System;
+﻿using Acesso.Comum;
+using Apresentação.Formulários;
+using Apresentação.Mercadoria;
+using Entidades.Álbum;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
-using Entidades.Álbum;
-using Apresentação.Formulários;
-using System.Collections;
-using Acesso.Comum;
-using Apresentação.Mercadoria;
-using Entidades.Moedas;
 
 namespace Apresentação.Álbum.Edição.Fotos
 {
     public partial class ListaFotos : UserControl, IDisposable
     {
-        /// <summary>
-        /// Fotos a serem exibidas.
-        /// </summary>
-        private List<Foto> fotos = null;
-
         private bool ordenar = true;
+        private bool incluirForaDeLinha;
 
-        /// <summary>
-        /// Pilha para carga de fotos.
-        /// </summary>
         private LinkedList<Foto> cargaFotos = new LinkedList<Foto>();
+        private List<Foto> fotos = null;
 
         public bool Ordenar { get { return ordenar; } set { ordenar = value; } }
 
         public delegate void FotoHandle(Foto foto);
 
         public event FotoHandle AoSelecionar;
-
-        private bool incluirForaDeLinha;
-
-        /// <summary>
-        /// Caso o evento seja observado, fica a cargo de quem observa excluir as fotos.
-        /// Caso contrário, o próprio controle fará a exclusão.
-        /// </summary>
         public event FotoHandle AoSolicitarExclusão;
-
         public event FotoHandle AoDuploClique;
-
-        /// <summary>
-        /// Indica que uma ou mais fotos foram excluídas na lista,
-        /// A interface deve ser recarregada.
-        /// </summary>
         public event FotoHandle AoExcluído;
 
-
-        /// <summary>
-        /// Constrói a lista de fotos.
-        /// </summary>
         public ListaFotos()
         {
             InitializeComponent();
@@ -70,7 +43,6 @@ namespace Apresentação.Álbum.Edição.Fotos
             if (AoDuploClique != null)
                 AoDuploClique(Seleção);
 
-            // Abre a visualização de mercadorias.
             visualizarToolStripMenuItem_Click(sender, e);
         }
 
@@ -172,7 +144,6 @@ namespace Apresentação.Álbum.Edição.Fotos
 
             try
             {
-                //recuperado = imagens.Images.ContainsKey(foto.Código.ToString());
                 string chave = foto.Código.ToString();
 
                 if (imagens.Images.ContainsKey(chave))
@@ -227,19 +198,7 @@ namespace Apresentação.Álbum.Edição.Fotos
         /// </summary>
         private void bgRecuperação_DoWork(object sender, DoWorkEventArgs e)
         {
-            LinkedList<Foto> pilhaLocal;
-
-            // Carrega do banco as miniaturas de todas as fotos pendentes para carregamento.
-            Dictionary<uint, Foto> hashFotos = new Dictionary<uint, Foto>(cargaFotos.Count);
-            lock (cargaFotos)
-            {
-                pilhaLocal = new LinkedList<Foto>(cargaFotos);
-            }
-
-            foreach (Foto fotoCarga in pilhaLocal)
-                hashFotos[fotoCarga.Código] = fotoCarga;
-
-            CacheMiniaturas.Instância.ObterMiniaturas(hashFotos);
+            LinkedList<Foto> pilhaLocal = CarregaBancoDadosMiniaturasPendentes();
 
             while (pilhaLocal.Count > 0)
             {
@@ -300,6 +259,22 @@ namespace Apresentação.Álbum.Edição.Fotos
                     cargaFotos.Clear();
                 }
             }
+        }
+
+        private LinkedList<Foto> CarregaBancoDadosMiniaturasPendentes()
+        {
+            LinkedList<Foto> pilhaLocal;
+            Dictionary<uint, Foto> hashFotos = new Dictionary<uint, Foto>(cargaFotos.Count);
+            lock (cargaFotos)
+            {
+                pilhaLocal = new LinkedList<Foto>(cargaFotos);
+            }
+
+            foreach (Foto fotoCarga in pilhaLocal)
+                hashFotos[fotoCarga.Código] = fotoCarga;
+
+            CacheMiniaturas.Instância.ObterMiniaturas(hashFotos);
+            return pilhaLocal;
         }
 
         private delegate void bgRecuperação_RunWorkerCompletedDelegate(object sender, RunWorkerCompletedEventArgs e);
@@ -487,7 +462,6 @@ namespace Apresentação.Álbum.Edição.Fotos
                 while (pai as BaseInferior == null)
                     pai = pai.Parent;
 
-                //(pai as BaseInferior).Controlador.InserirBaseInferior(controle);
                 (pai as BaseInferior).SubstituirBase(controle);
 
                 controle.Editar(Seleção);

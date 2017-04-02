@@ -86,8 +86,6 @@ namespace Apresentação.Mercadoria
 
             Cotação = cotação;
             Mercadoria = mercadoria;
-            
-            //this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
         }
 
         public static void Abrir(string referência)
@@ -103,8 +101,6 @@ namespace Apresentação.Mercadoria
 
             janela.Show();
         }
-
-
 
         /// <summary>
         /// Clean up any resources being used.
