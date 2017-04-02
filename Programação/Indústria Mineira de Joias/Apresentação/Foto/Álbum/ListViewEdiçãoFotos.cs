@@ -103,8 +103,8 @@ namespace Apresentação.Álbum.Edição.Álbuns
                 return;
 
             if (MessageBox.Show(this, 
-                String.Format("Deseja remover {0} foto(s) ?", fotos.Length),
-                "Confirmação de exclusão",
+                String.Format("Deseja remover {0} foto(s) deste álbum ?", fotos.Length),
+                "Confirmação de exclusão de foto do álbum.",
                 MessageBoxButtons.YesNo) != DialogResult.Yes)
                 return;
 
