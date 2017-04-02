@@ -37,6 +37,8 @@ namespace Apresentação.Fotos
             set { txtReferência.Enabled = value; }
         }
 
+        public string Referência => txtReferência.Txt.Text;
+
         /// <summary>
         /// Entidade do banco de dados.
         /// </summary>
@@ -143,7 +145,7 @@ namespace Apresentação.Fotos
         /// <returns>Validação dos dados</returns>
         public bool ValidarDados()
         {
-            return txtReferência.Txt.Text.Length == 16;
+            return Referência.Length == 16;
         }
 
         /// <summary>

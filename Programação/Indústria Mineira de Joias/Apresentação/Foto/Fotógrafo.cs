@@ -543,7 +543,7 @@ namespace Apresentação.Álbum.Edição.Fotos
 
         private bool ValidarDados()
         {
-            return ValidarDados(quadroMercadoria.Foto.ReferênciaNumérica, quadroMercadoria.Foto.ReferênciaNumérica);
+            return ValidarDados(quadroMercadoria.Referência, quadroMercadoria.Referência);
         }
 
         /// <summary>
@@ -574,7 +574,7 @@ namespace Apresentação.Álbum.Edição.Fotos
 
         private void Gravar()
         {
-            Gravar(quadroMercadoria.Foto.ReferênciaNumérica, quadroMercadoria.Foto.ReferênciaNumérica);
+            Gravar(quadroMercadoria.Referência, quadroMercadoria.Referência);
         }
 
         private void Gravar(string referênciaAntiga, string referênciaNova)
