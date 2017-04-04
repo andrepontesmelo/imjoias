@@ -28,6 +28,17 @@ namespace Apresentação.Mercadoria
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Saída #22132 - 290.001.00.002-8 - 5");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Retorno #11399 290.001.00.003-5 - 4");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Eustaquio Macedo Melo Junior - 1", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2});
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Node6");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Tiago de Melo Correia - Representante - 1", new System.Windows.Forms.TreeNode[] {
+            treeNode4});
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Node7");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Varejo - 6", new System.Windows.Forms.TreeNode[] {
+            treeNode6});
             this.label1 = new System.Windows.Forms.Label();
             this.txtMercadoria = new Apresentação.Mercadoria.TxtMercadoria();
             this.btnFechar = new System.Windows.Forms.Button();
@@ -35,15 +46,16 @@ namespace Apresentação.Mercadoria
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.lstConsignado = new System.Windows.Forms.ListView();
-            this.colNome = new System.Windows.Forms.ColumnHeader();
-            this.colQuantidade = new System.Windows.Forms.ColumnHeader();
-            this.colPróximoAcerto = new System.Windows.Forms.ColumnHeader();
+            this.colNome = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colQuantidade = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colPróximoAcerto = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.lstVendas = new System.Windows.Forms.ListView();
-            this.colVendasCódigo = new System.Windows.Forms.ColumnHeader();
-            this.colVendasCliente = new System.Windows.Forms.ColumnHeader();
-            this.colVendasQuantidade = new System.Windows.Forms.ColumnHeader();
-            this.colVendasData = new System.Windows.Forms.ColumnHeader();
+            this.colVendasCódigo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colVendasCliente = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colVendasQuantidade = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colVendasData = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.treeView1 = new System.Windows.Forms.TreeView();
             ((System.ComponentModel.ISupportInitialize)(this.picÍcone)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -59,7 +71,7 @@ namespace Apresentação.Mercadoria
             // 
             this.lblDescrição.Size = new System.Drawing.Size(423, 48);
             this.lblDescrição.Text = "Abaixo serão exibidas todas as pessoas que portam a mercadoria. Vendas marcadas c" +
-                "omo rastreadas são localizadas na aba Vendas.";
+    "omo rastreadas são localizadas na aba Vendas.";
             // 
             // picÍcone
             // 
@@ -76,8 +88,8 @@ namespace Apresentação.Mercadoria
             // 
             // txtMercadoria
             // 
-            this.txtMercadoria.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMercadoria.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtMercadoria.Location = new System.Drawing.Point(84, 101);
             this.txtMercadoria.Name = "txtMercadoria";
             this.txtMercadoria.Referência = "";
@@ -104,9 +116,9 @@ namespace Apresentação.Mercadoria
             // 
             // tabControl1
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Location = new System.Drawing.Point(12, 139);
@@ -117,20 +129,21 @@ namespace Apresentação.Mercadoria
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.treeView1);
             this.tabPage1.Controls.Add(this.lstConsignado);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(476, 189);
+            this.tabPage1.Size = new System.Drawing.Size(479, 238);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Consignado";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // lstConsignado
             // 
-            this.lstConsignado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lstConsignado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lstConsignado.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colNome,
             this.colQuantidade,
@@ -138,7 +151,7 @@ namespace Apresentação.Mercadoria
             this.lstConsignado.FullRowSelect = true;
             this.lstConsignado.Location = new System.Drawing.Point(-3, 0);
             this.lstConsignado.Name = "lstConsignado";
-            this.lstConsignado.Size = new System.Drawing.Size(476, 189);
+            this.lstConsignado.Size = new System.Drawing.Size(479, 28);
             this.lstConsignado.TabIndex = 7;
             this.lstConsignado.UseCompatibleStateImageBehavior = false;
             this.lstConsignado.View = System.Windows.Forms.View.Details;
@@ -172,9 +185,9 @@ namespace Apresentação.Mercadoria
             // 
             // lstVendas
             // 
-            this.lstVendas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lstVendas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lstVendas.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colVendasCódigo,
             this.colVendasCliente,
@@ -208,6 +221,32 @@ namespace Apresentação.Mercadoria
             // 
             this.colVendasData.Text = "Data";
             this.colVendasData.Width = 98;
+            // 
+            // treeView1
+            // 
+            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView1.Location = new System.Drawing.Point(3, 3);
+            this.treeView1.Name = "treeView1";
+            treeNode1.Name = "Node3";
+            treeNode1.Text = "Saída #22132 - 290.001.00.002-8 - 5";
+            treeNode2.Name = "Node5";
+            treeNode2.Text = "Retorno #11399 290.001.00.003-5 - 4";
+            treeNode3.Name = "Node0";
+            treeNode3.Text = "Eustaquio Macedo Melo Junior - 1";
+            treeNode4.Name = "Node6";
+            treeNode4.Text = "Node6";
+            treeNode5.Name = "Node1";
+            treeNode5.Text = "Tiago de Melo Correia - Representante - 1";
+            treeNode6.Name = "Node7";
+            treeNode6.Text = "Node7";
+            treeNode7.Name = "Node2";
+            treeNode7.Text = "Varejo - 6";
+            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode3,
+            treeNode5,
+            treeNode7});
+            this.treeView1.Size = new System.Drawing.Size(473, 232);
+            this.treeView1.TabIndex = 8;
             // 
             // RastrearMercadoria
             // 
@@ -251,5 +290,6 @@ namespace Apresentação.Mercadoria
         private System.Windows.Forms.ColumnHeader colVendasCliente;
         private System.Windows.Forms.ColumnHeader colVendasQuantidade;
         private System.Windows.Forms.ColumnHeader colVendasData;
+        private System.Windows.Forms.TreeView treeView1;
     }
 }
