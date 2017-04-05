@@ -17,7 +17,7 @@ namespace Entidades.Mercadoria.Componente
             get { return codigo; }
             set 
             {
-                if (codigo.Equals(value))
+                if (value.Equals(codigo))
                     return;
 
                 codigo = value;
