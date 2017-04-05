@@ -8,8 +8,9 @@ namespace Entidades.Mercadoria.Componente
     {
         [DbChavePrimária(false)]
         protected string codigo;
-
         protected string nome;
+        protected int? grupo;
+        protected string materiaprima;
 
         public string Código
         {
