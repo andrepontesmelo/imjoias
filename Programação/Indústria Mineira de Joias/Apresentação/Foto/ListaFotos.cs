@@ -79,6 +79,13 @@ namespace Apresentação.Álbum.Edição.Fotos
         {
             get
             {
+                int x = 0;
+                for (int idx = 0; idx < lst.Items.Count; idx++) 
+                {
+                    if (lst.Items[idx].Selected)
+                        x++;
+                }
+
                 Foto[] fotos = new Foto[lst.SelectedIndices.Count];
 
                 for (int i = 0; i < fotos.Length; i++)

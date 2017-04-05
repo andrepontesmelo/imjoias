@@ -50,7 +50,6 @@
             this.excluirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imagens = new System.Windows.Forms.ImageList(this.components);
             this.bgRecuperação = new System.ComponentModel.BackgroundWorker();
-            //this.progresso = new System.Windows.Forms.ProgressBar();
             this.bgCarregarTudo = new System.ComponentModel.BackgroundWorker();
             this.menu.SuspendLayout();
             this.SuspendLayout();
@@ -66,9 +65,9 @@
             this.lst.TabIndex = 0;
             this.lst.UseCompatibleStateImageBehavior = false;
             this.lst.VirtualMode = true;
-            this.lst.SelectedIndexChanged += new System.EventHandler(this.lst_SelectedIndexChanged);
-            this.lst.RetrieveVirtualItem += new System.Windows.Forms.RetrieveVirtualItemEventHandler(this.lst_RetrieveVirtualItem);
             this.lst.CacheVirtualItems += new System.Windows.Forms.CacheVirtualItemsEventHandler(this.lst_CacheVirtualItems);
+            this.lst.RetrieveVirtualItem += new System.Windows.Forms.RetrieveVirtualItemEventHandler(this.lst_RetrieveVirtualItem);
+            this.lst.SelectedIndexChanged += new System.EventHandler(this.lst_SelectedIndexChanged);
             // 
             // menu
             // 
@@ -77,7 +76,7 @@
             this.editarToolStripMenuItem1,
             this.excluirToolStripMenuItem});
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(202, 70);
+            this.menu.Size = new System.Drawing.Size(202, 92);
             // 
             // visualizarToolStripMenuItem
             // 
@@ -98,10 +97,10 @@
             // 
             // excluirToolStripMenuItem
             // 
-            this.excluirToolStripMenuItem.Image = global::Apresentação.Resource.Excluir;
+            this.excluirToolStripMenuItem.Image = global::Apresentação.Resource.error;
             this.excluirToolStripMenuItem.Name = "excluirToolStripMenuItem";
             this.excluirToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
-            this.excluirToolStripMenuItem.Text = "Excluir";
+            this.excluirToolStripMenuItem.Text = "Excluir definitivamente";
             this.excluirToolStripMenuItem.Click += new System.EventHandler(this.excluirToolStripMenuItem_Click);
             // 
             // imagens
@@ -116,15 +115,6 @@
             this.bgRecuperação.WorkerSupportsCancellation = true;
             this.bgRecuperação.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgRecuperação_DoWork);
             this.bgRecuperação.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgRecuperação_RunWorkerCompleted);
-            //// 
-            //// progresso
-            //// 
-            //this.progresso.Location = new System.Drawing.Point(22, 134);
-            //this.progresso.Name = "progresso";
-            //this.progresso.Size = new System.Drawing.Size(107, 13);
-            //this.progresso.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            //this.progresso.TabIndex = 1;
-            //this.progresso.Visible = false;
             // 
             // bgCarregarTudo
             // 
@@ -137,7 +127,6 @@
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            //this.Controls.Add(this.progresso);
             this.Controls.Add(this.lst);
             this.Name = "ListaFotos";
             this.menu.ResumeLayout(false);

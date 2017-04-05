@@ -70,7 +70,7 @@ namespace Apresentação.Álbum.Edição.Álbuns
             this.btnCapturar.Image = global::Apresentação.Resource.camera;
             this.btnCapturar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnCapturar.Name = "btnCapturar";
-            this.btnCapturar.Size = new System.Drawing.Size(136, 22);
+            this.btnCapturar.Size = new System.Drawing.Size(107, 22);
             this.btnCapturar.Text = "Importar foto...";
             this.btnCapturar.Click += new System.EventHandler(this.btnCapturar_Click);
             // 
@@ -80,8 +80,8 @@ namespace Apresentação.Álbum.Edição.Álbuns
             this.btnRemover.Image = global::Apresentação.Resource.Excluir;
             this.btnRemover.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnRemover.Name = "btnRemover";
-            this.btnRemover.Size = new System.Drawing.Size(74, 22);
-            this.btnRemover.Text = "Remover";
+            this.btnRemover.Size = new System.Drawing.Size(128, 22);
+            this.btnRemover.Text = "Remover do álbum";
             this.btnRemover.Click += new System.EventHandler(this.btnRemover_Click);
             // 
             // toolStripSeparator1
@@ -131,7 +131,7 @@ namespace Apresentação.Álbum.Edição.Álbuns
             this.removerToolStripMenuItem.Image = global::Apresentação.Resource.Excluir;
             this.removerToolStripMenuItem.Name = "removerToolStripMenuItem";
             this.removerToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.removerToolStripMenuItem.Text = "Excluir";
+            this.removerToolStripMenuItem.Text = "Remover do álbum";
             this.removerToolStripMenuItem.Click += new System.EventHandler(this.btnRemover_Click);
             // 
             // ListViewEdiçãoFotos

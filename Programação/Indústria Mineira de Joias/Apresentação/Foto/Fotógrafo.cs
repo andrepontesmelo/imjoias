@@ -229,9 +229,9 @@ namespace Apresentação.Álbum.Edição.Fotos
             // opçãoApagarFoto
             // 
             this.opçãoApagarFoto.BackColor = System.Drawing.Color.Transparent;
-            this.opçãoApagarFoto.Descrição = "Excluir";
+            this.opçãoApagarFoto.Descrição = "Excluir definitivamente";
             this.opçãoApagarFoto.Enabled = false;
-            this.opçãoApagarFoto.Imagem = global::Apresentação.Resource.Excluir;
+            this.opçãoApagarFoto.Imagem = global::Apresentação.Resource.error;
             this.opçãoApagarFoto.Location = new System.Drawing.Point(10, 33);
             this.opçãoApagarFoto.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.opçãoApagarFoto.MaximumSize = new System.Drawing.Size(150, 100);
@@ -427,7 +427,6 @@ namespace Apresentação.Álbum.Edição.Fotos
             this.quadroMercadoria.Size = new System.Drawing.Size(260, 213);
             this.quadroMercadoria.TabIndex = 19;
             this.quadroMercadoria.TxtReferênciaEnabled = true;
-            this.quadroMercadoria.Alterado += QuadroMercadoria_Alterado;
             // 
             // quadroExibição
             // 
