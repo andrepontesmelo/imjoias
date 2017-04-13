@@ -1,6 +1,3 @@
-using System;
-using System.Reflection;
-using System.Runtime.Remoting.Lifetime;
 
 using Apresentação.Formulários;
 
@@ -13,10 +10,10 @@ using Apresentação.Formulários;
 
 namespace Apresentação.Atendimento.Atendente
 {
-	/// <summary>
-	/// Controlador de atendimentos para bases inferiores.
-	/// </summary>
-	public class ControladorAtendimentoDinâmico : ControladorAtendimentoGenérico
+    /// <summary>
+    /// Controlador de atendimentos para bases inferiores.
+    /// </summary>
+    public class ControladorAtendimentoDinâmico : ControladorAtendimentoGenérico
 	{
 		#region Atributos
 
@@ -45,19 +42,10 @@ namespace Apresentação.Atendimento.Atendente
 		/// </summary>
         protected internal override void AoCarregarCompletamente(Splash splash)
 		{
-			// Obter funcionário atual.
-            funcionário = Entidades.Pessoa.Funcionário.FuncionárioAtual;
+            baseListaAtendimentos = new BaseListaAtendimentos();
+            baseListaAtendimentos.Escolhida += new Apresentação.Atendimento.Clientes.BaseSeleçãoCliente.EscolhaPessoa(IniciarAtendimento);
 
-            if (funcionário == null || funcionário.Setor == null)
-                throw new ExceçãoBotãoNãoSuportado("É necessário um funcionário atribuído a um setor.");
-
-            if (funcionário.Setor.Atendimento)
-            {
-                baseListaAtendimentos = new BaseListaAtendimentos();
-                baseListaAtendimentos.Escolhida += new Apresentação.Atendimento.Clientes.BaseSeleçãoCliente.EscolhaPessoa(IniciarAtendimento);
-
-                InserirBaseInferior(baseListaAtendimentos);
-            }
+            InserirBaseInferior(baseListaAtendimentos);
 
             Botão.Imagem = Resource.ApertoMão;
 
