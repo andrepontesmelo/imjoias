@@ -1,72 +1,20 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Forms;
 using Entidades;
 using Entidades.Pessoa;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Apresentação.Pessoa
 {
-	public class EscolherFuncionário : Apresentação.Formulários.JanelaExplicativa
+    public class EscolherFuncionário : Formulários.JanelaExplicativa
 	{
-		private System.Windows.Forms.Label lblFuncionários;
-		private System.Windows.Forms.Button cmdOK;
-		private System.Windows.Forms.Button cmdCancelar;
-		private Apresentação.Pessoa.Consultas.ListViewFuncionários lstFuncionários;
+		private Label lblFuncionários;
+		private Button cmdOK;
+		private Button cmdCancelar;
+		private Consultas.ListViewFuncionários lstFuncionários;
 		private System.ComponentModel.IContainer components = null;
 
-        //// <summary>
-        ///// Escolhe funcionários a partir de uma lista de funcionários.
-        ///// </summary>
-        ///// <param name="descrição">Descrição da operação para escolha de funcionário.</param>
-        ///// <param name="funcionários">Lista de funcionários.</param>
-        //[Obsolete("IFuncionário está obsoleto!")]
-        //public EscolherFuncionário(string descrição, Negócio.IFuncionário[] funcionários)
-        //{
-        //    // This call is required by the Windows Form Designer.
-        //    InitializeComponent();
-
-        //    lblDescrição.Text = descrição;
-
-        //    if (this.DesignMode)
-        //        return;
-
-        //    List<Funcionário> lista = new List<Funcionário>();
-
-        //    foreach (Negócio.IFuncionário funcionário in funcionários)
-        //        lista.Add(funcionário.Dados);
-
-        //    lstFuncionários.Funcionários = lista;
-        //}
-        
-        /// <summary>
-        /// Escolhe funcionários a partir de uma lista de funcionários.
-        /// </summary>
-        /// <param name="descrição">Descrição da operação para escolha de funcionário.</param>
-        /// <param name="funcionários">Lista de funcionários.</param>
-        public EscolherFuncionário(string descrição, Funcionário[] funcionários)
-        {
-            // This call is required by the Windows Form Designer.
-            InitializeComponent();
-
-            lblDescrição.Text = descrição;
-
-            if (this.DesignMode)
-                return;
-
-            lstFuncionários.Funcionários = new List<Funcionário>(funcionários);
-        }
-
-        /// <summary>
-        /// Escolhe funcionários a partir de uma lista de funcionários.
-        /// </summary>
-        /// <param name="descrição">Descrição da operação para escolha de funcionário.</param>
-        /// <param name="funcionários">Lista de funcionários.</param>
 		public EscolherFuncionário(string descrição, IEnumerable<Funcionário> funcionários)
 		{
-			// This call is required by the Windows Form Designer.
 			InitializeComponent();
 
 			lblDescrição.Text = descrição;
@@ -77,22 +25,11 @@ namespace Apresentação.Pessoa
 			lstFuncionários.Funcionários = funcionários;
 		}
 
-		/// <summary>
-		/// Escolhe funcionários a partir de uma lista de funcionários, podendo
-        /// deixar um previamente selecionado um funcionário pelo nome.
-		/// </summary>
-		/// <param name="descrição">Descrição da operação para escolha de funcionário.</param>
-		/// <param name="funcionários">Lista de funcionários.</param>
-		/// <param name="nome">Nome do funcionário a selecionar.</param>
 		public EscolherFuncionário(string descrição, List<Funcionário> funcionários, string nome) : this(descrição, funcionários)
 		{
 			lstFuncionários.Procurar(nome);
 		}
 
-        /// <summary>
-        /// Escolhe funcionário a partir do banco de dados.
-        /// </summary>
-        /// <param name="descrição">Descrição da operação para escolha de funcionário.</param>
         public EscolherFuncionário(string descrição)
         {
             InitializeComponent();
@@ -109,12 +46,6 @@ namespace Apresentação.Pessoa
             Apresentação.Formulários.AguardeDB.Fechar();
         }
 
-        /// <summary>
-        /// Escolhe funcionário a partir do banco de dados, podendo
-        /// deixar previamente selecionado um funcionário pelo nome.
-        /// </summary>
-        /// <param name="descrição">Descrição da operação para escolha de funcionário.</param>
-        /// <param name="nome">Nome do funcionário a selecionar.</param>
         public EscolherFuncionário(string descrição, string nome) : this(descrição)
         {
             lstFuncionários.Procurar(nome);
