@@ -743,9 +743,8 @@ namespace Apresentação.Pessoa.Cadastro
                 else
                     pessoa.CPF = null;
             }
-            catch (Exception erro)
+            catch (Exception)
             {
-                MessageBox.Show(erro.Message, "Cadastro de Pessoa Física", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
