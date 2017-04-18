@@ -55,6 +55,7 @@ namespace Apresentação.Financeiro.Coaf.Lista
 
             lista.Items.Clear();
             lista.Items.AddRange(itens.ToArray());
+            colPendências.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
 
         private List<ListViewItem> CriarItens(List<PessoaResumo> entidades, Dictionary<uint, InconsistênciaPessoa> inconsistências)
