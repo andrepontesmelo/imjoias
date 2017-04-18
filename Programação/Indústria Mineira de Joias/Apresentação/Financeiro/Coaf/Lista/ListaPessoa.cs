@@ -5,6 +5,7 @@ using Entidades.Pessoa;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using Entidades.Coaf.Inconsistência;
 
 namespace Apresentação.Financeiro.Coaf.Lista
 {
@@ -49,17 +50,18 @@ namespace Apresentação.Financeiro.Coaf.Lista
         public void Carregar()
         {
             var entidades = ObterEntidades();
-            List<ListViewItem> itens = CriarItens(entidades);
+            var inconsistências = Entidades.Coaf.Inconsistência.InconsistênciaPessoa.ObterInconsistências();
+            List<ListViewItem> itens = CriarItens(entidades, inconsistências);
 
             lista.Items.Clear();
             lista.Items.AddRange(itens.ToArray());
         }
 
-        private List<ListViewItem> CriarItens(List<PessoaResumo> entidades)
+        private List<ListViewItem> CriarItens(List<PessoaResumo> entidades, Dictionary<uint, InconsistênciaPessoa> inconsistências)
         {
             List<ListViewItem> resultado = new List<ListViewItem>();
-            
-            var random = new Random((int) DateTime.Now.Ticks);
+
+            var random = new Random((int)DateTime.Now.Ticks);
             foreach (PessoaResumo entidade in entidades)
             {
                 if (!entidade.Verificável)
@@ -71,17 +73,28 @@ namespace Apresentação.Financeiro.Coaf.Lista
                 item.SubItems[colCódigo.Index].Text = entidade.Código.ToString();
                 item.SubItems[colPessoa.Index].Text = entidade.Nome;
                 item.SubItems[colValorAcumulado.Index].Text = entidade.ValorAcumulado.ToString("C");
-                string[] mensagems = new string[] { "Cadastrar Preposto", "Cadastrar CPF", "Cadastrar órgão expeditor", "Cadastrar documento de identificação" };
-                item.SubItems[colPendências.Index].Text = mensagems[random.Next(mensagems.Length)];
+                item.SubItems[colPendências.Index].Text = ConcatenarInconsistências(inconsistências, entidade.Código);
                 item.Tag = entidade;
 
                 if (entidade.PoliticamenteExposta)
                     item.SubItems[colPEP.Index].Text = HashPessoaExpostaPoliticamente.Hash[entidade.CpfResponsável].Descrição;
 
                 resultado.Add(item);
+
             }
 
             return resultado;
+        }
+
+        private string ConcatenarInconsistências(Dictionary<uint, InconsistênciaPessoa> inconsistências, uint código)
+        {
+            InconsistênciaPessoa inconsistênciaPessoa;
+            if (inconsistências.TryGetValue(código, out inconsistênciaPessoa))
+            {
+                return inconsistênciaPessoa.Concatenar();
+            }
+
+            return "";
         }
 
         private ListViewGroup ObterGrupo(PessoaResumo entidade)
