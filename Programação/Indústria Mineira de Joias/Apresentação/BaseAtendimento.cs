@@ -413,7 +413,7 @@ namespace Apresentação.Atendimento
             this.quadroPendências.Location = new System.Drawing.Point(3, 3);
             this.quadroPendências.MostrarBotãoMinMax = false;
             this.quadroPendências.Name = "quadroPendências";
-            this.quadroPendências.Size = new System.Drawing.Size(194, 104);
+            this.quadroPendências.Size = new System.Drawing.Size(194, 194);
             this.quadroPendências.TabIndex = 8;
             this.quadroPendências.Tamanho = 30;
             this.quadroPendências.Título = "Pendências";
@@ -435,7 +435,7 @@ namespace Apresentação.Atendimento
             this.lstPendências.MultiSelect = false;
             this.lstPendências.Name = "lstPendências";
             this.lstPendências.Scrollable = false;
-            this.lstPendências.Size = new System.Drawing.Size(188, 71);
+            this.lstPendências.Size = new System.Drawing.Size(188, 161);
             this.lstPendências.TabIndex = 2;
             this.lstPendências.UseCompatibleStateImageBehavior = false;
             this.lstPendências.View = System.Windows.Forms.View.Details;
@@ -540,7 +540,7 @@ namespace Apresentação.Atendimento
             this.tableLayoutPanel1.Location = new System.Drawing.Point(184, 84);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 110F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -563,11 +563,11 @@ namespace Apresentação.Atendimento
             this.quadroClassificador.Dock = System.Windows.Forms.DockStyle.Fill;
             this.quadroClassificador.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
             this.quadroClassificador.LetraTítulo = System.Drawing.Color.White;
-            this.quadroClassificador.Location = new System.Drawing.Point(3, 113);
+            this.quadroClassificador.Location = new System.Drawing.Point(3, 203);
             this.quadroClassificador.MostrarBotãoMinMax = false;
             this.quadroClassificador.Name = "quadroClassificador";
             this.quadroClassificador.Privilégio = Entidades.Privilégio.Permissão.CadastroAcesso;
-            this.quadroClassificador.Size = new System.Drawing.Size(194, 183);
+            this.quadroClassificador.Size = new System.Drawing.Size(194, 93);
             this.quadroClassificador.TabIndex = 11;
             this.quadroClassificador.Tamanho = 30;
             this.quadroClassificador.Título = "Classificações";
@@ -582,7 +582,7 @@ namespace Apresentação.Atendimento
             this.classificador.Location = new System.Drawing.Point(3, 25);
             this.classificador.Name = "classificador";
             this.classificador.Pessoa = null;
-            this.classificador.Size = new System.Drawing.Size(188, 155);
+            this.classificador.Size = new System.Drawing.Size(188, 65);
             this.classificador.TabIndex = 10;
             // 
             // quadroObs
@@ -1014,7 +1014,7 @@ namespace Apresentação.Atendimento
                 ListViewItem item;
 
                 bool mostrarNaLista = true;
-                item = new ListViewItem(pendência.Item + ":");
+                item = new ListViewItem(pendência.Item);
                 item.SubItems.Add(pendência.Descrição);
 
                 if (pendência.Alertar)
