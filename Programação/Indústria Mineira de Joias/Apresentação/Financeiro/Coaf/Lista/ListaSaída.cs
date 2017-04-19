@@ -48,7 +48,10 @@ namespace Apresentação.Financeiro.Coaf.Lista
         {
             decimal total = 0;
             foreach (var saída in saídas)
-                total += saída.ValorTotal;
+            {
+                if (!saída.Cancelada)
+                    total += saída.ValorTotal;
+            }
 
             return total;
         }
