@@ -21,17 +21,8 @@ using System.Windows.Forms;
 
 namespace Apresentação.Atendimento
 {
-    /// <summary>
-    /// Base inferior para atendimento.
-    /// </summary>
     public class BaseAtendimento : Apresentação.Formulários.BaseInferior
 	{
-        /// <summary>
-        /// Entidade da pessoa atual.
-        /// </summary>
-        /// <remarks>
-        /// Pode ser nulo.
-        /// </remarks>
         private Entidades.Pessoa.Pessoa pessoa = null;
 
         // Componentes
@@ -947,14 +938,8 @@ namespace Apresentação.Atendimento
         /// </summary>
         private void DescobrirPendências()
         {
-            LinkedList<ClientePendência> pendências;
-
             lstPendências.UseWaitCursor = true;
-
-            pendências = ClientePendência.ObterPendências(pessoa);
-
-            MostrarPendências(pendências);
-
+            MostrarPendências(ClientePendência.ObterPendências(pessoa));
             lstPendências.UseWaitCursor = false;
         }
 
@@ -983,38 +968,35 @@ namespace Apresentação.Atendimento
                 lstPendências.Items.Clear();
 
                 foreach (var pendência in pendências)
-                {
-                    ListViewItem item;
-
-                    bool mostrarNaLista = true;
-                    item = new ListViewItem(pendência.Item);
-                    item.SubItems.Add(pendência.Descrição);
-
-                    if (pendência.Alertar)
-                        item.Font = new Font(item.Font, FontStyle.Bold);
-
-
-                    switch (pendência.Identificação)
-                    {
-                        case ClientePendência.Identificações.PedidoPronto:
-                            sinalizaçãoPedido.Visible = true;
-                            break;
-                        case ClientePendência.Identificações.MercadoriaEmFalta:
-                            mostrarNaLista = false;
-                            sinalizaçãoMercadoriaEmFalta.Visible = true;
-                            break;
-                    }
-
-                    if (mostrarNaLista)
-                    {
-                        lstPendências.Items.Add(item);
-
-                        item.EnsureVisible();
-                    }
-                }
+                    AdicionarPendência(pendência);
 
                 ReajustarPendências();
             }
+        }
+
+        private void AdicionarPendência(ClientePendência pendência)
+        {
+            bool adicionarPendênciaLista = true;
+            var item = new ListViewItem(pendência.Item);
+            item.SubItems.Add(pendência.Descrição);
+
+            if (pendência.Alertar)
+                item.Font = new Font(item.Font, FontStyle.Bold);
+
+
+            switch (pendência.Identificação)
+            {
+                case ClientePendência.Identificações.PedidoPronto:
+                    sinalizaçãoPedido.Visible = true;
+                    break;
+                case ClientePendência.Identificações.MercadoriaEmFalta:
+                    adicionarPendênciaLista = false;
+                    sinalizaçãoMercadoriaEmFalta.Visible = true;
+                    break;
+            }
+
+            if (adicionarPendênciaLista)
+                lstPendências.Items.Add(item);
         }
 
         #endregion
