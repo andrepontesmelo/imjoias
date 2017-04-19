@@ -23,8 +23,8 @@ namespace Apresentação.Atendimento
 {
     public class BaseAtendimento : Apresentação.Formulários.BaseInferior
 	{
-        private const int ALTURA_PAINEL_PENDÊNCIAS_INICIAL = 45;
-        private const int ALTURA_PAINEL_PENDÊNCIAS_POR_ITEM = 21;
+        private const int ALTURA_PAINEL_PENDÊNCIAS_INICIAL = 40;
+        private const int ALTURA_PAINEL_PENDÊNCIAS_POR_ITEM = 22;
 
         private Entidades.Pessoa.Pessoa pessoa = null;
 
@@ -415,8 +415,7 @@ namespace Apresentação.Atendimento
             // 
             // lstPendências
             // 
-            this.lstPendências.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.lstPendências.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lstPendências.BackColor = System.Drawing.Color.White;
             this.lstPendências.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -426,11 +425,12 @@ namespace Apresentação.Atendimento
             this.lstPendências.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstPendências.FullRowSelect = true;
             this.lstPendências.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lstPendências.Location = new System.Drawing.Point(3, 27);
+            this.lstPendências.Location = new System.Drawing.Point(2, 25);
+            this.lstPendências.Margin = new System.Windows.Forms.Padding(0);
             this.lstPendências.MultiSelect = false;
             this.lstPendências.Name = "lstPendências";
             this.lstPendências.Scrollable = false;
-            this.lstPendências.Size = new System.Drawing.Size(188, 0);
+            this.lstPendências.Size = new System.Drawing.Size(189, 0);
             this.lstPendências.TabIndex = 2;
             this.lstPendências.UseCompatibleStateImageBehavior = false;
             this.lstPendências.View = System.Windows.Forms.View.Details;
@@ -960,6 +960,7 @@ namespace Apresentação.Atendimento
                 quadroPendências.Título = string.Format("{0} Pendência{1}", 
                     itens > 1 ? itens.ToString() : "", 
                     itens == 1 ? "" : "s");
+                lstPendências.Height = quadroPendências.Height - 30;
             }
         }
 
