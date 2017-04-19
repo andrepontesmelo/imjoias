@@ -32,7 +32,25 @@ namespace Apresentação.Financeiro.Coaf.Lista
         public void Carregar(string cpfCnpj)
         {
             lista.Items.Clear();
-            lista.Items.AddRange(CriarItens(SaídaFiscal.Obter(cpfCnpj)));
+            var saídas = SaídaFiscal.Obter(cpfCnpj);
+            decimal total = ObterTotal(saídas);
+
+            lista.Items.AddRange(CriarItens(saídas));
+            AtualizarTotalRodapé(total);
+        }
+
+        private void AtualizarTotalRodapé(decimal total)
+        {
+            toolStripStatusTotal.Text = string.Format("Total: {0}", total.ToString("C"));
+        }
+
+        private decimal ObterTotal(List<SaídaFiscal> saídas)
+        {
+            decimal total = 0;
+            foreach (var saída in saídas)
+                total += saída.ValorTotal;
+
+            return total;
         }
 
         private ListViewItem[] CriarItens(List<SaídaFiscal> saídas)
