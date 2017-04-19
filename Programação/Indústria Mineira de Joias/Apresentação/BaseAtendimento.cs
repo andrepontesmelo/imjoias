@@ -1145,10 +1145,7 @@ namespace Apresentação.Atendimento
         private void DescobrirPendênciasSegundoPlano()
         {
             if (!bgDescobrirPendência.IsBusy)
-            {
-                lstPendências.Items.Add("Verificando...");
                 bgDescobrirPendência.RunWorkerAsync();
-            }
         }
 
         /// <summary>
