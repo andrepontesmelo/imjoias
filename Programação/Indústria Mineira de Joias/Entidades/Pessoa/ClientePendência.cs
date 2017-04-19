@@ -1,4 +1,5 @@
-﻿using Entidades.Mercadoria;
+﻿using Entidades.Coaf.Inconsistência;
+using Entidades.Mercadoria;
 using Entidades.PedidoConserto;
 using System.Collections.Generic;
 
@@ -15,7 +16,8 @@ namespace Entidades.Pessoa
             Desconhecida,
             Pedido, 
             PedidoPronto,
-            MercadoriaEmFalta
+            MercadoriaEmFalta,
+            Coaf
         }
 
         private Identificações identificação;
@@ -80,6 +82,13 @@ namespace Entidades.Pessoa
 
             if (mercadoriasEmFalta.Count > 0)
                 pendências.AddFirst(new ClientePendência(Identificações.MercadoriaEmFalta, "Merc. em falta", mercadoriasEmFalta.Count.ToString(), false));
+
+            var inconsistênciaCoaf = InconsistênciaPessoa.ObterInconsistência(cliente.Código);
+            if (inconsistênciaCoaf.Inconsistências.Count > 0)
+            {
+                foreach (var i in inconsistênciaCoaf.Inconsistências)
+                    pendências.AddLast(new ClientePendência(Identificações.Coaf, "Ficha", InconsistênciaPessoa.ObterDescriçãoResumida(i), true));
+            }
 
             return pendências;
         }

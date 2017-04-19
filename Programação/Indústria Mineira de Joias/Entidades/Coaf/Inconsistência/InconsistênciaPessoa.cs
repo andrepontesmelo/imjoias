@@ -17,6 +17,17 @@ namespace Entidades.Coaf.Inconsistência
             inconsistências = new List<EnumInconsistência>();
         }
 
+        public static InconsistênciaPessoa ObterInconsistência(ulong pessoa)
+        {
+            InconsistênciaPessoa resultado = new InconsistênciaPessoa((uint) pessoa);
+            var lista = Mapear<PessoaMotivo>("select * from coaf_inconsistencia where codigo=" + DbTransformar(pessoa));
+
+            foreach (PessoaMotivo motivo in lista)
+                resultado.Inconsistências.Add(motivo.Motivo);
+
+            return resultado;
+        }
+
         public static Dictionary<uint, InconsistênciaPessoa> ObterInconsistências()
         {
             var lista = Mapear<PessoaMotivo>("select * from coaf_inconsistencia");
@@ -54,7 +65,7 @@ namespace Entidades.Coaf.Inconsistência
             return resultado;
         }
 
-        private string ObterDescrição(EnumInconsistência inconsistência)
+        public static string ObterDescrição(EnumInconsistência inconsistência)
         {
             switch (inconsistência)
             {
@@ -66,6 +77,8 @@ namespace Entidades.Coaf.Inconsistência
                     return "Pessoa física sem orgão emissor";
                 case EnumInconsistência.PessoaFísicaSemCPF:
                     return "Pessoa física sem CPF";
+                case EnumInconsistência.PrepostoSemNome:
+                    return "Preposto sem nome";
                 case EnumInconsistência.PJSemPreposto:
                     return "Pessoa juridica sem preposto";
                 case EnumInconsistência.PrepostoIdentidadeInválida:
@@ -80,5 +93,35 @@ namespace Entidades.Coaf.Inconsistência
                     throw new NotImplementedException();
             }
         }
+
+        public static string ObterDescriçãoResumida(EnumInconsistência inconsistência)
+        {
+            switch (inconsistência)
+            {
+                case EnumInconsistência.IdentidadeInválida:
+                    return "PF s/ RG";
+                case EnumInconsistência.PFNomeInválido:
+                    return "PF s/ nome";
+                case EnumInconsistência.OrgãoEmissorInválido:
+                    return "PF s/ órgão E.";
+                case EnumInconsistência.PessoaFísicaSemCPF:
+                    return "PF s/ CPF";
+                case EnumInconsistência.PJSemPreposto:
+                    return "PJ s/ preposto";
+                case EnumInconsistência.PrepostoIdentidadeInválida:
+                    return "Prep. s/ RG";
+                case EnumInconsistência.PrepostoSemNome:
+                    return "Prep. s/ nome";
+                case EnumInconsistência.PJNomeFantasiaInválido:
+                    return "PJ s/ fantasia";
+                case EnumInconsistência.PJRazãoSocialInválido:
+                    return "PJ s/ razão";
+                case EnumInconsistência.PrepostoÓrgãoEmissorInválido:
+                    return "Prep. s/ órgão E.";
+                default:
+                    throw new NotImplementedException();
+            }
+        }
+
     }
 }

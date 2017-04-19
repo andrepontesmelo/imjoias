@@ -7,6 +7,7 @@
         IdentidadeInválida = 3,
         OrgãoEmissorInválido = 4,
         PFNomeInválido = 5,
+        PrepostoSemNome = 12,
         PrepostoIdentidadeInválida = 13,
         PrepostoÓrgãoEmissorInválido = 14,
         PJNomeFantasiaInválido = 15,
