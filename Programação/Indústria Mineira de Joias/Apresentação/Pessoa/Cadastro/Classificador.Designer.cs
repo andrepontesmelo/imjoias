@@ -76,7 +76,7 @@ namespace Apresentação.Pessoa.Cadastro
             this.btnMostrarTodos.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnMostrarTodos.Name = "btnMostrarTodos";
             this.btnMostrarTodos.Size = new System.Drawing.Size(85, 22);
-            this.btnMostrarTodos.Text = "Mostrar todos";
+            this.btnMostrarTodos.Text = "Mostrar todas";
             this.btnMostrarTodos.CheckedChanged += new System.EventHandler(this.AoMudarExibição);
             // 
             // btnSomenteAtribuídos
@@ -89,7 +89,7 @@ namespace Apresentação.Pessoa.Cadastro
             this.btnSomenteAtribuídos.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnSomenteAtribuídos.Name = "btnSomenteAtribuídos";
             this.btnSomenteAtribuídos.Size = new System.Drawing.Size(114, 22);
-            this.btnSomenteAtribuídos.Text = "Somente atribuídos";
+            this.btnSomenteAtribuídos.Text = "Somente atribuídas";
             this.btnSomenteAtribuídos.Click += new System.EventHandler(this.AoMudarExibição);
             // 
             // toolStripSeparator1
