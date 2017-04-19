@@ -57,7 +57,7 @@ namespace Apresentação.Mercadoria
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(273, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Esta pessoa possui mercadoria(s) para pedidos";
+            this.label1.Text = "Esta pessoa possui mercadoria(s) em falta";
             this.label1.Click += new System.EventHandler(this.AoClicar);
             // 
             // label2
