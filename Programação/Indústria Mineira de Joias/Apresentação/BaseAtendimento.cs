@@ -958,87 +958,66 @@ namespace Apresentação.Atendimento
             lstPendências.UseWaitCursor = false;
         }
 
-        private void AoEncontrarVendasNãoQuitadas(Entidades.Pessoa.Pessoa cliente, Entidades.Relacionamento.Venda.Venda[] vendas, double dívida)
-        {
-            MostrarPendência(new ClientePendência(vendas.Length.ToString() + " Vendas", dívida.ToString("C"), true));
-            ReajustarPendências();
-        }
-
         private Dictionary<ListViewItem, ClientePendência> hashPendencias = new Dictionary<ListViewItem,ClientePendência>();
-        /// <summary>
-        /// Mostra as pendências existentes.
-        /// </summary>
-        private void MostrarPendências(LinkedList<ClientePendência> pendências)
-        {
-            hashPendencias.Clear();
-            lstPendências.Items.Clear();
-
-            foreach (ClientePendência pendência in pendências)
-                MostrarPendência(pendência);
-
-            ReajustarPendências();
-        }
-
-        private delegate void ReajustarPendênciasCallback();
 
         private void ReajustarPendências()
         {
-            if (lstPendências.InvokeRequired)
-            {
-                ReajustarPendênciasCallback método = new ReajustarPendênciasCallback(ReajustarPendências);
-                lstPendências.BeginInvoke(método);
-            }
-            else
-            {
-                lstPendências.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-                lstPendências.Columns[0].Width =
-                    Math.Min(
-                    lstPendências.Columns[0].Width,
-                    lstPendências.ClientSize.Width - lstPendências.Columns[1].Width);
-                lstPendências.Columns[1].Width =
-                    lstPendências.ClientSize.Width - lstPendências.Columns[0].Width;
-            }
+            lstPendências.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            lstPendências.Columns[0].Width =
+                Math.Min(
+                lstPendências.Columns[0].Width,
+                lstPendências.ClientSize.Width - lstPendências.Columns[1].Width);
+            lstPendências.Columns[1].Width =
+                lstPendências.ClientSize.Width - lstPendências.Columns[0].Width;
         }
 
-        private delegate void MostrarPendênciaCallback(ClientePendência pendência);
+        private delegate void MostrarPendênciasCallback(LinkedList<ClientePendência> pendências);
 
-        private void MostrarPendência(ClientePendência pendência)
+        private void MostrarPendências(LinkedList<ClientePendência> pendências)
         {
             if (lstPendências.InvokeRequired)
             {
-                MostrarPendênciaCallback método = new MostrarPendênciaCallback(MostrarPendência);
-                lstPendências.BeginInvoke(método, pendência);
+                MostrarPendênciasCallback método = new MostrarPendênciasCallback(MostrarPendências);
+                lstPendências.BeginInvoke(método, pendências);
             }
             else
             {
-                ListViewItem item;
+                hashPendencias.Clear();
+                lstPendências.Items.Clear();
 
-                bool mostrarNaLista = true;
-                item = new ListViewItem(pendência.Item);
-                item.SubItems.Add(pendência.Descrição);
-
-                if (pendência.Alertar)
-                    item.Font = new Font(item.Font, FontStyle.Bold);
-
-
-                switch (pendência.Identificação)
+                foreach (var pendência in pendências)
                 {
-                    case ClientePendência.Identificações.PedidoPronto:
-                        sinalizaçãoPedido.Visible = true;
-                        break;
-                    case ClientePendência.Identificações.MercadoriaEmFalta:
-                        mostrarNaLista = false;
-                        sinalizaçãoMercadoriaEmFalta.Visible = true;
-                        break;
+                    ListViewItem item;
+
+                    bool mostrarNaLista = true;
+                    item = new ListViewItem(pendência.Item);
+                    item.SubItems.Add(pendência.Descrição);
+
+                    if (pendência.Alertar)
+                        item.Font = new Font(item.Font, FontStyle.Bold);
+
+
+                    switch (pendência.Identificação)
+                    {
+                        case ClientePendência.Identificações.PedidoPronto:
+                            sinalizaçãoPedido.Visible = true;
+                            break;
+                        case ClientePendência.Identificações.MercadoriaEmFalta:
+                            mostrarNaLista = false;
+                            sinalizaçãoMercadoriaEmFalta.Visible = true;
+                            break;
+                    }
+
+                    if (mostrarNaLista)
+                    {
+                        hashPendencias.Add(item, pendência);
+                        lstPendências.Items.Add(item);
+
+                        item.EnsureVisible();
+                    }
                 }
 
-                if (mostrarNaLista)
-                {
-                    hashPendencias.Add(item, pendência);
-                    lstPendências.Items.Add(item);
-
-                    item.EnsureVisible();
-                }
+                ReajustarPendências();
             }
         }
 
@@ -1212,17 +1191,6 @@ namespace Apresentação.Atendimento
             LinkedList<ClientePendência> pendências = (LinkedList<ClientePendência>)e.Result;
 
             MostrarPendências(pendências);
-        }
-
-        void verificação_AoEncontrarPagamentosPendentes(Entidades.Pessoa.Pessoa cliente, Entidades.Pagamentos.Pagamento[] pagamentosPendentes)
-        {
-            double valorPendente = 0;
-
-            foreach (Entidades.Pagamentos.Pagamento p in pagamentosPendentes)
-                valorPendente += p.Valor;
-
-            MostrarPendência(new ClientePendência(pagamentosPendentes.Length.ToString() + " Pagamentos", valorPendente.ToString("C"), true));
-            ReajustarPendências();
         }
 
         /// <summary>
