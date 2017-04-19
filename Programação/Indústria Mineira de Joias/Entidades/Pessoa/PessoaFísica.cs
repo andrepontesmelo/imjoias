@@ -68,7 +68,9 @@ namespace Entidades.Pessoa
 			get { return cpf; }
 			set
 			{
-                if (value == null || value.Length == 0 || ValidarCPF(value))
+                if (value == null || value.Length == 0)
+                    cpf = null; 
+                else if (ValidarCPF(value))
                     cpf = LimparCaracteresNãoNuméricos(value);
                 else
                 {
