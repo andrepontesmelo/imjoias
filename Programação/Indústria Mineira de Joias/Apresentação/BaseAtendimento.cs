@@ -958,8 +958,6 @@ namespace Apresentação.Atendimento
             lstPendências.UseWaitCursor = false;
         }
 
-        private Dictionary<ListViewItem, ClientePendência> hashPendencias = new Dictionary<ListViewItem,ClientePendência>();
-
         private void ReajustarPendências()
         {
             lstPendências.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
@@ -982,7 +980,6 @@ namespace Apresentação.Atendimento
             }
             else
             {
-                hashPendencias.Clear();
                 lstPendências.Items.Clear();
 
                 foreach (var pendência in pendências)
@@ -1010,7 +1007,6 @@ namespace Apresentação.Atendimento
 
                     if (mostrarNaLista)
                     {
-                        hashPendencias.Add(item, pendência);
                         lstPendências.Items.Add(item);
 
                         item.EnsureVisible();
