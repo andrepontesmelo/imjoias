@@ -819,6 +819,7 @@ namespace Apresentação.Atendimento
             VerificarPessoaSemSetor(cliente);
 
             sumárioAcerto1.Carregar(cliente);
+            DescobrirPendênciasSegundoPlano();
         }
 
         private void CarregarControlesVisuais(Entidades.Pessoa.Pessoa cliente)
@@ -1016,9 +1017,6 @@ namespace Apresentação.Atendimento
 
 		#region Eventos da base inferior
 
-        /// <summary>
-        /// Ocorre ao exibir pela primeira vez.
-        /// </summary>
         protected override void AoExibirDaPrimeiraVez()
         {
             base.AoExibirDaPrimeiraVez();
@@ -1027,9 +1025,6 @@ namespace Apresentação.Atendimento
                 throw new Exception("Pessoa nem visitante atribuído!");
         }
 
-        /// <summary>
-        /// Ocorre ao exibir a base inferior.
-        /// </summary>
         protected override void AoExibir()
         {
             base.AoExibir();
@@ -1038,7 +1033,6 @@ namespace Apresentação.Atendimento
         }
 		#endregion
 
-        #region Eventos da interface gráfica para mudança de base inferior
 
         /// <summary>
         /// Ocorre ao escolher saída.
@@ -1137,7 +1131,6 @@ namespace Apresentação.Atendimento
             UseWaitCursor = false;
         }
 
-        #endregion
 
         /// <summary>
         /// Descobre as pendências em segundo plano.
