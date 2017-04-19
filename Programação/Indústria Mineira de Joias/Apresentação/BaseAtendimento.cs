@@ -942,10 +942,7 @@ namespace Apresentação.Atendimento
         {
             var itens = lstPendências.Items.Count;
             if (itens == 0)
-            {
-                tableLayoutPanel1.RowStyles[0].Height = 0;
-                quadroPendências.Visible = false;
-            }
+                EsconderPendências();
             else
             {
                 lstPendências.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
@@ -963,6 +960,12 @@ namespace Apresentação.Atendimento
                     itens == 1 ? "" : "s");
                 lstPendências.Height = quadroPendências.Height - 30;
             }
+        }
+
+        private void EsconderPendências()
+        {
+            tableLayoutPanel1.RowStyles[0].Height = 0;
+            quadroPendências.Visible = false;
         }
 
         private void MostrarPendências(LinkedList<ClientePendência> pendências)
@@ -1138,7 +1141,10 @@ namespace Apresentação.Atendimento
         private void DescobrirPendênciasSegundoPlano()
         {
             if (!bgDescobrirPendência.IsBusy)
+            {
+                EsconderPendências();
                 bgDescobrirPendência.RunWorkerAsync();
+            }
         }
 
         /// <summary>
