@@ -23,7 +23,9 @@ namespace Apresentação.Atendimento
 {
     public class BaseAtendimento : Apresentação.Formulários.BaseInferior
 	{
-        private const int ALTURA_PAINEL_PENDÊNCIAS = 120;
+        private const int ALTURA_PAINEL_PENDÊNCIAS_INICIAL = 45;
+        private const int ALTURA_PAINEL_PENDÊNCIAS_POR_ITEM = 21;
+
         private Entidades.Pessoa.Pessoa pessoa = null;
 
         // Componentes
@@ -937,7 +939,8 @@ namespace Apresentação.Atendimento
 
         private void ReajustarPendências()
         {
-            if (lstPendências.Items.Count == 0)
+            var itens = lstPendências.Items.Count;
+            if (itens == 0)
             {
                 tableLayoutPanel1.RowStyles[0].Height = 0;
                 quadroPendências.Visible = false;
@@ -953,7 +956,7 @@ namespace Apresentação.Atendimento
                     lstPendências.ClientSize.Width - lstPendências.Columns[0].Width;
 
                 quadroPendências.Visible = true;
-                tableLayoutPanel1.RowStyles[0].Height = ALTURA_PAINEL_PENDÊNCIAS;
+                tableLayoutPanel1.RowStyles[0].Height = ALTURA_PAINEL_PENDÊNCIAS_INICIAL + itens * ALTURA_PAINEL_PENDÊNCIAS_POR_ITEM;
             }
         }
 
