@@ -957,6 +957,9 @@ namespace Apresentação.Atendimento
 
                 quadroPendências.Visible = true;
                 tableLayoutPanel1.RowStyles[0].Height = ALTURA_PAINEL_PENDÊNCIAS_INICIAL + itens * ALTURA_PAINEL_PENDÊNCIAS_POR_ITEM;
+                quadroPendências.Título = string.Format("{0} Pendência{1}", 
+                    itens > 1 ? itens.ToString() : "", 
+                    itens == 1 ? "" : "s");
             }
         }
 
