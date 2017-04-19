@@ -940,7 +940,10 @@ namespace Apresentação.Atendimento
 
         private void ReajustarPendências()
         {
+            quadroPendências.SuspendLayout();
+
             var itens = lstPendências.Items.Count;
+
             if (itens == 0)
                 EsconderPendências();
             else
@@ -960,6 +963,8 @@ namespace Apresentação.Atendimento
                     itens == 1 ? "" : "s");
                 lstPendências.Height = quadroPendências.Height - 30;
             }
+
+            quadroPendências.ResumeLayout();
         }
 
         private void EsconderPendências()
@@ -1142,6 +1147,7 @@ namespace Apresentação.Atendimento
         {
             if (!bgDescobrirPendência.IsBusy)
             {
+                AguardeDB.Mostrar();
                 EsconderPendências();
                 bgDescobrirPendência.RunWorkerAsync();
             }
@@ -1163,6 +1169,7 @@ namespace Apresentação.Atendimento
         private void MostrarPendências(object sender, RunWorkerCompletedEventArgs e)
         {
             MostrarPendências((LinkedList<ClientePendência>)e.Result);
+            AguardeDB.Fechar();
         }
 
         /// <summary>
