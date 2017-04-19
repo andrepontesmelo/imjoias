@@ -11,6 +11,7 @@
         PrepostoIdentidadeInválida = 13,
         PrepostoÓrgãoEmissorInválido = 14,
         PJNomeFantasiaInválido = 15,
-        PJRazãoSocialInválido = 16
+        PJRazãoSocialInválido = 16,
+        PJSemCNPJ = 17
     }
 }

@@ -89,6 +89,8 @@ namespace Entidades.Coaf.Inconsistência
                     return "Pessoa jurídica sem razão social";
                 case EnumInconsistência.PrepostoÓrgãoEmissorInválido:
                     return "Preposto sem órgão emissor da identidade";
+                case EnumInconsistência.PJSemCNPJ:
+                    return "Pessoa jurídica sem CNPJ";
                 default:
                     throw new NotImplementedException();
             }
@@ -118,6 +120,8 @@ namespace Entidades.Coaf.Inconsistência
                     return "PJ s/ razão";
                 case EnumInconsistência.PrepostoÓrgãoEmissorInválido:
                     return "Prep. s/ órgão E.";
+                case EnumInconsistência.PJSemCNPJ:
+                    return "PJ s/ CNPJ";
                 default:
                     throw new NotImplementedException();
             }
