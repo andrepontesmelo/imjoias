@@ -394,7 +394,7 @@ namespace Apresentação.Atendimento
             // 
             // quadroPendências
             // 
-            this.quadroPendências.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.quadroPendências.BackColor = System.Drawing.Color.White;
             this.quadroPendências.bInfDirArredondada = true;
             this.quadroPendências.bInfEsqArredondada = true;
             this.quadroPendências.bSupDirArredondada = true;
@@ -418,7 +418,7 @@ namespace Apresentação.Atendimento
             this.lstPendências.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lstPendências.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.lstPendências.BackColor = System.Drawing.Color.White;
             this.lstPendências.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lstPendências.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colItem,
