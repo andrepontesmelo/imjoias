@@ -54,7 +54,7 @@ namespace Entidades.Coaf
             string sql =
                 string.Format("select p.codigo, p.nome, cpfemissor as cpfcnpj, cpfemissor as cpfresponsavel, sum(valortotal) as valoracumulado from saidafiscal " +
                     " left join pessoafisica pf on pf.cpf=cpfemissor " +
-                    " join pessoa p on pf.codigo=p.codigo " +
+                    " left join pessoa p on pf.codigo=p.codigo " +
                     " where cpfemissor is not null " +
                     " and {0} " +
                     " and cancelada = 0 group by cpfemissor " +
@@ -62,7 +62,7 @@ namespace Entidades.Coaf
                     " UNION " +
                     " select p.codigo, p.nome, cnpjemissor as cpfcnpj, cpfPreposto as cpfresponsavel, sum(valortotal) as valoracumulado from saidafiscal " +
                     " left join pessoajuridica pj on pj.cnpj=cnpjemissor " +
-                    " join pessoa p on pj.codigo=p.codigo " +
+                    " left join pessoa p on pj.codigo=p.codigo " +
                     " where cnpjemissor is not null " +
                     " and {0} " +
                     " and cancelada = 0 " +

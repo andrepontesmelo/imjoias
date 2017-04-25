@@ -71,8 +71,8 @@ namespace Apresentação.Financeiro.Coaf.Lista
                 ListViewItem item = new ListViewItem(ObterGrupo(entidade));
                 item.SubItems.AddRange(new string[] { "", "", "", "", "" });
                 item.SubItems[colCPFCNPJ.Index].Text = FormatarCpfCnpj(entidade.CpfCnpj);
-                item.SubItems[colCódigo.Index].Text = entidade.Código.ToString();
-                item.SubItems[colPessoa.Index].Text = entidade.Nome;
+                item.SubItems[colCódigo.Index].Text = entidade.Código.Equals(0) ? "" : entidade.Código.ToString();
+                item.SubItems[colPessoa.Index].Text = entidade.Código.Equals(0) ? "<Sem Cadastro>" : entidade.Nome;
                 item.SubItems[colValorAcumulado.Index].Text = entidade.ValorAcumulado.ToString("C");
                 item.SubItems[colPendências.Index].Text = ConcatenarInconsistências(inconsistências, entidade.Código);
                 item.Tag = entidade;
@@ -110,10 +110,25 @@ namespace Apresentação.Financeiro.Coaf.Lista
 
         private List<PessoaResumo> ObterEntidades()
         {
-            return PessoaResumo.Obter(ConfiguraçõesCoaf.Instância.DataInício, 
+            var resultado = PessoaResumo.Obter(ConfiguraçõesCoaf.Instância.DataInício, 
                 ConfiguraçõesCoaf.Instância.DataFim,
                 ConfiguraçõesCoaf.Instância.ValorMínimoLimiar);
+
+            return FiltrarResumosSemPessoaSemDocumento(resultado);
+        }
+
+        private List<PessoaResumo> FiltrarResumosSemPessoaSemDocumento(List<PessoaResumo> resumos)
+        {
+            var resultado = new List<PessoaResumo>();
+
+            foreach (PessoaResumo resumo in resumos)
+            {
+                if (!resumo.Código.Equals(0) || !String.IsNullOrWhiteSpace(resumo.CpfCnpj))
+                    resultado.Add(resumo);
             }
+            
+            return resultado;
+        }
 
         private void lista_SelectedIndexChanged(object sender, EventArgs e)
         {

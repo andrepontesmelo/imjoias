@@ -39,6 +39,7 @@ namespace Apresentação.Financeiro.Coaf
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
             this.grupoPeríodo = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.lnkAjustarDataÚltimosMeses = new System.Windows.Forms.LinkLabel();
             this.label7 = new System.Windows.Forms.Label();
             this.dataFim = new System.Windows.Forms.DateTimePicker();
@@ -53,7 +54,6 @@ namespace Apresentação.Financeiro.Coaf
             this.txtVerificaçãoPEP = new AMS.TextBox.CurrencyTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picÍcone)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.grupoPeríodo.SuspendLayout();
@@ -176,6 +176,15 @@ namespace Apresentação.Financeiro.Coaf
             this.grupoPeríodo.TabIndex = 9;
             this.grupoPeríodo.TabStop = false;
             this.grupoPeríodo.Text = "Data de Apuração";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(45, 90);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(85, 13);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "datas p/ últimos ";
             // 
             // lnkAjustarDataÚltimosMeses
             // 
@@ -327,15 +336,6 @@ namespace Apresentação.Financeiro.Coaf
             this.label5.Size = new System.Drawing.Size(31, 13);
             this.label5.TabIndex = 13;
             this.label5.Text = "PEP:";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(45, 90);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(85, 13);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "datas p/ últimos ";
             // 
             // JanelaConfiguração
             // 
