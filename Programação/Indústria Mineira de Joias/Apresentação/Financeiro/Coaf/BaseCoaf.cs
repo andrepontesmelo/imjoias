@@ -38,6 +38,7 @@ namespace Apresentação.Financeiro.Coaf
         {
             listaPessoa.Carregar();
             MostrarDescrição();
+            listaSaída.Limpar();
         }
 
         private void opçãoImprimir_Click(object sender, System.EventArgs e)

@@ -37,6 +37,12 @@ namespace Apresentação.Financeiro.Coaf.Lista
         }
 
 
+        public void Limpar()
+        {
+            lista.Items.Clear();
+            toolStripStatusTotal.Text = "";
+        }
+
         public void Carregar(string cpfCnpj, DateTime início, DateTime fim)
         {
             lista.Items.Clear();
