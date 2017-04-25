@@ -16,13 +16,28 @@ namespace Apresentação.Financeiro.Coaf
         private void opçãoConfigurar_Click(object sender, System.EventArgs e)
         {
             new JanelaConfiguração().ShowDialog(this);
-            listaPessoa.Carregar();
+            Recarregar();
+        }
+
+        private void MostrarDescrição()
+        {
+            título.Descrição = string.Format("Operações de saídas fiscais acumuladas de {0} até {1}.\n" +
+                "PEP: Pessoa exposta políticamente.",
+                ConfiguraçõesCoaf.Instância.DataInício.Valor.ToShortDateString(),
+                ConfiguraçõesCoaf.Instância.DataFim.Valor.ToShortDateString());
         }
 
         protected override void AoExibir()
         {
             base.AoExibir();
+
+            Recarregar();
+        }
+
+        private void Recarregar()
+        {
             listaPessoa.Carregar();
+            MostrarDescrição();
         }
 
         private void opçãoImprimir_Click(object sender, System.EventArgs e)
