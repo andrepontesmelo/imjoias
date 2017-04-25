@@ -1,68 +1,60 @@
-﻿using System;
+﻿using CrystalDecisions.CrystalReports.Engine;
+using Entidades.Coaf;
+using Entidades.Coaf.Inconsistência;
+using Entidades.Fiscal;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Apresentação.Impressão.Relatórios.Coaf.Sumário
 {
     public class ControladorImpressãoSumárioCoaf
     {
-        public RelatórioSumárioCoaf CriarRelatório()
+        internal ReportClass CriarRelatório(List<PessoaResumo> pessoas, List<SaídaFiscal> saídas,
+            Dictionary<uint, InconsistênciaPessoa> hashInconsistências)
         {
+            Entidades.Coaf.Inconsistência.InconsistênciaPessoa.ObterInconsistências();
             var relatório = new RelatórioSumárioCoaf();
             var dataset = new DataSetSumarioCoaf();
             relatório.SetDataSource(dataset);
 
             var linhaInfo = dataset.Tables["Informações"].NewRow();
-            linhaInfo["dataInicio"] = "2001/01/01";
-            linhaInfo["dataFim"] = "2010/01/01";
+            linhaInfo["dataInicio"] = ConfiguraçõesCoaf.Instância.DataInício.Valor.ToShortDateString();
+            linhaInfo["dataFim"] = ConfiguraçõesCoaf.Instância.DataFim.Valor.ToShortDateString(); ;
             dataset.Tables["Informações"].Rows.Add(linhaInfo);
 
             var tabelaPessoa = dataset.Tables["Pessoas"];
+            foreach (PessoaResumo pessoa in pessoas)
+            {
+                var linhaPessoa = tabelaPessoa.NewRow();
+                if (pessoa.Código != 0)
+                {
+                    linhaPessoa["código"] = pessoa.Código;
+                    linhaPessoa["nome"] = pessoa.Nome;
+                    linhaPessoa["pep"] = pessoa.PessoaPoliticamenteExposta;
 
-            var linhaPessoa = tabelaPessoa.NewRow();
-            linhaPessoa["código"] = 55555;
-            linhaPessoa["nome"] = "André Pontes";
-            linhaPessoa["pep"] = "Não";
-            linhaPessoa["cpfCnpj"] = "07676631602";
-            linhaPessoa["valorAcumulado"] = "R$ 50.000,00";
-            linhaPessoa["pendências"] = "Cadastrar Orgão Emissor";
-            tabelaPessoa.Rows.Add(linhaPessoa);
+                    InconsistênciaPessoa inconsistência;
+                    if (hashInconsistências.TryGetValue(pessoa.Código, out inconsistência))
+                        linhaPessoa["pendências"] = inconsistência.Concatenar();
+                } else
+                    linhaPessoa["nome"] = "Pessoa sem cadastro";
 
-            var linhaPessoa2 = tabelaPessoa.NewRow();
-            linhaPessoa2["código"] = 55555;
-            linhaPessoa2["nome"] = "Ellen Carolina";
-            linhaPessoa2["pep"] = "Não";
-            linhaPessoa2["cpfCnpj"] = "123.112.232-02";
-            linhaPessoa2["valorAcumulado"] = "R$ 10.000,00";
-            linhaPessoa2["pendências"] = "";
-            tabelaPessoa.Rows.Add(linhaPessoa2);
+                linhaPessoa["cpfCnpj"] = pessoa.CpfCnpj;
+                linhaPessoa["valorAcumulado"] = pessoa.ValorAcumulado;
+                
+                tabelaPessoa.Rows.Add(linhaPessoa);
+            }
 
             var tabelaSaídas = dataset.Tables["Saídas"];
 
-            var linhaSaída = tabelaSaídas.NewRow();
-            linhaSaída["id"] = 2222;
-            linhaSaída["data"] = "2010/03/03";
-            linhaSaída["valorTotal"] = "R$ 50,00";
-            linhaSaída["códigoVenda"] = 1234;
-            linhaSaída["cpfCnpj"] = "07676631602";
-            tabelaSaídas.Rows.Add(linhaSaída);
-
-            var linhaSaída2 = tabelaSaídas.NewRow();
-            linhaSaída2["id"] = 1322;
-            linhaSaída2["data"] = "2001/01/03";
-            linhaSaída2["valorTotal"] = "R$ 25,45";
-            linhaSaída2["códigoVenda"] = 4321;
-            linhaSaída2["cpfCnpj"] = "07676631602";
-            tabelaSaídas.Rows.Add(linhaSaída2);
-
-            var linhaSaída3 = tabelaSaídas.NewRow();
-            linhaSaída3["id"] = 5555;
-            linhaSaída3["data"] = "2022/01/03";
-            linhaSaída3["valorTotal"] = "R$ 125,45";
-            linhaSaída3["códigoVenda"] = 14321;
-            linhaSaída3["cpfCnpj"] = "123.112.232-02";
-            tabelaSaídas.Rows.Add(linhaSaída3);
+            foreach (SaídaFiscal saída in saídas) 
+            {
+                var linhaSaída = tabelaSaídas.NewRow();
+                linhaSaída["id"] = saída.Id;
+                linhaSaída["data"] = saída.DataSaída;
+                linhaSaída["valorTotal"] = saída.ValorTotal;
+                linhaSaída["códigoVenda"] = saída.Venda;
+                linhaSaída["cpfCnpj"] = saída.CpfCnpjEmissor;
+                tabelaSaídas.Rows.Add(linhaSaída);
+            }
 
             return relatório;
         }

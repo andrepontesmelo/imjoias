@@ -50,7 +50,7 @@ namespace Apresentação.Financeiro.Coaf.Lista
         public void Carregar()
         {
             var entidades = ObterEntidades();
-            var inconsistências = Entidades.Coaf.Inconsistência.InconsistênciaPessoa.ObterInconsistências();
+            var inconsistências = InconsistênciaPessoa.ObterInconsistências();
             List<ListViewItem> itens = CriarItens(entidades, inconsistências);
 
             lista.Items.Clear();

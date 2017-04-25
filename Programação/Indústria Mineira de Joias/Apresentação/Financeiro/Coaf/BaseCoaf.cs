@@ -1,6 +1,8 @@
 ﻿using Apresentação.Formulários;
 using Apresentação.Impressão.Relatórios.Coaf.Sumário;
 using Entidades.Coaf;
+using Entidades.Coaf.Inconsistência;
+using Entidades.Fiscal;
 using System;
 using System.ComponentModel;
 using System.Windows.Forms;
@@ -44,9 +46,14 @@ namespace Apresentação.Financeiro.Coaf
 
         private void opçãoImprimir_Click(object sender, System.EventArgs e)
         {
-            JanelaImpressão janelaImpressão = new Formulários.JanelaImpressão();
+
+            var pessoas = PessoaResumo.Obter();
+            var saídas = SaídaFiscal.Obter();
+            var inconsistênicas = InconsistênciaPessoa.ObterInconsistências();
+
+            JanelaImpressão janelaImpressão = new JanelaImpressão();
             janelaImpressão.InserirDocumento(
-                new ControladorImpressãoSumárioCoaf().CriarRelatório(), "Sumário");
+                new ControladorImpressãoSumárioCoaf().CriarRelatório(pessoas, saídas, inconsistênicas), "Sumário");
             janelaImpressão.Abrir(this);
         }
 

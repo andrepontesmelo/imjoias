@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using Entidades.Fiscal.Fabricação;
 using System.Text;
+using Entidades.Coaf;
 
 namespace Entidades.Fiscal
 {
@@ -89,6 +90,8 @@ namespace Entidades.Fiscal
                 setor = value;
             }
         }
+
+        public object CpfCnpjEmissor => cpfEmissor != null ? cpfEmissor : cnpjEmissor;
 
         public SaídaFiscal()
         {
@@ -244,14 +247,19 @@ namespace Entidades.Fiscal
 
         public static List<SaídaFiscal> Obter(string cpfCnpj, DateTime início, DateTime fim)
         {
-            bool cpf = cpfCnpj.Length == 11;
+            string campoCpfCnpj = cpfCnpj != null && cpfCnpj.Length == 11 ? "cpfemissor" : "cnpjemissor";
 
             string sql = string.Format("select * from saidafiscal WHERE {0}={1} AND {2}",
-                cpf ? "cpfemissor" : "cnpjemissor",
-                DbTransformar(cpfCnpj),
+                campoCpfCnpj,
+                cpfCnpj == null ? campoCpfCnpj : DbTransformar(cpfCnpj),
                 DbDataEntre("datasaida", início, fim));
 
             return Mapear<SaídaFiscal>(sql);
+        }
+
+        public static List<SaídaFiscal> Obter()
+        {
+            return Obter(null, ConfiguraçõesCoaf.Instância.DataInício, ConfiguraçõesCoaf.Instância.DataFim);
         }
     }
 }

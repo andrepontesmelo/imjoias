@@ -75,9 +75,26 @@ namespace Entidades.Coaf
             return Mapear<PessoaResumo>(sql);
         }
 
-        public static List<PessoaResumo> Obter(DateTime início, object valorMínimoLimiar)
+        public static List<PessoaResumo> Obter()
         {
-            throw new NotImplementedException();
+            var resultado = Obter(ConfiguraçõesCoaf.Instância.DataInício,
+                ConfiguraçõesCoaf.Instância.DataFim,
+                ConfiguraçõesCoaf.Instância.ValorMínimoLimiar);
+
+            return FiltrarResumosSemPessoaSemDocumento(resultado);
+        }
+
+        private static List<PessoaResumo> FiltrarResumosSemPessoaSemDocumento(List<PessoaResumo> resumos)
+        {
+            var resultado = new List<PessoaResumo>();
+
+            foreach (PessoaResumo resumo in resumos)
+            {
+                if (!resumo.Código.Equals(0) || !String.IsNullOrWhiteSpace(resumo.CpfCnpj))
+                    resultado.Add(resumo);
+            }
+
+            return resultado;
         }
     }
 }
