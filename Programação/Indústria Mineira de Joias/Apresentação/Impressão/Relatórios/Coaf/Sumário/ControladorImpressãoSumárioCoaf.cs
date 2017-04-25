@@ -92,6 +92,8 @@ namespace Apresentação.Impressão.Relatórios.Coaf.Sumário
 
             linhaPessoa["cpfCnpj"] = Entidades.Pessoa.Pessoa.FormatarCpfCnpj(pessoa.CpfCnpj);
             linhaPessoa["valorAcumulado"] = pessoa.ValorAcumulado.ToString("C");
+            linhaPessoa["notificável"] = pessoa.Notificável;
+
             return linhaPessoa;
         }
     }
