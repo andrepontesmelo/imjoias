@@ -3,6 +3,7 @@ using System;
 
 using System.Windows.Forms;
 using System.Collections.Generic;
+using Apresentação.Formulários;
 
 namespace Apresentação.Financeiro.Coaf.Lista
 {
@@ -13,6 +14,13 @@ namespace Apresentação.Financeiro.Coaf.Lista
         public ListaSaída()
         {
             InitializeComponent();
+            lista.ListViewItemSorter = new ListViewColumnSorter(); ;
+            lista.ColumnClick += Lista_ColumnClick;
+        }
+
+        private void Lista_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            ((ListViewColumnSorter)lista.ListViewItemSorter).OnClick(lista, e);
         }
 
         public SaídaFiscal ObterSaídaSelecionada()
