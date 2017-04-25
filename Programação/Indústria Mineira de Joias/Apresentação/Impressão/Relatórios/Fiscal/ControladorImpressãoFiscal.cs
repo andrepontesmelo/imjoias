@@ -29,7 +29,7 @@ namespace Apresentação.Impressão.Relatórios.Fiscal
             }
         }
 
-        protected virtual DataRow CriarDocumento(DataTable tabelaDocumento)
+        protected virtual DataRow CriarLinhaDocumento(DataTable tabelaDocumento)
         {
             var empresa = PessoaJurídica.ObterEmpresa();
 

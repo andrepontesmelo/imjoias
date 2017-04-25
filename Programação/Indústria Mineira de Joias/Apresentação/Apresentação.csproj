@@ -348,6 +348,18 @@
       <DependentUpon>TrackBarProporcional.cs</DependentUpon>
     </Compile>
     <Compile Include="Formulário\Exceção\ExceçãoChamadaMétodoAbstrato.cs" />
+    <Compile Include="Impressão\Relatórios\Coaf\Sumário\ControladorImpressãoSumárioCoaf.cs" />
+    <Compile Include="Impressão\Relatórios\Coaf\Sumário\DataSetSumarioCoaf.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetSumarioCoaf.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Impressão\Relatórios\Coaf\Sumário\RelatórioSumárioCoaf.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RelatórioSumárioCoaf.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Impressão\Relatórios\Fiscal\ControladorImpressãoFiscal.cs" />
     <Compile Include="Impressão\Relatórios\Fiscal\Extrato\ControladorImpressãoExtrato.cs" />
     <Compile Include="Impressão\Relatórios\Fiscal\Extrato\DataSetExtrato.cs">
@@ -2758,6 +2770,10 @@
     <EmbeddedResource Include="Formulário\ComboRígido.resx">
       <DependentUpon>ComboRígido.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Impressão\Relatórios\Coaf\Sumário\RelatórioSumárioCoaf.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RelatórioSumárioCoaf.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Impressão\Relatórios\Fiscal\Extrato\RelatórioExtrato.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RelatórioExtrato.cs</LastGenOutput>
@@ -3841,6 +3857,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="chave2.snk" />
+    <None Include="Impressão\Relatórios\Coaf\Sumário\DataSetSumarioCoaf.xsc">
+      <DependentUpon>DataSetSumarioCoaf.xsd</DependentUpon>
+    </None>
+    <None Include="Impressão\Relatórios\Coaf\Sumário\DataSetSumarioCoaf.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetSumarioCoaf.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Impressão\Relatórios\Coaf\Sumário\DataSetSumarioCoaf.xss">
+      <DependentUpon>DataSetSumarioCoaf.xsd</DependentUpon>
+    </None>
     <None Include="Impressão\Relatórios\Comissao\DataSetComissaoVenda.xsc">
       <DependentUpon>DataSetComissaoVenda.xsd</DependentUpon>
     </None>

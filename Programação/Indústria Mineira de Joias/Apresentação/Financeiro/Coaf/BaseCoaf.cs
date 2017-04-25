@@ -1,4 +1,5 @@
 ﻿using Apresentação.Formulários;
+using Apresentação.Impressão.Relatórios.Coaf.Sumário;
 using Entidades.Coaf;
 using System;
 using System.ComponentModel;
@@ -43,12 +44,10 @@ namespace Apresentação.Financeiro.Coaf
 
         private void opçãoImprimir_Click(object sender, System.EventArgs e)
         {
-            MessageBox.Show(this,
-                "Favor cadastrar\n\t* Pessoa de CNPJ 2484.0001.001/1000\n\t* Venda de nota 3212@2 de CPF 076.766.316-02" + 
-                "\n\t* Preposto de Dalmo Jóias Ltda",
-                "Vínculos Incompletos",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Asterisk);
+            JanelaImpressão janelaImpressão = new Formulários.JanelaImpressão();
+            janelaImpressão.InserirDocumento(
+                new ControladorImpressãoSumárioCoaf().CriarRelatório(), "Sumário");
+            janelaImpressão.Abrir(this);
         }
 
         private void listaPessoa_DuploClique(object sender, System.EventArgs e)

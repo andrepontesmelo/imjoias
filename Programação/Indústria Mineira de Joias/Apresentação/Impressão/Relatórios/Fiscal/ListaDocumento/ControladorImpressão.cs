@@ -59,7 +59,7 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.ListaDocumento
 
         private DataRow CriarDocumento(DataTable tabelaDocumento, Fechamento fechamento, bool entradas)
         {
-            var linha = CriarDocumento(tabelaDocumento);
+            var linha = CriarLinhaDocumento(tabelaDocumento);
 
             linha["título"] = entradas ? "REGISTRO DE ENTRADAS" : "REGISTRO DE SAÍDAS";
             linha["fechamento"] = string.Format("DE: {0} ATÉ: {1}", fechamento.Início.ToShortDateString(),

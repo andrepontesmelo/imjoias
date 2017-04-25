@@ -123,7 +123,6 @@
             this.opçãoImprimir.Name = "opçãoImprimir";
             this.opçãoImprimir.Size = new System.Drawing.Size(150, 18);
             this.opçãoImprimir.TabIndex = 8;
-            this.opçãoImprimir.Visible = false;
             this.opçãoImprimir.Click += new System.EventHandler(this.opçãoImprimir_Click);
             // 
             // opçãoConfigurar

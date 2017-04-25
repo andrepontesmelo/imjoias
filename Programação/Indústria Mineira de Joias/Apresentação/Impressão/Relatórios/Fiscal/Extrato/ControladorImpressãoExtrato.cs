@@ -40,7 +40,7 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Extrato
 
         private DataRow CriarDocumento(DataTable tabelaDocumento, DateTime dataInicial, DateTime dataFinal, int páginaInicial)
         {
-            var linha = CriarDocumento(tabelaDocumento);
+            var linha = CriarLinhaDocumento(tabelaDocumento);
             linha["dataInicial"] = dataInicial.ToShortDateString();
             linha["dataFinal"] = dataFinal.ToShortDateString();
             linha["primeiraFolha"] = páginaInicial;

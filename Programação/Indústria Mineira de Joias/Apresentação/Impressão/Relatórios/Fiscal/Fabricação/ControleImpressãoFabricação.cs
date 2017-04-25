@@ -47,7 +47,7 @@ namespace Apresentação.Impressão.Relatórios.Fiscal.Fabricação
 
         private DataRow CriarDocumento(DataTable tabelaDocumento, FabricaçãoFiscal entidade)
         {
-            var linha = CriarDocumento(tabelaDocumento);
+            var linha = CriarLinhaDocumento(tabelaDocumento);
             linha["data"] = entidade.DataFormatada;
             linha["código"] = entidade.Código;
 
