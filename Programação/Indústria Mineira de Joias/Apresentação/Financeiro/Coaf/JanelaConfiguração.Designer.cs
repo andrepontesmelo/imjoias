@@ -39,7 +39,7 @@ namespace Apresentação.Financeiro.Coaf
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
             this.grupoPeríodo = new System.Windows.Forms.GroupBox();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.lnkAjustarDataÚltimosMeses = new System.Windows.Forms.LinkLabel();
             this.label7 = new System.Windows.Forms.Label();
             this.dataFim = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
@@ -53,6 +53,7 @@ namespace Apresentação.Financeiro.Coaf
             this.txtVerificaçãoPEP = new AMS.TextBox.CurrencyTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picÍcone)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.grupoPeríodo.SuspendLayout();
@@ -161,7 +162,8 @@ namespace Apresentação.Financeiro.Coaf
             // 
             this.grupoPeríodo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.grupoPeríodo.Controls.Add(this.linkLabel1);
+            this.grupoPeríodo.Controls.Add(this.label8);
+            this.grupoPeríodo.Controls.Add(this.lnkAjustarDataÚltimosMeses);
             this.grupoPeríodo.Controls.Add(this.label7);
             this.grupoPeríodo.Controls.Add(this.dataFim);
             this.grupoPeríodo.Controls.Add(this.label6);
@@ -175,16 +177,16 @@ namespace Apresentação.Financeiro.Coaf
             this.grupoPeríodo.TabStop = false;
             this.grupoPeríodo.Text = "Data de Apuração";
             // 
-            // linkLabel1
+            // lnkAjustarDataÚltimosMeses
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(10, 90);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(91, 13);
-            this.linkLabel1.TabIndex = 6;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Ajustar p/ últimos ";
-            this.linkLabel1.Visible = false;
+            this.lnkAjustarDataÚltimosMeses.AutoSize = true;
+            this.lnkAjustarDataÚltimosMeses.Location = new System.Drawing.Point(10, 90);
+            this.lnkAjustarDataÚltimosMeses.Name = "lnkAjustarDataÚltimosMeses";
+            this.lnkAjustarDataÚltimosMeses.Size = new System.Drawing.Size(39, 13);
+            this.lnkAjustarDataÚltimosMeses.TabIndex = 6;
+            this.lnkAjustarDataÚltimosMeses.TabStop = true;
+            this.lnkAjustarDataÚltimosMeses.Text = "Ajustar";
+            this.lnkAjustarDataÚltimosMeses.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkAjustarDataÚltimosMeses_LinkClicked);
             // 
             // label7
             // 
@@ -223,16 +225,15 @@ namespace Apresentação.Financeiro.Coaf
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(149, 91);
+            this.label3.Location = new System.Drawing.Point(167, 91);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(40, 13);
             this.label3.TabIndex = 1;
             this.label3.Text = "meses.";
-            this.label3.Visible = false;
             // 
             // txtMeses
             // 
-            this.txtMeses.Location = new System.Drawing.Point(108, 88);
+            this.txtMeses.Location = new System.Drawing.Point(131, 88);
             this.txtMeses.Name = "txtMeses";
             this.txtMeses.Size = new System.Drawing.Size(35, 20);
             this.txtMeses.TabIndex = 0;
@@ -241,7 +242,6 @@ namespace Apresentação.Financeiro.Coaf
             0,
             0,
             0});
-            this.txtMeses.Visible = false;
             this.txtMeses.ValueChanged += new System.EventHandler(this.txtMeses_ValueChanged);
             // 
             // btnRestaurarPadrão
@@ -328,6 +328,15 @@ namespace Apresentação.Financeiro.Coaf
             this.label5.TabIndex = 13;
             this.label5.Text = "PEP:";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(45, 90);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(85, 13);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "datas p/ últimos ";
+            // 
             // JanelaConfiguração
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -379,10 +388,11 @@ namespace Apresentação.Financeiro.Coaf
         private AMS.TextBox.CurrencyTextBox txtVerificaçãoPEP;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.LinkLabel lnkAjustarDataÚltimosMeses;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DateTimePicker dataFim;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DateTimePicker dataInício;
+        private System.Windows.Forms.Label label8;
     }
 }

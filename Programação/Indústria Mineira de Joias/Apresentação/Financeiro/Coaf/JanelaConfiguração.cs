@@ -89,5 +89,11 @@ namespace Apresentação.Financeiro.Coaf
         {
             trackBarVerificação.Definir(txtVerificaçãoDemaisPessoas.Double, txtNotificaçãoDemaisPessoas.Double);
         }
+
+        private void lnkAjustarDataÚltimosMeses_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+        {
+            dataFim.Value = DateTime.Today;
+            dataInício.Value = DateTime.Today.AddMonths(-1 * (int)txtMeses.Value);
+        }
     }
 }
