@@ -622,6 +622,10 @@ namespace Apresentação.Impressão.Relatórios.Coaf.Sumário {
             
             private global::System.Data.DataColumn columnpendências;
             
+            private global::System.Data.DataColumn columnnotificável;
+            
+            private global::System.Data.DataColumn columncargoPep;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public PessoasDataTable() {
@@ -705,6 +709,22 @@ namespace Apresentação.Impressão.Relatórios.Coaf.Sumário {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn notificávelColumn {
+                get {
+                    return this.columnnotificável;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn cargoPepColumn {
+                get {
+                    return this.columncargoPep;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -740,7 +760,7 @@ namespace Apresentação.Impressão.Relatórios.Coaf.Sumário {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PessoasRow AddPessoasRow(string código, string nome, string pep, string cpfCnpj, string valorAcumulado, string pendências) {
+            public PessoasRow AddPessoasRow(string código, string nome, bool pep, string cpfCnpj, string valorAcumulado, string pendências, bool notificável, string cargoPep) {
                 PessoasRow rowPessoasRow = ((PessoasRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         código,
@@ -748,7 +768,9 @@ namespace Apresentação.Impressão.Relatórios.Coaf.Sumário {
                         pep,
                         cpfCnpj,
                         valorAcumulado,
-                        pendências};
+                        pendências,
+                        notificável,
+                        cargoPep};
                 rowPessoasRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowPessoasRow);
                 return rowPessoasRow;
@@ -777,6 +799,8 @@ namespace Apresentação.Impressão.Relatórios.Coaf.Sumário {
                 this.columncpfCnpj = base.Columns["cpfCnpj"];
                 this.columnvalorAcumulado = base.Columns["valorAcumulado"];
                 this.columnpendências = base.Columns["pendências"];
+                this.columnnotificável = base.Columns["notificável"];
+                this.columncargoPep = base.Columns["cargoPep"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -786,7 +810,7 @@ namespace Apresentação.Impressão.Relatórios.Coaf.Sumário {
                 base.Columns.Add(this.columncódigo);
                 this.columnnome = new global::System.Data.DataColumn("nome", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnnome);
-                this.columnpep = new global::System.Data.DataColumn("pep", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnpep = new global::System.Data.DataColumn("pep", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnpep);
                 this.columncpfCnpj = new global::System.Data.DataColumn("cpfCnpj", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncpfCnpj);
@@ -794,6 +818,10 @@ namespace Apresentação.Impressão.Relatórios.Coaf.Sumário {
                 base.Columns.Add(this.columnvalorAcumulado);
                 this.columnpendências = new global::System.Data.DataColumn("pendências", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnpendências);
+                this.columnnotificável = new global::System.Data.DataColumn("notificável", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnotificável);
+                this.columncargoPep = new global::System.Data.DataColumn("cargoPep", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncargoPep);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1342,10 +1370,10 @@ namespace Apresentação.Impressão.Relatórios.Coaf.Sumário {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string pep {
+            public bool pep {
                 get {
                     try {
-                        return ((string)(this[this.tablePessoas.pepColumn]));
+                        return ((bool)(this[this.tablePessoas.pepColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'pep\' in table \'Pessoas\' is DBNull.", e);
@@ -1401,6 +1429,38 @@ namespace Apresentação.Impressão.Relatórios.Coaf.Sumário {
                 }
                 set {
                     this[this.tablePessoas.pendênciasColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool notificável {
+                get {
+                    try {
+                        return ((bool)(this[this.tablePessoas.notificávelColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'notificável\' in table \'Pessoas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePessoas.notificávelColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string cargoPep {
+                get {
+                    try {
+                        return ((string)(this[this.tablePessoas.cargoPepColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'cargoPep\' in table \'Pessoas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePessoas.cargoPepColumn] = value;
                 }
             }
             
@@ -1474,6 +1534,30 @@ namespace Apresentação.Impressão.Relatórios.Coaf.Sumário {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetpendênciasNull() {
                 this[this.tablePessoas.pendênciasColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsnotificávelNull() {
+                return this.IsNull(this.tablePessoas.notificávelColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetnotificávelNull() {
+                this[this.tablePessoas.notificávelColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IscargoPepNull() {
+                return this.IsNull(this.tablePessoas.cargoPepColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetcargoPepNull() {
+                this[this.tablePessoas.cargoPepColumn] = global::System.Convert.DBNull;
             }
         }
         

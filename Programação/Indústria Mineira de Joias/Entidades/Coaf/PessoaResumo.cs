@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Acesso.Comum;
+using Entidades.Pessoa;
 
 namespace Entidades.Coaf
 {
@@ -33,6 +34,16 @@ namespace Entidades.Coaf
         }
 
         public PessoaExpostaPoliticamente PessoaPoliticamenteExposta => HashPessoaExpostaPoliticamente.ObterPessoa(cpfresponsavel);
+
+        public string DescriçãoPessoaExposta
+        {
+            get
+            {
+                var pep = PessoaPoliticamenteExposta;
+                return pep != null ? pep.Descrição : null;
+            }
+        }
+
         public bool PoliticamenteExposta => HashPessoaExpostaPoliticamente.PessoaÉPoliticamenteExposta(cpfresponsavel);
 
         public bool Verificável
@@ -67,7 +78,7 @@ namespace Entidades.Coaf
                     " and {0} " +
                     " and cancelada = 0 " +
                     " group by cnpjemissor " +
-                    " HAVING sum(valortotal) >= {1} ",
+                    " HAVING sum(valortotal) >= {1} order by valoracumulado desc",
                     DbDataEntre("datasaida", dataInicial, dataFinal),
                     DbTransformar(valorMínimo)
                 );

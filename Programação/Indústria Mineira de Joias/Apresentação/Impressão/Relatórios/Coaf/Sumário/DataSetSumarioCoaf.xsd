@@ -25,10 +25,12 @@
             <xs:sequence>
               <xs:element name="código" msprop:Generator_ColumnVarNameInTable="columncódigo" msprop:Generator_ColumnPropNameInRow="código" msprop:Generator_ColumnPropNameInTable="códigoColumn" msprop:Generator_UserColumnName="código" type="xs:string" minOccurs="0" />
               <xs:element name="nome" msprop:Generator_ColumnVarNameInTable="columnnome" msprop:Generator_ColumnPropNameInRow="nome" msprop:Generator_ColumnPropNameInTable="nomeColumn" msprop:Generator_UserColumnName="nome" type="xs:string" minOccurs="0" />
-              <xs:element name="pep" msprop:Generator_ColumnVarNameInTable="columnpep" msprop:Generator_ColumnPropNameInRow="pep" msprop:Generator_ColumnPropNameInTable="pepColumn" msprop:Generator_UserColumnName="pep" type="xs:string" minOccurs="0" />
+              <xs:element name="pep" msprop:Generator_ColumnVarNameInTable="columnpep" msprop:Generator_ColumnPropNameInRow="pep" msprop:Generator_ColumnPropNameInTable="pepColumn" msprop:Generator_UserColumnName="pep" type="xs:boolean" minOccurs="0" />
               <xs:element name="cpfCnpj" msprop:Generator_ColumnVarNameInTable="columncpfCnpj" msprop:Generator_ColumnPropNameInRow="cpfCnpj" msprop:Generator_ColumnPropNameInTable="cpfCnpjColumn" msprop:Generator_UserColumnName="cpfCnpj" type="xs:string" minOccurs="0" />
               <xs:element name="valorAcumulado" msprop:Generator_ColumnVarNameInTable="columnvalorAcumulado" msprop:Generator_ColumnPropNameInRow="valorAcumulado" msprop:Generator_ColumnPropNameInTable="valorAcumuladoColumn" msprop:Generator_UserColumnName="valorAcumulado" type="xs:string" minOccurs="0" />
               <xs:element name="pendências" msprop:Generator_ColumnVarNameInTable="columnpendências" msprop:Generator_ColumnPropNameInRow="pendências" msprop:Generator_ColumnPropNameInTable="pendênciasColumn" msprop:Generator_UserColumnName="pendências" type="xs:string" minOccurs="0" />
+              <xs:element name="notificável" msprop:Generator_ColumnVarNameInTable="columnnotificável" msprop:Generator_ColumnPropNameInRow="notificável" msprop:Generator_ColumnPropNameInTable="notificávelColumn" msprop:Generator_UserColumnName="notificável" type="xs:boolean" minOccurs="0" />
+              <xs:element name="cargoPep" msprop:Generator_ColumnVarNameInTable="columncargoPep" msprop:Generator_ColumnPropNameInRow="cargoPep" msprop:Generator_ColumnPropNameInTable="cargoPepColumn" msprop:Generator_UserColumnName="cargoPep" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

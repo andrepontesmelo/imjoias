@@ -117,6 +117,21 @@ namespace Entidades.Pessoa
             }
         }
 
+        public static string FormatarCpfCnpj(string cpfCnpj)
+        {
+            if (cpfCnpj == null)
+                return null;
+
+            if (PessoaFísica.ValidarCPF(cpfCnpj))
+                return PessoaFísica.Formatar(cpfCnpj);
+
+            if (PessoaJurídica.ValidarCNPJ(cpfCnpj))
+                return PessoaJurídica.FormatarCNPJ(cpfCnpj);
+
+            return cpfCnpj;
+        }
+
+
         public ulong Classificações
         {
             get { return classificações; }

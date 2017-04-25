@@ -91,7 +91,7 @@ namespace Entidades.Fiscal
             }
         }
 
-        public object CpfCnpjEmissor => cpfEmissor != null ? cpfEmissor : cnpjEmissor;
+        public string CpfCnpjEmissor => cpfEmissor != null ? cpfEmissor : cnpjEmissor;
 
         public SaídaFiscal()
         {

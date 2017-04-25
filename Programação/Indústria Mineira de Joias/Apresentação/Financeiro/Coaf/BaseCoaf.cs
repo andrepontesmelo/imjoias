@@ -60,7 +60,7 @@ namespace Apresentação.Financeiro.Coaf
         {
             uint? pessoa = listaPessoa.ObterPessoaSelecionada();
 
-            if (pessoa.HasValue)
+            if (pessoa.HasValue && pessoa.Value != 0)
                 SubstituirBase(new Apresentação.Atendimento.BaseAtendimento(
                     Entidades.Pessoa.Pessoa.ObterPessoa(pessoa.Value)));
         }

@@ -46,14 +46,17 @@ namespace Apresentação.Impressão.Relatórios.Coaf.Sumário
         {
             var tabelaPessoa = dataset.Tables["Pessoas"];
             foreach (PessoaResumo pessoa in pessoas)
-                tabelaPessoa.Rows.Add(CriarPessoa(tabelaPessoa, pessoa));
+            {
+                if (pessoa.Verificável)
+                    tabelaPessoa.Rows.Add(CriarPessoa(tabelaPessoa, pessoa));
+            }
         }
 
         private void PreencherInformaçõesGerais()
         {
             var linhaInfo = dataset.Tables["Informações"].NewRow();
             linhaInfo["dataInicio"] = ConfiguraçõesCoaf.Instância.DataInício.Valor.ToShortDateString();
-            linhaInfo["dataFim"] = ConfiguraçõesCoaf.Instância.DataFim.Valor.ToShortDateString(); ;
+            linhaInfo["dataFim"] = ConfiguraçõesCoaf.Instância.DataFim.Valor.ToShortDateString();
             dataset.Tables["Informações"].Rows.Add(linhaInfo);
         }
 
@@ -61,10 +64,10 @@ namespace Apresentação.Impressão.Relatórios.Coaf.Sumário
         {
             var linhaSaída = tabelaSaídas.NewRow();
             linhaSaída["id"] = saída.Id;
-            linhaSaída["data"] = saída.DataSaída;
-            linhaSaída["valorTotal"] = saída.ValorTotal;
+            linhaSaída["data"] = saída.DataSaída.ToShortDateString();
+            linhaSaída["valorTotal"] = saída.ValorTotal.ToString("C");
             linhaSaída["códigoVenda"] = saída.Venda;
-            linhaSaída["cpfCnpj"] = saída.CpfCnpjEmissor;
+            linhaSaída["cpfCnpj"] = Entidades.Pessoa.Pessoa.FormatarCpfCnpj(saída.CpfCnpjEmissor);
 
             return linhaSaída;
         }
@@ -75,18 +78,20 @@ namespace Apresentação.Impressão.Relatórios.Coaf.Sumário
             if (pessoa.Código != 0)
             {
                 linhaPessoa["código"] = pessoa.Código;
-                linhaPessoa["nome"] = pessoa.Nome;
-                linhaPessoa["pep"] = pessoa.PessoaPoliticamenteExposta;
+                linhaPessoa["nome"] = pessoa.Nome.ToUpper();
+                linhaPessoa["pep"] = pessoa.PoliticamenteExposta;
+                linhaPessoa["cargoPep"] = pessoa.DescriçãoPessoaExposta == null ? null : 
+                    "PEP: " + pessoa.DescriçãoPessoaExposta;
 
                 InconsistênciaPessoa inconsistência;
                 if (hashInconsistências.TryGetValue(pessoa.Código, out inconsistência))
                     linhaPessoa["pendências"] = inconsistência.Concatenar();
             }
             else
-                linhaPessoa["nome"] = "Pessoa sem cadastro";
+                linhaPessoa["nome"] = "<< PESSOA SEM CADASTRO >>";
 
-            linhaPessoa["cpfCnpj"] = pessoa.CpfCnpj;
-            linhaPessoa["valorAcumulado"] = pessoa.ValorAcumulado;
+            linhaPessoa["cpfCnpj"] = Entidades.Pessoa.Pessoa.FormatarCpfCnpj(pessoa.CpfCnpj);
+            linhaPessoa["valorAcumulado"] = pessoa.ValorAcumulado.ToString("C");
             return linhaPessoa;
         }
     }
