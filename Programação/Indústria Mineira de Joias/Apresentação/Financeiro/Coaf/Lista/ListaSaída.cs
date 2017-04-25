@@ -37,10 +37,10 @@ namespace Apresentação.Financeiro.Coaf.Lista
         }
 
 
-        public void Carregar(string cpfCnpj)
+        public void Carregar(string cpfCnpj, DateTime início, DateTime fim)
         {
             lista.Items.Clear();
-            var saídas = SaídaFiscal.Obter(cpfCnpj);
+            var saídas = SaídaFiscal.Obter(cpfCnpj, início, fim);
             decimal total = ObterTotal(saídas);
 
             lista.Items.AddRange(CriarItens(saídas));

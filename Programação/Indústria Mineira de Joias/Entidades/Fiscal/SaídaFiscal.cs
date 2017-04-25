@@ -242,14 +242,14 @@ namespace Entidades.Fiscal
             itens = new List<ItemFiscal>(SaídaItemFiscal.CarregarItens(id));
         }
 
-        public static List<SaídaFiscal> Obter(string cpfCnpj)
+        public static List<SaídaFiscal> Obter(string cpfCnpj, DateTime início, DateTime fim)
         {
-            string sql = "select * from saidafiscal where ";
             bool cpf = cpfCnpj.Length == 11;
 
-            sql += cpf ? "cpfemissor" : "cnpjemissor";
-
-            sql += " = " + DbTransformar(cpfCnpj);
+            string sql = string.Format("select * from saidafiscal WHERE {0}={1} AND {2}",
+                cpf ? "cpfemissor" : "cnpjemissor",
+                DbTransformar(cpfCnpj),
+                DbDataEntre("datasaida", início, fim));
 
             return Mapear<SaídaFiscal>(sql);
         }

@@ -339,9 +339,14 @@ namespace Acesso.Comum
             }
         }
 
+        protected static DateTime RemoverHorário(DateTime data)
+        {
+            return new DateTime(data.Year, data.Month, data.Day);
+        }
+
         protected static string DbDataEntre(string nomeAtributo, DateTime dataInicial, DateTime dataFinal)
         {
-            DateTime novaDataFinal = new DateTime(dataFinal.Year, dataFinal.Month, dataFinal.Day);
+            DateTime novaDataFinal = RemoverHorário(dataFinal);
             novaDataFinal = novaDataFinal.AddDays(1);
 
             return string.Format("{0} >= {1} and {0} < {2}",

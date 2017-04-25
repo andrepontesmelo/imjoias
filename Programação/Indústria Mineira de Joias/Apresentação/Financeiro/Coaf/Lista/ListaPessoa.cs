@@ -85,7 +85,7 @@ namespace Apresentação.Financeiro.Coaf.Lista
             }
 
             return resultado;
-        }
+            }
 
         private string ConcatenarInconsistências(Dictionary<uint, InconsistênciaPessoa> inconsistências, uint código)
         {
@@ -110,12 +110,10 @@ namespace Apresentação.Financeiro.Coaf.Lista
 
         private List<PessoaResumo> ObterEntidades()
         {
-            int meses = ConfiguraçõesCoaf.Instância.QtdMeses;
-            var agora = DadosGlobais.Instância.HoraDataAtual;
-            var início = agora.AddMonths(-1 * meses);
-
-            return PessoaResumo.Obter(início, ConfiguraçõesCoaf.Instância.ValorMínimoLimiar);
-        }
+            return PessoaResumo.Obter(ConfiguraçõesCoaf.Instância.DataInício, 
+                ConfiguraçõesCoaf.Instância.DataFim,
+                ConfiguraçõesCoaf.Instância.ValorMínimoLimiar);
+            }
 
         private void lista_SelectedIndexChanged(object sender, EventArgs e)
         {

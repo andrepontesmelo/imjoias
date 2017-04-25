@@ -1,4 +1,5 @@
 ﻿using Apresentação.Formulários;
+using Entidades.Coaf;
 using System;
 using System.ComponentModel;
 using System.Windows.Forms;
@@ -101,9 +102,10 @@ namespace Apresentação.Financeiro.Coaf
         private void listaPessoa_SeleçãoAlterada(object sender, System.EventArgs e)
         {
             string pessoa = listaPessoa.ObterCpfCnpjPessoaSelecionada();
+            var configuração = ConfiguraçõesCoaf.Instância;
 
             if (pessoa != null)
-                listaSaída.Carregar(pessoa);
+                listaSaída.Carregar(pessoa, configuração.DataInício.Valor, configuração.DataFim.Valor);
         }
     }
 }

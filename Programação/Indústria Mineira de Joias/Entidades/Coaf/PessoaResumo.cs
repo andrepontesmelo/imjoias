@@ -1,6 +1,6 @@
-﻿using Acesso.Comum;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Acesso.Comum;
 
 namespace Entidades.Coaf
 {
@@ -12,9 +12,7 @@ namespace Entidades.Coaf
         private string cpfresponsavel;
         private decimal valoracumulado;
 
-        public PessoaResumo()
-        {
-        }
+        public PessoaResumo() { }
 
         public uint Código => codigo;
         public string Nome => nome;
@@ -27,8 +25,8 @@ namespace Entidades.Coaf
             get
             {
                 var configuração = ConfiguraçõesCoaf.Instância;
-                decimal valorMínimo = PoliticamenteExposta ? 
-                    configuração.LimiarNotificaçãoPessoaExpostaPoliticamente.Valor : 
+                decimal valorMínimo = PoliticamenteExposta ?
+                    configuração.LimiarNotificaçãoPessoaExpostaPoliticamente.Valor :
                     configuração.LimiarNotificaçãoDemaisPessoas.Valor;
                 return (ValorAcumulado >= valorMínimo);
             }
@@ -48,27 +46,31 @@ namespace Entidades.Coaf
             }
         }
 
-        public static List<PessoaResumo> Obter(DateTime dataInicial, decimal valorMínimo)
+        public static List<PessoaResumo> Obter(DateTime dataInicial, DateTime dataFinal, decimal valorMínimo)
         {
+            dataInicial = RemoverHorário(dataInicial);
+            dataFinal = RemoverHorário(dataFinal);
+
             string sql =
                 string.Format("select p.codigo, p.nome, cpfemissor as cpfcnpj, cpfemissor as cpfresponsavel, sum(valortotal) as valoracumulado from saidafiscal " +
-            " left join pessoafisica pf on pf.cpf=cpfemissor " +
-            " join pessoa p on pf.codigo=p.codigo " +
-            " where cpfemissor is not null " +
-            " and datasaida >= {0} " +
-            " and cancelada = 0 group by cpfemissor " +
-            " HAVING sum(valortotal) >= {1} " +
-            " UNION " +
-            " select p.codigo, p.nome, cnpjemissor as cpfcnpj, cpfPreposto as cpfresponsavel, sum(valortotal) as valoracumulado from saidafiscal " +
-            " left join pessoajuridica pj on pj.cnpj=cnpjemissor " +
-            " join pessoa p on pj.codigo=p.codigo " +
-            " where cnpjemissor is not null " +
-            " and datasaida >= {0} " +
-            " and cancelada = 0 " +
-            " group by cnpjemissor " +
-            " HAVING sum(valortotal) >= {1} " ,
-            DbTransformar(dataInicial), DbTransformar(valorMínimo)
-            );
+                    " left join pessoafisica pf on pf.cpf=cpfemissor " +
+                    " join pessoa p on pf.codigo=p.codigo " +
+                    " where cpfemissor is not null " +
+                    " and {0} " +
+                    " and cancelada = 0 group by cpfemissor " +
+                    " HAVING sum(valortotal) >= {1} " +
+                    " UNION " +
+                    " select p.codigo, p.nome, cnpjemissor as cpfcnpj, cpfPreposto as cpfresponsavel, sum(valortotal) as valoracumulado from saidafiscal " +
+                    " left join pessoajuridica pj on pj.cnpj=cnpjemissor " +
+                    " join pessoa p on pj.codigo=p.codigo " +
+                    " where cnpjemissor is not null " +
+                    " and {0} " +
+                    " and cancelada = 0 " +
+                    " group by cnpjemissor " +
+                    " HAVING sum(valortotal) >= {1} ",
+                    DbDataEntre("datasaida", dataInicial, dataFinal),
+                    DbTransformar(valorMínimo)
+                );
 
             return Mapear<PessoaResumo>(sql);
         }
