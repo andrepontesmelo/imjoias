@@ -26,6 +26,8 @@ namespace Apresentação.Financeiro.Coaf
             txtNotificaçãoPEP.Text = Configurações.LimiarNotificaçãoPessoaExpostaPoliticamente.Valor.ToString();
             txtVerificaçãoDemaisPessoas.Text = Configurações.LimiarVerificaçãoDemaisPessoas.Valor.ToString();
             txtVerificaçãoPEP.Text = Configurações.LimiarVerificaçãoPessoaExpostaPoliticamente.Valor.ToString();
+            dataInício.Value = Configurações.DataInício.Valor;
+            dataFim.Value = Configurações.DataFim.Valor;
 
             trackBarVerificação.Definir(Configurações.LimiarVerificaçãoDemaisPessoas.Valor,
                 Configurações.LimiarNotificaçãoDemaisPessoas.Valor);
@@ -38,6 +40,8 @@ namespace Apresentação.Financeiro.Coaf
             Configurações.LimiarNotificaçãoDemaisPessoas.Valor = (decimal) txtNotificaçãoDemaisPessoas.Double;
             Configurações.LimiarVerificaçãoPessoaExpostaPoliticamente.Valor = (decimal)txtVerificaçãoPEP.Double;
             Configurações.LimiarVerificaçãoDemaisPessoas.Valor = (decimal)txtVerificaçãoDemaisPessoas.Double;
+            Configurações.DataInício.Valor = dataInício.Value;
+            Configurações.DataFim.Valor = dataFim.Value;
 
             Close();
         }
@@ -59,6 +63,8 @@ namespace Apresentação.Financeiro.Coaf
             txtNotificaçãoDemaisPessoas.Double = (double)ConfiguraçõesCoaf.PADRÃO_LIMIAR_NOTIFICAÇÂO_DEMAIS;
             txtNotificaçãoPEP.Double = (double)ConfiguraçõesCoaf.PADRÃO_LIMIAR_NOTIFICAÇÂO_PEP;
             txtMeses.Value = ConfiguraçõesCoaf.PADRÃO_QTD_MESES;
+            dataInício.Value = ConfiguraçõesCoaf.PADRÃO_DATA_INÍCIO;
+            dataFim.Value = ConfiguraçõesCoaf.PADRÃO_DATA_FIM;
 
             AtualizarTrackbar();
         }
