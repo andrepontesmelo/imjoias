@@ -3,60 +3,91 @@ using Entidades.Coaf;
 using Entidades.Coaf.Inconsistência;
 using Entidades.Fiscal;
 using System.Collections.Generic;
+using System.Data;
 
 namespace Apresentação.Impressão.Relatórios.Coaf.Sumário
 {
     public class ControladorImpressãoSumárioCoaf
     {
-        internal ReportClass CriarRelatório(List<PessoaResumo> pessoas, List<SaídaFiscal> saídas,
-            Dictionary<uint, InconsistênciaPessoa> hashInconsistências)
-        {
-            Entidades.Coaf.Inconsistência.InconsistênciaPessoa.ObterInconsistências();
-            var relatório = new RelatórioSumárioCoaf();
-            var dataset = new DataSetSumarioCoaf();
-            relatório.SetDataSource(dataset);
+        private Dictionary<uint, InconsistênciaPessoa> hashInconsistências;
+        private DataSetSumarioCoaf dataset;
 
+        public ControladorImpressãoSumárioCoaf(Dictionary<uint, InconsistênciaPessoa> hashInconsistências)
+        {
+            this.hashInconsistências = hashInconsistências;
+        }
+
+        internal ReportClass CriarRelatório(List<PessoaResumo> pessoas, List<SaídaFiscal> saídas)
+        {
+            var relatório = new RelatórioSumárioCoaf();
+
+            CriarDataSet(relatório);
+            PreencherInformaçõesGerais();
+            PreencherPessoas(pessoas);
+            PreencherSaídas(saídas);
+
+            return relatório;
+        }
+
+        private void CriarDataSet(RelatórioSumárioCoaf relatório)
+        {
+            dataset = new DataSetSumarioCoaf();
+            relatório.SetDataSource(dataset);
+        }
+
+        private void PreencherSaídas(List<SaídaFiscal> saídas)
+        {
+            var tabelaSaídas = dataset.Tables["Saídas"];
+            foreach (SaídaFiscal saída in saídas)
+                tabelaSaídas.Rows.Add(ObterSaída(tabelaSaídas, saída));
+        }
+
+        private void PreencherPessoas(List<PessoaResumo> pessoas)
+        {
+            var tabelaPessoa = dataset.Tables["Pessoas"];
+            foreach (PessoaResumo pessoa in pessoas)
+                tabelaPessoa.Rows.Add(CriarPessoa(tabelaPessoa, pessoa));
+        }
+
+        private void PreencherInformaçõesGerais()
+        {
             var linhaInfo = dataset.Tables["Informações"].NewRow();
             linhaInfo["dataInicio"] = ConfiguraçõesCoaf.Instância.DataInício.Valor.ToShortDateString();
             linhaInfo["dataFim"] = ConfiguraçõesCoaf.Instância.DataFim.Valor.ToShortDateString(); ;
             dataset.Tables["Informações"].Rows.Add(linhaInfo);
+        }
 
-            var tabelaPessoa = dataset.Tables["Pessoas"];
-            foreach (PessoaResumo pessoa in pessoas)
+        private static DataRow ObterSaída(DataTable tabelaSaídas, SaídaFiscal saída)
+        {
+            var linhaSaída = tabelaSaídas.NewRow();
+            linhaSaída["id"] = saída.Id;
+            linhaSaída["data"] = saída.DataSaída;
+            linhaSaída["valorTotal"] = saída.ValorTotal;
+            linhaSaída["códigoVenda"] = saída.Venda;
+            linhaSaída["cpfCnpj"] = saída.CpfCnpjEmissor;
+
+            return linhaSaída;
+        }
+
+        private DataRow CriarPessoa(DataTable tabelaPessoa, PessoaResumo pessoa)
+        {
+            var linhaPessoa = tabelaPessoa.NewRow();
+            if (pessoa.Código != 0)
             {
-                var linhaPessoa = tabelaPessoa.NewRow();
-                if (pessoa.Código != 0)
-                {
-                    linhaPessoa["código"] = pessoa.Código;
-                    linhaPessoa["nome"] = pessoa.Nome;
-                    linhaPessoa["pep"] = pessoa.PessoaPoliticamenteExposta;
+                linhaPessoa["código"] = pessoa.Código;
+                linhaPessoa["nome"] = pessoa.Nome;
+                linhaPessoa["pep"] = pessoa.PessoaPoliticamenteExposta;
 
-                    InconsistênciaPessoa inconsistência;
-                    if (hashInconsistências.TryGetValue(pessoa.Código, out inconsistência))
-                        linhaPessoa["pendências"] = inconsistência.Concatenar();
-                } else
-                    linhaPessoa["nome"] = "Pessoa sem cadastro";
-
-                linhaPessoa["cpfCnpj"] = pessoa.CpfCnpj;
-                linhaPessoa["valorAcumulado"] = pessoa.ValorAcumulado;
-                
-                tabelaPessoa.Rows.Add(linhaPessoa);
+                InconsistênciaPessoa inconsistência;
+                if (hashInconsistências.TryGetValue(pessoa.Código, out inconsistência))
+                    linhaPessoa["pendências"] = inconsistência.Concatenar();
             }
+            else
+                linhaPessoa["nome"] = "Pessoa sem cadastro";
 
-            var tabelaSaídas = dataset.Tables["Saídas"];
-
-            foreach (SaídaFiscal saída in saídas) 
-            {
-                var linhaSaída = tabelaSaídas.NewRow();
-                linhaSaída["id"] = saída.Id;
-                linhaSaída["data"] = saída.DataSaída;
-                linhaSaída["valorTotal"] = saída.ValorTotal;
-                linhaSaída["códigoVenda"] = saída.Venda;
-                linhaSaída["cpfCnpj"] = saída.CpfCnpjEmissor;
-                tabelaSaídas.Rows.Add(linhaSaída);
-            }
-
-            return relatório;
+            linhaPessoa["cpfCnpj"] = pessoa.CpfCnpj;
+            linhaPessoa["valorAcumulado"] = pessoa.ValorAcumulado;
+            return linhaPessoa;
         }
     }
 }

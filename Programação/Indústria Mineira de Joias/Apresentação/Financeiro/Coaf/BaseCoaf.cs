@@ -46,14 +46,13 @@ namespace Apresentação.Financeiro.Coaf
 
         private void opçãoImprimir_Click(object sender, System.EventArgs e)
         {
-
             var pessoas = PessoaResumo.Obter();
             var saídas = SaídaFiscal.Obter();
             var inconsistênicas = InconsistênciaPessoa.ObterInconsistências();
 
             JanelaImpressão janelaImpressão = new JanelaImpressão();
-            janelaImpressão.InserirDocumento(
-                new ControladorImpressãoSumárioCoaf().CriarRelatório(pessoas, saídas, inconsistênicas), "Sumário");
+            var relatório = new ControladorImpressãoSumárioCoaf(inconsistênicas).CriarRelatório(pessoas, saídas);
+            janelaImpressão.InserirDocumento(relatório, "Sumário");
             janelaImpressão.Abrir(this);
         }
 
