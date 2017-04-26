@@ -1,7 +1,6 @@
 ﻿using Entidades.Coaf;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using System;
 
 namespace Apresentação.Financeiro.Coaf.Notificações
 {
@@ -10,6 +9,13 @@ namespace Apresentação.Financeiro.Coaf.Notificações
         public ListaNotificações()
         {
             InitializeComponent();
+            lista.ListViewItemSorter = new Formulários.ListViewColumnSorter();
+            lista.ColumnClick += Lista_ColumnClick;
+        }
+
+        private void Lista_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            ((Formulários.ListViewColumnSorter)lista.ListViewItemSorter).OnClick(lista, e);
         }
 
         public void Carregar()
