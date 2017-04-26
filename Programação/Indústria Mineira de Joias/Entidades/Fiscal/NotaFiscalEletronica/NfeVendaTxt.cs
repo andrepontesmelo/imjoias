@@ -227,10 +227,9 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
                 telefone = new Telefone();
 
             s.Write("E|");
-
-            s.Write(Cortar(cliente.Nome.Trim(), 60));
-            s.Write(" - ");
-            s.Write(cliente.Código.ToString());
+            string adicionalNome = string.Format(" - {0}", cliente.Código);
+            s.Write(Cortar(cliente.Nome.Trim(), 60 - adicionalNome.Length));
+            s.Write(adicionalNome);
             s.Write("|1|");
 
             if (jurídica != null && jurídica.InscEstadual != null)
