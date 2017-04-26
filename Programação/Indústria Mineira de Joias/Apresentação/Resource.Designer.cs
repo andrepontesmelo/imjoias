@@ -1363,6 +1363,16 @@ namespace Apresentação {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap notificacao {
+            get {
+                object obj = ResourceManager.GetObject("notificacao", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap novo {
             get {
                 object obj = ResourceManager.GetObject("novo", resourceCulture);

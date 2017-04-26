@@ -41,6 +41,8 @@
             this.split = new System.Windows.Forms.SplitContainer();
             this.listaSaída = new Apresentação.Financeiro.Coaf.Lista.ListaSaída();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.quadro2 = new Apresentação.Formulários.Quadro();
+            this.opçãoNotificação = new Apresentação.Formulários.Opção();
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
             this.tabControl.SuspendLayout();
@@ -49,13 +51,16 @@
             this.split.Panel1.SuspendLayout();
             this.split.Panel2.SuspendLayout();
             this.split.SuspendLayout();
+            this.quadro2.SuspendLayout();
             this.SuspendLayout();
             // 
             // esquerda
             // 
+            this.esquerda.Controls.Add(this.quadro2);
             this.esquerda.Controls.Add(this.quadro1);
             this.esquerda.Size = new System.Drawing.Size(187, 478);
             this.esquerda.Controls.SetChildIndex(this.quadro1, 0);
+            this.esquerda.Controls.SetChildIndex(this.quadro2, 0);
             // 
             // título
             // 
@@ -89,7 +94,7 @@
             this.quadro1.Location = new System.Drawing.Point(7, 13);
             this.quadro1.MostrarBotãoMinMax = false;
             this.quadro1.Name = "quadro1";
-            this.quadro1.Size = new System.Drawing.Size(160, 105);
+            this.quadro1.Size = new System.Drawing.Size(160, 107);
             this.quadro1.TabIndex = 7;
             this.quadro1.Tamanho = 30;
             this.quadro1.Título = "Ações";
@@ -205,6 +210,39 @@
             this.imageList1.Images.SetKeyName(0, "chamando atenção.gif");
             this.imageList1.Images.SetKeyName(1, "info.png");
             // 
+            // quadro2
+            // 
+            this.quadro2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(239)))), ((int)(((byte)(221)))));
+            this.quadro2.bInfDirArredondada = true;
+            this.quadro2.bInfEsqArredondada = true;
+            this.quadro2.bSupDirArredondada = true;
+            this.quadro2.bSupEsqArredondada = true;
+            this.quadro2.Controls.Add(this.opçãoNotificação);
+            this.quadro2.Cor = System.Drawing.Color.Black;
+            this.quadro2.FundoTítulo = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(97)))));
+            this.quadro2.LetraTítulo = System.Drawing.Color.White;
+            this.quadro2.Location = new System.Drawing.Point(7, 126);
+            this.quadro2.MostrarBotãoMinMax = false;
+            this.quadro2.Name = "quadro2";
+            this.quadro2.Size = new System.Drawing.Size(160, 53);
+            this.quadro2.TabIndex = 8;
+            this.quadro2.Tamanho = 30;
+            this.quadro2.Título = "Notificações";
+            // 
+            // opçãoNotificação
+            // 
+            this.opçãoNotificação.BackColor = System.Drawing.Color.Transparent;
+            this.opçãoNotificação.Descrição = "Notificações";
+            this.opçãoNotificação.Imagem = global::Apresentação.Resource.notificacao;
+            this.opçãoNotificação.Location = new System.Drawing.Point(7, 30);
+            this.opçãoNotificação.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.opçãoNotificação.MaximumSize = new System.Drawing.Size(150, 100);
+            this.opçãoNotificação.MinimumSize = new System.Drawing.Size(150, 16);
+            this.opçãoNotificação.Name = "opçãoNotificação";
+            this.opçãoNotificação.Size = new System.Drawing.Size(150, 16);
+            this.opçãoNotificação.TabIndex = 9;
+            this.opçãoNotificação.Click += new System.EventHandler(this.opçãoNotificação_Click);
+            // 
             // BaseCoaf
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -224,6 +262,7 @@
             this.split.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.split)).EndInit();
             this.split.ResumeLayout(false);
+            this.quadro2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -241,5 +280,7 @@
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.SplitContainer split;
         private Lista.ListaSaída listaSaída;
+        private Formulários.Quadro quadro2;
+        private Formulários.Opção opçãoNotificação;
     }
 }

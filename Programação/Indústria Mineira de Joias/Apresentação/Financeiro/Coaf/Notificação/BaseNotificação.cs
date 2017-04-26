@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace Apresentação.Financeiro.Coaf
 {
-    public partial class BaseCoaf : BaseInferior
+    public partial class BaseNotificação : BaseInferior
     {
-        public BaseCoaf()
+        public BaseNotificação()
         {
             InitializeComponent();
         }
@@ -127,11 +127,6 @@ namespace Apresentação.Financeiro.Coaf
 
             if (pessoa != null)
                 listaSaída.Carregar(pessoa, configuração.DataInício.Valor, configuração.DataFim.Valor);
-        }
-
-        private void opçãoNotificação_Click(object sender, EventArgs e)
-        {
-            SubstituirBase(new BaseNotificação());
         }
     }
 }

@@ -334,6 +334,12 @@
     <Compile Include="Financeiro\Coaf\Lista\ListaNotificações.Designer.cs">
       <DependentUpon>ListaNotificações.cs</DependentUpon>
     </Compile>
+    <Compile Include="Financeiro\Coaf\Notificação\BaseNotificação.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Financeiro\Coaf\Notificação\BaseNotificação.Designer.cs">
+      <DependentUpon>BaseNotificação.cs</DependentUpon>
+    </Compile>
     <Compile Include="Financeiro\Relacionamento\Venda\Semáforo\ConfiguraçãoMarcaçãoSemáforo.cs" />
     <Compile Include="Formulário\ComboRígido.cs">
       <SubType>Component</SubType>
@@ -2763,6 +2769,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Financeiro\Coaf\Lista\ListaNotificações.resx">
       <DependentUpon>ListaNotificações.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Financeiro\Coaf\Notificação\BaseNotificação.resx">
+      <DependentUpon>BaseNotificação.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Financeiro\Relacionamento\Impressão.resx">
       <DependentUpon>Impressão.cs</DependentUpon>
@@ -5796,6 +5805,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Administrativo\IntegraçãoSistemaAntigo\App.ico" />
+    <None Include="Resources\notificacao.png" />
     <None Include="Resources\Logo-COAF.png" />
     <None Include="Resources\ficha.png" />
     <None Include="Resources\opçãoCarregarPDF.Imagem1.png" />
