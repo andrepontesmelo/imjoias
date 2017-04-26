@@ -28,20 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Sem Notificação");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "1",
-            "2007-01-01"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
-            "2",
-            "2007-06-01"}, -1);
+            "01/01/2015",
+            "Joalheria CentOS Ltda",
+            "1/1/98",
+            "1/10/2015",
+            "R$ 100.000,00"}, -1);
             this.lista = new System.Windows.Forms.ListView();
             this.colNotificação = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colDataEnvio = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colData = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnAdicionar = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.btnEditar = new System.Windows.Forms.ToolStripButton();
+            this.colNome = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colInício = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colFim = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colValor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,15 +56,17 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lista.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colNotificação,
-            this.colDataEnvio});
+            this.colData,
+            this.colNome,
+            this.colInício,
+            this.colFim,
+            this.colValor});
             this.lista.FullRowSelect = true;
             this.lista.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3});
-            this.lista.Location = new System.Drawing.Point(0, 28);
+            listViewItem1});
+            this.lista.Location = new System.Drawing.Point(3, 25);
             this.lista.Name = "lista";
-            this.lista.Size = new System.Drawing.Size(545, 304);
+            this.lista.Size = new System.Drawing.Size(539, 318);
             this.lista.TabIndex = 0;
             this.lista.UseCompatibleStateImageBehavior = false;
             this.lista.View = System.Windows.Forms.View.Details;
@@ -68,12 +74,12 @@
             // colNotificação
             // 
             this.colNotificação.Text = "Notificação";
-            this.colNotificação.Width = 159;
+            this.colNotificação.Width = 83;
             // 
-            // colDataEnvio
+            // colData
             // 
-            this.colDataEnvio.Text = "Data do envio";
-            this.colDataEnvio.Width = 203;
+            this.colData.Text = "Data";
+            this.colData.Width = 77;
             // 
             // toolStrip1
             // 
@@ -114,6 +120,26 @@
             this.btnEditar.Size = new System.Drawing.Size(23, 22);
             this.btnEditar.Text = "Editar";
             // 
+            // colNome
+            // 
+            this.colNome.Text = "Nome";
+            this.colNome.Width = 141;
+            // 
+            // colInício
+            // 
+            this.colInício.Text = "Início";
+            this.colInício.Width = 89;
+            // 
+            // colFim
+            // 
+            this.colFim.Text = "Fim";
+            this.colFim.Width = 86;
+            // 
+            // colValor
+            // 
+            this.colValor.Text = "Valor";
+            this.colValor.Width = 85;
+            // 
             // ListaNotificações
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -121,7 +147,7 @@
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.lista);
             this.Name = "ListaNotificações";
-            this.Size = new System.Drawing.Size(545, 332);
+            this.Size = new System.Drawing.Size(545, 346);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -133,10 +159,14 @@
 
         private System.Windows.Forms.ListView lista;
         private System.Windows.Forms.ColumnHeader colNotificação;
-        private System.Windows.Forms.ColumnHeader colDataEnvio;
+        private System.Windows.Forms.ColumnHeader colData;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton btnAdicionar;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.ToolStripButton btnEditar;
+        private System.Windows.Forms.ColumnHeader colNome;
+        private System.Windows.Forms.ColumnHeader colInício;
+        private System.Windows.Forms.ColumnHeader colFim;
+        private System.Windows.Forms.ColumnHeader colValor;
     }
 }
