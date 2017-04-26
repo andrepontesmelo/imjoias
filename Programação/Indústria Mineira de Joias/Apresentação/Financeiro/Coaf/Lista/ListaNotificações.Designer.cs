@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
             "1",
             "01/01/2015",
             "Joalheria CentOS Ltda",
@@ -38,14 +38,15 @@
             this.lista = new System.Windows.Forms.ListView();
             this.colNotificação = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colData = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.btnAdicionar = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.btnEditar = new System.Windows.Forms.ToolStripButton();
             this.colNome = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colInício = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colFim = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colValor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnAdicionar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.btnEditar = new System.Windows.Forms.ToolStripButton();
+            this.bgNotificações = new System.ComponentModel.BackgroundWorker();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,7 +64,7 @@
             this.colValor});
             this.lista.FullRowSelect = true;
             this.lista.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem3});
             this.lista.Location = new System.Drawing.Point(3, 25);
             this.lista.Name = "lista";
             this.lista.Size = new System.Drawing.Size(539, 318);
@@ -80,6 +81,26 @@
             // 
             this.colData.Text = "Data";
             this.colData.Width = 77;
+            // 
+            // colNome
+            // 
+            this.colNome.Text = "Nome";
+            this.colNome.Width = 141;
+            // 
+            // colInício
+            // 
+            this.colInício.Text = "Início";
+            this.colInício.Width = 89;
+            // 
+            // colFim
+            // 
+            this.colFim.Text = "Fim";
+            this.colFim.Width = 86;
+            // 
+            // colValor
+            // 
+            this.colValor.Text = "Valor";
+            this.colValor.Width = 85;
             // 
             // toolStrip1
             // 
@@ -120,25 +141,10 @@
             this.btnEditar.Size = new System.Drawing.Size(23, 22);
             this.btnEditar.Text = "Editar";
             // 
-            // colNome
+            // bgNotificações
             // 
-            this.colNome.Text = "Nome";
-            this.colNome.Width = 141;
-            // 
-            // colInício
-            // 
-            this.colInício.Text = "Início";
-            this.colInício.Width = 89;
-            // 
-            // colFim
-            // 
-            this.colFim.Text = "Fim";
-            this.colFim.Width = 86;
-            // 
-            // colValor
-            // 
-            this.colValor.Text = "Valor";
-            this.colValor.Width = 85;
+            this.bgNotificações.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgNotificações_DoWork);
+            this.bgNotificações.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgNotificações_RunWorkerCompleted);
             // 
             // ListaNotificações
             // 
@@ -168,5 +174,6 @@
         private System.Windows.Forms.ColumnHeader colInício;
         private System.Windows.Forms.ColumnHeader colFim;
         private System.Windows.Forms.ColumnHeader colValor;
+        private System.ComponentModel.BackgroundWorker bgNotificações;
     }
 }

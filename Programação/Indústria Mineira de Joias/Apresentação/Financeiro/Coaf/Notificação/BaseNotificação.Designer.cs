@@ -32,7 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseNotificação));
             this.título = new Apresentação.Formulários.TítuloBaseInferior();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.listaNotificações1 = new Apresentação.Financeiro.Coaf.Notificações.ListaNotificações();
+            this.listaNotificações = new Apresentação.Financeiro.Coaf.Notificações.ListaNotificações();
             this.listaSaída1 = new Apresentação.Financeiro.Coaf.Lista.ListaSaída();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -86,11 +86,11 @@
             // 
             // listaNotificações1
             // 
-            this.listaNotificações1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listaNotificações1.Location = new System.Drawing.Point(0, 0);
-            this.listaNotificações1.Name = "listaNotificações1";
-            this.listaNotificações1.Size = new System.Drawing.Size(705, 199);
-            this.listaNotificações1.TabIndex = 7;
+            this.listaNotificações.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listaNotificações.Location = new System.Drawing.Point(0, 0);
+            this.listaNotificações.Name = "listaNotificações1";
+            this.listaNotificações.Size = new System.Drawing.Size(705, 199);
+            this.listaNotificações.TabIndex = 7;
             // 
             // listaSaída1
             // 
@@ -111,7 +111,7 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.listaNotificações1);
+            this.splitContainer1.Panel1.Controls.Add(this.listaNotificações);
             // 
             // splitContainer1.Panel2
             // 
@@ -321,7 +321,7 @@
         #endregion
         private Formulários.TítuloBaseInferior título;
         private System.Windows.Forms.ImageList imageList1;
-        private Notificações.ListaNotificações listaNotificações1;
+        private Notificações.ListaNotificações listaNotificações;
         private Lista.ListaSaída listaSaída1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.GroupBox groupBox1;

@@ -9,9 +9,11 @@ namespace Apresentação.Financeiro.Coaf
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, System.EventArgs e)
+        protected override void AoExibir()
         {
+            base.AoExibir();
 
+            listaNotificações.Carregar();
         }
     }
 }

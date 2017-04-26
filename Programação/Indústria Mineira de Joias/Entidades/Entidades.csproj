@@ -210,6 +210,7 @@
     <Compile Include="Coaf\Inconsistência\EnumInconsistência.cs" />
     <Compile Include="Coaf\Inconsistência\InconsistênciaPessoa.cs" />
     <Compile Include="Coaf\Inconsistência\PessoaMotivo.cs" />
+    <Compile Include="Coaf\Notificação.cs" />
     <Compile Include="Coaf\PessoaExpostaPoliticamente.cs" />
     <Compile Include="Coaf\PessoaResumo.cs" />
     <Compile Include="Comissão\ComissaoValor.cs" />
