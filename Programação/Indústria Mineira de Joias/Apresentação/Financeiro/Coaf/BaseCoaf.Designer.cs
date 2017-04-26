@@ -40,8 +40,6 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.split = new System.Windows.Forms.SplitContainer();
             this.listaSaída = new Apresentação.Financeiro.Coaf.Lista.ListaSaída();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.listaNotificações1 = new Apresentação.Financeiro.Coaf.Notificações.ListaNotificações();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.esquerda.SuspendLayout();
             this.quadro1.SuspendLayout();
@@ -51,7 +49,6 @@
             this.split.Panel1.SuspendLayout();
             this.split.Panel2.SuspendLayout();
             this.split.SuspendLayout();
-            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // esquerda
@@ -155,7 +152,6 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl.Controls.Add(this.tabPage1);
-            this.tabControl.Controls.Add(this.tabPage2);
             this.tabControl.ImageList = this.imageList1;
             this.tabControl.Location = new System.Drawing.Point(193, 83);
             this.tabControl.Name = "tabControl";
@@ -202,26 +198,6 @@
             this.listaSaída.TabIndex = 9;
             this.listaSaída.DuploClique += new System.EventHandler(this.listaSaída_DuploClique);
             // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.listaNotificações1);
-            this.tabPage2.ImageIndex = 1;
-            this.tabPage2.Location = new System.Drawing.Point(4, 23);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(712, 356);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Notificações";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // listaNotificações1
-            // 
-            this.listaNotificações1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listaNotificações1.Location = new System.Drawing.Point(3, 3);
-            this.listaNotificações1.Name = "listaNotificações1";
-            this.listaNotificações1.Size = new System.Drawing.Size(706, 350);
-            this.listaNotificações1.TabIndex = 0;
-            // 
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
@@ -248,7 +224,6 @@
             this.split.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.split)).EndInit();
             this.split.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -263,10 +238,8 @@
         private Formulários.Opção opçãoImportar;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.SplitContainer split;
         private Lista.ListaSaída listaSaída;
-        private Notificações.ListaNotificações listaNotificações1;
     }
 }
