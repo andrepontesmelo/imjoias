@@ -257,6 +257,15 @@ namespace Entidades.Fiscal
             return Mapear<SaídaFiscal>(sql);
         }
 
+        public static List<SaídaFiscal> Obter(Notificação notificação)
+        {
+            string sql = string.Format("select * from saidafiscal WHERE id IN " + 
+                " (SELECT saida from coafnotificacaosaida where notificacao={0})",
+                DbTransformar(notificação.Código));
+
+            return Mapear<SaídaFiscal>(sql);
+        }
+
         public static List<SaídaFiscal> Obter()
         {
             return Obter(null, ConfiguraçõesCoaf.Instância.DataInício, ConfiguraçõesCoaf.Instância.DataFim);

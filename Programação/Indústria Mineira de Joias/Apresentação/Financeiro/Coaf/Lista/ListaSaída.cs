@@ -4,6 +4,7 @@ using System;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using Apresentação.Formulários;
+using Entidades.Coaf;
 
 namespace Apresentação.Financeiro.Coaf.Lista
 {
@@ -21,6 +22,11 @@ namespace Apresentação.Financeiro.Coaf.Lista
         private void Lista_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             ((ListViewColumnSorter)lista.ListViewItemSorter).OnClick(lista, e);
+        }
+
+        internal void Carregar(Entidades.Coaf.Notificação seleção)
+        {
+            Carregar(SaídaFiscal.Obter(seleção));
         }
 
         public SaídaFiscal ObterSaídaSelecionada()
@@ -45,8 +51,13 @@ namespace Apresentação.Financeiro.Coaf.Lista
 
         public void Carregar(string cpfCnpj, DateTime início, DateTime fim)
         {
+            Carregar(SaídaFiscal.Obter(cpfCnpj, início, fim));
+        }
+
+        private void Carregar(List<SaídaFiscal> saídas)
+        {
             lista.Items.Clear();
-            var saídas = SaídaFiscal.Obter(cpfCnpj, início, fim);
+
             decimal total = ObterTotal(saídas);
 
             lista.Items.AddRange(CriarItens(saídas));

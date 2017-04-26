@@ -1,4 +1,5 @@
 ﻿using Entidades.Coaf;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -6,11 +7,19 @@ namespace Apresentação.Financeiro.Coaf.Notificações
 {
     public partial class ListaNotificações : UserControl
     {
+        public event EventHandler AoSelecionar;
+
         public ListaNotificações()
         {
             InitializeComponent();
             lista.ListViewItemSorter = new Formulários.ListViewColumnSorter();
             lista.ColumnClick += Lista_ColumnClick;
+            lista.ItemSelectionChanged += Lista_ItemSelectionChanged;
+        }
+
+        private void Lista_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            AoSelecionar?.Invoke(sender, e);
         }
 
         private void Lista_ColumnClick(object sender, ColumnClickEventArgs e)
@@ -62,8 +71,20 @@ namespace Apresentação.Financeiro.Coaf.Notificações
             item.SubItems[colInício.Index].Text = notificação.OcorrênciaInício.ToShortDateString();
             item.SubItems[colFim.Index].Text = notificação.OcorrênciaFim.ToShortDateString();
             item.SubItems[colValor.Index].Text = notificação.Valor.ToString("C");
+            item.Tag = notificação;
 
             return item;
+        }
+
+        public Notificação Seleção
+        {
+            get
+            {
+                if (lista.SelectedItems.Count == 0)
+                    return null;
+
+                return lista.SelectedItems[0].Tag as Notificação;
+            }
         }
     }
 }

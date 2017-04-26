@@ -15,5 +15,15 @@ namespace Apresentação.Financeiro.Coaf
 
             listaNotificações.Carregar();
         }
+
+        private void listaNotificações_AoSelecionar(object sender, System.EventArgs e)
+        {
+            var seleção = listaNotificações.Seleção;
+
+            if (seleção == null)
+                listaSaída.Limpar();
+            else
+                listaSaída.Carregar(seleção);
+        }
     }
 }

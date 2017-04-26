@@ -33,25 +33,25 @@
             this.título = new Apresentação.Formulários.TítuloBaseInferior();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.listaNotificações = new Apresentação.Financeiro.Coaf.Notificações.ListaNotificações();
-            this.listaSaída1 = new Apresentação.Financeiro.Coaf.Lista.ListaSaída();
+            this.listaSaída = new Apresentação.Financeiro.Coaf.Lista.ListaSaída();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.numericTextBox1 = new AMS.TextBox.NumericTextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.textBoxCPF1 = new Apresentação.Pessoa.TextBoxCPF();
-            this.textBoxCNPJ1 = new Apresentação.Pessoa.TextBoxCNPJ();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
             this.currencyTextBox1 = new AMS.TextBox.CurrencyTextBox();
+            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.textBoxCNPJ1 = new Apresentação.Pessoa.TextBoxCNPJ();
+            this.textBoxCPF1 = new Apresentação.Pessoa.TextBoxCPF();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.numericTextBox1 = new AMS.TextBox.NumericTextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -84,21 +84,22 @@
             this.imageList1.Images.SetKeyName(0, "chamando atenção.gif");
             this.imageList1.Images.SetKeyName(1, "info.png");
             // 
-            // listaNotificações1
+            // listaNotificações
             // 
             this.listaNotificações.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listaNotificações.Location = new System.Drawing.Point(0, 0);
-            this.listaNotificações.Name = "listaNotificações1";
+            this.listaNotificações.Name = "listaNotificações";
             this.listaNotificações.Size = new System.Drawing.Size(705, 199);
             this.listaNotificações.TabIndex = 7;
+            this.listaNotificações.AoSelecionar += new System.EventHandler(this.listaNotificações_AoSelecionar);
             // 
             // listaSaída1
             // 
-            this.listaSaída1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listaSaída1.Location = new System.Drawing.Point(0, 0);
-            this.listaSaída1.Name = "listaSaída1";
-            this.listaSaída1.Size = new System.Drawing.Size(705, 78);
-            this.listaSaída1.TabIndex = 8;
+            this.listaSaída.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listaSaída.Location = new System.Drawing.Point(0, 0);
+            this.listaSaída.Name = "listaSaída1";
+            this.listaSaída.Size = new System.Drawing.Size(705, 78);
+            this.listaSaída.TabIndex = 8;
             // 
             // splitContainer1
             // 
@@ -115,7 +116,7 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.listaSaída1);
+            this.splitContainer1.Panel2.Controls.Add(this.listaSaída);
             this.splitContainer1.Size = new System.Drawing.Size(705, 281);
             this.splitContainer1.SplitterDistance = 199;
             this.splitContainer1.TabIndex = 9;
@@ -147,86 +148,56 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Edição";
             // 
-            // label1
+            // currencyTextBox1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 23);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Notificação:";
+            this.currencyTextBox1.AllowNegative = true;
+            this.currencyTextBox1.Flags = 7680;
+            this.currencyTextBox1.Location = new System.Drawing.Point(504, 47);
+            this.currencyTextBox1.MaxWholeDigits = 9;
+            this.currencyTextBox1.Name = "currencyTextBox1";
+            this.currencyTextBox1.RangeMax = 1.7976931348623157E+308D;
+            this.currencyTextBox1.RangeMin = -1.7976931348623157E+308D;
+            this.currencyTextBox1.Size = new System.Drawing.Size(77, 20);
+            this.currencyTextBox1.TabIndex = 15;
+            this.currencyTextBox1.Text = "R$ 1,00";
             // 
-            // label2
+            // dateTimePicker3
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 51);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(33, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Data:";
+            this.dateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker3.Location = new System.Drawing.Point(403, 47);
+            this.dateTimePicker3.Name = "dateTimePicker3";
+            this.dateTimePicker3.Size = new System.Drawing.Size(82, 20);
+            this.dateTimePicker3.TabIndex = 14;
             // 
-            // label3
+            // dateTimePicker2
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(174, 23);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(30, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "CPF:";
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker2.Location = new System.Drawing.Point(403, 19);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(82, 20);
+            this.dateTimePicker2.TabIndex = 13;
             // 
-            // label4
+            // textBoxCNPJ1
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(170, 51);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(37, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "CNPJ:";
+            this.textBoxCNPJ1.Location = new System.Drawing.Point(207, 47);
+            this.textBoxCNPJ1.Name = "textBoxCNPJ1";
+            this.textBoxCNPJ1.Size = new System.Drawing.Size(150, 23);
+            this.textBoxCNPJ1.TabIndex = 12;
             // 
-            // label5
+            // textBoxCPF1
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(363, 23);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(37, 13);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Início:";
+            this.textBoxCPF1.Location = new System.Drawing.Point(207, 19);
+            this.textBoxCPF1.Name = "textBoxCPF1";
+            this.textBoxCPF1.Size = new System.Drawing.Size(150, 21);
+            this.textBoxCPF1.TabIndex = 11;
             // 
-            // label6
+            // dateTimePicker1
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(365, 49);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(26, 13);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Fim:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(502, 31);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(34, 13);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Valor:";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(606, 22);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Alterar";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(606, 51);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "Cancelar";
-            this.button2.UseVisualStyleBackColor = true;
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(76, 50);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(82, 20);
+            this.dateTimePicker1.TabIndex = 10;
             // 
             // numericTextBox1
             // 
@@ -244,56 +215,86 @@
             this.numericTextBox1.TabIndex = 9;
             this.numericTextBox1.Text = "1";
             // 
-            // dateTimePicker1
+            // button2
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(76, 50);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(82, 20);
-            this.dateTimePicker1.TabIndex = 10;
+            this.button2.Location = new System.Drawing.Point(606, 51);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 8;
+            this.button2.Text = "Cancelar";
+            this.button2.UseVisualStyleBackColor = true;
             // 
-            // textBoxCPF1
+            // button1
             // 
-            this.textBoxCPF1.Location = new System.Drawing.Point(207, 19);
-            this.textBoxCPF1.Name = "textBoxCPF1";
-            this.textBoxCPF1.Size = new System.Drawing.Size(150, 21);
-            this.textBoxCPF1.TabIndex = 11;
+            this.button1.Location = new System.Drawing.Point(606, 22);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Alterar";
+            this.button1.UseVisualStyleBackColor = true;
             // 
-            // textBoxCNPJ1
+            // label7
             // 
-            this.textBoxCNPJ1.Location = new System.Drawing.Point(207, 47);
-            this.textBoxCNPJ1.Name = "textBoxCNPJ1";
-            this.textBoxCNPJ1.Size = new System.Drawing.Size(150, 23);
-            this.textBoxCNPJ1.TabIndex = 12;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(502, 31);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(34, 13);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "Valor:";
             // 
-            // dateTimePicker2
+            // label6
             // 
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(403, 19);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(82, 20);
-            this.dateTimePicker2.TabIndex = 13;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(365, 49);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(26, 13);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "Fim:";
             // 
-            // dateTimePicker3
+            // label5
             // 
-            this.dateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker3.Location = new System.Drawing.Point(403, 47);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(82, 20);
-            this.dateTimePicker3.TabIndex = 14;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(363, 23);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(37, 13);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Início:";
             // 
-            // currencyTextBox1
+            // label4
             // 
-            this.currencyTextBox1.AllowNegative = true;
-            this.currencyTextBox1.Flags = 7680;
-            this.currencyTextBox1.Location = new System.Drawing.Point(504, 47);
-            this.currencyTextBox1.MaxWholeDigits = 9;
-            this.currencyTextBox1.Name = "currencyTextBox1";
-            this.currencyTextBox1.RangeMax = 1.7976931348623157E+308D;
-            this.currencyTextBox1.RangeMin = -1.7976931348623157E+308D;
-            this.currencyTextBox1.Size = new System.Drawing.Size(77, 20);
-            this.currencyTextBox1.TabIndex = 15;
-            this.currencyTextBox1.Text = "R$ 1,00";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(170, 51);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(37, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "CNPJ:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(174, 23);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(30, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "CPF:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 51);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(33, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Data:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 23);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(64, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Notificação:";
             // 
             // BaseNotificação
             // 
@@ -322,7 +323,7 @@
         private Formulários.TítuloBaseInferior título;
         private System.Windows.Forms.ImageList imageList1;
         private Notificações.ListaNotificações listaNotificações;
-        private Lista.ListaSaída listaSaída1;
+        private Lista.ListaSaída listaSaída;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.GroupBox groupBox1;
         private AMS.TextBox.CurrencyTextBox currencyTextBox1;
