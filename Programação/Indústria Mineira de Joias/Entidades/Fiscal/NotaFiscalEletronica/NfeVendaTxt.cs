@@ -228,7 +228,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
 
             s.Write("E|");
 
-            s.Write(cliente.Nome.Trim());
+            s.Write(Cortar(cliente.Nome.Trim(), 60));
             s.Write(" - ");
             s.Write(cliente.Código.ToString());
             s.Write("|1|");
@@ -291,6 +291,14 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
 
             s.Write("|");
             s.WriteLine();
+        }
+
+        private string Cortar(string texto, int limite)
+        {
+            if (texto.Length <= limite)
+                return texto;
+
+            return texto.Substring(0, limite);
         }
     }
 }
