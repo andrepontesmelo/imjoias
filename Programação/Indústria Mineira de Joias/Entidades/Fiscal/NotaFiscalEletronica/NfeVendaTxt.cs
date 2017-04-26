@@ -266,7 +266,7 @@ namespace Entidades.Fiscal.NotaFiscalEletronica
             s.Write(endereço.Número);
             s.Write("|");
             s.Write(endereço.Complemento);
-            s.Write("'|");
+            s.Write("|");
             s.Write(endereço.Bairro);
 
             Municipio m = Municipio.Obter(endereço.Localidade);
