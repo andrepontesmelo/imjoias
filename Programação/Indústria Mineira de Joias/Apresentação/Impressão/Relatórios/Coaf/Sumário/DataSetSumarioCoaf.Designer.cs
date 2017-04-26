@@ -760,7 +760,7 @@ namespace Apresentação.Impressão.Relatórios.Coaf.Sumário {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PessoasRow AddPessoasRow(string código, string nome, bool pep, string cpfCnpj, string valorAcumulado, string pendências, bool notificável, string cargoPep) {
+            public PessoasRow AddPessoasRow(string código, string nome, bool pep, string cpfCnpj, decimal valorAcumulado, string pendências, bool notificável, string cargoPep) {
                 PessoasRow rowPessoasRow = ((PessoasRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         código,
@@ -814,7 +814,7 @@ namespace Apresentação.Impressão.Relatórios.Coaf.Sumário {
                 base.Columns.Add(this.columnpep);
                 this.columncpfCnpj = new global::System.Data.DataColumn("cpfCnpj", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncpfCnpj);
-                this.columnvalorAcumulado = new global::System.Data.DataColumn("valorAcumulado", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnvalorAcumulado = new global::System.Data.DataColumn("valorAcumulado", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnvalorAcumulado);
                 this.columnpendências = new global::System.Data.DataColumn("pendências", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnpendências);
@@ -1402,10 +1402,10 @@ namespace Apresentação.Impressão.Relatórios.Coaf.Sumário {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string valorAcumulado {
+            public decimal valorAcumulado {
                 get {
                     try {
-                        return ((string)(this[this.tablePessoas.valorAcumuladoColumn]));
+                        return ((decimal)(this[this.tablePessoas.valorAcumuladoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'valorAcumulado\' in table \'Pessoas\' is DBNull.", e);
