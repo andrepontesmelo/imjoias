@@ -1,4 +1,5 @@
 ﻿using Apresentação.Álbum.Edição.Álbuns;
+using Entidades.Configuração;
 using System;
 using System.ComponentModel;
 using System.Windows.Forms;
@@ -27,6 +28,9 @@ namespace Apresentação.Fotos
         public IdentificaçãoMercadoria()
         {
             InitializeComponent();
+
+            if (!DadosGlobais.ModoDesenho)
+                txtReferência.Tabela = Entidades.Tabela.TabelaPadrão;
         }
 
         #region Propriedades
@@ -66,8 +70,12 @@ namespace Apresentação.Fotos
 
                 txtReferência.CompletarReferência();
 
-                if (txtReferência.Mercadoria != null)
-                    txtPeso.Double = txtReferência.Mercadoria.Peso;
+                var mercadoria = txtReferência.Mercadoria;
+                if (mercadoria != null)
+                {
+                    txtPeso.Double = mercadoria.Peso;
+                    txtÍndice.Text = mercadoria.ÍndiceArredondado.ToString();
+                }
 
                 CarregarFornecedor();
 
@@ -105,9 +113,10 @@ namespace Apresentação.Fotos
             }
         }
 
-        private void CarregarPeso(Entidades.Mercadoria.Mercadoria mercadoria)
+        private void CarregarPesoIndice(Entidades.Mercadoria.Mercadoria mercadoria)
         {
             txtPeso.Text = mercadoria?.Peso.ToString();
+            txtÍndice.Text = mercadoria?.ÍndiceArredondado.ToString();
         }
 
         /// <summary>
@@ -158,6 +167,7 @@ namespace Apresentação.Fotos
             txtDescrição.ResetText();
             txtFornecedor.ResetText();
             txtData.ResetText();
+            txtÍndice.ResetText();
 
             if (listaÁlbuns != null)
                 listaÁlbuns.Foto = foto;
@@ -206,7 +216,7 @@ namespace Apresentação.Fotos
 
             txtDescriçãoMercadoria.Text = txtReferência.Mercadoria?.Descrição ?? "";
 
-            CarregarPeso(mercadoria);
+            CarregarPesoIndice(mercadoria);
             CarregarFornecedor();
 
             if (Alterado != null)

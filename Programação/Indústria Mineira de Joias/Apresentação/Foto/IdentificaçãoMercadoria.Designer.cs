@@ -31,10 +31,12 @@ namespace Apresentação.Fotos
         private void InitializeComponent()
         {
             this.quadroIdentificação = new Apresentação.Formulários.Quadro();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtÍndice = new System.Windows.Forms.TextBox();
             this.txtDescriçãoMercadoria = new System.Windows.Forms.TextBox();
             this.txtReferência = new Apresentação.Mercadoria.TxtMercadoria();
-            this.txtPeso = new Apresentação.Mercadoria.TxtPeso();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtPeso = new Apresentação.Mercadoria.TxtPeso();
             this.lblPeso = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtFornecedorReferência = new System.Windows.Forms.TextBox();
@@ -42,7 +44,7 @@ namespace Apresentação.Fotos
             this.label6 = new System.Windows.Forms.Label();
             this.txtData = new System.Windows.Forms.TextBox();
             this.txtDescrição = new System.Windows.Forms.TextBox();
-            this.txtFornecedor = new TextBox();
+            this.txtFornecedor = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.quadroIdentificação.SuspendLayout();
             this.SuspendLayout();
@@ -57,6 +59,8 @@ namespace Apresentação.Fotos
             this.quadroIdentificação.bInfEsqArredondada = true;
             this.quadroIdentificação.bSupDirArredondada = true;
             this.quadroIdentificação.bSupEsqArredondada = true;
+            this.quadroIdentificação.Controls.Add(this.label5);
+            this.quadroIdentificação.Controls.Add(this.txtÍndice);
             this.quadroIdentificação.Controls.Add(this.txtDescriçãoMercadoria);
             this.quadroIdentificação.Controls.Add(this.txtReferência);
             this.quadroIdentificação.Controls.Add(this.label1);
@@ -77,16 +81,35 @@ namespace Apresentação.Fotos
             this.quadroIdentificação.MinimumSize = new System.Drawing.Size(216, 168);
             this.quadroIdentificação.MostrarBotãoMinMax = false;
             this.quadroIdentificação.Name = "quadroIdentificação";
-            this.quadroIdentificação.Size = new System.Drawing.Size(463, 216);
+            this.quadroIdentificação.Size = new System.Drawing.Size(463, 241);
             this.quadroIdentificação.TabIndex = 10;
             this.quadroIdentificação.Tamanho = 20;
             this.quadroIdentificação.Título = "Identificação da mercadoria";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(8, 85);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(39, 13);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "Índice:";
+            // 
+            // txtÍndice
+            // 
+            this.txtÍndice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtÍndice.Enabled = false;
+            this.txtÍndice.Location = new System.Drawing.Point(80, 82);
+            this.txtÍndice.Name = "txtÍndice";
+            this.txtÍndice.Size = new System.Drawing.Size(367, 20);
+            this.txtÍndice.TabIndex = 13;
             // 
             // txtDescriçãoMercadoria
             // 
             this.txtDescriçãoMercadoria.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDescriçãoMercadoria.Location = new System.Drawing.Point(80, 161);
+            this.txtDescriçãoMercadoria.Location = new System.Drawing.Point(80, 185);
             this.txtDescriçãoMercadoria.Name = "txtDescriçãoMercadoria";
             this.txtDescriçãoMercadoria.ReadOnly = true;
             this.txtDescriçãoMercadoria.Size = new System.Drawing.Size(367, 20);
@@ -107,6 +130,15 @@ namespace Apresentação.Fotos
             this.txtReferência.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtKeyDown);
             this.txtReferência.Enter += new System.EventHandler(this.AoGanharFocoEmTextBox);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(8, 36);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(62, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Referência:";
+            // 
             // txtPeso
             // 
             this.txtPeso.AllowNegative = true;
@@ -125,15 +157,6 @@ namespace Apresentação.Fotos
             this.txtPeso.Size = new System.Drawing.Size(367, 20);
             this.txtPeso.TabIndex = 1;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 36);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Referência:";
-            // 
             // lblPeso
             // 
             this.lblPeso.AutoSize = true;
@@ -146,7 +169,7 @@ namespace Apresentação.Fotos
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 140);
+            this.label2.Location = new System.Drawing.Point(8, 164);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 13);
             this.label2.TabIndex = 3;
@@ -157,7 +180,7 @@ namespace Apresentação.Fotos
             this.txtFornecedorReferência.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFornecedorReferência.Enabled = false;
-            this.txtFornecedorReferência.Location = new System.Drawing.Point(80, 110);
+            this.txtFornecedorReferência.Location = new System.Drawing.Point(80, 134);
             this.txtFornecedorReferência.Name = "txtFornecedorReferência";
             this.txtFornecedorReferência.Size = new System.Drawing.Size(367, 20);
             this.txtFornecedorReferência.TabIndex = 3;
@@ -165,7 +188,7 @@ namespace Apresentação.Fotos
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(8, 88);
+            this.label3.Location = new System.Drawing.Point(8, 112);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(64, 13);
             this.label3.TabIndex = 5;
@@ -173,7 +196,7 @@ namespace Apresentação.Fotos
             // 
             // label6
             // 
-            this.label6.Location = new System.Drawing.Point(8, 106);
+            this.label6.Location = new System.Drawing.Point(8, 130);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(65, 29);
             this.label6.TabIndex = 9;
@@ -183,7 +206,7 @@ namespace Apresentação.Fotos
             // 
             this.txtData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtData.Location = new System.Drawing.Point(80, 187);
+            this.txtData.Location = new System.Drawing.Point(80, 211);
             this.txtData.Name = "txtData";
             this.txtData.ReadOnly = true;
             this.txtData.Size = new System.Drawing.Size(367, 20);
@@ -194,7 +217,7 @@ namespace Apresentação.Fotos
             // 
             this.txtDescrição.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDescrição.Location = new System.Drawing.Point(80, 136);
+            this.txtDescrição.Location = new System.Drawing.Point(80, 160);
             this.txtDescrição.Name = "txtDescrição";
             this.txtDescrição.Size = new System.Drawing.Size(367, 20);
             this.txtDescrição.TabIndex = 4;
@@ -208,16 +231,16 @@ namespace Apresentação.Fotos
             this.txtFornecedor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFornecedor.Enabled = false;
-            this.txtFornecedor.Location = new System.Drawing.Point(80, 84);
+            this.txtFornecedor.Location = new System.Drawing.Point(80, 108);
             this.txtFornecedor.Name = "txtFornecedor";
             this.txtFornecedor.Size = new System.Drawing.Size(367, 20);
             this.txtFornecedor.TabIndex = 2;
-            this.txtFornecedor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtKeyDown);
             this.txtFornecedor.Enter += new System.EventHandler(this.AoGanharFocoEmTextBox);
+            this.txtFornecedor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtKeyDown);
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(8, 189);
+            this.label4.Location = new System.Drawing.Point(8, 213);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(72, 16);
             this.label4.TabIndex = 10;
@@ -231,7 +254,7 @@ namespace Apresentação.Fotos
             this.Controls.Add(this.quadroIdentificação);
             this.MinimumSize = new System.Drawing.Size(216, 213);
             this.Name = "IdentificaçãoMercadoria";
-            this.Size = new System.Drawing.Size(463, 216);
+            this.Size = new System.Drawing.Size(463, 241);
             this.quadroIdentificação.ResumeLayout(false);
             this.quadroIdentificação.PerformLayout();
             this.ResumeLayout(false);
@@ -254,5 +277,7 @@ namespace Apresentação.Fotos
         private Apresentação.Mercadoria.TxtPeso txtPeso;
         private System.Windows.Forms.Label lblPeso;
         private System.Windows.Forms.TextBox txtDescriçãoMercadoria;
+        private Label label5;
+        private TextBox txtÍndice;
     }
 }

@@ -365,7 +365,7 @@ namespace ApresentaÁ„o.¡lbum.EdiÁ„o.Fotos
             this.quadroFoto.Location = new System.Drawing.Point(326, 263);
             this.quadroFoto.MostrarBot„oMinMax = false;
             this.quadroFoto.Name = "quadroFoto";
-            this.quadroFoto.Size = new System.Drawing.Size(25, 34);
+            this.quadroFoto.Size = new System.Drawing.Size(25, 7);
             this.quadroFoto.TabIndex = 7;
             this.quadroFoto.Tamanho = 30;
             this.quadroFoto.TÌtulo = "C‚mera";
@@ -377,7 +377,7 @@ namespace ApresentaÁ„o.¡lbum.EdiÁ„o.Fotos
             | System.Windows.Forms.AnchorStyles.Right)));
             this.picFoto.Location = new System.Drawing.Point(0, 24);
             this.picFoto.Name = "picFoto";
-            this.picFoto.Size = new System.Drawing.Size(25, 34);
+            this.picFoto.Size = new System.Drawing.Size(25, 41);
             this.picFoto.TabIndex = 1;
             this.picFoto.TabStop = false;
             // 
@@ -395,10 +395,10 @@ namespace ApresentaÁ„o.¡lbum.EdiÁ„o.Fotos
             this.quadro¡lbum.Cor = System.Drawing.Color.Black;
             this.quadro¡lbum.FundoTÌtulo = System.Drawing.Color.IndianRed;
             this.quadro¡lbum.LetraTÌtulo = System.Drawing.Color.White;
-            this.quadro¡lbum.Location = new System.Drawing.Point(680, 289);
+            this.quadro¡lbum.Location = new System.Drawing.Point(680, 316);
             this.quadro¡lbum.MostrarBot„oMinMax = false;
             this.quadro¡lbum.Name = "quadro¡lbum";
-            this.quadro¡lbum.Size = new System.Drawing.Size(260, 229);
+            this.quadro¡lbum.Size = new System.Drawing.Size(260, 202);
             this.quadro¡lbum.TabIndex = 13;
             this.quadro¡lbum.Tamanho = 30;
             this.quadro¡lbum.TÌtulo = "Inserir esta foto nestes ·lbuns";
@@ -410,7 +410,7 @@ namespace ApresentaÁ„o.¡lbum.EdiÁ„o.Fotos
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lista¡lbuns.Location = new System.Drawing.Point(0, 28);
             this.lista¡lbuns.Name = "lista¡lbuns";
-            this.lista¡lbuns.Size = new System.Drawing.Size(260, 201);
+            this.lista¡lbuns.Size = new System.Drawing.Size(260, 174);
             this.lista¡lbuns.TabIndex = 4;
             this.lista¡lbuns.Alterado += new System.EventHandler(this.lista¡lbuns_Alterado);
             // 
@@ -422,9 +422,9 @@ namespace ApresentaÁ„o.¡lbum.EdiÁ„o.Fotos
             this.quadroMercadoria.Lista¡lbuns = this.lista¡lbuns;
             this.quadroMercadoria.Location = new System.Drawing.Point(680, 70);
             this.quadroMercadoria.MaximumSize = new System.Drawing.Size(1024, 193);
-            this.quadroMercadoria.MinimumSize = new System.Drawing.Size(216, 213);
+            this.quadroMercadoria.MinimumSize = new System.Drawing.Size(216, 240);
             this.quadroMercadoria.Name = "quadroMercadoria";
-            this.quadroMercadoria.Size = new System.Drawing.Size(260, 213);
+            this.quadroMercadoria.Size = new System.Drawing.Size(260, 240);
             this.quadroMercadoria.TabIndex = 19;
             this.quadroMercadoria.TxtReferÍnciaEnabled = true;
             // 
