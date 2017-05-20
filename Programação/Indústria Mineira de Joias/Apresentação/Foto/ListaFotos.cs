@@ -131,7 +131,12 @@ namespace Apresentação.Álbum.Edição.Fotos
             string título;
 
             foto = fotos[e.ItemIndex];
-            título = foto.ReferênciaFormatada;
+
+            var mercadoria = foto.ObterMercadoria();
+            título = string.Format("{0}\n9{1}9 - {2}",
+                Entidades.Mercadoria.Mercadoria.MascararReferência(foto.ReferênciaNumérica, true),
+                mercadoria.Peso,
+                mercadoria.ÍndiceArredondado);
 
             if (foto.Descrição != null && foto.Descrição.Length > 0)
                 título += "\n" + foto.Descrição;
