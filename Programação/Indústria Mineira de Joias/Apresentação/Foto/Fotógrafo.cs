@@ -427,6 +427,7 @@ namespace Apresentação.Álbum.Edição.Fotos
             this.quadroMercadoria.Size = new System.Drawing.Size(260, 240);
             this.quadroMercadoria.TabIndex = 19;
             this.quadroMercadoria.TxtReferênciaEnabled = true;
+            this.quadroMercadoria.Alterado += QuadroMercadoria_Alterado;
             // 
             // quadroExibição
             // 
