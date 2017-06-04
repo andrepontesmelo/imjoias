@@ -1,21 +1,17 @@
-using System;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
-using System.Collections;
-using System.Collections.Generic;
 using Acesso.Comum;
 using Acesso.Comum.Cache;
+using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Threading;
-using System.Text;
 
 namespace Entidades.Álbum
 {
-	/// <summary>
-	/// Foto de mercadorias
-	/// </summary>
-	[Serializable]
+    /// <summary>
+    /// Foto de mercadorias
+    /// </summary>
+    [Serializable]
     [Cacheável("ObterMiniaturaSemCache"), NãoCopiarCache]
     [DbTransação]
 	public class Foto : DbManipulaçãoAutomática, IComparable<Foto>, IDisposable
@@ -47,7 +43,7 @@ namespace Entidades.Álbum
 		/// </summary>
 		private DbFoto			foto = null;
 
-        [DbColuna("icone")]
+        [DbAtributo(TipoAtributo.Ignorar)]
         private DbFoto ícone = null;
 		
         /// <summary>
@@ -183,20 +179,6 @@ namespace Entidades.Álbum
             get { return foto != null; }
         }
 
-        public Image Ícone
-        {
-            get
-            {
-                lock (this)
-                {
-                    if (ícone == null)
-                        ícone = ObterÍcone();
-
-                    return ícone;
-                }
-            }
-        }
-
 		public uint Código
 		{
 			get { return codigo; }
@@ -218,47 +200,7 @@ namespace Entidades.Álbum
             get { return álbuns; }
         }
 
-        ///// <summary>
-        ///// Foto original, sem qualquer tipo de processamento de imagem.
-        ///// </summary>
-        //public Image FotoOriginal
-        //{
-        //    get
-        //    {
-        //        lock (this)
-        //        {
-        //            if (fotoOriginal == null)
-        //                fotoOriginal = ObterFotoOriginal();
-
-        //            últimoUso = DateTime.Now;
-
-        //            return fotoOriginal;
-        //        }
-        //    }
-        //    set
-        //    {
-        //        lock (this)
-        //        {
-        //            if (value == null)
-        //                throw new Exception("Foto Original não pode ser nula");
-
-        //            fotoOriginal = value;
-        //            gravarOriginal = true;
-        //            DefinirDesatualizado();
-        //        }
-        //    }
-        //}
-
 		#endregion
-
-		/// <summary>
-		/// Consulta ObterFotos()
-		/// </summary>
-		/// <remarks>
-		/// o CódigoFoto é o mesmo que Código. É informação repetida.
-		/// </remarks>
-		private enum Ordem { Mercadoria, Dígito, Descrição, Icone, Data, 
-			Código, CódigoFoto, Album }
 
         /// <summary>
         /// Assegura que a foto fora carregado do banco de dados.
@@ -290,13 +232,6 @@ namespace Entidades.Álbum
                     ícone.Dispose();
                     ícone = null;
                 }
-
-                //if (miniatura != null)
-                //{
-                //    miniatura.Dispose();
-                //    miniatura = null;
-                //    miniaturaObtida = false;
-                //}
             }
         }
 
@@ -329,38 +264,6 @@ namespace Entidades.Álbum
 			}
 
             MarcarObtenção(this);
-
-            return new DbFoto((byte[])obj);
-        }
-
-        /// <summary>
-        /// Obtém ícone do banco de dados.
-        /// </summary>
-        /// <returns>Ícone.</returns>
-        private DbFoto ObterÍcone()
-        {
-            IDbConnection conexão = Conexão;
-            object obj;
-
-            lock (conexão)
-            {
-                Usuários.UsuárioAtual.GerenciadorConexões.RemoverConexão(conexão);
-                
-                try
-                {
-
-                    using (IDbCommand cmd = conexão.CreateCommand())
-                    {
-                        cmd.CommandText = "SELECT icone FROM foto WHERE codigo=" + this.Código;
-
-                        obj = cmd.ExecuteScalar();
-                    }
-                }
-                finally
-                {
-                    Usuários.UsuárioAtual.GerenciadorConexões.AdicionarConexão(conexão);
-                }
-            }
 
             return new DbFoto((byte[])obj);
         }
@@ -707,7 +610,7 @@ namespace Entidades.Álbum
         /// </summary>
         public static Foto[] ObterÍconesAleatórios(int quantidade)
         {
-            string cmd = "SELECT f.codigo, f.mercadoria, f.descricao, f.icone FROM mercadoria m, foto f WHERE m.foradelinha = 0 AND m.referencia = f.mercadoria ORDER BY RAND() LIMIT " + quantidade.ToString();
+            string cmd = "SELECT f.codigo, f.mercadoria, f.descricao FROM mercadoria m, foto f WHERE m.foradelinha = 0 AND m.referencia = f.mercadoria ORDER BY RAND() LIMIT " + quantidade.ToString();
 
             return Mapear<Foto>(cmd).ToArray();
         }
@@ -824,7 +727,7 @@ namespace Entidades.Álbum
 
         public static Foto[] ObterFotosSemÍcone()
         {
-            string cmd = "SELECT f.codigo, f.mercadoria, f.descricao, f.icone FROM foto f WHERE f.icone is null or length(f.icone) = 0";
+            string cmd = "SELECT f.codigo, f.mercadoria, f.descricao FROM foto f WHERE f.icone is null or length(f.icone) = 0";
 
             return Mapear<Foto>(cmd).ToArray();
         }
