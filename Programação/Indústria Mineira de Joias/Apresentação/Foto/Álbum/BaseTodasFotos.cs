@@ -36,18 +36,9 @@ namespace Apresentação.Álbum.Edição.Álbuns
 
         private void opçãoRefazerÍcones_Click(object sender, EventArgs e)
         {
-            Entidades.Álbum.Foto[] lstFotos = Entidades.Álbum.Foto.ObterFotosSemÍcone();
-            // Obtem todas as fotos sem ícone
-            // Gera o ícone e salva.
-            Aguarde janela = new Aguarde("Gerando ícones", lstFotos.Length);
-            janela.Show();
-            foreach (Foto f in lstFotos)
-            {
-                f.RefazÍcone();
-                f.Atualizar();
-                janela.Passo(f.ReferênciaFormatada);
-            }
-            janela.Close();
+            AguardeDB.Mostrar();
+            Foto.GerarÍconesFotosSemÍcone();
+            AguardeDB.Fechar();
         }
     }
 }

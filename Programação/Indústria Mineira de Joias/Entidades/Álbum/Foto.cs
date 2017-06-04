@@ -154,21 +154,19 @@ namespace Entidades.Álbum
                 {
                     foto = value;
 
-                    RefazÍcone();
+                    DesenharÍcone();
 
                     DefinirDesatualizado();
                 }
 			}
 		}
 
-        public void RefazÍcone()
+        public void DesenharÍcone()
         {
             if (Imagem == null)
                 ícone = null;
             else
                 ícone = Redesenhar(Imagem, tamanhoÍcone, tamanhoÍcone);
-
-            DefinirDesatualizado();
         }
 
         /// <summary>
@@ -369,6 +367,8 @@ namespace Entidades.Álbum
 
             if (álbuns != null)
                 álbuns.Gravar(cmd);
+
+            GravarÍcone(cmd);
         }
 
         protected override void Atualizar(IDbCommand cmd)
@@ -450,6 +450,34 @@ namespace Entidades.Álbum
             return (Image) new DbFoto(fotoVetor);
         }
 
+
+        private void GravarÍcone()
+        {
+            IDbConnection conexão = Conexão;
+
+            lock (conexão)
+            {
+                Usuários.UsuárioAtual.GerenciadorConexões.RemoverConexão(conexão);
+
+                using (IDbCommand cmd = conexão.CreateCommand())
+                    GravarÍcone(cmd);
+
+                Usuários.UsuárioAtual.GerenciadorConexões.AdicionarConexão(conexão);
+            }
+        }
+
+        private void GravarÍcone(IDbCommand cmd)
+        {
+            cmd.CommandText = string.Format("UPDATE foto set icone=@icone WHERE mercadoria={0}",
+                DbTransformar(mercadoria));
+
+            IDbDataParameter p = cmd.CreateParameter();
+            p.ParameterName = "@icone";
+            p.Value = (byte[]) ícone;
+            cmd.Parameters.Add(p);
+
+            cmd.ExecuteNonQuery();
+        }
 
         /// <summary>
         /// Obtém fotos de um álbum.
@@ -735,6 +763,17 @@ namespace Entidades.Álbum
         public static void Excluir(string referênciaNova)
         {
             ExecutarComando(string.Format("delete from foto where mercadoria={0}", DbTransformar(referênciaNova)));
+        }
+
+        public static void GerarÍconesFotosSemÍcone()
+        {
+            Foto[] lstFotos = ObterFotosSemÍcone();
+
+            foreach (Foto f in lstFotos)
+            {
+                f.DesenharÍcone();
+                f.GravarÍcone();
+            }
         }
     }
 }
