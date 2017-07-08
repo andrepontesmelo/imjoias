@@ -119,10 +119,10 @@ namespace Entidades.Estoque
             consulta.Append(agruparPrimeirosDígitos.HasValue ? substringPrimeirosDigitos + " as referencia, " : " m.referencia, ");
             consulta.Append("round(avg(");
             consulta.Append(usarPesoMédio ? " m.peso " : " ifnull(e.peso, m.peso) " );
-            consulta.Append("),1) ");
+            consulta.Append("),2) ");
             consulta.Append(" as peso, sum(ifnull(e.entrada,0)) as entrada,sum(ifnull(e.venda,0)) as venda, ");
             consulta.Append(" sum(ifnull(e.devolucao,0)) as devolucao, sum(ifnull(e.saldo,0)) as saldo, " +
-                " m.depeso, v.fornecedor, round(sum(e.saldo*m.peso),1) as produtoPesoSaldo from mercadoria m left join estoque_saldo e " +
+                " m.depeso, v.fornecedor, round(sum(e.saldo*m.peso),2) as produtoPesoSaldo from mercadoria m left join estoque_saldo e " +
                 " on e.referencia=m.referencia " +
                 " join vinculomercadoriafornecedor v on m.referencia=v.mercadoria " +
                 " WHERE m.foradelinha=0 AND " +
