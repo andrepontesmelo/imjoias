@@ -44,7 +44,7 @@ namespace Entidades.Pessoa
         /// <summary>
         /// Valor máximo que o código pode assumir, sem gerar overflow.
         /// </summary>
-        private const uint códigoMax = 63;
+        private const uint códigoMax = uint.MaxValue;
 
         /// <summary>
         /// Denominação da classificação.
@@ -212,23 +212,19 @@ namespace Entidades.Pessoa
         /// </summary>
         /// <param name="classificações">Classificações em bitwise flag.</param>
         /// <returns>Vetor de classificação.</returns>
-        public static Classificação[] ObterClassificações(ulong classificações)
+        public static Classificação[] ObterClassificações(string classificações)
         {
             List<Classificação> lista = new List<Classificação>();
-            uint i = 1;
 
-            while (classificações > 0)
+            for (int x = 0; x < classificações.Length; x++)
             {
-                if ((classificações & 1) > 0)
+                if (classificações[x] == '1')
                 {
                     Classificação entidade;
                     
-                    entidade = (Classificação)CacheDb.Instância.ObterEntidade(typeof(Classificação), i);
+                    entidade = (Classificação)CacheDb.Instância.ObterEntidade(typeof(Classificação), x + 1);
                     lista.Add(entidade);
                 }
-
-                i++;
-                classificações >>= 1;
             }
 
             return lista.ToArray();
@@ -241,19 +237,18 @@ namespace Entidades.Pessoa
         /// <param name="classificações">Classificações em bitwise flag.</param>
         /// <param name="alerta">Tipo de alerta desejado.</param>
         /// <returns>Vetor de classificação.</returns>
-        public static Classificação[] ObterClassificações(ulong classificações, TipoAlerta alerta)
+        public static Classificação[] ObterClassificações(string classificações, TipoAlerta alerta)
         {
             List<Classificação> lista = new List<Classificação>();
-            uint i = 1;
 
-            while (classificações > 0)
+            for (int i = 0; i < classificações.Length; i++)
             {
-                if ((classificações & 1) > 0)
+                if (classificações[i] == '1')
                 {
                     Classificação entidade;
                     bool ok;
 
-                    entidade = (Classificação)CacheDb.Instância.ObterEntidade(typeof(Classificação), i);
+                    entidade = (Classificação)CacheDb.Instância.ObterEntidade(typeof(Classificação), i + 1);
 
                     switch (alerta)
                     {
@@ -280,9 +275,6 @@ namespace Entidades.Pessoa
                     if (ok)
                         lista.Add(entidade);
                 }
-
-                i++;
-                classificações >>= 1;
             }
 
             return lista.ToArray();
@@ -320,7 +312,7 @@ namespace Entidades.Pessoa
         /// <returns>Se encontra-se atribuída.</returns>
         public bool AtribuídoA(Pessoa pessoa)
         {
-            return (pessoa.Classificações & Flag) > 0;
+            return pessoa.Classificações.Length >= código && pessoa.Classificações[(int) código - 1] == '1';
         }
 
         /// <summary>
@@ -330,10 +322,14 @@ namespace Entidades.Pessoa
         /// <param name="atribuído">Se a pessoa será classificada ou não.</param>
         public void DefinirAtribuição(Pessoa pessoa, bool atribuído)
         {
-            if (atribuído)
-                pessoa.Classificações |= Flag;
-            else
-                pessoa.Classificações &= ~Flag;
+            var result = new StringBuilder(pessoa.Classificações);
+
+            if (result.Length < código)
+                result.Append(new string('0', (int) código - result.Length));
+
+            result[(int) código - 1] = atribuído ? '1' : '0';
+
+            pessoa.Classificações = result.ToString();
         }
 
         public override string ToString()

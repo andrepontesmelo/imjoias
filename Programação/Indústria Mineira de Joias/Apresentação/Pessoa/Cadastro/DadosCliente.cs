@@ -83,7 +83,7 @@ namespace Apresentação.Pessoa.Cadastro
 
                 classificador.Pessoa = value;
 
-                classificador.MostrarSomenteAtribuídos = value.Classificações > 0;
+                classificador.MostrarSomenteAtribuídos = value.Classificações.Replace("0", "").Length > 0;
 
                 //if (value.MaiorVenda.HasValue)
                 //    txtMaiorVenda.Double = value.MaiorVenda.Value;

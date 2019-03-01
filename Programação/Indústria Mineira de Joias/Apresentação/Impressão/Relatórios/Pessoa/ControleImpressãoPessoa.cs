@@ -88,7 +88,7 @@ namespace Apresentação.Impressão.Relatórios.Pessoa
             bool amarelo = false;
             bool vermelho = false;
 
-            Classificação[] classificações = Classificação.ObterClassificações(pessoa.Classificações);
+            Classificação[] classificações = Classificação.ObterClassificações(pessoa.ClassificaçõesStr);
 
             foreach (Classificação c in classificações)
             {

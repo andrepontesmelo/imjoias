@@ -20,7 +20,7 @@ namespace Entidades.Pessoa.Impressão
         private string enderecos;
 
         private string email;
-        private ulong classificacoes;
+        private string classificacoesStr;
         private string documento;
         
         [DbColuna("estadoCidade")]
@@ -35,7 +35,7 @@ namespace Entidades.Pessoa.Impressão
         public string Telefones { get { return telefones; } set { telefones = value; }  }
         public string Endereços { get { return enderecos; } set { enderecos = value; }  }
         public string Email { get { return email; } }
-        public ulong Classificações { get { return classificacoes; } }
+        public string ClassificaçõesStr { get { return classificacoesStr; } }
         public uint Código { get { return codigo; } }
         public string Documento { get { return documento; } }
         public double? Crédito { get { return crédito; } }

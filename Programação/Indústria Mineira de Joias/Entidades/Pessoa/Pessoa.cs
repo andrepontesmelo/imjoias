@@ -30,7 +30,7 @@ namespace Entidades.Pessoa
         protected DbFoto foto;
 
         [DbColuna("classificacoes")]
-        protected ulong classificações;
+        protected string classificações;
 
         protected DateTime? dataRegistro;
 
@@ -131,12 +131,16 @@ namespace Entidades.Pessoa
             return cpfCnpj;
         }
 
-
-        public ulong Classificações
+        public string Classificações
         {
             get { return classificações; }
-            set { classificações = value; DefinirDesatualizado(); }
+            set
+            {
+                classificações = value;
+                DefinirDesatualizado();
+            }
         }
+
 
         public DateTime? DataRegistro => dataRegistro; 
 
@@ -451,7 +455,7 @@ namespace Entidades.Pessoa
         {
             return RealizarConsulta(
                 "SELECT * FROM pessoa p LEFT JOIN pessoafisica pf ON p.codigo = pf.codigo" +
-                " WHERE classificacoes & 1 << ( " + classificação.Código.ToString() + " - 1) > 0", 0, Pessoa.TotalAtributos);
+                " WHERE select mid(classificacoes," + classificação.Código.ToString() + ",1) = '1'", 0, Pessoa.TotalAtributos);
         }
 
         public static List<Pessoa> ObterPessoas(Entidades.Setor setor)
@@ -1051,8 +1055,9 @@ namespace Entidades.Pessoa
             if (leitor[inicioAtributo + 7] != DBNull.Value)
                 dataAlteração = leitor.GetDateTime(inicioAtributo + 7);
 
-            classificações = (ulong)leitor.GetInt64(inicioAtributo + 8);
-
+            Classificações = leitor.GetString(inicioAtributo + 8);
+            
+            
             if (leitor[inicioAtributo + 9] != DBNull.Value)
                 maiorVenda = leitor.GetDouble(inicioAtributo + 9);
 
@@ -1061,7 +1066,6 @@ namespace Entidades.Pessoa
 
             if (leitor[inicioAtributo + 11] != DBNull.Value)
                 região = Região.ObterRegião((uint)leitor[inicioAtributo + 11]);
-
         }
 
         public static int TrocarRegião(List<Pessoa> pessoas, Endereço.Região região)
