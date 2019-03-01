@@ -174,7 +174,7 @@ namespace Apresentação.Formulários
 #pragma warning disable 0162            
 #if DEBUG
 
-            Usuários.UsuárioAtual = usuários.EfetuarLogin("andrep", "andrep");
+            Usuários.UsuárioAtual = usuários.EfetuarLogin("root", "!root");
             return true;
 #endif
 
